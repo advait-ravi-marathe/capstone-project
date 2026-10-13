@@ -31,15 +31,28 @@ class EventPolicyAcceptanceTest {
 
     @Test
     void classifyIsPure() {
-        IncomingEvent event = event("owner-A", "event-1", "payload");
-        assertEquals(Decision.ACCEPT, policy.classify(events, event));
-        assertTrue(events.isEmpty());
+        EventKey existing = new EventKey("owner-A", "event-1");
+        EventKey unrelated = new EventKey("owner-B", "seed");
+        events.put(existing, "stored");
+        events.put(unrelated, "leave-me-alone");
+        Map<EventKey, String> before = new HashMap<>(events);
+
+        assertEquals(Decision.ACCEPT, policy.classify(events, event("owner-A", "new", "payload")));
+        assertEquals(before, events);
+        assertEquals(Decision.DUPLICATE, policy.classify(events, event("owner-A", "event-1", "stored")));
+        assertEquals(before, events);
+        assertEquals(Decision.CONFLICT, policy.classify(events, event("owner-A", "event-1", "changed")));
+        assertEquals(before, events);
+        assertEquals(Decision.INVALID, policy.classify(events, event("owner-A", " ", "payload")));
+        assertEquals(before, events);
     }
 
     @Test
     void identicalReplayIsDuplicateWithoutMutation() {
         EventKey key = new EventKey("owner-A", "event-1");
+        EventKey unrelated = new EventKey("owner-B", "seed");
         events.put(key, "payload");
+        events.put(unrelated, "keep");
         Map<EventKey, String> before = new HashMap<>(events);
         assertEquals(Decision.DUPLICATE, policy.accept(events, event("owner-A", "event-1", "payload")));
         assertEquals(before, events);
@@ -48,9 +61,12 @@ class EventPolicyAcceptanceTest {
     @Test
     void changedPayloadConflictsWithoutOverwrite() {
         EventKey key = new EventKey("owner-A", "event-1");
+        EventKey unrelated = new EventKey("owner-B", "seed");
         events.put(key, "original");
+        events.put(unrelated, "keep");
+        Map<EventKey, String> before = new HashMap<>(events);
         assertEquals(Decision.CONFLICT, policy.accept(events, event("owner-A", "event-1", "changed")));
-        assertEquals("original", events.get(key));
+        assertEquals(before, events);
     }
 
     @Test
@@ -83,17 +99,50 @@ class EventPolicyAcceptanceTest {
     void validStringsAreNotTrimmedOrNormalized() {
         assertEquals(Decision.ACCEPT, policy.accept(events, event(" owner ", "id", "payload")));
         assertEquals(Decision.ACCEPT, policy.accept(events, event("owner", "id", "payload")));
+        Map<EventKey, String> beforeConflict = new HashMap<>(events);
         assertEquals(Decision.CONFLICT, policy.classify(events, event(" owner ", "id", "payload ")));
+        assertEquals(beforeConflict, events);
         assertEquals(2, events.size());
     }
 
     @Test
+    void distinctEventIdsAreNotTrimmedOrNormalized() {
+        assertEquals(Decision.ACCEPT, policy.accept(events, event("owner", "id", "first")));
+        Map<EventKey, String> afterFirst = new HashMap<>(events);
+
+        assertEquals(Decision.ACCEPT, policy.accept(events, event("owner", " id ", "second")));
+        assertEquals("first", events.get(new EventKey("owner", "id")));
+        assertEquals("second", events.get(new EventKey("owner", " id ")));
+        assertEquals(2, events.size());
+        assertTrue(events.containsKey(new EventKey("owner", "id")));
+        assertTrue(events.containsKey(new EventKey("owner", " id ")));
+        assertEquals("first", afterFirst.get(new EventKey("owner", "id")));
+    }
+
+    @Test
+    void whitespacePayloadIsStoredAndReplayedExactly() {
+        String payload = "  payload\t ";
+        IncomingEvent incoming = event("owner", "event", payload);
+
+        assertEquals(Decision.ACCEPT, policy.accept(events, incoming));
+        assertEquals(payload, events.get(new EventKey("owner", "event")));
+        Map<EventKey, String> beforeReplay = new HashMap<>(events);
+        assertEquals(Decision.DUPLICATE, policy.classify(events, incoming));
+        assertEquals(beforeReplay, events);
+        assertEquals(Decision.DUPLICATE, policy.accept(events, incoming));
+        assertEquals(beforeReplay, events);
+    }
+
+    @Test
     void emptyStringIsBlankAndDoesNotCreateAnEntry() {
+        events.put(new EventKey("other", "seed"), "keep");
+        Map<EventKey, String> before = new HashMap<>(events);
         assertEquals(Decision.INVALID, policy.accept(events, event("owner", "", "payload")));
-        assertTrue(events.isEmpty());
+        assertEquals(before, events);
     }
 
     private void assertInvalid(IncomingEvent event) {
+        events.putIfAbsent(new EventKey("owner-seed", "seed"), "unrelated");
         Map<EventKey, String> before = new HashMap<>(events);
         assertEquals(Decision.INVALID, policy.accept(events, event));
         assertEquals(before, events);

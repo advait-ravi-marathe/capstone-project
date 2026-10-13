@@ -44,25 +44,44 @@ string handling. Add one edge-case test of your own. In your notes, explain
 why the logic is correct, its expected time complexity, and why sequential map
 behavior does not provide concurrency safety.
 
-The starter also includes JUnit smoke checks that run before the learner logic
-is implemented. Those smoke checks confirm the project and assignment types
-compile; they do not claim the assignment is complete.
+The starter also includes infrastructure smoke checks that run before learner
+logic is implemented. They confirm project compilation, a valid JSON request
+reaches the supplied Spring MVC endpoint, and the project-local PostgreSQL
+server starts and accepts JDBC connections. The embedded database uses a
+loopback port and does not require Docker or a system-wide PostgreSQL install.
 
-## Deferred work
+## Spring validation seam (30 minutes)
 
-CAP-42 will cover parameterized PostgreSQL queries over a half-open UTC range,
-accepted event counts, and signed decimal totals. Its fixtures will use a single
-declared currency and unique event IDs, with a window from
-`2026-10-13T00:00:00Z` to `2026-10-14T00:00:00Z` (upper bound exclusive).
-That assignment is deferred until a real PostgreSQL acceptance harness is
-available; this starter does not use H2 or claim PostgreSQL verification.
+The instructor-provided request shape and controller are in
+`src/main/java/assignments/events/EventRequest.java` and
+`EventsController.java`. Complete the controller's validation TODO so missing
+bodies, missing required fields, blank fields, and malformed JSON return HTTP
+400. The controller is exercised with standalone Spring `MockMvc`; no server
+or database is started. The validation acceptance checks run with
+`./mvnw -Plearner-tests test` alongside CAP-43.
 
-The remaining 30-minute slice is a Java review and explain-back of safe request
-validation. HTTP/Spring wiring is deferred until its infrastructure is ready.
+## CAP-42: PostgreSQL aggregation query (60 minutes)
+
+Complete `src/test/resources/assignments/cap42/learner-query.sql`. Bind the
+owner ID, start time, and end time as JDBC parameters in that order. Return one
+row containing `accepted_count` and `signed_total`, count accepted events, sum
+signed amounts, and use the half-open UTC window `[from_utc, to_utc)`. An empty
+window must still return a count and decimal total of zero.
+
+The fixed fixtures use unique event IDs and one declared currency (USD). The
+main window is `2026-10-13T00:00:00Z` through `2026-10-14T00:00:00Z`, with the
+upper bound excluded. The harness starts real PostgreSQL 14.22 from
+test-scoped native binaries using
+`io.zonky.test:embedded-postgres:2.2.2`; the Darwin ARM64 binary is selected
+for this Apple Silicon checkout. It does not use H2 or Docker. PostgreSQL tests
+are part of `./mvnw -Plearner-tests test` and intentionally fail until the SQL
+TODO is completed.
 
 ## Study plan
 
-The learner time budget is 150 minutes per day. Project setup and instructor-
-provided fixtures, boilerplate, and test harnesses are outside that budget.
-Repository changes belong to the learner; the Scrum owner manages the roadmap
-only.
+The learner time budget is at most 150 minutes on each of the seven days.
+Certification preparation runs alongside every stage and is integrated with
+the related practical concepts inside that same daily budget. No exam purchases
+are included. Project setup and instructor-provided fixtures, boilerplate, and
+test harnesses are outside the learner budget. Repository implementation
+belongs to the learner; the Scrum owner manages the roadmap only.
