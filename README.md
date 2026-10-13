@@ -77,6 +77,48 @@ for this Apple Silicon checkout. It does not use H2 or Docker. PostgreSQL tests
 are part of `./mvnw -Plearner-tests test` and intentionally fail until the SQL
 TODO is completed.
 
+## CAP-44: retrieval ranking and provenance (60 minutes)
+
+Read [docs/assignments/CAP-44.md](docs/assignments/CAP-44.md). The standalone
+Python starter is `ai/retrieval/ranking.py`; instructor types and tokenization
+are provided, while `rank_runbooks` raises `NotImplementedError` for the
+learner. The JSON corpus and acceptance tests cover exact owner authorization,
+scores, source/version tie ordering, unchanged excerpts, and invalid or
+duplicate provenance. No network access is needed.
+
+Run the setup smoke checks with:
+
+```sh
+python3 -m unittest discover -s ai/tests -p test_infrastructure.py
+```
+
+Run the learner assertions (expected to fail until the TODO is complete) with:
+
+```sh
+python3 -m unittest discover -s ai/tests -p test_ranking.py
+```
+
+CAP-44's comparison with CAP-41 is pending: this checkout contains no CAP-41
+baseline, and no comparison scores are claimed. CAP-44 itself is independently
+runnable.
+
+## CAP-45: SQL event reconciliation (60 minutes)
+
+Read [docs/assignments/CAP-45.md](docs/assignments/CAP-45.md). The instructor
+DDL and fixed fixture run through the same embedded PostgreSQL 14.22 and Java
+Maven harness as CAP-42. The fixture contains exactly five events and three
+delivery attempts. The SQL learner TODO is
+`src/test/resources/assignments/cap45/learner-query.sql`; tests isolate each
+mutation and check complete rows, attempt counts, no-attempt retention,
+owner isolation, late attempts, row count, and the total amount.
+
+Check the harness independently with
+`./mvnw -Dtest=Cap45PostgresInfrastructureTest test`. Run CAP-45 acceptance
+tests with
+`./mvnw -Plearner-tests -Dtest=Cap45SqlTest test`; these are expected to fail
+until the learner query is implemented. The combined learner suite is
+`./mvnw -Plearner-tests test`.
+
 ## Study plan
 
 The learner time budget is at most 150 minutes on each of the seven days.

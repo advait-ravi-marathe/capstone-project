@@ -5,8 +5,6 @@
 -- Preserve signed amounts. Fixture currency is uniformly USD and event IDs are unique.
 SELECT NULL::BIGINT AS accepted_count,
        NULL::NUMERIC(19, 4) AS signed_total
-FROM financial_events
-WHERE owner_id = ?
-  AND occurred_at >= ?
-  AND occurred_at < ?
-  AND FALSE;
+WHERE ?::TEXT IS NOT NULL
+  AND ?::TIMESTAMPTZ IS NOT NULL
+  AND ?::TIMESTAMPTZ IS NOT NULL;

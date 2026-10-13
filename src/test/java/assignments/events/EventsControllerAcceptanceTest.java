@@ -34,6 +34,55 @@ class EventsControllerAcceptanceTest {
     }
 
     @Test
+    void missingOwnerIdReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"eventId\":\"id\",\"payload\":\"payload\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void missingEventIdReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":\"owner\",\"payload\":\"payload\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void nullOwnerIdReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":null,\"eventId\":\"id\",\"payload\":\"payload\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void nullEventIdReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":\"owner\",\"eventId\":null,\"payload\":\"payload\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void nullPayloadReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":\"owner\",\"eventId\":\"id\",\"payload\":null}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void blankOwnerIdReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":\" \",\"eventId\":\"id\",\"payload\":\"payload\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void blankEventIdReturnsBadRequest() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":\"owner\",\"eventId\":\" \",\"payload\":\"payload\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void blankRequiredFieldReturnsBadRequest() throws Exception {
         mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"ownerId\":\"owner\",\"eventId\":\"id\",\"payload\":\" \"}"))
@@ -44,5 +93,12 @@ class EventsControllerAcceptanceTest {
     void malformedJsonReturnsBadRequest() throws Exception {
         mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON).content("{"))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void validRequestReturnsSuccess() throws Exception {
+        mvc.perform(post("/events").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"ownerId\":\"owner\",\"eventId\":\"id\",\"payload\":\"payload\"}"))
+                .andExpect(status().is2xxSuccessful());
     }
 }

@@ -3,10 +3,11 @@ package assignments.events;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Confirms Spring request binding and MockMvc are available before learner validation. */
 class EventsControllerInfrastructureTest {
@@ -18,9 +19,12 @@ class EventsControllerInfrastructureTest {
     }
 
     @Test
-    void validJsonReachesLearnerValidationSeam() throws Exception {
-        mvc.perform(post("/events").contentType("application/json")
+    void validJsonBindsAndEndpointIsAvailable() throws Exception {
+        MvcResult result = mvc.perform(post("/events").contentType("application/json")
                         .content("{\"ownerId\":\"owner\",\"eventId\":\"id\",\"payload\":\"payload\"}"))
-                .andExpect(status().isNotImplemented());
+                .andReturn();
+        int responseStatus = result.getResponse().getStatus();
+        assertTrue(responseStatus == 501 || (responseStatus >= 200 && responseStatus < 300),
+                "valid JSON must bind; accept the starter TODO response or completed success response");
     }
 }

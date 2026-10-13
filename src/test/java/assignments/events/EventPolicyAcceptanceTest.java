@@ -92,7 +92,7 @@ class EventPolicyAcceptanceTest {
         assertInvalid(event("owner", "\t", "payload"));
         assertInvalid(event("owner", "id", null));
         assertInvalid(event("owner", "id", "  "));
-        assertTrue(events.isEmpty());
+        assertEquals(Map.of(new EventKey("owner-seed", "seed"), "unrelated"), events);
     }
 
     @Test

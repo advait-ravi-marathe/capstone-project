@@ -19,6 +19,8 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /** PostgreSQL acceptance tests; expected to fail until learner-query.sql is completed. */
 @Tag("learnerAcceptance")
@@ -43,35 +45,42 @@ class Cap42SqlTest {
     void filtersOwnerStatusAndHalfOpenRangeAndSumsSignedAmounts() throws Exception {
         Result result = query("owner-A", utc("2026-10-13T00:00:00Z"), utc("2026-10-14T00:00:00Z"));
         assertEquals(2, result.count);
-        assertEquals(new BigDecimal("80.0000"), result.total);
+        assertEquals(0, new BigDecimal("80.0000").compareTo(result.total));
     }
 
     @Test
     void includesLowerBoundary() throws Exception {
         Result result = query("owner-A", utc("2026-10-13T00:00:00Z"), utc("2026-10-13T00:00:01Z"));
         assertEquals(1, result.count);
-        assertEquals(new BigDecimal("100.0000"), result.total);
+        assertEquals(0, new BigDecimal("100.0000").compareTo(result.total));
     }
 
     @Test
     void excludesUpperBoundary() throws Exception {
+        Result result = query("owner-A", utc("2026-10-13T00:00:00Z"), utc("2026-10-14T00:00:00Z"));
+        assertEquals(2, result.count);
+        assertEquals(0, new BigDecimal("80.0000").compareTo(result.total));
+    }
+
+    @Test
+    void includesEventAtNextWindowLowerBoundary() throws Exception {
         Result result = query("owner-A", utc("2026-10-14T00:00:00Z"), utc("2026-10-14T00:00:01Z"));
-        assertEquals(0, result.count);
-        assertEquals(new BigDecimal("0.0000"), result.total);
+        assertEquals(1, result.count);
+        assertEquals(0, new BigDecimal("50.0000").compareTo(result.total));
     }
 
     @Test
     void scopesResultsToOwner() throws Exception {
         Result result = query("owner-B", utc("2026-10-13T00:00:00Z"), utc("2026-10-14T00:00:00Z"));
         assertEquals(1, result.count);
-        assertEquals(new BigDecimal("500.0000"), result.total);
+        assertEquals(0, new BigDecimal("500.0000").compareTo(result.total));
     }
 
     @Test
     void emptyRangeReturnsOneZeroAggregateRow() throws Exception {
         Result result = query("owner-A", utc("2026-11-01T00:00:00Z"), utc("2026-11-02T00:00:00Z"));
         assertEquals(0, result.count);
-        assertEquals(new BigDecimal("0.0000"), result.total);
+        assertEquals(0, new BigDecimal("0.0000").compareTo(result.total));
     }
 
     private static Result query(String owner, OffsetDateTime from, OffsetDateTime to) throws Exception {
@@ -83,7 +92,11 @@ class Cap42SqlTest {
             statement.setObject(3, to);
             try (ResultSet rows = statement.executeQuery()) {
                 if (!rows.next()) throw new AssertionError("Query must return one aggregate row, including for empty matches");
-                Result result = new Result(rows.getLong("accepted_count"), rows.getBigDecimal("signed_total"));
+                long count = rows.getLong("accepted_count");
+                assertFalse(rows.wasNull(), "accepted_count must not be SQL NULL");
+                BigDecimal total = rows.getBigDecimal("signed_total");
+                assertNotNull(total, "signed_total must not be SQL NULL");
+                Result result = new Result(count, total);
                 if (rows.next()) throw new AssertionError("Query must return exactly one aggregate row");
                 return result;
             }
