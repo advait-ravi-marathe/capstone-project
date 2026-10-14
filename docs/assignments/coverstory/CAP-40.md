@@ -10,9 +10,9 @@
 
 ## Readiness and timebox
 
-This is the instructor scaffold for the supplied first-day contract. Learner logic remains TODO. Test-only reference witnesses now check the positive first-seen pair contract and reject version-only identity and sorting defects. The separate learner acceptance run still stops at the TODO seam. Harness command time is measured; it does not estimate learner implementation time. Keep learner rehearsal and independent mastery evidence separate from instructor setup, and do not simulate a 95-minute wait.
+This is the instructor scaffold for the supplied first-day contract. Learner logic remains TODO. Test-only reference witnesses check the positive first-seen pair contract and reject version-only identity and sorting defects. The separate learner acceptance run still stops at the TODO seam. The selected cloud checkout completed Java/Maven compilation, instructor test discovery, and the linked Python fixture preflight; see [environment preflight](../../evidence/coverstory/CAP-40/environment-preflight.json). The assignment is `READY_TO_ATTEMPT`; this says the executor can run the harness, not that the learner seam is complete.
 
-The source budget remains 95 minutes maximum for the capstone work. The learner's actual task duration has not been measured because the business seam is intentionally unimplemented, so the day is **CONDITIONAL / NOT YET ASSIGNABLE** pending a realistic learner rehearsal and full timebox review. A rapid instructor test run is not evidence that the learner task fits.
+The source budget remains 95 minutes maximum for the capstone work. The timebox is `TIMEBOX_NOT_VALIDATED` because learner task duration has not been measured; record elapsed slices during the first attempt and stop or rescope explicitly at the cap. Missing timing rehearsal is tracked separately from environment readiness and does not indefinitely prevent starting. A rapid instructor test run is not evidence that the learner task fits.
 
 | Scheduled activity | Minutes |
 | --- | ---: |

@@ -3,22 +3,23 @@
   "date": "2026-10-14",
   "classification": "instructor_scaffold_check_only",
   "status": "PASS",
+  "environment_readiness": "READY_TO_ATTEMPT",
+  "timebox_rehearsal": "TIMEBOX_NOT_VALIDATED",
   "learner_logic_executed": false,
-  "timebox_rehearsal": "NOT_RUN",
   "checks": [
     {
-      "name": "CAP-40 fixture shape",
+      "name": "CAP-40 fixture and instructor witness",
       "command": "mvn -Dtest=CAP40ScaffoldInfrastructureTest test",
       "status": "PASS",
-      "tests": 1,
+      "tests": 2,
       "failures": 0,
       "errors": 0
     },
     {
-      "name": "CAP-41 instructor types, tokenizer, and fixture shape",
-      "command": "python3 -m unittest discover -s ai/tests -p test_coverstory_cap41_infrastructure.py",
+      "name": "CAP-41 shared fixture evaluator/instructor witnesses",
+      "command": "python3 -m unittest ai.tests.test_coverstory_cap41_infrastructure",
       "status": "PASS",
-      "tests": 2,
+      "tests": 4,
       "failures": 0,
       "errors": 0
     }
@@ -31,9 +32,12 @@
     },
     {
       "path": "ai/fixtures/coverstory/CAP-41/synthetic-v1.json",
-      "sha256": "e0b7f08dc9c52ce4b7d7d8a3952bd235d081fe70a49c2a289737a675bb67d4d9",
-      "bytes": 1214
+      "sha256": "6be8b8063eb3d052dc0476d26243fbdaae549fd5ae64a011c42fe24dc9a4e6da",
+      "bytes": 2768
     }
   ],
-  "environment_note": "Java 21 runtime-only executor with jdk.compiler invoked through a temporary launcher; Maven 3.10.0 checksum-verified in /tmp. The documented Maven command is the normal JDK/Maven form."
+  "limits": [
+    "Java 21 and Maven are available in this executor through a temporary launcher/distribution; this is not proof that a learner machine is provisioned.",
+    "No task timebox rehearsal or learner implementation is claimed."
+  ]
 }

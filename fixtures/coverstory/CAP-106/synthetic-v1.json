@@ -1,0 +1,20 @@
+{
+  "classification": "SYNTHETIC_LOCAL_POLICY_CONTRACT",
+  "actual_cloud_storage": false,
+  "actual_http_or_tls_adapter": false,
+  "principals": [{"id":"customer-A","role":"READER"},{"id":"customer-B","role":"READER"}],
+  "owner": {"id":"customer-A"},
+  "keys": [
+    {"value":"owners/customer-A/applications/application-A/revisions/r1.json","owner_id":"customer-A","application_id":"application-A","revision_id":"r1","kind":"HISTORICAL"},
+    {"value":"owners/customer-A/applications/application-A/revisions/r2.json","owner_id":"customer-A","application_id":"application-A","revision_id":"r2","kind":"CURRENT"},
+    {"value":"owners/customer-A/applications/application-A/revisions/../customer-B.json","owner_id":"customer-A","application_id":"application-A","revision_id":"traversal","kind":"HISTORICAL"}
+  ],
+  "accepted_current_revision": "r2",
+  "cases": [
+    {"id":"CAP-106-01","scenario":"reader A TLS GET own r1","expected":"ALLOW; exactly one local fetch; revision remains r1/HISTORICAL"},
+    {"id":"CAP-106-02","scenario":"reader B asks for A snapshot","expected":"DENY before fetch; no foreign metadata"},
+    {"id":"CAP-106-03","scenario":"own PUT or clear-text transport","expected":"DENY; fetches and mutations remain zero"},
+    {"id":"CAP-106-04","scenario":"unknown/path traversal key or null owner","expected":"DENY before fetch"},
+    {"id":"CAP-106-05","scenario":"authorized historic r1 and current r2","expected":"both labelled; r1 cannot replace accepted current r2"}
+  ]
+}

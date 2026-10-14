@@ -1,0 +1,16 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "actual_insurer_or_payment_calls": false,
+  "schema_version": 1,
+  "known_money_fields": ["totalMinor", "taxMinor"],
+  "exact_bytes_utf8": "{\"rows\":[{\"id\":\"A\"},{\"id\":\"B\"},{\"id\":\"C\"}],\"totalMinor\":125000,\"taxMinor\":0}",
+  "cases": [
+    {"id":"CAP-107-CS-01","manifest_id":"m1","row_count":3,"schema_version":1,"required_total_field":"totalMinor","required_tax_field":"taxMinor","scenario_hash":"scenario-v1","configuration_hash":"config-v1","current_scenario_hash":"scenario-v1","current_configuration_hash":"config-v1","extraction_confirmed":true,"disclosure":"NO","initial_quote_id":"q-initial","revised_quote_id":"q-revised","expected":"VALID_REVIEW_DESCRIPTOR","submit_ready":true,"payable_adjustment":false,"automatic_acceptance":false},
+    {"id":"CAP-107-CS-02","manifest_id":"m1","existing_digest":"sha256:different","expected":"CONFLICT","no_overwrite":true},
+    {"id":"CAP-107-CS-03a","schema_version":99,"expected":"UNSUPPORTED_SCHEMA","payable_adjustment":false},
+    {"id":"CAP-107-CS-03b","required_total_field":"unknownTotal","expected":"QUOTE_UNAVAILABLE","payable_adjustment":false},
+    {"id":"CAP-107-CS-04","scenario_hash":"scenario-old","configuration_hash":"config-old","current_scenario_hash":"scenario-v2","current_configuration_hash":"config-v2","expected":"REQUOTE_REQUIRED"},
+    {"id":"CAP-107-CS-05a","extraction_confirmed":false,"disclosure":"NO","expected":"DRAFT","submit_ready":false,"blockers":["EXTRACTION_UNCONFIRMED"]},
+    {"id":"CAP-107-CS-05b","extraction_confirmed":true,"disclosure":"UNSURE","expected":"DRAFT","submit_ready":false,"blockers":["DISCLOSURE_UNSURE"]}
+  ]
+}

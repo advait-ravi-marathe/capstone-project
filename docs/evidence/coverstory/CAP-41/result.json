@@ -1,0 +1,31 @@
+{
+  "contract": "CAP-41",
+  "classification": "SYNTHETIC_PUBLIC_WORDING_ONLY",
+  "instructor_oracle": {
+    "command": "python3 -m unittest ai.tests.test_coverstory_cap41_infrastructure",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASS",
+    "features": [
+      "shared correct/defective evaluator",
+      "descending distinct-token score then source_id",
+      "equal-score tie ordering",
+      "zero-score omission",
+      "k truncation"
+    ]
+  },
+  "learner_acceptance": {
+    "command": "python3 -m unittest ai.tests.test_coverstory_cap41_acceptance",
+    "tests": 6,
+    "failures": 0,
+    "errors": 9,
+    "status": "EXPECTED_TODO_ERRORS",
+    "todo": "NotImplementedError in retrieve(query, documents, k)"
+  },
+  "fixture_sha256": "6be8b8063eb3d052dc0476d26243fbdaae549fd5ae64a011c42fe24dc9a4e6da",
+  "contract_helper_sha256": "908080fec065014664e83f2a8a55afe3ff47a4c5abbbbf5ba44024bdbd8d6bab",
+  "acceptance_sha256": "f118ee12361e97deb4e4b9b16bfec19331fa68a6af7e6472c54b29675ba48251",
+  "instructor_test_sha256": "e3ad6ef8f8b15690ebba469d69bead69b095fe209fbf36b46658e51e214e27d6",
+  "learner_logic_completed": false
+}

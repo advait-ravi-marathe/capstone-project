@@ -1,13 +1,13 @@
 {
   "day_id": "CAP-40",
   "date": "2026-10-14",
-  "overall_learner_status": "NOT_READY_FOR_LEARNER",
+  "environment_readiness": "READY_TO_ATTEMPT",
+  "timebox_status": "TIMEBOX_NOT_VALIDATED",
+  "learner_result": "EXPECTED_FAILURE_AT_UNIMPLEMENTED_TODO",
   "instructor_scaffold_status": "PASS",
-  "timebox_rehearsal": "NOT_RUN",
   "source": {
     "curriculum_sha256": "e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e059a236e09de",
-    "description_sha256": "b9c9ea8e9a53cde75b4a67064f1ea1fa5f3ba0126e5788063007f1235a4687a0",
-    "description_bytes": 30065
+    "description_sha256": "b9c9ea8e9a53cde75b4a67064f1ea1fa5f3ba0126e5788063007f1235a4687a0"
   },
   "fixtures": {
     "CAP-40": {
@@ -16,39 +16,56 @@
     },
     "CAP-41": {
       "path": "ai/fixtures/coverstory/CAP-41/synthetic-v1.json",
-      "sha256": "e0b7f08dc9c52ce4b7d7d8a3952bd235d081fe70a49c2a289737a675bb67d4d9"
+      "sha256": "6be8b8063eb3d052dc0476d26243fbdaae549fd5ae64a011c42fe24dc9a4e6da"
+    }
+  },
+  "instructor_preflight": {
+    "CAP-40": {
+      "command": "mvn -Dtest=CAP40ScaffoldInfrastructureTest test",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASS"
+    },
+    "CAP-41": {
+      "command": "python3 -m unittest ai.tests.test_coverstory_cap41_infrastructure",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASS"
     }
   },
   "learner_acceptance_runs": [
     {
       "contract": "CAP-40",
       "command": "mvn -Plearner-tests -Dtest=CAP40AcceptanceTest test",
-      "status": "FAIL",
-      "tests": 7,
-      "failures": 4,
-      "errors": 3,
-      "observed": "All failures/errors are against the explicit UnsupportedOperationException learner TODO; no learner implementation is present.",
+      "tests": 8,
+      "failures": 0,
+      "errors": 8,
+      "status": "EXPECTED_TODO_ERRORS",
       "raw_output": "docs/evidence/coverstory/CAP-40/cap40-acceptance.raw.txt",
-      "raw_output_sha256": "3e9181a6f8e9c8cae0ace1ef1c91fa9ee06462c2398ddf164eccde715b81c177"
+      "raw_output_sha256": "28104c8adc22674f112dee59d1971f96090be303f38ac6afb21f4c24d4d510f3"
     },
     {
       "contract": "CAP-41",
-      "command": "python3 -m unittest discover -s ai/tests -p test_coverstory_cap41_acceptance.py",
-      "status": "FAIL",
-      "tests": 5,
+      "command": "python3 -m unittest ai.tests.test_coverstory_cap41_acceptance",
+      "tests": 6,
       "failures": 0,
-      "errors": 6,
-      "observed": "The six errors are the expected NotImplementedError learner TODO across five test methods; no retrieval logic or learner result is supplied.",
+      "errors": 9,
+      "status": "EXPECTED_TODO_ERRORS",
       "raw_output": "docs/evidence/coverstory/CAP-40/cap41-acceptance.raw.txt",
-      "raw_output_sha256": "2d9caa9f9ae3128a77d18756d06584153c112c4166916f76ef599308a4dfa1c2"
+      "raw_output_sha256": "bbdd4668757829002a7eef729d6943a3b570625fd20603903475bf4b04187f58"
     }
   ],
+  "timebox": {
+    "maximum_minutes": 95,
+    "status": "NOT_VALIDATED",
+    "measured_learner_duration": null
+  },
   "unimplemented_or_blocked": [
     "CAP-40 uniqueSelections learner logic",
-    "CAP-41 retrieval learner logic",
-    "Actual 95-minute learner/instructor rehearsal",
-    "Source-design archive inspection",
-    "The other 599 primary/component contracts and their exact file/command mappings"
+    "CAP-41 retrieve learner logic",
+    "Actual learner timebox rehearsal"
   ],
-  "integrity_note": "Expected acceptance failures are not passes, learner completion, or proof that the full curriculum is ready."
+  "integrity_note": "Environment readiness means the selected cloud executor can run the scaffolds; it does not mean assignment completion, timebox validation, learner mastery, or that the learner machine is provisioned."
 }

@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from ai.retrieval.coverstory_health import Hit, PublicWording, tokenize
+from ai.tests.coverstory_cap41_contract import assert_matches, expected_hits
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,15 +35,26 @@ class CoverStoryCap41InfrastructureTests(unittest.TestCase):
         )
         self.assertEqual([], fixture["cases"]["no_match"]["expected"])
 
-        def assert_contract(actual):
-            self.assertEqual(expected, actual)
+        def assert_contract(actual, contract_case=case):
+            return assert_matches(contract_case, actual)
 
-        assert_contract(expected)  # positive witness
-        with self.assertRaises(AssertionError):
-            assert_contract(list(reversed(expected)))  # ranking-order defect
+        correct = expected_hits(case)
+        self.assertEqual(expected, correct)
+        assert_contract(correct)  # non-vacuous positive witness from the supplied documents
+        with self.assertRaises(AssertionError): assert_contract(list(reversed(correct)))  # ranking-order defect
         stale_citation = [Hit("w-health-A", "latest", "SYNTHETIC", "waiting period", 2), expected[1]]
-        with self.assertRaises(AssertionError):
-            assert_contract(stale_citation)  # invented latest version must not pass
+        with self.assertRaises(AssertionError): assert_contract(stale_citation)  # invented latest version must not pass
+
+    def test_tie_mixed_score_and_truncation_cases_use_reference_and_mutants(self):
+        fixture = json.loads(FIXTURE.read_text())
+        for name in ("equal_score_ties", "mixed_scores_truncated"):
+            case = fixture["cases"][name]
+            expected = [Hit(**row) for row in case["expected"]]
+            correct = expected_hits(case)
+            self.assertEqual(expected, correct)
+            assert_contract = lambda actual: self.assertEqual(correct, actual)
+            assert_contract(correct)
+            with self.assertRaises(AssertionError): assert_contract(list(reversed(correct)))
 
 
 if __name__ == "__main__":

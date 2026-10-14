@@ -2,7 +2,7 @@
   "assignment": "CAP-98",
   "classification": "DISPOSABLE_SYNTHETIC_TEST_EVIDENCE",
   "execution_date": "2026-10-14",
-  "git_head_when_run": "54244ef0435c8a1011d6febc4968e57764750652",
+  "git_head_when_run": "d94ba7eed5a0dd11e1144fa4fbd520a37c0eae38",
   "working_tree_had_other_uncommitted_changes": true,
   "toolchain": {
     "java": "21.0.12.1 Debian",
@@ -17,14 +17,15 @@
     "failures": 0,
     "errors": 0,
     "checks": [
-      "synthetic v1 fixture has exactly 3 revisions and 3 payment references",
-      "nullable additive expansion preserves the v1 reader, all rows, and owner-scoped FKs",
+      "synthetic v1 fixture has exactly 3 revisions and 3 payment references keyed by composite application_id/revision",
+      "nullable additive expansion preserves the v1 reader, all rows, and composite (application_id, revision) FKs",
       "injected pre-commit failure rolls back both DDL and row writes",
       "down migration guard rejects v2-only source_version data",
       "deliberate destructive-down mutant is detected despite unchanged row/FK counts",
       "captured snapshot is restored into isolated schema and compared for counts, FKs, quote/revision/terms hashes, and source_version"
     ],
-    "restore_method": "Captured immutable JDBC row DTOs restored into a separately defined isolated schema; restart is not treated as restoration evidence."
+    "restore_method": "Captured immutable JDBC row DTOs restored into a separately defined isolated schema; restart is not treated as restoration evidence.",
+    "portable_command": "mvn -Dtest=CAP98InstructorInfrastructureTest test"
   },
   "learner_acceptance": {
     "status": "EXPECTED_TODO_FAILURES",
@@ -32,13 +33,18 @@
     "tests": 4,
     "failures": 0,
     "errors_at_explicit_todo": 4,
-    "learner_logic_completed": false
+    "learner_logic_completed": false,
+    "portable_command": "mvn -Plearner-tests -Dtest=CAP98AcceptanceTest test"
   },
-  "fixture_sha256": "dfd4340aecb9e6ceb8af9643a767075a1f44350f3dbfc65c3a8d6413588d5efb",
-  "schema_fixture_sha256": "95791965fab7d79b2e090ac84193f56cc4a3814ffecbe479b181469fc5f08e04",
+  "fixture_sha256": "dfed73c2fd2d98239dc099c9be235950adfa4e1fdcf01a2403ad379771438aa9",
+  "schema_fixture_sha256": "5457caf15533b05ef084a20deb575b280b57657086e6a09f23ef54fb577cf980",
   "limitations": [
     "No production migration, database, consumer data, backup system, deployment, or provider is used.",
     "The restore drill validates the synthetic fixture's isolated logical restore and integrity checks; it does not prove an operational backup service or production recovery objective.",
-    "This is instructor harness evidence, not learner completion, production readiness, or rollout authorization."
-  ]
+    "This is instructor harness evidence, not learner completion, production readiness, or rollout authorization.",
+    "Learner acceptance now calls a disposable PostgreSQL connection through the seam and queries actual row, composite identity, FK, rollback and restore state; all four cases currently stop at the explicit TODO."
+  ],
+  "learner_acceptance_sha256": "f374fee17191773576dbe23269286981a5371dba69eaf241f66f2974c92021f9",
+  "learner_seam_sha256": "2deea5f3201dacc108d06829afa490e989dfa41b43fcfb45317e06c6cf0feb21",
+  "instructor_oracle_test_sha256": "a4af5d5b1f735272a2d06f8f2452910b92879f1ae0fe3594b39b345de0872405"
 }

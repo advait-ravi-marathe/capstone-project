@@ -1,7 +1,7 @@
 {
   "card_id": "CAP-102",
   "classification": "SYNTHETIC_OFFLINE_CONTRACT",
-  "tested_checkout_base_commit": "54244ef0435c8a1011d6febc4968e57764750652",
+  "tested_checkout_base_commit": "d94ba7eed5a0dd11e1144fa4fbd520a37c0eae38",
   "working_tree_source_hashes_are_recorded_below": true,
   "environment": {
     "java": "21.0.12.1 Debian",
@@ -13,11 +13,12 @@
     "fixture_sha256": "6c0fb303e3b7d26b2dbfba226f23b72cf75323718eb8099d7735323e2dad9d10",
     "schema_sha256": "7bbc3550ab0a6485fd58818c913c31363b45d39a5d996bce0aae375eabf4ef90",
     "learner_seam_sha256": "bfdca8b1fdc092eb9934fc5033245f6e485b8b22020fdef8ae6784fd4dbf1eb5",
-    "acceptance_sha256": "7916c16273de7719370439f4f4756fb68306ac9b86b5cce70285d31242522f11",
-    "oracle_sha256": "5ff06e5c40f1a5a1f55f63b6d288f6baf66598c31641b23b16c46db090b2ad01"
+    "acceptance_sha256": "7142da5ef7b91b7ec8fe6c9df30035ccf67fabdf109877372d3eab0430feb630",
+    "oracle_sha256": "5ff06e5c40f1a5a1f55f63b6d288f6baf66598c31641b23b16c46db090b2ad01",
+    "jdbc_adapter_sha256": "88dcddacc2cdbe55da40e8cd900076a5109e336709a49ca2f9f1c31862741e8b"
   },
   "instructor_oracle": {
-    "command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP102InstructorInfrastructureTest test",
+    "command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP102InstructorInfrastructureTest test",
     "status": "PASS",
     "tests": 5,
     "failures": 0,
@@ -31,12 +32,27 @@
     ]
   },
   "learner_acceptance": {
-    "command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -DexcludeLearnerAcceptance= -Dtest=CAP102AcceptanceTest test",
-    "status": "TODO_REACHED_EXPECTED_FAILURES",
-    "tests": 5,
-    "details": "All five cases reach the explicit learner TODO. Surefire reports three direct UnsupportedOperationException errors and two assertion failures whose cause is the TODO instead of the expected behavior. This is not setup evidence."
+    "command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Plearner-tests -Dtest=CAP102AcceptanceTest test",
+    "status": "EXPECTED_TODO_ERRORS",
+    "tests": 7,
+    "details": "Seven cases reach the explicit learner TODO, including a PostgreSQL-backed invocation through the instructor-owned JDBC adapter. No learner implementation is claimed.",
+    "failures": 0,
+    "errors_at_explicit_todo": 7,
+    "persisted_cursor_assertion": "The success case compares returned cursor to the queried PostgreSQL checkpoint; rerun at the old cursor must be rejected without extra observations."
   },
   "payment_effects": false,
   "provider_calls": false,
-  "learner_logic_implemented": false
+  "learner_logic_implemented": false,
+  "jdbc_adapter_infrastructure": {
+    "command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP102JdbcAdapterInfrastructureTest test",
+    "status": "PASS",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "assertions": [
+      "FOR UPDATE owner checkpoint read",
+      "observation and cursor update commit together",
+      "injected write failure rolls both back"
+    ]
+  }
 }

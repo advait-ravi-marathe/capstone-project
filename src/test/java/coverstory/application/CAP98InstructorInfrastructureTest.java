@@ -35,7 +35,10 @@ class CAP98InstructorInfrastructureTest {
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM application.application_revision"));
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference"));
             assertEquals(0, scalarInt(s, "SELECT count(*) FROM information_schema.columns WHERE table_schema='application' AND table_name='application_revision' AND column_name='source_version'"));
-            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(owner_id,revision_id)"));
+            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(application_id,revision)"));
+            assertEquals(fixtureRevisionRows(fixture), legacyRows(c), "all three fixture composite identities and immutable hashes match PostgreSQL");
+            assertEquals(fixturePaymentRows(fixture), paymentRows(c), "all three fixture payment references match their application/revision pair");
+            assertEquals(1, scalarInt(s, "SELECT count(*) FROM information_schema.table_constraints WHERE constraint_schema='application' AND table_name='application_revision' AND constraint_type='UNIQUE'"));
         }
     }
 
@@ -47,7 +50,7 @@ class CAP98InstructorInfrastructureTest {
             c.setAutoCommit(false);
             s.execute("ALTER TABLE application.application_revision ADD COLUMN source_version TEXT NULL");
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM application.application_revision"));
-            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(owner_id,revision_id)"));
+            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(application_id,revision)"));
             assertEquals(before, legacyRows(c), "the v1 projection reads the same revision and immutable hashes");
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM application.application_revision WHERE source_version IS NULL"));
             c.commit();
@@ -63,14 +66,14 @@ class CAP98InstructorInfrastructureTest {
             c.setAutoCommit(false);
             assertThrows(SQLException.class, () -> {
                 s.execute("ALTER TABLE application.application_revision ADD COLUMN source_version TEXT NULL");
-                s.execute("INSERT INTO application.application_revision(revision_id,owner_id,revision,quote_hash,revision_hash,terms_hash) VALUES ('98000000-0000-4000-8000-000000000199','98000000-0000-4000-8000-000000000001',9,repeat('9',64),repeat('8',64),repeat('7',64))");
+                s.execute("INSERT INTO application.application_revision(revision_id,application_id,revision,quote_hash,revision_hash,terms_hash) VALUES ('98000000-0000-4000-8000-000000000199','98000000-0000-4000-8000-000000000001',9,repeat('9',64),repeat('8',64),repeat('7',64))");
                 throw new SQLException("injected CAP98 failure before commit");
             });
             c.rollback();
             c.setAutoCommit(true);
             assertFalse(hasColumn(c, "source_version"));
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM application.application_revision"));
-            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(owner_id,revision_id)"));
+            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(application_id,revision)"));
             assertEquals(0, scalarInt(s, "SELECT count(*) FROM application.application_revision WHERE revision=9"));
             assertEquals(3, legacyRows(c).size());
         }
@@ -87,7 +90,7 @@ class CAP98InstructorInfrastructureTest {
             assertTrue(hasColumn(c, "source_version"));
             assertEquals(1, scalarInt(s, "SELECT count(*) FROM application.application_revision WHERE source_version='source-v2'"));
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM application.application_revision"));
-            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(owner_id,revision_id)"));
+            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(application_id,revision)"));
         }
     }
 
@@ -99,7 +102,7 @@ class CAP98InstructorInfrastructureTest {
             s.execute("UPDATE application.application_revision SET source_version='source-v2' WHERE revision_id='98000000-0000-4000-8000-000000000102'");
             s.execute("ALTER TABLE application.application_revision DROP COLUMN source_version"); // deliberate unsafe mutant
             assertEquals(3, scalarInt(s, "SELECT count(*) FROM application.application_revision"));
-            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(owner_id,revision_id)"));
+            assertEquals(3, scalarInt(s, "SELECT count(*) FROM payments.payment_reference p JOIN application.application_revision r USING(application_id,revision)"));
             assertFalse(hasColumn(c, "source_version"));
             boolean expectedV2DataRetained = hasColumn(c, "source_version")
                     && scalarInt(s, "SELECT count(*) FROM application.application_revision WHERE source_version='source-v2'") == 1;
@@ -124,26 +127,26 @@ class CAP98InstructorInfrastructureTest {
             // Restore the captured logical snapshot into an isolated namespace. Inserts below
             // use only the captured records, never SELECT from the source tables.
             s.execute("CREATE SCHEMA cap98_restored");
-            s.execute("CREATE TABLE cap98_restored.application_revision (revision_id UUID PRIMARY KEY, owner_id UUID NOT NULL, revision INTEGER NOT NULL CHECK (revision>0), quote_hash CHAR(64) NOT NULL, revision_hash CHAR(64) NOT NULL, terms_hash CHAR(64) NOT NULL, source_version TEXT NULL, UNIQUE(owner_id,revision_id))");
-            s.execute("CREATE TABLE cap98_restored.payment_reference (payment_id UUID PRIMARY KEY, owner_id UUID NOT NULL, revision_id UUID NOT NULL)");
-            s.execute("ALTER TABLE cap98_restored.payment_reference ADD CONSTRAINT payment_reference_owned_revision_fk FOREIGN KEY(owner_id,revision_id) REFERENCES cap98_restored.application_revision(owner_id,revision_id)");
-            try (var ps = c.prepareStatement("INSERT INTO cap98_restored.application_revision(revision_id,owner_id,revision,quote_hash,revision_hash,terms_hash,source_version) VALUES (?,?,?,?,?,?,?)")) {
+            s.execute("CREATE TABLE cap98_restored.application_revision (revision_id UUID PRIMARY KEY, application_id UUID NOT NULL, revision INTEGER NOT NULL CHECK (revision>0), quote_hash CHAR(64) NOT NULL, revision_hash CHAR(64) NOT NULL, terms_hash CHAR(64) NOT NULL, source_version TEXT NULL, UNIQUE(application_id,revision))");
+            s.execute("CREATE TABLE cap98_restored.payment_reference (payment_id UUID PRIMARY KEY, application_id UUID NOT NULL, revision INTEGER NOT NULL)");
+            s.execute("ALTER TABLE cap98_restored.payment_reference ADD CONSTRAINT payment_reference_owned_revision_fk FOREIGN KEY(application_id,revision) REFERENCES cap98_restored.application_revision(application_id,revision)");
+            try (var ps = c.prepareStatement("INSERT INTO cap98_restored.application_revision(revision_id,application_id,revision,quote_hash,revision_hash,terms_hash,source_version) VALUES (?,?,?,?,?,?,?)")) {
                 for (RevisionSnapshot row : revisions) {
-                    ps.setObject(1,row.revisionId()); ps.setObject(2,row.ownerId()); ps.setInt(3,row.revision());
+                    ps.setObject(1,row.revisionId()); ps.setObject(2,row.applicationId()); ps.setInt(3,row.revision());
                     ps.setString(4,row.quoteHash()); ps.setString(5,row.revisionHash()); ps.setString(6,row.termsHash());
                     ps.setString(7,row.sourceVersion()); ps.addBatch();
                 }
                 ps.executeBatch();
             }
-            try (var ps = c.prepareStatement("INSERT INTO cap98_restored.payment_reference(payment_id,owner_id,revision_id) VALUES (?,?,?)")) {
-                for (PaymentSnapshot row : payments) { ps.setObject(1,row.paymentId()); ps.setObject(2,row.ownerId()); ps.setObject(3,row.revisionId()); ps.addBatch(); }
+            try (var ps = c.prepareStatement("INSERT INTO cap98_restored.payment_reference(payment_id,application_id,revision) VALUES (?,?,?)")) {
+                for (PaymentSnapshot row : payments) { ps.setObject(1,row.paymentId()); ps.setObject(2,row.applicationId()); ps.setInt(3,row.revision()); ps.addBatch(); }
                 ps.executeBatch();
             }
 
             assertEquals(revisions.size(), scalarInt(s, "SELECT count(*) FROM cap98_restored.application_revision"));
             assertEquals(payments.size(), scalarInt(s, "SELECT count(*) FROM cap98_restored.payment_reference"));
-            assertEquals(payments.size(), scalarInt(s, "SELECT count(*) FROM cap98_restored.payment_reference p JOIN cap98_restored.application_revision r USING(owner_id,revision_id)"));
-            assertEquals(0, scalarInt(s, "SELECT count(*) FROM cap98_restored.payment_reference p LEFT JOIN cap98_restored.application_revision r USING(owner_id,revision_id) WHERE r.revision_id IS NULL"), "all restored payment references must resolve");
+            assertEquals(payments.size(), scalarInt(s, "SELECT count(*) FROM cap98_restored.payment_reference p JOIN cap98_restored.application_revision r USING(application_id,revision)"));
+            assertEquals(0, scalarInt(s, "SELECT count(*) FROM cap98_restored.payment_reference p LEFT JOIN cap98_restored.application_revision r USING(application_id,revision) WHERE r.revision_id IS NULL"), "all restored payment references must resolve");
             assertEquals(legacyRows(c), legacyRows(c, "cap98_restored.application_revision"),
                     "quote/revision hashes and legacy revision fields remain byte-identical");
             assertEquals(1, scalarInt(s, "SELECT count(*) FROM cap98_restored.application_revision WHERE source_version='source-v2'"));
@@ -168,16 +171,33 @@ class CAP98InstructorInfrastructureTest {
     private static List<String> legacyRows(Connection c) throws Exception { return legacyRows(c, "application.application_revision"); }
     private static List<String> legacyRows(Connection c, String table) throws Exception {
         List<String> rows = new ArrayList<>();
-        String sql = "SELECT owner_id,revision_id,revision,quote_hash,revision_hash,terms_hash FROM " + table + " ORDER BY revision_id";
+        String sql = "SELECT application_id,revision_id,revision,quote_hash,revision_hash,terms_hash FROM " + table + " ORDER BY revision_id";
         try (Statement s = c.createStatement(); ResultSet rs = s.executeQuery(sql)) {
             while (rs.next()) rows.add(rs.getString(1) + "|" + rs.getString(2) + "|" + rs.getInt(3) + "|" + rs.getString(4).trim() + "|" + rs.getString(5).trim() + "|" + rs.getString(6).trim());
         }
         return rows;
     }
+    private static List<String> fixtureRevisionRows(JsonNode fixture) {
+        List<String> rows=new ArrayList<>();
+        fixture.path("revisions").forEach(r->rows.add(r.path("application_id").asText()+"|"+r.path("revision_id").asText()+"|"+r.path("revision").asInt()+"|"+r.path("quote_hash").asText()+"|"+r.path("revision_hash").asText()+"|"+r.path("terms_hash").asText()));
+        rows.sort(String::compareTo); return rows;
+    }
+    private static List<String> paymentRows(Connection c) throws Exception {
+        List<String> rows=new ArrayList<>();
+        try(Statement s=c.createStatement();ResultSet rs=s.executeQuery("SELECT payment_id,application_id,revision FROM payments.payment_reference ORDER BY payment_id")){
+            while(rs.next()) rows.add(rs.getString(1)+"|"+rs.getString(2)+"|"+rs.getInt(3));
+        }
+        return rows;
+    }
+    private static List<String> fixturePaymentRows(JsonNode fixture) {
+        List<String> rows=new ArrayList<>();
+        fixture.path("payment_references").forEach(r->rows.add(r.path("payment_id").asText()+"|"+r.path("application_id").asText()+"|"+r.path("revision").asInt()));
+        rows.sort(String::compareTo); return rows;
+    }
 
     private static List<RevisionSnapshot> captureRevisions(Connection c) throws Exception {
         List<RevisionSnapshot> rows = new ArrayList<>();
-        try (Statement s = c.createStatement(); ResultSet rs = s.executeQuery("SELECT revision_id,owner_id,revision,quote_hash,revision_hash,terms_hash,source_version FROM application.application_revision ORDER BY revision_id")) {
+        try (Statement s = c.createStatement(); ResultSet rs = s.executeQuery("SELECT revision_id,application_id,revision,quote_hash,revision_hash,terms_hash,source_version FROM application.application_revision ORDER BY revision_id")) {
             while (rs.next()) rows.add(new RevisionSnapshot(rs.getObject(1, java.util.UUID.class), rs.getObject(2, java.util.UUID.class),
                     rs.getInt(3), rs.getString(4).trim(), rs.getString(5).trim(), rs.getString(6).trim(), rs.getString(7)));
         }
@@ -185,14 +205,14 @@ class CAP98InstructorInfrastructureTest {
     }
     private static List<PaymentSnapshot> capturePayments(Connection c) throws Exception {
         List<PaymentSnapshot> rows = new ArrayList<>();
-        try (Statement s = c.createStatement(); ResultSet rs = s.executeQuery("SELECT payment_id,owner_id,revision_id FROM payments.payment_reference ORDER BY payment_id")) {
-            while (rs.next()) rows.add(new PaymentSnapshot(rs.getObject(1, java.util.UUID.class), rs.getObject(2, java.util.UUID.class), rs.getObject(3, java.util.UUID.class)));
+        try (Statement s = c.createStatement(); ResultSet rs = s.executeQuery("SELECT payment_id,application_id,revision FROM payments.payment_reference ORDER BY payment_id")) {
+            while (rs.next()) rows.add(new PaymentSnapshot(rs.getObject(1, java.util.UUID.class), rs.getObject(2, java.util.UUID.class), rs.getInt(3)));
         }
         return rows;
     }
-    private record RevisionSnapshot(java.util.UUID revisionId, java.util.UUID ownerId, int revision,
+    private record RevisionSnapshot(java.util.UUID revisionId, java.util.UUID applicationId, int revision,
                                     String quoteHash, String revisionHash, String termsHash, String sourceVersion) { }
-    private record PaymentSnapshot(java.util.UUID paymentId, java.util.UUID ownerId, java.util.UUID revisionId) { }
+    private record PaymentSnapshot(java.util.UUID paymentId, java.util.UUID applicationId, int revision) { }
 
     private static void loadV1(Connection c) throws Exception {
         try (Statement s = c.createStatement()) {

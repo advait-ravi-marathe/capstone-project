@@ -1,0 +1,26 @@
+{
+  "card": "CAP-104",
+  "source_commit_at_run": "d94ba7eed5a0dd11e1144fa4fbd520a37c0eae38",
+  "instructor_oracle": {
+    "command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP104InstructorInfrastructureTest test",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASS",
+    "checks": [
+      "fixture contract and no-provider classification",
+      "reference accepts unique late revision, duplicate, quarantine, and inclusive deadline",
+      "strict-before boundary mutant rejected",
+      "payment-effect mutant rejected and UNKNOWN evidence routes to reconciliation"
+    ]
+  },
+  "learner_acceptance": {
+    "command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -DexcludeLearnerAcceptance= -Dtest=CAP104AcceptanceTest test",
+    "tests": 5,
+    "failures": 0,
+    "errors": 5,
+    "status": "EXPECTED_LEARNER_TODO",
+    "observed": "All five cases stop at the explicit UnsupportedOperationException in CAP104Seam.reviseSummary."
+  },
+  "scope": "No provider, payment database, refund, or insurer dispatch was exercised. Learner business logic remains unimplemented."
+}

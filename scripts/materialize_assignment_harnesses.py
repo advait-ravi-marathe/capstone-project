@@ -81,8 +81,13 @@ def main() -> dict:
         'CAP-98': 'postgres_compatible_schema_expansion',
         'CAP-101': 'java_authorized_assistance_context_budget',
         'CAP-102': 'postgres_atomic_reconciliation_cursor',
+        'CAP-104': 'java_late_payment_summary_recovery',
+        'CAP-105': 'java_evidence_checkpoint_review',
+        'CAP-106': 'java_owned_snapshot_read_policy',
+        'CAP-107': 'java_review_manifest_validation',
+        'CAP-108': 'java_live_backfill_lane_planning',
     }
-    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102'}
+    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108'}
     fixture_validated_ids = set(authored_ids) - {'CAP-52'}
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -136,6 +141,11 @@ def main() -> dict:
         'CAP-98': 'src/main/java/coverstory/application/RehearseCompatibleApplicationSchemaExpansion.java',
         'CAP-101': 'src/main/java/capstone/coverstory/application/BoundAssistanceContext.java',
         'CAP-102': 'src/main/java/coverstory/modules/payments/api/CAP102Seam.java',
+        'CAP-104': 'src/main/java/coverstory/modules/payments/api/CAP104Seam.java',
+        'CAP-105': 'src/main/java/coverstory/modules/application/api/CAP105Seam.java',
+        'CAP-106': 'src/main/java/coverstory/modules/application/api/CAP106Seam.java',
+        'CAP-107': 'src/main/java/coverstory/modules/application/api/CAP107Seam.java',
+        'CAP-108': 'src/main/java/coverstory/modules/payments/api/CAP108Seam.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -162,10 +172,10 @@ def main() -> dict:
         'CAP-78': 'src/test/java/coverstory/modules/payments/CAP78AcceptanceTest.java',
         'CAP-83': 'src/test/java/coverstory/application/CAP83AcceptanceTest.java',
         'CAP-85': 'src/test/java/coverstory/modules/payments/CAP85AcceptanceTest.java',
-        'CAP-86': 'ai/coverstory/tests/test_cap_86.py',
+        'CAP-86': 'ai/tests/test_coverstory_cap86_acceptance.py',
         'CAP-89': 'ai/tests/test_coverstory_cap89_acceptance.py',
         'CAP-92': 'src/test/java/coverstory/modules/application/CAP92AcceptanceTest.java',
-        'CAP-88': 'src/test/java/coverstory/security/CAP88AccessPolicyAcceptanceTest.java',
+        'CAP-88': 'src/test/java/coverstory/security/CAP88AcceptanceTest.java',
         'CAP-91': 'src/test/java/coverstory/application/CAP91AcceptanceTest.java',
         'CAP-93': 'src/test/java/coverstory/modules/payments/CAP93AcceptanceTest.java',
         'CAP-90': 'src/test/java/coverstory/platform/crypto/CAP90AcceptanceTest.java',
@@ -182,6 +192,11 @@ def main() -> dict:
         'CAP-61': 'ai/coverstory/tests/test_cap_61.py',
         'CAP-62': 'ai/coverstory/tests/test_cap_62.py',
         'CAP-165': 'src/test/java/coverstory/modules/catalog/CAP165AcceptanceTest.java',
+        'CAP-104': 'src/test/java/coverstory/modules/payments/CAP104AcceptanceTest.java',
+        'CAP-105': 'src/test/java/coverstory/modules/application/CAP105AcceptanceTest.java',
+        'CAP-106': 'src/test/java/coverstory/modules/application/CAP106AcceptanceTest.java',
+        'CAP-107': 'src/test/java/coverstory/modules/application/CAP107AcceptanceTest.java',
+        'CAP-108': 'src/test/java/coverstory/modules/payments/CAP108AcceptanceTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -200,7 +215,12 @@ def main() -> dict:
         'CAP-99': 'Readiness evaluator only; all six actual product gate receipts remain unverified.',
         'CAP-100': 'Synthetic evidence-row classifier only; no live evidence or customer data is used.',
         'CAP-102': 'Embedded PostgreSQL transaction/cursor harness only; no production reconciliation worker is wired.',
-        'CAP-103': 'Synthetic latency-math fixture only; no service latency, capacity or availability claim.'
+        'CAP-103': 'Synthetic latency-math fixture only; no service latency, capacity or availability claim.',
+        'CAP-104': 'Deterministic payment effect guard only; no charge, refund or dispatch integration is executed.',
+        'CAP-105': 'Evidence checkpoint oracle only; linked CAP-95/102/104 receipts are absent, so no release claim is made.',
+        'CAP-106': 'Local owner/version/TLS policy only; authentication filter, HTTP route, storage and transport are not wired.',
+        'CAP-107': 'Manifest and disclosure decision oracle only; persistence, quoting and submission effects are not wired.',
+        'CAP-108': 'In-memory lane planning only; no queue, worker, published diagnostics or payment integration is exercised.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []
@@ -239,14 +259,16 @@ def main() -> dict:
             'fixture_harness_validated': card['id'] in fixture_validated_ids,
             'historical_learner_contract_evidence': card['id'] == 'CAP-40',
             'assignability': (
-                'BLOCKED_TIMEBOX_REHEARSAL' if card['id'] == 'CAP-40'
-                else 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' if authored
+                'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' if authored
                 else 'CONDITIONAL_EXPERIMENT_PREFLIGHT' if card['phase'] == 2
                 else 'NOT_SCAFFOLDED'
             ),
             'learner_result': learner_result_overrides.get(card['id'],
                 'EXPECTED_FAILURE_AT_UNIMPLEMENTED_LEARNER_TODO' if card['id'] in current_candidate_runs
                 else 'NOT_RUN_ON_CURRENT_CANDIDATE'),
+            'learner_readiness': 'READY_TO_ATTEMPT' if card['id'] == 'CAP-40' else 'ENVIRONMENT_PREFLIGHT_NOT_RUN',
+            'timebox_status': 'TIMEBOX_NOT_VALIDATED' if card['id'] == 'CAP-40' else 'NOT_REHEARSED',
+            'readiness_evidence': 'docs/evidence/coverstory/CAP-40/environment-preflight.json' if card['id'] == 'CAP-40' else None,
             'learner_acceptance_suite': acceptance_suites.get(card['id']),
             'scaffold_status': status, 'harness_family': family,
             'source_planned_primary_path': planned_source,

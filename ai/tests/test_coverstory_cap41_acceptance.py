@@ -4,6 +4,7 @@ from pathlib import Path
 import unittest
 
 from ai.retrieval.coverstory_health import Hit, PublicWording, retrieve
+from ai.tests.coverstory_cap41_contract import assert_matches
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,8 +21,12 @@ def hits(rows):
 
 class CoverStoryCap41AcceptanceTests(unittest.TestCase):
     def test_returns_ranked_exact_synthetic_citations(self):
-        case = FIXTURE["cases"]["normal"]
-        self.assertEqual(hits(case["expected"]), retrieve(case["query"], documents(case["documents"]), case["k"]))
+        for name in ("normal", "equal_score_ties", "mixed_scores_truncated"):
+            case = FIXTURE["cases"][name]
+            with self.subTest(case=name):
+                actual = retrieve(case["query"], documents(case["documents"]), case["k"])
+                assert_matches(case, actual)
+                self.assertEqual(hits(case["expected"]), actual)
 
     def test_no_match_and_blank_query_return_no_hits(self):
         case = FIXTURE["cases"]["no_match"]
@@ -48,6 +53,16 @@ class CoverStoryCap41AcceptanceTests(unittest.TestCase):
             retrieve(case["query"], rows, case["k"]),
             retrieve(case["query"], list(reversed(rows)), case["k"]),
         )
+
+    def test_equal_score_tie_order_and_k_truncation_are_explicit(self):
+        tied = FIXTURE["cases"]["equal_score_ties"]
+        actual = retrieve(tied["query"], documents(tied["documents"]), tied["k"])
+        self.assertEqual(["w-tie-A", "w-tie-Z", "w-mixed"], [row.source_id for row in actual])
+        self.assertEqual([2, 2, 1], [row.score for row in actual])
+        truncated = FIXTURE["cases"]["mixed_scores_truncated"]
+        actual = retrieve(truncated["query"], documents(truncated["documents"]), truncated["k"])
+        self.assertEqual(2, len(actual))
+        self.assertEqual(["w-high", "w-low"], [row.source_id for row in actual])
 
 
 if __name__ == "__main__":

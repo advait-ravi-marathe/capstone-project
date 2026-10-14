@@ -17,6 +17,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /** CAP-40 learner acceptance contract; failures are expected until uniqueSelections is implemented. */
 @Tag("learnerAcceptance")
@@ -35,6 +37,18 @@ class CAP40AcceptanceTest {
     }
 
     @Test
+    void preservesEncounterOrderWhenLexicalSortWouldReverseIt() {
+        List<SelectionInput> input = List.of(
+                new SelectionInput("device-A", "health-Z-v1"),
+                new SelectionInput("device-A", "health-A-v1"));
+        List<SelectionKey> expected = List.of(
+                new SelectionKey("device-A", "health-Z-v1"),
+                new SelectionKey("device-A", "health-A-v1"));
+        assertEquals(expected, seam.uniqueSelections(input),
+                "sorting by catalog version is a contract violation");
+    }
+
+    @Test
     void returnsEmptyForEmptyInput() throws Exception {
         JsonNode sample = caseById("CAP-40-CS-02");
         assertEquals(keys(sample.path("expected")), seam.uniqueSelections(inputs(sample.path("input"))));
@@ -48,14 +62,14 @@ class CAP40AcceptanceTest {
 
     @Test
     void rejectsBlankCatalogVersionWithoutReturningPartialResults() {
-        assertThrows(IllegalArgumentException.class, () -> seam.uniqueSelections(List.of(
+        expectExceptionOrTodo(IllegalArgumentException.class, () -> seam.uniqueSelections(List.of(
                 new SelectionInput("device-A", "health-A-v1"),
                 new SelectionInput("device-A", " "))));
     }
 
     @Test
     void rejectsBlankDeviceScope() {
-        assertThrows(IllegalArgumentException.class,
+        expectExceptionOrTodo(IllegalArgumentException.class,
                 () -> seam.uniqueSelections(List.of(new SelectionInput(" ", "health-A-v1"))));
     }
 
@@ -90,8 +104,12 @@ class CAP40AcceptanceTest {
     }
 
     private static void assertRejects(Runnable action) {
-        RuntimeException exception = assertThrows(RuntimeException.class, action::run);
-        assertFalse(exception instanceof UnsupportedOperationException,
-                "CAP40_TODO_STUB_REACHED: validation behavior is unassessed until the learner implements the seam");
+        expectExceptionOrTodo(RuntimeException.class, action);
+    }
+
+    private static void expectExceptionOrTodo(Class<? extends RuntimeException> expected, Runnable action) {
+        try { action.run(); fail("expected " + expected.getSimpleName()); }
+        catch (UnsupportedOperationException todo) { throw todo; }
+        catch (RuntimeException actual) { assertTrue(expected.isInstance(actual), "unexpected exception: " + actual); }
     }
 }
