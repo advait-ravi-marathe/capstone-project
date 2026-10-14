@@ -1,0 +1,35 @@
+{
+  "contract": "CAP-40",
+  "fixtureVersion": "synthetic-v1",
+  "classification": "SYNTHETIC",
+  "cases": [
+    {
+      "id": "CAP-40-CS-01",
+      "input": [
+        { "deviceScope": "device-A", "catalogVersionId": "health-A-v1" },
+        { "deviceScope": "device-A", "catalogVersionId": "health-B-v1" },
+        { "deviceScope": "device-A", "catalogVersionId": "health-A-v1" }
+      ],
+      "expected": [
+        { "deviceScope": "device-A", "catalogVersionId": "health-A-v1" },
+        { "deviceScope": "device-A", "catalogVersionId": "health-B-v1" }
+      ]
+    },
+    {
+      "id": "CAP-40-CS-02",
+      "input": [],
+      "expected": []
+    },
+    {
+      "id": "CAP-40-CS-03",
+      "input": [
+        { "deviceScope": "device-A", "catalogVersionId": "health-A-v1" },
+        { "deviceScope": "device-B", "catalogVersionId": "health-A-v1" }
+      ],
+      "expected": [
+        { "deviceScope": "device-A", "catalogVersionId": "health-A-v1" },
+        { "deviceScope": "device-B", "catalogVersionId": "health-A-v1" }
+      ]
+    }
+  ]
+}

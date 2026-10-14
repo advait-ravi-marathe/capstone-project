@@ -6,7 +6,9 @@ The project now includes a React client shell and a Spring Boot / PostgreSQL mod
 
 ## Current checkout status
 
-The checkout includes legacy CAP-42 through CAP-45 teaching slices alongside new CoverStory infrastructure. The final saved daily assignment contracts and original design archive are authoritative, but Library transfer is currently blocked in this executor; see [coverage and blockers](docs/COVERAGE.md). Nothing in this repository should be read as a claim that a learner has completed an assignment.
+The checkout includes legacy CAP-42 through CAP-45 teaching slices alongside new CoverStory infrastructure. The verified Day 001 contract was supplied directly and is scaffolded below; the remaining saved daily contracts and original design archive are still outstanding, and no full-curriculum mapping is claimed. See [coverage and blockers](docs/COVERAGE.md). Nothing in this repository should be read as a claim that a learner has completed an assignment.
+
+The supplied Day 001 contract is now scaffolded in [CAP-40](docs/assignments/coverstory/CAP-40.md), with CAP-40 shortlist and linked CAP-41 public wording acceptance suites. Their learner TODOs are intentionally unfinished; see the recorded [harness and result evidence](docs/evidence/coverstory/CAP-40/).
 
 ## Build and smoke checks
 

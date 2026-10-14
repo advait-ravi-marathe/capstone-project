@@ -1,0 +1,39 @@
+{
+  "day_id": "CAP-40",
+  "date": "2026-10-14",
+  "classification": "instructor_scaffold_check_only",
+  "status": "PASS",
+  "learner_logic_executed": false,
+  "timebox_rehearsal": "NOT_RUN",
+  "checks": [
+    {
+      "name": "CAP-40 fixture shape",
+      "command": "mvn -Dtest=CAP40ScaffoldInfrastructureTest test",
+      "status": "PASS",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "CAP-41 instructor types, tokenizer, and fixture shape",
+      "command": "python3 -m unittest discover -s ai/tests -p test_coverstory_cap41_infrastructure.py",
+      "status": "PASS",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "fixtures/coverstory/CAP-40/synthetic-v1.json",
+      "sha256": "c6751ab88acf5ca5570f9f730ecb943d7354457407a1b5e0de735b0d58ebd022",
+      "bytes": 1046
+    },
+    {
+      "path": "ai/fixtures/coverstory/CAP-41/synthetic-v1.json",
+      "sha256": "e0b7f08dc9c52ce4b7d7d8a3952bd235d081fe70a49c2a289737a675bb67d4d9",
+      "bytes": 1214
+    }
+  ],
+  "environment_note": "Java 21 runtime-only executor with jdk.compiler invoked through a temporary launcher; Maven 3.10.0 checksum-verified in /tmp. The documented Maven command is the normal JDK/Maven form."
+}

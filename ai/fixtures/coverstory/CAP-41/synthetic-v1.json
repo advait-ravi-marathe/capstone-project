@@ -1,0 +1,54 @@
+{
+  "contract": "CAP-41",
+  "fixtureVersion": "synthetic-v1",
+  "classification": "SYNTHETIC",
+  "cases": {
+    "normal": {
+      "query": "waiting period",
+      "k": 2,
+      "documents": [
+        {
+          "source_id": "w-health-A",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting period"
+        },
+        {
+          "source_id": "w-health-B",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting"
+        }
+      ],
+      "expected": [
+        {
+          "source_id": "w-health-A",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "waiting period",
+          "score": 2
+        },
+        {
+          "source_id": "w-health-B",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "waiting",
+          "score": 1
+        }
+      ]
+    },
+    "no_match": {
+      "query": "guaranteed acceptance",
+      "k": 2,
+      "documents": [
+        {
+          "source_id": "w-health-A",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting period"
+        }
+      ],
+      "expected": []
+    }
+  }
+}
