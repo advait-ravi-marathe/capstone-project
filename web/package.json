@@ -7,6 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
     "test:security": "node scripts/session-security-smoke.mjs",
+    "test:catalog-fixture": "node scripts/catalog-envelope-smoke.mjs",
+    "test:catalog-acceptance": "node scripts/catalog-envelope-acceptance.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
