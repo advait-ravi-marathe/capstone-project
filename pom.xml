@@ -47,21 +47,27 @@
                 </exclusion>
                 <exclusion>
                     <groupId>io.zonky.test.postgres</groupId>
-                    <artifactId>embedded-postgres-binaries-linux-amd64</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.zonky.test.postgres</groupId>
                     <artifactId>embedded-postgres-binaries-linux-amd64-alpine</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>io.zonky.test.postgres</groupId>
                     <artifactId>embedded-postgres-binaries-windows-amd64</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>io.zonky.test.postgres</groupId>
             <artifactId>embedded-postgres-binaries-darwin-arm64v8</artifactId>
+            <version>14.22.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.zonky.test.postgres</groupId>
+            <artifactId>embedded-postgres-binaries-linux-amd64</artifactId>
             <version>14.22.0</version>
             <scope>test</scope>
         </dependency>
@@ -73,6 +79,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <useTestClasspath>false</useTestClasspath>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

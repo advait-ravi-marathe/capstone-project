@@ -23,7 +23,7 @@ flowchart LR
   Support --> DB
 ```
 
-Start as a modular monolith. Each module owns its tables, repositories, validation, and application services. Cross-module calls use a public application interface; there are no cross-module repository imports. Add Kafka, Redis, or another database only after a measured need and a written trade-off. They are not prerequisites for local startup.
+Start as a modular monolith. Each module owns its tables, repositories, validation, and application services. Cross-module calls use a public application interface; there are no cross-module repository imports. The runnable API shell exposes an intentionally unauthenticated `401 /api/session` response and a `501 /api/catalog` response until real auth and learner catalog behavior are supplied. Add Kafka, Redis, or another database only after a measured need and a written trade-off. They are not prerequisites for local startup.
 
 ## Module ownership
 
@@ -66,10 +66,10 @@ Payment and dispatch are separate transactions and separate user-visible states.
 ## Ownership, privacy, and telemetry
 
 - UUID journey IDs are identifiers, never authorization. Resolve a resume request against the authenticated owner and authoritative application revision and quote state.
-- Encrypt consumer fields with authenticated encryption. Keep keys separated from data, versioned, and rotatable. Do not commit keys or secrets.
+- `coverstory.platform.crypto.AesGcmFieldCipher` provides authenticated field encryption, AAD binding, key IDs, and defensive ciphertext copies. `EncryptionKeyProvider` is an adapter seam for separated, versioned, rotatable key storage. No keys or key-management integration are included.
 - Use synthetic-only data in checked-in fixtures.
 - Write business audit and journey events in the same transaction as the business change. Click and page-view analytics are separate, best-effort events.
-- Analytics accepts an allowlist of event names and bounded properties. Do not send raw PII, health data, tokens, arbitrary property maps, or raw URLs.
+- Analytics accepts only an allowlisted event name, screen key, and hashed session scope. Its Java value type and starter DDL have no arbitrary property map, raw PII, health data, tokens, or raw URL fields.
 - Keep private React Query caches in memory and scoped by owner/session. Cancel and clear private queries at logout or account switch; guard against late responses. Revalidate the session on SPA refresh and refetch authorized resources. Never treat client cache as authorization.
 - Keep form state, URL state, and server state separate. Use URL state only for safe, shareable filters and pagination.
 - Make consent and retention behavior configurable. Do not state unverified legal requirements as product facts.
