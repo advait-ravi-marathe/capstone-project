@@ -6,6 +6,14 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULES = {"catalog", "shortlist", "application", "payments", "policy", "support", "audit", "analytics"}
+PERSISTENCE_REFERENCE = re.compile(r"\bcoverstory\.modules\.([a-z]+)\.persistence(?:\.[A-Z][A-Za-z0-9_]*)?")
+
+
+def cross_module_persistence_references(source_text, owning_module):
+    return {
+        target for target in PERSISTENCE_REFERENCE.findall(source_text)
+        if target != owning_module
+    }
 
 
 class ModuleBoundaryChecks(unittest.TestCase):
@@ -14,11 +22,20 @@ class ModuleBoundaryChecks(unittest.TestCase):
         violations = []
         for source in source_root.rglob("*.java"):
             owner = source.relative_to(source_root).parts[0]
-            imports = re.findall(r"^import\s+(coverstory\.modules\.([a-z]+)\.[^;]+);", source.read_text(), re.M)
-            for imported, target in imports:
-                if target != owner and ".persistence." in imported:
-                    violations.append(f"{source.relative_to(ROOT)} imports {imported}")
+            targets = cross_module_persistence_references(source.read_text(), owner)
+            for target in targets:
+                violations.append(f"{source.relative_to(ROOT)} references {target} persistence")
         self.assertEqual([], violations)
+
+    def test_detector_rejects_imported_and_fully_qualified_foreign_repositories(self):
+        source = """
+            import coverstory.modules.payments.persistence.PaymentRepository;
+            class Example { coverstory.modules.catalog.persistence.OfferRepository repository; }
+        """
+        self.assertEqual(
+            {"payments", "catalog"},
+            cross_module_persistence_references(source, "application"),
+        )
 
     def test_each_bounded_context_has_an_explicit_package(self):
         source_root = ROOT / "src/main/java/coverstory/modules"

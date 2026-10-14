@@ -4,32 +4,54 @@ export type Session = { ownerId: string; generation: number }
 
 let activeGeneration = 0
 let activeOwner: string | null = null
+let latestSessionCheck = 0
 
 export async function revalidateSession(signal?: AbortSignal): Promise<Session | null> {
-  const response = await fetch('/api/session', {
-    credentials: 'same-origin',
-    cache: 'no-store',
-    headers: { Accept: 'application/json' },
-    signal,
-  })
+  const check = ++latestSessionCheck
+  let response: Response
+  try {
+    response = await fetch('/api/session', {
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: { Accept: 'application/json' },
+      signal,
+    })
+  } catch (error) {
+    if (check !== latestSessionCheck) return currentSession()
+    throw error
+  }
+  if (check !== latestSessionCheck) return currentSession()
   if (response.status === 401) {
-    if (activeOwner !== null) {
-      activeOwner = null
-      activeGeneration += 1
-      await clearPrivateQueries()
-    }
+    if (activeOwner !== null) activeGeneration += 1
+    activeOwner = null
+    await clearPrivateQueries()
+    if (check !== latestSessionCheck) return currentSession()
     return null
   }
   if (!response.ok) throw new Error('Session could not be checked.')
-  const value: unknown = await response.json()
+  let value: unknown
+  try {
+    value = await response.json()
+  } catch (error) {
+    if (check !== latestSessionCheck) return currentSession()
+    throw error
+  }
+  if (check !== latestSessionCheck) return currentSession()
   if (!isSessionResponse(value)) throw new Error('Session response was invalid.')
   if (activeOwner !== value.ownerId) {
     const hadOwner = activeOwner !== null
     activeOwner = value.ownerId
     activeGeneration += 1
-    if (hadOwner) await clearPrivateQueries()
+    if (hadOwner) {
+      await clearPrivateQueries()
+      if (check !== latestSessionCheck) return currentSession()
+    }
   }
   return { ownerId: value.ownerId, generation: activeGeneration }
+}
+
+function currentSession(): Session | null {
+  return activeOwner === null ? null : { ownerId: activeOwner, generation: activeGeneration }
 }
 
 function isSessionResponse(value: unknown): value is { ownerId: string } {

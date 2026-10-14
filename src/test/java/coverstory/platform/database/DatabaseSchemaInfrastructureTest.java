@@ -85,6 +85,27 @@ class DatabaseSchemaInfrastructureTest {
                 assertThrows(SQLException.class, invalidAnalytics::executeUpdate,
                         "unknown event names must be rejected");
             }
+
+            try (PreparedStatement invalidScreen = connection.prepareStatement("""
+                    INSERT INTO analytics.behavior_event
+                      (event_id, event_name, screen_key, session_scope_hash, occurred_at)
+                    VALUES (?, 'catalog_viewed', 'https://example.invalid/private', decode('aabb', 'hex'), now())
+                    """)) {
+                invalidScreen.setObject(1, UUID.randomUUID());
+                assertThrows(SQLException.class, invalidScreen::executeUpdate,
+                        "screen values must come from the analytics allowlist");
+            }
+
+            try (PreparedStatement forbiddenColumns = connection.prepareStatement("""
+                    SELECT COUNT(*) FROM information_schema.columns
+                    WHERE table_schema = 'analytics' AND table_name = 'behavior_event'
+                      AND column_name IN ('properties', 'raw_url', 'consumer_email', 'health_data', 'token')
+                    """)) {
+                try (ResultSet result = forbiddenColumns.executeQuery()) {
+                    result.next();
+                    assertEquals(0, result.getInt(1), "analytics table must not gain unbounded/sensitive fields");
+                }
+            }
         }
     }
 

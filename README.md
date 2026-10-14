@@ -40,6 +40,7 @@ The browser shell uses React Query for owner/session-scoped memory caches and re
 ```sh
 python3 scripts/check_scaffold.py
 ./scripts/test_field_cipher.sh
+cd web && npm run test:security
 ```
 
 ## Learning integrity
