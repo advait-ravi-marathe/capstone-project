@@ -1,0 +1,12 @@
+{
+  "status": "EXPECTED_TODO_FAILURE",
+  "reason": "Learner acceptance suite executed separately and reached the explicit CAP-91 TODO in all four cases.",
+  "learner_acceptance_command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Plearner-tests -Dtest=CAP91AcceptanceTest test",
+  "observed": "4 tests run, 0 assertion failures, 4 expected UnsupportedOperationException errors at AdaptOnboardingAssistance.suggest TODO",
+  "source_commit": "05563e2bd8eb966571519c4e3470b07246da42be",
+  "jdk": "OpenJDK 21.0.12.1",
+  "maven": "Apache Maven 3.10.0",
+  "fixture_sha256": "4919256ffd69ed4238f2b2f09fbe6cad464e76789f25ab9721bc5b4b3b171c1c",
+  "actual_provider_call": false,
+  "learner_mastery": "NOT_ESTABLISHED"
+}

@@ -1,0 +1,50 @@
+{
+  "fixture_id": "CAP-66-synthetic-v1",
+  "classification": "SYNTHETIC_OFFLINE_GROUP_TRACE",
+  "actual_broker_run": false,
+  "partitions": [0, 1, 2],
+  "expected_versions": ["pub-01", "pub-02", "pub-03", "pub-04", "pub-05", "pub-06"],
+  "cases": [
+    {
+      "id": "CAP-66-CS-01",
+      "snapshots": [
+        {"snapshot_id":"stable-g","group_id":"G","member_id":"G1","assigned_partitions":[0,1],"records":[{"version":"pub-01","partition":0,"offset":10},{"version":"pub-02","partition":0,"offset":11},{"version":"pub-03","partition":1,"offset":20}],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false},
+        {"snapshot_id":"stable-g","group_id":"G","member_id":"G2","assigned_partitions":[2],"records":[{"version":"pub-04","partition":2,"offset":30},{"version":"pub-05","partition":2,"offset":31},{"version":"pub-06","partition":2,"offset":32}],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false},
+        {"snapshot_id":"stable-h","group_id":"H","member_id":"H1","assigned_partitions":[0,1,2],"records":[{"version":"pub-01","partition":0,"offset":10},{"version":"pub-02","partition":0,"offset":11},{"version":"pub-03","partition":1,"offset":20},{"version":"pub-04","partition":2,"offset":30},{"version":"pub-05","partition":2,"offset":31},{"version":"pub-06","partition":2,"offset":32}],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false}
+      ],
+      "expected_valid": true,
+      "expected_g_union": 6,
+      "expected_h_union": 6,
+      "expected_g_assignments_disjoint": true
+    },
+    {
+      "id": "CAP-66-CS-02",
+      "snapshots": [
+        {"snapshot_id":"four-members","group_id":"G","member_id":"G1","assigned_partitions":[0],"records":[{"version":"pub-01","partition":0,"offset":10},{"version":"pub-02","partition":0,"offset":11}],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false},
+        {"snapshot_id":"four-members","group_id":"G","member_id":"G2","assigned_partitions":[1],"records":[{"version":"pub-03","partition":1,"offset":20},{"version":"pub-04","partition":1,"offset":21}],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false},
+        {"snapshot_id":"four-members","group_id":"G","member_id":"G3","assigned_partitions":[2],"records":[{"version":"pub-05","partition":2,"offset":30},{"version":"pub-06","partition":2,"offset":31}],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false},
+        {"snapshot_id":"four-members","group_id":"G","member_id":"G4","assigned_partitions":[],"records":[],"committed_through_offset":null,"next_read_offset":null,"restart_before_commit":false,"redelivered":false}
+      ],
+      "expected_valid": true,
+      "expected_idle_members": ["G4"]
+    },
+    {
+      "id": "CAP-66-CS-03",
+      "snapshots": [
+        {"snapshot_id":"committed-restart","group_id":"G","member_id":"G1","assigned_partitions":[0],"records":[{"version":"pub-03","partition":0,"offset":42}],"committed_through_offset":41,"next_read_offset":42,"restart_before_commit":false,"redelivered":false}
+      ],
+      "expected_valid": true,
+      "expected_next_read_offset": 42
+    },
+    {
+      "id": "CAP-66-CS-04",
+      "snapshots": [
+        {"snapshot_id":"before-commit","group_id":"G","member_id":"G1","assigned_partitions":[0],"records":[{"version":"pub-03","partition":0,"offset":42}],"committed_through_offset":41,"next_read_offset":42,"restart_before_commit":true,"redelivered":false},
+        {"snapshot_id":"after-restart","group_id":"G","member_id":"G1-restarted","assigned_partitions":[0],"records":[{"version":"pub-03","partition":0,"offset":42}],"committed_through_offset":41,"next_read_offset":42,"restart_before_commit":true,"redelivered":true}
+      ],
+      "expected_valid": true,
+      "expected_redelivered": true,
+      "forbidden_claim": "EXACTLY_ONCE"
+    }
+  ]
+}

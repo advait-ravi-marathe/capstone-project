@@ -1,0 +1,26 @@
+{
+  "fixture_id": "CAP-65-synthetic-v1",
+  "synthetic": true,
+  "data_notice": "Invented test content only. No consumer, applicant, health, or production records are present.",
+  "principals": {
+    "visitor": {"subject": null, "roles": ["visitor"]},
+    "applicant_a": {"subject": "applicant-A", "roles": ["applicant"]},
+    "support_s": {"subject": "support-S", "roles": ["support"]},
+    "catalog_editor": {"subject": "catalog-editor-C", "roles": ["catalog_editor"]},
+    "applicant_a_no_acl": {"subject": "applicant-A", "roles": ["applicant"]}
+  },
+  "documents": [
+    {"source_id": "public-wording-1", "visibility": "public", "public_text": "Waiting periods depend on the selected plan."},
+    {"source_id": "case-A-docA", "visibility": "private", "applicant_text": "Synthetic case: applicant requested a callback.", "support_excerpt": "Callback requested.", "acl": {"owner_id": "applicant-A", "assigned_support_ids": ["support-S"]}},
+    {"source_id": "case-A-docA-no-acl", "visibility": "private", "applicant_text": "Synthetic case A without an ACL must fail closed.", "support_excerpt": "No ACL excerpt.", "acl": null},
+    {"source_id": "case-B-docB", "visibility": "private", "applicant_text": "Synthetic case: applicant requested a callback.", "support_excerpt": "Other case callback.", "acl": {"owner_id": "applicant-B", "assigned_support_ids": ["support-T"]}},
+    {"source_id": "support-only-A", "visibility": "private", "applicant_text": "Synthetic support note for case A.", "support_excerpt": "Please call after 4 pm.", "acl": {"owner_id": null, "assigned_support_ids": ["support-S"]}},
+    {"source_id": "catalog-private", "visibility": "private", "applicant_text": "Synthetic restricted application material.", "support_excerpt": "Restricted excerpt.", "acl": {"owner_id": "applicant-Z", "assigned_support_ids": ["support-T"]}}
+  ],
+  "cases": [
+    {"id": "CAP-65-CS-01", "expected_sources": ["case-A-docA"], "expected_text": "Synthetic case: applicant requested a callback."},
+    {"id": "CAP-65-CS-02", "expected_sources": ["case-A-docA", "support-only-A"], "expected_texts": ["Callback requested.", "Please call after 4 pm."]},
+    {"id": "CAP-65-CS-03", "expected_catalog_editor_sources": [], "missing_acl_source": "case-A-docA-no-acl"},
+    {"id": "CAP-65-CS-04", "owner_override": "applicant-B", "expected_private_status": "DENIED_BEFORE_SCORE"}
+  ]
+}

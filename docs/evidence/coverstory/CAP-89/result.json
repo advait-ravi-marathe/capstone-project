@@ -1,0 +1,16 @@
+{
+  "status": "PARTIAL_SCAFFOLD",
+  "fixture": "docs/evidence/coverstory/CAP-89/fixtures.json",
+  "fixture_sha256": "ecc3bd24e2c933a8a4236776efbaefa5275fc505cd85273f4600db83cd685910",
+  "infrastructure_command": "python3 -m unittest ai.tests.test_coverstory_cap89_infrastructure -v",
+  "infrastructure_observed": "Ran 6 tests; OK",
+  "infrastructure_status": "PASS",
+  "acceptance_command": "python3 -m unittest ai.tests.test_coverstory_cap89_acceptance -v",
+  "acceptance_observed": "Ran 5 tests; FAILED (errors=5), each at NotImplementedError: CAP-89 learner TODO: implement evaluation gate",
+  "acceptance_status": "EXPECTED_TODO_FAILURE",
+  "workflow_exit_preservation": "LOCAL_SUBPROCESS_WITNESS_ONLY",
+  "workflow_integration": "NOT_IMPLEMENTED",
+  "learner_completion": "NOT_IMPLEMENTED",
+  "independent_mastery": "NOT_ESTABLISHED",
+  "generated_at": "2026-10-14"
+}

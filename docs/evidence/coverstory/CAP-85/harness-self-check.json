@@ -1,0 +1,39 @@
+{
+  "assignment": "CAP-85",
+  "evidence_type": "instructor_harness_self_check",
+  "status": "PASS",
+  "environment": {
+    "branch": "feature/coverstory-capstone-starter",
+    "base_head": "05563e2bd8eb966571519c4e3470b07246da42be",
+    "working_tree_state": "CAP-85 files uncommitted; no commit asserted",
+    "java": "OpenJDK 21.0.12.1",
+    "database": "Embedded PostgreSQL 14.22.0",
+    "maven": "3.10.0"
+  },
+  "fixture_sha256": "1993f79ee95de1b4afb8ffca107ffeda5419049db61f51523079b80fe8eec013",
+  "schema_sha256": "035e20869734435ee4befc195c1a6303c6a939042e3bb8252c5ba7af6b7cc7e4",
+  "checks": [
+    {
+      "name": "instructor_postgres_oracle",
+      "command": "mvn -q -Dtest=CAP85InstructorInfrastructureTest test (with repository Java 21 launcher flags)",
+      "observed": "6 tests, 0 failures, 0 errors",
+      "covers": ["synthetic fixture", "balanced classification", "missing outcome", "empty batch", "same batch id tenant isolation", "missing durable lineage", "lineage defect witness"]
+    },
+    {
+      "name": "learner_acceptance_contract",
+      "command": "mvn -q -Plearner-tests -Dtest=CAP85AcceptanceTest test (with repository Java 21 launcher flags)",
+      "observed": "5 tests, 0 assertion failures, 5 explicit UnsupportedOperationException errors at the CAP-85 learner TODO",
+      "status": "EXPECTED_TODO_BLOCKED"
+    },
+    {
+      "name": "whitespace_check",
+      "command": "git diff --check",
+      "observed": "clean"
+    }
+  ],
+  "limitations": [
+    "The instructor SQL is a private test oracle, not implemented learner behavior.",
+    "No live payment provider, dispatch, or repair path was called or implemented.",
+    "Passing the instructor oracle does not prove learner completion or production readiness."
+  ]
+}

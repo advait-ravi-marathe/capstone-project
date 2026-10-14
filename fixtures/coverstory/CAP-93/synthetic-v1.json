@@ -1,0 +1,22 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "runtime_provider_calls": false,
+  "runtime_broker_required": false,
+  "payment_authority_changes": false,
+  "clock": {"kind": "VIRTUAL", "outage_seconds": 30, "allowed_min_seconds": 0, "allowed_max_seconds": 30},
+  "jobs": [
+    {"job_id": "read-001", "kind": "RECONCILE_EXISTING_REFERENCE", "owner": "synthetic-owner-a"},
+    {"job_id": "read-002", "kind": "RECONCILE_EXISTING_REFERENCE", "owner": "synthetic-owner-a"},
+    {"job_id": "read-003", "kind": "RECONCILE_EXISTING_REFERENCE", "owner": "synthetic-owner-a"}
+  ],
+  "expected": {
+    "during_outage": {"pending": 3, "completed": 0},
+    "after_recovery": {"pending": 0, "unique_completed": 3},
+    "redelivery": {"duplicate_business_effects": 0, "new_payment_attempts": 0},
+    "diagnostic_correct_counts": {"correct": 2, "partial": 1, "incorrect": 3, "not_attempted": 2, "numerator": 8, "denominator": 12},
+    "aws_exam_score": null,
+    "capacity_role_fit": "UNRESOLVED"
+  },
+  "actual_probe_output": null,
+  "evidence_status": "BLOCKED_NOT_RUN"
+}

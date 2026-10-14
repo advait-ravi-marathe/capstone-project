@@ -1,0 +1,14 @@
+{
+  "fixture_id": "CAP-89-synthetic-v1",
+  "path": "ai/fixtures/coverstory/CAP-89/synthetic-v1.json",
+  "sha256": "ecc3bd24e2c933a8a4236776efbaefa5275fc505cd85273f4600db83cd685910",
+  "synthetic": true,
+  "actual_sources_used": false,
+  "cases": [
+    {"id": "boundary-pass", "expected_exit": 0},
+    {"id": "ranking-regression", "expected_exit": 1},
+    {"id": "cross-owner-citation", "expected_exit": 1},
+    {"id": "missing-required-case", "expected_exit": 2},
+    {"id": "nan-metric", "expected_exit": 2}
+  ]
+}

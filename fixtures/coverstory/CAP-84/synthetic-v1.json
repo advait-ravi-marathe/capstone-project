@@ -1,0 +1,68 @@
+{
+  "fixture_id": "CAP-84-synthetic-v1",
+  "classification": "SYNTHETIC_MOCK_PROVIDER_ENVELOPE",
+  "actual_provider_call": false,
+  "schema_version": 1,
+  "required_fields": ["ownerId", "eventId", "providerRef", "schemaVersion", "occurredAt", "amountMinor", "currency", "state"],
+  "base_context": {
+    "trusted_owner_id": "owner-A",
+    "expected_amount_minor": 100000,
+    "expected_currency": "INR",
+    "provider_source": "mock-juspay-sandbox-v1",
+    "provider_source_supported": true
+  },
+  "valid_envelope": {
+    "ownerId": "owner-A",
+    "eventId": "event-synth-A-001",
+    "providerRef": "provider-ref-synth-A-001",
+    "schemaVersion": 1,
+    "occurredAt": "2026-11-27T12:30:00Z",
+    "amountMinor": 100000,
+    "currency": "INR",
+    "state": "SUCCEEDED"
+  },
+  "cases": [
+    { "id": "CAP-84-CS-01", "kind": "valid", "expected_code": "VALID", "expected_eligible": true },
+    {
+      "id": "CAP-84-CS-02",
+      "kind": "invalid_types",
+      "variants": [
+        { "field": "schemaVersion", "value": true },
+        { "field": "schemaVersion", "value": "1" },
+        { "field": "amountMinor", "value": true }
+      ],
+      "expected_code": "INVALID_TYPE",
+      "expected_writes": 0
+    },
+    { "id": "CAP-84-CS-03", "kind": "owner_mismatch", "owner": "owner-B", "expected_code": "OWNER_MISMATCH", "expected_writes": 0 },
+    {
+      "id": "CAP-84-CS-04",
+      "kind": "unknown_field",
+      "field": "apiKey",
+      "value": "fixture-marker-only-not-a-credential",
+      "expected_code": "UNKNOWN_FIELD",
+      "expected_diagnostic_fields": ["apiKey"],
+      "expected_writes": 0
+    },
+    {
+      "id": "CAP-84-CS-05",
+      "kind": "domain_mismatch",
+      "variants": [
+        { "field": "occurredAt", "value": "2026-11-27T12:30:00", "expected_code": "INVALID_TIMEZONE" },
+        { "field": "occurredAt", "value": "not-a-time", "expected_code": "INVALID_TIMEZONE" },
+        { "field": "amountMinor", "value": 99999, "expected_code": "PAYMENT_MISMATCH" },
+        { "field": "currency", "value": "USD", "expected_code": "PAYMENT_MISMATCH" },
+        { "field": "amountMinor", "value": 99999, "state": "UNRECOGNIZED", "expected_code": "PAYMENT_MISMATCH" }
+      ],
+      "expected_writes": 0,
+      "expected_onboarding_unlocked": false
+    },
+    {
+      "id": "CAP-84-CS-06",
+      "kind": "unsupported_source",
+      "context_source": "unregistered-synthetic-source",
+      "expected_code": "UNSUPPORTED_SOURCE",
+      "expected_writes": 0
+    }
+  ]
+}

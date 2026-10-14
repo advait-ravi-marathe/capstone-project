@@ -1,0 +1,19 @@
+{
+  "assignment_id": "CAP-88",
+  "status": "PASS_FOR_PURE_POLICY_HARNESS_ONLY",
+  "source_commit": "05563e2bd8eb966571519c4e3470b07246da42be",
+  "config_path": "pom.xml",
+  "config_sha256": "21422d3541354a1d112079b4d6d6a8ef1a400aac2d4eb4804df221356645311a",
+  "seam_path": "src/main/java/coverstory/security/CAP88AccessPolicySeam.java",
+  "seam_sha256": "0b58c00ae8c0f588ec27073135c4c5aa82715f7a7a442ee0d1ecf4d1dfc800ef",
+  "instructor_test_path": "src/test/java/coverstory/security/CAP88InstructorInfrastructureTest.java",
+  "instructor_test_sha256": "b298b92e884336a74344e19c710d6dd63c4b8690919cda42da765ec0603f64fc",
+  "learner_test_path": "src/test/java/coverstory/security/CAP88AcceptanceTest.java",
+  "learner_test_sha256": "2a1e93d2706f15504b8a270e2fe394115018e2519ecd5e4d6bb75a26e10eaf43",
+  "fixture_sha256": "77601386cb7a9c1390d5958bd0a666a6c9bbe54efc833fe0970f0d4d09092960",
+  "setup_smoke": "PASS: test compilation and three independent instructor tests",
+  "learner_behavior": "NOT_IMPLEMENTED: explicit learner TODO retained; six acceptance methods report expected TODO errors",
+  "integration_check": "BLOCKED: request-level access control cannot be exercised without the missing auth and module route adapters",
+  "known_mutants_rejected": ["applicant role permits foreign draft", "support role ignores assignment", "assistant role permits mutation"],
+  "production_authentication_or_authorization_claimed": false
+}

@@ -1,0 +1,23 @@
+{
+  "fixture_id": "CAP-83-synthetic-v1",
+  "synthetic": true,
+  "data_notice": "Use only invented request IDs, fields, versions, and exception sentinels. Never include real answers or database errors.",
+  "error_cases": [
+    {"id": "CAP-83-CS-01", "exception": "malformed", "request_id": "req1", "status": 400, "code": "INVALID_REQUEST", "message": "The request is invalid.", "retryable": false},
+    {"id": "CAP-83-CS-02", "exceptions": ["foreign_resource", "absent_resource"], "status": 404, "code": "NOT_FOUND", "message": "The requested resource was not found.", "retryable": false},
+    {"id": "CAP-83-CS-03", "if_match": "v3", "current_version": "v4", "status": 412, "code": "STALE_VERSION", "message": "This resource changed. Reload and compare your edits.", "retryable": false},
+    {"id": "CAP-83-CS-04", "exception": "SQLException", "message_sentinel": "SECRET_SENTINEL", "status": 500, "code": "INTERNAL_ERROR", "message": "An unexpected error occurred.", "retryable": false},
+    {"id": "CAP-83-CS-05", "request_id": null, "legacy_correlation_id": "legacy-req-2", "field_errors": {"fullName": "This field is required."}, "generated_id_pattern": "^[A-Za-z0-9._:-]{1,80}$"}
+  ],
+  "status_map": [
+    {"exception": "malformed", "status": 400, "code": "INVALID_REQUEST"},
+    {"exception": "session", "status": 401, "code": "UNAUTHENTICATED"},
+    {"exception": "absent_or_foreign", "status": 404, "code": "NOT_FOUND"},
+    {"exception": "quote_conflict", "status": 409, "code": "QUOTE_CONFLICT"},
+    {"exception": "idempotency_conflict", "status": 409, "code": "IDEMPOTENCY_CONFLICT"},
+    {"exception": "stale_if_match", "status": 412, "code": "STALE_VERSION"},
+    {"exception": "incomplete_fields", "status": 422, "code": "INCOMPLETE_FIELDS"},
+    {"exception": "unexpected", "status": 500, "code": "INTERNAL_ERROR"}
+  ],
+  "ui_note": "If the existing shell supports it, stale-version recovery keeps unsaved edits available for compare. Otherwise this UI behavior remains not run; the API contract still applies."
+}

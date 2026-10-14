@@ -1,0 +1,12 @@
+{
+  "fixture_id": "CAP-67-synthetic-v1",
+  "synthetic": true,
+  "k": 2,
+  "cases": [
+    {"case_id":"CAP-67-CS-01","ranked_ids":["C","A","B"],"relevant_ids":["A","B"],"expected":{"recall_at_k":0.5,"reciprocal_rank":0.5}},
+    {"case_id":"CAP-67-CS-02","ranked_ids":[],"relevant_ids":["A"],"expected":{"recall_at_k":0.0,"reciprocal_rank":0.0}},
+    {"case_id":"CAP-67-CS-03","ranked_ids":["A"],"relevant_ids":[],"expected":{"applicable":false,"recall_at_k":null,"reciprocal_rank":null}},
+    {"case_id":"CAP-67-CS-04","ranked_ids":["A","A"],"relevant_ids":["A"],"expected":{"error":"ValueError"}},
+    {"case_id":"CAP-67-CS-05","aggregate":[{"recall_at_k":1.0,"reciprocal_rank":1.0,"applicable":true},{"recall_at_k":0.0,"reciprocal_rank":0.5,"applicable":true},{"applicable":false}],"expected":{"answerable_count":2,"mean_recall_at_k":0.5,"mean_reciprocal_rank":0.75}}
+  ]
+}

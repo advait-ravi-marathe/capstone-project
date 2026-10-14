@@ -1,0 +1,15 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "actual_provider_call": false,
+  "owner_a": "85000000-0000-4000-8000-000000000001",
+  "owner_b": "85000000-0000-4000-8000-000000000002",
+  "batch_id": "85000000-0000-4000-8000-000000000101",
+  "cases": [
+    {"id":"balanced","staged":["INSERTED","INSERTED","DUPLICATE","INVALID"],"outcomes":4,"effects":2,"expected":[4,1,1,2,0,0]},
+    {"id":"missing_outcome","staged":["INSERTED","INSERTED","DUPLICATE","INVALID"],"outcomes":3,"effects":2,"expected":[4,0,1,2,1,0],"result":"FAIL: final staged row is unaccounted"},
+    {"id":"empty","staged":[],"outcomes":0,"effects":0,"expected":[0,0,0,0,0,0]},
+    {"id":"same_batch_other_owner","owner_b_rows":100,"expected_owner_a_raw_count":4},
+    {"id":"missing_lineage_effect","staged":["INSERTED","INSERTED","DUPLICATE","INVALID"],"outcomes":4,"effects":1,"expected":[4,1,1,2,0,1]}
+  ],
+  "summary_field_order":["raw_count","invalid_count","duplicate_count","inserted_count","unaccounted_count","missing_inserted_effect_count"]
+}

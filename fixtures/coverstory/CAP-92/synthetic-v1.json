@@ -1,0 +1,28 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_RETENTION_FIXTURE",
+  "policy": {
+    "raw_body_days": 30,
+    "audit_reference_days": 90,
+    "legal_policy": false,
+    "deletion_performed": false
+  },
+  "fixed_clock": "2026-12-06T00:00:00Z",
+  "owners": {"A": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa", "B": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"},
+  "records": [
+    {"id":"raw-at-boundary","owner":"A","kind":"RAW_BODY","created_at":"2026-11-06T00:00:00Z","reference_id":null,"body":"SYNTHETIC_PRIVATE_BODY_MUST_NOT_APPEAR"},
+    {"id":"raw-one-second-old","owner":"A","kind":"RAW_BODY","created_at":"2026-11-05T23:59:59Z","reference_id":null,"body":"SYNTHETIC_PRIVATE_BODY_MUST_NOT_APPEAR"},
+    {"id":"audit-31d","owner":"A","kind":"AUDIT_REFERENCE","created_at":"2026-11-05T00:00:00Z","reference_id":"ref-retained-31d","body":null},
+    {"id":"audit-90d","owner":"A","kind":"AUDIT_REFERENCE","created_at":"2026-09-07T00:00:00Z","reference_id":"ref-boundary-90d","body":null},
+    {"id":"audit-90d-plus-1s","owner":"A","kind":"AUDIT_REFERENCE","created_at":"2026-09-06T23:59:59Z","reference_id":"ref-old-audit","body":null},
+    {"id":"future-time","owner":"A","kind":"RAW_BODY","created_at":"2026-12-06T00:00:01Z","reference_id":null,"body":"SYNTHETIC_PRIVATE_BODY_MUST_NOT_APPEAR"},
+    {"id":"null-time","owner":"A","kind":"AUDIT_REFERENCE","created_at":null,"reference_id":"ref-null-time","body":null},
+    {"id":"same-id-other-owner","owner":"B","kind":"RAW_BODY","created_at":"2020-01-01T00:00:00Z","reference_id":null,"body":"SYNTHETIC_OWNER_B_BODY"}
+  ],
+  "cases": [
+    {"id":"CAP-92-CS-01","description":"raw body exact boundary and one second older","expected":{"raw-at-boundary":"RETAIN","raw-one-second-old":"CANDIDATE_DELETE"}},
+    {"id":"CAP-92-CS-02","description":"audit reference outlives excluded body without content","expected":{"audit-31d":"RETAIN","body_present":false}},
+    {"id":"CAP-92-CS-03","description":"owner filter and dry run","expected":{"contains_owner_b":false,"delete_calls":0}},
+    {"id":"CAP-92-CS-04","description":"audit exact boundary and older candidate","expected":{"audit-90d":"RETAIN","audit-90d-plus-1s":"CANDIDATE_DELETE","delete_calls":0}},
+    {"id":"CAP-92-CS-05","description":"future and null timestamps are invalid","expected":{"future-time":"INVALID_TIME","null-time":"INVALID_TIME"}}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "assignment": "CAP-93",
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "fixture_sha256": "2b51c542e75caa72e14e9ff87eb1174dd2fe083a936ee3309648636736e041b6",
+  "evidence": [
+    {"assertion": "bounded synthetic fixture; no provider, broker, or authority change", "status": "PASS", "observed": "CAP93InstructorInfrastructureTest.fixtureIsBoundedSyntheticAndHasNoProviderOrBroker"},
+    {"assertion": "three jobs pending at simulated 30s outage; three unique completions after recovery", "status": "PASS", "observed": "CAP93InstructorInfrastructureTest.virtualOutageKeepsThreeJobsPendingUntilRecoveryThenCompletesEachOnce"},
+    {"assertion": "redelivery does not repeat completion or create payment attempts", "status": "PASS", "observed": "CAP93InstructorInfrastructureTest.repeatedDeliveryDoesNotRepeatCompletionOrCreatePaymentAttempt"},
+    {"assertion": "diagnostic categories sum to 8/12; AWS score remains null", "status": "PASS", "observed": "CAP93InstructorInfrastructureTest.diagnosticTotalsAllCategoriesAndIsNotAnAwsScore"},
+    {"assertion": "capacity and role fit require a benchmark and target job description", "status": "PASS", "observed": "UNRESOLVED with neither input supplied"},
+    {"assertion": "actual integrated outbox probe observed", "status": "BLOCKED", "observed": null, "reason": "No integrated PostgreSQL worker probe output is supplied; the deterministic local oracle does not establish integrated behavior."},
+    {"assertion": "learner acceptance", "status": "EXPECTED_TODO_FAILURE", "observed": "Five tests raise UnsupportedOperationException at the explicit CAP-93 learner TODO; these are expected learner failures, not setup failures."}
+  ],
+  "commands": {
+    "instructor": "mvn -Dtest=CAP93InstructorInfrastructureTest test",
+    "learner": "mvn -Dtest=CAP93AcceptanceTest -DexcludeLearnerAcceptance= test"
+  },
+  "result": "LOCAL_ORACLE_PASS_INTEGRATED_PROBE_BLOCKED_LEARNER_TODO_EXPECTED_FAILURE",
+  "payment_authority_or_provider_execution": false
+}

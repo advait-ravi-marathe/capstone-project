@@ -1,0 +1,71 @@
+{
+  "fixture_id": "CAP-82-synthetic-v1",
+  "synthetic": true,
+  "k": 2,
+  "metric": "macro MRR and macro recall@k over answerable cases; reciprocal rank is zero when no relevant source appears in top k",
+  "latency": "supplied fixture-only measured samples in milliseconds; report mean sample values, never claim they are production/runtime measurements",
+  "owner_policy": "PUBLIC evidence is shareable; any returned private source owned by another query owner disqualifies the run",
+  "scenarios": [
+    {
+      "id": "CAP-82-CS-01",
+      "dataset_sha256": "dset-dev-v1-a",
+      "corpus_sha256": "corpus-dev-v1-a",
+      "baseline": {
+        "latency_samples_ms": [4.0, 6.0],
+        "cases": [
+          {"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s1", "s2"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}},
+          {"case_id": "q2", "answerable": true, "relevant_source_ids": ["s4"], "retrieved_source_ids": ["s3", "s2"], "query_owner": "A", "source_owner_by_id": {"s2": "PUBLIC", "s3": "PUBLIC", "s4": "PUBLIC"}}
+        ]
+      },
+      "candidate": {
+        "latency_samples_ms": [5.0, 7.0],
+        "cases": [
+          {"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s1", "s2"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}},
+          {"case_id": "q2", "answerable": true, "relevant_source_ids": ["s4"], "retrieved_source_ids": ["s3", "s4"], "query_owner": "A", "source_owner_by_id": {"s2": "PUBLIC", "s3": "PUBLIC", "s4": "PUBLIC"}}
+        ]
+      },
+      "expected": {"status": "COMPARABLE", "baseline_mean_reciprocal_rank": 0.5, "candidate_mean_reciprocal_rank": 0.75, "delta_mean_reciprocal_rank": 0.25, "baseline_mean_recall_at_k": 0.5, "candidate_mean_recall_at_k": 1.0, "delta_mean_recall_at_k": 0.5, "baseline_latency_ms": 5.0, "candidate_latency_ms": 6.0, "changed_case_ids": ["q2"]}
+    },
+    {
+      "id": "CAP-82-CS-02",
+      "dataset_sha256": "dset-dev-v1-a",
+      "corpus_sha256": "corpus-dev-v1-a",
+      "baseline": {"latency_samples_ms": [4.0, 6.0], "cases": [
+        {"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s1", "s2"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}},
+        {"case_id": "q2", "answerable": true, "relevant_source_ids": ["s4"], "retrieved_source_ids": ["s3", "s2"], "query_owner": "A", "source_owner_by_id": {"s2": "PUBLIC", "s3": "PUBLIC", "s4": "PUBLIC"}}]},
+      "candidate": {"latency_samples_ms": [8.0, 10.0], "cases": [
+        {"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s2", "s1"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}},
+        {"case_id": "q2", "answerable": true, "relevant_source_ids": ["s4"], "retrieved_source_ids": ["s3", "s2"], "query_owner": "A", "source_owner_by_id": {"s2": "PUBLIC", "s3": "PUBLIC", "s4": "PUBLIC"}}]},
+      "expected": {"status": "COMPARABLE", "baseline_mean_reciprocal_rank": 0.5, "candidate_mean_reciprocal_rank": 0.25, "delta_mean_reciprocal_rank": -0.25, "baseline_mean_recall_at_k": 0.5, "candidate_mean_recall_at_k": 0.5, "delta_mean_recall_at_k": 0.0, "baseline_latency_ms": 5.0, "candidate_latency_ms": 9.0, "changed_case_ids": ["q1"]}
+    },
+    {
+      "id": "CAP-82-CS-03",
+      "dataset_sha256": "dset-dev-v1-a",
+      "corpus_sha256": "corpus-dev-v1-a",
+      "candidate_dataset_sha256": "dset-dev-v1-b",
+      "baseline": {"latency_samples_ms": [2.0], "cases": [{"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s2"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}}]},
+      "candidate": {"latency_samples_ms": [1.0], "cases": [{"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s1"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC"}}]},
+      "expected": {"status": "INCOMPARABLE", "reason": "EVALUATION_IDENTITY_MISMATCH", "delta_mean_reciprocal_rank": null, "delta_mean_recall_at_k": null, "changed_case_ids": []}
+    },
+    {
+      "id": "CAP-82-CS-04",
+      "dataset_sha256": "dset-dev-v1-a",
+      "corpus_sha256": "corpus-dev-v1-a",
+      "baseline": {"latency_samples_ms": [4.0, 6.0], "cases": [
+        {"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s1", "s2"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}},
+        {"case_id": "q2", "answerable": true, "relevant_source_ids": ["s4"], "retrieved_source_ids": ["s3", "s2"], "query_owner": "A", "source_owner_by_id": {"s2": "PUBLIC", "s3": "PUBLIC", "s4": "PUBLIC"}}]},
+      "candidate": {"latency_samples_ms": [3.0, 4.0], "cases": [
+        {"case_id": "q1", "answerable": true, "relevant_source_ids": ["s1"], "retrieved_source_ids": ["s1", "s2"], "query_owner": "A", "source_owner_by_id": {"s1": "PUBLIC", "s2": "PUBLIC"}},
+        {"case_id": "q2", "answerable": true, "relevant_source_ids": ["s4"], "retrieved_source_ids": ["s3", "s4", "private-b-only"], "query_owner": "A", "source_owner_by_id": {"s2": "PUBLIC", "s3": "PUBLIC", "s4": "PUBLIC", "private-b-only": "B"}}]},
+      "expected": {"status": "DISQUALIFIED", "reason": "CROSS_OWNER_HIT", "delta_mean_reciprocal_rank": null, "delta_mean_recall_at_k": null, "changed_case_ids": [], "disqualified_case_ids": ["q2"]}
+    },
+    {
+      "id": "CAP-82-CS-05",
+      "dataset_sha256": "dset-dev-v1-a",
+      "corpus_sha256": "corpus-dev-v1-a",
+      "baseline": {"latency_samples_ms": [2.0], "cases": [{"case_id": "q-unanswerable", "answerable": false, "relevant_source_ids": [], "retrieved_source_ids": [], "query_owner": "A", "source_owner_by_id": {}}]},
+      "candidate": {"latency_samples_ms": [1.0], "cases": [{"case_id": "q-unanswerable", "answerable": false, "relevant_source_ids": [], "retrieved_source_ids": [], "query_owner": "A", "source_owner_by_id": {}}]},
+      "expected": {"status": "INSUFFICIENT_EVIDENCE", "reason": "NO_ANSWERABLE_CASES", "baseline_mean_reciprocal_rank": null, "candidate_mean_reciprocal_rank": null, "delta_mean_reciprocal_rank": null, "baseline_mean_recall_at_k": null, "candidate_mean_recall_at_k": null, "delta_mean_recall_at_k": null}
+    }
+  ]
+}

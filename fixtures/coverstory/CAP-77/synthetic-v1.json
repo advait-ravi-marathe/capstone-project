@@ -1,0 +1,33 @@
+{
+  "fixture_id": "CAP-77-synthetic-v1",
+  "synthetic": true,
+  "data_notice": "Invented strings only; no real customer, policy, provider, or payment records.",
+  "sources": [
+    {
+      "source_id": "payment-help-A",
+      "version": "v1",
+      "text": "Payment is pending.",
+      "content_sha256": "aeed1a0b67e74ea38dbd9c3c2f735e07bd833929b971fe40122fb961e2178017",
+      "authorized_for_fixture": true,
+      "applicable": true
+    },
+    {
+      "source_id": "payment-help-B",
+      "version": "v1",
+      "text": "Payment was requested.",
+      "content_sha256": "a00cfede1a8af1159397f202df47f1156f729e0b384d5f9309634e9afb99b471",
+      "authorized_for_fixture": false,
+      "applicable": true
+    }
+  ],
+  "cases": [
+    {"id": "CAP-77-CS-01", "claim": "Payment is pending.", "source_id": "payment-help-A", "version": "v1", "start": 0, "end": 19, "excerpt": "Payment is pending.", "expected_status": "SUPPORTED", "valid_claims": 1, "authoritative_state": false},
+    {"id": "CAP-77-CS-02", "claim": "Payment is confirmed.", "source_id": "payment-help-A", "version": "v1", "start": 0, "end": 19, "excerpt": "Payment is pending.", "expected_status": "UNSUPPORTED", "expected_issue": "CLAIM_TEXT_MISMATCH", "valid_claims": 0, "authoritative_state": false},
+    {"id": "CAP-77-CS-03", "claim": "Payment was requested.", "source_id": "payment-help-B", "version": "v1", "start": 0, "end": 22, "excerpt": "Payment was requested.", "expected_status": "UNSUPPORTED", "expected_issue": "UNKNOWN_SOURCE", "valid_claims": 0, "authoritative_state": false},
+    {"id": "CAP-77-CS-04", "claim": null, "expected_status": "ABSTAIN_REQUIRED", "valid_claims": 0, "authoritative_state": false},
+    {"id": "CAP-77-CS-05", "claims": [
+      {"claim": "Payment is pending.", "source_id": "payment-help-A", "version": "v1", "start": 0, "end": 19, "excerpt": "Payment is pending."},
+      {"claim": "Payment is confirmed.", "source_id": "payment-help-A", "version": "v1", "start": 0, "end": 19, "excerpt": "Payment is pending."}
+    ], "expected_status": "UNSUPPORTED", "expected_issue": "CLAIM_TEXT_MISMATCH", "valid_claims": 1, "authoritative_state": false}
+  ]
+}
