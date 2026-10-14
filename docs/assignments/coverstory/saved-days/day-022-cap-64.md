@@ -1,0 +1,69 @@
+# Day 022 · 4 Nov 2026 — Test catalog publication transport contract offline (150m)
+
+**Date:** 2026-11-04 · **Phase:** 1 · **Primary ID:** `CAP-64` · **Daily minutes:** 150 maximum
+**Saved contract source:** [`coverstory-final-saved-contracts-594-days.json`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json) · description SHA-256 `c895ac1071204e0fd4403881aae7c844de82ca2a461e4080e68016ed120cf80b`
+
+This guide carries the saved card contract as source evidence. It does not claim that its planned paths exist, the instructor harness is ready, the timebox was rehearsed, or learner work passed. A linked component shares this day and adds zero minutes.
+
+## Practical task from the saved contract
+
+Preserve producer serialization, acknowledgment and bounded failure semantics as an offline port test.
+
+## Explicit repository paths in the saved contract
+
+- `src/main/java/capstone/coverstory/catalog/api/CAP64Seam.java` (planned in source; existence/readiness is not implied)
+- `src/test/java/capstone/coverstory/catalog/CAP64Test.java` (planned in source; existence/readiness is not implied)
+- `fixtures/coverstory/CAP-64/synthetic-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/assignments/coverstory/CAP-64.md` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-64/harness-self-check.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-64/result.json` (planned in source; existence/readiness is not implied)
+
+## Task-specific source excerpts
+
+The task-specific excerpts below are transcribed from the saved card. The byte-exact complete description remains in the linked authoritative JSON. Acceptance cases and planned paths are specifications, not passing evidence.
+
+### `CAP-64` · primary · Day 022 · 4 Nov 2026 — Test catalog publication transport contract offline (150m)
+
+Description SHA-256: `c895ac1071204e0fd4403881aae7c844de82ca2a461e4080e68016ed120cf80b`
+
+**Practical task:** Preserve producer serialization, acknowledgment and bounded failure semantics as an offline port test.
+
+Exact source description: [saved curriculum record `CAP-64`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json)
+
+#### Existing calendar and timebox
+
+One existing 228-day CAP calendar, 14 October 2026–29 May 2027; this draft changes only Day001–076. Preserve IDs, active dates, roles, board membership, native links, original history and statuses. Each primary150 scheduled minutes; components0 additional minutes. ECOS twelve 15-day windows are source history, not a second schedule.
+Original Java/DSA engineering outcomes remain inside the practical seam. Canonical Top Interview 150 order/history and due reviews remain unchanged, with the separate 15-minute minimum retention slot. Do not mark attempted as solved. Ktor is optional same-budget substitution only. AWS lesson/objective/practice/pathway prefix is preserved byte-for-byte; no extra course, account, enrollment or spending is authorized.
+For a component, all numbers except scheduled_minutes describe the owning primary envelope and are not additional allocations. Sunday105 practical consists of95 task+10 existing individual evidence, no extra reflection block. Weekday95+30+15+10=150. Sunday95+10+30+15=150.
+
+#### Instructor scaffold and learner TODO
+
+Instructor supplies compatible Java21/Maven/JUnit/PostgreSQL or Python runner, typed DTOs/ports, schema/migrations, deterministic fixtures and failing TODO tests; no learner infrastructure work. For UI targets, supplies the thin React shell from the existing 87 designs, styles, routing, controls and test adapters. Only the declared seam is learner-owned.
+Reuse earlier reviewed artifacts through public module interfaces. All new namespace/path/schema mappings are planned and require code-owner reconciliation; do not overwrite prior generic teaching fixtures.
+Replace the old event-domain deliverable with this one bounded seam. If combined tests cannot fit95m, mark OVER_CAPACITY and explicitly reduce optional breadth before assigning; do not defer required failure tests or add evening work.
+Planned paths (not existing implementation):
+- src/main/java/capstone/coverstory/catalog/api/CAP64Seam.java
+- src/test/java/capstone/coverstory/catalog/CAP64Test.java
+- fixtures/coverstory/CAP-64/synthetic-v1.json
+- docs/assignments/coverstory/CAP-64.md
+- docs/evidence/coverstory/CAP-64/harness-self-check.json
+- docs/evidence/coverstory/CAP-64/result.json
+
+CompletionStage<PublishResult> publish(CatalogPublication event) using provided FakeProducerPort. Implement only this bounded seam and its focused cases; do not edit fixture oracle, authorization policy or dependencies to force a pass. No completed implementation is supplied.
+
+#### Concrete inputs and outputs
+
+Topic label cs.catalog.publication.v1 in fixture only; typed key encoder from CAP-165, no colon concatenation restrictions carried over. Envelope schemaVersion 1, catalogVersionId, catalogRevision, evidenceStatus, payloadHash. Success only simulated ack; no runtime broker/DB-to-Kafka exactly-once claim.
+
+#### Acceptance cases · expected, NOT_RUN
+
+- CAP-64-CS-01: Input: valid publication with recorded fake ack partition 1 / offset 7. Expected: exact schema and key; SIMULATED_ACK metadata 1/7.
+- CAP-64-CS-02: Input: callback timeout. Expected: PUBLISH_TIMEOUT, no success metadata.
+- CAP-64-CS-03: Input: invalid UUID/missing version. Expected: validation error, send spy 0.
+- CAP-64-CS-04: Input: same ack delivered twice. Expected: one completion; physical delivery not globally exactly once.
+
+#### Architecture/interview evidence delta
+
+At most 5 minutes inside the existing docs/test-evidence allocation; at most 3 changed facts and either 6 nodes or 10 sequence messages. Do not draw a new full system or add implementation work. Use the instructor-supplied Producer callback sequence template and today’s existing test/receipt in docs/evidence/coverstory/CAP-64/result.json. Annotate the supplied publication → serializer → FakeProducerPort → acknowledgment callback → future completion sequence. Record only these changed facts: The body and typed key are validated before send.; A timeout yields no successful metadata.; Repeated callback delivery completes the result once..
+
+Alternative: Complete on send invocation versus complete on the supplied acknowledgment. Interview question: Which failure window does acknowledgment leave between PostgreSQL and a broker, and why is one future completion not global exactly-once delivery? Use at most 3 minutes of the existing reflection slot; answer from today’s same artifact, not a new research task.

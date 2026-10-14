@@ -6,9 +6,9 @@ The project now includes a React client shell and a Spring Boot / PostgreSQL mod
 
 ## Current checkout status
 
-The checkout includes legacy CAP-42 through CAP-45 teaching slices alongside new CoverStory infrastructure. The verified Day 001 contract was supplied directly and is scaffolded below; the remaining saved daily contracts and original design archive are still outstanding, and no full-curriculum mapping is claimed. See [coverage and blockers](docs/COVERAGE.md). Nothing in this repository should be read as a claim that a learner has completed an assignment.
+The checkout includes legacy CAP-42 through CAP-45 teaching slices alongside new CoverStory infrastructure. The public-safe source package and selected design bundle are checksum-verified and preserved under `docs/source-inputs/`. The 594 daily guides reproduce the saved task contracts and six linked components; their assignment readiness and individual executable harnesses remain unverified. Start at the [curriculum index](docs/assignments/coverstory/curriculum-index.json), [visual reconciliation](docs/design/visual-reconciliation.md), and [coverage report](docs/COVERAGE.md). Nothing here claims learner completion.
 
-The supplied Day 001 contract is now scaffolded in [CAP-40](docs/assignments/coverstory/CAP-40.md), with CAP-40 shortlist and linked CAP-41 public wording acceptance suites. Their learner TODOs are intentionally unfinished; see the recorded [harness and result evidence](docs/evidence/coverstory/CAP-40/).
+The directly supplied Day 001 contract has a bounded CAP-40/CAP-41 instructor scaffold and separate learner acceptance suites in [CAP-40](docs/assignments/coverstory/CAP-40.md). Their learner TODOs are intentionally unfinished; see the recorded [harness and result evidence](docs/evidence/coverstory/CAP-40/). The per-day guides preserve the full source descriptions and explicit planned file references. The machine check verifies source hashes, dates, card relationships and guide coverage; it does not certify every assignment harness as runnable.
 
 ## Build and smoke checks
 

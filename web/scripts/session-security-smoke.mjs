@@ -26,9 +26,11 @@ try {
     { client: boundaryClient },
     React.createElement(boundaryModule.SessionBoundary),
   ))
-  assert.match(boundaryMarkup, /Checking your session/)
-  assert.doesNotMatch(boundaryMarkup, /Explore plans|Start with what matters/,
-    'cached private UI was rendered during session revalidation')
+  assert.match(boundaryMarkup, /Checking session/)
+  assert.match(boundaryMarkup, /Explore example records/,
+    'public synthetic discovery should remain available during session revalidation')
+  assert.doesNotMatch(boundaryMarkup, /Signed in|synthetic-owner|private data/,
+    'previous private identity was exposed during session revalidation')
   boundaryClient.clear()
 
   const jsonResponse = (value) => ({

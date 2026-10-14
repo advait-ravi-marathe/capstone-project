@@ -96,7 +96,11 @@ Do not count a TODO failure as an instructor setup failure, and do not mark any 
 
 Stable ID `CAP-40`, date `2026-10-14`, role `primary`, and saved-board state `saved_board_snapshot_with_architecture_2026_10_13` are retained. Baseline title was `Day 001 · 14 Oct 2026 — Java collections + cited retrieval (150m)`; original source title/date were `12 Oct — Engineering + DSA: Java collections, Top 150 (60m)` / `2026-10-12`. The previous description hash is `b4641e1e35346a88babc35278c583453457faec9d42dc69223753e187b91321d`. Earlier generic event/runbook contracts and receipts remain historical generic evidence and are not CoverStory product evidence.
 
-This checkout maps the planned shortlist seam into its existing module ownership package (`coverstory.modules.shortlist.api`) after local code inspection. It adds new CoverStory DTOs, tests, and synthetic fixture without renaming old routes/entities or overwriting generic fixtures. The source’s broader proposed journey-security contract and synthetic registry remain unimplemented and are outside this day’s seam.
+## Path reconciliation against the authoritative saved card
+
+The saved CAP-40/CAP-41 card proposes `src/main/java/capstone/coverstory/shortlist/api/CAP40Seam.java`, `src/test/java/capstone/coverstory/shortlist/CAP40Test.java`, `ai/coverstory/cap_41.py`, and `ai/coverstory/tests/test_cap_41.py`. This checkout's existing module ownership layout is `coverstory.modules.shortlist.api`, so the instructor seam is implemented at `src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java`; the Java tests are `src/test/java/coverstory/modules/shortlist/`; and the AI seam/tests are `ai/retrieval/coverstory_health.py` and `ai/tests/test_coverstory_cap41_acceptance.py`. The planned and implemented paths differ; the implementation uses the inspected checkout's module API convention rather than creating a second competing package. The fixture and evidence paths match the saved card. This local mapping does not imply the other 599 contracts were reconciled or scaffolded.
+
+The implementation adds new CoverStory DTOs, tests, and synthetic fixtures without renaming old routes/entities or overwriting generic fixtures. The source's broader proposed journey-security contract and synthetic registry remain unimplemented and outside this day's learner seam.
 
 ## Official references
 

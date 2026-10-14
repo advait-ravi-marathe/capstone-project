@@ -1,0 +1,1334 @@
+{
+  "manifest_id": "coverstory-snapshot-v1",
+  "schema_version": "coverstory-pg-snapshot-v1",
+  "status": "PROPOSED_FIXTURE_CONTRACT_NOT_CREATED_OR_RESTORED",
+  "all_rows_synthetic": true,
+  "registry_version": "coverstory-synthetic-v1",
+  "registry_sha256": "df13a472b6c59425d2c95baa71801d9c45c536b9462ad93636080894da8fc9f0",
+  "source_versions": [
+    "coverstory-synthetic-v1",
+    "support-help-family/v1",
+    "policy-A-family/v1"
+  ],
+  "release_bundle_contract": "coverstory-assistance-release-v1; component hashes must be populated from prepared artifacts, never guessed",
+  "captured_at": null,
+  "tested_commit": null,
+  "backup_sha256": null,
+  "expected_table_counts": {
+    "catalog_version": 4,
+    "quote_snapshot": 5,
+    "configuration_snapshot": 5,
+    "application": 4,
+    "application_revision": 5,
+    "offer": 1,
+    "mock_order": 4,
+    "payment_attempt": 5,
+    "adjustment_allocation": 2,
+    "submission_record": 2,
+    "policy": 2,
+    "support_case": 1,
+    "wallet_account": 1,
+    "wallet_entry": 1,
+    "wallet_reservation": 1,
+    "renewal_application": 1,
+    "timeline_event": 17,
+    "approved_source_version": 2,
+    "source_chunk": 2,
+    "protected_payload_envelope": 5,
+    "journey": 4,
+    "journey_step_event": 17,
+    "transaction_audit_event": 8,
+    "analytics_event": 2
+  },
+  "expected_rows": {
+    "catalog_version": [
+      {
+        "id": "22222222-2222-4222-8222-000000000001",
+        "alias": "health-plan-A-v1",
+        "evidence_status": "SYNTHETIC",
+        "source_version": "coverstory-synthetic-v1",
+        "status": "PUBLISHED"
+      },
+      {
+        "id": "22222222-2222-4222-8222-000000000002",
+        "alias": "health-plan-B-v1",
+        "evidence_status": "SYNTHETIC",
+        "source_version": "coverstory-synthetic-v1",
+        "status": "PUBLISHED"
+      },
+      {
+        "id": "22222222-2222-4222-8222-000000000003",
+        "alias": "health-plan-C-v1",
+        "evidence_status": "SYNTHETIC",
+        "source_version": "coverstory-synthetic-v1",
+        "status": "PUBLISHED"
+      },
+      {
+        "id": "22222222-2222-4222-8222-000000000005",
+        "alias": "health-plan-A-v2",
+        "evidence_status": "SYNTHETIC",
+        "source_version": "coverstory-synthetic-v1",
+        "status": "PUBLISHED"
+      }
+    ],
+    "quote_snapshot": [
+      {
+        "id": "33333333-3333-4333-8333-000000000001",
+        "alias": "quote-health-A-v1",
+        "total_minor": 100000,
+        "currency": "INR",
+        "catalog_version_id": "22222222-2222-4222-8222-000000000001",
+        "terms_hash": "0919f4c50f3c52687d0e2d625247f474167c8346c8e69a7ac3fe3ae5891eb3c9",
+        "source_version": "coverstory-synthetic-v1",
+        "evidence_type": "SYNTHETIC",
+        "payability": "sandbox-contract-only"
+      },
+      {
+        "id": "33333333-3333-4333-8333-000000000002",
+        "alias": "quote-health-A-revision2",
+        "total_minor": 110000,
+        "currency": "INR",
+        "catalog_version_id": "22222222-2222-4222-8222-000000000001",
+        "terms_hash": "98bd5c99260411d6d0726b0961056454d9a1c1696340f7ae3301d3f4dfb444bd",
+        "source_version": "coverstory-synthetic-v1",
+        "evidence_type": "SYNTHETIC",
+        "payability": "sandbox-contract-only"
+      },
+      {
+        "id": "33333333-3333-4333-8333-000000000004",
+        "alias": "quote-cancel-40000",
+        "total_minor": 40000,
+        "currency": "INR",
+        "catalog_version_id": "22222222-2222-4222-8222-000000000002",
+        "terms_hash": "0919f4c50f3c52687d0e2d625247f474167c8346c8e69a7ac3fe3ae5891eb3c9",
+        "source_version": "coverstory-synthetic-v1",
+        "evidence_type": "SYNTHETIC",
+        "payability": "sandbox-contract-only"
+      },
+      {
+        "id": "33333333-3333-4333-8333-000000000005",
+        "alias": "quote-renewal-50000",
+        "total_minor": 50000,
+        "currency": "INR",
+        "catalog_version_id": "22222222-2222-4222-8222-000000000005",
+        "terms_hash": "98bd5c99260411d6d0726b0961056454d9a1c1696340f7ae3301d3f4dfb444bd",
+        "source_version": "coverstory-synthetic-v1",
+        "evidence_type": "SYNTHETIC",
+        "payability": "sandbox-contract-only"
+      },
+      {
+        "id": "33333333-3333-4333-8333-000000000006",
+        "alias": "quote-B-50000",
+        "total_minor": 50000,
+        "currency": "INR",
+        "catalog_version_id": "22222222-2222-4222-8222-000000000003",
+        "terms_hash": "0919f4c50f3c52687d0e2d625247f474167c8346c8e69a7ac3fe3ae5891eb3c9",
+        "source_version": "coverstory-synthetic-v1",
+        "evidence_type": "SYNTHETIC",
+        "payability": "sandbox-contract-only"
+      }
+    ],
+    "configuration_snapshot": [
+      {
+        "id": "4506e165-d783-59cb-9795-518ac95ab54b",
+        "quote_id": "33333333-3333-4333-8333-000000000001",
+        "canonical_option_ids": [],
+        "configuration_hash": "d4f007bc775f4bb2ed1c2aa4934c909461431ea455df547aecfae17bcbaa96d0"
+      },
+      {
+        "id": "ddd6230c-3a44-5d74-a440-1fbee0f67f27",
+        "quote_id": "33333333-3333-4333-8333-000000000002",
+        "canonical_option_ids": [],
+        "configuration_hash": "904bbfb43dda7b0492f23b0759b9d55e6ccbf2d1db5743d1110a27c15566428f"
+      },
+      {
+        "id": "0de9ccf2-e00a-51d9-b8de-73438536e76d",
+        "quote_id": "33333333-3333-4333-8333-000000000004",
+        "canonical_option_ids": [],
+        "configuration_hash": "023102797ca154d6c4480a2f52734018f16a9f66a7187d01c4b557fbf528cfa7"
+      },
+      {
+        "id": "e54d1ac8-903b-515e-aeea-8f3b48ca7c3f",
+        "quote_id": "33333333-3333-4333-8333-000000000005",
+        "canonical_option_ids": [],
+        "configuration_hash": "f20113d1857ff2381b71d984f0f0b53be79dbdcb73eb6d5c94042d6c67301985"
+      },
+      {
+        "id": "38cd739b-f613-5b49-a4b7-5223221fd0a3",
+        "quote_id": "33333333-3333-4333-8333-000000000006",
+        "canonical_option_ids": [],
+        "configuration_hash": "5ec85bcecdc5012a7572a027c168de75f72d282b7423707774d7e4e43b891731"
+      }
+    ],
+    "application": [
+      {
+        "id": "44444444-4444-4444-8444-000000000001",
+        "alias": "A-issued",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "state": "ISSUED",
+        "accepted_revision": 2,
+        "quote_id": "33333333-3333-4333-8333-000000000002"
+      },
+      {
+        "id": "44444444-4444-4444-8444-000000000002",
+        "alias": "B-issued",
+        "owner_id": "11111111-1111-4111-8111-000000000002",
+        "state": "ISSUED",
+        "accepted_revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000006"
+      },
+      {
+        "id": "44444444-4444-4444-8444-000000000003",
+        "alias": "A-cancelled",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "state": "CANCELLED",
+        "accepted_revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000004"
+      },
+      {
+        "id": "44444444-4444-4444-8444-000000000004",
+        "alias": "A-renewal",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "state": "AWAITING_PAYMENT",
+        "accepted_revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000005"
+      }
+    ],
+    "application_revision": [
+      {
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000001",
+        "terms_hash": "0919f4c50f3c52687d0e2d625247f474167c8346c8e69a7ac3fe3ae5891eb3c9",
+        "protected_payload_ref": "497d434b-4f83-5d3d-be15-9fe9de8ff91c"
+      },
+      {
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "revision": 2,
+        "quote_id": "33333333-3333-4333-8333-000000000002",
+        "terms_hash": "98bd5c99260411d6d0726b0961056454d9a1c1696340f7ae3301d3f4dfb444bd",
+        "protected_payload_ref": "aaaaaaaa-aaaa-4aaa-8aaa-000000000001"
+      },
+      {
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000006",
+        "terms_hash": "0919f4c50f3c52687d0e2d625247f474167c8346c8e69a7ac3fe3ae5891eb3c9",
+        "protected_payload_ref": "3e3557f1-8af9-5bed-a51e-2ac220897caf"
+      },
+      {
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000004",
+        "terms_hash": "0919f4c50f3c52687d0e2d625247f474167c8346c8e69a7ac3fe3ae5891eb3c9",
+        "protected_payload_ref": "e81ef1cf-89ac-506e-beb7-d46513e656bf"
+      },
+      {
+        "application_id": "44444444-4444-4444-8444-000000000004",
+        "revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000005",
+        "terms_hash": "98bd5c99260411d6d0726b0961056454d9a1c1696340f7ae3301d3f4dfb444bd",
+        "protected_payload_ref": "226a3cb4-5617-5473-b7dd-bfc3a8265079"
+      }
+    ],
+    "offer": [
+      {
+        "id": "9bf4ef91-635e-5b42-af0b-44d4fddbe437",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "revision": 2,
+        "terms_hash": "98bd5c99260411d6d0726b0961056454d9a1c1696340f7ae3301d3f4dfb444bd",
+        "amount_minor": 110000,
+        "currency": "INR",
+        "state": "ACCEPTED",
+        "evidence_type": "SIMULATED_INSURER"
+      }
+    ],
+    "mock_order": [
+      {
+        "id": "55555555-5555-4555-8555-000000000001",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "quote_id": "33333333-3333-4333-8333-000000000001",
+        "amount_minor": 100000,
+        "currency": "INR",
+        "state": "SUCCEEDED"
+      },
+      {
+        "id": "55555555-5555-4555-8555-000000000002",
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "owner_id": "11111111-1111-4111-8111-000000000002",
+        "quote_id": "33333333-3333-4333-8333-000000000006",
+        "amount_minor": 50000,
+        "currency": "INR",
+        "state": "SUCCEEDED"
+      },
+      {
+        "id": "55555555-5555-4555-8555-000000000003",
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "quote_id": "33333333-3333-4333-8333-000000000004",
+        "amount_minor": 40000,
+        "currency": "INR",
+        "state": "CANCELLED_REFUND_CONFIRMED"
+      },
+      {
+        "id": "55555555-5555-4555-8555-000000000004",
+        "application_id": "44444444-4444-4444-8444-000000000004",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "quote_id": "33333333-3333-4333-8333-000000000005",
+        "amount_minor": 50000,
+        "currency": "INR",
+        "state": "AWAITING_PAYMENT"
+      }
+    ],
+    "payment_attempt": [
+      {
+        "id": "66666666-6666-4666-8666-000000000001",
+        "order_id": "55555555-5555-4555-8555-000000000001",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "amount_minor": 100000,
+        "currency": "INR",
+        "state": "SUCCEEDED",
+        "provider_ref": "MOCK:A-base",
+        "adjustment_allocation_id": null
+      },
+      {
+        "id": "66666666-6666-4666-8666-000000000002",
+        "order_id": "55555555-5555-4555-8555-000000000001",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "amount_minor": 10000,
+        "currency": "INR",
+        "state": "SUCCEEDED",
+        "provider_ref": "MOCK:A-additional",
+        "adjustment_allocation_id": "6a34ab93-161d-50d3-abec-7f9d39274565"
+      },
+      {
+        "id": "f9e5601f-1656-5e5e-aee9-c9db3e6e8794",
+        "order_id": "55555555-5555-4555-8555-000000000003",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "amount_minor": 40000,
+        "currency": "INR",
+        "state": "SUCCEEDED",
+        "provider_ref": "MOCK:A-cancelled",
+        "adjustment_allocation_id": null
+      },
+      {
+        "id": "71bf9302-b81d-52c5-b019-763bcb577a00",
+        "order_id": "55555555-5555-4555-8555-000000000002",
+        "owner_id": "11111111-1111-4111-8111-000000000002",
+        "amount_minor": 50000,
+        "currency": "INR",
+        "state": "SUCCEEDED",
+        "provider_ref": "MOCK:B-base",
+        "adjustment_allocation_id": null
+      },
+      {
+        "id": "db4355da-ed50-5dff-9dc3-f66b69874935",
+        "order_id": "55555555-5555-4555-8555-000000000004",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "amount_minor": 45000,
+        "currency": "INR",
+        "state": "FAILED",
+        "provider_ref": "MOCK:renewal-failed",
+        "adjustment_allocation_id": null
+      }
+    ],
+    "adjustment_allocation": [
+      {
+        "id": "6a34ab93-161d-50d3-abec-7f9d39274565",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "accepted_revision": 2,
+        "amount_minor": 10000,
+        "currency": "INR",
+        "kind": "ADDITIONAL_PAYMENT",
+        "destination": "MOCK_PROVIDER",
+        "state": "CONFIRMED"
+      },
+      {
+        "id": "85799752-8966-5341-a686-711349e39b51",
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "accepted_revision": 1,
+        "amount_minor": 40000,
+        "currency": "INR",
+        "kind": "REFUND",
+        "destination": "MOCK_WALLET",
+        "state": "CREDIT_CONFIRMED"
+      }
+    ],
+    "submission_record": [
+      {
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "reviewed_revision": 1,
+        "state": "SUBMITTED",
+        "external_ref": "SIM-INS-A-001",
+        "evidence_type": "SIMULATED_INSURER"
+      },
+      {
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "reviewed_revision": 1,
+        "state": "SUBMITTED",
+        "external_ref": "SIM-INS-B-001",
+        "evidence_type": "SIMULATED_INSURER"
+      }
+    ],
+    "policy": [
+      {
+        "id": "b2cbb6d3-ce55-5406-8c08-8aa90581d71c",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "insurer_reference": "SIM-POLICY-A-001",
+        "effective_from": "2027-01-01T00:00:00Z",
+        "expires_at": "2028-01-01T00:00:00Z",
+        "document_ref": "SYNTHETIC:b2cbb6d3-ce55-5406-8c08-8aa90581d71c",
+        "state": "ISSUED",
+        "evidence_type": "SIMULATED_INSURER",
+        "effective_cover_evidence_ref": "SYNTHETIC:COVER:b2cbb6d3-ce55-5406-8c08-8aa90581d71c"
+      },
+      {
+        "id": "595ff26f-803d-53cc-8b63-0b64a6113776",
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "owner_id": "11111111-1111-4111-8111-000000000002",
+        "insurer_reference": "SIM-POLICY-B-001",
+        "effective_from": "2027-01-01T00:00:00Z",
+        "expires_at": "2028-01-01T00:00:00Z",
+        "document_ref": "SYNTHETIC:595ff26f-803d-53cc-8b63-0b64a6113776",
+        "state": "ISSUED",
+        "evidence_type": "SIMULATED_INSURER",
+        "effective_cover_evidence_ref": "SYNTHETIC:COVER:595ff26f-803d-53cc-8b63-0b64a6113776"
+      }
+    ],
+    "support_case": [
+      {
+        "id": "d55fe3a4-30f7-501a-ba50-20d4d0526fd1",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "state": "WAITING_ON_INSURER",
+        "assigned_support_id": "11111111-1111-4111-8111-000000000004",
+        "source": "SYNTHETIC_REQUEST",
+        "actor_id": "11111111-1111-4111-8111-000000000001"
+      }
+    ],
+    "wallet_account": [
+      {
+        "id": "a6382630-c84b-5fba-94ca-124c569223af",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "currency": "INR",
+        "version": 2
+      }
+    ],
+    "wallet_entry": [
+      {
+        "id": "ac9d57a9-1bfb-50d2-b5c6-122a27e7d8b2",
+        "account_id": "a6382630-c84b-5fba-94ca-124c569223af",
+        "allocation_id": "85799752-8966-5341-a686-711349e39b51",
+        "order_id": "55555555-5555-4555-8555-000000000003",
+        "direction": "CREDIT",
+        "amount_minor": 40000,
+        "currency": "INR",
+        "state": "CONFIRMED",
+        "reversal_of": null
+      }
+    ],
+    "wallet_reservation": [
+      {
+        "id": "8a7d5ec6-c19c-595c-a8a4-f98c0875141b",
+        "account_id": "a6382630-c84b-5fba-94ca-124c569223af",
+        "order_id": "55555555-5555-4555-8555-000000000004",
+        "amount_minor": 5000,
+        "currency": "INR",
+        "state": "ACTIVE",
+        "quote_id": "33333333-3333-4333-8333-000000000005"
+      }
+    ],
+    "renewal_application": [
+      {
+        "id": "cce45cd3-8652-518b-ad69-ba83717ce8d1",
+        "prior_policy_id": "b2cbb6d3-ce55-5406-8c08-8aa90581d71c",
+        "new_application_id": "44444444-4444-4444-8444-000000000004",
+        "renewal_period_key": "2028-01-01/2029-01-01"
+      }
+    ],
+    "timeline_event": [
+      {
+        "id": "8fc2a392-33d4-556b-90f8-4187d70d41d0",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 1,
+        "event_type": "PAYMENT_CONFIRMED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "2b04860c-ba7c-5e51-95f1-74dae7f39dd9",
+        "occurred_at": "2027-01-01T00:00:01Z",
+        "received_at": "2027-01-01T00:01:01Z"
+      },
+      {
+        "id": "7b0cf84a-82c0-5955-bdff-523a8b42b209",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 2,
+        "event_type": "ONBOARDING_REVIEWED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "6e919231-f4e6-53cc-a95d-ceeabe2d52f1",
+        "occurred_at": "2027-01-01T00:00:02Z",
+        "received_at": "2027-01-01T00:01:02Z"
+      },
+      {
+        "id": "47292186-7688-55ca-88ff-3cb8f931de3a",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 3,
+        "event_type": "SUBMISSION_PENDING",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "6b26177f-cc82-5c5a-9b1d-cbe2b51051c1",
+        "occurred_at": "2027-01-01T00:00:03Z",
+        "received_at": "2027-01-01T00:01:03Z"
+      },
+      {
+        "id": "76a06841-18dc-55c4-8388-a99f3642b376",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 4,
+        "event_type": "SUBMITTED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "00e77358-c3e7-54a8-8459-6b7286a5f620",
+        "occurred_at": "2027-01-01T00:00:04Z",
+        "received_at": "2027-01-01T00:01:04Z"
+      },
+      {
+        "id": "acde4adf-b248-594c-b53d-3fcb30130f0c",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 5,
+        "event_type": "REVIEW",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "5c5124c1-e931-534c-8d09-6659c7b89ffd",
+        "occurred_at": "2027-01-01T00:00:05Z",
+        "received_at": "2027-01-01T00:01:05Z"
+      },
+      {
+        "id": "8ec379bf-ae07-5057-a25d-e52aa42d88c8",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 6,
+        "event_type": "OFFER_ACCEPTED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "ba09b5f3-170a-5e9d-8b87-6be0f366417f",
+        "occurred_at": "2027-01-01T00:00:06Z",
+        "received_at": "2027-01-01T00:01:06Z"
+      },
+      {
+        "id": "09b64df9-48ea-52fe-a4ee-8eb7298bad15",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 7,
+        "event_type": "ADJUSTMENT_CONFIRMED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "bf4f79f5-b420-57ef-bfd8-88db5dedb69e",
+        "occurred_at": "2027-01-01T00:00:07Z",
+        "received_at": "2027-01-01T00:01:07Z"
+      },
+      {
+        "id": "1b286e72-52c4-549c-ab4d-44a50c3e1757",
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "aggregate_version": 8,
+        "event_type": "ISSUED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "1663d5fd-0576-5cc4-a58f-82be67e83a42",
+        "occurred_at": "2027-01-01T00:00:08Z",
+        "received_at": "2027-01-01T00:01:08Z"
+      },
+      {
+        "id": "6d2ecdcb-de25-5558-93f9-98b61e1597c7",
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "aggregate_version": 1,
+        "event_type": "PAYMENT_CONFIRMED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "29931c37-c641-5435-83ca-5b42b8c3c79c",
+        "occurred_at": "2027-01-01T00:00:01Z",
+        "received_at": "2027-01-01T00:01:01Z"
+      },
+      {
+        "id": "b1e8b357-e531-566e-ae78-81bba09f1917",
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "aggregate_version": 2,
+        "event_type": "SUBMITTED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "5a325a95-2349-54f2-b8da-a9d188c6dc1b",
+        "occurred_at": "2027-01-01T00:00:02Z",
+        "received_at": "2027-01-01T00:01:02Z"
+      },
+      {
+        "id": "c7a20f39-6560-5e64-9dbb-c6a1d6704814",
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "aggregate_version": 3,
+        "event_type": "ISSUED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "f2feff8c-fd1e-5ea3-8122-0deb4068a984",
+        "occurred_at": "2027-01-01T00:00:03Z",
+        "received_at": "2027-01-01T00:01:03Z"
+      },
+      {
+        "id": "45749b71-5b2a-5bda-bee1-ec78431e8700",
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "aggregate_version": 1,
+        "event_type": "PAYMENT_CONFIRMED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "265e1284-c22d-58bb-9fe4-c13d9996f9b1",
+        "occurred_at": "2027-01-01T00:00:01Z",
+        "received_at": "2027-01-01T00:01:01Z"
+      },
+      {
+        "id": "e94e3f9a-645b-50b3-a99b-8f0569016bb3",
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "aggregate_version": 2,
+        "event_type": "CANCELLED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "4aa4fa11-09ea-59d5-b358-eec8729428bd",
+        "occurred_at": "2027-01-01T00:00:02Z",
+        "received_at": "2027-01-01T00:01:02Z"
+      },
+      {
+        "id": "4a42f723-c4bf-5a2a-87c4-bb970673bf88",
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "aggregate_version": 3,
+        "event_type": "WALLET_CREDIT_CONFIRMED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "efae9ae4-de21-5604-a1ed-242271ce5889",
+        "occurred_at": "2027-01-01T00:00:03Z",
+        "received_at": "2027-01-01T00:01:03Z"
+      },
+      {
+        "id": "364bccb9-c9b5-571d-bcd2-07d7f8c20a2b",
+        "application_id": "44444444-4444-4444-8444-000000000004",
+        "aggregate_version": 1,
+        "event_type": "RENEWAL_CREATED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "2473325c-b583-5584-904b-94e18acb15e9",
+        "occurred_at": "2027-12-15T00:00:01Z",
+        "received_at": "2027-12-15T00:01:01Z"
+      },
+      {
+        "id": "ca9710fb-63d7-5cba-94b4-1894a7c37930",
+        "application_id": "44444444-4444-4444-8444-000000000004",
+        "aggregate_version": 2,
+        "event_type": "WALLET_RESERVED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "5b03eb50-0a03-5772-ab18-ee688a8e34e1",
+        "occurred_at": "2027-12-15T00:00:02Z",
+        "received_at": "2027-12-15T00:01:02Z"
+      },
+      {
+        "id": "2a743ccc-d510-5ccc-93db-da087019bfad",
+        "application_id": "44444444-4444-4444-8444-000000000004",
+        "aggregate_version": 3,
+        "event_type": "PAYMENT_FAILED",
+        "source": "SYNTHETIC_LIFECYCLE",
+        "event_id": "28e4ac2b-5f7c-5644-b8f7-d4700894af2c",
+        "occurred_at": "2027-12-15T00:00:03Z",
+        "received_at": "2027-12-15T00:01:03Z"
+      }
+    ],
+    "approved_source_version": [
+      {
+        "id": "7907354a-3f3b-5ad6-8bfd-ca63bfcd8d6c",
+        "source_family_id": "support-help-family",
+        "source_version": "v1",
+        "evidence_status": "SYNTHETIC",
+        "content_fixture": "Thirty-second simulated support polling example; no legal or financial promise."
+      },
+      {
+        "id": "8446c613-17e3-57ee-b5c9-978e18cbf8ee",
+        "source_family_id": "policy-A-family",
+        "source_version": "v1",
+        "evidence_status": "SYNTHETIC",
+        "owner_id": "11111111-1111-4111-8111-000000000001",
+        "policy_id": "b2cbb6d3-ce55-5406-8c08-8aa90581d71c",
+        "content_fixture": "Synthetic issued policy evidence; real coverage is not provided."
+      }
+    ],
+    "source_chunk": [
+      {
+        "id": "b93d3f4c-8199-57db-9577-fe6b466a0656",
+        "source_version_id": "7907354a-3f3b-5ad6-8bfd-ca63bfcd8d6c",
+        "source_version": "v1",
+        "start_offset": 0,
+        "end_offset": 79
+      },
+      {
+        "id": "a6830826-f89b-51a6-b636-ac0384e67725",
+        "source_version_id": "8446c613-17e3-57ee-b5c9-978e18cbf8ee",
+        "source_version": "v1",
+        "start_offset": 0,
+        "end_offset": 64
+      }
+    ],
+    "protected_payload_envelope": [
+      {
+        "id": "497d434b-4f83-5d3d-be15-9fe9de8ff91c",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "object_type": "ApplicationRevision",
+        "object_id": "44444444-4444-4444-8444-000000000001",
+        "object_revision": 1,
+        "payload_kind": "APPLICATION_ANSWERS",
+        "encryption_schema_version": 1,
+        "algorithm": "AES-256-GCM",
+        "nonce": null,
+        "ciphertext_with_tag": null,
+        "wrapped_dek": null,
+        "kek_reference": "EPHEMERAL_TEST_PROVIDER:k1",
+        "envelope_revision": 1,
+        "created_at": "2027-12-15T00:00:00Z",
+        "retirement_state": "ACTIVE",
+        "preparation_status": "BLOCKED_UNTIL_REAL_TEST_ENCRYPTION_BYTES_ARE_GENERATED",
+        "synthetic_payload_recipe": "In-memory object with fixtureLabel=SYNTHETIC and answerToken equal to the application UUID plus revision. Do not persist that plaintext in the prepared database/archive."
+      },
+      {
+        "id": "aaaaaaaa-aaaa-4aaa-8aaa-000000000001",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "object_type": "ApplicationRevision",
+        "object_id": "44444444-4444-4444-8444-000000000001",
+        "object_revision": 2,
+        "payload_kind": "APPLICATION_ANSWERS",
+        "encryption_schema_version": 1,
+        "algorithm": "AES-256-GCM",
+        "nonce": null,
+        "ciphertext_with_tag": null,
+        "wrapped_dek": null,
+        "kek_reference": "EPHEMERAL_TEST_PROVIDER:k1",
+        "envelope_revision": 1,
+        "created_at": "2027-12-15T00:00:00Z",
+        "retirement_state": "ACTIVE",
+        "preparation_status": "BLOCKED_UNTIL_REAL_TEST_ENCRYPTION_BYTES_ARE_GENERATED",
+        "synthetic_payload_recipe": "In-memory object with fixtureLabel=SYNTHETIC and answerToken equal to the application UUID plus revision. Do not persist that plaintext in the prepared database/archive."
+      },
+      {
+        "id": "3e3557f1-8af9-5bed-a51e-2ac220897caf",
+        "owner_user_id": "11111111-1111-4111-8111-000000000002",
+        "object_type": "ApplicationRevision",
+        "object_id": "44444444-4444-4444-8444-000000000002",
+        "object_revision": 1,
+        "payload_kind": "APPLICATION_ANSWERS",
+        "encryption_schema_version": 1,
+        "algorithm": "AES-256-GCM",
+        "nonce": null,
+        "ciphertext_with_tag": null,
+        "wrapped_dek": null,
+        "kek_reference": "EPHEMERAL_TEST_PROVIDER:k1",
+        "envelope_revision": 1,
+        "created_at": "2027-12-15T00:00:00Z",
+        "retirement_state": "ACTIVE",
+        "preparation_status": "BLOCKED_UNTIL_REAL_TEST_ENCRYPTION_BYTES_ARE_GENERATED",
+        "synthetic_payload_recipe": "In-memory object with fixtureLabel=SYNTHETIC and answerToken equal to the application UUID plus revision. Do not persist that plaintext in the prepared database/archive."
+      },
+      {
+        "id": "e81ef1cf-89ac-506e-beb7-d46513e656bf",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "object_type": "ApplicationRevision",
+        "object_id": "44444444-4444-4444-8444-000000000003",
+        "object_revision": 1,
+        "payload_kind": "APPLICATION_ANSWERS",
+        "encryption_schema_version": 1,
+        "algorithm": "AES-256-GCM",
+        "nonce": null,
+        "ciphertext_with_tag": null,
+        "wrapped_dek": null,
+        "kek_reference": "EPHEMERAL_TEST_PROVIDER:k1",
+        "envelope_revision": 1,
+        "created_at": "2027-12-15T00:00:00Z",
+        "retirement_state": "ACTIVE",
+        "preparation_status": "BLOCKED_UNTIL_REAL_TEST_ENCRYPTION_BYTES_ARE_GENERATED",
+        "synthetic_payload_recipe": "In-memory object with fixtureLabel=SYNTHETIC and answerToken equal to the application UUID plus revision. Do not persist that plaintext in the prepared database/archive."
+      },
+      {
+        "id": "226a3cb4-5617-5473-b7dd-bfc3a8265079",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "object_type": "ApplicationRevision",
+        "object_id": "44444444-4444-4444-8444-000000000004",
+        "object_revision": 1,
+        "payload_kind": "APPLICATION_ANSWERS",
+        "encryption_schema_version": 1,
+        "algorithm": "AES-256-GCM",
+        "nonce": null,
+        "ciphertext_with_tag": null,
+        "wrapped_dek": null,
+        "kek_reference": "EPHEMERAL_TEST_PROVIDER:k1",
+        "envelope_revision": 1,
+        "created_at": "2027-12-15T00:00:00Z",
+        "retirement_state": "ACTIVE",
+        "preparation_status": "BLOCKED_UNTIL_REAL_TEST_ENCRYPTION_BYTES_ARE_GENERATED",
+        "synthetic_payload_recipe": "In-memory object with fixtureLabel=SYNTHETIC and answerToken equal to the application UUID plus revision. Do not persist that plaintext in the prepared database/archive."
+      }
+    ],
+    "journey": [
+      {
+        "id": "88888888-8888-4888-8888-000000000001",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "category": "health",
+        "current_step": "POLICY_HELP",
+        "journey_status": "COMPLETED",
+        "version": 8,
+        "shortlist_id": null,
+        "application_id": "44444444-4444-4444-8444-000000000001",
+        "application_revision": 2,
+        "quote_id": "33333333-3333-4333-8333-000000000002",
+        "created_at": "2027-01-01T00:00:00Z",
+        "updated_at": "2027-12-15T00:01:00Z",
+        "expires_at": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "88888888-8888-4888-8888-000000000002",
+        "owner_user_id": "11111111-1111-4111-8111-000000000002",
+        "category": "health",
+        "current_step": "POLICY_HELP",
+        "journey_status": "COMPLETED",
+        "version": 3,
+        "shortlist_id": null,
+        "application_id": "44444444-4444-4444-8444-000000000002",
+        "application_revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000006",
+        "created_at": "2027-01-01T00:00:00Z",
+        "updated_at": "2027-12-15T00:01:00Z",
+        "expires_at": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "c95d07f5-0140-572e-b099-565b0ec55bf6",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "category": "health",
+        "current_step": "HISTORY",
+        "journey_status": "CANCELLED",
+        "version": 3,
+        "shortlist_id": null,
+        "application_id": "44444444-4444-4444-8444-000000000003",
+        "application_revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000004",
+        "created_at": "2027-01-01T00:00:00Z",
+        "updated_at": "2027-12-15T00:01:00Z",
+        "expires_at": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "ef988ca6-fd27-5cc4-8b91-a739f8525b37",
+        "owner_user_id": "11111111-1111-4111-8111-000000000001",
+        "category": "health",
+        "current_step": "PAYMENT_PENDING",
+        "journey_status": "ACTIVE",
+        "version": 3,
+        "shortlist_id": null,
+        "application_id": "44444444-4444-4444-8444-000000000004",
+        "application_revision": 1,
+        "quote_id": "33333333-3333-4333-8333-000000000005",
+        "created_at": "2027-12-15T00:00:00Z",
+        "updated_at": "2027-12-15T00:01:00Z",
+        "expires_at": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      }
+    ],
+    "journey_step_event": [
+      {
+        "id": "17d24d0c-4f8c-588c-a16f-2819529041ae",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 1,
+        "event_code": "PAYMENT_CONFIRMED",
+        "from_step": "PAYMENT_PENDING",
+        "to_step": "ONBOARDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 1,
+        "causation_id": "2b04860c-ba7c-5e51-95f1-74dae7f39dd9",
+        "request_id": "SYN-8fc2a392-33d4-556b-90f8-4187d70d41d0",
+        "occurred_at": "2027-01-01T00:00:01Z",
+        "recorded_at": "2027-01-01T00:01:01Z"
+      },
+      {
+        "id": "74813dd1-d9d3-5c59-8493-2007f4ea94bb",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 2,
+        "event_code": "ONBOARDING_REVIEWED",
+        "from_step": "ONBOARDING",
+        "to_step": "FINAL_REVIEW",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 1,
+        "causation_id": "6e919231-f4e6-53cc-a95d-ceeabe2d52f1",
+        "request_id": "SYN-7b0cf84a-82c0-5955-bdff-523a8b42b209",
+        "occurred_at": "2027-01-01T00:00:02Z",
+        "recorded_at": "2027-01-01T00:01:02Z"
+      },
+      {
+        "id": "1b5386ff-88cb-5390-bb4a-bd64a622eeeb",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 3,
+        "event_code": "SUBMISSION_PENDING",
+        "from_step": "FINAL_REVIEW",
+        "to_step": "SUBMISSION_PENDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 1,
+        "causation_id": "6b26177f-cc82-5c5a-9b1d-cbe2b51051c1",
+        "request_id": "SYN-47292186-7688-55ca-88ff-3cb8f931de3a",
+        "occurred_at": "2027-01-01T00:00:03Z",
+        "recorded_at": "2027-01-01T00:01:03Z"
+      },
+      {
+        "id": "30264425-97b8-5a64-a33d-505b39ead471",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 4,
+        "event_code": "SUBMITTED",
+        "from_step": "SUBMISSION_PENDING",
+        "to_step": "INSURER_REVIEW",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 1,
+        "causation_id": "00e77358-c3e7-54a8-8459-6b7286a5f620",
+        "request_id": "SYN-76a06841-18dc-55c4-8388-a99f3642b376",
+        "occurred_at": "2027-01-01T00:00:04Z",
+        "recorded_at": "2027-01-01T00:01:04Z"
+      },
+      {
+        "id": "ae7c8bda-7dec-5323-8248-247dcd5d86d6",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 5,
+        "event_code": "REVIEW",
+        "from_step": "INSURER_REVIEW",
+        "to_step": "INSURER_REVIEW",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 1,
+        "causation_id": "5c5124c1-e931-534c-8d09-6659c7b89ffd",
+        "request_id": "SYN-acde4adf-b248-594c-b53d-3fcb30130f0c",
+        "occurred_at": "2027-01-01T00:00:05Z",
+        "recorded_at": "2027-01-01T00:01:05Z"
+      },
+      {
+        "id": "d9ad706b-b017-5b5f-a274-b08285ea092f",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 6,
+        "event_code": "OFFER_ACCEPTED",
+        "from_step": "INSURER_REVIEW",
+        "to_step": "OFFER_REVIEW",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 2,
+        "causation_id": "ba09b5f3-170a-5e9d-8b87-6be0f366417f",
+        "request_id": "SYN-8ec379bf-ae07-5057-a25d-e52aa42d88c8",
+        "occurred_at": "2027-01-01T00:00:06Z",
+        "recorded_at": "2027-01-01T00:01:06Z"
+      },
+      {
+        "id": "6dc03f4a-8468-5df9-862d-5cce4fa40ab8",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 7,
+        "event_code": "ADJUSTMENT_CONFIRMED",
+        "from_step": "OFFER_REVIEW",
+        "to_step": "ISSUANCE_PENDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 2,
+        "causation_id": "bf4f79f5-b420-57ef-bfd8-88db5dedb69e",
+        "request_id": "SYN-09b64df9-48ea-52fe-a4ee-8eb7298bad15",
+        "occurred_at": "2027-01-01T00:00:07Z",
+        "recorded_at": "2027-01-01T00:01:07Z"
+      },
+      {
+        "id": "d4235c4d-6fbe-5f96-943c-5bd4c65835e4",
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "sequence": 8,
+        "event_code": "ISSUED",
+        "from_step": "ISSUANCE_PENDING",
+        "to_step": "POLICY_HELP",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000001",
+        "domain_revision": 2,
+        "causation_id": "1663d5fd-0576-5cc4-a58f-82be67e83a42",
+        "request_id": "SYN-1b286e72-52c4-549c-ab4d-44a50c3e1757",
+        "occurred_at": "2027-01-01T00:00:08Z",
+        "recorded_at": "2027-01-01T00:01:08Z"
+      },
+      {
+        "id": "f012874b-466f-554a-8e28-54389316c366",
+        "journey_id": "88888888-8888-4888-8888-000000000002",
+        "sequence": 1,
+        "event_code": "PAYMENT_CONFIRMED",
+        "from_step": "PAYMENT_PENDING",
+        "to_step": "ONBOARDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000002",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000002",
+        "domain_revision": 1,
+        "causation_id": "29931c37-c641-5435-83ca-5b42b8c3c79c",
+        "request_id": "SYN-6d2ecdcb-de25-5558-93f9-98b61e1597c7",
+        "occurred_at": "2027-01-01T00:00:01Z",
+        "recorded_at": "2027-01-01T00:01:01Z"
+      },
+      {
+        "id": "9f648ea4-2533-511c-8a1a-71d3389d11ac",
+        "journey_id": "88888888-8888-4888-8888-000000000002",
+        "sequence": 2,
+        "event_code": "SUBMITTED",
+        "from_step": "ONBOARDING",
+        "to_step": "INSURER_REVIEW",
+        "actor_ref": "11111111-1111-4111-8111-000000000002",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000002",
+        "domain_revision": 1,
+        "causation_id": "5a325a95-2349-54f2-b8da-a9d188c6dc1b",
+        "request_id": "SYN-b1e8b357-e531-566e-ae78-81bba09f1917",
+        "occurred_at": "2027-01-01T00:00:02Z",
+        "recorded_at": "2027-01-01T00:01:02Z"
+      },
+      {
+        "id": "3415a37b-9fc4-5907-8868-780d6dde26ae",
+        "journey_id": "88888888-8888-4888-8888-000000000002",
+        "sequence": 3,
+        "event_code": "ISSUED",
+        "from_step": "INSURER_REVIEW",
+        "to_step": "POLICY_HELP",
+        "actor_ref": "11111111-1111-4111-8111-000000000002",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000002",
+        "domain_revision": 1,
+        "causation_id": "f2feff8c-fd1e-5ea3-8122-0deb4068a984",
+        "request_id": "SYN-c7a20f39-6560-5e64-9dbb-c6a1d6704814",
+        "occurred_at": "2027-01-01T00:00:03Z",
+        "recorded_at": "2027-01-01T00:01:03Z"
+      },
+      {
+        "id": "2f5b10f1-dc09-58a3-a248-2c4292f2ae15",
+        "journey_id": "c95d07f5-0140-572e-b099-565b0ec55bf6",
+        "sequence": 1,
+        "event_code": "PAYMENT_CONFIRMED",
+        "from_step": "PAYMENT_PENDING",
+        "to_step": "ONBOARDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000003",
+        "domain_revision": 1,
+        "causation_id": "265e1284-c22d-58bb-9fe4-c13d9996f9b1",
+        "request_id": "SYN-45749b71-5b2a-5bda-bee1-ec78431e8700",
+        "occurred_at": "2027-01-01T00:00:01Z",
+        "recorded_at": "2027-01-01T00:01:01Z"
+      },
+      {
+        "id": "0488ecb0-8119-523d-a627-35ffb6ee7c0f",
+        "journey_id": "c95d07f5-0140-572e-b099-565b0ec55bf6",
+        "sequence": 2,
+        "event_code": "CANCELLED",
+        "from_step": "ONBOARDING",
+        "to_step": "HISTORY",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000003",
+        "domain_revision": 1,
+        "causation_id": "4aa4fa11-09ea-59d5-b358-eec8729428bd",
+        "request_id": "SYN-e94e3f9a-645b-50b3-a99b-8f0569016bb3",
+        "occurred_at": "2027-01-01T00:00:02Z",
+        "recorded_at": "2027-01-01T00:01:02Z"
+      },
+      {
+        "id": "120a2aa3-d1c0-55f1-af17-3dca041dfc09",
+        "journey_id": "c95d07f5-0140-572e-b099-565b0ec55bf6",
+        "sequence": 3,
+        "event_code": "WALLET_CREDIT_CONFIRMED",
+        "from_step": "HISTORY",
+        "to_step": "HISTORY",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000003",
+        "domain_revision": 1,
+        "causation_id": "efae9ae4-de21-5604-a1ed-242271ce5889",
+        "request_id": "SYN-4a42f723-c4bf-5a2a-87c4-bb970673bf88",
+        "occurred_at": "2027-01-01T00:00:03Z",
+        "recorded_at": "2027-01-01T00:01:03Z"
+      },
+      {
+        "id": "d476ea8c-2878-530c-8bfc-d26e92fce98f",
+        "journey_id": "ef988ca6-fd27-5cc4-8b91-a739f8525b37",
+        "sequence": 1,
+        "event_code": "RENEWAL_CREATED",
+        "from_step": "RENEWAL_REVIEW",
+        "to_step": "RENEWAL_REVIEW",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000004",
+        "domain_revision": 1,
+        "causation_id": "2473325c-b583-5584-904b-94e18acb15e9",
+        "request_id": "SYN-364bccb9-c9b5-571d-bcd2-07d7f8c20a2b",
+        "occurred_at": "2027-12-15T00:00:01Z",
+        "recorded_at": "2027-12-15T00:01:01Z"
+      },
+      {
+        "id": "093bae78-09d0-52ec-8e93-9fc7e9952c4c",
+        "journey_id": "ef988ca6-fd27-5cc4-8b91-a739f8525b37",
+        "sequence": 2,
+        "event_code": "WALLET_RESERVED",
+        "from_step": "RENEWAL_REVIEW",
+        "to_step": "PAYMENT_PENDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000004",
+        "domain_revision": 1,
+        "causation_id": "5b03eb50-0a03-5772-ab18-ee688a8e34e1",
+        "request_id": "SYN-ca9710fb-63d7-5cba-94b4-1894a7c37930",
+        "occurred_at": "2027-12-15T00:00:02Z",
+        "recorded_at": "2027-12-15T00:01:02Z"
+      },
+      {
+        "id": "0327bf15-010d-5cdc-bca5-538f0a38659e",
+        "journey_id": "ef988ca6-fd27-5cc4-8b91-a739f8525b37",
+        "sequence": 3,
+        "event_code": "PAYMENT_FAILED",
+        "from_step": "PAYMENT_PENDING",
+        "to_step": "PAYMENT_PENDING",
+        "actor_ref": "11111111-1111-4111-8111-000000000001",
+        "domain_record_type": "Application",
+        "domain_record_id": "44444444-4444-4444-8444-000000000004",
+        "domain_revision": 1,
+        "causation_id": "28e4ac2b-5f7c-5644-b8f7-d4700894af2c",
+        "request_id": "SYN-2a743ccc-d510-5ccc-93db-da087019bfad",
+        "occurred_at": "2027-12-15T00:00:03Z",
+        "recorded_at": "2027-12-15T00:01:03Z"
+      }
+    ],
+    "transaction_audit_event": [
+      {
+        "id": "c352a3ee-9a8b-54ea-93d9-9da4d28800ae",
+        "aggregate_type": "PaymentAttempt",
+        "aggregate_id": "66666666-6666-4666-8666-000000000001",
+        "aggregate_sequence": 1,
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "operation_reference": "MOCK:A-base",
+        "event_code": "SUCCEEDED",
+        "prior_state": "PENDING",
+        "new_state": "SUCCEEDED",
+        "amount_minor": 100000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_PROVIDER_OBSERVATION",
+        "mock_provider_reference": "MOCK:A-base",
+        "request_id": "SYN-AUDIT-66666666-6666-4666-8666-000000000001",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "61f60611-3e30-598f-9ade-d7e72d0c972e",
+        "aggregate_type": "PaymentAttempt",
+        "aggregate_id": "66666666-6666-4666-8666-000000000002",
+        "aggregate_sequence": 1,
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "operation_reference": "MOCK:A-additional",
+        "event_code": "UNKNOWN",
+        "prior_state": "PENDING",
+        "new_state": "UNKNOWN",
+        "amount_minor": 10000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_PROVIDER_OBSERVATION",
+        "mock_provider_reference": "MOCK:A-additional",
+        "request_id": "SYN-AUDIT-66666666-6666-4666-8666-000000000002",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "484c4c44-5a51-56e7-8066-52e5ba2cd788",
+        "aggregate_type": "PaymentAttempt",
+        "aggregate_id": "66666666-6666-4666-8666-000000000002",
+        "aggregate_sequence": 2,
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "operation_reference": "MOCK:A-additional",
+        "event_code": "RECONCILED_SUCCEEDED",
+        "prior_state": "UNKNOWN",
+        "new_state": "SUCCEEDED",
+        "amount_minor": 10000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_PROVIDER_OBSERVATION",
+        "mock_provider_reference": "MOCK:A-additional",
+        "request_id": "SYN-AUDIT-66666666-6666-4666-8666-000000000002",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "b73f38a4-477d-5488-91c3-1fc961838c88",
+        "aggregate_type": "PaymentAttempt",
+        "aggregate_id": "f9e5601f-1656-5e5e-aee9-c9db3e6e8794",
+        "aggregate_sequence": 1,
+        "journey_id": "c95d07f5-0140-572e-b099-565b0ec55bf6",
+        "operation_reference": "MOCK:A-cancelled",
+        "event_code": "SUCCEEDED",
+        "prior_state": "PENDING",
+        "new_state": "SUCCEEDED",
+        "amount_minor": 40000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_PROVIDER_OBSERVATION",
+        "mock_provider_reference": "MOCK:A-cancelled",
+        "request_id": "SYN-AUDIT-f9e5601f-1656-5e5e-aee9-c9db3e6e8794",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "ef3bf58e-fdd0-5621-8d33-05f944849743",
+        "aggregate_type": "PaymentAttempt",
+        "aggregate_id": "71bf9302-b81d-52c5-b019-763bcb577a00",
+        "aggregate_sequence": 1,
+        "journey_id": "88888888-8888-4888-8888-000000000002",
+        "operation_reference": "MOCK:B-base",
+        "event_code": "SUCCEEDED",
+        "prior_state": "PENDING",
+        "new_state": "SUCCEEDED",
+        "amount_minor": 50000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_PROVIDER_OBSERVATION",
+        "mock_provider_reference": "MOCK:B-base",
+        "request_id": "SYN-AUDIT-71bf9302-b81d-52c5-b019-763bcb577a00",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "38c26989-9f16-5753-b80d-d16c825153eb",
+        "aggregate_type": "PaymentAttempt",
+        "aggregate_id": "db4355da-ed50-5dff-9dc3-f66b69874935",
+        "aggregate_sequence": 1,
+        "journey_id": "ef988ca6-fd27-5cc4-8b91-a739f8525b37",
+        "operation_reference": "MOCK:renewal-failed",
+        "event_code": "FAILED",
+        "prior_state": "PENDING",
+        "new_state": "FAILED",
+        "amount_minor": 45000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_PROVIDER_OBSERVATION",
+        "mock_provider_reference": "MOCK:renewal-failed",
+        "request_id": "SYN-AUDIT-db4355da-ed50-5dff-9dc3-f66b69874935",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "6ce47c91-2bac-5385-a76f-2c504b533021",
+        "aggregate_type": "AdjustmentAllocation",
+        "aggregate_id": "6a34ab93-161d-50d3-abec-7f9d39274565",
+        "aggregate_sequence": 1,
+        "journey_id": "88888888-8888-4888-8888-000000000001",
+        "operation_reference": "6a34ab93-161d-50d3-abec-7f9d39274565",
+        "event_code": "CONFIRMED",
+        "prior_state": "PENDING",
+        "new_state": "CONFIRMED",
+        "amount_minor": 10000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_ALLOCATION_EFFECT",
+        "mock_provider_reference": null,
+        "request_id": "SYN-ALLOC-6a34ab93-161d-50d3-abec-7f9d39274565",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      },
+      {
+        "id": "623b6110-5a5e-5033-847b-673eac55a686",
+        "aggregate_type": "AdjustmentAllocation",
+        "aggregate_id": "85799752-8966-5341-a686-711349e39b51",
+        "aggregate_sequence": 1,
+        "journey_id": "c95d07f5-0140-572e-b099-565b0ec55bf6",
+        "operation_reference": "85799752-8966-5341-a686-711349e39b51",
+        "event_code": "CREDIT_CONFIRMED",
+        "prior_state": "PENDING",
+        "new_state": "CREDIT_CONFIRMED",
+        "amount_minor": 40000,
+        "currency": "INR",
+        "reason_code": "SYNTHETIC_ALLOCATION_EFFECT",
+        "mock_provider_reference": null,
+        "request_id": "SYN-ALLOC-85799752-8966-5341-a686-711349e39b51",
+        "occurred_at": "2027-12-15T00:00:00Z",
+        "recorded_at": "2027-12-15T00:01:00Z",
+        "protected_snapshot_ref": null,
+        "retention_policy_version": "SYNTHETIC_RETENTION_V1"
+      }
+    ],
+    "analytics_event": [
+      {
+        "event_id": "99999999-9999-4999-8999-000000000001",
+        "schema_version": 1,
+        "pseudonymous_session_id": "facada4f-2e21-529e-a012-81e5a90b4d3b",
+        "validated_journey_id": null,
+        "event_name": "PAGE_VIEW",
+        "page_id": "home",
+        "step_code": null,
+        "target_id": null,
+        "optional_duration_ms": null,
+        "client_time": "2027-12-15T00:00:00Z",
+        "server_received_at": "2027-12-15T00:00:01Z",
+        "policy_version": "SYNTHETIC_CONSENT_V1",
+        "expires_at": "2027-12-22T00:00:01Z"
+      },
+      {
+        "event_id": "99999999-9999-4999-8999-000000000002",
+        "schema_version": 1,
+        "pseudonymous_session_id": "facada4f-2e21-529e-a012-81e5a90b4d3b",
+        "validated_journey_id": "88888888-8888-4888-8888-000000000001",
+        "event_name": "CONTROL_CLICK",
+        "page_id": "home",
+        "step_code": null,
+        "target_id": "open_policy",
+        "optional_duration_ms": null,
+        "client_time": "2027-12-15T00:00:00Z",
+        "server_received_at": "2027-12-15T00:00:01Z",
+        "policy_version": "SYNTHETIC_CONSENT_V1",
+        "expires_at": "2027-12-22T00:00:01Z"
+      }
+    ]
+  },
+  "scope_notes": [
+    "This is a snapshot seed contract, not a claim these transitions were executed. Each seed is isolated and reset.",
+    "Proposed source/index tables belong to Catalog/Support within the same PostgreSQL database; reconcile actual DDL before preparation.",
+    "Policy effective dates and renewal period are synthetic fixture dates, not current or promised coverage. Renewal eligibility window is pinned by the fixture.",
+    "Mock-order original amount stays immutable; the extra 10000 capture is linked to its separate adjustment allocation. Order enum values are proposed teaching-schema values pending code-owner reconciliation.",
+    "Timeline rows are a bounded selected evidence fixture, not a complete lifetime audit history; actual implementation must preserve all produced events.",
+    "Posted journal entries are immutable. Wallet credit40000 minus active reservation5000 gives available35000; reservation is not a debit.",
+    "Old capstone-logical-v1 and 3/6/2/3 generic archive are retained byte-for-byte with original names/hashes and are not CoverStory evidence.",
+    "New journey/audit/analytics/envelope tables augment the recovered domain; they are new user requirements, not recovered ECOS implementation evidence.",
+    "ApplicationRevision preserves its composite (application_id,revision) key. Journey uses (application_id,application_revision) as a composite foreign key; envelopes bind application UUID plus revision. No revision UUID or rekey is introduced.",
+    "Journey current_step/status use the new proposed bounded enum registry v1; no browser state setter is introduced.",
+    "Encryption fields are null because actual test encryption has not been prepared. This is deliberately not a valid restore archive until the instructor materializes AEAD bytes, wrapped keys and manifests, keeping ephemeral KEKs separate.",
+    "The failed renewal attempt does not add captured funds or consume the5000reservation. Explicit recovery/release policy is a separate tested command.",
+    "Analytics 7 days is a teaching retention example, not legal advice. A null expiry in this proposed seed means the required retention decision is pending, never unlimited retention. Financial/audit retention and holds remain separately configured and reviewed."
+  ],
+  "invariants": {
+    "A-issued_net_minor": 110000,
+    "A-cancelled_net_minor": 0,
+    "B-issued_net_minor": 50000,
+    "A-renewal_confirmed_net_minor": 0,
+    "wallet_credit_minor": 40000,
+    "wallet_applied_debit_minor": 0,
+    "wallet_active_reservation_minor": 5000,
+    "wallet_available_minor": 35000,
+    "currency": "INR",
+    "origin_refund_confirmed_minor": 0,
+    "wallet_external_double_count": false
+  },
+  "integrity_requirements": [
+    "Validate every declared table count, primary/foreign key, owner mapping and exact immutable-content hash.",
+    "Validate A original/revised terms lineage, exact accepted quote/configuration, unique allocation effects and provider references.",
+    "Validate no policy without simulated issuance reference plus effective-cover evidence; cancellation has no submission record.",
+    "Validate renewal links a new application to prior policy; prior policy and accepted original facts are unchanged.",
+    "Validate source citation version/offset and assistance release compatibility. Hash/count agreement is necessary but not sufficient.",
+    "Actual command outputs, timing, backup hash, schema/commit and per-check PASS/FAIL/BLOCKED/NOT_RUN must be recorded only when executed.",
+    "Restore all five new tables and domain envelope references; ensure no duplicate mutable plaintext draft exists on journey.",
+    "For every owner A/B journey, validate actual application/revision/quote ownership, stable server sequence and safe resume projection.",
+    "Retained key version must be available to authorized recovery; unavailable key fails readiness instead of returning empty/plaintext data.",
+    "Audit observations link the actual unique money effect and retain UNKNOWN/reconciliation/FAILED history; analytics rows never prove business progression."
+  ],
+  "new_requirement_source": {
+    "kind": "NEW_USER_REQUIREMENT",
+    "message_id": "Sentinel_9634246a5954819186df957524167d8c",
+    "planned_schema_path": "docs/coverstory/journey-security-schema.md"
+  }
+}

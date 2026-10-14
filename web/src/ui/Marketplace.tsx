@@ -1,49 +1,137 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchPrivateJson, type Session } from '../state/session'
+import { useEffect, useState } from 'react'
+import type { Session } from '../state/session'
 
-type CatalogItem = { offerId: string; displayName: string; coverLabel: string }
-type CatalogResponse = { items: CatalogItem[] }
+type Category = 'health' | 'term' | 'motor' | 'ulip'
+type Plan = {
+  id: string
+  name: string
+  version: string
+  category: Category
+  sourceStatus: 'SYNTHETIC'
+  waitingPeriod: 'UNKNOWN'
+  copay: 'UNKNOWN'
+  network: 'UNKNOWN'
+}
 
-export function Marketplace({ session }: { session: Session }) {
-  const catalog = useQuery({
-    queryKey: ['private', session.ownerId, session.generation, 'catalog'],
-    queryFn: ({ signal }) => fetchPrivateJson<CatalogResponse>(session, '/api/catalog', signal),
-  })
+// Layout fixtures only. No insurer wording, benefit assertion, or payable quote.
+const plans: Plan[] = [
+  { id: 'health-plan-A-v1', name: 'Example A', version: 'v1', category: 'health', sourceStatus: 'SYNTHETIC', waitingPeriod: 'UNKNOWN', copay: 'UNKNOWN', network: 'UNKNOWN' },
+  { id: 'health-plan-B-v1', name: 'Example B', version: 'v1', category: 'health', sourceStatus: 'SYNTHETIC', waitingPeriod: 'UNKNOWN', copay: 'UNKNOWN', network: 'UNKNOWN' },
+  { id: 'health-plan-C-v1', name: 'Example C', version: 'v1', category: 'health', sourceStatus: 'SYNTHETIC', waitingPeriod: 'UNKNOWN', copay: 'UNKNOWN', network: 'UNKNOWN' },
+]
+
+const categories: { id: Category; number: string; title: string; text: string }[] = [
+  { id: 'health', number: '01', title: 'Health', text: 'Understand waiting periods, exclusions, and what is still unknown.' },
+  { id: 'term', number: '02', title: 'Term life', text: 'Explore cover duration, disclosures, and the offer process.' },
+  { id: 'motor', number: '03', title: 'Motor', text: 'Compare cover scope, deductibles, and repair-network evidence.' },
+  { id: 'ulip', number: '04', title: 'ULIP', text: 'Review investment risk, charges, and exit terms separately.' },
+]
+
+const categoryLabel: Record<Category, string> = { health: 'Health', term: 'Term life', motor: 'Motor', ulip: 'ULIP' }
+function categoryFromUrl(): Category {
+  if (typeof window === 'undefined') return 'health'
+  const candidate = new URLSearchParams(window.location.search).get('category')
+  return candidate === 'term' || candidate === 'motor' || candidate === 'ulip' ? candidate : 'health'
+}
+
+export function Marketplace({ session, sessionStatus }: { session: Session | null; sessionStatus: 'checking' | 'unavailable' | 'ready' }) {
+  const [category, setCategory] = useState<Category>(categoryFromUrl)
+  const [selected, setSelected] = useState<string[]>([])
+  const [comparing, setComparing] = useState(false)
+  const visiblePlans = category === 'health' ? plans : []
+
+  useEffect(() => {
+    const syncCategory = () => setCategory(categoryFromUrl())
+    window.addEventListener('popstate', syncCategory)
+    return () => window.removeEventListener('popstate', syncCategory)
+  }, [])
+
+  function chooseCategory(next: Category) {
+    const url = new URL(window.location.href)
+    url.searchParams.set('category', next)
+    window.history.pushState({}, '', url)
+    setCategory(next)
+    setSelected([])
+    setComparing(false)
+  }
+
+  function togglePlan(id: string) {
+    setComparing(false)
+    setSelected((current) => current.includes(id)
+      ? current.filter((item) => item !== id)
+      : current.length < 3 ? [...current, id] : current)
+  }
+
+  const selectedPlans = plans.filter((plan) => selected.includes(plan.id))
 
   return (
     <div className="page-shell">
+      <div className="simulation-bar"><span>WIREFRAME · SYNTHETIC DATA · NO REAL OFFERS</span><a href="#source-notes">Source and status notes</a></div>
       <header className="topbar">
-        <a className="wordmark" href="/" aria-label="CoverStory home">coverstory<span>.</span></a>
-        <nav aria-label="Main navigation"><a href="#catalog">Explore plans</a><a href="#how-it-works">How it works</a></nav>
-        <button className="avatar" type="button" aria-label="Account menu">CS</button>
+        <a className="wordmark" href="#top" aria-label="CoverStory home">coverstory<span>.</span><small>/ learning preview</small></a>
+        <nav aria-label="Main navigation"><a href="#catalog">Explore cover</a><a href="#shortlist">Your shortlist</a><a href="#source-notes">Policy help</a></nav>
+        <span className="session-label" aria-live="polite">{session ? 'Signed in' : sessionStatus === 'checking' ? 'Checking session' : 'Guest preview'}</span>
       </header>
-      <main>
-        <section className="hero" id="how-it-works">
+
+      <nav className="journey-steps" aria-label="Learning journey">
+        {['Explore', 'Compare', 'Apply', 'Onboard', 'Track'].map((label, index) => <span className={index === (comparing ? 1 : 0) ? 'journey-step is-current' : 'journey-step'} key={label}><b>{index + 1}</b>{label}</span>)}
+      </nav>
+
+      <main id="top">
+        <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="eyebrow-dot" /> COVER, MADE CLEARER</p>
-            <h1>Good cover starts with a <em>clear story.</em></h1>
-            <p className="hero-text">Explore a learning simulation for comparing insurance options, understanding trade-offs, and keeping your application journey in one place.</p>
-            <a className="primary-button" href="#catalog">Explore the catalog <span aria-hidden="true">↗</span></a>
-            <p className="microcopy">A product simulation. No insurer or payment provider is connected.</p>
+            <p className="eyebrow">DISCOVER / {categoryLabel[category].toUpperCase()}</p>
+            <h1 id="hero-title">For the unexpected hospital chapter.</h1>
+            <p className="hero-text">Review what is supplied, what is unknown, and which source version you are looking at. No plan is ranked or recommended.</p>
+            <div className="hero-actions"><a className="primary-button" href="#catalog">Explore example records <span aria-hidden="true">↓</span></a><a className="text-link" href="#source-notes">How to read the labels</a></div>
           </div>
-          <div className="hero-art" aria-hidden="true">
-            <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-            <div className="cover-card"><div className="cover-card-top"><span className="tiny-mark">c.</span><span className="card-label">YOUR COVER STORY</span></div><div className="sun-shape" /><div className="cover-lines"><i /><i /><i /></div><div className="card-footer"><span>Compare with confidence</span><b>✳</b></div></div>
-            <span className="spark spark-a">✳</span><span className="spark spark-b">✦</span>
+          <aside className="resume-card" aria-label="Private journey resume">
+            <span className="small-label">YOUR SHORTLIST</span>
+            <h2>Keep the next step clear.</h2>
+            <p>{session ? 'Owned journey resume is not connected in this starter.' : 'Sign-in and owned journey resume are not connected in this starter.'}</p>
+            <button type="button" className="secondary-button" disabled>Resume an owned journey</button>
+            <p className="fine-print">A journey ID alone never grants access.</p>
+          </aside>
+        </section>
+
+        <section className="category-section" aria-labelledby="category-title">
+          <div className="section-heading"><div><p className="eyebrow">FOUR WAYS TO EXPLORE</p><h2 id="category-title">Choose a kind of cover.</h2></div><span className="demo-badge">PUBLIC PREVIEW</span></div>
+          <div className="category-grid" role="group" aria-label="Cover category">
+            {categories.map((item) => <button key={item.id} type="button" className={`category-card category-${item.id}${category === item.id ? ' is-selected' : ''}`} aria-pressed={category === item.id} onClick={() => chooseCategory(item.id)}>
+              <span className="category-index">{item.number} / COVER</span><span className="category-arrow" aria-hidden="true" /><strong>{item.title}</strong><span>{item.text}</span>
+            </button>)}
           </div>
         </section>
-        <section className="trust-strip" aria-label="Product principles">
-          <span><b>01</b> Clear options</span><span><b>02</b> Your journey, saved</span><span><b>03</b> No confusing jargon</span>
+
+        <section className="catalog-section" id="catalog" aria-labelledby="catalog-title">
+          <div className="section-heading"><div><p className="eyebrow">{categoryLabel[category].toUpperCase()} / SYNTHETIC FIXTURE</p><h2 id="catalog-title">{category === 'health' ? 'Make a shortlist.' : `${categoryLabel[category]} examples are not loaded yet.`}</h2></div><span className="source-pill">No payable quotes</span></div>
+          {category === 'health' ? <>
+            <p className="section-intro">These named layout examples exist to exercise comparison behavior. They do not contain insurer-authored terms or prices.</p>
+            <div className="selection-toolbar" id="shortlist"><span><strong>{selected.length}</strong> of 3 selected</span><button type="button" className="primary-button compact-button" disabled={selected.length < 2} onClick={() => setComparing(true)}>Compare selected</button></div>
+            {selected.length === 3 && <p className="inline-note" role="status">The maximum is three same-category examples.</p>}
+            <div className="offer-grid">
+              {visiblePlans.map((plan, index) => <article className="offer-card" key={plan.id}>
+                <div className="offer-card-top"><span className="source-pill">SYNTHETIC</span><span className="record-number">0{index + 1}</span></div>
+                <h3>{plan.name}</h3><p className="version-line">Health · illustrative record · {plan.version}</p>
+                <dl className="plan-facts"><div><dt>Waiting periods</dt><dd>Unknown</dd></div><div><dt>Co-pay / deductible</dt><dd>Unknown</dd></div><div><dt>Network</dt><dd>Not verified</dd></div></dl>
+                <p className="source-caption">Source wording unavailable · {plan.id}</p>
+                <label className="selection-control"><input type="checkbox" checked={selected.includes(plan.id)} disabled={!selected.includes(plan.id) && selected.length >= 3} onChange={() => togglePlan(plan.id)} /><span>Add to shortlist</span></label>
+              </article>)}
+            </div>
+            {comparing && selectedPlans.length >= 2 && <section className="compare-panel" aria-labelledby="compare-title" aria-live="polite">
+              <div className="section-heading"><div><p className="eyebrow">COMPARE / HEALTH</p><h2 id="compare-title">The differences, in daylight.</h2></div><button type="button" className="text-link" onClick={() => setComparing(false)}>Edit shortlist</button></div>
+              <p className="unknown-callout"><strong>Unknown is not included.</strong><span>Missing information is shown explicitly. Neither example is ranked or recommended.</span></p>
+              <div className="table-wrap"><table><thead><tr><th scope="col">What to check</th>{selectedPlans.map((plan) => <th scope="col" key={plan.id}><span className="source-pill">SYNTHETIC</span><strong>{plan.name}</strong><small>Version {plan.version}</small></th>)}</tr></thead><tbody>
+                {(['Waiting period', 'Co-pay / deductible', 'Hospital network', 'Exclusions', 'Premium / quote status', 'Source and version'] as const).map((fact) => <tr key={fact}><th scope="row">{fact}</th>{selectedPlans.map((plan) => <td key={plan.id}>{fact === 'Source and version' ? `${plan.id} · ${plan.version}` : fact === 'Premium / quote status' ? 'No price supplied · no quote available' : fact === 'Hospital network' ? 'Not verified' : 'Not supplied'}</td>)}</tr>)}
+              </tbody></table></div>
+              <p className="payable-note">This fixture cannot continue to payable review. A later API must provide a supported scenario, current source version, explicit terms, and a complete quote.</p>
+            </section>}
+          </> : <div className="notice">This category entry point is present in the instructor shell. Its category-specific synthetic fixture and acceptance seam have not been loaded.</div>}
         </section>
-        <section className="catalog-section" id="catalog">
-          <div className="section-heading"><div><p className="eyebrow">A BETTER WAY TO EXPLORE</p><h2>Start with what matters to you.</h2></div><span className="demo-badge">SIMULATION</span></div>
-          {catalog.isPending && <p className="notice">Loading synthetic catalog…</p>}
-          {catalog.isError && <p className="notice">The catalog API scaffold is not connected yet. This screen is ready for synthetic offers.</p>}
-          {catalog.data?.items.length === 0 && <p className="notice">No synthetic offers are available yet.</p>}
-          {catalog.data && catalog.data.items.length > 0 && <div className="offer-grid">{catalog.data.items.map((item) => <article className="offer-card" key={item.offerId}><span className="offer-icon">✳</span><h3>{item.displayName}</h3><p>{item.coverLabel}</p><button type="button" className="text-button">View details <span aria-hidden="true">→</span></button></article>)}</div>}
-        </section>
+
+        <section className="source-notes" id="source-notes" aria-labelledby="source-title"><div><p className="eyebrow">READ THE EVIDENCE</p><h2 id="source-title">A label is part of the answer.</h2></div><ul><li><strong>Unknown</strong> means the source did not provide this field. It is never treated as included.</li><li><strong>Not verified</strong> is not a network or coverage guarantee.</li><li><strong>Synthetic</strong> describes this local layout fixture. It is not an insurer offer.</li></ul></section>
       </main>
-      <footer><span className="wordmark">coverstory<span>.</span></span><p>Learning simulation · Synthetic data only</p></footer>
+      <footer><span className="wordmark">coverstory<span>.</span></span><p>Learning simulation · Synthetic data only · No transactions</p></footer>
     </div>
   )
 }
