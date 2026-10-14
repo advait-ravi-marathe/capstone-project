@@ -1,0 +1,43 @@
+{
+  "fixture_id": "CAP-55-synthetic-v1",
+  "classification": "SYNTHETIC_OFFLINE_TRACE",
+  "fixture_version": "recorded-partition-trace-v1",
+  "actual_broker_run": false,
+  "cases": [
+    {
+      "id": "CAP-55-CS-01",
+      "publications": [
+        {"source_id":"source-A","version":"v1","sequence":1},
+        {"source_id":"source-A","version":"v1","sequence":2},
+        {"source_id":"source-A","version":"v1","sequence":3}
+      ],
+      "observations": [
+        {"evidence_source":"CAP-55-synthetic-v1","fixture_version":"recorded-partition-trace-v1","claims_actual_broker_run":false,"source_id":"source-A","version":"v1","sequence":1,"partition":0,"offset":10},
+        {"evidence_source":"CAP-55-synthetic-v1","fixture_version":"recorded-partition-trace-v1","claims_actual_broker_run":false,"source_id":"source-A","version":"v1","sequence":2,"partition":0,"offset":11},
+        {"evidence_source":"CAP-55-synthetic-v1","fixture_version":"recorded-partition-trace-v1","claims_actual_broker_run":false,"source_id":"source-A","version":"v1","sequence":3,"partition":0,"offset":12}
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "CAP-55-CS-02",
+      "publications": [{"source_id":"source-B","version":"v1","sequence":1}],
+      "observations": [{"evidence_source":"CAP-55-synthetic-v1","fixture_version":"recorded-partition-trace-v1","claims_actual_broker_run":false,"source_id":"source-B","version":"v1","sequence":1,"partition":0,"offset":13}],
+      "expected_valid": true,
+      "note": "Distinct source keys may share a partition."
+    },
+    {
+      "id": "CAP-55-CS-03",
+      "publications": [{"source_id":" ","version":"v1","sequence":1}],
+      "observations": [],
+      "expected_valid": false,
+      "expected_code": "INVALID_SOURCE_KEY"
+    },
+    {
+      "id": "CAP-55-CS-04",
+      "publications": [{"source_id":"source-A","version":"v1","sequence":1}],
+      "observations": [{"evidence_source":null,"fixture_version":null,"claims_actual_broker_run":true,"source_id":"source-A","version":"v1","sequence":1,"partition":null,"offset":null}],
+      "expected_valid": false,
+      "expected_code": "INVALID_EVIDENCE"
+    }
+  ]
+}

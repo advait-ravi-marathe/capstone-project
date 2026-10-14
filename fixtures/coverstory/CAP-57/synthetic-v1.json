@@ -1,0 +1,74 @@
+{
+  "fixture_id": "CAP-57-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "hash_canonicalization": "UTF-8 JSON; sorted object keys; compact separators; fields product_id,version_id,source_version,restrictions,amount_minor,currency",
+  "prepared_versions": [
+    {
+      "product_id": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "version_id": "a8100000-0000-4000-8000-000000000001",
+      "source_version": "source-A/v1",
+      "restrictions": {
+        "waiting_period_months": 24,
+        "exclusions": [
+          "synthetic-exclusion-A"
+        ]
+      },
+      "amount_minor": 123456,
+      "currency": "INR",
+      "content_sha256": "cb4a74791080a86290ead23a0e21db92cb5a0e8a77fd612830683158b5bd8160"
+    },
+    {
+      "product_id": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "version_id": "a8100000-0000-4000-8000-000000000002",
+      "source_version": "source-A/v2",
+      "restrictions": {
+        "waiting_period_months": 12,
+        "exclusions": [
+          "synthetic-exclusion-A"
+        ]
+      },
+      "amount_minor": 133456,
+      "currency": "INR",
+      "content_sha256": "e51e4dced2050c681003db6715ed4a7365c286ed1dd3c1ce5fae673bfdcfe242"
+    },
+    {
+      "product_id": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "version_id": "a8100000-0000-4000-8000-000000000003",
+      "source_version": "source-B/v1",
+      "restrictions": {
+        "waiting_period_months": 18,
+        "exclusions": [
+          "synthetic-exclusion-B"
+        ]
+      },
+      "amount_minor": 143456,
+      "currency": "INR",
+      "content_sha256": "7773be7dae3f70e9dde64f20dcb23ea101e6858643ff88937a53b607d2a2cd1b"
+    }
+  ],
+  "cases": [
+    {
+      "id": "CAP-57-CS-01",
+      "publish_version_id": "a8100000-0000-4000-8000-000000000001",
+      "expected_export_count": 1
+    },
+    {
+      "id": "CAP-57-CS-02",
+      "repeat_publish": true,
+      "expected_active_count": 1,
+      "source_rows_unchanged": true
+    },
+    {
+      "id": "CAP-57-CS-03",
+      "same_version_changed_restrictions": true,
+      "expected_status": 409,
+      "prior_terms_unchanged": true
+    },
+    {
+      "id": "CAP-57-CS-04",
+      "inject_failure_before_commit": true,
+      "expected_status": 503,
+      "active_count_after_rollback": 0
+    }
+  ]
+}

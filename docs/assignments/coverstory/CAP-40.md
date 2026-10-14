@@ -10,7 +10,9 @@
 
 ## Readiness and timebox
 
-This is the instructor scaffold for the supplied first-day contract. Learner logic remains TODO and all acceptance outcomes start `NOT_RUN`. The original card marks itself `BLOCKED / NOT_READY_FOR_LEARNER`: complete an actual timed rehearsal and record the instructor timebox check before calling the day learner-ready. The scaffold does not claim the 95-minute capstone task has already been rehearsed.
+This is the instructor scaffold for the supplied first-day contract. Learner logic remains TODO. Test-only reference witnesses now check the positive first-seen pair contract and reject version-only identity and sorting defects. The separate learner acceptance run still stops at the TODO seam. Harness command time is measured; it does not estimate learner implementation time. Keep learner rehearsal and independent mastery evidence separate from instructor setup, and do not simulate a 95-minute wait.
+
+The source budget remains 95 minutes maximum for the capstone work. The learner's actual task duration has not been measured because the business seam is intentionally unimplemented, so the day is **CONDITIONAL / NOT YET ASSIGNABLE** pending a realistic learner rehearsal and full timebox review. A rapid instructor test run is not evidence that the learner task fits.
 
 | Scheduled activity | Minutes |
 | --- | ---: |
@@ -62,7 +64,7 @@ There is no model call, external request, medical advice, or invented citation.
 ## Scaffold paths and commands
 
 - Instructor DTOs/public seam: `src/main/java/coverstory/modules/shortlist/api/`.
-- Learner acceptance and separate passing fixture self-check: `src/test/java/coverstory/modules/shortlist/`.
+- Learner acceptance: `src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java`; instructor positive/negative witness and fixture check: `src/test/java/coverstory/modules/shortlist/CAP40ScaffoldInfrastructureTest.java`.
 - CAP-40 synthetic fixture: `fixtures/coverstory/CAP-40/synthetic-v1.json`.
 - CAP-41 instructor types/tokenizer and learner TODO: `ai/retrieval/coverstory_health.py`.
 - CAP-41 acceptance and infrastructure tests: `ai/tests/test_coverstory_cap41_acceptance.py`, `ai/tests/test_coverstory_cap41_infrastructure.py`.
@@ -81,7 +83,7 @@ mvn -Dtest=CAP40ScaffoldInfrastructureTest test
 python3 -m unittest discover -s ai/tests -p test_coverstory_cap41_infrastructure.py
 ```
 
-Do not count a TODO failure as an instructor setup failure, and do not mark any outcome passed until there is learner implementation plus its own command/fixture/output evidence.
+The instructor witness accepts an exact pair/order implementation and rejects a version-only key and a sorted-order defect. The learner test command is expected to stop at the explicit TODO. Do not count this as a passing learner outcome. The local setup check and elapsed command time appear in the [candidate validation receipt](evidence/harness-candidate-2026-10-14.md); the learner's time-to-completion remains unmeasured.
 
 ## Day allocation details retained from the source contract
 

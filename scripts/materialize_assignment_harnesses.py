@@ -42,9 +42,12 @@ def main() -> dict:
         'CAP-61': 'python_grounded_abstention_gate',
         'CAP-56': 'python_macro_retrieval_evaluation',
         'CAP-62': 'python_bounded_async_cancellation',
+        'CAP-54': 'java_owned_journey_resume',
+        'CAP-55': 'java_offline_partition_trace',
+        'CAP-57': 'postgres_atomic_catalog_publication',
     }
-    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-56', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165'}
-    fixture_validated_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-56', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165'}
+    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165'}
+    fixture_validated_ids = set(authored_ids) - {'CAP-52'}
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
         'CAP-42': 'src/main/resources/coverstory/catalog/cap_42.sql',
@@ -58,9 +61,15 @@ def main() -> dict:
         'CAP-61': 'ai/coverstory/cap_61.py',
         'CAP-56': 'ai/coverstory/cap_56.py',
         'CAP-62': 'ai/coverstory/cap_62.py',
+        'CAP-54': 'src/main/java/coverstory/modules/application/api/CAP54Seam.java',
+        'CAP-55': 'src/main/java/coverstory/modules/catalog/api/CAP55Seam.java',
+        'CAP-57': 'src/main/java/coverstory/modules/catalog/api/CAP57Seam.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
+        'CAP-54': 'src/test/java/coverstory/modules/application/CAP54AcceptanceTest.java',
+        'CAP-55': 'src/test/java/coverstory/modules/catalog/CAP55AcceptanceTest.java',
+        'CAP-57': 'src/test/java/coverstory/modules/catalog/CAP57AcceptanceTest.java',
         'CAP-42': 'src/test/java/coverstory/modules/catalog/CAP42SqlAcceptanceTest.java',
         'CAP-44': 'ai/coverstory/tests/test_cap_44.py',
         'CAP-46': 'src/test/java/coverstory/modules/catalog/CAP46AcceptanceTest.java',
@@ -73,7 +82,7 @@ def main() -> dict:
         'CAP-62': 'ai/coverstory/tests/test_cap_62.py',
         'CAP-165': 'src/test/java/coverstory/modules/catalog/CAP165AcceptanceTest.java',
     }
-    current_candidate_runs = {'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-56', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165'}
+    current_candidate_runs = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165'}
     rows = []
     for day in index['days']:
         card = cards_by_id[day['primary_id']]

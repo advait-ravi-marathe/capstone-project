@@ -1,0 +1,21 @@
+# CAP-54 — Resume an owned journey safely
+
+**Learner outcome:** Enforce authenticated ownership for UUID journeys and keep private resume summaries minimal.
+
+- Learner API seam: `src/main/java/coverstory/modules/application/api/CAP54Seam.java`.
+- Synthetic owner/revision vectors: `fixtures/coverstory/CAP-54/synthetic-v1.json`.
+- Learner acceptance suite: `src/test/java/coverstory/modules/application/CAP54AcceptanceTest.java`.
+- Instructor fixture and access-oracle checks: `src/test/java/coverstory/modules/application/CAP54InstructorInfrastructureTest.java`.
+
+Cases cover a new session resuming the owner's same journey from the authoritative application revision, indistinguishable safe `404` responses for foreign and absent UUIDs, zero application-state reads on denial, rejection of caller-supplied owner identity, ignoring browser-supplied current step, anonymous private-route denial, and an owner-bound cursor with page size capped at 50. The instructor oracle passes the owner-scoped witness and rejects a known UUID-only lookup defect.
+
+All identifiers and payload markers are synthetic. The safe summary includes only journey UUID, authoritative status, and recomputed resume action. No decrypt operation is part of this interface. The repository query belongs to Application; callers in other modules must use the Application port.
+
+The two learner methods remain explicit TODOs. The general starter controller still returns `401` for its unconfigured session endpoint and `501` for catalog; the contract's anonymous catalog `200` interaction therefore remains an integration dependency, not a passing result for this scaffold. The harness currently tests private resume policy and owner pagination at the application seam, not a deployed authentication stack.
+
+```sh
+mvn -Dtest=CAP54InstructorInfrastructureTest test
+mvn -Plearner-tests -Dtest=CAP54AcceptanceTest test
+```
+
+The instructor suite should pass. The learner suite currently stops only at the TODO seams. This does not establish authorization behavior, session handling, independent learner mastery, or assignment readiness.
