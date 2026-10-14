@@ -90,9 +90,10 @@ def main() -> dict:
         'CAP-52': 'spring_catalog_import_adapter',
         'CAP-58': 'java_allowlisted_analytics_batch_validation',
         'CAP-60': 'postgres_transaction_race_invariants',
+        'CAP-169': 'java_bounded_retry_after_parser',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -156,6 +157,7 @@ def main() -> dict:
         'CAP-52': 'src/main/java/coverstory/modules/catalog/api/CAP52Seam.java',
         'CAP-58': 'src/main/java/coverstory/modules/analytics/api/CAP58Seam.java',
         'CAP-60': 'src/test/resources/coverstory/CAP-60/schema.sql',
+        'CAP-169': 'src/main/java/capstone/coverstory/payments/api/CAP169Seam.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -212,6 +214,7 @@ def main() -> dict:
         'CAP-52': 'src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java',
         'CAP-58': 'src/test/java/coverstory/modules/analytics/CAP58AcceptanceTest.java',
         'CAP-60': 'src/test/java/coverstory/application/CAP60AcceptanceTest.java',
+        'CAP-169': 'src/test/java/capstone/coverstory/payments/CAP169Test.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -241,6 +244,7 @@ def main() -> dict:
         'CAP-167': 'Bounded offline trace oracle only; learner checker remains TODO and no broker or publication worker is used.',
         'CAP-58': 'Independent local schema/privacy oracle only; learner validator remains TODO, and no HTTP ingestion, durable idempotency, storage, journey authorization or browser retry queue is wired.',
         'CAP-60': 'Disposable PostgreSQL harness proves uniqueness, rollback and synthetic two-connection races; it is not connected to an application command or service, and learner race assertions remain TODO.',
+        'CAP-169': 'Fixed-clock Retry-After parser oracle covers seconds, HTTP dates, past dates and invalid values; parsing does not authorize a retry, and the learner seam remains TODO.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []

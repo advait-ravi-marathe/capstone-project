@@ -1,0 +1,23 @@
+{
+  "assignment": "CAP-169",
+  "classification": "FIXED_CLOCK_RETRY_AFTER_PARSER_ORACLE_NOT_RETRY_AUTHORIZATION",
+  "fixture": "fixtures/coverstory/CAP-169/synthetic-v1.json",
+  "fixture_sha256": "8ffb6ea2a4003f4fa2ffbda59eff8578cb89a0bbb51661ad02644e20f7c5545a",
+  "instructor_command": "mvn -Dtest=CAP169InstructorInfrastructureTest test",
+  "instructor_result": "PASS",
+  "instructor_tests": 3,
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP169Test test",
+  "learner_result": "EXPECTED_5_ERRORS_AT_UNIMPLEMENTED_TODO",
+  "default_clean_suite": {"suites":49,"tests":185,"failures":0,"errors":0,"skipped":0},
+  "provider_calls": false,
+  "payment_effects": false,
+  "retry_authorized": false,
+  "checks": [
+    "whole-seconds delay",
+    "fixed-clock future HTTP date",
+    "30-second inclusive boundary and no long-delay clamp",
+    "past HTTP date maps to zero wait",
+    "negative, fractional and malformed values are invalid",
+    "missing header is distinct from malformed"
+  ]
+}
