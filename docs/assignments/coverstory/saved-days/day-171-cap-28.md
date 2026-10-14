@@ -11,7 +11,14 @@ CAP-28 · Day 171 · 2027-04-02 · Smoke-test the configured customer journey
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-28.md` (planned in source; existence/readiness is not implied)
+- `src/main/java/capstone/coverstory/application/CoverStorySmokeAssertion.java` (planned in source; existence/readiness is not implied)
+- `src/test/java/capstone/coverstory/application/CoverStorySmokeAssertionTest.java` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-28/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-28/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-28/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

@@ -7,7 +7,7 @@ This guide carries the saved card contract as source evidence. It does not claim
 
 ## Practical task from the saved contract
 
-CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+Compose shared parameterised homepage journey/application/policy cards and wire an owner-scoped TanStack query after SPA session bootstrap. Keep server state, draft state and route state separate.
 
 ## Explicit repository paths in the saved contract
 
@@ -32,7 +32,7 @@ The task-specific excerpts below are transcribed from the saved card. The byte-e
 
 Description SHA-256: `ffbaeef875694a16445ac5a98d7181209cc5e33687cb9a784cef8aaf7b5ea7e6`
 
-**Practical task:** CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+**Practical task:** Compose shared parameterised homepage journey/application/policy cards and wire an owner-scoped TanStack query after SPA session bootstrap. Keep server state, draft state and route state separate.
 
 Exact source description: [saved curriculum record `CAP-2`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json)
 

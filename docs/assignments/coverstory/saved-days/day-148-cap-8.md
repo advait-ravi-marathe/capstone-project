@@ -7,7 +7,7 @@ This guide carries the saved card contract as source evidence. It does not claim
 
 ## Practical task from the saved contract
 
-CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+Use owner/resource-keyed detail queries with addressable routes, preserving supported list filters and clearing stale resource/session details during navigation and refresh.
 
 ## Explicit repository paths in the saved contract
 
@@ -32,7 +32,7 @@ The task-specific excerpts below are transcribed from the saved card. The byte-e
 
 Description SHA-256: `8694309e8b036c3f16b539cd162ca926d0f777ce21314e054379f81061072174`
 
-**Practical task:** CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+**Practical task:** Use owner/resource-keyed detail queries with addressable routes, preserving supported list filters and clearing stale resource/session details during navigation and refresh.
 
 Exact source description: [saved curriculum record `CAP-8`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json)
 

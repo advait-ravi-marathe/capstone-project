@@ -11,7 +11,14 @@ CAP-13 · Day 153 · 2027-03-15 · Extend comparison with sourced term-life fiel
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-13.md` (planned in source; existence/readiness is not implied)
+- `frontend/src/coverstory/catalog/TermComparisonEvidencePanel.tsx` (planned in source; existence/readiness is not implied)
+- `frontend/src/coverstory/catalog/TermComparisonEvidencePanel.test.tsx` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-13/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-13/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-13/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

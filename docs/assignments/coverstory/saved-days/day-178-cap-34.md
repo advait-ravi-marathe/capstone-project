@@ -11,7 +11,14 @@ CAP-34 · Day 178 · 2027-04-09 · Evaluate release-candidate assistance safety
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-34.md` (planned in source; existence/readiness is not implied)
+- `src/main/java/capstone/coverstory/support/ReleaseAssistanceEvaluator.java` (planned in source; existence/readiness is not implied)
+- `src/test/java/capstone/coverstory/support/ReleaseAssistanceEvaluatorTest.java` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-34/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-34/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-34/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

@@ -29,7 +29,10 @@ def planned_paths(description: str) -> list[str]:
     """Extract explicit repository path bullets without guessing paths."""
     found: list[str] = []
     for line in description.splitlines():
-        match = re.match(r"^-\s+`?((?:src|frontend|web|ai|fixtures|docs|scripts)/[^`\s]+)`?\s*$", line)
+        match = re.match(
+            r"^-\s+(?:[A-Za-z][A-Za-z0-9 _-]*:\s*)?`?((?:src|frontend|web|ai|fixtures|docs|scripts)/[^`\s]+)`?\s*$",
+            line,
+        )
         if match and match.group(1) not in found:
             found.append(match.group(1))
     return found
@@ -137,26 +140,40 @@ def source_sections(description: str) -> list[dict[str, str]]:
 def active_task(description: str) -> str:
     """Return the exact opening paragraph(s) of the card's task-specific section."""
     lines = description.splitlines()
+    candidates = []
     for i, line in enumerate(lines):
         normalized = line.lstrip("# ").strip().lower()
-        task_heading = (
-            ("active coverstory" in normalized and any(word in normalized for word in ("contract", "learning", "semantic migration")))
+        if line.startswith("#") and (
+            "new daily outcome" in normalized
             or "tangible learner task" in normalized
-            or "daily outcome" in normalized
-        )
-        if line.startswith("#") and task_heading:
-            paragraph: list[str] = []
-            for item in lines[i + 1 :]:
-                if item.startswith("## ") or item.startswith("### "):
-                    break
-                if not paragraph and not item.strip():
-                    continue
-                if paragraph and not item.strip():
-                    break
-                paragraph.append(item)
-            text = "\n".join(paragraph).strip()
-            if text:
-                return text
+            or normalized == "daily outcome"
+            or "active coverstory semantic migration" in normalized
+            or ("active coverstory" in normalized and any(word in normalized for word in ("contract", "learning")))
+        ):
+            if "new daily outcome" in normalized:
+                priority = 0
+            elif "tangible learner task" in normalized:
+                priority = 1
+            elif "daily outcome" in normalized:
+                priority = 2
+            elif "active coverstory semantic migration" in normalized:
+                priority = 3
+            else:
+                priority = 4
+            candidates.append((priority, i))
+    for _, i in sorted(candidates):
+        paragraph: list[str] = []
+        for item in lines[i + 1 :]:
+            if item.startswith("#"):
+                break
+            if not paragraph and not item.strip():
+                continue
+            if paragraph and not item.strip():
+                break
+            paragraph.append(item)
+        text = "\n".join(paragraph).strip()
+        if text:
+            return text
     raise ValueError("saved card has no recognizable practical task heading")
 
 

@@ -11,7 +11,14 @@ CAP-38 · Day 183 · 2027-04-14 · Make the 14 April CoverStory checkpoint decis
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-38.md` (planned in source; existence/readiness is not implied)
+- `src/main/java/capstone/coverstory/application/CheckpointReleaseGate.java` (planned in source; existence/readiness is not implied)
+- `src/test/java/capstone/coverstory/application/CheckpointReleaseGateTest.java` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-38/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-38/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-38/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

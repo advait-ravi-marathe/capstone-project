@@ -7,7 +7,7 @@ This guide carries the saved card contract as source evidence. It does not claim
 
 ## Practical task from the saved contract
 
-CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+Demonstrate the hardened existing customer lifecycle with SPA session bootstrap, decoded TanStack server-state queries, shared typed UI components, exact-review mutations, authoritative resume and one controlled failure.
 
 ## Explicit repository paths in the saved contract
 
@@ -32,7 +32,7 @@ The task-specific excerpts below are transcribed from the saved card. The byte-e
 
 Description SHA-256: `3b79dc183bebb9420624563f249faf50bf54b078751db334887b3af9a82d0687`
 
-**Practical task:** CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+**Practical task:** Demonstrate the hardened existing customer lifecycle with SPA session bootstrap, decoded TanStack server-state queries, shared typed UI components, exact-review mutations, authoritative resume and one controlled failure.
 
 Exact source description: [saved curriculum record `CAP-12`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json)
 

@@ -11,7 +11,14 @@ CAP-19 · Day 160 · 2027-03-22 · Resume an owned journey through scoped React 
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-19.md` (planned in source; existence/readiness is not implied)
+- `frontend/src/coverstory/catalog/OwnedJourneyResumeState.tsx` (planned in source; existence/readiness is not implied)
+- `frontend/src/coverstory/catalog/OwnedJourneyResumeState.test.tsx` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-19/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-19/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-19/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

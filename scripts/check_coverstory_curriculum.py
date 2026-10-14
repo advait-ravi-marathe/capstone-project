@@ -13,6 +13,10 @@ from materialize_coverstory_curriculum import (
     MANIFEST,
     OUTPUT,
     ROOT,
+    acceptance_excerpt,
+    active_task,
+    explicit_path_references,
+    planned_paths,
     sha256,
     verify_source,
 )
@@ -53,6 +57,16 @@ def check() -> dict:
         body = guide.read_text(encoding="utf-8")
         if day["primary_id"] != primary["id"] or day["primary_description_sha256"] != primary["description_sha256"]:
             raise AssertionError(f"day index identity/hash mismatch: {primary['id']}")
+        # Recompute every derived field from the canonical card independently of
+        # the guide and matrix; edits to both outputs cannot hide source drift.
+        if day["practical_task"] != active_task(primary["description"]):
+            raise AssertionError(f"task summary differs from authoritative source section: {primary['id']}")
+        if day["acceptance_contract_excerpt"] != acceptance_excerpt(primary["description"]):
+            raise AssertionError(f"acceptance excerpt differs from authoritative source: {primary['id']}")
+        if day["explicit_planned_paths"] != planned_paths(primary["description"]):
+            raise AssertionError(f"planned paths differ from authoritative source: {primary['id']}")
+        if day["explicit_path_references"] != explicit_path_references(primary["description"]):
+            raise AssertionError(f"path references differ from authoritative source: {primary['id']}")
         expected_components = sorted(
             c["id"] for c in curriculum["cards"] if c["role"] == "linked_component" and c["primary_id"] == primary["id"]
         )
@@ -62,6 +76,10 @@ def check() -> dict:
             component = next(item for item in day["components"] if item["id"] == component_id)
             if component["description_sha256"] != by_id[component_id]["description_sha256"]:
                 raise AssertionError(f"component source hash mismatch: {component_id}")
+            if component["practical_task"] != active_task(by_id[component_id]["description"]):
+                raise AssertionError(f"component task summary differs from source: {component_id}")
+            if component["acceptance_contract_excerpt"] != acceptance_excerpt(by_id[component_id]["description"]):
+                raise AssertionError(f"component acceptance differs from source: {component_id}")
             if component["practical_task"] not in body:
                 raise AssertionError(f"guide omits component task summary: {component_id}")
         if not day["practical_task"].strip():

@@ -11,7 +11,14 @@ CAP-36 · Day 180 · 2027-04-11 · Rehearse the customer journey with evidence
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-36.md` (planned in source; existence/readiness is not implied)
+- `src/main/java/capstone/coverstory/application/DemoEvidenceCapture.java` (planned in source; existence/readiness is not implied)
+- `src/test/java/capstone/coverstory/application/DemoEvidenceCaptureTest.java` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-36/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-36/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-36/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

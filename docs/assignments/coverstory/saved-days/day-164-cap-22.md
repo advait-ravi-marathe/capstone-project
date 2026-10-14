@@ -11,7 +11,14 @@ CAP-22 · Day 164 · 2027-03-26 · Verify responsive themes and safe recovery
 
 ## Explicit repository paths in the saved contract
 
-The card does not enumerate repository file paths. Reconcile its instructor starter section against the current checkout before assigning; do not invent paths.
+- `docs/assignments/coverstory/CAP-22.md` (planned in source; existence/readiness is not implied)
+- `frontend/src/coverstory/application/ResponsiveRecoveryState.tsx` (planned in source; existence/readiness is not implied)
+- `frontend/src/coverstory/application/ResponsiveRecoveryState.test.tsx` (planned in source; existence/readiness is not implied)
+- `src/test/resources/coverstory/late-v1/CAP-22/cases.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-22/result.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/fixtures/synthetic-registry-v1.json` (planned in source; existence/readiness is not implied)
+- `docs/coverstory/api-v1-contract.json` (planned in source; existence/readiness is not implied)
+- `docs/evidence/coverstory/CAP-22/architecture-delta.md` (planned in source; existence/readiness is not implied)
 
 ## Task-specific source excerpts
 

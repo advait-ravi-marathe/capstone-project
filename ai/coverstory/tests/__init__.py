@@ -1,0 +1,1 @@
+"""CoverStory assignment acceptance tests."""

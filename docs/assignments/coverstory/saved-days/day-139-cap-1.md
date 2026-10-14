@@ -7,7 +7,7 @@ This guide carries the saved card contract as source evidence. It does not claim
 
 ## Practical task from the saved contract
 
-CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+Audit the already established target customer journey, verify the planned TanStack Query v5/session boundary and repair at most one demonstrated integration seam. Current repository product wiring remains an instructor prerequisite, not an implemented claim.
 
 ## Explicit repository paths in the saved contract
 
@@ -32,7 +32,7 @@ The task-specific excerpts below are transcribed from the saved card. The byte-e
 
 Description SHA-256: `b7ab9ccadf9dea58cdb5a9c9428b41c530202914ab616e8d3bcce7cb6407670f`
 
-**Practical task:** CoverStory is a proposed health-first insurance marketplace teaching application, with entry points for health, term life, motor and ULIP. This card deepens the cumulative target journey; it does not claim that target is implemented today. The current repository audit reports only a Spring /health endpoint under capstone.app, fixture-mode React, and reusable generic AI/evaluation mechanisms. The six product modules, public interfaces, private persistence, component scanning and boundary tests are planned instructor prerequisites. Existing OperatorApi/EventStatus are historical contracts, never automatic insurance aliases.
+**Practical task:** Audit the already established target customer journey, verify the planned TanStack Query v5/session boundary and repair at most one demonstrated integration seam. Current repository product wiring remains an instructor prerequisite, not an implemented claim.
 
 Exact source description: [saved curriculum record `CAP-1`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json)
 
