@@ -1,6 +1,9 @@
 package coverstory.modules.catalog.api;
 
+import org.springframework.stereotype.Component;
+
 /** Learner-owned import decision port. The principal must come from trusted server context. */
+@Component
 public final class CAP52Seam {
     public enum Role { EDITOR, APPLICANT }
     public enum Decision { ACCEPTED, DUPLICATE, CONFLICT, INVALID }

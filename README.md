@@ -35,7 +35,7 @@ If Maven is not installed, install a supported Apache Maven binary or use the of
 cd web && npm ci && npm run dev
 ```
 
-The browser shell uses React Query for owner/session-scoped memory caches and revalidates `/api/session` on refresh. The API explicitly returns `401` for `/api/session` until an authentication adapter exists and `501` for `/api/catalog` until learner catalog logic is implemented; it does not invent an authenticated owner or synthetic offer results. `web/package-lock.json` pins the frontend dependency graph.
+The browser shell uses React Query for public catalog reads and owner/session-scoped memory caches for future private data; it revalidates `/api/session` on refresh. The API returns `401` for `/api/session` until an authentication adapter exists. `GET /api/catalog` serves a bounded, health-only synthetic catalog through the Catalog module's public port; it contains no insurer wording, price, or payable quote. The frontend consumes that route, while private shortlist persistence and owner identity remain unimplemented. `web/package-lock.json` pins the frontend dependency graph.
 
 ## Instructor infrastructure checks
 

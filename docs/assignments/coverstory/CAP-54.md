@@ -11,7 +11,7 @@ Cases cover a new session resuming the owner's same journey from the authoritati
 
 All identifiers and payload markers are synthetic. The safe summary includes only journey UUID, authoritative status, and recomputed resume action. No decrypt operation is part of this interface. The repository query belongs to Application; callers in other modules must use the Application port.
 
-The two learner methods remain explicit TODOs. The general starter controller still returns `401` for its unconfigured session endpoint and `501` for catalog; the contract's anonymous catalog `200` interaction therefore remains an integration dependency, not a passing result for this scaffold. The harness currently tests private resume policy and owner pagination at the application seam, not a deployed authentication stack.
+The two learner methods remain explicit TODOs. The unauthenticated session endpoint returns `401`. The anonymous public catalog dependency now returns a bounded synthetic health response through the Catalog module public port and is covered by an actual application-context HTTP test. This supplies only public discovery data; it does not implement private resume, owner identity, persistence, or the authenticated application stack. The CAP-54 harness continues to test private resume policy and owner pagination at the application seam.
 
 ```sh
 mvn -Dtest=CAP54InstructorInfrastructureTest test

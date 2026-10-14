@@ -16,8 +16,4 @@ class StarterApiInfrastructureTest {
         mvc.perform(get("/api/session")).andExpect(status().isUnauthorized());
     }
 
-    @Test
-    void catalogEndpointIsExplicitlyUnimplemented() throws Exception {
-        mvc.perform(get("/api/catalog")).andExpect(status().isNotImplemented());
-    }
 }

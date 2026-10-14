@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import type { Session } from '../state/session'
 
 type Category = 'health' | 'term' | 'motor' | 'ulip'
@@ -11,14 +12,44 @@ type Plan = {
   waitingPeriod: 'UNKNOWN'
   copay: 'UNKNOWN'
   network: 'UNKNOWN'
+  sourceLabel: string
 }
 
-// Layout fixtures only. No insurer wording, benefit assertion, or payable quote.
-const plans: Plan[] = [
-  { id: 'health-plan-A-v1', name: 'Example A', version: 'v1', category: 'health', sourceStatus: 'SYNTHETIC', waitingPeriod: 'UNKNOWN', copay: 'UNKNOWN', network: 'UNKNOWN' },
-  { id: 'health-plan-B-v1', name: 'Example B', version: 'v1', category: 'health', sourceStatus: 'SYNTHETIC', waitingPeriod: 'UNKNOWN', copay: 'UNKNOWN', network: 'UNKNOWN' },
-  { id: 'health-plan-C-v1', name: 'Example C', version: 'v1', category: 'health', sourceStatus: 'SYNTHETIC', waitingPeriod: 'UNKNOWN', copay: 'UNKNOWN', network: 'UNKNOWN' },
-]
+type CatalogResponse = { schemaMajor: 1; offers: Array<{
+  offerId: string; catalogVersion: string; displayName: string; category: Category
+  evidenceStatus: 'SYNTHETIC'; waitingPeriodStatus: 'UNKNOWN'; copayStatus: 'UNKNOWN'
+  networkStatus: 'UNKNOWN'; sourceLabel: string
+}> }
+
+async function fetchPublicCatalog(category: Category, signal: AbortSignal): Promise<Plan[]> {
+  const response = await fetch(`/api/catalog?category=${encodeURIComponent(category)}`, {
+    headers: { Accept: 'application/json' }, signal,
+  })
+  if (!response.ok) throw new Error(`Catalog request failed (${response.status}).`)
+  const raw: unknown = await response.json()
+  if (!isCatalogResponse(raw)) throw new Error('Catalog response was invalid.')
+  return raw.offers.map((offer) => ({
+    id: offer.offerId, name: offer.displayName, version: offer.catalogVersion,
+    category: offer.category, sourceStatus: offer.evidenceStatus,
+    waitingPeriod: offer.waitingPeriodStatus, copay: offer.copayStatus,
+    network: offer.networkStatus, sourceLabel: offer.sourceLabel,
+  }))
+}
+
+function isCatalogResponse(value: unknown): value is CatalogResponse {
+  if (typeof value !== 'object' || value === null || !('schemaMajor' in value) ||
+      value.schemaMajor !== 1 || !('offers' in value) || !Array.isArray(value.offers)) return false
+  return value.offers.every((offer) => typeof offer === 'object' && offer !== null &&
+    'offerId' in offer && typeof offer.offerId === 'string' &&
+    'catalogVersion' in offer && typeof offer.catalogVersion === 'string' &&
+    'displayName' in offer && typeof offer.displayName === 'string' &&
+    'category' in offer && ['health', 'term', 'motor', 'ulip'].includes(String(offer.category)) &&
+    'evidenceStatus' in offer && offer.evidenceStatus === 'SYNTHETIC' &&
+    'waitingPeriodStatus' in offer && offer.waitingPeriodStatus === 'UNKNOWN' &&
+    'copayStatus' in offer && offer.copayStatus === 'UNKNOWN' &&
+    'networkStatus' in offer && offer.networkStatus === 'UNKNOWN' &&
+    'sourceLabel' in offer && typeof offer.sourceLabel === 'string')
+}
 
 const categories: { id: Category; number: string; title: string; text: string }[] = [
   { id: 'health', number: '01', title: 'Health', text: 'Understand waiting periods, exclusions, and what is still unknown.' },
@@ -38,7 +69,13 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
   const [category, setCategory] = useState<Category>(categoryFromUrl)
   const [selected, setSelected] = useState<string[]>([])
   const [comparing, setComparing] = useState(false)
-  const visiblePlans = category === 'health' ? plans : []
+  const catalogQuery = useQuery({
+    queryKey: ['public', 'catalog', category],
+    queryFn: ({ signal }) => fetchPublicCatalog(category, signal),
+    staleTime: 60_000,
+    retry: 0,
+  })
+  const visiblePlans = catalogQuery.data ?? []
 
   useEffect(() => {
     const syncCategory = () => setCategory(categoryFromUrl())
@@ -62,7 +99,7 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
       : current.length < 3 ? [...current, id] : current)
   }
 
-  const selectedPlans = plans.filter((plan) => selected.includes(plan.id))
+  const selectedPlans = visiblePlans.filter((plan) => selected.includes(plan.id))
 
   return (
     <div className="page-shell">
@@ -105,16 +142,18 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
 
         <section className="catalog-section" id="catalog" aria-labelledby="catalog-title">
           <div className="section-heading"><div><p className="eyebrow">{categoryLabel[category].toUpperCase()} / SYNTHETIC FIXTURE</p><h2 id="catalog-title">{category === 'health' ? 'Make a shortlist.' : `${categoryLabel[category]} examples are not loaded yet.`}</h2></div><span className="source-pill">No payable quotes</span></div>
-          {category === 'health' ? <>
-            <p className="section-intro">These named layout examples exist to exercise comparison behavior. They do not contain insurer-authored terms or prices.</p>
+            {category === 'health' ? <>
+            <p className="section-intro">These named synthetic examples exercise comparison behavior. They do not contain insurer-authored terms or prices.</p>
             <div className="selection-toolbar" id="shortlist"><span><strong>{selected.length}</strong> of 3 selected</span><button type="button" className="primary-button compact-button" disabled={selected.length < 2} onClick={() => setComparing(true)}>Compare selected</button></div>
+            {catalogQuery.isPending && <p role="status">Loading synthetic catalog examples…</p>}
+            {catalogQuery.isError && <p className="notice" role="alert">Catalog examples could not be loaded. Retry after the local API is available.</p>}
             {selected.length === 3 && <p className="inline-note" role="status">The maximum is three same-category examples.</p>}
             <div className="offer-grid">
               {visiblePlans.map((plan, index) => <article className="offer-card" key={plan.id}>
                 <div className="offer-card-top"><span className="source-pill">SYNTHETIC</span><span className="record-number">0{index + 1}</span></div>
                 <h3>{plan.name}</h3><p className="version-line">Health · illustrative record · {plan.version}</p>
                 <dl className="plan-facts"><div><dt>Waiting periods</dt><dd>Unknown</dd></div><div><dt>Co-pay / deductible</dt><dd>Unknown</dd></div><div><dt>Network</dt><dd>Not verified</dd></div></dl>
-                <p className="source-caption">Source wording unavailable · {plan.id}</p>
+                <p className="source-caption">{plan.sourceLabel} · {plan.id}</p>
                 <label className="selection-control"><input type="checkbox" checked={selected.includes(plan.id)} disabled={!selected.includes(plan.id) && selected.length >= 3} onChange={() => togglePlan(plan.id)} /><span>Add to shortlist</span></label>
               </article>)}
             </div>
@@ -126,7 +165,7 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
               </tbody></table></div>
               <p className="payable-note">This fixture cannot continue to payable review. A later API must provide a supported scenario, current source version, explicit terms, and a complete quote.</p>
             </section>}
-          </> : <div className="notice">This category entry point is present in the instructor shell. Its category-specific synthetic fixture and acceptance seam have not been loaded.</div>}
+            </> : <div className="notice">This category entry point is present in the instructor shell. Its category-specific synthetic fixture and acceptance seam have not been loaded.</div>}
         </section>
 
         <section className="source-notes" id="source-notes" aria-labelledby="source-title"><div><p className="eyebrow">READ THE EVIDENCE</p><h2 id="source-title">A label is part of the answer.</h2></div><ul><li><strong>Unknown</strong> means the source did not provide this field. It is never treated as included.</li><li><strong>Not verified</strong> is not a network or coverage guarantee.</li><li><strong>Synthetic</strong> describes this local layout fixture. It is not an insurer offer.</li></ul></section>

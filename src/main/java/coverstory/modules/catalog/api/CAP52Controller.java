@@ -2,6 +2,7 @@ package coverstory.modules.catalog.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ public final class CAP52Controller {
     private static final Set<String> ALLOWED = Set.of("sourceId", "sourceVersion", "canonicalHash");
     private final DecisionPort decisions;
 
+    @Autowired
     public CAP52Controller(CAP52Seam seam) { this(seam::accept); }
     public CAP52Controller(DecisionPort decisions) { this.decisions = decisions; }
 

@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
 
-/** Explicitly unconfigured API endpoints; no authentication or catalog logic is implied. */
+/** Session remains unavailable until a trusted authentication adapter is supplied. */
 @RestController
 @RequestMapping("/api")
 public class StarterApiController {
@@ -18,9 +17,4 @@ public class StarterApiController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    @GetMapping("/catalog")
-    public ResponseEntity<Map<String, String>> catalog() {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED)
-                .body(Map.of("status", "catalog_business_logic_not_implemented"));
-    }
 }

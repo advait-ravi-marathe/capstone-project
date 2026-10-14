@@ -1,6 +1,9 @@
 package coverstory.application;
 
+import org.springframework.stereotype.Component;
+
 /** Learner-owned status and safe-message mapping for existing draft/payment handlers. */
+@Component
 public final class ReturnSafeCheckoutAndDraftErrors implements ExceptionToProblemDetail {
     @Override
     public CoverStoryProblemDetail mapException(KnownException ex, RequestContext ctx) {

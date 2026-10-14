@@ -23,7 +23,7 @@ flowchart LR
   Support --> DB
 ```
 
-Start as a modular monolith. Each module owns its tables, repositories, validation, and application services. Cross-module calls use a public application interface; there are no cross-module repository imports. The runnable API shell exposes an intentionally unauthenticated `401 /api/session` response and a `501 /api/catalog` response until real auth and learner catalog behavior are supplied. Add Kafka, Redis, or another database only after a measured need and a written trade-off. They are not prerequisites for local startup.
+Start as a modular monolith. Each module owns its tables, repositories, validation, and application services. Cross-module calls use a public application interface; there are no cross-module repository imports. The runnable API shell exposes `401 /api/session` until auth is supplied and `GET /api/catalog` as an explicitly synthetic, health-only public read served through `CatalogPort`. The React shell consumes that route. Private shortlist persistence, owner identity and all transaction behavior remain unimplemented. Add Kafka, Redis, or another database only after a measured need and a written trade-off. They are not prerequisites for local startup.
 
 ## Module ownership
 
