@@ -92,6 +92,6 @@ class CAP40AcceptanceTest {
     private static void assertRejects(Runnable action) {
         RuntimeException exception = assertThrows(RuntimeException.class, action::run);
         assertFalse(exception instanceof UnsupportedOperationException,
-                "input must be rejected by validation, not the learner TODO stub");
+                "CAP40_TODO_STUB_REACHED: validation behavior is unassessed until the learner implements the seam");
     }
 }
