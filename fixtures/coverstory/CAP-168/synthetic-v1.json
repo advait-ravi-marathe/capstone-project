@@ -1,0 +1,52 @@
+{
+  "assignment": "CAP-168",
+  "classification": "SYNTHETIC_QUOTE_REVIEW_LINE_CLASSIFICATION_FIXTURE",
+  "actual_customer_data": false,
+  "source_lines": [
+    "{\"quoteId\":\"quote-A\",\"scenarioId\":\"motor-renewal\",\"sourceId\":\"sandbox-A\",\"sourceVersion\":\"v3\",\"termsHash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"totalPaise\":100000,\"currency\":\"INR\",\"sourceIllustration\":false}",
+    "{\"quoteId\":\"synthetic-token-CAP168\",broken-json",
+    "{\"quoteId\":\"quote-B\",\"scenarioId\":\"health-basic\",\"sourceId\":\"sandbox-B\",\"sourceVersion\":\"v1\",\"termsHash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"totalPaise\":25100,\"currency\":\"INR\",\"sourceIllustration\":false}",
+    "",
+    "{\"quoteId\":\"quote-C\",\"scenarioId\":\"travel-basic\",\"sourceId\":\"sandbox-C\",\"sourceVersion\":\"v2\",\"totalPaise\":12000,\"currency\":\"INR\",\"sourceIllustration\":false}"
+  ],
+  "parser_case": {
+    "valid_lines": [
+      1,
+      3
+    ],
+    "rejected_lines": [
+      2,
+      5
+    ],
+    "blank_lines": [
+      4
+    ],
+    "raw_line_in_rejections": false
+  },
+  "deferred_full_flow_cases": [
+    {
+      "id": "CAP-168-CS-02",
+      "expected": "login revalidates device-local selection; owned shortlist survives refresh; foreign owner lookup is 404"
+    },
+    {
+      "id": "CAP-168-CS-03",
+      "expected": "fixed-clock unchanged quote validation returns 200, delta 0, expiresAt; no order"
+    },
+    {
+      "id": "CAP-168-CS-04",
+      "expected": "all nonzero paise drift is visible; changed terms and >100 paise block until explicit review"
+    },
+    {
+      "id": "CAP-168-CS-05",
+      "expected": "unknown tax, missing total, withdrawal, or illustration returns review/unavailable; no guessed payable total"
+    },
+    {
+      "id": "CAP-168-CS-06",
+      "expected": "malformed body token is absent from diagnostics; unreadable stream remains incomplete"
+    },
+    {
+      "id": "CAP-168-CS-07",
+      "expected": "logout/account switch clears old private state; late owner-A response cannot populate owner-B view"
+    }
+  ]
+}

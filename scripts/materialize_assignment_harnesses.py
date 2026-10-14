@@ -93,9 +93,10 @@ def main() -> dict:
         'CAP-169': 'java_bounded_retry_after_parser',
         'CAP-68': 'postgres_shortlist_commit_response_loss',
         'CAP-70': 'python_immutable_protected_envelope_staging',
+        'CAP-168': 'java_safe_quote_review_line_classifier',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -162,6 +163,7 @@ def main() -> dict:
         'CAP-169': 'src/main/java/capstone/coverstory/payments/api/CAP169Seam.java',
         'CAP-68': 'src/main/java/capstone/coverstory/shortlist/api/CAP68Seam.java',
         'CAP-70': 'ai/coverstory/cap_70.py',
+        'CAP-168': 'src/main/java/capstone/coverstory/shortlist/api/CAP168Seam.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -221,6 +223,7 @@ def main() -> dict:
         'CAP-169': 'src/test/java/capstone/coverstory/payments/CAP169Test.java',
         'CAP-68': 'src/test/java/capstone/coverstory/shortlist/CAP68Test.java',
         'CAP-70': 'ai/coverstory/tests/test_cap_70.py',
+        'CAP-168': 'src/test/java/capstone/coverstory/shortlist/CAP168Test.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -253,6 +256,7 @@ def main() -> dict:
         'CAP-169': 'Fixed-clock Retry-After parser oracle covers seconds, HTTP dates, past dates and invalid values; parsing does not authorize a retry, and the learner seam remains TODO.',
         'CAP-68': 'Disposable PostgreSQL oracle demonstrates shortlist/audit/journey commit surviving synthetic response loss, same-key and owner-scoped recovery, and a distinct optional-publication gap; it is not an application command or publisher, and the learner seam remains TODO.',
         'CAP-70': 'Instructor fixture oracle checks immutable ciphertext-byte/provenance staging order and safe rejection; existing Java AES-GCM adapter verifies fixed vectors, AAD/tag failure and random nonce generation. No wrapped-DEK/KMS or product staging adapter is implemented, and the learner batch method remains TODO.',
+        'CAP-168': 'Independent strict five-line quote-review parser oracle and learner TODO are runnable. The broader authenticated login-return, owned journey SQL, fixed-clock quote validation and SPA/API/PostgreSQL flow remain deferred because no product auth/shortlist/quote service is wired.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []

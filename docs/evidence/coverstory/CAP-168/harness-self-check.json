@@ -1,0 +1,24 @@
+{
+  "assignment": "CAP-168",
+  "classification": "FIVE_LINE_QUOTE_REVIEW_PARSER_ORACLE_WITH_FULL_FLOW_DEFERRED",
+  "fixture_sha256": "e254ed155140ada819f9577341a8448d623a98c978f51ade2a4ae30dc95df92e",
+  "instructor_command": "mvn -Dtest=CAP168InstructorInfrastructureTest test",
+  "instructor_result": "PASS",
+  "instructor_tests": 4,
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP168Test test",
+  "learner_result": "EXPECTED_3_ERRORS_AT_UNIMPLEMENTED_TODO",
+  "supported_saved_case": "CAP-168-CS-01 five-line classification and redacted malformed-token diagnostic",
+  "deferred_saved_cases": [
+    "CAP-168-CS-02",
+    "CAP-168-CS-03",
+    "CAP-168-CS-04",
+    "CAP-168-CS-05",
+    "CAP-168-CS-06 stream failure",
+    "CAP-168-CS-07"
+  ],
+  "auth_endpoint_wired": false,
+  "owned_shortlist_service_wired": false,
+  "quote_validation_service_wired": false,
+  "order_created": false,
+  "full_default_suite": "PASS_52_SUITES_197_TESTS"
+}
