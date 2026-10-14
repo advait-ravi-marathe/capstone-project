@@ -17,11 +17,23 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs/source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json"
 INDEX = ROOT / "docs/assignments/coverstory/curriculum-index.json"
 OUT = ROOT / "docs/assignments/coverstory/harness-matrix.json"
+PARTITIONS = OUT.parent / "harness-matrix"
+PARTITION_SIZE = 50
 
 
 def section(text: str, title: str) -> str:
     match = re.search(r"^#{1,6} " + re.escape(title) + r"\s*$(.*?)(?=^#{1,6} |\Z)", text, re.M | re.S)
     return match.group(1).strip() if match else ""
+
+
+def partition_rows(rows: list[dict], size: int = PARTITION_SIZE) -> list[tuple[int, int, list[dict]]]:
+    if size <= 0:
+        raise ValueError("partition size must be positive")
+    partitions = []
+    for start in range(0, len(rows), size):
+        chunk = rows[start:start + size]
+        partitions.append((chunk[0]['day_number'], chunk[-1]['day_number'], chunk))
+    return partitions
 
 
 def main() -> dict:
@@ -299,6 +311,7 @@ def main() -> dict:
             'fixture_harness_validated': card['id'] in fixture_validated_ids,
             'historical_learner_contract_evidence': card['id'] == 'CAP-40',
             'assignability': (
+                'READY_TO_ATTEMPT' if card['id'] == 'CAP-40' else
                 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' if authored
                 else 'CONDITIONAL_EXPERIMENT_PREFLIGHT' if card['phase'] == 2
                 else 'NOT_SCAFFOLDED'
@@ -326,13 +339,37 @@ def main() -> dict:
         'historical_learner_contract_evidence': sum(row['historical_learner_contract_evidence'] for row in rows),
         'fixture_harnesses_validated': sum(row['fixture_harness_validated'] for row in rows),
         'conditionally_scaffold_supported': sum(row['assignability'] == 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' for row in rows),
+        'ready_to_attempt': sum(row['assignability'] == 'READY_TO_ATTEMPT' for row in rows),
         'assignable_now': sum(row['assignability'] == 'ASSIGNABLE' for row in rows),
         'learner_acceptance_runs_on_current_candidate': sum(row['learner_result'] != 'NOT_RUN_ON_CURRENT_CANDIDATE' for row in rows),
         'phase2_independent_experiment_contracts_mapped': sum(row['scaffold_strategy'] == 'PROGRESSIVELY_FADED_FIXTURE_AND_EVALUATION_CONTRACT' for row in rows),
         'phase2_hidden_fault_preflights_required': sum(row['scaffold_strategy'] == 'HIDDEN_FRESH_FAULT_SYMPTOMS_ONLY' for row in rows),
         'scaffold_families_started': len(executable),
     }
-    result = {'source_curriculum_sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(), 'counts': counts, 'assignments': rows}
+    source_sha256 = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    PARTITIONS.mkdir(parents=True, exist_ok=True)
+    partition_index = []
+    for first_day, last_day, chunk in partition_rows(rows):
+        relative = f"harness-matrix/rows-day-{first_day:03d}-{last_day:03d}.json"
+        target = OUT.parent / relative
+        target.write_text(json.dumps({
+            'source_curriculum_sha256': source_sha256,
+            'first_day': first_day,
+            'last_day': last_day,
+            'assignments': chunk,
+        }, indent=2, ensure_ascii=False) + '\n')
+        partition_index.append({'first_day': first_day, 'last_day': last_day, 'path': relative})
+    expected_names = {Path(item['path']).name for item in partition_index}
+    for stale in PARTITIONS.glob('rows-day-*.json'):
+        if stale.name not in expected_names:
+            stale.unlink()
+    result = {
+        'format': 'coverstory-harness-matrix-index-v1',
+        'source_curriculum_sha256': source_sha256,
+        'counts': counts,
+        'partition_size_days': PARTITION_SIZE,
+        'partitions': partition_index,
+    }
     OUT.write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n')
     print(json.dumps(counts, indent=2))
     return result

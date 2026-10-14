@@ -9,6 +9,7 @@ CoverStory is a learning simulation of an insurance marketplace. No insurer, pay
 ```mermaid
 flowchart LR
   Browser[React browser app] -->|same-origin API / session| API[Spring Boot API]
+  Browser -->|Vite local proxy /retrieval| CAP41[Loopback Python synthetic fixture service]
   API --> Catalog[Catalog module]
   API --> Shortlist[Shortlist module]
   API --> Application[Application module]
@@ -23,14 +24,14 @@ flowchart LR
   Support --> DB
 ```
 
-Start as a modular monolith. Each module owns its tables, repositories, validation, and application services. Cross-module calls use a public application interface; there are no cross-module repository imports. The runnable API shell exposes `401 /api/session` until auth is supplied and `GET /api/catalog` as an explicitly synthetic, health-only public read served through `CatalogPort`. The React shell consumes that route. Private shortlist persistence, owner identity and all transaction behavior remain unimplemented. Add Kafka, Redis, or another database only after a measured need and a written trade-off. They are not prerequisites for local startup.
+Start as a modular monolith. Each module owns its tables, repositories, validation, and application services. Cross-module calls use a public application interface; there are no cross-module repository imports. The runnable API shell exposes `401 /api/session` until auth is supplied and `GET /api/catalog` as an explicitly synthetic, health-only public read served through `CatalogPort`. React consumes that route. `POST /api/shortlist/selection-order` calls the CAP-40 learner seam only to order ephemeral public catalog references for compare; it does not read or persist an owner shortlist and returns 501 until the learner implements the seam. The local CAP-41 loopback service similarly calls its Python learner seam against a fixed synthetic fixture. CAP-42 and CAP-43 now have Catalog-owned evidence-total and sequential import-identity use-case boundaries; their SQL/map learner logic remains TODO and runs only through test harnesses until a persistence/auth adapter is supplied. Private shortlist persistence, owner identity and all transaction behavior remain unimplemented. Add Kafka, Redis, or another database only after a measured need and a written trade-off. They are not prerequisites for local startup.
 
 ## Module ownership
 
 | Module | Owns | Public collaboration surface |
 | --- | --- | --- |
 | Catalog | Synthetic insurer/product/plan catalog and versioned simulated quote inputs | Search and quote request interface |
-| Shortlist | Owner-scoped saved product references and list ordering | Add, remove, and list operations |
+| Shortlist | Owner-scoped saved product references | Authenticated add, remove, list; CAP-40 public-reference compare ordering is transient and does not authorize or persist a shortlist |
 | Application | Application journey and revisions; authoritative quote reference | Create, revise, and submit operations |
 | Payments | Simulated payment intents, idempotency keys, and immutable journal | Begin, confirm, cancel, reconcile operations |
 | Policy | Simulated dispatch and policy state transitions | Dispatch request and provider-result operations |

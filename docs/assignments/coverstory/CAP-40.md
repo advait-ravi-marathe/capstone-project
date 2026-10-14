@@ -12,7 +12,7 @@
 
 This is the instructor scaffold for the supplied first-day contract. Learner logic remains TODO. Test-only reference witnesses check the positive first-seen pair contract and reject version-only identity and sorting defects. The separate learner acceptance run still stops at the TODO seam. The public synthetic discovery dependency now runs through the Catalog module port and is exercised through the actual Spring application and React browser shell; it does not implement the CAP-40 shortlist seam or private shortlist persistence. The selected cloud checkout completed Java/Maven compilation, instructor test discovery, and the linked Python fixture preflight; see [environment preflight](../../evidence/coverstory/CAP-40/environment-preflight.json). The assignment is `READY_TO_ATTEMPT`; this says the executor can run the harness, not that the learner seam is complete.
 
-The source budget remains 95 minutes maximum for the capstone work. The timebox is `TIMEBOX_NOT_VALIDATED` because learner task duration has not been measured; record elapsed slices during the first attempt and stop or rescope explicitly at the cap. Missing timing rehearsal is tracked separately from environment readiness and does not indefinitely prevent starting. A rapid instructor test run is not evidence that the learner task fits.
+The source budget remains 95 minutes maximum for the capstone work. The timebox is `TIMEBOX_NOT_VALIDATED` because learner task duration has not been measured; record elapsed slices during the first attempt and stop or rescope explicitly at the cap. Missing timing rehearsal is tracked separately from environment readiness and does not prevent starting. The executor preflight supports `READY_TO_ATTEMPT`; it is not a completion or mastery claim. A rapid instructor test run is not evidence that the learner task fits.
 
 | Scheduled activity | Minutes |
 | --- | ---: |
@@ -33,6 +33,10 @@ The capstone envelope is **95 minutes maximum**, including the linked CAP-41 com
 3. Retrieve exact synthetic public wording and return traceable citations through the linked CAP-41 function in `ai/retrieval/coverstory_health.py`. The supplied lowercase whitespace tokenizer is instructor-owned; ranking, zero-score exclusion, deterministic source ordering, `k` validation, and citation selection remain learner work.
 
 A device scope is local identity, never authentication or permission to read a saved shortlist. No health answers or real consumer data belong in these fixtures. CAP-40/CAP-41 acceptance tests are learner tests and intentionally fail against the TODO stubs.
+
+## Running app boundary
+
+The app now calls the same `SelectionOrderer` boundary from `POST /api/shortlist/selection-order` when a visitor chooses “Compare selected.” React sends only the ephemeral tab-local scope and selected public catalog version IDs. The endpoint has no persistence adapter, owner lookup, or private data access; device scope is not authorization. Until `uniqueSelections` is implemented the route returns HTTP 501, and the browser shows that compare is waiting on this learner task. After implementation, first-seen composite-key order from the seam will control the visible compare order. Do not add persistence or authorize a saved shortlist as part of this contract.
 
 ## Acceptance cases
 
@@ -64,7 +68,7 @@ There is no model call, external request, medical advice, or invented citation.
 ## Scaffold paths and commands
 
 - Instructor DTOs/public seam: `src/main/java/coverstory/modules/shortlist/api/`.
-- Learner acceptance: `src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java`; instructor positive/negative witness and fixture check: `src/test/java/coverstory/modules/shortlist/CAP40ScaffoldInfrastructureTest.java`.
+- Learner acceptance: `src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java`; instructor positive/negative witness and fixture check: `src/test/java/coverstory/modules/shortlist/CAP40ScaffoldInfrastructureTest.java`; test-only HTTP route witness: `src/test/java/coverstory/modules/shortlist/ShortlistSelectionControllerInfrastructureTest.java`.
 - CAP-40 synthetic fixture: `fixtures/coverstory/CAP-40/synthetic-v1.json`.
 - CAP-41 instructor types/tokenizer and learner TODO: `ai/retrieval/coverstory_health.py`.
 - CAP-41 acceptance and infrastructure tests: `ai/tests/test_coverstory_cap41_acceptance.py`, `ai/tests/test_coverstory_cap41_infrastructure.py`.
@@ -81,9 +85,11 @@ Both commands are expected to fail on the explicit learner TODOs. Instructor-onl
 ```sh
 mvn -Dtest=CAP40ScaffoldInfrastructureTest test
 python3 -m unittest discover -s ai/tests -p test_coverstory_cap41_infrastructure.py
+python3 -m unittest ai.tests.test_coverstory_cap41_http
+mvn -Dtest=ShortlistSelectionControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test
 ```
 
-The instructor witness accepts an exact pair/order implementation and rejects a version-only key and a sorted-order defect. The learner test command is expected to stop at the explicit TODO. Do not count this as a passing learner outcome. The local setup check and elapsed command time appear in the [candidate validation receipt](evidence/harness-candidate-2026-10-14.md); the learner's time-to-completion remains unmeasured.
+The instructor witness accepts an exact pair/order implementation and rejects a version-only key and a sorted-order defect. The HTTP witness verifies that a correct seam result controls browser comparison order; a separate actual-app test verifies that the unimplemented learner seam currently returns 501. The learner test command is expected to stop at the explicit TODO. Do not count this as a passing learner outcome. Current endpoint verification is in [Day 001 integration evidence](../../evidence/coverstory/CAP-40/integration-result.json). The [candidate receipt](evidence/harness-candidate-2026-10-14.md) is historical and pinned to its recorded candidate commit; the learner's time-to-completion remains unmeasured.
 
 ## Day allocation details retained from the source contract
 

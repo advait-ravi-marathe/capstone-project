@@ -6,8 +6,8 @@ These contracts establish ownership and safe integration seams. They do not comp
 
 | Owner | Source package | Allowed public surface | Learner-owned behavior |
 | --- | --- | --- | --- |
-| Catalog | `coverstory.modules.catalog` | Versioned synthetic offer references and catalog port | Search rules, comparison, quote semantics |
-| Shortlist | `coverstory.modules.shortlist` | Owner-scoped shortlist port | Authorization, duplicate handling, ordering |
+| Catalog | `coverstory.modules.catalog` | Versioned synthetic offer references, `CatalogEvidenceTotalsPort`, sequential `CatalogImportIdentityPort` | Search rules, CAP-42 control-total SQL, CAP-43 exact-key classification, comparison, quote semantics |
+| Shortlist | `coverstory.modules.shortlist` | Owner-scoped `ShortlistPort`; `SelectionOrderer` for ephemeral public-reference compare ordering | Authorization, saved-shortlist duplicate handling, and learner implementation of CAP-40 ordering |
 | Application | `coverstory.modules.application` | Authoritative resume state and revision-checked submission result | Owner checks, revision rules, journey state machine |
 | Payments | `coverstory.modules.payments` | Integer minor-unit money and simulated payment port | Durable idempotency flow, cancel/refund/reconcile outcomes |
 | Policy | `coverstory.modules.policy` | Simulated dispatch port and explicit dispatch states | Dispatch confirmation and safe transitions |

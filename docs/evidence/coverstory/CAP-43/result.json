@@ -1,0 +1,35 @@
+{
+  "day_id": "CAP-43",
+  "date": "2026-10-15",
+  "classification": "linked_component_in_shared_CAP-42_day_budget",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_result": "PASS_CURRENT_EXECUTOR",
+  "current_executor_rerun": "PASS",
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-43/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "70a791e430c0443c508af50932c42e2b6b3e459f0ca56a3ff395ef6333f756e9",
+    "case_count": 5
+  },
+  "instructor_checks": {
+    "command": "mvn -Dtest=CAP43InstructorInfrastructureTest test",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASS",
+    "scope": "fixture parsing, exact-key sequential policy witness, no-mutation classification, and version-only identity mutant"
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP43AcceptanceTest test",
+    "tests": 5,
+    "failures": 0,
+    "errors": 5,
+    "status": "EXPECTED_ERRORS_AT_UNIMPLEMENTED_TODO",
+    "observed_in_current_executor": true
+  },
+  "verification_environment": "Temporary Java 21.0.12.1 JDK assembled under /tmp from the official Debian trixie package. SHA-256 matched apt metadata. Maven 3.10.0 and the existing temporary proxy settings were used; no system installation or persistent security setting changed.",
+  "limits": [
+    "This is a sequential in-memory contract only; it does not provide durable idempotency or concurrency safety.",
+    "No authentication, import publication approval, or external provider behavior is implemented."
+  ]
+}

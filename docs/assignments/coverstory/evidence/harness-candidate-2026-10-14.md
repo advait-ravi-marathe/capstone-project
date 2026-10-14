@@ -1,6 +1,6 @@
-# Candidate harness receipt — 14 October 2026
+# Historical candidate harness receipt — 14 October 2026
 
-This receipt describes the current local candidate on `feature/coverstory-capstone-starter`. It does not mark any learner assignment complete or ready. Preserve raw Maven reports under the ignored `target/surefire-reports/` output when reproducing.
+This is a historical snapshot pinned to candidate commit `e7236826708b480f7ac1dc6e57750466882fd5cd` on `feature/coverstory-capstone-starter`. Its counts and readiness statements describe that candidate only; they are not current status. Preserve raw Maven reports under the ignored `target/surefire-reports/` output when reproducing.
 
 ## Instructor setup checks
 
@@ -19,8 +19,8 @@ This receipt describes the current local candidate on `feature/coverstory-capsto
 - Python CoverStory acceptance: **33 tests, 38 reported errors** across the primary/component Python seams (CAP-41/44/53/56/59/61/62); all observed traces terminate at explicit `NotImplementedError` learner seams. Subtest error totals can exceed test method totals. No discovery or fixture parsing error was observed.
 - Java/PostgreSQL learner acceptance: **40 tests, 12 assertion failures and 26 errors** across CAP-40/42/46/48/50/54/55/57/165, all at unimplemented learner seams; the four CAP-57 tests reached its explicit TODO after PostgreSQL setup succeeded. CAP-42/48 intentionally return zero rows until their learner SQL TODOs are written. CAP-40/50/54 invalid-input cases reach the starter `UnsupportedOperationException` TODO before learner validation can be assessed; these do not establish the required invalid-input behavior.
 - Existing generic ranking acceptance: **10 tests, 15 reported errors**, all at its existing CAP-44 `NotImplementedError`. This legacy suite remains separate from the CoverStory fixture suite.
-- All fifteen authored primary families have current-candidate learner acceptance runs; the linked CAP-41 component suite also ran. Every current behavior result is an expected TODO stop, not mastery or a pass. CAP-40 remains conditional: its instructor setup run is measured at 4.03 seconds, while the learner's implementation duration is unmeasured. No 95-minute simulated wait was run.
+- At this historical candidate, all fifteen then-authored primary families had learner acceptance runs, and the linked CAP-41 suite had also run. Every behavior result was an expected TODO stop, not mastery or a pass. The recorded CAP-40 instructor setup run took 4.03 seconds; learner implementation duration was unmeasured. No 95-minute simulated wait was run.
 
 ## Remaining readiness work
 
-All fifteen authored scaffold families remain conditional. Required work includes a realistic learner task-time rehearsal, broader correct/defective witness discrimination per family, and checking each day's complete timebox and prerequisites. The 4.03-second instructor run bounds only setup checks; it does not estimate learner coding time. CAP-54's public catalog `200` integration also awaits the learner catalog route. Phase 2's one hidden-fault experiment still requires a private fresh-fault preflight and symptom-only learner brief. The other 579 primary days remain mapped-only. The product's actual authentication/owned-journey authorization and complete business workflows remain unfinished.
+At the pinned historical candidate, all fifteen then-authored scaffold families were considered conditional. The current checkout has since added more instructor scaffolds and an actual public catalog route. The 4.03-second instructor run still does not estimate learner coding time. Phase 2's one hidden-fault experiment still requires a private fresh-fault preflight and symptom-only learner brief. The product's actual authentication/owned-journey authorization and complete business workflows remain unfinished.

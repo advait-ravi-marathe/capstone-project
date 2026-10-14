@@ -1,0 +1,23 @@
+{
+  "day_id": "CAP-47",
+  "date": "2026-10-17",
+  "classification": "linked_component_shares_CAP-46_day_budget",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS",
+  "instructor_check": {
+    "command": "python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap47_infrastructure.py'",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_47.py'",
+    "methods": 4,
+    "expected_errors_at_not_implemented_todo": 4
+  },
+  "scope": [
+    "Independent evaluator checks require exact allowed source/version evidence and distinguish citation presence from support.",
+    "Missing/extra answer IDs, foreign citations, and abstention-with-citations are included in the fixture oracle.",
+    "This synthetic citation metric does not establish factual, legal, medical, or insurance suitability."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "fixture_id": "CAP-45-synthetic-v1",
+  "classification": "SYNTHETIC",
+  "window": {"from": "2026-10-13T00:00:00Z", "to": "2026-10-14T00:00:00Z"},
+  "cases": [
+    {"id": "CAP-45-CS-01", "editor": "editor-E", "source": "source-A", "version": "v1", "amount_minor": 10000, "attempts": 2},
+    {"id": "CAP-45-CS-01", "editor": "editor-E", "source": "source-B", "version": "v1", "amount_minor": 2000, "attempts": 0},
+    {"id": "CAP-45-CS-02", "editor": "editor-F", "source": "source-B", "version": "v1", "amount_minor": 8000, "attempts": 1},
+    {"id": "CAP-45-CS-03", "editor": "editor-E", "source": "source-C", "version": "v1", "amount_minor": null, "attempts": 1}
+  ],
+  "attempts_after_capture_window": true,
+  "expected_editor_E_known_amount_total_minor": 12000
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import type { Session } from '../state/session'
 
@@ -20,6 +20,10 @@ type CatalogResponse = { schemaMajor: 1; offers: Array<{
   evidenceStatus: 'SYNTHETIC'; waitingPeriodStatus: 'UNKNOWN'; copayStatus: 'UNKNOWN'
   networkStatus: 'UNKNOWN'; sourceLabel: string
 }> }
+type Selection = { deviceScope: string; catalogVersionId: string }
+type SelectionOrderResponse = { schemaMajor: 1; selections: Selection[] }
+type WordingHit = { source_id: string; version: string; evidence_status: 'SYNTHETIC'; excerpt: string; score: number }
+type WordingResponse = { schemaMajor: 1; classification: 'SYNTHETIC'; hits: WordingHit[] }
 
 async function fetchPublicCatalog(category: Category, signal: AbortSignal): Promise<Plan[]> {
   const response = await fetch(`/api/catalog?category=${encodeURIComponent(category)}`, {
@@ -51,6 +55,55 @@ function isCatalogResponse(value: unknown): value is CatalogResponse {
     'sourceLabel' in offer && typeof offer.sourceLabel === 'string')
 }
 
+function isSelectionOrderResponse(value: unknown): value is SelectionOrderResponse {
+  return typeof value === 'object' && value !== null && 'schemaMajor' in value && value.schemaMajor === 1 &&
+    'selections' in value && Array.isArray(value.selections) && value.selections.every((item) =>
+      typeof item === 'object' && item !== null && 'deviceScope' in item && typeof item.deviceScope === 'string' &&
+      'catalogVersionId' in item && typeof item.catalogVersionId === 'string')
+}
+
+function isWordingResponse(value: unknown): value is WordingResponse {
+  return typeof value === 'object' && value !== null && 'schemaMajor' in value && value.schemaMajor === 1 &&
+    'classification' in value && value.classification === 'SYNTHETIC' && 'hits' in value &&
+    Array.isArray(value.hits) && value.hits.every((hit) => typeof hit === 'object' && hit !== null &&
+      'source_id' in hit && typeof hit.source_id === 'string' && 'version' in hit && typeof hit.version === 'string' &&
+      'evidence_status' in hit && hit.evidence_status === 'SYNTHETIC' && 'excerpt' in hit &&
+      typeof hit.excerpt === 'string' && 'score' in hit && typeof hit.score === 'number')
+}
+
+async function orderSelections(selections: Selection[], signal: AbortSignal): Promise<Selection[]> {
+  const response = await fetch('/api/shortlist/selection-order', {
+    method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ selections }), signal,
+  })
+  if (!response.ok) throw new Error(response.status === 501
+    ? 'CAP-40 selection ordering is still a learner task. The compare preview is waiting for that implementation.'
+    : `Selection order could not be loaded (${response.status}).`)
+  const raw: unknown = await response.json()
+  if (!isSelectionOrderResponse(raw)) throw new Error('Selection order response was invalid.')
+  const allowed = new Set(selections.map((item) => `${item.deviceScope}\u0000${item.catalogVersionId}`))
+  const seen = new Set<string>()
+  for (const item of raw.selections) {
+    const key = `${item.deviceScope}\u0000${item.catalogVersionId}`
+    if (!allowed.has(key) || seen.has(key)) throw new Error('Selection order response did not match the requested public examples.')
+    seen.add(key)
+  }
+  return raw.selections
+}
+
+async function fetchWording(query: string, signal: AbortSignal): Promise<WordingHit[]> {
+  const response = await fetch('/retrieval/health', {
+    method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, k: 3 }), signal,
+  })
+  if (!response.ok) throw new Error(response.status === 501
+    ? 'CAP-41 citation retrieval is still a learner task. No wording has been returned.'
+    : `Synthetic wording search failed (${response.status}).`)
+  const raw: unknown = await response.json()
+  if (!isWordingResponse(raw)) throw new Error('Synthetic wording response was invalid.')
+  return raw.hits
+}
+
 const categories: { id: Category; number: string; title: string; text: string }[] = [
   { id: 'health', number: '01', title: 'Health', text: 'Understand waiting periods, exclusions, and what is still unknown.' },
   { id: 'term', number: '02', title: 'Term life', text: 'Explore cover duration, disclosures, and the offer process.' },
@@ -67,8 +120,14 @@ function categoryFromUrl(): Category {
 
 export function Marketplace({ session, sessionStatus }: { session: Session | null; sessionStatus: 'checking' | 'unavailable' | 'ready' }) {
   const [category, setCategory] = useState<Category>(categoryFromUrl)
-  const [selected, setSelected] = useState<string[]>([])
+  const [deviceScope] = useState(() => crypto.randomUUID())
+  const [selected, setSelected] = useState<Selection[]>([])
+  const [orderedSelection, setOrderedSelection] = useState<Selection[] | null>(null)
+  const [compareError, setCompareError] = useState<string | null>(null)
   const [comparing, setComparing] = useState(false)
+  const [wordingInput, setWordingInput] = useState('')
+  const [wordingSearch, setWordingSearch] = useState<string | null>(null)
+  const compareGeneration = useRef(0)
   const catalogQuery = useQuery({
     queryKey: ['public', 'catalog', category],
     queryFn: ({ signal }) => fetchPublicCatalog(category, signal),
@@ -76,11 +135,28 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
     retry: 0,
   })
   const visiblePlans = catalogQuery.data ?? []
+  const wordingQuery = useQuery({
+    queryKey: ['public', 'synthetic-wording', wordingSearch],
+    queryFn: ({ signal }) => fetchWording(wordingSearch ?? '', signal),
+    enabled: wordingSearch !== null,
+    staleTime: 0,
+    retry: 0,
+  })
 
   useEffect(() => {
-    const syncCategory = () => setCategory(categoryFromUrl())
+    const syncCategory = () => {
+      setCategory(categoryFromUrl())
+      setSelected([])
+      setOrderedSelection(null)
+      setCompareError(null)
+      setComparing(false)
+      compareGeneration.current += 1
+    }
     window.addEventListener('popstate', syncCategory)
-    return () => window.removeEventListener('popstate', syncCategory)
+    return () => {
+      window.removeEventListener('popstate', syncCategory)
+      compareGeneration.current += 1
+    }
   }, [])
 
   function chooseCategory(next: Category) {
@@ -89,17 +165,47 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
     window.history.pushState({}, '', url)
     setCategory(next)
     setSelected([])
+    setOrderedSelection(null)
+    setCompareError(null)
     setComparing(false)
+    compareGeneration.current += 1
   }
 
-  function togglePlan(id: string) {
-    setComparing(false)
-    setSelected((current) => current.includes(id)
-      ? current.filter((item) => item !== id)
-      : current.length < 3 ? [...current, id] : current)
+  function selectionFor(plan: Plan): Selection {
+    return { deviceScope, catalogVersionId: `${plan.id}@${plan.version}` }
   }
 
-  const selectedPlans = visiblePlans.filter((plan) => selected.includes(plan.id))
+  function togglePlan(plan: Plan) {
+    setComparing(false)
+    setOrderedSelection(null)
+    setCompareError(null)
+    compareGeneration.current += 1
+    const next = selectionFor(plan)
+    setSelected((current) => current.some((item) => item.catalogVersionId === next.catalogVersionId)
+      ? current.filter((item) => item.catalogVersionId !== next.catalogVersionId)
+      : current.length < 3 ? [...current, next] : current)
+  }
+
+  async function compareSelected() {
+    setCompareError(null)
+    setComparing(false)
+    const requestGeneration = ++compareGeneration.current
+    try {
+      const ordered = await orderSelections(selected, new AbortController().signal)
+      if (requestGeneration !== compareGeneration.current) return
+      if (ordered.length < 2) throw new Error('Choose at least two distinct public examples to compare.')
+      setOrderedSelection(ordered)
+      setComparing(true)
+    } catch (error) {
+      if (requestGeneration !== compareGeneration.current) return
+      setCompareError(error instanceof Error ? error.message : 'Selection order could not be loaded.')
+    }
+  }
+
+  const selectedVersionIds = new Set(selected.map((item) => item.catalogVersionId))
+  const selectedPlans = orderedSelection === null ? [] : orderedSelection
+    .map((item) => visiblePlans.find((plan) => selectionFor(plan).catalogVersionId === item.catalogVersionId))
+    .filter((plan): plan is Plan => plan !== undefined)
 
   return (
     <div className="page-shell">
@@ -144,7 +250,8 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
           <div className="section-heading"><div><p className="eyebrow">{categoryLabel[category].toUpperCase()} / SYNTHETIC FIXTURE</p><h2 id="catalog-title">{category === 'health' ? 'Make a shortlist.' : `${categoryLabel[category]} examples are not loaded yet.`}</h2></div><span className="source-pill">No payable quotes</span></div>
             {category === 'health' ? <>
             <p className="section-intro">These named synthetic examples exercise comparison behavior. They do not contain insurer-authored terms or prices.</p>
-            <div className="selection-toolbar" id="shortlist"><span><strong>{selected.length}</strong> of 3 selected</span><button type="button" className="primary-button compact-button" disabled={selected.length < 2} onClick={() => setComparing(true)}>Compare selected</button></div>
+            <div className="selection-toolbar" id="shortlist"><span><strong>{selected.length}</strong> of 3 selected</span><button type="button" className="primary-button compact-button" disabled={selected.length < 2} onClick={() => void compareSelected()}>Compare selected</button></div>
+            {compareError && <p className="notice" role="alert">{compareError}</p>}
             {catalogQuery.isPending && <p role="status">Loading synthetic catalog examples…</p>}
             {catalogQuery.isError && <p className="notice" role="alert">Catalog examples could not be loaded. Retry after the local API is available.</p>}
             {selected.length === 3 && <p className="inline-note" role="status">The maximum is three same-category examples.</p>}
@@ -154,7 +261,7 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
                 <h3>{plan.name}</h3><p className="version-line">Health · illustrative record · {plan.version}</p>
                 <dl className="plan-facts"><div><dt>Waiting periods</dt><dd>Unknown</dd></div><div><dt>Co-pay / deductible</dt><dd>Unknown</dd></div><div><dt>Network</dt><dd>Not verified</dd></div></dl>
                 <p className="source-caption">{plan.sourceLabel} · {plan.id}</p>
-                <label className="selection-control"><input type="checkbox" checked={selected.includes(plan.id)} disabled={!selected.includes(plan.id) && selected.length >= 3} onChange={() => togglePlan(plan.id)} /><span>Add to shortlist</span></label>
+                <label className="selection-control"><input type="checkbox" checked={selectedVersionIds.has(selectionFor(plan).catalogVersionId)} disabled={!selectedVersionIds.has(selectionFor(plan).catalogVersionId) && selected.length >= 3} onChange={() => togglePlan(plan)} /><span>Add to compare preview</span></label>
               </article>)}
             </div>
             {comparing && selectedPlans.length >= 2 && <section className="compare-panel" aria-labelledby="compare-title" aria-live="polite">
@@ -165,6 +272,22 @@ export function Marketplace({ session, sessionStatus }: { session: Session | nul
               </tbody></table></div>
               <p className="payable-note">This fixture cannot continue to payable review. A later API must provide a supported scenario, current source version, explicit terms, and a complete quote.</p>
             </section>}
+            <section className="source-notes" aria-labelledby="wording-search-title">
+              <div><p className="eyebrow">CAP-41 / LOCAL RETRIEVAL PRACTICE</p><h2 id="wording-search-title">Find a synthetic wording excerpt.</h2></div>
+              <p>These fixture phrases are not policy language, coverage terms, or insurer evidence. Search runs against the fixed local fixture and returns source IDs and versions.</p>
+              <form onSubmit={(event) => { event.preventDefault(); setWordingSearch(wordingInput) }}>
+                <label htmlFor="wording-query">Search fixture phrases</label>
+                <input id="wording-query" value={wordingInput} maxLength={200} onChange={(event) => setWordingInput(event.target.value)} />
+                <button type="submit" className="secondary-button">Search synthetic excerpts</button>
+              </form>
+              {wordingQuery.isFetching && <p role="status">Searching fixed synthetic wording…</p>}
+              {wordingQuery.isError && <p className="notice" role="alert">{wordingQuery.error.message}</p>}
+              {wordingQuery.data && (wordingQuery.data.length === 0
+                ? <p role="status">No matching synthetic excerpt. No policy conclusion is inferred.</p>
+                : <ol>{wordingQuery.data.map((hit) => <li key={`${hit.source_id}:${hit.version}`}>
+                  <q>{hit.excerpt}</q> <span>{hit.source_id} · {hit.version} · {hit.evidence_status} · score {hit.score}</span>
+                </li>)}</ol>)}
+            </section>
             </> : <div className="notice">This category entry point is present in the instructor shell. Its category-specific synthetic fixture and acceptance seam have not been loaded.</div>}
         </section>
 

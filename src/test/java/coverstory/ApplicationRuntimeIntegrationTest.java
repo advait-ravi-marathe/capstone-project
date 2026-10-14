@@ -23,6 +23,8 @@ class ApplicationRuntimeIntegrationTest {
                 .web(WebApplicationType.SERVLET)
                 .properties("server.port=0", "spring.main.banner-mode=off", "logging.level.root=ERROR")
                 .run()) {
+            assertNotNull(context.getBean(coverstory.modules.catalog.CatalogImportIdentityService.class),
+                    "the CAP-43 learner seam is wired through the Catalog module service");
             int port = ((WebServerApplicationContext) context).getWebServer().getPort();
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> catalog = client.send(HttpRequest.newBuilder(URI.create(
@@ -34,6 +36,14 @@ class ApplicationRuntimeIntegrationTest {
             assertEquals(3, payload.path("offers").size());
             assertEquals("SYNTHETIC", payload.path("offers").get(0).path("evidenceStatus").asText());
             assertFalse(payload.path("offers").get(0).has("price"));
+
+            HttpResponse<String> selectionOrder = client.send(HttpRequest.newBuilder(URI.create(
+                            "http://127.0.0.1:" + port + "/api/shortlist/selection-order"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString("{\"selections\":[{\"deviceScope\":\"tab-A\",\"catalogVersionId\":\"10000000-0000-4000-8000-000000000001@v1\"}]}"))
+                    .build(), HttpResponse.BodyHandlers.ofString());
+            assertEquals(501, selectionOrder.statusCode(),
+                    "the running app must expose the preserved CAP-40 learner TODO safely");
 
             HttpResponse<String> session = client.send(HttpRequest.newBuilder(URI.create(
                             "http://127.0.0.1:" + port + "/api/session"))

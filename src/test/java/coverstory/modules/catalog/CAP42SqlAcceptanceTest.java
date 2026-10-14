@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +35,7 @@ class CAP42SqlAcceptanceTest {
         assertEquals(0, result.count); assertEquals(0, BigDecimal.ZERO.compareTo(result.amount));
     }
     @Test void numericSumDoesNotOverflowIntegerOrLosePrecision() throws Exception {
-        var result = query("editor-E", "2026-10-13T14:00:00Z", "2026-10-13T16:00:00Z");
+        var result = query("editor-E", "2026-10-12T14:00:00Z", "2026-10-12T16:00:00Z");
         assertEquals(2, result.count); assertEquals(0, new BigDecimal("10000000001").compareTo(result.amount));
     }
     @Test void schemaRejectsMixedCurrencyInsteadOfSummingIt() throws Exception {
@@ -47,15 +46,11 @@ class CAP42SqlAcceptanceTest {
     }
 
     private static Result query(String editor, String from, String to) throws Exception {
-        String sql = resource("/coverstory/catalog/cap_42.sql");
-        try (Connection c = postgres.getPostgresDatabase().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
-            p.setString(1, editor); p.setObject(2, java.time.OffsetDateTime.parse(from)); p.setObject(3, java.time.OffsetDateTime.parse(to));
-            try (ResultSet r = p.executeQuery()) {
-                assertTrue(r.next(), "query returns exactly one aggregate row");
-                Result result = new Result(r.getLong("published_count"), r.getBigDecimal("known_base_total_minor"));
-                assertFalse(r.next()); return result;
-            }
-        }
+        CatalogEvidenceTotalsUseCase useCase = new CatalogEvidenceTotalsUseCase(
+                new CAP42SqlPortAdapter(postgres.getPostgresDatabase()));
+        CatalogEvidenceTotals totals = useCase.forWindow(editor,
+                java.time.OffsetDateTime.parse(from), java.time.OffsetDateTime.parse(to));
+        return new Result(totals.publishedCount(), totals.knownBaseTotalMinor());
     }
     private static void execute(String resource) throws Exception {
         try (Connection c = postgres.getPostgresDatabase().getConnection(); Statement s = c.createStatement()) {
@@ -68,5 +63,5 @@ class CAP42SqlAcceptanceTest {
             return new String(in.readAllBytes(), StandardCharsets.UTF_8);
         }
     }
-    private record Result(long count, BigDecimal amount) { }
+    private record Result(long count, java.math.BigDecimal amount) { }
 }
