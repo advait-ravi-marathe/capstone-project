@@ -88,9 +88,10 @@ def main() -> dict:
         'CAP-166': 'typescript_additive_catalog_envelope_decoder',
         'CAP-167': 'java_bounded_publication_trace_diagnostics',
         'CAP-52': 'spring_catalog_import_adapter',
+        'CAP-58': 'java_allowlisted_analytics_batch_validation',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167'}
-    authored_ids.add('CAP-52')
+    authored_ids.update({'CAP-52', 'CAP-58'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -152,6 +153,7 @@ def main() -> dict:
         'CAP-166': 'web/src/coverstory/catalog/decodeCatalogEnvelope.ts',
         'CAP-167': 'src/main/java/coverstory/modules/catalog/api/CAP167Seam.java',
         'CAP-52': 'src/main/java/coverstory/modules/catalog/api/CAP52Seam.java',
+        'CAP-58': 'src/main/java/coverstory/modules/analytics/api/CAP58Seam.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -206,6 +208,7 @@ def main() -> dict:
         'CAP-166': 'web/scripts/catalog-envelope-acceptance.mjs',
         'CAP-167': 'src/test/java/coverstory/modules/catalog/CAP167AcceptanceTest.java',
         'CAP-52': 'src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java',
+        'CAP-58': 'src/test/java/coverstory/modules/analytics/CAP58AcceptanceTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -233,6 +236,7 @@ def main() -> dict:
         'CAP-52': 'MockMvc transport boundary and fake decision port only; trusted-principal authentication adapter and durable idempotency are not wired.',
         'CAP-166': 'Synthetic fixture and compiled learner seam only; decoder remains TODO and React/API/PostgreSQL customer slice is deferred.',
         'CAP-167': 'Bounded offline trace oracle only; learner checker remains TODO and no broker or publication worker is used.',
+        'CAP-58': 'Independent local schema/privacy oracle only; learner validator remains TODO, and no HTTP ingestion, durable idempotency, storage, journey authorization or browser retry queue is wired.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []

@@ -1,0 +1,10 @@
+{
+  "assignment": "CAP-58",
+  "classification": "INSTRUCTOR_OFFLINE_PRIVACY_AND_BYTE_BOUNDARY_ORACLE",
+  "fixture_sha256": "03595c1783944271f9a214424eebc366527462b63c86a2078d382fed28110b64",
+  "command": "mvn -Dtest=CAP58InstructorInfrastructureTest test",
+  "result": "PASS",
+  "tests": 4,
+  "validated": ["synthetic contract bounds", "allowlisted event shapes", "unknown/sensitive field rejection", "integer duration limits", "UTF-8 byte cap arithmetic"],
+  "http_ingestion_or_persistence": "NOT_EXERCISED"
+}
