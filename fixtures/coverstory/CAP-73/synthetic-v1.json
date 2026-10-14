@@ -1,0 +1,9 @@
+{
+  "fixture_version": 1,
+  "purpose": "synthetic split-integrity cases; no real health or payment data",
+  "development": [{"case_id":"d1","question":"How do I update my policy?","source_family_id":"family-A","label":"synthetic-dev"}],
+  "golden": [{"case_id":"g1","question":"When does my claim get reviewed?","source_family_id":"family-B","label":"synthetic-heldout"}],
+  "overlap_case_id": {"development":[{"case_id":"same","question":"A question","source_family_id":"family-A"}],"golden":[{"case_id":"same","question":"Another question","source_family_id":"family-B"}]},
+  "overlap_question": {"development":[{"case_id":"d2","question":"What is my claim status?","source_family_id":"family-A"}],"golden":[{"case_id":"g2","question":"  WHAT IS MY claim   status? ","source_family_id":"family-B"}]},
+  "overlap_family": {"development":[{"case_id":"d3","question":"Question about waiting period","source_family_id":"policy-series-X"}],"golden":[{"case_id":"g3","question":"Different question about exclusions","source_family_id":"policy-series-X"}]}
+}
