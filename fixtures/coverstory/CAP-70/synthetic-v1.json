@@ -1,0 +1,72 @@
+{
+  "assignment": "CAP-70",
+  "classification": "SYNTHETIC_PROTECTED_ENVELOPE_BYTE_PRESERVATION_FIXTURE",
+  "actual_customer_data": false,
+  "plaintext_persisted": false,
+  "fixed_vectors": [
+    {
+      "object_id": "70000000-0000-4000-8000-000000000010",
+      "object_revision": 3,
+      "nonce": "AAECAwQFBgcICQoL",
+      "ciphertext_with_tag": "BEOGLPXIkULDFd/O5aA7QNWTxGC/KXI9U3t0k9y8iBqeUv7nf+PZUw==",
+      "aad": "70000000-0000-4000-8000-000000000010:revision:3:APPLICATION_ANSWERS"
+    },
+    {
+      "object_id": "70000000-0000-4000-8000-000000000011",
+      "object_revision": 1,
+      "nonce": "DA0ODxAREhMUFRYX",
+      "ciphertext_with_tag": "2785709brwp5fgCQxcJlygNGrrq5Lxbo9htDNHeeMatPv93ZYuzVNQ==",
+      "aad": "70000000-0000-4000-8000-000000000011:revision:1:APPLICATION_ANSWERS"
+    }
+  ],
+  "valid_envelopes": [
+    {
+      "envelope_id": "70000000-0000-4000-8000-000000000001",
+      "owner_id": "70000000-0000-4000-8000-000000000002",
+      "object_id": "70000000-0000-4000-8000-000000000010",
+      "object_revision": 3,
+      "ciphertext_with_tag": "BEOGLPXIkULDFd/O5aA7QNWTxGC/KXI9U3t0k9y8iBqeUv7nf+PZUw==",
+      "nonce": "AAECAwQFBgcICQoL",
+      "wrapped_dek": "d3JhcHBlZC1maXh0dXJlLWRlay0wMDAwMDAwMDAwMDE=",
+      "kek_reference": "fixture-kek-v1",
+      "encryption_version": 1
+    },
+    {
+      "envelope_id": "70000000-0000-4000-8000-000000000003",
+      "owner_id": "70000000-0000-4000-8000-000000000002",
+      "object_id": "70000000-0000-4000-8000-000000000011",
+      "object_revision": 1,
+      "ciphertext_with_tag": "2785709brwp5fgCQxcJlygNGrrq5Lxbo9htDNHeeMatPv93ZYuzVNQ==",
+      "nonce": "DA0ODxAREhMUFRYX",
+      "wrapped_dek": "d3JhcHBlZC1maXh0dXJlLWRlay0wMDAwMDAwMDAwMDI=",
+      "kek_reference": "fixture-kek-v1",
+      "encryption_version": 1
+    }
+  ],
+  "expected_ciphertext_sha256": [
+    "1219521eb3f75b6737f44ee383dcb8e6c50c34e425c32498e9769d757b7d28a1",
+    "a9a74960d7b4219a19f0ad923a89f7587d7ac2d92ac10db3f106e6381400d849"
+  ],
+  "cases": [
+    {
+      "id": "CAP-70-CS-01",
+      "status": "EXPECTED_NOT_RUN"
+    },
+    {
+      "id": "CAP-70-CS-02",
+      "status": "EXPECTED_NOT_RUN"
+    },
+    {
+      "id": "CAP-70-CS-03",
+      "status": "EXPECTED_NOT_RUN"
+    },
+    {
+      "id": "CAP-70-CS-04",
+      "status": "EXPECTED_NOT_RUN"
+    },
+    {
+      "id": "CAP-70-CS-05",
+      "status": "EXPECTED_NOT_RUN"
+    }
+  ]
+}
