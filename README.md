@@ -1,129 +1,31 @@
-# Capstone starter
+# CoverStory marketplace capstone
 
-This clean starter begins with CAP-43, a small Java event-policy exercise. It
-uses Java 21 and Maven. The assignment code and its fixed tests are supplied;
-the classification and acceptance behavior remain learner work.
+This repository is the instructor-owned setup layer for a learner-built insurance marketplace. The product is a **simulation**: insurer offers, eligibility, payments, refunds, dispatch, and cover activation are not real integrations or promises of insurance.
 
-## Run
+The project is organized as a React client and a Spring Boot / PostgreSQL modular monolith. The backend modules own their data and behavior: Catalog, Shortlist, Application, Payments, Policy, and Support. Read [the architecture guide](docs/architecture/README.md) before adding endpoints or tables. Module boundaries are enforced by ownership: a module may call another module's public application interface, but must not read its repository or tables directly.
 
-With Java 21 and either Maven 3.9+ installed or an existing Maven Wrapper
-distribution cached for the current user:
+## Current checkout status
+
+The cloud checkout starts from a Java 21 Maven teaching scaffold (CAP-42 through CAP-45), not an existing CoverStory application. It has no React application yet. The starter's learner TODOs remain learner work. The final daily assignment contracts and source design archive are authoritative inputs but have not been materialized in this executor; see [coverage and blockers](docs/COVERAGE.md). Nothing in this repository should be read as a claim that a learner has completed an assignment.
+
+## Build and smoke checks
+
+Requirements: Java 21, Maven 3.9+, Python 3.9+. The repository `./mvnw` is a local helper; it invokes system Maven or an existing cached wrapper distribution and does not download Maven.
 
 ```sh
 ./mvnw test
-```
-
-The repository-local `./mvnw` is a small portable helper, not the official Maven
-Wrapper. It uses `mvn` from `PATH` when available, otherwise it searches the
-current user's Maven Wrapper cache. It does not download Maven or install
-anything. The default run compiles the project and runs infrastructure smoke
-checks. To run the visible learner acceptance tests (which are expected to
-fail until the TODOs are complete), use:
-
-```sh
-./mvnw -Plearner-tests test
-```
-
-## CAP-43: event policy (90 minutes)
-
-Implement the two TODO methods in
-`src/main/java/assignments/events/EventPolicy.java`.
-
-- `classify` is pure: it returns a decision and never changes the map.
-- `accept` stores a payload only when the decision is `ACCEPT`.
-- Null or blank owner ID, event ID, or payload is `INVALID`.
-- A previously unseen `(ownerId, eventId)` pair is `ACCEPT`.
-- The same pair with the same exact payload is `DUPLICATE`.
-- The same pair with a different exact payload is `CONFLICT`.
-- Do not trim or normalize strings. Assume a non-null mutable map and sequential calls.
-
-The composite key is provided as a Java record so the assignment can focus on
-the decision rules. Acceptance tests cover purity, replay and conflict
-behavior, owner isolation, composite-key collisions, invalid inputs, and exact
-string handling. Add one edge-case test of your own. In your notes, explain
-why the logic is correct, its expected time complexity, and why sequential map
-behavior does not provide concurrency safety.
-
-The starter also includes infrastructure smoke checks that run before learner
-logic is implemented. They confirm project compilation, a valid JSON request
-reaches the supplied Spring MVC endpoint, and the project-local PostgreSQL
-server starts and accepts JDBC connections. The embedded database uses a
-loopback port and does not require Docker or a system-wide PostgreSQL install.
-
-## Spring validation seam (30 minutes)
-
-The instructor-provided request shape and controller are in
-`src/main/java/assignments/events/EventRequest.java` and
-`EventsController.java`. Complete the controller's validation TODO so missing
-bodies, missing required fields, blank fields, and malformed JSON return HTTP
-400. The controller is exercised with standalone Spring `MockMvc`; no server
-or database is started. The validation acceptance checks run with
-`./mvnw -Plearner-tests test` alongside CAP-43.
-
-## CAP-42: PostgreSQL aggregation query (60 minutes)
-
-Complete `src/test/resources/assignments/cap42/learner-query.sql`. Bind the
-owner ID, start time, and end time as JDBC parameters in that order. Return one
-row containing `accepted_count` and `signed_total`, count accepted events, sum
-signed amounts, and use the half-open UTC window `[from_utc, to_utc)`. An empty
-window must still return a count and decimal total of zero.
-
-The fixed fixtures use unique event IDs and one declared currency (USD). The
-main window is `2026-10-13T00:00:00Z` through `2026-10-14T00:00:00Z`, with the
-upper bound excluded. The harness starts real PostgreSQL 14.22 from
-test-scoped native binaries using
-`io.zonky.test:embedded-postgres:2.2.2`; the Darwin ARM64 binary is selected
-for this Apple Silicon checkout. It does not use H2 or Docker. PostgreSQL tests
-are part of `./mvnw -Plearner-tests test` and intentionally fail until the SQL
-TODO is completed.
-
-## CAP-44: retrieval ranking and provenance (60 minutes)
-
-Read [docs/assignments/CAP-44.md](docs/assignments/CAP-44.md). The standalone
-Python starter is `ai/retrieval/ranking.py`; instructor types and tokenization
-are provided, while `rank_runbooks` raises `NotImplementedError` for the
-learner. The JSON corpus and acceptance tests cover exact owner authorization,
-scores, source/version tie ordering, unchanged excerpts, and invalid or
-duplicate provenance. No network access is needed.
-
-Run the setup smoke checks with:
-
-```sh
 python3 -m unittest discover -s ai/tests -p test_infrastructure.py
 ```
 
-Run the learner assertions (expected to fail until the TODO is complete) with:
+The visible learner acceptance suites intentionally fail until their TODOs are completed:
 
 ```sh
+./mvnw -Plearner-tests test
 python3 -m unittest discover -s ai/tests -p test_ranking.py
 ```
 
-CAP-44's comparison with CAP-41 is pending: this checkout contains no CAP-41
-baseline, and no comparison scores are claimed. CAP-44 itself is independently
-runnable.
+The current cloud executor has Java and Python, but no Maven executable or cached Maven distribution. Python infrastructure checks are runnable there; Maven checks require Maven to be supplied by the selected environment. See [coverage](docs/COVERAGE.md) for tested evidence and precise limitations.
 
-## CAP-45: SQL event reconciliation (60 minutes)
+## Learning integrity
 
-Read [docs/assignments/CAP-45.md](docs/assignments/CAP-45.md). The instructor
-DDL and fixed fixture run through the same embedded PostgreSQL 14.22 and Java
-Maven harness as CAP-42. The fixture contains exactly five events and three
-delivery attempts. The SQL learner TODO is
-`src/test/resources/assignments/cap45/learner-query.sql`; tests isolate each
-mutation and check complete rows, attempt counts, no-attempt retention,
-owner isolation, late attempts, row count, and the total amount.
-
-Check the harness independently with
-`./mvnw -Dtest=Cap45PostgresInfrastructureTest test`. Run CAP-45 acceptance
-tests with
-`./mvnw -Plearner-tests -Dtest=Cap45SqlTest test`; these are expected to fail
-until the learner query is implemented. The combined learner suite is
-`./mvnw -Plearner-tests test`.
-
-## Study plan
-
-The learner time budget is at most 150 minutes on each of the seven days.
-Certification preparation runs alongside every stage and is integrated with
-the related practical concepts inside that same daily budget. No exam purchases
-are included. Project setup and instructor-provided fixtures, boilerplate, and
-test harnesses are outside the learner budget. Repository implementation
-belongs to the learner; the Scrum owner manages the roadmap only.
+Instructor-owned setup includes architecture notes, synthetic fixtures, repeatable local checks, and assignment contracts. Assessed business logic remains learner-authored. AI-assisted implementation must be labelled as assisted, and passing tests alone does not establish independent mastery. Do not put real consumer, health, payment, or authentication data in fixtures.
