@@ -44,7 +44,7 @@ The requested final plan contains 594 consecutive daily primary assignments and 
 - The PostgreSQL analytics schema rejects unknown event names and screens and has no arbitrary properties, URL, email, health, or token columns. The Java event type also uses event/screen enums, accepts only a 32-byte session-scope hash value, and copies its mutable byte array. The value type cannot prove that bytes were actually hashed; no concrete analytics writer, hash/key derivation, business-audit transaction coupling, or best-effort delivery is implemented.
 - The static module check passes for current source and its detector rejects both imported and fully qualified cross-module persistence references. No repositories exist yet; this is a static source boundary, not runtime enforcement.
 - A targeted scan of tracked source/configuration found no credential-shaped values or private-key blocks. The check is pattern-based and is not a general secret-scanner certification.
-- No `.github/workflows` files are present in the published commit. GitHub returned no commit status entries and no associated pull-request workflow runs for `13fc2a2d512604fe333c2d4aeeabc31726501208`; CI is not available to classify as passing or failing.
+- No `.github/workflows` files are present in the published branch. For hardening commit `23b644ef669604392e1f148e4f5be2cbbac6c034`, GitHub returned no commit status entries and no associated pull-request workflow runs; CI is not available to classify as passing or failing.
 
 ## Commands and evidence
 
