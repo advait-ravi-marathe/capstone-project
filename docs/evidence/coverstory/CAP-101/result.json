@@ -1,0 +1,28 @@
+{
+  "assignment": "CAP-101",
+  "source_commit": "54244ef0435c8a1011d6febc4968e57764750652",
+  "environment": {
+    "jdk": "21.0.12.1 Debian",
+    "maven": "3.10.0",
+    "os_runtime": "Linux container, Etc/UTC"
+  },
+  "runs": [
+    {
+      "command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP101InstructorInfrastructureTest test",
+      "expected": "Independent setup oracle and defect witnesses pass.",
+      "observed": "PASS; 5 tests, 0 failures, 0 errors, 0 skipped."
+    },
+    {
+      "command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP101AcceptanceTest test",
+      "expected": "The five starter acceptance guards observe the explicit learner TODO.",
+      "observed": "PASS as scaffold guards; 5 tests, 0 assertion failures, 0 errors. Each asserts the documented UnsupportedOperationException from the unimplemented seam; business behavior is not implemented or demonstrated."
+    }
+  ],
+  "provider_calls": 0,
+  "learner_status": "NOT_IMPLEMENTED",
+  "limits": [
+    "No live model/tokenizer was called; fixed synthetic token counts only.",
+    "No learner business behavior is marked complete.",
+    "This evidence covers local Java setup and the independent oracle, not deployed provider safety or production tokenization."
+  ]
+}

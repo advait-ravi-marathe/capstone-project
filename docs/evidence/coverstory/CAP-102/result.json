@@ -1,0 +1,42 @@
+{
+  "card_id": "CAP-102",
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "tested_checkout_base_commit": "54244ef0435c8a1011d6febc4968e57764750652",
+  "working_tree_source_hashes_are_recorded_below": true,
+  "environment": {
+    "java": "21.0.12.1 Debian",
+    "maven": "3.10.0",
+    "postgresql": "embedded PostgreSQL 14.22",
+    "timezone": "Etc/UTC"
+  },
+  "inputs": {
+    "fixture_sha256": "6c0fb303e3b7d26b2dbfba226f23b72cf75323718eb8099d7735323e2dad9d10",
+    "schema_sha256": "7bbc3550ab0a6485fd58818c913c31363b45d39a5d996bce0aae375eabf4ef90",
+    "learner_seam_sha256": "bfdca8b1fdc092eb9934fc5033245f6e485b8b22020fdef8ae6784fd4dbf1eb5",
+    "acceptance_sha256": "7916c16273de7719370439f4f4756fb68306ac9b86b5cce70285d31242522f11",
+    "oracle_sha256": "5ff06e5c40f1a5a1f55f63b6d288f6baf66598c31641b23b16c46db090b2ad01"
+  },
+  "instructor_oracle": {
+    "command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP102InstructorInfrastructureTest test",
+    "status": "PASS",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "observed": [
+      "exclusive tuple cursor emits x2 then x3 and commits (10:01,x3)",
+      "injected x3 failure rolls back x2 and leaves old cursor",
+      "rerun at committed cursor inserts no duplicate observations",
+      "lexicographic ID tie rule retains x2; timestamp-only mutant omits it",
+      "foreign owner and null ordering keys reject without writes or cursor movement"
+    ]
+  },
+  "learner_acceptance": {
+    "command": "mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -DexcludeLearnerAcceptance= -Dtest=CAP102AcceptanceTest test",
+    "status": "TODO_REACHED_EXPECTED_FAILURES",
+    "tests": 5,
+    "details": "All five cases reach the explicit learner TODO. Surefire reports three direct UnsupportedOperationException errors and two assertion failures whose cause is the TODO instead of the expected behavior. This is not setup evidence."
+  },
+  "payment_effects": false,
+  "provider_calls": false,
+  "learner_logic_implemented": false
+}

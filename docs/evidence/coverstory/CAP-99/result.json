@@ -1,0 +1,15 @@
+{
+  "assignment": "CAP-99",
+  "status": "PARTIAL_INSTRUCTOR_HARNESS_VERIFIED",
+  "decision_under_test": "READY_FOR_REVIEW is reachable only in the synthetic instructor oracle when all six actual-style receipts validate; this is not a product readiness decision.",
+  "learner_acceptance": "NOT_RUN; explicit learner TODO remains",
+  "actual_product_gates": "UNVERIFIED",
+  "deployment_or_release": "NOT_PERFORMED",
+  "instructor_command": "mvn -q -Dtest=CAP99InstructorInfrastructureTest test",
+  "instructor_observed_output": "Tests run: 5, Failures: 0, Errors: 0, Skipped: 0",
+  "instructor_source_commit_at_run": "54244ef0435c8a1011d6febc4968e57764750652",
+  "fixture_sha256": "52eea3e3f00368d2cd4b1e1ad391d5e5818976c1119bb260117a5d6257e61645",
+  "learner_command": "mvn -q -Dtest=CAP99AcceptanceTest test",
+  "learner_observed_output": "Tests run: 4, Failures: 0, Errors: 4; all four errors are UnsupportedOperationException at CAP99 learner TODO",
+  "worktree_state_during_run": "uncommitted shared branch worktree; source commit identifies HEAD, not a committed CAP-99 implementation"
+}

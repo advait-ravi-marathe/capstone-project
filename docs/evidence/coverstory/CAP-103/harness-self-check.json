@@ -1,0 +1,43 @@
+{
+  "contract_id": "CAP-103",
+  "status": "PASS",
+  "scope": "Instructor harness and independent oracle only; no learner behavior is implemented or certified.",
+  "source_head_at_check": "54244ef0435c8a1011d6febc4968e57764750652",
+  "worktree_changes_present": true,
+  "fixture": "fixtures/coverstory/CAP-103/synthetic-v1.json",
+  "fixture_sha256": "2eeb9749efe46c5b488dd25aead55950f142d111f130ef7f0a14e066aed2d7fc",
+  "environment": {
+    "java": "OpenJDK 21.0.12.1 (Debian)",
+    "maven": "Apache Maven 3.10.0",
+    "junit": "5.10.0 (pom declaration)",
+    "timezone": "Etc/UTC"
+  },
+  "setup_command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP103InstructorInfrastructureTest test",
+  "setup_result": {
+    "status": "PASS",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "observed_report": "target/surefire-reports/TEST-capstone.coverstory.application.CAP103InstructorInfrastructureTest.xml"
+  },
+  "learner_contract_command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Plearner-tests -Dtest=CAP103AcceptanceTest test",
+  "learner_contract_result": {
+    "status": "EXPECTED_TODO_FAILURE",
+    "tests": 5,
+    "failures": 0,
+    "errors": 5,
+    "observed_error": "UnsupportedOperationException: CAP-103 learner TODO: implement honest local latency summary"
+  },
+  "oracle_witnesses": [
+    "floor((n-1)q) percentile selects 90ms instead of nearest-rank p95 100ms",
+    "including two failed durations moves p95 to 500ms instead of the success-only 100ms",
+    "empty success population must produce null, not zero"
+  ],
+  "claims": {
+    "production_traffic": false,
+    "network_call": false,
+    "capacity_claim": false,
+    "availability_claim": false,
+    "independent_mastery_claim": false
+  }
+}

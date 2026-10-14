@@ -1,0 +1,18 @@
+{
+  "assignment": "CAP-101",
+  "classification": "SYNTHETIC_FIXED_TOKEN_CONTEXT",
+  "fixture": "fixtures/coverstory/CAP-101/synthetic-v1.json",
+  "fixture_sha256": "9e84888a40f15b1dda125367ee5b6c6b2eab1138f9578667432f52fdbab228b0",
+  "synthetic": true,
+  "provider_calls": 0,
+  "input_cap_tokens": 1500,
+  "output_reservation_tokens": 256,
+  "cases": [
+    "300 base + ai1 500 + ar1 400 => 1200 tokens; a3 omitted whole; citations retained",
+    "1501-token base => INPUT_TOO_LARGE before payload counter call",
+    "owner-B private br1 excluded before counting; content bytes observed at boundary: 0",
+    "exactly 1500 allowed; overflow chunk omitted whole",
+    "no authorized/fitting context => ABSTAIN and manual path"
+  ],
+  "notice": "These are deterministic synthetic token counts, not a live tokenizer or model result."
+}

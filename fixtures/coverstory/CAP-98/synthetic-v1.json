@@ -1,0 +1,23 @@
+{
+  "classification": "SYNTHETIC_DISPOSABLE_POSTGRES_FIXTURE",
+  "production_database_access": false,
+  "migration_applied_to_production": false,
+  "schema_version": 1,
+  "source_version_values_in_v1": null,
+  "revisions": [
+    {"owner_id":"98000000-0000-4000-8000-000000000001","revision_id":"98000000-0000-4000-8000-000000000101","revision":1,"quote_hash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","revision_hash":"4444444444444444444444444444444444444444444444444444444444444444","terms_hash":"1111111111111111111111111111111111111111111111111111111111111111","source_version":null},
+    {"owner_id":"98000000-0000-4000-8000-000000000001","revision_id":"98000000-0000-4000-8000-000000000102","revision":2,"quote_hash":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","revision_hash":"5555555555555555555555555555555555555555555555555555555555555555","terms_hash":"2222222222222222222222222222222222222222222222222222222222222222","source_version":null},
+    {"owner_id":"98000000-0000-4000-8000-000000000002","revision_id":"98000000-0000-4000-8000-000000000103","revision":1,"quote_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","revision_hash":"6666666666666666666666666666666666666666666666666666666666666666","terms_hash":"3333333333333333333333333333333333333333333333333333333333333333","source_version":null}
+  ],
+  "payment_references": [
+    {"payment_id":"98000000-0000-4000-8000-000000000201","revision_id":"98000000-0000-4000-8000-000000000101"},
+    {"payment_id":"98000000-0000-4000-8000-000000000202","revision_id":"98000000-0000-4000-8000-000000000102"},
+    {"payment_id":"98000000-0000-4000-8000-000000000203","revision_id":"98000000-0000-4000-8000-000000000103"}
+  ],
+  "cases": [
+    "add nullable source_version and retain all rows/payment references; v1 reader remains compatible",
+    "failed migration rolls back schema and all three seeded rows",
+    "reject automatic destructive down if v2-only values would be erased",
+    "restore an isolated copy and compare counts, foreign keys, quote hashes and revision hashes"
+  ]
+}

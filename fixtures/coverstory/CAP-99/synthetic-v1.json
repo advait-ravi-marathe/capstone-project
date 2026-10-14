@@ -1,0 +1,18 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "side_effects": false,
+  "required_gates": [
+    "ARTIFACT", "REDACTED_CONFIG", "MIGRATION_COMPATIBILITY_RESTORE",
+    "OWNERSHIP", "PAYMENT_RECOVERY", "GROUNDED_ASSISTANCE"
+  ],
+  "receipt_rule": "VERIFIED requires test output containing PASS, exact command, 40-hex source commit, and 64-hex fixture hash",
+  "cases": [
+    {"name":"all_six_verified", "expected":"READY_FOR_REVIEW"},
+    {"name":"migration_missing", "expected":"BLOCKED: migration evidence missing (CAP-98 prerequisite)"},
+    {"name":"cross_owner_failure_plus_five_green", "expected":"BLOCKED"},
+    {"name":"planned_path_only", "expected":"UNVERIFIED"},
+    {"name":"screenshot_without_test_output", "expected":"UNVERIFIED"},
+    {"name":"unverified_migration_plus_cross_owner_failure", "expected":"BLOCKED"}
+  ],
+  "limits": ["no deployment", "no release authorization", "no provider calls", "no real consumer data"]
+}

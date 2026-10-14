@@ -1,0 +1,22 @@
+{
+  "assignment": "CAP-98",
+  "status": "PASS",
+  "independent_of_learner_seam": true,
+  "contract_cases_jointly_represented": 4,
+  "instructor_tests_passed": 6,
+  "fixture_load_and_scope": "PASS: 3 synthetic application revisions and 3 owner-scoped payment references; no production connection",
+  "positive_control": "PASS: nullable additive expansion retains all three rows, FK links, and v1 projection",
+  "rollback_control": "PASS: injected pre-commit failure leaves v1 column set and original rows/references intact",
+  "destructive_down_control": "PASS: guard rejects non-null v2 source_version; unsafe mutant loses canary and fails retention oracle while row/FK counts still match",
+  "restore_control": "PASS: captured row DTO snapshot restored to distinct schema; counts, FK integrity, legacy projection, quote hashes, revision hashes, terms hashes, and source-version canary compared",
+  "learner_todo": "PRESENT",
+  "learner_acceptance_status": "4 expected errors at explicit TODO; no learner behavior passed",
+  "production_migration": "NOT_CREATED",
+  "review_scope": [
+    "src/main/java/coverstory/application/RehearseCompatibleApplicationSchemaExpansion.java",
+    "src/test/resources/coverstory/application/cap_98_v1.sql",
+    "src/test/java/coverstory/application/CAP98AcceptanceTest.java",
+    "src/test/java/coverstory/application/CAP98InstructorInfrastructureTest.java",
+    "fixtures/coverstory/CAP-98/synthetic-v1.json"
+  ]
+}

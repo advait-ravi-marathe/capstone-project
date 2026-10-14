@@ -1,0 +1,12 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_CONTRACT",
+  "source": "fixture-only provider observations",
+  "payment_effects_created": false,
+  "initial_cursor": {"timestamp":"2026-12-18T10:00:00Z","id":"x1"},
+  "observations": [
+    {"owner":"A","timestamp":"2026-12-18T10:00:00Z","id":"x1","payload_hash":"sha256:fixture-x1"},
+    {"owner":"A","timestamp":"2026-12-18T10:00:00Z","id":"x2","payload_hash":"sha256:fixture-x2"},
+    {"owner":"A","timestamp":"2026-12-18T10:01:00Z","id":"x3","payload_hash":"sha256:fixture-x3"}
+  ],
+  "cases": ["success", "fail_x3_rolls_back", "rerun_no_duplicate", "equal_timestamp_lexicographic_id", "foreign_owner_or_null_key_rejected"]
+}

@@ -1,0 +1,22 @@
+{
+  "contract_id": "CAP-103",
+  "evidence_type": "INSTRUCTOR_FIXTURE_ORACLE_RESULT",
+  "source_head_at_check": "54244ef0435c8a1011d6febc4968e57764750652",
+  "fixture_sha256": "2eeb9749efe46c5b488dd25aead55950f142d111f130ef7f0a14e066aed2d7fc",
+  "observed": [
+    {"assertion":"ten_success_nearest_rank","expected":{"count":10,"p50_ms":50,"p95_ms":100,"max_success_ms":100},"actual":{"count":10,"p50_ms":50,"p95_ms":100,"max_success_ms":100},"status":"PASS","scope":"independent synthetic reference"},
+    {"assertion":"failures_separate_from_success_percentiles","expected":{"total":12,"successes":10,"errors":2,"p50_ms":50,"p95_ms":100,"error_max_ms":500},"actual":{"total":12,"successes":10,"errors":2,"p50_ms":50,"p95_ms":100,"error_max_ms":500},"status":"PASS","scope":"independent synthetic reference"},
+    {"assertion":"invalid_duration_diagnostic_and_exclusion","expected":{"diagnostics":["INVALID_DURATION"],"valid_successes":1},"actual":{"diagnostics":["INVALID_DURATION"],"valid_successes":1},"status":"PASS","scope":"independent synthetic reference"},
+    {"assertion":"empty_success_percentiles_null","expected":{"p50_ms":null,"p95_ms":null,"max_success_ms":null},"actual":{"p50_ms":null,"p95_ms":null,"max_success_ms":null},"status":"PASS","scope":"independent synthetic reference"},
+    {"assertion":"floor_rank_mutant_rejected","expected_p95_ms":100,"mutant_p95_ms":90,"status":"PASS","scope":"deterministic witness only"},
+    {"assertion":"mixing_errors_mutant_rejected","expected_success_p95_ms":100,"mutant_p95_ms":500,"status":"PASS","scope":"deterministic witness only"},
+    {"assertion":"empty_as_zero_mutant_rejected","expected_p95_ms":null,"mutant_p95_ms":0,"status":"PASS","scope":"deterministic witness only"}
+  ],
+  "learner_acceptance": {
+    "status":"EXPECTED_TODO_FAILURE",
+    "command":"mvn -q -Plearner-tests -Dtest=CAP103AcceptanceTest test",
+    "observed":"5 tests; 0 assertion failures; 5 errors from explicit UnsupportedOperationException TODO",
+    "meaning":"The TODO is intentionally preserved. These results are not evidence of learner implementation or mastery."
+  },
+  "performance_claim": "NONE: synthetic fixtures test reporting semantics, not latency, capacity, production SLO, or availability."
+}
