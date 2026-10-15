@@ -1,4 +1,4 @@
-export type LowSensitivityEvent = Readonly<{ eventId: string; eventType: 'PAGE_VIEW' | 'CONTROL_CLICK'; schemaVersion: 1; pageId: string; targetId?: string }>
+export type LowSensitivityEvent = Readonly<{ eventId: string; eventType: 'PAGE_VIEW' | 'CONTROL_CLICK'; schemaVersion: 1; pseudonymousSessionId: string; pageId: string; targetId?: string }>
 
 /** Lossy best-effort analytics queue. It has no access to journey or payment commands. */
 export class BoundedTelemetryQueue {

@@ -508,7 +508,7 @@
       "canonical_derived_primary_path": "src/main/java/coverstory/modules/analytics/api/CAP58Seam.java",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": "Independent local schema/privacy oracle only; learner validator remains TODO, and no HTTP ingestion, durable idempotency, storage, journey authorization or browser retry queue is wired.",
+      "coverage_note": "Instructor-only Vite/Chromium queue flow now reaches the real Spring HTTP route and disposable PostgreSQL receipt store through a fixed synthetic principal and reference validator; five injected 429 responses exercise bounded retry/drop before one 10-event batch persists. Learner validator, production authentication/consent/key configuration and journey authorization remain TODO or unprovisioned; no business journey changes.",
       "acceptance_case_ids": [
         "CAP-58-CS-01",
         "CAP-58-CS-02",
