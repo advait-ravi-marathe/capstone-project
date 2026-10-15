@@ -1,0 +1,18 @@
+{
+  "evaluation_id": "CAP-115-exact-offer-explanation-v1",
+  "mode": "deterministic_fixture_checks_not_model_evaluation",
+  "fixture": "docs/coverstory/fixtures/cap-115.json",
+  "checks": [
+    {"response": "supported", "outcome": "SUPPORTED", "invariants": ["exact revised offer id and content hash", "10,000 INR minor-unit delta", "exact term-code differences", "exact expiry", "only owner-authorized offer-source-a@v2"]},
+    {"response": "foreign-source", "outcome": "REJECTED", "reason": "UNAUTHORIZED_CITATION"},
+    {"response": "invented-field", "outcome": "REJECTED", "reason": "UNKNOWN_FIELD"},
+    {"response": "missing-status", "outcome": "REJECTED", "reason": "MISSING_STATUS"},
+    {"response": "stale-hash", "outcome": "REJECTED", "reason": "STALE_OR_FOREIGN_REVISION"},
+    {"response": "insufficient", "outcome": "INSUFFICIENT_EVIDENCE", "citations": []}
+  ],
+  "amounts_use_integer_inr_minor_units": true,
+  "model_run": false,
+  "provider_call": false,
+  "acceptance_or_payment_action": false,
+  "proficiency_claim": false
+}

@@ -1,0 +1,51 @@
+{
+  "fixture_id": "CAP-115-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "source_contract_sha256": "ea20e01a8774d0e0044e3916f53dc1fb749e2f495c4e97debe63c31c9da5ccd2",
+  "original_offer": {
+    "owner_id": "11500000-0000-4000-8000-000000000001",
+    "offer_id": "11500000-0000-4000-8000-000000000011",
+    "revision": "q1",
+    "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
+    "amount_minor": 100000,
+    "currency": "INR",
+    "term_codes": ["copay_10_percent", "waiting_30_days"],
+    "expires_at": "2027-01-15T00:00:00Z"
+  },
+  "revised_offer": {
+    "owner_id": "11500000-0000-4000-8000-000000000001",
+    "offer_id": "11500000-0000-4000-8000-000000000012",
+    "revision": "o2",
+    "content_sha256": "f96df155cd21849d54e42885cdb9432a9182fcc894f1b4ce794df7eae828d91c",
+    "amount_minor": 110000,
+    "currency": "INR",
+    "term_codes": ["copay_0_percent", "restore_benefit", "waiting_30_days"],
+    "expires_at": "2027-01-20T00:00:00Z"
+  },
+  "authorized_sources": [
+    {"owner_id": "11500000-0000-4000-8000-000000000001", "source_id": "offer-source-a", "version": "v2"}
+  ],
+  "untrusted_source": {"owner_id": "11500000-0000-4000-8000-000000000002", "source_id": "owner-b-source", "version": "v1"},
+  "expected_differences": {
+    "amount_delta_minor": 10000,
+    "currency": "INR",
+    "changed_term_codes": ["copay_0_percent", "copay_10_percent", "restore_benefit"],
+    "payment_status": "NOT_STARTED",
+    "paid_amount_minor": 0,
+    "dispatch_confirmed": false
+  },
+  "fixed_response_cases": [
+    {"id": "supported", "expected": "SUPPORTED", "citations": ["offer-source-a@v2"]},
+    {"id": "foreign-source", "expected": "REJECTED", "reason": "UNAUTHORIZED_CITATION"},
+    {"id": "invented-field", "expected": "REJECTED", "reason": "UNKNOWN_FIELD"},
+    {"id": "missing-status", "expected": "REJECTED", "reason": "MISSING_STATUS"},
+    {"id": "stale-hash", "expected": "REJECTED", "reason": "STALE_OR_FOREIGN_REVISION"},
+    {"id": "insufficient", "expected": "INSUFFICIENT_EVIDENCE", "citations": []}
+  ],
+  "guardrails": [
+    "The explanation is read-only and never supplies an acceptance, payment, refund, dispatch or active-cover command.",
+    "Original and revised amounts, currency, revision hashes, terms and expiry remain authoritative deterministic facts.",
+    "Only an explicit synthetic human choice writes an instructor choice receipt; no payment attempt is created.",
+    "No model or external provider is called."
+  ]
+}

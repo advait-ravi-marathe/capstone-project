@@ -175,9 +175,10 @@ def main() -> dict:
         'CAP-112': 'postgres_idempotent_insurer_review_event_reducer',
         'CAP-113': 'java_mock_explanation_usage_ledger',
         'CAP-114': 'spring_react_postgres_review_alert_window',
+        'CAP-115': 'spring_react_postgres_revision_explanation_validator',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -260,6 +261,7 @@ def main() -> dict:
         'CAP-112': 'src/main/java/capstone/coverstory/application/internal/InsurerReviewEventReducer.java',
         'CAP-113': 'src/main/java/capstone/coverstory/support/internal/ExplanationUsageLedger.java',
         'CAP-114': 'src/main/java/capstone/coverstory/application/internal/ReviewAlertWindow.java',
+        'CAP-115': 'src/main/java/capstone/coverstory/application/internal/ReviewedOfferAnswerValidator.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -335,6 +337,7 @@ def main() -> dict:
         'CAP-112': 'src/test/java/capstone/coverstory/application/internal/CAP112AcceptanceTest.java',
         'CAP-113': 'src/test/java/capstone/coverstory/support/CAP113AcceptanceTest.java',
         'CAP-114': 'src/test/java/capstone/coverstory/application/CAP114AcceptanceTest.java',
+        'CAP-115': 'src/test/java/capstone/coverstory/application/CAP115AcceptanceTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -384,6 +387,7 @@ def main() -> dict:
         'CAP-112': 'Instructor-only JDBC transaction on disposable PostgreSQL applies one synthetic review callback, deduplicates replay, retains stale events without state regression, rejects foreign-owner events and writes allowlisted diagnostics only. Provider exception text is not persisted. No production callback or external insurer call is wired; learner reducer remains TODO.',
         'CAP-113': 'Offline exact-decimal oracle meters a fixed mock tariff, owner/request-deduplicates usage, keeps missing usage UNKNOWN and leaves premium paise separate. No model/provider call or bill is represented; learner ledger remains TODO.',
         'CAP-114': 'Instructor Chromium flow uses the React alert panel through a test-only Spring route and disposable PostgreSQL. It proves persisted minimum-volume/strict-threshold windows, one firing and recovery transition, duplicate suppression, and the safe NEEDS_INFORMATION next-action display using Application/Payments public facts ports. The main ReviewAlertWindow seam and ordinary product route are not implemented; the test-only reference reducer is not learner logic, no insurer/payment call occurs, and the 150-minute timebox is unrehearsed.',
+        'CAP-115': 'Instructor Chromium flow uses React/Vite, a test-only Spring route, public Application/Support/Payments fact ports and disposable PostgreSQL. Fixed answer variants verify exact immutable quote hashes, integer paise and owner-scoped citations; invalid answers leave deterministic facts visible, and only an explicit human choice persists a test-only receipt. The main validator and ordinary product route remain TODO/absent; no model, acceptance command, payment, dispatch or active cover is involved, and the 150-minute timebox is unrehearsed.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []
@@ -400,12 +404,13 @@ def main() -> dict:
             case_ids = re.findall(r"^[-*]\s*([A-Z0-9-]+-CS-\d+):", cases_block, re.M)
         paths = [line.strip()[2:] for line in scaffold.splitlines() if line.strip().startswith('- ') and '/' in line]
         planned_source = next((p for p in paths if p.startswith(("src/main/", "ai/coverstory/", "frontend/src/", "web/src/"))), None)
-        if card['id'] in {'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114'}:
+        if card['id'] in {'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115'}:
             planned_source = {
                 'CAP-175': 'src/main/java/capstone/coverstory/application/internal/SubmissionTraceLinker.java',
                 'CAP-112': 'src/main/java/capstone/coverstory/application/internal/InsurerReviewEventReducer.java',
                 'CAP-113': 'src/main/java/capstone/coverstory/support/internal/ExplanationUsageLedger.java',
                 'CAP-114': 'src/main/java/capstone/coverstory/application/internal/ReviewAlertWindow.java',
+                'CAP-115': 'src/main/java/capstone/coverstory/application/internal/ReviewedOfferAnswerValidator.java',
             }[card['id']]
         if card['id'] == 'CAP-170':
             # This saved card lists its implementation path in a separate
@@ -415,7 +420,7 @@ def main() -> dict:
         if card['id'] in {'CAP-87', 'CAP-171', 'CAP-172'}:
             case_total = {'CAP-87': 7, 'CAP-171': 5, 'CAP-172': 6}[card['id']]
             case_ids = [f"{card['id']}-CS-{number:02d}" for number in range(1, case_total + 1)]
-        if card['id'] in {'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114'}:
+        if card['id'] in {'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115'}:
             case_ids = [f"{card['id']}-CS-{number}" for number in range(1, 4)]
         authored = card['id'] in authored_ids
         day_ready = (

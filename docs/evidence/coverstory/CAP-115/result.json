@@ -1,0 +1,24 @@
+{
+  "assignment": "CAP-115",
+  "status": "INSTRUCTOR_HARNESS_PASS_LEARNER_TODO",
+  "source_contract_sha256": "ea20e01a8774d0e0044e3916f53dc1fb749e2f495c4e97debe63c31c9da5ccd2",
+  "fixture": "docs/coverstory/fixtures/cap-115.json",
+  "instructor_command": "mvn -Dtest=CAP115InstructorInfrastructureTest,CAP115ReviewOfferRuntimeIntegrationTest test",
+  "instructor_result": "PASS; 3 focused infrastructure/oracle tests and 1 browser-to-Vite-to-Spring-to-disposable-PostgreSQL integration test",
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP115AcceptanceTest test",
+  "learner_result": "EXPECTED_TODO_FAILURE; 4 tests, 0 assertion failures, 3 UnsupportedOperationException errors from ReviewedOfferAnswerValidator.validate and 1 TODO guard pass",
+  "default_suite": "mvn clean test: 93 suites, 325 tests, 0 failures, 0 errors, 1 skipped; learner acceptance is excluded by the default profile.",
+  "verified_boundaries": [
+    "Exact synthetic original/revised quote hashes and integer INR paise",
+    "Owner-authorized source citation and strict answer shape checks",
+    "Authoritative differences remain visible for rejected explanations",
+    "Explicit human choice receipt is persisted in instructor-only storage",
+    "Payment remains NOT_STARTED; no dispatch or active cover"
+  ],
+  "not_claimed": [
+    "Learner validator implementation or mastery",
+    "Production answer/choice route or model/provider call",
+    "Payment, insurer dispatch, refund, issuance, or active cover",
+    "Saved 150-minute timebox rehearsal"
+  ]
+}
