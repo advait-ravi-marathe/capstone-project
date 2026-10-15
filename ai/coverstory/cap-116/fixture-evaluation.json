@@ -1,0 +1,15 @@
+{
+  "evaluation_id": "CAP-116-revision-balance-fixture-v1",
+  "mode": "deterministic_fixture_checks_not_model_evaluation",
+  "fixture": "docs/coverstory/fixtures/cap-116.json",
+  "cases": [
+    {"scenario": "accepted-h2", "expected": "CREATE_ADDITIONAL_PAYMENT", "adjustment_minor": 10000},
+    {"scenario": "pending-h2-new-h3", "expected": "WAIT_OR_RECONCILE", "pending_additional_minor": 10000},
+    {"scenario": "duplicate-foreign-orphan-mismatch", "expected": "REVIEW_DISCREPANCY", "confirmed_net_minor": 100000},
+    {"scenario": "h3-confirmed-refund", "expected": "NO_ADJUSTMENT", "confirmed_net_minor": 90000}
+  ],
+  "model_run": false,
+  "provider_call": false,
+  "payment_or_refund_action": false,
+  "proficiency_claim": false
+}
