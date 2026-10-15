@@ -1,0 +1,20 @@
+{
+  "day_id": "CAP-64",
+  "status": "PASS_CURRENT_EXECUTOR",
+  "learner_logic_executed": false,
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP64InstructorInfrastructureTest test",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-64/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "d960dd468db97d4de38719bccdba0f1b1b7531548cd8400c102ef219787f4e5c"
+  },
+  "limits": [
+    "Fake callback acknowledgment is not broker evidence; no Kafka or live provider is used.",
+    "No timebox rehearsal or mastery claim is made."
+  ]
+}

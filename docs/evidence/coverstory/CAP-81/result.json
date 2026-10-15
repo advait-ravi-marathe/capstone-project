@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-81",
+  "date": "2026-11-23",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap81_infrastructure.py'",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap81_acceptance.py'",
+    "tests": 6,
+    "failures": 0,
+    "errors_at_explicit_todo": 6,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-81/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "ed174e46433556d581df2ade099db6f82c9b2e5b64ae098b72cbb272051c2aec"
+  },
+  "limits": [
+    "No production integration or external effects are demonstrated.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

@@ -107,9 +107,10 @@ def main() -> dict:
         'CAP-70': 'python_immutable_protected_envelope_staging',
         'CAP-168': 'java_safe_quote_review_line_classifier',
         'CAP-73': 'python_dataset_split_integrity',
+        'CAP-170': 'java_payment_reconciliation_attempt_identity',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -178,6 +179,7 @@ def main() -> dict:
         'CAP-70': 'ai/coverstory/cap_70.py',
         'CAP-168': 'src/main/java/capstone/coverstory/shortlist/api/CAP168Seam.java',
         'CAP-73': 'ai/coverstory/cap_73.py',
+        'CAP-170': 'src/main/java/capstone/coverstory/payments/ValidatePaymentIdentities.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -239,6 +241,7 @@ def main() -> dict:
         'CAP-70': 'ai/coverstory/tests/test_cap_70.py',
         'CAP-168': 'src/test/java/capstone/coverstory/shortlist/CAP168Test.java',
         'CAP-73': 'ai/coverstory/tests/test_cap_73.py',
+        'CAP-170': 'src/test/java/capstone/coverstory/payments/CAP170Test.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -273,6 +276,7 @@ def main() -> dict:
         'CAP-70': 'Instructor fixture oracle checks immutable ciphertext-byte/provenance staging order and safe rejection; existing Java AES-GCM adapter verifies fixed vectors, AAD/tag failure and random nonce generation. No wrapped-DEK/KMS or product staging adapter is implemented, and the learner batch method remains TODO.',
         'CAP-168': 'Independent strict five-line quote-review parser oracle and learner TODO are runnable. The broader authenticated login-return, owned journey SQL, fixed-clock quote validation and SPA/API/PostgreSQL flow remain deferred because no product auth/shortlist/quote service is wired.',
         'CAP-73': 'Instructor oracle checks synthetic case-ID, normalized-question and source-family separation plus empty-golden rejection. Learner seam remains TODO; no model run or golden-label tuning is performed.',
+        'CAP-170': 'Independent pure-Java fixture oracle checks retry-attempt identity, ordering, epoch reset and owner/event scope; no payment replay, provider call or durable effect uniqueness is implemented.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []
@@ -289,6 +293,11 @@ def main() -> dict:
             case_ids = re.findall(r"^[-*]\s*([A-Z0-9-]+-CS-\d+):", cases_block, re.M)
         paths = [line.strip()[2:] for line in scaffold.splitlines() if line.strip().startswith('- ') and '/' in line]
         planned_source = next((p for p in paths if p.startswith(("src/main/", "ai/coverstory/", "frontend/src/", "web/src/"))), None)
+        if card['id'] == 'CAP-170':
+            # This saved card lists its implementation path in a separate
+            # repository-files subsection, outside the scaffold heading.
+            planned_source = 'src/main/java/capstone/coverstory/payments/ValidatePaymentIdentities.java'
+            case_ids = [f'CAP-170-CS-{number:02d}' for number in range(1, 9)]
         authored = card['id'] in authored_ids
         status = 'LEARNER_CONTRACT_AND_FIXTURE_VALIDATED' if card['id'] == 'CAP-40' else (
             'INSTRUCTOR_FIXTURE_HARNESS_AUTHORED' if authored else 'MAPPED_ONLY'

@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-56",
+  "date": "2026-10-25",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "ai/tests/test_coverstory_cap56_infrastructure.py",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_56.py'",
+    "tests": 4,
+    "failures": 0,
+    "errors_at_explicit_todo": 4,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-56/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "e82c9603042c2f35969bd9a5c0e2076944cc6c897cbf2a95240a8e636c8f5f7e"
+  },
+  "limits": [
+    "The scoring input uses a fixed synthetic fixture and fake retriever; no model or live candidate was run.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

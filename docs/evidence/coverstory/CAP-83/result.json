@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-83",
+  "date": "2026-11-26",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP83InstructorInfrastructureTest test",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP83AcceptanceTest test",
+    "tests": 7,
+    "failures": 6,
+    "errors_at_explicit_todo": 0,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-83/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "7a52eed4b54a4129329658a3e37a4418e9fda7a210e575458711d8348b185eaf"
+  },
+  "limits": [
+    "No production integration or external effects are demonstrated.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

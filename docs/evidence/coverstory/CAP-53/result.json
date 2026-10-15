@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-53",
+  "date": "2026-10-22",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "ai/tests/test_coverstory_cap53_infrastructure.py",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_53.py'",
+    "tests": 4,
+    "failures": 0,
+    "errors_at_explicit_todo": 4,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-53/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "7b16ab2608dcb67cf43ccb566eb8e736002c24ebd49c7295ced7dec07f6844f9"
+  },
+  "limits": [
+    "JSON loading is local fixture-only; no provider or online data source is connected.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

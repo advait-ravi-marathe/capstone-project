@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-55",
+  "date": "2026-10-24",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP55InstructorInfrastructureTest test",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP55AcceptanceTest test",
+    "tests": 5,
+    "failures": 0,
+    "errors_at_explicit_todo": 5,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-55/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "59e467f5d8afad2bd44ab7a94893a04e20a4c2f6c314347892a768bca5a27f8f"
+  },
+  "limits": [
+    "The trace is offline synthetic data; no broker or live publication evidence is used.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

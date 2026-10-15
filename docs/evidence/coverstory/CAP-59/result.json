@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-59",
+  "date": "2026-10-28",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap59_infrastructure.py'",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_59.py'",
+    "tests": 6,
+    "failures": 0,
+    "errors_at_explicit_todo": 6,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-59/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "4bd6d9ca70f0f8b2f6e37e1283617ffd159136943ce22820435be9133b408cf9"
+  },
+  "limits": [
+    "The fixture identifies synthetic source/version data; authorization flags do not create real access rights.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

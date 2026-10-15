@@ -1,0 +1,20 @@
+{
+  "day_id": "CAP-90",
+  "status": "PASS_CURRENT_EXECUTOR",
+  "learner_logic_executed": false,
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP90InstructorInfrastructureTest test",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-90/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "d65cc1a98736c1115f2d52da2b5e8fd78846b66efb4946d9ec02054abb6cc065"
+  },
+  "limits": [
+    "Instructor check validates fixture setup or bounded reference behavior only.",
+    "No learner mastery or timebox rehearsal is claimed."
+  ]
+}

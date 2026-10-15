@@ -1,0 +1,29 @@
+{
+  "day_id": "CAP-90",
+  "date": "2026-12-04",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP90InstructorInfrastructureTest test",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP90AcceptanceTest test",
+    "tests": 1,
+    "failures": 0,
+    "errors_at_explicit_todo": 0,
+    "todo_placeholder_assertion_passes": true,
+    "interpretation": "Test confirms the learner method remains an explicit TODO; this is not completed behavior."
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-90/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "d65cc1a98736c1115f2d52da2b5e8fd78846b66efb4946d9ec02054abb6cc065"
+  },
+  "limits": [
+    "No production integration or external effects are demonstrated.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}

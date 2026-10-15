@@ -1,0 +1,27 @@
+{
+  "day_id": "CAP-165",
+  "classification": "primary_instructor_discrimination_and_fixture_smoke",
+  "status": "PASS_CURRENT_EXECUTOR",
+  "learner_logic_executed": false,
+  "instructor_check": {
+    "command": "mvn -Dtest=CatalogInstructorHarnessTest,CAP165HarnessDiscriminationTest test",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-165/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "8cc070c55cecf6ba767f348b259cbf3f72ee1777da9d02935c106f8ce1c7155c"
+  },
+  "controls": [
+    "pair-preserving value witness",
+    "delimiter-concatenation mutant rejected",
+    "null/blank/padded source and version values preserved in learner acceptance"
+  ],
+  "limits": [
+    "The witness validates a bounded equality/collision contract only.",
+    "No persistence or publication behavior is included.",
+    "No timebox rehearsal or mastery is claimed."
+  ]
+}

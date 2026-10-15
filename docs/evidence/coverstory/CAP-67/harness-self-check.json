@@ -1,0 +1,20 @@
+{
+  "day_id": "CAP-67",
+  "status": "PASS_CURRENT_EXECUTOR",
+  "learner_logic_executed": false,
+  "instructor_check": {
+    "command": "python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap67_infrastructure.py'",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-67/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "be419470a9ca572fcab9da789bdb4af939ab5b8c5a115ee81dd99f1f8c57378e"
+  },
+  "limits": [
+    "Instructor check validates fixture setup or bounded reference behavior only.",
+    "No learner mastery or timebox rehearsal is claimed."
+  ]
+}

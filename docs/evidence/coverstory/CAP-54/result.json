@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-54",
+  "date": "2026-10-23",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP54InstructorInfrastructureTest test",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP54AcceptanceTest test",
+    "tests": 5,
+    "failures": 0,
+    "errors_at_explicit_todo": 5,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-54/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "270e204da80c8c572c9e1b706a9a5004c50b3e25f5e377f53c746872cd0a29bb"
+  },
+  "limits": [
+    "The owner-scope oracle is test-only; no authenticated session or production resume endpoint is wired.",
+    "No completion or timebox rehearsal is claimed."
+  ]
+}
