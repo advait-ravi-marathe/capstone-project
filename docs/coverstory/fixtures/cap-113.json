@@ -1,0 +1,10 @@
+{
+  "classification":"SYNTHETIC_ONLY_NO_NETWORK",
+  "network_enabled":false,
+  "tariff":{"version":"mock-tariff-v1","currency":"USD","input_usd_per_million":"2","output_usd_per_million":"8"},
+  "usage":{"owner_id":"owner-a","request_id":"r1","event_id":"e1","input_tokens":1000,"output_tokens":250},
+  "duplicate_request_id":"r1",
+  "missing_usage":{"owner_id":"owner-a","request_id":"r2","event_id":"e2"},
+  "expected_cost":"0.004000",
+  "premium_currency":"INR"
+}

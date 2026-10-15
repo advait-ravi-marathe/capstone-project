@@ -171,9 +171,12 @@ def main() -> dict:
         'CAP-172': 'java_exact_application_access_decisions',
         'CAP-110': 'java_safe_configuration_and_explicit_review_gate',
         'CAP-111': 'java_explicit_submission_and_capacity_boundaries',
+        'CAP-175': 'java_read_only_submission_trace_correlation',
+        'CAP-112': 'postgres_idempotent_insurer_review_event_reducer',
+        'CAP-113': 'java_mock_explanation_usage_ledger',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -252,6 +255,9 @@ def main() -> dict:
         'CAP-172': 'src/main/java/capstone/coverstory/application/ValidateExactApplicationAccessDecisions.java',
         'CAP-110': 'src/main/java/capstone/coverstory/application/ValidateSafeConfiguration.java',
         'CAP-111': 'src/main/java/capstone/coverstory/application/DefendExplicitSubmissionAndCapacityBoundaries.java',
+        'CAP-175': 'src/main/java/capstone/coverstory/application/internal/SubmissionTraceLinker.java',
+        'CAP-112': 'src/main/java/capstone/coverstory/application/internal/InsurerReviewEventReducer.java',
+        'CAP-113': 'src/main/java/capstone/coverstory/support/internal/ExplanationUsageLedger.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -323,6 +329,9 @@ def main() -> dict:
         'CAP-172': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
         'CAP-110': 'src/test/java/capstone/coverstory/application/CAP110AcceptanceTest.java',
         'CAP-111': 'src/test/java/capstone/coverstory/application/CAP111AcceptanceTest.java',
+        'CAP-175': 'src/test/java/capstone/coverstory/application/internal/CAP175AcceptanceTest.java',
+        'CAP-112': 'src/test/java/capstone/coverstory/application/internal/CAP112AcceptanceTest.java',
+        'CAP-113': 'src/test/java/capstone/coverstory/support/CAP113AcceptanceTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -368,6 +377,9 @@ def main() -> dict:
         'CAP-174': 'Independent exact-byte SHA-256 fixture oracle only; no persisted proposal snapshot or current-revision service is wired, and the learner digest seam remains TODO.',
         'CAP-110': 'Independent config and readiness oracle covers finite mock-only settings, secret redaction, explicit blockers and no-submit/no-dispatch behavior. Main-source learner method remains TODO; no React submit binding, production readiness port, insurer dispatch, or key restore is wired.',
         'CAP-111': 'Test-only Spring HTTP/PostgreSQL witness exercises an explicit idempotent pending intent, stale-review rejection, cancellation-before-claim and unknown-outcome reconciliation using synthetic records; no production submission route or dispatcher is registered. Capacity arithmetic is assumption-only (1M browsers/30s, static cache hit ratio, 1% transactions/60s), never benchmark evidence. Learner submission and capacity methods remain TODO; no payment, insurer, or dispatch action occurs.',
+        'CAP-175': 'Pure instructor trace-correlation oracle checks submit/dispatch linkage, a separate delayed Support link, unresolved missing spans, owner denial, unchanged timestamps and pending authoritative status. The learner linker remains TODO; no production command, trace store or Support route exists.',
+        'CAP-112': 'Instructor-only JDBC transaction on disposable PostgreSQL applies one synthetic review callback, deduplicates replay, retains stale events without state regression, rejects foreign-owner events and writes allowlisted diagnostics only. Provider exception text is not persisted. No production callback or external insurer call is wired; learner reducer remains TODO.',
+        'CAP-113': 'Offline exact-decimal oracle meters a fixed mock tariff, owner/request-deduplicates usage, keeps missing usage UNKNOWN and leaves premium paise separate. No model/provider call or bill is represented; learner ledger remains TODO.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []
@@ -384,6 +396,12 @@ def main() -> dict:
             case_ids = re.findall(r"^[-*]\s*([A-Z0-9-]+-CS-\d+):", cases_block, re.M)
         paths = [line.strip()[2:] for line in scaffold.splitlines() if line.strip().startswith('- ') and '/' in line]
         planned_source = next((p for p in paths if p.startswith(("src/main/", "ai/coverstory/", "frontend/src/", "web/src/"))), None)
+        if card['id'] in {'CAP-175', 'CAP-112', 'CAP-113'}:
+            planned_source = {
+                'CAP-175': 'src/main/java/capstone/coverstory/application/internal/SubmissionTraceLinker.java',
+                'CAP-112': 'src/main/java/capstone/coverstory/application/internal/InsurerReviewEventReducer.java',
+                'CAP-113': 'src/main/java/capstone/coverstory/support/internal/ExplanationUsageLedger.java',
+            }[card['id']]
         if card['id'] == 'CAP-170':
             # This saved card lists its implementation path in a separate
             # repository-files subsection, outside the scaffold heading.
@@ -392,6 +410,8 @@ def main() -> dict:
         if card['id'] in {'CAP-87', 'CAP-171', 'CAP-172'}:
             case_total = {'CAP-87': 7, 'CAP-171': 5, 'CAP-172': 6}[card['id']]
             case_ids = [f"{card['id']}-CS-{number:02d}" for number in range(1, case_total + 1)]
+        if card['id'] in {'CAP-175', 'CAP-112', 'CAP-113'}:
+            case_ids = [f"{card['id']}-CS-{number}" for number in range(1, 4)]
         authored = card['id'] in authored_ids
         day_ready = (
             day['day_number'] in verified_day_readiness

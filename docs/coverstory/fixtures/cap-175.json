@@ -1,0 +1,11 @@
+{
+  "classification": "SYNTHETIC_ONLY_NO_NETWORK",
+  "spans": [
+    {"spanId":"submit-a","traceId":"trace-submit","owner":"owner-a","operation":"EXPLICIT_SUBMIT","startedAt":"2026-12-29T10:00:00Z","endedAt":"2026-12-29T10:00:01Z","applicationStatus":"SUBMISSION_PENDING"},
+    {"spanId":"dispatch-a","traceId":"trace-submit","owner":"owner-a","operation":"SIMULATED_DISPATCH","startedAt":"2026-12-29T10:00:01Z","endedAt":"2026-12-29T10:00:03Z","applicationStatus":"SUBMISSION_PENDING"},
+    {"spanId":"support-a","traceId":"trace-support","owner":"owner-a","operation":"READ_ONLY_INVESTIGATION","startedAt":"2026-12-29T11:00:00Z","endedAt":"2026-12-29T11:00:01Z","applicationStatus":"SUBMISSION_PENDING"}
+  ],
+  "unknown_reference":"span-not-present",
+  "foreign_owner":"owner-b",
+  "network_enabled":false
+}
