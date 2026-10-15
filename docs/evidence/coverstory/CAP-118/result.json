@@ -1,0 +1,26 @@
+{
+  "assignment": "CAP-118",
+  "source_description_sha256": "91a6dbab930dc03a0cb13dbab3a41c56d68d89f8114916d096931ff2c2ba9d92",
+  "fixture": "docs/coverstory/fixtures/cap-118.json",
+  "classification": "INSTRUCTOR_ORACLE_SELF_CHECK_ONLY",
+  "fixture_sha256": "d52841de5407ab03fd3e5890b4d1d7009505e9d285ecb4b89043bccce9c334e8",
+  "command": "./mvnw -Dtest=CAP118InstructorInfrastructureTest test",
+  "observed": {"tests": 2, "failures": 0, "errors": 0, "skipped": 0},
+  "run_date": "2026-10-15",
+  "oracle_expected": {
+    "lexical": {"first_relevant_ranks": [1,2,4,null], "recall_at_3": 0.5, "mrr": 0.4375},
+    "precomputed_embedding": {"first_relevant_ranks": [2,3,1,null], "recall_at_3": 0.75, "mrr": 0.4583333333333333},
+    "unsafe_scope_probe": {"error_id": "UNAUTHORIZED_SOURCE:q3:br1", "promotion": "VETO"}
+  },
+  "learner_acceptance": {
+    "command": "./mvnw -Plearner-tests -Dtest=PolicyRetrievalMetricTest test",
+    "tests": 4,
+    "assertion_failures_at_todo": 1,
+    "errors_at_todo": 2,
+    "todo_guard_passes": 1,
+    "expected_unimplemented_outcome": true,
+    "detail": "Metric cases reach TODO(CAP-118); the malformed/empty case expects IllegalArgumentException but observes the current UnsupportedOperationException TODO. No setup failure remains."
+  },
+  "decision": "KEEP_LEXICAL_BASELINE; tiny synthetic offline fixture does not justify adoption",
+  "limits": ["No model call", "No embedding generation", "No vector index", "No live policy content", "Four synthetic queries only"]
+}

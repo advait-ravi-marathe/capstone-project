@@ -1,0 +1,38 @@
+{
+  "fixture_id": "coverstory-cap176-issuance-and-slice-gate-v1",
+  "classification": "SYNTHETIC_ONLY_NO_EXTERNAL_INSURER",
+  "network_enabled": false,
+  "candidates": {
+    "baseline": {
+      "answerable": [
+        {"id":"ba1","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba2","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba3","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba4","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba5","gold":"ANSWER","predicted":"ANSWER"},
+        {"id":"ba6","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba7","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba8","gold":"ANSWER","predicted":"ANSWER"},{"id":"ba9","gold":"ANSWER","predicted":"ABSTAIN"},{"id":"ba10","gold":"ANSWER","predicted":"ABSTAIN"}
+      ],
+      "must_abstain": [
+        {"id":"bm1","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm2","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm3","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm4","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm5","gold":"ABSTAIN","predicted":"ABSTAIN"},
+        {"id":"bm6","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm7","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm8","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm9","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"bm10","gold":"ABSTAIN","predicted":"ABSTAIN"}
+      ]
+    },
+    "candidate": {
+      "answerable": [
+        {"id":"ca1","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca2","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca3","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca4","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca5","gold":"ANSWER","predicted":"ANSWER"},
+        {"id":"ca6","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca7","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca8","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca9","gold":"ANSWER","predicted":"ANSWER"},{"id":"ca10","gold":"ANSWER","predicted":"ANSWER"}
+      ],
+      "must_abstain": [
+        {"id":"cm1","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm2","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm3","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm4","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm5","gold":"ABSTAIN","predicted":"ABSTAIN"},
+        {"id":"cm6","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm7","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm8","gold":"ABSTAIN","predicted":"ABSTAIN"},{"id":"cm9","gold":"ABSTAIN","predicted":"ANSWER"},{"id":"cm10","gold":"ABSTAIN","predicted":"ANSWER"}
+      ]
+    }
+  },
+  "policy_records": [
+    {"id":"paid_no_issuance","issuance_reference":null,"effective_cover_evidence":false,"payment_confirmed":true,"offer_accepted":true,"expected":"NO_COVER_YET"},
+    {"id":"reference_only","issuance_reference":"issue-sim-1001","effective_cover_evidence":false,"payment_confirmed":true,"offer_accepted":true,"expected":"NO_COVER_YET"},
+    {"id":"effective_only","issuance_reference":"","effective_cover_evidence":true,"payment_confirmed":true,"offer_accepted":true,"expected":"NO_COVER_YET"},
+    {"id":"both_simulated_evidence","issuance_reference":"issue-sim-1002","effective_cover_evidence":true,"payment_confirmed":false,"offer_accepted":false,"expected":"ACTIVE_COVER"}
+  ],
+  "expected": {
+    "baseline": {"answerable":{"n":10,"correct":8,"rate":0.8},"must_abstain":{"n":10,"correct":10,"rate":1.0},"overall":{"n":20,"correct":18,"rate":0.9}},
+    "candidate": {"answerable":{"n":10,"correct":10,"rate":1.0},"must_abstain":{"n":10,"correct":8,"rate":0.8},"overall":{"n":20,"correct":18,"rate":0.9},"error_ids":["cm9","cm10"],"promotion":"HOLD"}
+  },
+  "rules": ["Missing gold label is INVALID_DATASET", "An empty slice has undefined rate, never 100%", "Payment or accepted offer does not establish cover", "Both nonblank simulated insurer issuance reference and effective-cover evidence are required to project active cover"]
+}

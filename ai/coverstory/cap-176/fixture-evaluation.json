@@ -1,0 +1,13 @@
+{
+  "assignment": "CAP-176",
+  "mode": "fixed-synthetic-classification-and-policy-projection",
+  "network_enabled": false,
+  "fixture": "docs/coverstory/fixtures/cap-176.json",
+  "slice_metrics": ["answerable accuracy", "must-abstain accuracy", "overall accuracy", "error IDs"],
+  "promotion_rule": "HOLD if must-abstain rate regresses; do not mask slice regression with tied aggregate",
+  "issuance_rule": "active-cover wording requires a nonblank simulated insurer issuance reference AND effective-cover evidence",
+  "expected_decision": "HOLD",
+  "instructor_oracle": {"tests": 3, "failures": 0, "errors": 0, "skipped": 0, "run_date": "2026-10-15"},
+  "learner_logic": "TODO(CAP-176); expected fixture output is not learner evidence",
+  "limits": ["20 synthetic rows", "no model call", "no legal interpretation", "no live insurer or dispatch integration"]
+}

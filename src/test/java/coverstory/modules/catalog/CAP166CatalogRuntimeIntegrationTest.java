@@ -97,10 +97,17 @@ class CAP166CatalogRuntimeIntegrationTest {
             }
             app = startApp(jdbcUrl, username);
             int apiPort = ((WebServerApplicationContext) app).getWebServer().getPort();
-            browserFlow = new ProcessBuilder("node", "web/scripts/cap166-browser-flow.mjs", "http://127.0.0.1:" + apiPort)
+            String decoderMode = System.getProperty("coverstory.cap166.decoder", "instructor");
+            assertTrue(List.of("instructor", "learner").contains(decoderMode), "decoder mode must be instructor or learner");
+            browserFlow = new ProcessBuilder("node", "web/scripts/cap166-browser-flow.mjs", "http://127.0.0.1:" + apiPort, decoderMode)
                     .redirectErrorStream(true).start();
             browserCommands = new OutputStreamWriter(browserFlow.getOutputStream());
             try (BufferedReader output = new BufferedReader(new InputStreamReader(browserFlow.getInputStream()))) {
+                if (decoderMode.equals("learner")) {
+                    awaitLine(output, "CAP166_LEARNER_TODO_REACHED", Duration.ofSeconds(70));
+                    assertEquals(0, browserFlow.waitFor(10, TimeUnit.SECONDS) ? browserFlow.exitValue() : -1);
+                    return;
+                }
                 awaitLine(output, "BROWSER_READY", Duration.ofSeconds(70));
                 // Stop only the Catalog HTTP service. PostgreSQL remains durable and available
                 // for the restarted service; the browser must first fail closed with no stale data.

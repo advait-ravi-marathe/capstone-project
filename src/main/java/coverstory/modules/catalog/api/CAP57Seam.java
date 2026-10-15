@@ -36,6 +36,14 @@ public final class CAP57Seam {
         throw new UnsupportedOperationException("CAP-57 learner TODO: implement catalog publication transaction");
     }
 
+    /** Contract entry point: the caller supplies the authenticated editor principal, never a request-body identity. */
+    public PublishResult publish(UUID trustedEditorId, PreparedVersion version) {
+        // LEARNER TODO: implement the same atomic publication contract as
+        // publish(PreparedVersion), attributing the audit row to trustedEditorId.
+        // Keep all writes, including the required publication audit, in one transaction.
+        throw new UnsupportedOperationException("CAP-57 learner TODO: implement actor-attributed publication transaction");
+    }
+
     public List<ExportRow> exportPublished() throws SQLException {
         // LEARNER TODO: read only published IDs, stored content hashes, integer
         // minor-unit amounts and currency in stable product/version order.

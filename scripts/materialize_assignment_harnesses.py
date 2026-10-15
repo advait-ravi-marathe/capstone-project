@@ -178,9 +178,11 @@ def main() -> dict:
         'CAP-115': 'spring_react_postgres_revision_explanation_validator',
         'CAP-116': 'spring_postgres_accepted_revision_payment_reconciliation',
         'CAP-117': 'java_revision_bound_review_evidence_manifest',
+        'CAP-118': 'java_policy_retrieval_slice_metrics',
+        'CAP-176': 'java_issuance_evidence_slice_gate',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115', 'CAP-116', 'CAP-117'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115', 'CAP-116', 'CAP-117', 'CAP-118', 'CAP-176'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -266,6 +268,8 @@ def main() -> dict:
         'CAP-115': 'src/main/java/capstone/coverstory/application/internal/ReviewedOfferAnswerValidator.java',
         'CAP-116': 'src/main/java/capstone/coverstory/payments/internal/AcceptedRevisionBalance.java',
         'CAP-117': 'src/main/java/capstone/coverstory/application/internal/ReviewEvidenceManifest.java',
+        'CAP-118': 'src/main/java/capstone/coverstory/support/internal/PolicyRetrievalMetric.java',
+        'CAP-176': 'src/main/java/capstone/coverstory/policy/internal/IssuanceEvidenceSliceGate.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -344,11 +348,13 @@ def main() -> dict:
         'CAP-115': 'src/test/java/capstone/coverstory/application/CAP115AcceptanceTest.java',
         'CAP-116': 'src/test/java/capstone/coverstory/payments/AcceptedRevisionBalanceTest.java',
         'CAP-117': 'src/test/java/capstone/coverstory/application/internal/ReviewEvidenceManifestTest.java',
+        'CAP-118': 'src/test/java/capstone/coverstory/support/PolicyRetrievalMetricTest.java',
+        'CAP-176': 'src/test/java/capstone/coverstory/policy/IssuanceEvidenceSliceGateTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
         'CAP-54': 'Instructor browser flow revalidates a fresh session, refetches owner-scoped journeys, verifies account switch/cache clearing and logout/public catalog continuity through real Spring routes and Application-owned disposable PostgreSQL. Session identity is synthetic test-only; no production login exists and the two learner seams remain TODO.',
-        'CAP-57': 'Test-only Spring publication route invokes an independent JDBC reference transaction against disposable PostgreSQL, writes the active catalog row and safe source/version/hash audit atomically, and verifies deterministic exports plus the public version-history route across restart. The production learner seam remains TODO; the instructor route and editor filter are not registered by the ordinary application.',
+        'CAP-57': 'Test-only Spring reference route and learner-mode Spring route both exercise disposable PostgreSQL; the learner route verifies that publication and authenticated-editor audit attribution commit together or roll back together. The production seam has no implementation, and neither instructor nor learner test route is registered by the ordinary application.',
         'CAP-88': 'Pure policy harness only; Spring authentication and HTTP role-client integration are blocked because no auth adapter or protected module route exists.',
         'CAP-89': 'Local evaluator gate only; no CI workflow integration is implemented.',
         'CAP-90': 'Instructor-owned JDBC adapter persists authenticated ciphertext and links it to an exact Application revision in disposable PostgreSQL; owner-scoped lookup, append-only rows, FK rejection and revision-bound AAD are exercised. The learner access seam remains TODO; production authorization, separate retained-key restore, wrapped-DEK/KMS and response/log integration remain blocked.',
@@ -372,7 +378,7 @@ def main() -> dict:
         'CAP-108': 'In-memory lane planning only; no queue, worker, published diagnostics or payment integration is exercised.',
         'CAP-109': 'Metadata-only revision/audit oracle checks exact digest deltas, explicit price/terms review, append-only reconciliation observations, one posted effect per provider reference and authoritative transition completeness. Main-source learner seam remains TODO; no payment, refund, envelope decrypt or telemetry write occurs.',
         'CAP-52': 'MockMvc transport boundary and fake decision port only; trusted-principal authentication adapter and durable idempotency are not wired.',
-        'CAP-166': 'Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving persistence, version status, bounded selection, storage denial, fail-closed outage, and same-port service-restart recovery with a test-only decoder adapter. Production learner decoder remains TODO; database process restore, customer data, and payable action are not claimed.',
+        'CAP-166': 'Instructor Chromium/React Query flow uses a separate fixed reference decoder; selectable learner mode exercises the same live HTTP/browser route through the actual TODO decoder. Storage-denied selection and 503 outage offer an export containing version IDs only, cached stale comparison is disabled, and instructor recovery verifies same-port service restart with persisted rows. Database process restore, customer data, and payable action are not claimed.',
         'CAP-167': 'Bounded offline trace oracle only; learner checker remains TODO and no broker or publication worker is used.',
         'CAP-173': 'Synthetic PostgreSQL audit-window oracle, actual optional HTTP route and owner-bounded test principal; learner count/reconcile seam remains TODO, no provider or payment operation is used.',
         'CAP-58': 'Instructor-only Vite/Chromium queue flow now reaches the real Spring HTTP route and disposable PostgreSQL receipt store through a fixed synthetic principal and reference validator; five injected 429 responses exercise bounded retry/drop before one 10-event batch persists. Learner validator, production authentication/consent/key configuration and journey authorization remain TODO or unprovisioned; no business journey changes.',
@@ -396,6 +402,8 @@ def main() -> dict:
         'CAP-115': 'Instructor Chromium flow uses React/Vite, a test-only Spring route, public Application/Support/Payments fact ports and disposable PostgreSQL. Fixed answer variants verify exact immutable quote hashes, integer paise and owner-scoped citations; invalid answers leave deterministic facts visible, and only an explicit human choice persists a test-only receipt. The main validator and ordinary product route remain TODO/absent; no model, acceptance command, payment, dispatch or active cover is involved, and the 150-minute timebox is unrehearsed.',
         'CAP-116': 'Instructor HTTP flow exercises accepted-revision facts through the Application public API and immutable effect/reservation facts through Payments public APIs against disposable PostgreSQL. Fixed cases verify unique confirmed net, integer paise, pending reservation, exact accepted id/hash binding, owner isolation, and orphan/currency discrepancy fail-closed behavior without writes. The main balance calculator remains TODO; only a test-profile read route and independent reference calculator exist. No charge, refund, provider or dispatch action occurs; the 150-minute timebox is unrehearsed.',
         'CAP-117': 'Independent instructor oracle checks the frozen CAP-112–116 evidence hashes, current accepted revision, expiry and unsupported claims. The learner ReviewEvidenceManifest.verify remains an explicit TODO; no production route or approval/issuance claim is introduced.',
+        'CAP-118': 'Fixed synthetic lexical/precomputed-rank comparison and access-scope veto only; no model, embeddings, index, live content, or production authorization was evaluated.',
+        'CAP-176': 'Small synthetic slice-metric and issuance-evidence oracle only; both learner TODOs remain. Full Policy command/runtime, cross-module evidence ports, simulated dispatch lifecycle and browser integration remain blocked; timebox rehearsal is NOT_RUN.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []

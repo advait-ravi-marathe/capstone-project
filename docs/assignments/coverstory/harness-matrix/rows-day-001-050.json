@@ -437,7 +437,7 @@
       "canonical_derived_primary_path": "src/main/java/coverstory/modules/catalog/api/CAP57Seam.java",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": "Test-only Spring publication route invokes an independent JDBC reference transaction against disposable PostgreSQL, writes the active catalog row and safe source/version/hash audit atomically, and verifies deterministic exports plus the public version-history route across restart. The production learner seam remains TODO; the instructor route and editor filter are not registered by the ordinary application.",
+      "coverage_note": "Test-only Spring reference route and learner-mode Spring route both exercise disposable PostgreSQL; the learner route verifies that publication and authenticated-editor audit attribution commit together or roll back together. The production seam has no implementation, and neither instructor nor learner test route is registered by the ordinary application.",
       "acceptance_case_ids": [
         "CAP-57-CS-01",
         "CAP-57-CS-02",
@@ -471,7 +471,7 @@
       "canonical_derived_primary_path": "web/src/coverstory/catalog/decodeCatalogEnvelope.ts",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": "Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving persistence, version status, bounded selection, storage denial, fail-closed outage, and same-port service-restart recovery with a test-only decoder adapter. Production learner decoder remains TODO; database process restore, customer data, and payable action are not claimed.",
+      "coverage_note": "Instructor Chromium/React Query flow uses a separate fixed reference decoder; selectable learner mode exercises the same live HTTP/browser route through the actual TODO decoder. Storage-denied selection and 503 outage offer an export containing version IDs only, cached stale comparison is disabled, and instructor recovery verifies same-port service restart with persisted rows. Database process restore, customer data, and payable action are not claimed.",
       "acceptance_case_ids": [
         "CAP-166-CS-01",
         "CAP-166-CS-02",

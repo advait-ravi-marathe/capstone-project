@@ -4,7 +4,7 @@
   "learner_logic_status": "TODO_RETAINED",
   "instructor_status": "PASS_CURRENT_EXECUTOR",
   "instructor_check": {
-    "command": "mvn -Dtest=CAP57InstructorInfrastructureTest,CAP57PublicationRuntimeIntegrationTest test",
+    "command": "./mvnw -Dtest=CAP57InstructorInfrastructureTest,CAP57PublicationRuntimeIntegrationTest test",
     "tests": 6,
     "failures": 0,
     "errors": 0,
@@ -12,11 +12,24 @@
     "http_runtime_tests": 2
   },
   "learner_acceptance": {
-    "command": "mvn -Plearner-tests -Dtest=CAP57AcceptanceTest test",
+    "command": "./mvnw -Plearner-tests -Dtest=CAP57AcceptanceTest test",
     "tests": 4,
     "failures": 0,
     "errors_at_explicit_todo": 4,
     "expected_todo_result": true
+  },
+  "learner_route_acceptance": {
+    "command": "./mvnw -Plearner-tests -Dtest=CAP57LearnerRouteTransactionTest test",
+    "tests": 2,
+    "assertion_failures": 2,
+    "errors": 0,
+    "expected_todo_result": true,
+    "observed_safe_code": "CAP57_LEARNER_TODO",
+    "required_when_implemented": [
+      "authenticated editor UUID comes from the trusted server principal",
+      "successful active publication and attributed business-audit row commit together",
+      "an injected pre-commit failure leaves neither active row nor audit row"
+    ]
   },
   "fixture": {
     "path": "fixtures/coverstory/CAP-57/synthetic-v1.json",
@@ -29,7 +42,7 @@
     "No learner completion or timebox rehearsal is claimed."
   ],
   "http_runtime": {
-    "command": "mvn -Dtest=CAP57PublicationRuntimeIntegrationTest test",
+    "command": "./mvnw -Dtest=CAP57PublicationRuntimeIntegrationTest test",
     "status": "PASS",
     "real_spring_listener": true,
     "embedded_postgresql": "18.6",

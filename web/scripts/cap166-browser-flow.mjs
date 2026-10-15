@@ -8,6 +8,8 @@ import readline from 'node:readline'
 
 const apiTarget = process.argv[2]
 if (!apiTarget) throw new Error('Usage: node scripts/cap166-browser-flow.mjs <spring-api-url>')
+const decoderMode = process.argv[3] ?? 'instructor'
+if (!['instructor', 'learner'].includes(decoderMode)) throw new Error('decoder mode must be instructor or learner')
 const root = new URL('..', import.meta.url).pathname
 const freePort = async () => await new Promise((resolve, reject) => {
   const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const p = s.address().port; s.close(() => resolve(p)) })
@@ -62,22 +64,36 @@ try {
     if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description ?? r.exceptionDetails.text)
     return r.result.value
   }
-  const navigate = async (path) => { await send('Page.navigate', { url: `${baseUrl}${path}` }); await waitFor("document.readyState === 'complete'") }
+  const harnessPath = (path = '') => `/cap166-harness.html${path}${path.includes('?') ? '&' : '?'}decoder=${decoderMode}`
+  const navigate = async (path = '') => { await send('Page.navigate', { url: `${baseUrl}${harnessPath(path)}` }); await waitFor("document.readyState === 'complete'") }
   const waitFor = async (expression) => {
     for (let i = 0; i < 100; i++) { try { if (await evaluate(expression)) return } catch {} await wait(100) }
     throw new Error(`Browser condition timed out: ${expression}`)
   }
-  await navigate('/cap166-harness.html')
+  if (decoderMode === 'learner') {
+    await navigate()
+    await waitFor("document.querySelector('.persisted-catalog [role=alert]')?.textContent.includes('could not be decoded') && document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 0")
+    console.log('CAP166_LEARNER_TODO_REACHED ' + JSON.stringify({ actualDecoder: 'decodeCatalogEnvelope', noPartialCatalog: true, retryableErrorVisible: true }))
+  } else {
+  await navigate()
   await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3")
   await evaluate("[...document.querySelectorAll('.persisted-catalog input[type=checkbox]')].slice(0,2).forEach(x=>x.click())")
   await waitFor("document.querySelector('.persisted-catalog .selection-toolbar strong')?.textContent === '2'")
   await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').click()")
   await waitFor("document.querySelectorAll('.persisted-catalog .compare-panel tbody tr').length === 4")
+  await evaluate("[...document.querySelectorAll('.persisted-catalog button')].find(b=>b.textContent.includes('Export sanitized selection')).click()")
+  await waitFor("window.__cap166SanitizedExport !== undefined")
+  const storageDeniedExport = await evaluate('window.__cap166SanitizedExport')
+  assert.deepEqual(storageDeniedExport, { schemaVersion: 1, selection: [
+    { versionId: '16600000-0000-4000-8000-000000000001' },
+    { versionId: '16600000-0000-4000-8000-000000000002' },
+  ] })
   let page = await evaluate("document.querySelector('.persisted-catalog').innerText")
   assert.match(page, /RETIRED/); assert.match(page, /PUBLISHED/); assert.match(page, /Payable review is unavailable/)
-  console.log('CAP166_BROWSER_POSITIVE ' + JSON.stringify({ liveApi: true, persistedRows: 3, retiredAndPublishedVisible: true, comparisonRows: 4, priceOrPayableAction: false, browserStorageDenied: true }))
+  console.log('CAP166_BROWSER_POSITIVE ' + JSON.stringify({ decoderMode, liveApi: true, persistedRows: 3, retiredAndPublishedVisible: true, comparisonRows: 4, priceOrPayableAction: false, browserStorageDenied: true, sanitizedSelectionExport: true }))
 
-  await navigate('/cap166-harness.html?boundary')
+  if (decoderMode === 'instructor') await navigate('?boundary')
+  if (decoderMode === 'instructor') {
   await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 4")
   await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Other categories or scenarios')")
   await evaluate("[...document.querySelectorAll('.persisted-catalog input[type=checkbox]')].slice(0,3).forEach(x=>x.click())")
@@ -85,8 +101,9 @@ try {
   const fourthDisabled = await evaluate("document.querySelectorAll('.persisted-catalog input[type=checkbox]')[3].disabled")
   assert.equal(fourthDisabled, true, 'a fourth same-scenario selection must be disabled accessibly')
   console.log('CAP166_BROWSER_BOUNDARY ' + JSON.stringify({ threeSelections: true, fourthDisabled, nonHealthRejected: true }))
+  }
 
-  await navigate('/cap166-harness.html')
+  await navigate()
   await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3")
   await evaluate("[...document.querySelectorAll('.persisted-catalog input[type=checkbox]')].slice(0,2).forEach(x=>x.click())")
   await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').click()")
@@ -100,15 +117,23 @@ try {
       await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Refresh failed')")
       const staleDisabled = await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').disabled")
       assert.equal(staleDisabled, true, 'cached comparison cannot continue after the Catalog service stops')
+      await evaluate("[...document.querySelectorAll('.persisted-catalog button')].find(b=>b.textContent.includes('Export sanitized selection')).click()")
+      await waitFor("window.__cap166SanitizedExport !== undefined")
+      const exported = await evaluate('window.__cap166SanitizedExport')
+      assert.deepEqual(exported, { schemaVersion: 1, selection: [
+        { versionId: '16600000-0000-4000-8000-000000000001' },
+        { versionId: '16600000-0000-4000-8000-000000000002' },
+      ] })
+      assert.equal(JSON.stringify(exported).includes('http'), false)
       await send('Page.reload', { ignoreCache: true })
       await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Catalog history is unavailable')")
       assert.equal(await evaluate("document.querySelector('.persisted-catalog .compare-panel') === null"), true)
-      console.log('CAP166_BROWSER_OUTAGE ' + JSON.stringify({ cachedComparisonDisabled: staleDisabled, reloadHasNoStaleComparison: true }))
+      console.log('CAP166_BROWSER_OUTAGE ' + JSON.stringify({ decoderMode, cachedComparisonDisabled: staleDisabled, sanitizedExportOffered: true, reloadHasNoStaleComparison: true }))
       console.log('OUTAGE_RECOVERY_VALIDATED')
       continue
     }
     if (line.trim() === 'RECOVER') {
-      await navigate('/cap166-harness.html')
+      await navigate()
       await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3")
       const rows = await evaluate("document.querySelector('.persisted-catalog').innerText")
       assert.match(rows, /RETIRED/); assert.match(rows, /PUBLISHED/)
@@ -116,9 +141,10 @@ try {
       await waitFor("document.querySelector('.persisted-catalog .selection-toolbar strong')?.textContent === '2'")
       await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').click()")
       await waitFor("document.querySelectorAll('.persisted-catalog .compare-panel tbody tr').length === 4")
-      console.log('CAP166_BROWSER_RECOVERED ' + JSON.stringify({ serviceRestarted: true, persistedRowsRestored: 3, retiredHistoryRestored: true, comparisonReenabled: true }))
+      console.log('CAP166_BROWSER_RECOVERED ' + JSON.stringify({ decoderMode, serviceRestarted: true, persistedRowsRestored: 3, retiredHistoryRestored: true, comparisonReenabled: true }))
       break
     }
+  }
   }
 } catch (error) {
   console.error(error?.stack ?? String(error));

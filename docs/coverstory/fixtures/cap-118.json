@@ -1,0 +1,31 @@
+{
+  "fixture_id": "coverstory-policy-retrieval-fixed-v1",
+  "classification": "SYNTHETIC_OFFLINE_FIXED_RANKS",
+  "network_enabled": false,
+  "runtime_index_created": false,
+  "embedding_source": "PRECOMPUTED_SYNTHETIC_ORDER_ONLY",
+  "dataset_version": "policy-support-locked-v1",
+  "queries": [
+    {"id":"q1","synthetic_question":"Which event starts a policy?","relevant_source_id":"s1"},
+    {"id":"q2","synthetic_question":"What if dispatch is not confirmed?","relevant_source_id":"s2"},
+    {"id":"q3","synthetic_question":"Can payment alone mean active cover?","relevant_source_id":"s3"},
+    {"id":"q4","synthetic_question":"How do I cancel a pending simulated payment?","relevant_source_id":"s4"}
+  ],
+  "authorized_sources": ["s1","s2","s3","s4","d1","d2"],
+  "source_registry": [
+    {"id":"s1","owner_scope":"PUBLIC_SYNTHETIC","version":"policy-v1","content":"Only a confirmed simulated issuance reference with effective-cover evidence permits active-cover wording."},
+    {"id":"s2","owner_scope":"PUBLIC_SYNTHETIC","version":"submission-v1","content":"Submission remains pending until a simulated dispatch confirmation arrives."},
+    {"id":"s3","owner_scope":"PUBLIC_SYNTHETIC","version":"payment-v1","content":"Payment confirmation is not insurer dispatch or active cover."},
+    {"id":"s4","owner_scope":"PUBLIC_SYNTHETIC","version":"cancellation-v1","content":"Cancellation requires reconciliation of the simulated payment state."},
+    {"id":"d1","owner_scope":"PUBLIC_SYNTHETIC","version":"distractor-v1","content":"A generic support page unrelated to the question."},
+    {"id":"d2","owner_scope":"PUBLIC_SYNTHETIC","version":"distractor-v1","content":"Another generic product help page unrelated to the question."},
+    {"id":"br1","owner_scope":"OWNER_B_PRIVATE_SYNTHETIC","version":"private-v1","content":"Synthetic private document, intentionally excluded from every candidate scope."}
+  ],
+  "candidates": {
+    "lexical": {"rankings":{"q1":["s1","d1"],"q2":["d1","s2"],"q3":["d1","d2","d1","s3"],"q4":["d2"]},"expected":{"first_relevant_ranks":[1,2,4,null],"recall_at_3":0.5,"mrr":0.4375}},
+    "precomputed_embedding": {"rankings":{"q1":["d1","s1"],"q2":["d1","d2","s2"],"q3":["s3","d1"],"q4":["d2"]},"expected":{"first_relevant_ranks":[2,3,1,null],"recall_at_3":0.75,"mrr":0.4583333333333333}},
+    "unsafe_scope_probe": {"rankings":{"q1":["s1"],"q2":["s2"],"q3":["br1","s3"],"q4":["d2"]},"expected":{"recall_at_3":0.75,"scope_safe":false,"error_id":"UNAUTHORIZED_SOURCE:q3:br1","promotion":"VETO"}}
+  },
+  "decision_rule": "Report metrics only with denominators and rank arrays. Any unauthorized source is a security veto independent of ranking score; this offline fixture cannot authorize production adoption.",
+  "limitations": ["Four synthetic queries are not a quality estimate.","Embedding ranking is precomputed and makes no model call.","No vector index, external service, owner-specific source store, or live policy content is included."]
+}

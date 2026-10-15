@@ -4,6 +4,13 @@ import { decodeCatalogEnvelope, type CatalogEnvelopeResult, type CatalogEnvelope
 
 type CatalogDecoder = (raw: unknown) => CatalogEnvelopeResult
 
+export interface SanitizedCatalogExport {
+  schemaVersion: 1
+  selection: Array<{ versionId: string }>
+}
+
+type SanitizedExportAdapter = (payload: SanitizedCatalogExport) => void
+
 async function readPersistedCatalog(signal: AbortSignal, decode: CatalogDecoder): Promise<CatalogEnvelopeV1> {
   const response = await fetch('/api/catalog/versions?category=health', { headers: { Accept: 'application/json' }, signal })
   if (!response.ok) throw new Error(`catalog unavailable (${response.status})`)
@@ -14,7 +21,10 @@ async function readPersistedCatalog(signal: AbortSignal, decode: CatalogDecoder)
 }
 
 /** CAP-166 customer-facing shell. The decoder remains the learner-owned seam. */
-export function PersistedHealthComparison({ decoder = decodeCatalogEnvelope }: { decoder?: CatalogDecoder }) {
+export function PersistedHealthComparison({
+  decoder = decodeCatalogEnvelope,
+  onSanitizedExport,
+}: { decoder?: CatalogDecoder; onSanitizedExport?: SanitizedExportAdapter }) {
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const [comparing, setComparing] = useState(false)
   const catalog = useQuery({
@@ -35,11 +45,33 @@ export function PersistedHealthComparison({ decoder = decodeCatalogEnvelope }: {
     setComparing(false)
   }
 
+  function exportSanitizedSelection() {
+    const payload: SanitizedCatalogExport = {
+      schemaVersion: 1,
+      selection: selectedIds.map((versionId) => ({ versionId })),
+    }
+    if (onSanitizedExport) {
+      onSanitizedExport(payload)
+      return
+    }
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
+    const href = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = href
+    link.download = 'coverstory-catalog-selection.json'
+    link.click()
+    URL.revokeObjectURL(href)
+  }
+
   return <section className="catalog-section persisted-catalog" aria-labelledby="persisted-catalog-title">
     <div className="section-heading"><div><p className="eyebrow">DAY 014 / PERSISTED CATALOG</p><h2 id="persisted-catalog-title">Compare saved source versions.</h2></div></div>
     <p className="section-intro">Read-only synthetic catalog history from PostgreSQL. Source versions and publication status are shown without price, ranking, coverage, or payable claims.</p>
     {catalog.isPending && <p role="status">Loading persisted synthetic catalog…</p>}
     {catalog.isError && !catalog.data && <p className="notice" role="alert">Catalog history is unavailable or could not be decoded. No partial comparison is shown. Retry after the catalog service is available.</p>}
+    {selectedIds.length > 0 && <div className="export-sanitized-selection">
+      <p className="inline-note">Save your selection as a sanitized export. It contains version identifiers only.</p>
+      <button type="button" className="secondary-button" onClick={exportSanitizedSelection}>Export sanitized selection</button>
+    </div>}
     {stale && <p className="notice" role="alert">Refresh failed. The versions below are cached and may be stale. They cannot continue to payable review.</p>}
     <button type="button" className="secondary-button refresh-persisted-catalog" onClick={() => void catalog.refetch()}>Refresh catalog history</button>
     {catalog.data && <>
