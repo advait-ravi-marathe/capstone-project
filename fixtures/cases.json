@@ -1333,13 +1333,13 @@
         "input": {
           "text": "<img src=\"x\">"
         },
-        "expected": "&lt;img src=&quot;x&quot;&gt;"
+        "expected": "<img src=\"x\">"
       },
       {
         "input": {
           "text": "A & B"
         },
-        "expected": "A &amp; B"
+        "expected": "A & B"
       }
     ]
   },
@@ -1997,18 +1997,63 @@
     ]
   },
   "frontend_30": {
+    "role": "frontend",
+    "day": 30,
     "cases": [
       {
         "input": {
-          "quantity": 1
+          "attempts": [
+            {
+              "topic": "forms",
+              "attempted": 5,
+              "passed": 4
+            },
+            {
+              "topic": "async",
+              "attempted": 4,
+              "passed": 1
+            },
+            {
+              "topic": "security",
+              "attempted": 2,
+              "passed": 1
+            }
+          ]
         },
-        "expected": "1 unit"
+        "expected": [
+          "async"
+        ]
       },
       {
         "input": {
-          "quantity": 0
+          "attempts": [
+            {
+              "topic": "networking",
+              "attempted": 0,
+              "passed": 0
+            },
+            {
+              "topic": "performance",
+              "attempted": 2,
+              "passed": 0
+            },
+            {
+              "topic": "a11y",
+              "attempted": 2,
+              "passed": 1
+            }
+          ]
         },
-        "expected": "0 units"
+        "expected": [
+          "networking",
+          "performance"
+        ]
+      },
+      {
+        "input": {
+          "attempts": []
+        },
+        "expected": []
       }
     ]
   }

@@ -7,7 +7,10 @@ import java.util.function.Supplier;
 /** Dependency-free instructor/learner acceptance runner; supports an external solution class. */
 public final class AssignmentAcceptance {
     private static int cases, passed, todos, failures;
+    private static int selectedDay;
+    private static boolean daySpecified;
     private static void check(String name, Supplier<?> actual, Object expected) {
+        if (selectedDay != 0 && !name.startsWith(String.format("SDE D%02d ", selectedDay))) return;
         cases++;
         try {
             Object value = actual.get();
@@ -28,12 +31,18 @@ public final class AssignmentAcceptance {
     private static Map<String,String> map(String... kv) {
         Map<String,String> m=new LinkedHashMap<>(); for(int i=0;i<kv.length;i+=2)m.put(kv[i],kv[i+1]); return m;
     }
-    private static ExerciseSet load(String[] args) throws Exception {
-        if(args.length==0)return new LearnerExercises();
-        return (ExerciseSet)Class.forName(args[0]).getDeclaredConstructor().newInstance();
+    private static ExerciseSet load(String implementationClass) throws Exception {
+        if(implementationClass==null)return new LearnerExercises();
+        return (ExerciseSet)Class.forName(implementationClass).getDeclaredConstructor().newInstance();
     }
     public static void main(String[] args) throws Exception {
-        ExerciseSet s=load(args);
+        String implementationClass=null;
+        for(String arg:args) {
+            if(arg.startsWith("--day=")) { selectedDay=Integer.parseInt(arg.substring(6)); daySpecified=true; }
+            else implementationClass=arg;
+        }
+        if(daySpecified&&(selectedDay<1||selectedDay>30)) throw new IllegalArgumentException("--day must be between 1 and 30");
+        ExerciseSet s=load(implementationClass);
         check("SDE D01 first normalized email wins",()->s.deduplicateRegistrations(List.of(
             new Registration(" A@X.com ","1",Map.of("market","IN")),new Registration("b@x.com","2",Map.of()),new Registration("a@x.com","3",Map.of()))),List.of(
             new Registration(" A@X.com ","1",Map.of("market","IN")),new Registration("b@x.com","2",Map.of())));

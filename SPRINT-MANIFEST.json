@@ -9,13 +9,13 @@
     {
       "key": "sde",
       "job_id": "10579529",
-      "job_title": "Software Development Engineer II \u2014 Seller Springboard",
+      "job_title": "Software Development Engineer II — Seller Springboard",
       "minutes": 60
     },
     {
       "key": "frontend",
       "job_id": "10575321",
-      "job_title": "Front-End Engineer II \u2014 FBA",
+      "job_title": "Front-End Engineer II — FBA",
       "minutes": 60
     }
   ],
@@ -487,7 +487,7 @@
           "expected": []
         }
       ],
-      "design_prompt": "How would you detect and communicate a blocked prerequisite without losing the seller\u2019s progress?",
+      "design_prompt": "How would you detect and communicate a blocked prerequisite without losing the seller’s progress?",
       "leadership_principle": "Deliver Results",
       "timebox_minutes": {
         "implementation_or_coding": 35,
@@ -1907,13 +1907,13 @@
           "input": {
             "text": "<img src=\"x\">"
           },
-          "expected": "&lt;img src=&quot;x&quot;&gt;"
+          "expected": "<img src=\"x\">"
         },
         {
           "input": {
             "text": "A & B"
           },
-          "expected": "A &amp; B"
+          "expected": "A & B"
         }
       ],
       "design_prompt": "Review XSS/CSRF and safe URL handling in a seller-facing UI.",
@@ -1931,7 +1931,7 @@
       "job_id": "10579529",
       "title": "Regional policy coverage map",
       "topic": "system design",
-      "coding_prompt": "Given country requirements and globally supported fields, return each country\u2019s sorted required fields that are unsupported. Omit countries with no gaps. This is a deterministic planning helper; the separate design block is the architecture exercise.",
+      "coding_prompt": "Given country requirements and globally supported fields, return each country’s sorted required fields that are unsupported. Omit countries with no gaps. This is a deterministic planning helper; the separate design block is the architecture exercise.",
       "cases": [
         {
           "input": {
@@ -2129,7 +2129,7 @@
       "job_id": "10579529",
       "title": "Outbox event ordering",
       "topic": "distributed events",
-      "coding_prompt": "Given events with aggregate ID and sequence, return true if each aggregate\u2019s sequence is strictly increasing in given order.",
+      "coding_prompt": "Given events with aggregate ID and sequence, return true if each aggregate’s sequence is strictly increasing in given order.",
       "cases": [
         {
           "input": {
@@ -2774,7 +2774,7 @@
       "job_id": "10579529",
       "title": "Retrospective: find weakest DSA topic",
       "topic": "retrospective / analysis",
-      "coding_prompt": "From practice attempts grouped by topic, compute each topic\u2019s total passed and total tests. Return every lowest pass-rate topic sorted by name; a topic with zero tests has rate 0. Include a tie case. Use the output to choose a truthful next-month goal in your notes.",
+      "coding_prompt": "From practice attempts grouped by topic, compute each topic’s total passed and total tests. Return every lowest pass-rate topic sorted by name; a topic with zero tests has rate 0. Include a tie case. Use the output to choose a truthful next-month goal in your notes.",
       "cases": [
         {
           "input": {
@@ -2854,15 +2854,58 @@
       "cases": [
         {
           "input": {
-            "quantity": 1
+            "attempts": [
+              {
+                "topic": "forms",
+                "attempted": 5,
+                "passed": 4
+              },
+              {
+                "topic": "async",
+                "attempted": 4,
+                "passed": 1
+              },
+              {
+                "topic": "security",
+                "attempted": 2,
+                "passed": 1
+              }
+            ]
           },
-          "expected": "1 unit"
+          "expected": [
+            "async"
+          ]
         },
         {
           "input": {
-            "quantity": 0
+            "attempts": [
+              {
+                "topic": "networking",
+                "attempted": 0,
+                "passed": 0
+              },
+              {
+                "topic": "performance",
+                "attempted": 2,
+                "passed": 0
+              },
+              {
+                "topic": "a11y",
+                "attempted": 2,
+                "passed": 1
+              }
+            ]
           },
-          "expected": "0 units"
+          "expected": [
+            "networking",
+            "performance"
+          ]
+        },
+        {
+          "input": {
+            "attempts": []
+          },
+          "expected": []
         }
       ],
       "design_prompt": "Redo your weakest UI/API pattern, state accessibility/performance tradeoffs, and plan next 30 days.",

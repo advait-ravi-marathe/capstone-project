@@ -15,14 +15,16 @@ Requires a Java 21 JRE with the `jdk.compiler` module, Python 3.10+, Node 20+, a
 make validate        # dates, job IDs, maps, synchronized synthetic fixtures, TODO surfaces
 make scaffold        # Java compile + recognized TODO check + SQL fixture/schema check
 make build-frontend  # production React bundle
-make test-frontend   # 8 component/async tests; expected to pass
+make test-frontend   # 12 React component/async tests; expected to pass
 make test-frontend-browser # real Chromium smoke at 390 × 844; expected to pass
 make test-sde        # Java acceptance suite; expected 87 recognized TODO cases
 make test-sql        # SQLite SQL learner contract; expected recognized TODO
-make test-frontend-contracts # 61 fixture-driven learner helper cases; expected TODO failures
+make test-frontend-contracts # fixture-driven learner helper cases; expected TODO failures
 ```
 
-If `npm ci` fails because your environment cannot create its default npm cache directory, use `npm ci --cache /tmp/amazon-sprint-npm-cache`. Normal local setup is `cd frontend && npm ci`, followed by `npx playwright install chromium` for the browser test. In this Linux executor, set `CHROMIUM_PATH=/usr/bin/chromium` for that test.
+If `npm ci` fails because your environment cannot create its default npm cache directory, use `npm ci --cache /tmp/amazon-sprint-npm-cache`. Normal local setup is `cd frontend && npm ci`, followed by `npx playwright install chromium` for the browser test. In this Linux executor, run the browser test as `CHROMIUM_PATH=/usr/bin/chromium make test-frontend-browser`.
+
+For the first day, use `make test-sde-day DAY=1` and `make test-frontend-day DAY=1`; each compiles/runs only the Day 1 contract and reports the initial TODO. Edit `sde/src/main/java/amazon/sprint/LearnerExercises.java` and `frontend/src/assignments.js`, then rerun those exact commands. The FE workspace is `frontend/src/ui.jsx`; `make test-frontend` exercises the actual components, injected async ports, and learner-function outputs.
 
 The starter infrastructure checks are separate from learner outcomes. `make scaffold`, `make validate`, component tests, browser smoke, and production build verify compilation, navigation, fixture synchronization, and working async UI examples. The Java/SQL/Front-End helper acceptance commands exercise learner TODOs and are expected to report those TODOs until you implement them. Passing setup tests alone does not show independent mastery.
 

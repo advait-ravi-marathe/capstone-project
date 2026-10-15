@@ -24,8 +24,10 @@ assert methods == implementation_methods, f'Java contract mismatch: missing {met
 assert len(re.findall(r'throw todo\(\d+\)', java)) == 29
 assert len(re.findall(r'export function day\d{2}\(', js)) == 30
 assert len(re.findall(r'Learner TODO: Day \d{2}', js)) == 30
-assert "days.map((x)" in ui and "exercises[`day${String(day).padStart(2, '0')}`]" in ui
+assert 'function TaskBody(' in ui and 'exerciseFunctions[`day${String(day).padStart(2, \'0\')}`]' in ui
+assert 'JSON input' not in ui and 'StructuredTask' not in ui
 assert 'AbortController' in ui and 'aria-controls' in ui and 'role="tablist"' in ui
+assert 'attempts:4,base:100,cap:800' in ui and 'setTimeout' in ui
 assert 'highest request sequence' in next(a['coding_prompt'] for a in manifest['assignments'] if a['role']=='frontend' and a['day']==17)
 assert (ROOT / 'sde/sql/day19.sql').is_file() and (ROOT / 'scripts/test_day19_sql.py').is_file()
 assert 'created_at descending, then event_id descending' in next(a['coding_prompt'] for a in manifest['assignments'] if a['role']=='sde' and a['day']==19)
@@ -54,6 +56,10 @@ with (ROOT/'docs/source-mapping.csv').open(newline='') as f:
     mapping=list(csv.DictReader(f))
 assert len(mapping)==60 and len({(r['role'],r['day']) for r in mapping})==60
 assert all(r['hello_interview_topic_or_reason'] and r['source_quality_note'] for r in mapping)
+assert all(r['hello_interview_youtube_url']=='https://www.youtube.com/@hello_interview' and 'not verified' in r['youtube_evidence_note'] for r in mapping)
+assert 'strivers-sde-sheet-top-coding-interview-problems' in (ROOT / 'docs/source-mapping.md').read_text()
+fe30=next(a for a in manifest['assignments'] if a['role']=='frontend' and a['day']==30)
+assert 'attempted versus passed' in fe30['coding_prompt'] and all(all({'attempted','passed'} <= set(x) for x in c['input']['attempts']) for c in fe30['cases'] if c['input'].get('attempts'))
 assert sum(len(a['cases']) for a in manifest['assignments']) == sum(len(x['cases']) for x in fixtures.values())
 # The corrected budget example is deliberately tied to its stated <= budget semantics.
 d2=next(a for a in manifest['assignments'] if a['role']=='sde' and a['day']==2)

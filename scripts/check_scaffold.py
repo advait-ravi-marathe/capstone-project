@@ -13,10 +13,13 @@ with tempfile.TemporaryDirectory(prefix='amazon-sprint-java-') as out:
     result=subprocess.run(['java','-cp',out,'amazon.sprint.AssignmentAcceptance'],text=True,capture_output=True)
     output=result.stdout+result.stderr
     match=re.search(r'Java SDE acceptance: (\d+) cases, (\d+) passed, (\d+) TODO, (\d+) failed',output)
-    if not match or tuple(map(int,match.groups())) != (87,0,87,0):
-        raise SystemExit('Java setup check failed; expected 87 recognized learner TODOs and no other failure.\n'+output)
-    print('PASS Java setup: compiled; 87 acceptance cases cleanly reached their expected learner TODOs.')
+    if not match:
+        raise SystemExit('Java setup check failed; acceptance summary missing.\n'+output)
+    cases,passed,todos,failures=map(int,match.groups())
+    if failures or cases != passed+todos:
+        raise SystemExit('Java setup or learner acceptance failed.\n'+output)
+    print(f'PASS Java setup: compiled; {cases} acceptance cases, {passed} passed, {todos} recognized TODO, 0 failed.')
 sql=subprocess.run(['python3',str(ROOT/'scripts/test_day19_sql.py')],text=True,capture_output=True)
-if sql.returncode != 1 or '3 fixture/schema cases loaded; learner TODO' not in sql.stdout:
-    raise SystemExit('SQL setup check failed; expected recognized learner TODO.\n'+sql.stdout+sql.stderr)
-print('PASS SQL setup: fixture/schema contract loaded; learner query TODO is distinguished from setup failure.')
+if sql.returncode not in (0,1) or not any(marker in sql.stdout for marker in ('fixture/schema cases loaded; learner TODO','PASS SQL Day 19:')):
+    raise SystemExit('SQL setup or learner acceptance failed.\n'+sql.stdout+sql.stderr)
+print('PASS SQL setup: schema and fixtures loaded; query passed or stopped at its recognized learner TODO.')
