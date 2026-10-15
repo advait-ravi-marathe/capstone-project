@@ -1,0 +1,30 @@
+{
+  "day_id": "CAP-51",
+  "date": "2026-10-19",
+  "classification": "linked_component_shares_CAP-50_budget",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS",
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP51InstructorInfrastructureTest test",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "database": "Embedded PostgreSQL 14.22"
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP51SqlAcceptanceTest test",
+    "tests": 4,
+    "failures_at_empty_sql_todo": 4,
+    "errors": 0
+  },
+  "limits": [
+    "No product repository or runtime import ledger is added.",
+    "Fixture money values are not payable quotes.",
+    "No completion or timebox rehearsal is claimed."
+  ],
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-51/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "162f652433c5914bdd8e68bca88b6f9ddb99f12fc7198d896a4a11f314096c14"
+  }
+}

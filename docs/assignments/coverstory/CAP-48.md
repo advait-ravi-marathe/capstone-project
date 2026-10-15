@@ -11,4 +11,4 @@ The saved contract names `src/main/resources/coverstory/catalog/cap_48.sql`; tha
 - Run setup smoke: `mvn -Dtest=CAP48InstructorInfrastructureTest test`.
 - Run learner acceptance separately: `mvn -Plearner-tests -Dtest=CAP48SqlAcceptanceTest test`.
 
-The cases require UTC date buckets independent of session timezone, date-spine rows for empty days, nullable amount counting without pricing, and editor isolation. Integer paise are not payable quotes. Setup smoke verifies date-spine and synthetic fixture loading only; it does not prove learner behavior or timebox fit. No timed rehearsal has been performed.
+The cases require UTC date buckets independent of session timezone, date-spine rows for empty days, nullable amount counting without pricing, and editor isolation. The independent instructor oracle now checks actual PostgreSQL 14 rows under UTC and Asia/Kolkata and rejects observed-only grouping, session-local date casting, and wrong-editor aggregation. Integer paise are not payable quotes. It does not prove learner behavior or timebox fit; no timed rehearsal has been performed.

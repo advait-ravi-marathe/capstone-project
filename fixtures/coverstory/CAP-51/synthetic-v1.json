@@ -1,0 +1,12 @@
+{
+  "fixture_id": "CAP-51-synthetic-v1",
+  "classification": "SYNTHETIC",
+  "window": {"from": "2026-10-13T00:00:00Z", "to": "2026-10-14T00:00:00Z"},
+  "cases": [
+    {"id": "CAP-51-CS-01", "editor": "editor-E", "sources": ["source-A", "source-B"], "expected": {"published_count": 2, "known_base_total_minor": 12000, "confirmed_import_count": 1}},
+    {"id": "CAP-51-CS-02", "editor": "editor-E", "source": "source-C", "amount_minor": null, "expected": {"published_count": 1, "known_base_total_minor": 0, "confirmed_import_count": 0}},
+    {"id": "CAP-51-CS-03", "editor": "editor-E", "source": "scope-only", "other_editor": "editor-F", "expected_confirmed_import_count": 0},
+    {"id": "CAP-51-CS-04", "editor": "editor-E", "source": "source-A", "add_successful_attempts": 1, "expected": {"published_count": 2, "known_base_total_minor": 12000, "confirmed_import_count": 1}}
+  ],
+  "limits": ["A confirmation receipt does not validate insurer evidence or price.", "Amounts are synthetic INR minor units, never payable quotes."]
+}

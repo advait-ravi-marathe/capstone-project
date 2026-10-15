@@ -1,0 +1,28 @@
+{
+  "day_id": "CAP-48",
+  "date": "2026-10-18",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP48InstructorInfrastructureTest test",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-48/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "3ff4c1f3a6e60802fc806a9c7ab975f9206dae10e5aa2ee323e6c654d082369e"
+  },
+  "limits": [
+    "Date-spine rows are instructor test data, not production catalog state.",
+    "Minor-unit totals are not payable quotes.",
+    "No timebox rehearsal or learner completion is claimed."
+  ],
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP48SqlAcceptanceTest test",
+    "tests": 4,
+    "failures_at_empty_sql_todo": 4,
+    "errors": 0
+  }
+}

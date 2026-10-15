@@ -1,0 +1,27 @@
+{
+  "day_id": "CAP-50",
+  "date": "2026-10-19",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_check": {
+    "command": "mvn -Dtest=CatalogInstructorHarnessTest,CAP50InstructorInfrastructureTest test",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=CAP50AcceptanceTest test",
+    "tests": 3,
+    "failures": 1,
+    "expected_todo_errors": 2
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-50/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "35c63e1f976102111fbeeab48908de8ade842c0ffc3b53b21c9dc9eefc3bad81"
+  },
+  "limits": [
+    "The sequential fake is test-only and not durable or concurrent.",
+    "No learner completion or timebox rehearsal is claimed."
+  ]
+}
