@@ -1,0 +1,2704 @@
+{
+  "title": "Amazon interview preparation sprint",
+  "start_date": "2026-10-16",
+  "end_date": "2026-11-14",
+  "days": 30,
+  "daily_minutes": 120,
+  "daily_unallocated_minutes": 30,
+  "roles": [
+    {
+      "key": "sde",
+      "job_id": "10579529",
+      "job_title": "Software Development Engineer II — Seller Springboard",
+      "minutes": 60
+    },
+    {
+      "key": "frontend",
+      "job_id": "10575321",
+      "job_title": "Front-End Engineer II — FBA",
+      "minutes": 60
+    }
+  ],
+  "assignments": [
+    {
+      "day": 1,
+      "date": "2026-10-16",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Deduplicate seller registrations",
+      "topic": "arrays + hashing",
+      "coding_prompt": "Return registration records in first-seen order, keeping only the first record for each normalized email (trim, lowercase). Preserve all other fields.",
+      "cases": [
+        {
+          "input": {
+            "registrations": [
+              {
+                "email": " A@X.com ",
+                "id": "1"
+              },
+              {
+                "email": "b@x.com",
+                "id": "2"
+              },
+              {
+                "email": "a@x.com",
+                "id": "3"
+              }
+            ]
+          },
+          "expected": [
+            {
+              "email": " A@X.com ",
+              "id": "1"
+            },
+            {
+              "email": "b@x.com",
+              "id": "2"
+            }
+          ]
+        },
+        {
+          "input": {
+            "registrations": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design the registration write path so retries cannot create duplicate seller accounts. Name the unique key and explain conflict behavior.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 1,
+      "date": "2026-10-16",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Validate seller registration fields",
+      "topic": "forms + hashing",
+      "coding_prompt": "Return field errors for empty trimmed name/email and malformed email; output object maps field names to error strings, omitting valid fields.",
+      "cases": [
+        {
+          "input": {
+            "name": "A",
+            "email": "bad"
+          },
+          "expected": {
+            "email": "Enter a valid email"
+          }
+        },
+        {
+          "input": {
+            "name": " ",
+            "email": "x@y.com"
+          },
+          "expected": {
+            "name": "Enter your name"
+          }
+        }
+      ],
+      "design_prompt": "Sketch an accessible seller registration form, labels, error summary, focus placement, and server validation boundary.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 2,
+      "date": "2026-10-17",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Longest safe verification burst",
+      "topic": "sliding window",
+      "coding_prompt": "Given nonnegative per-request costs and a budget, return the maximum length of a contiguous request window whose sum is at most budget.",
+      "cases": [
+        {
+          "input": {
+            "costs": [
+              2,
+              1,
+              3,
+              1,
+              1
+            ],
+            "budget": 4
+          },
+          "expected": 3
+        },
+        {
+          "input": {
+            "costs": [
+              5,
+              1
+            ],
+            "budget": 0
+          },
+          "expected": 0
+        }
+      ],
+      "design_prompt": "A seller identity provider sends bursts. Describe admission control and what metrics protect user experience.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 2,
+      "date": "2026-10-17",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Filter inventory responsively",
+      "topic": "filtering + two pointers",
+      "coding_prompt": "Filter items by case-insensitive name substring and min/max quantity; preserve input order.",
+      "cases": [
+        {
+          "input": {
+            "items": [
+              {
+                "name": "Red apple",
+                "qty": 4
+              },
+              {
+                "name": "Pear",
+                "qty": 2
+              }
+            ],
+            "query": "ap",
+            "min": 3,
+            "max": 9
+          },
+          "expected": [
+            {
+              "name": "Red apple",
+              "qty": 4
+            }
+          ]
+        },
+        {
+          "input": {
+            "items": [],
+            "query": "",
+            "min": 0,
+            "max": 10
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Explain table filtering on narrow screens and keyboard-accessible filter controls.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 3,
+      "date": "2026-10-18",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Validate onboarding workflow steps",
+      "topic": "stack",
+      "coding_prompt": "Return true if brackets in a workflow expression are balanced and correctly nested; ignore non-bracket characters.",
+      "cases": [
+        {
+          "input": {
+            "text": "start({[x]})"
+          },
+          "expected": true
+        },
+        {
+          "input": {
+            "text": "([)]"
+          },
+          "expected": false
+        }
+      ],
+      "design_prompt": "How would you version workflow definitions while keeping in-flight applications safe?",
+      "leadership_principle": "Learn and Be Curious",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 3,
+      "date": "2026-10-18",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Model accessible async form state",
+      "topic": "async state machine",
+      "coding_prompt": "Given event sequence, return final state among idle, submitting, success, error. SUBMIT->submitting, RESOLVE->success, REJECT->error, RESET->idle.",
+      "cases": [
+        {
+          "input": {
+            "events": [
+              "SUBMIT",
+              "REJECT",
+              "RESET"
+            ]
+          },
+          "expected": "idle"
+        },
+        {
+          "input": {
+            "events": [
+              "SUBMIT",
+              "RESOLVE"
+            ]
+          },
+          "expected": "success"
+        }
+      ],
+      "design_prompt": "Design disabled/loading/error states and announce state changes without trapping keyboard users.",
+      "leadership_principle": "Learn and Be Curious",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 4,
+      "date": "2026-10-19",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Find eligibility threshold",
+      "topic": "binary search",
+      "coding_prompt": "For sorted numeric thresholds, return the first index whose value is at least target, or the list length if none exists.",
+      "cases": [
+        {
+          "input": {
+            "values": [
+              1,
+              3,
+              3,
+              8
+            ],
+            "target": 3
+          },
+          "expected": 1
+        },
+        {
+          "input": {
+            "values": [
+              2,
+              4
+            ],
+            "target": 9
+          },
+          "expected": 2
+        }
+      ],
+      "design_prompt": "Explain how to make eligibility rules auditable when thresholds vary by country.",
+      "leadership_principle": "Dive Deep",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 4,
+      "date": "2026-10-19",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Locate a price band",
+      "topic": "binary search",
+      "coding_prompt": "Return lower-bound index in sorted numeric placement bands.",
+      "cases": [
+        {
+          "input": {
+            "bands": [
+              10,
+              20,
+              40
+            ],
+            "price": 20
+          },
+          "expected": 1
+        },
+        {
+          "input": {
+            "bands": [
+              10,
+              20
+            ],
+            "price": 50
+          },
+          "expected": 2
+        }
+      ],
+      "design_prompt": "Describe a searchable catalog API and client behavior for empty/loading/error responses.",
+      "leadership_principle": "Dive Deep",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 5,
+      "date": "2026-10-20",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "First repeated request key",
+      "topic": "linked list / idempotency",
+      "coding_prompt": "Given an ordered list of request keys, return the first key seen twice, or null. Treat keys as case-sensitive strings.",
+      "cases": [
+        {
+          "input": {
+            "keys": [
+              "a",
+              "b",
+              "a"
+            ]
+          },
+          "expected": "a"
+        },
+        {
+          "input": {
+            "keys": [
+              "x",
+              "y"
+            ]
+          },
+          "expected": null
+        }
+      ],
+      "design_prompt": "Sketch an idempotent registration API response for first request, retry, and payload conflict.",
+      "leadership_principle": "Invent and Simplify",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 5,
+      "date": "2026-10-20",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Stable component key selection",
+      "topic": "stable keys",
+      "coding_prompt": "Return stable item keys, preferring id and falling back to sku; return null for missing both.",
+      "cases": [
+        {
+          "input": {
+            "items": [
+              {
+                "id": "1",
+                "sku": "x"
+              },
+              {
+                "sku": "y"
+              },
+              {}
+            ]
+          },
+          "expected": [
+            "1",
+            "y",
+            null
+          ]
+        },
+        {
+          "input": {
+            "items": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Propose reusable component props that remain stable across pagination and refresh.",
+      "leadership_principle": "Invent and Simplify",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 6,
+      "date": "2026-10-21",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Validate prerequisite tree",
+      "topic": "tree traversal",
+      "coding_prompt": "Given a nested tree of steps, return step IDs in breadth-first order.",
+      "cases": [
+        {
+          "input": {
+            "tree": {
+              "id": "a",
+              "children": [
+                {
+                  "id": "b",
+                  "children": []
+                },
+                {
+                  "id": "c",
+                  "children": [
+                    {
+                      "id": "d",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "expected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "input": {
+            "tree": null
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "How would you detect and communicate a blocked prerequisite without losing the seller’s progress?",
+      "leadership_principle": "Deliver Results",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 6,
+      "date": "2026-10-21",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Flatten fulfillment navigation",
+      "topic": "tree navigation",
+      "coding_prompt": "Flatten nested nodes to labels in preorder, skipping disabled nodes and their children.",
+      "cases": [
+        {
+          "input": {
+            "tree": [
+              {
+                "label": "A",
+                "disabled": false,
+                "children": [
+                  {
+                    "label": "B",
+                    "disabled": true,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          "expected": [
+            "A"
+          ]
+        },
+        {
+          "input": {
+            "tree": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Make nested fulfillment navigation usable with keyboard and screen readers.",
+      "leadership_principle": "Deliver Results",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 7,
+      "date": "2026-10-22",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Prioritize manual reviews",
+      "topic": "heap / top-k",
+      "coding_prompt": "Return up to k seller IDs sorted by descending risk score, breaking ties by ascending ID.",
+      "cases": [
+        {
+          "input": {
+            "scores": [
+              {
+                "id": "s2",
+                "score": 8
+              },
+              {
+                "id": "s1",
+                "score": 8
+              },
+              {
+                "id": "s3",
+                "score": 2
+              }
+            ],
+            "k": 2
+          },
+          "expected": [
+            "s1",
+            "s2"
+          ]
+        },
+        {
+          "input": {
+            "scores": [],
+            "k": 3
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Set a safe review queue policy that avoids starvation and supports a reason for priority.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 7,
+      "date": "2026-10-22",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Sort inventory rows",
+      "topic": "sorting",
+      "coding_prompt": "Sort by requested key; nulls last; tie-break by id ascending. Direction is asc or desc.",
+      "cases": [
+        {
+          "input": {
+            "items": [
+              {
+                "id": "b",
+                "qty": 2
+              },
+              {
+                "id": "a",
+                "qty": 2
+              },
+              {
+                "id": "c",
+                "qty": 1
+              }
+            ],
+            "key": "qty",
+            "direction": "asc"
+          },
+          "expected": [
+            "c",
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "items": [],
+            "key": "qty",
+            "direction": "desc"
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Discuss sorting large lists: server vs client, virtualization, and accessibility announcement.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 8,
+      "date": "2026-10-23",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Merge compliance windows",
+      "topic": "sorting + intervals",
+      "coding_prompt": "Merge overlapping or touching [start,end] intervals, returning sorted intervals.",
+      "cases": [
+        {
+          "input": {
+            "windows": [
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          "expected": [
+            [
+              1,
+              4
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "input": {
+            "windows": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "How should the service resolve conflicting policy windows from two authoritative sources?",
+      "leadership_principle": "Are Right, A Lot",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 8,
+      "date": "2026-10-23",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Build placement timeline segments",
+      "topic": "interval timeline",
+      "coding_prompt": "Merge overlapping/touching availability windows for a timeline.",
+      "cases": [
+        {
+          "input": {
+            "windows": [
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          "expected": [
+            [
+              1,
+              5
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        },
+        {
+          "input": {
+            "windows": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design a timeline that communicates timezone, unavailable periods, and mobile layout.",
+      "leadership_principle": "Are Right, A Lot",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 9,
+      "date": "2026-10-24",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Order registration prerequisites",
+      "topic": "graph / topological sort",
+      "coding_prompt": "Return a valid topological order of a DAG; return null if a cycle exists. Use lexical order to break ties.",
+      "cases": [
+        {
+          "input": {
+            "steps": [
+              "id",
+              "tax",
+              "profile"
+            ],
+            "depends_on": [
+              [
+                "id",
+                "profile"
+              ],
+              [
+                "tax",
+                "profile"
+              ]
+            ]
+          },
+          "expected": [
+            "profile",
+            "id",
+            "tax"
+          ]
+        },
+        {
+          "input": {
+            "steps": [
+              "a",
+              "b"
+            ],
+            "depends_on": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "a"
+              ]
+            ]
+          },
+          "expected": null
+        }
+      ],
+      "design_prompt": "Design dependency execution for country-specific onboarding without hard-coding one sequence.",
+      "leadership_principle": "Think Big",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 9,
+      "date": "2026-10-24",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Order dependent wizard steps",
+      "topic": "dependency UI",
+      "coding_prompt": "Return lexical topological order for step dependencies; return null on cycle.",
+      "cases": [
+        {
+          "input": {
+            "steps": [
+              "review",
+              "profile",
+              "inventory"
+            ],
+            "depends_on": [
+              [
+                "review",
+                "profile"
+              ],
+              [
+                "review",
+                "inventory"
+              ]
+            ]
+          },
+          "expected": [
+            "inventory",
+            "profile",
+            "review"
+          ]
+        },
+        {
+          "input": {
+            "steps": [
+              "a",
+              "b"
+            ],
+            "depends_on": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "a"
+              ]
+            ]
+          },
+          "expected": null
+        }
+      ],
+      "design_prompt": "How should a wizard recover if backend policy changes while the user is on a step?",
+      "leadership_principle": "Think Big",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 10,
+      "date": "2026-10-25",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Find valid rule combinations",
+      "topic": "backtracking",
+      "coding_prompt": "From candidate integer rule IDs, return all unique combinations summing to target; each candidate may be used once. Sort each combination and result lexically.",
+      "cases": [
+        {
+          "input": {
+            "candidates": [
+              1,
+              2,
+              2,
+              3
+            ],
+            "target": 4
+          },
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "input": {
+            "candidates": [
+              2
+            ],
+            "target": 1
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "How would you explain a multi-rule rejection so that a seller can fix it?",
+      "leadership_principle": "Bias for Action",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 10,
+      "date": "2026-10-25",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Compute facet combinations",
+      "topic": "facets",
+      "coding_prompt": "Return all unique pairs from selected facet values whose numeric sum equals target.",
+      "cases": [
+        {
+          "input": {
+            "values": [
+              1,
+              2,
+              2,
+              3
+            ],
+            "target": 4
+          },
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "input": {
+            "values": [
+              1
+            ],
+            "target": 5
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design filter facets that remain understandable with many combinations and clear-all behavior.",
+      "leadership_principle": "Bias for Action",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 11,
+      "date": "2026-10-26",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Match required document fields",
+      "topic": "trie / strings",
+      "coding_prompt": "Return sorted required field names that are not present in a submitted object, comparing names case-insensitively.",
+      "cases": [
+        {
+          "input": {
+            "required": [
+              "TaxId",
+              "Address"
+            ],
+            "submitted": {
+              "taxid": "x"
+            }
+          },
+          "expected": [
+            "Address"
+          ]
+        },
+        {
+          "input": {
+            "required": [],
+            "submitted": {}
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Describe safe extraction boundaries for synthetic document text; what must never be inferred automatically?",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 11,
+      "date": "2026-10-26",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Autocomplete with safe highlighting",
+      "topic": "autocomplete",
+      "coding_prompt": "Return matching options by case-insensitive prefix, sorted; do not emit HTML, return plain text values.",
+      "cases": [
+        {
+          "input": {
+            "options": [
+              "Pear",
+              "Peach",
+              "Apple"
+            ],
+            "query": "pe"
+          },
+          "expected": [
+            "Peach",
+            "Pear"
+          ]
+        },
+        {
+          "input": {
+            "options": [
+              "A"
+            ],
+            "query": "z"
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Specify combobox keyboard behavior and safe rendering of matched text.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 12,
+      "date": "2026-10-27",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Minimum-cost onboarding path",
+      "topic": "dynamic programming",
+      "coding_prompt": "Given nonnegative costs for ordered steps and prerequisite alternatives represented as a sequence, return minimum cost to complete all steps with skip penalty. Use DP: each step can be paid or skipped at penalty.",
+      "cases": [
+        {
+          "input": {
+            "costs": [
+              3,
+              1,
+              4
+            ],
+            "skip_penalties": [
+              5,
+              2,
+              6
+            ]
+          },
+          "expected": 8
+        },
+        {
+          "input": {
+            "costs": [],
+            "skip_penalties": []
+          },
+          "expected": 0
+        }
+      ],
+      "design_prompt": "Discuss when an estimated risk score must not replace a deterministic compliance rule.",
+      "leadership_principle": "Frugality",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 12,
+      "date": "2026-10-27",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Compute placement cost summary",
+      "topic": "derived state",
+      "coding_prompt": "Return subtotal and total using integer cents; total adds fee cents; empty rows total fee only.",
+      "cases": [
+        {
+          "input": {
+            "rows": [
+              {
+                "cents": 250
+              },
+              {
+                "cents": 300
+              }
+            ],
+            "feeCents": 50
+          },
+          "expected": {
+            "subtotalCents": 550,
+            "totalCents": 600
+          }
+        },
+        {
+          "input": {
+            "rows": [],
+            "feeCents": 0
+          },
+          "expected": {
+            "subtotalCents": 0,
+            "totalCents": 0
+          }
+        }
+      ],
+      "design_prompt": "Keep price explanation consistent when quotes refresh asynchronously.",
+      "leadership_principle": "Frugality",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 13,
+      "date": "2026-10-28",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Verification retry schedule",
+      "topic": "greedy scheduling",
+      "coding_prompt": "For tasks with retry-after minute and priority, return IDs ordered by earliest retry time, then highest priority, then ID.",
+      "cases": [
+        {
+          "input": {
+            "tasks": [
+              {
+                "id": "b",
+                "at": 2,
+                "priority": 1
+              },
+              {
+                "id": "a",
+                "at": 2,
+                "priority": 3
+              },
+              {
+                "id": "c",
+                "at": 1,
+                "priority": 0
+              }
+            ]
+          },
+          "expected": [
+            "c",
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "tasks": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "How do you bound retry storms and honor provider retry-after guidance?",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 13,
+      "date": "2026-10-28",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Prioritize visible content",
+      "topic": "lazy loading",
+      "coding_prompt": "Order cards with visible=true first, then priority descending, then id ascending.",
+      "cases": [
+        {
+          "input": {
+            "cards": [
+              {
+                "id": "b",
+                "visible": false,
+                "priority": 9
+              },
+              {
+                "id": "a",
+                "visible": true,
+                "priority": 1
+              }
+            ]
+          },
+          "expected": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "cards": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Balance eager loading and lazy loading on a slow mobile network.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 14,
+      "date": "2026-10-29",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Connected duplicate-account clusters",
+      "topic": "union-find",
+      "coding_prompt": "Return connected component count for account IDs linked by duplicate pairs. IDs absent from pairs still count as components.",
+      "cases": [
+        {
+          "input": {
+            "ids": [
+              "a",
+              "b",
+              "c"
+            ],
+            "pairs": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "c"
+              ]
+            ]
+          },
+          "expected": 1
+        },
+        {
+          "input": {
+            "ids": [
+              "a",
+              "b"
+            ],
+            "pairs": []
+          },
+          "expected": 2
+        }
+      ],
+      "design_prompt": "What evidence is needed before merging accounts, and how can a mistaken merge be reversed?",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 14,
+      "date": "2026-10-29",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Group marketplaces",
+      "topic": "graph connectivity",
+      "coding_prompt": "Return connected marketplace groups from undirected links, including isolated IDs; sort IDs/groups.",
+      "cases": [
+        {
+          "input": {
+            "ids": [
+              "US",
+              "CA",
+              "UK"
+            ],
+            "links": [
+              [
+                "US",
+                "CA"
+              ]
+            ]
+          },
+          "expected": [
+            [
+              "CA",
+              "US"
+            ],
+            [
+              "UK"
+            ]
+          ]
+        },
+        {
+          "input": {
+            "ids": [],
+            "links": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Represent a seller operating across marketplaces without conflating account identity.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 15,
+      "date": "2026-10-30",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Registration idempotency lookup",
+      "topic": "hash map",
+      "coding_prompt": "Apply events to a key-value map: first value for each key wins; return values in input order for every event, with null for duplicate keys.",
+      "cases": [
+        {
+          "input": {
+            "events": [
+              {
+                "key": "k",
+                "value": 4
+              },
+              {
+                "key": "k",
+                "value": 9
+              },
+              {
+                "key": "q",
+                "value": 2
+              }
+            ]
+          },
+          "expected": [
+            4,
+            null,
+            2
+          ]
+        },
+        {
+          "input": {
+            "events": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Define idempotency scope, retention, and payload-mismatch behavior for a registration endpoint.",
+      "leadership_principle": "Have Backbone; Disagree and Commit",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 15,
+      "date": "2026-10-30",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Build stable query keys",
+      "topic": "cache keys",
+      "coding_prompt": "Return canonical query key [\"placements\", normalized market, sorted unique filters].",
+      "cases": [
+        {
+          "input": {
+            "market": " us ",
+            "filters": [
+              "size",
+              "fragile",
+              "size"
+            ]
+          },
+          "expected": [
+            "placements",
+            "US",
+            [
+              "fragile",
+              "size"
+            ]
+          ]
+        },
+        {
+          "input": {
+            "market": "IN",
+            "filters": []
+          },
+          "expected": [
+            "placements",
+            "IN",
+            []
+          ]
+        }
+      ],
+      "design_prompt": "Explain query-cache ownership and when an optimistic update must be rolled back.",
+      "leadership_principle": "Have Backbone; Disagree and Commit",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 16,
+      "date": "2026-10-31",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Policy version cache",
+      "topic": "LRU cache",
+      "coding_prompt": "Simulate an LRU cache of positive capacity. Each op is [\"get\",key] or [\"put\",key,value]; return get results (null on miss).",
+      "cases": [
+        {
+          "input": {
+            "capacity": 2,
+            "ops": [
+              [
+                "put",
+                "a",
+                1
+              ],
+              [
+                "put",
+                "b",
+                2
+              ],
+              [
+                "get",
+                "a"
+              ],
+              [
+                "put",
+                "c",
+                3
+              ],
+              [
+                "get",
+                "b"
+              ]
+            ]
+          },
+          "expected": [
+            1,
+            null
+          ]
+        },
+        {
+          "input": {
+            "capacity": 1,
+            "ops": [
+              [
+                "get",
+                "x"
+              ]
+            ]
+          },
+          "expected": [
+            null
+          ]
+        }
+      ],
+      "design_prompt": "How will policy version changes invalidate cached eligibility without serving stale decisions?",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 16,
+      "date": "2026-10-31",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Guard stale policy version",
+      "topic": "cache invalidation",
+      "coding_prompt": "Given current policy version and cached version, return true only if equal and data age <= maxAge.",
+      "cases": [
+        {
+          "input": {
+            "version": 3,
+            "cachedVersion": 3,
+            "age": 10,
+            "maxAge": 20
+          },
+          "expected": true
+        },
+        {
+          "input": {
+            "version": 4,
+            "cachedVersion": 3,
+            "age": 1,
+            "maxAge": 20
+          },
+          "expected": false
+        }
+      ],
+      "design_prompt": "Plan cache invalidation and private response clearing on user/account change.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 17,
+      "date": "2026-11-01",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Detect overlapping application writes",
+      "topic": "concurrency reasoning",
+      "coding_prompt": "Given versioned updates [applicationId, expectedVersion], return true if two updates target the same application version.",
+      "cases": [
+        {
+          "input": {
+            "updates": [
+              [
+                "a",
+                1
+              ],
+              [
+                "b",
+                1
+              ],
+              [
+                "a",
+                2
+              ]
+            ]
+          },
+          "expected": false
+        },
+        {
+          "input": {
+            "updates": [
+              [
+                "a",
+                1
+              ],
+              [
+                "a",
+                1
+              ]
+            ]
+          },
+          "expected": true
+        }
+      ],
+      "design_prompt": "Explain optimistic concurrency and the user-visible recovery when two devices save simultaneously.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 17,
+      "date": "2026-11-01",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Ignore stale response",
+      "topic": "async race",
+      "coding_prompt": "Given response versions in completion order, return last response only if its request sequence is newest.",
+      "cases": [
+        {
+          "input": {
+            "responses": [
+              {
+                "seq": 2,
+                "value": "new"
+              },
+              {
+                "seq": 1,
+                "value": "old"
+              }
+            ]
+          },
+          "expected": "new"
+        },
+        {
+          "input": {
+            "responses": [
+              {
+                "seq": 4,
+                "value": "x"
+              }
+            ]
+          },
+          "expected": "x"
+        }
+      ],
+      "design_prompt": "Describe cancellation, late-response guards, and skeleton/error behavior during navigation.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 18,
+      "date": "2026-11-02",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Compute bounded retry delays",
+      "topic": "API / backoff",
+      "coding_prompt": "Return capped exponential delays for attempts 0..n-1, starting at base and capped at max; no random jitter.",
+      "cases": [
+        {
+          "input": {
+            "attempts": 4,
+            "base": 2,
+            "max": 7
+          },
+          "expected": [
+            2,
+            4,
+            7,
+            7
+          ]
+        },
+        {
+          "input": {
+            "attempts": 0,
+            "base": 1,
+            "max": 8
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design an external identity-provider adapter that retries safely after timeout.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 18,
+      "date": "2026-11-02",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Choose quote UI state",
+      "topic": "API resilience",
+      "coding_prompt": "Map status: loading->loading, 200->ready, 429/503->retryable, other 4xx->error; preserve order.",
+      "cases": [
+        {
+          "input": {
+            "statuses": [
+              "loading",
+              200,
+              503,
+              404
+            ]
+          },
+          "expected": [
+            "loading",
+            "ready",
+            "retryable",
+            "error"
+          ]
+        },
+        {
+          "input": {
+            "statuses": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design a quote API view resilient to timeout, partial data, and repeated refresh.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 19,
+      "date": "2026-11-03",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Aggregate registration states",
+      "topic": "SQL / indexing",
+      "coding_prompt": "Given rows with seller_id and state, return counts by state, sorted by state name.",
+      "cases": [
+        {
+          "input": {
+            "rows": [
+              {
+                "seller_id": "a",
+                "state": "PENDING"
+              },
+              {
+                "seller_id": "b",
+                "state": "PENDING"
+              },
+              {
+                "seller_id": "c",
+                "state": "APPROVED"
+              }
+            ]
+          },
+          "expected": [
+            {
+              "state": "APPROVED",
+              "count": 1
+            },
+            {
+              "state": "PENDING",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "input": {
+            "rows": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Propose a relational schema and index for latest state plus an immutable audit trail.",
+      "leadership_principle": "Dive Deep",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 19,
+      "date": "2026-11-03",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Normalize placement payload",
+      "topic": "payload mapping",
+      "coding_prompt": "Return rows with id, quantity default 0, and title trimmed; skip rows missing id.",
+      "cases": [
+        {
+          "input": {
+            "rows": [
+              {
+                "id": "a",
+                "title": " Box ",
+                "quantity": 2
+              },
+              {
+                "title": "x"
+              }
+            ]
+          },
+          "expected": [
+            {
+              "id": "a",
+              "title": "Box",
+              "quantity": 2
+            }
+          ]
+        },
+        {
+          "input": {
+            "rows": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Define typed UI/API models and prevent display-only fields from becoming authority.",
+      "leadership_principle": "Dive Deep",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 20,
+      "date": "2026-11-04",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Allowlist analytics properties",
+      "topic": "security / validation",
+      "coding_prompt": "Keep only allowlisted keys from an event; reject the entire event if any key contains a forbidden case-insensitive substring from [email,phone,token,health]. Return null on rejection.",
+      "cases": [
+        {
+          "input": {
+            "event": {
+              "screen": "home",
+              "action": "open"
+            },
+            "allow": [
+              "screen",
+              "action"
+            ]
+          },
+          "expected": {
+            "action": "open",
+            "screen": "home"
+          }
+        },
+        {
+          "input": {
+            "event": {
+              "email": "x",
+              "screen": "home"
+            },
+            "allow": [
+              "screen"
+            ]
+          },
+          "expected": null
+        }
+      ],
+      "design_prompt": "Threat-model seller onboarding telemetry. Separate business audit from best-effort analytics.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 20,
+      "date": "2026-11-04",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Escape user supplied text",
+      "topic": "XSS / validation",
+      "coding_prompt": "Return text with &, <, >, \", and apostrophe escaped as entities in that order-safe manner.",
+      "cases": [
+        {
+          "input": {
+            "text": "<img src=\"x\">"
+          },
+          "expected": "&lt;img src=&quot;x&quot;&gt;"
+        },
+        {
+          "input": {
+            "text": "A & B"
+          },
+          "expected": "A &amp; B"
+        }
+      ],
+      "design_prompt": "Review XSS/CSRF and safe URL handling in a seller-facing UI.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 21,
+      "date": "2026-11-05",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Regional policy coverage map",
+      "topic": "system design",
+      "coding_prompt": "Given country requirements and globally supported fields, return each country’s sorted required fields that are unsupported. Omit countries with no gaps. This is a deterministic planning helper; the separate design block is the architecture exercise.",
+      "cases": [
+        {
+          "input": {
+            "requirements": [
+              {
+                "country": "IN",
+                "fields": [
+                  "tax_id",
+                  "address"
+                ]
+              },
+              {
+                "country": "US",
+                "fields": [
+                  "tax_id"
+                ]
+              }
+            ],
+            "supported_fields": [
+              "tax_id"
+            ]
+          },
+          "expected": {
+            "IN": [
+              "address"
+            ]
+          }
+        },
+        {
+          "input": {
+            "requirements": [],
+            "supported_fields": []
+          },
+          "expected": {}
+        }
+      ],
+      "design_prompt": "Draw the high-level architecture; state your consistency choices and how a seller resumes safely.",
+      "leadership_principle": "Think Big",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 21,
+      "date": "2026-11-05",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Rank viable placement options",
+      "topic": "system design",
+      "coding_prompt": "Given placement options, exclude unavailable or stale records and return remaining IDs sorted by ascending totalCents, then ID. Treat only `available: true` and `fresh: true` options as viable.",
+      "cases": [
+        {
+          "input": {
+            "options": [
+              {
+                "id": "b",
+                "available": true,
+                "fresh": true,
+                "totalCents": 300
+              },
+              {
+                "id": "a",
+                "available": true,
+                "fresh": true,
+                "totalCents": 200
+              },
+              {
+                "id": "c",
+                "available": true,
+                "fresh": false,
+                "totalCents": 10
+              }
+            ]
+          },
+          "expected": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "options": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Draw components and data flow; cover server state, URL filters, and error recovery.",
+      "leadership_principle": "Think Big",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 22,
+      "date": "2026-11-06",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Evaluate deterministic compliance rules",
+      "topic": "LLD",
+      "coding_prompt": "For each rule in order, return a decision record with rule id and PASS/FAIL based on whether its required field is present and non-empty in the supplied application. Never infer missing evidence.",
+      "cases": [
+        {
+          "input": {
+            "rules": [
+              {
+                "id": "tax",
+                "field": "tax_id"
+              },
+              {
+                "id": "address",
+                "field": "address"
+              }
+            ],
+            "application": {
+              "tax_id": "T-1"
+            }
+          },
+          "expected": [
+            {
+              "id": "tax",
+              "decision": "PASS"
+            },
+            {
+              "id": "address",
+              "decision": "FAIL"
+            }
+          ]
+        },
+        {
+          "input": {
+            "rules": [],
+            "application": {}
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Show interfaces for rule, context, decision, and explanation. Include deterministic ordering.",
+      "leadership_principle": "Invent and Simplify",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 22,
+      "date": "2026-11-06",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Build accessible field description IDs",
+      "topic": "component design",
+      "coding_prompt": "Return the input ID followed by non-empty hintId and errorId, joined by spaces. Do not include absent IDs. Use this helper as the coding artifact; design the reusable component separately.",
+      "cases": [
+        {
+          "input": {
+            "id": "email",
+            "hintId": "email-help",
+            "errorId": "email-error"
+          },
+          "expected": "email email-help email-error"
+        },
+        {
+          "input": {
+            "id": "qty",
+            "hintId": null,
+            "errorId": null
+          },
+          "expected": "qty"
+        }
+      ],
+      "design_prompt": "Describe component boundaries, focus/validation, and how consumers customize safely.",
+      "leadership_principle": "Invent and Simplify",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 23,
+      "date": "2026-11-07",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Outbox event ordering",
+      "topic": "distributed events",
+      "coding_prompt": "Given events with aggregate ID and sequence, return true if each aggregate’s sequence is strictly increasing in given order.",
+      "cases": [
+        {
+          "input": {
+            "events": [
+              [
+                "a",
+                1
+              ],
+              [
+                "b",
+                1
+              ],
+              [
+                "a",
+                2
+              ]
+            ]
+          },
+          "expected": true
+        },
+        {
+          "input": {
+            "events": [
+              [
+                "a",
+                2
+              ],
+              [
+                "a",
+                2
+              ]
+            ]
+          },
+          "expected": false
+        }
+      ],
+      "design_prompt": "Explain transactional outbox, consumer deduplication, and reconciliation when a notification is delayed.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 23,
+      "date": "2026-11-07",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Bound quote refreshes",
+      "topic": "polling / push",
+      "coding_prompt": "Return polling delays starting at base, doubling and capped; stop after maxAttempts.",
+      "cases": [
+        {
+          "input": {
+            "attempts": 4,
+            "base": 1,
+            "cap": 4
+          },
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        },
+        {
+          "input": {
+            "attempts": 0,
+            "base": 1,
+            "cap": 5
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Choose polling vs push for quote updates and explain freshness/battery tradeoff.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 24,
+      "date": "2026-11-08",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Summarize service health",
+      "topic": "observability / SLO",
+      "coding_prompt": "Compute availability percentage from successful and total requests as a number rounded to two decimals; zero total returns 100.",
+      "cases": [
+        {
+          "input": {
+            "success": 99,
+            "total": 100
+          },
+          "expected": 99.0
+        },
+        {
+          "input": {
+            "success": 0,
+            "total": 0
+          },
+          "expected": 100.0
+        }
+      ],
+      "design_prompt": "Define one user-centric SLO, alert threshold, and an on-call runbook first action.",
+      "leadership_principle": "Success and Scale Bring Broad Responsibility",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 24,
+      "date": "2026-11-08",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Classify performance budget",
+      "topic": "web vitals",
+      "coding_prompt": "Classify LCP ms: <=2500 good, <=4000 needs-improvement, else poor.",
+      "cases": [
+        {
+          "input": {
+            "samples": [
+              1800,
+              3000,
+              5000
+            ]
+          },
+          "expected": [
+            "good",
+            "needs-improvement",
+            "poor"
+          ]
+        },
+        {
+          "input": {
+            "samples": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Pick a frontend SLO and privacy-safe telemetry fields for it.",
+      "leadership_principle": "Success and Scale Bring Broad Responsibility",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 25,
+      "date": "2026-11-09",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Validate assisted extraction",
+      "topic": "LLM guardrails",
+      "coding_prompt": "Given proposed fields and allowed field names, return only allowed keys whose values are strings; return a separate list of rejected keys sorted.",
+      "cases": [
+        {
+          "input": {
+            "proposed": {
+              "name": "A",
+              "risk": 4,
+              "address": "X"
+            },
+            "allowed": [
+              "name",
+              "address"
+            ]
+          },
+          "expected": {
+            "accepted": {
+              "name": "A",
+              "address": "X"
+            },
+            "rejected": [
+              "risk"
+            ]
+          }
+        },
+        {
+          "input": {
+            "proposed": {},
+            "allowed": []
+          },
+          "expected": {
+            "accepted": {},
+            "rejected": []
+          }
+        }
+      ],
+      "design_prompt": "Design human review, provenance, and deterministic compliance checks around an LLM suggestion.",
+      "leadership_principle": "Learn and Be Curious",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 25,
+      "date": "2026-11-09",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Render safe recommendation reasons",
+      "topic": "explainability",
+      "coding_prompt": "Keep reasons whose code is allowlisted; return plain text capped at 120 chars.",
+      "cases": [
+        {
+          "input": {
+            "reasons": [
+              {
+                "code": "CAPACITY",
+                "text": "Capacity available"
+              },
+              {
+                "code": "SECRET",
+                "text": "x"
+              }
+            ],
+            "allow": [
+              "CAPACITY"
+            ]
+          },
+          "expected": [
+            "Capacity available"
+          ]
+        },
+        {
+          "input": {
+            "reasons": [],
+            "allow": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design explanation UI for generated recommendations with source, freshness, and human override.",
+      "leadership_principle": "Learn and Be Curious",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 26,
+      "date": "2026-11-10",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Classify registration outcomes",
+      "topic": "testing / fault injection",
+      "coding_prompt": "For each response code: 200/201 -> success, 409 -> conflict, 429/500/503 -> retryable, all others -> permanent; preserve input order.",
+      "cases": [
+        {
+          "input": {
+            "codes": [
+              201,
+              409,
+              503,
+              400
+            ]
+          },
+          "expected": [
+            "success",
+            "conflict",
+            "retryable",
+            "permanent"
+          ]
+        },
+        {
+          "input": {
+            "codes": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Write a failure-injection test plan for timeout-after-commit and duplicate delivery.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 26,
+      "date": "2026-11-10",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Validate quote response shape",
+      "topic": "contract testing",
+      "coding_prompt": "Return true only when each quote has string id, integer cents >=0, and currency string length 3.",
+      "cases": [
+        {
+          "input": {
+            "quotes": [
+              {
+                "id": "q",
+                "cents": 0,
+                "currency": "USD"
+              }
+            ]
+          },
+          "expected": true
+        },
+        {
+          "input": {
+            "quotes": [
+              {
+                "id": "q",
+                "cents": -1,
+                "currency": "USD"
+              }
+            ]
+          },
+          "expected": false
+        }
+      ],
+      "design_prompt": "Create component/API contract cases for empty, malformed, stale, and partial quote payloads.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 27,
+      "date": "2026-11-11",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Top-k review optimization",
+      "topic": "refactoring / complexity",
+      "coding_prompt": "Implement top-k using any approach; explain complexity and avoid sorting all records when k is small.",
+      "cases": [
+        {
+          "input": {
+            "scores": [
+              5,
+              1,
+              9,
+              3
+            ],
+            "k": 2
+          },
+          "expected": [
+            9,
+            5
+          ]
+        },
+        {
+          "input": {
+            "scores": [
+              1
+            ],
+            "k": 0
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Revisit an earlier Striver pattern: compare heap and full sort with bounds and edge cases.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 27,
+      "date": "2026-11-11",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Find responsive image issues",
+      "topic": "performance + accessibility",
+      "coding_prompt": "Return sorted issue codes for image descriptors: missing alt -> ALT, width<=0 -> SIZE.",
+      "cases": [
+        {
+          "input": {
+            "images": [
+              {
+                "alt": "",
+                "width": 20
+              },
+              {
+                "alt": "Box",
+                "width": 0
+              }
+            ]
+          },
+          "expected": [
+            "ALT",
+            "SIZE"
+          ]
+        },
+        {
+          "input": {
+            "images": [
+              {
+                "alt": "Box",
+                "width": 10
+              }
+            ]
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Audit a responsive list for keyboard flow, contrast, image alternatives, and rendering cost.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 28,
+      "date": "2026-11-12",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Minimum window target sum",
+      "topic": "timed DSA mock",
+      "coding_prompt": "Return shortest contiguous subarray length whose sum is at least target; return 0 if none. Values are positive.",
+      "cases": [
+        {
+          "input": {
+            "values": [
+              2,
+              3,
+              1,
+              2,
+              4,
+              3
+            ],
+            "target": 7
+          },
+          "expected": 2
+        },
+        {
+          "input": {
+            "values": [
+              1,
+              1
+            ],
+            "target": 5
+          },
+          "expected": 0
+        }
+      ],
+      "design_prompt": "After coding, state invariants and test a slightly modified case; do not reproduce an anecdote verbatim.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 28,
+      "date": "2026-11-12",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Tab bar state helper",
+      "topic": "timed frontend mock",
+      "coding_prompt": "Given tabs and active ID, return active index or 0 when missing.",
+      "cases": [
+        {
+          "input": {
+            "tabs": [
+              "overview",
+              "inventory",
+              "quotes"
+            ],
+            "active": "quotes"
+          },
+          "expected": 2
+        },
+        {
+          "input": {
+            "tabs": [
+              "a"
+            ],
+            "active": "x"
+          },
+          "expected": 0
+        }
+      ],
+      "design_prompt": "Use a timed exercise, then explain keyboard semantics, history behavior, and a novel edge case.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 29,
+      "date": "2026-11-13",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Registration mock: classify decisions",
+      "topic": "full role mock",
+      "coding_prompt": "For a timed mock, implement the decision classifier: APPROVED and PENDING_REVIEW remain unchanged; missing or unknown states become NEEDS_REVIEW. Then use the separate role mock prompt for a timed coding/design/STAR practice.",
+      "cases": [
+        {
+          "input": {
+            "states": [
+              "APPROVED",
+              "PENDING_REVIEW",
+              "UNKNOWN",
+              ""
+            ]
+          },
+          "expected": [
+            "APPROVED",
+            "PENDING_REVIEW",
+            "NEEDS_REVIEW",
+            "NEEDS_REVIEW"
+          ]
+        },
+        {
+          "input": {
+            "states": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Run a 15-minute design explanation, then 10 minutes STAR using a true experience; record what you would improve.",
+      "leadership_principle": "Deliver Results",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 29,
+      "date": "2026-11-13",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "FBA mock: summarize visible placement choices",
+      "topic": "full role mock",
+      "coding_prompt": "Return the visible option count, minimum fee cents among visible options (null if none), and IDs of visible options sorted by ID. The separate mock block tests timed implementation, design explanation and STAR.",
+      "cases": [
+        {
+          "input": {
+            "options": [
+              {
+                "id": "z",
+                "visible": true,
+                "feeCents": 400
+              },
+              {
+                "id": "a",
+                "visible": true,
+                "feeCents": 250
+              },
+              {
+                "id": "x",
+                "visible": false,
+                "feeCents": 1
+              }
+            ]
+          },
+          "expected": {
+            "visibleCount": 2,
+            "minimumFeeCents": 250,
+            "ids": [
+              "a",
+              "z"
+            ]
+          }
+        },
+        {
+          "input": {
+            "options": []
+          },
+          "expected": {
+            "visibleCount": 0,
+            "minimumFeeCents": null,
+            "ids": []
+          }
+        }
+      ],
+      "design_prompt": "15-minute design explanation plus 10-minute truthful STAR story; note one tradeoff to revisit.",
+      "leadership_principle": "Deliver Results",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 30,
+      "date": "2026-11-14",
+      "role": "sde",
+      "job_id": "10579529",
+      "title": "Weakest-pattern redo",
+      "topic": "retrospective",
+      "coding_prompt": "Choose your weakest prior algorithm. Solve a fresh instance in the provided notes; function returns the sum of a list as a simple warm-up.",
+      "cases": [
+        {
+          "input": {
+            "values": [
+              4,
+              -1,
+              2
+            ]
+          },
+          "expected": 5
+        },
+        {
+          "input": {
+            "values": []
+          },
+          "expected": 0
+        }
+      ],
+      "design_prompt": "Explain time/space tradeoffs for one prior design and list three follow-up gaps for the next month.",
+      "leadership_principle": "Customer Obsession & Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 30,
+      "date": "2026-11-14",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Weakest frontend pattern redo",
+      "topic": "retrospective",
+      "coding_prompt": "Return a safe quantity label: null/negative -> \"Unavailable\", else singular/plural units.",
+      "cases": [
+        {
+          "input": {
+            "quantity": 1
+          },
+          "expected": "1 unit"
+        },
+        {
+          "input": {
+            "quantity": 0
+          },
+          "expected": "0 units"
+        }
+      ],
+      "design_prompt": "Redo your weakest UI/API pattern, state accessibility/performance tradeoffs, and plan next 30 days.",
+      "leadership_principle": "Customer Obsession & Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    }
+  ]
+}

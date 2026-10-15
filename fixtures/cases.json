@@ -1,0 +1,1842 @@
+{
+  "sde_01": {
+    "cases": [
+      {
+        "input": {
+          "registrations": [
+            {
+              "email": " A@X.com ",
+              "id": "1"
+            },
+            {
+              "email": "b@x.com",
+              "id": "2"
+            },
+            {
+              "email": "a@x.com",
+              "id": "3"
+            }
+          ]
+        },
+        "expected": [
+          {
+            "email": " A@X.com ",
+            "id": "1"
+          },
+          {
+            "email": "b@x.com",
+            "id": "2"
+          }
+        ]
+      },
+      {
+        "input": {
+          "registrations": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_02": {
+    "cases": [
+      {
+        "input": {
+          "costs": [
+            2,
+            1,
+            3,
+            1,
+            1
+          ],
+          "budget": 4
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "costs": [
+            5,
+            1
+          ],
+          "budget": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  "sde_03": {
+    "cases": [
+      {
+        "input": {
+          "text": "start({[x]})"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "text": "([)]"
+        },
+        "expected": false
+      }
+    ]
+  },
+  "sde_04": {
+    "cases": [
+      {
+        "input": {
+          "values": [
+            1,
+            3,
+            3,
+            8
+          ],
+          "target": 3
+        },
+        "expected": 1
+      },
+      {
+        "input": {
+          "values": [
+            2,
+            4
+          ],
+          "target": 9
+        },
+        "expected": 2
+      }
+    ]
+  },
+  "sde_05": {
+    "cases": [
+      {
+        "input": {
+          "keys": [
+            "a",
+            "b",
+            "a"
+          ]
+        },
+        "expected": "a"
+      },
+      {
+        "input": {
+          "keys": [
+            "x",
+            "y"
+          ]
+        },
+        "expected": null
+      }
+    ]
+  },
+  "sde_06": {
+    "cases": [
+      {
+        "input": {
+          "tree": {
+            "id": "a",
+            "children": [
+              {
+                "id": "b",
+                "children": []
+              },
+              {
+                "id": "c",
+                "children": [
+                  {
+                    "id": "d",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "expected": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "input": {
+          "tree": null
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_07": {
+    "cases": [
+      {
+        "input": {
+          "scores": [
+            {
+              "id": "s2",
+              "score": 8
+            },
+            {
+              "id": "s1",
+              "score": 8
+            },
+            {
+              "id": "s3",
+              "score": 2
+            }
+          ],
+          "k": 2
+        },
+        "expected": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "input": {
+          "scores": [],
+          "k": 3
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_08": {
+    "cases": [
+      {
+        "input": {
+          "windows": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1,
+            4
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      {
+        "input": {
+          "windows": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_09": {
+    "cases": [
+      {
+        "input": {
+          "steps": [
+            "id",
+            "tax",
+            "profile"
+          ],
+          "depends_on": [
+            [
+              "id",
+              "profile"
+            ],
+            [
+              "tax",
+              "profile"
+            ]
+          ]
+        },
+        "expected": [
+          "profile",
+          "id",
+          "tax"
+        ]
+      },
+      {
+        "input": {
+          "steps": [
+            "a",
+            "b"
+          ],
+          "depends_on": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "a"
+            ]
+          ]
+        },
+        "expected": null
+      }
+    ]
+  },
+  "sde_10": {
+    "cases": [
+      {
+        "input": {
+          "candidates": [
+            1,
+            2,
+            2,
+            3
+          ],
+          "target": 4
+        },
+        "expected": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "input": {
+          "candidates": [
+            2
+          ],
+          "target": 1
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_11": {
+    "cases": [
+      {
+        "input": {
+          "required": [
+            "TaxId",
+            "Address"
+          ],
+          "submitted": {
+            "taxid": "x"
+          }
+        },
+        "expected": [
+          "Address"
+        ]
+      },
+      {
+        "input": {
+          "required": [],
+          "submitted": {}
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_12": {
+    "cases": [
+      {
+        "input": {
+          "costs": [
+            3,
+            1,
+            4
+          ],
+          "skip_penalties": [
+            5,
+            2,
+            6
+          ]
+        },
+        "expected": 8
+      },
+      {
+        "input": {
+          "costs": [],
+          "skip_penalties": []
+        },
+        "expected": 0
+      }
+    ]
+  },
+  "sde_13": {
+    "cases": [
+      {
+        "input": {
+          "tasks": [
+            {
+              "id": "b",
+              "at": 2,
+              "priority": 1
+            },
+            {
+              "id": "a",
+              "at": 2,
+              "priority": 3
+            },
+            {
+              "id": "c",
+              "at": 1,
+              "priority": 0
+            }
+          ]
+        },
+        "expected": [
+          "c",
+          "a",
+          "b"
+        ]
+      },
+      {
+        "input": {
+          "tasks": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_14": {
+    "cases": [
+      {
+        "input": {
+          "ids": [
+            "a",
+            "b",
+            "c"
+          ],
+          "pairs": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ]
+        },
+        "expected": 1
+      },
+      {
+        "input": {
+          "ids": [
+            "a",
+            "b"
+          ],
+          "pairs": []
+        },
+        "expected": 2
+      }
+    ]
+  },
+  "sde_15": {
+    "cases": [
+      {
+        "input": {
+          "events": [
+            {
+              "key": "k",
+              "value": 4
+            },
+            {
+              "key": "k",
+              "value": 9
+            },
+            {
+              "key": "q",
+              "value": 2
+            }
+          ]
+        },
+        "expected": [
+          4,
+          null,
+          2
+        ]
+      },
+      {
+        "input": {
+          "events": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_16": {
+    "cases": [
+      {
+        "input": {
+          "capacity": 2,
+          "ops": [
+            [
+              "put",
+              "a",
+              1
+            ],
+            [
+              "put",
+              "b",
+              2
+            ],
+            [
+              "get",
+              "a"
+            ],
+            [
+              "put",
+              "c",
+              3
+            ],
+            [
+              "get",
+              "b"
+            ]
+          ]
+        },
+        "expected": [
+          1,
+          null
+        ]
+      },
+      {
+        "input": {
+          "capacity": 1,
+          "ops": [
+            [
+              "get",
+              "x"
+            ]
+          ]
+        },
+        "expected": [
+          null
+        ]
+      }
+    ]
+  },
+  "sde_17": {
+    "cases": [
+      {
+        "input": {
+          "updates": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        "expected": false
+      },
+      {
+        "input": {
+          "updates": [
+            [
+              "a",
+              1
+            ],
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        "expected": true
+      }
+    ]
+  },
+  "sde_18": {
+    "cases": [
+      {
+        "input": {
+          "attempts": 4,
+          "base": 2,
+          "max": 7
+        },
+        "expected": [
+          2,
+          4,
+          7,
+          7
+        ]
+      },
+      {
+        "input": {
+          "attempts": 0,
+          "base": 1,
+          "max": 8
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_19": {
+    "cases": [
+      {
+        "input": {
+          "rows": [
+            {
+              "seller_id": "a",
+              "state": "PENDING"
+            },
+            {
+              "seller_id": "b",
+              "state": "PENDING"
+            },
+            {
+              "seller_id": "c",
+              "state": "APPROVED"
+            }
+          ]
+        },
+        "expected": [
+          {
+            "state": "APPROVED",
+            "count": 1
+          },
+          {
+            "state": "PENDING",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "input": {
+          "rows": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_20": {
+    "cases": [
+      {
+        "input": {
+          "event": {
+            "screen": "home",
+            "action": "open"
+          },
+          "allow": [
+            "screen",
+            "action"
+          ]
+        },
+        "expected": {
+          "action": "open",
+          "screen": "home"
+        }
+      },
+      {
+        "input": {
+          "event": {
+            "email": "x",
+            "screen": "home"
+          },
+          "allow": [
+            "screen"
+          ]
+        },
+        "expected": null
+      }
+    ]
+  },
+  "sde_21": {
+    "cases": [
+      {
+        "input": {
+          "requirements": [
+            {
+              "country": "IN",
+              "fields": [
+                "tax_id",
+                "address"
+              ]
+            },
+            {
+              "country": "US",
+              "fields": [
+                "tax_id"
+              ]
+            }
+          ],
+          "supported_fields": [
+            "tax_id"
+          ]
+        },
+        "expected": {
+          "IN": [
+            "address"
+          ]
+        }
+      },
+      {
+        "input": {
+          "requirements": [],
+          "supported_fields": []
+        },
+        "expected": {}
+      }
+    ]
+  },
+  "sde_22": {
+    "cases": [
+      {
+        "input": {
+          "rules": [
+            {
+              "id": "tax",
+              "field": "tax_id"
+            },
+            {
+              "id": "address",
+              "field": "address"
+            }
+          ],
+          "application": {
+            "tax_id": "T-1"
+          }
+        },
+        "expected": [
+          {
+            "id": "tax",
+            "decision": "PASS"
+          },
+          {
+            "id": "address",
+            "decision": "FAIL"
+          }
+        ]
+      },
+      {
+        "input": {
+          "rules": [],
+          "application": {}
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_23": {
+    "cases": [
+      {
+        "input": {
+          "events": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "events": [
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        "expected": false
+      }
+    ]
+  },
+  "sde_24": {
+    "cases": [
+      {
+        "input": {
+          "success": 99,
+          "total": 100
+        },
+        "expected": 99.0
+      },
+      {
+        "input": {
+          "success": 0,
+          "total": 0
+        },
+        "expected": 100.0
+      }
+    ]
+  },
+  "sde_25": {
+    "cases": [
+      {
+        "input": {
+          "proposed": {
+            "name": "A",
+            "risk": 4,
+            "address": "X"
+          },
+          "allowed": [
+            "name",
+            "address"
+          ]
+        },
+        "expected": {
+          "accepted": {
+            "name": "A",
+            "address": "X"
+          },
+          "rejected": [
+            "risk"
+          ]
+        }
+      },
+      {
+        "input": {
+          "proposed": {},
+          "allowed": []
+        },
+        "expected": {
+          "accepted": {},
+          "rejected": []
+        }
+      }
+    ]
+  },
+  "sde_26": {
+    "cases": [
+      {
+        "input": {
+          "codes": [
+            201,
+            409,
+            503,
+            400
+          ]
+        },
+        "expected": [
+          "success",
+          "conflict",
+          "retryable",
+          "permanent"
+        ]
+      },
+      {
+        "input": {
+          "codes": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_27": {
+    "cases": [
+      {
+        "input": {
+          "scores": [
+            5,
+            1,
+            9,
+            3
+          ],
+          "k": 2
+        },
+        "expected": [
+          9,
+          5
+        ]
+      },
+      {
+        "input": {
+          "scores": [
+            1
+          ],
+          "k": 0
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_28": {
+    "cases": [
+      {
+        "input": {
+          "values": [
+            2,
+            3,
+            1,
+            2,
+            4,
+            3
+          ],
+          "target": 7
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "values": [
+            1,
+            1
+          ],
+          "target": 5
+        },
+        "expected": 0
+      }
+    ]
+  },
+  "sde_29": {
+    "cases": [
+      {
+        "input": {
+          "states": [
+            "APPROVED",
+            "PENDING_REVIEW",
+            "UNKNOWN",
+            ""
+          ]
+        },
+        "expected": [
+          "APPROVED",
+          "PENDING_REVIEW",
+          "NEEDS_REVIEW",
+          "NEEDS_REVIEW"
+        ]
+      },
+      {
+        "input": {
+          "states": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "sde_30": {
+    "cases": [
+      {
+        "input": {
+          "values": [
+            4,
+            -1,
+            2
+          ]
+        },
+        "expected": 5
+      },
+      {
+        "input": {
+          "values": []
+        },
+        "expected": 0
+      }
+    ]
+  },
+  "frontend_01": {
+    "cases": [
+      {
+        "input": {
+          "name": "A",
+          "email": "bad"
+        },
+        "expected": {
+          "email": "Enter a valid email"
+        }
+      },
+      {
+        "input": {
+          "name": " ",
+          "email": "x@y.com"
+        },
+        "expected": {
+          "name": "Enter your name"
+        }
+      }
+    ]
+  },
+  "frontend_02": {
+    "cases": [
+      {
+        "input": {
+          "items": [
+            {
+              "name": "Red apple",
+              "qty": 4
+            },
+            {
+              "name": "Pear",
+              "qty": 2
+            }
+          ],
+          "query": "ap",
+          "min": 3,
+          "max": 9
+        },
+        "expected": [
+          {
+            "name": "Red apple",
+            "qty": 4
+          }
+        ]
+      },
+      {
+        "input": {
+          "items": [],
+          "query": "",
+          "min": 0,
+          "max": 10
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_03": {
+    "cases": [
+      {
+        "input": {
+          "events": [
+            "SUBMIT",
+            "REJECT",
+            "RESET"
+          ]
+        },
+        "expected": "idle"
+      },
+      {
+        "input": {
+          "events": [
+            "SUBMIT",
+            "RESOLVE"
+          ]
+        },
+        "expected": "success"
+      }
+    ]
+  },
+  "frontend_04": {
+    "cases": [
+      {
+        "input": {
+          "bands": [
+            10,
+            20,
+            40
+          ],
+          "price": 20
+        },
+        "expected": 1
+      },
+      {
+        "input": {
+          "bands": [
+            10,
+            20
+          ],
+          "price": 50
+        },
+        "expected": 2
+      }
+    ]
+  },
+  "frontend_05": {
+    "cases": [
+      {
+        "input": {
+          "items": [
+            {
+              "id": "1",
+              "sku": "x"
+            },
+            {
+              "sku": "y"
+            },
+            {}
+          ]
+        },
+        "expected": [
+          "1",
+          "y",
+          null
+        ]
+      },
+      {
+        "input": {
+          "items": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_06": {
+    "cases": [
+      {
+        "input": {
+          "tree": [
+            {
+              "label": "A",
+              "disabled": false,
+              "children": [
+                {
+                  "label": "B",
+                  "disabled": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "expected": [
+          "A"
+        ]
+      },
+      {
+        "input": {
+          "tree": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_07": {
+    "cases": [
+      {
+        "input": {
+          "items": [
+            {
+              "id": "b",
+              "qty": 2
+            },
+            {
+              "id": "a",
+              "qty": 2
+            },
+            {
+              "id": "c",
+              "qty": 1
+            }
+          ],
+          "key": "qty",
+          "direction": "asc"
+        },
+        "expected": [
+          "c",
+          "a",
+          "b"
+        ]
+      },
+      {
+        "input": {
+          "items": [],
+          "key": "qty",
+          "direction": "desc"
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_08": {
+    "cases": [
+      {
+        "input": {
+          "windows": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1,
+            5
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      },
+      {
+        "input": {
+          "windows": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_09": {
+    "cases": [
+      {
+        "input": {
+          "steps": [
+            "review",
+            "profile",
+            "inventory"
+          ],
+          "depends_on": [
+            [
+              "review",
+              "profile"
+            ],
+            [
+              "review",
+              "inventory"
+            ]
+          ]
+        },
+        "expected": [
+          "inventory",
+          "profile",
+          "review"
+        ]
+      },
+      {
+        "input": {
+          "steps": [
+            "a",
+            "b"
+          ],
+          "depends_on": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "a"
+            ]
+          ]
+        },
+        "expected": null
+      }
+    ]
+  },
+  "frontend_10": {
+    "cases": [
+      {
+        "input": {
+          "values": [
+            1,
+            2,
+            2,
+            3
+          ],
+          "target": 4
+        },
+        "expected": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "input": {
+          "values": [
+            1
+          ],
+          "target": 5
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_11": {
+    "cases": [
+      {
+        "input": {
+          "options": [
+            "Pear",
+            "Peach",
+            "Apple"
+          ],
+          "query": "pe"
+        },
+        "expected": [
+          "Peach",
+          "Pear"
+        ]
+      },
+      {
+        "input": {
+          "options": [
+            "A"
+          ],
+          "query": "z"
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_12": {
+    "cases": [
+      {
+        "input": {
+          "rows": [
+            {
+              "cents": 250
+            },
+            {
+              "cents": 300
+            }
+          ],
+          "feeCents": 50
+        },
+        "expected": {
+          "subtotalCents": 550,
+          "totalCents": 600
+        }
+      },
+      {
+        "input": {
+          "rows": [],
+          "feeCents": 0
+        },
+        "expected": {
+          "subtotalCents": 0,
+          "totalCents": 0
+        }
+      }
+    ]
+  },
+  "frontend_13": {
+    "cases": [
+      {
+        "input": {
+          "cards": [
+            {
+              "id": "b",
+              "visible": false,
+              "priority": 9
+            },
+            {
+              "id": "a",
+              "visible": true,
+              "priority": 1
+            }
+          ]
+        },
+        "expected": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "input": {
+          "cards": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_14": {
+    "cases": [
+      {
+        "input": {
+          "ids": [
+            "US",
+            "CA",
+            "UK"
+          ],
+          "links": [
+            [
+              "US",
+              "CA"
+            ]
+          ]
+        },
+        "expected": [
+          [
+            "CA",
+            "US"
+          ],
+          [
+            "UK"
+          ]
+        ]
+      },
+      {
+        "input": {
+          "ids": [],
+          "links": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_15": {
+    "cases": [
+      {
+        "input": {
+          "market": " us ",
+          "filters": [
+            "size",
+            "fragile",
+            "size"
+          ]
+        },
+        "expected": [
+          "placements",
+          "US",
+          [
+            "fragile",
+            "size"
+          ]
+        ]
+      },
+      {
+        "input": {
+          "market": "IN",
+          "filters": []
+        },
+        "expected": [
+          "placements",
+          "IN",
+          []
+        ]
+      }
+    ]
+  },
+  "frontend_16": {
+    "cases": [
+      {
+        "input": {
+          "version": 3,
+          "cachedVersion": 3,
+          "age": 10,
+          "maxAge": 20
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "version": 4,
+          "cachedVersion": 3,
+          "age": 1,
+          "maxAge": 20
+        },
+        "expected": false
+      }
+    ]
+  },
+  "frontend_17": {
+    "cases": [
+      {
+        "input": {
+          "responses": [
+            {
+              "seq": 2,
+              "value": "new"
+            },
+            {
+              "seq": 1,
+              "value": "old"
+            }
+          ]
+        },
+        "expected": "new"
+      },
+      {
+        "input": {
+          "responses": [
+            {
+              "seq": 4,
+              "value": "x"
+            }
+          ]
+        },
+        "expected": "x"
+      }
+    ]
+  },
+  "frontend_18": {
+    "cases": [
+      {
+        "input": {
+          "statuses": [
+            "loading",
+            200,
+            503,
+            404
+          ]
+        },
+        "expected": [
+          "loading",
+          "ready",
+          "retryable",
+          "error"
+        ]
+      },
+      {
+        "input": {
+          "statuses": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_19": {
+    "cases": [
+      {
+        "input": {
+          "rows": [
+            {
+              "id": "a",
+              "title": " Box ",
+              "quantity": 2
+            },
+            {
+              "title": "x"
+            }
+          ]
+        },
+        "expected": [
+          {
+            "id": "a",
+            "title": "Box",
+            "quantity": 2
+          }
+        ]
+      },
+      {
+        "input": {
+          "rows": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_20": {
+    "cases": [
+      {
+        "input": {
+          "text": "<img src=\"x\">"
+        },
+        "expected": "&lt;img src=&quot;x&quot;&gt;"
+      },
+      {
+        "input": {
+          "text": "A & B"
+        },
+        "expected": "A &amp; B"
+      }
+    ]
+  },
+  "frontend_21": {
+    "cases": [
+      {
+        "input": {
+          "options": [
+            {
+              "id": "b",
+              "available": true,
+              "fresh": true,
+              "totalCents": 300
+            },
+            {
+              "id": "a",
+              "available": true,
+              "fresh": true,
+              "totalCents": 200
+            },
+            {
+              "id": "c",
+              "available": true,
+              "fresh": false,
+              "totalCents": 10
+            }
+          ]
+        },
+        "expected": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "input": {
+          "options": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_22": {
+    "cases": [
+      {
+        "input": {
+          "id": "email",
+          "hintId": "email-help",
+          "errorId": "email-error"
+        },
+        "expected": "email email-help email-error"
+      },
+      {
+        "input": {
+          "id": "qty",
+          "hintId": null,
+          "errorId": null
+        },
+        "expected": "qty"
+      }
+    ]
+  },
+  "frontend_23": {
+    "cases": [
+      {
+        "input": {
+          "attempts": 4,
+          "base": 1,
+          "cap": 4
+        },
+        "expected": [
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "input": {
+          "attempts": 0,
+          "base": 1,
+          "cap": 5
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_24": {
+    "cases": [
+      {
+        "input": {
+          "samples": [
+            1800,
+            3000,
+            5000
+          ]
+        },
+        "expected": [
+          "good",
+          "needs-improvement",
+          "poor"
+        ]
+      },
+      {
+        "input": {
+          "samples": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_25": {
+    "cases": [
+      {
+        "input": {
+          "reasons": [
+            {
+              "code": "CAPACITY",
+              "text": "Capacity available"
+            },
+            {
+              "code": "SECRET",
+              "text": "x"
+            }
+          ],
+          "allow": [
+            "CAPACITY"
+          ]
+        },
+        "expected": [
+          "Capacity available"
+        ]
+      },
+      {
+        "input": {
+          "reasons": [],
+          "allow": []
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_26": {
+    "cases": [
+      {
+        "input": {
+          "quotes": [
+            {
+              "id": "q",
+              "cents": 0,
+              "currency": "USD"
+            }
+          ]
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "quotes": [
+            {
+              "id": "q",
+              "cents": -1,
+              "currency": "USD"
+            }
+          ]
+        },
+        "expected": false
+      }
+    ]
+  },
+  "frontend_27": {
+    "cases": [
+      {
+        "input": {
+          "images": [
+            {
+              "alt": "",
+              "width": 20
+            },
+            {
+              "alt": "Box",
+              "width": 0
+            }
+          ]
+        },
+        "expected": [
+          "ALT",
+          "SIZE"
+        ]
+      },
+      {
+        "input": {
+          "images": [
+            {
+              "alt": "Box",
+              "width": 10
+            }
+          ]
+        },
+        "expected": []
+      }
+    ]
+  },
+  "frontend_28": {
+    "cases": [
+      {
+        "input": {
+          "tabs": [
+            "overview",
+            "inventory",
+            "quotes"
+          ],
+          "active": "quotes"
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "tabs": [
+            "a"
+          ],
+          "active": "x"
+        },
+        "expected": 0
+      }
+    ]
+  },
+  "frontend_29": {
+    "cases": [
+      {
+        "input": {
+          "options": [
+            {
+              "id": "z",
+              "visible": true,
+              "feeCents": 400
+            },
+            {
+              "id": "a",
+              "visible": true,
+              "feeCents": 250
+            },
+            {
+              "id": "x",
+              "visible": false,
+              "feeCents": 1
+            }
+          ]
+        },
+        "expected": {
+          "visibleCount": 2,
+          "minimumFeeCents": 250,
+          "ids": [
+            "a",
+            "z"
+          ]
+        }
+      },
+      {
+        "input": {
+          "options": []
+        },
+        "expected": {
+          "visibleCount": 0,
+          "minimumFeeCents": null,
+          "ids": []
+        }
+      }
+    ]
+  },
+  "frontend_30": {
+    "cases": [
+      {
+        "input": {
+          "quantity": 1
+        },
+        "expected": "1 unit"
+      },
+      {
+        "input": {
+          "quantity": 0
+        },
+        "expected": "0 units"
+      }
+    ]
+  }
+}

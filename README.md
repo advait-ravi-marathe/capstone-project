@@ -1,58 +1,30 @@
-# CoverStory marketplace capstone
+# Amazon 30-day interview sprint
 
-This repository is the instructor-owned setup layer for a learner-built insurance marketplace. The product is a **simulation**: insurer offers, eligibility, payments, refunds, dispatch, and cover activation are not real integrations or promises of insurance.
+A focused practice repository for the two Amazon roles you selected. The new branch contains only this interview-preparation project; CoverStory work and its branch remain separate.
 
-The project now includes a React client shell and a Spring Boot / PostgreSQL modular-monolith API shell. Catalog, Shortlist, Application, Payments, Policy, Support, business audit, and analytics have public contracts and owned PostgreSQL schemas; assessed business behavior remains learner work. Read [the architecture guide](docs/architecture/README.md) and [module contracts](docs/assignments/coverstory-module-contracts.md) before adding endpoints or tables. A module may call another module's public port, but must not read its repository directly.
+- **Dates:** Friday 16 October through Saturday 14 November 2026, inclusive.
+- **Every day:** one 60-minute SDE II assignment (job **10579529**) and one 60-minute FBA Front-End Engineer II assignment (job **10575321**). That is 120 minutes daily, below the 150-minute ceiling; the remaining 30 minutes are intentionally unallocated.
+- **Resume CoverStory/Scrum:** Sunday 15 November 2026.
+- **Assignment source of truth:** [`SPRINT-MANIFEST.json`](SPRINT-MANIFEST.json); detailed role tracks at [`assignments/sde.md`](assignments/sde.md) and [`assignments/frontend.md`](assignments/frontend.md).
 
-## Current checkout status
+## Start
 
-The checkout includes legacy CAP-42 through CAP-45 teaching slices alongside the CoverStory infrastructure. The project inputs and selected design bundle are preserved under `docs/source-inputs/` with member-level checksums. All 594 daily guides map the saved contracts and six linked components. The generated matrix records 85 authored instructor scaffolds, 84 separate learner acceptance suites, 19 ready-to-attempt scaffolds, 66 conditional scaffolds, and zero learner assignments marked complete. Days 001–014 have instructor readiness receipts (Day 015 is partial); Day 014 also has a separate learner-mode browser path, while Day 013 has learner-mode route/transaction assertions. Those learner paths remain TODO checks and must not be counted as instructor passes or completion. See the [first-sprint verification record](docs/evidence/coverstory/first-sprint-verification-2026-10-15.json) for exact commands and outcomes. Days 021–040 and 041–060 each have all 20 setup commands passing, while full saved-flow readiness remains partial. Day 070 CAP-174 has an exact-byte digest oracle; persistence wiring and timebox rehearsal remain absent. See [Start the first work session](docs/START_HERE.md), [Days 001–010](docs/evidence/coverstory/phase1-days-001-010/README.md), [Days 011–020](docs/evidence/coverstory/phase1-days-011-020/README.md), [Days 021–040](docs/evidence/coverstory/phase1-days-021-040/README.md), [Days 041–060](docs/evidence/coverstory/phase1-days-041-060/README.md), and the [contract-by-contract evidence matrix](docs/evidence/coverstory/phase1-days-001-060-requirement-evidence.md). Instructor setup readiness is distinct from learner completion and timing; no learner assignment is marked complete. Start at the [curriculum index](docs/assignments/coverstory/curriculum-index.json), [harness coverage matrix](docs/assignments/coverstory/HARNESS-COVERAGE.md), [visual reconciliation](docs/design/visual-reconciliation.md), and [coverage report](docs/COVERAGE.md).
-
-The directly supplied Day 001 contract has a bounded CAP-40/CAP-41 scaffold and separate learner acceptance suites in [CAP-40](docs/assignments/coverstory/CAP-40.md) and [CAP-41](docs/assignments/coverstory/CAP-41.md). The Java CAP-40 seam now feeds the public in-memory compare-order preview; the Python CAP-41 seam now feeds the local synthetic wording search. Both learner TODOs remain unfinished, so the live endpoints report an explicit not-implemented status until the learner completes the seam. Day 002 CAP-42/43 wiring is described in [CAP-42](docs/assignments/coverstory/CAP-42.md) and [CAP-43](docs/assignments/coverstory/CAP-43.md): SQL totals pass through the Catalog evidence port in the disposable PostgreSQL test harness; sequential identity passes through a Catalog use case while production persistence/auth remain absent. Instructor self-checks include correct and deliberately defective witnesses, while the learner's time-to-completion remains unmeasured. See [current Day 001 integration evidence](docs/evidence/coverstory/CAP-40/integration-result.json) and the [historical harness receipt](docs/assignments/coverstory/evidence/harness-candidate-2026-10-14.md), pinned to its candidate commit. The machine check independently recomputes source hashes, task and acceptance excerpts, dates, card relationships, and planned paths. The harness matrix distinguishes mapped contracts, authored scaffolds, verified setup checks, assignment readiness, and current-candidate learner results.
-
-## Build and smoke checks
-
-Requirements: JDK 21 (both `java` and `javac`), Python 3.10+, Node.js 22.12+ and npm. The checked-in Apache Maven Wrapper downloads/caches Maven 3.10.0 using the pinned distribution checksum; a separate Maven installation is optional. The first wrapper or npm install may need access to Maven Central and the npm registry. Day 001 instructor tests use disposable embedded PostgreSQL; no managed PostgreSQL, Kafka, Redis, credentials, or external insurer/payment service is required.
-
-```sh
-./mvnw test
-python3 -m unittest discover -s ai/tests -p test_infrastructure.py
+```bash
+python3 scripts/validate_sprint.py
+python3 -m unittest sde.test_assignments -v  # expected to fail at 30 learner TODOs
+cd frontend
+npm ci
+npm test                                   # expected to fail at 30 learner TODOs
+npm run build                              # setup/build check, expected to pass
+npm run dev                                # optional synthetic interface preview
 ```
 
-The visible learner acceptance suites intentionally fail until their TODOs are completed:
+The learner suites currently have one test per assignment and intentionally stop at `NotImplementedError`/`Learner TODO`. Those are the unimplemented practice tasks, not setup failures. `validate_sprint.py` and the frontend production build check the starter infrastructure without claiming learner completion. Do not mark assignments complete unless you solve and review them yourself.
 
-```sh
-./mvnw -Plearner-tests test
-python3 -m unittest discover -s ai/tests -p test_ranking.py
-```
+## Daily format
 
-See the [first-session setup](docs/START_HERE.md) for the first task's exact instructor commands, separate expected learner TODO outcomes, and local app behavior. See [coverage](docs/COVERAGE.md) for test evidence and scope limits.
+For each role: 35 minutes solve/implement and test, 15 minutes role-specific system design or code review, 10 minutes truthful STAR/Leadership Principle practice. The two role assignments are distinct and sum to exactly 120 minutes each day. The exact prompts, synthetic fixtures, reference URLs, rationale, and source limitations are documented in `docs/role-research.md`.
 
-## Local app shells
+This is a practice plan, not an Amazon interview format or hiring prediction. It does not promise repeated interview questions, job selection, or a particular assessment outcome. Past interview discussions are anecdotal study prompts; practice the underlying patterns with fresh variations.
 
-```sh
-# Terminal 1, repository root:
-./mvnw spring-boot:run
-# Terminal 2, repository root:
-python3 -m ai.retrieval.coverstory_health_api
-# Terminal 3:
-cd web && npm ci && npm run dev
-```
-
-Run Spring Boot, the loopback-only CAP-41 fixture service, and Vite in separate terminals. The browser shell uses React Query for public catalog/retrieval reads and owner/session-scoped memory caches for future private data; it revalidates `/api/session` on refresh. The API returns `401` for `/api/session` until an authentication adapter exists. `GET /api/catalog` serves a bounded, health-only synthetic catalog through the Catalog module's public port; it contains no insurer wording, price, or payable quote. `POST /api/shortlist/selection-order` calls the CAP-40 shortlist seam only to order ephemeral public comparison references; it does not persist a shortlist or treat device scope as authorization. `/retrieval/health` calls the CAP-41 Python seam against the fixed synthetic fixture and refuses caller-provided source documents. Both routes return an explicit not-implemented result while their learner seams are TODOs. `web/package-lock.json` pins the frontend dependency graph.
-
-## Instructor infrastructure checks
-
-```sh
-python3 scripts/check_scaffold.py
-./scripts/test_field_cipher.sh
-cd web && npm run test:security
-```
-
-## Optional synthetic demo profile
-
-`synthetic-demo` is an isolated local walkthrough using fixed synthetic accounts A and B. Its unsigned demo identity cookie is a UI/testing convenience, **not authentication**. Do not expose this profile to the internet. For the PostgreSQL-backed shortlist and mock confirmation feed, initialize a disposable local database with the repository's `ownership.sql`, `constraints.sql`, `cap78_purchase.sql`, and `synthetic-demo.sql` fixture, then set the existing local JDBC URL/user/password properties and run `SPRING_PROFILES_ACTIVE=synthetic-demo ./mvnw spring-boot:run -Dspring-boot.run.arguments=--coverstory.synthetic-demo.identity.enabled=true`. The identity selector requires both the synthetic profile and this separate opt-in property, and it never replaces a pre-existing authenticated principal. Start Vite with `cd web && npm run dev`. The demo quote endpoint validates the displayed revision/price/terms and never creates an order. CAP-79's local Python process bridge and the CAP-54, CAP-80, and CAP-168 endpoints still return safe not-implemented responses until their learner seams are implemented. Browser flow smoke: `cd web && npm run test:cap168-browser-flow`.
-
-## Learning integrity
-
-Instructor-owned setup includes architecture notes, synthetic fixtures, repeatable local checks, and assignment contracts. Assessed business logic remains learner-authored. AI-assisted implementation must be labelled as assisted, and passing tests alone does not establish independent mastery. Do not put real consumer, health, payment, or authentication data in fixtures.
+`progress-template.csv` has one row per role assignment, all `NOT_STARTED`. It records no prior completion.
