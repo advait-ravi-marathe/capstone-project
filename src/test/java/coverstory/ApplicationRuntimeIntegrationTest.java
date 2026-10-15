@@ -7,6 +7,10 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.context.WebServerApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import coverstory.modules.catalog.CatalogImportIdentityPort;
+import coverstory.modules.catalog.CatalogImportIdentityService;
+import coverstory.modules.catalog.ImportIdentityCommand;
+import coverstory.modules.catalog.api.CAP43Seam;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -23,8 +27,15 @@ class ApplicationRuntimeIntegrationTest {
                 .web(WebApplicationType.SERVLET)
                 .properties("server.port=0", "spring.main.banner-mode=off", "logging.level.root=ERROR")
                 .run()) {
-            assertNotNull(context.getBean(coverstory.modules.catalog.CatalogImportIdentityService.class),
-                    "the CAP-43 learner seam is wired through the Catalog module service");
+            CatalogImportIdentityService importService = context.getBean(CatalogImportIdentityService.class);
+            assertEquals(1, context.getBeansOfType(CatalogImportIdentityPort.class).size());
+            assertInstanceOf(CAP43Seam.class, context.getBean(CatalogImportIdentityPort.class),
+                    "the Catalog public port resolves to the preserved CAP-43 learner seam");
+            UnsupportedOperationException todo = assertThrows(UnsupportedOperationException.class,
+                    () -> importService.classify(new java.util.LinkedHashMap<>(),
+                            new ImportIdentityCommand("editor-E", "health-A", "v1", "synthetic-hash")));
+            assertTrue(todo.getMessage().contains("CAP-43 learner TODO"),
+                    "the running module service reaches the unchanged learner boundary");
             int port = ((WebServerApplicationContext) context).getWebServer().getPort();
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> catalog = client.send(HttpRequest.newBuilder(URI.create(
@@ -49,6 +60,16 @@ class ApplicationRuntimeIntegrationTest {
                             "http://127.0.0.1:" + port + "/api/session"))
                     .GET().build(), HttpResponse.BodyHandlers.ofString());
             assertEquals(401, session.statusCode());
+
+            HttpResponse<String> catalogImport = client.send(HttpRequest.newBuilder(URI.create(
+                            "http://127.0.0.1:" + port + "/api/v1/catalog/imports"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(
+                            "{\"sourceId\":\"synthetic-source\",\"sourceVersion\":\"v1\","
+                                    + "\"canonicalHash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}"))
+                    .build(), HttpResponse.BodyHandlers.ofString());
+            assertEquals(401, catalogImport.statusCode(),
+                    "the real CAP-52 route is present and fails closed without the instructor trusted-principal adapter");
         }
     }
 }

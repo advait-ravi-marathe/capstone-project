@@ -1,0 +1,49 @@
+EEEE
+======================================================================
+ERROR: test_allowlisted_files_sort_by_name_and_preserve_labels_and_text (test_cap_53.CAP53AcceptanceTest.test_allowlisted_files_sort_by_name_and_preserve_labels_and_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_53.py", line 16, in test_allowlisted_files_sort_by_name_and_preserve_labels_and_text
+    loaded = load_wording(FIXTURE)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_53.py", line 27, in load_wording
+    raise NotImplementedError("CAP-53 learner TODO: implement load_wording")
+NotImplementedError: CAP-53 learner TODO: implement load_wording
+
+======================================================================
+ERROR: test_empty_allowlist_is_empty (test_cap_53.CAP53AcceptanceTest.test_empty_allowlist_is_empty)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_53.py", line 24, in test_empty_allowlist_is_empty
+    self.assertEqual([], load_wording(Path(tmp)))
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_53.py", line 27, in load_wording
+    raise NotImplementedError("CAP-53 learner TODO: implement load_wording")
+NotImplementedError: CAP-53 learner TODO: implement load_wording
+
+======================================================================
+ERROR: test_malformed_or_missing_version_fails_atomically_with_filename_code (test_cap_53.CAP53AcceptanceTest.test_malformed_or_missing_version_fails_atomically_with_filename_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_53.py", line 31, in test_malformed_or_missing_version_fails_atomically_with_filename_code
+    with self.assertRaises(LoadError) as caught: load_wording(root)
+                                                 ^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_53.py", line 27, in load_wording
+    raise NotImplementedError("CAP-53 learner TODO: implement load_wording")
+NotImplementedError: CAP-53 learner TODO: implement load_wording
+
+======================================================================
+ERROR: test_path_traversal_is_rejected_before_any_outside_read_and_duplicates_rejected (test_cap_53.CAP53AcceptanceTest.test_path_traversal_is_rejected_before_any_outside_read_and_duplicates_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_53.py", line 48, in test_path_traversal_is_rejected_before_any_outside_read_and_duplicates_rejected
+    with self.assertRaises(LoadError) as caught: load_wording(root)
+                                                 ^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_53.py", line 27, in load_wording
+    raise NotImplementedError("CAP-53 learner TODO: implement load_wording")
+NotImplementedError: CAP-53 learner TODO: implement load_wording
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+FAILED (errors=4)

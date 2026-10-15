@@ -1,0 +1,1266 @@
+{
+  "title": "CoverStory Phase 1 Days 001–010 instructor readiness",
+  "recorded_at_utc": "2026-10-15T01:12:19.463563+00:00",
+  "canonical_curriculum_sha256": "e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e059a236e09de",
+  "readiness_basis": "Instructor harness executability, deterministic synthetic inputs, positive/negative controls, and declared module wiring only. Learner completion and unmeasured task duration do not gate this status.",
+  "timebox_status": "UNMEASURED_NOT_GATING_INSTRUCTOR_READINESS",
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-10-14",
+      "primary": "CAP-40",
+      "components": [
+        "CAP-41"
+      ],
+      "title": "Day 001 · 14 Oct 2026 — Preserve health shortlist order + source citations (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-40",
+          "role": "primary",
+          "primary_id": "CAP-40",
+          "description_sha256": "b9c9ea8e9a53cde75b4a67064f1ea1fa5f3ba0126e5788063007f1235a4687a0"
+        },
+        {
+          "id": "CAP-41",
+          "role": "linked_component",
+          "primary_id": "CAP-40",
+          "description_sha256": "2a926df96da08ee481d00376e62d843455cd3608f954619989399152d27f0d24"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP40ScaffoldInfrastructureTest,ShortlistSelectionControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 7,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-maven.log",
+          "raw_log_sha256": "89e5708e0f18f206c4af3c410b7d25b81bc89a70018cf8fe72e86d032eb4e0e3"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap41_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-test_coverstory_cap41_infrastructure.log",
+          "raw_log_sha256": "feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap41_http",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-test_coverstory_cap41_http.log",
+          "raw_log_sha256": "aad49207f6643b866be6dbc8ef285d4be360fc3e60b767614a9b7a3a61ae8633"
+        },
+        {
+          "command": "npm run build",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": null,
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-frontend-build.log",
+          "raw_log_sha256": "0c7ee2f3f3be02c8731d9aa60d306bd1a915deb8b821745fada494d34e0b8c1a"
+        },
+        {
+          "command": "npm run test:security",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": null,
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-frontend-security.log",
+          "raw_log_sha256": "6995d3b85fe7a4068be8cbecc69d5c0f74c11166578987806563cb1126b98ff1"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-40/synthetic-v1.json",
+          "sha256": "c6751ab88acf5ca5570f9f730ecb943d7354457407a1b5e0de735b0d58ebd022",
+          "exists": true
+        },
+        {
+          "path": "ai/fixtures/coverstory/CAP-41/synthetic-v1.json",
+          "sha256": "6be8b8063eb3d052dc0476d26243fbdaae549fd5ae64a011c42fe24dc9a4e6da",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Read-only fixed synthetic JSON; Python HTTP harness loads the checked-in fixture per process; no shared mutable database.",
+      "positive_controls": [
+        "first-seen composite selection order",
+        "synthetic catalog through CatalogPort -> adapter -> live Spring HTTP",
+        "CAP-41 exact citation transport with fixed documents"
+      ],
+      "negative_controls": [
+        "version-only and sorted-order defects",
+        "public endpoint safe 501 at learner TODO",
+        "anonymous session/import private routes fail closed",
+        "CAP-41 missing/foreign citation and TODO-safe HTTP 501"
+      ],
+      "module_wiring": "Spring app startup, Catalog module, CAP-40 shortlist HTTP route and loopback CAP-41 service; React production build/security checks are run as shared setup checks.",
+      "learner_todos": [
+        "CAP-40 uniqueSelections",
+        "CAP-41 retrieve"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-40",
+          "result_receipt": "docs/evidence/coverstory/CAP-40/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "EXPECTED_FAILURE_AT_UNIMPLEMENTED_TODO",
+          "previously_recorded_acceptance": [
+            {
+              "contract": "CAP-40",
+              "command": "mvn -Plearner-tests -Dtest=CAP40AcceptanceTest test",
+              "tests": 8,
+              "failures": 0,
+              "errors": 8,
+              "status": "EXPECTED_TODO_ERRORS",
+              "raw_output": "docs/evidence/coverstory/CAP-40/cap40-acceptance.raw.txt",
+              "raw_output_sha256": "28104c8adc22674f112dee59d1971f96090be303f38ac6afb21f4c24d4d510f3"
+            },
+            {
+              "contract": "CAP-41",
+              "command": "python3 -m unittest ai.tests.test_coverstory_cap41_acceptance",
+              "tests": 6,
+              "failures": 0,
+              "errors": 9,
+              "status": "EXPECTED_TODO_ERRORS",
+              "raw_output": "docs/evidence/coverstory/CAP-40/cap41-acceptance.raw.txt",
+              "raw_output_sha256": "bbdd4668757829002a7eef729d6943a3b570625fd20603903475bf4b04187f58"
+            }
+          ]
+        },
+        {
+          "card_id": "CAP-41",
+          "result_receipt": "docs/evidence/coverstory/CAP-41/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": null,
+          "previously_recorded_acceptance": {
+            "command": "python3 -m unittest ai.tests.test_coverstory_cap41_acceptance",
+            "tests": 6,
+            "failures": 0,
+            "errors": 9,
+            "status": "EXPECTED_TODO_ERRORS",
+            "todo": "NotImplementedError in retrieve(query, documents, k)"
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP40AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 8,
+            "failures": 0,
+            "errors": 8,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-learner-maven.log",
+          "raw_log_sha256": "37e133f27cece9d36c912544dcf567be8bf6cc384ba5e5c0b2db64723dc10dd0"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap41_acceptance",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 6,
+            "failures": 0,
+            "errors": 9,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-001-learner-ai.tests.log",
+          "raw_log_sha256": "d55e69a846089694683b2d791c55c9554ca857d4c8fd924c7a56d95f46ac1d98"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement the two named learner seams; keep public synthetic scope and safe 501 behavior until implemented.",
+        "Learner duration remains unmeasured; this does not block instructor harness readiness."
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-10-15",
+      "primary": "CAP-42",
+      "components": [
+        "CAP-43"
+      ],
+      "title": "Day 002 · 15 Oct 2026 — Reconcile catalog evidence totals + Java identity (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-42",
+          "role": "primary",
+          "primary_id": "CAP-42",
+          "description_sha256": "ea55dfdc4410ff26c19e59b8a55d6f039534217f2dd2246bbe21cf0ae771e7cf"
+        },
+        {
+          "id": "CAP-43",
+          "role": "linked_component",
+          "primary_id": "CAP-42",
+          "description_sha256": "57771401bccebef7ac66c1945e26e5c863ff1f8fb3d9bb038a4adb65d4be5455"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP42InstructorInfrastructureTest,CAP43InstructorInfrastructureTest,CatalogInstructorHarnessTest,ApplicationRuntimeIntegrationTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 10,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-002-maven.log",
+          "raw_log_sha256": "70fe0f41bfc727c4438f554ae1463a15c2f4dc888b8a467147755a8fd46b7e9d"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-42/synthetic-v1.json",
+          "sha256": "de78e16318de5ba7861085e01941b0e5d121379fbc44bcb19893a451a9660743",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-43/synthetic-v1.json",
+          "sha256": "70a791e430c0443c508af50932c42e2b6b3e459f0ca56a3ff395ef6333f756e9",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_42_schema.sql",
+          "sha256": "36e3d3238b65ec0f864fbab5914c5ec2b32ee550a9139547e8993246ec0832be",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_42_fixtures.sql",
+          "sha256": "925660e9cf842f42c09baeb7c4d15b5471834fd78bb95be7f7a6f4baa53aa2d0",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Every PostgreSQL instructor test starts and closes a fresh embedded PostgreSQL instance; JSON fixture is read-only.",
+      "positive_controls": [
+        "exact numeric control total and half-open UTC window",
+        "Catalog service/port bean graph starts and reaches CAP-43's explicit TODO",
+        "sequential exact editor/source/version/hash reference"
+      ],
+      "negative_controls": [
+        "wrong editor, inclusive upper bound, invalid currency",
+        "version-only key and whitespace-trimmed opaque hash mutants",
+        "real app does not claim a completed import"
+      ],
+      "module_wiring": "CAP-42 use case delegates through the Catalog evidence port; CAP-43 service resolves the Catalog-owned learner port in the actual Spring context.",
+      "learner_todos": [
+        "CAP-42 SQL aggregate",
+        "CAP-43 classify/accept policy"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-42",
+          "result_receipt": "docs/evidence/coverstory/CAP-42/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP42SqlAcceptanceTest test",
+            "tests": 4,
+            "failures": 2,
+            "errors": 0,
+            "status": "EXPECTED_FAILURES_AT_SHAPE_ONLY_SQL_TODO",
+            "observed_in_current_executor": true
+          }
+        },
+        {
+          "card_id": "CAP-43",
+          "result_receipt": "docs/evidence/coverstory/CAP-43/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP43AcceptanceTest test",
+            "tests": 5,
+            "failures": 0,
+            "errors": 5,
+            "status": "EXPECTED_ERRORS_AT_UNIMPLEMENTED_TODO",
+            "observed_in_current_executor": true
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP42SqlAcceptanceTest,CAP43AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 9,
+            "failures": 2,
+            "errors": 5,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-002-learner-maven.log",
+          "raw_log_sha256": "a21360a90ff370b191685f3fc2ae844b97b06cfe663c8862d4a96ed76281bcb2"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement saved SQL/map policy only; persistent import storage, authenticated publishing and concurrent idempotency remain later product work.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-10-16",
+      "primary": "CAP-44",
+      "components": [
+        "CAP-45"
+      ],
+      "title": "Day 003 · 16 Oct 2026 — Rank applicable wording + reconcile import attempts (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-44",
+          "role": "primary",
+          "primary_id": "CAP-44",
+          "description_sha256": "a46a8ac59c69edd39ca76a39fccaa2c15ac21bb1468dd657e808703afb46387d"
+        },
+        {
+          "id": "CAP-45",
+          "role": "linked_component",
+          "primary_id": "CAP-44",
+          "description_sha256": "5fb59481da8a18d01e521e26daae81c351124a0b6882dc074fde21b5650d9a31"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP45InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-003-maven.log",
+          "raw_log_sha256": "469684854795e50111d8510b239f07c917d03e1a3df8203e05e4790ea6b3d9ea"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap44_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-003-test_coverstory_cap44_infrastructure.log",
+          "raw_log_sha256": "a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-44/synthetic-v1.json",
+          "sha256": "82cf3a6ef7b9bece06656c6059cf6e59a78d4df3ecc2a77d004695cdc19dfa64",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-45/synthetic-v1.json",
+          "sha256": "29b0e119401d9888d7dea35f4515eefe874dc713c0d568c935b8c361412d0395",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_45_schema.sql",
+          "sha256": "f1eec1a80a64cd36f39fd061873b60d0ba3364b8fe2569cd7ce4d8f1df065c57",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_45_fixtures.sql",
+          "sha256": "58895ca61072eb680d3424f26dfa6a5c7424578d739c53b409333a65b66b3ad6",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "CAP-45 creates a new embedded PostgreSQL schema/fixture per test; CAP-44 reads immutable synthetic public/restricted rows.",
+      "positive_controls": [
+        "category/scenario/visibility-constrained stable ranking",
+        "left-join evidence rows preserve nulls, attempts and exact source count"
+      ],
+      "negative_controls": [
+        "visibility/category/order/duplicate-token ranking mutants",
+        "inner join, source-only owner join and attempt fanout SQL mutants"
+      ],
+      "module_wiring": "CAP-44 is a bounded pure Python function seam; CAP-45 test-only SQL adapter executes against real embedded PostgreSQL 14. No external retrieval provider.",
+      "learner_todos": [
+        "CAP-44 rank_wording",
+        "CAP-45 SQL reconciliation"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-44",
+          "result_receipt": "docs/evidence/coverstory/CAP-44/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_44.py'",
+            "methods": 4,
+            "expected_errors_at_not_implemented_todo": 4
+          }
+        },
+        {
+          "card_id": "CAP-45",
+          "result_receipt": "docs/evidence/coverstory/CAP-45/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "tests": 4,
+            "failures": 4,
+            "errors": 0,
+            "observed_behavior": "Empty shape-only query returns no evidence rows; each learner assertion fails on its expected evidence output."
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP45SqlAcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 4,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-003-learner-maven.log",
+          "raw_log_sha256": "100c302b52eb5792328760a8175ee736ec99523c75fd84d3924b6f8b9309a4c2"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_44.py",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-003-learner-test_cap_44.log",
+          "raw_log_sha256": "bcb364a9fda14165ad747ddf246502c244a56a83a3a32b7a96c0af2642eba0fc"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement the two saved learner seams; no product import ledger/provider is implied.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-10-17",
+      "primary": "CAP-46",
+      "components": [
+        "CAP-47"
+      ],
+      "title": "Day 004 · 17 Oct 2026 — Bound catalog review queue + citation evaluation (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-46",
+          "role": "primary",
+          "primary_id": "CAP-46",
+          "description_sha256": "8c973a56a47ad7a20ead18f9a0deca8421927333c4617c9c41d3aaf7ffaad12d"
+        },
+        {
+          "id": "CAP-47",
+          "role": "linked_component",
+          "primary_id": "CAP-46",
+          "description_sha256": "71317eb68a043c0364a9c70e1416e8ff693c962b4a485952e4965738efe2014e"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP46InstructorInfrastructureTest,CatalogInstructorHarnessTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 7,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-004-maven.log",
+          "raw_log_sha256": "3f0a616ccaadeb830628a6644779fde4ee6971d9560b8e1feab31e65bea70177"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap47_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-004-test_coverstory_cap47_infrastructure.log",
+          "raw_log_sha256": "a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-46/synthetic-v1.json",
+          "sha256": "3efacef586b0bf76fc20c59e0cca0caebec2fb259ad1b8e55d36e1f45d5c7fd2",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-47/synthetic-v1.json",
+          "sha256": "ca94a213d22795fe688d8af33808c298a80c347df84c8f3aaa0fc59fe310dfb9",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Each oracle replay constructs fresh in-memory queue/evaluation state from immutable fixtures.",
+      "positive_controls": [
+        "bounded FIFO operations, empty poll and pending-only uniqueness",
+        "exact source/version support and correct abstention metrics"
+      ],
+      "negative_controls": [
+        "capacity overflow, LIFO ordering and permanent-duplicate mutants",
+        "presence-only, foreign citation, invalid answer map and abstention-with-citation mutants"
+      ],
+      "module_wiring": "Typed Catalog SourceVersionKey and CAP-46 TODO seam are compiled/discoverable; evaluation component is isolated Python fixture code. No broker or model is started.",
+      "learner_todos": [
+        "CAP-46 bounded queue methods",
+        "CAP-47 evaluate"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-46",
+          "result_receipt": "docs/evidence/coverstory/CAP-46/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "suite": "CAP46AcceptanceTest",
+            "tests": 4,
+            "errors_at_unimplemented_queue_methods": 4
+          }
+        },
+        {
+          "card_id": "CAP-47",
+          "result_receipt": "docs/evidence/coverstory/CAP-47/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_47.py'",
+            "methods": 4,
+            "expected_errors_at_not_implemented_todo": 4
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP46AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-004-learner-maven.log",
+          "raw_log_sha256": "a4faf9b3b9ca363b7d58297e53d3e76c61a7c0687ae85f9f6e29dffc949e2a13"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_47.py",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-004-learner-test_cap_47.log",
+          "raw_log_sha256": "918a7f2f48c296da5cb517c4a719fa9c22b2dfabe5bef581af84c50b2566d43d"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement only the saved queue and evaluation seams; a real message broker and factual evaluation are outside these contracts.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-10-18",
+      "primary": "CAP-48",
+      "components": [
+        "CAP-49"
+      ],
+      "title": "Day 005 · 18 Oct 2026 — Bucket source evidence by UTC day (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-48",
+          "role": "primary",
+          "primary_id": "CAP-48",
+          "description_sha256": "b71cdea616df39607e31723c35ea2121ca17310924315613d170c65b25453fb1"
+        },
+        {
+          "id": "CAP-49",
+          "role": "linked_component",
+          "primary_id": "CAP-48",
+          "description_sha256": "1bcdfed38221eeaa71eaa4924bd38391f7d2fc82bbcdb853c7805daa8ce620df"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP48InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-005-maven.log",
+          "raw_log_sha256": "af159eaeed4b2a12a85f66da580257534c7c49ee0748f46669660fb7f56cadac"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap49_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-005-test_coverstory_cap49_infrastructure.log",
+          "raw_log_sha256": "a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-48/synthetic-v1.json",
+          "sha256": "3ff4c1f3a6e60802fc806a9c7ab975f9206dae10e5aa2ee323e6c654d082369e",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-49/synthetic-v1.json",
+          "sha256": "051951df77bac81eef345999b4e205936e7292e601d571026ba384af958b9002",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_48_schema.sql",
+          "sha256": "8ccb1b2d1eed7e4a8fbcf6261cd365d2b23bd39a5381ff67d229503c5ee46ca6",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_48_fixtures.sql",
+          "sha256": "edff1a2e1ec5cf462f0a17449c37783036cce8bc125d3c02831336293cfe2a90",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Fresh embedded PostgreSQL schema and fixed UTC rows for each test; classifier fixture is read-only.",
+      "positive_controls": [
+        "explicit UTC date spine under UTC and Asia/Kolkata session zones",
+        "failure taxonomy precedence for correct abstention and citation errors"
+      ],
+      "negative_controls": [
+        "observed-only dates, local timestamp cast, wrong owner",
+        "unsupported-answer, source/version precedence and false-abstention controls"
+      ],
+      "module_wiring": "CAP-48 SQL is exercised through test-only JDBC against embedded PostgreSQL; CAP-49 is a pure Python classification seam.",
+      "learner_todos": [
+        "CAP-48 date-spine aggregate SQL",
+        "CAP-49 classify_failure"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-48",
+          "result_receipt": "docs/evidence/coverstory/CAP-48/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP48SqlAcceptanceTest test",
+            "tests": 4,
+            "failures_at_empty_sql_todo": 4,
+            "errors": 0
+          }
+        },
+        {
+          "card_id": "CAP-49",
+          "result_receipt": "docs/evidence/coverstory/CAP-49/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_49.py'",
+            "test_methods": 3,
+            "expected_not_implemented_errors": 10
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP48SqlAcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 4,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-005-learner-maven.log",
+          "raw_log_sha256": "56a987a489ad3da56501fc11912c57cb871c7e1c1c8a2f17eb00b3bc63c937b3"
+        },
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_49.py",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 10,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-005-learner-test_cap_49.log",
+          "raw_log_sha256": "fd7d5378cedac579ab7b9ad84e8fb3e6208f6c5dae81d0db0cefab377b479a98"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement only saved SQL/classifier seams; no live wording or provider source is connected.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2026-10-19",
+      "primary": "CAP-50",
+      "components": [
+        "CAP-51"
+      ],
+      "title": "Day 006 · 19 Oct 2026 — Count import decisions + test Spring seam (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-50",
+          "role": "primary",
+          "primary_id": "CAP-50",
+          "description_sha256": "e15faf03514d2edc001644c1a43abcd5d05849256e9763f97f54c53088e008f9"
+        },
+        {
+          "id": "CAP-51",
+          "role": "linked_component",
+          "primary_id": "CAP-50",
+          "description_sha256": "2538b362ab8d752a10b5a064afcb49087138c356a8a7e60f49f63e1831cbae3e"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP50InstructorInfrastructureTest,CAP51InstructorInfrastructureTest,CatalogInstructorHarnessTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 8,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-006-maven.log",
+          "raw_log_sha256": "697cd251f7a8016929a8b0253a15e0944acfc46997ecf2d1bdec49b9514bd8e6"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-50/synthetic-v1.json",
+          "sha256": "35c63e1f976102111fbeeab48908de8ade842c0ffc3b53b21c9dc9eefc3bad81",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-51/synthetic-v1.json",
+          "sha256": "162f652433c5914bdd8e68bca88b6f9ddb99f12fc7198d896a4a11f314096c14",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_51_schema.sql",
+          "sha256": "a91837027a79efed015e6352933730f0c9d63db9cfcbceffe191077b7b99b6c1",
+          "exists": true
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_51_fixtures.sql",
+          "sha256": "62bc3e03a63495dc885581342d20d88de5e3c83d8375925d8ffbc67d9bfb0f5d",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Fresh fake identity map per CAP-50 oracle; fresh embedded PostgreSQL schema/fixtures per CAP-51 test.",
+      "positive_controls": [
+        "ACCEPT counted once through test-only Catalog service fake",
+        "EXISTS-style confirmed-attempt totals for own fixture owner"
+      ],
+      "negative_controls": [
+        "same-hash duplicate, changed-hash conflict and foreign-editor scope",
+        "raw join fanout and source-only cross-editor attempt mutants"
+      ],
+      "module_wiring": "CAP-50 service/fake lives behind Catalog-owned ports; CAP-51 SQL is a test-only adapter on PostgreSQL. No durable production import repository.",
+      "learner_todos": [
+        "CAP-50 acceptedCounts",
+        "CAP-51 SQL aggregate"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-50",
+          "result_receipt": "docs/evidence/coverstory/CAP-50/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP50AcceptanceTest test",
+            "tests": 3,
+            "failures": 1,
+            "expected_todo_errors": 2
+          }
+        },
+        {
+          "card_id": "CAP-51",
+          "result_receipt": "docs/evidence/coverstory/CAP-51/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP51SqlAcceptanceTest test",
+            "tests": 4,
+            "failures_at_empty_sql_todo": 4,
+            "errors": 0
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP50AcceptanceTest,CAP51SqlAcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 7,
+            "failures": 5,
+            "errors": 2,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-006-learner-maven.log",
+          "raw_log_sha256": "a59e63d8fdddf25d374d57f499c4d5265fa42f80fd3582b0a038dc5bed42af70"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement saved learner methods; persistent identity/retries and transaction guarantees remain unclaimed.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2026-10-20",
+      "primary": "CAP-165",
+      "components": [],
+      "title": "Day 007 · 20 Oct 2026 — Define collision-safe catalog version identity (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-165",
+          "role": "primary",
+          "primary_id": "CAP-165",
+          "description_sha256": "15eb337ac222444d5e27861b04d9d09395dc5381088a51e218275bceb2a0f429"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP165HarnessDiscriminationTest,CatalogInstructorHarnessTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-007-maven.log",
+          "raw_log_sha256": "910472c34e82e4f9b8c52abb2dfff6a12adbb0b89ad20bff03938f5563fee2db"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-165/synthetic-v1.json",
+          "sha256": "8cc070c55cecf6ba767f348b259cbf3f72ee1777da9d02935c106f8ce1c7155c",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Fresh pure-value vectors are read from immutable JSON; no database or process state persists.",
+      "positive_controls": [
+        "exact source/version pair key creates a typed identity"
+      ],
+      "negative_controls": [
+        "delimiter-concatenation collision and null/blank components"
+      ],
+      "module_wiring": "Catalog-owned SourceVersionKey is the module value type; CAP165Seam remains the learner-owned factory TODO.",
+      "learner_todos": [
+        "CAP-165 SourceVersionKey create"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-165",
+          "result_receipt": "docs/evidence/coverstory/CAP-165/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP165AcceptanceTest test",
+            "tests": 4,
+            "failures": 1,
+            "errors_at_explicit_todo": 3,
+            "skipped": 0
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP165AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 1,
+            "errors": 3,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-007-learner-maven.log",
+          "raw_log_sha256": "8a101cde23acbe98bbdaa90dac92c35c83f8c828eb0778cd7369505ec983d579"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement and use the saved key factory; no persistence is in this day's contract.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2026-10-21",
+      "primary": "CAP-52",
+      "components": [],
+      "title": "Day 008 · 21 Oct 2026 — Expose tested catalog import API (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-52",
+          "role": "primary",
+          "primary_id": "CAP-52",
+          "description_sha256": "2c6c4d0edf4004448830f24bb91e601c0eeeb4eec0640bfaea2b0ae00a9d4059"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP52ControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-008-maven.log",
+          "raw_log_sha256": "f663f4aa669c1283fa127f4b1c0b03a7ee8f09d690e0d194435bfd3a1fb2838c"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-52/synthetic-v1.json",
+          "sha256": "d750ef664f24f26ae6fb72f69ff596646543c8fcfc62c79996b98a184c4ae308",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Each MockMvc request uses fresh in-memory decision fake/counters; actual Spring check uses a fresh random-port application context.",
+      "positive_controls": [
+        "trusted test principal reaches the injected fake decision port once",
+        "route is registered in the actual application context"
+      ],
+      "negative_controls": [
+        "anonymous/applicant denied, spoofed owner and malformed hash rejected before seam",
+        "actual route returns 401 without the trusted-principal adapter"
+      ],
+      "module_wiring": "Spring controller is component-scanned and tested; trusted identity adapter and durable decision persistence remain explicitly absent.",
+      "learner_todos": [
+        "CAP-52 import accept decision"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-52",
+          "result_receipt": "docs/evidence/coverstory/CAP-52/result.json",
+          "supplementary_acceptance_receipt": "docs/evidence/coverstory/CAP-52/learner-acceptance.json",
+          "previously_recorded_learner_logic_status": "NOT_COMPLETE_TODO_REMAINS",
+          "previously_recorded_acceptance": null
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP52AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 2,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-008-learner-maven.log",
+          "raw_log_sha256": "846ff2621388512bcd914fc7911173c6fefdd24fdf4da854fc09b4957b9b8729"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement saved decision seam; production authentication and durable idempotency are not supplied by this day.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2026-10-22",
+      "primary": "CAP-53",
+      "components": [],
+      "title": "Day 009 · 22 Oct 2026 — Load synthetic product wording safely (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-53",
+          "role": "primary",
+          "primary_id": "CAP-53",
+          "description_sha256": "c364e713a798cc6c48d7bde614644bbc04794ab0afb21a4eb59aff0a81c92657"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap53_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-009-test_coverstory_cap53_infrastructure.log",
+          "raw_log_sha256": "199ba496f288116d36c62f29346d4fbf0bd75745a1c893abfcbdaa4c6d5b1033"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-53/synthetic-v1.json",
+          "sha256": "7b16ab2608dcb67cf43ccb566eb8e736002c24ebd49c7295ced7dec07f6844f9",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-53/corpus/manifest.json",
+          "sha256": "f26a5ebbfbf74104010faeb9f4d97e15c71ef33363d93c32ad704c423ce76e1b",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-53/corpus/a.json",
+          "sha256": "c237a760c9644d1b1c7ad295cd9f4fe9b192268b5146e2240dada3fe58c2a7d1",
+          "exists": true
+        },
+        {
+          "path": "fixtures/coverstory/CAP-53/corpus/b.json",
+          "sha256": "07a2e334d1a6fd2d2f09c419382c4263eb578407b4076fb20e30cbe09e2f2ae8",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Immutable checked-in corpus plus TemporaryDirectory cases; every oracle invocation rebuilds its state and does not call the learner loader.",
+      "positive_controls": [
+        "allowlisted filename ordering, exact source/version labels and repeatable corpus read",
+        "unlisted file ignored"
+      ],
+      "negative_controls": [
+        "path traversal rejected before outside read, duplicate file/source-version, restricted content and atomic rejection"
+      ],
+      "module_wiring": "Typed PublicWording/LoadError seam and acceptance tests compile; test-only reference loader does not implement the learner function.",
+      "learner_todos": [
+        "CAP-53 load_wording"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-53",
+          "result_receipt": "docs/evidence/coverstory/CAP-53/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_53.py'",
+            "tests": 4,
+            "failures": 0,
+            "errors_at_explicit_todo": 4,
+            "expected_todo_result": true
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_53.py",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-009-learner-test_cap_53.log",
+          "raw_log_sha256": "a09370ea46dd8a0a0e6ed6afdb7c9645422db34fd643fbfbeb2f737061a85c1d"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement allowlisted local-file loading; no online/provider import is in scope.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    },
+    {
+      "day": 10,
+      "date": "2026-10-23",
+      "primary": "CAP-54",
+      "components": [],
+      "title": "Day 010 · 23 Oct 2026 — Authorize UUID journey and homepage resume (150m)",
+      "source_cards": [
+        {
+          "id": "CAP-54",
+          "role": "primary",
+          "primary_id": "CAP-54",
+          "description_sha256": "dcaf268278089aa3d3c48fff60a37b808ec96ec81ddac2d493e175b5d309ef2d"
+        }
+      ],
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP54InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-010-maven.log",
+          "raw_log_sha256": "fad8505d930f7e90972b10318755dab4717269b74532fed1be89ab38f5cfcfcf"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-54/synthetic-v1.json",
+          "sha256": "270e204da80c8c572c9e1b706a9a5004c50b3e25f5e377f53c746872cd0a29bb",
+          "exists": true
+        }
+      ],
+      "reset_and_isolation": "Test-only fixture port graph is reconstructed per test from immutable synthetic owner/revision rows.",
+      "positive_controls": [
+        "owner-bound lookup and exact authoritative application revision",
+        "safe status/action summaries and bounded owner listing"
+      ],
+      "negative_controls": [
+        "foreign and absent UUID produce same safe 404 before application read",
+        "UUID-only access, private-field output, oversized page and foreign cursor"
+      ],
+      "module_wiring": "Instructor fixture adapter implements actual Application module OwnedJourneyReader/ApplicationStateReader ports. No production authentication/session adapter or resume endpoint is claimed.",
+      "learner_todos": [
+        "CAP-54 resume and active-list seam"
+      ],
+      "learner_result_receipts": [
+        {
+          "card_id": "CAP-54",
+          "result_receipt": "docs/evidence/coverstory/CAP-54/result.json",
+          "supplementary_acceptance_receipt": null,
+          "previously_recorded_learner_logic_status": "TODO_RETAINED",
+          "previously_recorded_acceptance": {
+            "command": "mvn -Plearner-tests -Dtest=CAP54AcceptanceTest test",
+            "tests": 5,
+            "failures": 0,
+            "errors_at_explicit_todo": 5,
+            "expected_todo_result": true
+          }
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP54AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "todo_signal_observed": true,
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 5,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-001-010/raw/day-010-learner-maven.log",
+          "raw_log_sha256": "0947a206935a923a6c13188cf9d1d4b4b5e38b5fcbf68b18b8d45a7ceceb9978"
+        }
+      ],
+      "remaining_requirements": [
+        "Implement only the owner-scoped query/adapter methods; authenticated runtime resume, persistence and private payload access remain outside this day's test harness.",
+        "Learner duration remains unmeasured and does not block scaffold readiness."
+      ]
+    }
+  ],
+  "summary": {
+    "days_ready": 10,
+    "days_total": 10,
+    "commands_run": 17,
+    "tests_run": 71,
+    "test_failures": 0,
+    "test_errors": 0,
+    "frontend_commands_passed": 2,
+    "learner_acceptance_commands": 14,
+    "learner_commands_with_todo_signal": 14
+  }
+}

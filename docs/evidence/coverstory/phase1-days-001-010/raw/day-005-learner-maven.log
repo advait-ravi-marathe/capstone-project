@@ -1,0 +1,151 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< dev.capstone:capstone-starter >--------------------
+[INFO] Building capstone-starter 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 24089 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to apache.snapshots (https://repository.apache.org/snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to plexus.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots): HTTP Status: 403
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ capstone-starter ---
+[INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ capstone-starter ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to oss.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots/): HTTP Status: 403
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ capstone-starter ---
+[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ capstone-starter ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ capstone-starter ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running coverstory.modules.catalog.CAP48SqlAcceptanceTest
+01:13:02.265 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Detected a Linux x86_64 system
+01:13:02.287 [main] INFO io.zonky.test.db.postgres.embedded.DefaultPostgresBinaryResolver -- Detected distribution: 'Debian'
+01:13:02.288 [main] INFO io.zonky.test.db.postgres.embedded.DefaultPostgresBinaryResolver -- System specific postgres binaries found: 'postgres-linux-x86_64.txz'
+01:13:02.332 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Postgres binaries at /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg72459444708458990 ... ok
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:13:02.340 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:13:02.346 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:13:02.355 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:13:02.361 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:13:02.362 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:13:02.431 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:13:02.698 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:13:02.700 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:13:02.700 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:02.700 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:13:02.701 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:02.701 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg72459444708458990 -l logfile start
+01:13:02.701 [initdb:pid(167386)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:02.701 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- b6b81c44-3068-41f0-8fd2-75e4fe97c8ec initdb completed in 00:00:00.367
+01:13:02.705 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- b6b81c44-3068-41f0-8fd2-75e4fe97c8ec postmaster started as Process[pid=167400, exitValue="not exited"] on port 44269.  Waiting up to PT10S for server startup to finish.
+01:13:02.720 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:13:02.719 UTC [167404] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:13:02.721 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:02.720 UTC [167404] LOG:  listening on IPv6 address "::1", port 44269
+01:13:02.721 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:02.720 UTC [167404] LOG:  listening on IPv4 address "127.0.0.1", port 44269
+01:13:02.721 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:02.720 UTC [167404] LOG:  listening on Unix socket "/tmp/.s.PGSQL.44269"
+01:13:02.721 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:02.721 UTC [167405] LOG:  database system was shut down at 2026-10-15 01:13:02 UTC
+01:13:02.724 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:02.724 UTC [167404] LOG:  database system is ready to accept connections
+01:13:02.809 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:13:02.810 [postgres:pid(167400)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:13:02.886 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- b6b81c44-3068-41f0-8fd2-75e4fe97c8ec postmaster startup finished in 00:00:00.183
+01:13:03.063 [pg_ctl:pid(167423)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:13:03.064 [pg_ctl:pid(167423)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:13:03.064 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- b6b81c44-3068-41f0-8fd2-75e4fe97c8ec shut down postmaster in 00:00:00.102
+[ERROR] Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.919 s <<< FAILURE! -- in coverstory.modules.catalog.CAP48SqlAcceptanceTest
+[ERROR] coverstory.modules.catalog.CAP48SqlAcceptanceTest.sessionTimezoneDoesNotMoveEventsAcrossUtcDateBuckets -- Time elapsed: 0.022 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: learner query must emit the date spine ==> expected: <3> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:559)
+	at coverstory.modules.catalog.CAP48SqlAcceptanceTest.sessionTimezoneDoesNotMoveEventsAcrossUtcDateBuckets(CAP48SqlAcceptanceTest.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] coverstory.modules.catalog.CAP48SqlAcceptanceTest.returnsUtcBucketsAndIncludesEmptyDateSpineRows -- Time elapsed: 0.016 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <[Row[day=2026-10-13, count=1, totalMinor=1000], Row[day=2026-10-14, count=2, totalMinor=500], Row[day=2026-10-15, count=0, totalMinor=0]]> but was: <[]>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1141)
+	at coverstory.modules.catalog.CAP48SqlAcceptanceTest.returnsUtcBucketsAndIncludesEmptyDateSpineRows(CAP48SqlAcceptanceTest.java:31)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] coverstory.modules.catalog.CAP48SqlAcceptanceTest.nullAmountsCountButAreNotPricedAndOtherEditorIsExcluded -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected one row per date-spine entry ==> expected: <3> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:559)
+	at coverstory.modules.catalog.CAP48SqlAcceptanceTest.nullAmountsCountButAreNotPricedAndOtherEditorIsExcluded(CAP48SqlAcceptanceTest.java:45)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] coverstory.modules.catalog.CAP48SqlAcceptanceTest.queryHasStableColumnsAndExactlyOneRowPerDate -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <3> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
+	at coverstory.modules.catalog.CAP48SqlAcceptanceTest.queryHasStableColumnsAndExactlyOneRowPerDate(CAP48SqlAcceptanceTest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   CAP48SqlAcceptanceTest.nullAmountsCountButAreNotPricedAndOtherEditorIsExcluded:45 expected one row per date-spine entry ==> expected: <3> but was: <0>
+[ERROR]   CAP48SqlAcceptanceTest.queryHasStableColumnsAndExactlyOneRowPerDate:51 expected: <3> but was: <0>
+[ERROR]   CAP48SqlAcceptanceTest.returnsUtcBucketsAndIncludesEmptyDateSpineRows:31 expected: <[Row[day=2026-10-13, count=1, totalMinor=1000], Row[day=2026-10-14, count=2, totalMinor=500], Row[day=2026-10-15, count=0, totalMinor=0]]> but was: <[]>
+[ERROR]   CAP48SqlAcceptanceTest.sessionTimezoneDoesNotMoveEventsAcrossUtcDateBuckets:39 learner query must emit the date spine ==> expected: <3> but was: <0>
+[INFO] 
+[ERROR] Tests run: 4, Failures: 4, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.269 s
+[INFO] Finished at: 2026-10-15T01:13:03Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project capstone-starter: There are test failures.
+[ERROR] 
+[ERROR] See /workspace/capstone-project/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

@@ -2,12 +2,16 @@
   "day_id": "CAP-54",
   "date": "2026-10-23",
   "learner_logic_status": "TODO_RETAINED",
-  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_status": "PASS_CURRENT_DAY_001_010_READINESS_RUN",
   "instructor_check": {
     "command": "mvn -Dtest=CAP54InstructorInfrastructureTest test",
-    "tests": 3,
+    "tests": 6,
     "failures": 0,
-    "errors": 0
+    "errors": 0,
+    "module_ports": ["OwnedJourneyReader", "ApplicationStateReader"],
+    "positive_controls": ["owner-bound lookup", "exact application/revision read", "safe summary and owned listing"],
+    "negative_controls": ["foreign/missing UUID same safe 404", "no state read on denial", "UUID-only lookup, private fields, excessive limits and foreign cursors"],
+    "learner_todo_invoked": false
   },
   "learner_acceptance": {
     "command": "mvn -Plearner-tests -Dtest=CAP54AcceptanceTest test",
@@ -21,8 +25,10 @@
     "classification": "synthetic",
     "sha256": "270e204da80c8c572c9e1b706a9a5004c50b3e25f5e377f53c746872cd0a29bb"
   },
+  "readiness": "READY_TO_ATTEMPT_SCAFFOLD_ONLY",
+  "readiness_evidence": "docs/evidence/coverstory/phase1-days-001-010/README.md",
   "limits": [
-    "The owner-scope oracle is test-only; no authenticated session or production resume endpoint is wired.",
-    "No completion or timebox rehearsal is claimed."
+    "The fixture adapter is test-only; no authenticated session, production repository or resume endpoint is wired.",
+    "Learner seam remains TODO; no completion or elapsed-time claim is made."
   ]
 }

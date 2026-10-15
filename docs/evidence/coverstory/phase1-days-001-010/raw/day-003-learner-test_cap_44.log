@@ -1,0 +1,49 @@
+EEEE
+======================================================================
+ERROR: test_duplicate_provenance_or_missing_version_is_rejected (test_cap_44.CAP44AcceptanceTest.test_duplicate_provenance_or_missing_version_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_44.py", line 48, in test_duplicate_provenance_or_missing_version_is_rejected
+    with self.assertRaises(ValueError): rank_wording(fixture["query"], "Visitor", sources, 3)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_44.py", line 39, in rank_wording
+    raise NotImplementedError("CAP-44 learner TODO: implement rank_wording")
+NotImplementedError: CAP-44 learner TODO: implement rank_wording
+
+======================================================================
+ERROR: test_public_wording_is_ranked_without_login_and_ties_are_stable (test_cap_44.CAP44AcceptanceTest.test_public_wording_is_ranked_without_login_and_ties_are_stable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_44.py", line 27, in test_public_wording_is_ranked_without_login_and_ties_are_stable
+    hits = rank_wording(fixture["query"], "Visitor", sources_from(fixture), 3)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_44.py", line 39, in rank_wording
+    raise NotImplementedError("CAP-44 learner TODO: implement rank_wording")
+NotImplementedError: CAP-44 learner TODO: implement rank_wording
+
+======================================================================
+ERROR: test_restricted_draft_never_changes_public_results_for_other_principals (test_cap_44.CAP44AcceptanceTest.test_restricted_draft_never_changes_public_results_for_other_principals)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_44.py", line 34, in test_restricted_draft_never_changes_public_results_for_other_principals
+    public = [(hit.source_id, hit.version, hit.score) for hit in rank_wording(fixture["query"], "Visitor", sources, 5)]
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_44.py", line 39, in rank_wording
+    raise NotImplementedError("CAP-44 learner TODO: implement rank_wording")
+NotImplementedError: CAP-44 learner TODO: implement rank_wording
+
+======================================================================
+ERROR: test_source_order_and_nonmatching_scenario_do_not_change_ranking (test_cap_44.CAP44AcceptanceTest.test_source_order_and_nonmatching_scenario_do_not_change_ranking)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_44.py", line 41, in test_source_order_and_nonmatching_scenario_do_not_change_ranking
+    hits = rank_wording(fixture["query"], "Visitor", sources, 3)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_44.py", line 39, in rank_wording
+    raise NotImplementedError("CAP-44 learner TODO: implement rank_wording")
+NotImplementedError: CAP-44 learner TODO: implement rank_wording
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=4)

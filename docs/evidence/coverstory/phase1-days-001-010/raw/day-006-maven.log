@@ -1,0 +1,88 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< dev.capstone:capstone-starter >--------------------
+[INFO] Building capstone-starter 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 24089 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to apache.snapshots (https://repository.apache.org/snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to plexus.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots): HTTP Status: 403
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ capstone-starter ---
+[INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ capstone-starter ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to oss.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots/): HTTP Status: 403
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ capstone-starter ---
+[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ capstone-starter ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ capstone-starter ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running coverstory.modules.catalog.CatalogInstructorHarnessTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.149 s -- in coverstory.modules.catalog.CatalogInstructorHarnessTest
+[INFO] Running coverstory.modules.catalog.CAP50InstructorInfrastructureTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in coverstory.modules.catalog.CAP50InstructorInfrastructureTest
+[INFO] Running coverstory.modules.catalog.CAP51InstructorInfrastructureTest
+01:13:05.823 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Detected a Linux x86_64 system
+01:13:05.838 [main] INFO io.zonky.test.db.postgres.embedded.DefaultPostgresBinaryResolver -- Detected distribution: 'Debian'
+01:13:05.839 [main] INFO io.zonky.test.db.postgres.embedded.DefaultPostgresBinaryResolver -- System specific postgres binaries found: 'postgres-linux-x86_64.txz'
+01:13:05.889 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Postgres binaries at /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg2545301990014548411 ... ok
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:13:05.898 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:13:05.905 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:13:05.913 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:13:05.919 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:13:05.920 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:13:05.994 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:13:06.277 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:13:06.279 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:13:06.279 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:06.279 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:13:06.280 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:06.280 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg2545301990014548411 -l logfile start
+01:13:06.280 [initdb:pid(167541)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:13:06.280 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- c2bbb86b-7454-415f-9ebd-dea5d6d5d6dc initdb completed in 00:00:00.389
+01:13:06.284 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- c2bbb86b-7454-415f-9ebd-dea5d6d5d6dc postmaster started as Process[pid=167555, exitValue="not exited"] on port 34821.  Waiting up to PT10S for server startup to finish.
+01:13:06.299 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:13:06.299 UTC [167559] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:13:06.299 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:06.299 UTC [167559] LOG:  listening on IPv6 address "::1", port 34821
+01:13:06.299 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:06.299 UTC [167559] LOG:  listening on IPv4 address "127.0.0.1", port 34821
+01:13:06.299 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:06.299 UTC [167559] LOG:  listening on Unix socket "/tmp/.s.PGSQL.34821"
+01:13:06.300 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:06.300 UTC [167560] LOG:  database system was shut down at 2026-10-15 01:13:06 UTC
+01:13:06.301 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:13:06.301 UTC [167559] LOG:  database system is ready to accept connections
+01:13:06.389 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:13:06.389 [postgres:pid(167555)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:13:06.447 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- c2bbb86b-7454-415f-9ebd-dea5d6d5d6dc postmaster startup finished in 00:00:00.165
+01:13:06.571 [pg_ctl:pid(167571)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:13:06.571 [pg_ctl:pid(167571)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:13:06.571 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- c2bbb86b-7454-415f-9ebd-dea5d6d5d6dc shut down postmaster in 00:00:00.102
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.859 s -- in coverstory.modules.catalog.CAP51InstructorInfrastructureTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.464 s
+[INFO] Finished at: 2026-10-15T01:13:06Z
+[INFO] ------------------------------------------------------------------------

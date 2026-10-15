@@ -18,6 +18,7 @@ SOURCE = ROOT / "docs/source-inputs/2026-10-14/curriculum/coverstory-final-saved
 INDEX = ROOT / "docs/assignments/coverstory/curriculum-index.json"
 OUT = ROOT / "docs/assignments/coverstory/harness-matrix.json"
 PARTITIONS = OUT.parent / "harness-matrix"
+DAY_READINESS = ROOT / "docs/evidence/coverstory/phase1-days-001-010/readiness.json"
 PARTITION_SIZE = 50
 
 
@@ -40,6 +41,31 @@ def main() -> dict:
     cards = json.loads(SOURCE.read_text())['cards']
     index = json.loads(INDEX.read_text())
     cards_by_id = {card['id']: card for card in cards}
+    source_curriculum_sha = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    verified_day_readiness = {}
+    if DAY_READINESS.is_file():
+        report = json.loads(DAY_READINESS.read_text())
+        if report.get('canonical_curriculum_sha256') == source_curriculum_sha:
+            for day_record in report.get('days', []):
+                day_number = day_record.get('day')
+                cards_match = day_record.get('source_cards', [])
+                checks = day_record.get('checks', [])
+                fixtures = day_record.get('fixtures', [])
+                evidence_is_consistent = (
+                    isinstance(day_number, int) and 1 <= day_number <= 10
+                    and bool(cards_match) and cards_match[0].get('id') == day_record.get('primary')
+                    and day_record.get('date') == cards_by_id.get(day_record.get('primary'), {}).get('date')
+                    and bool(checks) and all(check.get('status') == 'PASS' and check.get('exit_code') == 0 for check in checks)
+                    and all(fixture.get('exists') is True and isinstance(fixture.get('sha256'), str) for fixture in fixtures)
+                    and bool(day_record.get('positive_controls')) and bool(day_record.get('negative_controls'))
+                    and bool(day_record.get('reset_and_isolation')) and bool(day_record.get('module_wiring'))
+                    and day_record.get('learner_assignment_complete') is False
+                    and day_record.get('timebox_blocks_instructor_readiness') is False
+                )
+                if evidence_is_consistent and day_record.get('instructor_scaffold_readiness') == 'READY':
+                    verified_day_readiness[day_number] = day_record
+            if set(verified_day_readiness) != set(range(1, 11)):
+                verified_day_readiness.clear()
     executable = {
         'CAP-40': 'java_selection_identity',
         'CAP-42': 'postgres_catalog_aggregation',
@@ -299,6 +325,10 @@ def main() -> dict:
             planned_source = 'src/main/java/capstone/coverstory/payments/ValidatePaymentIdentities.java'
             case_ids = [f'CAP-170-CS-{number:02d}' for number in range(1, 9)]
         authored = card['id'] in authored_ids
+        day_ready = (
+            day['day_number'] in verified_day_readiness
+            and verified_day_readiness[day['day_number']].get('primary') == card['id']
+        )
         status = 'LEARNER_CONTRACT_AND_FIXTURE_VALIDATED' if card['id'] == 'CAP-40' else (
             'INSTRUCTOR_FIXTURE_HARNESS_AUTHORED' if authored else 'MAPPED_ONLY'
         )
@@ -320,7 +350,7 @@ def main() -> dict:
             'fixture_harness_validated': card['id'] in fixture_validated_ids,
             'historical_learner_contract_evidence': card['id'] == 'CAP-40',
             'assignability': (
-                'READY_TO_ATTEMPT' if card['id'] == 'CAP-40' else
+                'READY_TO_ATTEMPT' if day_ready or card['id'] == 'CAP-40' else
                 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' if authored
                 else 'CONDITIONAL_EXPERIMENT_PREFLIGHT' if card['phase'] == 2
                 else 'NOT_SCAFFOLDED'
@@ -328,9 +358,17 @@ def main() -> dict:
             'learner_result': learner_result_overrides.get(card['id'],
                 'EXPECTED_FAILURE_AT_UNIMPLEMENTED_LEARNER_TODO' if card['id'] in current_candidate_runs
                 else 'NOT_RUN_ON_CURRENT_CANDIDATE'),
-            'learner_readiness': 'READY_TO_ATTEMPT' if card['id'] == 'CAP-40' else 'ENVIRONMENT_PREFLIGHT_NOT_RUN',
+            'learner_readiness': 'READY_TO_ATTEMPT' if day_ready or card['id'] == 'CAP-40' else 'ENVIRONMENT_PREFLIGHT_NOT_RUN',
             'timebox_status': 'TIMEBOX_NOT_VALIDATED' if card['id'] == 'CAP-40' else 'NOT_REHEARSED',
             'readiness_evidence': 'docs/evidence/coverstory/CAP-40/environment-preflight.json' if card['id'] == 'CAP-40' else None,
+            'instructor_scaffold_readiness': (
+                'READY_TO_START' if day_ready
+                else 'NOT_VERIFIED'
+            ),
+            'instructor_readiness_evidence': (
+                f"docs/evidence/coverstory/phase1-days-001-010/readiness.json#day-{day['day_number']:03}"
+                if day_ready else None
+            ),
             'learner_acceptance_suite': acceptance_suites.get(card['id']),
             'scaffold_status': status, 'harness_family': family,
             'source_planned_primary_path': planned_source,
@@ -349,13 +387,14 @@ def main() -> dict:
         'fixture_harnesses_validated': sum(row['fixture_harness_validated'] for row in rows),
         'conditionally_scaffold_supported': sum(row['assignability'] == 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' for row in rows),
         'ready_to_attempt': sum(row['assignability'] == 'READY_TO_ATTEMPT' for row in rows),
+        'instructor_scaffolds_ready_to_start_days_001_010': sum(row['instructor_scaffold_readiness'] == 'READY_TO_START' for row in rows),
         'assignable_now': sum(row['assignability'] == 'ASSIGNABLE' for row in rows),
         'learner_acceptance_runs_on_current_candidate': sum(row['learner_result'] != 'NOT_RUN_ON_CURRENT_CANDIDATE' for row in rows),
         'phase2_independent_experiment_contracts_mapped': sum(row['scaffold_strategy'] == 'PROGRESSIVELY_FADED_FIXTURE_AND_EVALUATION_CONTRACT' for row in rows),
         'phase2_hidden_fault_preflights_required': sum(row['scaffold_strategy'] == 'HIDDEN_FRESH_FAULT_SYMPTOMS_ONLY' for row in rows),
         'scaffold_families_started': len(executable),
     }
-    source_sha256 = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    source_sha256 = source_curriculum_sha
     PARTITIONS.mkdir(parents=True, exist_ok=True)
     partition_index = []
     for first_day, last_day, chunk in partition_rows(rows):
