@@ -24,6 +24,7 @@ export function DemoSessionControls({ session }: { session: Session | null }) {
   }
 
   return <section className="demo-session" aria-label="Synthetic demo account">
+    <span className="session-label" aria-live="polite">{session ? 'Signed in' : 'Guest preview'}</span>
     <span aria-live="polite">{session ? `Synthetic account ${session.ownerId === 'a1680000-0000-4000-8000-000000000001' ? 'A' : 'B'}` : 'Guest'}</span>
     {session ? <>
       <button type="button" disabled={busy} onClick={() => void change(session.ownerId === 'a1680000-0000-4000-8000-000000000001' ? 'B' : 'A')}>Switch demo account</button>

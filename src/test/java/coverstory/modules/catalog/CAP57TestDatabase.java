@@ -17,7 +17,9 @@ final class CAP57TestDatabase implements AutoCloseable {
         try (Connection c = pg.getPostgresDatabase().getConnection(); Statement s = c.createStatement()) {
             executeResource(s, "/db/schema/ownership.sql");
             executeResource(s, "/db/schema/catalog_publication.sql");
+            executeResource(s, "/db/schema/catalog_discovery.sql");
             executeResource(s, "/coverstory/catalog/cap_57_fixtures.sql");
+            executeResource(s, "/coverstory/catalog/cap_57_discovery.sql");
             try (var rs = s.executeQuery("SELECT count(*) FROM catalog.active_health_offer")) {
                 if (!rs.next() || rs.getInt(1) != 0) throw new AssertionError("fresh CAP57 DB must have no active publication");
             }

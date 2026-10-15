@@ -129,7 +129,9 @@ class CAP57InstructorInfrastructureTest {
     private static void load(Statement s) throws Exception {
         executeResource(s, "/db/schema/ownership.sql");
         executeResource(s, "/db/schema/catalog_publication.sql");
+        executeResource(s, "/db/schema/catalog_discovery.sql");
         executeResource(s, "/coverstory/catalog/cap_57_fixtures.sql");
+        executeResource(s, "/coverstory/catalog/cap_57_discovery.sql");
     }
 
     private static void executeResource(Statement s, String path) throws Exception {

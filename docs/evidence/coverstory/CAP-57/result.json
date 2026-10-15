@@ -4,10 +4,12 @@
   "learner_logic_status": "TODO_RETAINED",
   "instructor_status": "PASS_CURRENT_EXECUTOR",
   "instructor_check": {
-    "command": "mvn -Dtest=CAP57InstructorInfrastructureTest test",
-    "tests": 3,
+    "command": "mvn -Dtest=CAP57InstructorInfrastructureTest,CAP57PublicationRuntimeIntegrationTest test",
+    "tests": 6,
     "failures": 0,
-    "errors": 0
+    "errors": 0,
+    "setup_and_database_tests": 4,
+    "http_runtime_tests": 2
   },
   "learner_acceptance": {
     "command": "mvn -Plearner-tests -Dtest=CAP57AcceptanceTest test",
@@ -22,7 +24,43 @@
     "sha256": "328bc91580abecaad90b72c053bb5a28f72845eaab9283a6c92efc26b9ee4da4"
   },
   "limits": [
-    "The SQL transaction harness uses disposable PostgreSQL; it is not connected to the application runtime datasource.",
-    "No completion or timebox rehearsal is claimed."
-  ]
+    "The reference publisher and authenticated editor filter exist only in test code/profile; no production publish route is registered.",
+    "CAP57Seam.publish and exportPublished remain explicit learner TODOs.",
+    "No learner completion or timebox rehearsal is claimed."
+  ],
+  "http_runtime": {
+    "command": "mvn -Dtest=CAP57PublicationRuntimeIntegrationTest test",
+    "status": "PASS",
+    "real_spring_listener": true,
+    "embedded_postgresql": "18.6",
+    "test_only_publication_route": "POST /api/catalog/__instructor/cap57/health/{productId}/publish",
+    "public_catalog_read": "GET /api/catalog/versions",
+    "controls": [
+      "anonymous publication returns 401",
+      "publish persists selected version and safe audit event atomically",
+      "same-version retry returns duplicate without a second audit row",
+      "changed hash conflicts without changing prior selection",
+      "injected failure after both writes rolls back both",
+      "second prepared version becomes active",
+      "exact export IDs, SHA-256 and integer paise/currency verified",
+      "public version status survives application restart"
+    ],
+    "audit_columns": [
+      "audit_id",
+      "editor_id",
+      "event_code",
+      "product_id",
+      "version_id",
+      "source_version",
+      "content_sha256",
+      "occurred_at"
+    ],
+    "synthetic_editor_filter": "test-only profile; ordinary app does not register instructor route",
+    "runtime_source_sha256": {
+      "test": "f1d879fdfef8e3a0924d60979d0c60fda9d7b66010ae5268ee1b6633b2b19600",
+      "adapter": "6b13faadfa97c5ab9abad6b5d90cd4d705d212e3bf84aa15d5482acbb32b0727",
+      "controller": "fb83d635dca6ec4bd959c7317b486212409d883cd491a0b93b9ca9576e46b559",
+      "schema": "93a1454a3338746f13dbac5abbfbe59f44f953ed351b7283b261eb0d0b85841f"
+    }
+  }
 }

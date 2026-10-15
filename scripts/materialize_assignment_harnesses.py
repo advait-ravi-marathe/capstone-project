@@ -317,6 +317,8 @@ def main() -> dict:
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
+        'CAP-54': 'Instructor browser flow revalidates a fresh session, refetches owner-scoped journeys, verifies account switch/cache clearing and logout/public catalog continuity through real Spring routes and Application-owned disposable PostgreSQL. Session identity is synthetic test-only; no production login exists and the two learner seams remain TODO.',
+        'CAP-57': 'Test-only Spring publication route invokes an independent JDBC reference transaction against disposable PostgreSQL, writes the active catalog row and safe source/version/hash audit atomically, and verifies deterministic exports plus the public version-history route across restart. The production learner seam remains TODO; the instructor route and editor filter are not registered by the ordinary application.',
         'CAP-88': 'Pure policy harness only; Spring authentication and HTTP role-client integration are blocked because no auth adapter or protected module route exists.',
         'CAP-89': 'Local evaluator gate only; no CI workflow integration is implemented.',
         'CAP-90': 'Field-cipher boundary only; protected database adapter, response/log integration and cross-process retained-key restore remain blocked.',
@@ -339,7 +341,7 @@ def main() -> dict:
         'CAP-107': 'Manifest and disclosure decision oracle only; persistence, quoting and submission effects are not wired.',
         'CAP-108': 'In-memory lane planning only; no queue, worker, published diagnostics or payment integration is exercised.',
         'CAP-52': 'MockMvc transport boundary and fake decision port only; trusted-principal authentication adapter and durable idempotency are not wired.',
-        'CAP-166': 'Synthetic fixture and compiled learner seam only; decoder remains TODO and React/API/PostgreSQL customer slice is deferred.',
+        'CAP-166': 'Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving restart history, version status, bounded selection, storage denial and outage behavior with a test-only decoder adapter. Production learner decoder remains TODO; no customer data or payable action is enabled.',
         'CAP-167': 'Bounded offline trace oracle only; learner checker remains TODO and no broker or publication worker is used.',
         'CAP-173': 'Synthetic PostgreSQL audit-window oracle, actual optional HTTP route and owner-bounded test principal; learner count/reconcile seam remains TODO, no provider or payment operation is used.',
         'CAP-58': 'Instructor-only Vite/Chromium queue flow now reaches the real Spring HTTP route and disposable PostgreSQL receipt store through a fixed synthetic principal and reference validator; five injected 429 responses exercise bounded retry/drop before one 10-event batch persists. Learner validator, production authentication/consent/key configuration and journey authorization remain TODO or unprovisioned; no business journey changes.',

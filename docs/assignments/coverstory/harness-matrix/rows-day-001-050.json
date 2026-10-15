@@ -334,7 +334,7 @@
       "canonical_derived_primary_path": "src/main/java/coverstory/modules/application/api/CAP54Seam.java",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": null,
+      "coverage_note": "Instructor browser flow revalidates a fresh session, refetches owner-scoped journeys, verifies account switch/cache clearing and logout/public catalog continuity through real Spring routes and Application-owned disposable PostgreSQL. Session identity is synthetic test-only; no production login exists and the two learner seams remain TODO.",
       "acceptance_case_ids": [
         "CAP-54-CS-01",
         "CAP-54-CS-02",
@@ -437,7 +437,7 @@
       "canonical_derived_primary_path": "src/main/java/coverstory/modules/catalog/api/CAP57Seam.java",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": null,
+      "coverage_note": "Test-only Spring publication route invokes an independent JDBC reference transaction against disposable PostgreSQL, writes the active catalog row and safe source/version/hash audit atomically, and verifies deterministic exports plus the public version-history route across restart. The production learner seam remains TODO; the instructor route and editor filter are not registered by the ordinary application.",
       "acceptance_case_ids": [
         "CAP-57-CS-01",
         "CAP-57-CS-02",
@@ -471,7 +471,7 @@
       "canonical_derived_primary_path": "web/src/coverstory/catalog/decodeCatalogEnvelope.ts",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": "Synthetic fixture and compiled learner seam only; decoder remains TODO and React/API/PostgreSQL customer slice is deferred.",
+      "coverage_note": "Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving restart history, version status, bounded selection, storage denial and outage behavior with a test-only decoder adapter. Production learner decoder remains TODO; no customer data or payable action is enabled.",
       "acceptance_case_ids": [
         "CAP-166-CS-01",
         "CAP-166-CS-02",

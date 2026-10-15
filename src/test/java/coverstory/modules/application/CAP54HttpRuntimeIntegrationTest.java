@@ -148,7 +148,13 @@ class CAP54HttpRuntimeIntegrationTest {
                 String value=line.get(Math.max(1,deadline-System.nanoTime()),TimeUnit.NANOSECONDS);
                 if(value==null)break;
                 if(value.startsWith("CAP54_BROWSER_FLOW ")) { System.out.println(value); pass=true; break; }
-                if(value.startsWith("Error:")||value.startsWith("AssertionError")) throw new AssertionError("CAP54 browser witness failed: "+value);
+                if(value.startsWith("Error:")||value.startsWith("AssertionError")) {
+                    browser.waitFor(10, TimeUnit.SECONDS);
+                    StringBuilder details = new StringBuilder(value);
+                    String remaining;
+                    while ((remaining = output.readLine()) != null) details.append('\n').append(remaining);
+                    throw new AssertionError("CAP54 browser witness failed: "+details);
+                }
                 line=CompletableFuture.supplyAsync(() -> { try { return output.readLine(); } catch (Exception e) { throw new RuntimeException(e); } });
             }
             if(!pass)throw new AssertionError("CAP54 browser witness timed out");
