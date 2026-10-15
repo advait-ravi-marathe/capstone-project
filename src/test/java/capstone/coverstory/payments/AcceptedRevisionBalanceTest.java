@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 /** The assessed business calculation remains a visible learner TODO. */
 @Tag("learnerAcceptance")
 class AcceptedRevisionBalanceTest {
-    private static final UUID OWNER = UUID.fromString("11600000-0000-4000-8000-000000000001");
+    private static final UUID OWNER = UUID.fromString("11500000-0000-4000-8000-000000000001");
     private static final UUID APP = UUID.fromString("11600000-0000-4000-8000-000000000101");
-    private static final UUID OFFER = UUID.fromString("11600000-0000-4000-8000-000000000112");
-    private static final String HASH = "92cc44f29a18ad1016bb90f27ba70dd7593675bda29d5e79eac322ad9bcd2aa9";
+    private static final UUID OFFER = UUID.fromString("11500000-0000-4000-8000-000000000012");
+    private static final String HASH = "f96df155cd21849d54e42885cdb9432a9182fcc894f1b4ce794df7eae828d91c";
     private final AcceptedRevisionBalance learner = new AcceptedRevisionBalance();
     private AcceptedOffer h2() { return new AcceptedOffer(OWNER,APP,OFFER,"o2",HASH,110_000,"INR",true); }
-    private ConfirmedEffect capture() { return new ConfirmedEffect(UUID.fromString("11600000-0000-4000-8000-000000000201"),OWNER,APP,"CAPTURE-1",EffectKind.CAPTURE,100_000,"INR",UUID.fromString("11600000-0000-4000-8000-000000000111"),"q1","6a03129b0e896ba0af7fd404e6e614fc67735daafbffcaf5a80c3f65abe55a37",true); }
+    private ConfirmedEffect capture() { return new ConfirmedEffect(UUID.fromString("11600000-0000-4000-8000-000000000201"),OWNER,APP,"CAPTURE-1",EffectKind.CAPTURE,100_000,"INR",UUID.fromString("11500000-0000-4000-8000-000000000011"),"q1","3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",true); }
 
     @Test void acceptedH2WithOneCaptureIsEligibleForOnlyTenThousandPaise() {
         var result=learner.reconcile(h2(),List.of(capture()),List.of());
@@ -29,7 +29,7 @@ class AcceptedRevisionBalanceTest {
     }
     @Test void pendingOldRevisionPaymentPreventsNewRefundOrCharge() {
         var pending=new PendingAllocation(UUID.fromString("11600000-0000-4000-8000-000000000301"),OWNER,APP,"balance-o2",OFFER,"o2",HASH,AllocationKind.ADDITIONAL_PAYMENT,AllocationStatus.IN_FLIGHT,10_000,"INR");
-        var result=learner.reconcile(new AcceptedOffer(OWNER,APP,UUID.fromString("11600000-0000-4000-8000-000000000113"),"o3","9b02bdc68efb12d0a65d85177bfd9027d770c319dc024bd847b5b4a486752cb7",90_000,"INR",true),List.of(capture()),List.of(pending));
+        var result=learner.reconcile(new AcceptedOffer(OWNER,APP,UUID.fromString("11500000-0000-4000-8000-000000000013"),"o3","643fc21cda8f95a2bb5a46ef24dd043b59ce7f47b0bc086a498f8192344b00c8",90_000,"INR",true),List.of(capture()),List.of(pending));
         assertEquals(10_000,result.pendingAdditionalMinor());assertEquals(NextAction.WAIT_OR_RECONCILE,result.nextAction());
     }
     @Test void duplicateEffectAndForeignOwnerCannotInflateConfirmedNet() {

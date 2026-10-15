@@ -4,14 +4,15 @@
   "source_contract_sha256": "46428e99560b155258523f0ba33e9437cb036ced7a907e167b03485ceede1b45",
   "fixture": "docs/coverstory/fixtures/cap-116.json",
   "instructor_command": "mvn -Dtest=CAP116InstructorInfrastructureTest,CAP116ReviewBalanceRuntimeIntegrationTest test",
-  "instructor_result": "PASS; 5 reference/fixture tests and 1 authenticated Spring HTTP to disposable PostgreSQL runtime test",
+  "instructor_result": "PASS; 5 reference/fixture tests and 1 authenticated Spring HTTP to disposable PostgreSQL runtime test, after aligning offer IDs and canonical quote hashes byte-for-byte with CAP-115.",
   "learner_command": "mvn -Plearner-tests -Dtest=AcceptedRevisionBalanceTest test",
   "learner_result": "EXPECTED_TODO_FAILURE; 5 tests, 0 assertion failures, 4 UnsupportedOperationException errors at AcceptedRevisionBalance.reconcile and 1 TODO guard pass",
-  "full_default_suite": "mvn clean test: 95 suites, 331 tests, 0 failures, 0 errors, 1 skipped.",
+  "full_default_suite": "mvn clean test on aligned cross-day fixture: 96 suites, 336 tests, 0 failures, 0 errors, 1 skipped.",
   "runtime_scope": "Read-only instructor profile; HTTP reports are computed from synthetic Application/Payments facts. Before/after observations confirm no effect or allocation writes.",
   "not_claimed": [
     "Learner balance calculation or mastery",
     "Production PaymentsCommandApi route, allocation writer, provider call, charge, refund, or dispatch",
     "Timebox rehearsal"
-  ]
+  ],
+  "fixture_sha256": "30965cade1e8bbef3c5ac40c780cb47ccff13535e6a587b50764a22abc4da4aa"
 }

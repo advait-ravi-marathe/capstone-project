@@ -1,0 +1,17 @@
+{
+  "assignment": "CAP-117",
+  "status": "INSTRUCTOR_ORACLE_PASS_LEARNER_TODO",
+  "source_contract_sha256": "dbc98a5160cc56208be5d628c32e85dbf8e7373f876af79b43c5d38a626c7498",
+  "fixture": "docs/coverstory/fixtures/cap-117.json",
+  "instructor_command": "-Dtest=CAP117InstructorOracleTest test",
+  "learner_command": "-Plearner-tests -Dtest=ReviewEvidenceManifestTest test",
+  "scope": "Synthetic read-only evidence verification; no production route or external/provider activity.",
+  "not_claimed": [
+    "Learner implementation or mastery",
+    "Insurer approval, issuance, payment, dispatch or active cover",
+    "Timebox rehearsal"
+  ],
+  "instructor_result": "PASS; 5 tests verify exact prior evidence-file hashes, accepted o2 binding, expiry, tamper/missing artifacts and unsupported approval claims.",
+  "learner_result": "EXPECTED_TODO_FAILURE; 5 tests, 0 assertion failures, 4 UnsupportedOperationException errors at ReviewEvidenceManifest.verify and 1 TODO guard pass.",
+  "full_default_suite": "mvn clean test: 96 suites, 336 tests, 0 failures, 0 errors, 1 skipped."
+}

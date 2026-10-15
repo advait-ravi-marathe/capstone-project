@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Test-only HTTP read flow through Spring, public facts ports, and disposable PostgreSQL. */
 class CAP116ReviewBalanceRuntimeIntegrationTest {
     private static final String HEADER = "X-CAP116-Instructor-Session";
-    private static final String OWNER = "11600000-0000-4000-8000-000000000001";
+    private static final String OWNER = "11500000-0000-4000-8000-000000000001";
 
     @Test void reportsExactAcceptedRevisionAndReservationsWithoutCreatingMoneyEffects() throws Exception {
         try (CAP116TestDatabase database = CAP116TestDatabase.fresh()) {

@@ -4,51 +4,53 @@
   "source_contract_sha256": "46428e99560b155258523f0ba33e9437cb036ced7a907e167b03485ceede1b45",
   "currency": "INR",
   "amount_unit": "integer_minor_units_paise",
-  "hash_canonicalization": "sha256(owner_id|application_id|offer_id|revision|total_minor|currency|comma_joined_sorted_term_codes)",
+  "hash_canonicalization": "SHA-256 of compact JSON with lexicographically sorted keys: amount_minor,currency,expires_at,offer_id,owner_id,revision,term_codes; term_codes sorted; identical to CAP-115 snapshots.",
   "historical_original_offer": {
-    "owner_id": "11600000-0000-4000-8000-000000000001",
+    "owner_id": "11500000-0000-4000-8000-000000000001",
     "application_id": "11600000-0000-4000-8000-000000000101",
-    "offer_id": "11600000-0000-4000-8000-000000000111",
+    "offer_id": "11500000-0000-4000-8000-000000000011",
     "revision": "q1",
     "total_minor": 100000,
     "currency": "INR",
-    "content_sha256": "6a03129b0e896ba0af7fd404e6e614fc67735daafbffcaf5a80c3f65abe55a37",
+    "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
     "term_codes": [
       "copay_10_percent",
       "waiting_30_days"
     ],
-    "accepted": true
+    "accepted": true,
+    "expires_at": "2027-01-15T00:00:00Z"
   },
   "scenarios": [
     {
       "id": "accepted-h2",
       "accepted_offer": {
-        "owner_id": "11600000-0000-4000-8000-000000000001",
+        "owner_id": "11500000-0000-4000-8000-000000000001",
         "application_id": "11600000-0000-4000-8000-000000000101",
-        "offer_id": "11600000-0000-4000-8000-000000000112",
+        "offer_id": "11500000-0000-4000-8000-000000000012",
         "revision": "o2",
         "total_minor": 110000,
         "currency": "INR",
-        "content_sha256": "92cc44f29a18ad1016bb90f27ba70dd7593675bda29d5e79eac322ad9bcd2aa9",
+        "content_sha256": "f96df155cd21849d54e42885cdb9432a9182fcc894f1b4ce794df7eae828d91c",
         "term_codes": [
           "copay_0_percent",
           "restore_benefit",
           "waiting_30_days"
         ],
-        "accepted": true
+        "accepted": true,
+        "expires_at": "2027-01-20T00:00:00Z"
       },
       "effects": [
         {
           "effect_id": "11600000-0000-4000-8000-000000000201",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000101",
           "provider_reference": "CAPTURE-1",
           "kind": "CAPTURE",
           "amount_minor": 100000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "6a03129b0e896ba0af7fd404e6e614fc67735daafbffcaf5a80c3f65abe55a37",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": true
         }
       ],
@@ -65,43 +67,44 @@
     {
       "id": "pending-h2-new-h3",
       "accepted_offer": {
-        "owner_id": "11600000-0000-4000-8000-000000000001",
+        "owner_id": "11500000-0000-4000-8000-000000000001",
         "application_id": "11600000-0000-4000-8000-000000000102",
-        "offer_id": "11600000-0000-4000-8000-000000000113",
+        "offer_id": "11500000-0000-4000-8000-000000000013",
         "revision": "o3",
         "total_minor": 90000,
         "currency": "INR",
-        "content_sha256": "b07b5fc59d5d046c9ed05fa20b087e532fb87cf309399fc3dad2f3859e55d4cc",
+        "content_sha256": "643fc21cda8f95a2bb5a46ef24dd043b59ce7f47b0bc086a498f8192344b00c8",
         "term_codes": [
           "copay_0_percent",
           "waiting_30_days"
         ],
-        "accepted": true
+        "accepted": true,
+        "expires_at": "2027-01-25T00:00:00Z"
       },
       "effects": [
         {
           "effect_id": "11600000-0000-4000-8000-000000000201",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000102",
           "provider_reference": "CAPTURE-1",
           "kind": "CAPTURE",
           "amount_minor": 100000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "da45d2d15af269d24273525d5757f1eacb854659c6b4423632f8936a0bfddb69",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": true
         }
       ],
       "pending_allocations": [
         {
           "allocation_id": "11600000-0000-4000-8000-000000000301",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000102",
           "idempotency_key": "balance-o2",
-          "offer_id": "11600000-0000-4000-8000-000000000112",
+          "offer_id": "11500000-0000-4000-8000-000000000012",
           "revision": "o2",
-          "content_sha256": "90ae4f87a89714fb074a1df63d827792cb0672c1efe3dac03e26e95cb9564b22",
+          "content_sha256": "f96df155cd21849d54e42885cdb9432a9182fcc894f1b4ce794df7eae828d91c",
           "kind": "ADDITIONAL_PAYMENT",
           "status": "IN_FLIGHT",
           "amount_minor": 10000,
@@ -120,84 +123,85 @@
     {
       "id": "duplicate-foreign-orphan-mismatch",
       "accepted_offer": {
-        "owner_id": "11600000-0000-4000-8000-000000000001",
+        "owner_id": "11500000-0000-4000-8000-000000000001",
         "application_id": "11600000-0000-4000-8000-000000000103",
-        "offer_id": "11600000-0000-4000-8000-000000000112",
+        "offer_id": "11500000-0000-4000-8000-000000000012",
         "revision": "o2",
         "total_minor": 110000,
         "currency": "INR",
-        "content_sha256": "b4d7b40b7c520630fedbc23fa3e876e647a823d02cca423091ca72335011d792",
+        "content_sha256": "f96df155cd21849d54e42885cdb9432a9182fcc894f1b4ce794df7eae828d91c",
         "term_codes": [
           "copay_0_percent",
           "restore_benefit",
           "waiting_30_days"
         ],
-        "accepted": true
+        "accepted": true,
+        "expires_at": "2027-01-20T00:00:00Z"
       },
       "effects": [
         {
           "effect_id": "11600000-0000-4000-8000-000000000201",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000103",
           "provider_reference": "CAPTURE-1",
           "kind": "CAPTURE",
           "amount_minor": 100000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "1df947b5882a331b4755ed467e5aae99a1fe43234662958971f9b2376df349c3",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": true
         },
         {
           "effect_id": "11600000-0000-4000-8000-000000000201",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000103",
           "provider_reference": "CAPTURE-1",
           "kind": "CAPTURE",
           "amount_minor": 100000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "1df947b5882a331b4755ed467e5aae99a1fe43234662958971f9b2376df349c3",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": true
         },
         {
           "effect_id": "11600000-0000-4000-8000-000000000203",
-          "owner_id": "11600000-0000-4000-8000-000000000002",
+          "owner_id": "11500000-0000-4000-8000-000000000002",
           "application_id": "11600000-0000-4000-8000-000000000103",
           "provider_reference": "CAPTURE-1",
           "kind": "CAPTURE",
           "amount_minor": 60000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000114",
+          "offer_id": "11500000-0000-4000-8000-000000000014",
           "revision": "q1",
           "content_sha256": "5c4915e2cf65fb669c0843ae925bde0058c09f96b63e9f4d298b839b4cfc637b",
           "attached_to_authoritative_effect": true
         },
         {
           "effect_id": "11600000-0000-4000-8000-000000000204",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000103",
           "provider_reference": "CAPTURE-GBP",
           "kind": "CAPTURE",
           "amount_minor": 500,
           "currency": "GBP",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "1df947b5882a331b4755ed467e5aae99a1fe43234662958971f9b2376df349c3",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": true
         },
         {
           "effect_id": null,
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000103",
           "provider_reference": "ORPHAN-RECEIPT",
           "kind": "CAPTURE",
           "amount_minor": 8000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "1df947b5882a331b4755ed467e5aae99a1fe43234662958971f9b2376df349c3",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": false
         }
       ],
@@ -217,44 +221,45 @@
     {
       "id": "h3-confirmed-refund",
       "accepted_offer": {
-        "owner_id": "11600000-0000-4000-8000-000000000001",
+        "owner_id": "11500000-0000-4000-8000-000000000001",
         "application_id": "11600000-0000-4000-8000-000000000104",
-        "offer_id": "11600000-0000-4000-8000-000000000113",
+        "offer_id": "11500000-0000-4000-8000-000000000013",
         "revision": "o3",
         "total_minor": 90000,
         "currency": "INR",
-        "content_sha256": "9b02bdc68efb12d0a65d85177bfd9027d770c319dc024bd847b5b4a486752cb7",
+        "content_sha256": "643fc21cda8f95a2bb5a46ef24dd043b59ce7f47b0bc086a498f8192344b00c8",
         "term_codes": [
           "copay_0_percent",
           "waiting_30_days"
         ],
-        "accepted": true
+        "accepted": true,
+        "expires_at": "2027-01-25T00:00:00Z"
       },
       "effects": [
         {
           "effect_id": "11600000-0000-4000-8000-000000000201",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000104",
           "provider_reference": "CAPTURE-1",
           "kind": "CAPTURE",
           "amount_minor": 100000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000111",
+          "offer_id": "11500000-0000-4000-8000-000000000011",
           "revision": "q1",
-          "content_sha256": "0c5de315044bb39546439f6100e1e278da060b8bd7e95d4d963b263d372492fa",
+          "content_sha256": "3e3c1f0849a29bac2ddfd3d356c1ff0bfb925bcce3ce4fcc8f07db188c96bafe",
           "attached_to_authoritative_effect": true
         },
         {
           "effect_id": "11600000-0000-4000-8000-000000000202",
-          "owner_id": "11600000-0000-4000-8000-000000000001",
+          "owner_id": "11500000-0000-4000-8000-000000000001",
           "application_id": "11600000-0000-4000-8000-000000000104",
           "provider_reference": "REFUND-1",
           "kind": "REFUND",
           "amount_minor": 10000,
           "currency": "INR",
-          "offer_id": "11600000-0000-4000-8000-000000000113",
+          "offer_id": "11500000-0000-4000-8000-000000000013",
           "revision": "o3",
-          "content_sha256": "9b02bdc68efb12d0a65d85177bfd9027d770c319dc024bd847b5b4a486752cb7",
+          "content_sha256": "643fc21cda8f95a2bb5a46ef24dd043b59ce7f47b0bc086a498f8192344b00c8",
           "attached_to_authoritative_effect": true
         }
       ],

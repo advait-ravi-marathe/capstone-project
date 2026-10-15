@@ -21,7 +21,7 @@ import java.util.UUID;
 @Profile("cap116-instructor-test")
 @RequestMapping("/api/payments/__instructor/cap116")
 final class CAP116InstructorController {
-    private static final String INSTRUCTOR_OWNER = "11600000-0000-4000-8000-000000000001";
+    private static final String INSTRUCTOR_OWNER = "11500000-0000-4000-8000-000000000001";
     private final AcceptedOfferRevisionFactsPort application;
     private final ConfirmedPaymentEffectFactsPort payments;
     private final PendingAdjustmentFactsPort pending;

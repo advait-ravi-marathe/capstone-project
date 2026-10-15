@@ -80,9 +80,16 @@ class CAP116InstructorInfrastructureTest {
         return result;
     }
     private void assertHash(tools.jackson.databind.JsonNode n) throws Exception {
-        var terms=new ArrayList<String>(); n.path("term_codes").forEach(t->terms.add(t.asText())); terms.sort(Comparator.naturalOrder());
-        String canonical=String.join("|",n.path("owner_id").asText(),n.path("application_id").asText(),n.path("offer_id").asText(),n.path("revision").asText(),Long.toString(n.path("total_minor").asLong()),n.path("currency").asText(),String.join(",",terms));
-        String actual=HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(canonical.getBytes(StandardCharsets.UTF_8)));
+        var canonical=new java.util.TreeMap<String,Object>();
+        canonical.put("amount_minor",n.path("total_minor").asLong());
+        canonical.put("currency",n.path("currency").asText());
+        canonical.put("expires_at",n.path("expires_at").asText());
+        canonical.put("offer_id",n.path("offer_id").asText());
+        canonical.put("owner_id",n.path("owner_id").asText());
+        canonical.put("revision",n.path("revision").asText());
+        var terms=new ArrayList<String>(); n.path("term_codes").forEach(t->terms.add(t.asText())); terms.sort(Comparator.naturalOrder()); canonical.put("term_codes",terms);
+        String bytes=mapper.writeValueAsString(canonical);
+        String actual=HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes.getBytes(StandardCharsets.UTF_8)));
         assertEquals(actual,n.path("content_sha256").asText());
     }
     private static java.util.UUID uuid(tools.jackson.databind.JsonNode n,String field){return java.util.UUID.fromString(n.path(field).asText());}
