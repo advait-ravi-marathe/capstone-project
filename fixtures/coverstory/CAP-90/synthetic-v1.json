@@ -1,7 +1,13 @@
 {
   "classification": "SYNTHETIC_CRYPTO_CONTRACT",
   "actual_provider_call": false,
-  "scope": "EXISTING_AES_GCM_FIELD_CIPHER_AND_PROCESS_LOCAL_KEYS_ONLY",
+  "scope": "AES_GCM_PLUS_POSTGRES_ENVELOPE_STORE_AND_APPLICATION_REVISION_LINK",
+  "database_storage_adapter": "PostgresProtectedPayloadEnvelopeStore",
+  "database_fixture": "Embedded PostgreSQL 18.6; synthetic only",
+  "ciphertext_persistence": "PASS",
+  "application_revision_foreign_key": "PASS",
+  "append_only_envelope": "PASS",
+  "cross_process_key_restore": "BLOCKED_NO_RETAINED_KEY_PROVIDER",
   "marker": "CAP90-SYNTHETIC-PRIVATE-MARKER-DO-NOT-LOG",
   "owner_a": "synthetic-owner-A",
   "owner_b": "synthetic-owner-B",
@@ -14,8 +20,8 @@
   "cases": [
     {
       "id": "CAP-90-CS-01",
-      "expected": "SUPPORTED_PARTIAL",
-      "limitation": "Field cipher round-trip and ciphertext representation only; this checkout has no protected-payload database adapter or wrapped-DEK envelope."
+      "expected": "SUPPORTED_INSTRUCTOR_STORAGE",
+      "limitation": "Instructor-owned PostgreSQL adapter stores only AES-GCM envelope metadata and ciphertext, linked to an Application revision; no wrapped-DEK provider is supplied."
     },
     {
       "id": "CAP-90-CS-02",
@@ -29,8 +35,8 @@
     },
     {
       "id": "CAP-90-CS-04",
-      "expected": "SUPPORTED_PARTIAL",
-      "limitation": "Ciphertext/AAD authentication is exercised; no separate wrapped-key, route, or persistence boundary exists."
+      "expected": "SUPPORTED_INSTRUCTOR_STORAGE",
+      "limitation": "Ciphertext is read back from PostgreSQL and wrong revision AAD fails authentication; no application route or wrapped-key boundary exists."
     },
     {
       "id": "CAP-90-CS-05",
@@ -48,5 +54,5 @@
       "limitation": "Safe result and captured test output are scanned; application response, logging, receipt, KMS context, and manifest integrations are absent."
     }
   ],
-  "cross_process_restore": "BLOCKED: process-local generated keys are not retained and cannot establish backup recovery."
+  "cross_process_restore": "BLOCKED: test keys remain process-local and cannot establish backup recovery."
 }

@@ -1,0 +1,22 @@
+{
+  "day_id": "CAP-110",
+  "status": "PASS_CURRENT_EXECUTOR",
+  "learner_logic_executed": false,
+  "instructor_check": {
+    "command": "mvn -Dtest=CAP110InstructorInfrastructureTest test",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "result_xml_sha256": "d1314d133f5280ad9a634bdd436aa34c43aa9887696354af0cc476b3b730977c"
+  },
+  "fixture": {
+    "path": "docs/evidence/coverstory/CAP-110/fixtures.json",
+    "classification": "synthetic_no_network",
+    "sha256": "57f4728f438d5544c63ff36b74e7a1fe3d8069da40065f557162cd60378b6e7f"
+  },
+  "limits": [
+    "Safe config and readiness are checked by a pure independent instructor reference oracle.",
+    "Production readiness binding, Spring/React submission flow, key restore, and dispatch runtime remain missing.",
+    "Learner TODO suite is separate; no timebox rehearsal or learner mastery is claimed."
+  ]
+}

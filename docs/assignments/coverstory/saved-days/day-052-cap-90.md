@@ -46,11 +46,13 @@ Synthetic registry: docs/coverstory/fixtures/synthetic-registry-v1.json (planned
 
 Actual-repository prerequisite, reported by the parent on 2026-10-14: the current Spring scaffold exposes only the health route and scans capstone.app; the React scaffold is in fixture mode. Before any dependent learner task, the instructor must supply and verify the six-module bootstrap and component scanning for Catalog/Shortlist/Application/Payments/Policy/Support, public module interfaces, private persistence, and forbidden-import/cycle tests. JdbcEventDatabase remains the generic teaching harness; it is not a CoverStory domain repository. These additions are instructor preparation, not hidden learner work or an implemented baseline. Keep dependent work BLOCKED until code-owner reconciliation, smoke, independent oracle and timebox evidence exist.
 
-Status: PROPOSED_NOT_IMPLEMENTED.
+Status: INSTRUCTOR_PERSISTENCE_SCAFFOLD_AUTHORED; LEARNER_ACCESS_TODO_RETAINED; KEY_RESTORE_BLOCKED.
 
 Interface: loadProtectedAccess(KeyProvider,EnvelopeMetadata,AuthorizedObject)->EnvelopeAccess|SafeFailure; safeSummary()->RedactedConfig
 
-Fixture: Maintained authenticated-encryption provider port, synthetic envelopes and ephemeral test keys, Java GCM parameter validation, key-unavailable/tampered-tag/AAD fixtures, private-persistence/log sentinels, old-backup envelope and supplied wrap-key rotation adapter. Protection was an instructor prerequisite before any earlier private write.
+Fixture: Synthetic authenticated-encryption tests and disposable PostgreSQL persistence now exercise an instructor JDBC envelope store linked by Application revision, owner-scoped lookup, append-only row protection and revision-bound AAD. Keys remain synthetic and process-local. No retained provider, wrapped DEK, cross-process restore, product authorization route or log/response integration is supplied; those missing runtimes still block the broader saved flow.
+
+Implemented instructor extension paths: `src/main/java/coverstory/modules/application/persistence/PostgresProtectedPayloadEnvelopeStore.java` and `src/main/resources/db/schema/cap90_protected_payload.sql` (apply after `cap78_purchase.sql` in the disposable test DB). Runtime checks are `src/test/java/coverstory/platform/crypto/CAP90ProtectedEnvelopeRuntimeTest.java`; run with `mvn -Dtest=CAP90InstructorInfrastructureTest,CAP90ProtectedEnvelopeRuntimeTest test`. The database route was exercised directly through the Application-owned JDBC adapter; this does not wire an HTTP endpoint or make the learner `loadProtectedAccess` method work.
 
 - src/main/java/capstone/coverstory/payments/KeepMockAdapterCredentialsPrivate.java
 - frontend/src/coverstory/payments/ (instructor-owned thin existing-shell binding only)

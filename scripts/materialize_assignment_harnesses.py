@@ -169,9 +169,10 @@ def main() -> dict:
         'CAP-87': 'java_paid_onboarding_resume_boundary',
         'CAP-171': 'java_retired_citation_invalidation',
         'CAP-172': 'java_exact_application_access_decisions',
+        'CAP-110': 'java_safe_configuration_and_explicit_review_gate',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -248,6 +249,7 @@ def main() -> dict:
         'CAP-87': 'src/main/java/capstone/coverstory/application/DemonstratePaidOnboardingAndResume.java',
         'CAP-171': 'src/main/java/capstone/coverstory/catalog/InvalidateRetiredCitations.java',
         'CAP-172': 'src/main/java/capstone/coverstory/application/ValidateExactApplicationAccessDecisions.java',
+        'CAP-110': 'src/main/java/capstone/coverstory/application/ValidateSafeConfiguration.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -317,6 +319,7 @@ def main() -> dict:
         'CAP-87': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
         'CAP-171': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
         'CAP-172': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
+        'CAP-110': 'src/test/java/capstone/coverstory/application/CAP110AcceptanceTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -324,7 +327,7 @@ def main() -> dict:
         'CAP-57': 'Test-only Spring publication route invokes an independent JDBC reference transaction against disposable PostgreSQL, writes the active catalog row and safe source/version/hash audit atomically, and verifies deterministic exports plus the public version-history route across restart. The production learner seam remains TODO; the instructor route and editor filter are not registered by the ordinary application.',
         'CAP-88': 'Pure policy harness only; Spring authentication and HTTP role-client integration are blocked because no auth adapter or protected module route exists.',
         'CAP-89': 'Local evaluator gate only; no CI workflow integration is implemented.',
-        'CAP-90': 'Field-cipher boundary only; protected database adapter, response/log integration and cross-process retained-key restore remain blocked.',
+        'CAP-90': 'Instructor-owned JDBC adapter persists authenticated ciphertext and links it to an exact Application revision in disposable PostgreSQL; owner-scoped lookup, append-only rows, FK rejection and revision-bound AAD are exercised. The learner access seam remains TODO; production authorization, separate retained-key restore, wrapped-DEK/KMS and response/log integration remain blocked.',
         'CAP-91': 'Typed fake-port scaffold only; no provider or Application pipeline is implemented.',
         'CAP-92': 'Synthetic eligibility dry-run only; no deletion port or legal retention policy is implemented.',
         'CAP-93': 'Local simulated outage model only; integrated worker probe has no observed output and is blocked.',
@@ -360,6 +363,7 @@ def main() -> dict:
         'CAP-171': 'Synthetic exact-version/owner citation oracle and learner TODO seam only; no runtime catalog citation or cached-answer invalidation adapter is wired.',
         'CAP-172': 'Synthetic exact allow/deny decision oracle and learner TODO seam only; no production policy engine, authorization middleware, or decrypt integration is wired.',
         'CAP-174': 'Independent exact-byte SHA-256 fixture oracle only; no persisted proposal snapshot or current-revision service is wired, and the learner digest seam remains TODO.',
+        'CAP-110': 'Independent config and readiness oracle covers finite mock-only settings, secret redaction, explicit blockers and no-submit/no-dispatch behavior. Main-source learner method remains TODO; no React submit binding, production readiness port, insurer dispatch, or key restore is wired.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []

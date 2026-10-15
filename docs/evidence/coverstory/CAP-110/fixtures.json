@@ -1,0 +1,24 @@
+{
+  "assignment": "CAP-110",
+  "classification": "SYNTHETIC_ONLY_NO_NETWORK",
+  "network_enabled": false,
+  "dispatch_enabled": false,
+  "real_provider_credentials": false,
+  "configuration_cases": [
+    {"case": "valid-mock", "mode": "mock", "timeout_millis": 1500, "input_budget": 2000, "output_budget": 256, "secret": "SECRET_SENTINEL"},
+    {"case": "zero-timeout", "timeout_millis": 0},
+    {"case": "negative-output", "output_budget": -1},
+    {"case": "live-provider", "mode": "live"},
+    {"case": "unsafe-bypass", "unknown_key": "autoSubmit"}
+  ],
+  "review_cases": [
+    {"case": "ready-no-action", "owner": true, "fields": true, "disclosures": true, "extraction": true, "exact_review": true, "balance": true, "refunds": true, "explicit_action": false},
+    {"case": "missing-fields", "fields": false},
+    {"case": "unsure-disclosure", "disclosures": false},
+    {"case": "unconfirmed-extraction", "extraction": false},
+    {"case": "stale-review", "exact_review": false},
+    {"case": "pending-balance-or-refund", "balance": false, "refunds": false}
+  ],
+  "expected_effects": {"submission_pending": false, "dispatch_created": false},
+  "limits": ["Instructor reference fixture only; not production config loading.", "No consumer data, real credentials, submission, payment, insurer, or dispatch call is present."]
+}
