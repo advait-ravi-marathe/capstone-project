@@ -18,7 +18,7 @@ This record captures the dependency versions and checks completed on 2026-10-15.
 | Maven | OWASP Dependency-Check Maven `13.0.0`, with automatic updates; optional CISA KEV and hosted suppressions disabled for retry | **Incomplete; no vulnerability result produced.** NVD returned HTTP 403 (the scanner reports 403/404 and exits nonzero). Initial attempts also received HTTP 403 from CISA KEV and OWASP hosted suppressions. No API key or other credential was available or created. | Resolved Java dependency graph is represented in the SBOM, but not vulnerability-scanned. No cached result was treated as current. |
 | Python | No third-party dependencies declared or imported | No package graph to scan | No `pip-audit` result is claimed. |
 
-The OWASP Dependency-Check attempt used the project’s latest Maven dependency graph and attempted a fresh NVD update. Its final command exited with status 1 after the NVD 403. A prior invocation configured not to fail Maven printed a build success despite the scanner’s fatal analysis error; that invocation is not counted as a scan result.
+The final OWASP Dependency-Check attempt used the latest Maven graph with test scope included (`-DskipTestScope=false`) and Maven plugin scanning enabled (`-Dodc.plugins.scan=true`). It attempted a fresh NVD update and exited with status 1 after NVD returned HTTP 403, before dependency analysis or report generation. Earlier attempts also received HTTP 403 from CISA KEV and OWASP hosted suppressions. No API key or other credential was available or created. A prior invocation configured not to fail Maven printed a build success despite the scanner’s fatal analysis error; that invocation is not counted as a scan result.
 
 ## SBOMs and licenses
 
@@ -48,5 +48,5 @@ The default Maven suite is the instructor and infrastructure baseline. The learn
 To retry the blocked Java scan when NVD access is available:
 
 ```sh
-./mvnw org.owasp:dependency-check-maven:13.0.0:check -Dformats=JSON
+./mvnw org.owasp:dependency-check-maven:13.0.0:check -Dformats=JSON -DskipTestScope=false -Dodc.plugins.scan=true
 ```
