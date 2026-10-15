@@ -471,7 +471,7 @@
       "canonical_derived_primary_path": "web/src/coverstory/catalog/decodeCatalogEnvelope.ts",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": "Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving restart history, version status, bounded selection, storage denial and outage behavior with a test-only decoder adapter. Production learner decoder remains TODO; no customer data or payable action is enabled.",
+      "coverage_note": "Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving persistence, version status, bounded selection, storage denial, fail-closed outage, and same-port service-restart recovery with a test-only decoder adapter. Production learner decoder remains TODO; database process restore, customer data, and payable action are not claimed.",
       "acceptance_case_ids": [
         "CAP-166-CS-01",
         "CAP-166-CS-02",
@@ -581,7 +581,7 @@
       "canonical_derived_primary_path": "src/test/resources/coverstory/CAP-60/schema.sql",
       "source_path_reconciled": true,
       "scaffold_strategy": "INSTRUCTOR_FIXTURE_AND_TEST_HARNESS_WITH_LEARNER_SEAM_TODO",
-      "coverage_note": "Disposable PostgreSQL harness proves uniqueness, rollback and synthetic two-connection races; it is not connected to an application command or service, and learner race assertions remain TODO.",
+      "coverage_note": "Disposable PostgreSQL harness proves uniqueness, rollback and two-connection races; a test-only Spring/HTTP witness uses the shared Application application.journey DDL for authoritative revision races and four-write rollback. No production command/service is wired; learner race assertions remain TODO.",
       "acceptance_case_ids": [
         "CAP-60-CS-01",
         "CAP-60-CS-02",

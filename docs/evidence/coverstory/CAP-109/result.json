@@ -1,0 +1,23 @@
+{
+  "assignment": "CAP-109",
+  "status": "INSTRUCTOR_ORACLE_ONLY_LEARNER_TODO_REMAINS",
+  "recorded_at_utc": "2026-10-15",
+  "source_description_sha256": "0e73de5afb50b22048fab9b2eafbe798554b4d086013679f2ed77dcfb70c28b5",
+  "fixture_sha256": "040b912e93b7222de8cf3425d5ecfcceb3c27e383bd732f52416301e48c91c56",
+  "instructor_command": "mvn -Dtest=CAP109InstructorInfrastructureTest test",
+  "instructor_tests": "6 passed, 0 failures, 0 errors",
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP109AcceptanceTest test",
+  "learner_result": "EXPECTED_FAILURE_AT_TODO: 4 tests, 0 assertion failures, 3 UnsupportedOperation errors at CAP-109 TODO, 1 TODO guard pass",
+  "checks": [
+    "metadata-only exact changed/added/removed field digests",
+    "10000-paise increase and terms-only change require explicit review",
+    "append-only status observations retain prior FAILED/UNKNOWN records",
+    "duplicate reconciled provider reference counts only one posted effect",
+    "missing audit, missing journey step, rewritten history, owner mismatch and revision mismatch fail safely",
+    "missing or reordered best-effort telemetry cannot change authoritative output"
+  ],
+  "transaction_runtime": "CAP-60 provides a separate live test-only Spring/PostgreSQL authoritative revision race and rollback witness; CAP-109 oracle does not claim payment or refund integration",
+  "real_payment_refund_or_provider_activity": false,
+  "protected_payload_bytes_loaded": false,
+  "learner_mastery_claim": false
+}

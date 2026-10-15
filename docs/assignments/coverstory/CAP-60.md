@@ -8,6 +8,9 @@
 - `CAP60InstructorCommandAdapter` is a test-only callable command that executes the atomic reference transition on a JDBC transaction; `CAP60InstructorInfrastructureTest` runs it using independent connections. The oracle repeats a same-key race ten times, checks a competing expected-version-4 race, every synthetic write-failure rollback, changed payload conflict, a five-second missing-barrier failure, foreign-owner constraints, and that later analytics cannot change journey version.
 - `CAP60AcceptanceTest` is deliberately unfinished. Its three `TODO(CAP-60)` cases are where the learner should add executable concurrency and rollback assertions.
 
+- `CAP60AuthoritativeRuntimeIntegrationTest` starts a real Spring listener and sends commands over HTTP against a disposable PostgreSQL database. It extracts the `application.journey` table definition from `src/main/resources/db/schema/constraints.sql`, then runs a **test-only reference adapter** that uses that Application-owned row as authoritative revision state. Two synchronized HTTP callers verify same-key replay and competing expected-revision behavior. Injected failures after each write boundary leave revision, command receipt, audit witness, and step witness unchanged. Owner-mismatch and missing test principal are rejected before writes.
+- The HTTP route, synthetic actor filter, command receipt, and event witnesses exist only in `src/test/java` and `cap60_harness`. This validates the instructor setup and module-owned state boundary; it is not a production journey command, endpoint, migration, or learner solution.
+
 The callable adapter exists only in test code. These are instructor reference-command and database-invariant exercises, not a wired product command, authenticated application flow, or live customer state. Barrier/future waits are bounded to five seconds. Fixture values are synthetic and have no payment or policy effects.
 
 ## Paths and commands
@@ -15,4 +18,5 @@ The callable adapter exists only in test code. These are instructor reference-co
 - Fixture: `fixtures/coverstory/CAP-60/synthetic-v1.json`
 - SQL harness: `src/test/resources/coverstory/CAP-60/schema.sql`
 - Instructor checks: `mvn -Dtest=CAP60InstructorInfrastructureTest test`
+- Live instructor boundary: `mvn -Dtest=CAP60AuthoritativeRuntimeIntegrationTest test`
 - Learner-owned contract tests: `mvn -Plearner-tests -Dtest=CAP60AcceptanceTest test`

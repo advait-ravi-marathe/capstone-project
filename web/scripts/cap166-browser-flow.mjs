@@ -95,17 +95,30 @@ try {
 
   commandReader = readline.createInterface({ input: process.stdin, crlfDelay: Infinity })
   for await (const line of commandReader) {
-    if (line.trim() !== 'OUTAGE') continue
-    await evaluate("document.querySelector('.persisted-catalog .refresh-persisted-catalog').click()")
-    await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Refresh failed')")
-    const staleDisabled = await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').disabled")
-    assert.equal(staleDisabled, true, 'cached comparison cannot continue after the database read fails')
-    await send('Page.reload', { ignoreCache: true })
-    await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Catalog history is unavailable')")
-    assert.equal(await evaluate("document.querySelector('.persisted-catalog .compare-panel') === null"), true)
-    console.log('CAP166_BROWSER_OUTAGE ' + JSON.stringify({ cachedComparisonDisabled: staleDisabled, reloadHasNoStaleComparison: true }))
-    console.log('OUTAGE_RECOVERY_VALIDATED')
-    break
+    if (line.trim() === 'OUTAGE') {
+      await evaluate("document.querySelector('.persisted-catalog .refresh-persisted-catalog').click()")
+      await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Refresh failed')")
+      const staleDisabled = await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').disabled")
+      assert.equal(staleDisabled, true, 'cached comparison cannot continue after the Catalog service stops')
+      await send('Page.reload', { ignoreCache: true })
+      await waitFor("document.querySelector('.persisted-catalog').innerText.includes('Catalog history is unavailable')")
+      assert.equal(await evaluate("document.querySelector('.persisted-catalog .compare-panel') === null"), true)
+      console.log('CAP166_BROWSER_OUTAGE ' + JSON.stringify({ cachedComparisonDisabled: staleDisabled, reloadHasNoStaleComparison: true }))
+      console.log('OUTAGE_RECOVERY_VALIDATED')
+      continue
+    }
+    if (line.trim() === 'RECOVER') {
+      await navigate('/cap166-harness.html')
+      await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3")
+      const rows = await evaluate("document.querySelector('.persisted-catalog').innerText")
+      assert.match(rows, /RETIRED/); assert.match(rows, /PUBLISHED/)
+      await evaluate("[...document.querySelectorAll('.persisted-catalog input[type=checkbox]')].slice(0,2).forEach(x=>x.click())")
+      await waitFor("document.querySelector('.persisted-catalog .selection-toolbar strong')?.textContent === '2'")
+      await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').click()")
+      await waitFor("document.querySelectorAll('.persisted-catalog .compare-panel tbody tr').length === 4")
+      console.log('CAP166_BROWSER_RECOVERED ' + JSON.stringify({ serviceRestarted: true, persistedRowsRestored: 3, retiredHistoryRestored: true, comparisonReenabled: true }))
+      break
+    }
   }
 } catch (error) {
   console.error(error?.stack ?? String(error));

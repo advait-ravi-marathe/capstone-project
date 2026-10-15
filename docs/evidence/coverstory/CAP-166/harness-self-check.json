@@ -1,13 +1,26 @@
 {
   "assignment": "CAP-166",
-  "classification": "INSTRUCTOR_FIXTURE_AND_BUILD_CHECK_ONLY",
+  "classification": "INSTRUCTOR_FIXTURE_GUARD_AND_PERSISTED_BROWSER_RUNTIME",
   "fixture_sha256": "1c2d412edf3615948fd511805b3fc443e130db09fba23d5f6a6321c2afe102b4",
-  "command": "cd web && npm run test:catalog-fixture",
+  "command": "mvn -Dtest=CAP166CatalogRuntimeIntegrationTest -Dcoverstory.cap166.browser=true test",
   "result": "PASS",
   "checks": 11,
   "learner_decoder": "TODO_REMAINS",
   "decoder_acceptance": "NOT_RUN",
   "acceptance_runner": "web/scripts/catalog-envelope-acceptance.mjs; currently stops on the intentional TODO before behavior assertions",
-  "react_spring_postgresql_slice": "DEFERRED_NOT_RUN",
-  "notes": "Fixture identifies synthetic non-persisted versions and has no consumer data or payment/policy effects. This check does not prove decoder correctness or database/API/UI integration."
+  "react_spring_postgresql_slice": "PASS: persistence across Spring restart and browser fail-closed/service-recovery witness",
+  "notes": "Fixture guard setup does not prove decoder correctness. Runtime comparison uses isolated test decoder; production decoder remains TODO. Browser outage is an API service stop with PostgreSQL left running, followed by a same-port Spring restart and authoritative refetch.",
+  "runtime_tests": {
+    "run": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "browser_evidence_log_sha256": "73fb768ac93c18c6675196b3c8baaa0dc33a2850c34a9d909d1c55bfe3b685c6",
+  "instructor_runtime_tests": {
+    "run": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
 }

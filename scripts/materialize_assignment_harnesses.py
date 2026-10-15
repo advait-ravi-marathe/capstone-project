@@ -151,6 +151,7 @@ def main() -> dict:
         'CAP-106': 'java_owned_snapshot_read_policy',
         'CAP-107': 'java_review_manifest_validation',
         'CAP-108': 'java_live_backfill_lane_planning',
+        'CAP-109': 'java_revision_audit_reconciliation',
         'CAP-166': 'typescript_additive_catalog_envelope_decoder',
         'CAP-167': 'java_bounded_publication_trace_diagnostics',
         'CAP-100': 'java_onboarding_audit_row_classification',
@@ -169,7 +170,7 @@ def main() -> dict:
         'CAP-171': 'java_retired_citation_invalidation',
         'CAP-172': 'java_exact_application_access_decisions',
     }
-    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
+    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
     authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
@@ -229,6 +230,7 @@ def main() -> dict:
         'CAP-106': 'src/main/java/coverstory/modules/application/api/CAP106Seam.java',
         'CAP-107': 'src/main/java/coverstory/modules/application/api/CAP107Seam.java',
         'CAP-108': 'src/main/java/coverstory/modules/payments/api/CAP108Seam.java',
+        'CAP-109': 'src/main/java/capstone/coverstory/application/DiffAndReviewAcceptedQuoteRevisions.java',
         'CAP-166': 'web/src/coverstory/catalog/decodeCatalogEnvelope.ts',
         'CAP-167': 'src/main/java/coverstory/modules/catalog/api/CAP167Seam.java',
         'CAP-100': 'src/main/java/capstone/coverstory/application/QuarantineInvalidOnboardingEvidenceRows.java',
@@ -297,6 +299,7 @@ def main() -> dict:
         'CAP-106': 'src/test/java/coverstory/modules/application/CAP106AcceptanceTest.java',
         'CAP-107': 'src/test/java/coverstory/modules/application/CAP107AcceptanceTest.java',
         'CAP-108': 'src/test/java/coverstory/modules/payments/CAP108AcceptanceTest.java',
+        'CAP-109': 'src/test/java/capstone/coverstory/application/CAP109AcceptanceTest.java',
         'CAP-166': 'web/scripts/catalog-envelope-acceptance.mjs',
         'CAP-167': 'src/test/java/coverstory/modules/catalog/CAP167AcceptanceTest.java',
         'CAP-100': 'src/test/java/capstone/coverstory/application/CAP100AcceptanceTest.java',
@@ -340,12 +343,13 @@ def main() -> dict:
         'CAP-106': 'Local owner/version/TLS policy only; authentication filter, HTTP route, storage and transport are not wired.',
         'CAP-107': 'Manifest and disclosure decision oracle only; persistence, quoting and submission effects are not wired.',
         'CAP-108': 'In-memory lane planning only; no queue, worker, published diagnostics or payment integration is exercised.',
+        'CAP-109': 'Metadata-only revision/audit oracle checks exact digest deltas, explicit price/terms review, append-only reconciliation observations, one posted effect per provider reference and authoritative transition completeness. Main-source learner seam remains TODO; no payment, refund, envelope decrypt or telemetry write occurs.',
         'CAP-52': 'MockMvc transport boundary and fake decision port only; trusted-principal authentication adapter and durable idempotency are not wired.',
-        'CAP-166': 'Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving restart history, version status, bounded selection, storage denial and outage behavior with a test-only decoder adapter. Production learner decoder remains TODO; no customer data or payable action is enabled.',
+        'CAP-166': 'Instructor Chromium/React Query flow is wired through Vite to a real Spring Catalog route and disposable PostgreSQL, proving persistence, version status, bounded selection, storage denial, fail-closed outage, and same-port service-restart recovery with a test-only decoder adapter. Production learner decoder remains TODO; database process restore, customer data, and payable action are not claimed.',
         'CAP-167': 'Bounded offline trace oracle only; learner checker remains TODO and no broker or publication worker is used.',
         'CAP-173': 'Synthetic PostgreSQL audit-window oracle, actual optional HTTP route and owner-bounded test principal; learner count/reconcile seam remains TODO, no provider or payment operation is used.',
         'CAP-58': 'Instructor-only Vite/Chromium queue flow now reaches the real Spring HTTP route and disposable PostgreSQL receipt store through a fixed synthetic principal and reference validator; five injected 429 responses exercise bounded retry/drop before one 10-event batch persists. Learner validator, production authentication/consent/key configuration and journey authorization remain TODO or unprovisioned; no business journey changes.',
-        'CAP-60': 'Disposable PostgreSQL harness proves uniqueness, rollback and synthetic two-connection races; it is not connected to an application command or service, and learner race assertions remain TODO.',
+        'CAP-60': 'Disposable PostgreSQL harness proves uniqueness, rollback and two-connection races; a test-only Spring/HTTP witness uses the shared Application application.journey DDL for authoritative revision races and four-write rollback. No production command/service is wired; learner race assertions remain TODO.',
         'CAP-169': 'Fixed-clock Retry-After parser oracle covers seconds, HTTP dates, past dates and invalid values; parsing does not authorize a retry, and the learner seam remains TODO.',
         'CAP-68': 'Disposable PostgreSQL oracle demonstrates shortlist/audit/journey commit surviving synthetic response loss, same-key and owner-scoped recovery, and a distinct optional-publication gap; it is not an application command or publisher, and the learner seam remains TODO.',
         'CAP-70': 'Instructor fixture oracle checks immutable ciphertext-byte/provenance staging order and safe rejection; existing Java AES-GCM adapter verifies fixed vectors, AAD/tag failure and random nonce generation. No wrapped-DEK/KMS or product staging adapter is implemented, and the learner batch method remains TODO.',

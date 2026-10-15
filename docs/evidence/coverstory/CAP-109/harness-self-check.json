@@ -1,0 +1,23 @@
+{
+  "assignment": "CAP-109",
+  "classification": "SYNTHETIC_REVISION_AUDIT_ORACLE_NOT_PAYMENT_INTEGRATION",
+  "fixture": "docs/evidence/coverstory/CAP-109/fixtures.json",
+  "fixture_sha256": "040b912e93b7222de8cf3425d5ecfcceb3c27e383bd732f52416301e48c91c56",
+  "instructor_command": "mvn -Dtest=CAP109InstructorInfrastructureTest test",
+  "instructor_result": "PASS: 6 tests, 0 failures, 0 errors",
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP109AcceptanceTest test",
+  "learner_seam": "src/main/java/capstone/coverstory/application/DiffAndReviewAcceptedQuoteRevisions.java",
+  "learner_result": "EXPECTED_FAILURE_AT_UNIMPLEMENTED_TODO: 4 tests, 0 failures, 3 TODO errors",
+  "checks": [
+    "source-linked metadata digest diff with exact changed/added/removed keys",
+    "integer-paise delta and terms-only change both require explicit review",
+    "append-only prior audit prefix, unique event IDs and increasing sequence",
+    "duplicate reconciled provider reference counts one posted effect",
+    "missing audit/step, rewritten history and stale authoritative revision are rejected",
+    "client telemetry absence/order cannot change authoritative result",
+    "foreign owner stops before returning changed metadata"
+  ],
+  "no_real_payment_refund_decrypt_or_telemetry_write": true,
+  "mastery_claim": false,
+  "instructor_tests": 6
+}

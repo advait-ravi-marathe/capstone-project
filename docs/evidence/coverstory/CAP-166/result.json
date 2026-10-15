@@ -7,17 +7,18 @@
   "instructor_runtime_tests": {
     "run": 3,
     "failures": 0,
-    "errors": 0
+    "errors": 0,
+    "skipped": 0
   },
-  "browser_evidence_log": "LOCAL_ONLY",
-  "browser_evidence_log_sha256": "69941c06838a6721e94a21364cdb790f0dacd1feac9f7b67a5b8e067e2683739",
+  "browser_evidence_log": "target/surefire-reports/TEST-coverstory.modules.catalog.CAP166CatalogRuntimeIntegrationTest.xml (executor-local; not committed)",
+  "browser_evidence_log_sha256": "73fb768ac93c18c6675196b3c8baaa0dc33a2850c34a9d909d1c55bfe3b685c6",
   "persisted_synthetic_seed_sha256": "dd3504c47345db2f95cd171a3639cfc89ce7564dbeae973754e72221bfefd227",
   "discovery_schema_sha256": "2445fa31cbfb958859dffabe1f0f81bad629bf5096a8d17ef158b913a2dfd477",
   "instructor_browser_witness": [
     "embedded PostgreSQL to Catalog-owned JDBC port to Spring HTTP to React Query comparison",
     "retired and published versions visible across application restart",
-    "browser storage denied; memory-only 1–3 selection; fourth selection disabled; non-health rows rejected",
-    "database outage disables cached comparison and reload does not show stale rows",
+    "browser storage denied; memory-only 1\u20133 selection; fourth selection disabled; non-health rows rejected",
+    "stopping Spring disables cached comparison and reload shows no stale rows; restarting Spring on the same port refetches all three persisted rows and re-enables comparison",
     "test-only decoder adapter is isolated under web/src/test; production learner decoder remains TODO"
   ],
   "fixture_guard_checks": 11,
@@ -26,5 +27,6 @@
   "learner_decoder": "NOT_COMPLETE_TODO_REMAINS",
   "production_identity_or_customer_data": false,
   "production_persistence": false,
-  "mastery_claim": false
+  "mastery_claim": false,
+  "recovery_boundary": "Spring service restart recovery with PostgreSQL kept available; database process restart/restore is not tested"
 }

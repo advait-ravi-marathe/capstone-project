@@ -85,6 +85,7 @@ class CAP166CatalogRuntimeIntegrationTest {
         EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
         ConfigurableApplicationContext app = null;
         Process browserFlow = null;
+        OutputStreamWriter browserCommands = null;
         try {
             String jdbcUrl; String username;
             try (Connection c = postgres.getPostgresDatabase().getConnection(); Statement s = c.createStatement()) {
@@ -98,16 +99,22 @@ class CAP166CatalogRuntimeIntegrationTest {
             int apiPort = ((WebServerApplicationContext) app).getWebServer().getPort();
             browserFlow = new ProcessBuilder("node", "web/scripts/cap166-browser-flow.mjs", "http://127.0.0.1:" + apiPort)
                     .redirectErrorStream(true).start();
+            browserCommands = new OutputStreamWriter(browserFlow.getOutputStream());
             try (BufferedReader output = new BufferedReader(new InputStreamReader(browserFlow.getInputStream()))) {
                 awaitLine(output, "BROWSER_READY", Duration.ofSeconds(70));
-                postgres.close();
-                try (OutputStreamWriter stdin = new OutputStreamWriter(browserFlow.getOutputStream())) {
-                    stdin.write("OUTAGE\n"); stdin.flush();
-                }
+                // Stop only the Catalog HTTP service. PostgreSQL remains durable and available
+                // for the restarted service; the browser must first fail closed with no stale data.
+                app.close();
+                app = null;
+                browserCommands.write("OUTAGE\n"); browserCommands.flush();
                 awaitLine(output, "OUTAGE_RECOVERY_VALIDATED", Duration.ofSeconds(30));
+                app = startApp(jdbcUrl, username, apiPort);
+                browserCommands.write("RECOVER\n"); browserCommands.flush();
+                awaitLine(output, "CAP166_BROWSER_RECOVERED", Duration.ofSeconds(30));
             }
             assertEquals(0, browserFlow.waitFor(10, TimeUnit.SECONDS) ? browserFlow.exitValue() : -1);
         } finally {
+            if (browserCommands != null) try { browserCommands.close(); } catch (Exception ignored) { }
             if (browserFlow != null && browserFlow.isAlive()) browserFlow.destroyForcibly();
             if (app != null) app.close();
             try { postgres.close(); } catch (Exception ignored) { }
@@ -134,8 +141,12 @@ class CAP166CatalogRuntimeIntegrationTest {
     }
 
     static ConfigurableApplicationContext startApp(String url, String username) {
+        return startApp(url, username, 0);
+    }
+
+    static ConfigurableApplicationContext startApp(String url, String username, int port) {
         return new SpringApplicationBuilder(CoverStoryApplication.class).web(WebApplicationType.SERVLET)
-                .properties("server.port=0", "spring.main.banner-mode=off", "logging.level.root=ERROR",
+                .properties("server.port=" + port, "spring.main.banner-mode=off", "logging.level.root=ERROR",
                         "coverstory.catalog.jdbc.url=" + url,
                         "coverstory.catalog.jdbc.username=" + username,
                         "coverstory.catalog.jdbc.password=")
