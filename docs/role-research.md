@@ -21,11 +21,7 @@ Source: [Amazon Jobs — Front-End Engineer II, job 10575321](https://amazon.job
 - Amazon's [SDE II interview preparation page](https://amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep) describes coding, system design and Leadership Principle/behavioral evaluation. The daily 35/15/10 split here is our adaptation to your strict 60-minute-per-role assignment, not Amazon's official round timing.
 - Amazon's [Leadership Principles](https://www.amazon.jobs/content/en/our-workplace/leadership-principles) provide the principle names used in the manifest. STAR prompts ask for true experiences; do not invent outcomes or metrics.
 - The official Take U Forward [Striver pattern sheet](https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns) and [A2Z DSA sheet](https://takeuforward.org/prep-hub/strivers-a2z-dsa-sheet) are the main DSA references. The sequence touches hashing, windows, stacks, binary search, linked structures, trees, heaps, intervals, graphs, recursion, tries, DP, greedy, union-find, caches, API/data and testing patterns.
-- Hello Interview provides free [system design, coding, low-level design and behavioral material](https://www.hellointerview.com/learn) and [guided system-design practice](https://www.hellointerview.com/practice/overview). Ravi's recommendation specifically mentioned videos on the Hello Interview YouTube channel; use its [YouTube search results](https://www.youtube.com/results?search_query=Hello+Interview+system+design) to find current videos. No particular video or channel account was independently verified in this setup.
-
-## Referral screenshot advice (user-provided)
-
-The supplied screenshots were reviewed in the parent task. The advice attributed to Ravi was: “Focus on striver sde sheet and Hello interview YouTube channel videos”; “That is enough”; “They generally ask standard questions with little modification”; “Also check all the past interview on leetcode discussion”; and “That helps alot.” This is guidance from a referral conversation, not an Amazon commitment or verified question bank. The actual screenshots were not included as repository files. The screenshot conversation was supplied in the task and is not republished here.
+- Hello Interview provides free [system design, coding, low-level design and behavioral material](https://www.hellointerview.com/learn) and [guided system-design practice](https://www.hellointerview.com/practice/overview). For video-based practice, use the [Hello Interview YouTube search results](https://www.youtube.com/results?search_query=Hello+Interview+system+design) to find current material. This link is a search query, not a verified channel page.
 
 ## Public interview accounts: anecdotal, not predictive
 
@@ -42,11 +38,7 @@ Use these to notice formats and topic families, then solve a new variation. Post
 | [Amazon Virtual Onsite — FrontEnd Engineer II (L5)](https://leetcode.com/discuss/post/1984996/amazon-virtual-onsite-april-2022-fronten-qiku/) | Vancouver stated in title; April 2022 | Pagination state, restaurant-ordering design, OOD, coding and LPs | State/pagination and design practice, without reproducing tasks |
 | [Front-End Engineer II rejected account](https://discuss.frontendlead.com/t/amazon-front-end-ii-interview-rejected/1749) | Author says USA in discussion; posted Apr 2025 | UI components, algorithms, mobile/system design, relative-time component, LP | UI behavior and mobile/resilience review |
 
-These examples do not establish that any question will recur. “Standard questions with little modification” is the referrer's opinion; this repository treats it as a reason to learn patterns, not memorize answers.
-
-## Daily Job Search plan availability
-
-I checked the accessible Notion workspace for “Daily Job Search plan,” “Amazon Daily Job Search plan,” and related Amazon interview preparation terms. The matching study calendar was an OMSCS calendar, not an Amazon job-search plan. Gmail searches did not surface that plan either. Thus I could not tailor this sprint to a separate saved plan; this schedule follows the explicit role, dates, workload limit, referral advice, and job postings above. The plan is easy to revise by editing the manifest and regenerating the track guides.
+These individual accounts are anecdotal and do not establish that any question will recur. Use them to notice topic families, then practice fresh problems.
 
 ## Scope and safety of examples
 
