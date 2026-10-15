@@ -1,0 +1,11 @@
+{
+  "assignment":"CAP-126",
+  "source_contract_sha256":"a2991c15e1027f12647b053163c6da96a3268b7df4ec7ea545f82c19a081699a",
+  "fixture":"docs/coverstory/fixtures/cap-126.json",
+  "instructor_oracle":{"command":"./mvnw -Dtest=CAP126InstructorInfrastructureTest test","status":"NOT_RUN","tests":4,"independent_of_learner_seam":true},
+  "learner":{"seam":"src/main/java/capstone/coverstory/support/internal/EvidenceToolBudget.java","logic":"TODO(CAP-126)","acceptance_suite":"src/test/java/capstone/coverstory/support/EvidenceToolBudgetTest.java","command":"./mvnw -Plearner-tests -Dtest=EvidenceToolBudgetTest test","status":"NOT_RUN","completion":"NOT_CLAIMED"},
+  "runtime_integration":"BLOCKED_NOT_WIRED_TO_PUBLIC_SUPPORT_APPLICATION_OR_PAYMENTS_APIS",
+  "fixture_scope":"synthetic only; no network, model, persistence, cancellation/refund/dispatch capability",
+  "timebox_minutes":150,
+  "timebox_rehearsal":"NOT_RUN"
+}

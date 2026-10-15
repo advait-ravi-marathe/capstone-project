@@ -185,10 +185,13 @@ def main() -> dict:
         'CAP-121': 'java_exact_policy_citation_lineage',
         'CAP-122': 'java_bounded_authorized_evidence_rerank',
         'CAP-123': 'java_mock_issuance_grounded_policy_help_gate',
+        'CAP-124': 'java_read_only_application_evidence_tool_schema',
+        'CAP-125': 'java_per_invocation_lifecycle_tool_authorization',
+        'CAP-126': 'java_bounded_read_only_evidence_tool_budget',
         'CAP-176': 'java_issuance_evidence_slice_gate',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115', 'CAP-116', 'CAP-117', 'CAP-118', 'CAP-119', 'CAP-120', 'CAP-176', 'CAP-177', 'CAP-121', 'CAP-122', 'CAP-123'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115', 'CAP-116', 'CAP-117', 'CAP-118', 'CAP-119', 'CAP-120', 'CAP-176', 'CAP-177', 'CAP-121', 'CAP-122', 'CAP-123', 'CAP-124', 'CAP-125', 'CAP-126'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -281,6 +284,9 @@ def main() -> dict:
         'CAP-121': 'src/main/java/capstone/coverstory/support/internal/SourceLineageReader.java',
         'CAP-122': 'src/main/java/capstone/coverstory/support/internal/EvidenceRerankEvaluator.java',
         'CAP-123': 'src/main/java/capstone/coverstory/policy/internal/PolicyHelpDemoGate.java',
+        'CAP-124': 'src/main/java/capstone/coverstory/support/internal/ApplicationEvidenceToolSchema.java',
+        'CAP-125': 'src/main/java/capstone/coverstory/support/internal/LifecycleToolAuthorization.java',
+        'CAP-126': 'src/main/java/capstone/coverstory/support/internal/EvidenceToolBudget.java',
         'CAP-176': 'src/main/java/capstone/coverstory/policy/internal/IssuanceEvidenceSliceGate.java',
     }
     acceptance_suites = {
@@ -373,6 +379,9 @@ def main() -> dict:
         'CAP-121': 'src/test/java/capstone/coverstory/support/SourceLineageReaderTest.java',
         'CAP-122': 'src/test/java/capstone/coverstory/support/EvidenceRerankEvaluatorTest.java',
         'CAP-123': 'src/test/java/capstone/coverstory/policy/PolicyHelpDemoGateTest.java',
+        'CAP-124': 'src/test/java/capstone/coverstory/support/ApplicationEvidenceToolSchemaTest.java',
+        'CAP-125': 'src/test/java/capstone/coverstory/support/LifecycleToolAuthorizationTest.java',
+        'CAP-126': 'src/test/java/capstone/coverstory/support/EvidenceToolBudgetTest.java',
         'CAP-176': 'src/test/java/capstone/coverstory/policy/IssuanceEvidenceSliceGateTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
@@ -429,10 +438,13 @@ def main() -> dict:
         'CAP-118': 'Fixed synthetic lexical/precomputed-rank comparison and access-scope veto only; no model, embeddings, index, live content, or production authorization was evaluated.',
         'CAP-119': 'Synthetic owner/assigned-support scope oracle checks authorization before lookup and rechecks rows before either modeled sink. Learner seam remains TODO; public Support/Application/Payments ports, persistence, endpoint, model connection, and the 150-minute timebox remain unverified or blocked.',
         'CAP-120': 'Offline fixed-fixture oracle measures half-open UTF-8 byte offsets, whole-clause recall and whitespace-token context cost across compact/wide windows. Learner chunker remains TODO; tokenizer is a teaching metric, with no model, index, provider, persistence, Support API, or legal interpretation.',
-        'CAP-177': 'Synthetic complete-row UTF-8 envelope oracle records included/available counts and truncation across exact byte boundaries. Learner bounded-envelope seam remains TODO; omitted dispatch evidence cannot establish absence, and no Support API, cancellation, refund, or model capability is wired.',
-        'CAP-121': 'Fixed synthetic source-version and ingest-batch lineage fixture checks exact UTF-8 citation bytes and owner isolation. Learner resolver remains TODO; no SupportReadApi, owning Policy/Catalog adapters, persistence, case audit transaction, or model boundary is wired.',
-        'CAP-122': 'Offline precomputed-rank fixture checks Recall@2/MRR, one-shot 100ms fallback and rejection of invented candidates. Learner reranker remains TODO; no ranker/model call, retrieval adapter, or production authorization is evaluated.',
-        'CAP-123': 'Static synthetic release-gate fixture distinguishes reconciled mock issuance from accepted payment without issuance and rejects unsupported/foreign-owner help. Learner gate remains TODO; no transaction, owning public APIs, persistence, model, live sales readiness, or provider integration is present.',
+        'CAP-177': 'A profile-gated Support read route and actual Spring HTTP listener exercise an instructor-only synthetic lifecycle port for complete-row UTF-8 bounds, exact equality, truncation and TOO_SMALL. Learner envelope seam remains TODO; no production Support/Application adapter, persistent lifecycle facts, cancellation/refund command, or model capability is wired. Evidence truncation never proves dispatch absence.',
+        'CAP-121': 'A profile-gated Support citation route and actual Spring HTTP listener exercise an instructor synthetic immutable-version/ingest-batch adapter for exact [23,39) UTF-8 span, missing-v2 failure and foreign-owner denial. Learner resolver remains TODO; no production Policy/Catalog adapter, persistence, case audit transaction, or model boundary is wired.',
+        'CAP-122': 'A profile-gated Support rerank read route exercises only fixed precomputed candidates through a synthetic instructor adapter and actual Spring HTTP listener, covering two-example metrics, one-shot timeout fallback and invented-ID rejection. Learner evaluator remains TODO; no production retriever, model, or production authorization integration is present.',
+        'CAP-123': 'A profile-gated Policy help route and actual Spring HTTP listener exercise a synthetic Policy-owned port for confirmed mock issuance, chronological event citations, pending issuance, and owner denial. Learner gate remains TODO; these are reference adapters, not production Application/Payments persistence or insurer/provider transactions.',
+        'CAP-124': 'Strict schema seam, fixture, independent oracle and tagged acceptance cover the fixed read-only Application timeline tool. Learner schema remains TODO; no runtime Support-to-Application adapter or product tool registry is present.',
+        'CAP-125': 'Instructor authorization oracle checks each owner/support invocation and rechecks live assignment; read-only wrapper has no command capability. Learner authorizer remains TODO; product Application/Support owner and assignment adapters are not registered.',
+        'CAP-126': 'Instructor oracle covers three-read maximum, consecutive-call dedupe, 2500 ms deadline and unknown dispatch stop. Learner loop remains TODO; production tool registry and owning read adapters are not connected.',
         'CAP-176': 'Small synthetic slice-metric and issuance-evidence oracle only; both learner TODOs remain. Full Policy command/runtime, cross-module evidence ports, simulated dispatch lifecycle and browser integration remain blocked; timebox rehearsal is NOT_RUN.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
@@ -485,6 +497,15 @@ def main() -> dict:
         if card['id'] == 'CAP-123':
             planned_source = 'src/main/java/capstone/coverstory/policy/internal/PolicyHelpDemoGate.java'
             case_ids = [f'CAP-123-CS-{number}' for number in range(1, 4)]
+        if card['id'] == 'CAP-124':
+            planned_source = 'src/main/java/capstone/coverstory/support/internal/ApplicationEvidenceToolSchema.java'
+            case_ids = [f'CAP-124-CS-{number}' for number in range(1, 4)]
+        if card['id'] == 'CAP-125':
+            planned_source = 'src/main/java/capstone/coverstory/support/internal/LifecycleToolAuthorization.java'
+            case_ids = [f'CAP-125-CS-{number}' for number in range(1, 4)]
+        if card['id'] == 'CAP-126':
+            planned_source = 'src/main/java/capstone/coverstory/support/internal/EvidenceToolBudget.java'
+            case_ids = [f'CAP-126-CS-{number}' for number in range(1, 4)]
         if card['id'] in {'CAP-87', 'CAP-171', 'CAP-172'}:
             case_total = {'CAP-87': 7, 'CAP-171': 5, 'CAP-172': 6}[card['id']]
             case_ids = [f"{card['id']}-CS-{number:02d}" for number in range(1, case_total + 1)]
