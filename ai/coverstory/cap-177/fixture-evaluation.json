@@ -1,0 +1,11 @@
+{
+  "assignment": "CAP-177",
+  "mode": "offline-complete-row-envelope-oracle",
+  "network_enabled": false,
+  "fixture": "docs/coverstory/fixtures/cap-177.json",
+  "metrics": ["included_count", "available_count", "truncated", "serialized_utf8_bytes"],
+  "unsafe_claim": "MISSING_DISPATCH_FROM_TRUNCATED_ROWS",
+  "safety_rule": "never infer no dispatch from an omitted row",
+  "learner_logic": "TODO(CAP-177); oracle output is not learner evidence",
+  "limits": ["synthetic events", "no owning-module integration", "no cancellation or refund behavior"]
+}

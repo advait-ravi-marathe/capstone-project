@@ -1,0 +1,17 @@
+{
+  "assignment": "CAP-121",
+  "fixture": "docs/coverstory/fixtures/cap-121.json",
+  "fixture_sha256": "3637cd41563ac6b1c71303b88c87401011e886ba1f26eb20f658c84bc09c0ce2",
+  "mode": "deterministic-fixture-oracle-no-model",
+  "network_enabled": false,
+  "cases": {
+    "CAP-121-CS-1": {"expected": "FOUND exact policy-A/v2/m2/pA offsets [23,39]", "actual": "NOT_RUN"},
+    "CAP-121-CS-2": {"expected": "LINEAGE_BROKEN; v1 fallback forbidden", "actual": "NOT_RUN"},
+    "CAP-121-CS-3": {"expected": "safe NOT_FOUND without owner-B metadata", "actual": "NOT_RUN"}
+  },
+  "limits": [
+    "no model invocation, retrieval index, or quality claim",
+    "no production policy interpretation",
+    "offsets refer only to frozen synthetic UTF-8 source bytes"
+  ]
+}
