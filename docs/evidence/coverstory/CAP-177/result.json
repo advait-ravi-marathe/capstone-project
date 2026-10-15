@@ -1,0 +1,37 @@
+{
+  "assignment": "CAP-177",
+  "source_contract_sha256": "c7ee64b6e3b5173678dff649caf97dcbbf188310681fbc9b4f08b52853302484",
+  "fixture": "docs/coverstory/fixtures/cap-177.json",
+  "fixture_sha256": "3b8108f1151432953bafeac6f2359beed70e0677fc993146bbdc649ce0a6584c",
+  "instructor_oracle": {
+    "command": "./mvnw -Dtest=CAP177InstructorInfrastructureTest test",
+    "status": "PASS",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "independent_of_learner_seam": true
+  },
+  "learner": {
+    "seam": "src/main/java/capstone/coverstory/support/internal/BoundedLifecycleEvidenceEnvelope.java",
+    "logic": "TODO(CAP-177)",
+    "acceptance_suite": "src/test/java/capstone/coverstory/support/BoundedLifecycleEvidenceEnvelopeTest.java",
+    "command": "./mvnw -Plearner-tests -Dtest=BoundedLifecycleEvidenceEnvelopeTest test",
+    "expected": "Three contract assertions reach the TODO seam; fixture guard is independent. Observed run is in batch evidence.",
+    "observed_batch_run": {
+      "status": "EXPECTED_TODO_BLOCKED",
+      "tests": 4,
+      "failures": 1,
+      "errors": 2,
+      "note": "Two tests error and the TOO_SMALL assertion fails at TODO(CAP-177); the independent fixture guard passes."
+    }
+  },
+  "scope_limits": [
+    "synthetic-only evidence",
+    "no Support/Application/Payments public API integration",
+    "no cancellation/refund command",
+    "no model invocation"
+  ],
+  "timebox_minutes": 150,
+  "timebox_rehearsal": "NOT_RUN",
+  "learner_completion": "NOT_CLAIMED"
+}

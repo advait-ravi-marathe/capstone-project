@@ -1,0 +1,36 @@
+{
+  "contract_id": "CAP-122",
+  "fixture": "docs/coverstory/fixtures/cap-122.json",
+  "fixture_sha256": "2e9bfd5c96a776e3e86fdc9dc8169f3055593ae6a85441198d23f0d979e98f55",
+  "source_contract_sha256": "045c51a3c86bfa376c5a485363b233219dbb2648c27fb52b092fb52309e271ec",
+  "instructor_oracle": {
+    "command": "./mvnw -Dtest=CAP122InstructorInfrastructureTest test",
+    "status": "PASS",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "oracle_cases": 3,
+    "independent_of_learner_seam": true
+  },
+  "learner_acceptance": {
+    "status": "TAGGED_TODO_ACCEPTANCE_RUN_SEPARATELY",
+    "command": "./mvnw -Plearner-tests -Dtest=EvidenceRerankEvaluatorTest test",
+    "expected_methods": 3,
+    "expected_preimplementation_outcome": "three failures at explicit TODO(CAP-122)",
+    "observed_batch_run": {
+      "status": "EXPECTED_TODO_BLOCKED",
+      "tests": 3,
+      "failures": 0,
+      "errors": 3,
+      "note": "TODO(CAP-122) reached in all three tests; no reranker behavior passes."
+    }
+  },
+  "observations": [],
+  "limits": [
+    "two synthetic examples only",
+    "no model call",
+    "no production retriever",
+    "no statistical performance claim",
+    "no insurer recommendation or advice"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "contract_id": "CAP-122",
+  "source_contract_sha256": "045c51a3c86bfa376c5a485363b233219dbb2648c27fb52b092fb52309e271ec",
+  "synthetic_only": true,
+  "network_enabled": false,
+  "production_model_or_retriever": false,
+  "deadline_ms": 100,
+  "metric_scope": "two fixed synthetic examples only; no significance or production claim",
+  "examples": [
+    {"id":"q1","candidates":[{"id":"s1","relevant":true},{"id":"a1","relevant":false},{"id":"b1","relevant":false},{"id":"c1","relevant":false}],"baseline":["a1","b1","s1","c1"],"candidate":["s1","a1","b1","c1"]},
+    {"id":"q2","candidates":[{"id":"s2","relevant":true},{"id":"a2","relevant":false},{"id":"b2","relevant":false},{"id":"c2","relevant":false}],"baseline":["a2","b2","s2","c2"],"candidate":["a2","s2","b2","c2"]}
+  ],
+  "latency_cases": [
+    {"elapsed_ms":99,"expected":"ACCEPTED"},
+    {"elapsed_ms":100,"expected":"ACCEPTED"},
+    {"elapsed_ms":101,"expected":"TIMEOUT_FALLBACK","fallback":"original authorized order","rerank_calls":1}
+  ],
+  "invalid_case": {"proposed":["z9","s1"],"expected":"INVALID_RERANK","fetch_count":0,"response_evidence_count":0},
+  "expected_metrics": {"baseline_recall_at_2":0.0,"candidate_recall_at_2":1.0,"candidate_mrr":0.75,"example_count":2}
+}
