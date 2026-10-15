@@ -1,0 +1,12 @@
+{
+  "evaluation_id": "CAP-114-rule-fixture-v1",
+  "mode": "deterministic_rule_evaluation_not_model_evaluation",
+  "fixture": "docs/coverstory/fixtures/cap-114.json",
+  "threshold_math": [
+    {"eligible": 100, "errors": 6, "qualifies": true, "reason": "600 > 500"},
+    {"eligible": 100, "errors": 5, "qualifies": false, "reason": "500 is not strictly greater than 500"},
+    {"eligible": 2, "errors": 1, "qualifies": false, "reason": "below the minimum eligible volume"}
+  ],
+  "model_run": false,
+  "proficiency_claim": false
+}

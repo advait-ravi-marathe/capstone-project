@@ -1,0 +1,78 @@
+{
+  "day_id": "CAP-114",
+  "date": "2027-01-01",
+  "learner_logic_status": "TODO_RETAINED",
+  "assignment_complete": false,
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_checks": {
+    "command": "-Dtest=CAP114InstructorInfrastructureTest,CAP114ReviewAlertRuntimeIntegrationTest test",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "suites": [
+      {
+        "suite": "capstone.coverstory.application.CAP114InstructorInfrastructureTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "result_xml_sha256": "3cd896ec9a53dd6ec218b0549c3886bf6ba1b58f5767fd1ca7dcd5f9dba9a668"
+      },
+      {
+        "suite": "capstone.coverstory.application.CAP114ReviewAlertRuntimeIntegrationTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "result_xml_sha256": "81112d8d286fe7146161bc720859947e34a2c14c4a1a63fbe199d800180f71d4"
+      }
+    ],
+    "observed_browser_flow": {
+      "qualifying": [
+        "PENDING",
+        "PENDING",
+        "FIRING"
+      ],
+      "duplicate_window": "ignored_without_count_change",
+      "firing_transitions": 1,
+      "healthy_window": "RESOLVED",
+      "resolution_transitions": 1,
+      "exact_5_of_100": "NORMAL",
+      "1_of_2_then_healthy": "NORMAL",
+      "application_status": "NEEDS_INFORMATION",
+      "requested_field_codes": [
+        "policy_start_date",
+        "income_band"
+      ],
+      "payment_status": "NOT_STARTED",
+      "dispatch_confirmed": false
+    }
+  },
+  "clean_default_maven_suite": {
+    "command": "clean test",
+    "suites": 91,
+    "tests": 321,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "date": "2026-10-15"
+  },
+  "learner_acceptance": {
+    "command": "-Plearner-tests -Dtest=CAP114AcceptanceTest test",
+    "tests": 4,
+    "failures": 0,
+    "errors_at_explicit_todo": 3,
+    "todo_placeholder_assertion_passes": 1,
+    "result_xml_sha256": "fa4acb05c9787f33c11ba6e748bae5f44c03ef211474a28fa73b9c127896a28c",
+    "interpretation": "Expected UnsupportedOperationException errors prove the three learner contracts reach the visible TODO; the separate guard passes. These are not instructor setup failures or proficiency evidence."
+  },
+  "fixture": {
+    "path": "docs/coverstory/fixtures/cap-114.json",
+    "sha256": "ca295ef1e01b3c4a9ac2b6c25c32279c2d4423134fc263fee7538a8d21258a89",
+    "classification": "synthetic_no_network"
+  },
+  "limits": [
+    "Instructor route/filter/reducer/storage exist only in the explicit test profile.",
+    "Application and Payments facts are read through their public module ports; no cross-module repository access.",
+    "No production alert route/store/UI placement, insurer callback, payment, dispatch, issuance, active cover, customer data, provider SLA, or model run.",
+    "150-minute timebox not rehearsed."
+  ]
+}

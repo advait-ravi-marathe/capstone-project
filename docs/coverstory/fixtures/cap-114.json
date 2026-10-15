@@ -1,0 +1,46 @@
+{
+  "fixture_id": "CAP-114-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "source_contract_sha256": "b5d30de108ffd0e3d19e74f88656cadc9d7228450c0cd8b5acbf0a0df7a56eab",
+  "rule": {
+    "minimum_eligible_requests": 100,
+    "strict_error_percent_greater_than": 5,
+    "qualifying_windows_to_fire": 3,
+    "healthy_full_window_resolves": true,
+    "warning": "Teaching threshold only; not an insurer or provider SLA."
+  },
+  "application_review": {
+    "application_id": "11400000-0000-4000-8000-000000000001",
+    "status": "NEEDS_INFORMATION",
+    "requested_field_codes": ["policy_start_date", "income_band"]
+  },
+  "payment": {
+    "status": "NOT_STARTED",
+    "dispatch_confirmed": false,
+    "active_cover": false
+  },
+  "window_scenarios": {
+    "qualifying": [
+      {"id": "q-1", "eligible_requests": 100, "error_requests": 6, "expected": "PENDING"},
+      {"id": "q-2", "eligible_requests": 100, "error_requests": 6, "expected": "PENDING"},
+      {"id": "q-3", "eligible_requests": 100, "error_requests": 6, "expected": "FIRING"},
+      {"id": "q-4", "eligible_requests": 100, "error_requests": 7, "expected": "FIRING", "firing_transitions": 1},
+      {"id": "q-healthy", "eligible_requests": 100, "error_requests": 0, "expected": "RESOLVED", "resolution_transitions": 1}
+    ],
+    "exact_five_percent": [
+      {"id": "b-1", "eligible_requests": 100, "error_requests": 5},
+      {"id": "b-2", "eligible_requests": 100, "error_requests": 5},
+      {"id": "b-3", "eligible_requests": 100, "error_requests": 5, "expected": "NORMAL"}
+    ],
+    "low_volume_then_healthy": [
+      {"id": "l-1", "eligible_requests": 2, "error_requests": 1, "expected": "NORMAL"},
+      {"id": "l-healthy", "eligible_requests": 100, "error_requests": 0, "expected": "NORMAL", "firing_transitions": 0}
+    ]
+  },
+  "guardrails": [
+    "NEEDS_INFORMATION is displayed as a customer next action, never insurer rejection or issuance.",
+    "Application review and Payments state enter through their own read-only public module ports.",
+    "No raw customer information, insurer callback, payment, dispatch, or active-cover claim is represented.",
+    "Only instructor-profile tests persist windows; the ordinary product alert endpoint is not implemented."
+  ]
+}
