@@ -19,7 +19,7 @@ npm run build                              # setup/build check, expected to pass
 npm run dev                                # optional synthetic interface preview
 ```
 
-The learner suites currently have one test per assignment and intentionally stop at `NotImplementedError`/`Learner TODO`. Those are the unimplemented practice tasks, not setup failures. `validate_sprint.py` and the frontend production build check the starter infrastructure without claiming learner completion. Do not mark assignments complete unless you solve and review them yourself.
+Each role has 60 fixture-driven tests (two per assignment). They currently stop at the 30 learner `NotImplementedError`/`Learner TODO` functions in that track. Those are the unimplemented practice tasks, not setup failures. `validate_sprint.py` and the frontend production build check the starter infrastructure without claiming learner completion. Do not mark assignments complete unless you solve and review them yourself.
 
 ## Daily format
 
