@@ -12,7 +12,7 @@ Source: [Amazon Jobs — Software Development Engineer II, Seller Springboard, j
 
 ### Front-End Engineer II — FBA (Amazon job 10575321)
 
-The posting describes FBA placement experiences that help sellers make inventory placement decisions across cost, capacity, delivery and network constraints. It emphasizes reusable UI patterns, responsive/performance-conscious and accessible interfaces, API-backed distributed systems, graceful handling of latency/failure/asynchronous or changing data, testing and operational ownership. The Front-End track practices form and catalog behavior, accessible state, resilient quote data, typed payload boundaries, performance and privacy. The sample React app is only a synthetic interface demonstration.
+The posting describes FBA placement experiences that help sellers make inventory placement decisions across cost, capacity, delivery and network constraints. It emphasizes reusable UI patterns, responsive/performance-conscious and accessible interfaces, API-backed distributed systems, graceful handling of latency/failure/asynchronous or changing data, testing and operational ownership. The Front-End track practices form and catalog behavior, accessible state, resilient quote data, typed payload boundaries, performance and privacy. The React app provides the 30-day assignment navigator with synthetic examples and async UI ports; it is a practice scaffold, not a production placement experience.
 
 Source: [Amazon Jobs — Front-End Engineer II, job 10575321](https://amazon.jobs/en/jobs/10575321/front-end-engineer-ii).
 

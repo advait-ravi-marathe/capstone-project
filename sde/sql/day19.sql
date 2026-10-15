@@ -1,0 +1,8 @@
+-- Day 19: learner SQL contract, SQLite-compatible syntax for local practice.
+-- Input table: registration_events(event_id, seller_id, state, created_at).
+-- One event can be the latest for a seller. Resolve ties by event_id descending.
+-- TODO 1: Select each seller's latest event using created_at DESC, event_id DESC.
+-- TODO 2: Count those latest rows by state and sort state ascending.
+-- TODO 3: Add a covering-friendly index for seller_id and descending event order;
+--         explain the index tradeoff in the assignment guide.
+-- Replace this comment block with executable SQL. Keep this file read-only at runtime.

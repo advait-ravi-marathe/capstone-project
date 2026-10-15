@@ -1,0 +1,7 @@
+# Daily practice source map
+
+The accompanying [`source-mapping.csv`](source-mapping.csv) has exactly one row for each role on each of the 30 dates. It records job ID, assignment title, a relevant Striver section when the assignment is a DSA exercise, a Hello Interview topic or an explicit “no direct topic” note, and a directly matched public interview account only where the post supports that connection.
+
+I checked the public reference pages on 15 October 2026. Striver's current [180 DSA pattern sheet](https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns) exposes sections including arrays/hashing, sliding window, binary search, linked lists, stacks, heaps, trees, graphs, dynamic programming, tries, and greedy algorithms. Hello Interview's [coding topic index](https://www.hellointerview.com/learn/code) currently lists the topic families used in the map; its [system-design guide](https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction) lists API design, data modeling, indexing, caching, real-time updates, rate limiting, and metrics monitoring. These references support study topics; they do not validate a specific employer's hiring loop.
+
+The LeetCode Discuss and FrontEndLead links are individual self-reports. The map uses a source only where the topic described in that post is a plausible match for the day's practice. Where no direct match was found, the CSV says so. A source match is not a claim that the employer repeats a question or that the account is representative.

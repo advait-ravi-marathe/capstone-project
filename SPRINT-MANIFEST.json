@@ -9,13 +9,13 @@
     {
       "key": "sde",
       "job_id": "10579529",
-      "job_title": "Software Development Engineer II — Seller Springboard",
+      "job_title": "Software Development Engineer II \u2014 Seller Springboard",
       "minutes": 60
     },
     {
       "key": "frontend",
       "job_id": "10575321",
-      "job_title": "Front-End Engineer II — FBA",
+      "job_title": "Front-End Engineer II \u2014 FBA",
       "minutes": 60
     }
   ],
@@ -77,9 +77,9 @@
       "date": "2026-10-16",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Validate seller registration fields",
-      "topic": "forms + hashing",
-      "coding_prompt": "Return field errors for empty trimmed name/email and malformed email; output object maps field names to error strings, omitting valid fields.",
+      "title": "Seller registration form with errors",
+      "topic": "forms / accessible validation",
+      "coding_prompt": "Build a controlled registration form with name and email fields. On submit, show field errors next to controls, focus the first invalid field, and show a success status for valid input.",
       "cases": [
         {
           "input": {
@@ -113,9 +113,9 @@
       "date": "2026-10-17",
       "role": "sde",
       "job_id": "10579529",
-      "title": "Longest safe verification burst",
+      "title": "Sliding window: verification budget",
       "topic": "sliding window",
-      "coding_prompt": "Given nonnegative per-request costs and a budget, return the maximum length of a contiguous request window whose sum is at most budget.",
+      "coding_prompt": "Given nonnegative per-request costs and a budget, return the maximum length of a contiguous request window whose sum is at most budget. Check empty input, zero budget, and a single cost above budget.",
       "cases": [
         {
           "input": {
@@ -128,7 +128,7 @@
             ],
             "budget": 4
           },
-          "expected": 3
+          "expected": 2
         },
         {
           "input": {
@@ -136,6 +136,13 @@
               5,
               1
             ],
+            "budget": 0
+          },
+          "expected": 0
+        },
+        {
+          "input": {
+            "costs": [],
             "budget": 0
           },
           "expected": 0
@@ -154,9 +161,9 @@
       "date": "2026-10-17",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Filter inventory responsively",
-      "topic": "filtering + two pointers",
-      "coding_prompt": "Filter items by case-insensitive name substring and min/max quantity; preserve input order.",
+      "title": "Responsive inventory filter",
+      "topic": "controlled input / list rendering",
+      "coding_prompt": "Add controlled search and min/max quantity filters to the inventory list. Preserve order, show an empty state, and keep the filter usable at a narrow viewport.",
       "cases": [
         {
           "input": {
@@ -234,9 +241,9 @@
       "date": "2026-10-18",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Model accessible async form state",
-      "topic": "async state machine",
-      "coding_prompt": "Given event sequence, return final state among idle, submitting, success, error. SUBMIT->submitting, RESOLVE->success, REJECT->error, RESET->idle.",
+      "title": "Async onboarding form state",
+      "topic": "async submission / state machine",
+      "coding_prompt": "Submit the form through an injected Promise-based API. Show pending, success, retryable error, and validation states; prevent duplicate submits while pending.",
       "cases": [
         {
           "input": {
@@ -311,9 +318,9 @@
       "date": "2026-10-19",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Locate a price band",
-      "topic": "binary search",
-      "coding_prompt": "Return lower-bound index in sorted numeric placement bands.",
+      "title": "Price-band selector",
+      "topic": "binary search / selection control",
+      "coding_prompt": "Build a keyboard-operable price-band selector. Keep selected value in state, update the description, and gracefully handle a value outside all bands.",
       "cases": [
         {
           "input": {
@@ -350,28 +357,39 @@
       "date": "2026-10-20",
       "role": "sde",
       "job_id": "10579529",
-      "title": "First repeated request key",
-      "topic": "linked list / idempotency",
-      "coding_prompt": "Given an ordered list of request keys, return the first key seen twice, or null. Treat keys as case-sensitive strings.",
+      "title": "Reverse a linked list of request nodes",
+      "topic": "linked list",
+      "coding_prompt": "Reverse a singly linked list in place and return the new head. Do not copy node values into a replacement list; handle null and one-node lists.",
       "cases": [
         {
           "input": {
-            "keys": [
-              "a",
-              "b",
-              "a"
+            "values": [
+              "r1",
+              "r2",
+              "r3"
             ]
           },
-          "expected": "a"
+          "expected": [
+            "r3",
+            "r2",
+            "r1"
+          ]
         },
         {
           "input": {
-            "keys": [
-              "x",
-              "y"
+            "values": [
+              "only"
             ]
           },
-          "expected": null
+          "expected": [
+            "only"
+          ]
+        },
+        {
+          "input": {
+            "values": []
+          },
+          "expected": []
         }
       ],
       "design_prompt": "Sketch an idempotent registration API response for first request, retry, and payload conflict.",
@@ -387,9 +405,9 @@
       "date": "2026-10-20",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Stable component key selection",
-      "topic": "stable keys",
-      "coding_prompt": "Return stable item keys, preferring id and falling back to sku; return null for missing both.",
+      "title": "Stable inventory row identity",
+      "topic": "keys / selection state",
+      "coding_prompt": "Render selectable inventory rows using stable IDs with SKU fallback. Selection must survive reorder and data refresh.",
       "cases": [
         {
           "input": {
@@ -469,7 +487,7 @@
           "expected": []
         }
       ],
-      "design_prompt": "How would you detect and communicate a blocked prerequisite without losing the seller’s progress?",
+      "design_prompt": "How would you detect and communicate a blocked prerequisite without losing the seller\u2019s progress?",
       "leadership_principle": "Deliver Results",
       "timebox_minutes": {
         "implementation_or_coding": 35,
@@ -482,9 +500,9 @@
       "date": "2026-10-21",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Flatten fulfillment navigation",
-      "topic": "tree navigation",
-      "coding_prompt": "Flatten nested nodes to labels in preorder, skipping disabled nodes and their children.",
+      "title": "Fulfillment tree navigation",
+      "topic": "tree / keyboard navigation",
+      "coding_prompt": "Render nested fulfillment choices with keyboard-operable expand/collapse, visible focus, and disabled-node handling.",
       "cases": [
         {
           "input": {
@@ -574,9 +592,9 @@
       "date": "2026-10-22",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Sort inventory rows",
-      "topic": "sorting",
-      "coding_prompt": "Sort by requested key; nulls last; tie-break by id ascending. Direction is asc or desc.",
+      "title": "Sortable inventory table",
+      "topic": "sort controls / null handling",
+      "coding_prompt": "Add sortable column headers with accessible ascending/descending state. Null values stay last and ID breaks ties.",
       "cases": [
         {
           "input": {
@@ -677,9 +695,9 @@
       "date": "2026-10-23",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Build placement timeline segments",
-      "topic": "interval timeline",
-      "coding_prompt": "Merge overlapping/touching availability windows for a timeline.",
+      "title": "Placement timeline",
+      "topic": "interval merging / responsive visualization",
+      "coding_prompt": "Render availability intervals on a responsive timeline, merge overlaps, label time spans, and provide a text alternative.",
       "cases": [
         {
           "input": {
@@ -790,9 +808,9 @@
       "date": "2026-10-24",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Order dependent wizard steps",
-      "topic": "dependency UI",
-      "coding_prompt": "Return lexical topological order for step dependencies; return null on cycle.",
+      "title": "Dependency-driven wizard",
+      "topic": "topological order / guarded navigation",
+      "coding_prompt": "Show only steps whose prerequisites are complete. Prevent next-step navigation around missing dependencies and explain why a step is blocked.",
       "cases": [
         {
           "input": {
@@ -899,9 +917,9 @@
       "date": "2026-10-25",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Compute facet combinations",
-      "topic": "facets",
-      "coding_prompt": "Return all unique pairs from selected facet values whose numeric sum equals target.",
+      "title": "Inventory facet controls",
+      "topic": "multi-select filtering",
+      "coding_prompt": "Build checkbox facets with counts, selected-state chips, clear-all, and an empty-results message.",
       "cases": [
         {
           "input": {
@@ -947,30 +965,47 @@
       "date": "2026-10-26",
       "role": "sde",
       "job_id": "10579529",
-      "title": "Match required document fields",
-      "topic": "trie / strings",
-      "coding_prompt": "Return sorted required field names that are not present in a submitted object, comparing names case-insensitively.",
+      "title": "Trie prefix lookup for document fields",
+      "topic": "trie / prefix search",
+      "coding_prompt": "Build/use a trie to return the original field names that begin with a case-insensitive prefix, sorted lexicographically. Return all fields for an empty prefix.",
       "cases": [
         {
           "input": {
-            "required": [
+            "field_names": [
               "TaxId",
+              "TaxRegion",
               "Address"
             ],
-            "submitted": {
-              "taxid": "x"
-            }
+            "prefix": "tax"
           },
           "expected": [
-            "Address"
+            "TaxId",
+            "TaxRegion"
           ]
         },
         {
           "input": {
-            "required": [],
-            "submitted": {}
+            "field_names": [
+              "TaxId"
+            ],
+            "prefix": "z"
           },
           "expected": []
+        },
+        {
+          "input": {
+            "field_names": [
+              "B",
+              "a",
+              "AA"
+            ],
+            "prefix": ""
+          },
+          "expected": [
+            "AA",
+            "B",
+            "a"
+          ]
         }
       ],
       "design_prompt": "Describe safe extraction boundaries for synthetic document text; what must never be inferred automatically?",
@@ -986,9 +1021,9 @@
       "date": "2026-10-26",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Autocomplete with safe highlighting",
-      "topic": "autocomplete",
-      "coding_prompt": "Return matching options by case-insensitive prefix, sorted; do not emit HTML, return plain text values.",
+      "title": "Debounced autocomplete",
+      "topic": "async search / cancellation",
+      "coding_prompt": "Implement an accessible combobox using an injected async search API, debounce typing, cancel stale requests, and support arrow/enter/escape.",
       "cases": [
         {
           "input": {
@@ -1027,29 +1062,40 @@
       "date": "2026-10-27",
       "role": "sde",
       "job_id": "10579529",
-      "title": "Minimum-cost onboarding path",
+      "title": "Minimum-cost onboarding path with DP",
       "topic": "dynamic programming",
-      "coding_prompt": "Given nonnegative costs for ordered steps and prerequisite alternatives represented as a sequence, return minimum cost to complete all steps with skip penalty. Use DP: each step can be paid or skipped at penalty.",
+      "coding_prompt": "Given a nonnegative cost for each ordered step, start before step 0 or step 1 and move forward by one or two steps. Return the minimum cost to reach beyond the final step. Implement a bottom-up DP and explain its state and complexity.",
       "cases": [
         {
           "input": {
             "costs": [
-              3,
-              1,
-              4
-            ],
-            "skip_penalties": [
-              5,
-              2,
-              6
+              10,
+              15,
+              20
             ]
           },
-          "expected": 8
+          "expected": 15
         },
         {
           "input": {
-            "costs": [],
-            "skip_penalties": []
+            "costs": [
+              1,
+              100,
+              1,
+              1,
+              1,
+              100,
+              1,
+              1,
+              100,
+              1
+            ]
+          },
+          "expected": 6
+        },
+        {
+          "input": {
+            "costs": []
           },
           "expected": 0
         }
@@ -1067,9 +1113,9 @@
       "date": "2026-10-27",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Compute placement cost summary",
-      "topic": "derived state",
-      "coding_prompt": "Return subtotal and total using integer cents; total adds fee cents; empty rows total fee only.",
+      "title": "Async placement cost summary",
+      "topic": "derived server state",
+      "coding_prompt": "Fetch a fee quote through an injected async port and render integer-cent subtotal/fee/total. Show stale, loading, and error states.",
       "cases": [
         {
           "input": {
@@ -1162,9 +1208,9 @@
       "date": "2026-10-28",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Prioritize visible content",
-      "topic": "lazy loading",
-      "coding_prompt": "Order cards with visible=true first, then priority descending, then id ascending.",
+      "title": "Lazy placement list",
+      "topic": "incremental rendering",
+      "coding_prompt": "Load the next page with a visible control and loading status; preserve prior rows and announce completion or failure.",
       "cases": [
         {
           "input": {
@@ -1254,9 +1300,9 @@
       "date": "2026-10-29",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Group marketplaces",
-      "topic": "graph connectivity",
-      "coding_prompt": "Return connected marketplace groups from undirected links, including isolated IDs; sort IDs/groups.",
+      "title": "Marketplace group picker",
+      "topic": "connected graph / selection UI",
+      "coding_prompt": "Render connected marketplace groups as selectable chips, include isolated marketplaces, and keep selection stable when groups reorder.",
       "cases": [
         {
           "input": {
@@ -1350,9 +1396,9 @@
       "date": "2026-10-30",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Build stable query keys",
-      "topic": "cache keys",
-      "coding_prompt": "Return canonical query key [\"placements\", normalized market, sorted unique filters].",
+      "title": "URL-synced placement filters",
+      "topic": "URL state / React state",
+      "coding_prompt": "Read filter state from query parameters and write changes back without losing unrelated parameters. Normalize duplicate filters.",
       "cases": [
         {
           "input": {
@@ -1463,9 +1509,9 @@
       "date": "2026-10-31",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Guard stale policy version",
-      "topic": "cache invalidation",
-      "coding_prompt": "Given current policy version and cached version, return true only if equal and data age <= maxAge.",
+      "title": "Policy version cache guard",
+      "topic": "React Query / invalidation",
+      "coding_prompt": "Use TanStack Query for policy-versioned data. Invalidate on version change and prevent stale cached data from appearing as current.",
       "cases": [
         {
           "input": {
@@ -1551,9 +1597,9 @@
       "date": "2026-11-01",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Ignore stale response",
-      "topic": "async race",
-      "coding_prompt": "Given response versions in completion order, return last response only if its request sequence is newest.",
+      "title": "Stale-response guard",
+      "topic": "async effects / AbortController",
+      "coding_prompt": "Fetch placement results as filters change. Abort obsolete requests and only commit the response with the highest request sequence, even if an older request resolves later; test this delayed-response race.",
       "cases": [
         {
           "input": {
@@ -1634,9 +1680,9 @@
       "date": "2026-11-02",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Choose quote UI state",
-      "topic": "API resilience",
-      "coding_prompt": "Map status: loading->loading, 200->ready, 429/503->retryable, other 4xx->error; preserve order.",
+      "title": "Resilient quote status",
+      "topic": "async API / loading-error states",
+      "coding_prompt": "Fetch quotes and render loading, ready, retryable, and permanent-error views with a retry control and preserved prior data.",
       "cases": [
         {
           "input": {
@@ -1674,35 +1720,47 @@
       "date": "2026-11-03",
       "role": "sde",
       "job_id": "10579529",
-      "title": "Aggregate registration states",
-      "topic": "SQL / indexing",
-      "coding_prompt": "Given rows with seller_id and state, return counts by state, sorted by state name.",
+      "title": "Latest registration status with SQL and an index",
+      "topic": "SQL / window functions / indexing",
+      "coding_prompt": "In `sde/sql/day19.sql`, write SQL that counts sellers by their latest event state (order by created_at descending, then event_id descending). Return state/count rows sorted by state. Create and justify a covering-friendly index for the latest-per-seller access pattern.",
       "cases": [
         {
           "input": {
             "rows": [
               {
-                "seller_id": "a",
-                "state": "PENDING"
+                "event_id": 1,
+                "seller_id": "A",
+                "state": "PENDING",
+                "created_at": "2026-01-01T00:00:00Z"
               },
               {
-                "seller_id": "b",
-                "state": "PENDING"
+                "event_id": 2,
+                "seller_id": "A",
+                "state": "APPROVED",
+                "created_at": "2026-01-02T00:00:00Z"
               },
               {
-                "seller_id": "c",
-                "state": "APPROVED"
+                "event_id": 3,
+                "seller_id": "B",
+                "state": "PENDING",
+                "created_at": "2026-01-02T00:00:00Z"
+              },
+              {
+                "event_id": 4,
+                "seller_id": "C",
+                "state": "APPROVED",
+                "created_at": "2026-01-01T00:00:00Z"
               }
             ]
           },
           "expected": [
             {
               "state": "APPROVED",
-              "count": 1
+              "count": 2
             },
             {
               "state": "PENDING",
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -1711,6 +1769,30 @@
             "rows": []
           },
           "expected": []
+        },
+        {
+          "input": {
+            "rows": [
+              {
+                "event_id": 1,
+                "seller_id": "A",
+                "state": "PENDING",
+                "created_at": "2026-01-01T00:00:00Z"
+              },
+              {
+                "event_id": 2,
+                "seller_id": "A",
+                "state": "REVIEW",
+                "created_at": "2026-01-01T00:00:00Z"
+              }
+            ]
+          },
+          "expected": [
+            {
+              "state": "REVIEW",
+              "count": 1
+            }
+          ]
         }
       ],
       "design_prompt": "Propose a relational schema and index for latest state plus an immutable audit trail.",
@@ -1726,9 +1808,9 @@
       "date": "2026-11-03",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Normalize placement payload",
-      "topic": "payload mapping",
-      "coding_prompt": "Return rows with id, quantity default 0, and title trimmed; skip rows missing id.",
+      "title": "Typed payload boundary",
+      "topic": "API decoding / rendering",
+      "coding_prompt": "Decode an unknown placement payload before rendering. Reject malformed rows, supply documented defaults, and show a safe data-error state.",
       "cases": [
         {
           "input": {
@@ -1817,9 +1899,9 @@
       "date": "2026-11-04",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Escape user supplied text",
-      "topic": "XSS / validation",
-      "coding_prompt": "Return text with &, <, >, \", and apostrophe escaped as entities in that order-safe manner.",
+      "title": "Safe seller text rendering",
+      "topic": "XSS / text content",
+      "coding_prompt": "Render untrusted seller-provided text as text, never HTML. Include a fixture with markup-looking content and verify it remains inert.",
       "cases": [
         {
           "input": {
@@ -1849,7 +1931,7 @@
       "job_id": "10579529",
       "title": "Regional policy coverage map",
       "topic": "system design",
-      "coding_prompt": "Given country requirements and globally supported fields, return each country’s sorted required fields that are unsupported. Omit countries with no gaps. This is a deterministic planning helper; the separate design block is the architecture exercise.",
+      "coding_prompt": "Given country requirements and globally supported fields, return each country\u2019s sorted required fields that are unsupported. Omit countries with no gaps. This is a deterministic planning helper; the separate design block is the architecture exercise.",
       "cases": [
         {
           "input": {
@@ -1899,9 +1981,9 @@
       "date": "2026-11-05",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Rank viable placement options",
-      "topic": "system design",
-      "coding_prompt": "Given placement options, exclude unavailable or stale records and return remaining IDs sorted by ascending totalCents, then ID. Treat only `available: true` and `fresh: true` options as viable.",
+      "title": "FBA placement compare flow",
+      "topic": "system design / component integration",
+      "coding_prompt": "Build a placement comparison view that shows options, freshness, fees, selection, and recovery for partial or stale quotes.",
       "cases": [
         {
           "input": {
@@ -2003,9 +2085,9 @@
       "date": "2026-11-06",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Build accessible field description IDs",
-      "topic": "component design",
-      "coding_prompt": "Return the input ID followed by non-empty hintId and errorId, joined by spaces. Do not include absent IDs. Use this helper as the coding artifact; design the reusable component separately.",
+      "title": "Accessible field component",
+      "topic": "labels / aria-describedby",
+      "coding_prompt": "Create a reusable field component with label, hint, error, required state, and correct `aria-describedby`; verify with role-based tests.",
       "cases": [
         {
           "input": {
@@ -2013,7 +2095,7 @@
             "hintId": "email-help",
             "errorId": "email-error"
           },
-          "expected": "email email-help email-error"
+          "expected": "email-help email-error"
         },
         {
           "input": {
@@ -2021,7 +2103,15 @@
             "hintId": null,
             "errorId": null
           },
-          "expected": "qty"
+          "expected": ""
+        },
+        {
+          "input": {
+            "id": "phone",
+            "hintId": "phone-help",
+            "errorId": null
+          },
+          "expected": "phone-help"
         }
       ],
       "design_prompt": "Describe component boundaries, focus/validation, and how consumers customize safely.",
@@ -2039,7 +2129,7 @@
       "job_id": "10579529",
       "title": "Outbox event ordering",
       "topic": "distributed events",
-      "coding_prompt": "Given events with aggregate ID and sequence, return true if each aggregate’s sequence is strictly increasing in given order.",
+      "coding_prompt": "Given events with aggregate ID and sequence, return true if each aggregate\u2019s sequence is strictly increasing in given order.",
       "cases": [
         {
           "input": {
@@ -2089,9 +2179,9 @@
       "date": "2026-11-07",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Bound quote refreshes",
-      "topic": "polling / push",
-      "coding_prompt": "Return polling delays starting at base, doubling and capped; stop after maxAttempts.",
+      "title": "Bounded quote polling",
+      "topic": "async polling / cancellation",
+      "coding_prompt": "Poll quotes with capped exponential delays and a maximum attempt count. Stop after success, cancellation, or max attempts.",
       "cases": [
         {
           "input": {
@@ -2160,9 +2250,9 @@
       "date": "2026-11-08",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Classify performance budget",
-      "topic": "web vitals",
-      "coding_prompt": "Classify LCP ms: <=2500 good, <=4000 needs-improvement, else poor.",
+      "title": "Web-vitals panel",
+      "topic": "performance / privacy-safe telemetry",
+      "coding_prompt": "Render LCP samples into accessible good/needs-improvement/poor states; never send raw URLs or user identifiers.",
       "cases": [
         {
           "input": {
@@ -2248,9 +2338,9 @@
       "date": "2026-11-09",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Render safe recommendation reasons",
-      "topic": "explainability",
-      "coding_prompt": "Keep reasons whose code is allowlisted; return plain text capped at 120 chars.",
+      "title": "Recommendation explanation panel",
+      "topic": "human-readable reasons / safe text",
+      "coding_prompt": "Render only allowlisted explanation codes as plain text; cap content and show source/freshness metadata.",
       "cases": [
         {
           "input": {
@@ -2333,9 +2423,9 @@
       "date": "2026-11-10",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Validate quote response shape",
-      "topic": "contract testing",
-      "coding_prompt": "Return true only when each quote has string id, integer cents >=0, and currency string length 3.",
+      "title": "Quote contract tests",
+      "topic": "component/API contract testing",
+      "coding_prompt": "Add contract cases for valid, empty, malformed, stale, and partial quote responses. Render safe states for each.",
       "cases": [
         {
           "input": {
@@ -2417,9 +2507,9 @@
       "date": "2026-11-11",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Find responsive image issues",
-      "topic": "performance + accessibility",
-      "coding_prompt": "Return sorted issue codes for image descriptors: missing alt -> ALT, width<=0 -> SIZE.",
+      "title": "Responsive image gallery",
+      "topic": "responsive image / accessibility",
+      "coding_prompt": "Render placement images with responsive sizing and meaningful alt text; identify and handle missing or invalid descriptors.",
       "cases": [
         {
           "input": {
@@ -2506,9 +2596,9 @@
       "date": "2026-11-12",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Tab bar state helper",
-      "topic": "timed frontend mock",
-      "coding_prompt": "Given tabs and active ID, return active index or 0 when missing.",
+      "title": "Keyboard tab bar",
+      "topic": "ARIA tabs / focus management",
+      "coding_prompt": "Implement roving tabindex, arrow-key movement, Home/End, and panel selection for a three-tab placement view.",
       "cases": [
         {
           "input": {
@@ -2544,29 +2634,70 @@
       "date": "2026-11-13",
       "role": "sde",
       "job_id": "10579529",
-      "title": "Registration mock: classify decisions",
-      "topic": "full role mock",
-      "coding_prompt": "For a timed mock, implement the decision classifier: APPROVED and PENDING_REVIEW remain unchanged; missing or unknown states become NEEDS_REVIEW. Then use the separate role mock prompt for a timed coding/design/STAR practice.",
+      "title": "Timed mock: per-seller token bucket",
+      "topic": "full role mock / rate limiting",
+      "coding_prompt": "Implement per-seller token buckets. A new seller starts with capacity tokens at their first request time; elapsed minutes refill at refillPerMinute up to capacity; each request consumes one token if available. Process requests in given order and return an accepted boolean per request. Time is nondecreasing for each seller.",
       "cases": [
         {
           "input": {
-            "states": [
-              "APPROVED",
-              "PENDING_REVIEW",
-              "UNKNOWN",
-              ""
+            "capacity": 2,
+            "refillPerMinute": 0.1,
+            "requests": [
+              {
+                "seller": "A",
+                "minute": 0
+              },
+              {
+                "seller": "A",
+                "minute": 0
+              },
+              {
+                "seller": "A",
+                "minute": 0
+              },
+              {
+                "seller": "A",
+                "minute": 10
+              }
             ]
           },
           "expected": [
-            "APPROVED",
-            "PENDING_REVIEW",
-            "NEEDS_REVIEW",
-            "NEEDS_REVIEW"
+            true,
+            true,
+            false,
+            true
           ]
         },
         {
           "input": {
-            "states": []
+            "capacity": 1,
+            "refillPerMinute": 1,
+            "requests": [
+              {
+                "seller": "A",
+                "minute": 0
+              },
+              {
+                "seller": "A",
+                "minute": 0.5
+              },
+              {
+                "seller": "A",
+                "minute": 1
+              }
+            ]
+          },
+          "expected": [
+            true,
+            false,
+            true
+          ]
+        },
+        {
+          "input": {
+            "capacity": 1,
+            "refillPerMinute": 0,
+            "requests": []
           },
           "expected": []
         }
@@ -2584,9 +2715,9 @@
       "date": "2026-11-13",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "FBA mock: summarize visible placement choices",
-      "topic": "full role mock",
-      "coding_prompt": "Return the visible option count, minimum fee cents among visible options (null if none), and IDs of visible options sorted by ID. The separate mock block tests timed implementation, design explanation and STAR.",
+      "title": "Timed mock: quote comparison feature",
+      "topic": "role mock / async integration",
+      "coding_prompt": "Build a small comparison panel using the injected API: loading, partial results, selection, refresh, and error recovery. Keep the UI responsive while requests overlap.",
       "cases": [
         {
           "input": {
@@ -2641,25 +2772,67 @@
       "date": "2026-11-14",
       "role": "sde",
       "job_id": "10579529",
-      "title": "Weakest-pattern redo",
-      "topic": "retrospective",
-      "coding_prompt": "Choose your weakest prior algorithm. Solve a fresh instance in the provided notes; function returns the sum of a list as a simple warm-up.",
+      "title": "Retrospective: find weakest DSA topic",
+      "topic": "retrospective / analysis",
+      "coding_prompt": "From practice attempts grouped by topic, compute each topic\u2019s total passed and total tests. Return every lowest pass-rate topic sorted by name; a topic with zero tests has rate 0. Include a tie case. Use the output to choose a truthful next-month goal in your notes.",
       "cases": [
         {
           "input": {
-            "values": [
-              4,
-              -1,
-              2
+            "attempts": [
+              {
+                "topic": "graphs",
+                "passed": 1,
+                "total": 5
+              },
+              {
+                "topic": "strings",
+                "passed": 4,
+                "total": 5
+              },
+              {
+                "topic": "graphs",
+                "passed": 1,
+                "total": 5
+              }
             ]
           },
-          "expected": 5
+          "expected": [
+            "graphs"
+          ]
         },
         {
           "input": {
-            "values": []
+            "attempts": [
+              {
+                "topic": "DP",
+                "passed": 1,
+                "total": 2
+              },
+              {
+                "topic": "Greedy",
+                "passed": 2,
+                "total": 4
+              }
+            ]
           },
-          "expected": 0
+          "expected": [
+            "DP",
+            "Greedy"
+          ]
+        },
+        {
+          "input": {
+            "attempts": [
+              {
+                "topic": "empty",
+                "passed": 0,
+                "total": 0
+              }
+            ]
+          },
+          "expected": [
+            "empty"
+          ]
         }
       ],
       "design_prompt": "Explain time/space tradeoffs for one prior design and list three follow-up gaps for the next month.",
@@ -2675,9 +2848,9 @@
       "date": "2026-11-14",
       "role": "frontend",
       "job_id": "10575321",
-      "title": "Weakest frontend pattern redo",
-      "topic": "retrospective",
-      "coding_prompt": "Return a safe quantity label: null/negative -> \"Unavailable\", else singular/plural units.",
+      "title": "Practice retrospective panel",
+      "topic": "progress visualization / reflection",
+      "coding_prompt": "Render attempted versus passed counts per topic, highlight all tied weakest topics, and capture one next-step note without claiming mastery.",
       "cases": [
         {
           "input": {

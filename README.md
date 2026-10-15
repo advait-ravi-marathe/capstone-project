@@ -1,30 +1,33 @@
 # Amazon 30-day interview sprint
 
-A focused practice repository for the two Amazon roles you selected. The new branch contains only this interview-preparation project; CoverStory work and its branch remain separate.
+A practice repository for the two selected roles, on the separate `amazon-30day-interview-sprint` branch. CoverStory implementation remains on its own branch and is not changed here.
 
-- **Dates:** Friday 16 October through Saturday 14 November 2026, inclusive.
-- **Every day:** one 60-minute SDE II assignment (job **10579529**) and one 60-minute FBA Front-End Engineer II assignment (job **10575321**). That is 120 minutes daily, below the 150-minute ceiling; the remaining 30 minutes are intentionally unallocated.
-- **Resume CoverStory/Scrum:** Sunday 15 November 2026.
-- **Assignment source of truth:** [`SPRINT-MANIFEST.json`](SPRINT-MANIFEST.json); detailed role tracks at [`assignments/sde.md`](assignments/sde.md) and [`assignments/frontend.md`](assignments/frontend.md).
+- **Dates:** 16 October–14 November 2026, inclusive.
+- **Daily time:** one 60-minute SDE II assignment (job **10579529**) and one 60-minute FBA Front-End Engineer II assignment (job **10575321**), totaling 120 minutes. The remaining 30 minutes under the daily ceiling are unallocated.
+- **Resume CoverStory/Scrum:** 15 November 2026.
+- **Contract source:** [`SPRINT-MANIFEST.json`](SPRINT-MANIFEST.json); per-role guides in [`assignments/`](assignments/).
 
-## Start
+## Setup and checks
+
+Requires a Java 21 JRE with the `jdk.compiler` module, Python 3.10+, Node 20+, and npm. A separate `javac` executable is not required. No service, credentials, or real customer data is needed.
 
 ```bash
-python3 scripts/validate_sprint.py
-python3 -m unittest sde.test_assignments -v  # expected to fail at 30 learner TODOs
-cd frontend
-npm ci
-npm test                                   # expected to fail at 30 learner TODOs
-npm run build                              # setup/build check, expected to pass
-npm run dev                                # optional synthetic interface preview
+make validate        # dates, job IDs, maps, synchronized synthetic fixtures, TODO surfaces
+make scaffold        # Java compile + recognized TODO check + SQL fixture/schema check
+make build-frontend  # production React bundle
+make test-frontend   # 8 component/async tests; expected to pass
+make test-frontend-browser # real Chromium smoke at 390 × 844; expected to pass
+make test-sde        # Java acceptance suite; expected 87 recognized TODO cases
+make test-sql        # SQLite SQL learner contract; expected recognized TODO
+make test-frontend-contracts # 61 fixture-driven learner helper cases; expected TODO failures
 ```
 
-Each role has 60 fixture-driven tests (two per assignment). They currently stop at the 30 learner `NotImplementedError`/`Learner TODO` functions in that track. Those are the unimplemented practice tasks, not setup failures. `validate_sprint.py` and the frontend production build check the starter infrastructure without claiming learner completion. Do not mark assignments complete unless you solve and review them yourself.
+If `npm ci` fails because your environment cannot create its default npm cache directory, use `npm ci --cache /tmp/amazon-sprint-npm-cache`. Normal local setup is `cd frontend && npm ci`, followed by `npx playwright install chromium` for the browser test. In this Linux executor, set `CHROMIUM_PATH=/usr/bin/chromium` for that test.
+
+The starter infrastructure checks are separate from learner outcomes. `make scaffold`, `make validate`, component tests, browser smoke, and production build verify compilation, navigation, fixture synchronization, and working async UI examples. The Java/SQL/Front-End helper acceptance commands exercise learner TODOs and are expected to report those TODOs until you implement them. Passing setup tests alone does not show independent mastery.
 
 ## Daily format
 
-For each role: 35 minutes solve/implement and test, 15 minutes role-specific system design or code review, 10 minutes truthful STAR/Leadership Principle practice. The two role assignments are distinct and sum to exactly 120 minutes each day. The exact prompts, synthetic fixtures, reference URLs, rationale, and source limitations are documented in `docs/role-research.md`.
+Each role: 35 minutes solving and testing, 15 minutes design/review, 10 minutes truthful STAR practice. Every prompt includes an exact file, command, synthetic cases, and an invitation to add an adversarial case. See [`docs/design-star-rubrics.md`](docs/design-star-rubrics.md) for manual self-review criteria and [`docs/source-mapping.md`](docs/source-mapping.md) plus its CSV for one reviewed reference row per role/day. Public interview accounts are self-reported anecdotes, not evidence that a question repeats.
 
-This is a practice plan, not an Amazon interview format or hiring prediction. It does not promise repeated interview questions, job selection, or a particular assessment outcome. Past interview discussions are anecdotal study prompts; practice the underlying patterns with fresh variations.
-
-`progress-template.csv` has one row per role assignment, all `NOT_STARTED`. It records no prior completion.
+All fixtures are synthetic. This plan does not claim to describe Amazon's internal systems, predict interview outcomes, or represent an official interview schedule. Do not mark an assignment complete unless you solved and reviewed it yourself.
