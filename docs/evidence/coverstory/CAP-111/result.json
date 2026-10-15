@@ -1,0 +1,41 @@
+{
+  "day_id": "CAP-111",
+  "date": "2026-12-28",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_status": "PASS_CURRENT_EXECUTOR",
+  "instructor_checks": {
+    "command": "-Dtest=CAP111InstructorInfrastructureTest,CAP111SubmissionRuntimeIntegrationTest test",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "notes": [
+      "3 pure instructor checks",
+      "1 actual Spring HTTP/disposable PostgreSQL integration test"
+    ],
+    "reports": {
+      "CAP111InstructorInfrastructureTest": "010d1453f3ba8ea12fd58b149a8fd9b0c85868b3087141f4c816f418a840afd2",
+      "CAP111SubmissionRuntimeIntegrationTest": "89f8f37f6afee66cbf818ff4d6f3e675811c5d481c108108ff93aa6a71613115"
+    }
+  },
+  "learner_acceptance": {
+    "command": "-Plearner-tests -Dtest=CAP111AcceptanceTest test",
+    "expected_todo_failures": 2,
+    "expected_guard_passes": 1,
+    "interpretation": "Submit and capacity methods are intentionally unimplemented; these expected learner contract failures are separate from instructor setup.",
+    "report_sha256": "281d6d6d7bab21975622543d059573c7854a978680849cddc6bd57d6b5d1f3e0"
+  },
+  "limits": [
+    "Test-only synthetic controller/schema; ordinary app has no CAP-111 route.",
+    "No external insurer, payment, provider call, active-cover transition or consumer data.",
+    "Capacity figures are arithmetic assumptions, not benchmarks or proof.",
+    "Cancellation/outcome states are instructor witnesses, not production worker semantics.",
+    "150-minute timebox not rehearsed; no proficiency or completion claim."
+  ],
+  "clean_default_maven_suite": {
+    "suites": 86,
+    "tests": 306,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  }
+}
