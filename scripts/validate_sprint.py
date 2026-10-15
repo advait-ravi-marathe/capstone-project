@@ -21,9 +21,7 @@ ui = (ROOT / 'frontend/src/ui.jsx').read_text()
 methods = set(re.findall(r'^\s{4}(?!record\b)[^\n]+\s+(\w+)\s*\([^;\n]*\);$', interface, re.M))
 implementation_methods = set(re.findall(r'^\s*public\s+[\w<>?, .]+\s+(\w+)\s*\([^;]*\)\s*\{', java, re.M))
 assert methods == implementation_methods, f'Java contract mismatch: missing {methods-implementation_methods}, extra {implementation_methods-methods}'
-assert len(re.findall(r'throw todo\(\d+\)', java)) == 29
-assert len(re.findall(r'export function day\d{2}\(', js)) == 30
-assert len(re.findall(r'Learner TODO: Day \d{2}', js)) == 30
+assert {f'day{day:02d}' for day in range(1,31)} == set(re.findall(r'export function (day\d{2})\(', js))
 assert 'function TaskBody(' in ui and 'exerciseFunctions[`day${String(day).padStart(2, \'0\')}`]' in ui
 assert 'JSON input' not in ui and 'StructuredTask' not in ui
 assert 'AbortController' in ui and 'aria-controls' in ui and 'role="tablist"' in ui
@@ -49,9 +47,25 @@ for guide in ('assignments/sde.md','assignments/frontend.md'):
     text=(ROOT/guide).read_text()
     assert text.count('## Day ') == 30
     assert '60-minute' in text and 'STAR' in text
-with (ROOT/'progress-template.csv').open(newline='') as f:
-    progress=list(csv.DictReader(f))
-assert len(progress)==60 and all(row['status']=='NOT_STARTED' for row in progress)
+with (ROOT/'progress-template.csv').open(newline='', encoding='utf-8') as f:
+    reader=csv.DictReader(f)
+    expected_progress_columns=['date','day','role','job_id','assignment','status','notes']
+    assert reader.fieldnames == expected_progress_columns, f'progress schema must be {expected_progress_columns}'
+    progress=list(reader)
+expected_statuses={'NOT_STARTED','IN_PROGRESS','COMPLETED','BLOCKED'}
+expected_by_key={(a['day'],a['role']):a for a in manifest['assignments']}
+seen_progress=set()
+for row in progress:
+    day_number=int(row['day'])
+    assert row['day'] == f'{day_number:02d}' and 1 <= day_number <= 30
+    key=(day_number,row['role'])
+    assert key in expected_by_key and key not in seen_progress, f'unexpected or duplicate progress assignment: {key}'
+    seen_progress.add(key)
+    assignment=expected_by_key[key]
+    assert date.fromisoformat(row['date']).isoformat() == assignment['date']
+    assert row['job_id'] == assignment['job_id'] and row['assignment'].strip()
+    assert row['status'] in expected_statuses, f"invalid progress status for {key}: {row['status']}"
+assert seen_progress == set(expected_by_key), 'progress rows must cover every assignment exactly once'
 with (ROOT/'docs/source-mapping.csv').open(newline='') as f:
     mapping=list(csv.DictReader(f))
 assert len(mapping)==60 and len({(r['role'],r['day']) for r in mapping})==60
@@ -64,4 +78,5 @@ assert sum(len(a['cases']) for a in manifest['assignments']) == sum(len(x['cases
 # The corrected budget example is deliberately tied to its stated <= budget semantics.
 d2=next(a for a in manifest['assignments'] if a['role']=='sde' and a['day']==2)
 assert d2['cases'][0]['expected']==2 and d2['cases'][1]['expected']==0
-print(f"PASS: 30 dates, 60 assignments, {sum(len(a['cases']) for a in manifest['assignments'])} synchronized fixtures, 29 Java TODOs + 1 SQL task, 30 React helper mappings, 60 source-map rows, 60 guide sections, 60 unstarted progress rows.")
+status_counts={status:sum(row['status']==status for row in progress) for status in sorted(expected_statuses)}
+print(f"PASS: 30 dates, 60 assignments, {sum(len(a['cases']) for a in manifest['assignments'])} synchronized fixtures, Java/React method contracts, 60 source-map rows, 60 guide sections, valid progress schema/status/date/coverage ({status_counts}).")

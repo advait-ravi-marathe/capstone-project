@@ -11,6 +11,15 @@ A practice repository for the two selected roles, on the separate `amazon-30day-
 
 Requires a Java 21 JRE with the `jdk.compiler` module, Python 3.10+, Node 20+, and npm. A separate `javac` executable is not required. No service, credentials, or real customer data is needed.
 
+Install the Front-End dependencies before running the build or Front-End tests:
+
+```bash
+cd frontend && npm ci
+npx playwright install chromium # needed only for the browser smoke test
+```
+
+If `npm ci` cannot create its default npm cache directory, run `npm ci --cache /tmp/amazon-sprint-npm-cache` instead. In this Linux executor, run the browser smoke test as `CHROMIUM_PATH=/usr/bin/chromium make test-frontend-browser`.
+
 ```bash
 make validate        # dates, job IDs, maps, synchronized synthetic fixtures, TODO surfaces
 make scaffold        # Java compile + recognized TODO check + SQL fixture/schema check
@@ -21,8 +30,6 @@ make test-sde        # Java acceptance suite; expected 87 recognized TODO cases
 make test-sql        # SQLite SQL learner contract; expected recognized TODO
 make test-frontend-contracts # fixture-driven learner helper cases; expected TODO failures
 ```
-
-If `npm ci` fails because your environment cannot create its default npm cache directory, use `npm ci --cache /tmp/amazon-sprint-npm-cache`. Normal local setup is `cd frontend && npm ci`, followed by `npx playwright install chromium` for the browser test. In this Linux executor, run the browser test as `CHROMIUM_PATH=/usr/bin/chromium make test-frontend-browser`.
 
 For the first day, use `make test-sde-day DAY=1` and `make test-frontend-day DAY=1`; each compiles/runs only the Day 1 contract and reports the initial TODO. Edit `sde/src/main/java/amazon/sprint/LearnerExercises.java` and `frontend/src/assignments.js`, then rerun those exact commands. The FE workspace is `frontend/src/ui.jsx`; `make test-frontend` exercises the actual components, injected async ports, and learner-function outputs.
 
