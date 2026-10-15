@@ -1,0 +1,743 @@
+{
+  "title": "CoverStory Phase 1 Days 011\u2013020 instructor readiness",
+  "recorded_at_utc": "2026-10-15T01:21:51.888559+00:00",
+  "canonical_curriculum_sha256": "e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e059a236e09de",
+  "readiness_basis": "Current instructor setup commands, immutable synthetic fixture bytes, positive/negative controls, and declared module boundaries. Learner completion and elapsed task time are separate.",
+  "timebox_status": "UNMEASURED_NOT_GATING_INSTRUCTOR_READINESS",
+  "days": [
+    {
+      "day": 11,
+      "date": "2026-10-24",
+      "primary": "CAP-55",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-55",
+          "role": "primary",
+          "primary_id": "CAP-55",
+          "description_sha256": "9a0be41f437d5e64eb612ee7800257c7358e07c5f652d4998f459b9abcd9b700"
+        }
+      ],
+      "title": "Day 011 \u00b7 24 Oct 2026 \u2014 Model catalog publication partition keys offline (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP55InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-011-instructor.log",
+          "raw_log_sha256": "6e84c904f39cb07bc1476165dc57ae898705bb3cb83c632aa017515298def1bf"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP55AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 5,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-011-learner.log",
+          "raw_log_sha256": "3a1294f5ed51f82b261ff5f2ccc18dea98f54ee0af6fe5009fcdd100f7913c4f",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-55/synthetic-v1.json",
+          "exists": true,
+          "sha256": "59e467f5d8afad2bd44ab7a94893a04e20a4c2f6c314347892a768bca5a27f8f"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "accepts distinct keys sharing a partition",
+        "validates per-key monotonic offsets and complete synthetic provenance"
+      ],
+      "negative_controls": [
+        "rejects reordered/split-key offsets",
+        "rejects missing provenance and broker-live claims"
+      ],
+      "module_wiring": "Catalog offline trace seam; no Kafka, broker, topic, or cloud resource.",
+      "learner_todos": [
+        "CAP-55 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 12,
+      "date": "2026-10-25",
+      "primary": "CAP-56",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-56",
+          "role": "primary",
+          "primary_id": "CAP-56",
+          "description_sha256": "883d57e135b399eefc277f62032b1a35919a4f0689c14d41aa0352611fc900f5"
+        }
+      ],
+      "title": "Day 012 \u00b7 25 Oct 2026 \u2014 Measure public wording retrieval baseline (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap56_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-012-instructor.log",
+          "raw_log_sha256": "fb184ea57734512b1f088f9181209901b9cd46df3eb7eaa2500ea9e48dde20b5"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.coverstory.tests.test_cap_56",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-012-learner.log",
+          "raw_log_sha256": "bfac2ad53ce6beb8f1657ca4639a7a2593bfe15dea010e16d2c553341a606711",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-56/synthetic-v1.json",
+          "exists": true,
+          "sha256": "e82c9603042c2f35969bd9a5c0e2076944cc6c897cbf2a95240a8e636c8f5f7e"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "recomputes deterministic baseline metrics from fixed public wording"
+      ],
+      "negative_controls": [
+        "mutated fixture digest or malformed source rows are rejected"
+      ],
+      "module_wiring": "Pure Python synthetic retrieval evaluation; no live retrieval provider.",
+      "learner_todos": [
+        "CAP-56 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 13,
+      "date": "2026-10-26",
+      "primary": "CAP-57",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-57",
+          "role": "primary",
+          "primary_id": "CAP-57",
+          "description_sha256": "5a7c569bfbf0b1a19db7fe1bc32db3cffb0177d4cf7146c23cde789a560c2172"
+        }
+      ],
+      "title": "Day 013 \u00b7 26 Oct 2026 \u2014 Persist immutable catalog versions atomically (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP57InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-013-instructor.log",
+          "raw_log_sha256": "cf85bcf3e362748eddc06a2a6881d8d498cde81e15035ef081ef1a218160174c"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP57AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-013-learner.log",
+          "raw_log_sha256": "7f5eeb35c068b9ad343995b568b3259fca4280a4b2db9b9d0ae07e8efa519247",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-57/synthetic-v1.json",
+          "exists": true,
+          "sha256": "328bc91580abecaad90b72c053bb5a28f72845eaab9283a6c92efc26b9ee4da4"
+        },
+        {
+          "path": "src/main/resources/db/schema/catalog_publication.sql",
+          "exists": true,
+          "sha256": "56b479f43d0568ab2b71da1068f19ee0ec246c9957d9c09988fc5448686081a7"
+        },
+        {
+          "path": "src/test/resources/coverstory/catalog/cap_57_fixtures.sql",
+          "exists": true,
+          "sha256": "e5d58dda03ba2e5b9b9dc9cb3377018ab803b88cfc97508561bea839945b9405"
+        }
+      ],
+      "reset_and_isolation": "Each command executes in a fresh process/test fixture; PostgreSQL cases use a fresh embedded instance per test.",
+      "positive_controls": [
+        "embedded PostgreSQL verifies immutable catalog versions, export projection and rollback"
+      ],
+      "negative_controls": [
+        "duplicate/conflict mutation and injected pre-commit failure"
+      ],
+      "module_wiring": "Test-only Catalog publication schema against fresh embedded PostgreSQL; not production persistence.",
+      "learner_todos": [
+        "CAP-57 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 14,
+      "date": "2026-10-27",
+      "primary": "CAP-166",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-166",
+          "role": "primary",
+          "primary_id": "CAP-166",
+          "description_sha256": "2a8101e348c523a588eb857085036cd673ae9bf431cdbb43f1010bc953f4e805"
+        }
+      ],
+      "title": "Day 014 \u00b7 27 Oct 2026 \u2014 Demo persisted health discovery and comparison (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "npm run test:catalog-fixture",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": null,
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-014-instructor.log",
+          "raw_log_sha256": "8af78be919b0d2388204f7eaa0dc7f9f66935a82e20dcc8ef96fe2e2b61f248b"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "npm run test:catalog-acceptance",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": null,
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-014-learner.log",
+          "raw_log_sha256": "f74225e5dba2d35c94c8da8828a8145ee6baa14ac5f1c6c928c35cebf0377476",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-166/synthetic-v1.json",
+          "exists": true,
+          "sha256": "1c2d412edf3615948fd511805b3fc443e130db09fba23d5f6a6321c2afe102b4"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "fixture digest and schema-major decoder guard execute in Node"
+      ],
+      "negative_controls": [
+        "unsupported major, malformed envelope and unsafe consumer fields are rejected"
+      ],
+      "module_wiring": "React catalog decoder/fixture seam; learner decoder remains TODO and full API/database integration is deferred.",
+      "learner_todos": [
+        "CAP-166 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 15,
+      "date": "2026-10-28",
+      "primary": "CAP-58",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-58",
+          "role": "primary",
+          "primary_id": "CAP-58",
+          "description_sha256": "2f1927c6a8de5f6fe0ed67ea2b2bb1f1a898bb5618c1329fb98e7da9d6687545"
+        }
+      ],
+      "title": "Day 015 \u00b7 28 Oct 2026 \u2014 Validate minimal screen analytics events (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP58InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-015-instructor.log",
+          "raw_log_sha256": "02d017650a1928ed52f52c62577dadb749c254a42a85fff263fd2b8d1f5cdd8f"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP58AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 4,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-015-learner.log",
+          "raw_log_sha256": "3ffdfde55478437ac9cf44e5e244c5c556b53a01324d42b3e03d64e18e2a9b8a",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-58/synthetic-v1.json",
+          "exists": true,
+          "sha256": "03595c1783944271f9a214424eebc366527462b63c86a2078d382fed28110b64"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "independent oracle accepts allowlisted, bounded low-sensitivity event batch"
+      ],
+      "negative_controls": [
+        "rejects oversized body, disallowed fields and non-allowlisted event/screen"
+      ],
+      "module_wiring": "Analytics validator contract only; no HTTP ingestion or persistence service.",
+      "learner_todos": [
+        "CAP-58 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 16,
+      "date": "2026-10-29",
+      "primary": "CAP-59",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-59",
+          "role": "primary",
+          "primary_id": "CAP-59",
+          "description_sha256": "f88b3fcce0e24f2fa31e33225a82317bad3db7b5ca68b548d8c1c97c5f96edb9"
+        }
+      ],
+      "title": "Day 016 \u00b7 29 Oct 2026 \u2014 Verify exact wording citation provenance (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap59_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-016-instructor.log",
+          "raw_log_sha256": "fb184ea57734512b1f088f9181209901b9cd46df3eb7eaa2500ea9e48dde20b5"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.coverstory.tests.test_cap_59",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 6,
+            "failures": 0,
+            "errors": 6,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-016-learner.log",
+          "raw_log_sha256": "8f71067d33ae8342a0150698e9893eb05edde9abdb777d9bc0c2ca42654c4c9b",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-59/synthetic-v1.json",
+          "exists": true,
+          "sha256": "4bd6d9ca70f0f8b2f6e37e1283617ffd159136943ce22820435be9133b408cf9"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "exact source/version lookup and Python code-point excerpt offsets"
+      ],
+      "negative_controls": [
+        "rejects unknown version, unauthorized/inapplicable source, excerpt mismatch and digest tampering"
+      ],
+      "module_wiring": "Pure verifier seam over fixed synthetic text; hash validity is not source authority.",
+      "learner_todos": [
+        "CAP-59 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 17,
+      "date": "2026-10-30",
+      "primary": "CAP-60",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-60",
+          "role": "primary",
+          "primary_id": "CAP-60",
+          "description_sha256": "142636990a8cfc2d7a5c2524d9c4f3e720e31c353c559dabb145ca4bc6119d4b"
+        }
+      ],
+      "title": "Day 017 \u00b7 30 Oct 2026 \u2014 Race authoritative journey transitions safely (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP60InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 7,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-017-instructor.log",
+          "raw_log_sha256": "db891155d9777a821e328d4e9831af6a1ed9e96e82df362b7372a64c7a7a5f88"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP60AcceptanceTest test",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 3,
+            "failures": 3,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-017-learner.log",
+          "raw_log_sha256": "481c7ab2747569cd0bbaff2ee7cf90f2f58f213391bda9ac8ea24abd16def16d",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-60/synthetic-v1.json",
+          "exists": true,
+          "sha256": "d98fd7b600458f256bdd2518895fac9dc15d35c345b961191d5f99ab453ba79c"
+        },
+        {
+          "path": "src/test/resources/coverstory/CAP-60/schema.sql",
+          "exists": true,
+          "sha256": "a0adb10f1c381a9626fd93397202f9af76172c72be95c7c0b7bc8b37061f8f91"
+        }
+      ],
+      "reset_and_isolation": "Each command executes in a fresh process/test fixture; PostgreSQL cases use a fresh embedded instance per test.",
+      "positive_controls": [
+        "fresh embedded PostgreSQL validates owner, sequence and causation uniqueness invariants"
+      ],
+      "negative_controls": [
+        "duplicate transition/effect and invalid ownership/order controls"
+      ],
+      "module_wiring": "Test-only schema/oracle; no application command or endpoint exists.",
+      "learner_todos": [
+        "CAP-60 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 18,
+      "date": "2026-10-31",
+      "primary": "CAP-61",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-61",
+          "role": "primary",
+          "primary_id": "CAP-61",
+          "description_sha256": "113a8c82f7ce903859f50e10123d855e0e1847f4c6afd64049be57be6f6ab534"
+        }
+      ],
+      "title": "Day 018 \u00b7 31 Oct 2026 \u2014 Gate wording answers on explicit thresholds (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap61_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-018-instructor.log",
+          "raw_log_sha256": "fb184ea57734512b1f088f9181209901b9cd46df3eb7eaa2500ea9e48dde20b5"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.coverstory.tests.test_cap_61",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 9,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-018-learner.log",
+          "raw_log_sha256": "01dd8ff398a01fbd15d192144c19e8581578144ae7998fb230eb7de58abe5b87",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-61/synthetic-v1.json",
+          "exists": true,
+          "sha256": "9e270fc30a239cd85be04f1a5a48997dbc55f6692dec014244d9eebe432ab25e"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "explicit threshold boundary and extractive citation-preserving answer"
+      ],
+      "negative_controls": [
+        "denied/inapplicable/empty abstention and NaN/out-of-range values"
+      ],
+      "module_wiring": "Synthetic grounded-answer evaluation gate; not calibrated or connected to a production model.",
+      "learner_todos": [
+        "CAP-61 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 19,
+      "date": "2026-11-01",
+      "primary": "CAP-62",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-62",
+          "role": "primary",
+          "primary_id": "CAP-62",
+          "description_sha256": "7489100d61d4e2d9af93767873fec8d965ff688c5b936e126a80ffe366f23bb2"
+        }
+      ],
+      "title": "Day 019 \u00b7 1 Nov 2026 \u2014 Cancel stale wording retrieval honestly (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap62_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-019-instructor.log",
+          "raw_log_sha256": "fb184ea57734512b1f088f9181209901b9cd46df3eb7eaa2500ea9e48dde20b5"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.coverstory.tests.test_cap_62",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 6,
+            "failures": 0,
+            "errors": 5,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-019-learner.log",
+          "raw_log_sha256": "b0a04704a2b8fd8508ad16e674ae6f99631cf2a669fa7dd147e2f5b5cb1f87c3",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-62/synthetic-v1.json",
+          "exists": true,
+          "sha256": "496b81896f97ffe4d8eb39cc3855bca1b21c668705ad5f3a776f0282be46742b"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "bounded async completion before deadline and late-worker cleanup"
+      ],
+      "negative_controls": [
+        "timeout, outer cancellation propagation, and zero-timeout prevalidation"
+      ],
+      "module_wiring": "Local async fakes only; no broker, cache, retrieval backend, or workflow.",
+      "learner_todos": [
+        "CAP-62 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    },
+    {
+      "day": 20,
+      "date": "2026-11-02",
+      "primary": "CAP-63",
+      "components": [],
+      "source_cards": [
+        {
+          "id": "CAP-63",
+          "role": "primary",
+          "primary_id": "CAP-63",
+          "description_sha256": "7fcaa24caf70b5dbe1bc47978b555d85e25c1b3f9551ec8a09f3887cb393e0f4"
+        }
+      ],
+      "title": "Day 020 \u00b7 2 Nov 2026 \u2014 Review first CoverStory slice evidence (150m)",
+      "instructor_scaffold_readiness": "READY",
+      "learner_assignment_complete": false,
+      "timebox_measured": false,
+      "timebox_blocks_instructor_readiness": false,
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap63_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-020-instructor.log",
+          "raw_log_sha256": "888a0c0ed615e57d32cf72be501b0c355f33b8613c81dfdaa99db33d7959487e"
+        }
+      ],
+      "learner_acceptance_runs": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap63_acceptance",
+          "exit_code": 1,
+          "status": "EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 5,
+            "skipped": 0
+          },
+          "raw_log": "docs/evidence/coverstory/phase1-days-011-020/raw/day-020-learner.log",
+          "raw_log_sha256": "84bcc5217bbb6f2b14f289ad1ec74f672f488855349e70316ce44f4144ecd7ac",
+          "todo_signal_observed": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-63/synthetic-v1.json",
+          "exists": true,
+          "sha256": "337004bb8fa11b80b23b08bd9448daf6dd9f019dacc9c67fd762c07f5590545f"
+        }
+      ],
+      "reset_and_isolation": "Read-only synthetic fixture and per-run pure/fake state; no customer data.",
+      "positive_controls": [
+        "evidenced PASS plus blocked dependency is represented honestly"
+      ],
+      "negative_controls": [
+        "rejects wrong exit, artifact, domain, fixture identity and missing-record ordering"
+      ],
+      "module_wiring": "Pure evidence-index oracle; it does not validate real Java/SQL/deployment/customer evidence.",
+      "learner_todos": [
+        "CAP-63 saved learner behavior"
+      ],
+      "remaining_requirements": [
+        "Implement the saved learner seam and rerun acceptance separately.",
+        "The saved 150-minute budget remains unmeasured and does not establish task duration."
+      ]
+    }
+  ],
+  "summary": {
+    "days_ready": 10,
+    "days_total": 10,
+    "instructor_commands": 10,
+    "learner_commands": 10,
+    "learner_todo_signals": 10
+  }
+}

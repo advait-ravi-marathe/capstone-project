@@ -18,7 +18,10 @@ SOURCE = ROOT / "docs/source-inputs/2026-10-14/curriculum/coverstory-final-saved
 INDEX = ROOT / "docs/assignments/coverstory/curriculum-index.json"
 OUT = ROOT / "docs/assignments/coverstory/harness-matrix.json"
 PARTITIONS = OUT.parent / "harness-matrix"
-DAY_READINESS = ROOT / "docs/evidence/coverstory/phase1-days-001-010/readiness.json"
+DAY_READINESS_FILES = (
+    ROOT / "docs/evidence/coverstory/phase1-days-001-010/readiness.json",
+    ROOT / "docs/evidence/coverstory/phase1-days-011-020/readiness.json",
+)
 PARTITION_SIZE = 50
 
 
@@ -43,8 +46,9 @@ def main() -> dict:
     cards_by_id = {card['id']: card for card in cards}
     source_curriculum_sha = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
     verified_day_readiness = {}
-    if DAY_READINESS.is_file():
-        report = json.loads(DAY_READINESS.read_text())
+    for readiness_file in DAY_READINESS_FILES:
+      if readiness_file.is_file():
+        report = json.loads(readiness_file.read_text())
         if report.get('canonical_curriculum_sha256') == source_curriculum_sha:
             for day_record in report.get('days', []):
                 day_number = day_record.get('day')
@@ -52,7 +56,7 @@ def main() -> dict:
                 checks = day_record.get('checks', [])
                 fixtures = day_record.get('fixtures', [])
                 evidence_is_consistent = (
-                    isinstance(day_number, int) and 1 <= day_number <= 10
+                    isinstance(day_number, int) and 1 <= day_number <= 20
                     and bool(cards_match) and cards_match[0].get('id') == day_record.get('primary')
                     and day_record.get('date') == cards_by_id.get(day_record.get('primary'), {}).get('date')
                     and bool(checks) and all(check.get('status') == 'PASS' and check.get('exit_code') == 0 for check in checks)
@@ -63,9 +67,7 @@ def main() -> dict:
                     and day_record.get('timebox_blocks_instructor_readiness') is False
                 )
                 if evidence_is_consistent and day_record.get('instructor_scaffold_readiness') == 'READY':
-                    verified_day_readiness[day_number] = day_record
-            if set(verified_day_readiness) != set(range(1, 11)):
-                verified_day_readiness.clear()
+                    verified_day_readiness[day_number] = {**day_record, '_readiness_path': readiness_file.relative_to(ROOT).as_posix()}
     executable = {
         'CAP-40': 'java_selection_identity',
         'CAP-42': 'postgres_catalog_aggregation',
@@ -366,7 +368,7 @@ def main() -> dict:
                 else 'NOT_VERIFIED'
             ),
             'instructor_readiness_evidence': (
-                f"docs/evidence/coverstory/phase1-days-001-010/readiness.json#day-{day['day_number']:03}"
+                f"{verified_day_readiness[day['day_number']]['_readiness_path']}#day-{day['day_number']:03}"
                 if day_ready else None
             ),
             'learner_acceptance_suite': acceptance_suites.get(card['id']),
@@ -387,7 +389,7 @@ def main() -> dict:
         'fixture_harnesses_validated': sum(row['fixture_harness_validated'] for row in rows),
         'conditionally_scaffold_supported': sum(row['assignability'] == 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' for row in rows),
         'ready_to_attempt': sum(row['assignability'] == 'READY_TO_ATTEMPT' for row in rows),
-        'instructor_scaffolds_ready_to_start_days_001_010': sum(row['instructor_scaffold_readiness'] == 'READY_TO_START' for row in rows),
+        'instructor_scaffolds_ready_to_start_days_001_020': sum(row['instructor_scaffold_readiness'] == 'READY_TO_START' for row in rows),
         'assignable_now': sum(row['assignability'] == 'ASSIGNABLE' for row in rows),
         'learner_acceptance_runs_on_current_candidate': sum(row['learner_result'] != 'NOT_RUN_ON_CURRENT_CANDIDATE' for row in rows),
         'phase2_independent_experiment_contracts_mapped': sum(row['scaffold_strategy'] == 'PROGRESSIVELY_FADED_FIXTURE_AND_EVALUATION_CONTRACT' for row in rows),

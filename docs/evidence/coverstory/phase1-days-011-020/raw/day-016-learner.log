@@ -1,0 +1,71 @@
+EEEEEE
+======================================================================
+ERROR: test_authority_and_applicability_are_required_even_when_hash_matches (ai.coverstory.tests.test_cap_59.CAP59AcceptanceTest.test_authority_and_applicability_are_required_even_when_hash_matches)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_59.py", line 42, in test_authority_and_applicability_are_required_even_when_hash_matches
+    self.assertEqual("NOT_AUTHORIZED", verify_citation(citation, {("source-A", "v2"): RegistryEntry(text, False, True)}).status)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_59.py", line 33, in verify_citation
+    raise NotImplementedError("CAP-59 learner TODO: implement verify_citation")
+NotImplementedError: CAP-59 learner TODO: implement verify_citation
+
+======================================================================
+ERROR: test_empty_slice_is_rejected (ai.coverstory.tests.test_cap_59.CAP59AcceptanceTest.test_empty_slice_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_59.py", line 29, in test_empty_slice_is_rejected
+    self.assertEqual("EMPTY_EXCERPT", verify_citation(self.citation(start=0, end=0, excerpt=""), self.registry).status)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_59.py", line 33, in verify_citation
+    raise NotImplementedError("CAP-59 learner TODO: implement verify_citation")
+NotImplementedError: CAP-59 learner TODO: implement verify_citation
+
+======================================================================
+ERROR: test_exact_source_version_and_codepoint_excerpt_is_valid (ai.coverstory.tests.test_cap_59.CAP59AcceptanceTest.test_exact_source_version_and_codepoint_excerpt_is_valid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_59.py", line 25, in test_exact_source_version_and_codepoint_excerpt_is_valid
+    result = verify_citation(self.citation(), self.registry)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_59.py", line 33, in verify_citation
+    raise NotImplementedError("CAP-59 learner TODO: implement verify_citation")
+NotImplementedError: CAP-59 learner TODO: implement verify_citation
+
+======================================================================
+ERROR: test_excerpt_and_content_hash_tampering_have_distinct_statuses (ai.coverstory.tests.test_cap_59.CAP59AcceptanceTest.test_excerpt_and_content_hash_tampering_have_distinct_statuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_59.py", line 36, in test_excerpt_and_content_hash_tampering_have_distinct_statuses
+    self.assertEqual("EXCERPT_MISMATCH", verify_citation(self.citation(excerpt="period"), self.registry).status)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_59.py", line 33, in verify_citation
+    raise NotImplementedError("CAP-59 learner TODO: implement verify_citation")
+NotImplementedError: CAP-59 learner TODO: implement verify_citation
+
+======================================================================
+ERROR: test_offsets_are_python_code_points_not_utf8_byte_offsets (ai.coverstory.tests.test_cap_59.CAP59AcceptanceTest.test_offsets_are_python_code_points_not_utf8_byte_offsets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_59.py", line 48, in test_offsets_are_python_code_points_not_utf8_byte_offsets
+    self.assertEqual("VALID", verify_citation(citation, {("unicode", "v1"): entry}).status)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_59.py", line 33, in verify_citation
+    raise NotImplementedError("CAP-59 learner TODO: implement verify_citation")
+NotImplementedError: CAP-59 learner TODO: implement verify_citation
+
+======================================================================
+ERROR: test_unknown_source_and_version_never_fall_back_to_latest (ai.coverstory.tests.test_cap_59.CAP59AcceptanceTest.test_unknown_source_and_version_never_fall_back_to_latest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_59.py", line 32, in test_unknown_source_and_version_never_fall_back_to_latest
+    self.assertEqual("UNKNOWN_SOURCE", verify_citation(Citation("missing", "v2", 0, 1, "x", "0"*64), self.registry).status)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_59.py", line 33, in verify_citation
+    raise NotImplementedError("CAP-59 learner TODO: implement verify_citation")
+NotImplementedError: CAP-59 learner TODO: implement verify_citation
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (errors=6)

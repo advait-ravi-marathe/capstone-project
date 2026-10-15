@@ -1,0 +1,272 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< dev.capstone:capstone-starter >--------------------
+[INFO] Building capstone-starter 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 24089 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to apache.snapshots (https://repository.apache.org/snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to plexus.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots): HTTP Status: 403
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ capstone-starter ---
+[INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ capstone-starter ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to oss.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots/): HTTP Status: 403
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ capstone-starter ---
+[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ capstone-starter ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ capstone-starter ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running coverstory.application.CAP60InstructorInfrastructureTest
+01:22:12.253 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Detected a Linux x86_64 system
+01:22:12.267 [main] INFO io.zonky.test.db.postgres.embedded.DefaultPostgresBinaryResolver -- Detected distribution: 'Debian'
+01:22:12.269 [main] INFO io.zonky.test.db.postgres.embedded.DefaultPostgresBinaryResolver -- System specific postgres binaries found: 'postgres-linux-x86_64.txz'
+01:22:12.314 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Postgres binaries at /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2
+01:22:12.324 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:22:12.324 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:22:12.324 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:12.324 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:22:12.324 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:22:12.324 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:12.325 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:22:12.325 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:12.325 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg7187977001907686007 ... ok
+01:22:12.325 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:22:12.325 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:22:12.344 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:22:12.353 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:22:12.359 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:22:12.360 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:22:12.428 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:22:12.696 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:22:12.698 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:22:12.698 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:12.698 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:22:12.698 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:12.698 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg7187977001907686007 -l logfile start
+01:22:12.698 [initdb:pid(171768)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:12.699 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 4ce2fa8b-3eb7-45f4-aa2f-c8accf78d9d8 initdb completed in 00:00:00.383
+01:22:12.703 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 4ce2fa8b-3eb7-45f4-aa2f-c8accf78d9d8 postmaster started as Process[pid=171782, exitValue="not exited"] on port 39149.  Waiting up to PT10S for server startup to finish.
+01:22:12.718 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:22:12.717 UTC [171786] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:22:12.718 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:12.717 UTC [171786] LOG:  listening on IPv6 address "::1", port 39149
+01:22:12.718 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:12.717 UTC [171786] LOG:  listening on IPv4 address "127.0.0.1", port 39149
+01:22:12.718 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:12.717 UTC [171786] LOG:  listening on Unix socket "/tmp/.s.PGSQL.39149"
+01:22:12.718 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:12.718 UTC [171787] LOG:  database system was shut down at 2026-10-15 01:22:12 UTC
+01:22:12.720 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:12.720 UTC [171786] LOG:  database system is ready to accept connections
+01:22:12.807 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:22:12.809 [postgres:pid(171782)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:22:12.870 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 4ce2fa8b-3eb7-45f4-aa2f-c8accf78d9d8 postmaster startup finished in 00:00:00.169
+01:22:12.999 [pg_ctl:pid(171800)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:22:13.000 [pg_ctl:pid(171800)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:22:13.000 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 4ce2fa8b-3eb7-45f4-aa2f-c8accf78d9d8 shut down postmaster in 00:00:00.102
+01:22:13.057 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:22:13.057 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:22:13.057 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.057 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg13828040396505113757 ... ok
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:22:13.058 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:22:13.063 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:22:13.070 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:22:13.076 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:22:13.077 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:22:13.147 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:22:13.428 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:22:13.430 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:22:13.430 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.430 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:22:13.430 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.430 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg13828040396505113757 -l logfile start
+01:22:13.430 [initdb:pid(171802)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.430 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 8f945a10-31e6-452b-979c-1ad3c8f9dac3 initdb completed in 00:00:00.379
+01:22:13.432 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 8f945a10-31e6-452b-979c-1ad3c8f9dac3 postmaster started as Process[pid=171816, exitValue="not exited"] on port 39537.  Waiting up to PT10S for server startup to finish.
+01:22:13.446 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:22:13.446 UTC [171820] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:22:13.447 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.446 UTC [171820] LOG:  listening on IPv6 address "::1", port 39537
+01:22:13.447 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.447 UTC [171820] LOG:  listening on IPv4 address "127.0.0.1", port 39537
+01:22:13.447 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.447 UTC [171820] LOG:  listening on Unix socket "/tmp/.s.PGSQL.39537"
+01:22:13.447 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.447 UTC [171821] LOG:  database system was shut down at 2026-10-15 01:22:13 UTC
+01:22:13.449 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.449 UTC [171820] LOG:  database system is ready to accept connections
+01:22:13.537 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:22:13.537 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:22:13.540 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 8f945a10-31e6-452b-979c-1ad3c8f9dac3 postmaster startup finished in 00:00:00.109
+01:22:13.557 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.556 UTC [171830] ERROR:  duplicate key value violates unique constraint "step_event_journey_id_sequence_key"
+01:22:13.557 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.556 UTC [171830] DETAIL:  Key (journey_id, sequence)=(60000000-0000-4000-8000-000000000001, 5) already exists.
+01:22:13.557 [postgres:pid(171816)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:13.556 UTC [171830] STATEMENT:  INSERT INTO cap60_harness.step_event VALUES ('60000000-0000-4000-8000-000000000015',$1,5,'60000000-0000-4000-8000-000000000015','ADVANCED')
+01:22:13.659 [pg_ctl:pid(171833)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:22:13.659 [pg_ctl:pid(171833)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:22:13.660 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 8f945a10-31e6-452b-979c-1ad3c8f9dac3 shut down postmaster in 00:00:00.102
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:13.694 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg1791293103392045074 ... ok
+01:22:13.695 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:22:13.695 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:22:13.700 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:22:13.708 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:22:13.714 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:22:13.715 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:22:13.782 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:22:14.061 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:22:14.063 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:22:14.063 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.063 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:22:14.063 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.063 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg1791293103392045074 -l logfile start
+01:22:14.064 [initdb:pid(171835)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.064 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ba864540-0068-4b93-80c4-6ad43832f1a9 initdb completed in 00:00:00.378
+01:22:14.066 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ba864540-0068-4b93-80c4-6ad43832f1a9 postmaster started as Process[pid=171849, exitValue="not exited"] on port 45265.  Waiting up to PT10S for server startup to finish.
+01:22:14.080 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:22:14.080 UTC [171853] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:22:14.081 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.080 UTC [171853] LOG:  listening on IPv6 address "::1", port 45265
+01:22:14.081 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.081 UTC [171853] LOG:  listening on IPv4 address "127.0.0.1", port 45265
+01:22:14.081 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.081 UTC [171853] LOG:  listening on Unix socket "/tmp/.s.PGSQL.45265"
+01:22:14.081 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.081 UTC [171854] LOG:  database system was shut down at 2026-10-15 01:22:14 UTC
+01:22:14.083 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.083 UTC [171853] LOG:  database system is ready to accept connections
+01:22:14.172 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:22:14.172 [postgres:pid(171849)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:22:14.173 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ba864540-0068-4b93-80c4-6ad43832f1a9 postmaster startup finished in 00:00:00.108
+01:22:14.306 [pg_ctl:pid(171870)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:22:14.306 [pg_ctl:pid(171870)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:22:14.306 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ba864540-0068-4b93-80c4-6ad43832f1a9 shut down postmaster in 00:00:00.102
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg2825810632547503031 ... ok
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:22:14.340 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:22:14.346 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:22:14.354 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:22:14.360 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:22:14.361 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:22:14.428 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:22:14.694 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:22:14.696 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:22:14.696 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.696 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:22:14.696 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.696 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg2825810632547503031 -l logfile start
+01:22:14.696 [initdb:pid(171872)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:14.697 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 11abb4be-c25d-4851-b441-058a4997bd26 initdb completed in 00:00:00.363
+01:22:14.698 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 11abb4be-c25d-4851-b441-058a4997bd26 postmaster started as Process[pid=171886, exitValue="not exited"] on port 46189.  Waiting up to PT10S for server startup to finish.
+01:22:14.712 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:22:14.712 UTC [171890] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:22:14.712 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.712 UTC [171890] LOG:  listening on IPv6 address "::1", port 46189
+01:22:14.712 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.712 UTC [171890] LOG:  listening on IPv4 address "127.0.0.1", port 46189
+01:22:14.712 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.712 UTC [171890] LOG:  listening on Unix socket "/tmp/.s.PGSQL.46189"
+01:22:14.713 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.713 UTC [171891] LOG:  database system was shut down at 2026-10-15 01:22:14 UTC
+01:22:14.715 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:14.714 UTC [171890] LOG:  database system is ready to accept connections
+01:22:14.803 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:22:14.803 [postgres:pid(171886)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:22:14.804 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 11abb4be-c25d-4851-b441-058a4997bd26 postmaster startup finished in 00:00:00.107
+01:22:15.054 [pg_ctl:pid(171943)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:22:15.054 [pg_ctl:pid(171943)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:22:15.054 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 11abb4be-c25d-4851-b441-058a4997bd26 shut down postmaster in 00:00:00.102
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg5673366576610702512 ... ok
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:22:15.098 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:22:15.103 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:22:15.111 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:22:15.117 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:22:15.117 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:22:15.185 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:22:15.471 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:22:15.473 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:22:15.473 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.473 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:22:15.473 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.473 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg5673366576610702512 -l logfile start
+01:22:15.473 [initdb:pid(171945)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.473 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ac00a582-fd0b-4abf-bdc6-6c23e4d27e36 initdb completed in 00:00:00.381
+01:22:15.475 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ac00a582-fd0b-4abf-bdc6-6c23e4d27e36 postmaster started as Process[pid=171959, exitValue="not exited"] on port 42557.  Waiting up to PT10S for server startup to finish.
+01:22:15.490 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:22:15.489 UTC [171963] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:22:15.490 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:15.489 UTC [171963] LOG:  listening on IPv6 address "::1", port 42557
+01:22:15.490 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:15.489 UTC [171963] LOG:  listening on IPv4 address "127.0.0.1", port 42557
+01:22:15.490 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:15.489 UTC [171963] LOG:  listening on Unix socket "/tmp/.s.PGSQL.42557"
+01:22:15.490 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:15.490 UTC [171964] LOG:  database system was shut down at 2026-10-15 01:22:15 UTC
+01:22:15.491 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:15.491 UTC [171963] LOG:  database system is ready to accept connections
+01:22:15.580 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:22:15.581 [postgres:pid(171959)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:22:15.582 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ac00a582-fd0b-4abf-bdc6-6c23e4d27e36 postmaster startup finished in 00:00:00.108
+01:22:15.730 [pg_ctl:pid(171983)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:22:15.731 [pg_ctl:pid(171983)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:22:15.731 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- ac00a582-fd0b-4abf-bdc6-6c23e4d27e36 shut down postmaster in 00:00:00.102
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The files belonging to this database system will be owned by user "agent".
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- This user must also own the server process.
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The database cluster will be initialized with locale "C.UTF-8".
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- The default text search configuration will be set to "english".
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Data page checksums are disabled.
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- fixing permissions on existing directory /tmp/epg823309649145133176 ... ok
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating subdirectories ... ok
+01:22:15.760 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting dynamic shared memory implementation ... posix
+01:22:15.765 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default max_connections ... 100
+01:22:15.773 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default shared_buffers ... 128MB
+01:22:15.779 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- selecting default time zone ... Etc/UTC
+01:22:15.779 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- creating configuration files ... ok
+01:22:15.846 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- running bootstrap script ... ok
+01:22:16.113 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- performing post-bootstrap initialization ... ok
+01:22:16.114 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- syncing data to disk ... ok
+01:22:16.115 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:16.115 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- Success. You can now start the database server using:
+01:22:16.115 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:16.115 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --     /tmp/embedded-pg/PG-3f56119e081746ae724788ccb91a76e2/bin/pg_ctl -D /tmp/epg823309649145133176 -l logfile start
+01:22:16.115 [initdb:pid(171985)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 
+01:22:16.115 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 77d53546-6950-4339-82df-be2f691576fb initdb completed in 00:00:00.361
+01:22:16.117 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 77d53546-6950-4339-82df-be2f691576fb postmaster started as Process[pid=171999, exitValue="not exited"] on port 45091.  Waiting up to PT10S for server startup to finish.
+01:22:16.131 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to start....2026-10-15 01:22:16.131 UTC [172003] LOG:  starting PostgreSQL 14.22 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+01:22:16.131 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:16.131 UTC [172003] LOG:  listening on IPv6 address "::1", port 45091
+01:22:16.131 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:16.131 UTC [172003] LOG:  listening on IPv4 address "127.0.0.1", port 45091
+01:22:16.131 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:16.131 UTC [172003] LOG:  listening on Unix socket "/tmp/.s.PGSQL.45091"
+01:22:16.132 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:16.132 UTC [172004] LOG:  database system was shut down at 2026-10-15 01:22:16 UTC
+01:22:16.133 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 2026-10-15 01:22:16.133 UTC [172003] LOG:  database system is ready to accept connections
+01:22:16.222 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres --  done
+01:22:16.222 [postgres:pid(171999)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server started
+01:22:16.223 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 77d53546-6950-4339-82df-be2f691576fb postmaster startup finished in 00:00:00.107
+01:22:16.345 [pg_ctl:pid(172016)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- waiting for server to shut down.... done
+01:22:16.345 [pg_ctl:pid(172016)] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- server stopped
+01:22:16.345 [main] INFO io.zonky.test.db.postgres.embedded.EmbeddedPostgres -- 77d53546-6950-4339-82df-be2f691576fb shut down postmaster in 00:00:00.102
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.290 s -- in coverstory.application.CAP60InstructorInfrastructureTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.678 s
+[INFO] Finished at: 2026-10-15T01:22:16Z
+[INFO] ------------------------------------------------------------------------

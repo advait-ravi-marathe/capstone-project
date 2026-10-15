@@ -1,0 +1,60 @@
+EEEEE
+======================================================================
+ERROR: test_cs01_pass_plus_blocked_holds_first_demo_gate (ai.tests.test_coverstory_cap63_acceptance.CAP63AcceptanceTest.test_cs01_pass_plus_blocked_holds_first_demo_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/tests/test_coverstory_cap63_acceptance.py", line 19, in test_cs01_pass_plus_blocked_holds_first_demo_gate
+    report = validate_evidence([self.by_id["CAP-57"], self.by_id["CAP-166"]], ["CAP-57", "CAP-166"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_63.py", line 21, in validate_evidence
+    raise NotImplementedError("CAP-63 learner TODO: implement validate_evidence")
+NotImplementedError: CAP-63 learner TODO: implement validate_evidence
+
+======================================================================
+ERROR: test_cs02_missing_cap60_is_listed_and_holds (ai.tests.test_coverstory_cap63_acceptance.CAP63AcceptanceTest.test_cs02_missing_cap60_is_listed_and_holds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/tests/test_coverstory_cap63_acceptance.py", line 23, in test_cs02_missing_cap60_is_listed_and_holds
+    report = validate_evidence([self.by_id["CAP-57"]], ["CAP-57", "CAP-60"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_63.py", line 21, in validate_evidence
+    raise NotImplementedError("CAP-63 learner TODO: implement validate_evidence")
+NotImplementedError: CAP-63 learner TODO: implement validate_evidence
+
+======================================================================
+ERROR: test_cs03_failed_command_or_absent_artifact_invalidates_claimed_pass (ai.tests.test_coverstory_cap63_acceptance.CAP63AcceptanceTest.test_cs03_failed_command_or_absent_artifact_invalidates_claimed_pass) (field='exit')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/tests/test_coverstory_cap63_acceptance.py", line 31, in test_cs03_failed_command_or_absent_artifact_invalidates_claimed_pass
+    report = validate_evidence([candidate], ["CAP-57"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_63.py", line 21, in validate_evidence
+    raise NotImplementedError("CAP-63 learner TODO: implement validate_evidence")
+NotImplementedError: CAP-63 learner TODO: implement validate_evidence
+
+======================================================================
+ERROR: test_cs03_failed_command_or_absent_artifact_invalidates_claimed_pass (ai.tests.test_coverstory_cap63_acceptance.CAP63AcceptanceTest.test_cs03_failed_command_or_absent_artifact_invalidates_claimed_pass) (field='artifact')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/tests/test_coverstory_cap63_acceptance.py", line 31, in test_cs03_failed_command_or_absent_artifact_invalidates_claimed_pass
+    report = validate_evidence([candidate], ["CAP-57"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_63.py", line 21, in validate_evidence
+    raise NotImplementedError("CAP-63 learner TODO: implement validate_evidence")
+NotImplementedError: CAP-63 learner TODO: implement validate_evidence
+
+======================================================================
+ERROR: test_cs04_legacy_event_receipt_is_rejected_but_retained (ai.tests.test_coverstory_cap63_acceptance.CAP63AcceptanceTest.test_cs04_legacy_event_receipt_is_rejected_but_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/tests/test_coverstory_cap63_acceptance.py", line 36, in test_cs04_legacy_event_receipt_is_rejected_but_retained
+    report = validate_evidence([record], ["CAP-57"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_63.py", line 21, in validate_evidence
+    raise NotImplementedError("CAP-63 learner TODO: implement validate_evidence")
+NotImplementedError: CAP-63 learner TODO: implement validate_evidence
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=5)

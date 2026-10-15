@@ -1,0 +1,92 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< dev.capstone:capstone-starter >--------------------
+[INFO] Building capstone-starter 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 24089 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to apache.snapshots (https://repository.apache.org/snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to plexus.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots): HTTP Status: 403
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots): HTTP Status: 403
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ capstone-starter ---
+[INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ capstone-starter ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to oss.snapshots (https://oss.sonatype.org/content/repositories/plexus-snapshots/): HTTP Status: 403
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ capstone-starter ---
+[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ capstone-starter ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ capstone-starter ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running coverstory.modules.analytics.CAP58AcceptanceTest
+[ERROR] Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.163 s <<< FAILURE! -- in coverstory.modules.analytics.CAP58AcceptanceTest
+[ERROR] coverstory.modules.analytics.CAP58AcceptanceTest.permitsAllowlistedPageViewAndUsesServerReceiveTime -- Time elapsed: 0.033 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO(CAP-58): implement analytics batch validation
+	at coverstory.modules.analytics.api.CAP58Seam.validateAnalyticsBatch(CAP58Seam.java:16)
+	at coverstory.modules.analytics.CAP58AcceptanceTest.permitsAllowlistedPageViewAndUsesServerReceiveTime(CAP58AcceptanceTest.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] coverstory.modules.analytics.CAP58AcceptanceTest.disallowedCollectionReturnsDiscardWithoutPayload -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO(CAP-58): implement analytics batch validation
+	at coverstory.modules.analytics.api.CAP58Seam.validateAnalyticsBatch(CAP58Seam.java:16)
+	at coverstory.modules.analytics.CAP58AcceptanceTest.disallowedCollectionReturnsDiscardWithoutPayload(CAP58AcceptanceTest.java:47)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] coverstory.modules.analytics.CAP58AcceptanceTest.exactByteLimitPassesAndUtf8OverflowIsRejectedBeforeSchemaParsing -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO(CAP-58): implement analytics batch validation
+	at coverstory.modules.analytics.api.CAP58Seam.validateAnalyticsBatch(CAP58Seam.java:16)
+	at coverstory.modules.analytics.CAP58AcceptanceTest.exactByteLimitPassesAndUtf8OverflowIsRejectedBeforeSchemaParsing(CAP58AcceptanceTest.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] coverstory.modules.analytics.CAP58AcceptanceTest.rejectsPageTargetUnknownClickTargetBooleanDurationAndSensitiveExtras -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO(CAP-58): implement analytics batch validation
+	at coverstory.modules.analytics.api.CAP58Seam.validateAnalyticsBatch(CAP58Seam.java:16)
+	at coverstory.modules.analytics.CAP58AcceptanceTest.rejectsPageTargetUnknownClickTargetBooleanDurationAndSensitiveExtras(CAP58AcceptanceTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   CAP58AcceptanceTest.disallowedCollectionReturnsDiscardWithoutPayload:47 » UnsupportedOperation TODO(CAP-58): implement analytics batch validation
+[ERROR]   CAP58AcceptanceTest.exactByteLimitPassesAndUtf8OverflowIsRejectedBeforeSchemaParsing:39 » UnsupportedOperation TODO(CAP-58): implement analytics batch validation
+[ERROR]   CAP58AcceptanceTest.permitsAllowlistedPageViewAndUsesServerReceiveTime:24 » UnsupportedOperation TODO(CAP-58): implement analytics batch validation
+[ERROR]   CAP58AcceptanceTest.rejectsPageTargetUnknownClickTargetBooleanDurationAndSensitiveExtras:32 » UnsupportedOperation TODO(CAP-58): implement analytics batch validation
+[INFO] 
+[ERROR] Tests run: 4, Failures: 0, Errors: 4, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.526 s
+[INFO] Finished at: 2026-10-15T01:22:09Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project capstone-starter: 
+[ERROR] 
+[ERROR] See /workspace/capstone-project/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

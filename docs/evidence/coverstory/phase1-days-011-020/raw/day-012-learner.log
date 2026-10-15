@@ -1,0 +1,48 @@
+EEEE
+======================================================================
+ERROR: test_foreign_private_result_fails_whole_run (ai.coverstory.tests.test_cap_56.CAP56AcceptanceTest.test_foreign_private_result_fails_whole_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_56.py", line 41, in test_foreign_private_result_fails_whole_run
+    evaluate_retriever([cases[3]], fake_retriever(data), 2, data["corpus_sha256"], data["config_sha256"])
+  File "/workspace/capstone-project/ai/coverstory/cap_56.py", line 43, in evaluate_retriever
+    raise NotImplementedError("CAP-56 learner TODO: implement evaluate_retriever")
+NotImplementedError: CAP-56 learner TODO: implement evaluate_retriever
+
+======================================================================
+ERROR: test_macro_hit_at_k_uses_answerable_cases_only (ai.coverstory.tests.test_cap_56.CAP56AcceptanceTest.test_macro_hit_at_k_uses_answerable_cases_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_56.py", line 28, in test_macro_hit_at_k_uses_answerable_cases_only
+    report = evaluate_retriever(cases[:2], fake_retriever(data), 2, data["corpus_sha256"], data["config_sha256"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_56.py", line 43, in evaluate_retriever
+    raise NotImplementedError("CAP-56 learner TODO: implement evaluate_retriever")
+NotImplementedError: CAP-56 learner TODO: implement evaluate_retriever
+
+======================================================================
+ERROR: test_no_answerable_cases_has_null_metric_and_explicit_counts (ai.coverstory.tests.test_cap_56.CAP56AcceptanceTest.test_no_answerable_cases_has_null_metric_and_explicit_counts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_56.py", line 34, in test_no_answerable_cases_has_null_metric_and_explicit_counts
+    report = evaluate_retriever([case], fake_retriever(data), 2, data["corpus_sha256"], data["config_sha256"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_56.py", line 43, in evaluate_retriever
+    raise NotImplementedError("CAP-56 learner TODO: implement evaluate_retriever")
+NotImplementedError: CAP-56 learner TODO: implement evaluate_retriever
+
+======================================================================
+ERROR: test_same_candidate_and_fixture_produce_same_measured_output (ai.coverstory.tests.test_cap_56.CAP56AcceptanceTest.test_same_candidate_and_fixture_produce_same_measured_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_56.py", line 45, in test_same_candidate_and_fixture_produce_same_measured_output
+    first = evaluate_retriever(cases[:2], fake_retriever(data), 2, data["corpus_sha256"], data["config_sha256"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_56.py", line 43, in evaluate_retriever
+    raise NotImplementedError("CAP-56 learner TODO: implement evaluate_retriever")
+NotImplementedError: CAP-56 learner TODO: implement evaluate_retriever
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=4)

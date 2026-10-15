@@ -34,13 +34,13 @@ class AssignmentHarnessMatrixTest(unittest.TestCase):
         self.assertEqual(594, len(rows))
         self.assertEqual(list(range(1, 595)), [row["day_number"] for row in rows])
         self.assertEqual(594, len({row["card_id"] for row in rows}))
-        first_ten = rows[:10]
-        self.assertEqual(list(range(1, 11)), [row["day_number"] for row in first_ten])
-        self.assertTrue(all(row["instructor_scaffold_readiness"] == "READY_TO_START" for row in first_ten))
-        self.assertTrue(all(row["assignability"] == "READY_TO_ATTEMPT" for row in first_ten))
-        self.assertTrue(all(row["instructor_readiness_evidence"] for row in first_ten))
+        first_twenty = rows[:20]
+        self.assertEqual(list(range(1, 21)), [row["day_number"] for row in first_twenty])
+        self.assertTrue(all(row["instructor_scaffold_readiness"] == "READY_TO_START" for row in first_twenty))
+        self.assertTrue(all(row["assignability"] == "READY_TO_ATTEMPT" for row in first_twenty))
+        self.assertTrue(all(row["instructor_readiness_evidence"] for row in first_twenty))
         self.assertTrue(all(row["timebox_status"] in {"TIMEBOX_NOT_VALIDATED", "NOT_REHEARSED"}
-                            for row in first_ten), "readiness must not invent measured time")
+                            for row in first_twenty), "readiness must not invent measured time")
 
 
 if __name__ == "__main__":

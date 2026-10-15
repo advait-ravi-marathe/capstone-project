@@ -1,0 +1,104 @@
+EEEEEEEEE
+======================================================================
+ERROR: test_above_threshold_returns_only_exact_extract_and_citation (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_above_threshold_returns_only_exact_extract_and_citation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 21, in test_above_threshold_returns_only_exact_extract_and_citation
+    self.assertEqual(AnswerDecision("ANSWER", row["text"], ("health-A", "v1")), decide_answer([hit], 0.7))
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_empty_or_denied_only_evidence_abstains (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_empty_or_denied_only_evidence_abstains)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 32, in test_empty_or_denied_only_evidence_abstains
+    self.assertEqual("ABSTAIN", decide_answer([], 0.7).decision)
+                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected) (value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 38, in test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected
+    with self.subTest(value=value), self.assertRaises(ValueError): decide_answer([], value)
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected) (score=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 39, in test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected
+    with self.subTest(score=value), self.assertRaises(ValueError): decide_answer(
+                                                                   ^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected) (value=-0.01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 38, in test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected
+    with self.subTest(value=value), self.assertRaises(ValueError): decide_answer([], value)
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected) (score=-0.01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 39, in test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected
+    with self.subTest(score=value), self.assertRaises(ValueError): decide_answer(
+                                                                   ^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected) (value=1.01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 38, in test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected
+    with self.subTest(value=value), self.assertRaises(ValueError): decide_answer([], value)
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected) (score=1.01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 39, in test_nonfinite_and_out_of_range_scores_or_thresholds_are_rejected
+    with self.subTest(score=value), self.assertRaises(ValueError): decide_answer(
+                                                                   ^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+======================================================================
+ERROR: test_threshold_is_inclusive_but_lower_score_abstains (ai.coverstory.tests.test_cap_61.CAP61AcceptanceTest.test_threshold_is_inclusive_but_lower_score_abstains)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/capstone-project/ai/coverstory/tests/test_cap_61.py", line 26, in test_threshold_is_inclusive_but_lower_score_abstains
+    self.assertEqual("ANSWER", decide_answer([at], 0.7).decision)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/capstone-project/ai/coverstory/cap_61.py", line 27, in decide_answer
+    raise NotImplementedError("CAP-61 learner TODO: implement decide_answer")
+NotImplementedError: CAP-61 learner TODO: implement decide_answer
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=9)
