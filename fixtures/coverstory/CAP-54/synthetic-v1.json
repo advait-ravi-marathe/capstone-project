@@ -2,17 +2,91 @@
   "fixture_id": "CAP-54-synthetic-v1",
   "classification": "SYNTHETIC_ONLY",
   "journeys": [
-    {"journey_id":"3c7d76dc-29dd-4f2c-a979-8c4a40c8a001","owner_id":"user-A","application_id":"8b15296a-6a8c-4b71-92d5-0749a760a001","revision":2,"authoritative_status":"PAYMENT_PENDING","payment_confirmed":false,"dispatch_confirmed":false,"expected_action":"CONTINUE_CHECKOUT","private_payload_marker":"SYNTHETIC_PRIVATE_SENTINEL_A"},
-    {"journey_id":"3c7d76dc-29dd-4f2c-a979-8c4a40c8a002","owner_id":"user-B","application_id":"8b15296a-6a8c-4b71-92d5-0749a760a002","revision":1,"authoritative_status":"SUBMISSION_PENDING","payment_confirmed":true,"dispatch_confirmed":false,"expected_action":"WAIT_FOR_DISPATCH","private_payload_marker":"SYNTHETIC_PRIVATE_SENTINEL_B"}
+    {
+      "journey_id": "3c7d76dc-29dd-4f2c-a979-8c4a40c8a001",
+      "owner_id": "user-A",
+      "application_id": "8b15296a-6a8c-4b71-92d5-0749a760a001",
+      "revision": 2,
+      "authoritative_status": "PAYMENT_PENDING",
+      "payment_confirmed": false,
+      "dispatch_confirmed": false,
+      "expected_action": "CONTINUE_CHECKOUT",
+      "private_payload_marker": "SYNTHETIC_PRIVATE_SENTINEL_A"
+    },
+    {
+      "journey_id": "3c7d76dc-29dd-4f2c-a979-8c4a40c8a002",
+      "owner_id": "user-B",
+      "application_id": "8b15296a-6a8c-4b71-92d5-0749a760a002",
+      "revision": 1,
+      "authoritative_status": "SUBMISSION_PENDING",
+      "payment_confirmed": true,
+      "dispatch_confirmed": false,
+      "expected_action": "WAIT_FOR_DISPATCH",
+      "private_payload_marker": "SYNTHETIC_PRIVATE_SENTINEL_B"
+    }
   ],
   "cases": [
-    {"id":"CAP-54-CS-01","principal":"user-A","journey_id":"3c7d76dc-29dd-4f2c-a979-8c4a40c8a001","expected_status":200,"expected_revision":2,"expected_action":"CONTINUE_CHECKOUT","private_payload_must_not_appear":true},
-    {"id":"CAP-54-CS-02a","principal":"user-B","journey_id":"3c7d76dc-29dd-4f2c-a979-8c4a40c8a001","expected_status":404,"safe_error":"NOT_FOUND","state_reader_calls":0},
-    {"id":"CAP-54-CS-02b","principal":"user-A","journey_id":"00000000-0000-4000-8000-000000000099","expected_status":404,"safe_error":"NOT_FOUND","state_reader_calls":0},
-    {"id":"CAP-54-CS-03","principal":"user-A","owner_override":"user-B","browser_current_step":"POLICY_ACTIVE","expected_status":400,"safe_error":"INVALID_OWNER_OVERRIDE","repository_calls":0},
-    {"id":"CAP-54-CS-04","principal":null,"journey_id":"3c7d76dc-29dd-4f2c-a979-8c4a40c8a001","public_catalog_status":200,"private_journey_status":401},
-    {"id":"CAP-54-CS-05a","principal":"user-A","limit":50,"cursor_owner":"user-A","expected_status":200},
-    {"id":"CAP-54-CS-05b","principal":"user-A","limit":51,"cursor_owner":"user-A","expected_status":400},
-    {"id":"CAP-54-CS-05c","principal":"user-A","limit":50,"cursor_owner":"user-B","expected_status":400}
+    {
+      "id": "CAP-54-CS-01",
+      "principal": "user-A",
+      "journey_id": "3c7d76dc-29dd-4f2c-a979-8c4a40c8a001",
+      "expected_status": 200,
+      "expected_revision": 2,
+      "expected_action": "CONTINUE_CHECKOUT",
+      "private_payload_must_not_appear": true
+    },
+    {
+      "id": "CAP-54-CS-02a",
+      "principal": "user-B",
+      "journey_id": "3c7d76dc-29dd-4f2c-a979-8c4a40c8a001",
+      "expected_status": 404,
+      "safe_error": "NOT_FOUND",
+      "state_reader_calls": 0
+    },
+    {
+      "id": "CAP-54-CS-02b",
+      "principal": "user-A",
+      "journey_id": "00000000-0000-4000-8000-000000000099",
+      "expected_status": 404,
+      "safe_error": "NOT_FOUND",
+      "state_reader_calls": 0
+    },
+    {
+      "id": "CAP-54-CS-03",
+      "principal": "user-A",
+      "owner_override": "user-B",
+      "browser_current_step": "POLICY_ACTIVE",
+      "expected_status": 400,
+      "safe_error": "INVALID_OWNER_OVERRIDE",
+      "repository_calls": 0
+    },
+    {
+      "id": "CAP-54-CS-04",
+      "principal": null,
+      "journey_id": "3c7d76dc-29dd-4f2c-a979-8c4a40c8a001",
+      "public_catalog_status": 200,
+      "private_journey_status": 401
+    },
+    {
+      "id": "CAP-54-CS-05a",
+      "principal": "user-A",
+      "limit": 50,
+      "cursor_owner": "user-A",
+      "expected_status": 200
+    },
+    {
+      "id": "CAP-54-CS-05b",
+      "principal": "user-A",
+      "limit": 51,
+      "cursor_owner": "user-A",
+      "expected_status": 400
+    },
+    {
+      "id": "CAP-54-CS-05c",
+      "principal": "user-A",
+      "limit": 50,
+      "cursor_owner": "user-B",
+      "expected_status": 400
+    }
   ]
 }

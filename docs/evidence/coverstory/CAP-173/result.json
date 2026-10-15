@@ -1,0 +1,23 @@
+{
+  "contract": "CAP-173",
+  "classification": "SYNTHETIC_ONLY",
+  "fixture": "fixtures/coverstory/CAP-173/synthetic-v1.json",
+  "fixture_sha256": "3981a3bf616730f210a5909c5af8d54281e35f17379c823bf76c10ac252867a7",
+  "instructor_command": "mvn -Dtest=CAP173InstructorInfrastructureTest,CAP173PaymentAuditRuntimeIntegrationTest test",
+  "instructor_tests": 7,
+  "instructor_failures": 0,
+  "instructor_errors": 0,
+  "learner_logic_implemented": false,
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP173AcceptanceTest test",
+  "learner_acceptance_methods": 5,
+  "expected_learner_outcome": "UNSUPPORTED_OPERATION_AT_PRESERVED_TODO",
+  "actual_payment_or_provider_call": false,
+  "authenticated_runtime_check": "ANONYMOUS_401_TEST_PRINCIPAL_REACHES_501",
+  "notes": [
+    "PostgreSQL instructor oracle passes expected boundaries, timezone equivalence, owner scope, range validation, and a closed-end mutant control.",
+    "Positive oracle path is independent of the learner seam.",
+    "Unsigned demo identity is excluded; integration principal exists only in a test configuration.",
+    "Saved 150-minute capstone timebox remains unvalidated."
+  ],
+  "source_commit": "42485449659a756442eba0d8351ecac15f455a2c"
+}

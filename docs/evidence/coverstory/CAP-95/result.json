@@ -10,10 +10,30 @@
   "learner_command": "mvn -Plearner-tests -Dtest=CAP95AcceptanceTest test",
   "learner_observed": "5 tests, 0 assertion failures, 5 explicit UnsupportedOperationException errors at the learner TODO; expected until learner implementation",
   "assertions": [
-    {"id":"CAP-95-CS-01","expected":"one call; output cap 256; accept at 1499ms","observed":"Independent oracle PASS; learner NOT_RUN beyond TODO"},
-    {"id":"CAP-95-CS-02","expected":"LIMIT_EXCEEDED; zero calls","observed":"Independent oracle PASS; learner NOT_RUN beyond TODO"},
-    {"id":"CAP-95-CS-03","expected":"TIMEOUT; one cancel; zero retries","observed":"Independent oracle PASS; learner NOT_RUN beyond TODO"},
-    {"id":"CAP-95-CS-04","expected":"INVALID_CONFIG before call","observed":"Independent oracle PASS; learner NOT_RUN beyond TODO"},
-    {"id":"CAP-95-CS-05","expected":"manual state unchanged through timeout","observed":"Independent oracle PASS; learner NOT_RUN beyond TODO"}
+    {
+      "id": "CAP-95-CS-01",
+      "expected": "one call; output cap 256; accept at 1499ms",
+      "observed": "Independent oracle PASS; learner NOT_RUN beyond TODO"
+    },
+    {
+      "id": "CAP-95-CS-02",
+      "expected": "LIMIT_EXCEEDED; zero calls",
+      "observed": "Independent oracle PASS; learner NOT_RUN beyond TODO"
+    },
+    {
+      "id": "CAP-95-CS-03",
+      "expected": "TIMEOUT; one cancel; zero retries",
+      "observed": "Independent oracle PASS; learner NOT_RUN beyond TODO"
+    },
+    {
+      "id": "CAP-95-CS-04",
+      "expected": "INVALID_CONFIG before call",
+      "observed": "Independent oracle PASS; learner NOT_RUN beyond TODO"
+    },
+    {
+      "id": "CAP-95-CS-05",
+      "expected": "manual state unchanged through timeout",
+      "observed": "Independent oracle PASS; learner NOT_RUN beyond TODO"
+    }
   ]
 }

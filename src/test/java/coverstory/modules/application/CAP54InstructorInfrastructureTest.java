@@ -1,7 +1,7 @@
 package coverstory.modules.application;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import coverstory.modules.application.api.CAP54Seam.ApplicationStateReader;
 import coverstory.modules.application.api.CAP54Seam.AuthoritativeState;
 import coverstory.modules.application.api.CAP54Seam.JourneyLink;

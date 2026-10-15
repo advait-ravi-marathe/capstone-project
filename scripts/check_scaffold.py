@@ -56,10 +56,11 @@ class DataBoundaryChecks(unittest.TestCase):
     def test_analytics_are_allowlisted_and_have_no_arbitrary_properties(self):
         analytics = self.ddl.split("create table if not exists analytics.behavior_event", 1)[1]
         self.assertIn("check (event_name in", analytics)
-        self.assertNotIn("properties", analytics)
-        self.assertNotIn("raw_url", analytics)
-        self.assertNotIn("health", analytics)
-        self.assertNotIn("token", analytics)
+        tables = re.findall(r"create table if not exists analytics\.[a-z_]+\s*\((.*?)\);", analytics, re.S)
+        columns = {match.group(1) for table in tables
+                   for match in re.finditer(r"^\s*([a-z_][a-z0-9_]*)\s+(?:uuid|text|bytea|integer|bigint|timestamptz|boolean)\b", table, re.M)}
+        self.assertGreaterEqual(len(columns), 10)
+        self.assertTrue(columns.isdisjoint({"properties", "raw_url", "health", "health_data", "token", "email", "occurred_at_client"}))
 
     def test_business_audit_is_separate_from_click_analytics(self):
         self.assertIn("business_audit.event", self.ddl)

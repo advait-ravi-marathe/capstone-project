@@ -12,55 +12,197 @@
       "id": "CAP-103-CS-01",
       "description": "Ten successful observations from 10 through 100 ms",
       "requests": [
-        {"start_ms":0,"end_ms":10,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":20,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":30,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":40,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":50,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":60,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":70,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":80,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":90,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":100,"status":"SUCCESS"}
+        {
+          "start_ms": 0,
+          "end_ms": 10,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 20,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 30,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 40,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 50,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 60,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 70,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 80,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 90,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 100,
+          "status": "SUCCESS"
+        }
       ],
-      "expected": {"total":10,"successes":10,"errors":0,"p50_ms":50,"p95_ms":100,"max_success_ms":100,"error_max_ms":null,"diagnostics":[]}
+      "expected": {
+        "total": 10,
+        "successes": 10,
+        "errors": 0,
+        "p50_ms": 50,
+        "p95_ms": 100,
+        "max_success_ms": 100,
+        "error_max_ms": null,
+        "diagnostics": []
+      }
     },
     {
       "id": "CAP-103-CS-02",
       "description": "Failures remain in totals and do not contaminate success percentiles",
       "requests": [
-        {"start_ms":0,"end_ms":10,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":20,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":30,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":40,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":50,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":60,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":70,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":80,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":90,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":100,"status":"SUCCESS"},
-        {"start_ms":0,"end_ms":200,"status":"ERROR"},
-        {"start_ms":0,"end_ms":500,"status":"ERROR"}
+        {
+          "start_ms": 0,
+          "end_ms": 10,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 20,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 30,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 40,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 50,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 60,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 70,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 80,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 90,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 100,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 200,
+          "status": "ERROR"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 500,
+          "status": "ERROR"
+        }
       ],
-      "expected": {"total":12,"successes":10,"errors":2,"p50_ms":50,"p95_ms":100,"max_success_ms":100,"error_max_ms":500,"diagnostics":[]}
+      "expected": {
+        "total": 12,
+        "successes": 10,
+        "errors": 2,
+        "p50_ms": 50,
+        "p95_ms": 100,
+        "max_success_ms": 100,
+        "error_max_ms": 500,
+        "diagnostics": []
+      }
     },
     {
       "id": "CAP-103-CS-03",
       "description": "End before start emits INVALID_DURATION and excludes the observation",
       "requests": [
-        {"start_ms":0,"end_ms":10,"status":"SUCCESS"},
-        {"start_ms":12,"end_ms":11,"status":"SUCCESS"}
+        {
+          "start_ms": 0,
+          "end_ms": 10,
+          "status": "SUCCESS"
+        },
+        {
+          "start_ms": 12,
+          "end_ms": 11,
+          "status": "SUCCESS"
+        }
       ],
-      "expected": {"total":2,"successes":1,"errors":0,"p50_ms":10,"p95_ms":10,"max_success_ms":10,"error_max_ms":null,"diagnostics":["INVALID_DURATION"]}
+      "expected": {
+        "total": 2,
+        "successes": 1,
+        "errors": 0,
+        "p50_ms": 10,
+        "p95_ms": 10,
+        "max_success_ms": 10,
+        "error_max_ms": null,
+        "diagnostics": [
+          "INVALID_DURATION"
+        ]
+      }
     },
     {
       "id": "CAP-103-CS-04",
       "description": "No successful samples means null percentiles, not zero",
       "requests": [
-        {"start_ms":0,"end_ms":200,"status":"ERROR"},
-        {"start_ms":0,"end_ms":500,"status":"ERROR"}
+        {
+          "start_ms": 0,
+          "end_ms": 200,
+          "status": "ERROR"
+        },
+        {
+          "start_ms": 0,
+          "end_ms": 500,
+          "status": "ERROR"
+        }
       ],
-      "expected": {"total":2,"successes":0,"errors":2,"p50_ms":null,"p95_ms":null,"max_success_ms":null,"error_max_ms":500,"diagnostics":[]}
+      "expected": {
+        "total": 2,
+        "successes": 0,
+        "errors": 2,
+        "p50_ms": null,
+        "p95_ms": null,
+        "max_success_ms": null,
+        "error_max_ms": 500,
+        "diagnostics": []
+      }
     }
   ]
 }

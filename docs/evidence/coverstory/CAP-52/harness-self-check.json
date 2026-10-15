@@ -5,7 +5,13 @@
   "command": "mvn -Dtest=CAP52ControllerInfrastructureTest test",
   "result": "PASS",
   "tests": 4,
-  "checks": ["synthetic fixture boundaries", "401 anonymous", "403 non-editor", "400 forged identity and malformed hash before seam call", "one-call HTTP 201 mapping with fake port"],
+  "checks": [
+    "synthetic fixture boundaries",
+    "401 anonymous",
+    "403 non-editor",
+    "400 forged identity and malformed hash before seam call",
+    "one-call HTTP 201 mapping with fake port"
+  ],
   "authentication_adapter": "NOT_WIRED",
   "durable_import_persistence": "NOT_IMPLEMENTED"
 }

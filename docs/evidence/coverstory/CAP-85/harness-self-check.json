@@ -17,7 +17,15 @@
       "name": "instructor_postgres_oracle",
       "command": "mvn -q -Dtest=CAP85InstructorInfrastructureTest test (with repository Java 21 launcher flags)",
       "observed": "6 tests, 0 failures, 0 errors",
-      "covers": ["synthetic fixture", "balanced classification", "missing outcome", "empty batch", "same batch id tenant isolation", "missing durable lineage", "lineage defect witness"]
+      "covers": [
+        "synthetic fixture",
+        "balanced classification",
+        "missing outcome",
+        "empty batch",
+        "same batch id tenant isolation",
+        "missing durable lineage",
+        "lineage defect witness"
+      ]
     },
     {
       "name": "learner_acceptance_contract",

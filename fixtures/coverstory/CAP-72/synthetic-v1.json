@@ -43,7 +43,10 @@
     "provider_reference": "mock-ref-unknown-001"
   },
   "expected": {
-    "initial_audit_order": ["event-synth-failed-001", "event-synth-unknown-001"],
+    "initial_audit_order": [
+      "event-synth-failed-001",
+      "event-synth-unknown-001"
+    ],
     "unknown_state_is_retained": true,
     "application_transition_count": 0,
     "initial_posted_effect_total_minor": 0,

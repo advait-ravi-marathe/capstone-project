@@ -2,10 +2,10 @@
 
 This status is based on executable instructor scaffolds, resettable synthetic inputs, positive/negative controls, and the module boundary named for each day. It is independent of learner implementation and elapsed-time measurement. A READY scaffold is not learner completion or mastery.
 
-Recorded UTC: `2026-10-15T01:12:19.463563+00:00`  
+Recorded UTC: `2026-10-15T02:24:59.101211+00:00`
 Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e059a236e09de`
 
-**Instructor result:** 10/10 days READY; 17 commands, 71 tests, 0 test failures, 0 test errors, and 2 frontend build/security checks passed.
+**Instructor result:** 10/10 days READY; 20 commands, 72 tests, 0 test failures, 0 test errors, and 4 frontend build/security checks passed.
 
 **Separate learner checks:** 14 commands; 14 observed the preserved TODO/empty learner seam. These red outcomes do not determine instructor readiness and are not completed assignments.
 
@@ -20,7 +20,7 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 | 007 | CAP-165 / — | READY | 5 | CAP-165 SourceVersionKey create |
 | 008 | CAP-52 / — | READY | 5 | CAP-52 import accept decision |
 | 009 | CAP-53 / — | READY | 3 | CAP-53 load_wording |
-| 010 | CAP-54 / — | READY | 6 | CAP-54 resume and active-list seam |
+| 010 | CAP-54 / — | READY | 7 | CAP-54 resume and active-list seam |
 
 ## Per-day evidence
 
@@ -29,15 +29,15 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP40ScaffoldInfrastructureTest,ShortlistSelectionControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test`: **PASS** — 7 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-001-maven.log) (`89e5708e0f18f206c4af3c410b7d25b81bc89a70018cf8fe72e86d032eb4e0e3`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap41_infrastructure`: **PASS** — 4 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-001-test_coverstory_cap41_infrastructure.log) (`feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap41_http`: **PASS** — 5 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-001-test_coverstory_cap41_http.log) (`aad49207f6643b866be6dbc8ef285d4be360fc3e60b767614a9b7a3a61ae8633`).
-- `npm run build`: **PASS**; raw output [log](raw/day-001-frontend-build.log) (`0c7ee2f3f3be02c8731d9aa60d306bd1a915deb8b821745fada494d34e0b8c1a`).
-- `npm run test:security`: **PASS**; raw output [log](raw/day-001-frontend-security.log) (`6995d3b85fe7a4068be8cbecc69d5c0f74c11166578987806563cb1126b98ff1`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP40ScaffoldInfrastructureTest,ShortlistSelectionControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test`: **PASS** — 7 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`4b119fd3556bfee47806513087c4811d24abd997789fb57110d5b0c8136cc54d`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap41_infrastructure`: **PASS** — 4 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap41_http`: **PASS** — 5 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`03e06225f66a9a758404265502b8dd6002403ba4280b590bd67177d47855fb67`).
+- `npm run build`: **PASS**; raw output (local-only raw output) (`b85a759a4cc1d48feff941581afd612b90990f4db3edb47fd62f30efae4507d8`).
+- `npm run test:security`: **PASS**; raw output (local-only raw output) (`6995d3b85fe7a4068be8cbecc69d5c0f74c11166578987806563cb1126b98ff1`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP40AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 8 tests, 0 failures, 8 errors; TODO signal: `True`; [raw log](raw/day-001-learner-maven.log) (`37e133f27cece9d36c912544dcf567be8bf6cc384ba5e5c0b2db64723dc10dd0`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap41_acceptance`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 6 tests, 0 failures, 9 errors; TODO signal: `True`; [raw log](raw/day-001-learner-ai.tests.log) (`d55e69a846089694683b2d791c55c9554ca857d4c8fd924c7a56d95f46ac1d98`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP40AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 8 tests, 0 failures, 8 errors; TODO signal: `True`; (local-only raw output) (`21c5c687c79bca1b2d613823a7fcbdb190476cba0e51ebc276920fbfed2913b7`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap41_acceptance`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 6 tests, 0 failures, 9 errors; TODO signal: `True`; (local-only raw output) (`d55e69a846089694683b2d791c55c9554ca857d4c8fd924c7a56d95f46ac1d98`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-40/synthetic-v1.json` — `c6751ab88acf5ca5570f9f730ecb943d7354457407a1b5e0de735b0d58ebd022`
@@ -63,10 +63,10 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP42InstructorInfrastructureTest,CAP43InstructorInfrastructureTest,CatalogInstructorHarnessTest,ApplicationRuntimeIntegrationTest test`: **PASS** — 10 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-002-maven.log) (`70fe0f41bfc727c4438f554ae1463a15c2f4dc888b8a467147755a8fd46b7e9d`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP42InstructorInfrastructureTest,CAP43InstructorInfrastructureTest,CatalogInstructorHarnessTest,ApplicationRuntimeIntegrationTest test`: **PASS** — 10 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`5b82c4be5eb3d8a6e8b041c9b7dd215ff74e0d554978e6f9bfccb8ba70460eef`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP42SqlAcceptanceTest,CAP43AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 9 tests, 2 failures, 5 errors; TODO signal: `True`; [raw log](raw/day-002-learner-maven.log) (`a21360a90ff370b191685f3fc2ae844b97b06cfe663c8862d4a96ed76281bcb2`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP42SqlAcceptanceTest,CAP43AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 9 tests, 2 failures, 5 errors; TODO signal: `True`; (local-only raw output) (`9866c609c131a027f7c9e330e3cd9d6c74c96108e6ea976746c6d87321d989c6`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-42/synthetic-v1.json` — `de78e16318de5ba7861085e01941b0e5d121379fbc44bcb19893a451a9660743`
@@ -94,12 +94,12 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP45InstructorInfrastructureTest test`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-003-maven.log) (`469684854795e50111d8510b239f07c917d03e1a3df8203e05e4790ea6b3d9ea`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap44_infrastructure`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-003-test_coverstory_cap44_infrastructure.log) (`a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP45InstructorInfrastructureTest test`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`f0700fe22cc18fd8e0580f434020a6a3a96948e3541640814f89ea0736ddcb7d`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap44_infrastructure`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP45SqlAcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 4 failures, 0 errors; TODO signal: `True`; [raw log](raw/day-003-learner-maven.log) (`100c302b52eb5792328760a8175ee736ec99523c75fd84d3924b6f8b9309a4c2`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_44.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; [raw log](raw/day-003-learner-test_cap_44.log) (`bcb364a9fda14165ad747ddf246502c244a56a83a3a32b7a96c0af2642eba0fc`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP45SqlAcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 4 failures, 0 errors; TODO signal: `True`; (local-only raw output) (`5e109b61b8d5d5247a310267bae438cae2ea11ffe9de6b1e5e6a31583c9d8a8b`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s ai/coverstory/tests -p test_cap_44.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; (local-only raw output) (`bcb364a9fda14165ad747ddf246502c244a56a83a3a32b7a96c0af2642eba0fc`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-44/synthetic-v1.json` — `82cf3a6ef7b9bece06656c6059cf6e59a78d4df3ecc2a77d004695cdc19dfa64`
@@ -127,12 +127,12 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP46InstructorInfrastructureTest,CatalogInstructorHarnessTest test`: **PASS** — 7 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-004-maven.log) (`3f0a616ccaadeb830628a6644779fde4ee6971d9560b8e1feab31e65bea70177`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap47_infrastructure`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-004-test_coverstory_cap47_infrastructure.log) (`a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP46InstructorInfrastructureTest,CatalogInstructorHarnessTest test`: **PASS** — 7 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`0d008a6a7ebd0d843173984b4c8b57100be85981b7fa7b241f915773f27062c2`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap47_infrastructure`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP46AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; [raw log](raw/day-004-learner-maven.log) (`a4faf9b3b9ca363b7d58297e53d3e76c61a7c0687ae85f9f6e29dffc949e2a13`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_47.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; [raw log](raw/day-004-learner-test_cap_47.log) (`918a7f2f48c296da5cb517c4a719fa9c22b2dfabe5bef581af84c50b2566d43d`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP46AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; (local-only raw output) (`de68931c48f8185dd6f38298a2443967c182bd84e40f819389a4f4e3f536274d`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s ai/coverstory/tests -p test_cap_47.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; (local-only raw output) (`918a7f2f48c296da5cb517c4a719fa9c22b2dfabe5bef581af84c50b2566d43d`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-46/synthetic-v1.json` — `3efacef586b0bf76fc20c59e0cca0caebec2fb259ad1b8e55d36e1f45d5c7fd2`
@@ -158,12 +158,12 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP48InstructorInfrastructureTest test`: **PASS** — 3 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-005-maven.log) (`af159eaeed4b2a12a85f66da580257534c7c49ee0748f46669660fb7f56cadac`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap49_infrastructure`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-005-test_coverstory_cap49_infrastructure.log) (`a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP48InstructorInfrastructureTest test`: **PASS** — 3 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`94ba7f6f17ffeb0f78fa1fc10bf9e5c54b075861ce2ecf0db889f34a773ddf6a`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap49_infrastructure`: **PASS** — 2 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP48SqlAcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 4 failures, 0 errors; TODO signal: `True`; [raw log](raw/day-005-learner-maven.log) (`56a987a489ad3da56501fc11912c57cb871c7e1c1c8a2f17eb00b3bc63c937b3`).
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_49.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 3 tests, 0 failures, 10 errors; TODO signal: `True`; [raw log](raw/day-005-learner-test_cap_49.log) (`fd7d5378cedac579ab7b9ad84e8fb3e6208f6c5dae81d0db0cefab377b479a98`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP48SqlAcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 4 failures, 0 errors; TODO signal: `True`; (local-only raw output) (`d4fcfa2bfe7538815af92c20451e345e49d5981e1ddea3b7ca7e328cc2114114`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s ai/coverstory/tests -p test_cap_49.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 3 tests, 0 failures, 10 errors; TODO signal: `True`; (local-only raw output) (`fd7d5378cedac579ab7b9ad84e8fb3e6208f6c5dae81d0db0cefab377b479a98`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-48/synthetic-v1.json` — `3ff4c1f3a6e60802fc806a9c7ab975f9206dae10e5aa2ee323e6c654d082369e`
@@ -191,10 +191,10 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP50InstructorInfrastructureTest,CAP51InstructorInfrastructureTest,CatalogInstructorHarnessTest test`: **PASS** — 8 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-006-maven.log) (`697cd251f7a8016929a8b0253a15e0944acfc46997ecf2d1bdec49b9514bd8e6`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP50InstructorInfrastructureTest,CAP51InstructorInfrastructureTest,CatalogInstructorHarnessTest test`: **PASS** — 8 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`1346b40e550f7cb14e201dc02699951be3a7276599bafb2cb90b55303ec8ff7c`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP50AcceptanceTest,CAP51SqlAcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 7 tests, 5 failures, 2 errors; TODO signal: `True`; [raw log](raw/day-006-learner-maven.log) (`a59e63d8fdddf25d374d57f499c4d5265fa42f80fd3582b0a038dc5bed42af70`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP50AcceptanceTest,CAP51SqlAcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 7 tests, 5 failures, 2 errors; TODO signal: `True`; (local-only raw output) (`77952dc3da4eed3df05334f31b1a6f7fa1606d8c7dc47fc86bc0579c9c98e12d`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-50/synthetic-v1.json` — `35c63e1f976102111fbeeab48908de8ade842c0ffc3b53b21c9dc9eefc3bad81`
@@ -222,10 +222,10 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP165HarnessDiscriminationTest,CatalogInstructorHarnessTest test`: **PASS** — 5 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-007-maven.log) (`910472c34e82e4f9b8c52abb2dfff6a12adbb0b89ad20bff03938f5563fee2db`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP165HarnessDiscriminationTest,CatalogInstructorHarnessTest test`: **PASS** — 5 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`5e106a7ceb57cc83f1f4b7d9ad14618efcf6597ae5983d847046f01ed4284f5a`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP165AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 1 failures, 3 errors; TODO signal: `True`; [raw log](raw/day-007-learner-maven.log) (`8a101cde23acbe98bbdaa90dac92c35c83f8c828eb0778cd7369505ec983d579`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP165AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 1 failures, 3 errors; TODO signal: `True`; (local-only raw output) (`0ef31cf2160436206ba5dfa7f131b40558e828f91723ec686c98645d4893d4ba`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-165/synthetic-v1.json` — `8cc070c55cecf6ba767f348b259cbf3f72ee1777da9d02935c106f8ce1c7155c`
@@ -249,10 +249,10 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP52ControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test`: **PASS** — 5 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-008-maven.log) (`f663f4aa669c1283fa127f4b1c0b03a7ee8f09d690e0d194435bfd3a1fb2838c`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP52ControllerInfrastructureTest,ApplicationRuntimeIntegrationTest test`: **PASS** — 5 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`7ddd907b0966e780e9dfa5a3f831a8a0ce091ed8b4c2c68412248aa7e3983eed`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP52AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 2 tests, 0 failures, 2 errors; TODO signal: `True`; [raw log](raw/day-008-learner-maven.log) (`846ff2621388512bcd914fc7911173c6fefdd24fdf4da854fc09b4957b9b8729`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP52AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 2 tests, 0 failures, 2 errors; TODO signal: `True`; (local-only raw output) (`8c75b7ddfe886b01ca80419d46d199eea27fce298217fac70b27b0cbea884e25`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-52/synthetic-v1.json` — `d750ef664f24f26ae6fb72f69ff596646543c8fcfc62c79996b98a184c4ae308`
@@ -276,10 +276,10 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap53_infrastructure`: **PASS** — 3 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-009-test_coverstory_cap53_infrastructure.log) (`199ba496f288116d36c62f29346d4fbf0bd75745a1c893abfcbdaa4c6d5b1033`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest ai.tests.test_coverstory_cap53_infrastructure`: **PASS** — 3 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`199ba496f288116d36c62f29346d4fbf0bd75745a1c893abfcbdaa4c6d5b1033`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s ai/coverstory/tests -p test_cap_53.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; [raw log](raw/day-009-learner-test_cap_53.log) (`a09370ea46dd8a0a0e6ed6afdb7c9645422db34fd643fbfbeb2f737061a85c1d`).
+- `/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s ai/coverstory/tests -p test_cap_53.py`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 4 tests, 0 failures, 4 errors; TODO signal: `True`; (local-only raw output) (`50496ba51b856dc5fd3997dbeb835f1e550dda85a0e8c36819054f3f9aa2b9dc`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-53/synthetic-v1.json` — `7b16ab2608dcb67cf43ccb566eb8e736002c24ebd49c7295ced7dec07f6844f9`
@@ -306,17 +306,20 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 **Instructor readiness:** `READY`. Learner complete: `false`; timebox measured: `false`; unmeasured timebox blocks this instructor status: `false`.
 
 **Executed checks:**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=CAP54InstructorInfrastructureTest test`: **PASS** — 6 tests, 0 failures, 0 errors, 0 skipped; raw output [log](raw/day-010-maven.log) (`fad8505d930f7e90972b10318755dab4717269b74532fed1be89ab38f5cfcfcf`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP54InstructorInfrastructureTest test`: **PASS** — 6 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`938caf6736ac52a3e1cec4f7b97f9265d11db27afbc7f221441bcc1a92a29f5f`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dcoverstory.cap54.browser=true -Dtest=CAP54HttpRuntimeIntegrationTest test`: **PASS** — 1 tests, 0 failures, 0 errors, 0 skipped; raw output (local-only raw output) (`c4fc1a9f352b6bdc38440463d741b561c015b17e63c571caf8fe7a93c4f8c695`).
+- `npm run build`: **PASS**; raw output (local-only raw output) (`459ce32570969e32e70c0813a727f8ef485bb79197b62cfbecb80431fee47090`).
+- `npm run test:security`: **PASS**; raw output (local-only raw output) (`6995d3b85fe7a4068be8cbecc69d5c0f74c11166578987806563cb1126b98ff1`).
 
 **Separate learner acceptance runs (not used to decide scaffold readiness):**
-- `mvn -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=CAP54AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 5 tests, 0 failures, 5 errors; TODO signal: `True`; [raw log](raw/day-010-learner-maven.log) (`0947a206935a923a6c13188cf9d1d4b4b5e38b5fcbf68b18b8d45a7ceceb9978`).
+- `/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Plearner-tests -Dtest=CAP54AcceptanceTest test`: **EXPECTED_UNIMPLEMENTED_LEARNER_OUTCOME** — 5 tests, 0 failures, 5 errors; TODO signal: `True`; (local-only raw output) (`6e6c5ca00aea866480bb1d5badae9e445a87ebed982282667671a58726a1bd4f`).
 
 **Fixture SHA-256:**
 - `fixtures/coverstory/CAP-54/synthetic-v1.json` — `270e204da80c8c572c9e1b706a9a5004c50b3e25f5e377f53c746872cd0a29bb`
 
 **Reset/isolation:** Test-only fixture port graph is reconstructed per test from immutable synthetic owner/revision rows.
 
-**Wiring:** Instructor fixture adapter implements actual Application module OwnedJourneyReader/ApplicationStateReader ports. No production authentication/session adapter or resume endpoint is claimed.
+**Wiring:** Actual Spring /api/session and /api/v1/me/journeys routes resolve only a trusted request principal. Application-owned JDBC reads join the owner-scoped journey to the exact linked application revision. A test-only synthetic session and independent PostgreSQL adapter exercise the actual HTTP/browser path; production auth binding and the saved CAP54Seam remain learner work and fail closed.
 
 **Positive controls:** owner-bound lookup and exact authoritative application revision; safe status/action summaries and bounded owner listing.
 
@@ -326,4 +329,4 @@ Canonical source SHA-256: `e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e0
 
 **Last recorded learner acceptance receipts:**
 - [CAP-54 result](../CAP-54/result.json); recorded status `TODO_RETAINED`. These are prior separated TODO evidence, not counted in today's instructor PASS.
-**Remaining requirements:** Implement only the owner-scoped query/adapter methods; authenticated runtime resume, persistence and private payload access remain outside this day's test harness.; Learner duration remains unmeasured and does not block scaffold readiness.
+**Remaining requirements:** Bind the trusted servlet principal to the deployment's authenticated session adapter; no login provider or real credential flow is included. Implement the CAP54Seam learner methods; the configured application route returns safe 501 until they are complete. Learner duration remains unmeasured.

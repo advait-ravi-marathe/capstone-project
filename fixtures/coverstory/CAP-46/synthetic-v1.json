@@ -2,11 +2,70 @@
   "fixture_id": "CAP-46-synthetic-v1",
   "synthetic": true,
   "capacity": 2,
-  "keys": [["health-A","v1"],["health-B","v1"]],
+  "keys": [
+    [
+      "health-A",
+      "v1"
+    ],
+    [
+      "health-B",
+      "v1"
+    ]
+  ],
   "cases": [
-    {"id":"CAP-46-CS-01","operations":["enqueue-0","enqueue-1","poll","poll"],"expected":[true,true,"health-A/v1","health-B/v1",0]},
-    {"id":"CAP-46-CS-02","operations":["poll"],"expected":[null]},
-    {"id":"CAP-46-CS-03","capacity":1,"operations":["enqueue-0","enqueue-1","poll"],"expected":[true,false,"health-A/v1"]},
-    {"id":"CAP-46-CS-04","operations":["enqueue-0","enqueue-0","poll","enqueue-0"],"expected":[true,false,"health-A/v1",true]}
+    {
+      "id": "CAP-46-CS-01",
+      "operations": [
+        "enqueue-0",
+        "enqueue-1",
+        "poll",
+        "poll"
+      ],
+      "expected": [
+        true,
+        true,
+        "health-A/v1",
+        "health-B/v1",
+        0
+      ]
+    },
+    {
+      "id": "CAP-46-CS-02",
+      "operations": [
+        "poll"
+      ],
+      "expected": [
+        null
+      ]
+    },
+    {
+      "id": "CAP-46-CS-03",
+      "capacity": 1,
+      "operations": [
+        "enqueue-0",
+        "enqueue-1",
+        "poll"
+      ],
+      "expected": [
+        true,
+        false,
+        "health-A/v1"
+      ]
+    },
+    {
+      "id": "CAP-46-CS-04",
+      "operations": [
+        "enqueue-0",
+        "enqueue-0",
+        "poll",
+        "enqueue-0"
+      ],
+      "expected": [
+        true,
+        false,
+        "health-A/v1",
+        true
+      ]
+    }
   ]
 }

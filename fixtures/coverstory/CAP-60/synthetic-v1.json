@@ -7,7 +7,12 @@
   "expected_committed_version": 5,
   "barrier_timeout_seconds": 5,
   "same_key_repetitions": 10,
-  "failure_injection_points": ["domain_effect", "audit_event", "journey_version", "step_event"],
+  "failure_injection_points": [
+    "domain_effect",
+    "audit_event",
+    "journey_version",
+    "step_event"
+  ],
   "consumer_data": false,
   "payment_or_policy_effects": false
 }

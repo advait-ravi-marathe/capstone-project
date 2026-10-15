@@ -1,0 +1,15 @@
+{
+  "contract": "CAP-174",
+  "classification": "INSTRUCTOR_ONLY_SYNTHETIC",
+  "fixture": "fixtures/coverstory/CAP-174/synthetic-v1.json",
+  "fixture_sha256": "2110ed46b271a56af4d742e3ea1a6a17ee12ff1fcfebbca4f1db15a28ee6eac9",
+  "instructor_command": "mvn -Dtest=CAP174InstructorInfrastructureTest test",
+  "learner_command": "mvn -Plearner-tests -Dtest=CAP174AcceptanceTest test",
+  "instructor_tests": 5,
+  "learner_acceptance_methods": 6,
+  "learner_logic_implemented": false,
+  "persisted_snapshot_or_revision_service": false,
+  "actual_customer_data_or_submission": false,
+  "timebox_rehearsal": "NOT_RUN",
+  "source_commit": "42485449659a756442eba0d8351ecac15f455a2c"
+}

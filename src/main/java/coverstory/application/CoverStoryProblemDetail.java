@@ -21,6 +21,7 @@ public record CoverStoryProblemDetail(
 
     public ProblemDetail toProblemDetail() {
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(status, message);
+        detail.setType(URI.create("about:blank"));
         detail.setTitle(status.getReasonPhrase());
         // A request path can contain an owner/resource identifier. A constant
         // instance prevents 404 responses from revealing whether it existed.

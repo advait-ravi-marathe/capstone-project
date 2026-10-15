@@ -1,7 +1,7 @@
 package coverstory.application;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
 import org.junit.jupiter.api.Test;
 
@@ -44,11 +44,11 @@ class CAP60InstructorInfrastructureTest {
                     UUID journey = UUID.randomUUID(); seed(pg, journey);
                     CountDownLatch ready = new CountDownLatch(2), release = new CountDownLatch(1);
                     byte[] key = filled((byte) (i+1)), payload = filled((byte) (i+21));
-                    Future<Outcome> a = pool.submit(() -> command(pg, journey, key, payload, 4, ready, release, 1));
-                    Future<Outcome> b = pool.submit(() -> command(pg, journey, key, payload, 4, ready, release, 2));
+                    Future<CAP60InstructorCommandAdapter.Outcome> a = pool.submit(() -> CAP60InstructorCommandAdapter.advance(pg, journey, key, payload, 4, ready, release, 1));
+                    Future<CAP60InstructorCommandAdapter.Outcome> b = pool.submit(() -> CAP60InstructorCommandAdapter.advance(pg, journey, key, payload, 4, ready, release, 2));
                     assertTrue(ready.await(5, TimeUnit.SECONDS), "both PostgreSQL clients must reach the barrier");
                     release.countDown();
-                    Outcome first = a.get(5, TimeUnit.SECONDS), second = b.get(5, TimeUnit.SECONDS);
+                    CAP60InstructorCommandAdapter.Outcome first = a.get(5, TimeUnit.SECONDS), second = b.get(5, TimeUnit.SECONDS);
                     assertEquals(1, List.of(first,second).stream().filter(o->!o.replay()&&o.status()==201).count());
                     assertEquals(1, List.of(first,second).stream().filter(o->o.replay()&&o.status()==201).count());
                     try (Connection c=pg.getPostgresDatabase().getConnection()) {
@@ -67,10 +67,10 @@ class CAP60InstructorInfrastructureTest {
             install(pg);UUID journey=UUID.randomUUID();seed(pg,journey);ExecutorService pool=Executors.newFixedThreadPool(2);
             try{
                 CountDownLatch ready=new CountDownLatch(2),release=new CountDownLatch(1);
-                Future<Outcome> a=pool.submit(()->command(pg,journey,filled((byte)51),filled((byte)61),4,ready,release,1));
-                Future<Outcome> b=pool.submit(()->command(pg,journey,filled((byte)52),filled((byte)62),4,ready,release,2));
+                Future<CAP60InstructorCommandAdapter.Outcome> a=pool.submit(()->CAP60InstructorCommandAdapter.advance(pg,journey,filled((byte)51),filled((byte)61),4,ready,release,1));
+                Future<CAP60InstructorCommandAdapter.Outcome> b=pool.submit(()->CAP60InstructorCommandAdapter.advance(pg,journey,filled((byte)52),filled((byte)62),4,ready,release,2));
                 assertTrue(ready.await(5,TimeUnit.SECONDS));release.countDown();
-                List<Outcome> results=List.of(a.get(5,TimeUnit.SECONDS),b.get(5,TimeUnit.SECONDS));
+                List<CAP60InstructorCommandAdapter.Outcome> results=List.of(a.get(5,TimeUnit.SECONDS),b.get(5,TimeUnit.SECONDS));
                 assertEquals(1,results.stream().filter(o->o.status()==201).count());
                 assertEquals(1,results.stream().filter(o->o.status()==409).count());
                 try(Connection c=pg.getPostgresDatabase().getConnection()){
@@ -129,6 +129,43 @@ class CAP60InstructorInfrastructureTest {
         }
     }
 
+    @Test void changedPayloadConflictsAndLateTelemetryCannotAdvanceAuthoritativeJourney() throws Exception {
+        try (EmbeddedPostgres pg = EmbeddedPostgres.builder().start(); Connection c = pg.getPostgresDatabase().getConnection()) {
+            install(pg); seed(pg, JOURNEY);
+            CountDownLatch ready = new CountDownLatch(1), release = new CountDownLatch(1);
+            release.countDown();
+            var accepted = CAP60InstructorCommandAdapter.advance(pg, JOURNEY, filled((byte) 71), filled((byte) 81), 4, ready, release, 1);
+            assertEquals(201, accepted.status());
+            CountDownLatch ready2 = new CountDownLatch(1), release2 = new CountDownLatch(1); release2.countDown();
+            var conflict = CAP60InstructorCommandAdapter.advance(pg, JOURNEY, filled((byte) 71), filled((byte) 82), 4, ready2, release2, 2);
+            assertEquals(409, conflict.status()); assertFalse(conflict.replay());
+            long before = scalarLong(c, "SELECT version FROM cap60_harness.journey WHERE journey_id='" + JOURNEY + "'");
+            assertEquals(5, before);
+            execute(c, "INSERT INTO cap60_harness.analytics_event VALUES ('60000000-0000-4000-8000-000000000031','health_discovery',now())");
+            assertEquals(before, scalarLong(c, "SELECT version FROM cap60_harness.journey WHERE journey_id='" + JOURNEY + "'"));
+            assertEquals(1, scalarInt(c, "SELECT count(*) FROM cap60_harness.analytics_event"));
+        }
+    }
+
+    @Test void aWorkerThatNeverReachesTheBarrierFailsWithinBoundedTimeout() throws Exception {
+        try (EmbeddedPostgres pg = EmbeddedPostgres.builder().start()) {
+            install(pg); seed(pg, JOURNEY);
+            ExecutorService pool = Executors.newSingleThreadExecutor();
+            try {
+                CountDownLatch ready = new CountDownLatch(1), release = new CountDownLatch(1);
+                Future<CAP60InstructorCommandAdapter.Outcome> worker = pool.submit(() -> CAP60InstructorCommandAdapter.advance(
+                        pg, JOURNEY, filled((byte) 91), filled((byte) 92), 4, ready, release, 1));
+                assertTrue(ready.await(2, TimeUnit.SECONDS));
+                ExecutionException error = assertThrows(ExecutionException.class, () -> worker.get(6, TimeUnit.SECONDS));
+                assertInstanceOf(SQLTimeoutException.class, error.getCause());
+                try (Connection c = pg.getPostgresDatabase().getConnection()) {
+                    assertEquals(4, scalarLong(c, "SELECT version FROM cap60_harness.journey WHERE journey_id='" + JOURNEY + "'"));
+                    assertEquals(0, scalarInt(c, "SELECT count(*) FROM cap60_harness.domain_effect"));
+                }
+            } finally { pool.shutdownNow(); }
+        }
+    }
+
     @Test void compositeOwnerReferenceRejectsForeignOwnerBeforeAnyEffectExists() throws Exception {
         try(EmbeddedPostgres pg=EmbeddedPostgres.builder().start();Connection c=pg.getPostgresDatabase().getConnection()){
             install(pg);seed(pg,JOURNEY);
@@ -138,29 +175,6 @@ class CAP60InstructorInfrastructureTest {
         }
     }
 
-    private static Outcome command(EmbeddedPostgres pg, UUID journey, byte[] key, byte[] payload, long expectedVersion, CountDownLatch ready, CountDownLatch release, int worker) throws Exception {
-        try(Connection c=pg.getPostgresDatabase().getConnection()){
-            c.setAutoCommit(false); ready.countDown();
-            if(!release.await(5,TimeUnit.SECONDS))throw new TimeoutException("barrier release exceeded five seconds");
-            int inserted;
-            try(PreparedStatement p=c.prepareStatement("INSERT INTO cap60_harness.command_key VALUES (?, ?, ?, 201) ON CONFLICT (journey_id,key_hash) DO NOTHING")){
-                p.setObject(1,journey);p.setBytes(2,key);p.setBytes(3,payload);inserted=p.executeUpdate();
-            }
-            if(inserted==0){
-                try(PreparedStatement p=c.prepareStatement("SELECT payload_hash,stored_status FROM cap60_harness.command_key WHERE journey_id=? AND key_hash=?")){
-                    p.setObject(1,journey);p.setBytes(2,key);try(ResultSet r=p.executeQuery()){if(!r.next())throw new SQLException("idempotency row disappeared");if(!Arrays.equals(payload,r.getBytes(1))){c.rollback();return new Outcome(409,false);}int status=r.getInt(2);c.commit();return new Outcome(status,true);}
-                }
-            }
-            int changed;
-            try(PreparedStatement p=c.prepareStatement("UPDATE cap60_harness.journey SET version=version+1,current_step='COMPARE' WHERE journey_id=? AND version=?")){p.setObject(1,journey);p.setLong(2,expectedVersion);changed=p.executeUpdate();}
-            if(changed==0){try(PreparedStatement p=c.prepareStatement("UPDATE cap60_harness.command_key SET stored_status=409 WHERE journey_id=? AND key_hash=?")){p.setObject(1,journey);p.setBytes(2,key);p.executeUpdate();}c.commit();return new Outcome(409,false);}
-            UUID causation=UUID.nameUUIDFromBytes((journey+":"+worker).getBytes());
-            execute(c,"INSERT INTO cap60_harness.domain_effect VALUES (?, ?, ?, 5, ?)",UUID.randomUUID(),journey,OWNER,causation);
-            execute(c,"INSERT INTO cap60_harness.audit_event VALUES (?, ?, ?, 'ADVANCED')",UUID.randomUUID(),journey,causation);
-            execute(c,"INSERT INTO cap60_harness.step_event VALUES (?, ?, 5, ?, 'ADVANCED')",UUID.randomUUID(),journey,causation);
-            c.commit();return new Outcome(201,false);
-        }
-    }
     private static void install(EmbeddedPostgres pg)throws Exception{try(Connection c=pg.getPostgresDatabase().getConnection();Statement s=c.createStatement()){s.execute(Files.readString(DDL));}}
     private static void seed(EmbeddedPostgres pg,UUID journey)throws Exception{try(Connection c=pg.getPostgresDatabase().getConnection();PreparedStatement p=c.prepareStatement("INSERT INTO cap60_harness.journey VALUES (?, ?, 4, 'QUOTE_REVIEW')")){p.setObject(1,journey);p.setObject(2,OWNER);p.executeUpdate();}}
     private static void failIf(int writes,int failAfter)throws InjectedFailure{if(writes==failAfter)throw new InjectedFailure();}
@@ -168,6 +182,5 @@ class CAP60InstructorInfrastructureTest {
     private static byte[] filled(byte value){byte[] b=new byte[32];Arrays.fill(b,value);return b;}
     private static int scalarInt(Connection c,String sql)throws Exception{try(Statement s=c.createStatement();ResultSet r=s.executeQuery(sql)){assertTrue(r.next());return r.getInt(1);}}
     private static long scalarLong(Connection c,String sql)throws Exception{try(Statement s=c.createStatement();ResultSet r=s.executeQuery(sql)){assertTrue(r.next());return r.getLong(1);}}
-    private record Outcome(int status,boolean replay){}
     private static final class InjectedFailure extends SQLException { private InjectedFailure(){super("synthetic write failure injected");} }
 }

@@ -14,6 +14,10 @@
   "setup_smoke": "PASS: test compilation and three independent instructor tests",
   "learner_behavior": "NOT_IMPLEMENTED: explicit learner TODO retained; six acceptance methods report expected TODO errors",
   "integration_check": "BLOCKED: request-level access control cannot be exercised without the missing auth and module route adapters",
-  "known_mutants_rejected": ["applicant role permits foreign draft", "support role ignores assignment", "assistant role permits mutation"],
+  "known_mutants_rejected": [
+    "applicant role permits foreign draft",
+    "support role ignores assignment",
+    "assistant role permits mutation"
+  ],
   "production_authentication_or_authorization_claimed": false
 }

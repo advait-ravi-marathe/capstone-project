@@ -2,36 +2,92 @@
   "classification": "SYNTHETIC_OFFLINE_CONTRACT",
   "actual_provider_call": false,
   "endpoint": "GET /api/v1/payment-attempts/{attemptId}",
-  "success_fields": ["attemptId", "state", "updatedAt", "requestId", "nextAction"],
-  "forbidden_response_fields": ["operationReference", "providerReference", "providerPayload", "secret"],
+  "success_fields": [
+    "attemptId",
+    "state",
+    "updatedAt",
+    "requestId",
+    "nextAction"
+  ],
+  "forbidden_response_fields": [
+    "operationReference",
+    "providerReference",
+    "providerPayload",
+    "secret"
+  ],
   "cases": [
     {
       "id": "CAP-74-CS-01",
       "principal": "00000000-0000-4000-8000-00000000000a",
-      "attempt": {"attemptId":"10000000-0000-4000-8000-000000000001","ownerId":"00000000-0000-4000-8000-00000000000a","state":"PENDING","updatedAt":"2026-11-15T10:15:30Z","requestId":"req-synth-001","operationReference":"op-private-A"},
-      "expected": {"status":200,"state":"PENDING","nextAction":"NONE"},
+      "attempt": {
+        "attemptId": "10000000-0000-4000-8000-000000000001",
+        "ownerId": "00000000-0000-4000-8000-00000000000a",
+        "state": "PENDING",
+        "updatedAt": "2026-11-15T10:15:30Z",
+        "requestId": "req-synth-001",
+        "operationReference": "op-private-A"
+      },
+      "expected": {
+        "status": 200,
+        "state": "PENDING",
+        "nextAction": "NONE"
+      },
       "notes": "Payment remains pending; this does not start or resume onboarding and is not active cover."
     },
     {
       "id": "CAP-74-CS-02",
       "principal": "00000000-0000-4000-8000-00000000000a",
-      "attempt": {"attemptId":"10000000-0000-4000-8000-000000000002","ownerId":"00000000-0000-4000-8000-00000000000a","state":"UNKNOWN","updatedAt":"2026-11-15T10:16:00Z","requestId":"req-synth-002","operationReference":"op-private-unknown-A"},
-      "expected": {"status":200,"state":"UNKNOWN","nextAction":"RECONCILE"},
+      "attempt": {
+        "attemptId": "10000000-0000-4000-8000-000000000002",
+        "ownerId": "00000000-0000-4000-8000-00000000000a",
+        "state": "UNKNOWN",
+        "updatedAt": "2026-11-15T10:16:00Z",
+        "requestId": "req-synth-002",
+        "operationReference": "op-private-unknown-A"
+      },
+      "expected": {
+        "status": 200,
+        "state": "UNKNOWN",
+        "nextAction": "RECONCILE"
+      },
       "notes": "Retain the same operation reference for reconciliation; do not create or charge a new attempt."
     },
     {
       "id": "CAP-74-CS-03",
       "principal": "00000000-0000-4000-8000-00000000000a",
-      "foreign_attempt": {"attemptId":"10000000-0000-4000-8000-000000000003","ownerId":"00000000-0000-4000-8000-00000000000b","state":"SUCCEEDED","updatedAt":"2026-11-15T10:17:00Z","requestId":"req-synth-foreign","operationReference":"op-private-B"},
+      "foreign_attempt": {
+        "attemptId": "10000000-0000-4000-8000-000000000003",
+        "ownerId": "00000000-0000-4000-8000-00000000000b",
+        "state": "SUCCEEDED",
+        "updatedAt": "2026-11-15T10:17:00Z",
+        "requestId": "req-synth-foreign",
+        "operationReference": "op-private-B"
+      },
       "missing_attempt_id": "10000000-0000-4000-8000-000000000004",
-      "expected": {"status":404,"errorCode":"PAYMENT_ATTEMPT_NOT_FOUND"},
+      "expected": {
+        "status": 404,
+        "errorCode": "PAYMENT_ATTEMPT_NOT_FOUND"
+      },
       "notes": "Foreign and absent identifiers must have identical response status and body."
     },
     {
       "id": "CAP-74-CS-04",
-      "anonymous_expected": {"status":401,"errorCode":"UNAUTHORIZED"},
-      "impossible_state_attempt": {"attemptId":"10000000-0000-4000-8000-000000000005","ownerId":"00000000-0000-4000-8000-00000000000a","state":"CAPTURED_AND_ISSUED","updatedAt":"2026-11-15T10:18:00Z","requestId":"req-synth-005","operationReference":"op-private-invalid"},
-      "invalid_state_expected": {"status":500,"errorCode":"PAYMENT_STATE_INVALID"},
+      "anonymous_expected": {
+        "status": 401,
+        "errorCode": "UNAUTHORIZED"
+      },
+      "impossible_state_attempt": {
+        "attemptId": "10000000-0000-4000-8000-000000000005",
+        "ownerId": "00000000-0000-4000-8000-00000000000a",
+        "state": "CAPTURED_AND_ISSUED",
+        "updatedAt": "2026-11-15T10:18:00Z",
+        "requestId": "req-synth-005",
+        "operationReference": "op-private-invalid"
+      },
+      "invalid_state_expected": {
+        "status": 500,
+        "errorCode": "PAYMENT_STATE_INVALID"
+      },
       "notes": "Do not convert an unrecognized internal state into a misleading 200."
     }
   ]

@@ -3,7 +3,7 @@
 **Date:** 2026-10-30 · **Phase:** 1 · **Primary ID:** `CAP-60` · **Daily minutes:** 150 maximum
 **Saved contract source:** [`coverstory-final-saved-contracts-594-days.json`](../../../source-inputs/2026-10-14/curriculum/coverstory-final-saved-contracts-594-days.json) · description SHA-256 `142636990a8cfc2d7a5c2524d9c4f3e720e31c353c559dabb145ca4bc6119d4b`
 
-This guide carries the saved card contract as source evidence. It does not claim that its planned paths exist, the instructor harness is ready, the timebox was rehearsed, or learner work passed. A linked component shares this day and adds zero minutes.
+This guide carries the saved card contract as source evidence. The instructor reference adapter and race harness now run; planned paths remain specifications, the timebox is unmeasured, and learner work has not passed. A linked component shares this day and adds zero minutes.
 
 ## Practical task from the saved contract
 

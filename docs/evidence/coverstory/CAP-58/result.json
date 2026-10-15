@@ -1,13 +1,19 @@
 {
   "assignment": "CAP-58",
   "status": "PARTIAL_SETUP_PASS",
-  "recorded_at_utc": "2026-10-14",
+  "recorded_at_utc": "2026-10-15",
   "fixture_sha256": "03595c1783944271f9a214424eebc366527462b63c86a2078d382fed28110b64",
-  "instructor_oracle": "PASS: 4 tests",
+  "instructor_oracle": "PASS: 8 tests across independent oracle and Spring MVC integration",
   "learner_validator": "NOT_COMPLETE_TODO_REMAINS",
-  "ingestion_endpoint": "DEFERRED",
-  "durable_event_id_idempotency": "DEFERRED",
-  "browser_retry_queue": "DEFERRED",
+  "ingestion_endpoint": "Spring POST /api/v1/analytics/events boundary passes anonymous, byte-cap, receipt status and safe validation checks; default adapter fails closed until production validator/storage are supplied",
+  "durable_event_id_idempotency": "TEST_ONLY_POSTGRES_ORACLE_PASS; production Analytics persistence remains deferred",
+  "browser_retry_queue": "PASS: Chromium verified 20-event memory-only cap, three attempts, dropping and checkout independence",
   "consumer_data_used": false,
-  "mastery_claim": false
+  "mastery_claim": false,
+  "postgres_receipt_oracle": "PASS: 3 embedded PostgreSQL acceptance tests over actual Spring MVC; exact 8192-byte/10-event request accepted, 11-event request rejected atomically, replay/conflict, allowlisted columns, UTF-8/duration limits, sensitive rejection, and anonymous denial",
+  "remaining_limitations": [
+    "production Analytics validation and receipt adapter absent",
+    "learner CAP58Seam remains TODO",
+    "journey authorization integration and retention remain deferred"
+  ]
 }

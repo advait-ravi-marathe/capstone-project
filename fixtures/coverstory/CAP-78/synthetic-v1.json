@@ -35,14 +35,41 @@
     "analytics_failure_affects_checkout": false
   },
   "cases": [
-    {"id":"CAP-78-CS-01","kind":"valid_checkout"},
-    {"id":"CAP-78-CS-02","kind":"exact_retry"},
-    {"id":"CAP-78-CS-03","kind":"failure_after_each_write"},
-    {"id":"CAP-78-CS-04","kind":"changed_payload_with_same_key"},
-    {"id":"CAP-78-CS-04a","kind":"source_illustration_withdrawn_before_checkout"},
-    {"id":"CAP-78-CS-04b","kind":"stale_journey_version"},
-    {"id":"CAP-78-CS-05","kind":"foreign_owner_uuid_and_validation"},
-    {"id":"CAP-78-CS-05a","kind":"analytics_unavailable"},
-    {"id":"CAP-78-CS-06","kind":"protected_marker_absent_from_business_records"}
+    {
+      "id": "CAP-78-CS-01",
+      "kind": "valid_checkout"
+    },
+    {
+      "id": "CAP-78-CS-02",
+      "kind": "exact_retry"
+    },
+    {
+      "id": "CAP-78-CS-03",
+      "kind": "failure_after_each_write"
+    },
+    {
+      "id": "CAP-78-CS-04",
+      "kind": "changed_payload_with_same_key"
+    },
+    {
+      "id": "CAP-78-CS-04a",
+      "kind": "source_illustration_withdrawn_before_checkout"
+    },
+    {
+      "id": "CAP-78-CS-04b",
+      "kind": "stale_journey_version"
+    },
+    {
+      "id": "CAP-78-CS-05",
+      "kind": "foreign_owner_uuid_and_validation"
+    },
+    {
+      "id": "CAP-78-CS-05a",
+      "kind": "analytics_unavailable"
+    },
+    {
+      "id": "CAP-78-CS-06",
+      "kind": "protected_marker_absent_from_business_records"
+    }
   ]
 }

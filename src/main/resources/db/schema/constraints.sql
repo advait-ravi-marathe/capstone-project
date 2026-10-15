@@ -40,6 +40,53 @@ CREATE TABLE IF NOT EXISTS payments.payment_intent (
     UNIQUE (owner_id, idempotency_key_hash)
 );
 
+-- Local mock confirmation replay exercises payment/onboarding atomicity only.
+-- No external payment provider or insurer dispatch is connected to these rows.
+CREATE TABLE IF NOT EXISTS payments.mock_confirmation_feed (
+    event_id TEXT NOT NULL,
+    owner_id UUID NOT NULL,
+    sequence INTEGER NOT NULL CHECK (sequence > 0),
+    application_id UUID NOT NULL,
+    quote_id TEXT NOT NULL,
+    amount_minor BIGINT NOT NULL CHECK (amount_minor > 0),
+    currency CHAR(3) NOT NULL CHECK (currency = 'INR'),
+    confirmed BOOLEAN NOT NULL,
+    PRIMARY KEY (owner_id, event_id),
+    UNIQUE (owner_id, sequence)
+);
+CREATE TABLE IF NOT EXISTS payments.payment_checkpoint (
+    owner_id UUID PRIMARY KEY,
+    last_sequence INTEGER NOT NULL CHECK (last_sequence >= 0)
+);
+CREATE TABLE IF NOT EXISTS payments.mock_capture_effect (
+    event_id TEXT PRIMARY KEY,
+    owner_id UUID NOT NULL,
+    sequence INTEGER NOT NULL,
+    application_id UUID NOT NULL,
+    quote_id TEXT NOT NULL,
+    amount_minor BIGINT NOT NULL CHECK (amount_minor > 0),
+    currency CHAR(3) NOT NULL CHECK (currency = 'INR'),
+    UNIQUE (owner_id, sequence),
+    FOREIGN KEY (owner_id, sequence) REFERENCES payments.mock_confirmation_feed(owner_id, sequence)
+);
+
+CREATE TABLE IF NOT EXISTS application.onboarding_case (
+    application_id UUID PRIMARY KEY,
+    owner_id UUID NOT NULL,
+    quote_id TEXT NOT NULL,
+    state TEXT NOT NULL CHECK (state IN ('AWAITING_PAYMENT', 'ONBOARDING')),
+    payment_event_id TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS application.onboarding_timeline (
+    timeline_id UUID PRIMARY KEY,
+    application_id UUID NOT NULL REFERENCES application.onboarding_case(application_id),
+    owner_id UUID NOT NULL,
+    payment_event_id TEXT NOT NULL,
+    from_state TEXT NOT NULL CHECK (from_state = 'AWAITING_PAYMENT'),
+    to_state TEXT NOT NULL CHECK (to_state = 'ONBOARDING'),
+    UNIQUE (application_id, payment_event_id)
+);
+
 CREATE TABLE IF NOT EXISTS payments.payment_journal (
     journal_id UUID PRIMARY KEY,
     payment_id UUID NOT NULL REFERENCES payments.payment_intent(payment_id),
@@ -96,3 +143,24 @@ CREATE TABLE IF NOT EXISTS analytics.behavior_event (
     session_scope_hash BYTEA NOT NULL,
     occurred_at TIMESTAMPTZ NOT NULL
 );
+
+-- Minimal screen telemetry receipts are best effort and are not business audit or journey state.
+-- Owner/session identifiers are keyed hashes. Never add raw payload, PII, health data, URL, token,
+-- client timestamps, or unbounded client fields to this table.
+CREATE TABLE IF NOT EXISTS analytics.minimal_event_receipt (
+    owner_hash BYTEA NOT NULL CHECK (octet_length(owner_hash) = 32),
+    event_id UUID NOT NULL,
+    payload_hash BYTEA NOT NULL CHECK (octet_length(payload_hash) = 32),
+    session_scope_hash BYTEA NOT NULL CHECK (octet_length(session_scope_hash) = 32),
+    event_type TEXT NOT NULL CHECK (event_type IN ('PAGE_VIEW', 'CONTROL_CLICK')),
+    page_id TEXT NOT NULL CHECK (page_id IN ('health_discovery', 'compare', 'quote_review', 'home', 'checkout', 'onboarding', 'final_review')),
+    step_code TEXT CHECK (step_code IS NULL OR step_code IN ('DISCOVER', 'COMPARE', 'QUOTE_REVIEW', 'ONBOARDING', 'FINAL_REVIEW')),
+    target_id TEXT CHECK (target_id IS NULL OR target_id IN ('compare_plan', 'save_draft')),
+    duration_ms INTEGER CHECK (duration_ms BETWEEN 0 AND 300000),
+    server_received_at TIMESTAMPTZ NOT NULL,
+    PRIMARY KEY (owner_hash, event_id),
+    CHECK ((event_type = 'PAGE_VIEW' AND target_id IS NULL) OR
+           (event_type = 'CONTROL_CLICK' AND target_id IS NOT NULL))
+);
+CREATE INDEX IF NOT EXISTS minimal_event_receipt_received_at_idx
+    ON analytics.minimal_event_receipt(owner_hash, server_received_at DESC);

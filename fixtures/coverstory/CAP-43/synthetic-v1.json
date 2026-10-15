@@ -16,10 +16,44 @@
     }
   },
   "cases": [
-    {"id":"CAP-43-CS-01","state":"EMPTY","hash":"hash-p","classify":"ACCEPT","accept":"ACCEPT","sizeAfter":1},
-    {"id":"CAP-43-CS-02","state":"SAME_KEY_SAME_HASH","hash":"hash-p","classify":"DUPLICATE","accept":"DUPLICATE","storedHashAfter":"hash-p"},
-    {"id":"CAP-43-CS-03","state":"SAME_KEY_CHANGED_HASH","hash":"hash-q","classify":"CONFLICT","accept":"CONFLICT","storedHashAfter":"hash-p"},
-    {"id":"CAP-43-CS-04","state":"OTHER_EDITOR_SAME_SOURCE_VERSION","hash":"hash-p","classify":"ACCEPT","accept":"ACCEPT","sizeAfter":2},
-    {"id":"CAP-43-CS-05","state":"NULL_BLANK_OR_SPACED_HASH","invalid":"INVALID","spacedHash":" hash-p ","spacedHashDecision":"CONFLICT"}
+    {
+      "id": "CAP-43-CS-01",
+      "state": "EMPTY",
+      "hash": "hash-p",
+      "classify": "ACCEPT",
+      "accept": "ACCEPT",
+      "sizeAfter": 1
+    },
+    {
+      "id": "CAP-43-CS-02",
+      "state": "SAME_KEY_SAME_HASH",
+      "hash": "hash-p",
+      "classify": "DUPLICATE",
+      "accept": "DUPLICATE",
+      "storedHashAfter": "hash-p"
+    },
+    {
+      "id": "CAP-43-CS-03",
+      "state": "SAME_KEY_CHANGED_HASH",
+      "hash": "hash-q",
+      "classify": "CONFLICT",
+      "accept": "CONFLICT",
+      "storedHashAfter": "hash-p"
+    },
+    {
+      "id": "CAP-43-CS-04",
+      "state": "OTHER_EDITOR_SAME_SOURCE_VERSION",
+      "hash": "hash-p",
+      "classify": "ACCEPT",
+      "accept": "ACCEPT",
+      "sizeAfter": 2
+    },
+    {
+      "id": "CAP-43-CS-05",
+      "state": "NULL_BLANK_OR_SPACED_HASH",
+      "invalid": "INVALID",
+      "spacedHash": " hash-p ",
+      "spacedHashDecision": "CONFLICT"
+    }
   ]
 }

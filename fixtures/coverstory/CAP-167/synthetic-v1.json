@@ -4,28 +4,94 @@
   "max_observations": 8,
   "observations": {
     "interleaved_partitions": [
-      {"partition":"p0","offset":0,"productId":"health-A","version":1},
-      {"partition":"p1","offset":0,"productId":"health-B","version":1},
-      {"partition":"p0","offset":1,"productId":"health-A","version":2},
-      {"partition":"p1","offset":1,"productId":"health-B","version":2}
+      {
+        "partition": "p0",
+        "offset": 0,
+        "productId": "health-A",
+        "version": 1
+      },
+      {
+        "partition": "p1",
+        "offset": 0,
+        "productId": "health-B",
+        "version": 1
+      },
+      {
+        "partition": "p0",
+        "offset": 1,
+        "productId": "health-A",
+        "version": 2
+      },
+      {
+        "partition": "p1",
+        "offset": 1,
+        "productId": "health-B",
+        "version": 2
+      }
     ],
     "product_gap": [
-      {"partition":"p0","offset":7,"productId":"health-A","version":1},
-      {"partition":"p1","offset":2,"productId":"health-A","version":3}
+      {
+        "partition": "p0",
+        "offset": 7,
+        "productId": "health-A",
+        "version": 1
+      },
+      {
+        "partition": "p1",
+        "offset": 2,
+        "productId": "health-A",
+        "version": 3
+      }
     ],
     "backwards_partition_offset": [
-      {"partition":"p0","offset":2,"productId":"health-A","version":1},
-      {"partition":"p0","offset":1,"productId":"health-A","version":2}
+      {
+        "partition": "p0",
+        "offset": 2,
+        "productId": "health-A",
+        "version": 1
+      },
+      {
+        "partition": "p0",
+        "offset": 1,
+        "productId": "health-A",
+        "version": 2
+      }
     ],
     "independent_products": [
-      {"partition":"p0","offset":0,"productId":"health-A","version":1},
-      {"partition":"p0","offset":1,"productId":"health-B","version":1}
+      {
+        "partition": "p0",
+        "offset": 0,
+        "productId": "health-A",
+        "version": 1
+      },
+      {
+        "partition": "p0",
+        "offset": 1,
+        "productId": "health-B",
+        "version": 1
+      }
     ]
   },
   "expected": {
     "interleaved_partitions": [],
-    "product_gap": [{"code":"PRODUCT_VERSION_GAP","partition":"p1","productId":"health-A","expected":2,"actual":3}],
-    "backwards_partition_offset": [{"code":"PARTITION_OFFSET_BACKWARDS","partition":"p0","productId":"health-A","expected":3,"actual":1}],
+    "product_gap": [
+      {
+        "code": "PRODUCT_VERSION_GAP",
+        "partition": "p1",
+        "productId": "health-A",
+        "expected": 2,
+        "actual": 3
+      }
+    ],
+    "backwards_partition_offset": [
+      {
+        "code": "PARTITION_OFFSET_BACKWARDS",
+        "partition": "p0",
+        "productId": "health-A",
+        "expected": 3,
+        "actual": 1
+      }
+    ],
     "independent_products": []
   },
   "money_effects": false,

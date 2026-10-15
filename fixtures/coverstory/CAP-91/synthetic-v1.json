@@ -1,14 +1,72 @@
 {
   "classification": "SYNTHETIC_OFFLINE_CONTRACT",
   "actual_model_call": false,
-  "manual_draft": {"pin": "400001", "disclosureText": "synthetic draft stays unchanged"},
+  "manual_draft": {
+    "pin": "400001",
+    "disclosureText": "synthetic draft stays unchanged"
+  },
   "permitted_evidence": [
-    {"sourceId": "guide-health-v1", "version": "1", "text": "For this example, enter the six digit PIN on the proposal."}
+    {
+      "sourceId": "guide-health-v1",
+      "version": "1",
+      "text": "For this example, enter the six digit PIN on the proposal."
+    }
   ],
   "cases": [
-    {"id": "CAP-91-CS-01", "kind": "success", "answer": "The proposal uses the six digit PIN.", "suggestedPin": null, "citations": [{"sourceId": "guide-health-v1", "version": "1", "start": 28, "end": 41}], "usage": {"inputTokens": 120, "outputTokens": 20}, "expected": {"outcome": "SUGGESTED", "calls": 1, "writes": 0}},
-    {"id": "CAP-91-CS-02", "kind": "timeout", "expected": {"outcome": "TIMEOUT", "calls": 1, "writes": 0}},
-    {"id": "CAP-91-CS-03", "kind": "missing_citations", "answer": "Enter the PIN.", "citations": null, "expected": {"outcome": "MALFORMED", "answer": null, "writes": 0}},
-    {"id": "CAP-91-CS-04", "kind": "different_pin", "suggestedPin": "560001", "expected": {"outcome": "SUGGESTED", "manualPin": "400001", "suggestionConfirmed": false, "requotes": 0, "writes": 0}}
+    {
+      "id": "CAP-91-CS-01",
+      "kind": "success",
+      "answer": "The proposal uses the six digit PIN.",
+      "suggestedPin": null,
+      "citations": [
+        {
+          "sourceId": "guide-health-v1",
+          "version": "1",
+          "start": 28,
+          "end": 41
+        }
+      ],
+      "usage": {
+        "inputTokens": 120,
+        "outputTokens": 20
+      },
+      "expected": {
+        "outcome": "SUGGESTED",
+        "calls": 1,
+        "writes": 0
+      }
+    },
+    {
+      "id": "CAP-91-CS-02",
+      "kind": "timeout",
+      "expected": {
+        "outcome": "TIMEOUT",
+        "calls": 1,
+        "writes": 0
+      }
+    },
+    {
+      "id": "CAP-91-CS-03",
+      "kind": "missing_citations",
+      "answer": "Enter the PIN.",
+      "citations": null,
+      "expected": {
+        "outcome": "MALFORMED",
+        "answer": null,
+        "writes": 0
+      }
+    },
+    {
+      "id": "CAP-91-CS-04",
+      "kind": "different_pin",
+      "suggestedPin": "560001",
+      "expected": {
+        "outcome": "SUGGESTED",
+        "manualPin": "400001",
+        "suggestionConfirmed": false,
+        "requotes": 0,
+        "writes": 0
+      }
+    }
   ]
 }

@@ -46,6 +46,7 @@ def main() -> dict:
     cards_by_id = {card['id']: card for card in cards}
     source_curriculum_sha = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
     verified_day_readiness = {}
+    partial_day_readiness = {}
     for readiness_file in DAY_READINESS_FILES:
       if readiness_file.is_file():
         report = json.loads(readiness_file.read_text())
@@ -68,6 +69,31 @@ def main() -> dict:
                 )
                 if evidence_is_consistent and day_record.get('instructor_scaffold_readiness') == 'READY':
                     verified_day_readiness[day_number] = {**day_record, '_readiness_path': readiness_file.relative_to(ROOT).as_posix()}
+                elif evidence_is_consistent and day_record.get('instructor_scaffold_readiness') == 'PARTIAL':
+                    verified_day_readiness.pop(day_number, None)
+                    partial_day_readiness[day_number] = {**day_record, '_readiness_path': readiness_file.relative_to(ROOT).as_posix()}
+    # The chronological readiness reports are the current source of truth;
+    # card receipts can predate added runtime/reset evidence.
+    for day_number in set(verified_day_readiness) | set(partial_day_readiness):
+        verified_day_readiness.pop(day_number, None)
+        partial_day_readiness.pop(day_number, None)
+    for readiness_file in DAY_READINESS_FILES:
+        if not readiness_file.is_file():
+            continue
+        report = json.loads(readiness_file.read_text())
+        if report.get('canonical_curriculum_sha256') != source_curriculum_sha:
+            continue
+        for day_record in report.get('days', []):
+            day_number = day_record.get('day')
+            checks = day_record.get('checks', [])
+            fixtures = day_record.get('fixtures', [])
+            valid = (isinstance(day_number, int) and 1 <= day_number <= 20
+                     and bool(checks) and all(c.get('status') == 'PASS' and c.get('exit_code') == 0 for c in checks)
+                     and all(f.get('exists') is True and isinstance(f.get('sha256'), str) for f in fixtures))
+            if not valid:
+                continue
+            target = verified_day_readiness if day_record.get('instructor_scaffold_readiness') == 'READY' else partial_day_readiness
+            target[day_number] = {**day_record, '_readiness_path': readiness_file.relative_to(ROOT).as_posix()}
     executable = {
         'CAP-40': 'java_selection_identity',
         'CAP-42': 'postgres_catalog_aggregation',
@@ -127,6 +153,9 @@ def main() -> dict:
         'CAP-108': 'java_live_backfill_lane_planning',
         'CAP-166': 'typescript_additive_catalog_envelope_decoder',
         'CAP-167': 'java_bounded_publication_trace_diagnostics',
+        'CAP-100': 'java_onboarding_audit_row_classification',
+        'CAP-173': 'postgres_payment_audit_utc_window',
+        'CAP-174': 'java_exact_proposal_revision_digest',
         'CAP-52': 'spring_catalog_import_adapter',
         'CAP-58': 'java_allowlisted_analytics_batch_validation',
         'CAP-60': 'postgres_transaction_race_invariants',
@@ -136,9 +165,12 @@ def main() -> dict:
         'CAP-168': 'java_safe_quote_review_line_classifier',
         'CAP-73': 'python_dataset_split_integrity',
         'CAP-170': 'java_payment_reconciliation_attempt_identity',
+        'CAP-87': 'java_paid_onboarding_resume_boundary',
+        'CAP-171': 'java_retired_citation_invalidation',
+        'CAP-172': 'java_exact_application_access_decisions',
     }
-    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170'})
+    authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -199,6 +231,9 @@ def main() -> dict:
         'CAP-108': 'src/main/java/coverstory/modules/payments/api/CAP108Seam.java',
         'CAP-166': 'web/src/coverstory/catalog/decodeCatalogEnvelope.ts',
         'CAP-167': 'src/main/java/coverstory/modules/catalog/api/CAP167Seam.java',
+        'CAP-100': 'src/main/java/capstone/coverstory/application/QuarantineInvalidOnboardingEvidenceRows.java',
+        'CAP-173': 'src/main/java/capstone/coverstory/payments/ReconcilePaymentAuditUtcBoundaries.java',
+        'CAP-174': 'src/main/java/capstone/coverstory/application/VerifyExactProposalRevisionDigests.java',
         'CAP-52': 'src/main/java/coverstory/modules/catalog/api/CAP52Seam.java',
         'CAP-58': 'src/main/java/coverstory/modules/analytics/api/CAP58Seam.java',
         'CAP-60': 'src/test/resources/coverstory/CAP-60/schema.sql',
@@ -208,6 +243,9 @@ def main() -> dict:
         'CAP-168': 'src/main/java/capstone/coverstory/shortlist/api/CAP168Seam.java',
         'CAP-73': 'ai/coverstory/cap_73.py',
         'CAP-170': 'src/main/java/capstone/coverstory/payments/ValidatePaymentIdentities.java',
+        'CAP-87': 'src/main/java/capstone/coverstory/application/DemonstratePaidOnboardingAndResume.java',
+        'CAP-171': 'src/main/java/capstone/coverstory/catalog/InvalidateRetiredCitations.java',
+        'CAP-172': 'src/main/java/capstone/coverstory/application/ValidateExactApplicationAccessDecisions.java',
     }
     acceptance_suites = {
         'CAP-40': 'src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java',
@@ -261,6 +299,9 @@ def main() -> dict:
         'CAP-108': 'src/test/java/coverstory/modules/payments/CAP108AcceptanceTest.java',
         'CAP-166': 'web/scripts/catalog-envelope-acceptance.mjs',
         'CAP-167': 'src/test/java/coverstory/modules/catalog/CAP167AcceptanceTest.java',
+        'CAP-100': 'src/test/java/capstone/coverstory/application/CAP100AcceptanceTest.java',
+        'CAP-173': 'src/test/java/coverstory/modules/payments/CAP173AcceptanceTest.java',
+        'CAP-174': 'src/test/java/capstone/coverstory/application/CAP174AcceptanceTest.java',
         'CAP-52': 'src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java',
         'CAP-58': 'src/test/java/coverstory/modules/analytics/CAP58AcceptanceTest.java',
         'CAP-60': 'src/test/java/coverstory/application/CAP60AcceptanceTest.java',
@@ -270,6 +311,9 @@ def main() -> dict:
         'CAP-168': 'src/test/java/capstone/coverstory/shortlist/CAP168Test.java',
         'CAP-73': 'ai/coverstory/tests/test_cap_73.py',
         'CAP-170': 'src/test/java/capstone/coverstory/payments/CAP170Test.java',
+        'CAP-87': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
+        'CAP-171': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
+        'CAP-172': 'src/test/java/capstone/coverstory/Day48To56LearnerAcceptanceTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
     coverage_notes = {
@@ -297,6 +341,7 @@ def main() -> dict:
         'CAP-52': 'MockMvc transport boundary and fake decision port only; trusted-principal authentication adapter and durable idempotency are not wired.',
         'CAP-166': 'Synthetic fixture and compiled learner seam only; decoder remains TODO and React/API/PostgreSQL customer slice is deferred.',
         'CAP-167': 'Bounded offline trace oracle only; learner checker remains TODO and no broker or publication worker is used.',
+        'CAP-173': 'Synthetic PostgreSQL audit-window oracle, actual optional HTTP route and owner-bounded test principal; learner count/reconcile seam remains TODO, no provider or payment operation is used.',
         'CAP-58': 'Independent local schema/privacy oracle only; learner validator remains TODO, and no HTTP ingestion, durable idempotency, storage, journey authorization or browser retry queue is wired.',
         'CAP-60': 'Disposable PostgreSQL harness proves uniqueness, rollback and synthetic two-connection races; it is not connected to an application command or service, and learner race assertions remain TODO.',
         'CAP-169': 'Fixed-clock Retry-After parser oracle covers seconds, HTTP dates, past dates and invalid values; parsing does not authorize a retry, and the learner seam remains TODO.',
@@ -305,6 +350,10 @@ def main() -> dict:
         'CAP-168': 'Independent strict five-line quote-review parser oracle and learner TODO are runnable. The broader authenticated login-return, owned journey SQL, fixed-clock quote validation and SPA/API/PostgreSQL flow remain deferred because no product auth/shortlist/quote service is wired.',
         'CAP-73': 'Instructor oracle checks synthetic case-ID, normalized-question and source-family separation plus empty-golden rejection. Learner seam remains TODO; no model run or golden-label tuning is performed.',
         'CAP-170': 'Independent pure-Java fixture oracle checks retry-attempt identity, ordering, epoch reset and owner/event scope; no payment replay, provider call or durable effect uniqueness is implemented.',
+        'CAP-87': 'Synthetic resume/envelope/cache fixture oracle and learner TODO seam only; authentication, protected-payload service, payment callback, analytics queue, and React/API/PostgreSQL flow are not integrated.',
+        'CAP-171': 'Synthetic exact-version/owner citation oracle and learner TODO seam only; no runtime catalog citation or cached-answer invalidation adapter is wired.',
+        'CAP-172': 'Synthetic exact allow/deny decision oracle and learner TODO seam only; no production policy engine, authorization middleware, or decrypt integration is wired.',
+        'CAP-174': 'Independent exact-byte SHA-256 fixture oracle only; no persisted proposal snapshot or current-revision service is wired, and the learner digest seam remains TODO.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
     rows = []
@@ -326,10 +375,17 @@ def main() -> dict:
             # repository-files subsection, outside the scaffold heading.
             planned_source = 'src/main/java/capstone/coverstory/payments/ValidatePaymentIdentities.java'
             case_ids = [f'CAP-170-CS-{number:02d}' for number in range(1, 9)]
+        if card['id'] in {'CAP-87', 'CAP-171', 'CAP-172'}:
+            case_total = {'CAP-87': 7, 'CAP-171': 5, 'CAP-172': 6}[card['id']]
+            case_ids = [f"{card['id']}-CS-{number:02d}" for number in range(1, case_total + 1)]
         authored = card['id'] in authored_ids
         day_ready = (
             day['day_number'] in verified_day_readiness
             and verified_day_readiness[day['day_number']].get('primary') == card['id']
+        )
+        day_partial = (
+            day['day_number'] in partial_day_readiness
+            and partial_day_readiness[day['day_number']].get('primary') == card['id']
         )
         status = 'LEARNER_CONTRACT_AND_FIXTURE_VALIDATED' if card['id'] == 'CAP-40' else (
             'INSTRUCTOR_FIXTURE_HARNESS_AUTHORED' if authored else 'MAPPED_ONLY'
@@ -360,16 +416,17 @@ def main() -> dict:
             'learner_result': learner_result_overrides.get(card['id'],
                 'EXPECTED_FAILURE_AT_UNIMPLEMENTED_LEARNER_TODO' if card['id'] in current_candidate_runs
                 else 'NOT_RUN_ON_CURRENT_CANDIDATE'),
-            'learner_readiness': 'READY_TO_ATTEMPT' if day_ready or card['id'] == 'CAP-40' else 'ENVIRONMENT_PREFLIGHT_NOT_RUN',
+            'learner_readiness': 'READY_TO_ATTEMPT' if day_ready or card['id'] == 'CAP-40' else 'PARTIAL_CONTRACT_SUPPORTED' if day_partial else 'ENVIRONMENT_PREFLIGHT_NOT_RUN',
             'timebox_status': 'TIMEBOX_NOT_VALIDATED' if card['id'] == 'CAP-40' else 'NOT_REHEARSED',
             'readiness_evidence': 'docs/evidence/coverstory/CAP-40/environment-preflight.json' if card['id'] == 'CAP-40' else None,
             'instructor_scaffold_readiness': (
                 'READY_TO_START' if day_ready
+                else 'PARTIAL_CONTRACT_SUPPORTED' if day_partial
                 else 'NOT_VERIFIED'
             ),
             'instructor_readiness_evidence': (
-                f"{verified_day_readiness[day['day_number']]['_readiness_path']}#day-{day['day_number']:03}"
-                if day_ready else None
+                f"{(verified_day_readiness if day_ready else partial_day_readiness)[day['day_number']]['_readiness_path']}#day-{day['day_number']:03}"
+                if day_ready or day_partial else None
             ),
             'learner_acceptance_suite': acceptance_suites.get(card['id']),
             'scaffold_status': status, 'harness_family': family,
@@ -390,6 +447,7 @@ def main() -> dict:
         'conditionally_scaffold_supported': sum(row['assignability'] == 'CONDITIONAL_SCAFFOLD_NOT_REHEARSED' for row in rows),
         'ready_to_attempt': sum(row['assignability'] == 'READY_TO_ATTEMPT' for row in rows),
         'instructor_scaffolds_ready_to_start_days_001_020': sum(row['instructor_scaffold_readiness'] == 'READY_TO_START' for row in rows),
+        'instructor_scaffolds_partial_contract_support_days_001_020': sum(row['instructor_scaffold_readiness'] == 'PARTIAL_CONTRACT_SUPPORTED' for row in rows),
         'assignable_now': sum(row['assignability'] == 'ASSIGNABLE' for row in rows),
         'learner_acceptance_runs_on_current_candidate': sum(row['learner_result'] != 'NOT_RUN_ON_CURRENT_CANDIDATE' for row in rows),
         'phase2_independent_experiment_contracts_mapped': sum(row['scaffold_strategy'] == 'PROGRESSIVELY_FADED_FIXTURE_AND_EVALUATION_CONTRACT' for row in rows),

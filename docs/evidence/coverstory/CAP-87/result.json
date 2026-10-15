@@ -1,0 +1,29 @@
+{
+  "day_id": "CAP-87",
+  "date": "2026-11-30",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_harness_status": "PASS_CURRENT_EXECUTOR",
+  "contract_readiness": "PARTIAL",
+  "instructor_check": {
+    "command": "mvn -Dtest=capstone.coverstory.Day48To56InstructorScaffoldTest test",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "raw_output_sha256": "620773ff6dd98d7bddb812b52a038b6401050d96b8c9e50e404822d9e7113443"
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=Day48To56LearnerAcceptanceTest test",
+    "tests": 1,
+    "errors_at_explicit_todo": 1,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-87/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "492bd9a7d582601f0fb9095f47f72d5110c025cbfe3017542f4b3b9fd2529f3f"
+  },
+  "limits": [
+    "No production payment, key, authorization, queue or resume service is wired.",
+    "No learner assignment is complete; elapsed time is unmeasured."
+  ]
+}

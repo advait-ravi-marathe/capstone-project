@@ -1,6 +1,6 @@
 package coverstory.modules.catalog;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Proves the independent PostgreSQL/date-spine fixtures load before learner SQL. */
 class CAP48InstructorInfrastructureTest {
     @Test void publicFixtureOracleCoversUtcSpineNullsAndTimezoneControl() throws Exception {
-        JsonNode fixture = new com.fasterxml.jackson.databind.ObjectMapper().readTree(
+        JsonNode fixture = new tools.jackson.databind.ObjectMapper().readTree(
                 Files.readString(Path.of("fixtures/coverstory/CAP-48/synthetic-v1.json")));
         assertEquals("CAP-48-synthetic-v1", fixture.path("fixture_id").asText());
         assertEquals(3, fixture.path("date_spine").size());

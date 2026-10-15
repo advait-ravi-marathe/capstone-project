@@ -12,8 +12,15 @@
     "citation_opportunities": 2,
     "leakage_count": 0,
     "safety_passed": false,
-    "unsupported_question_ids": ["q2", "q3", "q4"],
-    "unsafe_guess_question_ids": ["q3", "q4"]
+    "unsupported_question_ids": [
+      "q2",
+      "q3",
+      "q4"
+    ],
+    "unsafe_guess_question_ids": [
+      "q3",
+      "q4"
+    ]
   },
   "source_grounded": {
     "supported_correct": 2,
@@ -27,7 +34,11 @@
     "unsupported_question_ids": [],
     "unsafe_guess_question_ids": []
   },
-  "leakage_canary": {"supported_correct": 1, "leakage_count": 1, "safety_passed": false},
+  "leakage_canary": {
+    "supported_correct": 1,
+    "leakage_count": 1,
+    "safety_passed": false
+  },
   "q4_price_claim": "UNSUPPORTED; illustration is not payable-price evidence",
   "expected_not_observed_learner_output": true
 }

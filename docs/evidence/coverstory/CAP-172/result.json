@@ -1,0 +1,29 @@
+{
+  "day_id": "CAP-172",
+  "date": "2026-12-08",
+  "learner_logic_status": "TODO_RETAINED",
+  "instructor_harness_status": "PASS_CURRENT_EXECUTOR",
+  "contract_readiness": "PARTIAL",
+  "instructor_check": {
+    "command": "mvn -Dtest=capstone.coverstory.Day48To56InstructorScaffoldTest test",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "raw_output_sha256": "a8634902735d7847a8854b01e55c0044661ea3615bc91fd756e25b7c04214cdf"
+  },
+  "learner_acceptance": {
+    "command": "mvn -Plearner-tests -Dtest=Day48To56LearnerAcceptanceTest test",
+    "tests": 1,
+    "errors_at_explicit_todo": 1,
+    "expected_todo_result": true
+  },
+  "fixture": {
+    "path": "fixtures/coverstory/CAP-172/synthetic-v1.json",
+    "classification": "synthetic",
+    "sha256": "c46f4a40051a7e1e6b30e18eea021840e7198e2c1bc16edcfa6770efa8a56a1f"
+  },
+  "limits": [
+    "No product decrypt authorization integration or support assignment route is wired.",
+    "No learner assignment is complete; elapsed time is unmeasured."
+  ]
+}

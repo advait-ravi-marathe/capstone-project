@@ -12,13 +12,41 @@
     "schema_version": 1
   },
   "cases": [
-    {"id":"CAP-90-CS-01","expected":"SUPPORTED_PARTIAL","limitation":"Field cipher round-trip and ciphertext representation only; this checkout has no protected-payload database adapter or wrapped-DEK envelope."},
-    {"id":"CAP-90-CS-02","expected":"SUPPORTED_PARTIAL","limitation":"Unavailable key and redacted configured boolean can be exercised; production key loading is absent."},
-    {"id":"CAP-90-CS-03","expected":"SUPPORTED","limitation":"Test-only authorization boundary must deny before cipher invocation."},
-    {"id":"CAP-90-CS-04","expected":"SUPPORTED_PARTIAL","limitation":"Ciphertext/AAD authentication is exercised; no separate wrapped-key, route, or persistence boundary exists."},
-    {"id":"CAP-90-CS-05","expected":"SUPPORTED","limitation":"Distinct random nonces are checked through the existing normal cipher path."},
-    {"id":"CAP-90-CS-06","expected":"BLOCKED_CROSS_PROCESS_RESTORE","limitation":"No approved retained teaching-key mechanism or wrapped-key persistence path is configured. In-process key rotation can be checked only while the old ephemeral key remains available."},
-    {"id":"CAP-90-CS-07","expected":"SUPPORTED_PARTIAL","limitation":"Safe result and captured test output are scanned; application response, logging, receipt, KMS context, and manifest integrations are absent."}
+    {
+      "id": "CAP-90-CS-01",
+      "expected": "SUPPORTED_PARTIAL",
+      "limitation": "Field cipher round-trip and ciphertext representation only; this checkout has no protected-payload database adapter or wrapped-DEK envelope."
+    },
+    {
+      "id": "CAP-90-CS-02",
+      "expected": "SUPPORTED_PARTIAL",
+      "limitation": "Unavailable key and redacted configured boolean can be exercised; production key loading is absent."
+    },
+    {
+      "id": "CAP-90-CS-03",
+      "expected": "SUPPORTED",
+      "limitation": "Test-only authorization boundary must deny before cipher invocation."
+    },
+    {
+      "id": "CAP-90-CS-04",
+      "expected": "SUPPORTED_PARTIAL",
+      "limitation": "Ciphertext/AAD authentication is exercised; no separate wrapped-key, route, or persistence boundary exists."
+    },
+    {
+      "id": "CAP-90-CS-05",
+      "expected": "SUPPORTED",
+      "limitation": "Distinct random nonces are checked through the existing normal cipher path."
+    },
+    {
+      "id": "CAP-90-CS-06",
+      "expected": "BLOCKED_CROSS_PROCESS_RESTORE",
+      "limitation": "No approved retained teaching-key mechanism or wrapped-key persistence path is configured. In-process key rotation can be checked only while the old ephemeral key remains available."
+    },
+    {
+      "id": "CAP-90-CS-07",
+      "expected": "SUPPORTED_PARTIAL",
+      "limitation": "Safe result and captured test output are scanned; application response, logging, receipt, KMS context, and manifest integrations are absent."
+    }
   ],
   "cross_process_restore": "BLOCKED: process-local generated keys are not retained and cannot establish backup recovery."
 }

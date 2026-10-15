@@ -1,7 +1,7 @@
 package coverstory.application;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -150,7 +150,7 @@ class CAP83InstructorInfrastructureTest {
         MvcResult result = mvc.perform(get("/api/v1/test/session").header("X-Request-Id", "fields-1")).andReturn();
         JsonNode body = json.readTree(result.getResponse().getContentAsByteArray());
         assertEquals(401, result.getResponse().getStatus());
-        assertTrue(body.has("type")); assertTrue(body.has("title"));
+        assertTrue(body.has("type"), body.toString()); assertTrue(body.has("title"), body.toString());
         assertEquals(401, body.path("status").asInt()); assertTrue(body.has("detail"));
         assertEquals("UNAUTHENTICATED", body.path("code").asText());
         assertTrue(body.has("message")); assertTrue(body.path("fieldErrors").isObject());

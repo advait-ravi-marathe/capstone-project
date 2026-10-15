@@ -1,32 +1,117 @@
 {
   "classification": "SYNTHETIC_OFFLINE_CONTRACT",
   "actual_provider_run": false,
-  "window": { "start": "2026-10-14T10:00:00Z", "end_exclusive": "2026-10-14T10:05:00Z", "grace_seconds": 120 },
-  "initial_summary": { "count": 2, "revision": 1, "observed_ids": ["obs-base-1", "obs-base-2"] },
+  "window": {
+    "start": "2026-10-14T10:00:00Z",
+    "end_exclusive": "2026-10-14T10:05:00Z",
+    "grace_seconds": 120
+  },
+  "initial_summary": {
+    "count": 2,
+    "revision": 1,
+    "observed_ids": [
+      "obs-base-1",
+      "obs-base-2"
+    ]
+  },
   "cases": [
     {
-      "id": "CAP-104-CS-01", "event_id": "late-payment-1", "event_time": "2026-10-14T10:04:00Z", "arrival_time": "2026-10-14T10:06:00Z",
-      "expected": { "outcome": "REVISED", "count": 3, "revision": 2, "duplicate_count": 0, "quarantined_count": 0, "charge_calls": 0, "refund_calls": 0, "dispatch_calls": 0 }
+      "id": "CAP-104-CS-01",
+      "event_id": "late-payment-1",
+      "event_time": "2026-10-14T10:04:00Z",
+      "arrival_time": "2026-10-14T10:06:00Z",
+      "expected": {
+        "outcome": "REVISED",
+        "count": 3,
+        "revision": 2,
+        "duplicate_count": 0,
+        "quarantined_count": 0,
+        "charge_calls": 0,
+        "refund_calls": 0,
+        "dispatch_calls": 0
+      }
     },
     {
-      "id": "CAP-104-CS-02", "event_id": "late-payment-1", "event_time": "2026-10-14T10:04:00Z", "arrival_time": "2026-10-14T10:06:00Z",
-      "expected": { "outcome": "DUPLICATE", "count": 3, "revision": 2, "duplicate_count": 1, "quarantined_count": 0, "charge_calls": 0, "refund_calls": 0, "dispatch_calls": 0 }
+      "id": "CAP-104-CS-02",
+      "event_id": "late-payment-1",
+      "event_time": "2026-10-14T10:04:00Z",
+      "arrival_time": "2026-10-14T10:06:00Z",
+      "expected": {
+        "outcome": "DUPLICATE",
+        "count": 3,
+        "revision": 2,
+        "duplicate_count": 1,
+        "quarantined_count": 0,
+        "charge_calls": 0,
+        "refund_calls": 0,
+        "dispatch_calls": 0
+      }
     },
     {
-      "id": "CAP-104-CS-03", "event_id": "late-payment-2", "event_time": "2026-10-14T10:04:00Z", "arrival_time": "2026-10-14T10:08:00Z",
-      "expected": { "outcome": "TOO_LATE", "count": 2, "revision": 1, "duplicate_count": 0, "quarantined_count": 1, "charge_calls": 0, "refund_calls": 0, "dispatch_calls": 0 }
+      "id": "CAP-104-CS-03",
+      "event_id": "late-payment-2",
+      "event_time": "2026-10-14T10:04:00Z",
+      "arrival_time": "2026-10-14T10:08:00Z",
+      "expected": {
+        "outcome": "TOO_LATE",
+        "count": 2,
+        "revision": 1,
+        "duplicate_count": 0,
+        "quarantined_count": 1,
+        "charge_calls": 0,
+        "refund_calls": 0,
+        "dispatch_calls": 0
+      }
     },
     {
-      "id": "CAP-104-CS-04", "event_id": "late-at-boundary", "event_time": "2026-10-14T10:04:00Z", "arrival_time": "2026-10-14T10:07:00Z",
-      "expected": { "outcome": "REVISED", "count": 3, "revision": 2, "duplicate_count": 0, "quarantined_count": 0, "charge_calls": 0, "refund_calls": 0, "dispatch_calls": 0 }
+      "id": "CAP-104-CS-04",
+      "event_id": "late-at-boundary",
+      "event_time": "2026-10-14T10:04:00Z",
+      "arrival_time": "2026-10-14T10:07:00Z",
+      "expected": {
+        "outcome": "REVISED",
+        "count": 3,
+        "revision": 2,
+        "duplicate_count": 0,
+        "quarantined_count": 0,
+        "charge_calls": 0,
+        "refund_calls": 0,
+        "dispatch_calls": 0
+      }
     },
     {
-      "id": "CAP-104-CS-05", "event_id": "late-after-boundary", "event_time": "2026-10-14T10:04:00Z", "arrival_time": "2026-10-14T10:07:00.000001Z",
-      "expected": { "outcome": "TOO_LATE", "count": 2, "revision": 1, "duplicate_count": 0, "quarantined_count": 1, "charge_calls": 0, "refund_calls": 0, "dispatch_calls": 0 }
+      "id": "CAP-104-CS-05",
+      "event_id": "late-after-boundary",
+      "event_time": "2026-10-14T10:04:00Z",
+      "arrival_time": "2026-10-14T10:07:00.000001Z",
+      "expected": {
+        "outcome": "TOO_LATE",
+        "count": 2,
+        "revision": 1,
+        "duplicate_count": 0,
+        "quarantined_count": 1,
+        "charge_calls": 0,
+        "refund_calls": 0,
+        "dispatch_calls": 0
+      }
     },
     {
-      "id": "CAP-104-CS-06", "event_id": "unknown-payment-event", "event_time": "2026-10-14T10:04:00Z", "arrival_time": "2026-10-14T10:06:00Z", "unknown_payment_evidence": true,
-      "expected": { "outcome": "REVISED", "payment_disposition": "RECONCILIATION_REQUIRED", "count": 3, "revision": 2, "duplicate_count": 0, "quarantined_count": 0, "charge_calls": 0, "refund_calls": 0, "dispatch_calls": 0 }
+      "id": "CAP-104-CS-06",
+      "event_id": "unknown-payment-event",
+      "event_time": "2026-10-14T10:04:00Z",
+      "arrival_time": "2026-10-14T10:06:00Z",
+      "unknown_payment_evidence": true,
+      "expected": {
+        "outcome": "REVISED",
+        "payment_disposition": "RECONCILIATION_REQUIRED",
+        "count": 3,
+        "revision": 2,
+        "duplicate_count": 0,
+        "quarantined_count": 0,
+        "charge_calls": 0,
+        "refund_calls": 0,
+        "dispatch_calls": 0
+      }
     }
   ]
 }

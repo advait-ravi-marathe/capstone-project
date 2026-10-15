@@ -7,14 +7,18 @@
 - Learner acceptance suite: `src/test/java/coverstory/modules/application/CAP54AcceptanceTest.java`.
 - Instructor fixture and access-oracle checks: `src/test/java/coverstory/modules/application/CAP54InstructorInfrastructureTest.java`.
 
-Cases cover a new session resuming the owner's same journey from the authoritative application revision, indistinguishable safe `404` responses for foreign and absent UUIDs, zero application-state reads on denial, rejection of caller-supplied owner identity, ignoring browser-supplied current step, anonymous private-route denial, and an owner-bound cursor with page size capped at 50. The instructor fixture adapter implements the actual `OwnedJourneyReader` and `ApplicationStateReader` ports; it verifies the exact linked revision, safe summaries, owner scoping, and missing/foreign equivalence independently of the learner TODO.
+Cases cover a new session resuming the owner's same journey from the authoritative application revision, indistinguishable safe `404` responses for foreign and absent UUIDs, zero application-state reads on denial, rejection of caller-supplied owner identity, ignoring browser-supplied current step, anonymous private-route denial, and an owner-bound cursor with page size capped at 50. The instructor setup now exercises actual Spring routes and an Application-owned JDBC reader over disposable PostgreSQL. A separate test-only adapter provides the correct reference response without implementing the learner seam.
 
 All identifiers and payload markers are synthetic. The safe summary includes only journey UUID, authoritative status, and recomputed resume action. No decrypt operation is part of this interface. The repository query belongs to Application; callers in other modules must use the Application port.
 
-The two learner methods remain explicit TODOs. The unauthenticated session endpoint returns `401`. The anonymous public catalog dependency now returns a bounded synthetic health response through the Catalog module public port and is covered by an actual application-context HTTP test. This supplies only public discovery data; it does not implement private resume, owner identity, persistence, or the authenticated application stack. The CAP-54 harness tests the typed Application module ports with fresh fixture adapters; it is not a production endpoint or authentication adapter.
+`GET /api/session`, `GET /api/v1/me/journeys`, and `GET /api/v1/me/journeys/{journeyId}/resume` are wired. Session identity comes only from a trusted servlet principal; anonymous callers receive `401`. `JdbcCAP54ResumeReader` scopes journey lookup by owner and joins the exact linked application revision. Summaries contain only journey UUID, authoritative status, and recomputed resume action. Owner override is rejected before repository access; `current_step` is ignored. A 50-item page is accepted; excessive limit and foreign cursor are rejected.
+
+The runtime witness uses disposable PostgreSQL and test-only synthetic session/HTTP adapters. Its Chromium flow reloads a fresh session, switches account, checks private cache clearing, logs out, and verifies that anonymous public catalog remains available. These adapters provide instructor verification only. No production login or identity-issuing adapter is installed; a trusted deployment adapter must populate the servlet principal. The two `CAP54Seam` methods remain learner TODOs and authenticated application calls return safe `501` until they are implemented.
 
 ```sh
 mvn -Dtest=CAP54InstructorInfrastructureTest test
+mvn -Dcoverstory.cap54.browser=true -Dtest=CAP54HttpRuntimeIntegrationTest test
+cd web && npm run build && npm run test:security
 mvn -Plearner-tests -Dtest=CAP54AcceptanceTest test
 ```
 

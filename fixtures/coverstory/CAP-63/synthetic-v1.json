@@ -1,7 +1,11 @@
 {
   "fixture_id": "CAP-63-synthetic-v1",
   "synthetic": true,
-  "required_ids": ["CAP-57", "CAP-166", "CAP-60"],
+  "required_ids": [
+    "CAP-57",
+    "CAP-166",
+    "CAP-60"
+  ],
   "records": [
     {
       "id": "CAP-57",
@@ -50,9 +54,51 @@
     }
   ],
   "cases": [
-    {"id": "CAP-63-CS-01", "include": ["CAP-57", "CAP-166"], "expected_gate": "HOLD", "expected_pass": ["CAP-57"], "expected_blocked": ["CAP-166"]},
-    {"id": "CAP-63-CS-02", "include": ["CAP-57"], "required_ids": ["CAP-57", "CAP-60"], "expected_missing": ["CAP-60"], "expected_gate": "HOLD"},
-    {"id": "CAP-63-CS-03", "mutations": ["exit=1", "artifact=null"], "expected": "INVALID_EVIDENCE"},
-    {"id": "CAP-63-CS-04", "include": ["LEGACY-EVENT-01"], "expected_invalid": ["LEGACY-EVENT-01"], "retain_historical": true}
+    {
+      "id": "CAP-63-CS-01",
+      "include": [
+        "CAP-57",
+        "CAP-166"
+      ],
+      "expected_gate": "HOLD",
+      "expected_pass": [
+        "CAP-57"
+      ],
+      "expected_blocked": [
+        "CAP-166"
+      ]
+    },
+    {
+      "id": "CAP-63-CS-02",
+      "include": [
+        "CAP-57"
+      ],
+      "required_ids": [
+        "CAP-57",
+        "CAP-60"
+      ],
+      "expected_missing": [
+        "CAP-60"
+      ],
+      "expected_gate": "HOLD"
+    },
+    {
+      "id": "CAP-63-CS-03",
+      "mutations": [
+        "exit=1",
+        "artifact=null"
+      ],
+      "expected": "INVALID_EVIDENCE"
+    },
+    {
+      "id": "CAP-63-CS-04",
+      "include": [
+        "LEGACY-EVENT-01"
+      ],
+      "expected_invalid": [
+        "LEGACY-EVENT-01"
+      ],
+      "retain_historical": true
+    }
   ]
 }

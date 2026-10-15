@@ -14,7 +14,7 @@ Apply the fixed-clock freshness rule to source evidence shown beside a health qu
 - Synthetic contract: `fixtures/coverstory/CAP-79/synthetic-v1.json`
 - Saved source card: `docs/assignments/coverstory/saved-days/day-039-cap-79.md`
 
-The source card lists a planned Java adapter, but its acceptance interface is explicitly Python and pure-function based. No matching CAP-79 result component is present in the current React shell: `web/src/ui/Marketplace.tsx` is a layout fixture and does not render freshness results. UI binding is therefore an integration dependency; do not add a new product flow or redesign the shell for this assignment.
+The acceptance interface remains Python and pure-function based. An opt-in local adapter invokes the actual `filter_fresh` seam against fixed fixture case CS-04 and maps the safe typed result into the existing freshness panel. It uses a bounded local subprocess (5-second timeout, 64 KiB output cap), contains no source text in output, and maps the preserved TODO to HTTP 501. The default profile has no provider and remains unavailable. This local binding does not make the pure-function TODO complete or establish production process supervision.
 
 ## Required behavior
 
@@ -32,6 +32,8 @@ Run the independent instructor witnesses and fixture integrity checks:
 
 ```sh
 python -m unittest ai.tests.test_coverstory_cap79_infrastructure
+python3 -m unittest discover -s ai/tests -p test_coverstory_cap79_infrastructure.py
+python3 scripts/cap79_runtime_adapter.py
 ```
 
 Run the saved learner acceptance cases after implementing the TODO:
@@ -40,7 +42,7 @@ Run the saved learner acceptance cases after implementing the TODO:
 python -m unittest ai.coverstory.tests.test_cap_79
 ```
 
-Before implementation, acceptance tests are expected to raise `NotImplementedError` at the explicit learner TODO. Record that outcome separately from the instructor suite. No network source, external provider, database, or payment operation is used.
+Before implementation, acceptance tests are expected to raise `NotImplementedError` at the explicit learner TODO. Record that outcome separately from the instructor suite. No network source, external provider, database, or payment operation is used. Runtime demo bridge requires `SPRING_PROFILES_ACTIVE=synthetic-demo` and still returns 501 until the learner seam is implemented.
 
 ## Saved case mapping
 

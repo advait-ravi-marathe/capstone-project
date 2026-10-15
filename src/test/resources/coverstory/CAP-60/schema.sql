@@ -39,3 +39,8 @@ CREATE TABLE cap60_harness.step_event (
   UNIQUE (journey_id, sequence),
   UNIQUE (journey_id, causation_id, event_code)
 );
+CREATE TABLE cap60_harness.analytics_event (
+  event_id UUID PRIMARY KEY,
+  page_id TEXT NOT NULL,
+  client_time TIMESTAMPTZ
+);

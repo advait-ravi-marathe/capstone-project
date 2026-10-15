@@ -5,14 +5,50 @@
   "schema_version": 1,
   "source_version_values_in_v1": null,
   "revisions": [
-    {"application_id":"98000000-0000-4000-8000-000000000001","revision_id":"98000000-0000-4000-8000-000000000101","revision":1,"quote_hash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","revision_hash":"4444444444444444444444444444444444444444444444444444444444444444","terms_hash":"1111111111111111111111111111111111111111111111111111111111111111","source_version":null},
-    {"application_id":"98000000-0000-4000-8000-000000000001","revision_id":"98000000-0000-4000-8000-000000000102","revision":2,"quote_hash":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","revision_hash":"5555555555555555555555555555555555555555555555555555555555555555","terms_hash":"2222222222222222222222222222222222222222222222222222222222222222","source_version":null},
-    {"application_id":"98000000-0000-4000-8000-000000000002","revision_id":"98000000-0000-4000-8000-000000000103","revision":1,"quote_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","revision_hash":"6666666666666666666666666666666666666666666666666666666666666666","terms_hash":"3333333333333333333333333333333333333333333333333333333333333333","source_version":null}
+    {
+      "application_id": "98000000-0000-4000-8000-000000000001",
+      "revision_id": "98000000-0000-4000-8000-000000000101",
+      "revision": 1,
+      "quote_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "revision_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "terms_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "source_version": null
+    },
+    {
+      "application_id": "98000000-0000-4000-8000-000000000001",
+      "revision_id": "98000000-0000-4000-8000-000000000102",
+      "revision": 2,
+      "quote_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "revision_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "terms_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "source_version": null
+    },
+    {
+      "application_id": "98000000-0000-4000-8000-000000000002",
+      "revision_id": "98000000-0000-4000-8000-000000000103",
+      "revision": 1,
+      "quote_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "revision_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "terms_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "source_version": null
+    }
   ],
   "payment_references": [
-    {"payment_id":"98000000-0000-4000-8000-000000000201","application_id":"98000000-0000-4000-8000-000000000001","revision":1},
-    {"payment_id":"98000000-0000-4000-8000-000000000202","application_id":"98000000-0000-4000-8000-000000000001","revision":2},
-    {"payment_id":"98000000-0000-4000-8000-000000000203","application_id":"98000000-0000-4000-8000-000000000002","revision":1}
+    {
+      "payment_id": "98000000-0000-4000-8000-000000000201",
+      "application_id": "98000000-0000-4000-8000-000000000001",
+      "revision": 1
+    },
+    {
+      "payment_id": "98000000-0000-4000-8000-000000000202",
+      "application_id": "98000000-0000-4000-8000-000000000001",
+      "revision": 2
+    },
+    {
+      "payment_id": "98000000-0000-4000-8000-000000000203",
+      "application_id": "98000000-0000-4000-8000-000000000002",
+      "revision": 1
+    }
   ],
   "cases": [
     "add nullable source_version and retain all rows/payment references; v1 reader remains compatible",

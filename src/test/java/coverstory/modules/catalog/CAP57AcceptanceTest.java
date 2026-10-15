@@ -1,16 +1,16 @@
 package coverstory.modules.catalog;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
 import coverstory.modules.catalog.api.CAP57Seam;
 import coverstory.modules.catalog.api.CAP57Seam.PreparedVersion;
 import coverstory.modules.catalog.api.CAP57Seam.ExportRow;
 import coverstory.modules.catalog.api.CAP57Seam.PublishResult;
 import coverstory.modules.catalog.api.CAP57Seam.Outcome;
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -30,18 +30,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class CAP57AcceptanceTest {
     private static final ObjectMapper JSON = new ObjectMapper();
     private static final Path FIXTURE = Path.of("fixtures/coverstory/CAP-57/synthetic-v1.json");
-    private static EmbeddedPostgres postgres;
+    private CAP57TestDatabase testDatabase;
+    private EmbeddedPostgres postgres;
 
-    @BeforeAll static void startPostgresAndLoadSyntheticPreparedVersions() throws Exception {
-        postgres = EmbeddedPostgres.builder().start();
-        try (Connection c = postgres.getPostgresDatabase().getConnection(); Statement s = c.createStatement()) {
-            executeResource(s, "/db/schema/ownership.sql");
-            executeResource(s, "/db/schema/catalog_publication.sql");
-            executeResource(s, "/coverstory/catalog/cap_57_fixtures.sql");
-        }
+    @BeforeEach void startFreshPostgresAndLoadSyntheticPreparedVersions() throws Exception {
+        testDatabase = CAP57TestDatabase.fresh();
+        postgres = testDatabase.postgres();
     }
 
-    @AfterAll static void stopPostgres() throws Exception { if (postgres != null) postgres.close(); }
+    @AfterEach void stopPostgres() throws Exception { if (testDatabase != null) testDatabase.close(); }
 
     @Test void publishesOnlyTheSelectedVersionAndExportSurvivesServiceRestart() throws Exception {
         PreparedVersion selected = version(0);
@@ -82,7 +79,7 @@ class CAP57AcceptanceTest {
         assertTrue(seam(noFailure()).exportPublished().isEmpty());
     }
 
-    private static CAP57Seam seam(CAP57Seam.BeforeCommit hook) {
+    private CAP57Seam seam(CAP57Seam.BeforeCommit hook) {
         return new CAP57Seam(postgres.getPostgresDatabase(), hook);
     }
 
@@ -122,23 +119,4 @@ class CAP57AcceptanceTest {
         assertEquals(expected.currency(), row.currency().trim());
     }
 
-    private static void executeResource(Statement s, String path) throws Exception {
-        try (var in = CAP57AcceptanceTest.class.getResourceAsStream(path)) {
-            if (in == null) throw new java.io.IOException("Missing synthetic SQL resource " + path);
-            String sql = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-            boolean dollar = false, single = false, lineComment = false; StringBuilder statement = new StringBuilder();
-            for (int i = 0; i < sql.length(); i++) {
-                if (!single && !dollar && sql.startsWith("--", i)) lineComment = true;
-                if (lineComment) { char commentChar = sql.charAt(i); if (commentChar == '\n') { lineComment = false; statement.append(commentChar); } continue; }
-                if (!single && sql.startsWith("$$", i)) { dollar = !dollar; statement.append("$$"); i++; continue; }
-                char c = sql.charAt(i);
-                if (!dollar && c == '\'') single = !single;
-                if (!dollar && !single && c == ';') {
-                    if (!statement.toString().isBlank()) s.execute(statement.toString());
-                    statement.setLength(0);
-                } else statement.append(c);
-            }
-            if (!statement.toString().isBlank()) s.execute(statement.toString());
-        }
-    }
 }

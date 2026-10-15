@@ -1,6 +1,6 @@
 package coverstory.modules.catalog.api;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,10 +43,9 @@ public final class CAP52Controller {
     }
 
     private static boolean hasExactKeys(JsonNode body) {
-        var names = body.fieldNames();
         int count = 0;
-        while (names.hasNext()) {
-            if (!ALLOWED.contains(names.next())) return false;
+        for (String name : body.propertyNames()) {
+            if (!ALLOWED.contains(name)) return false;
             count++;
         }
         return count == ALLOWED.size();

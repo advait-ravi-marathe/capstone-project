@@ -26,7 +26,8 @@ try {
     { client: boundaryClient },
     React.createElement(boundaryModule.SessionBoundary),
   ))
-  assert.match(boundaryMarkup, /Checking session/)
+  assert.match(boundaryMarkup, /Guest|Continue as demo A/,
+    'account controls should stay neutral while session revalidation is pending')
   assert.match(boundaryMarkup, /Explore example records/,
     'public synthetic discovery should remain available during session revalidation')
   assert.doesNotMatch(boundaryMarkup, /Signed in|synthetic-owner|private data/,

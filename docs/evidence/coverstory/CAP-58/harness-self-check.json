@@ -5,6 +5,12 @@
   "command": "mvn -Dtest=CAP58InstructorInfrastructureTest test",
   "result": "PASS",
   "tests": 4,
-  "validated": ["synthetic contract bounds", "allowlisted event shapes", "unknown/sensitive field rejection", "integer duration limits", "UTF-8 byte cap arithmetic"],
+  "validated": [
+    "synthetic contract bounds",
+    "allowlisted event shapes",
+    "unknown/sensitive field rejection",
+    "integer duration limits",
+    "UTF-8 byte cap arithmetic"
+  ],
   "http_ingestion_or_persistence": "NOT_EXERCISED"
 }

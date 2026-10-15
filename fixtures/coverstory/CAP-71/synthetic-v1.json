@@ -1,11 +1,42 @@
 {
-  "fixture_id":"CAP-71-synthetic-v1",
-  "synthetic":true,
-  "source_id":"public-payment-help-v1",
-  "version":"v1",
-  "text":"abcdefghij",
-  "max_chars":4,
-  "overlap":1,
-  "expected":[{"start":0,"end":4,"text":"abcd"},{"start":3,"end":7,"text":"defg"},{"start":6,"end":10,"text":"ghij"}],
-  "edge_cases":[{"text":"abcd","expected":[{"start":0,"end":4,"text":"abcd"}]},{"text":"","expected":[]}]
+  "fixture_id": "CAP-71-synthetic-v1",
+  "synthetic": true,
+  "source_id": "public-payment-help-v1",
+  "version": "v1",
+  "text": "abcdefghij",
+  "max_chars": 4,
+  "overlap": 1,
+  "expected": [
+    {
+      "start": 0,
+      "end": 4,
+      "text": "abcd"
+    },
+    {
+      "start": 3,
+      "end": 7,
+      "text": "defg"
+    },
+    {
+      "start": 6,
+      "end": 10,
+      "text": "ghij"
+    }
+  ],
+  "edge_cases": [
+    {
+      "text": "abcd",
+      "expected": [
+        {
+          "start": 0,
+          "end": 4,
+          "text": "abcd"
+        }
+      ]
+    },
+    {
+      "text": "",
+      "expected": []
+    }
+  ]
 }

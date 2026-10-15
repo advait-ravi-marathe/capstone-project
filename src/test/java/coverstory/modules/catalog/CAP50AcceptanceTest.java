@@ -1,7 +1,7 @@
 package coverstory.modules.catalog;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import coverstory.modules.catalog.api.CAP50Seam;
 import coverstory.modules.catalog.api.ImportDecision;
 import org.junit.jupiter.api.Tag;

@@ -15,11 +15,20 @@
   "browser_checks": {
     "viewport": "390x844",
     "dev_proxy_target": "local Spring API on port 8081",
-    "loaded_rows": ["Example A", "Example B", "Example C"],
+    "loaded_rows": [
+      "Example A",
+      "Example B",
+      "Example C"
+    ],
     "compare_interaction": "At the captured checkpoint, selecting two API-fed examples opened compare; this was before CAP-40 was connected and is not evidence of the current learner seam behavior",
     "horizontal_overflow": false
   },
   "learner_logic": "CAP-40 uniqueSelections and CAP-41 retrieve remain explicit TODOs; private shortlist persistence and authentication are not implemented",
   "module_boundary": "CatalogController depends on CatalogPort; SyntheticCatalogAdapter implements the catalog-owned interface; no consumer repository access",
-  "limitations": ["synthetic fixture only", "no insurer wording or quotes", "no catalog persistence/publication", "no private journey or owner authorization"]
+  "limitations": [
+    "synthetic fixture only",
+    "no insurer wording or quotes",
+    "no catalog persistence/publication",
+    "no private journey or owner authorization"
+  ]
 }

@@ -1,32 +1,208 @@
 {
   "fixture_id": "CAP-88-synthetic-v1",
   "classification": "SYNTHETIC_ONLY",
-  "roles": ["APPLICANT", "CATALOG_EDITOR", "SUPPORT", "SIMULATOR", "READ_ONLY_ASSISTANT", "UNKNOWN"],
+  "roles": [
+    "APPLICANT",
+    "CATALOG_EDITOR",
+    "SUPPORT",
+    "SIMULATOR",
+    "READ_ONLY_ASSISTANT",
+    "UNKNOWN"
+  ],
   "resources": {
-    "draftA": {"kind":"DRAFT","ownerId":"applicant-A","assignedSupportId":null,"privateMarker":"SYNTHETIC_PRIVATE_DRAFT_A","businessStatus":"PAID_ONBOARDING_DRAFT"},
-    "draftB": {"kind":"DRAFT","ownerId":"applicant-B","assignedSupportId":null,"privateMarker":"SYNTHETIC_PRIVATE_DRAFT_B"},
-    "case1": {"kind":"SUPPORT_CASE","ownerId":"applicant-A","assignedSupportId":"support-1","answerMarker":"SYNTHETIC_ANSWER_CASE_1"},
-    "case2": {"kind":"SUPPORT_CASE","ownerId":"applicant-B","assignedSupportId":"support-2","answerMarker":"SYNTHETIC_ANSWER_CASE_2"},
-    "catalog": {"kind":"CATALOG","ownerId":null,"assignedSupportId":null},
-    "event": {"kind":"SIMULATED_EVENT","ownerId":null,"assignedSupportId":null},
-    "evidence": {"kind":"EVIDENCE","ownerId":null,"assignedSupportId":null}
+    "draftA": {
+      "kind": "DRAFT",
+      "ownerId": "applicant-A",
+      "assignedSupportId": null,
+      "privateMarker": "SYNTHETIC_PRIVATE_DRAFT_A",
+      "businessStatus": "PAID_ONBOARDING_DRAFT"
+    },
+    "draftB": {
+      "kind": "DRAFT",
+      "ownerId": "applicant-B",
+      "assignedSupportId": null,
+      "privateMarker": "SYNTHETIC_PRIVATE_DRAFT_B"
+    },
+    "case1": {
+      "kind": "SUPPORT_CASE",
+      "ownerId": "applicant-A",
+      "assignedSupportId": "support-1",
+      "answerMarker": "SYNTHETIC_ANSWER_CASE_1"
+    },
+    "case2": {
+      "kind": "SUPPORT_CASE",
+      "ownerId": "applicant-B",
+      "assignedSupportId": "support-2",
+      "answerMarker": "SYNTHETIC_ANSWER_CASE_2"
+    },
+    "catalog": {
+      "kind": "CATALOG",
+      "ownerId": null,
+      "assignedSupportId": null
+    },
+    "event": {
+      "kind": "SIMULATED_EVENT",
+      "ownerId": null,
+      "assignedSupportId": null
+    },
+    "evidence": {
+      "kind": "EVIDENCE",
+      "ownerId": null,
+      "assignedSupportId": null
+    }
   },
   "cases": [
-    {"id":"CAP-88-01","role":"APPLICANT","actorId":"applicant-A","action":"READ_OWN_DRAFT","resource":"draftA","allow":true,"visibleFields":["draftSummary","ownAnswers"]},
-    {"id":"CAP-88-02","role":"APPLICANT","actorId":"applicant-A","action":"WRITE_OWN_DRAFT","resource":"draftA","allow":true,"visibleFields":[]},
-    {"id":"CAP-88-03","role":"APPLICANT","actorId":"applicant-A","action":"READ_OWN_DRAFT","resource":"draftB","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-04","role":"CATALOG_EDITOR","actorId":"editor-1","action":"EDIT_CATALOG","resource":"catalog","allow":true,"visibleFields":[]},
-    {"id":"CAP-88-05","role":"CATALOG_EDITOR","actorId":"editor-1","action":"READ_DISCLOSURES","resource":"draftA","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-06","role":"SUPPORT","actorId":"support-1","action":"READ_SUPPORT_CASE","resource":"case1","allow":true,"visibleFields":["caseStatus","minimumSupportExcerpt"]},
-    {"id":"CAP-88-07","role":"SUPPORT","actorId":"support-1","action":"READ_SUPPORT_CASE","resource":"case2","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-08","role":"SIMULATOR","actorId":"simulator-1","action":"SUBMIT_SIMULATED_EVENT","resource":"event","allow":true,"visibleFields":[]},
-    {"id":"CAP-88-09","role":"READ_ONLY_ASSISTANT","actorId":"assistant-1","action":"READ_PERMITTED_EVIDENCE","resource":"evidence","allow":true,"visibleFields":["allowlistedEvidence"]},
-    {"id":"CAP-88-10","role":"READ_ONLY_ASSISTANT","actorId":"assistant-1","action":"PAYMENT_COMMAND","resource":"event","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-11","role":"READ_ONLY_ASSISTANT","actorId":"assistant-1","action":"SUBMIT_APPLICATION","resource":"draftA","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-12","role":"READ_ONLY_ASSISTANT","actorId":"assistant-1","action":"CHARGE","resource":"event","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-13","role":"READ_ONLY_ASSISTANT","actorId":"assistant-1","action":"REFUND","resource":"event","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-14","role":"READ_ONLY_ASSISTANT","actorId":"assistant-1","action":"UNDERWRITE","resource":"draftA","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-15","role":"UNKNOWN","actorId":"mystery-1","action":"READ_PERMITTED_EVIDENCE","resource":"evidence","allow":false,"visibleFields":[]},
-    {"id":"CAP-88-16","role":"UNKNOWN","actorId":"mystery-1","action":"UNKNOWN","resource":"evidence","allow":false,"visibleFields":[]}
+    {
+      "id": "CAP-88-01",
+      "role": "APPLICANT",
+      "actorId": "applicant-A",
+      "action": "READ_OWN_DRAFT",
+      "resource": "draftA",
+      "allow": true,
+      "visibleFields": [
+        "draftSummary",
+        "ownAnswers"
+      ]
+    },
+    {
+      "id": "CAP-88-02",
+      "role": "APPLICANT",
+      "actorId": "applicant-A",
+      "action": "WRITE_OWN_DRAFT",
+      "resource": "draftA",
+      "allow": true,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-03",
+      "role": "APPLICANT",
+      "actorId": "applicant-A",
+      "action": "READ_OWN_DRAFT",
+      "resource": "draftB",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-04",
+      "role": "CATALOG_EDITOR",
+      "actorId": "editor-1",
+      "action": "EDIT_CATALOG",
+      "resource": "catalog",
+      "allow": true,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-05",
+      "role": "CATALOG_EDITOR",
+      "actorId": "editor-1",
+      "action": "READ_DISCLOSURES",
+      "resource": "draftA",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-06",
+      "role": "SUPPORT",
+      "actorId": "support-1",
+      "action": "READ_SUPPORT_CASE",
+      "resource": "case1",
+      "allow": true,
+      "visibleFields": [
+        "caseStatus",
+        "minimumSupportExcerpt"
+      ]
+    },
+    {
+      "id": "CAP-88-07",
+      "role": "SUPPORT",
+      "actorId": "support-1",
+      "action": "READ_SUPPORT_CASE",
+      "resource": "case2",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-08",
+      "role": "SIMULATOR",
+      "actorId": "simulator-1",
+      "action": "SUBMIT_SIMULATED_EVENT",
+      "resource": "event",
+      "allow": true,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-09",
+      "role": "READ_ONLY_ASSISTANT",
+      "actorId": "assistant-1",
+      "action": "READ_PERMITTED_EVIDENCE",
+      "resource": "evidence",
+      "allow": true,
+      "visibleFields": [
+        "allowlistedEvidence"
+      ]
+    },
+    {
+      "id": "CAP-88-10",
+      "role": "READ_ONLY_ASSISTANT",
+      "actorId": "assistant-1",
+      "action": "PAYMENT_COMMAND",
+      "resource": "event",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-11",
+      "role": "READ_ONLY_ASSISTANT",
+      "actorId": "assistant-1",
+      "action": "SUBMIT_APPLICATION",
+      "resource": "draftA",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-12",
+      "role": "READ_ONLY_ASSISTANT",
+      "actorId": "assistant-1",
+      "action": "CHARGE",
+      "resource": "event",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-13",
+      "role": "READ_ONLY_ASSISTANT",
+      "actorId": "assistant-1",
+      "action": "REFUND",
+      "resource": "event",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-14",
+      "role": "READ_ONLY_ASSISTANT",
+      "actorId": "assistant-1",
+      "action": "UNDERWRITE",
+      "resource": "draftA",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-15",
+      "role": "UNKNOWN",
+      "actorId": "mystery-1",
+      "action": "READ_PERMITTED_EVIDENCE",
+      "resource": "evidence",
+      "allow": false,
+      "visibleFields": []
+    },
+    {
+      "id": "CAP-88-16",
+      "role": "UNKNOWN",
+      "actorId": "mystery-1",
+      "action": "UNKNOWN",
+      "resource": "evidence",
+      "allow": false,
+      "visibleFields": []
+    }
   ]
 }

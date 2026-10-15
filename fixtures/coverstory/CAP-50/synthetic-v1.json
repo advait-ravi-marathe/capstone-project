@@ -2,16 +2,73 @@
   "fixture_id": "CAP-50-synthetic-v1",
   "synthetic": true,
   "decisions": [
-    {"editor":"E","source":"s1","decision":"ACCEPT"},
-    {"editor":"E","source":"s1","decision":"DUPLICATE"},
-    {"editor":"F","source":"s1","decision":"ACCEPT"},
-    {"editor":"E","source":"s2","decision":"ACCEPT"}
+    {
+      "editor": "E",
+      "source": "s1",
+      "decision": "ACCEPT"
+    },
+    {
+      "editor": "E",
+      "source": "s1",
+      "decision": "DUPLICATE"
+    },
+    {
+      "editor": "F",
+      "source": "s1",
+      "decision": "ACCEPT"
+    },
+    {
+      "editor": "E",
+      "source": "s2",
+      "decision": "ACCEPT"
+    }
   ],
-  "expected_counts": {"E":2,"F":1},
+  "expected_counts": {
+    "E": 2,
+    "F": 1
+  },
   "cases": [
-    {"id":"CAP-50-CS-01","input":"decisions","expected":{"E":2,"F":1}},
-    {"id":"CAP-50-CS-02","input":[{"editor":"E","decision":"CONFLICT"}],"expected":{}},
-    {"id":"CAP-50-CS-03","input":[{"editor":" ","decision":"ACCEPT"}],"expected_error":"IllegalArgumentException"},
-    {"id":"CAP-50-CS-04","hash_sequence":["hash-p","hash-p","hash-q"],"decisions":["ACCEPT","DUPLICATE","CONFLICT"],"repository_inserts":1}
+    {
+      "id": "CAP-50-CS-01",
+      "input": "decisions",
+      "expected": {
+        "E": 2,
+        "F": 1
+      }
+    },
+    {
+      "id": "CAP-50-CS-02",
+      "input": [
+        {
+          "editor": "E",
+          "decision": "CONFLICT"
+        }
+      ],
+      "expected": {}
+    },
+    {
+      "id": "CAP-50-CS-03",
+      "input": [
+        {
+          "editor": " ",
+          "decision": "ACCEPT"
+        }
+      ],
+      "expected_error": "IllegalArgumentException"
+    },
+    {
+      "id": "CAP-50-CS-04",
+      "hash_sequence": [
+        "hash-p",
+        "hash-p",
+        "hash-q"
+      ],
+      "decisions": [
+        "ACCEPT",
+        "DUPLICATE",
+        "CONFLICT"
+      ],
+      "repository_inserts": 1
+    }
   ]
 }

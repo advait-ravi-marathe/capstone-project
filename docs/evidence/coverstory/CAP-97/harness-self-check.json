@@ -3,7 +3,10 @@
   "status": "PASS",
   "scope": "Independent instructor oracle only. Four synthetic cases; zero model/provider calls.",
   "source_revision": "05563e2bd8eb966571519c4e3470b07246da42be with CAP-97 working-tree changes",
-  "toolchain": {"maven": "Apache Maven 3.10.0", "java": "OpenJDK 21.0.12.1"},
+  "toolchain": {
+    "maven": "Apache Maven 3.10.0",
+    "java": "OpenJDK 21.0.12.1"
+  },
   "command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=CAP97InstructorInfrastructureTest test",
   "expected": "3 instructor tests pass, including exact report values, owner-leakage fail-closed witness, and illustration price support boundary",
   "observed": "3 tests run, 0 failures, 0 errors, 0 skipped; exit code 0",
@@ -11,5 +14,9 @@
   "pom_sha256": "21422d3541354a1d112079b4d6d6a8ef1a400aac2d4eb4804df221356645311a",
   "learner_acceptance_command": "PATH=/tmp/javac-launcher:/tmp/apache-maven-3.10.0/bin:$PATH mvn -q -s /tmp/maven-settings.xml -Dmaven.repo.local=/tmp/maven-repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/tmp/javac-launcher/javac -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Plearner-tests -Dtest=CAP97AcceptanceTest test",
   "learner_acceptance_observed": "4 acceptance tests compile and reach the explicit CAP-97 learner TODO; 4 expected errors until learner implementation",
-  "limitations": ["Fixture results are not model runtime measurements.", "Four cases do not support a superiority claim.", "Learner scoring remains unimplemented."]
+  "limitations": [
+    "Fixture results are not model runtime measurements.",
+    "Four cases do not support a superiority claim.",
+    "Learner scoring remains unimplemented."
+  ]
 }

@@ -54,28 +54,93 @@
       "query": "waiting period",
       "k": 3,
       "documents": [
-        {"source_id":"w-tie-Z","version":"v2","evidence_status":"SYNTHETIC","text":"period waiting"},
-        {"source_id":"w-tie-A","version":"v1","evidence_status":"SYNTHETIC","text":"waiting period"},
-        {"source_id":"w-mixed","version":"v1","evidence_status":"SYNTHETIC","text":"waiting unrelated words"},
-        {"source_id":"w-zero","version":"v1","evidence_status":"SYNTHETIC","text":"hospital network"}
+        {
+          "source_id": "w-tie-Z",
+          "version": "v2",
+          "evidence_status": "SYNTHETIC",
+          "text": "period waiting"
+        },
+        {
+          "source_id": "w-tie-A",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting period"
+        },
+        {
+          "source_id": "w-mixed",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting unrelated words"
+        },
+        {
+          "source_id": "w-zero",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "hospital network"
+        }
       ],
       "expected": [
-        {"source_id":"w-tie-A","version":"v1","evidence_status":"SYNTHETIC","excerpt":"waiting period","score":2},
-        {"source_id":"w-tie-Z","version":"v2","evidence_status":"SYNTHETIC","excerpt":"period waiting","score":2},
-        {"source_id":"w-mixed","version":"v1","evidence_status":"SYNTHETIC","excerpt":"waiting unrelated words","score":1}
+        {
+          "source_id": "w-tie-A",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "waiting period",
+          "score": 2
+        },
+        {
+          "source_id": "w-tie-Z",
+          "version": "v2",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "period waiting",
+          "score": 2
+        },
+        {
+          "source_id": "w-mixed",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "waiting unrelated words",
+          "score": 1
+        }
       ]
     },
     "mixed_scores_truncated": {
-      "query":"waiting period",
-      "k":2,
-      "documents":[
-        {"source_id":"w-low","version":"v1","evidence_status":"SYNTHETIC","text":"waiting"},
-        {"source_id":"w-high","version":"v1","evidence_status":"SYNTHETIC","text":"waiting period"},
-        {"source_id":"w-zero","version":"v1","evidence_status":"SYNTHETIC","text":"network"}
+      "query": "waiting period",
+      "k": 2,
+      "documents": [
+        {
+          "source_id": "w-low",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting"
+        },
+        {
+          "source_id": "w-high",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "waiting period"
+        },
+        {
+          "source_id": "w-zero",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "text": "network"
+        }
       ],
-      "expected":[
-        {"source_id":"w-high","version":"v1","evidence_status":"SYNTHETIC","excerpt":"waiting period","score":2},
-        {"source_id":"w-low","version":"v1","evidence_status":"SYNTHETIC","excerpt":"waiting","score":1}
+      "expected": [
+        {
+          "source_id": "w-high",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "waiting period",
+          "score": 2
+        },
+        {
+          "source_id": "w-low",
+          "version": "v1",
+          "evidence_status": "SYNTHETIC",
+          "excerpt": "waiting",
+          "score": 1
+        }
       ]
     }
   }

@@ -36,8 +36,12 @@ class AssignmentHarnessMatrixTest(unittest.TestCase):
         self.assertEqual(594, len({row["card_id"] for row in rows}))
         first_twenty = rows[:20]
         self.assertEqual(list(range(1, 21)), [row["day_number"] for row in first_twenty])
-        self.assertTrue(all(row["instructor_scaffold_readiness"] == "READY_TO_START" for row in first_twenty))
-        self.assertTrue(all(row["assignability"] == "READY_TO_ATTEMPT" for row in first_twenty))
+        expected_ready = set(range(1, 15)) | {16, 17, 18, 19, 20}
+        expected_partial = {15}
+        self.assertEqual(expected_ready, {row["day_number"] for row in first_twenty if row["instructor_scaffold_readiness"] == "READY_TO_START"})
+        self.assertEqual(expected_partial, {row["day_number"] for row in first_twenty if row["instructor_scaffold_readiness"] == "PARTIAL_CONTRACT_SUPPORTED"})
+        self.assertTrue(all(row["assignability"] == "READY_TO_ATTEMPT" for row in first_twenty if row["day_number"] in expected_ready))
+        self.assertTrue(all(row["assignability"] != "READY_TO_ATTEMPT" for row in first_twenty if row["day_number"] in expected_partial))
         self.assertTrue(all(row["instructor_readiness_evidence"] for row in first_twenty))
         self.assertTrue(all(row["timebox_status"] in {"TIMEBOX_NOT_VALIDATED", "NOT_REHEARSED"}
                             for row in first_twenty), "readiness must not invent measured time")

@@ -1,7 +1,7 @@
 package capstone.coverstory.shortlist;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
@@ -68,7 +68,7 @@ class CAP168InstructorInfrastructureTest {
             JsonNode node;
             try { node=JSON.readTree(raw); } catch (Exception invalid) { rejected.add(new SafeRejection(line,"MALFORMED_JSON")); continue; }
             if (node==null || !node.isObject()) { rejected.add(new SafeRejection(line,"INVALID_RECORD")); continue; }
-            Set<String> names = new HashSet<>(); node.fieldNames().forEachRemaining(names::add);
+            Set<String> names = new HashSet<>(); node.propertyNames().forEach(names::add);
             if (!names.equals(FIELDS)) { rejected.add(new SafeRejection(line,names.contains("termsHash") ? "UNKNOWN_OR_MISSING_FIELD" : "MISSING_TERMS_HASH")); continue; }
             JsonNode total=node.path("totalPaise"), terms=node.path("termsHash");
             if (!total.isIntegralNumber() || total.asLong() <= 0) { rejected.add(new SafeRejection(line,"INVALID_TOTAL_PAISE")); continue; }

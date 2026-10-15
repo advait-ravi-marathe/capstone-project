@@ -2,15 +2,63 @@
   "fixture_id": "CAP-47-synthetic-v1",
   "classification": "SYNTHETIC",
   "cases": [
-    {"case_id": "q1", "answerable": true, "allowed": [["w1", "v1"]]},
-    {"case_id": "q2", "answerable": false, "allowed": []}
+    {
+      "case_id": "q1",
+      "answerable": true,
+      "allowed": [
+        [
+          "w1",
+          "v1"
+        ]
+      ]
+    },
+    {
+      "case_id": "q2",
+      "answerable": false,
+      "allowed": []
+    }
   ],
   "answers": {
-    "supported": {"abstained": false, "citations": [["w1", "v1"]]},
-    "correct_abstention": {"abstained": true, "citations": []},
-    "missing_citation": {"abstained": false, "citations": []},
-    "foreign_citation": {"abstained": false, "citations": [["w9", "v1"]]},
-    "abstained_with_citation": {"abstained": true, "citations": [["w1", "v1"]]}
+    "supported": {
+      "abstained": false,
+      "citations": [
+        [
+          "w1",
+          "v1"
+        ]
+      ]
+    },
+    "correct_abstention": {
+      "abstained": true,
+      "citations": []
+    },
+    "missing_citation": {
+      "abstained": false,
+      "citations": []
+    },
+    "foreign_citation": {
+      "abstained": false,
+      "citations": [
+        [
+          "w9",
+          "v1"
+        ]
+      ]
+    },
+    "abstained_with_citation": {
+      "abstained": true,
+      "citations": [
+        [
+          "w1",
+          "v1"
+        ]
+      ]
+    }
   },
-  "expected": {"total_cases": 2, "supported_answers": 1, "correct_abstentions": 1, "unsupported": 0}
+  "expected": {
+    "total_cases": 2,
+    "supported_answers": 1,
+    "correct_abstentions": 1,
+    "unsupported": 0
+  }
 }

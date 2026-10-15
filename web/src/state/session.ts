@@ -5,6 +5,7 @@ export type Session = { ownerId: string; generation: number }
 let activeGeneration = 0
 let activeOwner: string | null = null
 let latestSessionCheck = 0
+const privateMutations = new Set<AbortController>()
 
 export async function revalidateSession(signal?: AbortSignal): Promise<Session | null> {
   const check = ++latestSessionCheck
@@ -61,6 +62,30 @@ function isSessionResponse(value: unknown): value is { ownerId: string } {
 
 export function isCurrentSession(session: Session): boolean {
   return activeOwner === session.ownerId && activeGeneration === session.generation
+}
+
+/** Invalidate the current owner generation before an explicit account switch or logout. */
+export async function resetActiveSession(): Promise<void> {
+  latestSessionCheck += 1
+  activeGeneration += 1
+  activeOwner = null
+  for (const controller of privateMutations) controller.abort()
+  privateMutations.clear()
+  await clearPrivateQueries()
+}
+
+export async function mutatePrivate(session: Session, path: string, method: 'POST' | 'DELETE', body?: unknown): Promise<void> {
+  if (!path.startsWith('/api/') || !isCurrentSession(session)) throw new DOMException('Session changed', 'AbortError')
+  const controller = new AbortController(); privateMutations.add(controller)
+  try {
+    const response = await fetch(path, {
+      method, credentials: 'same-origin', cache: 'no-store', signal: controller.signal,
+      headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
+      ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+    })
+    if (!isCurrentSession(session)) throw new DOMException('Session changed', 'AbortError')
+    if (!response.ok) throw new Error(`Request failed (${response.status}).`)
+  } finally { privateMutations.delete(controller) }
 }
 
 export async function fetchPrivateJson<T>(session: Session, path: string, signal: AbortSignal): Promise<T> {

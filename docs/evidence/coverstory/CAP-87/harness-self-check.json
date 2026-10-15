@@ -1,0 +1,24 @@
+{
+  "contract": "CAP-87/v1",
+  "status": "PASS_CURRENT_EXECUTOR",
+  "command": "COVERSTORY_MAVEN='mvn -D... ' python3 scripts/verify_coverstory_days_041_060.py",
+  "test_class": "capstone.coverstory.Day48To56InstructorScaffoldTest",
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "fixture_sha256": "492bd9a7d582601f0fb9095f47f72d5110c025cbfe3017542f4b3b9fd2529f3f",
+  "coverage": [
+    "synthetic confirmed payment metadata",
+    "journey has no plaintext draft",
+    "revision-bound AAD identifiers",
+    "browser ISSUED claim is not authority",
+    "bounded analytics queue and retry metadata",
+    "missing key remains unavailable"
+  ],
+  "limits": [
+    "fixture oracle only",
+    "no payment callback route, protected payload reader, analytics integration or encrypted restore was exercised",
+    "no React/API/PostgreSQL acceptance path or timebox rehearsal; Day 48 remains PARTIAL"
+  ],
+  "learner_todo_preserved": true
+}

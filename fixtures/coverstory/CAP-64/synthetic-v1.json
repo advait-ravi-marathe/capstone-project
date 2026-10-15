@@ -26,7 +26,10 @@
         "evidenceStatus": "SYNTHETIC",
         "payloadHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
-      "ack": { "partition": 1, "offset": 7 },
+      "ack": {
+        "partition": 1,
+        "offset": 7
+      },
       "expected_outcome": "SIMULATED_ACK"
     },
     {
@@ -39,8 +42,16 @@
     {
       "id": "CAP-64-CS-03",
       "invalid_inputs": [
-        { "catalog_version_id": "not-a-uuid", "source_id": "health-source-A", "source_version": "v1" },
-        { "catalog_version_id": "6b3b1d45-0fd7-4dc0-9810-72c6a5c4d001", "source_id": "health-source-A", "source_version": "" }
+        {
+          "catalog_version_id": "not-a-uuid",
+          "source_id": "health-source-A",
+          "source_version": "v1"
+        },
+        {
+          "catalog_version_id": "6b3b1d45-0fd7-4dc0-9810-72c6a5c4d001",
+          "source_id": "health-source-A",
+          "source_version": ""
+        }
       ],
       "expected_outcome": "VALIDATION_ERROR",
       "expected_send_count": 0
@@ -48,8 +59,14 @@
     {
       "id": "CAP-64-CS-04",
       "callback_deliveries": 2,
-      "first_ack": { "partition": 1, "offset": 7 },
-      "second_ack": { "partition": 1, "offset": 8 },
+      "first_ack": {
+        "partition": 1,
+        "offset": 7
+      },
+      "second_ack": {
+        "partition": 1,
+        "offset": 8
+      },
       "expected_completion_count": 1,
       "physical_delivery_exactly_once_claim": false
     }

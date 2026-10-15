@@ -1,0 +1,77 @@
+{
+  "assignment": "CAP-172",
+  "classification": "SYNTHETIC_EXACT_ACCESS_DECISIONS",
+  "wildcards_supported": false,
+  "conditional_policies_supported": false,
+  "owner_a": "a1720000-0000-4000-8000-000000000001",
+  "owner_b": "b1720000-0000-4000-8000-000000000002",
+  "journey_a": "a1730000-0000-4000-8000-000000000001",
+  "revision_a": "a1740000-0000-4000-8000-000000000001",
+  "assigned_support": "a1750000-0000-4000-8000-000000000001",
+  "unassigned_support": "a1760000-0000-4000-8000-000000000001",
+  "decisions": [
+    {
+      "effect": "ALLOW",
+      "principal": "owner_a",
+      "action": "READ_JOURNEY",
+      "resource": "journey_a"
+    },
+    {
+      "effect": "ALLOW",
+      "principal": "owner_a",
+      "action": "READ_PROTECTED_REVISION",
+      "resource": "revision_a"
+    },
+    {
+      "effect": "DENY",
+      "principal": "owner_a",
+      "action": "READ_JOURNEY",
+      "resource": "journey_a"
+    },
+    {
+      "effect": "ALLOW",
+      "principal": "assigned_support",
+      "action": "READ_JOURNEY",
+      "resource": "journey_a"
+    }
+  ],
+  "cases": [
+    {
+      "id": "CAP-172-CS-01",
+      "principal": "owner_a",
+      "action": "READ_JOURNEY",
+      "resource": "journey_a",
+      "expected": "allow only with exact allow and no matching deny"
+    },
+    {
+      "id": "CAP-172-CS-02",
+      "principal": "owner_a",
+      "action": "READ_PROTECTED_REVISION",
+      "resource": "revision_a",
+      "expected": "separate exact allow required before decrypt"
+    },
+    {
+      "id": "CAP-172-CS-03",
+      "principal": "owner_b",
+      "action": "READ_JOURNEY",
+      "resource": "journey_a",
+      "expected": "deny; anonymous and unassigned support also deny"
+    },
+    {
+      "id": "CAP-172-CS-04",
+      "principal": "owner_a",
+      "action": "READ_JOURNEY",
+      "resource": "journey_a",
+      "expected": "explicit exact deny overrides allow"
+    },
+    {
+      "id": "CAP-172-CS-05",
+      "expected": "wildcard, unknown condition and no matching allow deny by default"
+    },
+    {
+      "id": "CAP-172-CS-06",
+      "browser_claim": "ISSUED",
+      "expected": "browser state cannot advance or authorize journey"
+    }
+  ]
+}

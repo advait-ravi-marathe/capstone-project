@@ -13,24 +13,83 @@
   "cases": [
     {
       "id": "CAP-69-CS-01",
-      "run": {"offered": 20, "capacity": 10, "rate_per_second": 2, "strategy": "bounded"},
-      "expected": {"accepted": 10, "rejected": 10, "completed": 10, "queue_max_at_admission": 10, "p95_ms": 5000, "drain_ms": 5000}
+      "run": {
+        "offered": 20,
+        "capacity": 10,
+        "rate_per_second": 2,
+        "strategy": "bounded"
+      },
+      "expected": {
+        "accepted": 10,
+        "rejected": 10,
+        "completed": 10,
+        "queue_max_at_admission": 10,
+        "p95_ms": 5000,
+        "drain_ms": 5000
+      }
     },
     {
       "id": "CAP-69-CS-01-direct-baseline",
-      "run": {"offered": 20, "capacity": 10, "rate_per_second": 2, "strategy": "direct"},
-      "expected": {"accepted": 1, "rejected": 19, "completed": 1, "queue_max_at_admission": 1, "p95_ms": 500, "drain_ms": 500}
+      "run": {
+        "offered": 20,
+        "capacity": 10,
+        "rate_per_second": 2,
+        "strategy": "direct"
+      },
+      "expected": {
+        "accepted": 1,
+        "rejected": 19,
+        "completed": 1,
+        "queue_max_at_admission": 1,
+        "p95_ms": 500,
+        "drain_ms": 500
+      }
     },
     {
       "id": "CAP-69-CS-02",
-      "run": {"offered": 0, "capacity": 10, "rate_per_second": 2, "strategy": "bounded"},
-      "expected": {"accepted": 0, "rejected": 0, "completed": 0, "queue_max_at_admission": 0, "p95_ms": null, "drain_ms": 0}
+      "run": {
+        "offered": 0,
+        "capacity": 10,
+        "rate_per_second": 2,
+        "strategy": "bounded"
+      },
+      "expected": {
+        "accepted": 0,
+        "rejected": 0,
+        "completed": 0,
+        "queue_max_at_admission": 0,
+        "p95_ms": null,
+        "drain_ms": 0
+      }
     },
-    {"id": "CAP-69-CS-03", "run": {"offered": 1, "capacity": 0, "rate_per_second": 2, "strategy": "bounded"}, "error": "INVALID_CONFIG"},
-    {"id": "CAP-69-CS-03-unbounded", "run": {"offered": 1, "capacity": null, "rate_per_second": 2, "strategy": "bounded"}, "error": "INVALID_CONFIG"},
+    {
+      "id": "CAP-69-CS-03",
+      "run": {
+        "offered": 1,
+        "capacity": 0,
+        "rate_per_second": 2,
+        "strategy": "bounded"
+      },
+      "error": "INVALID_CONFIG"
+    },
+    {
+      "id": "CAP-69-CS-03-unbounded",
+      "run": {
+        "offered": 1,
+        "capacity": null,
+        "rate_per_second": 2,
+        "strategy": "bounded"
+      },
+      "error": "INVALID_CONFIG"
+    },
     {
       "id": "CAP-69-CS-04",
-      "evidence": {"offered": 20, "accepted": 10, "rejected": 10, "completed": 10},
+      "evidence": {
+        "offered": 20,
+        "accepted": 10,
+        "rejected": 10,
+        "completed": 10
+      },
       "claim": "The queue eliminated overload.",
       "expected_valid": false
     }

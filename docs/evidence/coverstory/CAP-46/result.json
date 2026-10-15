@@ -8,11 +8,23 @@
     "tests": 7,
     "failures": 0,
     "errors": 0,
-    "positive_controls": ["all four saved operation vectors", "fresh empty state per replay", "FIFO drain and duplicate requeue"],
-    "negative_controls": ["unbounded overflow", "LIFO ordering", "permanent duplicate suppression"],
+    "positive_controls": [
+      "all four saved operation vectors",
+      "fresh empty state per replay",
+      "FIFO drain and duplicate requeue"
+    ],
+    "negative_controls": [
+      "unbounded overflow",
+      "LIFO ordering",
+      "permanent duplicate suppression"
+    ],
     "learner_todo_invoked": false
   },
-  "learner_acceptance": {"suite": "CAP46AcceptanceTest", "tests": 4, "errors_at_unimplemented_queue_methods": 4},
+  "learner_acceptance": {
+    "suite": "CAP46AcceptanceTest",
+    "tests": 4,
+    "errors_at_unimplemented_queue_methods": 4
+  },
   "fixture": {
     "path": "fixtures/coverstory/CAP-46/synthetic-v1.json",
     "classification": "synthetic",
@@ -20,5 +32,8 @@
   },
   "readiness": "READY_TO_ATTEMPT_SCAFFOLD_ONLY",
   "readiness_evidence": "docs/evidence/coverstory/phase1-days-001-010/README.md",
-  "limits": ["This single-threaded FIFO is an educational seam, not a runtime message broker.", "Learner TODO remains; no completion or elapsed-time claim is made."]
+  "limits": [
+    "This single-threaded FIFO is an educational seam, not a runtime message broker.",
+    "Learner TODO remains; no completion or elapsed-time claim is made."
+  ]
 }

@@ -1,0 +1,600 @@
+{
+  "title": "CoverStory Phase 1 Days 041–060 instructor scaffold evidence",
+  "recorded_at_utc": "2026-10-15T03:02:39.098641+00:00",
+  "canonical_curriculum_sha256": "e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e059a236e09de",
+  "scope": "Instructor setup/oracle checks only. Harness PASS does not establish full saved-contract readiness.",
+  "raw_output_directory": "/tmp/coverstory-days-041-060-pq5lict8",
+  "learner_assignments_completed": 0,
+  "learner_acceptance_runs": 0,
+  "days": [
+    {
+      "day": 41,
+      "date": "2026-11-23",
+      "primary": "CAP-81",
+      "title": "Day 041 · 23 Nov 2026 — Check authoritative transaction and journey audits (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap81_infrastructure",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "56e03afda220e7ba78bbcecf9a2e53a0149cfc3e311fa10bbd01b25e8e5ba671"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-81/synthetic-v1.json",
+        "exists": true,
+        "sha256": "ed174e46433556d581df2ade099db6f82c9b2e5b64ae098b72cbb272051c2aec"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 42,
+      "date": "2026-11-24",
+      "primary": "CAP-170",
+      "title": "Day 042 · 24 Nov 2026 — Validate payment replay-attempt identities (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP170InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "2aefdd348504f9de187ce57b9a380976020b78f90d4bd5b174f72658d07db95b"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-170/synthetic-v1.json",
+        "exists": true,
+        "sha256": "3cc0fcc42643ff9f5f83e5dc7137551d5ebb01945d3f88441a184e64cb01404b"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 43,
+      "date": "2026-11-25",
+      "primary": "CAP-82",
+      "title": "Day 043 · 25 Nov 2026 — Compare grounded health-source rankers (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap82_infrastructure",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-82/synthetic-v1.json",
+        "exists": true,
+        "sha256": "f79f55f17bb9db6e31423730b5073e6f2fe53fa49e499168608b52ccf86d9b27"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 44,
+      "date": "2026-11-26",
+      "primary": "CAP-83",
+      "title": "Day 044 · 26 Nov 2026 — Return safe checkout and draft errors (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP83InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "ad33ed03dbc32c5c06361186a2ac9fce77c65f420d19cbbebad45bf499021083"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-83/synthetic-v1.json",
+        "exists": true,
+        "sha256": "7a52eed4b54a4129329658a3e37a4418e9fda7a210e575458711d8348b185eaf"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 45,
+      "date": "2026-11-27",
+      "primary": "CAP-84",
+      "title": "Day 045 · 27 Nov 2026 — Validate mock provider event envelopes (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap84_infrastructure",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "921b60a7fd52e978fbb551cacd29df2d6708879400278e1fcc70fceeb0c6f8e0"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-84/synthetic-v1.json",
+        "exists": true,
+        "sha256": "f8dcc330a57ccd7b47768de6b1475e8ad4a0c388bcfae30cefb52a88a9b83048"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 46,
+      "date": "2026-11-28",
+      "primary": "CAP-85",
+      "title": "Day 046 · 28 Nov 2026 — Reconcile owned mock payment batches (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP85InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "41073598f5496c2b5de9c7312f884fd04f78f07a636ea5ecf3489073c7e714ab"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-85/synthetic-v1.json",
+        "exists": true,
+        "sha256": "1993f79ee95de1b4afb8ffca107ffeda5419049db61f51523079b80fe8eec013"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 47,
+      "date": "2026-11-29",
+      "primary": "CAP-86",
+      "title": "Day 047 · 29 Nov 2026 — Regress unsafe onboarding source answers (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap86_infrastructure",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "888a0c0ed615e57d32cf72be501b0c355f33b8613c81dfdaa99db33d7959487e"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-86/synthetic-v1.json",
+        "exists": true,
+        "sha256": "a93cc936a02a6f48ed10e7c552254dca2bd5a8ab2a535faeda2006ef371f5d85"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 48,
+      "date": "2026-11-30",
+      "primary": "CAP-87",
+      "title": "Day 048 · 30 Nov 2026 — Demonstrate encrypted owned journey resume (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=capstone.coverstory.Day48To56InstructorScaffoldTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "a37e7b1c8ee6e7db4b93ad5670e11cb91538b19a365a8d99959cc4dbcad8177e"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-87/synthetic-v1.json",
+        "exists": true,
+        "sha256": "492bd9a7d582601f0fb9095f47f72d5110c025cbfe3017542f4b3b9fd2529f3f"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "fixture_oracle_only; customer/service boundary remains absent",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 49,
+      "date": "2026-12-01",
+      "primary": "CAP-171",
+      "title": "Day 049 · 1 Dec 2026 — Invalidate retired quote-source citations (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=capstone.coverstory.Day48To56InstructorScaffoldTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "034ed58ece3574272f6d87db7102411a20da8f59e66ebedc9e002fa986575ba6"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-171/synthetic-v1.json",
+        "exists": true,
+        "sha256": "a6812fc662cbdafbdc4553988c57761b0f2796c85b7b18d07c82e0ca0e6ca499"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "fixture_oracle_only; customer/service boundary remains absent",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 50,
+      "date": "2026-12-02",
+      "primary": "CAP-88",
+      "title": "Day 050 · 2 Dec 2026 — Test CoverStory module access roles (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP88InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "71f9de9b79f069f572d9586aec4c117d0e8829d63be5c94ac16b471172ae794f"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-88/synthetic-v1.json",
+        "exists": true,
+        "sha256": "77601386cb7a9c1390d5958bd0a666a6c9bbe54efc833fe0970f0d4d09092960"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 51,
+      "date": "2026-12-03",
+      "primary": "CAP-89",
+      "title": "Day 051 · 3 Dec 2026 — Gate grounded onboarding evaluation (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap89_infrastructure",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "d8788fb668ab485288228ba408880db88f6bc1e91fecb5466716ec0bebc051a5"
+      },
+      "fixture": {
+        "path": "ai/fixtures/coverstory/CAP-89/synthetic-v1.json",
+        "exists": true,
+        "sha256": "ecc3bd24e2c933a8a4236776efbaefa5275fc505cd85273f4600db83cd685910"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 52,
+      "date": "2026-12-04",
+      "primary": "CAP-90",
+      "title": "Day 052 · 4 Dec 2026 — Fail closed on protected consumer payloads (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP90InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "5bd12766b350d800378857c6ea0a1700f51cfd26307b1acc2102a627fab43b38"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-90/synthetic-v1.json",
+        "exists": true,
+        "sha256": "d65cc1a98736c1115f2d52da2b5e8fd78846b66efb4946d9ec02054abb6cc065"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 53,
+      "date": "2026-12-05",
+      "primary": "CAP-91",
+      "title": "Day 053 · 5 Dec 2026 — Adapt read-only onboarding assistance (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP91InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "b443a815327c0b6628e1faa76da5c02cab11b77babdf7e874ebc52494f7430c8"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-91/synthetic-v1.json",
+        "exists": true,
+        "sha256": "4919256ffd69ed4238f2b2f09fbe6cad464e76789f25ab9721bc5b4b3b171c1c"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 54,
+      "date": "2026-12-06",
+      "primary": "CAP-92",
+      "title": "Day 054 · 6 Dec 2026 — Dry-run source retention boundaries (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP92InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "f9908339a8372d31d3ca54d4848970e5dbe25deb67e718667938d5865e38fdec"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-92/synthetic-v1.json",
+        "exists": true,
+        "sha256": "0d38e13400f07eb02810ed4caa5a95a432984545d54367af2b64150b31500b1e"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 55,
+      "date": "2026-12-07",
+      "primary": "CAP-93",
+      "title": "Day 055 · 7 Dec 2026 — Probe local durable work during outage (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP93InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "23f01ce8d4bc62f80ee637650e3f4ddb74fce9c137e2253100dabb93da6ad10f"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-93/synthetic-v1.json",
+        "exists": true,
+        "sha256": "2b51c542e75caa72e14e9ff87eb1174dd2fe083a936ee3309648636736e041b6"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 56,
+      "date": "2026-12-08",
+      "primary": "CAP-172",
+      "title": "Day 056 · 8 Dec 2026 — Authorize journey resume before decrypt (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=capstone.coverstory.Day48To56InstructorScaffoldTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "a0a030fb7fd66f4f8002aa169fda69ff58cfd9f849dd07b7db9ab8d7e0d7b781"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-172/synthetic-v1.json",
+        "exists": true,
+        "sha256": "c46f4a40051a7e1e6b30e18eea021840e7198e2c1bc16edcfa6770efa8a56a1f"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "fixture_oracle_only; customer/service boundary remains absent",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 57,
+      "date": "2026-12-09",
+      "primary": "CAP-94",
+      "title": "Day 057 · 9 Dec 2026 — Reproduce the CoverStory service artifact (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP94InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "10ae11955f3c677d14e6d085ed78afb46c4fc550f25874f787906a74b662f8f7"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-94/synthetic-v1.json",
+        "exists": true,
+        "sha256": "2751d83b552a939c40765af35f41a33d6622648a1adbc9dd13f39b967002bdfc"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 58,
+      "date": "2026-12-10",
+      "primary": "CAP-95",
+      "title": "Day 058 · 10 Dec 2026 — Bound optional assistance requests (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP95InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "cb7af5902313771c6cef46b925f10d38b47060cb0171e979ba38de8ab9811bf7"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-95/synthetic-v1.json",
+        "exists": true,
+        "sha256": "8b7493ba617c21cbd975a59096dd83acb15c00c231ab2cea8f54f16db1dc6457"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 59,
+      "date": "2026-12-11",
+      "primary": "CAP-96",
+      "title": "Day 059 · 11 Dec 2026 — Separate scaffold health from CI success (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap96_infrastructure",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-96/cases.json",
+        "exists": true,
+        "sha256": "b8c96cf61737eb3e8685dadc8a555bc9201166108e2398b5556bc057cef45ccd"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    },
+    {
+      "day": 60,
+      "date": "2026-12-12",
+      "primary": "CAP-97",
+      "title": "Day 060 · 12 Dec 2026 — Compare grounded assistance with guessing (150m)",
+      "instructor_scaffold_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "check": {
+        "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP97InstructorInfrastructureTest test",
+        "exit_code": 0,
+        "status": "PASS",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "raw_output_sha256": "f3b8dbebd767a8334662834c8afc3a1695ebf34f6357187a5e070155d2d92c86"
+      },
+      "fixture": {
+        "path": "fixtures/coverstory/CAP-97/synthetic-v1.json",
+        "exists": true,
+        "sha256": "b80a9f17d129a61ad45d3ac3907587d9cf457e64c6819a7bbc7425fefaba3da3"
+      },
+      "learner_logic_status": "TODO_RETAINED",
+      "learner_acceptance": "NOT_RUN",
+      "saved_contract_execution_scope": "saved family oracle only; not full live application path",
+      "remaining": "Run a contract-specific application/API/UI acceptance path and timebox rehearsal before READY."
+    }
+  ],
+  "summary": {
+    "days_total": 20,
+    "harness_pass": 20,
+    "contract_ready": 0,
+    "partial_oracle_only": 20,
+    "blocked": 0,
+    "instructor_tests": 92,
+    "learner_assignments_completed": 0
+  }
+}

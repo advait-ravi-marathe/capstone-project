@@ -1,0 +1,62 @@
+{
+  "classification": "SYNTHETIC_OFFLINE_PAYMENT_AUDIT_WINDOW",
+  "actual_provider_call": false,
+  "currency": "INR",
+  "window": {
+    "start_inclusive": "2026-12-15T00:00:00Z",
+    "end_exclusive": "2026-12-16T00:00:00Z",
+    "start_equivalent": "2026-12-15T05:30:00+05:30"
+  },
+  "owners": {
+    "A": "17300000-0000-4000-8000-000000000001",
+    "B": "17300000-0000-4000-8000-000000000002"
+  },
+  "records": [
+    {
+      "case_id": "CAP-173-CS-01-before",
+      "journal_id": "17300000-0000-4000-8000-000000000101",
+      "payment_id": "17300000-0000-4000-8000-000000000201",
+      "owner": "A",
+      "occurred_at": "2026-12-14T23:59:59.999999Z"
+    },
+    {
+      "case_id": "CAP-173-CS-01-start",
+      "journal_id": "17300000-0000-4000-8000-000000000102",
+      "payment_id": "17300000-0000-4000-8000-000000000202",
+      "owner": "A",
+      "occurred_at": "2026-12-15T00:00:00Z"
+    },
+    {
+      "case_id": "CAP-173-CS-01-before-end",
+      "journal_id": "17300000-0000-4000-8000-000000000103",
+      "payment_id": "17300000-0000-4000-8000-000000000203",
+      "owner": "A",
+      "occurred_at": "2026-12-15T23:59:59.999999Z"
+    },
+    {
+      "case_id": "CAP-173-CS-01-end",
+      "journal_id": "17300000-0000-4000-8000-000000000104",
+      "payment_id": "17300000-0000-4000-8000-000000000204",
+      "owner": "A",
+      "occurred_at": "2026-12-16T00:00:00Z"
+    },
+    {
+      "case_id": "CAP-173-CS-05-other-owner",
+      "journal_id": "17300000-0000-4000-8000-000000000105",
+      "payment_id": "17300000-0000-4000-8000-000000000205",
+      "owner": "B",
+      "occurred_at": "2026-12-15T12:00:00Z"
+    }
+  ],
+  "acceptance_expectations": {
+    "owner_a_ids": [
+      "17300000-0000-4000-8000-000000000102",
+      "17300000-0000-4000-8000-000000000103"
+    ],
+    "owner_a_count": 2,
+    "equivalent_offset_same_ids": true,
+    "session_timezone_invariant": true,
+    "invalid_range_query_count": 0,
+    "owner_b_id_absent_from_a": true
+  }
+}

@@ -1,7 +1,7 @@
 package coverstory.modules.catalog;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +24,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class CAP57InstructorInfrastructureTest {
     private static final ObjectMapper JSON = new ObjectMapper();
     private static final Path FIXTURE = Path.of("fixtures/coverstory/CAP-57/synthetic-v1.json");
+
+    @Test void acceptanceDatabaseFactoryStartsIsolatedEmptyPublicationState() throws Exception {
+        try (CAP57TestDatabase first = CAP57TestDatabase.fresh();
+             CAP57TestDatabase second = CAP57TestDatabase.fresh()) {
+            try (Connection c = first.postgres().getPostgresDatabase().getConnection(); Statement s = c.createStatement()) {
+                s.executeUpdate("INSERT INTO catalog.active_health_offer(product_id,version_id) VALUES "
+                        + "('5f1b8b02-1b68-4de8-928c-f3eaa5f80001','a8100000-0000-4000-8000-000000000001')");
+                assertEquals(1, count(s, "SELECT count(*) FROM catalog.active_health_offer"));
+            }
+            try (Connection c = second.postgres().getPostgresDatabase().getConnection(); Statement s = c.createStatement()) {
+                assertEquals(0, count(s, "SELECT count(*) FROM catalog.active_health_offer"),
+                        "separate acceptance methods cannot inherit another test's publication");
+                assertEquals(3, count(s, "SELECT count(*) FROM catalog.health_offer_version"));
+            }
+        }
+    }
 
     @Test void syntheticInputsHaveMatchingCanonicalContentHashes() throws Exception {
         JsonNode root = JSON.readTree(Files.readString(FIXTURE));
@@ -100,7 +116,7 @@ class CAP57InstructorInfrastructureTest {
 
     private static Object nativeValue(JsonNode node) {
         if (node.isObject()) {
-            Map<String, Object> sorted = new TreeMap<>(); node.fields().forEachRemaining(e -> sorted.put(e.getKey(), nativeValue(e.getValue()))); return sorted;
+            Map<String, Object> sorted = new TreeMap<>(); node.properties().forEach(e -> sorted.put(e.getKey(), nativeValue(e.getValue()))); return sorted;
         }
         if (node.isArray()) { List<Object> list = new ArrayList<>(); node.forEach(v -> list.add(nativeValue(v))); return list; }
         if (node.isTextual()) return node.asText();

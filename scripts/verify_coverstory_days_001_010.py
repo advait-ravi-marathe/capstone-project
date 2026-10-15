@@ -143,14 +143,17 @@ DAYS = [
     {
         "day": 10, "date": "2026-10-23", "primary": "CAP-54", "components": [],
         "java": "CAP54InstructorInfrastructureTest",
+        "java_browser": "CAP54HttpRuntimeIntegrationTest",
+        "frontend": True,
         "fixtures": ["fixtures/coverstory/CAP-54/synthetic-v1.json"],
         "reset": "Test-only fixture port graph is reconstructed per test from immutable synthetic owner/revision rows.",
         "positive": ["owner-bound lookup and exact authoritative application revision", "safe status/action summaries and bounded owner listing"],
         "negative": ["foreign and absent UUID produce same safe 404 before application read", "UUID-only access, private-field output, oversized page and foreign cursor"],
-        "wiring": "Instructor fixture adapter implements actual Application module OwnedJourneyReader/ApplicationStateReader ports. No production authentication/session adapter or resume endpoint is claimed.",
+        "wiring": "Actual Spring /api/session and /api/v1/me/journeys routes resolve only a trusted request principal. Application-owned JDBC reads join the owner-scoped journey to the exact linked application revision. A test-only synthetic session and independent PostgreSQL adapter exercise the actual HTTP/browser path; production auth binding and the saved CAP54Seam remain learner work and fail closed.",
+        "contract_ready": True,
         "learner": ["CAP-54 resume and active-list seam"],
         "learner_java": "CAP54AcceptanceTest",
-        "remaining": ["Implement only the owner-scoped query/adapter methods; authenticated runtime resume, persistence and private payload access remain outside this day's test harness.", "Learner duration remains unmeasured and does not block scaffold readiness."]
+        "remaining": ["Bind the trusted servlet principal to the deployment's authenticated session adapter; no login provider or real credential flow is included. Implement the CAP54Seam learner methods; the configured application route returns safe 501 until they are complete. Learner duration remains unmeasured."]
     },
 ]
 
@@ -227,6 +230,9 @@ def main() -> int:
         if day.get("java"):
             command = MAVEN + [f"-Dtest={day['java']}", "test"]
             checks.append(run(command, RAW / f"day-{number:03}-maven.log"))
+        if day.get("java_browser"):
+            command = MAVEN + ["-Dcoverstory.cap54.browser=true", f"-Dtest={day['java_browser']}", "test"]
+            checks.append(run(command, RAW / f"day-{number:03}-http-browser.log"))
         for module in day.get("python", []):
             command = [sys.executable, "-m", "unittest", module]
             checks.append(run(command, RAW / f"day-{number:03}-{module.split('.')[-1]}.log"))
@@ -269,10 +275,12 @@ def main() -> int:
                 "previously_recorded_learner_logic_status": receipt.get("learner_logic_status") or receipt.get("learner_result") or receipt.get("learner_decision"),
                 "previously_recorded_acceptance": receipt.get("learner_acceptance") or receipt.get("learner_acceptance_runs") or None
             })
-        ready = all(check["status"] == "PASS" for check in checks) and all(f["exists"] for f in fixture_hashes)
+        checks_pass = all(check["status"] == "PASS" for check in checks) and all(f["exists"] for f in fixture_hashes)
+        ready = checks_pass and day.get("contract_ready", True)
+        readiness = "READY" if ready else "PARTIAL" if checks_pass else "BLOCKED"
         report["days"].append({"day": number, "date": day["date"], "primary": day["primary"], "components": day["components"],
                                "title": primary_card["title"], "source_cards": source_cards,
-                               "instructor_scaffold_readiness": "READY" if ready else "BLOCKED",
+                               "instructor_scaffold_readiness": readiness,
                                "learner_assignment_complete": False, "timebox_measured": False,
                                "timebox_blocks_instructor_readiness": False, "checks": checks,
                                "fixtures": fixture_hashes, "reset_and_isolation": day["reset"],
@@ -280,9 +288,10 @@ def main() -> int:
                                "module_wiring": day["wiring"], "learner_todos": day["learner"], "learner_result_receipts": learner_receipts,
                                "learner_acceptance_runs": learner_checks,
                                "remaining_requirements": day["remaining"]})
-        print(f"Day {number:03}: {'READY' if ready else 'BLOCKED'} " + "; ".join(f"{c['status']}:{c['command']}" for c in checks))
+        print(f"Day {number:03}: {readiness} " + "; ".join(f"{c['status']}:{c['command']}" for c in checks))
     report["summary"] = {
         "days_ready": sum(day["instructor_scaffold_readiness"] == "READY" for day in report["days"]),
+        "days_partial": sum(day["instructor_scaffold_readiness"] == "PARTIAL" for day in report["days"]),
         "days_total": len(report["days"]),
         "commands_run": sum(len(day["checks"]) for day in report["days"]),
         "tests_run": sum((check.get("test_counts") or {}).get("tests", 0)
@@ -343,7 +352,7 @@ def main() -> int:
                    f"**Remaining requirements:** {'; '.join(day['remaining_requirements'])}", ""])
     (OUT / "README.md").write_text("\n".join(md), encoding="utf-8")
     print(f"Evidence: {destination.relative_to(ROOT)}")
-    return 0 if all(d["instructor_scaffold_readiness"] == "READY" for d in report["days"]) else 1
+    return 0 if all(d["instructor_scaffold_readiness"] in {"READY", "PARTIAL"} for d in report["days"]) else 1
 
 
 if __name__ == "__main__":

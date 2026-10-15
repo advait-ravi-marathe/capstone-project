@@ -3,28 +3,163 @@
   "classification": "SYNTHETIC",
   "scope": "read-only payment reconciliation attempt identity; never a charge authorization",
   "cases": [
-    {"id":"CAP-170-CS-01","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":1,"terminal":false},
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":2,"terminal":true},
-      {"owner":"owner-A","event":"event-1","epoch":1,"attempt":1,"terminal":false}],"expected":"VALID","accepted_rows":3},
-    {"id":"CAP-170-CS-02","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":1,"terminal":false},
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":1,"terminal":false}],"expected":"DUPLICATE_ATTEMPT_ID","accepted_rows":0},
-    {"id":"CAP-170-CS-03","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":2,"terminal":false},
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":1,"terminal":false}],"expected":"NON_MONOTONIC","accepted_rows":0},
-    {"id":"CAP-170-CS-04","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":2,"terminal":false}],"expected":"INVALID_START","accepted_rows":0},
-    {"id":"CAP-170-CS-05","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":-1,"attempt":1,"terminal":false}],"expected":"INVALID_DOMAIN","accepted_rows":0},
-    {"id":"CAP-170-CS-06","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":null,"terminal":false}],"expected":"INVALID_DOMAIN","accepted_rows":0},
-    {"id":"CAP-170-CS-07","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":1,"terminal":false},
-      {"owner":"owner-B","event":"event-1","epoch":0,"attempt":1,"terminal":false}],"expected":"VALID","accepted_rows":2},
-    {"id":"CAP-170-CS-08","rows":[
-      {"owner":"owner-A","event":"event-1","epoch":0,"attempt":1,"terminal":false},
-      {"owner":"owner-A","event":"event-2","epoch":0,"attempt":1,"terminal":false}],"expected":"VALID","accepted_rows":2}
+    {
+      "id": "CAP-170-CS-01",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        },
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 2,
+          "terminal": true
+        },
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 1,
+          "attempt": 1,
+          "terminal": false
+        }
+      ],
+      "expected": "VALID",
+      "accepted_rows": 3
+    },
+    {
+      "id": "CAP-170-CS-02",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        },
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        }
+      ],
+      "expected": "DUPLICATE_ATTEMPT_ID",
+      "accepted_rows": 0
+    },
+    {
+      "id": "CAP-170-CS-03",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 2,
+          "terminal": false
+        },
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        }
+      ],
+      "expected": "NON_MONOTONIC",
+      "accepted_rows": 0
+    },
+    {
+      "id": "CAP-170-CS-04",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 2,
+          "terminal": false
+        }
+      ],
+      "expected": "INVALID_START",
+      "accepted_rows": 0
+    },
+    {
+      "id": "CAP-170-CS-05",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": -1,
+          "attempt": 1,
+          "terminal": false
+        }
+      ],
+      "expected": "INVALID_DOMAIN",
+      "accepted_rows": 0
+    },
+    {
+      "id": "CAP-170-CS-06",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": null,
+          "terminal": false
+        }
+      ],
+      "expected": "INVALID_DOMAIN",
+      "accepted_rows": 0
+    },
+    {
+      "id": "CAP-170-CS-07",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        },
+        {
+          "owner": "owner-B",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        }
+      ],
+      "expected": "VALID",
+      "accepted_rows": 2
+    },
+    {
+      "id": "CAP-170-CS-08",
+      "rows": [
+        {
+          "owner": "owner-A",
+          "event": "event-1",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        },
+        {
+          "owner": "owner-A",
+          "event": "event-2",
+          "epoch": 0,
+          "attempt": 1,
+          "terminal": false
+        }
+      ],
+      "expected": "VALID",
+      "accepted_rows": 2
+    }
   ],
-  "limits": ["terminal is descriptive fixture metadata; this contract does not infer payment effects", "all identities and provider references are synthetic"]
+  "limits": [
+    "terminal is descriptive fixture metadata; this contract does not infer payment effects",
+    "all identities and provider references are synthetic"
+  ]
 }

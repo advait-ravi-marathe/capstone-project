@@ -1,0 +1,652 @@
+{
+  "title": "CoverStory Phase 1 Days 021–040 contract audit",
+  "recorded_at_utc": "2026-10-15T02:57:09.194419+00:00",
+  "canonical_curriculum_sha256": "e96ae484e4c2c771e44d126f49127ee3ca005c766eb7abcb378e059a236e09de",
+  "readiness_basis": "Instructor command and fixture evidence establish harness setup only. Full saved-contract readiness additionally requires the specific live API/UI/data boundary and separate timebox rehearsal.",
+  "raw_output_directory_local_only": "/tmp/coverstory-days-021-040-qu89zxt9",
+  "learner_assignments": "NOT_RUN_AND_NOT_MARKED_COMPLETE",
+  "days": [
+    {
+      "day": 21,
+      "date": "2026-11-03",
+      "primary": "CAP-167",
+      "title": "Day 021 · 3 Nov 2026 — Check publication sequence assumptions offline (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP167InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "022ebb882c2518cacef09b90cd520b6c34f5958464851fd7556fd567d9907629",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-167/synthetic-v1.json",
+          "exists": true,
+          "sha256": "935376a86e5275efeb303e38e812f4844bf3c509967492aee70bf826c1358500"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 22,
+      "date": "2026-11-04",
+      "primary": "CAP-64",
+      "title": "Day 022 · 4 Nov 2026 — Test catalog publication transport contract offline (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP64InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "e9b14d7c350a74221df661f316f3b2c345fc5f315a154ced1633e0d6828534f9",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-64/synthetic-v1.json",
+          "exists": true,
+          "sha256": "d960dd468db97d4de38719bccdba0f1b1b7531548cd8400c102ef219787f4e5c"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 23,
+      "date": "2026-11-05",
+      "primary": "CAP-65",
+      "title": "Day 023 · 5 Nov 2026 — Filter private support evidence before scoring (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap65_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5
+          },
+          "raw_log_sha256": "6273232de4d3ef7acd4ecafa5c86beeeb974f56586b21089a2990b3f72facbe6",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-65/synthetic-v1.json",
+          "exists": true,
+          "sha256": "db4055540424a899086872a27f71d50d03144075fc2769bb342f05b88667f72b"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 24,
+      "date": "2026-11-06",
+      "primary": "CAP-66",
+      "title": "Day 024 · 6 Nov 2026 — Compare consumer groups using recorded traces (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP66InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "1370dc029d3187e308329e11cb14cadf6b174ba22a2040ff7509b1949ba40b7f",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-66/synthetic-v1.json",
+          "exists": true,
+          "sha256": "7582e19ddc82c48679136cbf5a1fc0d9ae5fc017c382496c630272fb618d9de1"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 25,
+      "date": "2026-11-07",
+      "primary": "CAP-67",
+      "title": "Day 025 · 7 Nov 2026 — Compute reproducible wording retrieval metrics (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap67_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3
+          },
+          "raw_log_sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-67/synthetic-v1.json",
+          "exists": true,
+          "sha256": "be419470a9ca572fcab9da789bdb4af939ab5b8c5a115ee81dd99f1f8c57378e"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 26,
+      "date": "2026-11-08",
+      "primary": "CAP-68",
+      "title": "Day 026 · 8 Nov 2026 — Expose commit-before-response uncertainty (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=capstone.coverstory.shortlist.CAP68InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "fa9169f185be39e094950c8cb7305fdb7aab9e6427d0bec9a17c4da14ba8dec0",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-68/synthetic-v1.json",
+          "exists": true,
+          "sha256": "4b0784ad3cc3bb4ef7a7fe71c4306dd1108b0c879aa998973e0af873c2537f39"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 27,
+      "date": "2026-11-09",
+      "primary": "CAP-69",
+      "title": "Day 027 · 9 Nov 2026 — Justify bounded local work queues (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap69_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2
+          },
+          "raw_log_sha256": "a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-69/synthetic-v1.json",
+          "exists": true,
+          "sha256": "b2ae68139f311d4b4a6b891b56915c5bd1db7d8ccafc61a83c964e8fad7053d5"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 28,
+      "date": "2026-11-10",
+      "primary": "CAP-168",
+      "title": "Day 028 · 10 Nov 2026 — Demo owned shortlist and quote validation (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=capstone.coverstory.shortlist.CAP168InstructorInfrastructureTest,OwnedShortlistPersistenceIntegrationTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "c49c2c7171120cd4f6d2c8c62be28a517fed25adda96415b755501283d8fdb66",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-168/synthetic-v1.json",
+          "exists": true,
+          "sha256": "e254ed155140ada819f9577341a8448d623a98c978f51ade2a4ae30dc95df92e"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 29,
+      "date": "2026-11-11",
+      "primary": "CAP-70",
+      "title": "Day 029 · 11 Nov 2026 — Stage protected consumer payload envelopes (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP70CryptoInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "a646152e28cce2d206292edcab1f35e718d49fc74e281872737a61e938987db6",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-70/synthetic-v1.json",
+          "exists": true,
+          "sha256": "d0a617495aeceda4316ef28ea75045f08a3556a7b41a5831df7ec8821bd48758"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 30,
+      "date": "2026-11-12",
+      "primary": "CAP-71",
+      "title": "Day 030 · 12 Nov 2026 — Chunk payment-help wording with coordinates (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap71_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3
+          },
+          "raw_log_sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-71/synthetic-v1.json",
+          "exists": true,
+          "sha256": "b6d02acf066d424d466402164a9e4d2ae1781bd1e927eff2d40da51ac2482b10"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 31,
+      "date": "2026-11-13",
+      "primary": "CAP-72",
+      "title": "Day 031 · 13 Nov 2026 — Persist provider observations and audit atomically (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap72_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 8
+          },
+          "raw_log_sha256": "75ff54e727b57e4bd7b88956ed0c92c4b9a416e6f0976707e8fb54aa385ac0bd",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-72/synthetic-v1.json",
+          "exists": true,
+          "sha256": "ce115872c309064c01ddd9e0fda4a502788a4a143ec86fd4d5f47e58c4d9aad2"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 32,
+      "date": "2026-11-14",
+      "primary": "CAP-73",
+      "title": "Day 032 · 14 Nov 2026 — Separate insurance wording evaluation sets (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap73_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5
+          },
+          "raw_log_sha256": "888a0c0ed615e57d32cf72be501b0c355f33b8613c81dfdaa99db33d7959487e",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-73/synthetic-v1.json",
+          "exists": true,
+          "sha256": "6d4f673900b6d7f82e84726085ca73d7910904fa9049504cdc8f0e5e8ac574ba"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 33,
+      "date": "2026-11-15",
+      "primary": "CAP-74",
+      "title": "Day 033 · 15 Nov 2026 — Expose owned mock payment attempt status (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP74InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "05cc30795210001e1e4229c94e3e59e5121b02b7db1ef31b0c6086ee1347f431",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-74/synthetic-v1.json",
+          "exists": true,
+          "sha256": "3055e70871cad605f4f3ae47a27336830428786375001be3c1007186b77d54c3"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 34,
+      "date": "2026-11-16",
+      "primary": "CAP-75",
+      "title": "Day 034 · 16 Nov 2026 — Classify mock payment ingestion failures (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap75_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 2
+          },
+          "raw_log_sha256": "a6707d4eff38012da33ddc34bc6dc076a3b17151cfc9aef223c8790cbe64c3da",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-75/synthetic-v1.json",
+          "exists": true,
+          "sha256": "23d5f4d37528f5d0b6a4babf7947e321c314e2565f99d7be8718f6a2c39362ca"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 35,
+      "date": "2026-11-17",
+      "primary": "CAP-169",
+      "title": "Day 035 · 17 Nov 2026 — Parse bounded reconciliation Retry-After (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP169InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "153a0a43f6330e89c2dbefd23fa4c15377cf5fcf5f2d3a701175e2ecc42c4b6e",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-169/synthetic-v1.json",
+          "exists": true,
+          "sha256": "8ffb6ea2a4003f4fa2ffbda59eff8578cb89a0bbb51661ad02644e20f7c5545a"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 36,
+      "date": "2026-11-18",
+      "primary": "CAP-76",
+      "title": "Day 036 · 18 Nov 2026 — Bound safe reconciliation reads (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP76InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "a4e89c208329b48b23acd4bca432066cbcd7ce94a40e27308f5614b165441370",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-76/synthetic-v1.json",
+          "exists": true,
+          "sha256": "8ce38b69183c17127e32a834a6c8d1b4a3f5f078005d96c2abb772a221ad1e1e"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 37,
+      "date": "2026-11-19",
+      "primary": "CAP-77",
+      "title": "Day 037 · 19 Nov 2026 — Check extractive payment-help consistency (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap77_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 5
+          },
+          "raw_log_sha256": "6273232de4d3ef7acd4ecafa5c86beeeb974f56586b21089a2990b3f72facbe6",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-77/synthetic-v1.json",
+          "exists": true,
+          "sha256": "0d9be50a7c6fe6385b1afedb3ab4376ed5049b7849c9afa4c588617eaf3a1c0d"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 38,
+      "date": "2026-11-20",
+      "primary": "CAP-78",
+      "title": "Day 038 · 20 Nov 2026 — Atomically record mock purchase and journey audit (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP78InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "372eeefbb9a80d60aa34cd0deb41cf2a25fdad89716c6414d2d75b32f15134d7",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-78/synthetic-v1.json",
+          "exists": true,
+          "sha256": "58880a112060abec7f855aa8d4837c94ba5a17b4d5d23a224bbf6f276b120a6d"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 39,
+      "date": "2026-11-21",
+      "primary": "CAP-79",
+      "title": "Day 039 · 21 Nov 2026 — Reject stale CoverStory source evidence (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest ai.tests.test_coverstory_cap79_infrastructure",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 4
+          },
+          "raw_log_sha256": "feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-79/synthetic-v1.json",
+          "exists": true,
+          "sha256": "612c1222c9066ae591fb0bf429e6e4af921b1947ef5b40b6100225bfeda0cd44"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    },
+    {
+      "day": 40,
+      "date": "2026-11-22",
+      "primary": "CAP-80",
+      "title": "Day 040 · 22 Nov 2026 — Replay mock payment confirmation safely (150m)",
+      "instructor_harness_status": "PASS",
+      "contract_readiness": "PARTIAL",
+      "checks": [
+        {
+          "command": "/tmp/apache-maven-3.10.0/bin/mvn -Dmaven.repo.local=/tmp/maven-repo -s /tmp/maven-settings.xml -Dtest=CAP80InstructorInfrastructureTest test",
+          "exit_code": 0,
+          "status": "PASS",
+          "test_counts": {
+            "tests": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "raw_log_sha256": "61b224da762d31f363b274a98db46e4b1f363f8fe2f11230c1d4146d3740b4d7",
+          "raw_log_local_only": true
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/coverstory/CAP-80/synthetic-v1.json",
+          "exists": true,
+          "sha256": "b390b6487f7a8814c602de302dc5e8fc938f1937001bc360f3b1aec366cf367e"
+        }
+      ],
+      "learner_assignment_complete": false,
+      "learner_acceptance": "NOT_RUN_BY_THIS_HARNESS",
+      "boundary": "Fixture/oracle setup only. A green harness is not full saved-contract readiness: separately exercise the exact product/API/UI/data boundary and timebox before READY."
+    }
+  ],
+  "summary": {
+    "days_total": 20,
+    "harness_pass": 20,
+    "contract_ready": 0,
+    "partial_oracle_only": 20,
+    "blocked": 0,
+    "learner_assignments_completed": 0,
+    "instructor_tests_run": 77
+  }
+}

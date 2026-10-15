@@ -1,16 +1,77 @@
 {
   "classification": "SYNTHETIC_ALLOWLISTED_ANALYTICS_CONTRACT",
   "schema_version": 1,
-  "limits": {"max_utf8_bytes": 8192, "max_events": 10, "max_duration_ms": 300000},
-  "allowed_pages": ["health_discovery", "compare", "quote_review", "home", "checkout", "onboarding", "final_review"],
-  "allowed_click_targets": ["compare_plan", "save_draft"],
+  "limits": {
+    "max_utf8_bytes": 8192,
+    "max_events": 10,
+    "max_duration_ms": 300000
+  },
+  "allowed_pages": [
+    "health_discovery",
+    "compare",
+    "quote_review",
+    "home",
+    "checkout",
+    "onboarding",
+    "final_review"
+  ],
+  "allowed_click_targets": [
+    "compare_plan",
+    "save_draft"
+  ],
   "events": {
-    "page_view": {"eventId":"58000000-0000-4000-8000-000000000001","eventType":"PAGE_VIEW","schemaVersion":1,"pseudonymousSessionId":"58000000-0000-4000-8000-000000000002","pageId":"health_discovery"},
-    "control_click": {"eventId":"58000000-0000-4000-8000-000000000003","eventType":"CONTROL_CLICK","schemaVersion":1,"pseudonymousSessionId":"58000000-0000-4000-8000-000000000002","pageId":"compare","targetId":"compare_plan","optionalDurationMs":0},
-    "page_view_with_target": {"eventId":"58000000-0000-4000-8000-000000000004","eventType":"PAGE_VIEW","schemaVersion":1,"pseudonymousSessionId":"58000000-0000-4000-8000-000000000002","pageId":"health_discovery","targetId":"save_draft"},
-    "unknown_target": {"eventId":"58000000-0000-4000-8000-000000000005","eventType":"CONTROL_CLICK","schemaVersion":1,"pseudonymousSessionId":"58000000-0000-4000-8000-000000000002","pageId":"compare","targetId":"delete_policy"},
-    "boolean_duration": {"eventId":"58000000-0000-4000-8000-000000000006","eventType":"CONTROL_CLICK","schemaVersion":1,"pseudonymousSessionId":"58000000-0000-4000-8000-000000000002","pageId":"compare","targetId":"save_draft","optionalDurationMs":true},
-    "sensitive_extras": {"eventId":"58000000-0000-4000-8000-000000000007","eventType":"CONTROL_CLICK","schemaVersion":1,"pseudonymousSessionId":"58000000-0000-4000-8000-000000000002","pageId":"compare","targetId":"save_draft","email":"synthetic@example.invalid","healthAnswer":"fixture-secret","rawUrl":"https://invalid.example/?token=fixture"}
+    "page_view": {
+      "eventId": "58000000-0000-4000-8000-000000000001",
+      "eventType": "PAGE_VIEW",
+      "schemaVersion": 1,
+      "pseudonymousSessionId": "58000000-0000-4000-8000-000000000002",
+      "pageId": "health_discovery"
+    },
+    "control_click": {
+      "eventId": "58000000-0000-4000-8000-000000000003",
+      "eventType": "CONTROL_CLICK",
+      "schemaVersion": 1,
+      "pseudonymousSessionId": "58000000-0000-4000-8000-000000000002",
+      "pageId": "compare",
+      "targetId": "compare_plan",
+      "optionalDurationMs": 0
+    },
+    "page_view_with_target": {
+      "eventId": "58000000-0000-4000-8000-000000000004",
+      "eventType": "PAGE_VIEW",
+      "schemaVersion": 1,
+      "pseudonymousSessionId": "58000000-0000-4000-8000-000000000002",
+      "pageId": "health_discovery",
+      "targetId": "save_draft"
+    },
+    "unknown_target": {
+      "eventId": "58000000-0000-4000-8000-000000000005",
+      "eventType": "CONTROL_CLICK",
+      "schemaVersion": 1,
+      "pseudonymousSessionId": "58000000-0000-4000-8000-000000000002",
+      "pageId": "compare",
+      "targetId": "delete_policy"
+    },
+    "boolean_duration": {
+      "eventId": "58000000-0000-4000-8000-000000000006",
+      "eventType": "CONTROL_CLICK",
+      "schemaVersion": 1,
+      "pseudonymousSessionId": "58000000-0000-4000-8000-000000000002",
+      "pageId": "compare",
+      "targetId": "save_draft",
+      "optionalDurationMs": true
+    },
+    "sensitive_extras": {
+      "eventId": "58000000-0000-4000-8000-000000000007",
+      "eventType": "CONTROL_CLICK",
+      "schemaVersion": 1,
+      "pseudonymousSessionId": "58000000-0000-4000-8000-000000000002",
+      "pageId": "compare",
+      "targetId": "save_draft",
+      "email": "synthetic@example.invalid",
+      "healthAnswer": "fixture-secret",
+      "rawUrl": "https://invalid.example/?token=fixture"
+    }
   },
   "client_time_authoritative": false,
   "journey_state_changes": false,

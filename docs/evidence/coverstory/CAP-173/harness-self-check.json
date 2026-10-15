@@ -1,0 +1,22 @@
+{
+  "contract": "CAP-173",
+  "status": "PASS",
+  "classification": "INSTRUCTOR_ONLY_SYNTHETIC",
+  "fixture_rows": 5,
+  "boundary_rows_for_owner_a": 4,
+  "expected_in_window_owner_a": 2,
+  "cases": {
+    "inclusive_start_exclusive_end": "PASS",
+    "equivalent_offset": "PASS",
+    "database_session_timezone_invariant": "PASS",
+    "owner_isolation": "PASS",
+    "count_matches_ids": "PASS",
+    "invalid_interval_does_not_read": "PASS",
+    "closed_end_mutant_rejected": "PASS",
+    "anonymous_request_401": "PASS",
+    "bounded_test_principal_reaches_learner_todo_501": "PASS"
+  },
+  "learner_seam": "TODO_RETAINED",
+  "provider_calls": false,
+  "source_commit": "42485449659a756442eba0d8351ecac15f455a2c"
+}

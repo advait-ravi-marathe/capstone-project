@@ -8,8 +8,15 @@
     "tests": 3,
     "failures": 0,
     "errors": 0,
-    "positive_controls": ["filename ordering and repeatable fixture read", "nonallowlisted file is ignored"],
-    "negative_controls": ["path traversal rejected before outside read", "duplicate source/version rejected", "restricted document rejected atomically"],
+    "positive_controls": [
+      "filename ordering and repeatable fixture read",
+      "nonallowlisted file is ignored"
+    ],
+    "negative_controls": [
+      "path traversal rejected before outside read",
+      "duplicate source/version rejected",
+      "restricted document rejected atomically"
+    ],
     "learner_todo_invoked": false
   },
   "learner_acceptance": {

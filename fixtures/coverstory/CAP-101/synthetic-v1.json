@@ -4,20 +4,100 @@
   "synthetic": true,
   "provider_calls": 0,
   "data_notice": "Invented chunk labels and payload markers only; no consumer or production content.",
-  "principal": {"owner_id": "owner-A"},
-  "budgets": {"input_cap": 1500, "output_reservation": 256},
+  "principal": {
+    "owner_id": "owner-A"
+  },
+  "budgets": {
+    "input_cap": 1500,
+    "output_reservation": 256
+  },
   "base_tokens": 300,
   "ranked_chunks": [
-    {"id": "ai1", "owner_id": "owner-A", "visibility": "PRIVATE", "tokens": 500, "citation": "[ai1]", "content": "SYNTHETIC-AI1"},
-    {"id": "ar1", "owner_id": "owner-A", "visibility": "PRIVATE", "tokens": 400, "citation": "[ar1]", "content": "SYNTHETIC-AR1"},
-    {"id": "a3", "owner_id": "owner-A", "visibility": "PRIVATE", "tokens": 700, "citation": "[a3]", "content": "SYNTHETIC-A3"},
-    {"id": "br1", "owner_id": "owner-B", "visibility": "PRIVATE", "tokens": 90, "citation": "[br1]", "content": "B_PRIVATE_CANARY_DO_NOT_READ"}
+    {
+      "id": "ai1",
+      "owner_id": "owner-A",
+      "visibility": "PRIVATE",
+      "tokens": 500,
+      "citation": "[ai1]",
+      "content": "SYNTHETIC-AI1"
+    },
+    {
+      "id": "ar1",
+      "owner_id": "owner-A",
+      "visibility": "PRIVATE",
+      "tokens": 400,
+      "citation": "[ar1]",
+      "content": "SYNTHETIC-AR1"
+    },
+    {
+      "id": "a3",
+      "owner_id": "owner-A",
+      "visibility": "PRIVATE",
+      "tokens": 700,
+      "citation": "[a3]",
+      "content": "SYNTHETIC-A3"
+    },
+    {
+      "id": "br1",
+      "owner_id": "owner-B",
+      "visibility": "PRIVATE",
+      "tokens": 90,
+      "citation": "[br1]",
+      "content": "B_PRIVATE_CANARY_DO_NOT_READ"
+    }
   ],
   "cases": [
-    {"id": "CAP-101-CS-01", "base_tokens": 300, "expected_ids": ["ai1", "ar1"], "expected_total": 1200, "expected_omitted": ["a3"], "expected_citations": ["[ai1]", "[ar1]"]},
-    {"id": "CAP-101-CS-02", "base_tokens": 1501, "expected_status": "INPUT_TOO_LARGE", "expected_counter_calls": 0},
-    {"id": "CAP-101-CS-03", "include_owner_b_first": true, "expected_b_content_bytes": 0},
-    {"id": "CAP-101-CS-04", "base_tokens": 300, "chunk_tokens": [500, 400, 300, 1], "expected_total": 1500, "expected_ids": ["ai1", "ar1", "exact"], "expected_omitted": ["overflow"]},
-    {"id": "CAP-101-CS-05", "authorized_candidates": 0, "expected_status": "ABSTAIN", "expected_manual_path": true}
+    {
+      "id": "CAP-101-CS-01",
+      "base_tokens": 300,
+      "expected_ids": [
+        "ai1",
+        "ar1"
+      ],
+      "expected_total": 1200,
+      "expected_omitted": [
+        "a3"
+      ],
+      "expected_citations": [
+        "[ai1]",
+        "[ar1]"
+      ]
+    },
+    {
+      "id": "CAP-101-CS-02",
+      "base_tokens": 1501,
+      "expected_status": "INPUT_TOO_LARGE",
+      "expected_counter_calls": 0
+    },
+    {
+      "id": "CAP-101-CS-03",
+      "include_owner_b_first": true,
+      "expected_b_content_bytes": 0
+    },
+    {
+      "id": "CAP-101-CS-04",
+      "base_tokens": 300,
+      "chunk_tokens": [
+        500,
+        400,
+        300,
+        1
+      ],
+      "expected_total": 1500,
+      "expected_ids": [
+        "ai1",
+        "ar1",
+        "exact"
+      ],
+      "expected_omitted": [
+        "overflow"
+      ]
+    },
+    {
+      "id": "CAP-101-CS-05",
+      "authorized_candidates": 0,
+      "expected_status": "ABSTAIN",
+      "expected_manual_path": true
+    }
   ]
 }
