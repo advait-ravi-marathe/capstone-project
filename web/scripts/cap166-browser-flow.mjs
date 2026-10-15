@@ -10,6 +10,9 @@ const apiTarget = process.argv[2]
 if (!apiTarget) throw new Error('Usage: node scripts/cap166-browser-flow.mjs <spring-api-url>')
 const decoderMode = process.argv[3] ?? 'instructor'
 if (!['instructor', 'learner'].includes(decoderMode)) throw new Error('decoder mode must be instructor or learner')
+const runMode = process.argv[4] ?? 'full'
+if (!['full', 'todo-smoke'].includes(runMode)) throw new Error('run mode must be full or todo-smoke')
+const browserExecutable = process.env.COVERSTORY_CHROMIUM?.trim() || 'chromium'
 const root = new URL('..', import.meta.url).pathname
 const freePort = async () => await new Promise((resolve, reject) => {
   const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const p = s.address().port; s.close(() => resolve(p)) })
@@ -29,7 +32,7 @@ try {
   for (let i = 0; i < 100; i++) { try { const r = await fetch(`${baseUrl}/cap166-harness.html`); if (r.ok) { up = true; break } } catch {} await wait(100) }
   assert.ok(up, 'Vite instructor harness did not start')
 
-  chrome = spawn('/usr/bin/chromium', ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage',
+  chrome = spawn(browserExecutable, ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage',
     '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { stdio: ['ignore', 'ignore', 'pipe'] })
   chrome.stderr.setEncoding('utf8')
   let stderr = ''
@@ -70,13 +73,20 @@ try {
     for (let i = 0; i < 100; i++) { try { if (await evaluate(expression)) return } catch {} await wait(100) }
     throw new Error(`Browser condition timed out: ${expression}`)
   }
-  if (decoderMode === 'learner') {
+  if (decoderMode === 'learner' && runMode === 'todo-smoke') {
     await navigate()
     await waitFor("document.querySelector('.persisted-catalog [role=alert]')?.textContent.includes('could not be decoded') && document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 0")
-    console.log('CAP166_LEARNER_TODO_REACHED ' + JSON.stringify({ actualDecoder: 'decodeCatalogEnvelope', noPartialCatalog: true, retryableErrorVisible: true }))
+    console.log('CAP166_LEARNER_TODO_SMOKE ' + JSON.stringify({ actualDecoder: 'decodeCatalogEnvelope', noPartialCatalog: true, retryableErrorVisible: true }))
   } else {
   await navigate()
-  await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3")
+  if (decoderMode === 'learner') {
+    await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3 || document.querySelector('.persisted-catalog [role=alert]')?.textContent.includes('could not be decoded')")
+    if (await evaluate("document.querySelector('.persisted-catalog [role=alert]')?.textContent.includes('could not be decoded')")) {
+      throw new Error('CAP166_LEARNER_ACCEPTANCE_TODO: actual decoder rejected the fixed v1 envelope; full success and recovery acceptance remains unmet')
+    }
+  } else {
+    await waitFor("document.querySelectorAll('.persisted-catalog input[type=checkbox]').length === 3")
+  }
   await evaluate("[...document.querySelectorAll('.persisted-catalog input[type=checkbox]')].slice(0,2).forEach(x=>x.click())")
   await waitFor("document.querySelector('.persisted-catalog .selection-toolbar strong')?.textContent === '2'")
   await evaluate("document.querySelector('.persisted-catalog .selection-toolbar button').click()")

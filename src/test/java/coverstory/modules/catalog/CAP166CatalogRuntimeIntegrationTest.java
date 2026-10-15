@@ -99,12 +99,19 @@ class CAP166CatalogRuntimeIntegrationTest {
             int apiPort = ((WebServerApplicationContext) app).getWebServer().getPort();
             String decoderMode = System.getProperty("coverstory.cap166.decoder", "instructor");
             assertTrue(List.of("instructor", "learner").contains(decoderMode), "decoder mode must be instructor or learner");
-            browserFlow = new ProcessBuilder("node", "web/scripts/cap166-browser-flow.mjs", "http://127.0.0.1:" + apiPort, decoderMode)
-                    .redirectErrorStream(true).start();
+            String runMode = System.getProperty("coverstory.cap166.browser.mode", "full");
+            assertTrue(List.of("full", "todo-smoke").contains(runMode), "browser mode must be full or todo-smoke");
+            ProcessBuilder browserBuilder = new ProcessBuilder("node", "web/scripts/cap166-browser-flow.mjs", "http://127.0.0.1:" + apiPort, decoderMode, runMode)
+                    .redirectErrorStream(true);
+            String configuredChromium = System.getProperty("coverstory.cap166.chromium");
+            if (configuredChromium != null && !configuredChromium.isBlank()) {
+                browserBuilder.environment().put("COVERSTORY_CHROMIUM", configuredChromium);
+            }
+            browserFlow = browserBuilder.start();
             browserCommands = new OutputStreamWriter(browserFlow.getOutputStream());
             try (BufferedReader output = new BufferedReader(new InputStreamReader(browserFlow.getInputStream()))) {
-                if (decoderMode.equals("learner")) {
-                    awaitLine(output, "CAP166_LEARNER_TODO_REACHED", Duration.ofSeconds(70));
+                if (decoderMode.equals("learner") && runMode.equals("todo-smoke")) {
+                    awaitLine(output, "CAP166_LEARNER_TODO_SMOKE", Duration.ofSeconds(70));
                     assertEquals(0, browserFlow.waitFor(10, TimeUnit.SECONDS) ? browserFlow.exitValue() : -1);
                     return;
                 }
@@ -136,6 +143,8 @@ class CAP166CatalogRuntimeIntegrationTest {
         while (System.nanoTime() < deadline) {
             String line = next.get(Math.max(1, deadline - System.nanoTime()), TimeUnit.NANOSECONDS);
             if (line == null) throw new AssertionError("browser harness exited before " + expected);
+            if (line.contains("CAP166_LEARNER_ACCEPTANCE_TODO"))
+                throw new AssertionError("learner browser acceptance reached the intentionally unimplemented decodeCatalogEnvelope TODO");
             if (line.startsWith("Error:") || line.startsWith("AssertionError") || line.startsWith("Error "))
                 throw new AssertionError("browser harness failure: " + line);
             System.out.println("CAP166 browser evidence: " + line);

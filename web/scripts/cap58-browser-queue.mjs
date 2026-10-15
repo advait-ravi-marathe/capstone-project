@@ -22,7 +22,7 @@ try {
   vite = spawn('npm', ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { cwd: root, stdio: 'ignore', env: { ...process.env, npm_config_cache: '/tmp/capstone-npm-cache', ...(apiTarget ? { COVERSTORY_API_TARGET: apiTarget } : {}) } })
   const base = `http://127.0.0.1:${port}`
   for (let i=0;i<100;i++) { try { if ((await fetch(`${base}/cap58-harness.html`)).ok) break } catch {} await wait(100) }
-  chrome = spawn('/usr/bin/chromium', ['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-port=0',`--user-data-dir=${profile}`,'about:blank'], { stdio: ['ignore','ignore','pipe'] })
+  chrome = spawn(process.env.COVERSTORY_CHROMIUM?.trim() || 'chromium', ['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-port=0',`--user-data-dir=${profile}`,'about:blank'], { stdio: ['ignore','ignore','pipe'] })
   chrome.stderr.setEncoding('utf8'); let stderr=''; chrome.stderr.on('data', x=>stderr+=x)
   let ws; for(let i=0;i<100&&!ws;i++){ws=stderr.match(/DevTools listening on (ws:\/\/[^\s]+)/)?.[1];if(!ws)await wait(100)}
   assert.ok(ws, 'Chromium did not start')

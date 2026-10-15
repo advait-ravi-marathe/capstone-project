@@ -13,7 +13,7 @@ try {
   await vite.listen()
   const port = vite.httpServer.address().port
   profile = await mkdtemp(join(tmpdir(), 'coverstory-cap168-chrome-'))
-  browser = spawn('/usr/bin/chromium', ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage',
+  browser = spawn(process.env.COVERSTORY_CHROMIUM?.trim() || 'chromium', ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage',
     '--remote-allow-origins=*', `--user-data-dir=${profile}`, '--remote-debugging-port=0', 'about:blank'], { stdio: 'ignore' })
   const endpointFile = join(profile, 'DevToolsActivePort')
   let endpoint

@@ -179,10 +179,12 @@ def main() -> dict:
         'CAP-116': 'spring_postgres_accepted_revision_payment_reconciliation',
         'CAP-117': 'java_revision_bound_review_evidence_manifest',
         'CAP-118': 'java_policy_retrieval_slice_metrics',
+        'CAP-119': 'java_owned_policy_help_evidence_scope',
+        'CAP-120': 'java_clause_boundary_recall_context_cost',
         'CAP-176': 'java_issuance_evidence_slice_gate',
     }
     authored_ids = {'CAP-40', 'CAP-42', 'CAP-44', 'CAP-46', 'CAP-48', 'CAP-50', 'CAP-53', 'CAP-54', 'CAP-55', 'CAP-56', 'CAP-57', 'CAP-59', 'CAP-61', 'CAP-62', 'CAP-165', 'CAP-63', 'CAP-64', 'CAP-65', 'CAP-66', 'CAP-67', 'CAP-69', 'CAP-71', 'CAP-72', 'CAP-74', 'CAP-75', 'CAP-76', 'CAP-77', 'CAP-79', 'CAP-82', 'CAP-80', 'CAP-81', 'CAP-84', 'CAP-78', 'CAP-83', 'CAP-85', 'CAP-86', 'CAP-89', 'CAP-92', 'CAP-88', 'CAP-91', 'CAP-93', 'CAP-90', 'CAP-95', 'CAP-97', 'CAP-94', 'CAP-96', 'CAP-99', 'CAP-100', 'CAP-103', 'CAP-98', 'CAP-101', 'CAP-102', 'CAP-104', 'CAP-105', 'CAP-106', 'CAP-107', 'CAP-108', 'CAP-109', 'CAP-166', 'CAP-167', 'CAP-173', 'CAP-174'}
-    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115', 'CAP-116', 'CAP-117', 'CAP-118', 'CAP-176'})
+    authored_ids.update({'CAP-52', 'CAP-58', 'CAP-60', 'CAP-169', 'CAP-68', 'CAP-70', 'CAP-168', 'CAP-73', 'CAP-170', 'CAP-87', 'CAP-171', 'CAP-172', 'CAP-110', 'CAP-111', 'CAP-175', 'CAP-112', 'CAP-113', 'CAP-114', 'CAP-115', 'CAP-116', 'CAP-117', 'CAP-118', 'CAP-119', 'CAP-120', 'CAP-176'})
     fixture_validated_ids = set(authored_ids)
     derived_paths = {
         'CAP-40': 'src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java',
@@ -269,6 +271,8 @@ def main() -> dict:
         'CAP-116': 'src/main/java/capstone/coverstory/payments/internal/AcceptedRevisionBalance.java',
         'CAP-117': 'src/main/java/capstone/coverstory/application/internal/ReviewEvidenceManifest.java',
         'CAP-118': 'src/main/java/capstone/coverstory/support/internal/PolicyRetrievalMetric.java',
+        'CAP-119': 'src/main/java/capstone/coverstory/support/internal/OwnedEvidenceRetriever.java',
+        'CAP-120': 'src/main/java/capstone/coverstory/support/internal/ClauseChunker.java',
         'CAP-176': 'src/main/java/capstone/coverstory/policy/internal/IssuanceEvidenceSliceGate.java',
     }
     acceptance_suites = {
@@ -305,6 +309,12 @@ def main() -> dict:
         'CAP-90': 'src/test/java/coverstory/platform/crypto/CAP90AcceptanceTest.java',
         'CAP-95': 'src/test/java/coverstory/application/CAP95AcceptanceTest.java',
         'CAP-97': 'src/test/java/coverstory/application/CAP97AcceptanceTest.java',
+        'CAP-94': 'src/test/java/coverstory/application/CAP94AcceptanceTest.java',
+        'CAP-98': 'src/test/java/coverstory/application/CAP98AcceptanceTest.java',
+        'CAP-99': 'src/test/java/coverstory/application/CAP99AcceptanceTest.java',
+        'CAP-101': 'src/test/java/capstone/coverstory/application/CAP101AcceptanceTest.java',
+        'CAP-102': 'src/test/java/coverstory/modules/payments/CAP102AcceptanceTest.java',
+        'CAP-103': 'src/test/java/capstone/coverstory/application/CAP103AcceptanceTest.java',
         'CAP-42': 'src/test/java/coverstory/modules/catalog/CAP42SqlAcceptanceTest.java',
         'CAP-44': 'ai/coverstory/tests/test_cap_44.py',
         'CAP-46': 'src/test/java/coverstory/modules/catalog/CAP46AcceptanceTest.java',
@@ -349,6 +359,8 @@ def main() -> dict:
         'CAP-116': 'src/test/java/capstone/coverstory/payments/AcceptedRevisionBalanceTest.java',
         'CAP-117': 'src/test/java/capstone/coverstory/application/internal/ReviewEvidenceManifestTest.java',
         'CAP-118': 'src/test/java/capstone/coverstory/support/PolicyRetrievalMetricTest.java',
+        'CAP-119': 'src/test/java/capstone/coverstory/support/OwnedEvidenceRetrieverTest.java',
+        'CAP-120': 'src/test/java/capstone/coverstory/support/ClauseChunkerTest.java',
         'CAP-176': 'src/test/java/capstone/coverstory/policy/IssuanceEvidenceSliceGateTest.java',
     }
     current_candidate_runs = set(authored_ids) - {'CAP-96'}
@@ -403,6 +415,8 @@ def main() -> dict:
         'CAP-116': 'Instructor HTTP flow exercises accepted-revision facts through the Application public API and immutable effect/reservation facts through Payments public APIs against disposable PostgreSQL. Fixed cases verify unique confirmed net, integer paise, pending reservation, exact accepted id/hash binding, owner isolation, and orphan/currency discrepancy fail-closed behavior without writes. The main balance calculator remains TODO; only a test-profile read route and independent reference calculator exist. No charge, refund, provider or dispatch action occurs; the 150-minute timebox is unrehearsed.',
         'CAP-117': 'Independent instructor oracle checks the frozen CAP-112–116 evidence hashes, current accepted revision, expiry and unsupported claims. The learner ReviewEvidenceManifest.verify remains an explicit TODO; no production route or approval/issuance claim is introduced.',
         'CAP-118': 'Fixed synthetic lexical/precomputed-rank comparison and access-scope veto only; no model, embeddings, index, live content, or production authorization was evaluated.',
+        'CAP-119': 'Synthetic owner/assigned-support scope oracle checks authorization before lookup and rechecks rows before either modeled sink. Learner seam remains TODO; public Support/Application/Payments ports, persistence, endpoint, model connection, and the 150-minute timebox remain unverified or blocked.',
+        'CAP-120': 'Offline fixed-fixture oracle measures half-open UTF-8 byte offsets, whole-clause recall and whitespace-token context cost across compact/wide windows. Learner chunker remains TODO; tokenizer is a teaching metric, with no model, index, provider, persistence, Support API, or legal interpretation.',
         'CAP-176': 'Small synthetic slice-metric and issuance-evidence oracle only; both learner TODOs remain. Full Policy command/runtime, cross-module evidence ports, simulated dispatch lifecycle and browser integration remain blocked; timebox rehearsal is NOT_RUN.',
     }
     learner_result_overrides = {'CAP-90': 'PASS_TODO_GUARD_ONLY', 'CAP-101': 'PASS_TODO_GUARD_ONLY'}
@@ -435,6 +449,14 @@ def main() -> dict:
             # repository-files subsection, outside the scaffold heading.
             planned_source = 'src/main/java/capstone/coverstory/payments/ValidatePaymentIdentities.java'
             case_ids = [f'CAP-170-CS-{number:02d}' for number in range(1, 9)]
+        if card['id'] == 'CAP-119':
+            # CAP-119's saved source uses a distinct scaffold heading and lists
+            # case IDs as standalone lines rather than under the usual heading.
+            planned_source = 'src/main/java/capstone/coverstory/support/internal/OwnedEvidenceRetriever.java'
+            case_ids = [f'CAP-119-CS-{number}' for number in range(1, 4)]
+        if card['id'] == 'CAP-120':
+            planned_source = 'src/main/java/capstone/coverstory/support/internal/ClauseChunker.java'
+            case_ids = [f'CAP-120-CS-{number}' for number in range(1, 4)]
         if card['id'] in {'CAP-87', 'CAP-171', 'CAP-172'}:
             case_total = {'CAP-87': 7, 'CAP-171': 5, 'CAP-172': 6}[card['id']]
             case_ids = [f"{card['id']}-CS-{number:02d}" for number in range(1, case_total + 1)]
@@ -475,9 +497,12 @@ def main() -> dict:
                 else 'CONDITIONAL_EXPERIMENT_PREFLIGHT' if card['phase'] == 2
                 else 'NOT_SCAFFOLDED'
             ),
-            'learner_result': learner_result_overrides.get(card['id'],
+            'learner_expected_result': learner_result_overrides.get(card['id'],
                 'EXPECTED_FAILURE_AT_UNIMPLEMENTED_LEARNER_TODO' if card['id'] in current_candidate_runs
                 else 'NOT_RUN_ON_CURRENT_CANDIDATE'),
+            'learner_actual_result': 'NOT_RUN_ON_CURRENT_CANDIDATE',
+            'learner_completion': 'NOT_CLAIMED',
+            'learner_acceptance_suite_present': acceptance_suites.get(card['id']) is not None,
             'learner_readiness': 'READY_TO_ATTEMPT' if day_ready or card['id'] == 'CAP-40' else 'PARTIAL_CONTRACT_SUPPORTED' if day_partial else 'ENVIRONMENT_PREFLIGHT_NOT_RUN',
             'timebox_status': 'TIMEBOX_NOT_VALIDATED' if card['id'] == 'CAP-40' else 'NOT_REHEARSED',
             'readiness_evidence': 'docs/evidence/coverstory/CAP-40/environment-preflight.json' if card['id'] == 'CAP-40' else None,
@@ -511,7 +536,10 @@ def main() -> dict:
         'instructor_scaffolds_ready_to_start_days_001_020': sum(row['instructor_scaffold_readiness'] == 'READY_TO_START' for row in rows),
         'instructor_scaffolds_partial_contract_support_days_001_020': sum(row['instructor_scaffold_readiness'] == 'PARTIAL_CONTRACT_SUPPORTED' for row in rows),
         'assignable_now': sum(row['assignability'] == 'ASSIGNABLE' for row in rows),
-        'learner_acceptance_runs_on_current_candidate': sum(row['learner_result'] != 'NOT_RUN_ON_CURRENT_CANDIDATE' for row in rows),
+        'learner_acceptance_suites_present': sum(row['learner_acceptance_suite_present'] for row in rows),
+        'learner_actual_results_recorded': sum(row['learner_actual_result'] != 'NOT_RUN_ON_CURRENT_CANDIDATE' for row in rows),
+        'learner_completions_claimed': sum(row['learner_completion'] == 'COMPLETE' for row in rows),
+        'timeboxes_rehearsed': sum(row['timebox_status'] == 'REHEARSED' for row in rows),
         'phase2_independent_experiment_contracts_mapped': sum(row['scaffold_strategy'] == 'PROGRESSIVELY_FADED_FIXTURE_AND_EVALUATION_CONTRACT' for row in rows),
         'phase2_hidden_fault_preflights_required': sum(row['scaffold_strategy'] == 'HIDDEN_FRESH_FAULT_SYMPTOMS_ONLY' for row in rows),
         'scaffold_families_started': len(executable),

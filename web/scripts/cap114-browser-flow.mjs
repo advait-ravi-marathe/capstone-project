@@ -24,7 +24,7 @@ try {
   })
   const base = `http://127.0.0.1:${port}`
   for (let i = 0; i < 100; i++) { try { if ((await fetch(`${base}/cap114-harness.html`)).ok) break } catch {} await wait(100) }
-  chrome = spawn('/usr/bin/chromium', ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { stdio: ['ignore', 'ignore', 'pipe'] })
+  chrome = spawn(process.env.COVERSTORY_CHROMIUM?.trim() || 'chromium', ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { stdio: ['ignore', 'ignore', 'pipe'] })
   chrome.stderr.setEncoding('utf8'); let stderr = ''; chrome.stderr.on('data', value => stderr += value)
   let endpoint
   for (let i = 0; i < 100 && !endpoint; i++) { const match = stderr.match(/DevTools listening on (ws:\/\/[^\s]+)/); if (match) endpoint = `http://127.0.0.1:${new URL(match[1]).port}`; else await wait(100) }

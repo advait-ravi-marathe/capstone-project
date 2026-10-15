@@ -1,0 +1,40 @@
+{
+  "assignment": "CAP-119",
+  "fixture": "docs/coverstory/fixtures/cap-119.json",
+  "fixture_sha256": "2b6fa2a4f90928e6d55eb9221cd22f613dfae2a53aa98dc4b0f2b2b272a0fbf8",
+  "source_contract_sha256": "32c37bb12dcf3c4b24efe54b9d69e710377fad1f713366d52258a52b20e96da0",
+  "instructor_oracle": {
+    "command": "./mvnw -Dtest=CAP119InstructorInfrastructureTest test",
+    "status": "PASS",
+    "expected_cases": 5,
+    "actual": {
+      "failures": 0,
+      "errors": 0
+    },
+    "junit_test_methods": 2,
+    "oracle_cases_passed": 5
+  },
+  "learner": {
+    "seam": "src/main/java/capstone/coverstory/support/internal/OwnedEvidenceRetriever.java",
+    "logic": "TODO(CAP-119)",
+    "acceptance_suite": "src/test/java/capstone/coverstory/support/OwnedEvidenceRetrieverTest.java",
+    "actual": {
+      "run": 5,
+      "failures": 0,
+      "errors": 5,
+      "status": "EXPECTED_FAILURE_AT_UNIMPLEMENTED_TODO"
+    },
+    "case_count": 5,
+    "expected_result": "EXPECTED_FAILURE_AT_UNIMPLEMENTED_TODO"
+  },
+  "readiness": "INSTRUCTOR_FIXTURE_ORACLE_PASS_LEARNER_TODO_REMAINS",
+  "timebox_minutes": 150,
+  "timebox_rehearsal": "NOT_RUN",
+  "runtime_integrations": {
+    "public_support_read_api": "BLOCKED_NOT_PRESENT",
+    "owning_application_payments_adapters": "BLOCKED_NOT_PRESENT",
+    "persistence_and_transaction": "NOT_TESTED",
+    "model_boundary": "SYNTHETIC_ORACLE_ONLY"
+  },
+  "learner_completion": "NOT_CLAIMED"
+}
