@@ -2,9 +2,9 @@
 
 ## Session contract
 
-- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 24. **60 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence.
-- **CoverStory practical:** Add deterministic retrieval fixtures (saved source seam CAP-56); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
-- **Combined planned time:** 150 minutes. Use checked-in synthetic fixtures only; do not enter real consumer or health data.
+- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 24. **90 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence, 30 focused component and adversarial tests.
+- **CoverStory practical:** Record reproducible latency/sample evidence and test timeout/empty behavior. (saved primary CAP-56); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
+- **Combined planned time:** 180 minutes (90 FBA + 90 CoverStory). Use checked-in synthetic fixtures only; do not enter real consumer or health data.
 
 ## FBA implementation
 
@@ -15,27 +15,29 @@ cd practice/fba-coverstory-30day-practice/fba
 make test-frontend-day DAY=24
 ```
 
-Keep the supplied contract cases and add one synthetic adversarial case. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: record reproducible latency/sample evidence and test timeout/empty behavior. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=24`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
 
-## CoverStory adversarial-test follow-up
+## CoverStory practical contract
 
-The exact saved source contract is [`012-CAP-56`](../../../docs/assignments/coverstory/saved-days/day-012-cap-56.md), mapped to new daily card CAP-625. Follow the task, full acceptance text, and planned file paths in that source. Today’s repository work: **Add one learner-owned boundary test to `ai/coverstory/tests/test_cap_56.py` from the saved acceptance cases, then run both checks. Use an edge case that distinguishes the required behavior from a plausible wrong implementation; do not edit the instructor oracle or change the saved fixture to make a test pass.**
+Saved source: [`day-012-cap-56`](../../../docs/assignments/coverstory/saved-days/day-012-cap-56.md). Daily card CAP-625 maps to this specific task: **Record reproducible latency/sample evidence and test timeout/empty behavior.**
 
-Run instructor setup independently:
+**Learner seam:** `ai/coverstory/cap_56.py` (`evaluate_retriever`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_56.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap56_infrastructure.py`. Additional acceptance focus: Store fixture digest and measured local samples; do not claim production latency.
 
-```sh
-python3 -m unittest ai.tests.test_coverstory_cap56_infrastructure
-```
+Do the 55-minute repository work against the actual existing learner seam above. If a source card's historical planned path differs from the checkout, use this verified checkout path and record the discrepancy; do not create a parallel fake implementation.
 
-Then run learner acceptance separately:
+Setup/instructor check (separate from learner acceptance):
 
 ```sh
-python3 -m unittest ai.coverstory.tests.test_cap_56
+python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap56_infrastructure.py'
 ```
 
-The learner command is expected to expose the preserved learner TODO before implementation. Keep that result separate from the instructor setup check.
+Run focused learner acceptance separately (it may fail at the intentional TODO):
 
-**Harness files:** instructor `ai/tests/test_coverstory_cap56_infrastructure.py`; learner `ai/coverstory/tests/test_cap_56.py`. An instructor pass is setup evidence only. Never edit the fixture oracle to force a green result or mark the saved assignment complete because a test ran.
+```sh
+python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_56.py'
+```
+
+An instructor pass proves only harness readiness. Do not claim learner completion from fixture/oracle/browser adapter checks.
 
 ## AWS pathway and evidence
 

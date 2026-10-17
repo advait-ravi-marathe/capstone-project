@@ -2,9 +2,9 @@
 
 ## Session contract
 
-- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 27. **60 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence.
-- **CoverStory practical:** Exercise persisted catalog reads across restart (saved source seam CAP-166); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
-- **Combined planned time:** 150 minutes. Use checked-in synthetic fixtures only; do not enter real consumer or health data.
+- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 27. **90 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence, 30 focused component and adversarial tests.
+- **CoverStory practical:** Wire existing persisted health discovery/comparison path. (saved primary CAP-166); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
+- **Combined planned time:** 180 minutes (90 FBA + 90 CoverStory). Use checked-in synthetic fixtures only; do not enter real consumer or health data.
 
 ## FBA implementation
 
@@ -15,27 +15,29 @@ cd practice/fba-coverstory-30day-practice/fba
 make test-frontend-day DAY=27
 ```
 
-Keep the supplied contract cases and add one synthetic adversarial case. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: wire existing persisted health discovery/comparison path. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=27`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
 
-## CoverStory implementation
+## CoverStory practical contract
 
-The exact saved source contract is [`014-CAP-166`](../../../docs/assignments/coverstory/saved-days/day-014-cap-166.md), mapped to new daily card CAP-628. Follow the task, full acceptance text, and planned file paths in that source. Today’s repository work: **Implement the bounded learner seam from the saved card; run the exact learner acceptance and instructor setup checks. Keep the implementation inside the saved planned paths.**
+Saved source: [`day-014-cap-166`](../../../docs/assignments/coverstory/saved-days/day-014-cap-166.md). Daily card CAP-628 maps to this specific task: **Wire existing persisted health discovery/comparison path.**.
 
-Run instructor setup independently:
+**Learner seam:** `web/src/coverstory/catalog/decodeCatalogEnvelope.ts` (`decodeCatalogEnvelope`). **Focused learner acceptance:** `web/scripts/catalog-envelope-acceptance.mjs`. **Instructor-only fixture smoke:** `web/scripts/catalog-envelope-smoke.mjs`. Additional acceptance focus: Focused acceptance: `cd web && npm run test:catalog-acceptance`; it compiles/tests the actual TODO decoder.
 
-```sh
-./mvnw -Dtest=CAP166CatalogRuntimeIntegrationTest test
-```
+Do the 55-minute repository work against the actual existing learner seam above. If a source card's historical planned path differs from the checkout, use this verified checkout path and record the discrepancy; do not create a parallel fake implementation.
 
-Then run learner acceptance separately:
+Setup/instructor check (separate from learner acceptance):
 
 ```sh
-./mvnw -Dtest=CAP166CatalogRuntimeIntegrationTest -Dcoverstory.cap166.browser=true -Dcoverstory.cap166.decoder=learner test
+cd web && npm run test:catalog-fixture
 ```
 
-This acceptance needs Chromium and the existing `web` dependencies. Install them with `cd web && npm ci`; the Maven browser property runs the tagged live learner flow and currently stops at the retained decoder TODO. The default integration test is instructor persistence evidence, not the learner acceptance result.
+Run focused learner acceptance separately (it may fail at the intentional TODO):
 
-**Harness files:** instructor `src/test/java/coverstory/modules/catalog/CAP166CatalogRuntimeIntegrationTest.java`; learner `web/scripts/cap166-browser-flow.mjs`. An instructor pass is setup evidence only. Never edit the fixture oracle to force a green result or mark the saved assignment complete because a test ran.
+```sh
+cd web && npm run test:catalog-acceptance
+```
+
+An instructor pass proves only harness readiness. Do not claim learner completion from fixture/oracle/browser adapter checks.
 
 ## AWS pathway and evidence
 

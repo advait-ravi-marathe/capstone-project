@@ -1,0 +1,158 @@
+{
+  "kind": "append-only proposed curriculum extension",
+  "appends_after": "original saved unit 594, scheduled 2028-05-29",
+  "start_date": "2028-05-30",
+  "end_date": "2028-06-13",
+  "units": [
+    {
+      "id": "CAP-632",
+      "date": "2028-05-30",
+      "title": "Catalog evidence query planner",
+      "task": "Design and implement a bounded query plan for public catalog evidence filters; preserve module ownership and parameterize all values.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/catalog/api/CAP632Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/catalog/CAP632AcceptanceTest.java",
+      "acceptance": "Reject injection-shaped filters; assert stable filter semantics and bounded pagination.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-633",
+      "date": "2028-05-31",
+      "title": "Shortlist revision conflict UX",
+      "task": "Expose a typed conflict result for stale shortlist revisions and render a recoverable refresh path.",
+      "proposed_implementation_path": "web/src/coverstory/shortlist/resolveConflict.ts",
+      "proposed_learner_test_path": "web/scripts/cap633-acceptance.mjs",
+      "acceptance": "Synthetic stale/current revisions; no private cache survives owner switch.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-634",
+      "date": "2028-06-01",
+      "title": "Application resume cursor integrity",
+      "task": "Validate owner-bound resume cursors and reject tampering or stale revision reuse.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/application/api/CAP634Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/application/CAP634AcceptanceTest.java",
+      "acceptance": "Foreign, malformed, replayed and stale cursors return safe indistinguishable outcomes.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-635",
+      "date": "2028-06-02",
+      "title": "Payment journal balancing",
+      "task": "Create immutable integer-paise journal entries and verify balanced debit/credit totals per idempotency key.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/payments/api/CAP635Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/payments/CAP635AcceptanceTest.java",
+      "acceptance": "Currency mismatch, duplicate key and unbalanced entry cases; simulation only.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-636",
+      "date": "2028-06-03",
+      "title": "Refund reconciliation simulation",
+      "task": "Reconcile simulated refund requests against journal state without provider calls or double reversal.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/payments/api/CAP636Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/payments/CAP636AcceptanceTest.java",
+      "acceptance": "Duplicate, partial, out-of-order and unknown refund events remain idempotent.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-637",
+      "date": "2028-06-04",
+      "title": "Policy activation state machine",
+      "task": "Represent pending dispatch, confirmed dispatch and active cover as separate validated transitions.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/policy/api/CAP637Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/policy/CAP637AcceptanceTest.java",
+      "acceptance": "Payment alone cannot transition to active; cancellation and reconciliation paths tested.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-638",
+      "date": "2028-06-05",
+      "title": "Analytics consent retention policy",
+      "task": "Apply configurable synthetic retention/consent flags to allowlisted analytics events.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/analytics/api/CAP638Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/analytics/CAP638AcceptanceTest.java",
+      "acceptance": "No invented legal duration; verify purge boundary configuration and disallowed fields.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-639",
+      "date": "2028-06-06",
+      "title": "Catalog import replay ledger",
+      "task": "Model durable replay keys and conflict detection for catalog import batches.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/catalog/api/CAP639Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/catalog/CAP639AcceptanceTest.java",
+      "acceptance": "Concurrent duplicate/conflict transactions against disposable PostgreSQL.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-640",
+      "date": "2028-06-07",
+      "title": "Support evidence redaction",
+      "task": "Build an allowlisted support evidence view that excludes tokens, raw URLs and health fields.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/support/api/CAP640Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/support/CAP640AcceptanceTest.java",
+      "acceptance": "Synthetic sensitive markers never appear in output or logs.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-641",
+      "date": "2028-06-08",
+      "title": "Quote revision reproducibility",
+      "task": "Bind synthetic quote outputs to immutable catalog and application revisions.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/application/api/CAP641Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/application/CAP641AcceptanceTest.java",
+      "acceptance": "Same revisions reproduce output; changed revision invalidates stale quote.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-642",
+      "date": "2028-06-09",
+      "title": "Private query cache ownership",
+      "task": "Implement owner/session-scoped in-memory query caching with logout cancellation and late-response guard.",
+      "proposed_implementation_path": "web/src/coverstory/session/privateQueryCache.ts",
+      "proposed_learner_test_path": "web/scripts/cap642-acceptance.mjs",
+      "acceptance": "Account switch clears old cache, cancels requests, and ignores late old-owner response.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-643",
+      "date": "2028-06-10",
+      "title": "Journey audit atomicity",
+      "task": "Keep business journey audit writes atomic with state transitions while analytics remains best effort.",
+      "proposed_implementation_path": "src/main/java/coverstory/modules/application/api/CAP643Seam.java",
+      "proposed_learner_test_path": "src/test/java/coverstory/modules/application/CAP643AcceptanceTest.java",
+      "acceptance": "Injected failure rolls back state and audit; analytics failure does not block business event.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-644",
+      "date": "2028-06-11",
+      "title": "Retrieval evaluation split integrity",
+      "task": "Measure retrieval over disjoint source-family partitions with deterministic fixture digests.",
+      "proposed_implementation_path": "ai/coverstory/cap_644.py",
+      "proposed_learner_test_path": "ai/coverstory/tests/test_cap_644.py",
+      "acceptance": "Detect duplicate/cross-family leakage; report denominator and fixture digest.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-645",
+      "date": "2028-06-12",
+      "title": "Model card and drift monitor",
+      "task": "Create a synthetic evaluation record and thresholded drift report without fabricated production metrics.",
+      "proposed_implementation_path": "ai/coverstory/cap_645.py",
+      "proposed_learner_test_path": "ai/coverstory/tests/test_cap_645.py",
+      "acceptance": "Fixed sample counts, reproducible baseline, explicit insufficient-data state.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    },
+    {
+      "id": "CAP-646",
+      "date": "2028-06-13",
+      "title": "Interview architecture defense",
+      "task": "Produce a source-backed architecture/UML/data-flow explanation tied to implemented module boundaries and measured tradeoffs.",
+      "proposed_implementation_path": "docs/architecture/coverstory-defense.md",
+      "proposed_learner_test_path": "docs/architecture/coverstory-defense-checklist.md",
+      "acceptance": "Cite actual paths/commands; explain why optional Kafka/Redis/second DB are not required in starter.",
+      "status": "proposed new content; not one of the 600 saved contracts; paths not scaffolded/runnable yet"
+    }
+  ]
+}

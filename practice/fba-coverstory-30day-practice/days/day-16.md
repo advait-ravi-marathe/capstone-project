@@ -2,9 +2,9 @@
 
 ## Session contract
 
-- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 16. **60 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence.
-- **CoverStory practical:** Check transport and error boundaries (saved source seam CAP-52); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
-- **Combined planned time:** 150 minutes. Use checked-in synthetic fixtures only; do not enter real consumer or health data.
+- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 16. **90 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence, 30 focused component and adversarial tests.
+- **CoverStory practical:** Add malformed/duplicate request tests and error mapping. (saved primary CAP-52); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
+- **Combined planned time:** 180 minutes (90 FBA + 90 CoverStory). Use checked-in synthetic fixtures only; do not enter real consumer or health data.
 
 ## FBA implementation
 
@@ -15,27 +15,29 @@ cd practice/fba-coverstory-30day-practice/fba
 make test-frontend-day DAY=16
 ```
 
-Keep the supplied contract cases and add one synthetic adversarial case. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: add malformed/duplicate request tests and error mapping. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=16`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
 
-## CoverStory adversarial-test follow-up
+## CoverStory practical contract
 
-The exact saved source contract is [`008-CAP-52`](../../../docs/assignments/coverstory/saved-days/day-008-cap-52.md), mapped to new daily card CAP-617. Follow the task, full acceptance text, and planned file paths in that source. Today’s repository work: **Add one learner-owned boundary test to `src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java` from the saved acceptance cases, then run both checks. Use an edge case that distinguishes the required behavior from a plausible wrong implementation; do not edit the instructor oracle or change the saved fixture to make a test pass.**
+Saved source: [`day-008-cap-52`](../../../docs/assignments/coverstory/saved-days/day-008-cap-52.md). Daily card CAP-617 maps to this specific task: **Add malformed/duplicate request tests and error mapping.**.
 
-Run instructor setup independently:
+**Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP52Seam.java` (`import`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP52ControllerInfrastructureTest.java`. Additional acceptance focus: Check malformed requests and idempotency conflict responses through focused learner acceptance.
+
+Do the 55-minute repository work against the actual existing learner seam above. If a source card's historical planned path differs from the checkout, use this verified checkout path and record the discrepancy; do not create a parallel fake implementation.
+
+Setup/instructor check (separate from learner acceptance):
 
 ```sh
 ./mvnw -Dtest=CAP52ControllerInfrastructureTest test
 ```
 
-Then run learner acceptance separately:
+Run focused learner acceptance separately (it may fail at the intentional TODO):
 
 ```sh
 ./mvnw -Plearner-tests -Dtest=CAP52AcceptanceTest test
 ```
 
-The learner command is expected to expose the preserved learner TODO before implementation. Keep that result separate from the instructor setup check.
-
-**Harness files:** instructor `src/test/java/coverstory/modules/catalog/CAP52ControllerInfrastructureTest.java`; learner `src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java`. An instructor pass is setup evidence only. Never edit the fixture oracle to force a green result or mark the saved assignment complete because a test ran.
+An instructor pass proves only harness readiness. Do not claim learner completion from fixture/oracle/browser adapter checks.
 
 ## AWS pathway and evidence
 

@@ -1,6 +1,6 @@
 # Front-End Engineer II — FBA: 30 dated assignments
 
-Amazon job ID: **10575321**. Each day is one 60-minute FBA practice block: 35 minutes implementation, 15 minutes design/review, and 10 minutes truthful STAR practice. Dates and exact fixtures live in [`../SPRINT-MANIFEST.json`](../SPRINT-MANIFEST.json).
+Amazon job ID: **10575321**. Each day is one 90-minute FBA practice block: 35 minutes implementation, 15 minutes design/review, 10 minutes truthful STAR practice, and 30 minutes focused component plus adversarial testing. The final 30 minutes are task-specific: extend `frontend/src/ui.test.jsx` with the named failure/boundary behavior, add the corresponding synthetic case to `fixtures/cases.json` where it is a pure contract vector, and run both the focused component suite and that day's contract command. Dates and exact fixtures live in [`../SPRINT-MANIFEST.json`](../SPRINT-MANIFEST.json).
 
 Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. Test command: `cd frontend && npm test`. The copied FBA React workspace has 30 per-day learner functions wired into its navigator, with async service ports for the specified tasks. Implement and review only the assignment for the current day.
 
@@ -9,6 +9,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Build a controlled registration form with name and email fields. On submit, show field errors next to controls, focus the first invalid field, and show a success status for valid input. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=1`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 01 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=1; record the assertion and actual outcome.
 
 **15 min — design/review:** Sketch an accessible seller registration form, labels, error summary, focus placement, and server validation boundary.
 
@@ -20,6 +22,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Add controlled search and min/max quantity filters to the inventory list. Preserve order, show an empty state, and keep the filter usable at a narrow viewport. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=2`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 02 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=2; record the assertion and actual outcome.
+
 **15 min — design/review:** Explain table filtering on narrow screens and keyboard-accessible filter controls.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Ownership. Never invent work or metrics.
@@ -29,6 +33,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Submit the form through an injected Promise-based API. Show pending, success, retryable error, and validation states; prevent duplicate submits while pending. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=3`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 03 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=3; record the assertion and actual outcome.
 
 **15 min — design/review:** Design disabled/loading/error states and announce state changes without trapping keyboard users.
 
@@ -40,6 +46,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Build a keyboard-operable price-band selector. Keep selected value in state, update the description, and gracefully handle a value outside all bands. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=4`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 04 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=4; record the assertion and actual outcome.
+
 **15 min — design/review:** Describe a searchable catalog API and client behavior for empty/loading/error responses.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Dive Deep. Never invent work or metrics.
@@ -49,6 +57,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Render selectable inventory rows using stable IDs with SKU fallback. Selection must survive reorder and data refresh. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=5`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 05 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=5; record the assertion and actual outcome.
 
 **15 min — design/review:** Propose reusable component props that remain stable across pagination and refresh.
 
@@ -60,6 +70,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Render nested fulfillment choices with keyboard-operable expand/collapse, visible focus, and disabled-node handling. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=6`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 06 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=6; record the assertion and actual outcome.
+
 **15 min — design/review:** Make nested fulfillment navigation usable with keyboard and screen readers.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Deliver Results. Never invent work or metrics.
@@ -69,6 +81,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Add sortable column headers with accessible ascending/descending state. Null values stay last and ID breaks ties. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=7`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 07 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=7; record the assertion and actual outcome.
 
 **15 min — design/review:** Discuss sorting large lists: server vs client, virtualization, and accessibility announcement.
 
@@ -80,6 +94,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Render availability intervals on a responsive timeline, merge overlaps, label time spans, and provide a text alternative. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=8`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 08 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=8; record the assertion and actual outcome.
+
 **15 min — design/review:** Design a timeline that communicates timezone, unavailable periods, and mobile layout.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Are Right, A Lot. Never invent work or metrics.
@@ -89,6 +105,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Show only steps whose prerequisites are complete. Prevent next-step navigation around missing dependencies and explain why a step is blocked. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=9`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 09 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=9; record the assertion and actual outcome.
 
 **15 min — design/review:** How should a wizard recover if backend policy changes while the user is on a step?
 
@@ -100,6 +118,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Build checkbox facets with counts, selected-state chips, clear-all, and an empty-results message. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=10`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 10 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=10; record the assertion and actual outcome.
+
 **15 min — design/review:** Design filter facets that remain understandable with many combinations and clear-all behavior.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Bias for Action. Never invent work or metrics.
@@ -109,6 +129,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Implement an accessible combobox using an injected async search API, debounce typing, cancel stale requests, and support arrow/enter/escape. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=11`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 11 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=11; record the assertion and actual outcome.
 
 **15 min — design/review:** Specify combobox keyboard behavior and safe rendering of matched text.
 
@@ -120,6 +142,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Fetch a fee quote through an injected async port and render integer-cent subtotal/fee/total. Show stale, loading, and error states. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=12`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 12 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=12; record the assertion and actual outcome.
+
 **15 min — design/review:** Keep price explanation consistent when quotes refresh asynchronously.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Frugality. Never invent work or metrics.
@@ -129,6 +153,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Load the next page with a visible control and loading status; preserve prior rows and announce completion or failure. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=13`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 13 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=13; record the assertion and actual outcome.
 
 **15 min — design/review:** Balance eager loading and lazy loading on a slow mobile network.
 
@@ -140,6 +166,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Render connected marketplace groups as selectable chips, include isolated marketplaces, and keep selection stable when groups reorder. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=14`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 14 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=14; record the assertion and actual outcome.
+
 **15 min — design/review:** Represent a seller operating across marketplaces without conflating account identity.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Earn Trust. Never invent work or metrics.
@@ -149,6 +177,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Read filter state from query parameters and write changes back without losing unrelated parameters. Normalize duplicate filters. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=15`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 15 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=15; record the assertion and actual outcome.
 
 **15 min — design/review:** Explain query-cache ownership and when an optimistic update must be rolled back.
 
@@ -160,6 +190,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Use TanStack Query for policy-versioned data. Invalidate on version change and prevent stale cached data from appearing as current. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=16`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 16 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=16; record the assertion and actual outcome.
+
 **15 min — design/review:** Plan cache invalidation and private response clearing on user/account change.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Ownership. Never invent work or metrics.
@@ -169,6 +201,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Fetch placement results as filters change. Abort obsolete requests and only commit the response with the highest request sequence, even if an older request resolves later; test this delayed-response race. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=17`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 17 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=17; record the assertion and actual outcome.
 
 **15 min — design/review:** Describe cancellation, late-response guards, and skeleton/error behavior during navigation.
 
@@ -180,6 +214,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Fetch quotes and render loading, ready, retryable, and permanent-error views with a retry control and preserved prior data. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=18`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 18 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=18; record the assertion and actual outcome.
+
 **15 min — design/review:** Design a quote API view resilient to timeout, partial data, and repeated refresh.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Customer Obsession. Never invent work or metrics.
@@ -189,6 +225,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Decode an unknown placement payload before rendering. Reject malformed rows, supply documented defaults, and show a safe data-error state. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=19`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 19 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=19; record the assertion and actual outcome.
 
 **15 min — design/review:** Define typed UI/API models and prevent display-only fields from becoming authority.
 
@@ -200,6 +238,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Render untrusted seller-provided text as text, never HTML. Include a fixture with markup-looking content and verify it remains inert. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=20`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 20 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=20; record the assertion and actual outcome.
+
 **15 min — design/review:** Review XSS/CSRF and safe URL handling in a seller-facing UI.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Earn Trust. Never invent work or metrics.
@@ -209,6 +249,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Build a placement comparison view that shows options, freshness, fees, selection, and recovery for partial or stale quotes. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=21`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 21 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=21; record the assertion and actual outcome.
 
 **15 min — design/review:** Draw components and data flow; cover server state, URL filters, and error recovery.
 
@@ -220,6 +262,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Create a reusable field component with label, hint, error, required state, and correct `aria-describedby`; verify with role-based tests. Use the synthetic cases in `fixtures/cases.json` (3 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=22`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 22 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=22; record the assertion and actual outcome.
+
 **15 min — design/review:** Describe component boundaries, focus/validation, and how consumers customize safely.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Invent and Simplify. Never invent work or metrics.
@@ -229,6 +273,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Poll quotes with capped exponential delays and a maximum attempt count. Stop after success, cancellation, or max attempts. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=23`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 23 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=23; record the assertion and actual outcome.
 
 **15 min — design/review:** Choose polling vs push for quote updates and explain freshness/battery tradeoff.
 
@@ -240,6 +286,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Render LCP samples into accessible good/needs-improvement/poor states; never send raw URLs or user identifiers. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=24`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 24 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=24; record the assertion and actual outcome.
+
 **15 min — design/review:** Pick a frontend SLO and privacy-safe telemetry fields for it.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Success and Scale Bring Broad Responsibility. Never invent work or metrics.
@@ -249,6 +297,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Render only allowlisted explanation codes as plain text; cap content and show source/freshness metadata. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=25`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 25 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=25; record the assertion and actual outcome.
 
 **15 min — design/review:** Design explanation UI for generated recommendations with source, freshness, and human override.
 
@@ -260,6 +310,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Add contract cases for valid, empty, malformed, stale, and partial quote responses. Render safe states for each. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=26`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 26 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=26; record the assertion and actual outcome.
+
 **15 min — design/review:** Create component/API contract cases for empty, malformed, stale, and partial quote payloads.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Insist on Highest Standards. Never invent work or metrics.
@@ -269,6 +321,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Render placement images with responsive sizing and meaningful alt text; identify and handle missing or invalid descriptors. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=27`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 27 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=27; record the assertion and actual outcome.
 
 **15 min — design/review:** Audit a responsive list for keyboard flow, contrast, image alternatives, and rendering cost.
 
@@ -280,6 +334,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Implement roving tabindex, arrow-key movement, Home/End, and panel selection for a three-tab placement view. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=28`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 28 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=28; record the assertion and actual outcome.
+
 **15 min — design/review:** Use a timed exercise, then explain keyboard semantics, history behavior, and a novel edge case.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Earn Trust. Never invent work or metrics.
@@ -290,6 +346,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 **35 min — implementation:** Build a small comparison panel using the injected API: loading, partial results, selection, refresh, and error recovery. Keep the UI responsive while requests overlap. Use the synthetic cases in `fixtures/cases.json` (2 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=29`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
 
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 29 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=29; record the assertion and actual outcome.
+
 **15 min — design/review:** Explain the comparison panel states, async retry boundary, keyboard flow, and one tradeoff to revisit. Reserve the separate 10-minute STAR block below for truthful reflection.
 
 **10 min — STAR:** Write a truthful situation, your personal action, evidence/result, and learning connected to Deliver Results. Never invent work or metrics.
@@ -299,6 +357,8 @@ Implementation surface: `frontend/src/ui.jsx and frontend/src/assignments.js`. T
 
 **35 min — implementation:** Render attempted versus passed counts per topic, highlight all tied weakest topics, and capture one next-step note without claiming mastery. Use the synthetic cases in `fixtures/cases.json` (3 cases). Add at least one adversarial edge case and explain why it matters.
 **Run this day:** `make test-frontend-day DAY=30`. While this task is a TODO, the command reports the learner gap; after implementation it checks just this day.
+
+**30 min — component and adversarial verification:** Add a focused `frontend/src/ui.test.jsx` case for Day 30 that exercises the task's failure/boundary path using keyboard and accessible status where the UI exposes it; add a matching synthetic contract vector to `fixtures/cases.json` when the behavior is covered by the pure helper. Run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=30; record the assertion and actual outcome.
 
 **15 min — design/review:** Redo your weakest UI/API pattern, state accessibility/performance tradeoffs, and plan next 30 days.
 

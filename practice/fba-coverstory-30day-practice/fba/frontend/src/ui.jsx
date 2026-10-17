@@ -252,7 +252,7 @@ export function AssignmentApp({ api=defaultApi, initialDay=1, exerciseFunctions=
  const [day,setDay]=useState(initialDay);const item=days[day-1];
  return <main className="shell">
   <header className="top"><a className="brand" href="#top">Amazon interview sprint</a><span className="demo-pill">Practice sandbox · synthetic data</span></header>
-  <section className="intro"><p className="eyebrow">FRONT-END ENGINEER II · JOB 10575321</p><h1>Daily component practice</h1><p className="lede">One 60-minute practice contract per day. Implement the learner function, then exercise its React component.</p></section>
+  <section className="intro"><p className="eyebrow">FRONT-END ENGINEER II · JOB 10575321</p><h1>Daily component practice</h1><p className="lede">One 90-minute practice contract per day. Implement the learner function, then exercise its React component.</p></section>
   <nav className="day-nav" aria-label="Choose assignment day">{days.map(x=><button key={x.day} type="button" aria-current={day===x.day?'page':undefined} onClick={()=>setDay(x.day)}>Day {String(x.day).padStart(2,'0')}</button>)}</nav>
   <section className="workspace" aria-labelledby="assignment-title"><div className="section-head"><div><p className="eyebrow">DAY {String(day).padStart(2,'0')} · {item.topic}</p><h2 id="assignment-title">{item.title}</h2></div><label className="day-picker">Go to day<select aria-label="Go to day" value={day} onChange={e=>setDay(Number(e.target.value))}>{days.map(x=><option key={x.day} value={x.day}>Day {String(x.day).padStart(2,'0')}</option>)}</select></label></div>
   <p className="task-prompt">{item.coding_prompt}</p><TaskBody key={day} day={day} item={item} api={api} exerciseFunctions={exerciseFunctions}/>

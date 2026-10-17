@@ -2,9 +2,9 @@
 
 ## Session contract
 
-- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 18. **60 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence.
-- **CoverStory practical:** Build safe catalog metadata tests (saved source seam CAP-53); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
-- **Combined planned time:** 150 minutes. Use checked-in synthetic fixtures only; do not enter real consumer or health data.
+- **FBA role:** Front-End Engineer II — FBA, job **10575321**; source assignment 18. **90 minutes**: 35 implementation, 15 design/review, 10 truthful STAR evidence, 30 focused component and adversarial tests.
+- **CoverStory practical:** Add unsafe/malformed input regression and visible source labels. (saved primary CAP-53); **90 minutes**: 55 repository implementation/tests, 30 AWS official-pathway lesson/objective, 5 design/evidence.
+- **Combined planned time:** 180 minutes (90 FBA + 90 CoverStory). Use checked-in synthetic fixtures only; do not enter real consumer or health data.
 
 ## FBA implementation
 
@@ -15,27 +15,29 @@ cd practice/fba-coverstory-30day-practice/fba
 make test-frontend-day DAY=18
 ```
 
-Keep the supplied contract cases and add one synthetic adversarial case. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: add unsafe/malformed input regression and visible source labels. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=18`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
 
-## CoverStory adversarial-test follow-up
+## CoverStory practical contract
 
-The exact saved source contract is [`009-CAP-53`](../../../docs/assignments/coverstory/saved-days/day-009-cap-53.md), mapped to new daily card CAP-619. Follow the task, full acceptance text, and planned file paths in that source. Today’s repository work: **Add one learner-owned boundary test to `ai/coverstory/tests/test_cap_53.py` from the saved acceptance cases, then run both checks. Use an edge case that distinguishes the required behavior from a plausible wrong implementation; do not edit the instructor oracle or change the saved fixture to make a test pass.**
+Saved source: [`day-009-cap-53`](../../../docs/assignments/coverstory/saved-days/day-009-cap-53.md). Daily card CAP-619 maps to this specific task: **Add unsafe/malformed input regression and visible source labels.**.
 
-Run instructor setup independently:
+**Learner seam:** `ai/coverstory/cap_53.py` (`load_wording`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_53.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap53_infrastructure.py`. Additional acceptance focus: Reject unsafe malformed vectors and preserve exact visible source provenance.
 
-```sh
-python3 -m unittest ai.tests.test_coverstory_cap53_infrastructure
-```
+Do the 55-minute repository work against the actual existing learner seam above. If a source card's historical planned path differs from the checkout, use this verified checkout path and record the discrepancy; do not create a parallel fake implementation.
 
-Then run learner acceptance separately:
+Setup/instructor check (separate from learner acceptance):
 
 ```sh
-python3 -m unittest ai.coverstory.tests.test_cap_53
+python3 -m unittest discover -s ai/tests -p 'test_coverstory_cap53_infrastructure.py'
 ```
 
-The learner command is expected to expose the preserved learner TODO before implementation. Keep that result separate from the instructor setup check.
+Run focused learner acceptance separately (it may fail at the intentional TODO):
 
-**Harness files:** instructor `ai/tests/test_coverstory_cap53_infrastructure.py`; learner `ai/coverstory/tests/test_cap_53.py`. An instructor pass is setup evidence only. Never edit the fixture oracle to force a green result or mark the saved assignment complete because a test ran.
+```sh
+python3 -m unittest discover -s ai/coverstory/tests -p 'test_cap_53.py'
+```
+
+An instructor pass proves only harness readiness. Do not claim learner completion from fixture/oracle/browser adapter checks.
 
 ## AWS pathway and evidence
 
