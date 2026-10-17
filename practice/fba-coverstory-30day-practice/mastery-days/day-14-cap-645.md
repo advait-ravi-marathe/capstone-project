@@ -28,6 +28,8 @@ Default schedule: load A/C-A/r1; locally reorder s3,s1,s2; preview at catalog ge
 
 Deliver a compact candidate-bound system design: module/public-port map, one acceptance sequence, transaction/authorization boundaries, observed query budget and one explicit scaling or failure assumption. Defend one alternative from measured evidence and name the next unresolved limit. The artifact is backed by the code/test authored today.
 
+The saved acceptance test currently validates the evidence-gate logic against synthetic six-event UI/API/database rows and a hash-checked TSV bundle. It includes a stale-overwrite vector that must fail, plus blocked cases for missing database evidence, cross-owner evidence and modified bytes. This validates the gate's comparison behavior only: current application artifacts do not yet provide the required integrated browser, Spring endpoint and independent PostgreSQL observations, so the real-candidate admission result stays NOT_YET_VERIFIED.
+
 ## Scope and provenance
 
 This is a new executable cross-layer admission gate for branch-safe rebase, not the original final evidence-index/demo day.
@@ -37,5 +39,5 @@ Structured contract hash: `05a7267773892a7f2804cae8287f7a0075b45c7cac35999ef5ac4
 ## Commands
 
 Instructor fixture/schema harness: `./mvnw -Dtest=CSM14ContractInfrastructureTest,CSM14CheckpointSchemaIntegrationTest test`
-Learner acceptance: `./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest#cap645_admissionRunnerChecksUiApiAndIndependentPostgres test`
-Admission runner entry point: `experiments/coverstory/checkpoint-refresh/run-admission-contract.sh` (expected TODO failure until implemented).
+Learner acceptance: `./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest#cap645_admissionIsDerivedFromBoundUiApiAndDatabaseEvidence test`
+Admission runner entry point: `experiments/coverstory/checkpoint-refresh/run-admission-contract.sh` (runs that behavior test; the candidate observation bundle is synthetic until an integrated command is available).

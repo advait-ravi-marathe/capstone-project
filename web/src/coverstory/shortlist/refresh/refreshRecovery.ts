@@ -3,7 +3,7 @@ import type { RefreshReply } from './types'
 export type RecoveryState = 'IDLE' | 'SUBMITTING' | 'UNKNOWN' | 'REFETCHING' | 'SETTLED' | 'FAILED'
 export type OperationIdentity = { ownerScope: string; shortlistId: string; operationKey: string; canonicalRequestSha256: string }
 export type RecoveryPorts = {
-  accept: (operation: OperationIdentity, signal?: AbortSignal) => Promise<RefreshReply>
+  accept: (operation: OperationIdentity, request: unknown, signal?: AbortSignal) => Promise<RefreshReply>
   readCurrent: (shortlistId: string, signal?: AbortSignal) => Promise<number>
 }
 

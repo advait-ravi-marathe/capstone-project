@@ -26,14 +26,15 @@ try {
   let id=0;const pending=new Map();ws.addEventListener('message',e=>{const m=JSON.parse(e.data);if(m.id&&pending.has(m.id)){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(new Error(m.error.message)):p.resolve(m.result)}})
   const send=(method,params={})=>new Promise((resolve,reject)=>{const n=++id;pending.set(n,{resolve,reject});ws.send(JSON.stringify({id:n,method,params}));setTimeout(()=>{if(pending.has(n)){pending.delete(n);reject(new Error(`CDP timeout: ${method}`))}},10000).unref()})
   await send('Page.enable');await send('Runtime.enable');const evalInPage=async(expression)=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw new Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value}
+  const pressSpace=async()=>{await send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});await send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32})}
   await send('Page.navigate',{url:`${base}/csm14-refresh-harness.html`})
   for(let i=0;i<120;i++){if(await evalInPage("document.querySelectorAll('fieldset').length===3"))break;await wait(100)}
   if(cap==='CAP-638'){
     assert.equal(await evalInPage("document.querySelector('h2')?.textContent"),'Review comparison refresh')
-    assert.equal(await evalInPage("document.querySelector('button[aria-disabled=true]') !== null"),false)
     assert.equal(await evalInPage("document.querySelectorAll('input[type=radio]').length"),2)
+    assert.equal(await evalInPage("document.querySelector('button').textContent.trim()"),'Accept reviewed refresh')
     assert.equal(await evalInPage("document.querySelector('button').disabled"),true,'unavailable source keeps accept blocked')
-    await evalInPage("document.querySelectorAll('input[type=radio]')[1].click()")
+    await evalInPage("document.querySelectorAll('input[type=radio]')[1].focus()");await pressSpace()
     assert.equal(await evalInPage("document.querySelector('button').disabled"),true,'unavailable source remains blocked after resolving one conflict')
     await evalInPage("window.__setCsm14Fingerprint('SYNTHETIC_FINGERPRINT_21')");await wait(100)
     assert.equal(await evalInPage("[...document.querySelectorAll('input[type=radio]')].some(x=>x.checked)"),false,'new preview fingerprint requires review again')
@@ -41,20 +42,48 @@ try {
     assert.equal(await evalInPage("document.querySelector('[role=alert]')?.textContent.includes('changed')"),true)
     assert.equal(await evalInPage("document.querySelector('button').disabled"),true)
     assert.equal(await evalInPage('localStorage.length'),0)
-    if(process.argv.includes('--instructor-shell')) console.log('CAP-638 instructor browser shell checks PASS (accessible shell, blocked unsafe accept, no persistent private cache).')
-    else throw new Error('CAP-638 learner acceptance is incomplete: unavailable/review-fingerprint scenarios remain blocked at the learner-owned decision seam')
+    await evalInPage('window.__setCsm14ReadyPreview()');await wait(100)
+    assert.equal(await evalInPage("document.querySelector('button').disabled"),true,'new preview begins unresolved')
+    await evalInPage("document.querySelectorAll('input[type=radio]')[1].focus()");await pressSpace();await wait(50)
+    assert.equal(await evalInPage("document.querySelector('button').disabled"),false,'a complete conflict decision enables acceptance')
+    await evalInPage("document.querySelector('button').click()");await wait(50)
+    const accepted=await evalInPage('window.__acceptedCsm14()')
+    assert.equal(accepted.fingerprint,'SYNTHETIC_FINGERPRINT_READY')
+    assert.deepEqual(accepted.decisions.map(x=>x.slotId),['s2'])
+    assert.equal(accepted.decisions[0].choice.versionId,'v3')
+    assert.equal(accepted.decisions[0].choice.sourceSha256.length,64,'resolution retains the exact source version reference')
+    console.log('CAP-638 browser state subset PASS (blocked unavailable/stale states; explicit decision enables the shell callback).')
   } else if(cap==='CAP-639') {
-    const result=await evalInPage("import('/src/coverstory/shortlist/refresh/refreshRecovery.ts').then(m=>m.recoverRefresh({accept:async()=>({outcome:'ACCEPTED',revision:2,code:'OK'}),readCurrent:async()=>2},{ownerScope:'SYNTHETIC_OWNER_A',shortlistId:'SYNTHETIC_SHORTLIST_A',operationKey:'SYNTHETIC_KEY',canonicalRequestSha256:'a'.repeat(64)},{})).then(()=> 'resolved').catch(e=>String(e.message))")
-    assert.match(result,/TODO\(CAP-639\)/,'expected learner TODO should be visible')
-    throw new Error('CAP-639 acceptance failure: learner recovery seam still reaches its TODO')
+    const result=await evalInPage(`import('/src/coverstory/shortlist/refresh/refreshRecovery.ts').then(async m=>{
+      const op={ownerScope:'SYNTHETIC_OWNER_A',shortlistId:'SYNTHETIC_SHORTLIST_A',operationKey:'SYNTHETIC_KEY_639',canonicalRequestSha256:'a'.repeat(64)};let calls=[],reads=0,head=1,effects=0
+      const request={fingerprint:'FP-1',decisions:[{slotId:'s2',versionId:'v3'}]};const store={key:op.operationKey,hash:op.canonicalRequestSha256,request:structuredClone(request),reply:{outcome:'ACCEPTED',revision:2,code:'OK'}}
+      head=2;effects=1 // The prior request committed, but its response was lost before the user's explicit retry.
+      const recovered=await m.recoverRefresh({accept:async(operation,payload)=>{calls.push({operation:{...operation},payload:structuredClone(payload)});return operation.operationKey===store.key&&operation.canonicalRequestSha256===store.hash&&JSON.stringify(payload)===JSON.stringify(store.request)?store.reply:{outcome:'CONFLICT',code:'IDEMPOTENCY_KEY_REUSED'}},readCurrent:async()=>{reads++;return head}},op,request)
+      let conflicts=0,conflictReads=0;const rejected=await m.recoverRefresh({accept:async()=>{conflicts++;return {outcome:'CONFLICT',code:'STALE_PREVIEW'}},readCurrent:async()=>{conflictReads++;return 3}},op,{fingerprint:'OLD'})
+      return {recovered,calls,reads,rejected,conflicts,conflictReads,head,effects}
+    }).catch(e=>({error:String(e.message)}))`)
+    assert.equal(result.error,undefined,'unknown delivery should be reconciled through the same operation')
+    assert.deepEqual(result.recovered,{state:'SETTLED',currentRevision:2})
+    assert.equal(result.calls.length,1,"the user's retry replays once; recovery does not automatically mint/retry extra commands")
+    assert.equal(result.calls[0].operation.operationKey,'SYNTHETIC_KEY_639');assert.equal(result.calls[0].operation.canonicalRequestSha256,'a'.repeat(64));assert.deepEqual(result.calls[0].payload,{fingerprint:'FP-1',decisions:[{slotId:'s2',versionId:'v3'}]})
+    assert.equal(result.reads,1,'after confirmed replay, refetch authoritative persisted head');assert.equal(result.head,2);assert.equal(result.effects,1,'replay observes prior durable effect, it does not append another')
+    assert.deepEqual(result.rejected,{state:'FAILED'});assert.equal(result.conflicts,1);assert.equal(result.conflictReads,0,'definite stale rejection must not be treated as a lost response')
+    console.log('CAP-639 browser acceptance PASS (same-key lost-response replay/refetch; definite stale rejection is not retried).')
   } else if(cap==='CAP-640') {
-    const result=await evalInPage("import('/src/coverstory/shortlist/refresh/refreshOwnerBoundary.ts').then(m=>m.acceptOwnerResponse('SYNTHETIC_OWNER_B',{ownerId:'SYNTHETIC_OWNER_A',value:{shortlistId:'SYNTHETIC_SHORTLIST_A'},private:true})).then(x=>String(x)).catch(e=>String(e.message))")
-    assert.match(result,/TODO\(CAP-640\)/,'expected learner owner-boundary TODO should be visible')
-    throw new Error('CAP-640 acceptance failure: late private response still reaches its owner-boundary TODO')
+    const result=await evalInPage("import('/src/coverstory/shortlist/refresh/refreshOwnerBoundary.ts').then(m=>({late:m.acceptOwnerResponse('SYNTHETIC_OWNER_B',{ownerId:'SYNTHETIC_OWNER_A',value:{shortlistId:'SYNTHETIC_SHORTLIST_A',private:true},private:true}),current:m.acceptOwnerResponse('SYNTHETIC_OWNER_A',{ownerId:'SYNTHETIC_OWNER_A',value:{shortlistId:'SYNTHETIC_SHORTLIST_A',private:true},private:true}),signedOut:m.acceptOwnerResponse(null,{ownerId:'SYNTHETIC_OWNER_A',value:{secret:'synthetic'},private:true})})).catch(e=>({error:String(e.message)}))")
+    assert.equal(result.error,undefined,'owner response boundary should not throw for rejected stale responses')
+    assert.equal(result.late,null,'late response from previous account must be discarded')
+    assert.equal(result.signedOut,null,'private response after sign-out must be discarded')
+    assert.deepEqual(result.current,{shortlistId:'SYNTHETIC_SHORTLIST_A',private:true},'current owner may consume its response')
+    assert.equal(await evalInPage('localStorage.length'),0,'private responses are not persisted in local storage')
+    console.log('CAP-640 browser acceptance PASS (current owner accepted; switched owner and signed-out responses discarded).')
   } else {
-    const result=await evalInPage("import('/src/coverstory/shortlist/refresh/decodeCheckpointProvenance.ts').then(m=>m.decodeProvenance({schemaMajor:1})).then(x=>x).catch(e=>String(e.message))")
-    assert.match(result,/TODO\(CAP-641\)/,'expected learner TODO should be visible')
-    throw new Error('CAP-641 acceptance failure: provenance decoder still reaches its TODO')
+    const result=await evalInPage("import('/src/coverstory/shortlist/refresh/decodeCheckpointProvenance.ts').then(m=>{const unknown=m.decodeProvenance({schemaMajor:1}),upstream=m.decodeProvenance({schemaMajor:1,provenance:'UPSTREAM_REFRESH'}),conflict=m.decodeProvenance({schemaMajor:1,provenance:'EXPLICIT_CONFLICT_CHOICE'});let unsupported=false;try{m.decodeProvenance({schemaMajor:99,provenance:'UPSTREAM_REFRESH'})}catch{unsupported=true}return {unknown,upstream,conflict,unsupported}}).catch(e=>({error:String(e.message)}))")
+    assert.equal(result.error,undefined,'known schema should decode without an error')
+    assert.equal(result.unknown,'UNKNOWN','historical missing provenance remains unknown')
+    assert.equal(result.upstream,'UPSTREAM_REFRESH');assert.equal(result.conflict,'EXPLICIT_CONFLICT_CHOICE')
+    assert.equal(result.unsupported,true,'unsupported required major must fail closed')
+    console.log('CAP-641 browser acceptance PASS (known provenance decoded, absent value unknown, unsupported major rejected).')
   }
 } catch(error){console.error(`${cap} learner acceptance: ${error.stack||error}`);process.exitCode=1}
 finally{try{ws?.close()}catch{}for(const p of [chrome,vite])if(p&&!p.killed){p.kill('SIGTERM');await wait(150);if(!p.killed)p.kill('SIGKILL')}await rm(profile,{recursive:true,force:true})}

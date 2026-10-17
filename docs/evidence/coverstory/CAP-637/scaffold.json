@@ -2,15 +2,15 @@
   "issue_id": "CAP-637",
   "planning_id": "CSM14-06",
   "date": "2028-06-23",
-  "status": "INSTRUCTOR_SCAFFOLD_CHECKS_PASS; LEARNER_LOGIC_TODO",
+  "status": "BEHAVIORAL_ACCEPTANCE_SCAFFOLD; LEARNER_LOGIC_TODO",
   "learner_completion": "NOT_CLAIMED",
   "paths_verified": true,
-  "learner_logic": "Explicit TODO seams retained; no reference implementation or learner completion included.",
+  "learner_logic": "Behavioral acceptance checks are executable; production learner logic remains TODO. No reference implementation is published.",
   "instructor_checks": {
     "CSM14ContractInfrastructureTest": "15 fixture/contract checks passed",
     "CSM14CheckpointSchemaIntegrationTest": "3 disposable-PostgreSQL checks passed: rollback, barrier-controlled concurrent head advance, owner-bound 20-row history page over 1,000 synthetic rows",
     "independent_synthetic_fixture_reference": "14/14 semantics checked in a temporary, uncommitted reference script; not evidence of learner mastery",
-    "browser": "CAP-638 instructor shell check passed; learner acceptance remains incomplete at TODO seams"
+    "browser": "CAP-638 browser state subset passes (unsafe unavailable/stale cases blocked and an explicit decision reaches callback); this is not the full integrated refresh UI contract."
   },
   "acceptance": [
     "The positive case appends one exact resolved checkpoint, preserves the old revision and records only safe source/operation references.",
@@ -22,8 +22,15 @@
   "learner_acceptance_run": {
     "command": "./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest,CAP641CheckpointProvenanceAcceptanceTest test",
     "tests": 16,
-    "expected_todo_failures": 5,
-    "expected_todo_errors": 11,
-    "result": "Expected incomplete: checks reached explicit learner TODO seams. No implementation pass is claimed."
+    "passes": 1,
+    "failures": 5,
+    "errors": 10,
+    "skipped": 0,
+    "result": "Current starter run is incomplete. CAP-638 browser subset passes. Behavioral assertions reject the unimplemented CAP-639/640/641 browser paths, the CAP-635 service that does not reach the concurrent-save barrier, and the missing CAP-641 migration. Ten other tests error at retained Java TODO seams. These are honest learner results, not target expected failures or completion claims."
+  },
+  "acceptance_execution": {
+    "current_starter_run": "Tagged learner acceptance was run against the unimplemented starter; failures reflect assertions at the TODO seams, not completed behavior.",
+    "temporary_reference": "A separate conforming temporary reference passed selected contract tests outside the repository; no reference source was retained or committed.",
+    "deliberate_defect": "Selected wrong owner-boundary, stale-overwrite and unconditional-success implementations were rejected by behavioral assertions."
   }
 }

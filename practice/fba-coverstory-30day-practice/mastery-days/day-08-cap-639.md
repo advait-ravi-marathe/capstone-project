@@ -38,4 +38,4 @@ Structured contract hash: `ea95d80387db25af8134c24b7ddb00456973da9592b66dab97c2d
 
 Instructor fixture/schema harness: `./mvnw -Dtest=CSM14ContractInfrastructureTest,CSM14CheckpointSchemaIntegrationTest test`
 Learner acceptance: `./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest#cap639_lostResponseReplaysSameOperationAndRefetchesPersistedHead test`
-Browser learner check: `node web/scripts/csm14-learner-acceptance.mjs CAP-639` (expected TODO until durable operation replay/refetch is implemented).
+Browser learner acceptance: `node web/scripts/csm14-learner-acceptance.mjs CAP-639` (asserts same identity and canonical request replay after unknown delivery, authoritative head refetch, and a negative definite-conflict case). It currently fails the behavior assertions at the preserved learner seam.

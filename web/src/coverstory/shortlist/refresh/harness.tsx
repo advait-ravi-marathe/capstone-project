@@ -26,5 +26,6 @@ function render(stale=false, currentPreview=preview) {
 (window as any).__retryCount=0
 ;(window as any).__setCsm14Stale=()=>render(true)
 ;(window as any).__setCsm14Fingerprint=(fingerprint: string)=>render(false,{...preview,fingerprint})
+;(window as any).__setCsm14ReadyPreview=()=>render(false,{...preview,fingerprint:'SYNTHETIC_FINGERPRINT_READY',slots:preview.slots.map(slot=>slot.slotId==='s3'?{...slot,state:'RESOLVED' as const,upstream:slot.base}:slot)})
 ;(window as any).__acceptedCsm14=()=>accepted
 render()

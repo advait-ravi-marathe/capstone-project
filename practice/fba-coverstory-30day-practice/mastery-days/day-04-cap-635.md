@@ -28,6 +28,8 @@ Tab T1 and T2 both start at C-A/r1. T1 proposes H1/v2; T2 proposes H2/v2. Both a
 
 Draw at most eight schedule events and identify the database operation that linearizes acceptance. Compare optimistic expected-revision checks with a long-held application lock using the observed contention, not assumed distributed scale.
 
+The tagged learner test drives two concurrent `SaveCheckpoint` calls through a two-party barrier and checks one accepted r2, one stale conflict, same-operation replay without a second append, changed-body key reuse rejection, and invalid owner/resource/kind/digest rejection before storage. It also invokes the independent disposable-PostgreSQL two-connection unique-revision race witness. The SQL witness tests the prepared schema; it is not a production adapter or a substitute for implementing the command.
+
 ## Scope and provenance
 
 The race protects a new branch head and immutable revisions; it is distinct from the original payment unknown-outcome and browser query-race exercises.

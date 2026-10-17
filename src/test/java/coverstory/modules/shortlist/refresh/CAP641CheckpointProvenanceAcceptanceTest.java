@@ -24,7 +24,7 @@ class CAP641CheckpointProvenanceAcceptanceTest {
             try(Statement st=c.createStatement();ResultSet rs=st.executeQuery("SELECT encode(source_digest_set_sha256,'hex') FROM shortlist.checkpoint_revision")){assertTrue(rs.next());before=rs.getString(1);}
             String migration;
             try(InputStream in=getClass().getResourceAsStream("/db/schema/shortlist_checkpoint_provenance_expand.sql")) { assertNotNull(in);migration=new String(in.readAllBytes(),StandardCharsets.UTF_8).replaceAll("(?m)^\\s*--.*$","").trim(); }
-            assertFalse(migration.isBlank(),"TODO(CAP-641): implement the additive provenance migration before historical compatibility can pass");
+            assertFalse(migration.isBlank(),"the additive provenance migration must execute before compatibility can be evaluated");
             try(Statement st=c.createStatement()){for(String sql:migration.split(";"))if(!sql.isBlank())st.execute(sql);}
             try(Statement st=c.createStatement();ResultSet rs=st.executeQuery("SELECT provenance_code,encode(source_digest_set_sha256,'hex') FROM shortlist.checkpoint_revision")){
                 assertTrue(rs.next());assertNull(rs.getString(1),"retained historical rows have no generated provenance evidence");assertEquals(before,rs.getString(2));

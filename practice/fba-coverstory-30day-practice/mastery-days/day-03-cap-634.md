@@ -28,6 +28,8 @@ Prepared PostgreSQL schema has C-A/r1 and matching owned shortlist/journey. Appe
 
 Annotate the actual commit boundary and affected rows for success versus injected rollback. Explain the head-pointer/history trade-off and why an audit row rolled back in that transaction is not durable evidence of failure.
 
+The tagged contract checks successful r1→r2 append, immutable r1 retention, exactly one required-effect append, stale/foreign-owner rejection, and injected failure rollback leaving only r1 with no effect. It also calls the disposable-PostgreSQL rollback witness against the prepared schema; this does not establish a production persistence adapter.
+
 ## Scope and provenance
 
 This adds a new immutable comparison-checkpoint aggregate using existing transaction foundations, not another generic SQL history mock.

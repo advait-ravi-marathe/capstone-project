@@ -37,7 +37,5 @@ Structured contract hash: `6c70d8d01d1640b6b93b6c7cd797e3a47981a32b01af0017ff048
 ## Commands
 
 Instructor fixture/schema harness: `./mvnw -Dtest=CSM14ContractInfrastructureTest,CSM14CheckpointSchemaIntegrationTest test`
-Migration acceptance (expected TODO until executable migration is written): `./mvnw -Plearner-tests -Dtest=CAP641CheckpointProvenanceAcceptanceTest test`
-Learner acceptance: `./mvnw -Plearner-tests -Dtest=CAP641CheckpointProvenanceAcceptanceTest test`
-Browser learner check: `node web/scripts/csm14-learner-acceptance.mjs CAP-641` (expected TODO until historical/major-version decoding is implemented).
-Browser learner check: `node web/scripts/csm14-learner-acceptance.mjs CAP-641`
+Migration acceptance: `./mvnw -Plearner-tests -Dtest=CAP641CheckpointProvenanceAcceptanceTest test` (starts from the prior schema, applies the learner migration, and checks retained hashes plus unrecorded historical provenance; currently blocked because the starter migration has not added the required column).
+Browser learner acceptance: `node web/scripts/csm14-learner-acceptance.mjs CAP-641` (checks known provenance, absent historical provenance as UNKNOWN, and fail-closed unsupported schema major). It currently fails the behavior assertion at the preserved learner seam.

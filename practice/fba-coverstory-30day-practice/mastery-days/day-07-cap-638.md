@@ -38,5 +38,4 @@ Structured contract hash: `37e362172550ef4411c907ba9776463f28e03a4de6e3a065f405b
 
 Instructor fixture/schema harness: `./mvnw -Dtest=CSM14ContractInfrastructureTest,CSM14CheckpointSchemaIntegrationTest test`
 Learner acceptance: `./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest#cap638_conflictUiDisablesAcceptUntilAccessibleExplicitDecision test`
-Browser learner check: `node web/scripts/csm14-learner-acceptance.mjs CAP-638` (currently expected to stop at incomplete learner behavior; full fingerprint/draft behavior remains learner work).
-Instructor UI-shell check: `node web/scripts/csm14-learner-acceptance.mjs CAP-638 --instructor-shell`
+Browser behavior check: `node web/scripts/csm14-learner-acceptance.mjs CAP-638` (checks blocked unavailable/stale states, fingerprint change, and an explicit usable resolution; this subset passes on the starter. Full choice-to-source fingerprint binding and the integrated API flow remain learner work.)

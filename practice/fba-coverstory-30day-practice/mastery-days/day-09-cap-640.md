@@ -36,7 +36,7 @@ Structured contract hash: `060862c244b93483712a8621b54f56e39d409d799b898981f9c18
 
 ## Commands
 
-Browser owner-switch acceptance: `node web/scripts/csm14-learner-acceptance.mjs CAP-640` (expected TODO until the private-response guard is implemented).
+Browser owner-switch acceptance: `node web/scripts/csm14-learner-acceptance.mjs CAP-640` (asserts current-owner delivery and rejects prior-owner and signed-out private responses). It currently fails the behavioral assertion at the preserved learner seam.
 
 Instructor fixture/schema harness: `./mvnw -Dtest=CSM14ContractInfrastructureTest,CSM14CheckpointSchemaIntegrationTest test`
 Learner acceptance: `./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest#cap640_revocationAtSerializedDecisionDeniesAndLateOwnerResponseIsDropped test`

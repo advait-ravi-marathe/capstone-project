@@ -22,28 +22,35 @@ class CSM14CheckpointSchemaIntegrationTest {
     private static final String OWNER="00000000-0000-4000-8000-000000000001";
     private static final String LIST="00000000-0000-4000-8000-000000000011";
 
-    private void schema(Connection c) throws Exception {
+    private static void schema(Connection c) throws Exception {
         try(Statement st=c.createStatement()) {
             st.execute("CREATE SCHEMA shortlist");
-            try(InputStream in=getClass().getResourceAsStream("/db/schema/shortlist_checkpoint_refresh.sql")) {
+            try(InputStream in=CSM14CheckpointSchemaIntegrationTest.class.getResourceAsStream("/db/schema/shortlist_checkpoint_refresh.sql")) {
                 assertNotNull(in); st.execute(new String(in.readAllBytes(),StandardCharsets.UTF_8));
             }
         }
     }
 
-    private void revision(Connection c,long rev,Long parent,String checkpoint) throws Exception {
+    private static void revision(Connection c,long rev,Long parent,String checkpoint) throws Exception {
         try(PreparedStatement st=c.prepareStatement("INSERT INTO shortlist.checkpoint_revision(owner_id,shortlist_id,revision,parent_revision,checkpoint_id,scenario_id,slot_refs,source_digest_set_sha256) VALUES (?::uuid,?::uuid,?,?,?::uuid,'scenario-health-001','[{\"slotId\":\"s1\",\"productId\":\"00000000-0000-4000-8000-000000000101\",\"versionId\":\"v1\",\"sourceSha256\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}]',decode(repeat('a',64),'hex'))")) {
             st.setString(1,OWNER);st.setString(2,LIST);st.setLong(3,rev);if(parent==null)st.setNull(4,java.sql.Types.BIGINT);else st.setLong(4,parent);st.setString(5,checkpoint);st.executeUpdate();
         }
     }
 
     @Test void checkpointHistoryHasOwnerBoundIdentityAndRollbackPreservesHead() throws Exception {
+        assertPostgresRollbackPreservesHeadAndNoRevision();
+    }
+
+    static void assertPostgresRollbackPreservesHeadAndNoRevision() throws Exception {
         try(EmbeddedPostgres pg=EmbeddedPostgres.builder().start(); Connection c=pg.getPostgresDatabase().getConnection()) {
             try(Statement st=c.createStatement()) {
                 st.execute("CREATE SCHEMA shortlist");
-                try(InputStream in=getClass().getResourceAsStream("/db/schema/shortlist_checkpoint_refresh.sql")) {
+                try(InputStream in=CSM14CheckpointSchemaIntegrationTest.class.getResourceAsStream("/db/schema/shortlist_checkpoint_refresh.sql")) {
                     assertNotNull(in); st.execute(new String(in.readAllBytes(),StandardCharsets.UTF_8));
                 }
+                // Test-only stand-ins verify both required event inserts share the checkpoint transaction.
+                st.execute("CREATE SCHEMA audit");st.execute("CREATE TABLE audit.required_event(owner_id UUID,shortlist_id UUID,revision BIGINT,event_key TEXT,PRIMARY KEY(owner_id,shortlist_id,revision,event_key))");
+                st.execute("CREATE SCHEMA journey");st.execute("CREATE TABLE journey.required_event(owner_id UUID,shortlist_id UUID,revision BIGINT,event_key TEXT,PRIMARY KEY(owner_id,shortlist_id,revision,event_key))");
                 st.execute("INSERT INTO shortlist.checkpoint_revision(owner_id,shortlist_id,revision,parent_revision,checkpoint_id,scenario_id,slot_refs,source_digest_set_sha256) VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',1,NULL,'00000000-0000-4000-8000-000000000021','scenario-health-001','[{\"slotId\":\"s1\",\"productId\":\"00000000-0000-4000-8000-000000000101\",\"versionId\":\"v1\",\"sourceSha256\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}]',decode(repeat('a',64),'hex'))");
                 st.execute("INSERT INTO shortlist.checkpoint_head(owner_id,shortlist_id,revision) VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',1)");
             }
@@ -51,16 +58,29 @@ class CSM14CheckpointSchemaIntegrationTest {
             try(Statement st=c.createStatement()) {
                 st.execute("INSERT INTO shortlist.checkpoint_revision(owner_id,shortlist_id,revision,parent_revision,checkpoint_id,scenario_id,slot_refs,source_digest_set_sha256) VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',2,1,'00000000-0000-4000-8000-000000000022','scenario-health-001','[{\"slotId\":\"s1\",\"productId\":\"00000000-0000-4000-8000-000000000101\",\"versionId\":\"v2\",\"sourceSha256\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}]',decode(repeat('b',64),'hex'))");
                 st.execute("UPDATE shortlist.checkpoint_head SET revision=2 WHERE owner_id='00000000-0000-4000-8000-000000000001' AND shortlist_id='00000000-0000-4000-8000-000000000011'");
+                st.execute("INSERT INTO audit.required_event VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',2,'CHECKPOINT_ACCEPTED')");
+                st.execute("INSERT INTO journey.required_event VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',2,'CHECKPOINT_ACCEPTED')");
             }
             c.rollback(); c.setAutoCommit(true);
-            try(Statement st=c.createStatement(); var rs=st.executeQuery("SELECT h.revision,(SELECT count(*) FROM shortlist.checkpoint_revision r WHERE r.revision=2) FROM shortlist.checkpoint_head h")) {
-                assertTrue(rs.next()); assertEquals(1,rs.getLong(1)); assertEquals(0,rs.getLong(2));
+            try(Statement st=c.createStatement(); var rs=st.executeQuery("SELECT h.revision,(SELECT count(*) FROM shortlist.checkpoint_revision r WHERE r.revision=2),(SELECT count(*) FROM audit.required_event),(SELECT count(*) FROM journey.required_event) FROM shortlist.checkpoint_head h")) {
+                assertTrue(rs.next()); assertEquals(1,rs.getLong(1)); assertEquals(0,rs.getLong(2));assertEquals(0,rs.getLong(3));assertEquals(0,rs.getLong(4),"rollback removes both required event records with the revision/head");
             }
+            c.setAutoCommit(false);try(Statement st=c.createStatement()){
+                st.execute("INSERT INTO shortlist.checkpoint_revision(owner_id,shortlist_id,revision,parent_revision,checkpoint_id,scenario_id,slot_refs,source_digest_set_sha256) VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',2,1,'00000000-0000-4000-8000-000000000022','scenario-health-001','[{\"slotId\":\"s1\",\"productId\":\"00000000-0000-4000-8000-000000000101\",\"versionId\":\"v2\",\"sourceSha256\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}]',decode(repeat('b',64),'hex'))");
+                st.execute("UPDATE shortlist.checkpoint_head SET revision=2 WHERE owner_id='00000000-0000-4000-8000-000000000001' AND shortlist_id='00000000-0000-4000-8000-000000000011'");
+                st.execute("INSERT INTO audit.required_event VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',2,'CHECKPOINT_ACCEPTED')");
+                st.execute("INSERT INTO journey.required_event VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',2,'CHECKPOINT_ACCEPTED')");
+            }c.commit();c.setAutoCommit(true);
+            try(Statement st=c.createStatement();var rs=st.executeQuery("SELECT h.revision,(SELECT count(*) FROM shortlist.checkpoint_revision r WHERE r.revision=2),(SELECT count(*) FROM audit.required_event),(SELECT count(*) FROM journey.required_event) FROM shortlist.checkpoint_head h")){assertTrue(rs.next());assertEquals(2,rs.getLong(1));assertEquals(1,rs.getLong(2));assertEquals(1,rs.getLong(3));assertEquals(1,rs.getLong(4),"committed revision, head, audit and journey effects appear together");}
             assertThrows(Exception.class,()->{try(Statement st=c.createStatement()){st.execute("INSERT INTO shortlist.checkpoint_revision(owner_id,shortlist_id,revision,parent_revision,checkpoint_id,scenario_id,slot_refs,source_digest_set_sha256) VALUES ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',1,NULL,'00000000-0000-4000-8000-000000000031','scenario-health-001','[]',decode(repeat('c',64),'hex'))");}});
         }
     }
 
     @Test void preparedTwoConnectionRaceHasOneRevisionWinnerWithoutSleeps() throws Exception {
+        assertPostgresRaceHasOneWinner();
+    }
+
+    static void assertPostgresRaceHasOneWinner() throws Exception {
         try(EmbeddedPostgres pg=EmbeddedPostgres.builder().start(); Connection setup=pg.getPostgresDatabase().getConnection()) {
             schema(setup); revision(setup,1,null,"00000000-0000-4000-8000-000000000021");
             try(Statement st=setup.createStatement()){st.execute("INSERT INTO shortlist.checkpoint_head(owner_id,shortlist_id,revision) VALUES ('"+OWNER+"','"+LIST+"',1)");}
