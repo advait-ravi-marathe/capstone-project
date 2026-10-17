@@ -1,4 +1,4 @@
-# Day 16 · 2026-11-01 · CAP-617 / CS90-16
+# Day 16 · 2026-11-01 · CS90-16
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_16` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-008-cap-52`](../../../docs/assignments/coverstory/saved-days/day-008-cap-52.md). Daily card CAP-617 maps to this specific task: **Add malformed/duplicate request tests and error mapping.**.
+Saved source: [`day-008-cap-52`](../../../docs/assignments/coverstory/saved-days/day-008-cap-52.md). Branch-local practice slot CS90-16 maps to this saved source task: **Add malformed/duplicate request tests and error mapping.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP52Seam.java` (`import`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP52ControllerInfrastructureTest.java`. Additional acceptance focus: Check malformed requests and idempotency conflict responses through focused learner acceptance.
 

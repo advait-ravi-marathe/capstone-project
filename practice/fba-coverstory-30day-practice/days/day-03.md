@@ -1,4 +1,4 @@
-# Day 03 · 2026-10-19 · CAP-604 / CS90-03
+# Day 03 · 2026-10-19 · CS90-03
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_03` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-002-cap-42`](../../../docs/assignments/coverstory/saved-days/day-002-cap-42.md). Daily card CAP-604 maps to this specific task: **Implement signed catalog evidence aggregation, including null and empty inputs.**.
+Saved source: [`day-002-cap-42`](../../../docs/assignments/coverstory/saved-days/day-002-cap-42.md). Branch-local practice slot CS90-03 maps to this saved source task: **Implement signed catalog evidence aggregation, including null and empty inputs.**.
 
 **Learner seam:** `src/main/resources/coverstory/catalog/cap_42.sql` (`SQL`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP42SqlAcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP42InstructorInfrastructureTest.java`. Linked component: exact identity classification and catalog lookup; `src/main/java/coverstory/modules/catalog/api/CAP43Seam.java`, `src/test/java/coverstory/modules/catalog/CAP43AcceptanceTest.java`.
 

@@ -1,4 +1,4 @@
-# Day 24 · 2026-11-09 · CAP-625 / CS90-24
+# Day 24 · 2026-11-09 · CS90-24
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_24` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-012-cap-56`](../../../docs/assignments/coverstory/saved-days/day-012-cap-56.md). Daily card CAP-625 maps to this specific task: **Record reproducible latency/sample evidence and test timeout/empty behavior.**
+Saved source: [`day-012-cap-56`](../../../docs/assignments/coverstory/saved-days/day-012-cap-56.md). Branch-local practice slot CS90-24 maps to this saved source task: **Record reproducible latency/sample evidence and test timeout/empty behavior.**
 
 **Learner seam:** `ai/coverstory/cap_56.py` (`evaluate_retriever`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_56.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap56_infrastructure.py`. Additional acceptance focus: Store fixture digest and measured local samples; do not claim production latency.
 

@@ -1,4 +1,4 @@
-# Day 20 · 2026-11-05 · CAP-621 / CS90-20
+# Day 20 · 2026-11-05 · CS90-20
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_20` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-010-cap-54`](../../../docs/assignments/coverstory/saved-days/day-010-cap-54.md). Daily card CAP-621 maps to this specific task: **Add foreign/unknown journey tests and homepage resume behavior.**
+Saved source: [`day-010-cap-54`](../../../docs/assignments/coverstory/saved-days/day-010-cap-54.md). Branch-local practice slot CS90-20 maps to this saved source task: **Add foreign/unknown journey tests and homepage resume behavior.**
 
 **Learner seam:** `src/main/java/coverstory/modules/application/api/CAP54Seam.java` (`resume`). **Focused learner acceptance:** `src/test/java/coverstory/modules/application/CAP54AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/application/CAP54InstructorInfrastructureTest.java`. Additional acceptance focus: Foreign and absent IDs must be indistinguishable; learner suite invokes the actual seam.
 

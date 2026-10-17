@@ -1,4 +1,6 @@
-# Transition unit 03 · 2026-11-18 · CAP-61
+# Reference guide · CAP-61 (not a schedule entry)
+
+**Reference only:** This guide is not part of the revised daily schedule. Use `transition-continuation.json` as the source-backed date/ID sequence.
 
 **Saved contract:** [`day-018-cap-61.md`](../../../docs/assignments/coverstory/saved-days/day-018-cap-61.md) · **full cadence:** 180 minutes (150 practical + 30 AWS lesson/objective).
 

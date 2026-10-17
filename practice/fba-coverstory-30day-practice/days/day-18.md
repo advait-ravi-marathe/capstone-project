@@ -1,4 +1,4 @@
-# Day 18 · 2026-11-03 · CAP-619 / CS90-18
+# Day 18 · 2026-11-03 · CS90-18
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_18` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-009-cap-53`](../../../docs/assignments/coverstory/saved-days/day-009-cap-53.md). Daily card CAP-619 maps to this specific task: **Add unsafe/malformed input regression and visible source labels.**.
+Saved source: [`day-009-cap-53`](../../../docs/assignments/coverstory/saved-days/day-009-cap-53.md). Branch-local practice slot CS90-18 maps to this saved source task: **Add unsafe/malformed input regression and visible source labels.**.
 
 **Learner seam:** `ai/coverstory/cap_53.py` (`load_wording`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_53.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap53_infrastructure.py`. Additional acceptance focus: Reject unsafe malformed vectors and preserve exact visible source provenance.
 

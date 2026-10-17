@@ -1,4 +1,4 @@
-# Day 08 · 2026-10-24 · CAP-609 / CS90-08
+# Day 08 · 2026-10-24 · CS90-08
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_08` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-004-cap-46`](../../../docs/assignments/coverstory/saved-days/day-004-cap-46.md). Daily card CAP-609 maps to this specific task: **Add citation-quality evaluation for missing and contradictory sources.**.
+Saved source: [`day-004-cap-46`](../../../docs/assignments/coverstory/saved-days/day-004-cap-46.md). Branch-local practice slot CS90-08 maps to this saved source task: **Add citation-quality evaluation for missing and contradictory sources.**.
 
 **Learner seam:** `ai/coverstory/cap_47.py` (`evaluate`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_47.py`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP46InstructorInfrastructureTest.java`. Linked component: CAP47 is the linked component; preserve correct abstention and reject foreign/missing citation pairs.
 

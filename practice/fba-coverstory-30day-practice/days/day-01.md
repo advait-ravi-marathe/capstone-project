@@ -1,4 +1,4 @@
-# Day 01 · 2026-10-17 · CAP-602 / CS90-01
+# Day 01 · 2026-10-17 · CS90-01
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_01` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-001-cap-40`](../../../docs/assignments/coverstory/saved-days/day-001-cap-40.md). Daily card CAP-602 maps to this specific task: **Preserve shortlist identity by catalog version, retaining first-seen order.**.
+Saved source: [`day-001-cap-40`](../../../docs/assignments/coverstory/saved-days/day-001-cap-40.md). Branch-local practice slot CS90-01 maps to this saved source task: **Preserve shortlist identity by catalog version, retaining first-seen order.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java` (`uniqueSelections`). **Focused learner acceptance:** `src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/shortlist/CAP40ScaffoldInfrastructureTest.java`. Linked component: exact wording retrieval; learner `ai/retrieval/coverstory_health.py::retrieve`, acceptance `ai/tests/test_coverstory_cap41_acceptance.py`. Run separately: `python3 -m unittest ai.tests.test_coverstory_cap41_acceptance` (expected TODO failure).
 

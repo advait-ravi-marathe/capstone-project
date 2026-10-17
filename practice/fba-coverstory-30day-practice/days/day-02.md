@@ -1,4 +1,4 @@
-# Day 02 · 2026-10-18 · CAP-603 / CS90-02
+# Day 02 · 2026-10-18 · CS90-02
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_02` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-001-cap-40`](../../../docs/assignments/coverstory/saved-days/day-001-cap-40.md). Daily card CAP-603 maps to this specific task: **Add duplicate and unknown-source regressions, then wire citation-evidence output.**.
+Saved source: [`day-001-cap-40`](../../../docs/assignments/coverstory/saved-days/day-001-cap-40.md). Branch-local practice slot CS90-02 maps to this saved source task: **Add duplicate and unknown-source regressions, then wire citation-evidence output.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/shortlist/api/CAP40Seam.java` (`uniqueSelections`). **Focused learner acceptance:** `src/test/java/coverstory/modules/shortlist/CAP40AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/shortlist/CAP40ScaffoldInfrastructureTest.java`. Linked component: add exact excerpt/source/version selection regression in `ai/tests/test_coverstory_cap41_acceptance.py`; run `python3 -m unittest ai.tests.test_coverstory_cap41_acceptance` separately (expected TODO failure).
 

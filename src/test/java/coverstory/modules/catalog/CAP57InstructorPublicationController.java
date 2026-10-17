@@ -38,6 +38,24 @@ public final class CAP57InstructorPublicationController {
         return ResponseEntity.status(result.status()).body(new PublishResponse(result.code(), result.productId(), result.versionId()));
     }
 
+    @PostMapping("/health/{productId}/stage-and-publish")
+    public ResponseEntity<?> stageAndPublish(@PathVariable("productId") UUID productId,
+                              @RequestBody StageAndPublishRequest request,
+                              @RequestParam(name = "failBeforeCommit", defaultValue = "false") boolean failBeforeCommit,
+                              HttpServletRequest servletRequest) {
+        Principal principal = servletRequest.getUserPrincipal();
+        UUID editor;
+        try { editor = principal == null ? null : UUID.fromString(principal.getName()); }
+        catch (RuntimeException invalid) { editor = null; }
+        if (editor == null) return ResponseEntity.status(401).build();
+        if (request.versionId() == null || request.sourceVersion() == null || request.sourceId() == null
+                || request.contentSha256() == null)
+            return ResponseEntity.badRequest().body(new SafeError("INVALID_PUBLICATION_REQUEST"));
+        CAP57ReferencePublicationAdapter.Result result = publisher.stageAndPublish(editor, productId,
+                request.versionId(), request.sourceVersion(), request.sourceId(), request.contentSha256(), failBeforeCommit);
+        return ResponseEntity.status(result.status()).body(new PublishResponse(result.code(), result.productId(), result.versionId()));
+    }
+
     @GetMapping("/health/export")
     public ResponseEntity<?> export() {
         try { return ResponseEntity.ok(new InstructorExport(publisher.exportPublished())); }
@@ -45,6 +63,7 @@ public final class CAP57InstructorPublicationController {
     }
 
     public record PublishRequest(UUID versionId, String contentSha256) { }
+    public record StageAndPublishRequest(UUID versionId, String sourceVersion, String sourceId, String contentSha256) { }
     public record PublishResponse(String code, UUID productId, UUID versionId) { }
     public record InstructorExport(List<CAP57ReferencePublicationAdapter.ExportRow> rows) { }
     public record SafeError(String code) { }

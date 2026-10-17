@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-17",
+  "status": "PASS",
+  "scope": "Instructor-only CAP-631 setup/contract checks; no parent learner completion claimed.",
+  "commands": [
+    "JAVA_TOOL_OPTIONS=--add-modules=jdk.compiler mvn -s /tmp/fba-coverstory-maven-settings.xml -Dmaven.repo.local=/tmp/fba-coverstory-m2 -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=First14RollbackRecoveryTest test",
+    "JAVA_TOOL_OPTIONS=--add-modules=jdk.compiler mvn -s /tmp/fba-coverstory-maven-settings.xml -Dmaven.repo.local=/tmp/fba-coverstory-m2 -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dcoverstory.cs90.browser=true -Dcoverstory.cs90.chromium=/usr/bin/chromium -Dtest=First14RollbackRecoveryTest test"
+  ],
+  "checks": [
+    "Embedded PostgreSQL pre-commit fault rolled back staged A/v2 catalog and metadata rows, active pointer and audit event; the endpoint returned safe 503 and A/v1/B/v1/C/v1 remained persisted.",
+    "After restoring the disposable read view, explicit stage/publish retry persisted A/v2 once; same-request replay returned DUPLICATE without an extra audit row.",
+    "Headless Chromium kept selected A/v1 and B/v1 visible during the safe unavailable state, disabled comparison while stale, then explicitly refetched A/v2 while preserving the original selected A/v1 as RETIRED history."
+  ],
+  "learner_logic": "All CAP-57 learner seams remain TODO. The staging adapter and route are test-profile instructor oracle code only; no production endpoint or learner solution was added.",
+  "tests": {
+    "First14RollbackRecoveryTest": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fixture": "fixtures/coverstory/CS90-30/rollback-schedule.json",
+  "issue_id": "CAP-631",
+  "fixture_sha256": "5f3e59928ccc3d1d7b90ace073af06583a9393601557ac60a48163c2016758ae",
+  "readiness": "INSTRUCTOR_SCAFFOLD_VERIFIED",
+  "learner_acceptance": "NOT_RUN in this evidence record; original TODO contract remains separate"
+}

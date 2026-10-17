@@ -1,4 +1,4 @@
-# Day 11 · 2026-10-27 · CAP-612 / CS90-11
+# Day 11 · 2026-10-27 · CS90-11
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_11` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-006-cap-50`](../../../docs/assignments/coverstory/saved-days/day-006-cap-50.md). Daily card CAP-612 maps to this specific task: **Count accepted and rejected imports without multiplying records.**.
+Saved source: [`day-006-cap-50`](../../../docs/assignments/coverstory/saved-days/day-006-cap-50.md). Branch-local practice slot CS90-11 maps to this saved source task: **Count accepted and rejected imports without multiplying records.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP50Seam.java` (`acceptedCounts`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP50AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP50InstructorInfrastructureTest.java`. Linked component: aggregate attempts safely in `src/main/resources/coverstory/catalog/cap_51.sql`, tests `src/test/java/coverstory/modules/catalog/CAP51SqlAcceptanceTest.java`.
 

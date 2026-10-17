@@ -1,4 +1,4 @@
-# Day 06 · 2026-10-22 · CAP-607 / CS90-06
+# Day 06 · 2026-10-22 · CS90-06
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_06` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-003-cap-44`](../../../docs/assignments/coverstory/saved-days/day-003-cap-44.md). Daily card CAP-607 maps to this specific task: **Reconcile import-attempt totals and add a duplicate-attempt regression.**.
+Saved source: [`day-003-cap-44`](../../../docs/assignments/coverstory/saved-days/day-003-cap-44.md). Branch-local practice slot CS90-06 maps to this saved source task: **Reconcile import-attempt totals and add a duplicate-attempt regression.**.
 
 **Learner seam:** `src/main/resources/coverstory/catalog/cap_45.sql` (`SQL`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP45SqlAcceptanceTest.java`. **Independent instructor source:** `ai/tests/test_coverstory_cap44_infrastructure.py`. Linked component: CAP45 is the linked component for CAP44; test duplicate attempts do not multiply evidence totals.
 

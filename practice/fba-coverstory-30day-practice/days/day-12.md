@@ -1,4 +1,4 @@
-# Day 12 · 2026-10-28 · CAP-613 / CS90-12
+# Day 12 · 2026-10-28 · CS90-12
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_12` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-006-cap-50`](../../../docs/assignments/coverstory/saved-days/day-006-cap-50.md). Daily card CAP-613 maps to this specific task: **Wire one supplied Spring seam and assert request/response failure mapping.**.
+Saved source: [`day-006-cap-50`](../../../docs/assignments/coverstory/saved-days/day-006-cap-50.md). Branch-local practice slot CS90-12 maps to this saved source task: **Wire one supplied Spring seam and assert request/response failure mapping.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP50Seam.java` (`acceptedCounts`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP50AcceptanceTest.java`. **Existing HTTP boundary:** `src/main/java/coverstory/modules/catalog/api/CatalogController.java`, exercised by `src/test/java/coverstory/modules/catalog/CatalogControllerModuleIntegrationTest.java`. There is no CAP50-specific route; use the existing Catalog route for the malformed-request/response assertion and keep the CAP50 acceptance tied to its actual seam. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP50InstructorInfrastructureTest.java`. Linked component: preserve nullable amounts and successful-attempt counts without fanout.
 

@@ -1,4 +1,4 @@
-# Day 23 · 2026-11-08 · CAP-624 / CS90-23
+# Day 23 · 2026-11-08 · CS90-23
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_23` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-012-cap-56`](../../../docs/assignments/coverstory/saved-days/day-012-cap-56.md). Daily card CAP-624 maps to this specific task: **Implement bounded public wording retrieval baseline.**.
+Saved source: [`day-012-cap-56`](../../../docs/assignments/coverstory/saved-days/day-012-cap-56.md). Branch-local practice slot CS90-23 maps to this saved source task: **Implement bounded public wording retrieval baseline.**.
 
 **Learner seam:** `ai/coverstory/cap_56.py` (`evaluate_retriever`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_56.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap56_infrastructure.py`. Additional acceptance focus: Retrieval is offline and synthetic; learner acceptance exercises the named function.
 

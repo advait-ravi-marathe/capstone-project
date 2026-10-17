@@ -1,4 +1,4 @@
-# Day 13 · 2026-10-29 · CAP-614 / CS90-13
+# Day 13 · 2026-10-29 · CS90-13
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_13` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-007-cap-165`](../../../docs/assignments/coverstory/saved-days/day-007-cap-165.md). Daily card CAP-614 maps to this specific task: **Implement canonical collision-safe catalog version identity.**.
+Saved source: [`day-007-cap-165`](../../../docs/assignments/coverstory/saved-days/day-007-cap-165.md). Branch-local practice slot CS90-13 maps to this saved source task: **Implement canonical collision-safe catalog version identity.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP165Seam.java` (`create`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP165AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP165HarnessDiscriminationTest.java`. Additional acceptance focus: Saved CAP165 tests require exact separate source/version values and reject null, blank, padded inputs.
 

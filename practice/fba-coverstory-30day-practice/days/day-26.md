@@ -1,4 +1,4 @@
-# Day 26 · 2026-11-11 · CAP-627 / CS90-26
+# Day 26 · 2026-11-11 · CS90-26
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_26` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-013-cap-57`](../../../docs/assignments/coverstory/saved-days/day-013-cap-57.md). Daily card CAP-627 maps to this specific task: **Add duplicate/conflict rollback tests and verify durable rows.**.
+Saved source: [`day-013-cap-57`](../../../docs/assignments/coverstory/saved-days/day-013-cap-57.md). Branch-local practice slot CS90-26 maps to this saved source task: **Add duplicate/conflict rollback tests and verify durable rows.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP57Seam.java` (`publish`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP57AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP57PublicationRuntimeIntegrationTest.java`. Additional acceptance focus: Run learner transaction contract separately; the instructor reference is not learner acceptance.
 

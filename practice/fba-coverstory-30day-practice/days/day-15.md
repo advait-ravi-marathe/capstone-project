@@ -1,4 +1,4 @@
-# Day 15 · 2026-10-31 · CAP-616 / CS90-15
+# Day 15 · 2026-10-31 · CS90-15
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_15` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-008-cap-52`](../../../docs/assignments/coverstory/saved-days/day-008-cap-52.md). Daily card CAP-616 maps to this specific task: **Implement one catalog import controller-to-service contract.**.
+Saved source: [`day-008-cap-52`](../../../docs/assignments/coverstory/saved-days/day-008-cap-52.md). Branch-local practice slot CS90-15 maps to this saved source task: **Implement one catalog import controller-to-service contract.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP52Seam.java` (`import`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP52AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP52ControllerInfrastructureTest.java`. Additional acceptance focus: The learner acceptance calls the actual CAP52 seam; instructor controller test is separate setup evidence.
 

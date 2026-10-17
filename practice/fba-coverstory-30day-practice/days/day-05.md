@@ -1,4 +1,4 @@
-# Day 05 · 2026-10-21 · CAP-606 / CS90-05
+# Day 05 · 2026-10-21 · CS90-05
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_05` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-003-cap-44`](../../../docs/assignments/coverstory/saved-days/day-003-cap-44.md). Daily card CAP-606 maps to this specific task: **Implement deterministic applicable-wording ranking and stable ties.**.
+Saved source: [`day-003-cap-44`](../../../docs/assignments/coverstory/saved-days/day-003-cap-44.md). Branch-local practice slot CS90-05 maps to this saved source task: **Implement deterministic applicable-wording ranking and stable ties.**.
 
 **Learner seam:** `ai/coverstory/cap_44.py` (`rank_wording`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_44.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap44_infrastructure.py`. Linked component: no-fanout import-attempt SQL `src/main/resources/coverstory/catalog/cap_45.sql`, `src/test/java/coverstory/modules/catalog/CAP45SqlAcceptanceTest.java`.
 

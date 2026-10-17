@@ -1,0 +1,56 @@
+{
+  "synthetic_only": true,
+  "scenario": {
+    "category": "health",
+    "scenarioId": "individual"
+  },
+  "versions": {
+    "A": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "versionId": "a8100000-0000-4000-8000-000000000001",
+      "sourceId": "synthetic-health-A",
+      "sourceVersion": "A/v1",
+      "contentSha256": "cb4a74791080a86290ead23a0e21db92cb5a0e8a77fd612830683158b5bd8160"
+    },
+    "A2_candidate": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "versionId": "a8100000-0000-4000-8000-000000000002",
+      "sourceId": "synthetic-health-A",
+      "sourceVersion": "A/v2",
+      "contentSha256": "e51e4dced2050c681003db6715ed4a7365c286ed1dd3c1ce5fae673bfdcfe242"
+    },
+    "B": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80002",
+      "versionId": "b8100000-0000-4000-8000-000000000001",
+      "sourceId": "synthetic-health-B",
+      "sourceVersion": "B/v1",
+      "contentSha256": "7773be7dae3f70e9dde64f20dcb23ea101e6858643ff88937a53b607d2a2cd1b"
+    },
+    "C": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80003",
+      "versionId": "c8100000-0000-4000-8000-000000000001",
+      "sourceId": "synthetic-health-C",
+      "sourceVersion": "C/v1",
+      "contentSha256": "dd23ecc3efba36f4a9dc41dae3fd1bb5f1f9ecb1be5543eb4d244a4b400b8747"
+    }
+  },
+  "purpose": "CAP-631 rollback/retry with durable publication state and visible comparison recovery",
+  "fault_schedule": [
+    {
+      "step": "persist A/v1, B/v1, C/v1 and publish each",
+      "expected": "three active exports and three publication audit rows"
+    },
+    {
+      "step": "attempt to publish prepared A/v2 with fail-before-commit injector",
+      "expected": "safe 503; no A/v2 active/export row; no fourth audit; A/v1 remains active"
+    },
+    {
+      "step": "temporarily remove only the disposable discovery view",
+      "expected": "public read is safe 503; UI retains selected A/v1 and B/v1 but blocks compare and exposes retry"
+    },
+    {
+      "step": "restore view, retry the exact A/v2 publication request, then explicitly refresh",
+      "expected": "A/v2 becomes active; repeat publication is DUPLICATE; UI shows A/v2 while A/v1 remains selected as history"
+    }
+  ]
+}

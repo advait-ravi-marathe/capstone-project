@@ -1,0 +1,56 @@
+{
+  "synthetic_only": true,
+  "scenario": {
+    "category": "health",
+    "scenarioId": "individual"
+  },
+  "versions": {
+    "A": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "versionId": "a8100000-0000-4000-8000-000000000001",
+      "sourceId": "synthetic-health-A",
+      "sourceVersion": "A/v1",
+      "contentSha256": "cb4a74791080a86290ead23a0e21db92cb5a0e8a77fd612830683158b5bd8160"
+    },
+    "A2_candidate": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80001",
+      "versionId": "a8100000-0000-4000-8000-000000000002",
+      "sourceId": "synthetic-health-A",
+      "sourceVersion": "A/v2",
+      "contentSha256": "e51e4dced2050c681003db6715ed4a7365c286ed1dd3c1ce5fae673bfdcfe242"
+    },
+    "B": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80002",
+      "versionId": "b8100000-0000-4000-8000-000000000001",
+      "sourceId": "synthetic-health-B",
+      "sourceVersion": "B/v1",
+      "contentSha256": "7773be7dae3f70e9dde64f20dcb23ea101e6858643ff88937a53b607d2a2cd1b"
+    },
+    "C": {
+      "productId": "5f1b8b02-1b68-4de8-928c-f3eaa5f80003",
+      "versionId": "c8100000-0000-4000-8000-000000000001",
+      "sourceId": "synthetic-health-C",
+      "sourceVersion": "C/v1",
+      "contentSha256": "dd23ecc3efba36f4a9dc41dae3fd1bb5f1f9ecb1be5543eb4d244a4b400b8747"
+    }
+  },
+  "purpose": "CAP-630 SQL/API/UI identity consistency and stale-reference oracle self-check",
+  "correct_snapshot": {
+    "sourceId": "synthetic-health-A",
+    "versionId": "a8100000-0000-4000-8000-000000000001",
+    "sourceVersion": "A/v1",
+    "contentSha256": "cb4a74791080a86290ead23a0e21db92cb5a0e8a77fd612830683158b5bd8160"
+  },
+  "stale_export_reference": {
+    "sourceId": "synthetic-health-A",
+    "versionId": "a8100000-0000-4000-8000-000000000002",
+    "sourceVersion": "A/v2",
+    "contentSha256": "e51e4dced2050c681003db6715ed4a7365c286ed1dd3c1ce5fae673bfdcfe242"
+  },
+  "expected_checks": [
+    "SQL active export identity matches public API identity",
+    "React comparison shows A/v1, B/v1, C/v1 source/version identity",
+    "duplicate publication of A/v1 leaves one immutable source row and one publication audit",
+    "stale A/v2 reference is rejected with identity/provenance mismatch; correct snapshot restored and rechecked"
+  ]
+}

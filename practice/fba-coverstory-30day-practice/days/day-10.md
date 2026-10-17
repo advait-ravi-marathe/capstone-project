@@ -1,4 +1,4 @@
-# Day 10 · 2026-10-26 · CAP-611 / CS90-10
+# Day 10 · 2026-10-26 · CS90-10
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_10` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-005-cap-48`](../../../docs/assignments/coverstory/saved-days/day-005-cap-48.md). Daily card CAP-611 maps to this specific task: **Add timezone-boundary and missing-timestamp tests; inspect actual bucket output.**.
+Saved source: [`day-005-cap-48`](../../../docs/assignments/coverstory/saved-days/day-005-cap-48.md). Branch-local practice slot CS90-10 maps to this saved source task: **Add timezone-boundary and missing-timestamp tests; inspect actual bucket output.**.
 
 **Learner seam:** `src/main/resources/coverstory/catalog/cap_48.sql` (`SQL`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP48SqlAcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP48InstructorInfrastructureTest.java`. Linked component: test precedence for unsupported answer, false abstention, missing citation, wrong source, wrong version.
 

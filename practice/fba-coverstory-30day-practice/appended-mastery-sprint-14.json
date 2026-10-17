@@ -1,0 +1,690 @@
+{
+  "kind": "native-mapped 14-day mastery sprint contracts; learner scaffolds not implemented",
+  "sprint_label": "appended mastery sprint (provisional local label; no live sprint or ticket ID asserted)",
+  "appends_after": {
+    "source_unit": 594,
+    "overlay_date": "2028-06-17",
+    "primary_id": "CAP-601"
+  },
+  "start_date": "2028-06-18",
+  "end_date": "2028-07-01",
+  "days": 14,
+  "daily_minutes": 180,
+  "daily_budget_minutes": {
+    "repository_practical": 150,
+    "aws_pathway": 30
+  },
+  "ticket_ids": "Native board issues CAP-632…CAP-645 map sequentially to planning IDs CSM14-01…CSM14-14.",
+  "source_of_authority": "Board creator verified all 14 native issues with exact bodies/titles/dates in Backlog and search returned exactly 14 without duplicates. Structured planning contract batches are retained; duplicate prose body/description was omitted from the received payload.",
+  "units": [
+    {
+      "planning_id": "CSM14-01",
+      "day_in_appended_sprint": 1,
+      "date": "2028-06-18",
+      "title": "CSM14-01 · 18 Jun 2028 — Model branch-safe comparison refresh invariants (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CAP-601",
+        "CAP-54",
+        "CAP-166",
+        "CAP-202"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/refresh/CheckpointContract.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointContractTest.java",
+        "fixtures/coverstory/CSM14-01/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-01/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-01.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Add immutable Java input/result types and an executable invariant validator for refreshing an owned comparison checkpoint. A checkpoint pins 1–3 unique health product/source-version references, their source digests, scenario, stable slot IDs, display order and a checkpoint revision. A local branch carries its base revision and proposed selection; the Catalog public port supplies an upstream candidate. Model RESOLVED, CONFLICT and UNAVAILABLE as different outcomes. Implement the validator and its tests, not a complete merge algorithm.",
+      "fixture": "SYNTHETIC owner A has existing owned shortlist S-A and journey J-A. Checkpoint C-A/r1 has slots s1→H1/v1, s2→H2/v1, s3→H3/v1 in that order, all scenario-health-001; B owns S-B/J-B. Catalog generation 20 includes H1/v2, H2/v1 and H3/v1. All source text is public synthetic wording; no consumer answers or free-text notes are present. An unavailable H3 lookup has status UNAVAILABLE, not an absent selected slot.",
+      "acceptance": [
+        "The validator accepts the valid three-slot fixture and retains the exact base revision/source digests without mutating caller collections.",
+        "Repeated product identity, four slots, incompatible scenario or missing source identity produces a typed invalid result with no partial checkpoint.",
+        "A source read that is unavailable cannot be represented as an intentional deletion or an unchanged/Included result.",
+        "A mutated input list cannot change an already-constructed immutable checkpoint; supply and run that adversarial test."
+      ],
+      "architecture_evidence": "Record a maximum six-node ownership/data diagram and an executable invariant table. Explain why stable slot identity, source version and checkpoint revision are separate identities. State the maximum 3-slot assumption and a condition that would invalidate the chosen representation.",
+      "novelty": "The original curriculum already saves selections/resumes journeys. This new contract starts a distinct branch-versus-upstream refresh model; it does not rebuild save/resume or repeat the final filter/cursor exercise.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": true,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "3da50074fcda4533230602e9e820910d0645ff2feaf130c024cf07123271e33a",
+      "native_issue_id": "CAP-632",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-632",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-02",
+      "day_in_appended_sprint": 2,
+      "date": "2028-06-19",
+      "title": "CSM14-02 · 19 Jun 2028 — Implement deterministic three-way version reconciliation (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-01",
+        "CAP-251"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/refresh/ThreeWayCheckpointReconciler.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/ThreeWayCheckpointReconcilerTest.java",
+        "fixtures/coverstory/CSM14-02/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-02/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-02.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement a pure Java three-way reconciliation seam over base B, local branch L and upstream candidate U. For each stable slot, L=B permits U; U=B permits L; L=U permits that shared result; divergent L and U require an explicit conflict. Intentional removal is a typed local operation. Source UNAVAILABLE stays a separate blocking state. Preserve declared slot order and validate the final 1–3 unique same-scenario products. Do not fetch data, persist or resolve conflicts on the learner’s behalf.",
+      "fixture": "For s1: B=H1/v1, L=H1/v1, U=H1/v2 gives an unambiguous refresh. For s2: B=H2/v1, L=H2/v2, U=H2/v3 gives conflict. For s3: local explicitly removes while U changes H3/v1→H3/v2, giving a remove-versus-change conflict. A separate no-change fixture has L=B=U. UNAVAILABLE is supplied independently of any missing map entry.",
+      "acceptance": [
+        "Unambiguous cases follow the declared truth table and preserve exact source/version references.",
+        "Both divergent-version and remove-versus-change cases expose unresolved conflict; no version wins by timestamp or map iteration order.",
+        "No-change reconciliation is idempotent and the input objects remain unchanged.",
+        "Reversing fixture map insertion order does not change conflict identities or declared result order; unavailable source evidence never becomes deletion.",
+        "Execute at least one independently authored counterexample to the proposed equality/identity rule."
+      ],
+      "architecture_evidence": "Retain the executable truth table, a measured operation count for 1 and 3 slots, and one rejected last-write-wins counterexample. Explain why constant small bounds do not eliminate semantic conflict and identify which part could generalize to O(n).",
+      "novelty": "This implements three-way selection semantics, rather than the old two-version clause diff, stable cursor or latest-per-family query.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "92ef20b820ed3add09a7661bd9e643f8b452061977fbdbe9db0be15bc0039821",
+      "native_issue_id": "CAP-633",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-633",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-03",
+      "day_in_appended_sprint": 3,
+      "date": "2028-06-20",
+      "title": "CSM14-03 · 20 Jun 2028 — Persist immutable checkpoint revisions atomically (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-01",
+        "CSM14-02",
+        "CAP-57",
+        "CAP-202"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/persistence/CheckpointRepositoryAdapter.java",
+        "src/test/java/capstone/coverstory/shortlist/persistence/CheckpointAtomicityTest.java",
+        "src/main/resources/coverstory/shortlist/checkpoint-revision.sql",
+        "fixtures/coverstory/CSM14-03/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-03/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-03.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement the prepared Shortlist persistence adapter for appending an immutable checkpoint revision and advancing its head using the existing unit-of-work/public module contracts. Store only owner-scoped references and permitted metadata, not copied private answers. The domain revision, required safe audit and existing relevant journey projection/step change must commit together. Reuse the existing encryption adapter wherever the established data policy requires it; do not create keys or a new payload system.",
+      "fixture": "Prepared PostgreSQL schema has C-A/r1 and matching owned shortlist/journey. Append r2 referencing r1 with unchanged scenario and approved exact version identities. A disposable fault fires after staging the revision but before the required audit/journey writes. A separate read after rollback inspects durable state.",
+      "acceptance": [
+        "A successful append preserves r1 byte-for-byte, persists r2 and advances only the appropriate owned head/projection.",
+        "The injected failure leaves no r2, no advanced head and no orphan required audit/journey record.",
+        "The adapter reaches other modules only through their public contracts; no cross-module repository shortcut is introduced.",
+        "A duplicate immutable revision identity with changed content fails rather than overwriting history.",
+        "Record the actual transaction boundary and database assertions; fixture-only in-memory results do not prove SQL durability."
+      ],
+      "architecture_evidence": "Annotate the actual commit boundary and affected rows for success versus injected rollback. Explain the head-pointer/history trade-off and why an audit row rolled back in that transaction is not durable evidence of failure.",
+      "novelty": "This adds a new immutable comparison-checkpoint aggregate using existing transaction foundations, not another generic SQL history mock.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "f39abcd97e2bc8a1f1004db38a6182997fa97ea26b70d1ad8b950515f4455158",
+      "native_issue_id": "CAP-634",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-634",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-04",
+      "day_in_appended_sprint": 4,
+      "date": "2028-06-21",
+      "title": "CSM14-04 · 21 Jun 2028 — Fence concurrent branch saves and replay (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-03"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/application/SaveCheckpoint.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/ConcurrentCheckpointSaveTest.java",
+        "fixtures/coverstory/CSM14-04/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-04/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-04.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement the checkpoint-save command’s expected-revision check and reuse the existing durable idempotency envelope. Scope an operation to trusted owner, resource and operation kind; compare the canonical request content. Exercise two prepared PostgreSQL connections with barriers, not sleeps. One branch based on r1 may win; a competing changed branch must receive a conflict and retain its draft for explicit re-preview.",
+      "fixture": "Tab T1 and T2 both start at C-A/r1. T1 proposes H1/v2; T2 proposes H2/v2. Both are released at a controlled write barrier. Retry T1 with the same operation key/content after its response is suppressed; then reuse that key with T2 content. A second resource has the same textual key but a distinct authorized operation scope.",
+      "acceptance": [
+        "Exactly one concurrent changed branch advances the head from r1; the loser cannot overwrite the winning revision.",
+        "The same accepted key/content returns the stored result even after response loss, without a second revision or durable domain effect.",
+        "Changed content under the same scoped operation key conflicts and retains the original stored result.",
+        "The losing response provides a safe stale-revision outcome, not an instruction to discard/reapply the draft automatically.",
+        "The test records the real two-connection schedule and chosen linearization point; sequential mock calls are labeled insufficient concurrency evidence."
+      ],
+      "architecture_evidence": "Draw at most eight schedule events and identify the database operation that linearizes acceptance. Compare optimistic expected-revision checks with a long-held application lock using the observed contention, not assumed distributed scale.",
+      "novelty": "The race protects a new branch head and immutable revisions; it is distinct from the original payment unknown-outcome and browser query-race exercises.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "1f435902724797136c792a02e8b2e6b467f97fb22007d2cd06995e50139c686c",
+      "native_issue_id": "CAP-635",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-635",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-05",
+      "day_in_appended_sprint": 5,
+      "date": "2028-06-22",
+      "title": "CSM14-05 · 22 Jun 2028 — Expose an authoritative refresh preview API (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-02",
+        "CSM14-04",
+        "CAP-259"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/api/CheckpointRefreshController.java",
+        "src/main/java/capstone/coverstory/shortlist/application/PreviewCheckpointRefresh.java",
+        "src/test/java/capstone/coverstory/shortlist/api/CheckpointRefreshPreviewTest.java",
+        "fixtures/coverstory/CSM14-05/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-05/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-05.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement the existing Spring API adapter for a proposed POST /api/v1/shortlists/{id}/checkpoint-refresh-previews. Authorize the existing shortlist before reading its private branch metadata. Resolve at most nine exact base/local/upstream version references across three selected product slots through one public Catalog snapshot port; produce exact checkpoint/catalog generations, source digests, conflict states and a canonical preview fingerprint. The server computes this fingerprint; it is an equality aid, never authorization. A preview does not accept a branch or advance journey state.",
+      "fixture": "A previews C-A/r1 and the three-slot fixture at catalog generation 20. Add one divergent local edit, one optional response metadata field, an unavailable public source and a body owner override. Foreign B requests S-A. The Catalog adapter can expose a prepared generation-change signal during snapshot capture.",
+      "acceptance": [
+        "The response identifies a single declared checkpoint revision and catalog snapshot, with exact conflicts and qualified unavailable sources.",
+        "Foreign/unknown owned shortlist references use the established safe denial contract before private serialization; body owner overrides are rejected.",
+        "Preview execution leaves checkpoint head, audit/domain transition count and journey state unchanged.",
+        "A mixed catalog snapshot is rejected/retried only within the declared bounded adapter behavior; it is not presented as a coherent preview.",
+        "Additive optional metadata cannot alter required source identities or silently resolve a conflict."
+      ],
+      "architecture_evidence": "Record one request/response sequence showing owner authorization, Catalog public-port access and fingerprint construction. Explain the consistency point and why a client-supplied digest or UUID is not an access credential. Bound input fan-out to three slots and at most nine exact version references; a batch boundary does not authorize any private cross-owner read.",
+      "novelty": "The new API mediates a complete branch/base/upstream preview; it does not repeat the final explorer filter endpoint.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "f29d3b59761e852e9581cc694a9d808024347d614020566b41deed8061b31ad4",
+      "native_issue_id": "CAP-636",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-636",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-06",
+      "day_in_appended_sprint": 6,
+      "date": "2028-06-23",
+      "title": "CSM14-06 · 23 Jun 2028 — Accept resolved refreshes with atomic revalidation (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-03",
+        "CSM14-04",
+        "CSM14-05"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/application/AcceptCheckpointRefresh.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/AcceptCheckpointRefreshTest.java",
+        "fixtures/coverstory/CSM14-06/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-06/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-06.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement the bounded accept-refresh application seam. Reauthorize, load the expected current head and re-read authoritative source state through public module contracts. Recompute the proposed result from the base/local intent and explicit per-conflict decisions; compare the expected generation/fingerprint. Only a fully valid, explicitly resolved plan can append a new immutable checkpoint and its required audit/journey changes. Reuse the existing transaction and lock-order mechanism so catalog publication versus acceptance has a defined order.",
+      "fixture": "Preview P20 is based on C-A/r1 and catalog generation 20 with a single resolved H2 conflict. In the positive case nothing changes. In the negative case catalog advances to generation 21 before acceptance. A third case throws the prepared persistence fault between staged revision and required journey update. Unresolved/forged resolution choices are separate input cases.",
+      "acceptance": [
+        "The positive case appends one exact resolved checkpoint, preserves the old revision and records only safe source/operation references.",
+        "Generation/head/fingerprint mismatch rejects without applying any resolution or changing the journey.",
+        "An unresolved conflict or a chosen version outside the authoritative allowed options cannot be accepted merely because a client calls it resolved.",
+        "Injected failure leaves domain/audit/journey state atomic; repeat uses the same durable operation identity.",
+        "A controlled publication-versus-accept schedule demonstrates the declared serialization rule; a preflight read alone is not claimed to close the race."
+      ],
+      "architecture_evidence": "Save a transaction/lock-order sketch plus the observed positive/stale/rollback row sets. Explain why the comparison refresh cannot imply acceptance of quote, policy, price or insurance terms.",
+      "novelty": "This is an explicit acceptance protocol for comparison metadata, with new branch reconciliation outcomes; it does not alter existing money/submit acceptance contracts.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "1e1cd18ddf4ea93ce02b37bee9b42417cbe74d8c9b635e53e65e57f01fef8110",
+      "native_issue_id": "CAP-637",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-637",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-07",
+      "day_in_appended_sprint": 7,
+      "date": "2028-06-24",
+      "title": "CSM14-07 · 24 Jun 2028 — Render explicit branch conflicts in React (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-05",
+        "CSM14-06",
+        "CAP-18",
+        "CAP-19"
+      ],
+      "proposed_paths": [
+        "frontend/src/coverstory/shortlist/refresh/CheckpointRefreshPanel.tsx",
+        "frontend/src/coverstory/shortlist/refresh/CheckpointRefreshPanel.test.tsx",
+        "frontend/src/coverstory/shortlist/refresh/refreshQueryOptions.ts",
+        "fixtures/coverstory/CSM14-07/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-07/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-07.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement one bounded React composition in the existing comparison screen using shared primitives and existing TanStack Query factories. Render the base/local/upstream source versions and one explicit decision control for each of at most three conflicts. Server preview lives in the query cache; unsaved choices remain local memory state tied to the preview fingerprint. The accept control submits the exact resolved plan and is disabled while unresolved, stale or unavailable.",
+      "fixture": "Prepared API fixtures return one auto-resolved slot, one divergent-version conflict and one unavailable slot. Resolve the conflict, then receive a changed preview fingerprint. Exercise keyboard-only choice, loading, visible error and retry through the existing shell. No new route framework or design system is introduced.",
+      "acceptance": [
+        "Visible source/version labels distinguish base, local intent and upstream proposal without implying that the proposal has already been saved.",
+        "Unresolved/unavailable/stale plans cannot invoke acceptance; tests observe zero mutation calls.",
+        "A changed preview invalidates incompatible local decisions and asks for explicit review; decisions never silently attach to another version pair.",
+        "Keyboard focus and accessible names allow selection and error recovery with the existing shared controls.",
+        "An API failure retains the unsaved draft in memory while clearly distinguishing it from the current persisted checkpoint."
+      ],
+      "architecture_evidence": "Record a small state-ownership table and one executable state-transition trace. Explain which facts are authoritative server state, which are local draft intent, and how their lifetimes differ.",
+      "novelty": "This new UI requires explicit three-way conflict resolution; existing saved-selection, shared-component and query-race foundations are reused.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "37e362172550ef4411c907ba9776463f28e03a4de6e3a065f405b44e62f24f52",
+      "native_issue_id": "CAP-638",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-638",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-08",
+      "day_in_appended_sprint": 8,
+      "date": "2028-06-25",
+      "title": "CSM14-08 · 25 Jun 2028 — Recover a lost refresh acceptance response (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-04",
+        "CSM14-06",
+        "CSM14-07"
+      ],
+      "proposed_paths": [
+        "frontend/src/coverstory/shortlist/refresh/refreshRecovery.ts",
+        "frontend/src/coverstory/shortlist/refresh/refreshRecovery.test.tsx",
+        "src/test/java/capstone/coverstory/shortlist/refresh/LostRefreshResponseTest.java",
+        "fixtures/coverstory/CSM14-08/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-08/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-08.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Wire and test the refresh panel’s retry/reconciliation path using the existing durable command result. The server commits a resolved checkpoint but the prepared transport drops the response. The UI must show an unknown outcome, query/replay the same authorized operation identity and reconcile with the stored current checkpoint. Add the smallest adapter/state seam required; do not implement a generic offline queue or persist private mutation payloads in browser storage.",
+      "fixture": "C-A/r1→r2 acceptance commits; response is suppressed. The user clicks retry while the same page retains the original operation identity. Then run a full SPA reload: authenticate and refetch the existing owned shortlist/head; do not pretend that lost in-memory unsaved choices survived. Use a prepared stale-read response to check truthful loading until authoritative refetch completes.",
+      "acceptance": [
+        "Response loss does not display definite failure or trigger a new logical acceptance command automatically.",
+        "Same-operation retry returns r2 with exactly one durable revision/effect; explicit authoritative refetch settles the UI.",
+        "The reloaded SPA reconstructs the persisted r2 from authenticated server reads and states honestly that any unsaved memory-only draft was not recovered.",
+        "Stale or pending responses cannot downgrade r2 to r1 or falsely claim a new save.",
+        "No private draft/mutation cache is written to localStorage, IndexedDB or a third-party endpoint."
+      ],
+      "architecture_evidence": "Retain a bounded failure/recovery sequence separating commit, delivery and observation. Explain what survives page reload and why a transport timeout is not evidence of transaction rollback.",
+      "novelty": "This transfers the existing unknown-outcome principle into the newly built refresh UI/command protocol and proves its particular durable result identity.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": true,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "ea95d80387db25af8134c24b7ddb00456973da9592b66dab97c2da4cf522835f",
+      "native_issue_id": "CAP-639",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-639",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-09",
+      "day_in_appended_sprint": 9,
+      "date": "2028-06-26",
+      "title": "CSM14-09 · 26 Jun 2028 — Close rebase authorization and publication races (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-06",
+        "CSM14-08",
+        "CAP-259",
+        "CAP-187"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/application/RefreshAccessGuard.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/RefreshAuthorizationRaceTest.java",
+        "frontend/src/coverstory/shortlist/refresh/refreshOwnerBoundary.test.tsx",
+        "fixtures/coverstory/CSM14-09/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-09/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-09.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Strengthen the acceptance boundary with the existing current-authorization generation/public access guard and execute a deterministic revocation-versus-accept schedule. A previously authorized preview must not grant later mutation rights. Use the established same-database serialization/guard mechanism rather than holding a client-side flag. Extend the UI regression to ensure late private refresh responses cannot populate another signed-in owner’s view.",
+      "fixture": "A is authorized at authorization generation 4 and receives a preview. The prepared schedule revokes the relevant access at generation 5 before acceptance reaches its commit decision. Another schedule keeps authorization at 4 and succeeds. A late response from A then arrives after an existing session switch to B. Only synthetic owner/source markers are present.",
+      "acceptance": [
+        "When revocation is ordered before the acceptance decision, no new checkpoint/audit domain effect or private response is produced for the revoked actor.",
+        "When acceptance serializes before a later revocation, the receipt describes that precise order; the subsequent revoked read is denied. No impossible retroactive rollback guarantee is claimed.",
+        "An unchanged-authority control case can still succeed; the fix is not blanket denial.",
+        "B never sees A’s branch/operation identifiers or private selection context from a late response; public catalog data remains separately scoped.",
+        "The regression records the actual barrier/transaction schedule and server enforcement point; client cancellation alone is insufficient."
+      ],
+      "architecture_evidence": "Record a happens-before diagram with the current-authorization check and transaction decision. Explain the limited, testable revocation guarantee and the alternative behavior if no serializable authoritative guard is available.",
+      "novelty": "This is a new mutation authorization race over branch acceptance, rather than repeating read-only explorer cache/authorization-generation mocks.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "060862c244b93483712a8621b54f56e39d409d799b898981f9c18292585b5b1f",
+      "native_issue_id": "CAP-640",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-640",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-10",
+      "day_in_appended_sprint": 10,
+      "date": "2028-06-27",
+      "title": "CSM14-10 · 27 Jun 2028 — Evolve checkpoint provenance without breaking readers (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-03",
+        "CSM14-07"
+      ],
+      "proposed_paths": [
+        "src/main/resources/coverstory/shortlist/checkpoint-provenance-expand.sql",
+        "src/test/java/capstone/coverstory/shortlist/persistence/CheckpointProvenanceMigrationTest.java",
+        "frontend/src/coverstory/shortlist/refresh/decodeCheckpointProvenance.test.ts",
+        "fixtures/coverstory/CSM14-10/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-10/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-10.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Add one backward-compatible optional provenance code to resolved checkpoint metadata using the supplied migration harness: LOCAL_UNCHANGED, UPSTREAM_REFRESH or EXPLICIT_CONFLICT_CHOICE. Historical rows are UNKNOWN/UNRECORDED, never guessed. Implement the additive PostgreSQL migration and typed API/React compatibility seam without changing immutable source references or requiring a new service. Use prepared copies of the day-7 consumer and current consumer to exercise old/new payloads.",
+      "fixture": "Prepared r1 lacks provenance; r2 has an upstream refresh and an explicit conflict choice. One response adds the optional field to schemaMajor 1; one has an unsupported required schema major. The disposable database starts from the pinned pre-migration schema and includes the existing immutable row hashes.",
+      "acceptance": [
+        "Migration preserves existing revision/source identity and data; old rows remain explicitly unrecorded rather than labeled as independently resolved.",
+        "The prepared older compatible consumer tolerates the optional field under its actual contract; if it does not, record the incompatibility instead of claiming compatibility.",
+        "The new consumer reads old payloads with Unknown provenance and rejects an unsupported required schema major safely.",
+        "A migration failure leaves the disposable database in a known rolled-back or explicitly failed state; no destructive rollback of retained history is attempted.",
+        "Record the actual old/new application-schema compatibility matrix and commands; this local test is not a deployment or rollback guarantee."
+      ],
+      "architecture_evidence": "Retain the two-consumer/two-payload compatibility matrix and the expansion decision. Explain what a backward-compatible optional field can preserve and why it cannot manufacture historical evidence.",
+      "novelty": "This evolves a real artifact built in this sprint, rather than repeating a detached schema-expansion or lineage exercise.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "6c70d8d01d1640b6b93b6c7cd797e3a47981a32b01af0017ff048f25fe4f9d1a",
+      "native_issue_id": "CAP-641",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-641",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-11",
+      "day_in_appended_sprint": 11,
+      "date": "2028-06-28",
+      "title": "CSM14-11 · 28 Jun 2028 — Measure bounded refresh-history query behavior (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-03",
+        "CSM14-05",
+        "CSM14-10"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/persistence/CheckpointHistoryQuery.java",
+        "src/test/java/capstone/coverstory/shortlist/persistence/CheckpointHistoryQueryTest.java",
+        "experiments/coverstory/checkpoint-refresh/history-query.sql",
+        "fixtures/coverstory/CSM14-11/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-11/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-11.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement or refine the owning Shortlist history/read adapter to return a bounded 20-revision page and fetch at most three current source references through the Catalog public batch port. Eliminate only a demonstrated N+1 or unnecessary scan in this new checkpoint path. Compare one narrow index/query alternative against the baseline using the prepared identical synthetic datasets and supported PostgreSQL plan tools.",
+      "fixture": "Prepared datasets contain 100 and 1,000 immutable checkpoint revisions for A, matching rows for B, and three public source families. Page size is 20 with deterministic revision ordering. Each before/after run uses the same dataset, candidate settings, warmup and request accounting; at most five measured executions per condition. This is a local synthetic experiment, not load testing a live service.",
+      "acceptance": [
+        "The page contains only A’s requested checkpoint revisions with stable order and no repeated/missing rows in the fixed fixture.",
+        "Public-port call counters prove the declared bounded lookup count; private ownership is not dropped to obtain a faster plan.",
+        "Save actual EXPLAIN/query metrics, rows examined/returned and all failure counts for matched runs; label cold/warm conditions and tiny sample limits.",
+        "The chosen optimization must retain correctness and show its measured trade-off, including no improvement if that is the result.",
+        "No distributed cache, new database, broker or paid infrastructure is introduced to satisfy this bounded workload."
+      ],
+      "architecture_evidence": "Write a brief measured decision record with workload, query count, actual plan observation, storage/write cost of the candidate index and a falsifying workload. Do not extrapolate 1,000 local rows to production capacity.",
+      "novelty": "The measurement is attached to the newly implemented branch-checkpoint history API, not a generic cache cost model or misleading-benchmark review.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "5af78fd67ec7140ac771d8fca7ff6d1a26770d232405122ff285108728057b31",
+      "native_issue_id": "CAP-642",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-642",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-12",
+      "day_in_appended_sprint": 12,
+      "date": "2028-06-29",
+      "title": "CSM14-12 · 29 Jun 2028 — Implement a differential branch-history checker (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-04",
+        "CSM14-06",
+        "CSM14-09"
+      ],
+      "proposed_paths": [
+        "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointReferenceModel.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointDifferentialReplayTest.java",
+        "fixtures/coverstory/CSM14-12/command-traces.json",
+        "fixtures/coverstory/CSM14-12/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-12/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-12.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Author a small executable reference state model independently of the production rebase implementation, then replay bounded command schedules through both model and actual application service. Compare immutable history/head, operation outcomes and source identities. Use state-table rules, not production helper methods, as the oracle. Add one regression for any genuine difference; do not manufacture a defect or silently change the oracle to match the candidate.",
+      "fixture": "Use two local branches, two catalog generations and at most six commands per trace. The instructor supplies 12 finite seeded schedules combining expected-revision conflict, same-key retry, changed-key payload conflict and rollback; the learner authors four additional fresh schedules before inspecting production results. All reset/seed mechanics are already prepared.",
+      "acceptance": [
+        "The independent reference model predicts each trace before the production run and declares any simplifying assumptions.",
+        "Every accepted operation creates at most one durable revision/effect; rejected/conflicting/rolled-back operations preserve the expected old head and required atomic records.",
+        "A deliberately defective disposable candidate fails at least one checker assertion for the intended semantic reason; the normal candidate result is recorded honestly.",
+        "The checker reports the earliest divergent command and exact state difference without dumping private payloads.",
+        "Guidance, shared implementation logic or disclosed fault mechanisms are recorded; they cannot be mislabeled independent model design."
+      ],
+      "architecture_evidence": "Explain the model’s abstraction boundary, the independent oracle’s weaknesses and what its bounded traces cannot prove. Include one counterexample that would pass a simple final-row-count assertion but fail this history checker.",
+      "novelty": "This new differential checker analyzes the complete branch acceptance protocol, rather than redoing a portfolio evidence checker or a general debugging interview.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "86c2272af4bdb1f5d4acf216db662dfabe8fcd4fa9ba86c4fefdac95084cbf20",
+      "native_issue_id": "CAP-643",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-643",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-13",
+      "day_in_appended_sprint": 13,
+      "date": "2028-06-30",
+      "title": "CSM14-13 · 30 Jun 2028 — Implement an independent reordered-branch variation (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-02",
+        "CSM14-07",
+        "CSM14-12"
+      ],
+      "proposed_paths": [
+        "src/main/java/capstone/coverstory/shortlist/refresh/CheckpointOrderIntent.java",
+        "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointOrderIntentTest.java",
+        "frontend/src/coverstory/shortlist/refresh/orderedConflictResolution.test.tsx",
+        "fixtures/coverstory/CSM14-13/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-13/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-13.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Solve a fresh narrow requirement independently: a local branch may explicitly reorder the three selected products while upstream updates their versions; rebase must preserve that intentional order without losing per-slot conflicts or attaching a decision to the wrong product. The instructor supplies only the public contract, input fixture and review constraints, not a reducer, solution patch or diagnosis. Implement the smallest Java/React ordering seam and its tests using existing stable slot identities.",
+      "fixture": "Base order is s1(H1/v1), s2(H2/v1), s3(H3/v1). The local branch order is s3,s1,s2; upstream supplies H1/v2 and a divergent H2 version while returning its map in reverse insertion order. Expected local order remains s3,s1,s2, H1 can refresh, and H2 retains its own explicit conflict. Before assignment, the instructor substitutes fresh version IDs/digests and one unseen legal order; the learner cannot claim a rehearsed exact fixture as unseen.",
+      "acceptance": [
+        "The implemented result preserves explicit local order and binds each conflict/decision to the correct stable slot and exact source versions.",
+        "Upstream iteration order cannot silently reorder selections or transfer a resolution to another product.",
+        "A malformed order with repeated/missing slot IDs is rejected with no partial save; valid selection bounds still hold.",
+        "Run the focused Java and React regression against the same fixture and verify the accepted persisted order through the existing API.",
+        "Record actual independent work, sources and hints; generated/copied solution code or a disclosed implementation counts as guided practice."
+      ],
+      "architecture_evidence": "Explain why identity and order are different dimensions of the rebase contract. Demonstrate one failed alternative, such as positional conflict binding, using the actual counterexample and state the extra invariants the change introduces.",
+      "novelty": "This is a new cross-layer order-intent requirement on the sprint feature, distinct from the earlier source-map-order/full-stack variation.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "98beb85cc7dbfca7a21d585d3c33b3190ff941ce28afee85d042dccb8914fdc0",
+      "native_issue_id": "CAP-644",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-644",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    },
+    {
+      "planning_id": "CSM14-14",
+      "day_in_appended_sprint": 14,
+      "date": "2028-07-01",
+      "title": "CSM14-14 · 01 Jul 2028 — Build an executable rebase admission gate (180m)",
+      "role": "primary",
+      "dependencies": [
+        "CSM14-08",
+        "CSM14-09",
+        "CSM14-11",
+        "CSM14-12",
+        "CSM14-13"
+      ],
+      "proposed_paths": [
+        "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointRefreshAdmissionTest.java",
+        "frontend/src/coverstory/shortlist/refresh/checkpointRefreshAdmission.test.tsx",
+        "experiments/coverstory/checkpoint-refresh/run-admission-contract.sh",
+        "fixtures/coverstory/CSM14-14/synthetic-inputs.json",
+        "docs/evidence/coverstory/CSM14-14/result.json",
+        "docs/architecture/coverstory/checkpoint-refresh/CSM14-14.md"
+      ],
+      "paths_verified": false,
+      "implementation_task": "Implement one bounded end-to-end contract test/admission runner against this sprint’s actual Java/Spring/React/PostgreSQL candidate. The instructor supplies one fresh six-event schedule that combines an unsaved reordered branch, a source update and either a concurrent accepted branch or a lost acceptance response. The learner states the predicted exact visible, API and durable outcomes before running it, authors the oracle and executes the test. Keep the runner scoped to this new feature; do not repeat a portfolio presentation or all-course review.",
+      "fixture": "Default schedule: load A/C-A/r1; locally reorder s3,s1,s2; preview at catalog generation 20; another prepared tab accepts r2; submit the original resolved preview; explicitly obtain a new preview and decide whether to accept. The old preview must conflict without changing r2. Before assignment the instructor uses a fresh hidden interleaving/identifiers from the declared supported domain; its solution and failing boundary are not supplied. The environment also contains a prepared defective variant for oracle self-check.",
+      "acceptance": [
+        "The learner-written test observes UI, API outcome and independent PostgreSQL state for the same candidate and schedule.",
+        "A stale old branch cannot overwrite the concurrently accepted revision; explicit refresh/review retains the user’s local intent or clearly identifies remaining conflicts.",
+        "Every accepted result matches exact authoritative version refs, owner and immutable history; no money/policy/quote acceptance changes.",
+        "The prepared defective variant fails for the intended contract violation, and the candidate result is retained as PASS, FAIL or BLOCKED with raw evidence.",
+        "The final design defense cites this executed schedule plus the sprint’s actual transaction, compatibility and bounded-query evidence; no unexecuted completion, production-scale, security or independent-mastery claim is added."
+      ],
+      "architecture_evidence": "Deliver a compact candidate-bound system design: module/public-port map, one acceptance sequence, transaction/authorization boundaries, observed query budget and one explicit scaling or failure assumption. Defend one alternative from measured evidence and name the next unresolved limit. The artifact is backed by the code/test authored today.",
+      "novelty": "This is a new executable cross-layer admission gate for branch-safe rebase, not the original final evidence-index/demo day.",
+      "budget_minutes": {
+        "daily_max": 180,
+        "practical": 125,
+        "aws": 30,
+        "dsa": 15,
+        "evidence_design": 10,
+        "dsm_extra": 0
+      },
+      "sunday_no_dsm": false,
+      "readiness": "PLANNED_NOT_READY",
+      "evidence": "NOT_RUN",
+      "description_sha256": "05a7267773892a7f2804cae8287f7a0075b45c7cac35999ef5ac466c5668ae34",
+      "native_issue_id": "CAP-645",
+      "issue_url": "https://dwait-to-adwait.youtrack.cloud/issue/CAP-645",
+      "implementation_status": "CONTRACT_ONLY; no learner scaffold or acceptance test implemented"
+    }
+  ],
+  "path_status": "Contract proposed_paths retained verbatim but unverified against checkout; do not treat them as created files.",
+  "native_mapping_verification": {
+    "status": "VERIFIED_BY_BOARD_CREATOR",
+    "mapping_rule": "CSM14-01 through CSM14-14 map sequentially to CAP-632 through CAP-645.",
+    "verified_properties": [
+      "all 14 exact bodies",
+      "all 14 exact titles",
+      "all 14 exact dates",
+      "all 14 Backlog state",
+      "search returns exactly 14 without duplicates"
+    ],
+    "live_board_changed_by_this_branch": false
+  },
+  "scaffold_status": "CONTRACTS_ONLY; no learner starter seams/tests for this future sprint have been implemented."
+}

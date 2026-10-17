@@ -1,4 +1,4 @@
-# Day 09 · 2026-10-25 · CAP-610 / CS90-09
+# Day 09 · 2026-10-25 · CS90-09
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_09` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-005-cap-48`](../../../docs/assignments/coverstory/saved-days/day-005-cap-48.md). Daily card CAP-610 maps to this specific task: **Implement UTC day bucketing for source evidence.**.
+Saved source: [`day-005-cap-48`](../../../docs/assignments/coverstory/saved-days/day-005-cap-48.md). Branch-local practice slot CS90-09 maps to this saved source task: **Implement UTC day bucketing for source evidence.**.
 
 **Learner seam:** `src/main/resources/coverstory/catalog/cap_48.sql` (`SQL`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP48SqlAcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP48InstructorInfrastructureTest.java`. Linked component: source/version evidence failure classification in `ai/coverstory/cap_49.py`, tests `ai/coverstory/tests/test_cap_49.py`.
 

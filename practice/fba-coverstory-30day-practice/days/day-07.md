@@ -1,4 +1,4 @@
-# Day 07 · 2026-10-23 · CAP-608 / CS90-07
+# Day 07 · 2026-10-23 · CS90-07
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_07` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-004-cap-46`](../../../docs/assignments/coverstory/saved-days/day-004-cap-46.md). Daily card CAP-608 maps to this specific task: **Implement bounded review-queue admission and deterministic eviction.**.
+Saved source: [`day-004-cap-46`](../../../docs/assignments/coverstory/saved-days/day-004-cap-46.md). Branch-local practice slot CS90-07 maps to this saved source task: **Implement bounded review-queue admission and deterministic eviction.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP46Seam.java` (`admission`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP46AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP46InstructorInfrastructureTest.java`. Linked component: citation-quality evaluation at `ai/coverstory/cap_47.py`, tests `ai/coverstory/tests/test_cap_47.py`.
 

@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-17",
+  "status": "PASS",
+  "scope": "Instructor-only CAP-630 setup/contract checks; no parent learner completion claimed.",
+  "commands": [
+    "JAVA_TOOL_OPTIONS=--add-modules=jdk.compiler mvn -s /tmp/fba-coverstory-maven-settings.xml -Dmaven.repo.local=/tmp/fba-coverstory-m2 -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dtest=First14CatalogConsistencyTest test",
+    "JAVA_TOOL_OPTIONS=--add-modules=jdk.compiler mvn -s /tmp/fba-coverstory-maven-settings.xml -Dmaven.repo.local=/tmp/fba-coverstory-m2 -Dmaven.compiler.release= -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dcoverstory.cs90.browser=true -Dcoverstory.cs90.chromium=/usr/bin/chromium -Dtest=First14CatalogConsistencyTest test",
+    "(cd web && npm run build)"
+  ],
+  "checks": [
+    "Embedded PostgreSQL and actual Spring test-only CAP-57 route seeded synthetic A/v1, B/v1, C/v1. SQL active identities and hashes matched the public version API.",
+    "Repeated A/v1 publication returned DUPLICATE without another version or audit row; public response remained unchanged.",
+    "Stale A/v2 reference self-check failed for the expected source/version identity mismatch; the unchanged correct A/v1 snapshot passed after the negative check.",
+    "Headless Chromium exercised the actual PersistedHealthComparison with an injected instructor decoder; visible A/v1, B/v1, C/v1 identities matched the database and API, Unknown remained visible, and export contained IDs only."
+  ],
+  "learner_logic": "Production decodeCatalogEnvelope and original CAP-40\u2026CAP-166 learner TODOs were not modified; this is instructor evidence only.",
+  "tests": {
+    "First14CatalogConsistencyTest": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "PASS"
+  },
+  "fixture": "fixtures/coverstory/CS90-29/catalog-consistency.json",
+  "issue_id": "CAP-630",
+  "fixture_sha256": "8e27769b999d9266562ed456740d0635cf019bb328d0f704a407ae06c521ce93",
+  "readiness": "INSTRUCTOR_SCAFFOLD_VERIFIED",
+  "learner_acceptance": "NOT_RUN in this evidence record; original TODO contract remains separate"
+}

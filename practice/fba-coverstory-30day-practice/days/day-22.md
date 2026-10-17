@@ -1,4 +1,4 @@
-# Day 22 · 2026-11-07 · CAP-623 / CS90-22
+# Day 22 · 2026-11-07 · CS90-22
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_22` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-011-cap-55`](../../../docs/assignments/coverstory/saved-days/day-011-cap-55.md). Daily card CAP-623 maps to this specific task: **Add skew/ordering counterexample and explain partition tradeoff.**.
+Saved source: [`day-011-cap-55`](../../../docs/assignments/coverstory/saved-days/day-011-cap-55.md). Branch-local practice slot CS90-22 maps to this saved source task: **Add skew/ordering counterexample and explain partition tradeoff.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP55Seam.java` (`partitionKey`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP55AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP55InstructorInfrastructureTest.java`. Additional acceptance focus: Use deterministic fixture evidence; discuss skew and ordering without a broker.
 

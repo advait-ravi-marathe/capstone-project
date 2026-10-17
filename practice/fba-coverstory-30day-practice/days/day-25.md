@@ -1,4 +1,4 @@
-# Day 25 · 2026-11-10 · CAP-626 / CS90-25
+# Day 25 · 2026-11-10 · CS90-25
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_25` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-013-cap-57`](../../../docs/assignments/coverstory/saved-days/day-013-cap-57.md). Daily card CAP-626 maps to this specific task: **Implement atomic immutable catalog-version write seam.**.
+Saved source: [`day-013-cap-57`](../../../docs/assignments/coverstory/saved-days/day-013-cap-57.md). Branch-local practice slot CS90-25 maps to this saved source task: **Implement atomic immutable catalog-version write seam.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP57Seam.java` (`publish`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP57AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP57PublicationRuntimeIntegrationTest.java`. Additional acceptance focus: Learner route transaction suite calls actual seam; keep publication and audit atomic.
 

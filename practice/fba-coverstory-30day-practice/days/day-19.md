@@ -1,4 +1,4 @@
-# Day 19 · 2026-11-04 · CAP-620 / CS90-19
+# Day 19 · 2026-11-04 · CS90-19
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_19` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-010-cap-54`](../../../docs/assignments/coverstory/saved-days/day-010-cap-54.md). Daily card CAP-620 maps to this specific task: **Implement owner-scoped UUID journey lookup and resume response.**.
+Saved source: [`day-010-cap-54`](../../../docs/assignments/coverstory/saved-days/day-010-cap-54.md). Branch-local practice slot CS90-19 maps to this saved source task: **Implement owner-scoped UUID journey lookup and resume response.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/application/api/CAP54Seam.java` (`resume`). **Focused learner acceptance:** `src/test/java/coverstory/modules/application/CAP54AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/application/CAP54InstructorInfrastructureTest.java`. Additional acceptance focus: UUID is an identifier only; derive owner from trusted principal and return authoritative revision/step.
 

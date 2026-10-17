@@ -1,4 +1,4 @@
-# Day 17 · 2026-11-02 · CAP-618 / CS90-17
+# Day 17 · 2026-11-02 · CS90-17
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_17` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-009-cap-53`](../../../docs/assignments/coverstory/saved-days/day-009-cap-53.md). Daily card CAP-618 maps to this specific task: **Implement a synthetic wording decoder with explicit unknown-field handling.**.
+Saved source: [`day-009-cap-53`](../../../docs/assignments/coverstory/saved-days/day-009-cap-53.md). Branch-local practice slot CS90-17 maps to this saved source task: **Implement a synthetic wording decoder with explicit unknown-field handling.**.
 
 **Learner seam:** `ai/coverstory/cap_53.py` (`load_wording`). **Focused learner acceptance:** `ai/coverstory/tests/test_cap_53.py`. **Independent instructor source:** `ai/tests/test_coverstory_cap53_infrastructure.py`. Additional acceptance focus: Source labels remain visible and synthetic; do not silently discard unknown fields.
 

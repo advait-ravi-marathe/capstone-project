@@ -1,4 +1,4 @@
-# Day 14 · 2026-10-30 · CAP-615 / CS90-14
+# Day 14 · 2026-10-30 · CS90-14
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_14` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-007-cap-165`](../../../docs/assignments/coverstory/saved-days/day-007-cap-165.md). Daily card CAP-615 maps to this specific task: **Add separator, normalization, and collision vectors; explain the identity key choice.**.
+Saved source: [`day-007-cap-165`](../../../docs/assignments/coverstory/saved-days/day-007-cap-165.md). Branch-local practice slot CS90-14 maps to this saved source task: **Add separator, normalization, and collision vectors; explain the identity key choice.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP165Seam.java` (`create`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP165AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP165HarnessDiscriminationTest.java`. Additional acceptance focus: Use collision vectors from CAP165 fixture; never normalize by trimming values.
 

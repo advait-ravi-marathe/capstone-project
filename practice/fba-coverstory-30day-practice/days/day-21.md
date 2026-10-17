@@ -1,4 +1,4 @@
-# Day 21 · 2026-11-06 · CAP-622 / CS90-21
+# Day 21 · 2026-11-06 · CS90-21
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_21` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-011-cap-55`](../../../docs/assignments/coverstory/saved-days/day-011-cap-55.md). Daily card CAP-622 maps to this specific task: **Select an offline publication partition key.**.
+Saved source: [`day-011-cap-55`](../../../docs/assignments/coverstory/saved-days/day-011-cap-55.md). Branch-local practice slot CS90-21 maps to this saved source task: **Select an offline publication partition key.**.
 
 **Learner seam:** `src/main/java/coverstory/modules/catalog/api/CAP55Seam.java` (`partitionKey`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP55AcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP55InstructorInfrastructureTest.java`. Additional acceptance focus: Use the saved bounded partition-key learner contract and synthetic publication metadata.
 

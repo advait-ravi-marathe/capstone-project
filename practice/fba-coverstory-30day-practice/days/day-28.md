@@ -1,4 +1,4 @@
-# Day 28 · 2026-11-13 · CAP-629 / CS90-28
+# Day 28 · 2026-11-13 · CS90-28
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_28` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-014-cap-166`](../../../docs/assignments/coverstory/saved-days/day-014-cap-166.md). Daily card CAP-629 maps to this specific task: **Prove end-to-end failure recovery and record qualified demo evidence.**.
+Saved source: [`day-014-cap-166`](../../../docs/assignments/coverstory/saved-days/day-014-cap-166.md). Branch-local practice slot CS90-28 maps to this saved source task: **Prove end-to-end failure recovery and record qualified demo evidence.**.
 
 **Learner seam:** `web/src/coverstory/catalog/decodeCatalogEnvelope.ts` (`decodeCatalogEnvelope`). **Focused learner acceptance:** `web/scripts/catalog-envelope-acceptance.mjs`. **Instructor-only fixture smoke:** `web/scripts/catalog-envelope-smoke.mjs`. Required E2E acceptance: the saved CAP-166 learner browser flow must persist all three versions, stop Spring, fail closed without stale comparisons, restart on the same port, refetch all versions, and complete comparison/export. This is required acceptance, not optional coverage.
 

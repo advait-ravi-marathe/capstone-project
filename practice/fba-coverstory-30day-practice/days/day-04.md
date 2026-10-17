@@ -1,4 +1,4 @@
-# Day 04 · 2026-10-20 · CAP-605 / CS90-04
+# Day 04 · 2026-10-20 · CS90-04
 
 ## Session contract
 
@@ -18,7 +18,7 @@ Use the authoritative FBA `frontend_04` cases in `practice/fba-coverstory-30day-
 
 ## CoverStory practical contract
 
-Saved source: [`day-002-cap-42`](../../../docs/assignments/coverstory/saved-days/day-002-cap-42.md). Daily card CAP-605 maps to this specific task: **Add identity/equality regression and reconcile aggregate SQL without join fanout.**.
+Saved source: [`day-002-cap-42`](../../../docs/assignments/coverstory/saved-days/day-002-cap-42.md). Branch-local practice slot CS90-04 maps to this saved source task: **Add identity/equality regression and reconcile aggregate SQL without join fanout.**.
 
 **Learner seam:** `src/main/resources/coverstory/catalog/cap_42.sql` (`SQL`). **Focused learner acceptance:** `src/test/java/coverstory/modules/catalog/CAP42SqlAcceptanceTest.java`. **Instructor source:** `src/test/java/coverstory/modules/catalog/CAP42InstructorInfrastructureTest.java`. Linked component: preserve duplicate/conflict identity outcomes in its focused acceptance tests.
 
