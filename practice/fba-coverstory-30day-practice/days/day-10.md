@@ -11,11 +11,10 @@
 **Inventory facet controls** — `multi-select filtering`. Read the full task in `practice/fba-coverstory-30day-practice/fba/assignments/frontend.md` under Day 10. Edit `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.jsx` and `practice/fba-coverstory-30day-practice/fba/frontend/src/assignments.js`; use `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`.
 
 ```sh
-cd practice/fba-coverstory-30day-practice/fba
-make test-frontend-day DAY=10
+(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=10)
 ```
 
-Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: add timezone-boundary and missing-timestamp tests; inspect actual bucket output. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=10`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Use the authoritative FBA `frontend_10` cases in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`. **Additional 30-minute FBA deliverable:** Use the duplicate-value/target fixture. Test facet counts and selected chips, clear-all, and no-results feedback while preserving the expected distinct-pair output. Add a learner-owned interaction test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx`; make the assertion exercise the current day’s actual UI and learner function, not an instructor mock. Run `(cd practice/fba-coverstory-30day-practice/fba/frontend && npm test)` and `(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=10)`.
 
 ## CoverStory practical contract
 

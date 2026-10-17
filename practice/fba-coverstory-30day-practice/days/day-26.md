@@ -11,11 +11,10 @@
 **Quote contract tests** — `component/API contract testing`. Read the full task in `practice/fba-coverstory-30day-practice/fba/assignments/frontend.md` under Day 26. Edit `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.jsx` and `practice/fba-coverstory-30day-practice/fba/frontend/src/assignments.js`; use `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`.
 
 ```sh
-cd practice/fba-coverstory-30day-practice/fba
-make test-frontend-day DAY=26
+(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=26)
 ```
 
-Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: add duplicate/conflict rollback tests and verify durable rows. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=26`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Use the authoritative FBA `frontend_26` cases in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`. **Additional 30-minute FBA deliverable:** Use the zero-cent-valid and negative-cent-invalid quote fixtures. Test zero is not treated as missing, malformed/stale/partial data fails safely, and invalid data cannot be selected. Add a learner-owned interaction test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx`; make the assertion exercise the current day’s actual UI and learner function, not an instructor mock. Run `(cd practice/fba-coverstory-30day-practice/fba/frontend && npm test)` and `(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=26)`.
 
 ## CoverStory practical contract
 

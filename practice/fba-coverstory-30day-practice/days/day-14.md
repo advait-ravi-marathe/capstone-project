@@ -11,11 +11,10 @@
 **Marketplace group picker** — `connected graph / selection UI`. Read the full task in `practice/fba-coverstory-30day-practice/fba/assignments/frontend.md` under Day 14. Edit `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.jsx` and `practice/fba-coverstory-30day-practice/fba/frontend/src/assignments.js`; use `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`.
 
 ```sh
-cd practice/fba-coverstory-30day-practice/fba
-make test-frontend-day DAY=14
+(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=14)
 ```
 
-Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: add separator, normalization, and collision vectors; explain the identity key choice. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=14`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Use the authoritative FBA `frontend_14` cases in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`. **Additional 30-minute FBA deliverable:** Use the connected US/CA and isolated UK fixture. Test selection remains stable after group reordering and isolated marketplaces remain independently keyboard selectable. Add a learner-owned interaction test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx`; make the assertion exercise the current day’s actual UI and learner function, not an instructor mock. Run `(cd practice/fba-coverstory-30day-practice/fba/frontend && npm test)` and `(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=14)`.
 
 ## CoverStory practical contract
 

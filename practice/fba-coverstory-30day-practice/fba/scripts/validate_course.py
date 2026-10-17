@@ -16,6 +16,7 @@ for d,a in enumerate(manifest['assignments'],1):
  assert a['date']==(date(2026,10,17)+timedelta(days=d-1)).isoformat()
  assert a['title'] and a['coding_prompt'] and len(a['cases'])>=2
  assert a['timebox_minutes'] and sum(a['timebox_minutes'].values())==90 and a['timebox_minutes'].get('focused_component_and_adversarial_tests')==30
+fixture=json.loads((ROOT/'fixtures/cases.json').read_text())
 fe=ROOT/'frontend/src'
 assert (fe/'ui.jsx').exists() and (fe/'assignments.js').exists()
 js=(fe/'assignments.js').read_text()
@@ -28,7 +29,11 @@ for i in range(1,31):
  d=TOP/'days'/f'day-{i:02d}.md'; assert d.exists()
  text=d.read_text(); assert f'CAP-{601+i}' in text and f'make test-frontend-day DAY={i}' in text
  assert '**90 minutes**' in text and '**Combined planned time:** 180 minutes' in text
- assert '30-minute FBA deliverable' in text or 'Additional 30-minute FBA deliverable' in text
+ assert '**Additional 30-minute FBA deliverable:**' in text
+ fba_section=text.split('## FBA implementation',1)[1].split('## CoverStory practical contract',1)[0]
+ assert 'CAP-' not in fba_section and 'shortlist' not in fba_section.lower() and 'AWS' not in fba_section
+ assert f'frontend_{i:02d}' in fba_section and manifest['assignments'][i-1]['title'] in fba_section
+ assert fixture[f'frontend_{i:02d}']['cases']==manifest['assignments'][i-1]['cases']
  # Paired original CoverStory source card and referenced acceptance harness must exist.
  match=re.search(r'saved primary CAP-(\d+)',text); assert match
  source_id=int(match.group(1)); idx=[40,40,42,42,44,44,46,46,48,48,50,50,165,165,52,52,53,53,54,54,55,55,56,56,57,57,166,166,58,58][i-1]
@@ -47,7 +52,16 @@ assert [x['overlay_date'] for x in continuation['units']]==[(date(2026,11,16)+ti
 for unit in continuation['units']:
  assert (TOP.parent.parent/unit['assignment_guide']).is_file(), unit['assignment_guide']
  assert (TOP.parent.parent/unit['saved_source_card']).is_file(), unit['saved_source_card']
+ assert unit.get('learner_test_kind')=='learner acceptance'
+ learner_test=unit.get('focused_learner_test'); assert learner_test and (TOP.parent.parent/learner_test).is_file(), learner_test
+ assert 'infrastructure' not in learner_test.lower() and 'Instructor' not in learner_test
 ext=json.loads((TOP/'proposed-extension-15.json').read_text())
 assert len(ext['units'])==15 and ext['units'][0]['id']=='CAP-632' and ext['units'][-1]['id']=='CAP-646'
 assert ext['units'][0]['date']=='2028-05-30' and ext['units'][-1]['date']=='2028-06-13'
+assert all('proposed new content' in x['status'] and x['task'] and x['acceptance'] for x in ext['units'])
+# Every shell directory change in daily instructions must be a subshell so later root commands still work.
+for p in list((TOP/'days').glob('day-*.md'))+[ROOT/'assignments/frontend.md']:
+ text=p.read_text(); assert not re.search(r'(?m)^\s*cd\s',text), p
+day28=(TOP/'days/day-28.md').read_text().lower()
+assert 'required e2e acceptance' in day28 and 'e2e acceptance below' not in day28
 print('PASS: original roadmap continuation order and separate 15-card proposed extension.')

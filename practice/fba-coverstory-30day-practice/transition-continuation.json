@@ -7,217 +7,248 @@
       "overlay_date": "2026-11-16",
       "source_unit": 16,
       "primary_id": 59,
-      "title": "citation provenance",
+      "title": "Verify exact citation provenance",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-59.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-016-cap-59.md",
       "focused_learner_test": "ai/coverstory/tests/test_cap_59.py",
-      "task_source_excerpt": "The source-planned path `ai/coverstory/cap_59.py` is used. The registry fixture contains only one synthetic source/version and explicitly marks authorization and applicability. - Learner seam: `verify_citation(Citation, registry)`. - Fixture vectors: `fixtures/coverstory/CAP-59/synthetic-v1.json`. - Learner suite: `ai/coverstory/tests/test_cap_59.py`. - Independent fixture check: `ai/tests/test_coverstory_cap59_infrastructure.py`."
+      "task_source_excerpt": "The source-planned path `ai/coverstory/cap_59.py` is used. The registry fixture contains only one synthetic source/version and explicitly marks authorization and applicability. - Learner seam: `verify_citation(Citation, registry)`. - Fixture vectors: `fixtures/coverstory/CAP-59/synthetic-v1.json`. - Learner suite: `ai/coverstory/tests/test_cap_59.py`. - Independent fixture check: `ai/tests/test_coverstory_cap59_infrastructure.py`.",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-17",
       "source_unit": 17,
       "primary_id": 60,
-      "title": "journey transition concurrency",
+      "title": "Test atomic journey advance races and rollback invariants",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-60.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-017-cap-60.md",
-      "task_source_excerpt": "**Saved contract:** the learner writes a bounded two-connection concurrency and invariant test. Instructor setup now supplies a callable test-only transaction command adapter plus disposable PostgreSQL schema, independent race witnesses and the saved failure controls. The repository still has no production application command/service or endpoint; none is claimed. ## Instructor harness - `src/test/resources/coverstory/CAP-60/schema.sql` defines synthetic journey, domain-effect, idempotency, busin"
+      "task_source_excerpt": "**Saved contract:** the learner writes a bounded two-connection concurrency and invariant test. Instructor setup now supplies a callable test-only transaction command adapter plus disposable PostgreSQL schema, independent race witnesses and the saved failure controls. The repository still has no production application command/service or endpoint; none is claimed. ## Instructor harness - `src/test/resources/coverstory/CAP-60/schema.sql` defines synthetic journey, domain-effect, idempotency, busin",
+      "focused_learner_test": "src/test/java/coverstory/application/CAP60AcceptanceTest.java",
+      "learner_test_kind": "learner acceptance",
+      "note": "CAP60AcceptanceTest is the saved learner-authored concurrency/rollback test seam; keep its implementation TODO. CAP60InstructorCommandAdapter and its infrastructure tests are separate instructor evidence."
     },
     {
       "overlay_date": "2026-11-18",
       "source_unit": 18,
       "primary_id": 61,
-      "title": "answer abstention",
+      "title": "Gate extractive answers by evidence threshold",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-61.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-018-cap-61.md",
       "focused_learner_test": "ai/coverstory/tests/test_cap_61.py",
-      "task_source_excerpt": "The source-planned path `ai/coverstory/cap_61.py` is used. Scores are supplied evaluation scores and must not be presented as calibrated confidence. - Learner seam: `decide_answer(authorized_hits, threshold)`. - Typed fixture values and exact vectors: `fixtures/coverstory/CAP-61/synthetic-v1.json`. - Learner acceptance suite: `ai/coverstory/tests/test_cap_61.py`. - Independent fixture check: `ai/tests/test_coverstory_cap61_infrastructure.py`."
+      "task_source_excerpt": "The source-planned path `ai/coverstory/cap_61.py` is used. Scores are supplied evaluation scores and must not be presented as calibrated confidence. - Learner seam: `decide_answer(authorized_hits, threshold)`. - Typed fixture values and exact vectors: `fixtures/coverstory/CAP-61/synthetic-v1.json`. - Learner acceptance suite: `ai/coverstory/tests/test_cap_61.py`. - Independent fixture check: `ai/tests/test_coverstory_cap61_infrastructure.py`.",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-19",
       "source_unit": 19,
       "primary_id": 62,
-      "title": "cancellation and deadlines",
+      "title": "Bound async retrieval and preserve cancellation",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-62.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-019-cap-62.md",
       "focused_learner_test": "ai/coverstory/tests/test_cap_62.py",
-      "task_source_excerpt": "**Learner outcome:** Bound retrieval waiting and preserve cancellation as cancellation. - Learner seam: `bounded_lookup` in `ai/coverstory/cap_62.py`. - Synthetic timing/cancellation vectors: `fixtures/coverstory/CAP-62/synthetic-v1.json`. - Acceptance suite: `ai/coverstory/tests/test_cap_62.py`. - Instructor-only setup check: `ai/tests/test_coverstory_cap62_infrastructure.py`."
+      "task_source_excerpt": "**Learner outcome:** Bound retrieval waiting and preserve cancellation as cancellation. - Learner seam: `bounded_lookup` in `ai/coverstory/cap_62.py`. - Synthetic timing/cancellation vectors: `fixtures/coverstory/CAP-62/synthetic-v1.json`. - Acceptance suite: `ai/coverstory/tests/test_cap_62.py`. - Instructor-only setup check: `ai/tests/test_coverstory_cap62_infrastructure.py`.",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-20",
       "source_unit": 20,
       "primary_id": 63,
-      "title": "independent evidence review",
+      "title": "Validate the first-slice evidence gate",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-63.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-020-cap-63.md",
       "focused_learner_test": "ai/tests/test_coverstory_cap63_acceptance.py",
-      "task_source_excerpt": "**Saved date:** 2 November 2026 · **Status:** NOT_RUN / NOT_READY_FOR_LEARNER Produce an executable evidence index for Java, SQL, source integrity, and the Day014 customer slice. This starter provides a typed report seam, synthetic inputs, an instructor reference oracle, and focused acceptance tests. The learner implements `validate_evidence`; no passing learner solution is included. ## Exact implementation and evidence paths"
+      "task_source_excerpt": "**Saved date:** 2 November 2026 · **Status:** NOT_RUN / NOT_READY_FOR_LEARNER Produce an executable evidence index for Java, SQL, source integrity, and the Day014 customer slice. This starter provides a typed report seam, synthetic inputs, an instructor reference oracle, and focused acceptance tests. The learner implements `validate_evidence`; no passing learner solution is included. ## Exact implementation and evidence paths",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-21",
       "source_unit": 21,
       "primary_id": 167,
-      "title": "decoder unknown-field policy",
+      "title": "Diagnose bounded publication traces",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-167.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-021-cap-167.md",
-      "focused_learner_test": "src/test/java/coverstory/modules/catalog/CAP167InstructorInfrastructureTest.java",
-      "task_source_excerpt": "**Saved contract:** offline diagnostics over at most eight synthetic observations. The learner owns `CAP167Seam.checkTrace`; it remains a TODO. This is not a broker, producer, or publication workflow. ## Contract and fixture Check monotonic offsets within each partition and contiguous versions independently per product. Interleaved partitions must not be compared using a global offset cursor. Emit stable diagnostics for a backwards partition offset or a product version gap. Reject malformed obse"
+      "focused_learner_test": "src/test/java/coverstory/modules/catalog/CAP167AcceptanceTest.java",
+      "task_source_excerpt": "**Saved contract:** offline diagnostics over at most eight synthetic observations. The learner owns `CAP167Seam.checkTrace`; it remains a TODO. This is not a broker, producer, or publication workflow. ## Contract and fixture Check monotonic offsets within each partition and contiguous versions independently per product. Interleaved partitions must not be compared using a global offset cursor. Emit stable diagnostics for a backwards partition offset or a product version gap. Reject malformed obse",
+      "learner_test_kind": "learner acceptance",
+      "note": "This path is the TODO-tagged learner acceptance suite. Do not substitute the separately named InstructorInfrastructureTest."
     },
     {
       "overlay_date": "2026-11-22",
       "source_unit": 22,
       "primary_id": 64,
-      "title": "catalog import transport",
+      "title": "Test catalog publication callback contract offline",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-64.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-022-cap-64.md",
       "focused_learner_test": "src/test/java/coverstory/modules/catalog/CAP64AcceptanceTest.java",
-      "task_source_excerpt": "**Saved day:** 022 · 4 November 2026 · **Primary ID:** CAP-64 · **Maximum allocation:** 150 minutes ## Purpose Preserve producer serialization, acknowledgment, and bounded failure semantics behind an offline port. This is an instructor scaffold and a learner exercise. The fixture is synthetic, no Kafka client or runtime broker is used, and a fake acknowledgment is not broker evidence."
+      "task_source_excerpt": "**Saved day:** 022 · 4 November 2026 · **Primary ID:** CAP-64 · **Maximum allocation:** 150 minutes ## Purpose Preserve producer serialization, acknowledgment, and bounded failure semantics behind an offline port. This is an instructor scaffold and a learner exercise. The fixture is synthetic, no Kafka client or runtime broker is used, and a fake acknowledgment is not broker evidence.",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-23",
       "source_unit": 23,
       "primary_id": 65,
-      "title": "support evidence ownership",
+      "title": "Filter private evidence before scoring",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-65.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-023-cap-65.md",
       "focused_learner_test": "ai/coverstory/tests/test_cap_65.py",
-      "task_source_excerpt": "**Learner outcome:** retrieve only sources authorized for the trusted principal, and authorize before any scoring or response construction. **Saved schedule:** Phase 1, Day 023, 5 November 2026. The daily cap is 150 minutes; this task stays within the saved 95-minute capstone allocation (10 minutes docs, 55 minutes build, 30 minutes tests/evidence). Those are planned bounds, not measured learner completion times. The saved contract maps this daily assignment to one bounded seam:"
+      "task_source_excerpt": "**Learner outcome:** retrieve only sources authorized for the trusted principal, and authorize before any scoring or response construction. **Saved schedule:** Phase 1, Day 023, 5 November 2026. The daily cap is 150 minutes; this task stays within the saved 95-minute capstone allocation (10 minutes docs, 55 minutes build, 30 minutes tests/evidence). Those are planned bounds, not measured learner completion times. The saved contract maps this daily assignment to one bounded seam:",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-24",
       "source_unit": 24,
       "primary_id": 66,
-      "title": "synthetic cohort comparison",
+      "title": "Compare recorded consumer-group traces",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-66.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-024-cap-66.md",
       "focused_learner_test": "src/test/java/coverstory/modules/catalog/CAP66AcceptanceTest.java",
-      "task_source_excerpt": "**Status:** Instructor fixture and reference witnesses are runnable. Learner seam remains an explicit TODO; no assignment or Kafka integration readiness is claimed. - Learner seam: `observe` in `src/main/java/coverstory/modules/catalog/api/CAP66Seam.java`. - Synthetic trace: `fixtures/coverstory/CAP-66/synthetic-v1.json`. - Learner contract: `src/test/java/coverstory/modules/catalog/CAP66AcceptanceTest.java`. - Instructor fixture and defect witnesses: `src/test/java/coverstory/modules/catalog/CA"
+      "task_source_excerpt": "**Status:** Instructor fixture and reference witnesses are runnable. Learner seam remains an explicit TODO; no assignment or Kafka integration readiness is claimed. - Learner seam: `observe` in `src/main/java/coverstory/modules/catalog/api/CAP66Seam.java`. - Synthetic trace: `fixtures/coverstory/CAP-66/synthetic-v1.json`. - Learner contract: `src/test/java/coverstory/modules/catalog/CAP66AcceptanceTest.java`. - Instructor fixture and defect witnesses: `src/test/java/coverstory/modules/catalog/CA",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-25",
       "source_unit": 25,
       "primary_id": 67,
-      "title": "retrieval measurement",
+      "title": "Measure retrieval quality at k",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-67.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-025-cap-67.md",
       "focused_learner_test": "ai/coverstory/tests/test_cap_67.py",
-      "task_source_excerpt": "## Learner-owned seam Implement `metrics_at_k` and `aggregate` in `ai/coverstory/cap_67.py`. The synthetic source is `fixtures/coverstory/CAP-67/synthetic-v1.json`; learner acceptance is `ai/coverstory/tests/test_cap_67.py`. The independent instructor witness is `ai/tests/test_coverstory_cap67_infrastructure.py`. Run setup checks with `python3 -m unittest ai.tests.test_coverstory_cap67_infrastructure`. Run the learner contract separately with `python3 -m unittest ai.coverstory.tests.test_cap_67`"
+      "task_source_excerpt": "## Learner-owned seam Implement `metrics_at_k` and `aggregate` in `ai/coverstory/cap_67.py`. The synthetic source is `fixtures/coverstory/CAP-67/synthetic-v1.json`; learner acceptance is `ai/coverstory/tests/test_cap_67.py`. The independent instructor witness is `ai/tests/test_coverstory_cap67_infrastructure.py`. Run setup checks with `python3 -m unittest ai.tests.test_coverstory_cap67_infrastructure`. Run the learner contract separately with `python3 -m unittest ai.coverstory.tests.test_cap_67`",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-26",
       "source_unit": 26,
       "primary_id": 68,
-      "title": "durable shortlist recovery",
+      "title": "Expose commit-before-response uncertainty",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-68.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-026-cap-68.md",
-      "focused_learner_test": "src/test/java/capstone/coverstory/shortlist/CAP68InstructorInfrastructureTest.java",
-      "task_source_excerpt": "The saved acceptance contract demonstrates that an atomic shortlist/domain change, business audit event, and journey step event can be committed before an HTTP response is lost. Immediately after that loss, the client state is `UNKNOWN`; it must recover the original operation with the same idempotency key or an owner-scoped read. A missing optional publication is a separate gap and does not erase the SQL/audit receipt. ## Instructor harness - Learner seam: `src/main/java/capstone/coverstory/shor"
+      "focused_learner_test": "src/test/java/capstone/coverstory/shortlist/CAP68Test.java",
+      "task_source_excerpt": "The saved acceptance contract demonstrates that an atomic shortlist/domain change, business audit event, and journey step event can be committed before an HTTP response is lost. Immediately after that loss, the client state is `UNKNOWN`; it must recover the original operation with the same idempotency key or an owner-scoped read. A missing optional publication is a separate gap and does not erase the SQL/audit receipt. ## Instructor harness - Learner seam: `src/main/java/capstone/coverstory/shor",
+      "learner_test_kind": "learner acceptance",
+      "note": "This path is the TODO-tagged learner acceptance suite. Do not substitute the separately named InstructorInfrastructureTest."
     },
     {
       "overlay_date": "2026-11-27",
       "source_unit": 27,
       "primary_id": 69,
-      "title": "bounded queue rationale",
+      "title": "Summarize measured queue workloads and validate claims",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-69.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-027-cap-69.md",
-      "task_source_excerpt": "## Learner seam and exact source paths Implement `summarize` and `validate_claim` in [cap_69.py](../../../ai/coverstory/cap_69.py). The typed seam is `LoadRun -> QueueDecisionEvidence`; the synthetic trace is [synthetic-v1.json](../../../fixtures/coverstory/CAP-69/synthetic-v1.json). Learner acceptance cases are [test_cap_69.py](../../../ai/coverstory/tests/test_cap_69.py). The independent instructor witness is [test_coverstory_cap69_infrastructure.py](../../../ai/tests/test_coverstory_cap69_inf"
+      "task_source_excerpt": "## Learner seam and exact source paths Implement `summarize` and `validate_claim` in [cap_69.py](../../../ai/coverstory/cap_69.py). The typed seam is `LoadRun -> QueueDecisionEvidence`; the synthetic trace is [synthetic-v1.json](../../../fixtures/coverstory/CAP-69/synthetic-v1.json). Learner acceptance cases are [test_cap_69.py](../../../ai/coverstory/tests/test_cap_69.py). The independent instructor witness is [test_coverstory_cap69_infrastructure.py](../../../ai/tests/test_coverstory_cap69_inf",
+      "focused_learner_test": "ai/coverstory/tests/test_cap_69.py",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-11-28",
       "source_unit": 28,
       "primary_id": 168,
-      "title": "persisted catalog restart recovery",
+      "title": "Classify quote-review fixture lines",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-168.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-028-cap-168.md",
-      "focused_learner_test": "src/test/java/capstone/coverstory/shortlist/CAP168InstructorInfrastructureTest.java",
-      "task_source_excerpt": "The learner-owned seam is the saved `classify_quote_review_lines(lines)` parser. Its five physical fixture lines include two valid integer-INR quote records, malformed JSON, a blank line, and a record missing `termsHash`. The parser must preserve physical one-based line numbers, validate exact source/version/terms bindings and integer paise, and return redacted line/code rejections without raw bodies. ## Instructor scaffold - Learner seam: `src/main/java/capstone/coverstory/shortlist/api/CAP168S"
+      "focused_learner_test": "src/test/java/capstone/coverstory/shortlist/CAP168Test.java",
+      "task_source_excerpt": "The learner-owned seam is the saved `classify_quote_review_lines(lines)` parser. Its five physical fixture lines include two valid integer-INR quote records, malformed JSON, a blank line, and a record missing `termsHash`. The parser must preserve physical one-based line numbers, validate exact source/version/terms bindings and integer paise, and return redacted line/code rejections without raw bodies. ## Instructor scaffold - Learner seam: `src/main/java/capstone/coverstory/shortlist/api/CAP168S",
+      "learner_test_kind": "learner acceptance",
+      "note": "This path is the TODO-tagged learner acceptance suite. Do not substitute the separately named InstructorInfrastructureTest."
     },
     {
       "overlay_date": "2026-11-29",
       "source_unit": 29,
       "primary_id": 70,
-      "title": "encrypted payload staging",
+      "title": "Stage protected consumer payload envelopes",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-70.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-029-cap-70.md",
-      "focused_learner_test": "ai/coverstory/tests/test_cap_70_instructor.py",
-      "task_source_excerpt": "The saved learner seam is `stage_envelopes(batchId, lines, protectedEnvelopeSink)`. It should stage only encrypted envelope fields bound to an owner, immutable object ID, and revision. It must preserve ciphertext-with-tag, nonce, wrapped-DEK bytes, KEK reference, encryption version, physical line provenance, and a hash of the exact ciphertext bytes. Empty physical lines are skipped without renumbering later input. Unknown/plaintext fields receive safe line/code diagnostics; no raw source line is"
+      "focused_learner_test": "ai/coverstory/tests/test_cap_70.py",
+      "task_source_excerpt": "The saved learner seam is `stage_envelopes(batchId, lines, protectedEnvelopeSink)`. It should stage only encrypted envelope fields bound to an owner, immutable object ID, and revision. It must preserve ciphertext-with-tag, nonce, wrapped-DEK bytes, KEK reference, encryption version, physical line provenance, and a hash of the exact ciphertext bytes. Empty physical lines are skipped without renumbering later input. Unknown/plaintext fields receive safe line/code diagnostics; no raw source line is",
+      "learner_test_kind": "learner acceptance",
+      "note": "The named Python file is the learner staging acceptance suite. CAP70CryptoInfrastructureTest and test_cap_70_instructor.py are instructor checks, not learner results."
     },
     {
       "overlay_date": "2026-11-30",
       "source_unit": 30,
       "primary_id": 71,
-      "title": "source-coordinate chunking",
+      "title": "Chunk text with deterministic source coordinates",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-71.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-030-cap-71.md",
       "focused_learner_test": "ai/coverstory/tests/test_cap_71.py",
-      "task_source_excerpt": "Implement `chunk_text` in `ai/coverstory/cap_71.py`. The synthetic public help text and expected codepoint offsets are in `fixtures/coverstory/CAP-71/synthetic-v1.json`. Learner contracts: `ai/coverstory/tests/test_cap_71.py`. Instructor oracle and defect witness: `ai/tests/test_coverstory_cap71_infrastructure.py`. Run setup checks with `python3 -m unittest ai.tests.test_coverstory_cap71_infrastructure`; run learner cases separately with `python3 -m unittest ai.coverstory.tests.test_cap_71`. The"
+      "task_source_excerpt": "Implement `chunk_text` in `ai/coverstory/cap_71.py`. The synthetic public help text and expected codepoint offsets are in `fixtures/coverstory/CAP-71/synthetic-v1.json`. Learner contracts: `ai/coverstory/tests/test_cap_71.py`. Instructor oracle and defect witness: `ai/tests/test_coverstory_cap71_infrastructure.py`. Run setup checks with `python3 -m unittest ai.tests.test_coverstory_cap71_infrastructure`; run learner cases separately with `python3 -m unittest ai.coverstory.tests.test_cap_71`. The",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-12-01",
       "source_unit": 31,
       "primary_id": 72,
-      "title": "provider observation transaction",
+      "title": "Load provider batch observations and audit atomically",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-72.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-031-cap-72.md",
-      "task_source_excerpt": "**Saved contract:** Day 031 · 13 Nov 2026 · 150 minutes maximum. The task remains learner-owned; the starter function intentionally raises its explicit TODO. Implement `load_provider_batch(batch_id, validated_rows, unit_of_work) -> LoadReport` in [`ai/coverstory/cap_72.py`](../../../ai/coverstory/cap_72.py). Its typed ports model the owning Payments module: `manifests`, `provider_events`, `transaction_audit`, and read-only `payment_effects`. The supplied transaction must encompass every manifest"
+      "task_source_excerpt": "**Saved contract:** Day 031 · 13 Nov 2026 · 150 minutes maximum. The task remains learner-owned; the starter function intentionally raises its explicit TODO. Implement `load_provider_batch(batch_id, validated_rows, unit_of_work) -> LoadReport` in [`ai/coverstory/cap_72.py`](../../../ai/coverstory/cap_72.py). Its typed ports model the owning Payments module: `manifests`, `provider_events`, `transaction_audit`, and read-only `payment_effects`. The supplied transaction must encompass every manifest",
+      "focused_learner_test": "ai/coverstory/tests/test_cap_72.py",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-12-02",
       "source_unit": 32,
       "primary_id": 73,
-      "title": "leakage-safe data split",
+      "title": "Separate development and held-out evaluation sets",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-73.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-032-cap-73.md",
-      "focused_learner_test": "ai/tests/test_coverstory_cap73_infrastructure.py",
-      "task_source_excerpt": "The learner seam at `ai/coverstory/cap_73.py` is `validate_split(dev, golden)`. It remains intentionally unimplemented. The synthetic fixture covers a clean split plus case-ID, normalized-question and source-family leakage, and an empty golden set. The instructor oracle at `ai/tests/test_coverstory_cap73_infrastructure.py` independently checks these integrity rules. Normalization is lowercase plus collapsed whitespace. No model, threshold tuning, real health/payment record, or golden-label evalu"
+      "focused_learner_test": "ai/coverstory/tests/test_cap_73.py",
+      "task_source_excerpt": "The learner seam at `ai/coverstory/cap_73.py` is `validate_split(dev, golden)`. It remains intentionally unimplemented. The synthetic fixture covers a clean split plus case-ID, normalized-question and source-family leakage, and an empty golden set. The instructor oracle at `ai/tests/test_coverstory_cap73_infrastructure.py` independently checks these integrity rules. Normalization is lowercase plus collapsed whitespace. No model, threshold tuning, real health/payment record, or golden-label evalu",
+      "learner_test_kind": "learner acceptance",
+      "note": "Run ai/coverstory/tests/test_cap_73.py for learner behavior; ai/tests/test_coverstory_cap73_infrastructure.py is the independent instructor oracle."
     },
     {
       "overlay_date": "2026-12-03",
       "source_unit": 33,
       "primary_id": 74,
-      "title": "audit-safe evidence export",
+      "title": "Expose owned mock payment attempt status",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-74.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-033-cap-74.md",
       "focused_learner_test": "src/test/java/coverstory/modules/payments/CAP74AcceptanceTest.java",
-      "task_source_excerpt": "**Saved day:** 033 · 15 November 2026 · **Primary ID:** CAP-74 · **Maximum allocation:** 150 minutes ## Purpose and boundary Map an authoritative owner-scoped payment-attempt snapshot into a safe read-only status response. The endpoint contract is `GET /api/v1/payment-attempts/{attemptId}` with successful fields `attemptId`, `state`, `updatedAt`, `requestId`, and `nextAction`."
+      "task_source_excerpt": "**Saved day:** 033 · 15 November 2026 · **Primary ID:** CAP-74 · **Maximum allocation:** 150 minutes ## Purpose and boundary Map an authoritative owner-scoped payment-attempt snapshot into a safe read-only status response. The endpoint contract is `GET /api/v1/payment-attempts/{attemptId}` with successful fields `attemptId`, `state`, `updatedAt`, `requestId`, and `nextAction`.",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-12-04",
       "source_unit": 34,
       "primary_id": 75,
-      "title": "payment journal reconciliation",
+      "title": "Classify provider ingestion failures safely",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-75.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-034-cap-75.md",
-      "task_source_excerpt": "## Learner seam and source mapping Implement `classify_provider_failure(run)` in [cap_75.py](../../../ai/coverstory/cap_75.py). The `ProviderFailureRun` typed input and `ProviderFailure` output define the seam. Use the synthetic cases in [synthetic-v1.json](../../../fixtures/coverstory/CAP-75/synthetic-v1.json), learner tests in [test_cap_75.py](../../../ai/coverstory/tests/test_cap_75.py), and independent instructor checks in [test_coverstory_cap75_infrastructure.py](../../../ai/tests/test_cove"
+      "task_source_excerpt": "## Learner seam and source mapping Implement `classify_provider_failure(run)` in [cap_75.py](../../../ai/coverstory/cap_75.py). The `ProviderFailureRun` typed input and `ProviderFailure` output define the seam. Use the synthetic cases in [synthetic-v1.json](../../../fixtures/coverstory/CAP-75/synthetic-v1.json), learner tests in [test_cap_75.py](../../../ai/coverstory/tests/test_cap_75.py), and independent instructor checks in [test_coverstory_cap75_infrastructure.py](../../../ai/tests/test_cove",
+      "focused_learner_test": "ai/coverstory/tests/test_cap_75.py",
+      "learner_test_kind": "learner acceptance"
     },
     {
       "overlay_date": "2026-12-05",
       "source_unit": 35,
       "primary_id": 169,
-      "title": "citation collision evaluation",
+      "title": "Parse bounded Retry-After values",
       "status": "existing saved roadmap unit; not a new assignment",
       "assignment_guide": "docs/assignments/coverstory/CAP-169.md",
       "saved_source_card": "docs/assignments/coverstory/saved-days/day-035-cap-169.md",
-      "focused_learner_test": "src/test/java/capstone/coverstory/payments/CAP169InstructorInfrastructureTest.java",
-      "task_source_excerpt": "The saved contract exercises a deterministic parser using a fixed clock. It accepts a nonnegative whole number of seconds or an HTTP date, returns `WAIT` for a delay at or below 30 seconds, returns `STOP_LONG_DELAY` above 30 seconds, reports malformed values as `INVALID_HEADER`, and distinguishes a missing value as `ABSENT`. A past HTTP date produces `WAIT` with zero duration. This parser only interprets a header. It does not decide whether an operation can be retried, initiate provider traffic,"
+      "focused_learner_test": "src/test/java/capstone/coverstory/payments/CAP169Test.java",
+      "task_source_excerpt": "The saved contract exercises a deterministic parser using a fixed clock. It accepts a nonnegative whole number of seconds or an HTTP date, returns `WAIT` for a delay at or below 30 seconds, returns `STOP_LONG_DELAY` above 30 seconds, reports malformed values as `INVALID_HEADER`, and distinguishes a missing value as `ABSENT`. A past HTTP date produces `WAIT` with zero duration. This parser only interprets a header. It does not decide whether an operation can be retried, initiate provider traffic,",
+      "learner_test_kind": "learner acceptance",
+      "note": "This path is the TODO-tagged learner acceptance suite. Do not substitute the separately named InstructorInfrastructureTest."
     }
   ]
 }

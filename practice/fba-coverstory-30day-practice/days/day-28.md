@@ -11,30 +11,37 @@
 **Keyboard tab bar** — `ARIA tabs / focus management`. Read the full task in `practice/fba-coverstory-30day-practice/fba/assignments/frontend.md` under Day 28. Edit `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.jsx` and `practice/fba-coverstory-30day-practice/fba/frontend/src/assignments.js`; use `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`.
 
 ```sh
-cd practice/fba-coverstory-30day-practice/fba
-make test-frontend-day DAY=28
+(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=28)
 ```
 
-Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: prove end-to-end failure recovery and record qualified demo evidence. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=28`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Use the authoritative FBA `frontend_28` cases in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`. **Additional 30-minute FBA deliverable:** Use the three-tab and invalid-active fixtures. Test Arrow/Home/End, roving tabindex, selected state, and exposure of only the active panel. Add a learner-owned interaction test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx`; make the assertion exercise the current day’s actual UI and learner function, not an instructor mock. Run `(cd practice/fba-coverstory-30day-practice/fba/frontend && npm test)` and `(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=28)`.
 
 ## CoverStory practical contract
 
 Saved source: [`day-014-cap-166`](../../../docs/assignments/coverstory/saved-days/day-014-cap-166.md). Daily card CAP-629 maps to this specific task: **Prove end-to-end failure recovery and record qualified demo evidence.**.
 
-**Learner seam:** `web/src/coverstory/catalog/decodeCatalogEnvelope.ts` (`decodeCatalogEnvelope`). **Focused learner acceptance:** `web/scripts/catalog-envelope-acceptance.mjs`. **Instructor-only fixture smoke:** `web/scripts/catalog-envelope-smoke.mjs`. Additional acceptance focus: Fixture smoke is instructor-only; browser/Postgres restart flow is optional integration evidence and does not replace learner decoder acceptance.
+**Learner seam:** `web/src/coverstory/catalog/decodeCatalogEnvelope.ts` (`decodeCatalogEnvelope`). **Focused learner acceptance:** `web/scripts/catalog-envelope-acceptance.mjs`. **Instructor-only fixture smoke:** `web/scripts/catalog-envelope-smoke.mjs`. Required E2E acceptance: the saved CAP-166 learner browser flow must persist all three versions, stop Spring, fail closed without stale comparisons, restart on the same port, refetch all versions, and complete comparison/export. This is required acceptance, not optional coverage.
 
 Do the 55-minute repository work against the actual existing learner seam above. If a source card's historical planned path differs from the checkout, use this verified checkout path and record the discrepancy; do not create a parallel fake implementation.
+
+Run the required learner-mode end-to-end recovery acceptance (separate from the decoder-focused acceptance below):
+
+```sh
+./mvnw -Dtest=CAP166CatalogRuntimeIntegrationTest -Dcoverstory.cap166.browser=true -Dcoverstory.cap166.decoder=learner test
+```
+
+If Chromium or its dependencies are unavailable, mark this required acceptance **BLOCKED** with the exact environment error; do not replace it with fixture smoke or mark it optional. If the current decoder TODO prevents later outage/restart assertions, record the E2E acceptance as **NOT_YET_VERIFIED** and rerun after implementing the decoder; do not claim CAP-166 complete until the full recovery assertions pass.
 
 Setup/instructor check (separate from learner acceptance):
 
 ```sh
-cd web && npm run test:catalog-fixture
+(cd web && npm run test:catalog-fixture)
 ```
 
 Run focused learner acceptance separately (it may fail at the intentional TODO):
 
 ```sh
-cd web && npm run test:catalog-acceptance
+(cd web && npm run test:catalog-acceptance)
 ```
 
 An instructor pass proves only harness readiness. Do not claim learner completion from fixture/oracle/browser adapter checks.

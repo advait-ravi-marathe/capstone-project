@@ -11,11 +11,10 @@
 **URL-synced placement filters** — `URL state / React state`. Read the full task in `practice/fba-coverstory-30day-practice/fba/assignments/frontend.md` under Day 15. Edit `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.jsx` and `practice/fba-coverstory-30day-practice/fba/frontend/src/assignments.js`; use `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`.
 
 ```sh
-cd practice/fba-coverstory-30day-practice/fba
-make test-frontend-day DAY=15
+(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=15)
 ```
 
-Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: implement one catalog import controller-to-service contract. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=15`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Use the authoritative FBA `frontend_15` cases in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`. **Additional 30-minute FBA deliverable:** Use the padded lowercase market and duplicate-filter fixture. Test query-parameter normalization/deduplication and preserve an unrelated URL parameter after changing filters. Add a learner-owned interaction test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx`; make the assertion exercise the current day’s actual UI and learner function, not an instructor mock. Run `(cd practice/fba-coverstory-30day-practice/fba/frontend && npm test)` and `(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=15)`.
 
 ## CoverStory practical contract
 

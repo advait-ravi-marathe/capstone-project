@@ -11,30 +11,29 @@
 **Responsive image gallery** — `responsive image / accessibility`. Read the full task in `practice/fba-coverstory-30day-practice/fba/assignments/frontend.md` under Day 27. Edit `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.jsx` and `practice/fba-coverstory-30day-practice/fba/frontend/src/assignments.js`; use `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`.
 
 ```sh
-cd practice/fba-coverstory-30day-practice/fba
-make test-frontend-day DAY=27
+(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=27)
 ```
 
-Keep the supplied contract cases. **Additional 30-minute FBA deliverable:** add a focused component test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx` and an adversarial synthetic vector in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json` for this day's behavior: wire existing persisted health discovery/comparison path. Test keyboard interaction and visible failure/empty feedback where relevant, then run `cd practice/fba-coverstory-30day-practice/fba/frontend && npm test` and `cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=27`. Component behavior belongs in `ui.jsx`; the bounded helper belongs in `assignments.js`.
+Use the authoritative FBA `frontend_27` cases in `practice/fba-coverstory-30day-practice/fba/fixtures/cases.json`. **Additional 30-minute FBA deliverable:** Use the empty-alt/zero-width and valid-image fixtures. Test each descriptor error, meaningful alt text, responsive sizing, and a safe fallback for missing image data. Add a learner-owned interaction test in `practice/fba-coverstory-30day-practice/fba/frontend/src/ui.test.jsx`; make the assertion exercise the current day’s actual UI and learner function, not an instructor mock. Run `(cd practice/fba-coverstory-30day-practice/fba/frontend && npm test)` and `(cd practice/fba-coverstory-30day-practice/fba && make test-frontend-day DAY=27)`.
 
 ## CoverStory practical contract
 
 Saved source: [`day-014-cap-166`](../../../docs/assignments/coverstory/saved-days/day-014-cap-166.md). Daily card CAP-628 maps to this specific task: **Wire existing persisted health discovery/comparison path.**.
 
-**Learner seam:** `web/src/coverstory/catalog/decodeCatalogEnvelope.ts` (`decodeCatalogEnvelope`). **Focused learner acceptance:** `web/scripts/catalog-envelope-acceptance.mjs`. **Instructor-only fixture smoke:** `web/scripts/catalog-envelope-smoke.mjs`. Additional acceptance focus: Focused acceptance: `cd web && npm run test:catalog-acceptance`; it compiles/tests the actual TODO decoder.
+**Learner seam:** `web/src/coverstory/catalog/decodeCatalogEnvelope.ts` (`decodeCatalogEnvelope`). **Focused learner acceptance:** `web/scripts/catalog-envelope-acceptance.mjs`. **Instructor-only fixture smoke:** `web/scripts/catalog-envelope-smoke.mjs`. Additional acceptance focus: Focused acceptance: `(cd web && npm run test:catalog-acceptance)`; it compiles/tests the actual TODO decoder.
 
 Do the 55-minute repository work against the actual existing learner seam above. If a source card's historical planned path differs from the checkout, use this verified checkout path and record the discrepancy; do not create a parallel fake implementation.
 
 Setup/instructor check (separate from learner acceptance):
 
 ```sh
-cd web && npm run test:catalog-fixture
+(cd web && npm run test:catalog-fixture)
 ```
 
 Run focused learner acceptance separately (it may fail at the intentional TODO):
 
 ```sh
-cd web && npm run test:catalog-acceptance
+(cd web && npm run test:catalog-acceptance)
 ```
 
 An instructor pass proves only harness readiness. Do not claim learner completion from fixture/oracle/browser adapter checks.

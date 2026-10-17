@@ -11,7 +11,7 @@
 ## Verified in this executor
 
 - `python3 practice/fba-coverstory-30day-practice/fba/scripts/validate_course.py` — 30 date/source/role mappings, 30 daily guides, actual learner seam and test paths, 30 unstarted FBA progress entries, source-unit continuation order, and the separate append-only proposal passed.
-- FBA `npm ci` succeeded from the copied lockfile. After the timebox expansion, `npm test` passed 12/12 component tests; `npm run build` passed. Day-specific contract commands still expose intentional learner TODOs.
+- FBA `npm ci` succeeded from the copied lockfile. After the timebox expansion, `npm test` passed 12/12 UI-shell interaction checks; these use injected functions for several learner behaviors and do not establish learner logic. `npm run build` passed. The 30 additional test instructions use the authoritative FBA fixtures and do not change source cases or learner TODO logic. Day-specific contract commands still execute the actual TODO learner functions.
 - CAP-166 web dependencies were installed from the existing lockfile using a `/tmp` npm cache. `npm run test:catalog-acceptance` reached `TODO(CAP-166)` in the actual `decodeCatalogEnvelope` learner seam. The separate `test:catalog-fixture` instructor smoke is not learner acceptance.
 - CAP44/CAP53/CAP56 instructor Python infrastructure checks passed 6/6. Their separate learner acceptance suites each reached four expected TODO errors.
 - Maven instructor test selection covering CAP40, 42, 46, 48, 50, 52, 54, 55, 57, 58, 165, and 166 passed 37 tests with 0 failures/errors and 1 skipped (the explicitly opt-in CAP166 Chromium flow). CAP57 exercises the test-only publication runtime path. CAP166 default coverage verifies persisted HTTP/database behavior; its real browser exercise is opt-in.
@@ -22,6 +22,6 @@ The Maven run required environment-specific overrides because this container has
 ## Not verified / limits
 
 - Instructor checks were not run for every mapped pair or every continuation day. The 15 appended CAP-632–646 cards are proposals, with proposed paths not yet scaffolded or runnable. Existing source scaffolds/tests do not guarantee each 90-minute timebox fits; record actual timing and readiness when attempted.
-- The optional CAP166 full browser recovery flow is not included in the 37-test command; it needs `web` npm dependencies and Chromium. The learner decoder acceptance remains TODO.
+- CAP166 full browser recovery is required saved acceptance, separate from the focused decoder contract. The learner-mode browser run was attempted with `/usr/bin/chromium` and disposable PostgreSQL; it reached the explicit `TODO(CAP-166)` decoder failure before the outage/restart assertions. Therefore the full recovery acceptance remains NOT_YET_VERIFIED (not waived or marked complete); rerun after the learner implements the decoder. If a later executor lacks Chromium, mark that run BLOCKED with its environment error.
 - The selected AWS course entitlement/link was not authenticated or checked in this workspace. The source cards retain the official objective and selected lesson references, but access may be pending. No account, credential, cloud resource, purchase, or course-completion claim was created.
 - The repository has no CI workflow for this new branch yet. No deployment, merge, or external provider action was performed.
