@@ -1,0 +1,1387 @@
+{
+  "title": "FBA Front-End Engineer II 30-day practice",
+  "start_date": "2026-10-17",
+  "end_date": "2026-11-15",
+  "days": 30,
+  "daily_minutes": 60,
+  "daily_unallocated_minutes": 0,
+  "roles": [
+    {
+      "key": "frontend",
+      "job_id": "10575321",
+      "job_title": "Front-End Engineer II \u2014 FBA",
+      "minutes": 60
+    }
+  ],
+  "assignments": [
+    {
+      "day": 1,
+      "date": "2026-10-17",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Seller registration form with errors",
+      "topic": "forms / accessible validation",
+      "coding_prompt": "Build a controlled registration form with name and email fields. On submit, show field errors next to controls, focus the first invalid field, and show a success status for valid input.",
+      "cases": [
+        {
+          "input": {
+            "name": "A",
+            "email": "bad"
+          },
+          "expected": {
+            "email": "Enter a valid email"
+          }
+        },
+        {
+          "input": {
+            "name": " ",
+            "email": "x@y.com"
+          },
+          "expected": {
+            "name": "Enter your name"
+          }
+        }
+      ],
+      "design_prompt": "Sketch an accessible seller registration form, labels, error summary, focus placement, and server validation boundary.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 2,
+      "date": "2026-10-18",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Responsive inventory filter",
+      "topic": "controlled input / list rendering",
+      "coding_prompt": "Add controlled search and min/max quantity filters to the inventory list. Preserve order, show an empty state, and keep the filter usable at a narrow viewport.",
+      "cases": [
+        {
+          "input": {
+            "items": [
+              {
+                "name": "Red apple",
+                "qty": 4
+              },
+              {
+                "name": "Pear",
+                "qty": 2
+              }
+            ],
+            "query": "ap",
+            "min": 3,
+            "max": 9
+          },
+          "expected": [
+            {
+              "name": "Red apple",
+              "qty": 4
+            }
+          ]
+        },
+        {
+          "input": {
+            "items": [],
+            "query": "",
+            "min": 0,
+            "max": 10
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Explain table filtering on narrow screens and keyboard-accessible filter controls.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 3,
+      "date": "2026-10-19",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Async onboarding form state",
+      "topic": "async submission / state machine",
+      "coding_prompt": "Submit the form through an injected Promise-based API. Show pending, success, retryable error, and validation states; prevent duplicate submits while pending.",
+      "cases": [
+        {
+          "input": {
+            "events": [
+              "SUBMIT",
+              "REJECT",
+              "RESET"
+            ]
+          },
+          "expected": "idle"
+        },
+        {
+          "input": {
+            "events": [
+              "SUBMIT",
+              "RESOLVE"
+            ]
+          },
+          "expected": "success"
+        }
+      ],
+      "design_prompt": "Design disabled/loading/error states and announce state changes without trapping keyboard users.",
+      "leadership_principle": "Learn and Be Curious",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 4,
+      "date": "2026-10-20",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Price-band selector",
+      "topic": "binary search / selection control",
+      "coding_prompt": "Build a keyboard-operable price-band selector. Keep selected value in state, update the description, and gracefully handle a value outside all bands.",
+      "cases": [
+        {
+          "input": {
+            "bands": [
+              10,
+              20,
+              40
+            ],
+            "price": 20
+          },
+          "expected": 1
+        },
+        {
+          "input": {
+            "bands": [
+              10,
+              20
+            ],
+            "price": 50
+          },
+          "expected": 2
+        }
+      ],
+      "design_prompt": "Describe a searchable catalog API and client behavior for empty/loading/error responses.",
+      "leadership_principle": "Dive Deep",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 5,
+      "date": "2026-10-21",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Stable inventory row identity",
+      "topic": "keys / selection state",
+      "coding_prompt": "Render selectable inventory rows using stable IDs with SKU fallback. Selection must survive reorder and data refresh.",
+      "cases": [
+        {
+          "input": {
+            "items": [
+              {
+                "id": "1",
+                "sku": "x"
+              },
+              {
+                "sku": "y"
+              },
+              {}
+            ]
+          },
+          "expected": [
+            "1",
+            "y",
+            null
+          ]
+        },
+        {
+          "input": {
+            "items": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Propose reusable component props that remain stable across pagination and refresh.",
+      "leadership_principle": "Invent and Simplify",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 6,
+      "date": "2026-10-22",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Fulfillment tree navigation",
+      "topic": "tree / keyboard navigation",
+      "coding_prompt": "Render nested fulfillment choices with keyboard-operable expand/collapse, visible focus, and disabled-node handling.",
+      "cases": [
+        {
+          "input": {
+            "tree": [
+              {
+                "label": "A",
+                "disabled": false,
+                "children": [
+                  {
+                    "label": "B",
+                    "disabled": true,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          "expected": [
+            "A"
+          ]
+        },
+        {
+          "input": {
+            "tree": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Make nested fulfillment navigation usable with keyboard and screen readers.",
+      "leadership_principle": "Deliver Results",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 7,
+      "date": "2026-10-23",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Sortable inventory table",
+      "topic": "sort controls / null handling",
+      "coding_prompt": "Add sortable column headers with accessible ascending/descending state. Null values stay last and ID breaks ties.",
+      "cases": [
+        {
+          "input": {
+            "items": [
+              {
+                "id": "b",
+                "qty": 2
+              },
+              {
+                "id": "a",
+                "qty": 2
+              },
+              {
+                "id": "c",
+                "qty": 1
+              }
+            ],
+            "key": "qty",
+            "direction": "asc"
+          },
+          "expected": [
+            "c",
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "items": [],
+            "key": "qty",
+            "direction": "desc"
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Discuss sorting large lists: server vs client, virtualization, and accessibility announcement.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 8,
+      "date": "2026-10-24",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Placement timeline",
+      "topic": "interval merging / responsive visualization",
+      "coding_prompt": "Render availability intervals on a responsive timeline, merge overlaps, label time spans, and provide a text alternative.",
+      "cases": [
+        {
+          "input": {
+            "windows": [
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          "expected": [
+            [
+              1,
+              5
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        },
+        {
+          "input": {
+            "windows": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design a timeline that communicates timezone, unavailable periods, and mobile layout.",
+      "leadership_principle": "Are Right, A Lot",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 9,
+      "date": "2026-10-25",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Dependency-driven wizard",
+      "topic": "topological order / guarded navigation",
+      "coding_prompt": "Show only steps whose prerequisites are complete. Prevent next-step navigation around missing dependencies and explain why a step is blocked.",
+      "cases": [
+        {
+          "input": {
+            "steps": [
+              "review",
+              "profile",
+              "inventory"
+            ],
+            "depends_on": [
+              [
+                "review",
+                "profile"
+              ],
+              [
+                "review",
+                "inventory"
+              ]
+            ]
+          },
+          "expected": [
+            "inventory",
+            "profile",
+            "review"
+          ]
+        },
+        {
+          "input": {
+            "steps": [
+              "a",
+              "b"
+            ],
+            "depends_on": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "a"
+              ]
+            ]
+          },
+          "expected": null
+        }
+      ],
+      "design_prompt": "How should a wizard recover if backend policy changes while the user is on a step?",
+      "leadership_principle": "Think Big",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 10,
+      "date": "2026-10-26",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Inventory facet controls",
+      "topic": "multi-select filtering",
+      "coding_prompt": "Build checkbox facets with counts, selected-state chips, clear-all, and an empty-results message.",
+      "cases": [
+        {
+          "input": {
+            "values": [
+              1,
+              2,
+              2,
+              3
+            ],
+            "target": 4
+          },
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "input": {
+            "values": [
+              1
+            ],
+            "target": 5
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design filter facets that remain understandable with many combinations and clear-all behavior.",
+      "leadership_principle": "Bias for Action",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 11,
+      "date": "2026-10-27",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Debounced autocomplete",
+      "topic": "async search / cancellation",
+      "coding_prompt": "Implement an accessible combobox using an injected async search API, debounce typing, cancel stale requests, and support arrow/enter/escape.",
+      "cases": [
+        {
+          "input": {
+            "options": [
+              "Pear",
+              "Peach",
+              "Apple"
+            ],
+            "query": "pe"
+          },
+          "expected": [
+            "Peach",
+            "Pear"
+          ]
+        },
+        {
+          "input": {
+            "options": [
+              "A"
+            ],
+            "query": "z"
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Specify combobox keyboard behavior and safe rendering of matched text.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 12,
+      "date": "2026-10-28",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Async placement cost summary",
+      "topic": "derived server state",
+      "coding_prompt": "Fetch a fee quote through an injected async port and render integer-cent subtotal/fee/total. Show stale, loading, and error states.",
+      "cases": [
+        {
+          "input": {
+            "rows": [
+              {
+                "cents": 250
+              },
+              {
+                "cents": 300
+              }
+            ],
+            "feeCents": 50
+          },
+          "expected": {
+            "subtotalCents": 550,
+            "totalCents": 600
+          }
+        },
+        {
+          "input": {
+            "rows": [],
+            "feeCents": 0
+          },
+          "expected": {
+            "subtotalCents": 0,
+            "totalCents": 0
+          }
+        }
+      ],
+      "design_prompt": "Keep price explanation consistent when quotes refresh asynchronously.",
+      "leadership_principle": "Frugality",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 13,
+      "date": "2026-10-29",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Lazy placement list",
+      "topic": "incremental rendering",
+      "coding_prompt": "Load the next page with a visible control and loading status; preserve prior rows and announce completion or failure.",
+      "cases": [
+        {
+          "input": {
+            "cards": [
+              {
+                "id": "b",
+                "visible": false,
+                "priority": 9
+              },
+              {
+                "id": "a",
+                "visible": true,
+                "priority": 1
+              }
+            ]
+          },
+          "expected": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "cards": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Balance eager loading and lazy loading on a slow mobile network.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 14,
+      "date": "2026-10-30",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Marketplace group picker",
+      "topic": "connected graph / selection UI",
+      "coding_prompt": "Render connected marketplace groups as selectable chips, include isolated marketplaces, and keep selection stable when groups reorder.",
+      "cases": [
+        {
+          "input": {
+            "ids": [
+              "US",
+              "CA",
+              "UK"
+            ],
+            "links": [
+              [
+                "US",
+                "CA"
+              ]
+            ]
+          },
+          "expected": [
+            [
+              "CA",
+              "US"
+            ],
+            [
+              "UK"
+            ]
+          ]
+        },
+        {
+          "input": {
+            "ids": [],
+            "links": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Represent a seller operating across marketplaces without conflating account identity.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 15,
+      "date": "2026-10-31",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "URL-synced placement filters",
+      "topic": "URL state / React state",
+      "coding_prompt": "Read filter state from query parameters and write changes back without losing unrelated parameters. Normalize duplicate filters.",
+      "cases": [
+        {
+          "input": {
+            "market": " us ",
+            "filters": [
+              "size",
+              "fragile",
+              "size"
+            ]
+          },
+          "expected": [
+            "placements",
+            "US",
+            [
+              "fragile",
+              "size"
+            ]
+          ]
+        },
+        {
+          "input": {
+            "market": "IN",
+            "filters": []
+          },
+          "expected": [
+            "placements",
+            "IN",
+            []
+          ]
+        }
+      ],
+      "design_prompt": "Explain query-cache ownership and when an optimistic update must be rolled back.",
+      "leadership_principle": "Have Backbone; Disagree and Commit",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 16,
+      "date": "2026-11-01",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Policy version cache guard",
+      "topic": "React Query / invalidation",
+      "coding_prompt": "Use TanStack Query for policy-versioned data. Invalidate on version change and prevent stale cached data from appearing as current.",
+      "cases": [
+        {
+          "input": {
+            "version": 3,
+            "cachedVersion": 3,
+            "age": 10,
+            "maxAge": 20
+          },
+          "expected": true
+        },
+        {
+          "input": {
+            "version": 4,
+            "cachedVersion": 3,
+            "age": 1,
+            "maxAge": 20
+          },
+          "expected": false
+        }
+      ],
+      "design_prompt": "Plan cache invalidation and private response clearing on user/account change.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 17,
+      "date": "2026-11-02",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Stale-response guard",
+      "topic": "async effects / AbortController",
+      "coding_prompt": "Fetch placement results as filters change. Abort obsolete requests and only commit the response with the highest request sequence, even if an older request resolves later; test this delayed-response race.",
+      "cases": [
+        {
+          "input": {
+            "responses": [
+              {
+                "seq": 2,
+                "value": "new"
+              },
+              {
+                "seq": 1,
+                "value": "old"
+              }
+            ]
+          },
+          "expected": "new"
+        },
+        {
+          "input": {
+            "responses": [
+              {
+                "seq": 4,
+                "value": "x"
+              }
+            ]
+          },
+          "expected": "x"
+        }
+      ],
+      "design_prompt": "Describe cancellation, late-response guards, and skeleton/error behavior during navigation.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 18,
+      "date": "2026-11-03",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Resilient quote status",
+      "topic": "async API / loading-error states",
+      "coding_prompt": "Fetch quotes and render loading, ready, retryable, and permanent-error views with a retry control and preserved prior data.",
+      "cases": [
+        {
+          "input": {
+            "statuses": [
+              "loading",
+              200,
+              503,
+              404
+            ]
+          },
+          "expected": [
+            "loading",
+            "ready",
+            "retryable",
+            "error"
+          ]
+        },
+        {
+          "input": {
+            "statuses": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design a quote API view resilient to timeout, partial data, and repeated refresh.",
+      "leadership_principle": "Customer Obsession",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 19,
+      "date": "2026-11-04",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Typed payload boundary",
+      "topic": "API decoding / rendering",
+      "coding_prompt": "Decode an unknown placement payload before rendering. Reject malformed rows, supply documented defaults, and show a safe data-error state.",
+      "cases": [
+        {
+          "input": {
+            "rows": [
+              {
+                "id": "a",
+                "title": " Box ",
+                "quantity": 2
+              },
+              {
+                "title": "x"
+              }
+            ]
+          },
+          "expected": [
+            {
+              "id": "a",
+              "title": "Box",
+              "quantity": 2
+            }
+          ]
+        },
+        {
+          "input": {
+            "rows": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Define typed UI/API models and prevent display-only fields from becoming authority.",
+      "leadership_principle": "Dive Deep",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 20,
+      "date": "2026-11-05",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Safe seller text rendering",
+      "topic": "XSS / text content",
+      "coding_prompt": "Render untrusted seller-provided text as text, never HTML. Include a fixture with markup-looking content and verify it remains inert.",
+      "cases": [
+        {
+          "input": {
+            "text": "<img src=\"x\">"
+          },
+          "expected": "<img src=\"x\">"
+        },
+        {
+          "input": {
+            "text": "A & B"
+          },
+          "expected": "A & B"
+        }
+      ],
+      "design_prompt": "Review XSS/CSRF and safe URL handling in a seller-facing UI.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 21,
+      "date": "2026-11-06",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "FBA placement compare flow",
+      "topic": "system design / component integration",
+      "coding_prompt": "Build a placement comparison view that shows options, freshness, fees, selection, and recovery for partial or stale quotes.",
+      "cases": [
+        {
+          "input": {
+            "options": [
+              {
+                "id": "b",
+                "available": true,
+                "fresh": true,
+                "totalCents": 300
+              },
+              {
+                "id": "a",
+                "available": true,
+                "fresh": true,
+                "totalCents": 200
+              },
+              {
+                "id": "c",
+                "available": true,
+                "fresh": false,
+                "totalCents": 10
+              }
+            ]
+          },
+          "expected": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "input": {
+            "options": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Draw components and data flow; cover server state, URL filters, and error recovery.",
+      "leadership_principle": "Think Big",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 22,
+      "date": "2026-11-07",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Accessible field component",
+      "topic": "labels / aria-describedby",
+      "coding_prompt": "Create a reusable field component with label, hint, error, required state, and correct `aria-describedby`; verify with role-based tests.",
+      "cases": [
+        {
+          "input": {
+            "id": "email",
+            "hintId": "email-help",
+            "errorId": "email-error"
+          },
+          "expected": "email-help email-error"
+        },
+        {
+          "input": {
+            "id": "qty",
+            "hintId": null,
+            "errorId": null
+          },
+          "expected": ""
+        },
+        {
+          "input": {
+            "id": "phone",
+            "hintId": "phone-help",
+            "errorId": null
+          },
+          "expected": "phone-help"
+        }
+      ],
+      "design_prompt": "Describe component boundaries, focus/validation, and how consumers customize safely.",
+      "leadership_principle": "Invent and Simplify",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 23,
+      "date": "2026-11-08",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Bounded quote polling",
+      "topic": "async polling / cancellation",
+      "coding_prompt": "Poll quotes with capped exponential delays and a maximum attempt count. Stop after success, cancellation, or max attempts.",
+      "cases": [
+        {
+          "input": {
+            "attempts": 4,
+            "base": 1,
+            "cap": 4
+          },
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        },
+        {
+          "input": {
+            "attempts": 0,
+            "base": 1,
+            "cap": 5
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Choose polling vs push for quote updates and explain freshness/battery tradeoff.",
+      "leadership_principle": "Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 24,
+      "date": "2026-11-09",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Web-vitals panel",
+      "topic": "performance / privacy-safe telemetry",
+      "coding_prompt": "Render LCP samples into accessible good/needs-improvement/poor states; never send raw URLs or user identifiers.",
+      "cases": [
+        {
+          "input": {
+            "samples": [
+              1800,
+              3000,
+              5000
+            ]
+          },
+          "expected": [
+            "good",
+            "needs-improvement",
+            "poor"
+          ]
+        },
+        {
+          "input": {
+            "samples": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Pick a frontend SLO and privacy-safe telemetry fields for it.",
+      "leadership_principle": "Success and Scale Bring Broad Responsibility",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 25,
+      "date": "2026-11-10",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Recommendation explanation panel",
+      "topic": "human-readable reasons / safe text",
+      "coding_prompt": "Render only allowlisted explanation codes as plain text; cap content and show source/freshness metadata.",
+      "cases": [
+        {
+          "input": {
+            "reasons": [
+              {
+                "code": "CAPACITY",
+                "text": "Capacity available"
+              },
+              {
+                "code": "SECRET",
+                "text": "x"
+              }
+            ],
+            "allow": [
+              "CAPACITY"
+            ]
+          },
+          "expected": [
+            "Capacity available"
+          ]
+        },
+        {
+          "input": {
+            "reasons": [],
+            "allow": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Design explanation UI for generated recommendations with source, freshness, and human override.",
+      "leadership_principle": "Learn and Be Curious",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 26,
+      "date": "2026-11-11",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Quote contract tests",
+      "topic": "component/API contract testing",
+      "coding_prompt": "Add contract cases for valid, empty, malformed, stale, and partial quote responses. Render safe states for each.",
+      "cases": [
+        {
+          "input": {
+            "quotes": [
+              {
+                "id": "q",
+                "cents": 0,
+                "currency": "USD"
+              }
+            ]
+          },
+          "expected": true
+        },
+        {
+          "input": {
+            "quotes": [
+              {
+                "id": "q",
+                "cents": -1,
+                "currency": "USD"
+              }
+            ]
+          },
+          "expected": false
+        }
+      ],
+      "design_prompt": "Create component/API contract cases for empty, malformed, stale, and partial quote payloads.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 27,
+      "date": "2026-11-12",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Responsive image gallery",
+      "topic": "responsive image / accessibility",
+      "coding_prompt": "Render placement images with responsive sizing and meaningful alt text; identify and handle missing or invalid descriptors.",
+      "cases": [
+        {
+          "input": {
+            "images": [
+              {
+                "alt": "",
+                "width": 20
+              },
+              {
+                "alt": "Box",
+                "width": 0
+              }
+            ]
+          },
+          "expected": [
+            "ALT",
+            "SIZE"
+          ]
+        },
+        {
+          "input": {
+            "images": [
+              {
+                "alt": "Box",
+                "width": 10
+              }
+            ]
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Audit a responsive list for keyboard flow, contrast, image alternatives, and rendering cost.",
+      "leadership_principle": "Insist on Highest Standards",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 28,
+      "date": "2026-11-13",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Keyboard tab bar",
+      "topic": "ARIA tabs / focus management",
+      "coding_prompt": "Implement roving tabindex, arrow-key movement, Home/End, and panel selection for a three-tab placement view.",
+      "cases": [
+        {
+          "input": {
+            "tabs": [
+              "overview",
+              "inventory",
+              "quotes"
+            ],
+            "active": "quotes"
+          },
+          "expected": 2
+        },
+        {
+          "input": {
+            "tabs": [
+              "a"
+            ],
+            "active": "x"
+          },
+          "expected": 0
+        }
+      ],
+      "design_prompt": "Use a timed exercise, then explain keyboard semantics, history behavior, and a novel edge case.",
+      "leadership_principle": "Earn Trust",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 29,
+      "date": "2026-11-14",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Timed mock: quote comparison feature",
+      "topic": "role mock / async integration",
+      "coding_prompt": "Build a small comparison panel using the injected API: loading, partial results, selection, refresh, and error recovery. Keep the UI responsive while requests overlap.",
+      "cases": [
+        {
+          "input": {
+            "options": [
+              {
+                "id": "z",
+                "visible": true,
+                "feeCents": 400
+              },
+              {
+                "id": "a",
+                "visible": true,
+                "feeCents": 250
+              },
+              {
+                "id": "x",
+                "visible": false,
+                "feeCents": 1
+              }
+            ]
+          },
+          "expected": {
+            "visibleCount": 2,
+            "minimumFeeCents": 250,
+            "ids": [
+              "a",
+              "z"
+            ]
+          }
+        },
+        {
+          "input": {
+            "options": []
+          },
+          "expected": {
+            "visibleCount": 0,
+            "minimumFeeCents": null,
+            "ids": []
+          }
+        }
+      ],
+      "design_prompt": "Design the comparison panel states, async retry boundary, keyboard flow, and one important trade-off. Use the separate 10-minute STAR block for truthful reflection.",
+      "leadership_principle": "Deliver Results",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    },
+    {
+      "day": 30,
+      "date": "2026-11-15",
+      "role": "frontend",
+      "job_id": "10575321",
+      "title": "Practice retrospective panel",
+      "topic": "progress visualization / reflection",
+      "coding_prompt": "Render attempted versus passed counts per topic, highlight all tied weakest topics, and capture one next-step note without claiming mastery.",
+      "cases": [
+        {
+          "input": {
+            "attempts": [
+              {
+                "topic": "forms",
+                "attempted": 5,
+                "passed": 4
+              },
+              {
+                "topic": "async",
+                "attempted": 4,
+                "passed": 1
+              },
+              {
+                "topic": "security",
+                "attempted": 2,
+                "passed": 1
+              }
+            ]
+          },
+          "expected": [
+            "async"
+          ]
+        },
+        {
+          "input": {
+            "attempts": [
+              {
+                "topic": "networking",
+                "attempted": 0,
+                "passed": 0
+              },
+              {
+                "topic": "performance",
+                "attempted": 2,
+                "passed": 0
+              },
+              {
+                "topic": "a11y",
+                "attempted": 2,
+                "passed": 1
+              }
+            ]
+          },
+          "expected": [
+            "networking",
+            "performance"
+          ]
+        },
+        {
+          "input": {
+            "attempts": []
+          },
+          "expected": []
+        }
+      ],
+      "design_prompt": "Redo your weakest UI/API pattern, state accessibility/performance tradeoffs, and plan next 30 days.",
+      "leadership_principle": "Customer Obsession & Ownership",
+      "timebox_minutes": {
+        "implementation_or_coding": 35,
+        "role_design_or_review": 15,
+        "lp_star_practice": 10
+      }
+    }
+  ],
+  "source": {
+    "repository": "advait-ravi-marathe/capstone-project",
+    "branch": "amazon-30day-interview-sprint",
+    "commit": "1e569fda6a2463023098f09b0599e7eb4c775473",
+    "source_manifest": "SPRINT-MANIFEST.json",
+    "source_role": "frontend",
+    "source_job_id": "10575321",
+    "date_shift_days": 1,
+    "derivations": [
+      "Shifted the FBA-only schedule dates by one day to 2026-10-17..2026-11-15.",
+      "Removed the inactive Seller Springboard role and all SDE/SQL assignment content.",
+      "Clarified the Day 29 design prompt so its 15-minute block does not duplicate the separate 10-minute STAR block; learner task and cases remain unchanged."
+    ]
+  }
+}
