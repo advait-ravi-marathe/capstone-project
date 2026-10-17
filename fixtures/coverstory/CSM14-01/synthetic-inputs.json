@@ -1,0 +1,56 @@
+{
+  "fixture_id": "CSM14-01-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "3da50074fcda4533230602e9e820910d0645ff2feaf130c024cf07123271e33a",
+  "scenario": {
+    "owner": "SYNTHETIC_OWNER_A",
+    "foreign_owner": "SYNTHETIC_OWNER_B",
+    "shortlist": "SYNTHETIC_SHORTLIST_A",
+    "journey": "SYNTHETIC_JOURNEY_A",
+    "checkpoint": {
+      "id": "SYNTHETIC_CHECKPOINT_A",
+      "revision": 1,
+      "scenarioId": "scenario-health-001",
+      "slots": [
+        {
+          "slotId": "s1",
+          "scenarioId": "scenario-health-001",
+          "source": {
+            "productId": "10000000-0000-4000-8000-000000000001",
+            "versionId": "v1",
+            "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        {
+          "slotId": "s2",
+          "scenarioId": "scenario-health-001",
+          "source": {
+            "productId": "10000000-0000-4000-8000-000000000002",
+            "versionId": "v1",
+            "sourceSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        },
+        {
+          "slotId": "s3",
+          "scenarioId": "scenario-health-001",
+          "source": {
+            "productId": "10000000-0000-4000-8000-000000000003",
+            "versionId": "v1",
+            "sourceSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          }
+        }
+      ]
+    },
+    "catalogGeneration": 20,
+    "unavailableLookup": {
+      "slotId": "s3",
+      "status": "UNAVAILABLE"
+    },
+    "negativeCases": [
+      "duplicate product identity",
+      "fourth slot",
+      "scenario mismatch",
+      "missing source identity"
+    ]
+  }
+}

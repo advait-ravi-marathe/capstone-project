@@ -77,6 +77,12 @@ assert [x['id'] for x in transition['source_assignments']]==[x['id'] for x in fi
 assert transition['scope'].startswith('planning only')
 assert 'do not mark learner work done' in transition['after_coverage_check']['status_rule'].lower()
 assert len(transition['practice_sessions'])==2 and [x['official_board_ticket_id'] for x in transition['practice_sessions']]==['CAP-630','CAP-631']
+for assignment in transition['source_assignments']:
+ source=REPO/assignment['source_card']
+ assert source.is_file(), assignment['source_card']
+ assert assignment['id'] in source.read_text(), (assignment['id'],assignment['source_card'])
+assert [x['evidence_file'] for x in transition['practice_sessions']]==['docs/evidence/coverstory/CAP-630/result.json','docs/evidence/coverstory/CAP-631/result.json']
+assert all((REPO/x['evidence_file']).is_file() for x in transition['practice_sessions'])
 # The complete structured mastery contracts are saved in four source batches.
 batch_dir=TOP/'appended-mastery-contract-batches'
 contract_batches=[json.loads(p.read_text()) for p in sorted(batch_dir.glob('batch-*.json'))]
@@ -93,19 +99,24 @@ for i,c in enumerate(received,1):
 # The appended plan is a structured-contract materialization, not a ticket-ID claim.
 mastery=json.loads((TOP/'appended-mastery-sprint-14.json').read_text())
 assert mastery['start_date']=='2028-06-18' and mastery['end_date']=='2028-07-01'
+assert mastery['daily_budget_minutes']=={'practical':125,'aws':30,'dsa':15,'evidence_design':10}
 assert len(mastery['units'])==14
 for materialized,source_contract in zip(mastery['units'],received):
  assert all(materialized[k]==v for k,v in source_contract.items())
 assert [c['native_issue_id'] for c in mastery['units']]==[f'CAP-{i}' for i in range(632,646)]
 assert [c['issue_url'] for c in mastery['units']]==[f'https://dwait-to-adwait.youtrack.cloud/issue/CAP-{i}' for i in range(632,646)]
-assert all('CONTRACT_ONLY' in c['implementation_status'] for c in mastery['units'])
-assert mastery['scaffold_status'].startswith('CONTRACTS_ONLY')
+assert all('STARTER_SEAM_ADDED' in c['implementation_status'] for c in mastery['units'])
+assert mastery['scaffold_status'].startswith('STARTER_SEAMS_ADDED')
 native_map=json.loads((TOP/'appended-mastery-native-id-map.json').read_text())
 assert native_map['search_total']==native_map['search_hit_count']==14
 assert [x['native_issue_id'] for x in native_map['native_urls']]==[f'CAP-{i}' for i in range(632,646)]
+path_map=json.loads((TOP/'IMPLEMENTATION-PATH-MAP.json').read_text())
+assert len(path_map['entries'])==14
+for entry in path_map['entries']:
+ assert all((REPO/x['actual_path'].split('#')[0]).exists() for x in entry['paths']),entry['native_issue_id']
 assert not (TOP/'proposed-extension-15.json').exists()
 # Every shell directory change in daily instructions must be in a subshell.
 for p in list((TOP/'days').glob('day-*.md'))+[ROOT/'assignments/frontend.md']:
  assert not re.search(r'(?m)^\s*cd\s',p.read_text()),p
 assert 'required e2e acceptance' in (TOP/'days/day-28.md').read_text().lower()
-print('PASS: source units 15–594 scheduled 16 Nov 2026–17 Jun 2028; S01 14-primary/6-component coverage gate; 14 structured contracts mapped CSM14-01…14 → CAP-632…645 (18 Jun–1 Jul 2028), paths unverified, scaffolds not implemented.')
+print('PASS: source units 15–594 scheduled 16 Nov 2026–17 Jun 2028; S01 coverage gate; 14 contracts mapped CSM14-01…14 → CAP-632…645; all actual starter paths resolve; learner logic remains TODO.')

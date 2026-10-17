@@ -4,7 +4,7 @@ Isolated learning branch `fba-coverstory-30day-practice`. Daily sessions run **1
 
 All FBA exercises, fixtures, mapping rows, and the React test workspace were copied from the published source commit recorded in [`fba/SPRINT-MANIFEST.json`](fba/SPRINT-MANIFEST.json). The saved source is the FBA role only; the Seller Springboard role is excluded. Each paired CoverStory task links to the unchanged saved source card and its existing code/test harness. No learner TODO is marked done.
 
-The appended 14-day mastery sprint maps to native board issues CAP-632–CAP-645 for 18 June–1 July 2028; issue links are listed in [`appended-mastery-native-id-map.json`](appended-mastery-native-id-map.json). These future-sprint entries are contracts only: proposed paths remain unverified, and no learner seams or tests have been implemented. See [`COVERAGE.md`](COVERAGE.md) for verification and limits.
+The appended 14-day mastery sprint maps to native board issues CAP-632–CAP-645 for 18 June–1 July 2028; issue links are listed in [`appended-mastery-native-id-map.json`](appended-mastery-native-id-map.json). Contract-specific starter seams, synthetic fixtures, acceptance tests and guides are in [`mastery-days/`](mastery-days/) and [`IMPLEMENTATION-PATH-MAP.json`](IMPLEMENTATION-PATH-MAP.json). Assessed business behavior remains TODO; these scaffolds are not solutions or learner completion. See [`COVERAGE.md`](COVERAGE.md) for verification and limits.
 
 ## Start
 

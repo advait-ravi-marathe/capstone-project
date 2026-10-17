@@ -1,0 +1,30 @@
+{
+  "fixture_id": "CSM14-04-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "1f435902724797136c792a02e8b2e6b467f97fb22007d2cd06995e50139c686c",
+  "scenario": {
+    "owner": "SYNTHETIC_OWNER_A",
+    "shortlist": "SYNTHETIC_SHORTLIST_A",
+    "headRevision": 1,
+    "barrier": "both transactions arrive before expected-head update",
+    "branches": [
+      {
+        "tab": "T1",
+        "slot": "s1",
+        "version": "H1/v2",
+        "operationKey": "SYNTHETIC_KEY_1"
+      },
+      {
+        "tab": "T2",
+        "slot": "s2",
+        "version": "H2/v2",
+        "operationKey": "SYNTHETIC_KEY_2"
+      }
+    ],
+    "replayCases": [
+      "same scoped key+same canonical body",
+      "same key+changed body",
+      "same text key+different owner/resource"
+    ]
+  }
+}

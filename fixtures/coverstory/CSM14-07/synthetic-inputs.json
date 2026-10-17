@@ -1,0 +1,39 @@
+{
+  "fixture_id": "CSM14-07-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "37e362172550ef4411c907ba9776463f28e03a4de6e3a065f405b44e62f24f52",
+  "scenario": {
+    "previewFingerprint": "SYNTHETIC_FINGERPRINT_20",
+    "slots": [
+      {
+        "slotId": "s1",
+        "base": "H1/v1",
+        "local": "H1/v1",
+        "upstream": "H1/v2",
+        "state": "RESOLVED"
+      },
+      {
+        "slotId": "s2",
+        "base": "H2/v1",
+        "local": "H2/v2",
+        "upstream": "H2/v3",
+        "state": "CONFLICT"
+      },
+      {
+        "slotId": "s3",
+        "base": "H3/v1",
+        "local": "H3/v1",
+        "upstream": null,
+        "state": "UNAVAILABLE"
+      }
+    ],
+    "nextFingerprint": "SYNTHETIC_FINGERPRINT_21",
+    "requiredUi": [
+      "keyboard choice",
+      "loading",
+      "visible error",
+      "retry",
+      "draft stays memory only"
+    ]
+  }
+}

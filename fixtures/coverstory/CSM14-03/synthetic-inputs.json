@@ -1,0 +1,42 @@
+{
+  "fixture_id": "CSM14-03-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "f39abcd97e2bc8a1f1004db38a6182997fa97ea26b70d1ad8b950515f4455158",
+  "scenario": {
+    "owner": "SYNTHETIC_OWNER_A",
+    "shortlist": "SYNTHETIC_SHORTLIST_A",
+    "initialRevision": {
+      "revision": 1,
+      "id": "SYNTHETIC_CHECKPOINT_R1"
+    },
+    "appendRevision": {
+      "revision": 2,
+      "parentRevision": 1,
+      "scenarioId": "scenario-health-001",
+      "slots": [
+        {
+          "productId": "10000000-0000-4000-8000-000000000001",
+          "versionId": "v2",
+          "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        {
+          "productId": "10000000-0000-4000-8000-000000000002",
+          "versionId": "v1",
+          "sourceSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        {
+          "productId": "10000000-0000-4000-8000-000000000003",
+          "versionId": "v1",
+          "sourceSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    "faultPoint": "after revision staging, before required audit/journey effects",
+    "expectedRollback": [
+      "revision2 absent",
+      "head remains1",
+      "no orphan audit",
+      "journey unchanged"
+    ]
+  }
+}

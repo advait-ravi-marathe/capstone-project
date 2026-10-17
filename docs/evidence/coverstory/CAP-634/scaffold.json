@@ -1,0 +1,29 @@
+{
+  "issue_id": "CAP-634",
+  "planning_id": "CSM14-03",
+  "date": "2028-06-20",
+  "status": "INSTRUCTOR_SCAFFOLD_CHECKS_PASS; LEARNER_LOGIC_TODO",
+  "learner_completion": "NOT_CLAIMED",
+  "paths_verified": true,
+  "learner_logic": "Explicit TODO seams retained; no reference implementation or learner completion included.",
+  "instructor_checks": {
+    "CSM14ContractInfrastructureTest": "15 fixture/contract checks passed",
+    "CSM14CheckpointSchemaIntegrationTest": "3 disposable-PostgreSQL checks passed: rollback, barrier-controlled concurrent head advance, owner-bound 20-row history page over 1,000 synthetic rows",
+    "independent_synthetic_fixture_reference": "14/14 semantics checked in a temporary, uncommitted reference script; not evidence of learner mastery",
+    "browser": "CAP-638 instructor shell check passed; learner acceptance remains incomplete at TODO seams"
+  },
+  "acceptance": [
+    "A successful append preserves r1 byte-for-byte, persists r2 and advances only the appropriate owned head/projection.",
+    "The injected failure leaves no r2, no advanced head and no orphan required audit/journey record.",
+    "The adapter reaches other modules only through their public contracts; no cross-module repository shortcut is introduced.",
+    "A duplicate immutable revision identity with changed content fails rather than overwriting history.",
+    "Record the actual transaction boundary and database assertions; fixture-only in-memory results do not prove SQL durability."
+  ],
+  "learner_acceptance_run": {
+    "command": "./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest,CAP641CheckpointProvenanceAcceptanceTest test",
+    "tests": 16,
+    "expected_todo_failures": 5,
+    "expected_todo_errors": 11,
+    "result": "Expected incomplete: checks reached explicit learner TODO seams. No implementation pass is claimed."
+  }
+}

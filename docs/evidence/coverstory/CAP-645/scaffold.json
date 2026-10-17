@@ -1,0 +1,29 @@
+{
+  "issue_id": "CAP-645",
+  "planning_id": "CSM14-14",
+  "date": "2028-07-01",
+  "status": "INSTRUCTOR_SCAFFOLD_CHECKS_PASS; LEARNER_LOGIC_TODO",
+  "learner_completion": "NOT_CLAIMED",
+  "paths_verified": true,
+  "learner_logic": "Explicit TODO seams retained; no reference implementation or learner completion included.",
+  "instructor_checks": {
+    "CSM14ContractInfrastructureTest": "15 fixture/contract checks passed",
+    "CSM14CheckpointSchemaIntegrationTest": "3 disposable-PostgreSQL checks passed: rollback, barrier-controlled concurrent head advance, owner-bound 20-row history page over 1,000 synthetic rows",
+    "independent_synthetic_fixture_reference": "14/14 semantics checked in a temporary, uncommitted reference script; not evidence of learner mastery",
+    "browser": "CAP-638 instructor shell check passed; learner acceptance remains incomplete at TODO seams"
+  },
+  "acceptance": [
+    "The learner-written test observes UI, API outcome and independent PostgreSQL state for the same candidate and schedule.",
+    "A stale old branch cannot overwrite the concurrently accepted revision; explicit refresh/review retains the user’s local intent or clearly identifies remaining conflicts.",
+    "Every accepted result matches exact authoritative version refs, owner and immutable history; no money/policy/quote acceptance changes.",
+    "The prepared defective variant fails for the intended contract violation, and the candidate result is retained as PASS, FAIL or BLOCKED with raw evidence.",
+    "The final design defense cites this executed schedule plus the sprint’s actual transaction, compatibility and bounded-query evidence; no unexecuted completion, production-scale, security or independent-mastery claim is added."
+  ],
+  "learner_acceptance_run": {
+    "command": "./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest,CAP641CheckpointProvenanceAcceptanceTest test",
+    "tests": 16,
+    "expected_todo_failures": 5,
+    "expected_todo_errors": 11,
+    "result": "Expected incomplete: checks reached explicit learner TODO seams. No implementation pass is claimed."
+  }
+}

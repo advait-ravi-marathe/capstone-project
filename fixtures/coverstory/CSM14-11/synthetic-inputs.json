@@ -1,0 +1,23 @@
+{
+  "fixture_id": "CSM14-11-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "5af78fd67ec7140ac771d8fca7ff6d1a26770d232405122ff285108728057b31",
+  "scenario": {
+    "owners": {
+      "A": 1000,
+      "B": 1000
+    },
+    "pageSize": 20,
+    "maximumCatalogBatchLookups": 3,
+    "sourceFamilies": [
+      "family-A",
+      "family-B",
+      "family-C"
+    ],
+    "measurement": {
+      "warmups": 2,
+      "maxMeasuredRunsPerCondition": 5,
+      "syntheticOnly": true
+    }
+  }
+}

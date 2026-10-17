@@ -1,0 +1,80 @@
+{
+  "fixture_id": "CSM14-02-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "92ef20b820ed3add09a7661bd9e643f8b452061977fbdbe9db0be15bc0039821",
+  "scenario": {
+    "base": {
+      "s1": {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "versionId": "v1",
+        "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "s2": {
+        "productId": "10000000-0000-4000-8000-000000000002",
+        "versionId": "v1",
+        "sourceSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "s3": {
+        "productId": "10000000-0000-4000-8000-000000000003",
+        "versionId": "v1",
+        "sourceSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    "local": {
+      "s1": {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "versionId": "v1",
+        "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "s2": {
+        "productId": "10000000-0000-4000-8000-000000000002",
+        "versionId": "v2",
+        "sourceSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "s3": {
+        "operation": "REMOVE"
+      }
+    },
+    "upstream": {
+      "s1": {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "versionId": "v2",
+        "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "s2": {
+        "productId": "10000000-0000-4000-8000-000000000002",
+        "versionId": "v3",
+        "sourceSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "s3": {
+        "productId": "10000000-0000-4000-8000-000000000003",
+        "versionId": "v2",
+        "sourceSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    "truthTable": {
+      "L_EQUALS_B": "TAKE_UPSTREAM",
+      "U_EQUALS_B": "TAKE_LOCAL",
+      "L_EQUALS_U": "TAKE_SHARED",
+      "DIVERGENT": "CONFLICT"
+    },
+    "noChange": {
+      "B": {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "versionId": "v1",
+        "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "L": {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "versionId": "v1",
+        "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "U": {
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "versionId": "v1",
+        "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    "unavailable": "UNAVAILABLE is separate from absent slot"
+  }
+}

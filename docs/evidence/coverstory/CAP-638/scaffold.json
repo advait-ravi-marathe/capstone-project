@@ -1,0 +1,29 @@
+{
+  "issue_id": "CAP-638",
+  "planning_id": "CSM14-07",
+  "date": "2028-06-24",
+  "status": "INSTRUCTOR_SCAFFOLD_CHECKS_PASS; LEARNER_LOGIC_TODO",
+  "learner_completion": "NOT_CLAIMED",
+  "paths_verified": true,
+  "learner_logic": "Explicit TODO seams retained; no reference implementation or learner completion included.",
+  "instructor_checks": {
+    "CSM14ContractInfrastructureTest": "15 fixture/contract checks passed",
+    "CSM14CheckpointSchemaIntegrationTest": "3 disposable-PostgreSQL checks passed: rollback, barrier-controlled concurrent head advance, owner-bound 20-row history page over 1,000 synthetic rows",
+    "independent_synthetic_fixture_reference": "14/14 semantics checked in a temporary, uncommitted reference script; not evidence of learner mastery",
+    "browser": "CAP-638 instructor shell check passed; learner acceptance remains incomplete at TODO seams"
+  },
+  "acceptance": [
+    "Visible source/version labels distinguish base, local intent and upstream proposal without implying that the proposal has already been saved.",
+    "Unresolved/unavailable/stale plans cannot invoke acceptance; tests observe zero mutation calls.",
+    "A changed preview invalidates incompatible local decisions and asks for explicit review; decisions never silently attach to another version pair.",
+    "Keyboard focus and accessible names allow selection and error recovery with the existing shared controls.",
+    "An API failure retains the unsaved draft in memory while clearly distinguishing it from the current persisted checkpoint."
+  ],
+  "learner_acceptance_run": {
+    "command": "./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest,CAP641CheckpointProvenanceAcceptanceTest test",
+    "tests": 16,
+    "expected_todo_failures": 5,
+    "expected_todo_errors": 11,
+    "result": "Expected incomplete: checks reached explicit learner TODO seams. No implementation pass is claimed."
+  }
+}

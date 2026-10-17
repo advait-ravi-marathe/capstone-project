@@ -1,0 +1,29 @@
+{
+  "issue_id": "CAP-642",
+  "planning_id": "CSM14-11",
+  "date": "2028-06-28",
+  "status": "INSTRUCTOR_SCAFFOLD_CHECKS_PASS; LEARNER_LOGIC_TODO",
+  "learner_completion": "NOT_CLAIMED",
+  "paths_verified": true,
+  "learner_logic": "Explicit TODO seams retained; no reference implementation or learner completion included.",
+  "instructor_checks": {
+    "CSM14ContractInfrastructureTest": "15 fixture/contract checks passed",
+    "CSM14CheckpointSchemaIntegrationTest": "3 disposable-PostgreSQL checks passed: rollback, barrier-controlled concurrent head advance, owner-bound 20-row history page over 1,000 synthetic rows",
+    "independent_synthetic_fixture_reference": "14/14 semantics checked in a temporary, uncommitted reference script; not evidence of learner mastery",
+    "browser": "CAP-638 instructor shell check passed; learner acceptance remains incomplete at TODO seams"
+  },
+  "acceptance": [
+    "The page contains only A’s requested checkpoint revisions with stable order and no repeated/missing rows in the fixed fixture.",
+    "Public-port call counters prove the declared bounded lookup count; private ownership is not dropped to obtain a faster plan.",
+    "Save actual EXPLAIN/query metrics, rows examined/returned and all failure counts for matched runs; label cold/warm conditions and tiny sample limits.",
+    "The chosen optimization must retain correctness and show its measured trade-off, including no improvement if that is the result.",
+    "No distributed cache, new database, broker or paid infrastructure is introduced to satisfy this bounded workload."
+  ],
+  "learner_acceptance_run": {
+    "command": "./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest,CAP641CheckpointProvenanceAcceptanceTest test",
+    "tests": 16,
+    "expected_todo_failures": 5,
+    "expected_todo_errors": 11,
+    "result": "Expected incomplete: checks reached explicit learner TODO seams. No implementation pass is claimed."
+  }
+}

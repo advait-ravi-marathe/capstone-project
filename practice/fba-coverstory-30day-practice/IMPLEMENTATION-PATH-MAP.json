@@ -1,0 +1,570 @@
+{
+  "status": "starter path reconciliation",
+  "note": "Proposed paths remain as supplied in the saved contracts. Each is mapped to an actual repository path or named seam; actual_exists=false denotes a documented remaining implementation artifact, not completed work.",
+  "entries": [
+    {
+      "planning_id": "CSM14-01",
+      "native_issue_id": "CAP-632",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/refresh/CheckpointContract.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/CheckpointContract.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointContractTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap632_acceptsImmutableThreeSlotCheckpointAndRejectsDuplicateProducts",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-01/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-01/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-01/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-632/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-01.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-01-cap-632.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-02",
+      "native_issue_id": "CAP-633",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/refresh/ThreeWayCheckpointReconciler.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/ThreeWayCheckpointReconciler.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/ThreeWayCheckpointReconcilerTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap633_reconcilesByThreeWayEqualityAndExposesDivergence",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-02/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-02/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-02/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-633/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-02.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-02-cap-633.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-03",
+      "native_issue_id": "CAP-634",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/persistence/CheckpointRepositoryAdapter.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/CheckpointRepositoryAdapter.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/persistence/CheckpointAtomicityTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14CheckpointSchemaIntegrationTest.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/main/resources/coverstory/shortlist/checkpoint-revision.sql",
+          "actual_path": "src/main/resources/db/schema/shortlist_checkpoint_refresh.sql",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-03/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-03/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-03/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-634/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-03.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-03-cap-634.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-04",
+      "native_issue_id": "CAP-635",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/application/SaveCheckpoint.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/SaveCheckpoint.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/ConcurrentCheckpointSaveTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap635_twoConcurrentSavesHaveOneWinnerAndSameKeyReplay",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-04/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-04/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-04/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-635/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-04.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-04-cap-635.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-05",
+      "native_issue_id": "CAP-636",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/api/CheckpointRefreshController.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/api/CheckpointRefreshController.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/application/PreviewCheckpointRefresh.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/PreviewCheckpointRefresh.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/api/CheckpointRefreshPreviewTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap636_previewAuthorizesBeforeReadsAndNeverMutates",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-05/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-05/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-05/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-636/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-05.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-05-cap-636.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-06",
+      "native_issue_id": "CAP-637",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/application/AcceptCheckpointRefresh.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/AcceptCheckpointRefresh.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/AcceptCheckpointRefreshTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap637_staleGenerationAndUnresolvedChoiceCannotAppend",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-06/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-06/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-06/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-637/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-06.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-06-cap-637.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-07",
+      "native_issue_id": "CAP-638",
+      "paths": [
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/CheckpointRefreshPanel.tsx",
+          "actual_path": "web/src/coverstory/shortlist/refresh/CheckpointRefreshPanel.tsx",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/CheckpointRefreshPanel.test.tsx",
+          "actual_path": "web/scripts/csm14-learner-acceptance.mjs",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/refreshQueryOptions.ts",
+          "actual_path": "web/src/coverstory/shortlist/refresh/refreshQueryOptions.ts",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-07/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-07/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-07/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-638/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-07.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-07-cap-638.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-08",
+      "native_issue_id": "CAP-639",
+      "paths": [
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/refreshRecovery.ts",
+          "actual_path": "web/src/coverstory/shortlist/refresh/refreshRecovery.ts",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/refreshRecovery.test.tsx",
+          "actual_path": "web/scripts/csm14-learner-acceptance.mjs",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/LostRefreshResponseTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap639_lostResponseReplaysSameOperationAndRefetchesPersistedHead",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-08/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-08/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-08/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-639/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-08.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-08-cap-639.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-09",
+      "native_issue_id": "CAP-640",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/application/RefreshAccessGuard.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/RefreshAccessGuard.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/RefreshAuthorizationRaceTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap640_revocationAtSerializedDecisionDeniesAndLateOwnerResponseIsDropped",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/refreshOwnerBoundary.test.tsx",
+          "actual_path": "web/scripts/csm14-learner-acceptance.mjs",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-09/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-09/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-09/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-640/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-09.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-09-cap-640.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-10",
+      "native_issue_id": "CAP-641",
+      "paths": [
+        {
+          "proposed_path": "src/main/resources/coverstory/shortlist/checkpoint-provenance-expand.sql",
+          "actual_path": "src/main/resources/db/schema/shortlist_checkpoint_provenance_expand.sql",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/persistence/CheckpointProvenanceMigrationTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap641_oldRowsDecodeUnknownAndUnsupportedMajorFailsClosed",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/decodeCheckpointProvenance.test.ts",
+          "actual_path": "web/scripts/csm14-learner-acceptance.mjs",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-10/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-10/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-10/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-641/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-10.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-10-cap-641.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-11",
+      "native_issue_id": "CAP-642",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/persistence/CheckpointHistoryQuery.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/CheckpointHistoryQuery.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/persistence/CheckpointHistoryQueryTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap642_historyIsOwnerBoundAndPageIsCappedAtTwenty",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "experiments/coverstory/checkpoint-refresh/history-query.sql",
+          "actual_path": "experiments/coverstory/checkpoint-refresh/history-query.sql",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-11/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-11/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-11/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-642/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-11.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-11-cap-642.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-12",
+      "native_issue_id": "CAP-643",
+      "paths": [
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointReferenceModel.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CheckpointReferenceModel.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointDifferentialReplayTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap643_independentReplayModelPredictsBoundedCommandTrace",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-12/command-traces.json",
+          "actual_path": "fixtures/coverstory/CSM14-12/command-traces.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-12/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-12/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-12/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-643/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-12.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-12-cap-643.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-13",
+      "native_issue_id": "CAP-644",
+      "paths": [
+        {
+          "proposed_path": "src/main/java/capstone/coverstory/shortlist/refresh/CheckpointOrderIntent.java",
+          "actual_path": "src/main/java/coverstory/modules/shortlist/refresh/CheckpointOrderIntent.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointOrderIntentTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CSM14AcceptanceTest.java#cap644_conflictDecisionFollowsStableSlotAndExplicitLocalOrder",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/orderedConflictResolution.test.tsx",
+          "actual_path": "web/scripts/csm14-learner-acceptance.mjs",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-13/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-13/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-13/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-644/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-13.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-13-cap-644.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    },
+    {
+      "planning_id": "CSM14-14",
+      "native_issue_id": "CAP-645",
+      "paths": [
+        {
+          "proposed_path": "src/test/java/capstone/coverstory/shortlist/refresh/CheckpointRefreshAdmissionTest.java",
+          "actual_path": "src/test/java/coverstory/modules/shortlist/refresh/CheckpointRefreshAdmissionRunner.java",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "frontend/src/coverstory/shortlist/refresh/checkpointRefreshAdmission.test.tsx",
+          "actual_path": "web/scripts/csm14-learner-acceptance.mjs",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "experiments/coverstory/checkpoint-refresh/run-admission-contract.sh",
+          "actual_path": "experiments/coverstory/checkpoint-refresh/run-admission-contract.sh",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "fixtures/coverstory/CSM14-14/synthetic-inputs.json",
+          "actual_path": "fixtures/coverstory/CSM14-14/synthetic-inputs.json",
+          "actual_exists": true,
+          "mapping_note": "Path matches the supplied contract."
+        },
+        {
+          "proposed_path": "docs/evidence/coverstory/CSM14-14/result.json",
+          "actual_path": "docs/evidence/coverstory/CAP-645/scaffold.json",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        },
+        {
+          "proposed_path": "docs/architecture/coverstory/checkpoint-refresh/CSM14-14.md",
+          "actual_path": "practice/fba-coverstory-30day-practice/mastery-days/day-14-cap-645.md",
+          "actual_exists": true,
+          "mapping_note": "Mapped to the repository’s existing module/package layout; original proposed path is preserved in the contract record."
+        }
+      ]
+    }
+  ]
+}

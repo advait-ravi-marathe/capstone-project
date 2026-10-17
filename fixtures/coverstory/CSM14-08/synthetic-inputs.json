@@ -1,0 +1,17 @@
+{
+  "fixture_id": "CSM14-08-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "ea95d80387db25af8134c24b7ddb00456973da9592b66dab97c2da4cf522835f",
+  "scenario": {
+    "checkpointBefore": "r1",
+    "acceptedCheckpoint": "r2",
+    "transport": "response suppressed after commit",
+    "sameOperationRetry": true,
+    "reload": [
+      "authenticated owner revalidation",
+      "refetch persisted head",
+      "unsaved memory choices not recovered"
+    ],
+    "staleRead": "r1 arrives after authoritative r2"
+  }
+}

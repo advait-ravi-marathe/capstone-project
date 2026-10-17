@@ -1,0 +1,32 @@
+{
+  "fixture_id": "CSM14-10-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "6c70d8d01d1640b6b93b6c7cd797e3a47981a32b01af0017ff048f25fe4f9d1a",
+  "scenario": {
+    "schemaMajor": 1,
+    "oldRows": [
+      {
+        "revision": "r1",
+        "provenance": "UNKNOWN/UNRECORDED",
+        "rowSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      }
+    ],
+    "newRows": [
+      {
+        "revision": "r2",
+        "provenance": "UPSTREAM_REFRESH"
+      },
+      {
+        "revision": "r3",
+        "provenance": "EXPLICIT_CONFLICT_CHOICE"
+      }
+    ],
+    "supportedCodes": [
+      "LOCAL_UNCHANGED",
+      "UPSTREAM_REFRESH",
+      "EXPLICIT_CONFLICT_CHOICE"
+    ],
+    "unsupportedRequiredMajor": 99,
+    "migrationFailure": "transaction rollback or explicit failed state"
+  }
+}

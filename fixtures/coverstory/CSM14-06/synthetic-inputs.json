@@ -1,0 +1,25 @@
+{
+  "fixture_id": "CSM14-06-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "1e1cd18ddf4ea93ce02b37bee9b42417cbe74d8c9b635e53e65e57f01fef8110",
+  "scenario": {
+    "preview": {
+      "checkpointRevision": 1,
+      "catalogGeneration": 20,
+      "fingerprint": "SYNTHETIC_FINGERPRINT_20",
+      "resolvedSlots": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "staleGeneration": 21,
+    "fault": "before required journey update",
+    "forgedChoice": "version not listed in authoritative options",
+    "expected": [
+      "positive appends r2",
+      "stale rejects unchanged",
+      "fault rolls back all required effects"
+    ]
+  }
+}

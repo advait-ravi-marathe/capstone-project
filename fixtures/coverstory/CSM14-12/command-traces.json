@@ -1,0 +1,23 @@
+{
+  "fixture_id": "CSM14-12-command-traces-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "max_branches": 2,
+  "max_catalog_generations": 2,
+  "max_commands_per_trace": 6,
+  "seeded_traces": [
+    {"id":"seed-01","commands":["read r1","accept branch T1"],"expected":"one revision"},
+    {"id":"seed-02","commands":["read r1","accept T1","accept T2 at r1"],"expected":"stale T2 conflict"},
+    {"id":"seed-03","commands":["accept with key K","retry same key and body"],"expected":"same stored result"},
+    {"id":"seed-04","commands":["accept with key K/body A","retry key K/body B"],"expected":"payload conflict"},
+    {"id":"seed-05","commands":["stage revision","fault before required effects"],"expected":"rollback preserves head"},
+    {"id":"seed-06","commands":["preview generation 20","generation advances 21","accept old preview"],"expected":"stale preview rejected"},
+    {"id":"seed-07","commands":["read r1","accept T1","same-key replay","read head"],"expected":"one durable result"},
+    {"id":"seed-08","commands":["owner A preview","owner B attempts A operation"],"expected":"deny before private read"},
+    {"id":"seed-09","commands":["T1 accept","T2 stale accept","T2 new preview"],"expected":"draft retained for review"},
+    {"id":"seed-10","commands":["publish catalog v2","accept generation 20"],"expected":"serialize or reject stale"},
+    {"id":"seed-11","commands":["commit r2","drop response","retry same operation"],"expected":"one revision, r2 returned"},
+    {"id":"seed-12","commands":["stage r2","rollback","retry operation"],"expected":"one later successful effect"}
+  ],
+  "learner_authored_traces_required": 4,
+  "private_payload_output": "prohibited"
+}

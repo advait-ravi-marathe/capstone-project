@@ -1,0 +1,22 @@
+{
+  "fixture_id": "CSM14-12-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "86c2272af4bdb1f5d4acf216db662dfabe8fcd4fa9ba86c4fefdac95084cbf20",
+  "scenario": {
+    "branches": 2,
+    "catalogGenerations": [
+      20,
+      21
+    ],
+    "maxCommandsPerTrace": 6,
+    "seededTraceCount": 12,
+    "learnerAuthoredFreshTraceCount": 4,
+    "operations": [
+      "expected-revision conflict",
+      "same-key retry",
+      "changed-key payload conflict",
+      "rollback"
+    ],
+    "privatePayloads": "excluded from diff output"
+  }
+}

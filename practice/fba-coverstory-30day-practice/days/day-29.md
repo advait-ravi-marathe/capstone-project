@@ -35,7 +35,7 @@ The board path proposal did not match this checkout's module layout. These instr
 - Proposed: `src/test/java/capstone/coverstory/integration/First14CatalogConsistencyTest.java` → actual: `src/test/java/coverstory/modules/catalog/First14CatalogConsistencyTest.java`
 - Proposed: `frontend/src/coverstory/catalog/first14Consistency.test.tsx` → actual: `web/src/coverstory/catalog/first14Consistency.test.tsx`
 - Proposed: `fixtures/coverstory/CS90-29/catalog-consistency.json` → actual: `fixtures/coverstory/CS90-29/catalog-consistency.json`
-- Proposed: `docs/evidence/coverstory/CS90-29/result.json` → actual: `docs/evidence/coverstory/CS90-29/result.json`
+- Proposed: `docs/evidence/coverstory/CAP-630/result.json` → actual: `docs/evidence/coverstory/CAP-630/result.json`
 
 ### Timebox and acceptance commands
 

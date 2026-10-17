@@ -1,0 +1,29 @@
+{
+  "issue_id": "CAP-635",
+  "planning_id": "CSM14-04",
+  "date": "2028-06-21",
+  "status": "INSTRUCTOR_SCAFFOLD_CHECKS_PASS; LEARNER_LOGIC_TODO",
+  "learner_completion": "NOT_CLAIMED",
+  "paths_verified": true,
+  "learner_logic": "Explicit TODO seams retained; no reference implementation or learner completion included.",
+  "instructor_checks": {
+    "CSM14ContractInfrastructureTest": "15 fixture/contract checks passed",
+    "CSM14CheckpointSchemaIntegrationTest": "3 disposable-PostgreSQL checks passed: rollback, barrier-controlled concurrent head advance, owner-bound 20-row history page over 1,000 synthetic rows",
+    "independent_synthetic_fixture_reference": "14/14 semantics checked in a temporary, uncommitted reference script; not evidence of learner mastery",
+    "browser": "CAP-638 instructor shell check passed; learner acceptance remains incomplete at TODO seams"
+  },
+  "acceptance": [
+    "Exactly one concurrent changed branch advances the head from r1; the loser cannot overwrite the winning revision.",
+    "The same accepted key/content returns the stored result even after response loss, without a second revision or durable domain effect.",
+    "Changed content under the same scoped operation key conflicts and retains the original stored result.",
+    "The losing response provides a safe stale-revision outcome, not an instruction to discard/reapply the draft automatically.",
+    "The test records the real two-connection schedule and chosen linearization point; sequential mock calls are labeled insufficient concurrency evidence."
+  ],
+  "learner_acceptance_run": {
+    "command": "./mvnw -Plearner-tests -Dtest=CSM14AcceptanceTest,CAP641CheckpointProvenanceAcceptanceTest test",
+    "tests": 16,
+    "expected_todo_failures": 5,
+    "expected_todo_errors": 11,
+    "result": "Expected incomplete: checks reached explicit learner TODO seams. No implementation pass is claimed."
+  }
+}

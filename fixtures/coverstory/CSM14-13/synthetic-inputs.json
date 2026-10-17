@@ -1,0 +1,39 @@
+{
+  "fixture_id": "CSM14-13-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "98beb85cc7dbfca7a21d585d3c33b3190ff941ce28afee85d042dccb8914fdc0",
+  "scenario": {
+    "baseOrder": [
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "localOrder": [
+      "s3",
+      "s1",
+      "s2"
+    ],
+    "upstreamMapOrder": [
+      "s3",
+      "s2",
+      "s1"
+    ],
+    "upstream": {
+      "s1": "H1/v2",
+      "s2": "H2/v3",
+      "s3": "H3/v1"
+    },
+    "expectedConflicts": [
+      "s2"
+    ],
+    "expectedOrder": [
+      "s3",
+      "s1",
+      "s2"
+    ],
+    "malformed": [
+      "repeated slot",
+      "missing slot"
+    ]
+  }
+}

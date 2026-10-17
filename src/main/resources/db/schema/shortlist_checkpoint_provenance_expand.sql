@@ -1,0 +1,5 @@
+-- CAP-641 learner migration starter. Preserve immutable source refs and old row hashes.
+-- TODO(CAP-641): add only the nullable optional provenance code and constrained
+-- values LOCAL_UNCHANGED, UPSTREAM_REFRESH, EXPLICIT_CONFLICT_CHOICE.
+-- Historical rows must remain UNKNOWN/UNRECORDED; never infer provenance.
+-- Do not rewrite/delete retained checkpoint history or mark unknown rows guessed.

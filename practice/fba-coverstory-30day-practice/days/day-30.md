@@ -33,7 +33,7 @@ The board path proposal did not match this checkout's module layout. These instr
 - Proposed: `src/test/java/capstone/coverstory/integration/First14RollbackRecoveryTest.java` → actual: `src/test/java/coverstory/modules/catalog/First14RollbackRecoveryTest.java`
 - Proposed: `frontend/src/coverstory/catalog/first14Recovery.test.tsx` → actual: `web/src/coverstory/catalog/first14Recovery.test.tsx`
 - Proposed: `fixtures/coverstory/CS90-30/rollback-schedule.json` → actual: `fixtures/coverstory/CS90-30/rollback-schedule.json`
-- Proposed: `docs/evidence/coverstory/CS90-30/result.json` → actual: `docs/evidence/coverstory/CS90-30/result.json`
+- Proposed: `docs/evidence/coverstory/CAP-631/result.json` → actual: `docs/evidence/coverstory/CAP-631/result.json`
 
 ### Timebox and acceptance commands
 

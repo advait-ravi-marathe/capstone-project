@@ -1,0 +1,29 @@
+{
+  "fixture_id": "CSM14-14-synthetic-v1",
+  "classification": "SYNTHETIC_ONLY",
+  "description_sha256": "05a7267773892a7f2804cae8287f7a0075b45c7cac35999ef5ac466c5668ae34",
+  "scenario": {
+    "owner": "SYNTHETIC_OWNER_A",
+    "initialHead": "r1",
+    "localOrder": [
+      "s3",
+      "s1",
+      "s2"
+    ],
+    "catalogGeneration": 20,
+    "sixEventSchedule": [
+      "load r1",
+      "reorder locally",
+      "preview generation20",
+      "other tab accepts r2",
+      "submit stale preview",
+      "explicitly refresh/review"
+    ],
+    "defectiveVariant": "stale preview overwrites newer revision",
+    "expected": [
+      "old preview conflicts",
+      "r2 retained",
+      "fresh review required"
+    ]
+  }
+}
