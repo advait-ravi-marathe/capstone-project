@@ -14,6 +14,15 @@ class Day84ContractInfrastructureTest {
         var mapper = new ObjectMapper();
         var manifest = mapper.readTree(Files.readString(Path.of("docs/reboot/continuation-71-84/manifest.json")));
         var stories = mapper.readTree(Files.readString(Path.of("docs/reboot/continuation-71-84/scrum-owner-manifest.json")));
+        assertEquals(14, manifest.path("days").size());
+        assertEquals(14, stories.path("cards").size());
+        for (int i = 0; i < 14; i++) {
+            assertEquals(manifest.path("days").get(i).path("day").asInt(),
+                    stories.path("cards").get(i).path("day_number").asInt(), "day index " + i);
+            assertEquals(manifest.path("days").get(i).path("title").asText(),
+                    stories.path("cards").get(i).path("title").asText(), "title for day "
+                            + manifest.path("days").get(i).path("day").asInt());
+        }
         assertFalse(manifest.path("dsa_revision_policy").path("actual_attempt_dates_supplied").asBoolean());
         assertTrue(manifest.path("scope").asText().contains("Reuse the completed Day48 owner-scoped SQL"));
         assertTrue(manifest.path("capacity_decision").path("pool_availability_guarantee").asText().startsWith("none;"));
