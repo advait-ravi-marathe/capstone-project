@@ -31,9 +31,9 @@ TODO until implemented:
 
 ## Feature and learning goal
 
-CoverStory starts as an enterprise insurance lifecycle simulation. Day 1 uses a
-single synthetic product family, Home Secure, represented here only by quote
-version IDs. The small slice establishes that a quote selection is identified
+CoverStory starts as an enterprise insurance lifecycle simulation. Day 1 uses
+the single synthetic product fixture at `fixtures/day-1/home-secure.json`.
+The small slice establishes that a quote selection is identified
 by both journey and quote version, duplicates are removed in first-seen order,
 and invalid input is rejected before a result is returned. No catalog database,
 authentication, payment, policy activation, Kafka, or frontend is needed for
@@ -49,15 +49,15 @@ The fixed acceptance suite is
 
 | Input | Expected result |
 | --- | --- |
-| `[(journey-B, home-v2), (journey-A, home-v1), (journey-B, home-v2)]` | First two exact pairs, same order; input unchanged |
+| `[(journey-B, home-secure-v1), (journey-A, home-secure-v1), (journey-B, home-secure-v1)]` | First two exact pairs, same order; input unchanged |
 | `[]` | `[]` |
 | Same quote version under two journey IDs | Two distinct keys |
 | Null list, null entry, or blank key part | `IllegalArgumentException`; no partial result |
-| `home-v1` and ` home-v1` | Distinct exact values; no trimming |
+| `home-secure-v1` and ` home-secure-v1` | Distinct exact values; no trimming |
 
 The runnable Spring Boot app starts with `./mvnw spring-boot:run`. The supplied
 API is `POST /api/quote-selections`, with JSON
-`{"selections":[{"journeyId":"journey-B","quoteVersionId":"home-v2"}]}`.
+`{"selections":[{"journeyId":"journey-B","quoteVersionId":"home-secure-v1"}]}`.
 After the learner TODO is implemented, valid input returns HTTP 200 and a JSON
 array of exact composite keys. Missing request body, malformed JSON, or invalid
 selections return HTTP 400. Before implementation, valid selection requests

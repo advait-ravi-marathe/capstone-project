@@ -21,11 +21,11 @@ class QuoteSelectionApiAcceptanceTest {
         mvc.perform(post("/api/quote-selections")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"selections":[{"journeyId":"journey-B","quoteVersionId":"home-v2"}]}
+                                {"selections":[{"journeyId":"journey-B","quoteVersionId":"home-secure-v1"}]}
                                 """))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].journeyId").value("journey-B"))
-                .andExpect(jsonPath("$[0].quoteVersionId").value("home-v2"));
+                .andExpect(jsonPath("$[0].quoteVersionId").value("home-secure-v1"));
     }
 
     @Test
