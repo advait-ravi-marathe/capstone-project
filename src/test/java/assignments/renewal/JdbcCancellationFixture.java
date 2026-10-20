@@ -86,10 +86,15 @@ final class JdbcCancellationFixture implements AutoCloseable {
     boolean serverStillExecuting(Duration watchdog) throws Exception {
         long deadline = System.nanoTime() + watchdog.toNanos();
         while (System.nanoTime() < deadline) {
+            Integer observedPid = pid.get();
+            if (observedPid == null) {
+                TimeUnit.MILLISECONDS.sleep(25);
+                continue;
+            }
             try (Connection connection = postgres.getPostgresDatabase().getConnection();
                  var query = connection.prepareStatement("SELECT state, wait_event_type, wait_event " +
                          "FROM pg_stat_activity WHERE pid=?")) {
-                query.setInt(1, backendPid());
+                query.setInt(1, observedPid);
                 try (ResultSet rows = query.executeQuery()) {
                     if (rows.next() && "active".equals(rows.getString(1))
                             && "Timeout".equals(rows.getString(2)) && "PgSleep".equals(rows.getString(3))) return true;
@@ -114,11 +119,26 @@ final class JdbcCancellationFixture implements AutoCloseable {
 
     @Override public void close() throws Exception {
         if (!query.isDone()) {
-            Statement active = statement.get();
-            if (active != null) try { active.cancel(); } catch (Exception ignored) { }
-            try { query.get(5, TimeUnit.SECONDS); } catch (ExecutionException | TimeoutException ignored) { }
+            // A learner TODO may exit before it reaches its cancellation barrier. Keep cleanup
+            // bounded while repeatedly cancelling only this fixture's exact test Statement; a
+            // cancel sent during the tiny window before executeQuery reaches PostgreSQL is harmless.
+            long cleanupDeadline = System.nanoTime() + Duration.ofSeconds(10).toNanos();
+            while (!query.isDone() && System.nanoTime() < cleanupDeadline) {
+                Statement active = statement.get();
+                if (active != null) try { active.cancel(); } catch (Exception ignored) { }
+                TimeUnit.MILLISECONDS.sleep(100);
+            }
+            try {
+                query.get(5, TimeUnit.SECONDS);
+            } catch (ExecutionException expectedCancellationFailure) {
+                // PostgreSQL reports the test-only cancel through the worker's future.
+            } catch (TimeoutException notCleanedUp) {
+                throw new IllegalStateException("test worker did not finish after Statement.cancel; keep the database alive", notCleanedUp);
+            }
         }
-        worker.shutdownNow();
+        worker.shutdown();
+        if (!worker.awaitTermination(5, TimeUnit.SECONDS))
+            throw new IllegalStateException("test worker did not terminate after it owned statement/connection cleanup");
         pool.close();
         postgres.close();
     }

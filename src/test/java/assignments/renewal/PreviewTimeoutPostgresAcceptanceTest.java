@@ -41,7 +41,7 @@ class PreviewTimeoutPostgresAcceptanceTest {
             };
             TimedPolicyRenewalReadStore timed = fixture.timed(query, BUDGET.lockTimeoutMillis(), BUDGET.statementTimeoutMillis());
             Future<Optional<?>> attempt = executor.submit(() -> timed.findByPolicyIdAndOwnerId("policy-renewal-a", "owner-a"));
-            PostgresTimeoutFixture.Activity waiting = fixture.awaitWait(baseline.pid(), "Lock", null, Duration.ofSeconds(10));
+            PostgresTimeoutFixture.Activity waiting = awaitOwnedWait(fixture, attempt, baseline.pid(), "Lock", null);
             assertEquals(baseline.backendStart(), waiting.backendStart());
             assertEquals("active", waiting.state());
             assertNotNull(waiting.waitEvent());
@@ -74,7 +74,7 @@ class PreviewTimeoutPostgresAcceptanceTest {
             };
             Future<Optional<?>> attempt = executor.submit(() -> fixture.timed(sleep, 500, 2000)
                     .findByPolicyIdAndOwnerId("policy-renewal-a", "owner-a"));
-            PostgresTimeoutFixture.Activity waiting = fixture.awaitWait(baseline.pid(), "Timeout", "PgSleep", Duration.ofSeconds(10));
+            PostgresTimeoutFixture.Activity waiting = awaitOwnedWait(fixture, attempt, baseline.pid(), "Timeout", "PgSleep");
             assertEquals(baseline.backendStart(), waiting.backendStart());
             assertEquals("active", waiting.state());
             assertTrue(waiting.transactionOpen());
@@ -159,6 +159,28 @@ class PreviewTimeoutPostgresAcceptanceTest {
             if (failure.getCause() instanceof RuntimeException runtime) return runtime;
             throw new AssertionError("unexpected checked failure", failure.getCause());
         }
+    }
+
+    private static PostgresTimeoutFixture.Activity awaitOwnedWait(PostgresTimeoutFixture fixture, Future<?> operation,
+                                                                  int pid, String type, String event) throws Exception {
+        long deadline = System.nanoTime() + Duration.ofSeconds(10).toNanos(); // watchdog only
+        PostgresTimeoutFixture.Activity last = fixture.activity(pid);
+        while (System.nanoTime() < deadline) {
+            if (operation.isDone()) {
+                try {
+                    operation.get();
+                    fail("read completed without entering the expected PostgreSQL wait state");
+                } catch (ExecutionException failedAtLearnerSeam) {
+                    throw new AssertionError("read ended before the fixed PostgreSQL wait could be observed",
+                            failedAtLearnerSeam.getCause());
+                }
+            }
+            last = fixture.activity(pid);
+            if ("active".equals(last.state()) && type.equals(last.waitEventType())
+                    && (event == null || event.equals(last.waitEvent())) && last.transactionOpen()) return last;
+            TimeUnit.MILLISECONDS.sleep(25);
+        }
+        throw new AssertionError("Watchdog waiting for PostgreSQL state; last snapshot=" + last);
     }
 
     private static String sqlState(Throwable failure) {

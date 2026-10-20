@@ -27,9 +27,16 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-- [https://www.postgresql.org/docs/18/runtime-config-client.html](https://www.postgresql.org/docs/18/runtime-config-client.html) — **19.11.1 statement_timeout**
+**Worked example (within the same cap):** Run test-only `SELECT pg_sleep(...)` beyond the local statement budget with no lock contention. Verify cancellation/rollback and a useful next read; avoid latency thresholds.
+
+**Focused sources:**
+- [PostgreSQL 18 Date/Time Functions — Delaying Execution with pg_sleep](https://www.postgresql.org/docs/18/functions-datetime.html)
+- [PostgreSQL 18 Client Connection Defaults — statement_timeout](https://www.postgresql.org/docs/18/runtime-config-client.html)
+
+Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

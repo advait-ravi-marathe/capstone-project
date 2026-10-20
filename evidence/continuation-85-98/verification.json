@@ -1,0 +1,157 @@
+{
+  "title": "Days 85-98 timed PostgreSQL renewal-read budget scaffold verification",
+  "state": "pre-publication",
+  "base_checkpoint": "034d6c02f6f21d03ce3467d4b4d60512f91cc469",
+  "guidance_ancestry_commit": "d983c384cf7295c9ba0424e2d604d32f12dfdc06",
+  "published_sha": null,
+  "branch": "learning/coverstory-days-85-98",
+  "scope": "Instructor scaffolding, executable tests, packaged/browser harness, docs, course blocks and branch-specific CI. Learner implementation seams remain unchanged TODOs.",
+  "environment": {
+    "os": "Linux amd64",
+    "java": "Oracle JDK 21.0.12.1",
+    "postgresql_embedded": "18.6",
+    "browser": "/usr/bin/chromium",
+    "maven": "wrapper offline with /tmp/capstone-m2",
+    "frontend_bootstrap": "npm ci --cache=/tmp/capstone-npm-cache"
+  },
+  "checks": [
+    {
+      "name": "Default instructor suite",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 test",
+      "result": "passed",
+      "tests": 41,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "scope_note": "Default instructor/infrastructure suite; learner-acceptance profile is not included."
+    },
+    {
+      "name": "Frontend dependency bootstrap",
+      "command": "cd frontend && npm ci --cache=/tmp/capstone-npm-cache",
+      "result": "passed",
+      "note": "The environment did not have its default /home/agent/.npm cache directory; explicit temporary cache path kept npm installation reproducible."
+    },
+    {
+      "name": "Temporary conforming witnesses",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest test",
+      "result": "passed",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "temporary_files": [
+        "PreviewReadBudgetPolicy.java",
+        "PgLocalReadBudgets.java",
+        "TimedPolicyRenewalReadStore.java",
+        "PreviewReadFailureTranslator.java"
+      ],
+      "restoration": "all four learner seams restored to pre-witness SHA256 from /tmp/witness-original.sha256; original TODO sources verified byte-for-byte against /tmp/day85-witness-backup/before.sha256"
+    },
+    {
+      "name": "Earlier temporary full witness suite including cancellation lab",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,JdbcCancellationLabAcceptanceTest test",
+      "result": "passed",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "temporary_files": [
+        "four learner seams",
+        "JdbcCancellationLabAcceptanceTest"
+      ],
+      "restoration": "five files restored and SHA256 verified against /tmp/day85-witness-backup/before.sha256"
+    },
+    {
+      "name": "Restored learner selectors",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,JdbcCancellationLabAcceptanceTest test",
+      "result": "expected_todo_red",
+      "tests": 12,
+      "assertion_failures": 6,
+      "errors": 6,
+      "skipped": 0,
+      "causes": [
+        "Day 86 budget validation TODO",
+        "Day 89 timed transaction TODO",
+        "Day 92 SQLSTATE translation TODO",
+        "Day 95 JDBC cancellation coordination TODO"
+      ],
+      "notes": "The lock and statement wait tests report that Day 89 ended before the fixed PostgreSQL wait could be observed, with the Day 89 UnsupportedOperationException as the cause. No missing test selector, dependency or runtime setup failure. Day 95 teardown now cancels the fixture's exact test statement and terminates in under one second; the test then reports only its explicit Day 95 TODO."
+    },
+    {
+      "name": "Negative witness: session-level setting leak",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests '-Dtest=TimedRenewalReadAcceptanceTest#setsTransactionLocalBudgetsOnSameBackend' test",
+      "temporary_defect": "set_config(..., false)",
+      "result": "detected",
+      "failure": "after transaction cleanup expected baseline lock_timeout 0 but observed 500ms"
+    },
+    {
+      "name": "Negative witness: raw connection bypass",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests '-Dtest=TimedRenewalReadAcceptanceTest#setsTransactionLocalBudgetsOnSameBackend' test",
+      "temporary_defect": "PgLocalReadBudgets obtained a second raw connection instead of using the Spring-bound JdbcTemplate connection",
+      "result": "detected",
+      "failure": "one-slot Hikari pool timed out after 1000ms while transaction already held its connection"
+    },
+    {
+      "name": "Negative witness: swallowed mapping exception",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests '-Dtest=TimedRenewalReadAcceptanceTest#readOnlyAndMappingFailureRollbackBeforeReturn' test",
+      "temporary_defect": "timed decorator caught delegate RuntimeException and returned Optional.empty",
+      "result": "detected",
+      "failure": "fixed acceptance assertion failed because expected RuntimeException was not thrown"
+    },
+    {
+      "name": "Packaged browser recovery selector",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Plocal-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test",
+      "result": "blocked_by_prior_learner_todo",
+      "blocker": "The packaged application starts with the intentional Day 86 budget validation TODO before Day 97 browser behavior can be exercised."
+    },
+    {
+      "name": "Frontend build",
+      "command": "cd frontend && npm run build && npm run build:local",
+      "result": "passed"
+    },
+    {
+      "name": "Frontend tests and audit",
+      "command": "cd frontend && npm test && npm audit --audit-level=low",
+      "result": "passed",
+      "tests": 2,
+      "audit_vulnerabilities": 0
+    },
+    {
+      "name": "Packaged app build",
+      "command": "./mvnw -Plocal-app -DskipTests package",
+      "result": "passed"
+    },
+    {
+      "name": "Formatting and whitespace",
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "name": "Documentation and manifest structure",
+      "command": "jq empty docs/reboot/continuation-85-98/manifest.json docs/reboot/continuation-85-98/scrum-owner-manifest.json evidence/continuation-85-98/verification.json && git diff --check",
+      "result": "passed",
+      "notes": "14 consecutive dates, 14 matching chronological cards, 120/180/85/25/10 budgets, 25-minute course cap, course/export/contract equality, exact contract paths and links checked by Day85To98InfrastructureTest."
+    }
+  ],
+  "course_guidance": {
+    "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+    "catalog_verified_at": "2026-10-20",
+    "daily_cap_minutes": 25,
+    "lecture_video_audited": false,
+    "extra_course_access_confirmed": false,
+    "unmapped_postgresql_timeout_topics": "concrete worked examples and official PostgreSQL/Spring/JDBC references; no invented Udemy coverage"
+  },
+  "safety_and_scope": {
+    "main_changed": false,
+    "board_changed": false,
+    "original_dirty_checkout_changed": false,
+    "learner_implementation_committed": false,
+    "future_work_days": 99,
+    "new_runtime_infrastructure": false,
+    "public_fault_injection_route": false,
+    "http_deadline_claimed": false
+  },
+  "hosted_ci": {
+    "status": "pending",
+    "head_sha": null,
+    "run_url": null
+  }
+}

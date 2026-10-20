@@ -27,9 +27,18 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+**Course (reference only; access unconfirmed):** [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps).
+- **Step 63 - Implementing Transaction Management - 3 Things to Decide** — section **Transaction Management**, 4:38 (278 seconds); catalog title verified, video content not audited.
+Use this as transaction foundation only; it does not replace the supplied JDBC/PostgreSQL worked example.
 
-- [https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html) — **TransactionTemplate callback execution**
+**Worked example (within the same cap):** Trace the top-level read-only TransactionTemplate callback: validate positive PostgreSQL budget values, apply only the transaction-local PostgreSQL settings, call the unchanged owner-scoped adapter once, and preserve present/empty. Do not add TransactionTemplate.setTimeout or another timeout mechanism; PostgreSQL statement_timeout is the only SQL-execution budget in this slice.
+
+**Focused sources:**
+- [Spring programmatic transaction management — TransactionTemplate, transaction settings and rollback](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
+- [Spring DataSourceTransactionManager API — Transaction-bound JDBC and transaction timeout integration](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html)
+
+Video viewing: 4:38; allow at most 16:17 for the worked example and focused reading, then 4:05 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

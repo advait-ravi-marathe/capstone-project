@@ -27,9 +27,18 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+**Course (reference only; access unconfirmed):** [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps).
+- **FAQ 3 - Do read only methods need a transaction?** — section **Let's review with a few FAQs about Hibernate and JPA**, 4:58 (298 seconds); catalog title verified, video content not audited.
+Use this as transaction foundation only; it does not replace the supplied JDBC/PostgreSQL worked example.
 
-- [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html) — **Connection binding and read-only setup**
+**Worked example (within the same cap):** Compare successful commit with thrown mapping error/rollback. A Spring readOnly flag alone does not prove no write; use fixed PostgreSQL snapshots and an attempted write.
+
+**Focused sources:**
+- [Spring programmatic transaction management — TransactionTemplate rollback rules](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
+- [Spring DataSourceTransactionManager API — Read-only transaction behavior and connection cleanup](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html)
+
+Video viewing: 4:58; allow at most 16:01 for the worked example and focused reading, then 4:01 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

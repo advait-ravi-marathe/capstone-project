@@ -27,9 +27,18 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-- [https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html) — **cancel()**
+**Worked example (within the same cap):** Contrast Future.get(timeout) with server work still running. Test-only worker owns its Statement, rollback and close; cancel that observed Statement and join worker completion before reborrow.
+
+**Focused sources:**
+- [Java 21 Statement API — Statement.cancel()](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html)
+- [Java 21 Future API — get(timeout, unit) versus cancel](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html)
+- [PostgreSQL 18 Protocol Flow — Canceling requests](https://www.postgresql.org/docs/18/protocol-flow.html#PROTOCOL-FLOW-CANCELING-REQUESTS)
+- [PostgreSQL 18 Error Codes — 57014 query_canceled](https://www.postgresql.org/docs/18/errcodes-appendix.html)
+
+Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

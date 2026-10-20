@@ -6,14 +6,47 @@ lifecycle with a small quote-selection domain rule. All products and quote IDs
 are fixtures; no real insurer, customer, payment, or policy system is connected.
 The learner implementation stays in one explicit TODO method.
 
-## Run the Day 1 checks
+## Run instructor infrastructure checks
 
-With a full JDK 21 (both `java` and `javac`) and network access to Maven
-Central on first use:
+The default Maven suite includes untagged instructor browser/transport checks.
+They exercise the real Chromium-to-Spring-to-PostgreSQL path, so install the
+locked frontend dependencies and build both app shells before running Maven.
+With a full JDK 21 (`java` and `javac`) and network access on first use:
 
 ```sh
+cd frontend
+npm ci
+npm run build
+npm run build:local
+npx playwright install chromium
+cd ..
 ./mvnw test
 ```
+
+If the Playwright browser CDN is unavailable and a compatible system Chromium
+is already installed, skip only the browser download and point the harness at
+that executable. For example, on Ubuntu:
+
+```sh
+cd frontend
+npm ci
+npm run build
+npm run build:local
+cd ..
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw test
+```
+
+The browser harness still runs in this fallback. A missing Playwright package,
+browser executable, or built frontend is an infrastructure setup failure, not
+an expected learner TODO failure. The CI workflow installs the locked browser
+and runs these same instructor checks.
+
+On subsequent runs, `npm ci` and the two builds can be omitted unless the
+lockfile or frontend sources changed.
+
+## Run the Day 1 checks
+
+After the instructor prerequisites above are installed, focused commands are:
 
 The official Maven Wrapper downloads Maven 3.10.0 and verifies its SHA-256
 before use. Start with the focused Day 1 infrastructure smoke check:

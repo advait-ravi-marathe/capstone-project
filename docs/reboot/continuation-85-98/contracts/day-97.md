@@ -27,9 +27,18 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+**Course (reference only; access unconfirmed):** [React - The Complete Guide (incl. Next.js, Redux) — Academind / Maximilian Schwarzmüller](https://www.udemy.com/course/react-the-complete-guide-incl-redux).
+No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
+If the existing React state concepts need review, the selected course has prior reference titles **Rendering Content Conditionally** (section **React Essentials - Components, JSX, Props, State & More**) and **Handling Loading States** (section **Sending Http Requests (e.g. Connecting to a Database)**). This is optional retrieval, not new assigned viewing; it must replace part of this same 25-minute cap.
 
-- [https://jdbc.postgresql.org/documentation/use/](https://jdbc.postgresql.org/documentation/use/) — **Connection handling; no extra socket timeout**
+**Worked example (within the same cap):** In packaged browser, select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.
+
+**Focused sources:**
+- [MDN ARIA status role — Polite status announcements](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role)
+- [MDN ARIA alert role — Urgent message announcements](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role)
+
+Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

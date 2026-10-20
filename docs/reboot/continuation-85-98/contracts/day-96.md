@@ -27,9 +27,17 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-- [https://www.postgresql.org/docs/18/sql-set.html](https://www.postgresql.org/docs/18/sql-set.html) — **SET LOCAL lifetime through transaction completion**
+**Worked example (within the same cap):** Capture backend PID/backend_start and baseline settings. Run commit, lock failure, statement failure and mapping rollback; deliberately reborrow one-slot pool and prove same PID plus reset settings.
+
+**Focused sources:**
+- [PostgreSQL 18 System Administration Functions — set_config and current_setting](https://www.postgresql.org/docs/18/functions-admin.html)
+- [PostgreSQL 18 SET — SET LOCAL transaction scope](https://www.postgresql.org/docs/18/sql-set.html)
+- [PostgreSQL 18 Monitoring Statistics — backend pid and backend_start](https://www.postgresql.org/docs/18/monitoring-stats.html)
+
+Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

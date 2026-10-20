@@ -14,8 +14,7 @@ No new production behavior. Reconfirm the unchanged 4-connection Hikari pool, 2-
 
 The selector is installed and runnable with learner TODOs restored. It may fail at named incomplete learner/prerequisite seams; missing classes, selectors, fixtures, tools or browser setup are infrastructure defects. The default Maven suite is the instructor infrastructure suite and excludes `learnerAcceptance` tests.
 
-**Acceptance selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java` (instructor evidence check only)
-**Acceptance command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
+**Learner acceptance:** None (readiness/evidence review only).
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
 
@@ -27,9 +26,16 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-- [https://www.postgresql.org/docs/18/runtime-config-client.html](https://www.postgresql.org/docs/18/runtime-config-client.html) — **19.11.1 Statement Behavior; lock_timeout and statement_timeout**
+**Worked example (within the same cap):** Draw admission → Hikari checkout → transaction → PostgreSQL lock/query wait → rollback/cleanup. Label which timeout governs each wait. Hikari checkout timeout does not bound SQL after checkout.
+
+**Focused sources:**
+- [PostgreSQL 18 Client Connection Defaults — Statement Behavior: statement_timeout and lock_timeout](https://www.postgresql.org/docs/18/runtime-config-client.html)
+- [Spring DataSourceTransactionManager API — Thread-bound connection; Spring transaction timeout mechanism is context only and not configured here](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html)
+
+Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

@@ -27,9 +27,18 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 ### Concept/course block — 25 minutes
 
-Read the focused primary-source section for 10 minutes, sketch the transaction/resource lifetime for 10 minutes, and teach back the invariant for 5 minutes. These planner allocations are not setup tasks.
+**Course (reference only; access unconfirmed):** [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps).
+- **Step 58 - Introduction to Transaction Management** — section **Transaction Management**, 4:43 (283 seconds); catalog title verified, video content not audited.
+Use this as transaction foundation only; it does not replace the supplied JDBC/PostgreSQL worked example.
 
-- [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/TransactionAwareDataSourceProxy.html](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/TransactionAwareDataSourceProxy.html) — **Class description and transaction-aware connection lookup**
+**Worked example (within the same cap):** Trace ambient-transaction rejection before settings or delegate call; then show TransactionTemplate, JdbcTemplate, and the existing TransactionAwareDataSourceProxy adapter reaching one PostgreSQL backend. Never join or use REQUIRES_NEW.
+
+**Focused sources:**
+- [Spring programmatic transaction management — TransactionTemplate, propagation and rollback](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
+- [Spring DataSourceTransactionManager API — Thread-bound connection lookup](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html)
+
+Video viewing: 4:43; allow at most 16:13 for the worked example and focused reading, then 4:04 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
+
 
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 

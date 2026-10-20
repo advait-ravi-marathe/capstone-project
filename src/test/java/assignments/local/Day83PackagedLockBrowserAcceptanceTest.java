@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.Duration;
 import java.util.UUID;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,12 +23,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class Day83PackagedLockBrowserAcceptanceTest {
     private static final ObjectMapper JSON = new ObjectMapper();
     private static final String CLOCK = "2027-01-10T12:00:00Z";
+    // This historical Day 83 scenario asserts successful reads while the holder owns the lock.
+    // Keep its test-only finite budgets generous; Day 93/97 separately prove short-budget rejection.
+    private static final Map<String, String> GENEROUS_TEST_READ_BUDGET = Map.of(
+            "coverstory.preview.lock-timeout-millis", "120000",
+            "coverstory.preview.statement-timeout-millis", "180000");
 
     @Test
     @Tag("learnerAcceptance")
     void twoBlockedPreviewReadsRejectThirdBeforeJdbcAndManualBrowserReadRecovers() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
-             LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres, CLOCK)) {
+             LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres, CLOCK,
+                     GENEROUS_TEST_READ_BUDGET)) {
             DataSource dataSource = postgres.getPostgresDatabase();
             DatabaseSnapshot before = snapshot(dataSource);
             Path control = Path.of("target/day83-lock-browser", UUID.randomUUID().toString()).toAbsolutePath();

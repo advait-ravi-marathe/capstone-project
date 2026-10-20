@@ -1,0 +1,1230 @@
+{
+  "title": "CoverStory transaction-local PostgreSQL renewal-read budgets: Days 85–98",
+  "base_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+  "checkpoint_sha": "034d6c02f6f21d03ce3467d4b4d60512f91cc469",
+  "course_guidance_commit": "d983c384cf7295c9ba0424e2d604d32f12dfdc06",
+  "effective_start": "2027-01-12",
+  "effective_end": "2027-01-25",
+  "status_semantics": "Contracts and scaffolding do not imply learner implementation, course access/viewing, or completion. Learner work and runtime/instructor evidence are separate axes.",
+  "scope": "Use the existing synchronous owner-scoped policy read inside an owned top-level read-only transaction with transaction-local PostgreSQL lock and statement budgets. Preserve Hikari maximum 4, admission maximum 2 and 1,000 ms acquisition timeout. No HTTP deadline, new infrastructure, automatic retry, production cancellation registry, HTTP-to-JDBC cancellation bridge, new timeout mechanism, or new route.",
+  "capacity_decision": {
+    "application_permits": 2,
+    "hikari_maximum_pool_size": 4,
+    "connection_timeout_millis": 1000,
+    "execution_model": "synchronous servlet MVC and JDBC",
+    "transaction": "one top-level REQUIRED read-only TransactionTemplate; reject ambient transaction",
+    "settings": "parameterized SELECT set_config(setting, value, true) on transaction-bound connection",
+    "adapter": "only existing JdbcPolicyRenewalReadStore receives TransactionAwareDataSourceProxy; TimedPolicyRenewalReadStore remains in components.renewalReadStore",
+    "cleanup": "transaction rollback/commit and transaction-local settings reset complete before outer admission permit release"
+  },
+  "daily_budget_minutes": {
+    "total": 180,
+    "java_dsa": 60,
+    "engineering": 120,
+    "engineering_allocation_minutes": {
+      "implementation_and_testing": 85,
+      "concept_or_course": 25,
+      "evidence": 10
+    }
+  },
+  "dsa_revision_policy": {
+    "intervals_days": [
+      3,
+      7,
+      21
+    ],
+    "due_date_anchor": "actual independent attempt date only",
+    "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+    "failed_review_rule": "A failed or overdue due review replaces new work within the same 60-minute DSA block.",
+    "LC236": "optional only if it is absent from the canonical problem history and prerequisite retrieval is sound; otherwise defer."
+  },
+  "sprints": [
+    {
+      "name": "Sprint 7",
+      "dates": "2027-01-12..2027-01-25",
+      "days_in_this_batch": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14,
+      "unpopulated_dates": []
+    }
+  ],
+  "days": [
+    {
+      "day": 85,
+      "date": "2027-01-12",
+      "title": "Trace PostgreSQL timeout boundaries and prerequisite evidence",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-85.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Day85 baseline/readiness review",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-85.md",
+        "evidence_reference": "evidence/continuation-85-98/day-85.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": null,
+        "acceptance_commands": [],
+        "acceptance_selector_status": "no_learner_selector_readiness_review",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 Client Connection Defaults",
+              "section": "Statement Behavior: statement_timeout and lock_timeout",
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
+            },
+            {
+              "title": "Spring DataSourceTransactionManager API",
+              "section": "Thread-bound connection; Spring transaction timeout mechanism is context only and not configured here",
+              "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Draw admission → Hikari checkout → transaction → PostgreSQL lock/query wait → rollback/cleanup. Label which timeout governs each wait. Hikari checkout timeout does not bound SQL after checkout.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-12",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 86,
+      "date": "2027-01-13",
+      "title": "Validate finite ordered PostgreSQL read budgets",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-86.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewReadBudgetPolicy.validate",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-86.md",
+        "evidence_reference": "evidence/continuation-85-98/day-86.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#budgetPolicyRejectsNonPositiveUnrepresentableAndUnorderedBudgets test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 Client Connection Defaults",
+              "section": "Statement Behavior: positive lock_timeout and statement_timeout",
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Work zero, negative, valid, equal, reversed, and overflow budgets. PostgreSQL zero disables a timeout, so reject it; require positive representable integer milliseconds and lock budget < statement budget.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-13",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 87,
+      "date": "2027-01-14",
+      "title": "Own one top-level read-only transaction and bridge the adapter",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-87.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "TimedPolicyRenewalReadStore transaction guard and supplied connection bridge",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-87.md",
+        "evidence_reference": "evidence/continuation-85-98/day-87.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#rejectsAmbientTransactionBeforeCallingDelegate test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 58 - Introduction to Transaction Management",
+              "section_title": "Transaction Management",
+              "duration_seconds": 283,
+              "source_item_id": "7907610",
+              "course_id": "1341538"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transaction management",
+              "section": "TransactionTemplate, propagation and rollback",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+            },
+            {
+              "title": "Spring DataSourceTransactionManager API",
+              "section": "Thread-bound connection lookup",
+              "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html"
+            }
+          ],
+          "video_seconds": 283,
+          "worked_reference_seconds": 973,
+          "teachback_seconds": 244,
+          "fit": "partial_foundation",
+          "scope_note": "Trace ambient-transaction rejection before settings or delegate call; then show TransactionTemplate, JdbcTemplate, and the existing TransactionAwareDataSourceProxy adapter reaching one PostgreSQL backend. Never join or use REQUIRES_NEW.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-14",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 88,
+      "date": "2027-01-15",
+      "title": "Apply transaction-local budgets with parameterized set_config",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-88.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PgLocalReadBudgets.apply",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-88.md",
+        "evidence_reference": "evidence/continuation-85-98/day-88.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#setsTransactionLocalBudgetsOnSameBackend test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 System Administration Functions",
+              "section": "set_config and current_setting",
+              "url": "https://www.postgresql.org/docs/18/functions-admin.html"
+            },
+            {
+              "title": "PostgreSQL 18 SET",
+              "section": "SET LOCAL transaction scope",
+              "url": "https://www.postgresql.org/docs/18/sql-set.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-15",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 89,
+      "date": "2027-01-16",
+      "title": "Run one unchanged owner-scoped read inside the timed decorator",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-89.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "TimedPolicyRenewalReadStore.findByPolicyIdAndOwnerId",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-89.md",
+        "evidence_reference": "evidence/continuation-85-98/day-89.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#delegatesExactlyOnceAndPreservesPresentAndEmptyFacts test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+              "section_title": "Transaction Management",
+              "duration_seconds": 278,
+              "source_item_id": "7907620",
+              "course_id": "1341538"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transaction management",
+              "section": "TransactionTemplate, transaction settings and rollback",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+            },
+            {
+              "title": "Spring DataSourceTransactionManager API",
+              "section": "Transaction-bound JDBC and transaction timeout integration",
+              "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html"
+            }
+          ],
+          "video_seconds": 278,
+          "worked_reference_seconds": 977,
+          "teachback_seconds": 245,
+          "fit": "partial_foundation",
+          "scope_note": "Trace the top-level read-only TransactionTemplate callback: validate positive PostgreSQL budget values, apply only the transaction-local PostgreSQL settings, call the unchanged owner-scoped adapter once, and preserve present/empty. Do not add TransactionTemplate.setTimeout or another timeout mechanism; PostgreSQL statement_timeout is the only SQL-execution budget in this slice.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-16",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 90,
+      "date": "2027-01-17",
+      "title": "Prove read-only enforcement and mapping-failure rollback",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-90.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "TimedPolicyRenewalReadStore transaction outcome",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-90.md",
+        "evidence_reference": "evidence/continuation-85-98/day-90.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#readOnlyAndMappingFailureRollbackBeforeReturn test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "FAQ 3 - Do read only methods need a transaction?",
+              "section_title": "Let's review with a few FAQs about Hibernate and JPA",
+              "duration_seconds": 298,
+              "source_item_id": "7907532",
+              "course_id": "1341538"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transaction management",
+              "section": "TransactionTemplate rollback rules",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+            },
+            {
+              "title": "Spring DataSourceTransactionManager API",
+              "section": "Read-only transaction behavior and connection cleanup",
+              "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html"
+            }
+          ],
+          "video_seconds": 298,
+          "worked_reference_seconds": 961,
+          "teachback_seconds": 241,
+          "fit": "partial_foundation",
+          "scope_note": "Compare successful commit with thrown mapping error/rollback. A Spring readOnly flag alone does not prove no write; use fixed PostgreSQL snapshots and an attempted write.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-17",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 91,
+      "date": "2027-01-18",
+      "title": "Recover and explain cleanup before admission reuse",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-91.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery/explain-back; no new feature",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-91.md",
+        "evidence_reference": "evidence/continuation-85-98/day-91.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#repeatedRecoveryRestoresSessionBaselineBeforePermitReuse test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transaction management",
+              "section": "TransactionTemplate rollback",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+            },
+            {
+              "title": "PostgreSQL 18 SET",
+              "section": "SET LOCAL reset after commit or rollback",
+              "url": "https://www.postgresql.org/docs/18/sql-set.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Review failure → rollback → local settings reset → outer admission release → successful next read. Repair prerequisite selectors; no feature.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-18",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 92,
+      "date": "2027-01-19",
+      "title": "Translate only bounded-read SQL states safely",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-92.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewReadFailureTranslator.translate and safe 503 mapping",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-92.md",
+        "evidence_reference": "evidence/continuation-85-98/day-92.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#translatesOnlyKnownStatesWithoutDroppingCauses test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 Error Codes",
+              "section": "55P03 lock_not_available and 57014 query_canceled",
+              "url": "https://www.postgresql.org/docs/18/errcodes-appendix.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Classify nested SQLExceptions while preserving causes and safe response. 57014 means query_canceled, not uniquely statement_timeout; 55P03 is not unique proof of a timeout either.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-19",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 93,
+      "date": "2027-01-20",
+      "title": "Prove a real relation lock timeout before holder release",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-93.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "ACCESS EXCLUSIVE lock harness",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-93.md",
+        "evidence_reference": "evidence/continuation-85-98/day-93.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#realRelationLockTimeoutIsObservedAndCleanupFinishesBeforeRelease test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 Explicit Locking",
+              "section": "Table-level ACCESS SHARE and ACCESS EXCLUSIVE locks",
+              "url": "https://www.postgresql.org/docs/18/explicit-locking.html"
+            },
+            {
+              "title": "PostgreSQL 18 Client Connection Defaults",
+              "section": "lock_timeout and statement_timeout",
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
+            },
+            {
+              "title": "PostgreSQL 18 Monitoring Statistics",
+              "section": "pg_stat_activity wait_event and transaction fields",
+              "url": "https://www.postgresql.org/docs/18/monitoring-stats.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Use a holder connection with a real ACCESS EXCLUSIVE relation lock and the actual owner-scoped reader. Observe PostgreSQL wait state; prove failure and rollback before holder release; cleanup in finally.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-20",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 94,
+      "date": "2027-01-21",
+      "title": "Prove statement_timeout through the same transaction boundary",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-94.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Real pg_sleep statement-timeout harness",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-94.md",
+        "evidence_reference": "evidence/continuation-85-98/day-94.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#statementTimeoutUsesSameTransactionBoundaryAndFastControlPasses test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 Date/Time Functions",
+              "section": "Delaying Execution with pg_sleep",
+              "url": "https://www.postgresql.org/docs/18/functions-datetime.html"
+            },
+            {
+              "title": "PostgreSQL 18 Client Connection Defaults",
+              "section": "statement_timeout",
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Run test-only `SELECT pg_sleep(...)` beyond the local statement budget with no lock contention. Verify cancellation/rollback and a useful next read; avoid latency thresholds.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-21",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 95,
+      "date": "2027-01-22",
+      "title": "Separate Future waiting from JDBC Statement cancellation",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-95.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Isolated JDBC cancellation lab; no production API",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-95.md",
+        "evidence_reference": "evidence/continuation-85-98/day-95.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/JdbcCancellationLabAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=JdbcCancellationLabAcceptanceTest#futureTimeoutDoesNotCancelSqlAndWorkerOwnsCleanup test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Java 21 Statement API",
+              "section": "Statement.cancel()",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html"
+            },
+            {
+              "title": "Java 21 Future API",
+              "section": "get(timeout, unit) versus cancel",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html"
+            },
+            {
+              "title": "PostgreSQL 18 Protocol Flow",
+              "section": "Canceling requests",
+              "url": "https://www.postgresql.org/docs/18/protocol-flow.html#PROTOCOL-FLOW-CANCELING-REQUESTS"
+            },
+            {
+              "title": "PostgreSQL 18 Error Codes",
+              "section": "57014 query_canceled",
+              "url": "https://www.postgresql.org/docs/18/errcodes-appendix.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Contrast Future.get(timeout) with server work still running. Test-only worker owns its Statement, rollback and close; cancel that observed Statement and join worker completion before reborrow.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-22",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 96,
+      "date": "2027-01-23",
+      "title": "Verify one-slot backend baseline reset after every outcome",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-96.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "One-slot JDBC pool recovery acceptance",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-96.md",
+        "evidence_reference": "evidence/continuation-85-98/day-96.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#oneSlotPoolReusesSameBackendAndBaselineAfterEveryOutcome test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 System Administration Functions",
+              "section": "set_config and current_setting",
+              "url": "https://www.postgresql.org/docs/18/functions-admin.html"
+            },
+            {
+              "title": "PostgreSQL 18 SET",
+              "section": "SET LOCAL transaction scope",
+              "url": "https://www.postgresql.org/docs/18/sql-set.html"
+            },
+            {
+              "title": "PostgreSQL 18 Monitoring Statistics",
+              "section": "backend pid and backend_start",
+              "url": "https://www.postgresql.org/docs/18/monitoring-stats.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Capture backend PID/backend_start and baseline settings. Run commit, lock failure, statement failure and mapping rollback; deliberately reborrow one-slot pool and prove same PID plus reset settings.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-23",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 97,
+      "date": "2027-01-24",
+      "title": "Prove packaged authenticated timeout recovery and one explicit retry",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-97.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Actual JAR + authenticated UI + real relation lock",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-97.md",
+        "evidence_reference": "evidence/continuation-85-98/day-97.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/local/Day97PackagedTimeoutBrowserAcceptanceTest.java",
+        "acceptance_commands": [
+          "npm --prefix frontend ci",
+          "npm --prefix frontend run build:local",
+          "./mvnw -Plocal-app -DskipTests package",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Plocal-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "selected_title_confirmed_access_unconfirmed"
+            }
+          ],
+          "lessons": [],
+          "optional_reference_lessons": [
+            {
+              "title": "Rendering Content Conditionally",
+              "section_title": "React Essentials - Components, JSX, Props, State & More",
+              "duration_seconds": 483,
+              "source_item_id": "39649252"
+            },
+            {
+              "title": "Handling Loading States",
+              "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+              "duration_seconds": 327,
+              "source_item_id": "39836954"
+            }
+          ],
+          "resources": [
+            {
+              "title": "MDN ARIA status role",
+              "section": "Polite status announcements",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role"
+            },
+            {
+              "title": "MDN ARIA alert role",
+              "section": "Urgent message announcements",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "reuse_existing_course_foundation",
+          "scope_note": "In packaged browser, select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-24",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    },
+    {
+      "day": 98,
+      "date": "2027-01-25",
+      "title": "Recover, run selectors and diagnose a lifetime defect",
+      "contract_file": "docs/reboot/continuation-85-98/contracts/day-98.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_prior_learner_seams_and_packaged_runtime_evidence",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Independent evidence review; no new feature",
+        "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-98.md",
+        "evidence_reference": "evidence/continuation-85-98/day-98.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#injectedLifetimeDefectIsDetectedWithoutTreatingItAsEmptySuccess test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day85To98InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 Client Connection Defaults",
+              "section": "lock_timeout and statement_timeout boundaries",
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
+            },
+            {
+              "title": "PostgreSQL 18 Error Codes",
+              "section": "55P03 and 57014 semantics",
+              "url": "https://www.postgresql.org/docs/18/errcodes-appendix.html"
+            },
+            {
+              "title": "Java 21 Future API",
+              "section": "Timed wait versus cancellation",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Explain checkout, lock, statement and caller-wait boundaries, local settings, same-backend cleanup and SQLSTATE ambiguity. Assess actual selectors, not dates or instructor pass.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "All assigned video, pauses, worked example, focused references and teach-back fit within the single existing 25-minute engineering block; carry forward and shrink implementation if unfinished."
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_queue_first; no attempt inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-25",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted"
+      }
+    }
+  ]
+}
