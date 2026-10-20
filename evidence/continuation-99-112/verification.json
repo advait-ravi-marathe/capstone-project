@@ -3,8 +3,8 @@
   "state": "instructor_scaffold_and_temporary_witnesses_verified; learner_todos_restored; restored-starter-packaged-selector-blocked-at-explicit-Day86-TODO",
   "base_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
   "branch": "learning/coverstory-days-99-112",
-  "source_and_contract_sha": "287d8374ebfb3853d919e8f85a44ac58971bb7a7",
-  "verified_at": "2026-10-20T19:24:21Z",
+  "source_and_contract_sha": "9a3a11b56a1b8f2e568f378deccc453144d0b78e",
+  "verified_at": "2026-10-20T19:31:16Z",
   "scope": "Review fixes and fixed acceptance/instructor scaffolding only. No learner solution, DSA attempt, board edit, main change, or original dirty-worktree change is recorded.",
   "commands": [
     {
@@ -80,18 +80,18 @@
   "original_dirty_checkout_modified": false,
   "hosted_ci": {
     "status": "completed_success",
-    "run_number": 46,
-    "run_id": 39482983186,
-    "head_sha": "287d8374ebfb3853d919e8f85a44ac58971bb7a7",
-    "completed_at": "2026-10-20T19:24:21Z",
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39482983186",
-    "result": "Exact-head workflow passed all steps: frontend dependency install, Chromium setup, both frontend builds, packaged Spring Boot app, Java instructor/infrastructure harness, frontend instructor tests, and dependency audit."
+    "run_number": 48,
+    "run_id": 39483944509,
+    "head_sha": "9a3a11b56a1b8f2e568f378deccc453144d0b78e",
+    "completed_at": "2026-10-20T19:31:16Z",
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39483944509",
+    "result": "Exact-head workflow passed all steps including frontend setup/build, Chromium setup, packaged Spring Boot app, Java instructor/infrastructure harness, frontend instructor tests, and dependency audit."
   },
   "followup_review": {
     "reviewed_code_sha": "c688706755b189c82c0ef7d3d90495200c39f238",
     "independent_runtime_result": "Reviewer reports durable/restart/command selectors 16/16 and revised packaged HTTP-client + JAR + PostgreSQL selector 2/2 with temporary conforming prerequisites; prior infrastructure 4/4 and exact-head CI run 45 passed.",
     "packaged_scope": "Authenticated Java HTTP client against packaged JAR and disposable PostgreSQL; not Chromium. The independent reviewer confirmed witness cleanup/restoration.",
-    "new_delta_after_review": "The post-c688706 delta adds fixed invalid-limit acceptance tests, corrects the Day101 three-call trace, makes Day105 strictly prior-only, synchronizes contract/export/evidence commands, and adds static synchronization assertions. It does not change runtime implementation. The temporary packaged witness was independently reported at c688706, before this delta.",
+    "new_delta_after_review": "The post-c688706 delta adds fixed invalid-limit acceptance tests, corrects the Day101 three-call trace, makes Day105 strictly prior-only, synchronizes contract/export/evidence commands, and adds static synchronization assertions. It does not change runtime implementation. The temporary packaged witness was independently reported at c688706, before this delta. The subsequent documentation-only correction wraps the Day111/112 frontend build in a subshell so following Maven commands run from repository root.",
     "learner_completion": "not credited"
   },
   "current_followup_checks": {
@@ -100,6 +100,7 @@
     "new_limit_acceptance_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests '-Dtest=DurableIssuanceAcceptanceTest#day101RejectsInvalidCaptureLimitsBeforeChangingRows+day102RejectsInvalidPendingLimitsWithoutChangingRows+day106RejectsOutOfRangeBatchLimitBeforeAnyStoreCall' test",
     "new_limit_acceptance_result": "expected TODO red: 3 tests, 3 assertion failures, all due to the restored Day101/102/106 methods throwing the corresponding named UnsupportedOperationException TODO instead of IllegalArgumentException. No missing selector or infrastructure failure.",
     "static_result": "passed: manifest/export/contracts/evidence acceptance and infrastructure command equality 14/14; Day101 three-call trace, Day105 prior-only scope, JSON parsing, and git diff --check.",
-    "prior_only_day105_selector": "executed exact documented prior-only pattern: 10 tests, 2 assertion failures and 8 errors at named Day99/101/102/103/104 TODOs; no Day106 or restart tests were selected."
+    "prior_only_day105_selector": "executed exact documented prior-only pattern: 10 tests, 2 assertion failures and 8 errors at named Day99/101/102/103/104 TODOs; no Day106 or restart tests were selected.",
+    "command_cwd_result": "passed: every Days99–112 acceptance/infrastructure command sequence keeps repository-root working directory; Day111/112 frontend install/build uses a subshell."
   }
 }
