@@ -1,7 +1,7 @@
 {
   "status": "verified",
   "base_sha": "640ae79d1d07801634664b8a02056b053504631e",
-  "tested_tree_sha": "9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c",
+  "tested_tree_sha": "088ed0ee771979f81161d88b0a992adea4434991",
   "tests": [
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
@@ -37,6 +37,15 @@
       "errors": 10,
       "skipped": 0,
       "details": "Restored starter reaches named Days113,115,116,118,120,121,124 TODOs. The downstream concurrency/restart failures follow from the intentionally missing lock/recovery learner implementations; the same complete harness passed with temporary conforming witnesses. Not learner completion."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day116QuarantineIsAtomicAndReceiptAware test",
+      "result": "passed_with_day117_release_todo",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "details": "Day116 passes while JdbcManualRecoveryStore.release remains a temporary throwing Day117 learner TODO; the test fixture seeds prior control history without calling the later seam. Original learner source SHA-256 was restored after the run."
     }
   ],
   "temporary_conforming_witnesses": [
@@ -97,27 +106,45 @@
   },
   "board_changes": false,
   "main_branch_changes": false,
-  "notes": "The restored starter remains intentionally red at named learner TODOs; temporary witness results are instructor harness evidence only, not learner completion. The new packaged selector is local CLI/JAR/PostgreSQL, not HTTP or Chromium. Main, Scrum board, and original dirty checkout were not changed. Code snapshot 9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c passed exact-head CI #56; this verification receipt will be a metadata-only descendant and receive its own exact-head CI.",
-  "tested_code_sha": "9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c",
+  "notes": "The restored starter remains intentionally red at named learner TODOs; temporary witness results are instructor harness evidence only, not learner completion. The new packaged selector is local CLI/JAR/PostgreSQL, not HTTP or Chromium. Main, Scrum board, and original dirty checkout were not changed. Runtime/test snapshot 6749a52af8e774d3394ce0d0c9d54da66028ff01 passed exact-head CI #58 and independent Day116/packaged runtime review. This receipt-only descendant records those results; its own exact-head CI is checked separately.",
+  "tested_code_sha": "6749a52af8e774d3394ce0d0c9d54da66028ff01",
   "code_commit_exact_head_ci": {
     "workflow": "CoverStory starter checks",
-    "run_number": 56,
-    "run_id": 39498763257,
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39498763257",
-    "head_sha": "9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c",
+    "run_number": 58,
+    "run_id": 39499649008,
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39499649008",
+    "head_sha": "6749a52af8e774d3394ce0d0c9d54da66028ff01",
     "status": "completed",
     "conclusion": "success",
-    "completed_at": "2026-10-20T21:15:57Z",
+    "completed_at": "2026-10-20T21:22:33Z",
     "source": "Authenticated GitHub Actions run/jobs read; exact head matched."
+  },
+  "independent_final_runtime_review": {
+    "tested_code_sha": "6749a52af8e774d3394ce0d0c9d54da66028ff01",
+    "day116_with_day117_release_todo": {
+      "result": "passed",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    "packaged_cli_jar_postgresql": {
+      "result": "passed",
+      "selector": "LocalPackagedManualRecoveryAcceptanceTest#packagedManualRecoveryPreservesFullSnapshots",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "details": "The independent reviewer exercised an executable JAR and embedded PostgreSQL. Full work state excluding only acknowledged_at and all history rows were compared across first retry. No HTTP or Chromium claim."
+    },
+    "temporary_witness_restoration": "All 11 temporary source witnesses restored; generated artifacts removed; worktree clean. No learner completion credit."
   },
   "review_correction_evidence": {
     "scope": "Test-only exact-state oracle tightening; no learner/runtime implementation changed.",
     "assertions": [
-      "Day116/117 preserve all work columns except explicit control fields, retain source and receipt JSON, preserve every previous history row exactly, and validate each appended action/reason/revision/time.",
+      "Day116/117 preserve all work columns except explicit control fields, retain source and receipt JSON, preserve every previous history row exactly, and validate each appended action/reason/revision/time. Day116 fixture seeds its prior control episode directly and does not invoke Day117 release.",
       "Day120 ambient transaction test counts prepared JDBC statements and proves rejection occurs before any store observation.",
       "Concurrency tests compare the allowed work/control/history deltas and capture the complete receipt JSON, including received_at, in the writer transaction before release.",
       "Day123 compares the complete work row excluding only acknowledged_at across fresh-JVM reconciliation; ack is checked separately.",
-      "Packaged CLI recovery begins with prior history and proves quarantine/release/retry append only allowed state while preserving original history, full work envelope, source and receipt state."
+      "Packaged CLI recovery begins with prior history and proves quarantine/release/retry append only allowed state while preserving original history, full work envelope, source and receipt state. The first retry captures full work JSON immediately beforehand and permits only acknowledged_at to change; all control history must remain byte-equivalent."
     ],
     "temporary_conforming_witnesses": {
       "acceptance_selector_tests": 21,
@@ -129,5 +156,6 @@
       "result": "passed"
     },
     "temporary_witnesses_are_not_learner_completion": true
-  }
+  },
+  "receipt_commit_relation": "This receipt-only commit records code commit 6749a52af8e774d3394ce0d0c9d54da66028ff01 and its exact-head CI run 58. The receipt descendant receives a separate exact-head CI run; it does not alter the tested runtime or test snapshot."
 }
