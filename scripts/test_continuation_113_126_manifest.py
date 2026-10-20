@@ -56,6 +56,7 @@ class ContinuationManifestTests(unittest.TestCase):
                 self.assertEqual(1500, day["engineering"]["study_seconds"]["total"])
                 course = day["engineering"]["concept_course"]["courses"][0]
                 self.assertEqual("1341538", course["course_id"])
+                self.assertEqual("https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/", course["url"])
                 self.assertEqual("unconfirmed_reference_only", course["access_status"])
                 md = (ROOT / day["contract_file"]).read_text()
                 self.assertIn(lessons[0]["title"], md)
@@ -74,7 +75,10 @@ class ContinuationManifestTests(unittest.TestCase):
         for day in self.manifest["days"]:
             for command in day["engineering"]["acceptance_commands"]:
                 self.assertNotIn("TODO", command)
-                self.assertIn("./mvnw", command)
+                if command.startswith("(cd frontend &&"):
+                    self.assertEqual("(cd frontend && npm ci && npm run build && npm run build:local)", command)
+                else:
+                    self.assertIn("./mvnw", command)
 
 if __name__ == "__main__":
     unittest.main()

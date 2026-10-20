@@ -1,5 +1,5 @@
 {
-  "title": "Days 113\u2013126 chronological course guidance and ticket export; no board writes",
+  "title": "Days 113–126 chronological course guidance and ticket export; no board writes",
   "story_count": 14,
   "sprint_boundaries": [
     {
@@ -137,7 +137,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Implement exact-key inspection of one joined work/receipt observation; history is separate supplementary data limited to 20 rows.",
+        "scope": "Implement exact-key inspection of absent, matching, conflicting, and missing work/receipt evidence with no mutations; history is separate supplementary data limited to 20 rows.",
         "learner_seam": "JdbcManualRecoveryStore.inspect",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-115.md",
         "evidence_reference": "evidence/continuation-113-126/day-115.json",
@@ -153,7 +153,7 @@
               "course_id": "1341538",
               "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
               "instructor": "in28Minutes Official",
-              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners/",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
               "access_status": "unconfirmed_reference_only"
             }
           ],
@@ -218,9 +218,9 @@
         "evidence_reference": "evidence/continuation-113-126/day-116.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day116QuarantineIsAtomicAndReceiptAware test"
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day116* test"
         ],
-        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "acceptance_selector_status": "installed_amended_pending_witness",
         "concept_course": {
           "minutes": 25,
           "courses": [
@@ -228,7 +228,7 @@
               "course_id": "1341538",
               "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
               "instructor": "in28Minutes Official",
-              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners/",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
               "access_status": "unconfirmed_reference_only"
             }
           ],
@@ -287,7 +287,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Release only the active hold at the expected revision, advance revision and append reasoned history atomically. Prove ABA r0\u2192r1\u2192r2\u2192r3 rejects stale r1.",
+        "scope": "Release only the active hold at the expected revision, advance revision and append reasoned history atomically. Prove ABA r0→r1→r2→r3 rejects stale r1.",
         "learner_seam": "JdbcManualRecoveryStore.release",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-117.md",
         "evidence_reference": "evidence/continuation-113-126/day-117.json",
@@ -312,7 +312,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_worked_supplement",
-          "scope_note": "Quarantine r0\u2192r1; release with expected r1\u2192r2; quarantine\u2192r3. A stale release expecting r1 must leave r3 and its history unchanged.",
+          "scope_note": "Quarantine r0→r1; release with expected r1→r2; quarantine→r3. A stale release expecting r1 must leave r3 and its history unchanged.",
           "supplement_required": true,
           "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
         },
@@ -344,7 +344,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Compose the recovery-aware store around the existing JDBC store. Filter quarantine in SQL before ORDER BY/LIMIT. Preserve fail-fast delivery and shared row lock.",
+        "scope": "Compose the recovery-aware store around the existing JDBC store. Filter holds in SQL before ORDER BY/LIMIT and reject limits outside [1,20] before querying.",
         "learner_seam": "RecoveryAwareIssuanceWorkStore.findPending",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-118.md",
         "evidence_reference": "evidence/continuation-113-126/day-118.json",
@@ -360,9 +360,9 @@
           "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "PostgreSQL 18 transaction isolation",
-              "url": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
-              "reading_focus": "Apply hold predicate before ordering and LIMIT."
+              "title": "PostgreSQL 18 SELECT",
+              "url": "https://www.postgresql.org/docs/18/sql-select.html",
+              "reading_focus": "Apply the quarantine predicate in WHERE before ORDER BY and LIMIT."
             }
           ],
           "video_seconds": 0,
@@ -391,7 +391,7 @@
     {
       "day_number": 119,
       "date": "2027-02-15",
-      "title": "Recover and assess Days 113\u2013118",
+      "title": "Recover and assess Days 113–118",
       "sprint": "Sprint 9",
       "budget_minutes": 180,
       "engineering": {
@@ -401,7 +401,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery only: rerun and repair Days 113\u2013118. Do not test retry, concurrency, process restart, command or package work planned later.",
+        "scope": "Recovery only: rerun and repair Days 113–118. Do not test retry, concurrency, process restart, command or package work planned later.",
         "learner_seam": "Review/remediation only",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-119.md",
         "evidence_reference": "evidence/continuation-113-126/day-119.json",
@@ -459,7 +459,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Retry/reconcile exactly one stable key; reject ambient transaction before stores. Receipt and acknowledgement use separate READ COMMITTED transactions.",
+        "scope": "Retry/reconcile exactly one stable key; reject ambient transactions before stores. Prove receipt commit is visible from a raw connection distinct from the transaction-bound backend before ack; injected ack failure retains receipt.",
         "learner_seam": "ManualRecoveryService.retryOne",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-120.md",
         "evidence_reference": "evidence/continuation-113-126/day-120.json",
@@ -475,7 +475,7 @@
               "course_id": "1341538",
               "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
               "instructor": "in28Minutes Official",
-              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners/",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
               "access_status": "unconfirmed_reference_only"
             }
           ],
@@ -534,15 +534,16 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Map a completed one-key attempt from pre-attempt durable evidence. Distinguish a new local receipt from reconciliation; conflicting or missing evidence never becomes success.",
+        "scope": "Exercise lost reply after receipt commit, fresh evidence/reconciliation, database unavailable as unknown, and service-level refusal of ack-without-receipt/conflicting evidence.",
         "learner_seam": "RecoveryOutcomePolicy.afterAcknowledgment",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-121.md",
         "evidence_reference": "evidence/continuation-113-126/day-121.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/Day121RecoveryOutcomePolicyTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=Day121RecoveryOutcomePolicyTest test"
+          "./mvnw -Plearner-tests -Dtest=Day121RecoveryOutcomePolicyTest test",
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day121* test"
         ],
-        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "acceptance_selector_status": "installed_amended_pending_witness",
         "concept_course": {
           "minutes": 25,
           "courses": [],
@@ -607,7 +608,7 @@
               "course_id": "1341538",
               "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
               "instructor": "in28Minutes Official",
-              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners/",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
               "access_status": "unconfirmed_reference_only"
             }
           ],
@@ -666,15 +667,15 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Prove hold and receipt survive a fresh application JVM against the same running disposable PostgreSQL. Await and clean up every child on all paths.",
+        "scope": "Prove fresh JVM recovery: held A remains held while JVM B retries eligible B; after release, kill JVM after receipt commit/before ack and reconcile same receipt in JVM C.",
         "learner_seam": "ManualRecoveryRestartAcceptanceTest assertions",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-123.md",
         "evidence_reference": "evidence/continuation-113-126/day-123.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryRestartAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ManualRecoveryRestartAcceptanceTest#freshJvmRespectsHoldAndRelease test"
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryRestartAcceptanceTest test"
         ],
-        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "acceptance_selector_status": "installed_amended_pending_witness",
         "concept_course": {
           "minutes": 25,
           "courses": [],
@@ -739,7 +740,7 @@
               "course_id": "1341538",
               "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
               "instructor": "in28Minutes Official",
-              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners/",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
               "access_status": "unconfirmed_reference_only"
             }
           ],
@@ -798,16 +799,18 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Prove explicit one-key inspect/quarantine/release/retry through the packaged JAR and disposable PostgreSQL. Keep protected issuance replay and renewal-preview no-write as an existing compatibility regression, not a new Chromium/UI claim.",
+        "scope": "Use the packaged JAR CLI and disposable PostgreSQL to prove recovery of held A and eligible B, stable receipt/evidence, and complete row snapshots. Existing protected issuance/preview compatibility is separate.",
         "learner_seam": "LocalPackagedManualRecoveryAcceptanceTest integration assertion",
         "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-125.md",
         "evidence_reference": "evidence/continuation-113-126/day-125.json",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedManualRecoveryAcceptanceTest.java",
         "acceptance_commands": [
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
-        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "acceptance_selector_status": "installed_amended_pending_witness",
         "concept_course": {
           "minutes": 25,
           "courses": [],
@@ -862,11 +865,13 @@
         "evidence_reference": "evidence/continuation-113-126/day-126.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,LocalPackagedManualRecoveryAcceptanceTest test",
-          "./mvnw -Dtest=Day113To126InfrastructureTest test",
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest,Day113To126InfrastructureTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
         ],
-        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "acceptance_selector_status": "installed_amended_pending_witness",
         "concept_course": {
           "minutes": 25,
           "courses": [],

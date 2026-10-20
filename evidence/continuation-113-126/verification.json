@@ -1,34 +1,21 @@
 {
-  "status": "verified_exact_head_ci_success",
+  "status": "locally_verified_pending_publish",
   "base_sha": "640ae79d1d07801634664b8a02056b053504631e",
-  "tested_tree_sha": "91cb09ffc7e680c50c6a0025875b69166e36cbee",
-  "code_commit_sha": "c46066108098e52e8074550f6d0946a77ee4f8c8",
-  "final_head_sha": "c46066108098e52e8074550f6d0946a77ee4f8c8",
-  "exact_head_ci": {
-    "workflow": "CoverStory starter checks",
-    "run_number": 50,
-    "run_id": 39492589711,
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39492589711",
-    "head_sha": "c46066108098e52e8074550f6d0946a77ee4f8c8",
-    "status": "completed",
-    "conclusion": "success",
-    "completed_at": "2026-10-20T20:32:26Z",
-    "source": "Authenticated GitHub Actions run read; exact head SHA matched."
-  },
+  "tested_tree_sha": "working-tree-before-correction-commit",
   "tests": [
     {
-      "command": "./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
       "result": "passed",
-      "details": "Packaged executable JAR from the restored starter TODO sources with Java 21 and local frontend assets."
+      "details": "Executable JAR rebuilt after temporary witnesses were removed, using Java 21 and locally built frontend assets."
     },
     {
-      "command": "./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 test",
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 test",
       "result": "passed",
       "tests": 50,
       "failures": 0,
       "errors": 0,
       "skipped": 0,
-      "details": "Default instructor/infrastructure regression suite; includes prior browser transport infrastructure harness. No learner acceptance tests were counted as completion."
+      "details": "Default instructor/infrastructure regression suite, including prior browser transport tests on system Chromium. No learner completion credit."
     },
     {
       "command": "python3 -m unittest scripts/test_continuation_113_126_manifest.py scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
@@ -40,25 +27,26 @@
     {
       "command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-09",
       "result": "passed",
-      "details": "Canonical queue preserved; no new attempts or anchors recorded. Existing actual_first_attempt_date fields remain null; this does not assert private work was not done."
+      "details": "Canonical actual-attempt queue preserved; no new attempt or anchor recorded."
     },
     {
-      "command": "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
       "result": "expected_learner_todo_red",
-      "tests": 15,
-      "failures": 5,
+      "tests": 19,
+      "failures": 8,
       "errors": 10,
-      "details": "Restored starter reached named Day 113/115/116/117/118/120/121/124 TODOs and prior Day 99/103 prerequisite TODOs. This is not instructor infrastructure failure and is not learner completion."
+      "skipped": 0,
+      "details": "Restored starter reaches named Days113,115,116,118,120,121,124 TODOs. The downstream concurrency/restart failures follow from the intentionally missing lock/recovery learner implementations; the same complete harness passed with temporary conforming witnesses. Not learner completion."
     }
   ],
   "temporary_conforming_witnesses": [
     {
       "command": "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest,Day113To126InfrastructureTest test",
       "result": "passed",
-      "tests": 17,
+      "tests": 21,
       "failures": 0,
       "errors": 0,
-      "details": "Temporary witnesses supplied existing Day 99 and Day 101\u2013104 prerequisites plus new Day 113/115\u2013118/120/121/124 seams. Real PostgreSQL acceptance included both controlled lock orders, row-state rollback, stale release/ABA, independent receipt visibility before ack, fresh-JVM hold/release, and V005 constraints."
+      "details": "Temporary witnesses filled Day99/101–104 prerequisites and Days113/115–118/120/121/124 learner seams. Real PostgreSQL tested inspection evidence, constraints, rollback, both lock orders, stale revision/ABA, independent-connection receipt commit before ack, post-commit lost reply, unavailable DB, service-level conflict refusal, and fresh-JVM hold/release/crash/replay. Witness passes are not learner credit."
     },
     {
       "command": "./mvnw -Plocal-app -DskipTests clean package && ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test",
@@ -66,42 +54,48 @@
       "tests": 1,
       "failures": 0,
       "errors": 0,
-      "details": "Temporary witnesses only; packaged executable JAR exercised inspect/quarantine/release/retry/replay and full state/source snapshots against disposable PostgreSQL. HTTP-client/JAR integration only; no new Chromium/UI claim."
+      "details": "Temporary witnesses only. Actual packaged CLI/JAR and disposable PostgreSQL exercised held A with eligible B, inspect/quarantine/release/retry/replay, and complete state/source snapshots. No HTTP-client or Chromium claim for this new selector."
     }
   ],
   "negative_witnesses": [
     {
       "mutation": "filter quarantined rows after SQL LIMIT",
       "result": "killed",
-      "details": "Day 118 selector failed with expected one eligible row but got zero."
+      "details": "Day118 selector failed: eligible row was omitted."
     },
     {
-      "mutation": "ignore expected revision on release (boolean-only stale check)",
+      "mutation": "ignore expected revision on release",
       "result": "killed",
-      "details": "Day 117 ABA selector rejected the mutant and asserted revision 3/history preservation."
+      "details": "Day117 ABA selector rejected boolean-only stale release and preserved revision 3/history."
     },
     {
       "mutation": "remove shared work-row FOR UPDATE lock",
       "result": "killed",
-      "details": "Both PostgreSQL concurrency selectors failed their bounded actual-lock-wait assertions."
+      "details": "Both PostgreSQL concurrency selectors failed bounded row-lock wait assertions."
     },
     {
       "mutation": "acknowledge before creating the receipt",
       "result": "killed",
-      "details": "Day 120 selector observed ACK_WITHOUT_RECEIPT; no receipt was created first."
+      "details": "Day120 selector observed ACK_WITHOUT_RECEIPT and did not accept success."
     }
   ],
   "restoration": {
     "status": "verified",
     "existing_learner_sources_restored": {
       "src/main/java/assignments/delivery/IssuanceEnvelope.java": "sha256:59cb4facbbfba4c88d4f0731abf586581be984049147c9cc37bf9a2bbde03937",
-      "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java": "sha256:1ca0467f8c0e585603f11c631a87a5e1bef481c0c3ae3ebc7c35aee36ef00951"
+      "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java": "sha256:1ca0467f8c0e585603f11c631a87a5e1bef481c0c3ae3ebc7c35aee36ef00951",
+      "src/main/java/assignments/delivery/recovery/RecoveryDecisionPolicy.java": "sha256:3a4d0cfee9e5b672e9a36e60cbbe044e72312d12399676dd8e65f3a2502d44f7",
+      "src/main/java/assignments/delivery/recovery/JdbcManualRecoveryStore.java": "sha256:7ddb97031450ca3e49fb1ff46d33931603296a055495dbc36432211a5e956620",
+      "src/main/java/assignments/delivery/recovery/RecoveryAwareIssuanceWorkStore.java": "sha256:8e5f731c21a9760de510d62f5fbc5f0214d2c79aa277fddb95f61d0a0350d4b1",
+      "src/main/java/assignments/delivery/recovery/ManualRecoveryService.java": "sha256:df4f439a705af30272e5a7a92554c776219ad8f4f46e30a9965abc634ec5175d",
+      "src/main/java/assignments/delivery/recovery/LocalManualRecoveryCommand.java": "sha256:f68ac9a522a18a38fc888e4d2dac937738936bb0c8faba5ee77f5d4edf0a759a",
+      "src/main/java/assignments/delivery/recovery/RecoveryOutcomePolicy.java": "sha256:1ba82430ac2b0d939fc8f8db373e91061fb60ad9e4b8b1e145214417825061e9"
     },
-    "new_learner_seams": "restored to named TODO implementations (Days 113, 115\u2013118, 120, 121, 124)",
+    "new_learner_seams": "Restored to the original named TODO implementations; checksums above verified after runs.",
     "jar_rebuilt_from_restored_sources": true,
     "git_diff_review": "No temporary witness edits remain; temporary files are under /tmp only."
   },
   "board_changes": false,
   "main_branch_changes": false,
-  "notes": "Temporary witness passes establish test-harness behavior only. User learner status remains not_attempted. This packaged selector covers the new explicit local recovery CLI and PostgreSQL, not Chromium or the existing protected issuance/renewal compatibility selectors. Exact-head hosted CI #50 passed on c46066108098e52e8074550f6d0946a77ee4f8c8. The receipt update is metadata-only and records this tested code snapshot."
+  "notes": "Temporary witness runs establish harness behavior only, not learner completion. The newly added packaged selector covers local recovery CLI/JAR/PostgreSQL, not HTTP or Chromium. Earlier protected issuance/renewal and browser checks remain separate regressions. Main, Scrum board, and original dirty checkout were not changed. Exact-head hosted CI for the correction commit is pending publication."
 }
