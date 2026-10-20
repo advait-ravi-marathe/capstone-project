@@ -45,6 +45,41 @@ TODO until implemented:
 
 ## Feature and learning goal
 
+## First API lesson — follow along before adapting
+
+**Owned Udemy course:** *Master Spring Boot 3 and Spring Framework 6 with
+Java*, by in28Minutes Official. In the course section **“Creating a Java REST
+API with Spring Boot, Spring Framework and Hibernate,”** study these lessons
+in order, for up to 25 minutes total: **“Creating a REST API with Spring Boot overview,” “Initializing a REST API with Spring Boot,” “Creating a Hello World REST API with Spring Boot,”** and **“Enhancing the Hello World REST API to return a bean.”** Lesson titles are used instead of section or lecture numbers because numbering can change. Stop at 25 minutes and carry unfinished lessons forward inside the next engineering block; do not add study time.
+
+The prerequisite gate is a working Java 21/Maven starter and the
+`QuoteSelectionInfrastructureTest` passing. If it does not pass, record the
+blocker and use the instructor-provided runnable app; do not spend learner
+time on setup. First follow the course to understand and reproduce one
+demonstrated endpoint. Then make only a tiny adaptation in the starter: send
+one request to `POST /api/quote-selections` and observe the documented
+response/error behavior. This is an orientation exercise, not completion of
+the full quote-selection assignment. The fixed acceptance tests remain the
+definition of that assignment; their composite-identity/order and validation
+cases are deferred until the course/API prerequisite is understood. Do not
+claim they pass because a Hello World endpoint runs.
+
+Keep this within the existing 120 engineering minutes: up to 25 minutes for
+course learning, with unfinished lessons carried forward and implementation
+scope reduced that day. No additional daily hours or design case study are
+required. Reflection: **How does a request reach a Java method, and how does
+that method's result become JSON?** A simple model is:
+
+```text
+HTTP request (path + JSON) → Spring maps it to a controller Java method
+→ method returns a Java value → Spring serializes that value as JSON
+→ HTTP response (status + JSON)
+```
+
+The runnable starter is the instructor's guided example. Do not overwrite the
+learner TODO or mark the quote-selection implementation complete from this
+follow-along.
+
 CoverStory starts as an enterprise insurance lifecycle simulation. Day 1 uses
 the single synthetic product fixture at `fixtures/day-1/home-secure.json` for
 product context; fixed acceptance inputs are inline and do not load that

@@ -6,6 +6,21 @@ Existing feature and acceptance paths are authoritative: `assignments.insurance.
 
 ## Fixed acceptance contract
 
+**Course bridge (inside the existing 25-minute concept/course allocation):**
+in28Minutes Official, *Master Spring Boot 3 and Spring Framework 6 with
+Java*, section **“Creating a Java REST API with Spring Boot, Spring Framework
+and Hibernate.”** Follow the lesson sequence **“Creating a REST API with
+Spring Boot overview,” “Initializing a REST API with Spring Boot,” “Creating
+a Hello World REST API with Spring Boot,”** then **“Enhancing the Hello World
+REST API to return a bean.”** Stop at 25 minutes; carry unfinished lessons
+forward and reduce implementation scope without adding daily hours. Pass the
+instructor infrastructure readiness check, follow one demonstrated endpoint,
+then make a tiny request adaptation. Explain request → controller method →
+Java result → JSON response. This is a beginner bridge, not a replacement for
+the fixed quote-selection acceptance contract below. Until the learner has
+understood the API prerequisite, the composite identity/order implementation
+and its acceptance tests remain deferred and incomplete.
+
 Keep first occurrence of each exact `(journeyId, quoteVersionId)` pair in encounter order. Preserve existing null/validation behavior.
 
 **Edge cases:** Duplicate, interleaving, same version across journeys, distinct versions within a journey, exact strings, and existing invalid-input cases.
