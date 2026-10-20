@@ -2,7 +2,7 @@
   "date": "2026-10-20",
   "branch": "learning/coverstory-day-02-30",
   "starting_sha": "6b405b3d9b543b45109cccf54e28215eee8191e7",
-  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and concise ticket manifest fields. No learner solution supplied. Reviewer fixes reconciled: Day14 direct database readback/no Day15 dependency and expanded no-write rejection coverage; Day30 status evaluator accepts evolving evidence-backed live statuses; DSA due reviews represented in Scrum export; Day13 workflow scaffold/learner CI responsibilities clarified; added 60-card Scrum owner manifest.",
+  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and one consolidated Scrum Story per date, combining engineering and DSA tracks. No learner solution supplied. Reviewer fixes reconciled: Day14 direct database readback/no Day15 dependency and expanded no-write rejection coverage; Day30 status evaluator accepts evolving evidence-backed live statuses; DSA due reviews represented in Scrum export; Day13 workflow scaffold/learner CI responsibilities clarified; added 30-Story Scrum owner manifest with 14/14/2 sprint counts.",
   "verification": [
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
@@ -16,8 +16,8 @@
     },
     {
       "command": "cd frontend && NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && npm run build; cd .. && JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH CHROMIUM_BIN=/usr/bin/chromium /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test",
-      "result": "expected_todo_red",
-      "summary": "Playwright launched Chromium, rendered the built React test route from the Spring server, submitted the valid form, clicked the selection action, and attempted the summary reload. The fixed test reported 11 independent learner failures: no quote POST, snapshot, selection POST, or persisted selection/readback because the frontend and domain TODOs are intentionally unimplemented. PostgreSQL row-count and selection-order assertions executed. This expected-red result does not claim a complete lifecycle pass. A temporary witness pass for this updated full browser harness is still outstanding."
+      "result": "historical_expected_todo_red; revised_harness_not_rerun",
+      "summary": "Earlier run showed learner TODOs at quote, snapshot, selection and reload. After that run, corrected the selection endpoint to emit JSON and fixed the test clock against the noon fixture. Revised browser selector is intentionally not rerun in this pass because the independent validator owns Day28 runtime validation."
     },
     {
       "command": "Temporary Day14 backend collaborator witnesses -> Day14BackendSliceIT -> restored TODO source files",
@@ -62,7 +62,7 @@
     {
       "command": "python3 JSON structural validation for docs/reboot/manifest.json and docs/reboot/scrum-owner-manifest.json",
       "result": "pass",
-      "summary": "Validated 30 dates and 60 alternating engineering/Java DSA cards; date pairing, sprint pairing, guide paths, allocation budgets, and planned review forecasts match the canonical manifest."
+      "summary": "Validated 30 consolidated daily Stories, exact dates, sprint boundaries and 14/14/2 counts, one embedded engineering and DSA section per Story, guide paths, unchanged allocations, title/LC rules, and planned review anchors against canonical manifest."
     },
     {
       "command": "git diff --check",
@@ -77,7 +77,7 @@
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day30ContractTest test",
       "result": "pass",
-      "summary": "Three instructor tests pass, including fixed open/blocked/passed-status evaluator fixtures and 60-card Scrum manifest integrity."
+      "summary": "Three instructor tests pass, including fixed open/blocked/passed-status evaluator fixtures and 30-Story Scrum manifest integrity with 14/14/2 sprint boundaries."
     },
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day03ContractTest,Day04ContractTest,Day05ContractTest,Day06ContractTest,Day07ContractTest,Day08ContractTest,Day09ContractTest,Day10ContractTest,Day11ContractTest,Day12ContractTest,Day13ContractTest,Day15ContractTest,Day16ContractTest,Day22ContractTest,Day23ContractTest,Day24ContractTest,Day25ContractTest,Day26ContractTest,Day27ContractTest test",
@@ -88,14 +88,41 @@
       "command": "cd frontend && NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && NPM_CONFIG_CACHE=/tmp/npm-cache npm run build && NPM_CONFIG_CACHE=/tmp/npm-cache RUN_LEARNER_ACCEPTANCE=true npx vitest run --reporter=dot",
       "result": "expected_todo_red",
       "summary": "Clean npm install and TypeScript/Vite production build pass. Learner UI suite: 18 tests, 16 failures + 2 passes across 5 files; failures expose Day17\u201320 learner TODOs. Day28 excluded."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
+      "result": "pass",
+      "summary": "Latest full default instructor suite after governance fixes: 23 tests, 0 failures/errors/skips. Day12 has four passing HTTP/security infrastructure checks, including valid CSRF through the actual route with test-only validator/service collaborators. Day30 consolidated Scrum manifest integrity included."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day12SecurityHarnessTest test",
+      "result": "expected_todo_red",
+      "summary": "Five selected checks; four infrastructure checks pass and the owner-read learner acceptance errors at the explicit Day12 JourneyAccessPolicy TODO. The route binding is explicit and test-local 404 handling avoids Day3 global handler dependency."
+    },
+    {
+      "command": "Day28BrowserToDatabaseTest revised harness compilation via full Maven testCompile; browser runtime deliberately not invoked",
+      "result": "compiled_runtime_pending",
+      "summary": "The revised harness compiles with a JSON selection receipt and a fixed 2026-10-20T12:05Z quote clock aligned to the noon fixture. No Day28 browser selector was run in this pass; independent validation remains authoritative."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day30ContractTest test",
+      "result": "pass",
+      "summary": "Three focused integrity tests pass after the final 30-Story/two-week sprint correction, including canonical/export count agreement, one LC reference per anchor, explicit review identifiers, and 14/14/2 sprint counts."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
+      "result": "pass",
+      "summary": "Full instructor suite: 23 tests, 0 failures/errors/skips after Day12 test harness and Day28 test source fixes. Day28 browser runtime was excluded by independent-validator instruction."
     }
   ],
   "remaining": {
-    "day28": "The real React test route, Playwright/Chromium, Spring test endpoints, and PostgreSQL assertions are connected. Learner acceptance previously reported expected red across quote creation, snapshot display, selection, and reload. It was not rerun in this pass at the independent validator\u2019s request.",
+    "day28": "Earlier expected-red evidence predates this repair. The browser selection endpoint now returns JSON and the quote service uses a fixed clock aligned with fixture timestamps. Revised Playwright selector was not run; independent validator runtime validation is pending. Manifest status is pending rather than expected_todo_red until then.",
     "learner_work": "All domain, schema, API policy, security policy/config, UI, persistence, readiness, DSA assignments remain learner owned and incomplete TODOs.",
     "ci": "Workflow scaffold and local structural check are present; remote Actions execution remains unverified (GitHub API returned HTTP 403 in the earlier check).",
     "sca": "npm audit applies only to frontend lockfile; no full Maven/transitive SCA completed.",
     "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed.",
-    "day14": "Expanded six-case real PostgreSQL selector was run: 4 failures + 2 errors, all at explicit Days4, 7, 11, and 12 TODOs. Stale/expired and ownership guards now use direct synthetic SQL fixture rows and have no Day15 dependency. No solution witnesses or learner implementations were supplied."
+    "day14": "Expanded six-case real PostgreSQL selector was run: 4 failures + 2 errors, all at explicit Days4, 7, 11, and 12 TODOs. Stale/expired and ownership guards now use direct synthetic SQL fixture rows and have no Day15 dependency. No solution witnesses or learner implementations were supplied.",
+    "scrum_manifest": "One Story per date (30 total), not one per track. Each Story links both the 120-minute engineering and separate 60-minute Java DSA assignments, relevant resources and evidence paths. Two-week sprint story counts are 14/14/2; canonical engineering and DSA assignments, dates, and budgets are unchanged.",
+    "day12": "Four instructor HTTP/security checks pass. The isolated owner-read learner acceptance remains expected red at Day12 JourneyAccessPolicy TODO; it no longer depends on implicit PathVariable naming or Day3 global error mapping."
   }
 }

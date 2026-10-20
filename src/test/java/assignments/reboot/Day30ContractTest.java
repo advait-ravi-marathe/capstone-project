@@ -61,22 +61,33 @@ class Day30ContractTest {
     }
 
     @Test
-    void scrumManifestHasThirtyChronologicalEngineeringAndDsaCardPairs() throws Exception {
+    void scrumManifestHasThirtyConsolidatedDailyStoriesAndTwoWeekSprintCounts() throws Exception {
         JsonNode owner = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/scrum-owner-manifest.json")));
         JsonNode cards = owner.get("cards");
-        assertEquals(60, owner.get("card_count").asInt());
-        assertEquals(60, cards.size());
+        assertEquals(30, owner.get("story_count").asInt());
+        assertEquals(30, cards.size());
         assertEquals("2026-10-20", cards.get(0).get("date").asString());
-        assertEquals("2026-11-18", cards.get(59).get("date").asString());
+        assertEquals("2026-11-18", cards.get(29).get("date").asString());
+        assertEquals(14, owner.get("sprint_boundaries").get(0).get("story_count").asInt());
+        assertEquals(14, owner.get("sprint_boundaries").get(1).get("story_count").asInt());
+        assertEquals(2, owner.get("sprint_boundaries").get(2).get("story_count").asInt());
+        JsonNode canonical = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/manifest.json")));
+        assertEquals(30, canonical.get("board_story_count").asInt());
+        assertEquals(30, canonical.get("assignments_by_track").get("engineering").asInt());
+        assertEquals(30, canonical.get("assignments_by_track").get("java_dsa").asInt());
+        assertEquals(canonical.get("board_story_count").asInt(), owner.get("story_count").asInt());
+        for (int sprintIndex = 0; sprintIndex < 3; sprintIndex++)
+            assertEquals(owner.get("sprint_boundaries").get(sprintIndex).get("story_count").asInt(),
+                    canonical.get("sprint_boundaries").get(sprintIndex).get("story_count").asInt());
         for (int dayIndex = 0; dayIndex < 30; dayIndex++) {
-            JsonNode engineering = cards.get(dayIndex * 2);
-            JsonNode dsa = cards.get(dayIndex * 2 + 1);
-            assertEquals(dayIndex * 2 + 1, engineering.get("sequence").asInt());
-            assertEquals(dayIndex * 2 + 2, dsa.get("sequence").asInt());
-            assertEquals("engineering", engineering.get("track").asString());
-            assertEquals("java_dsa", dsa.get("track").asString());
-            assertEquals(engineering.get("date").asString(), dsa.get("date").asString());
-            assertEquals(engineering.get("sprint").asString(), dsa.get("sprint").asString());
+            JsonNode story = cards.get(dayIndex);
+            JsonNode engineering = story.get("engineering");
+            JsonNode dsa = story.get("java_dsa");
+            int day = dayIndex + 1;
+            assertEquals(day, story.get("sequence").asInt());
+            assertEquals(day, story.get("day_number").asInt());
+            assertTrue(story.get("title").asString().startsWith("Day%02d:".formatted(day)));
+            assertEquals(180, story.get("budget_minutes").asInt());
             assertEquals(120, engineering.get("budget_minutes").asInt());
             assertEquals(60, dsa.get("budget_minutes").asInt());
             assertEquals(85, engineering.get("allocation_minutes").get("implementation_and_testing").asInt());
@@ -85,10 +96,32 @@ class Day30ContractTest {
             assertEquals(25, dsa.get("allocation_minutes").get("pattern_learning").asInt());
             assertEquals(20, dsa.get("allocation_minutes").get("independent_solve_or_cold_review").asInt());
             assertEquals(15, dsa.get("allocation_minutes").get("active_retrieval_and_error_log").asInt());
-            assertTrue(Files.isRegularFile(Path.of(engineering.get("guide_path").asString())));
-            assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString())));
-            assertTrue(Files.isRegularFile(Path.of(dsa.get("daily_contract_path").asString())));
+            assertTrue(Files.isRegularFile(Path.of(engineering.get("contract_path").asString())));
+            assertTrue(Files.isRegularFile(Path.of(engineering.get("acceptance_reference").asString())));
+            assertTrue(Files.isRegularFile(Path.of(engineering.get("evidence_reference").asString())));
+            assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString().split("#", 2)[0])));
+            String title = story.get("title").asString();
+            if (dsa.get("mode").asString().equals("new_pattern_anchor")) {
+                assertTrue(title.contains(dsa.get("concept").asString()));
+                assertEquals(1, count(title, "LC "));
+                assertTrue(title.contains("LC " + dsa.get("problem_id").asInt()));
+                assertEquals("new_pattern_anchor", manifestDay(day).get("dsa_role").asString());
+            } else {
+                assertEquals(dsa.get("review_anchors").size(), count(title, "LC "));
+                for (JsonNode review : dsa.get("review_anchors"))
+                    assertTrue(title.contains("LC " + review.get("problem_id").asInt() + " D+" + review.get("review_interval_days").asInt()));
+                if (dsa.get("review_anchors").isEmpty()) assertTrue(title.contains("no due anchors"));
+            }
         }
+    }
+
+    private static JsonNode manifestDay(int day) throws Exception {
+        JsonNode days = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/manifest.json"))).get("days");
+        return days.get(day - 1);
+    }
+
+    private static long count(String source, String needle) {
+        return Pattern.compile(Pattern.quote(needle)).matcher(source).results().count();
     }
 
     private static boolean isValidStatusAndEvidence(String status, String evidenceCell, Path base) {

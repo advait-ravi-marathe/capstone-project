@@ -24,6 +24,8 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.time.Clock;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -144,7 +146,7 @@ class Day28BrowserToDatabaseTest {
                 "training-rate-v1", "INR", Duration.ofMinutes(15),
                 new HomeSecureEligibilityPolicy("OWNER_OCCUPIED", new java.math.BigDecimal("100000.00"), new java.math.BigDecimal("10000000.00")),
                 new PremiumCalculator(new java.math.BigDecimal("0.00125"), Map.of("BUILDING", java.math.BigDecimal.ZERO)),
-                Clock.systemUTC(), () -> "e2e-quote-v1");
+                Clock.fixed(Instant.parse("2026-10-20T12:05:00Z"), ZoneOffset.UTC), () -> "e2e-quote-v1");
 
         BrowserHarnessController(DataSource dataSource, QuoteSelectionRequestValidator validator, QuoteSelectionPolicy policy) {
             this.dataSource = dataSource; this.validator = validator; this.policy = policy;
@@ -189,14 +191,15 @@ class Day28BrowserToDatabaseTest {
         }
 
         @PostMapping(value = "/test/day28/selections", consumes = MediaType.APPLICATION_JSON_VALUE)
-        ResponseEntity<String> select(@RequestBody QuoteSelectionRequest request) throws Exception {
+        ResponseEntity<SelectionReceipt> select(@RequestBody QuoteSelectionRequest request) throws Exception {
             selectionRequests.incrementAndGet();
             try {
                 validator.validate(request);
                 new SelectionService(dataSource).persistBatch(policy.select(request.selections()));
-                return ResponseEntity.ok("saved");
+                return ResponseEntity.ok(new SelectionReceipt(true, null));
             } catch (UnsupportedOperationException learnerTodo) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(learnerTodo.getMessage());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(new SelectionReceipt(false, learnerTodo.getMessage()));
             }
         }
 
@@ -213,4 +216,5 @@ class Day28BrowserToDatabaseTest {
 
     record QuoteView(String quoteVersionId, String annualPremiumRupees, String currency,
                      String productVersion, String rateVersion, String expiresAt) { }
+    record SelectionReceipt(boolean saved, String error) { }
 }

@@ -4,7 +4,7 @@ This folder records the reviewed roadmap proposal for 20 October–18 November
 2026. It is a set of contracts and schedule metadata, not a completion report.
 The existing Day 1 feature remains the live starter; future-day files specify
 the intended acceptance contract before learner implementations are created.
-Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wiring has call-count checks and a real Boot app-context test. Days 8–10 and 14 use disposable PostgreSQL. Day 12 has an isolated real Spring Security HTTP chain for authentication and CSRF; the learner ownership policy remains open. Day 13 has a fail-closed GitHub Actions workflow. Day 21 exercises CSRF on the actual quote-selection route through the same test-only chain. Day 28 has a real Chromium acceptance harness that serves the built React test route from Spring, calls test-only endpoints backed by the actual learner services, and checks PostgreSQL persistence and browser reload. It is expected red until the learner components and backend methods are implemented. The dated DSA sequence groups Top Interview 150 problems by patterns and carries planned D+3/D+7/D+21 reviews in the manifest.
+Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wiring has call-count checks and a real Boot app-context test. Days 8–10 and 14 use disposable PostgreSQL. Day 12 has an isolated real Spring Security HTTP chain for authentication and CSRF; the learner ownership policy remains open. Day 13 has a fail-closed GitHub Actions workflow. Day 21 exercises CSRF on the actual quote-selection route through the same test-only chain. Day 28 has a real Chromium acceptance harness that serves the built React test route from Spring, calls test-only endpoints backed by the actual learner services, and checks PostgreSQL persistence and browser reload. Its browser JSON response and fixed-clock fixture were corrected after review; the revised browser selector is pending independent runtime validation. The dated DSA sequence groups Top Interview 150 problems by patterns and carries planned D+3/D+7/D+21 reviews in the manifest.
 
 ## Products and scope
 
@@ -29,11 +29,15 @@ guide path, and separate contract/scaffold/runtime/learner/integration statuses:
 [`contracts/`](contracts/). Day 1's active runnable guide and fixed tests stay
 at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 
-For Scrum import, [scrum-owner-manifest.json](scrum-owner-manifest.json) expands
-the schedule into 60 chronological cards (one engineering and one Java DSA
-card per date), with sprint boundaries, guide links, fixed budgets, and planned
-DSA review forecasts. Actual attempts and review completions remain learner
-evidence; the forecasts do not mark work complete.
+For Scrum import, [scrum-owner-manifest.json](scrum-owner-manifest.json) has one
+consolidated Story per date. Each Story links the independent 120-minute
+engineering block and 60-minute Java DSA block, with concept references,
+acceptance/evidence guide paths, and review anchors. Sprint 1 covers 20 October–2
+November (Days 1–14, 14 Stories); Sprint 2 covers 3–16 November (Days 15–28,
+14 Stories); Sprint 3 covers 17–30 November (Days 29–30 are populated on 17–18
+November, 2 Stories). Dates and the 180-minute daily allocation are unchanged.
+Actual attempts and review completions remain learner evidence; forecasts do
+not mark work complete.
 
 ## Chronological index
 

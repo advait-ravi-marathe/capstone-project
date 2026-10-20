@@ -3,12 +3,17 @@ package assignments.reboot;
 import assignments.insurance.InsuranceDayOneApplication;
 import assignments.insurance.JourneyAccessPolicy;
 import assignments.insurance.JourneyReadRequest;
+import assignments.insurance.QuoteSelectionKey;
+import assignments.insurance.QuoteSelectionRequestValidation;
+import assignments.insurance.QuoteSelectionService;
+import assignments.insurance.ResourceNotFoundException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
@@ -30,7 +35,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -72,8 +76,7 @@ class Day12SecurityHarnessTest {
     }
 
     @Test
-    @Tag("learnerAcceptance")
-    void validCsrfOnQuoteSelectionReachesExpectedSuccessContract() throws Exception {
+    void validCsrfOnQuoteSelectionReachesTestAdapterCollaborators() throws Exception {
         MockHttpSession session = login();
         mvc.perform(post("/api/quote-selections").session(session).with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -117,6 +120,14 @@ class Day12SecurityHarnessTest {
                     User.withUsername("owner-b").password("{noop}secret").roles("USER").build());
         }
         @Bean JourneyAccessPolicy journeyAccessPolicy() { return new JourneyAccessPolicy(); }
+        @Bean @Primary QuoteSelectionRequestValidation securityHarnessRequestValidation() {
+            return request -> { };
+        }
+        @Bean @Primary QuoteSelectionService securityHarnessSelectionService() {
+            return selections -> selections.stream()
+                    .map(input -> new QuoteSelectionKey(input.journeyId(), input.quoteVersionId()))
+                    .toList();
+        }
         @Bean SecurityHarnessController securityHarnessController(JourneyAccessPolicy policy) {
             return new SecurityHarnessController(policy);
         }
@@ -128,9 +139,14 @@ class Day12SecurityHarnessTest {
         SecurityHarnessController(JourneyAccessPolicy policy) { this.policy = policy; }
         @GetMapping("/test/security/identity") String identity(Principal principal) { return principal.getName(); }
         @PostMapping(value="/test/security/write", consumes=MediaType.ALL_VALUE) String write() { return "ok"; }
-        @GetMapping("/test/journeys/{journeyId}") String journey(Principal principal, @PathVariable String journeyId) {
-            policy.assertCanAccess(principal, "owner-a", new JourneyReadRequest(journeyId, "attacker"));
-            return journeyId;
+        @GetMapping("/test/journeys/{journeyId}") org.springframework.http.ResponseEntity<String> journey(
+                Principal principal, @PathVariable("journeyId") String journeyId) {
+            try {
+                policy.assertCanAccess(principal, "owner-a", new JourneyReadRequest(journeyId, "attacker"));
+                return org.springframework.http.ResponseEntity.ok(journeyId);
+            } catch (ResourceNotFoundException hidden) {
+                return org.springframework.http.ResponseEntity.notFound().build();
+            }
         }
     }
 }

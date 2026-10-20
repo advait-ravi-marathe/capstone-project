@@ -1,1582 +1,2210 @@
 {
-  "title": "CoverStory reboot Scrum owner manifest — first 30 days",
+  "title": "CoverStory reboot Scrum story manifest — first 30 days",
   "effective_start": "2026-10-20",
   "effective_end": "2026-11-18",
   "canonical_daily_manifest": "docs/reboot/manifest.json",
-  "daily_sprint_boundaries": [
+  "board_model": "One consolidated Story per date. Each Story contains both its 120-minute engineering assignment and separate 60-minute Java DSA assignment; these remain independently tracked in the canonical daily manifest.",
+  "sprint_boundaries": [
     {
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "days": [
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "calendar_dates": [
+        "2026-10-20",
+        "2026-11-02"
+      ],
+      "day_numbers": [
         1,
-        10
-      ]
-    },
-    {
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "days": [
-        11,
-        20
-      ]
-    },
-    {
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "days": [
-        21,
-        30
-      ]
-    }
-  ],
-  "card_count": 60,
-  "cards": [
-    {
-      "id": "CS-E01",
-      "sequence": 1,
-      "date": "2026-10-20",
-      "track": "engineering",
-      "title": "Quote selection identity/order",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-01.md",
-      "day1_guide_path": "docs/day-1.md",
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D01",
-      "sequence": 2,
-      "date": "2026-10-20",
-      "track": "java_dsa",
-      "title": "New attempt: LC 121 121 Best Time to Buy and Sell Stock",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-01.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 121,
-      "problem": "121 Best Time to Buy and Sell Stock",
-      "pattern": "running-state array",
-      "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
-      "planned_review_forecast_dates": [
-        "2026-10-23",
-        "2026-10-27",
-        "2026-11-10"
+        14
       ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn running-state array; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
+      "story_count": 14
     },
     {
-      "id": "CS-E02",
-      "sequence": 3,
-      "date": "2026-10-21",
-      "track": "engineering",
-      "title": "Validate selection request at HTTP boundary",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-02.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D02",
-      "sequence": 4,
-      "date": "2026-10-21",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-02.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [],
-      "scope": "No new mandatory problem and no review forecast from planned anchor dates today. Cold-recall the weakest prior pattern; a missed review displaces the next new anchor."
-    },
-    {
-      "id": "CS-E03",
-      "sequence": 5,
-      "date": "2026-10-22",
-      "track": "engineering",
-      "title": "Map failures consistently",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-03.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D03",
-      "sequence": 6,
-      "date": "2026-10-22",
-      "track": "java_dsa",
-      "title": "New attempt: LC 1 1 Two Sum",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-03.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 1,
-      "problem": "1 Two Sum",
-      "pattern": "hash lookup",
-      "problem_url": "https://leetcode.com/problems/two-sum/description/",
-      "planned_review_forecast_dates": [
-        "2026-10-25",
-        "2026-10-29",
-        "2026-11-12"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn hash lookup; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E04",
-      "sequence": 7,
-      "date": "2026-10-23",
-      "track": "engineering",
-      "title": "Read one synthetic product",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-04.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D04",
-      "sequence": 8,
-      "date": "2026-10-23",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-04.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 121,
-          "problem": "121 Best Time to Buy and Sell Stock",
-          "anchor_day": 1,
-          "anchor_date": "2026-10-20"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 121 121 Best Time to Buy and Sell Stock (planned Day 1). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E05",
-      "sequence": 9,
-      "date": "2026-10-24",
-      "track": "engineering",
-      "title": "Decide HomeSecure eligibility",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-05.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D05",
-      "sequence": 10,
-      "date": "2026-10-24",
-      "track": "java_dsa",
-      "title": "New attempt: LC 383 383 Ransom Note",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-05.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 383,
-      "problem": "383 Ransom Note",
-      "pattern": "frequency counting",
-      "problem_url": "https://leetcode.com/problems/ransom-note/description/",
-      "planned_review_forecast_dates": [
-        "2026-10-27",
-        "2026-10-31",
-        "2026-11-14"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn frequency counting; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E06",
-      "sequence": 11,
-      "date": "2026-10-25",
-      "track": "engineering",
-      "title": "Calculate synthetic premium",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-06.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D06",
-      "sequence": 12,
-      "date": "2026-10-25",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-06.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 1,
-          "problem": "1 Two Sum",
-          "anchor_day": 3,
-          "anchor_date": "2026-10-22"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 1 1 Two Sum (planned Day 3). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E07",
-      "sequence": 13,
-      "date": "2026-10-26",
-      "track": "engineering",
-      "title": "Create and expire quote version",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-07.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D07",
-      "sequence": 14,
-      "date": "2026-10-26",
-      "track": "java_dsa",
-      "title": "New attempt: LC 49 49 Group Anagrams",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-07.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 49,
-      "problem": "49 Group Anagrams",
-      "pattern": "grouping key",
-      "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
-      "planned_review_forecast_dates": [
-        "2026-10-29",
-        "2026-11-02",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "calendar_dates": [
+        "2026-11-03",
         "2026-11-16"
       ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn grouping key; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E08",
-      "sequence": 15,
-      "date": "2026-10-27",
-      "track": "engineering",
-      "title": "Define PostgreSQL quote schema",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-08.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D08",
-      "sequence": 16,
-      "date": "2026-10-27",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-08.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 121,
-          "problem": "121 Best Time to Buy and Sell Stock",
-          "anchor_day": 1,
-          "anchor_date": "2026-10-20"
-        },
-        {
-          "problem_id": 383,
-          "problem": "383 Ransom Note",
-          "anchor_day": 5,
-          "anchor_date": "2026-10-24"
-        }
+      "day_numbers": [
+        15,
+        28
       ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 121 121 Best Time to Buy and Sell Stock (planned Day 1); LC 383 383 Ransom Note (planned Day 5). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
+      "story_count": 14
     },
     {
-      "id": "CS-E09",
-      "sequence": 17,
-      "date": "2026-10-28",
-      "track": "engineering",
-      "title": "Persist/read immutable quote snapshots",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-09.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D09",
-      "sequence": 18,
-      "date": "2026-10-28",
-      "track": "java_dsa",
-      "title": "New attempt: LC 238 238 Product of Array Except Self",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-09.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 238,
-      "problem": "238 Product of Array Except Self",
-      "pattern": "prefix/suffix products",
-      "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
-      "planned_review_forecast_dates": [
-        "2026-10-31",
-        "2026-11-04",
-        "2026-11-18"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn prefix/suffix products; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E10",
-      "sequence": 19,
-      "date": "2026-10-29",
-      "track": "engineering",
-      "title": "Persist selection batch atomically",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/contracts/day-10.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D10",
-      "sequence": 20,
-      "date": "2026-10-29",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 1 (Days 1–10)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-10.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 1,
-          "problem": "1 Two Sum",
-          "anchor_day": 3,
-          "anchor_date": "2026-10-22"
-        },
-        {
-          "problem_id": 49,
-          "problem": "49 Group Anagrams",
-          "anchor_day": 7,
-          "anchor_date": "2026-10-26"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 1 1 Two Sum (planned Day 3); LC 49 49 Group Anagrams (planned Day 7). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E11",
-      "sequence": 21,
-      "date": "2026-10-30",
-      "track": "engineering",
-      "title": "Reject stale quote selection",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-11.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D11",
-      "sequence": 22,
-      "date": "2026-10-30",
-      "track": "java_dsa",
-      "title": "New attempt: LC 125 125 Valid Palindrome",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-11.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 125,
-      "problem": "125 Valid Palindrome",
-      "pattern": "inward pointers",
-      "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-02",
-        "2026-11-06",
-        "2026-11-20"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn inward pointers; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E12",
-      "sequence": 23,
-      "date": "2026-10-31",
-      "track": "engineering",
-      "title": "Enforce owner-scoped access",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-12.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D12",
-      "sequence": 24,
-      "date": "2026-10-31",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-12.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 383,
-          "problem": "383 Ransom Note",
-          "anchor_day": 5,
-          "anchor_date": "2026-10-24"
-        },
-        {
-          "problem_id": 238,
-          "problem": "238 Product of Array Except Self",
-          "anchor_day": 9,
-          "anchor_date": "2026-10-28"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 383 383 Ransom Note (planned Day 5); LC 238 238 Product of Array Except Self (planned Day 9). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E13",
-      "sequence": 25,
-      "date": "2026-11-01",
-      "track": "engineering",
-      "title": "Add honest repeatable CI",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-13.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D13",
-      "sequence": 26,
-      "date": "2026-11-01",
-      "track": "java_dsa",
-      "title": "New attempt: LC 167 167 Two Sum II - Input Array Is Sorted",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-13.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 167,
-      "problem": "167 Two Sum II - Input Array Is Sorted",
-      "pattern": "sorted two pointers",
-      "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-04",
-        "2026-11-08",
-        "2026-11-22"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn sorted two pointers; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E14",
-      "sequence": 27,
-      "date": "2026-11-02",
-      "track": "engineering",
-      "title": "Milestone 1 backend vertical slice",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-14.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D14",
-      "sequence": 28,
-      "date": "2026-11-02",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-14.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 49,
-          "problem": "49 Group Anagrams",
-          "anchor_day": 7,
-          "anchor_date": "2026-10-26"
-        },
-        {
-          "problem_id": 125,
-          "problem": "125 Valid Palindrome",
-          "anchor_day": 11,
-          "anchor_date": "2026-10-30"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 49 49 Group Anagrams (planned Day 7); LC 125 125 Valid Palindrome (planned Day 11). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E15",
-      "sequence": 29,
-      "date": "2026-11-03",
-      "track": "engineering",
-      "title": "Read journey summary",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-15.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D15",
-      "sequence": 30,
-      "date": "2026-11-03",
-      "track": "java_dsa",
-      "title": "New attempt: LC 11 11 Container With Most Water",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-15.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 11,
-      "problem": "11 Container With Most Water",
-      "pattern": "pointer-elimination proof",
-      "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-06",
-        "2026-11-10",
-        "2026-11-24"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn pointer-elimination proof; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E16",
-      "sequence": 31,
-      "date": "2026-11-04",
-      "track": "engineering",
-      "title": "Bound quote-history reads",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-16.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D16",
-      "sequence": 32,
-      "date": "2026-11-04",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-16.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 238,
-          "problem": "238 Product of Array Except Self",
-          "anchor_day": 9,
-          "anchor_date": "2026-10-28"
-        },
-        {
-          "problem_id": 167,
-          "problem": "167 Two Sum II - Input Array Is Sorted",
-          "anchor_day": 13,
-          "anchor_date": "2026-11-01"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 238 238 Product of Array Except Self (planned Day 9); LC 167 167 Two Sum II - Input Array Is Sorted (planned Day 13). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E17",
-      "sequence": 33,
-      "date": "2026-11-05",
-      "track": "engineering",
-      "title": "Render product choices in React/TypeScript",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-17.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D17",
-      "sequence": 34,
-      "date": "2026-11-05",
-      "track": "java_dsa",
-      "title": "New attempt: LC 3 3 Longest Substring Without Repeating Characters",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-17.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 3,
-      "problem": "3 Longest Substring Without Repeating Characters",
-      "pattern": "variable sliding window",
-      "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-08",
-        "2026-11-12",
-        "2026-11-26"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn variable sliding window; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E18",
-      "sequence": 35,
-      "date": "2026-11-06",
-      "track": "engineering",
-      "title": "Capture quote input",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-18.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D18",
-      "sequence": 36,
-      "date": "2026-11-06",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-18.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 125,
-          "problem": "125 Valid Palindrome",
-          "anchor_day": 11,
-          "anchor_date": "2026-10-30"
-        },
-        {
-          "problem_id": 11,
-          "problem": "11 Container With Most Water",
-          "anchor_day": 15,
-          "anchor_date": "2026-11-03"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 125 125 Valid Palindrome (planned Day 11); LC 11 11 Container With Most Water (planned Day 15). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E19",
-      "sequence": 37,
-      "date": "2026-11-07",
-      "track": "engineering",
-      "title": "Display quote snapshot",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-19.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D19",
-      "sequence": 38,
-      "date": "2026-11-07",
-      "track": "java_dsa",
-      "title": "New attempt: LC 209 209 Minimum Size Subarray Sum",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-19.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 209,
-      "problem": "209 Minimum Size Subarray Sum",
-      "pattern": "shrinking valid window",
-      "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-10",
-        "2026-11-14",
-        "2026-11-28"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn shrinking valid window; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E20",
-      "sequence": 39,
-      "date": "2026-11-08",
-      "track": "engineering",
-      "title": "Connect selection action UI",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/contracts/day-20.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D20",
-      "sequence": 40,
-      "date": "2026-11-08",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 2 (Days 11–20)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-20.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 167,
-          "problem": "167 Two Sum II - Input Array Is Sorted",
-          "anchor_day": 13,
-          "anchor_date": "2026-11-01"
-        },
-        {
-          "problem_id": 3,
-          "problem": "3 Longest Substring Without Repeating Characters",
-          "anchor_day": 17,
-          "anchor_date": "2026-11-05"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 167 167 Two Sum II - Input Array Is Sorted (planned Day 13); LC 3 3 Longest Substring Without Repeating Characters (planned Day 17). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E21",
-      "sequence": 41,
-      "date": "2026-11-09",
-      "track": "engineering",
-      "title": "Protect cookie-authenticated writes",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-21.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D21",
-      "sequence": 42,
-      "date": "2026-11-09",
-      "track": "java_dsa",
-      "title": "New attempt: LC 20 20 Valid Parentheses",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-21.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 20,
-      "problem": "20 Valid Parentheses",
-      "pattern": "stack",
-      "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-12",
-        "2026-11-16",
+      "sprint": "Sprint 3 (17–30 Nov 2026)",
+      "calendar_dates": [
+        "2026-11-17",
         "2026-11-30"
       ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn stack; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
+      "day_numbers": [
+        29,
+        30
+      ],
+      "populated_dates": [
+        "2026-11-17",
+        "2026-11-18"
+      ],
+      "story_count": 2
+    }
+  ],
+  "story_count": 30,
+  "daily_budgets_minutes": {
+    "total": 180,
+    "engineering": 120,
+    "java_dsa": 60
+  },
+  "cards": [
+    {
+      "id": "CS-DAY01",
+      "sequence": 1,
+      "day_number": 1,
+      "date": "2026-10-20",
+      "title": "Day01: Quote selection + running-state array (LC 121)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-01.md",
+        "active_guide_path": "docs/day-1.md",
+        "acceptance_reference": "docs/reboot/contracts/day-01.md",
+        "acceptance_command": [],
+        "concept": "Composite identity and API contracts; AWS DVA-C02 Domain 1, Task 1, Skill 1.1.6",
+        "concept_reference": "https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html",
+        "evidence_reference": "docs/reboot/contracts/day-01.md",
+        "evidence_output": "evidence/reboot/day-01.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "running-state array",
+        "problem_id": 121,
+        "problem": "121 Best Time to Buy and Sell Stock",
+        "planned_attempt_date": "2026-10-20",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-01.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-01-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-10-23",
+          "2026-10-27",
+          "2026-11-10"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-E22",
-      "sequence": 43,
+      "id": "CS-DAY02",
+      "sequence": 2,
+      "day_number": 2,
+      "date": "2026-10-21",
+      "title": "Day02: Validate request + DSA consolidation (no due anchors)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-02.md",
+        "active_guide_path": "docs/reboot/contracts/day-02.md",
+        "acceptance_reference": "docs/reboot/contracts/day-02.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day02ContractTest,Day02ApiAcceptanceTest test"
+        ],
+        "concept": "HTTP request contracts and boundary vs domain validation",
+        "concept_reference": "contracts/day-02.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-02.md",
+        "evidence_output": "evidence/reboot/day-02.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-02.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-02-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY03",
+      "sequence": 3,
+      "day_number": 3,
+      "date": "2026-10-22",
+      "title": "Day03: Error mapping + hash lookup (LC 1)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-03.md",
+        "active_guide_path": "docs/reboot/contracts/day-03.md",
+        "acceptance_reference": "docs/reboot/contracts/day-03.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day03ContractTest test",
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "concept": "HTTP status semantics and failure boundaries",
+        "concept_reference": "contracts/day-03.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-03.md",
+        "evidence_output": "evidence/reboot/day-03.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "hash lookup",
+        "problem_id": 1,
+        "problem": "1 Two Sum",
+        "planned_attempt_date": "2026-10-22",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-03.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-03-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-10-25",
+          "2026-10-29",
+          "2026-11-12"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/two-sum/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/two-sum/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY04",
+      "sequence": 4,
+      "day_number": 4,
+      "date": "2026-10-23",
+      "title": "Day04: Product catalog + reviews LC 121 D+3",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-04.md",
+        "active_guide_path": "docs/reboot/contracts/day-04.md",
+        "acceptance_reference": "docs/reboot/contracts/day-04.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day04ContractTest test",
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "concept": "Java records, immutable collections, API vs domain models",
+        "concept_reference": "contracts/day-04.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-04.md",
+        "evidence_output": "evidence/reboot/day-04.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 3,
+            "due_date": "2026-10-23",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+            "problem": "121 Best Time to Buy and Sell Stock"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-04.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-04-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY05",
+      "sequence": 5,
+      "day_number": 5,
+      "date": "2026-10-24",
+      "title": "Day05: Eligibility + frequency counting (LC 383)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-05.md",
+        "active_guide_path": "docs/reboot/contracts/day-05.md",
+        "acceptance_reference": "docs/reboot/contracts/day-05.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day05ContractTest test",
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "concept": "Pure functions, invariants and decision tables",
+        "concept_reference": "contracts/day-05.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-05.md",
+        "evidence_output": "evidence/reboot/day-05.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "frequency counting",
+        "problem_id": 383,
+        "problem": "383 Ransom Note",
+        "planned_attempt_date": "2026-10-24",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-05.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-05-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-10-27",
+          "2026-10-31",
+          "2026-11-14"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/ransom-note/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY06",
+      "sequence": 6,
+      "day_number": 6,
+      "date": "2026-10-25",
+      "title": "Day06: Premium calculation + reviews LC 1 D+3",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-06.md",
+        "active_guide_path": "docs/reboot/contracts/day-06.md",
+        "acceptance_reference": "docs/reboot/contracts/day-06.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day06ContractTest test",
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "concept": "Value types, BigDecimal precision and rounding",
+        "concept_reference": "contracts/day-06.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-06.md",
+        "evidence_output": "evidence/reboot/day-06.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 3,
+            "due_date": "2026-10-25",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/two-sum/description/",
+            "problem": "1 Two Sum"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-06.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-06-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY07",
+      "sequence": 7,
+      "day_number": 7,
+      "date": "2026-10-26",
+      "title": "Day07: Quote version + grouping key (LC 49)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-07.md",
+        "active_guide_path": "docs/reboot/contracts/day-07.md",
+        "acceptance_reference": "docs/reboot/contracts/day-07.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day07ContractTest test",
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "concept": "Wall time vs elapsed time; deterministic tests",
+        "concept_reference": "contracts/day-07.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-07.md",
+        "evidence_output": "evidence/reboot/day-07.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "grouping key",
+        "problem_id": 49,
+        "problem": "49 Group Anagrams",
+        "planned_attempt_date": "2026-10-26",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-07.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-07-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-10-29",
+          "2026-11-02",
+          "2026-11-16"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/group-anagrams/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY08",
+      "sequence": 8,
+      "day_number": 8,
+      "date": "2026-10-27",
+      "title": "Day08: PostgreSQL schema + reviews LC 121 D+7, LC 383 D+3",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-08.md",
+        "active_guide_path": "docs/reboot/contracts/day-08.md",
+        "acceptance_reference": "docs/reboot/contracts/day-08.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day08ContractTest test",
+          "src/main/resources/db/migration/V001__homesecure_quotes.sql"
+        ],
+        "concept": "Relational keys, normalization and integrity",
+        "concept_reference": "contracts/day-08.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-08.md",
+        "evidence_output": "evidence/reboot/day-08.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 7,
+            "due_date": "2026-10-27",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+            "problem": "121 Best Time to Buy and Sell Stock"
+          },
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 3,
+            "due_date": "2026-10-27",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+            "problem": "383 Ransom Note"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-08.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-08-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY09",
+      "sequence": 9,
+      "day_number": 9,
+      "date": "2026-10-28",
+      "title": "Day09: Quote persistence + prefix/suffix products (LC 238)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-09.md",
+        "active_guide_path": "docs/reboot/contracts/day-09.md",
+        "acceptance_reference": "docs/reboot/contracts/day-09.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day09ContractTest test"
+        ],
+        "concept": "SQL queries, repository boundaries and ORM mapping",
+        "concept_reference": "contracts/day-09.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-09.md",
+        "evidence_output": "evidence/reboot/day-09.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "prefix/suffix products",
+        "problem_id": 238,
+        "problem": "238 Product of Array Except Self",
+        "planned_attempt_date": "2026-10-28",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-09.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-09-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-10-31",
+          "2026-11-04",
+          "2026-11-18"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/product-of-array-except-self/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY10",
+      "sequence": 10,
+      "day_number": 10,
+      "date": "2026-10-29",
+      "title": "Day10: Atomic selection + reviews LC 1 D+7, LC 49 D+3",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-10.md",
+        "active_guide_path": "docs/reboot/contracts/day-10.md",
+        "acceptance_reference": "docs/reboot/contracts/day-10.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day10ContractTest test"
+        ],
+        "concept": "Transactions, atomicity and rollback",
+        "concept_reference": "contracts/day-10.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-10.md",
+        "evidence_output": "evidence/reboot/day-10.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 7,
+            "due_date": "2026-10-29",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/two-sum/description/",
+            "problem": "1 Two Sum"
+          },
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 3,
+            "due_date": "2026-10-29",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+            "problem": "49 Group Anagrams"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-10.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-10-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY11",
+      "sequence": 11,
+      "day_number": 11,
+      "date": "2026-10-30",
+      "title": "Day11: Stale quotes + inward pointers (LC 125)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-11.md",
+        "active_guide_path": "docs/reboot/contracts/day-11.md",
+        "acceptance_reference": "docs/reboot/contracts/day-11.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day11ContractTest test"
+        ],
+        "concept": "Optimistic concurrency vs stale reads",
+        "concept_reference": "contracts/day-11.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-11.md",
+        "evidence_output": "evidence/reboot/day-11.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "inward pointers",
+        "problem_id": 125,
+        "problem": "125 Valid Palindrome",
+        "planned_attempt_date": "2026-10-30",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-11.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-11-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-02",
+          "2026-11-06",
+          "2026-11-20"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/valid-palindrome/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY12",
+      "sequence": 12,
+      "day_number": 12,
+      "date": "2026-10-31",
+      "title": "Day12: Owner access + reviews LC 383 D+7, LC 238 D+3",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-12.md",
+        "active_guide_path": "docs/reboot/contracts/day-12.md",
+        "acceptance_reference": "docs/reboot/contracts/day-12.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day12ContractTest test"
+        ],
+        "concept": "Authentication vs authorization and object access control",
+        "concept_reference": "contracts/day-12.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-12.md",
+        "evidence_output": "evidence/reboot/day-12.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 7,
+            "due_date": "2026-10-31",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+            "problem": "383 Ransom Note"
+          },
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 3,
+            "due_date": "2026-10-31",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+            "problem": "238 Product of Array Except Self"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-12.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-12-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY13",
+      "sequence": 13,
+      "day_number": 13,
+      "date": "2026-11-01",
+      "title": "Day13: CI + sorted two pointers (LC 167)",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-13.md",
+        "active_guide_path": "docs/reboot/contracts/day-13.md",
+        "acceptance_reference": "docs/reboot/contracts/day-13.md",
+        "acceptance_command": [
+          "./mvnw -Dtest=Day13WorkflowInfrastructureTest test",
+          "./mvnw -Plearner-tests -Dtest=Day13ContractTest test"
+        ],
+        "concept": "Test pyramid, reproducibility and CI failure signals",
+        "concept_reference": "contracts/day-13.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-13.md",
+        "evidence_output": "evidence/reboot/day-13.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "sorted two pointers",
+        "problem_id": 167,
+        "problem": "167 Two Sum II - Input Array Is Sorted",
+        "planned_attempt_date": "2026-11-01",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-13.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-13-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-04",
+          "2026-11-08",
+          "2026-11-22"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY14",
+      "sequence": 14,
+      "day_number": 14,
+      "date": "2026-11-02",
+      "title": "Day14: Backend slice + reviews LC 49 D+7, LC 125 D+3",
+      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-14.md",
+        "active_guide_path": "docs/reboot/contracts/day-14.md",
+        "acceptance_reference": "docs/reboot/contracts/day-14.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test",
+          "ProductCatalogService.findByCode"
+        ],
+        "concept": "Trace request lifecycle, data ownership and transaction boundary",
+        "concept_reference": "contracts/day-14.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-14.md",
+        "evidence_output": "evidence/reboot/day-14.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 7,
+            "due_date": "2026-11-02",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+            "problem": "49 Group Anagrams"
+          },
+          {
+            "anchor_day": 11,
+            "problem_id": 125,
+            "review_interval_days": 3,
+            "due_date": "2026-11-02",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
+            "problem": "125 Valid Palindrome"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-14.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-14-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY15",
+      "sequence": 15,
+      "day_number": 15,
+      "date": "2026-11-03",
+      "title": "Day15: Journey summary + pointer-elimination proof (LC 11)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-15.md",
+        "active_guide_path": "docs/reboot/contracts/day-15.md",
+        "acceptance_reference": "docs/reboot/contracts/day-15.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day15ContractTest test"
+        ],
+        "concept": "SQL joins, projections and null/empty semantics",
+        "concept_reference": "contracts/day-15.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-15.md",
+        "evidence_output": "evidence/reboot/day-15.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "pointer-elimination proof",
+        "problem_id": 11,
+        "problem": "11 Container With Most Water",
+        "planned_attempt_date": "2026-11-03",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-15.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-15-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-06",
+          "2026-11-10",
+          "2026-11-24"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/container-with-most-water/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY16",
+      "sequence": 16,
+      "day_number": 16,
+      "date": "2026-11-04",
+      "title": "Day16: History reads + reviews LC 238 D+7, LC 167 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-16.md",
+        "active_guide_path": "docs/reboot/contracts/day-16.md",
+        "acceptance_reference": "docs/reboot/contracts/day-16.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day16ContractTest test"
+        ],
+        "concept": "Sorting, pagination cost and query complexity",
+        "concept_reference": "contracts/day-16.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-16.md",
+        "evidence_output": "evidence/reboot/day-16.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 7,
+            "due_date": "2026-11-04",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+            "problem": "238 Product of Array Except Self"
+          },
+          {
+            "anchor_day": 13,
+            "problem_id": 167,
+            "review_interval_days": 3,
+            "due_date": "2026-11-04",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+            "problem": "167 Two Sum II - Input Array Is Sorted"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-16.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-16-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY17",
+      "sequence": 17,
+      "day_number": 17,
+      "date": "2026-11-05",
+      "title": "Day17: Product UI + variable sliding window (LC 3)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-17.md",
+        "active_guide_path": "docs/reboot/contracts/day-17.md",
+        "acceptance_reference": "docs/reboot/contracts/day-17.md",
+        "acceptance_command": [
+          "npm --prefix frontend test -- src/components/ProductPanel.test.tsx",
+          "npm --prefix frontend run build"
+        ],
+        "concept": "Typed props and discriminated UI state",
+        "concept_reference": "contracts/day-17.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-17.md",
+        "evidence_output": "evidence/reboot/day-17.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "variable sliding window",
+        "problem_id": 3,
+        "problem": "3 Longest Substring Without Repeating Characters",
+        "planned_attempt_date": "2026-11-05",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-17.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-17-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-08",
+          "2026-11-12",
+          "2026-11-26"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY18",
+      "sequence": 18,
+      "day_number": 18,
+      "date": "2026-11-06",
+      "title": "Day18: Quote input + reviews LC 125 D+7, LC 11 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-18.md",
+        "active_guide_path": "docs/reboot/contracts/day-18.md",
+        "acceptance_reference": "docs/reboot/contracts/day-18.md",
+        "acceptance_command": [
+          "npm --prefix frontend test -- --run src/__tests__/Day18Contract.test.tsx"
+        ],
+        "concept": "Controlled inputs, derived state and client/server validation",
+        "concept_reference": "contracts/day-18.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-18.md",
+        "evidence_output": "evidence/reboot/day-18.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 11,
+            "problem_id": 125,
+            "review_interval_days": 7,
+            "due_date": "2026-11-06",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
+            "problem": "125 Valid Palindrome"
+          },
+          {
+            "anchor_day": 15,
+            "problem_id": 11,
+            "review_interval_days": 3,
+            "due_date": "2026-11-06",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
+            "problem": "11 Container With Most Water"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-18.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-18-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY19",
+      "sequence": 19,
+      "day_number": 19,
+      "date": "2026-11-07",
+      "title": "Day19: Quote snapshot + shrinking valid window (LC 209)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-19.md",
+        "active_guide_path": "docs/reboot/contracts/day-19.md",
+        "acceptance_reference": "docs/reboot/contracts/day-19.md",
+        "acceptance_command": [
+          "npm --prefix frontend test -- --run src/__tests__/Day19Contract.test.tsx"
+        ],
+        "concept": "Async UI, race conditions and state ownership",
+        "concept_reference": "contracts/day-19.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-19.md",
+        "evidence_output": "evidence/reboot/day-19.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "shrinking valid window",
+        "problem_id": 209,
+        "problem": "209 Minimum Size Subarray Sum",
+        "planned_attempt_date": "2026-11-07",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-19.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-19-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-10",
+          "2026-11-14",
+          "2026-11-28"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY20",
+      "sequence": 20,
+      "day_number": 20,
+      "date": "2026-11-08",
+      "title": "Day20: Selection UI + reviews LC 167 D+7, LC 3 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-20.md",
+        "active_guide_path": "docs/reboot/contracts/day-20.md",
+        "acceptance_reference": "docs/reboot/contracts/day-20.md",
+        "acceptance_command": [
+          "npm --prefix frontend test -- --run src/__tests__/Day20Contract.test.tsx"
+        ],
+        "concept": "HTTP side effects, retry decisions and truthful UI state",
+        "concept_reference": "contracts/day-20.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-20.md",
+        "evidence_output": "evidence/reboot/day-20.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 13,
+            "problem_id": 167,
+            "review_interval_days": 7,
+            "due_date": "2026-11-08",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+            "problem": "167 Two Sum II - Input Array Is Sorted"
+          },
+          {
+            "anchor_day": 17,
+            "problem_id": 3,
+            "review_interval_days": 3,
+            "due_date": "2026-11-08",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+            "problem": "3 Longest Substring Without Repeating Characters"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-20.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-20-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY21",
+      "sequence": 21,
+      "day_number": 21,
+      "date": "2026-11-09",
+      "title": "Day21: CSRF writes + stack (LC 20)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-21.md",
+        "active_guide_path": "docs/reboot/contracts/day-21.md",
+        "acceptance_reference": "docs/reboot/contracts/day-21.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day21ContractTest test",
+          "POST /api/quote-selections"
+        ],
+        "concept": "Cookies, CSRF vs CORS and browser trust boundaries",
+        "concept_reference": "contracts/day-21.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-21.md",
+        "evidence_output": "evidence/reboot/day-21.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "stack",
+        "problem_id": 20,
+        "problem": "20 Valid Parentheses",
+        "planned_attempt_date": "2026-11-09",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-21.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-21-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-12",
+          "2026-11-16",
+          "2026-11-30"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/valid-parentheses/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY22",
+      "sequence": 22,
+      "day_number": 22,
       "date": "2026-11-10",
-      "track": "engineering",
-      "title": "Add safe request correlation",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-22.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day22: Request correlation + reviews LC 121 D+21, LC 11 D+7, LC 209 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-22.md",
+        "active_guide_path": "docs/reboot/contracts/day-22.md",
+        "acceptance_reference": "docs/reboot/contracts/day-22.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day22ContractTest test"
+        ],
+        "concept": "Observability vs privacy; logs vs metrics",
+        "concept_reference": "contracts/day-22.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-22.md",
+        "evidence_output": "evidence/reboot/day-22.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 21,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+            "problem": "121 Best Time to Buy and Sell Stock"
+          },
+          {
+            "anchor_day": 15,
+            "problem_id": 11,
+            "review_interval_days": 7,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
+            "problem": "11 Container With Most Water"
+          },
+          {
+            "anchor_day": 19,
+            "problem_id": 209,
+            "review_interval_days": 3,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+            "problem": "209 Minimum Size Subarray Sum"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-22.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-22-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D22",
-      "sequence": 44,
-      "date": "2026-11-10",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-22.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 121,
-          "problem": "121 Best Time to Buy and Sell Stock",
-          "anchor_day": 1,
-          "anchor_date": "2026-10-20"
-        },
-        {
-          "problem_id": 11,
-          "problem": "11 Container With Most Water",
-          "anchor_day": 15,
-          "anchor_date": "2026-11-03"
-        },
-        {
-          "problem_id": 209,
-          "problem": "209 Minimum Size Subarray Sum",
-          "anchor_day": 19,
-          "anchor_date": "2026-11-07"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 121 121 Best Time to Buy and Sell Stock (planned Day 1); LC 11 11 Container With Most Water (planned Day 15); LC 209 209 Minimum Size Subarray Sum (planned Day 19). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E23",
-      "sequence": 45,
+      "id": "CS-DAY23",
+      "sequence": 23,
+      "day_number": 23,
       "date": "2026-11-11",
-      "track": "engineering",
-      "title": "Expose minimal operational health",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-23.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day23: Health endpoint + augmented stack (LC 155)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-23.md",
+        "active_guide_path": "docs/reboot/contracts/day-23.md",
+        "acceptance_reference": "docs/reboot/contracts/day-23.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day23ContractTest test",
+          "Day23ActuatorInfrastructureTest",
+          "Day23ContractTest",
+          "groups",
+          "status"
+        ],
+        "concept": "Liveness/readiness and failure detection",
+        "concept_reference": "contracts/day-23.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-23.md",
+        "evidence_output": "evidence/reboot/day-23.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "augmented stack",
+        "problem_id": 155,
+        "problem": "155 Min Stack",
+        "planned_attempt_date": "2026-11-11",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-23.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-23-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-14",
+          "2026-11-18",
+          "2026-12-02"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/min-stack/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/min-stack/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D23",
-      "sequence": 46,
-      "date": "2026-11-11",
-      "track": "java_dsa",
-      "title": "New attempt: LC 155 155 Min Stack",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-23.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 155,
-      "problem": "155 Min Stack",
-      "pattern": "augmented stack",
-      "problem_url": "https://leetcode.com/problems/min-stack/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-14",
-        "2026-11-18",
-        "2026-12-02"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn augmented stack; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E24",
-      "sequence": 47,
+      "id": "CS-DAY24",
+      "sequence": 24,
+      "day_number": 24,
       "date": "2026-11-12",
-      "track": "engineering",
-      "title": "Explain and improve one real query",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-24.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day24: Query plan + reviews LC 1 D+21, LC 3 D+7, LC 20 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-24.md",
+        "active_guide_path": "docs/reboot/contracts/day-24.md",
+        "acceptance_reference": "docs/reboot/contracts/day-24.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day24ContractTest test"
+        ],
+        "concept": "B-tree indexes, selectivity, EXPLAIN vs EXPLAIN ANALYZE",
+        "concept_reference": "contracts/day-24.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-24.md",
+        "evidence_output": "evidence/reboot/day-24.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 21,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/two-sum/description/",
+            "problem": "1 Two Sum"
+          },
+          {
+            "anchor_day": 17,
+            "problem_id": 3,
+            "review_interval_days": 7,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+            "problem": "3 Longest Substring Without Repeating Characters"
+          },
+          {
+            "anchor_day": 21,
+            "problem_id": 20,
+            "review_interval_days": 3,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
+            "problem": "20 Valid Parentheses"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-24.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-24-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D24",
-      "sequence": 48,
-      "date": "2026-11-12",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-24.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 1,
-          "problem": "1 Two Sum",
-          "anchor_day": 3,
-          "anchor_date": "2026-10-22"
-        },
-        {
-          "problem_id": 3,
-          "problem": "3 Longest Substring Without Repeating Characters",
-          "anchor_day": 17,
-          "anchor_date": "2026-11-05"
-        },
-        {
-          "problem_id": 20,
-          "problem": "20 Valid Parentheses",
-          "anchor_day": 21,
-          "anchor_date": "2026-11-09"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 1 1 Two Sum (planned Day 3); LC 3 3 Longest Substring Without Repeating Characters (planned Day 17); LC 20 20 Valid Parentheses (planned Day 21). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E25",
-      "sequence": 49,
+      "id": "CS-DAY25",
+      "sequence": 25,
+      "day_number": 25,
       "date": "2026-11-13",
-      "track": "engineering",
-      "title": "Handle concurrent repeated selection",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-25.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day25: Concurrent selection + binary-search bridge (outside Top Interview 150) (LC 704)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-25.md",
+        "active_guide_path": "docs/reboot/contracts/day-25.md",
+        "acceptance_reference": "docs/reboot/contracts/day-25.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day25ContractTest test"
+        ],
+        "concept": "Race conditions, database uniqueness and idempotency",
+        "concept_reference": "contracts/day-25.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-25.md",
+        "evidence_output": "evidence/reboot/day-25.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "binary-search bridge (outside Top Interview 150)",
+        "problem_id": 704,
+        "problem": "704 Binary Search",
+        "planned_attempt_date": "2026-11-13",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-25.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-25-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-16",
+          "2026-11-20",
+          "2026-12-04"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/binary-search/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/binary-search/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D25",
-      "sequence": 50,
-      "date": "2026-11-13",
-      "track": "java_dsa",
-      "title": "New attempt: LC 704 704 Binary Search",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-25.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 704,
-      "problem": "704 Binary Search",
-      "pattern": "binary-search bridge (outside Top Interview 150)",
-      "problem_url": "https://leetcode.com/problems/binary-search/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-16",
-        "2026-11-20",
-        "2026-12-04"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn binary-search bridge (outside Top Interview 150); make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E26",
-      "sequence": 51,
+      "id": "CS-DAY26",
+      "sequence": 26,
+      "day_number": 26,
       "date": "2026-11-14",
-      "track": "engineering",
-      "title": "Record minimal selection audit",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-26.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day26: Audit + reviews LC 383 D+21, LC 209 D+7, LC 155 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-26.md",
+        "active_guide_path": "docs/reboot/contracts/day-26.md",
+        "acceptance_reference": "docs/reboot/contracts/day-26.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day26ContractTest test"
+        ],
+        "concept": "Atomic audit and data minimization",
+        "concept_reference": "contracts/day-26.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-26.md",
+        "evidence_output": "evidence/reboot/day-26.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 21,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+            "problem": "383 Ransom Note"
+          },
+          {
+            "anchor_day": 19,
+            "problem_id": 209,
+            "review_interval_days": 7,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+            "problem": "209 Minimum Size Subarray Sum"
+          },
+          {
+            "anchor_day": 23,
+            "problem_id": 155,
+            "review_interval_days": 3,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/min-stack/description/",
+            "problem": "155 Min Stack"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-26.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-26-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D26",
-      "sequence": 52,
-      "date": "2026-11-14",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-26.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 383,
-          "problem": "383 Ransom Note",
-          "anchor_day": 5,
-          "anchor_date": "2026-10-24"
-        },
-        {
-          "problem_id": 209,
-          "problem": "209 Minimum Size Subarray Sum",
-          "anchor_day": 19,
-          "anchor_date": "2026-11-07"
-        },
-        {
-          "problem_id": 155,
-          "problem": "155 Min Stack",
-          "anchor_day": 23,
-          "anchor_date": "2026-11-11"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 383 383 Ransom Note (planned Day 5); LC 209 209 Minimum Size Subarray Sum (planned Day 19); LC 155 155 Min Stack (planned Day 23). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E27",
-      "sequence": 53,
+      "id": "CS-DAY27",
+      "sequence": 27,
+      "day_number": 27,
       "date": "2026-11-15",
-      "track": "engineering",
-      "title": "Fix one evidence-backed regression",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-27.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day27: Regression fix + boundary search (LC 35)",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-27.md",
+        "active_guide_path": "docs/reboot/contracts/day-27.md",
+        "acceptance_reference": "docs/reboot/contracts/day-27.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day27ContractTest test"
+        ],
+        "concept": "Debugging hypothesis, regression prevention and scope control",
+        "concept_reference": "contracts/day-27.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-27.md",
+        "evidence_output": "evidence/reboot/day-27.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "new_pattern_anchor",
+        "concept": "boundary search",
+        "problem_id": 35,
+        "problem": "35 Search Insert Position",
+        "planned_attempt_date": "2026-11-15",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-27.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-27-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-18",
+          "2026-11-22",
+          "2026-12-06"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/search-insert-position/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D27",
-      "sequence": 54,
-      "date": "2026-11-15",
-      "track": "java_dsa",
-      "title": "New attempt: LC 35 35 Search Insert Position",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-27.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 35,
-      "problem": "35 Search Insert Position",
-      "pattern": "boundary search",
-      "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-18",
-        "2026-11-22",
-        "2026-12-06"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn boundary search; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E28",
-      "sequence": 55,
+      "id": "CS-DAY28",
+      "sequence": 28,
+      "day_number": 28,
       "date": "2026-11-16",
-      "track": "engineering",
-      "title": "Milestone 2 browser-to-database acceptance",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-28.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day28: Browser-to-database gate + reviews LC 49 D+21, LC 20 D+7, LC 704 D+3",
+      "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-28.md",
+        "active_guide_path": "docs/reboot/contracts/day-28.md",
+        "acceptance_reference": "docs/reboot/contracts/day-28.md",
+        "acceptance_command": [
+          "cd frontend && npm ci && npm run build",
+          "cd .. && CHROMIUM_BIN=/path/to/chromium ./mvnw -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test"
+        ],
+        "concept": "One request end to end, security and consistency boundaries",
+        "concept_reference": "contracts/day-28.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-28.md",
+        "evidence_output": "evidence/reboot/day-28.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "expected_todo_red",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 21,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+            "problem": "49 Group Anagrams"
+          },
+          {
+            "anchor_day": 21,
+            "problem_id": 20,
+            "review_interval_days": 7,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
+            "problem": "20 Valid Parentheses"
+          },
+          {
+            "anchor_day": 25,
+            "problem_id": 704,
+            "review_interval_days": 3,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/binary-search/description/",
+            "problem": "704 Binary Search"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-28.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-28-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
     {
-      "id": "CS-D28",
-      "sequence": 56,
-      "date": "2026-11-16",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-28.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 49,
-          "problem": "49 Group Anagrams",
-          "anchor_day": 7,
-          "anchor_date": "2026-10-26"
-        },
-        {
-          "problem_id": 20,
-          "problem": "20 Valid Parentheses",
-          "anchor_day": 21,
-          "anchor_date": "2026-11-09"
-        },
-        {
-          "problem_id": 704,
-          "problem": "704 Binary Search",
-          "anchor_day": 25,
-          "anchor_date": "2026-11-13"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 49 49 Group Anagrams (planned Day 7); LC 20 20 Valid Parentheses (planned Day 21); LC 704 704 Binary Search (planned Day 25). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
-    },
-    {
-      "id": "CS-E29",
-      "sequence": 57,
+      "id": "CS-DAY29",
+      "sequence": 29,
+      "day_number": 29,
       "date": "2026-11-17",
-      "track": "engineering",
-      "title": "Make the slice reproducible",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-29.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
+      "title": "Day29: Reproducibility + rotated-array search (LC 153)",
+      "sprint": "Sprint 3 (17–30 Nov 2026)",
       "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D29",
-      "sequence": 58,
-      "date": "2026-11-17",
-      "track": "java_dsa",
-      "title": "New attempt: LC 153 153 Find Minimum in Rotated Sorted Array",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-29.md",
-      "budget_minutes": 60,
+      "budget_minutes": 180,
       "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
+        "engineering": 120,
+        "java_dsa": 60
       },
-      "status": "not_attempted",
-      "role": "new_pattern_anchor",
-      "problem_id": 153,
-      "problem": "153 Find Minimum in Rotated Sorted Array",
-      "pattern": "rotated-array search",
-      "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
-      "planned_review_forecast_dates": [
-        "2026-11-20",
-        "2026-11-24",
-        "2026-12-08"
-      ],
-      "review_anchors_forecast_due_today": [],
-      "scope": "Learn rotated-array search; make the planned independent first attempt. Record the actual attempt date and recompute D+3/D+7/D+21 reviews from it."
-    },
-    {
-      "id": "CS-E30",
-      "sequence": 59,
-      "date": "2026-11-18",
-      "track": "engineering",
-      "title": "Defend and assess the slice",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/contracts/day-30.md",
-      "day1_guide_path": null,
-      "budget_minutes": 120,
-      "allocation_minutes": {
-        "implementation_and_testing": 85,
-        "concept_or_course": 25,
-        "evidence": 10
-      },
-      "status": "not_attempted",
-      "scope": "Implement and verify only the learner-owned seam in the linked daily contract; keep later integration gates blocked until evidence supports them."
-    },
-    {
-      "id": "CS-D30",
-      "sequence": 60,
-      "date": "2026-11-18",
-      "track": "java_dsa",
-      "title": "Consolidate and review due anchors",
-      "sprint": "Reboot Sprint 3 (Days 21–30)",
-      "guide_path": "docs/reboot/dsa-error-log-template.md",
-      "daily_contract_path": "docs/reboot/contracts/day-30.md",
-      "budget_minutes": 60,
-      "allocation_minutes": {
-        "pattern_learning": 25,
-        "independent_solve_or_cold_review": 20,
-        "active_retrieval_and_error_log": 15
-      },
-      "status": "not_attempted",
-      "role": "consolidation_no_new_problem",
-      "problem_id": null,
-      "problem": null,
-      "pattern": "consolidation and active retrieval",
-      "problem_url": null,
-      "planned_review_forecast_dates": [],
-      "review_anchors_forecast_due_today": [
-        {
-          "problem_id": 238,
-          "problem": "238 Product of Array Except Self",
-          "anchor_day": 9,
-          "anchor_date": "2026-10-28"
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
         },
-        {
-          "problem_id": 155,
-          "problem": "155 Min Stack",
-          "anchor_day": 23,
-          "anchor_date": "2026-11-11"
+        "contract_path": "docs/reboot/contracts/day-29.md",
+        "active_guide_path": "docs/reboot/contracts/day-29.md",
+        "acceptance_reference": "docs/reboot/contracts/day-29.md",
+        "acceptance_command": [
+          "./mvnw -Dtest=Day29ResetIntegrationTest test",
+          "./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable",
+          "*_test"
+        ],
+        "concept": "Configuration, environment parity and safe operations",
+        "concept_reference": "contracts/day-29.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-29.md",
+        "evidence_output": "evidence/reboot/day-29.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
         },
-        {
-          "problem_id": 35,
-          "problem": "35 Search Insert Position",
-          "anchor_day": 27,
-          "anchor_date": "2026-11-15"
-        }
-      ],
-      "scope": "No new mandatory problem. Review due on this forecast date: LC 238 238 Product of Array Except Self (planned Day 9); LC 155 155 Min Stack (planned Day 23); LC 35 35 Search Insert Position (planned Day 27). Recompute from actual first-attempt dates; missed reviews displace new anchors instead of adding overtime."
+        "mode": "new_pattern_anchor",
+        "concept": "rotated-array search",
+        "problem_id": 153,
+        "problem": "153 Find Minimum in Rotated Sorted Array",
+        "planned_attempt_date": "2026-11-17",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/contracts/day-29.md#separate-java-dsa-block-60-minutes",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-29-dsa.json",
+        "planned_review_forecast_dates": [
+          "2026-11-20",
+          "2026-11-24",
+          "2026-12-08"
+        ],
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
+        "resource_references": [
+          "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+    },
+    {
+      "id": "CS-DAY30",
+      "sequence": 30,
+      "day_number": 30,
+      "date": "2026-11-18",
+      "title": "Day30: Slice review + reviews LC 238 D+21, LC 155 D+7, LC 35 D+3",
+      "sprint": "Sprint 3 (17–30 Nov 2026)",
+      "status": "not_attempted",
+      "budget_minutes": 180,
+      "allocation_minutes": {
+        "engineering": 120,
+        "java_dsa": 60
+      },
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/contracts/day-30.md",
+        "active_guide_path": "docs/reboot/contracts/day-30.md",
+        "acceptance_reference": "docs/reboot/contracts/day-30.md",
+        "acceptance_command": [
+          "./mvnw -Plearner-tests -Dtest=Day30ContractTest test"
+        ],
+        "concept": "SDE II trade-off discussion and technical communication",
+        "concept_reference": "contracts/day-30.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-30.md",
+        "evidence_output": "evidence/reboot/day-30.json",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "mode": "consolidation_no_new_problem",
+        "concept": "consolidation and active retrieval",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
+        "review_anchors": [
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 21,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+            "problem": "238 Product of Array Except Self"
+          },
+          {
+            "anchor_day": 23,
+            "problem_id": 155,
+            "review_interval_days": 7,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/min-stack/description/",
+            "problem": "155 Min Stack"
+          },
+          {
+            "anchor_day": 27,
+            "problem_id": 35,
+            "review_interval_days": 3,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan",
+            "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
+            "problem": "35 Search Insert Position"
+          }
+        ],
+        "guide_path": "docs/reboot/contracts/day-30.md#separate-java-dsa-block-60-minutes",
+        "error_log_template": "docs/reboot/dsa-error-log-template.md",
+        "status": "not_attempted",
+        "evidence_output": "evidence/reboot/day-30-dsa.json",
+        "planned_review_forecast_dates": [],
+        "resource_references": [
+          "docs/reboot/dsa-error-log-template.md"
+        ],
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+      },
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     }
   ]
 }
