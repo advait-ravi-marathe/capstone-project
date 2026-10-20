@@ -29,7 +29,7 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-**Worked example (within the same cap):** Capture backend PID/backend_start and baseline settings. Run commit, lock failure, statement failure and mapping rollback; deliberately reborrow one-slot pool and prove same PID plus reset settings.
+**Worked example (within the same cap):** Capture backend PID/backend_start and baseline settings. Run success, then hold a real ACCESS EXCLUSIVE relation lock while the one-slot reader fails; prove rollback and idle state before releasing the holder. Follow with statement-timeout and mapping-failure rollback. After every outcome deliberately reborrow the one-slot pool and assert the same PID/backend_start, reset settings, and `pg_stat_activity` idle with no open transaction.
 
 **Focused sources:**
 - [PostgreSQL 18 System Administration Functions — set_config and current_setting](https://www.postgresql.org/docs/18/functions-admin.html)

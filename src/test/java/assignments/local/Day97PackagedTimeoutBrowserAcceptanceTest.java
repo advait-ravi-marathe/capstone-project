@@ -37,6 +37,10 @@ class Day97PackagedTimeoutBrowserAcceptanceTest {
             holder.setAutoCommit(false);
             try (Statement lock = holder.createStatement()) {
                 lock.execute("LOCK TABLE training_policy_lifecycle IN ACCESS EXCLUSIVE MODE");
+                // Bound the holder's verification reads as a test-fixture watchdog. This is not
+                // an application timeout assertion; any fixture ordering defect fails instead
+                // of hanging while holding the relation lock.
+                lock.execute("SET LOCAL statement_timeout = '5s'");
             }
             Process browser = null;
             boolean released = false;
@@ -61,7 +65,9 @@ class Day97PackagedTimeoutBrowserAcceptanceTest {
                 }
                 assertTrue(relationLockStillHeld(dataSource, holder),
                         "the safe timeout response must be observed before the test releases ACCESS EXCLUSIVE");
-                assertEquals(before, snapshot(dataSource), "read and timeout leave all lifecycle rows unchanged");
+                // Read through the lock-owning session. A separate connection would block on
+                // ACCESS EXCLUSIVE until commit, which intentionally happens only below.
+                assertEquals(before, snapshot(holder), "read and timeout leave all lifecycle rows unchanged");
 
                 holder.commit();
                 released = true;
@@ -144,15 +150,21 @@ class Day97PackagedTimeoutBrowserAcceptanceTest {
     }
 
     private static DatabaseSnapshot snapshot(DataSource dataSource) throws Exception {
-        return new DatabaseSnapshot(tableSnapshot(dataSource, "training_policy_lifecycle", "policy_id"),
-                tableSnapshot(dataSource, "training_policy_lifecycle_event", "policy_id, version"),
-                tableSnapshot(dataSource, "training_policy_idempotency", "owner_id, client_request_id"));
+        try (Connection connection = dataSource.getConnection()) {
+            return snapshot(connection);
+        }
     }
 
-    private static String tableSnapshot(DataSource dataSource, String table, String orderBy) throws Exception {
+    private static DatabaseSnapshot snapshot(Connection connection) throws Exception {
+        return new DatabaseSnapshot(tableSnapshot(connection, "training_policy_lifecycle", "policy_id"),
+                tableSnapshot(connection, "training_policy_lifecycle_event", "policy_id, version"),
+                tableSnapshot(connection, "training_policy_idempotency", "owner_id, client_request_id"));
+    }
+
+    private static String tableSnapshot(Connection connection, String table, String orderBy) throws Exception {
         String sql = "SELECT COALESCE(jsonb_agg(to_jsonb(row_data) ORDER BY " + orderBy + "), '[]'::jsonb)::text " +
                 "FROM " + table + " AS row_data";
-        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();
+        try (Statement statement = connection.createStatement();
              ResultSet rows = statement.executeQuery(sql)) {
             assertTrue(rows.next()); return rows.getString(1);
         }

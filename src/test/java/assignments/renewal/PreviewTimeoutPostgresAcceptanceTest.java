@@ -98,12 +98,49 @@ class PreviewTimeoutPostgresAcceptanceTest {
 
     @Test
     void repeatedRecoveryRestoresSessionBaselineBeforePermitReuse() throws Exception {
-        try (PostgresTimeoutFixture fixture = PostgresTimeoutFixture.open()) {
+        try (PostgresTimeoutFixture fixture = PostgresTimeoutFixture.open();
+             ExecutorService executor = Executors.newSingleThreadExecutor()) {
             PostgresTimeoutFixture.Baseline baseline = fixture.baseline();
             PolicyRenewalReadStore success = (policy, owner) -> Optional.empty();
             assertEquals(Optional.empty(), fixture.timed(success, 500, 2000)
                     .findByPolicyIdAndOwnerId("missing", "owner-a"));
             assertSameBackendAndBaseline(fixture, baseline);
+
+            // Hold the real relation lock from a separate administrative connection while the
+            // one-slot application pool performs its owner-scoped read. The worker must finish
+            // rollback before the holder releases the lock, then the next checkout must reuse
+            // the same backend with its session baseline restored.
+            try (Connection holder = fixture.admin().getConnection()) {
+                holder.setAutoCommit(false);
+                try (var lock = holder.createStatement()) {
+                    lock.execute("LOCK TABLE training_policy_lifecycle IN ACCESS EXCLUSIVE MODE");
+                }
+                int holderPid = pid(holder);
+                assertTrue(hasGrantedRelationLock(fixture, holderPid));
+                PolicyRenewalReadStore ownerRead = (policy, owner) -> {
+                    fixture.jdbc().queryForObject("SELECT policy_id FROM training_policy_lifecycle " +
+                            "WHERE policy_id=? AND owner_id=?", String.class, policy, owner);
+                    return Optional.empty();
+                };
+                Future<Optional<?>> lockAttempt = executor.submit(() -> fixture.timed(ownerRead, 500, 2000)
+                        .findByPolicyIdAndOwnerId("policy-renewal-a", "owner-a"));
+                PostgresTimeoutFixture.Activity waiting = fixture.awaitWait(
+                        baseline.pid(), "Lock", null, Duration.ofSeconds(10));
+                assertEquals(baseline.backendStart(), waiting.backendStart());
+                assertEquals("active", waiting.state());
+                assertTrue(waiting.transactionOpen());
+                assertNotEquals(holderPid, waiting.pid());
+
+                RuntimeException lockFailure = futureFailure(lockAttempt);
+                assertEquals("55P03", sqlState(lockFailure));
+                assertTrue(hasGrantedRelationLock(fixture, holderPid),
+                        "the lock owner remains held until rollback and pooled-session checks finish");
+                PostgresTimeoutFixture.Activity lockCleaned = fixture.awaitIdle(baseline.pid(), Duration.ofSeconds(10));
+                assertEquals("idle", lockCleaned.state());
+                assertFalse(lockCleaned.transactionOpen());
+                assertSameBackendAndBaseline(fixture, baseline);
+                holder.rollback();
+            }
 
             PolicyRenewalReadStore mappingFailure = (policy, owner) -> { throw new IllegalArgumentException("mapping fixture"); };
             assertThrows(IllegalArgumentException.class, () -> fixture.timed(mappingFailure, 500, 2000)
@@ -134,6 +171,9 @@ class PreviewTimeoutPostgresAcceptanceTest {
         assertEquals(baseline.backendStart(), current.backendStart());
         assertEquals(baseline.lockTimeout(), current.lockTimeout());
         assertEquals(baseline.statementTimeout(), current.statementTimeout());
+        PostgresTimeoutFixture.Activity activity = fixture.activity(current.pid());
+        assertEquals("idle", activity.state(), "a returned permit must be outside a transaction");
+        assertFalse(activity.transactionOpen(), "rollback/commit must finish before the next checkout");
     }
 
     private static int pid(Connection connection) throws SQLException {

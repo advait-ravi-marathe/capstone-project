@@ -86,4 +86,21 @@ class Day85To98InfrastructureTest {
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java")),
                 "short-budget lock/statement cases remain separate learner acceptance checks");
     }
+
+    @Test
+    void day96RecoverySelectorCoversLockRollbackAndIdleBackend() throws Exception {
+        String test = Files.readString(Path.of("src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java"));
+        String contract = Files.readString(BASE.resolve("contracts/day-96.md"));
+        String scope = "success, then hold a real ACCESS EXCLUSIVE relation lock while the one-slot reader fails; " +
+                "prove rollback and idle state before releasing the holder";
+        assertTrue(contract.contains(scope));
+        assertTrue(test.contains("void repeatedRecoveryRestoresSessionBaselineBeforePermitReuse()"));
+        assertTrue(test.contains("LOCK TABLE training_policy_lifecycle IN ACCESS EXCLUSIVE MODE"));
+        assertTrue(test.contains("fixture.awaitWait("));
+        assertTrue(test.contains("assertEquals(\"55P03\", sqlState(lockFailure))"));
+        assertTrue(test.contains("assertEquals(\"idle\", lockCleaned.state())"));
+        assertTrue(test.contains("assertFalse(lockCleaned.transactionOpen())"));
+        assertTrue(test.contains("assertEquals(\"idle\", activity.state()"));
+        assertTrue(test.contains("assertFalse(activity.transactionOpen()"));
+    }
 }

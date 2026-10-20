@@ -830,7 +830,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Capture backend PID/backend_start and baseline settings. Run commit, lock failure, statement failure and mapping rollback; deliberately reborrow one-slot pool and prove same PID plus reset settings.",
+          "scope_note": "Capture backend PID/backend_start and baseline settings. Run success, then hold a real ACCESS EXCLUSIVE relation lock while the one-slot reader fails; prove rollback and idle state before releasing the holder. Follow with statement-timeout and mapping-failure rollback. After every outcome deliberately reborrow the one-slot pool and assert the same PID/backend_start, reset settings, and pg_stat_activity idle with no open transaction.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -855,7 +855,7 @@
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted"
       },
-      "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 System Administration Functions — set_config and current_setting: https://www.postgresql.org/docs/18/functions-admin.html\n- PostgreSQL 18 SET — SET LOCAL transaction scope: https://www.postgresql.org/docs/18/sql-set.html\n- PostgreSQL 18 Monitoring Statistics — backend pid and backend_start: https://www.postgresql.org/docs/18/monitoring-stats.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Capture backend PID/backend_start and baseline settings. Run commit, lock failure, statement failure and mapping rollback; deliberately reborrow one-slot pool and prove same PID plus reset settings.",
+      "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 System Administration Functions — set_config and current_setting: https://www.postgresql.org/docs/18/functions-admin.html\n- PostgreSQL 18 SET — SET LOCAL transaction scope: https://www.postgresql.org/docs/18/sql-set.html\n- PostgreSQL 18 Monitoring Statistics — backend pid and backend_start: https://www.postgresql.org/docs/18/monitoring-stats.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Capture backend PID/backend_start and baseline settings. Run success, then hold a real ACCESS EXCLUSIVE relation lock while the one-slot reader fails; prove rollback and idle state before releasing the holder. Follow with statement-timeout and mapping-failure rollback. After every outcome deliberately reborrow the one-slot pool and assert the same PID/backend_start, reset settings, and pg_stat_activity idle with no open transaction.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
