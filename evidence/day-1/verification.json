@@ -18,6 +18,16 @@
       "detail": "Maven could not resolve the Spring Boot BOM because Java DNS resolution for repo.maven.apache.org failed. No compilation or test execution occurred."
     },
     {
+      "command": "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=QuoteSelectionInfrastructureTest test",
+      "result": "blocked",
+      "detail": "The temporary Maven proxy settings resolved dependencies, but compilation stopped because javac is absent. The environment has a Java 21 runtime only; Maven reported release version 21 not supported. No test executed."
+    },
+    {
+      "command": "curl -L --fail https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse -o /tmp/temurin21.tar.gz",
+      "result": "blocked",
+      "detail": "The download endpoint returned HTTP 403, so no temporary JDK was installed."
+    },
+    {
       "command": "git diff --check",
       "result": "passed",
       "detail": "No whitespace errors in the working diff."
@@ -29,11 +39,11 @@
     "BestTimeToBuySellStockAcceptanceTest reaches the explicit DSA learner TODO until implemented."
   ],
   "additional_checks": [
-    "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -version: passed; Apache Maven 3.10.0 and Java 21.0.12.1 reported.",
+    "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -version: passed; Apache Maven 3.10.0 and Java 21.0.12.1 runtime reported.",
     "Python XML and JSON parsing of pom.xml and this evidence file: passed.",
     "git diff --cached --check: passed for the complete staged change set."
   ],
-  "dependency_review": "Spring Boot 4.1.1 and JUnit Jupiter 6.1.3 are published in Maven Central. Spring advisory index reviewed. Full dependency resolution and SCA scan were blocked; no clean-SCA claim is made. See docs/dependency-review-2026-10-20.md.",
+  "dependency_review": "Spring Boot 4.1.1 and JUnit Jupiter 6.1.3 are published in Maven Central. Dependencies resolved through a temporary Maven proxy configuration. Spring advisory index reviewed. No full SCA scan completed; no clean-SCA claim is made. See docs/dependency-review-2026-10-20.md.",
   "published_sha": null,
-  "publication_blocker": "Build verification could not run because of environment DNS/cache constraints; branch push and archive-tag verification have not been attempted."
+  "publication_blocker": "Build/test verification could not complete because javac is missing and the temporary JDK download returned HTTP 403. Branch push and archive-tag verification have not been attempted."
 }
