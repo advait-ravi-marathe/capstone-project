@@ -77,15 +77,19 @@ final class Postgres18ToolHarness {
 
     static void timeoutCleanupPreservesUnrelatedSentinel() throws Exception {
         String sentinel = "coverstory-sentinel-" + UUID.randomUUID().toString().replace("-", "");
+        String timedContainer = "coverstory-pgtool-" + UUID.randomUUID().toString().replace("-", "");
         Process start = new ProcessBuilder("docker", "run", "--detach", "--name", sentinel, "--network", "none",
                 IMAGE, "sh", "-c", "sleep 60").redirectErrorStream(true).start();
+        Process createTimed = new ProcessBuilder("docker", "create", "--name", timedContainer, "--network", "none",
+                "--entrypoint", "sh", IMAGE, "-c", "sleep 60").redirectErrorStream(true).start();
         try {
             awaitControlProcess(start, 20, "sentinel fixture startup watchdog");
             Assertions.assertEquals(0, start.exitValue(), new String(start.getInputStream().readAllBytes()));
+            awaitControlProcess(createTimed, 20, "owned timeout container creation watchdog");
+            Assertions.assertEquals(0, createTimed.exitValue(), new String(createTimed.getInputStream().readAllBytes()));
             ToolWatchdogException timeout = Assertions.assertThrows(ToolWatchdogException.class,
-                    () -> run(List.of("docker", "run", "--rm", "--network", "none",
-                            "--entrypoint", "sh", IMAGE, "-c", "sleep 60"), null, null, 1));
-            Assertions.assertNotNull(timeout.ownedContainer(), "watchdog success identifies its cleaned container");
+                    () -> run(List.of("docker", "start", "--attach", timedContainer), null, null, 1, timedContainer));
+            Assertions.assertEquals(timedContainer, timeout.ownedContainer(), "watchdog outcome identifies the pre-created owned container");
             assertContainerAbsent(timeout.ownedContainer());
             Process inspect = new ProcessBuilder("docker", "inspect", "--format={{.State.Running}}", sentinel)
                     .redirectErrorStream(true).start();
@@ -98,6 +102,11 @@ final class Postgres18ToolHarness {
                 start.destroyForcibly();
                 Assertions.assertTrue(start.waitFor(5, TimeUnit.SECONDS), "sentinel startup child must be killed and awaited");
             }
+            if (createTimed.isAlive()) {
+                createTimed.destroyForcibly();
+                Assertions.assertTrue(createTimed.waitFor(5, TimeUnit.SECONDS), "owned timeout-container create child must be killed and awaited");
+            }
+            if (!containerMissing(timedContainer)) stopOwnedContainer(timedContainer);
             Process cleanup = new ProcessBuilder("docker", "rm", "--force", sentinel).redirectErrorStream(true).start();
             awaitControlProcess(cleanup, 10, "owned sentinel cleanup watchdog");
             Assertions.assertEquals(0, cleanup.exitValue());
@@ -118,10 +127,14 @@ final class Postgres18ToolHarness {
     }
 
     private static Result run(List<String> command, Path input, Path output, int timeoutSeconds) throws Exception {
+        return run(command, input, output, timeoutSeconds, null);
+    }
+
+    private static Result run(List<String> command, Path input, Path output, int timeoutSeconds, String precreatedOwnedContainer) throws Exception {
         Path log = Files.createTempFile("coverstory-pgtool-", ".log");
         Path stdout = output == null ? Files.createTempFile("coverstory-pgtool-", ".out") : output;
         List<String> actualCommand = new java.util.ArrayList<>(command);
-        String ownedContainer = null;
+        String ownedContainer = precreatedOwnedContainer;
         if (actualCommand.size() > 2 && actualCommand.get(0).equals("docker") && actualCommand.get(1).equals("run")) {
             ownedContainer = "coverstory-pgtool-" + UUID.randomUUID().toString().replace("-", "");
             actualCommand.add(2, "--name");
@@ -183,8 +196,14 @@ final class Postgres18ToolHarness {
 
     private static void awaitContainerMissing(String name, int timeoutSeconds) throws Exception {
         long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(timeoutSeconds);
+        long absentSince = -1;
         while (System.nanoTime() < deadline) {
-            if (containerMissing(name)) return;
+            if (containerMissing(name)) {
+                if (absentSince < 0) absentSince = System.nanoTime();
+                if (System.nanoTime() - absentSince >= TimeUnit.MILLISECONDS.toNanos(750)) return;
+            } else {
+                absentSince = -1;
+            }
             Thread.sleep(50);
         }
         Assertions.fail("owned Docker container remains after bounded cleanup: " + name);
