@@ -30,7 +30,7 @@ Dated attempt note and valid/invalid MockMvc cases. Record dated attempt state (
 
 `./mvnw -Plearner-tests -Dtest=Day02ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This exact selector runs the installed validator acceptance tests, which should fail at the explicit request-validator TODO until learner implementation. HTTP-controller wiring and service-call-count checks remain pending; the Day 1 route stays unchanged until that integration is part of the learner's Day 2 work. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 

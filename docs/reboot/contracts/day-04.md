@@ -30,7 +30,7 @@ Fixture read and mutation-resistance test. Record dated attempt state (`not atte
 
 `./mvnw -Plearner-tests -Dtest=Day04ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 

@@ -3,8 +3,9 @@
 This folder records the reviewed roadmap proposal for 20 October–18 November
 2026. It is a set of contracts and schedule metadata, not a completion report.
 The existing Day 1 feature remains the live starter; future-day files specify
-the intended acceptance contract before their instructor tests or learner
-implementations are created.
+the intended acceptance contract before learner implementations are created.
+Day 2 has an isolated validator test but is not wired into the Day 1 route;
+Days 3–7 now have isolated test scaffolds with explicit learner TODOs.
 
 ## Products and scope
 
@@ -33,12 +34,12 @@ at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 | Day/date | Engineering contract | DSA block | State |
 |---|---|---|---|
 | 01 · 2026-10-20 | [Day 01](contracts/day-01.md) — Quote selection identity/order | 121 Best Time to Buy and Sell Stock (not_attempted) | installed / not_attempted / blocked |
-| 02 · 2026-10-21 | [Day 02](contracts/day-02.md) — Validate selection request at HTTP boundary | 88 Merge Sorted Array (not_attempted) | not_installed / not_attempted / blocked |
-| 03 · 2026-10-22 | [Day 03](contracts/day-03.md) — Map failures consistently | 27 Remove Element (not_attempted) | not_installed / not_attempted / blocked |
-| 04 · 2026-10-23 | [Day 04](contracts/day-04.md) — Read one synthetic product | 26 Remove Duplicates from Sorted Array (not_attempted) | not_installed / not_attempted / blocked |
-| 05 · 2026-10-24 | [Day 05](contracts/day-05.md) — Decide HomeSecure eligibility | 80 Remove Duplicates from Sorted Array II (not_attempted) | not_installed / not_attempted / blocked |
-| 06 · 2026-10-25 | [Day 06](contracts/day-06.md) — Calculate synthetic premium | 169 Majority Element (not_attempted) | not_installed / not_attempted / blocked |
-| 07 · 2026-10-26 | [Day 07](contracts/day-07.md) — Create and expire quote version | 189 Rotate Array (not_attempted) | not_installed / not_attempted / blocked |
+| 02 · 2026-10-21 | [Day 02](contracts/day-02.md) — Validate selection request at HTTP boundary | 88 Merge Sorted Array (not_attempted) | partial / not_attempted / blocked |
+| 03 · 2026-10-22 | [Day 03](contracts/day-03.md) — Map failures consistently | 27 Remove Element (not_attempted) | installed / not_attempted / blocked |
+| 04 · 2026-10-23 | [Day 04](contracts/day-04.md) — Read one synthetic product | 26 Remove Duplicates from Sorted Array (not_attempted) | installed / not_attempted / blocked |
+| 05 · 2026-10-24 | [Day 05](contracts/day-05.md) — Decide HomeSecure eligibility | 80 Remove Duplicates from Sorted Array II (not_attempted) | installed / not_attempted / blocked |
+| 06 · 2026-10-25 | [Day 06](contracts/day-06.md) — Calculate synthetic premium | 169 Majority Element (not_attempted) | installed / not_attempted / blocked |
+| 07 · 2026-10-26 | [Day 07](contracts/day-07.md) — Create and expire quote version | 189 Rotate Array (not_attempted) | installed / not_attempted / blocked |
 | 08 · 2026-10-27 | [Day 08](contracts/day-08.md) — Define PostgreSQL quote schema | 122 Best Time to Buy and Sell Stock II (not_attempted) | not_installed / not_attempted / blocked |
 | 09 · 2026-10-28 | [Day 09](contracts/day-09.md) — Persist/read immutable quote snapshots | 55 Jump Game (not_attempted) | not_installed / not_attempted / blocked |
 | 10 · 2026-10-29 | [Day 10](contracts/day-10.md) — Persist selection batch atomically | 45 Jump Game II (not_attempted) | not_installed / not_attempted / blocked |
@@ -65,12 +66,13 @@ at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 
 ## Scaffold and dependency rules
 
-Future contract pages are not tests and do not claim those commands currently
-run. Their exact Maven test selector becomes runnable when the instructor adds
-that day's named fixed test. Every such test must instantiate only its own
-subject; prior collaborators use explicit test-only canned values. A stub may
-provide fixed fixture data, but must not implement an earlier learner rule.
-Future TODOs must fail clearly. Never use a skipped/disabled test, catch-all
+Future contract pages alone are not tests. Days 2–7 currently have installed
+focused tests and production seams; they intentionally fail at explicit learner
+TODOs. Day 2 remains partial because HTTP wiring and service-call-count checks
+are still open. Days 8–30 remain contract-only. Every focused test must
+instantiate only its own subject; prior collaborators use explicit test-only
+canned values. A stub may provide fixed fixture data, but must not implement
+an earlier learner rule. Never use a skipped/disabled test, catch-all
 assertion, or missing-test tolerance to make a day appear green.
 
 Infrastructure checks remain separate from learner acceptance. A cumulative
