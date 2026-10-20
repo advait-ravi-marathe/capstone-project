@@ -37,8 +37,8 @@ class BestTimeToBuySellStockAcceptanceTest {
     }
 
     @Test
-    void rejectsNullAndAcceptsEmptyInputAsNoTransaction() {
-        assertThrows(IllegalArgumentException.class, () -> solution.maxProfit(null));
+    void returnsZeroForNullAndEmptyInput() {
+        assertEquals(0, solution.maxProfit(null));
         assertEquals(0, solution.maxProfit(new int[0]));
     }
 }
