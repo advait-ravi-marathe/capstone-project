@@ -33,8 +33,13 @@ jobs:
       - name: Frontend build
         working-directory: frontend
         run: npm run build
+      - name: Build isolated local frontend
+        working-directory: frontend
+        run: npm run build:local
       - name: Verify Java infrastructure and instructor harness
         run: ./mvnw -B -ntp test
+      - name: Package local Spring Boot runtime
+        run: ./mvnw -B -ntp -Plocal-app -DskipTests clean package
       - name: Frontend instructor tests
         working-directory: frontend
         run: npm test
