@@ -80,16 +80,30 @@ class Continuation127To140ManifestTest(unittest.TestCase):
         self.assertFalse(self.manifest["course_catalog"]["courses"][0]["video_content_audited"])
 
     def test_packaged_cutover_harness_is_synchronized(self):
-        selector = ("./mvnw -Plocal-app,learner-tests -Dtest="
-                    "LocalReleaseCutoverAcceptanceTest#"
-                    "day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test")
-        for number in (134, 135, 139, 140):
+        selectors = {
+            134: ("./mvnw -Plocal-app,learner-tests -Dtest="
+                  "LocalReleaseCutoverAcceptanceTest#day134PackagedCandidateCheckLeavesKnownGood test"),
+            135: ("./mvnw -Plocal-app,learner-tests -Dtest="
+                  "LocalReleaseCutoverAcceptanceTest#day135PackagedRollbackBlocksAfterDivergence test"),
+            139: ("./mvnw -Plocal-app,learner-tests -Dtest="
+                  "LocalReleaseCutoverAcceptanceTest#day134PackagedCandidateCheckLeavesKnownGood+day135PackagedRollbackBlocksAfterDivergence test"),
+            140: ("./mvnw -Plocal-app,learner-tests -Dtest="
+                  "LocalReleaseCutoverAcceptanceTest#day134PackagedCandidateCheckLeavesKnownGood+day135PackagedRollbackBlocksAfterDivergence test"),
+        }
+        for number, selector in selectors.items():
             day = self.manifest["days"][number - 127]
             self.assertIn(selector, day["engineering"]["acceptance_commands"])
             contract = (ROOT / day["contract_file"]).read_text()
             self.assertIn(f"- `{selector}`", contract)
             export = next(card for card in self.export["cards"] if card["day_number"] == number)
             self.assertEqual(day["engineering"]["acceptance_commands"], export["engineering"]["acceptance_commands"])
+
+    def test_day138_selector_resolves_to_a_real_test_method(self):
+        day = self.manifest["days"][138 - 127]
+        selector = "./mvnw -Plearner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day138CostsRetainedResourcesWithoutInventingPrices test"
+        self.assertIn(selector, day["engineering"]["acceptance_commands"])
+        source = (ROOT / "src/test/java/assignments/ops/AwsLabDesignPolicyAcceptanceTest.java").read_text()
+        self.assertRegex(source, r"@Test\s+void\s+day138CostsRetainedResourcesWithoutInventingPrices\s*\(")
 
     def test_recovery_commands_are_prior_only_and_paths_resolve(self):
         for day in self.manifest["days"]:

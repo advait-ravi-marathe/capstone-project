@@ -17,7 +17,15 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Uses the same packaged JAR against source and restored target under a local test-client switch. */
 @Tag("learnerAcceptance")
 class LocalReleaseCutoverAcceptanceTest {
-    @Test void day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence() throws Exception {
+    @Test void day134PackagedCandidateCheckLeavesKnownGood() throws Exception {
+        runCutoverScenario(false);
+    }
+
+    @Test void day135PackagedRollbackBlocksAfterDivergence() throws Exception {
+        runCutoverScenario(true);
+    }
+
+    private void runCutoverScenario(boolean verifyRollback) throws Exception {
         try (EmbeddedPostgres pg = EmbeddedPostgres.builder().start()) {
             var source = pg.getPostgresDatabase();
             Flyway.configure().dataSource(source).locations("classpath:db/migration").load().migrate();
@@ -52,22 +60,24 @@ class LocalReleaseCutoverAcceptanceTest {
                 assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(sourceUrl), "candidate inspection does not mutate S");
                 assertEquals(targetState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl), "candidate inspection does not mutate T");
 
-                RollbackDecisionPolicy rollback = new RollbackDecisionPolicy();
-                assertTrue(rollback.mayReturnToSource(true, true, true), "quiesced same-artifact configuration return is allowed");
-                selected = ActivationDecisionPolicy.Selection.CURRENT;
-                assertEquals(ActivationDecisionPolicy.Selection.CURRENT, selected);
-                assertTrue(inspect(jar, sourceUrl).contains("MANUAL_HOLD"), "source remains available for quiesced return");
+                if (verifyRollback) {
+                    RollbackDecisionPolicy rollback = new RollbackDecisionPolicy();
+                    assertTrue(rollback.mayReturnToSource(true, true, true), "quiesced same-artifact configuration return is allowed");
+                    selected = ActivationDecisionPolicy.Selection.CURRENT;
+                    assertEquals(ActivationDecisionPolicy.Selection.CURRENT, selected);
+                    assertTrue(inspect(jar, sourceUrl).contains("MANUAL_HOLD"), "source remains available for quiesced return");
 
-                selected = activation.choose(true, true, true, true, true);
-                assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected);
-                var targetDataSource = new DriverManagerDataSource(targetUrl, "postgres", "");
-                DatabaseRestoreAcceptanceTest.insertPolicy(new JdbcTemplate(targetDataSource), "postcutover-write");
-                String divergedTarget = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl);
-                assertNotEquals(sourceState, divergedTarget, "accepted candidate write establishes divergence");
-                assertFalse(rollback.mayReturnToSource(true, true, false), "stale source rollback is blocked after a T write");
-                assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected, "blocked rollback leaves candidate selected");
-                assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(sourceUrl), "S is never modified by the rehearsal");
-                assertEquals(divergedTarget, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl), "T retains the accepted post-cutover write");
+                    selected = activation.choose(true, true, true, true, true);
+                    assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected);
+                    var targetDataSource = new DriverManagerDataSource(targetUrl, "postgres", "");
+                    DatabaseRestoreAcceptanceTest.insertPolicy(new JdbcTemplate(targetDataSource), "postcutover-write");
+                    String divergedTarget = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl);
+                    assertNotEquals(sourceState, divergedTarget, "accepted candidate write establishes divergence");
+                    assertFalse(rollback.mayReturnToSource(true, true, false), "stale source rollback is blocked after a T write");
+                    assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected, "blocked rollback leaves candidate selected");
+                    assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(sourceUrl), "S is never modified by the rehearsal");
+                    assertEquals(divergedTarget, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl), "T retains the accepted post-cutover write");
+                }
             } finally {
                 if (target != null) Postgres18ToolHarness.dropOwnedTarget(pg, target);
                 Files.deleteIfExists(archive);

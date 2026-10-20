@@ -601,7 +601,7 @@
           "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGood test",
           "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134PackagedCandidateCheckLeavesKnownGood test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "concept_course": {
@@ -695,7 +695,7 @@
           "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day135BlocksRollbackAfterDivergentWrites test",
           "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day135PackagedRollbackBlocksAfterDivergence test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "concept_course": {
@@ -1040,7 +1040,7 @@
           "./mvnw -Dtest=DatabaseRestoreAcceptanceTest test",
           "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134PackagedCandidateCheckLeavesKnownGood+day135PackagedRollbackBlocksAfterDivergence test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalRestoreApplicationAcceptanceTest test",
           "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
@@ -1138,7 +1138,7 @@
           "./mvnw -Dtest=DatabaseRestoreAcceptanceTest test",
           "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134PackagedCandidateCheckLeavesKnownGood+day135PackagedRollbackBlocksAfterDivergence test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalRestoreApplicationAcceptanceTest test",
           "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"

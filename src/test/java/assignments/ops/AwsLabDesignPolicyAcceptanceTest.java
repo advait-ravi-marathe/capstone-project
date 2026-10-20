@@ -21,7 +21,7 @@ class AwsLabDesignPolicyAcceptanceTest {
                 safe.accountId(), safe.region(), safe.accessModel(), false, false, true, List.of(), null, null, false)));
     }
 
-    @Test void day138IncludesFictionalRetainedCostsAndNeverInventsZero() {
+    @Test void day138CostsRetainedResourcesWithoutInventingPrices() {
         var policy = new AwsLabDesignPolicy();
         var line = new AwsLabDesignPolicy.CostLine("fictional-compute", new BigDecimal("0.10"), new BigDecimal("2"), new BigDecimal("0.20"), "FICTIONAL_TEST_RATE");
         var safe = new AwsLabDesignPolicy.Design("pending", "pending", "pending", false, false, false,
