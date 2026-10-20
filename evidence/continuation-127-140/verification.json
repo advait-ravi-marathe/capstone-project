@@ -1,0 +1,99 @@
+{
+  "record_type": "instructor_and_temporary_witness_verification",
+  "status": "verified_for_independent_review",
+  "base_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+  "tested_code_sha": "b62db9f28da93e3efa63c48d66f1a5524c90ba44",
+  "branch": "learning/coverstory-days-127-140",
+  "learner_completion": false,
+  "local_validation": {
+    "default_starter_suite": {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean test",
+      "tests": 54,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "manifest_and_dsa": {
+      "command": "python3 -m unittest scripts/test_continuation_127_140_manifest.py scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+      "tests": 24,
+      "failures": 0,
+      "result": "passed",
+      "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-23",
+      "new_attempts_or_completion_inferred": false
+    },
+    "actual_postgres_restore": {
+      "selector": "DatabaseRestoreAcceptanceTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "passed",
+      "source_database": "postgres",
+      "restore_target": "run-owned restore_<uuid> database created from template0; distinct and empty before restore",
+      "restore_target_migrated_or_seeded_before_restore": false,
+      "server_version": "18.6",
+      "pg_dump_version": "pg_dump (PostgreSQL) 18.6 (Debian 18.6-1.pgdg13+2)",
+      "pg_restore_version": "pg_restore (PostgreSQL) 18.6 (Debian 18.6-1.pgdg13+2)",
+      "archive_format": "custom",
+      "archive_size_bytes": 21302,
+      "archive_sha256": "bbf1ee3c747077aa34affd7dfd295f398b9cb60bfa1857f457d034284298b588",
+      "restore_options": ["--exit-on-error", "--single-transaction", "--no-owner", "--no-acl"],
+      "evidence": [
+        "full ordered application/recovery rows and timestamps matched",
+        "schema columns, constraints, indexes, and Flyway history matched",
+        "same-count receipt timestamp mutation was detected by the full-state oracle",
+        "corrupt archive failed without partial target schema/data",
+        "source snapshot remained unchanged"
+      ],
+      "fixture_cleanup": "owned target/archive removed"
+    },
+    "temporary_conforming_witnesses": {
+      "prior_recovery_prerequisites": {"tests": 21, "failures": 0, "result": "passed"},
+      "prior_packaged_recovery_prerequisite": {"tests": 1, "failures": 0, "result": "passed"},
+      "new_days_127_140_policy_and_packaged_tests": {"tests": 14, "failures": 0, "result": "passed"},
+      "packaged_test_boundaries": [
+        "actual executable local JAR CLI against restored PostgreSQL database",
+        "actual packaged JAR configuration cutover and rollback decision against local fixtures",
+        "no new browser test was claimed"
+      ],
+      "temporary_witness_jar_sha256": "a2b14b486732c7d1fd1dfba34272e02b64bd9a630edf48bb09114ea36e07f937",
+      "witness_release_manifest_source_sha": "b62db9f28da93e3efa63c48d66f1a5524c90ba44",
+      "witness_migration_digests": {
+        "V001__homesecure_quotes.sql": "cfb4aa4204ab90c3d5965347824c5c26399345cc06e8582686af17a9baefa805",
+        "V002__local_policy_lifecycle.sql": "af921dbef43a3c773524876131a840a5f39135030ec5721465a5cf0f9ba31cf2",
+        "V003__seed_synthetic_local_policies.sql": "0e32121d204842d9ecf1f7e63ccf0c30eb7c23337f1949d9ed718ebb56a12786",
+        "V004__event_log_delivery_work.sql": "1b0d1375928c4239f57742490a541ac6852f913c7841f26e27fd3151feb8b882",
+        "V005__manual_issuance_recovery_controls.sql": "30cc98cc015e48ac04a8e8e607cb075ecd8f397462f36d548121904ff40bb9b3"
+      },
+      "learner_source_restoration": "all temporarily changed prior and new learner seam files restored; SHA-256 matched saved originals",
+      "bad_witnesses_caught": [
+        "source-equals-target restore request",
+        "count-only restore oracle despite same-count state mutation",
+        "candidate activation based only on application readiness/health",
+        "rollback after candidate-side divergent write"
+      ],
+      "final_restored_starter_jar_sha256": "0106346db2085269307250fe22709e8064e5492b830cd8c03475d570cef5607c",
+      "restored_starter_expected_todo": "packaged restore acceptance reaches existing Day 124 learner TODO; this is a learner prerequisite, not instructor infrastructure failure"
+    },
+    "generated_files": "temporary frontend dist directories removed after build; no witness source or database/archive artifact retained in the worktree"
+  },
+  "hosted_ci_for_tested_code_sha": {
+    "run_number": 60,
+    "run_id": 39507385420,
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39507385420",
+    "head_sha": "b62db9f28da93e3efa63c48d66f1a5524c90ba44",
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-10-20T22:23:08Z",
+    "steps": "all successful, including pinned PostgreSQL 18.6 tool verification, packaged app, Java instructor suite, manifest, frontend tests, and dependency audit"
+  },
+  "cloud_actions": "not performed; no AWS account, credentials, grants, resources, costs, deployment, or real data used",
+  "limitations": [
+    "temporary witness results prove harness behavior, not learner completion",
+    "packaged integration coverage is local CLI/JAR/PostgreSQL, not new browser coverage",
+    "logical single-database restore is not cluster-global backup, RDS point-in-time restore, database-crash proof, cloud recovery timing, or binary-version rollback",
+    "offline AWS design is not a deployable template or cloud verification"
+  ],
+  "independent_review": "pending",
+  "scrum_board_changes": "not made"
+}
