@@ -37,11 +37,13 @@ This selector runs the installed readiness-policy acceptance tests and currently
 ## Separate Java DSA block (60 minutes)
 
 **New pattern anchor:** LeetCode 167 Two Sum II - Input Array Is Sorted — sorted two pointers. Learn the pattern for 25 minutes, solve independently for 20 minutes, and spend 15 minutes on same-day D recall plus the error log. Record the actual first-attempt date; schedule D+3, D+7 and D+21 reviews from that date. Planned dates in the manifest are forecasts only. A failed prerequisite/review displaces the next new anchor; do not add overtime. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
-## Understanding check (within the existing 10-minute evidence block)
 
-Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+## Interview transfer (inside the current evidence block)
 
-1. Explain what Day 13 (Add honest repeatable CI) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
-2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+**Question:** How can a green build lie? What proves learner logic rather than fixture wiring?
 
-Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.
+**Observable evidence:** Distinguish infrastructure, isolated contract and integrated tests; show that an intentional contract failure exits nonzero and unfinished work stays visible.
+
+**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
+
+**Related source:** [Microsoft official technical-interview guidance; curriculum inference](../interview-evidence-overlay.md#official-expectations). These sources motivate practice only; they do not establish question frequency or predict an interview.

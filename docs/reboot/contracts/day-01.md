@@ -19,11 +19,13 @@ Keep first occurrence of each exact `(journeyId, quoteVersionId)` pair in encoun
 **Evidence:** See [`docs/day-1.md`](../../day-1.md) and the existing acceptance tests. Do not change the established public shape.
 
 **Today’s first independent DSA pattern anchor:** LeetCode 121 Best Time to Buy and Sell Stock (running-state array scan). Planned first-attempt date: Oct 20; actual attempt and review status remain unrecorded. Use 25 minutes to learn the pattern, 20 minutes to solve, and 15 minutes for same-day recall and the error log. D+3/D+7/D+21 reviews fall on Oct 23, Oct 27, and Nov 10 if the actual attempt occurs Oct 20; recalculate from the actual date. Reviews stay within the 60-minute block and are never marked complete automatically. See [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
-## Understanding check (within the existing 10-minute evidence block)
 
-Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+## Interview transfer (inside the current evidence block)
 
-1. Explain what Day 1 (Quote selection identity/order) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
-2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+**Question:** What makes two selections equal? Why must output retain encounter order? If journeys match but versions differ, what survives?
 
-Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.
+**Observable evidence:** Trace interleaved duplicates by hand; explain equality/hash contract and time/space cost without being told a collection choice. Separately explain LC 121’s buy-before-sell invariant and a falling-price counterexample.
+
+**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
+
+**Related source:** [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A8](../interview-evidence-overlay.md#a8) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.

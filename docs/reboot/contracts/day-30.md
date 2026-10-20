@@ -37,11 +37,15 @@ This instructor integrity selector is expected to pass while checking that the c
 ## Separate Java DSA block (60 minutes)
 
 **Consolidation day — no new mandatory problem.** Use 25 minutes to refresh due patterns, 20 minutes to cold-solve the weakest due anchor, and 15 minutes for same-day/other due active recall and the error log. Planned review items: LC 238 (D+21 from Day 9), LC 155 (D+7 from Day 23), LC 35 (D+3 from Day 27). Recompute from actual first-attempt dates and record completion only after the review. If no review is actually due, cold-recall the weakest earlier anchor; failed recall displaces the next new anchor. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
-## Understanding check (within the existing 10-minute evidence block)
 
-Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+## Interview transfer (inside the current evidence block)
 
-1. Explain what Day 30 (Defend and assess the slice) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
-2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+**Question:** What did you own, what failed, what changed, and what evidence supports the outcome? What breaks first at 10× load?
 
-Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.
+**Observable evidence:** 20-minute mock replaces implementation: 5 minutes architecture, 5 dedup/money/transaction/security choice, 5 measured bottleneck versus hypothesis, 5 honest gap/behavior story. Do not invent users, impact or production incidents.
+
+**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
+
+**Related source:** [Amazon official behavioral expectations; A3](../interview-evidence-overlay.md#amazon official behavioral expectations; a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+
+**Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.

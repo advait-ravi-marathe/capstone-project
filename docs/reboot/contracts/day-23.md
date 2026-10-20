@@ -37,11 +37,13 @@ Run `Day23ActuatorInfrastructureTest` for the live Actuator path and exposure ch
 ## Separate Java DSA block (60 minutes)
 
 **New pattern anchor:** LeetCode 155 Min Stack — augmented stack. Learn the pattern for 25 minutes, solve independently for 20 minutes, and spend 15 minutes on same-day D recall plus the error log. Record the actual first-attempt date; schedule D+3, D+7 and D+21 reviews from that date. Planned dates in the manifest are forecasts only. A failed prerequisite/review displaces the next new anchor; do not add overtime. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
-## Understanding check (within the existing 10-minute evidence block)
 
-Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+## Interview transfer (inside the current evidence block)
 
-1. Explain what Day 23 (Expose minimal operational health) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
-2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+**Question:** What should happen when the database is unavailable? How do liveness and readiness differ?
 
-Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.
+**Observable evidence:** Show actual health under controlled failure; explain management-endpoint exposure and why health does not prove every business flow works.
+
+**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
+
+**Related source:** [Amazon official operation/security expectations; A7](../interview-evidence-overlay.md#amazon official operation/security expectations; a7) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.

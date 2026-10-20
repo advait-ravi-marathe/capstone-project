@@ -37,11 +37,13 @@ This selector starts real embedded PostgreSQL and captures EXPLAIN plans plus or
 ## Separate Java DSA block (60 minutes)
 
 **Consolidation day — no new mandatory problem.** Use 25 minutes to refresh due patterns, 20 minutes to cold-solve the weakest due anchor, and 15 minutes for same-day/other due active recall and the error log. Planned review items: LC 1 (D+21 from Day 3), LC 3 (D+7 from Day 17), LC 20 (D+3 from Day 21). Recompute from actual first-attempt dates and record completion only after the review. If no review is actually due, cold-recall the weakest earlier anchor; failed recall displaces the next new anchor. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
-## Understanding check (within the existing 10-minute evidence block)
 
-Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+## Interview transfer (inside the current evidence block)
 
-1. Explain what Day 24 (Explain and improve one real query) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
-2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+**Question:** Why did this index change the plan? When could a sequential scan still be sensible?
 
-Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.
+**Observable evidence:** Compare real plans, data size, selectivity, ordering and write/storage cost; distinguish measurement from guaranteed speedup.
+
+**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
+
+**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.

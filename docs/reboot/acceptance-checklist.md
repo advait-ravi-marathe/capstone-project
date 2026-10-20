@@ -22,10 +22,16 @@ PostgreSQL. Missing, failed, or TODO-blocked evidence remains open or blocked.
 
 ## Interview readiness rubric
 
-| Axis | Evidence | Result
-|---|---|---|
-| Behavior | Exact fixed-test command, exit status, and observed output | open until run
-| Explanation | Learner explains invariant, chosen boundary/transaction, alternative, and failure in own words | open until demonstrated
-| Independent adaptation | Small change/debug prompt completed without AI assistance | open until demonstrated
+Score each dimension 0–2: 0 cannot demonstrate/incorrect; 1 demonstrates with hints or misses a boundary; 2 demonstrates independently with a counterexample and accurate explanation. Record assistance. This is a learning rubric, not a hiring score.
 
-These axes are assessed separately. A passing test suite or installed scaffold does not imply conceptual understanding or independent adaptation. A milestone mock interview replaces part of the 85-minute implementation block; it does not extend the daily budget.
+| Dimension | Evidence | Score / note |
+|---|---|---|
+| Contract | Inputs, outputs, ownership, invariant; identifies ambiguity before coding | open |
+| Reasoning | Why approach preserves invariant, complexity/cost, one alternative | open |
+| Implementation | Independently navigates/changes relevant Java, SQL or TypeScript; code matches explanation | open |
+| Verification | Predicts negative result, runs targeted test, interprets failure, checks affected behavior | open |
+| Transfer | Handles a changed assumption and identifies design pressure without unsupported claims | open |
+
+Keep behavior (test result), explanation (invariants/trade-offs), and independent adaptation (small change/debug without AI) separate. A passing test or installed scaffold earns no credit on the other dimensions. A real result is required for `contract passed`; only an unassisted explanation supports `explanation independent`. Do not average away an authorization or atomicity defect. A gap becomes bounded repair work.
+
+Days 14, 28 and 30 use a 20-minute mock/teach-back taken from implementation time (65 build/test + 20 mock + 25 concept + 10 evidence); no extra hours. When integration is blocked, explain the actual failing boundary and next diagnostic step, not a passing demo. See the [interview evidence overlay](interview-evidence-overlay.md) for dated official/anecdotal source distinctions.

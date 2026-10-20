@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-20",
+  "branch": "learning/coverstory-day-02-30",
+  "base_sha": "f0541e8c95a39ddf143ea5cdea3c06e982e0200e",
+  "scope": "Installed Days 2-30 acceptance scaffolds, contract and DSA schedule updates, interview-understanding prompts, and evidence rubric. No learner TODO implementation supplied.",
+  "budget_minutes": {
+    "java_dsa": 60,
+    "engineering": 120,
+    "implementation_testing": 85,
+    "concept_course": 25,
+    "evidence": 10
+  },
+  "manifest": {
+    "valid_json": true,
+    "days": 30,
+    "dates": "2026-10-20 through 2026-11-18 consecutive",
+    "dsa": "15 new anchors on odd days; even days consolidate; review dates derive from actual first-attempt dates; actual attempts remain unrecorded",
+    "scaffold_status": "Days 1-20 and 22-28 and 30 installed; Day 12 partial; Day 21 not installed; Day 29 partial"
+  },
+  "commands": [
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 test",
+      "result": "passed",
+      "detail": "16 tests, 0 failures, 0 errors, 0 skipped. Includes real PostgreSQL infrastructure, HomeSecure fixture integrity, Day 2 API exact-call tests and live Spring Boot application-context check, Actuator smoke, Day 14/30 readiness/checklist tests, and Day 29 unsafe-reset refusal tests."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests test",
+      "result": "expected red learner state; non-zero exit",
+      "detail": "126 tests, 55 assertion failures, 49 errors, 0 skipped. Day 1 and Days 2-13 and 15-28 failures reach explicit learner TODOs or assertions that observe those TODOs instead of the required behavior. Day 14 readiness-only and Day 30 checklist pass; Days 29 refusal checks pass. This aggregate also includes 34 pre-existing legacy learner tests from cap42/cap45/events, so it is not a Days 1-30-only count. No learner solution was supplied."
+    },
+    {
+      "command": "NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && NPM_CONFIG_CACHE=/tmp/npm-cache npm run build",
+      "result": "passed",
+      "detail": "Installed the lockfile dependencies and built the React/TypeScript application successfully (Vite 8.3.4)."
+    },
+    {
+      "command": "NPM_CONFIG_CACHE=/tmp/npm-cache npm test",
+      "result": "expected red learner state; non-zero exit",
+      "detail": "17 focused UI tests: 16 failed at explicit Day 17-20 learner TODO behavior and 1 passed (labels-only check)."
+    },
+    {
+      "command": "NPM_CONFIG_CACHE=/tmp/npm-cache npm audit --audit-level=low",
+      "result": "passed",
+      "detail": "0 vulnerabilities reported by npm audit for the locked frontend dependency tree. This is not a full project SCA result."
+    },
+    {
+      "command": "bash -n scripts/reset-synthetic-homesecure.sh",
+      "result": "passed",
+      "detail": "Reset script parses. Three unsafe-target refusal tests pass."
+    },
+    {
+      "command": "python3 -m json.tool docs/reboot/manifest.json >/dev/null; git diff --check",
+      "result": "passed",
+      "detail": "Manifest JSON parses and tracked/untracked patch whitespace checks are clean."
+    }
+  ],
+  "open_blockers": [
+    "Day 21 cannot test CSRF/authorization because Spring Security is not installed; it is not scaffolded.",
+    "Day 12 owner access remains policy-only; real HTTP authentication/authorization integration is open.",
+    "Day 13 remote CI is not configured or run.",
+    "Day 25 exercises service-level PostgreSQL concurrency only; HTTP/auth behavior remains open.",
+    "Day 28 browser-to-database milestone remains blocked by prerequisites and is not an integration pass.",
+    "Day 29 positive disposable-database reset could not be run because `psql` is absent; keep partial/unverified.",
+    "Day 23 root health returns Boot 4 `{groups,status}` while readiness is status-only; documented as a contract difference.",
+    "No full transitive SCA scan has completed; zero npm audit findings apply only to frontend lockfile."
+  ],
+  "learner_ownership": "All learner policy, persistence, UI, security, query/index, idempotency, correlation, and readiness logic remains an explicit TODO. Day 1 API wiring and instructor fixtures are infrastructure. Scaffold presence is not completion.",
+  "interview_readiness": "Every dated contract now has an optional 1-2 prompt understanding check inside its existing 10-minute evidence block. Behavior, explanation, and independent adaptation are separate rubric axes. Mock interviews replace implementation time within the 85-minute block."
+}
