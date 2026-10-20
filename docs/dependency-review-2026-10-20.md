@@ -14,10 +14,13 @@ Spring Data, Kafka, or AMQP, so advisories for those products are not direct
 evidence of an issue in this small dependency set. This review is not a full
 transitive SCA scan and does not claim that all advisories are resolved.
 
-The execution environment had Java 21 and the pinned Maven 3.10.0 wrapper
-distribution, but Maven Central DNS failed while resolving the Maven resources
-plugin. Therefore no dependency tree, vulnerability scan, compilation, or test
-result is claimed from this environment. In the sandbox, Maven also requires
-`-Dmaven.repo.local=/tmp/d1-m2` because `/home/agent/.m2` is not writable. A
-fresh learner should use the documented `./mvnw` commands with a writable
-default Maven cache and network access to Maven Central.
+The execution environment had a Java 21 runtime and the pinned Maven 3.10.0
+wrapper distribution, but no `javac`. Maven's first direct DNS lookup failed;
+a temporary proxy configuration resolved the dependency graph, after which
+compilation stopped with `release version 21 not supported`. An attempted
+temporary JDK download returned HTTP 403. Therefore no compilation or test
+result and no full dependency tree or SCA result is claimed. In the sandbox,
+Maven also requires `-Dmaven.repo.local=/tmp/d1-m2` because
+`/home/agent/.m2` is not writable. A fresh learner with a full JDK 21 (including
+`javac`), a writable Maven cache, and Maven Central access can use the
+documented `./mvnw` commands.
