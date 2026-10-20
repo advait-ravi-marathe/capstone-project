@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright';
+import { createApiCaptureMerger } from './api-capture-merge.mjs';
 
 const [baseUrl, outputPath, scenario] = process.argv.slice(2);
 if (!baseUrl || !outputPath || !scenario) throw new Error('Expected base URL, output JSON path, and scenario.');
@@ -27,7 +28,8 @@ try {
   const page = await context.newPage();
   const apiResponses = [];
   const responseSettlers = new WeakMap();
-  const mergedApiResponses = new WeakSet();
+  const mergeApiCaptures = createApiCaptureMerger(apiResponses);
+  let captureDocumentId = 0;
   let sessionCookie = savedSessionCookie ?? null;
   page.on('response', (response) => {
     const request = response.request();
@@ -69,16 +71,7 @@ try {
       await Promise.all(window.__coverStoryApiCapturePromises);
       return window.__coverStoryApiCaptures;
     });
-    // Both lists are ordered by response arrival. FIFO per method/path/status handles repeated API calls.
-    for (const capture of captures) {
-      const entry = apiResponses.find((candidate) => !mergedApiResponses.has(candidate)
-        && candidate.method === capture.method && candidate.path === capture.path
-        && candidate.status === capture.status);
-      if (entry) {
-        entry.body = capture.body;
-        mergedApiResponses.add(entry);
-      }
-    }
+    mergeApiCaptures(captures, captureDocumentId);
   };
 
   const pageResponse = await page.goto(baseUrl);
@@ -146,6 +139,7 @@ try {
           const request = response.request();
           return request.method() === 'GET' && new URL(response.url()).pathname === '/api/session';
         });
+        captureDocumentId += 1;
         await page.reload();
         const sessionResponse = await reloadedSession;
         await responseSettlers.get(sessionResponse);
