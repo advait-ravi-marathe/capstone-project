@@ -115,7 +115,9 @@ two pointers), LC11 (pointer elimination), LC3 (variable window), LC209
 search bridge outside Top 150), LC35 (boundary search), and LC153 (rotated search). Reviews stay within the same block. Compute due dates from the actual
 first-attempt date and never mark a planned attempt or review complete
 automatically. Reviews use the actual first-attempt date. Up to three due anchors may share a consolidation day; failed recall displaces a future anchor rather than adding overtime. Log every due review and result; overflow remains visibly due and carries to the next consolidation block instead of being silently dropped or marked complete. Day 1 remains LC 121 and is Advait's first independent attempt;
-prior completion is zero. Today's planned reviews are 23 October, 27 October,
+independent-solve credit for LC 121 is zero. This does not erase the historical
+reports of three screenshots and seven assisted practice sessions; those remain
+recorded as assisted practice, not independent solves. Today's planned reviews are 23 October, 27 October,
 and 10 November if the attempt occurs on 20 October; otherwise recalculate
 from the recorded actual date. Use the [error-log template](dsa-error-log-template.md).
 

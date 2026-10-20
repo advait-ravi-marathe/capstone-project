@@ -11,8 +11,11 @@ a learner attempt has been measured.
 
 ## Separate Java DSA block — LeetCode 121 (60 minutes)
 
-This is Advait's first independent attempt. Prior completion is zero; earlier
-assisted practice records remain historical and do not count as solved. The
+This is Advait's first independent LeetCode 121 attempt; independent-solve
+credit for this problem is currently zero. This is a DSA-credit status only:
+it preserves the historical reports of three screenshots and seven assisted
+practice sessions, which remain recorded as assisted practice rather than
+independent solves. The
 planned first-attempt date is 20 October 2026; the actual attempt date and
 review completion remain unrecorded until Advait records them. Use 25 minutes
 to learn the running-state array pattern, 20 minutes to solve independently, and

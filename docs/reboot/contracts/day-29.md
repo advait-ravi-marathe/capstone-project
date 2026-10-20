@@ -8,7 +8,7 @@ README/runbook plus deterministic fixture reset command. Keep the business rule 
 
 ## Acceptance invariants
 
-Add `scripts/reset-synthetic-homesecure.sh` (invocation: `./scripts/reset-synthetic-homesecure.sh --database-url "$TEST_DATABASE_URL" --confirm-disposable`) and document clean setup: full JDK 21, pinned Maven wrapper, disposable PostgreSQL, no secrets, required tests and recovery. Reset accepts only a DB name ending `_test` and requires `--confirm-disposable`; otherwise it exits nonzero before connecting or deleting data. It restores exact synthetic fixture state.
+Add `scripts/reset-synthetic-homesecure.sh` (invocation: `./scripts/reset-synthetic-homesecure.sh --database-url "$TEST_DATABASE_URL" --confirm-disposable`) and document clean setup: full JDK 21, pinned Maven wrapper, disposable PostgreSQL, no secrets, required tests and recovery. This reset is test-only and must target a disposable database; it accepts only a DB name ending `_test` and requires `--confirm-disposable`. Otherwise it exits nonzero before connecting or deleting data. It restores exact synthetic fixture state. Never point it at a development, shared, staging, or production database.
 
 ## Required edge cases
 

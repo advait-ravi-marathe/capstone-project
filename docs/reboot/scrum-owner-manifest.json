@@ -2376,7 +2376,7 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [
-          "Disposable database name must end with _test."
+          "Test-only disposable database name must end with _test; never target development, shared, staging, or production data."
         ],
         "evidence_output_path": "evidence/reboot/day-29.json"
       },
