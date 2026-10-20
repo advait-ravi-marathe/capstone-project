@@ -1000,7 +1000,7 @@
         "evidence_reference": "evidence/continuation-99-112/day-111.json",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
         "acceptance_commands": [
-          "cd frontend && npm ci && npm run build && npm run build:local",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
@@ -1080,7 +1080,7 @@
         "evidence_reference": "evidence/continuation-99-112/day-112.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
-          "cd frontend && npm ci && npm run build && npm run build:local",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",

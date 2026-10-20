@@ -4,7 +4,7 @@
   "learner_status": "not_attempted",
   "contract_status": "defined",
   "acceptance_commands": [
-    "cd frontend && npm ci && npm run build && npm run build:local",
+    "(cd frontend && npm ci && npm run build && npm run build:local)",
     "./mvnw -Plocal-app -DskipTests package",
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
   ],
