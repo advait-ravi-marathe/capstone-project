@@ -146,8 +146,5 @@ setup or a separate task.
 ## Evidence
 
 Use the 10-minute evidence allocation to record exact commands, exit codes,
-test counts, and any first TODO stack trace in the learner's own notes. Choose
-one or two short understanding prompts: explain the invariant, a design choice,
-an alternative and a failure case; then make or debug one small change without
-AI assistance. Keep behavior, explanation, and independent adaptation as separate
-results. Do not mark the learner task complete from infrastructure checks alone.
+test counts, and any first TODO stack trace in the learner's own notes. Do not
+mark the learner task complete from infrastructure checks alone.

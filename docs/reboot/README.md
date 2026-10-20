@@ -2,9 +2,7 @@
 
 This folder records the reviewed roadmap proposal for 20 October–18 November
 2026. It is a set of contracts and schedule metadata, not a completion report.
-The existing Day 1 feature remains the live starter; future-day files specify
-the intended acceptance contract before learner implementations are created.
-Only Day 1 is installed as runnable starter code on this branch. Days 2–30 below are roadmap contracts; their future scaffolds are being developed separately and are not included here. The dated DSA sequence groups interview-pattern anchors and reviews as recorded in the manifest.
+The existing Day 1 feature is the only runnable starter on this main-branch snapshot. Days 2–30 below are roadmap contracts; their implementation scaffolds are on the separate future-work branch. This index makes no claim that those tests or learner behavior are installed here. The dated DSA sequence and review status are in the manifest.
 
 ## Products and scope
 
@@ -65,7 +63,7 @@ at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 
 ## Scaffold and dependency rules
 
-Future contract pages alone are not tests. Days 2–30 have focused scaffolds and learner seams except Day 21, whose Spring Security prerequisite is not installed. Learner behavior intentionally fails at explicit TODOs where applicable. Day 12 security integration, Day 13 remote CI, Day 25 HTTP/auth wiring, and Day 28 end-to-end integration remain open. Day 29 positive database reset remains unverified because `psql` is unavailable. System design is practiced inside the 85/25/10 engineering split: use
+Future contract pages alone are not tests. Only Day 1 has runnable acceptance scaffolding in this main-branch snapshot; Days 2–30 are contract-only here. Their implementation work continues on the separate future-work branch. Do not infer completion from a contract, date, or scaffold. System design is practiced inside the 85/25/10 engineering split: use
 only the diagram/ADR or measurement suited to that day, with the blank prompts
 in the [system design practice guide](system-design-practice.md). Every focused test must
 instantiate only its own subject; prior collaborators use explicit test-only
@@ -103,16 +101,20 @@ two pointers), LC11 (pointer elimination), LC3 (variable window), LC209
 (shrinking valid window), LC20 (stack), LC155 (augmented stack), LC704 (binary-
 search bridge outside Top 150), LC35 (boundary search), and LC153 (rotated search). Reviews stay within the same block. Compute due dates from the actual
 first-attempt date and never mark a planned attempt or review complete
-automatically. Reviews use the actual first-attempt date. Up to three due anchors may share a consolidation day; failed recall displaces a future anchor rather than adding overtime. Day 1 remains LC 121 and is Advait's first independent attempt;
-prior completion is zero. Day 2 continues or cold-reviews LC 121. Planned Day 1
-reviews are 23 October, 27 October, and 10 November if the attempt occurs on
-20 October; otherwise recalculate from the recorded actual date. Use the [error-log template](dsa-error-log-template.md).
+automatically. Reviews use the actual first-attempt date. Up to three due anchors may share a consolidation day; failed recall displaces a future anchor rather than adding overtime. Log every due review and result; overflow remains visibly due and carries to the next consolidation block instead of being silently dropped or marked complete. Day 1 remains LC 121 and is Advait's first independent attempt;
+prior completion is zero. Today's planned reviews are 23 October, 27 October,
+and 10 November if the attempt occurs on 20 October; otherwise recalculate
+from the recorded actual date. Use the [error-log template](dsa-error-log-template.md).
 
 ## Understanding and interview readiness
 
 Each engineering contract includes an understanding check inside its existing 10-minute evidence block. Choose one or two prompts, not a long questionnaire. The learner explains what the feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case; then makes or debugs a small change without AI assistance. Milestone mock interviews replace implementation time within the 85-minute block and never add hours.
 
 Track three distinct outcomes: **behavior** (fixed tests and exact command), **explanation** (invariants, boundaries, and trade-offs explained clearly), and **independent adaptation** (a small change or debugging task completed without AI). Passing tests or the presence of scaffolding earns no credit on the other axes. The final checklist keeps these results separate.
+
+## Interview evidence and source confidence
+
+The [interview evidence overlay](interview-evidence-overlay.md) separates official, role-dependent expectations from dated public first-person reports. Official guidance is not a guarantee of a particular team’s interview. Anecdotes are self-reported, selectively published and not representative; mapped questions are original practice prompts, not claimed verbatim questions. This month is foundation practice, not an SDE II readiness claim.
 
 ## Reference index
 
