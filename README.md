@@ -197,3 +197,15 @@ allocation; no exam purchases are included. Project setup and instructor-
 provided fixtures, boilerplate, and test harnesses are outside the learner
 budget. Repository implementation belongs to the learner; the Scrum owner
 manages the roadmap only.
+
+## CoverStory local application continuation (Days 57–70)
+
+The isolated branch `learning/coverstory-days-57-70` contains the dated
+[Day 57–70 contracts and manifest](docs/reboot/continuation-57-70/manifest.json).
+This is a loopback-only synthetic runtime plan for reusing existing policy
+issue/readback and renewal-preview rules. It adds a dedicated frontend entry
+shell and explicit learner seams. Several day-specific fixed acceptance
+selectors and the packaged PostgreSQL runtime are not installed yet; the
+manifest marks those scaffold entries `not_installed` and integration remains
+blocked. PostgreSQL major-version selection is pending, so the test binary pin
+has not been changed. No board update is included.

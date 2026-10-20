@@ -1,0 +1,32 @@
+{
+  "branch": "learning/coverstory-days-57-70",
+  "base_sha": "023117b0f966da3d4e1153029e642f0c345b5f3a",
+  "status": "partial_unpublished",
+  "checks": [
+    {
+      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+      "result": "15 passed"
+    },
+    {
+      "command": "npm run build:local",
+      "working_directory": "frontend",
+      "result": "passed; Vite emitted dedicated dist-local/local.html and local bundle"
+    },
+    {
+      "command": "npm test",
+      "working_directory": "frontend",
+      "result": "passed; 1 file, 1 test"
+    },
+    {
+      "command": "MAVEN_USER_HOME=/tmp/capstone-maven-user ./mvnw -B -ntp -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=LocalApplicationManifestInfrastructureTest test",
+      "result": "blocked before compilation: DNS resolution for repo.maven.apache.org failed while resolving Spring Boot 4.1.1 BOM"
+    }
+  ],
+  "unresolved": [
+    "PostgreSQL test binary target decision is pending; embedded PostgreSQL dependency was not changed.",
+    "No Java compiler is installed; Java test suite could not be compiled or run.",
+    "Fixed acceptance test source/selectors for Days 58-62 and 64-69 are not yet installed despite planned paths in manifest.",
+    "No packaged Spring runtime or PostgreSQL integration smoke has been executed."
+  ],
+  "published_sha": null
+}

@@ -1,0 +1,1026 @@
+{
+  "title": "Sprint 5 Scrum owner export — CoverStory local application assembly",
+  "canonical_daily_manifest": "docs/reboot/continuation-57-70/manifest.json",
+  "board_model": "14 consolidated daily Stories; no board mutation performed.",
+  "sprint_boundaries": [
+    {
+      "sprint": "Sprint 5",
+      "start_date": "2026-12-15",
+      "end_date": "2026-12-28",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "story_count": 14,
+  "cards": [
+    {
+      "sequence": 1,
+      "day_number": 57,
+      "date": "2026-12-15",
+      "title": "Day57: Gate the local assembly on prior learner evidence",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Gate the local assembly on prior learner evidence",
+        "learner_seam": "LocalReadinessGate.assess",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-57.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "GitHub Actions workflow syntax — job dependencies and conditional jobs",
+              "section": "needs dependencies and status-check conditions",
+              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Gate the local assembly on prior learner evidence: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-57.md",
+        "evidence_reference": "evidence/continuation-57-70/day-57.json",
+        "acceptance_selector_status": "installed_expected_todo_red"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-15",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 57 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "partial"
+    },
+    {
+      "sequence": 2,
+      "day_number": 58,
+      "date": "2026-12-16",
+      "title": "Day58: Add the dedicated local entry point and explicit composition",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Add the dedicated local entry point and explicit composition",
+        "learner_seam": "LocalApplicationComposition.compose(Clock, DataSource)",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-58.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Boot application structure — @SpringBootConfiguration and explicit configuration",
+              "section": "structuring code and locating the main application class",
+              "url": "https://docs.spring.io/spring-boot/reference/using/structuring-your-code.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Add the dedicated local entry point and explicit composition: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-58.md",
+        "evidence_reference": "evidence/continuation-57-70/day-58.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-16",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 58 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "partial"
+    },
+    {
+      "sequence": 3,
+      "day_number": 59,
+      "date": "2026-12-17",
+      "title": "Day59: Bootstrap a versioned synthetic schema without resetting rows — LC 104 Maximum Depth of Binary Tree",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Bootstrap a versioned synthetic schema without resetting rows",
+        "learner_seam": "Local Flyway startup migration",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-59.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Boot SQL database initialization — Flyway migrations",
+              "section": "Execute Flyway Database Migrations on Startup",
+              "url": "https://docs.spring.io/spring-boot/how-to/data-initialization.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Bootstrap a versioned synthetic schema without resetting rows: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-59.md",
+        "evidence_reference": "evidence/continuation-57-70/day-59.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 104,
+        "problem_name": "Maximum Depth of Binary Tree",
+        "concept": "tree height by postorder recursion",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-17",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-20",
+          "2026-12-24",
+          "2027-01-07"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-17",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "problem_url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "plan_membership": "Official LeetCode problem statement linked. Membership in the public Top Interview 150 plan has not been independently verified in this batch.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 59 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 4,
+      "day_number": 60,
+      "date": "2026-12-18",
+      "title": "Day60: Wire owner-scoped policy reads and prove preview performs no writes",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Wire owner-scoped policy reads and prove preview performs no writes",
+        "learner_seam": "LocalRenewalRepositoryConfiguration",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-60.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring JDBC — JdbcClient and transactions",
+              "section": "Using JdbcClient; transaction management",
+              "url": "https://docs.spring.io/spring-boot/reference/data/sql.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Wire owner-scoped policy reads and prove preview performs no writes: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-60.md",
+        "evidence_reference": "evidence/continuation-57-70/day-60.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-18",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 60 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 5,
+      "day_number": 61,
+      "date": "2026-12-19",
+      "title": "Day61: Install the local runtime security chain — LC 100 Same Tree",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Install the local runtime security chain",
+        "learner_seam": "LocalSecurityConfiguration.securityFilterChain(HttpSecurity)",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-61.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Security authorization — authorize HTTP requests",
+              "section": "authorize HTTP requests and request matchers",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Install the local runtime security chain: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-61.md",
+        "evidence_reference": "evidence/continuation-57-70/day-61.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 100,
+        "problem_name": "Same Tree",
+        "concept": "recursive structural equality for binary trees",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-19",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-22",
+          "2026-12-26",
+          "2027-01-09"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-19",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "problem_url": "https://leetcode.com/problems/same-tree/",
+        "plan_membership": "Official LeetCode problem statement linked. Membership in the public Top Interview 150 plan has not been independently verified in this batch.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 61 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 6,
+      "day_number": 62,
+      "date": "2026-12-20",
+      "title": "Day62: Derive policy ownership from the authenticated principal",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Derive policy ownership from the authenticated principal",
+        "learner_seam": "LocalPolicyOwnerResolver.ownerId(Authentication)",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-62.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Security Authentication architecture",
+              "section": "Authentication, principal and authorities",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Derive policy ownership from the authenticated principal: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-62.md",
+        "evidence_reference": "evidence/continuation-57-70/day-62.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-20",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 62 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 7,
+      "day_number": 63,
+      "date": "2026-12-21",
+      "title": "Day63: Run the security trace and recovery checkpoint",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Run the security trace and recovery checkpoint",
+        "learner_seam": "Readiness evidence and request trace",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-63.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Security testing — MockMvc and security request post-processors",
+              "section": "testing authentication, authorization and CSRF with MockMvc",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Run the security trace and recovery checkpoint: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-63.md",
+        "evidence_reference": "evidence/continuation-57-70/day-63.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-21",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 63 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 8,
+      "day_number": 64,
+      "date": "2026-12-22",
+      "title": "Day64: Add the thin local policy issue adapter",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Add the thin local policy issue adapter",
+        "learner_seam": "LocalPolicyIssueController.issue(PolicyIssueRequest)",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-64.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueApiDelegatesAndPreservesIdempotency test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring MVC request mapping — @RestController and request body handling",
+              "section": "request body and method argument resolution",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Add the thin local policy issue adapter: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-64.md",
+        "evidence_reference": "evidence/continuation-57-70/day-64.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-22",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 64 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 9,
+      "day_number": 65,
+      "date": "2026-12-23",
+      "title": "Day65: Protect local session and issue writes with CSRF — LC 102 Binary Tree Level Order Traversal",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Protect local session and issue writes with CSRF",
+        "learner_seam": "LocalSecurityConfiguration security + LocalPolicyIssueController",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-65.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Security CSRF protection",
+              "section": "CSRF protection and token repository",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Protect local session and issue writes with CSRF: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-65.md",
+        "evidence_reference": "evidence/continuation-57-70/day-65.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 102,
+        "problem_name": "Binary Tree Level Order Traversal",
+        "concept": "breadth-first queue traversal",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-23",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-26",
+          "2026-12-30",
+          "2027-01-13"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-23",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "problem_url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+        "plan_membership": "Official LeetCode problem statement linked. Membership in the public Top Interview 150 plan has not been independently verified in this batch.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 65 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 10,
+      "day_number": 66,
+      "date": "2026-12-24",
+      "title": "Day66: Build the normal React route and typed local API client",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Build the normal React route and typed local API client",
+        "learner_seam": "LocalCoverStoryApp and localPolicyApi",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-66.md",
+        "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalCoverStoryApp.test#day66NormalRouteUsesTypedApiAndHandlesExpiredSession test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "MDN Fetch API — credentials, HTTP errors and response JSON",
+              "section": "including credentials; handling HTTP response status",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Build the normal React route and typed local API client: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-66.md",
+        "evidence_reference": "evidence/continuation-57-70/day-66.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-24",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 66 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "partial"
+    },
+    {
+      "sequence": 11,
+      "day_number": 67,
+      "date": "2026-12-25",
+      "title": "Day67: Package, start and safely reset the local demo — LC 98 Validate Binary Search Tree",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Package, start and safely reset the local demo",
+        "learner_seam": "scripts/package-local-demo.sh and scripts/local-demo.sh",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-67.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Boot executable jar packaging",
+              "section": "repackage goal and executable archives",
+              "url": "https://docs.spring.io/spring-boot/maven-plugin/packaging.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Package, start and safely reset the local demo: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-67.md",
+        "evidence_reference": "evidence/continuation-57-70/day-67.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 98,
+        "problem_name": "Validate Binary Search Tree",
+        "concept": "recursive lower/upper bounds",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-25",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-28",
+          "2027-01-01",
+          "2027-01-15"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-25",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "problem_url": "https://leetcode.com/problems/validate-binary-search-tree/",
+        "plan_membership": "Official LeetCode problem statement linked. Membership in the public Top Interview 150 plan has not been independently verified in this batch.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 67 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 12,
+      "day_number": 68,
+      "date": "2026-12-26",
+      "title": "Day68: Exercise the packaged main app through browser and PostgreSQL",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Exercise the packaged main app through browser and PostgreSQL",
+        "learner_seam": "Local packaged app → browser → policy API → PostgreSQL",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-68.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Playwright Page and Response APIs",
+              "section": "goto, getByRole and waitForResponse",
+              "url": "https://playwright.dev/docs/api/class-page"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Exercise the packaged main app through browser and PostgreSQL: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-68.md",
+        "evidence_reference": "evidence/continuation-57-70/day-68.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-26",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 68 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 13,
+      "day_number": 69,
+      "date": "2026-12-27",
+      "title": "Day69: Prove restart, logout, foreign-owner and no-write behavior",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Prove restart, logout, foreign-owner and no-write behavior",
+        "learner_seam": "Local runtime security and preview acceptance",
+        "status": "not_attempted",
+        "scaffold_status": "not_installed",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-69.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Security logout and PostgreSQL transaction snapshots",
+              "section": "logout URL, session invalidation and CSRF",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Prove restart, logout, foreign-owner and no-write behavior: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-69.md",
+        "evidence_reference": "evidence/continuation-57-70/day-69.json",
+        "acceptance_selector_status": "planned_not_installed"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-27",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 69 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "not_installed"
+    },
+    {
+      "sequence": 14,
+      "day_number": 70,
+      "date": "2026-12-28",
+      "title": "Day70: Complete the mastery, recovery and design mock",
+      "sprint": "Sprint 5",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Complete the mastery, recovery and design mock",
+        "learner_seam": "Evidence review and local application design explanation",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-70.md",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "C4 model — software system, container and component boundaries",
+              "section": "system, container and component abstractions",
+              "url": "https://c4model.com/abstractions"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
+          "design_prompt": "Complete the mastery, recovery and design mock: sketch the trust or data boundary and name its enforcing layer.",
+          "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-70.md",
+        "evidence_reference": "evidence/continuation-57-70/day-70.json",
+        "acceptance_selector_status": "instructor_integrity_only"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Run the shared actual-attempt queue first; no attempt or review completion is inferred from planned dates. Failed due reviews displace new work inside this 60-minute block.",
+        "guide_path": "docs/reboot/continuation-57-70/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-28",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "Which invariant or trust boundary does Day 70 protect, which layer enforces it, and how will you prove it?",
+      "scaffold_status": "partial"
+    }
+  ],
+  "dsa_revision_queue": {
+    "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+    "status": "planned reviews only; no attempt or completion evidence is inferred",
+    "command": "python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD"
+  }
+}

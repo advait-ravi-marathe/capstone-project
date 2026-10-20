@@ -15,6 +15,7 @@ def anchors_from_manifests():
         (ROOT / "docs/reboot/manifest.json", "legacy"),
         (ROOT / "docs/reboot/continuation-31-44/manifest.json", "continuation"),
         (ROOT / "docs/reboot/continuation-45-56/manifest.json", "continuation-45-56"),
+        (ROOT / "docs/reboot/continuation-57-70/manifest.json", "continuation-57-70"),
     ]
     result = []
     for path, batch in sources:
@@ -51,6 +52,7 @@ def accepted_anchor_pairs():
         (ROOT / "docs/reboot/manifest.json", True),
         (ROOT / "docs/reboot/continuation-31-44/manifest.json", False),
         (ROOT / "docs/reboot/continuation-45-56/manifest.json", False),
+        (ROOT / "docs/reboot/continuation-57-70/manifest.json", False),
     ]
     for path, legacy in sources:
         manifest = json.loads(path.read_text())

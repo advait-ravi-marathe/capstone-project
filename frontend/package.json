@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:local": "tsc --noEmit && vite build --config vite.local.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:learner": "RUN_LEARNER_ACCEPTANCE=true vitest run"
