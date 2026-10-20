@@ -10,9 +10,9 @@
       "summary": "Full default instructor infrastructure suite: 22 tests, 0 failures/errors/skips. Includes compilation of Day14BackendSliceIT and all Day2/12/13/23/29/30 infrastructure acceptance."
     },
     {
-      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH CHROMIUM_BIN=/usr/bin/chromium /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
       "result": "expected_todo_red",
-      "summary": "Real disposable PostgreSQL and actual product, eligibility, premium, quote, repository, selection and summary collaborators execute to Day4 ProductCatalogService TODO. Exit 1; no learner behavior implemented."
+      "summary": "Expanded six-case real PostgreSQL slice executed. 4 failures + 2 errors, all expected learner TODOs: Day4 catalog lookup; Day7 quote creation; Day11 freshness policy (2 cases); Day12 owner policy. Synthetic quote rows are seeded directly in PostgreSQL for rejection cases; no Day15 query dependency. No temporary learner solutions used."
     },
     {
       "command": "cd frontend && NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && npm run build; cd .. && JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH CHROMIUM_BIN=/usr/bin/chromium /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test",
@@ -70,21 +70,32 @@
       "summary": "No whitespace errors in the reconciled reviewer-fix batch."
     },
     {
-      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
-      "result": "not rerun",
-      "summary": "Expanded test now has direct PostgreSQL readback and stale/expired/invalid/duplicate/unauthorized no-write cases, without a Day15 dependency. Previously this gate was expected red at Day4 ProductCatalogService TODO. Do not claim a current result for the expanded selector until run."
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH CHROMIUM_BIN=/usr/bin/chromium /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
+      "result": "expected_todo_red",
+      "summary": "Expanded six-case real PostgreSQL slice executed. 4 failures + 2 errors, all expected learner TODOs: Day4 catalog lookup; Day7 quote creation; Day11 freshness policy (2 cases); Day12 owner policy. Synthetic quote rows are seeded directly in PostgreSQL for rejection cases; no Day15 query dependency. No temporary learner solutions used."
     },
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day30ContractTest test",
       "result": "pass",
       "summary": "Three instructor tests pass, including fixed open/blocked/passed-status evaluator fixtures and 60-card Scrum manifest integrity."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day03ContractTest,Day04ContractTest,Day05ContractTest,Day06ContractTest,Day07ContractTest,Day08ContractTest,Day09ContractTest,Day10ContractTest,Day11ContractTest,Day12ContractTest,Day13ContractTest,Day15ContractTest,Day16ContractTest,Day22ContractTest,Day23ContractTest,Day24ContractTest,Day25ContractTest,Day26ContractTest,Day27ContractTest test",
+      "result": "expected_todo_red",
+      "summary": "55 selected Java acceptance tests executed; 17 assertion failures + 37 errors. Failures arise at explicit incomplete learner TODOs/schema invariants across Days3\u201313, 15\u201316, 22\u201327. Day14 was run separately. Day28 intentionally excluded for the independent validator."
+    },
+    {
+      "command": "cd frontend && NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && NPM_CONFIG_CACHE=/tmp/npm-cache npm run build && NPM_CONFIG_CACHE=/tmp/npm-cache RUN_LEARNER_ACCEPTANCE=true npx vitest run --reporter=dot",
+      "result": "expected_todo_red",
+      "summary": "Clean npm install and TypeScript/Vite production build pass. Learner UI suite: 18 tests, 16 failures + 2 passes across 5 files; failures expose Day17\u201320 learner TODOs. Day28 excluded."
     }
   ],
   "remaining": {
-    "day28": "The real React test route, Playwright/Chromium, Spring test endpoints, and PostgreSQL assertions are connected. The learner acceptance is expected red across quote creation, snapshot display, selection, and reload. A temporary implementation witness run for this revised full harness was attempted but not completed; no successful product lifecycle is claimed. Per the independent validator request, Day28 was not rerun in this reconciliation pass.",
+    "day28": "The real React test route, Playwright/Chromium, Spring test endpoints, and PostgreSQL assertions are connected. Learner acceptance previously reported expected red across quote creation, snapshot display, selection, and reload. It was not rerun in this pass at the independent validator\u2019s request.",
     "learner_work": "All domain, schema, API policy, security policy/config, UI, persistence, readiness, DSA assignments remain learner owned and incomplete TODOs.",
     "ci": "Workflow scaffold and local structural check are present; remote Actions execution remains unverified (GitHub API returned HTTP 403 in the earlier check).",
     "sca": "npm audit applies only to frontend lockfile; no full Maven/transitive SCA completed.",
-    "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed."
+    "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed.",
+    "day14": "Expanded six-case real PostgreSQL selector was run: 4 failures + 2 errors, all at explicit Days4, 7, 11, and 12 TODOs. Stale/expired and ownership guards now use direct synthetic SQL fixture rows and have no Day15 dependency. No solution witnesses or learner implementations were supplied."
   }
 }

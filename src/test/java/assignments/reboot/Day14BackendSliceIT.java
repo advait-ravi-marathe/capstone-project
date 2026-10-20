@@ -29,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
@@ -130,9 +131,8 @@ class Day14BackendSliceIT {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             DataSource db = postgres.getPostgresDatabase();
             initializeDatabase(db, "journey-d14");
-            var repository = new QuoteRepositoryAdapter(db);
-            repository.insert("journey-d14", quoteSnapshot("quote-v1", NOW));
-            repository.insert("journey-d14", quoteSnapshot("quote-v2", NOW.plusSeconds(60)));
+            insertQuote(db, "journey-d14", quoteSnapshot("quote-v1", NOW));
+            insertQuote(db, "journey-d14", quoteSnapshot("quote-v2", NOW.plusSeconds(60)));
             var writer = writeSelection(db, new QuoteSelectionKey("journey-d14", "quote-v1"));
             var guard = new QuoteSelectionFreshnessGuard(new QuoteFreshnessPolicy());
             var expired = new QuoteFreshnessState("journey-d14", "journey-d14", "quote-v1", "quote-v1", NOW);
@@ -151,7 +151,7 @@ class Day14BackendSliceIT {
             DataSource db = postgres.getPostgresDatabase();
             initializeDatabase(db, "journey-d14");
             insertJourney(db, "journey-other", "owner-b");
-            new QuoteRepositoryAdapter(db).insert("journey-other", quoteSnapshot("quote-other", NOW.plusSeconds(60)));
+            insertQuote(db, "journey-other", quoteSnapshot("quote-other", NOW.plusSeconds(60)));
             var crossJourney = new QuoteFreshnessState("journey-d14", "journey-other", "quote-other", "quote-other", NOW.plusSeconds(60));
             var guard = new QuoteSelectionFreshnessGuard(new QuoteFreshnessPolicy());
             assertThrows(ResourceNotFoundException.class, () -> guard.select(crossJourney, NOW,
@@ -165,7 +165,7 @@ class Day14BackendSliceIT {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             DataSource db = postgres.getPostgresDatabase();
             initializeDatabase(db, "journey-d14");
-            new QuoteRepositoryAdapter(db).insert("journey-d14", quoteSnapshot("quote-d14-v1", NOW.plusSeconds(60)));
+            insertQuote(db, "journey-d14", quoteSnapshot("quote-d14-v1", NOW.plusSeconds(60)));
             var policy = new JourneyAccessPolicy();
             var request = new JourneyReadRequest("journey-d14", "owner-a");
             var key = new QuoteSelectionKey("journey-d14", "quote-d14-v1");
@@ -203,6 +203,24 @@ class Day14BackendSliceIT {
         return new assignments.insurance.QuoteSnapshot(id, "homesecure", "home-secure-v1", "training-rate-v1",
                 new BigDecimal("100000.00"), "BUILDING", "INR", new BigDecimal("125.00"),
                 NOW.minusSeconds(60), expiresAt);
+    }
+
+    private static void insertQuote(DataSource db, String journeyId, assignments.insurance.QuoteSnapshot quote) throws Exception {
+        try (Connection connection = db.getConnection(); var statement = connection.prepareStatement(
+                "INSERT INTO quote_versions (journey_id, quote_version_id, product_code, product_version, rate_version, rebuild_amount_rupees, coverage_code, currency, annual_premium_rupees, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            statement.setString(1, journeyId);
+            statement.setString(2, quote.quoteVersionId());
+            statement.setString(3, quote.productCode());
+            statement.setString(4, quote.productVersion());
+            statement.setString(5, quote.rateVersion());
+            statement.setBigDecimal(6, quote.rebuildAmountRupees());
+            statement.setString(7, quote.coverageCode());
+            statement.setString(8, quote.currency());
+            statement.setBigDecimal(9, quote.annualPremiumRupees());
+            statement.setTimestamp(10, Timestamp.from(quote.createdAt()));
+            statement.setTimestamp(11, Timestamp.from(quote.expiresAt()));
+            statement.executeUpdate();
+        }
     }
 
     private static Runnable writeSelection(DataSource db, QuoteSelectionKey key) {
