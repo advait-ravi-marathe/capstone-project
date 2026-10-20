@@ -139,7 +139,7 @@ Keep the field value as the source of truth while editing. On submit, map a serv
 
 ## Day 19 — Async ownership and TanStack Query
 
-The Day 19 fixed contract uses controlled promises to prove latest-request-wins; it does not currently install or require TanStack Query. Preserve any later roadmap task that explicitly requires TanStack Query rather than silently replacing it with `useEffect`. For that task, identify the query key, cache owner, stale/refetch rule, and cancellation signal using the official docs below. No exact verified TanStack Query Udemy lesson was identified; this short official reference is the bridge. Do not add a dependency to Day 19 solely to match a video.
+The preferred course has a matching module, “React Query / Tanstack Query: Handling HTTP Requests With Ease”; Day 19 assigns “Dynamic Query Functions & Query Keys” and “The Query Configuration Object & Aborting Requests” (18:32 total). The fixed Day 19 acceptance contract uses controlled promises to prove latest-request-wins and does not currently install TanStack Query. Treat the course as the concept reference; do not add a runtime dependency to this scaffold solely to match a video. In the remaining study time, connect query-key identity, cache ownership, and abort signal to the fixed behavior. Preserve any later task that explicitly requires TanStack Query rather than silently replacing it with `useEffect`.
 
 
 **Concrete example:** Pattern: `useQuery({queryKey:["quote", journeyId], queryFn: ({signal}) => loadQuote(journeyId, signal)})`. Keep server data in the query cache; use the supplied mutation/invalidation behavior after a successful write. Do not add automatic write retries.

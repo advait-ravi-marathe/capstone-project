@@ -2,7 +2,7 @@
 
 **State:** Fixed validator and HTTP adapter acceptance scaffolds are installed; learner implementation remains pending. This page is a contract, not a learner result.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “REST API: Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”. Watch: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 14 - Implementing Validations for REST API” (11:47). 20:23 viewing. Use the POST and validation examples; prerequisites from Day 1 must be understood before attempting the full boundary contract. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 14 - Implementing Validations for REST API” (11:47). Total 20:23. Use the POST and validation examples; Day 1 API prerequisite comes first. See the [Days 1–30 map](../course-learning-map.md).
 
 ## Learner seam
 

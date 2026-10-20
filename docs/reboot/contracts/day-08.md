@@ -2,7 +2,7 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. PostgreSQL acceptance cases are fixed and currently fail because the scaffold migration omits the required constraints.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “JPA and Hibernate: Getting Started with JPA and Hibernate with Spring and Spring Boot”. Watch: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24); “Step 04 - Getting Started with Spring JDBC” (3:58). 11:22 viewing. H2/JDBC is an introduction only. Keep PostgreSQL and its required constraints; use the linked PostgreSQL-specific schema example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-8---postgresql-schema-and-constraints).
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24); “Step 04 - Getting Started with Spring JDBC” (3:58). Total 11:22. H2/JDBC is an introduction only; keep PostgreSQL and use the linked schema/constraint example. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-8---postgresql-schema-and-constraints).
 
 ## Learner seam
 

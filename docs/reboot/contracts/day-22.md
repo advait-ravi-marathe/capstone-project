@@ -2,7 +2,7 @@
 
 **State:** Fixed filter scaffold and learner acceptance tests are installed; the filter TODO remains unimplemented.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Logging/monitoring: APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate; REST API section”. Watch: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53); “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54). 16:47 viewing. These introduce logging and monitoring, not request-ID propagation or privacy rules; use the linked project-specific trace. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-22---correlation-and-privacy).
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54). Total 16:47. These introduce logging and monitoring; use the linked request-ID/privacy trace. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-22---correlation-and-privacy).
 
 ## Learner seam
 
