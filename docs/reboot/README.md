@@ -166,3 +166,5 @@ the Scrum board.
 ## Continued roadmap
 
 The isolated [Days 99–112 contracts](continuation-99-112/README.md) add event-log-backed durable-work materialization and a manual one-shot local command. These are contracts and learner TODO scaffolding; they do not indicate completion.
+
+[Days 113–126](continuation-113-126/README.md) add explicit local recovery inspection, quarantine, release, and one-key retry. [Days 127–140](continuation-127-140/README.md) extend the local work with a real PostgreSQL 18.6 logical archive restore into a fresh disposable database, full-state verification, and a loopback-only cutover rehearsal. The AWS course block is an offline planning/permission gate only; it creates no AWS resources or access grants.

@@ -1,0 +1,1190 @@
+{
+  "title": "CoverStory Days 127–140 local restore rehearsal and offline AWS permission gate",
+  "status": "scaffold_plan_not_learner_completion",
+  "base_commit": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+  "start_date": "2027-02-23",
+  "end_date": "2027-03-08",
+  "sprint": "Sprint 10",
+  "daily_budget_minutes": 180,
+  "engineering_budget_minutes": 120,
+  "engineering_allocation_minutes": {
+    "implementation_and_testing": 85,
+    "concept_or_course": 25,
+    "evidence": 10
+  },
+  "java_dsa_budget_minutes": 60,
+  "outcome": "Restore the existing synthetic application into a fresh local PostgreSQL database, compare its retained business/recovery evidence, and rehearse reversible quiesced configuration cutover; AWS stays an offline design only.",
+  "constraints": [
+    "Only fixture-owned source/target databases and loopback processes; target is fresh template0 and never pre-migrated or Flyway-seeded.",
+    "Use real PostgreSQL 18.6 pg_dump/pg_restore custom archive tools from pinned official postgres:18.6 image; record tool/server versions.",
+    "No --clean/--create, arbitrary URLs, source overwrite, production credentials/data, AWS CLI/SDK/resources, or public exposure.",
+    "Restore preserves V001–V005 schema, Flyway history, lifecycle/idempotency/work/receipt/quarantine/history payloads and timestamps.",
+    "Same-artifact quiesced configuration rollback only; candidate writes block blind fallback to stale source. No schema or binary rollback claim.",
+    "AWS plan is offline/non-deployable with fictional rates only; cloud execution not authorized/performed.",
+    "Recovery days 133 and 140 review prior work only. DSA is actual-attempt queue first; no new anchor/completion inferred."
+  ],
+  "postgres_client_toolchain": {
+    "image": "docker.io/library/postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336",
+    "source": "official PostgreSQL Docker image",
+    "local_verified": "pg_dump (PostgreSQL) 18.6 (Debian 18.6-1.pgdg13+2); pg_restore (PostgreSQL) 18.6 (Debian 18.6-1.pgdg13+2)",
+    "ci_verification_step": "docker pull postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336; docker run --rm --network host --entrypoint pg_dump postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 --version; docker run --rm --network host --entrypoint pg_restore postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 --version",
+    "test_transport": "Test-only docker client process uses --network host and explicit 127.0.0.1/ephemeral fixture port; database and Docker process remain local. No host path is mounted in client container."
+  },
+  "course_catalog": {
+    "verified_at": "2026-10-20T21:33:13Z",
+    "source_tools": [
+      "Udemy search_courses",
+      "Udemy get_course_content"
+    ],
+    "courses": [
+      {
+        "course_id": "2196488",
+        "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+        "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+        "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+        "returned_catalog_url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03?utm_source=chatgpt&amp;utm_medium=llm-integration&amp;utm_audience=all&amp;utm_campaign=chatgpt_integration_phase1",
+        "access_status": "owned_reference_course; access not rechecked",
+        "video_content_audited": false
+      },
+      {
+        "course_id": "3142166",
+        "title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+        "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+        "url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new/",
+        "returned_catalog_url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new?utm_source=chatgpt&amp;utm_medium=llm-integration&amp;utm_audience=all&amp;utm_campaign=chatgpt_integration_phase1",
+        "access_status": "owned_reference_course; access not rechecked",
+        "video_content_audited": false
+      }
+    ],
+    "catalog_note": "Lesson title, section title, section ID, item ID, and duration were verified from catalog metadata; video content was not audited. URLs identify courses only; lesson deep links were not returned. AWS course access is not rechecked; no purchase/enrollment is implied. Cloud-launch exercises are outside authorization."
+  },
+  "days": [
+    {
+      "day": 127,
+      "date": "2027-02-23",
+      "title": "Scope one disposable rehearsal",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-127.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Reject unowned and remote sources or targets before any local process starts. The instructor issues fixture handles tied to one run; a localhost URL by itself is not proof of ownership.",
+        "learner_seam": "RehearsalTargetPolicy.validate",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-127.md",
+        "evidence_reference": "evidence/continuation-127-140/day-127.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day127RejectsUnownedOrRemoteTargets test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "3142166",
+              "title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Shared Responsibility Model & AWS Acceptable Policy",
+              "section_title": "What is Cloud Computing?",
+              "section_id": "4759284",
+              "duration_seconds": 96,
+              "source_item_id": "20263094",
+              "course_id": "3142166"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 pg_dump",
+              "url": "https://www.postgresql.org/docs/18/app-pgdump.html",
+              "reading_focus": "Archive formats and connection options; local source only."
+            }
+          ],
+          "video_seconds": 96,
+          "worked_reference_seconds": 1104,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "scope S and T as different run-owned fixtures; reject source=target, unrelated loopback DB, DNS aliases, remote endpoints, and cloud mode.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 96,
+          "worked_reference": 1104,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-23",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 128,
+      "date": "2027-02-24",
+      "title": "Identify the existing release artifact",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-128.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001–V005 digests. A green scaffold build is not learner-completion evidence.",
+        "learner_seam": "ReleaseManifestPolicy.validate",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-128.md",
+        "evidence_reference": "evidence/continuation-127-140/day-128.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day128ChecksArtifactAndMigrationIdentity test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Java 21 MessageDigest",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html",
+              "reading_focus": "SHA-256 identifies exact bytes; do not put credentials in the manifest."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_catalog_lesson_worked_supplement",
+          "scope_note": "Compare manifest hashes against the supplied artifact and migration set; reject altered JAR bytes, mismatch, omitted version, or secrets.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-24",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 129,
+      "date": "2027-02-25",
+      "title": "Define a full restore correctness oracle",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-129.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use ordered business and recovery rows plus schema/migration evidence; equal counts are insufficient. Five named keys represent pending, receipt/no-ack, complete, quarantined/history, and conflicting receipt states.",
+        "learner_seam": "RehearsalEvidencePolicy.requireRestoreMatch",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-129.md",
+        "evidence_reference": "evidence/continuation-127-140/day-129.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day129ComparesMeaningNotOnlyCounts test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 pg_restore",
+              "url": "https://www.postgresql.org/docs/18/app-pgrestore.html",
+              "reading_focus": "Custom archive listing and restore behavior."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_catalog_lesson_worked_supplement",
+          "scope_note": "A changed receipt timestamp/payload, missing history, or substituted row fails even where table counts still match.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-25",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 130,
+      "date": "2027-02-26",
+      "title": "Capture a real local logical archive",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-130.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "local_tools_verified",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Quiesce writes, run actual pg_dump 18.6 custom format, and record archive digest, tool/server versions, fixture identity, and size without secrets. Post-backup writes are outside this recovery point.",
+        "learner_seam": "BackupCommandPolicy.arguments",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-130.md",
+        "evidence_reference": "evidence/continuation-127-140/day-130.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/DatabaseRestoreAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day130ChoosesOnlyTheFixedCustomArchiveCommand test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest#day130RealPgDumpRestoresFullSyntheticRecoveryStateIntoFreshDatabase test"
+        ],
+        "acceptance_selector_status": "installed_instructor_restore_test",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "2196488",
+              "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "RDS & Aurora - Backup and Monitoring",
+              "section_title": "AWS Fundamentals: RDS + Aurora + ElastiCache",
+              "section_id": "3172806",
+              "duration_seconds": 336,
+              "source_item_id": "33878680",
+              "course_id": "2196488"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 pg_dump",
+              "url": "https://www.postgresql.org/docs/18/app-pgdump.html",
+              "reading_focus": "Use custom format against the quiesced synthetic fixture."
+            }
+          ],
+          "video_seconds": 336,
+          "worked_reference_seconds": 864,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Require a nonempty custom archive and successful real client process; a failed tool or missing file is not backup success.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 336,
+          "worked_reference": 864,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-26",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 131,
+      "date": "2027-02-27",
+      "title": "Restore only into a fresh empty target",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-131.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Create T from template0 in this run; it must differ from S and contain no public application relations. Restore only the trusted run archive with single-transaction, no-owner/no-acl; no --clean or --create.",
+        "learner_seam": "RestoreCommandPolicy.arguments",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-131.md",
+        "evidence_reference": "evidence/continuation-127-140/day-131.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/DatabaseRestoreAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day131RestoresFreshTargetFailClosed test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 pg_restore",
+              "url": "https://www.postgresql.org/docs/18/app-pgrestore.html",
+              "reading_focus": "Single-transaction restore to a new empty target; do not use --clean or --create."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_catalog_lesson_worked_supplement",
+          "scope_note": "Real restore succeeds and source remains unchanged; reject source target, populated target, unknown archive/hash mismatch, destructive flags, or corrupt archive.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-27",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 132,
+      "date": "2027-02-28",
+      "title": "Verify the restored application, not just SQL",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-132.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "After full snapshot/migration comparison, run the actual packaged JAR’s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
+        "learner_seam": "RehearsalEvidencePolicy.requireActivationEvidence",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-132.md",
+        "evidence_reference": "evidence/continuation-127-140/day-132.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/LocalRestoreApplicationAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalRestoreApplicationAcceptanceTest#day132RequiresRestoredDataAndActualApplicationEvidence test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "3142166",
+              "title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "CloudWatch Metrics & CloudWatch Alarms Overview",
+              "section_title": "Cloud Monitoring",
+              "section_id": "4759822",
+              "duration_seconds": 216,
+              "source_item_id": "20056176",
+              "course_id": "3142166"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring Boot application availability",
+              "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html",
+              "reading_focus": "Application starts only after the restored migration history and configured data source validate."
+            }
+          ],
+          "video_seconds": 216,
+          "worked_reference_seconds": 984,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Restored full state matches before activation; actual JAR reads the held identity; no-write snapshot remains identical.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 216,
+          "worked_reference": 984,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-28",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 133,
+      "date": "2027-03-01",
+      "title": "Recover and explain the restore boundary",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-133.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery day: rerun only Days 127–132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
+        "learner_seam": "Prior-only review and remediation; no new feature",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-133.md",
+        "evidence_reference": "evidence/continuation-127-140/day-133.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day127RejectsUnownedOrRemoteTargets+day128ChecksArtifactAndMigrationIdentity+day129ComparesMeaningNotOnlyCounts+day130ChoosesOnlyTheFixedCustomArchiveCommand+day131RestoresFreshTargetFailClosed+day132RequiresDataAndApplicationEvidence test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest test",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalRestoreApplicationAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "prior_only_recovery_review",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 pg_dump",
+              "url": "https://www.postgresql.org/docs/18/app-pgdump.html",
+              "reading_focus": "A logical archive captures a recovery point, not writes committed after archive completion."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "recovery_prior_only_no_new_lecture",
+          "scope_note": "Explain the recovery point and that a deliberately post-backup write is absent from T. Record tool/TODO blockers honestly.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-01",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": true
+    },
+    {
+      "day": 134,
+      "date": "2027-03-02",
+      "title": "Rehearse guarded configuration cutover",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-134.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Keep known-good A selected until candidate B points at T, uses the same identified JAR, passes readiness and business-data gates, and remains loopback-only.",
+        "learner_seam": "ActivationDecisionPolicy.choose",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-134.md",
+        "evidence_reference": "evidence/continuation-127-140/day-134.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/LocalReleaseCutoverAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGood test",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "2196488",
+              "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "EC2 Basics",
+              "section_title": "EC2 Fundamentals",
+              "section_id": "6258026",
+              "duration_seconds": 212,
+              "source_item_id": "26098112",
+              "course_id": "2196488"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "EC2 instance types",
+              "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html",
+              "reading_focus": "Offline resource sizing concepts only; no regional availability or price claim."
+            }
+          ],
+          "video_seconds": 212,
+          "worked_reference_seconds": 988,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Any wrong DB, digest, business state, or bind target leaves CURRENT selected; only all gates select CANDIDATE.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 212,
+          "worked_reference": 988,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-02",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 135,
+      "date": "2027-03-03",
+      "title": "Roll back configuration without rewinding data",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-135.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use the same artifact with a test-client configuration switch. Roll back only while quiesced, compatible, and no writes have been accepted on T.",
+        "learner_seam": "RollbackDecisionPolicy.mayReturnToSource",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-135.md",
+        "evidence_reference": "evidence/continuation-127-140/day-135.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/LocalReleaseCutoverAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day135BlocksRollbackAfterDivergentWrites test",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 pg_restore",
+              "url": "https://www.postgresql.org/docs/18/app-pgrestore.html",
+              "reading_focus": "Restore creates a target database state; it does not rewind another database."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_catalog_lesson_worked_supplement",
+          "scope_note": "Quiesced no-write return is allowed; a write after divergence, schema mismatch, or missing artifact blocks blind rollback.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-03",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 136,
+      "date": "2027-03-04",
+      "title": "Measure recovery and own cleanup",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-136.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Record each phase on a monotonic clock with fixture size/tool versions. Instructor owns process, temp-dir and DB lifecycle; only run-owned resources may be cleaned.",
+        "learner_seam": "RehearsalEvidencePolicy.requireSuccessfulCleanup",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-136.md",
+        "evidence_reference": "evidence/continuation-127-140/day-136.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day136RequiresOwnedCleanupEvidence test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring Boot graceful shutdown",
+              "url": "https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html",
+              "reading_focus": "Bounded shutdown and resource ownership; the harness must await its own process termination."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_catalog_lesson_worked_supplement",
+          "scope_note": "Any failed phase or cleanup fails the overall result; terminate/await owned children and preserve unrelated sentinel fixtures.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-04",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 137,
+      "date": "2027-03-05",
+      "title": "Draft the AWS resource and access boundary",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-137.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Create only an offline plan. Candidate private one-compute/private PostgreSQL design is not a deployment template; account, region and operator access remain pending.",
+        "learner_seam": "AwsLabDesignPolicy.validate",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-137.md",
+        "evidence_reference": "evidence/continuation-127-140/day-137.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/AwsLabDesignPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "2196488",
+              "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "CloudFormation Intro",
+              "section_title": "Other Services",
+              "section_id": "3172902",
+              "duration_seconds": 211,
+              "source_item_id": "13528576",
+              "course_id": "2196488"
+            },
+            {
+              "title": "IAM Introduction: Users, Groups, Policies",
+              "section_title": "IAM & AWS CLI",
+              "section_id": "6258010",
+              "duration_seconds": 202,
+              "source_item_id": "26097996",
+              "course_id": "2196488"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "AWS CloudFormation change sets",
+              "url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
+              "reading_focus": "Offline planning and later validation concepts; a design record is not a change set."
+            }
+          ],
+          "video_seconds": 413,
+          "worked_reference_seconds": 787,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Public app/DB, wildcard admin, embedded secret, cloudVerified=true, or cloud execution request must fail offline validation.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 413,
+          "worked_reference": 787,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-05",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 138,
+      "date": "2027-03-06",
+      "title": "Model cost and retained cleanup obligations",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-138.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use conspicuously fictional decimal rates; include runtime, storage, backups, logs, secrets, transfer and selected networking components. Budget alerts are not synchronous spend stops.",
+        "learner_seam": "AwsLabDesignPolicy.validate",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-138.md",
+        "evidence_reference": "evidence/continuation-127-140/day-138.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/AwsLabDesignPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day138CostsRetainedResourcesWithoutInventingPrices test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "3142166",
+              "title": "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-cloud-practitioner-new/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Monitoring Costs in the Cloud - Billing Alarms & AWS Budgets",
+              "section_title": "Account Management, Billing & Support",
+              "section_id": "4759866",
+              "duration_seconds": 264,
+              "source_item_id": "20118372",
+              "course_id": "3142166"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "AWS Pricing Calculator",
+              "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/pricing-calculator.html",
+              "reading_focus": "Cost model components; real regional prices remain unverified until scope is selected."
+            },
+            {
+              "title": "AWS Budgets practices",
+              "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html",
+              "reading_focus": "Alerts are delayed notifications, not synchronous spending caps."
+            }
+          ],
+          "video_seconds": 264,
+          "worked_reference_seconds": 936,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "No missing-rate zero total; reject unit/currency mismatch and omit neither retained backup nor runtime.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 264,
+          "worked_reference": 936,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-06",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 139,
+      "date": "2027-03-07",
+      "title": "Run the full rehearsal and write the cloud gate",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-139.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Execute actual JAR + PG archive/restore + evidence; distinguish local proof from AWS unknowns. Keep the passwordless synthetic session route private and loopback-bound.",
+        "learner_seam": "Integrated local recovery and permission-gate assessment",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-139.md",
+        "evidence_reference": "evidence/continuation-127-140/day-139.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest,AwsLabDesignPolicyAcceptanceTest test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest test",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalRestoreApplicationAcceptanceTest test",
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "2196488",
+              "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+              "instructor": "Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+              "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+              "access_status": "owned_reference_course; access not rechecked"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Security Groups & Classic Ports Overview",
+              "section_title": "EC2 Fundamentals",
+              "section_id": "6258026",
+              "duration_seconds": 438,
+              "source_item_id": "26098134",
+              "course_id": "2196488"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "AWS Security Group rules",
+              "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html",
+              "reading_focus": "Private access boundaries concept only; no security group is created."
+            }
+          ],
+          "video_seconds": 438,
+          "worked_reference_seconds": 762,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Full local evidence and source preservation; no AWS SDK/CLI/deploy call, cloudVerified remains false, and unresolved user choices remain explicit.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 438,
+          "worked_reference": 762,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-07",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false
+    },
+    {
+      "day": 140,
+      "date": "2027-03-08",
+      "title": "Recover and defend the permission gate",
+      "contract_file": "docs/reboot/continuation-127-140/contracts/day-140.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked_pending_learner_evidence",
+      "prerequisite_note": "Requires demonstrated prior local issuance, durable delivery, manual recovery, packaging and transaction/resource cleanup. Scheduled work or instructor witnesses do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery day: rerun prior Days 127–139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
+        "learner_seam": "Prior-only review and remediation; no new feature",
+        "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-140.md",
+        "evidence_reference": "evidence/continuation-127-140/day-140.json",
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
+        "instructor_harness_test_path": null,
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest,AwsLabDesignPolicyAcceptanceTest test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest test",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReleaseCutoverAcceptanceTest#day134FailedCandidateCannotDisplaceKnownGoodAndDay135RollbackRespectsDivergence test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalRestoreApplicationAcceptanceTest test",
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "prior_only_recovery_review",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Amazon RDS point-in-time restore",
+              "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html",
+              "reading_focus": "PITR creates a new instance; local pg_dump is not an RDS restore test."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "recovery_prior_only_no_new_lecture",
+          "scope_note": "Explain pg_dump vs RDS PITR, cost/retention limits, and why same-version config rollback is blocked after candidate writes.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        },
+        "scaffold_status": "instructor_scaffold_complete",
+        "status": "not_attempted"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-08",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": true
+    }
+  ],
+  "cloud_execution_not_performed": true,
+  "learner_completion_inferred": false
+}

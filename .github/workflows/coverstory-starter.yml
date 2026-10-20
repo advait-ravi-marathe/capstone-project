@@ -2,7 +2,7 @@ name: CoverStory starter checks
 
 on:
   push:
-    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126]
+    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126, learning/coverstory-days-127-140]
   pull_request:
     branches: [main]
 
@@ -30,6 +30,11 @@ jobs:
       - name: Install Chromium for the Day 44 and Day 45 transport harnesses
         working-directory: frontend
         run: npx playwright install --with-deps chromium
+      - name: Verify PostgreSQL 18.6 backup client tools
+        run: |
+          docker pull postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336
+          docker run --rm --network host --entrypoint pg_dump postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 --version
+          docker run --rm --network host --entrypoint pg_restore postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 --version
       - name: Frontend build
         working-directory: frontend
         run: npm run build
@@ -41,7 +46,7 @@ jobs:
       - name: Verify Java infrastructure and instructor harness
         run: ./mvnw -B -ntp test
       - name: Verify continuation manifest
-        run: python3 -m unittest scripts/test_continuation_113_126_manifest.py
+        run: python3 -m unittest scripts/test_continuation_113_126_manifest.py scripts/test_continuation_127_140_manifest.py
       - name: Frontend instructor tests
         working-directory: frontend
         run: npm test
