@@ -1,4 +1,4 @@
-# Day 64 — 2026-12-22: Add the thin local policy issue adapter
+# Day 64 — 2026-12-22: Trace the supplied thin local policy issue adapter
 
 ## Contract
 
@@ -36,7 +36,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 - [Spring MVC Handler Method Arguments — @RequestBody and java.security.Principal argument resolution](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html)
 - [Spring MVC @RequestBody — Reading the request body through message conversion](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html)
 
-**Design sketch:** Add the thin local policy issue adapter: show the key trust boundary or data invariant and which layer owns it.
+**Design sketch:** Trace the supplied thin local policy issue adapter: show the key trust boundary or data invariant and which layer owns it.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

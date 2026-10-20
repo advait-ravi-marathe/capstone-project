@@ -1,4 +1,4 @@
-# Day 67 — 2026-12-25: Run and verify the disposable packaged local demo
+# Day 67 — 2026-12-25: Inspect the disposable packaged runtime lifecycle
 
 ## Contract
 

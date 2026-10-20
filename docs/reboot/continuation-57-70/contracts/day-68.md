@@ -8,11 +8,11 @@
 
 ### Expected behavior
 
-Playwright launches the built executable JAR, opens the canonical packaged route `/`, and clicks the real React controls for owner selection, preview, issue, readback and same-key replay. The browser acceptance asserts preview no-write, first issue HTTP 201, owner-scoped readback HTTP 200, same-request replay HTTP 200 with one policy row, and stable snapshot identity. Current Day 66 UI, Day 62 owner, Day 34–35 issue, Day 36 read and Day 49 preview TODOs can block these assertions; any HTTP 500 is an acceptance failure.
+Playwright launches the built executable JAR, opens the canonical packaged route `/`, and clicks the real React controls for owner selection, preview, issue, readback and same-key replay. The browser acceptance asserts preview leaves all policy rows, versions, lifecycle history, and idempotency records byte-stable, first issue HTTP 201, owner-scoped readback HTTP 200, same-request replay HTTP 200 with exactly one new policy, one lifecycle event and one idempotency record, and stable snapshot identity. Preserve every preexisting policy value/version, lifecycle event and idempotency record across the issue/readback/replay sequence. Current Day 66 UI, Day 62 owner, Day 34–35 issue, Day 36 read and Day 49 preview TODOs can block these assertions; any HTTP 500 is an acceptance failure.
 
 ## Acceptance and expected TODO state
 
-The fixed browser selectors now launch the packaged JAR and drive real UI controls. Preview and issue/readback/replay are separate checks so policy counts can be measured around each operation. They are expected to fail while the UI or upstream domain TODOs remain; no 500 is a pass. Day 69 owns the separate foreign-owner 404 expectation.
+The fixed browser selectors now launch the packaged JAR and drive real UI controls. Preview and issue/readback/replay are separate checks. Around the read-only preview, compare the full ordered contents of `training_policy_lifecycle`, `training_policy_lifecycle_event` (including versions), and `training_policy_idempotency`; a row count alone cannot detect updates or altered history. They are expected to fail while the UI or upstream domain TODOs remain; no 500 is a pass. Day 69 owns the separate foreign-owner 404 expectation.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
 **Acceptance selectors:** `day68PackagedUiPreviewIsReadOnly`; `day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce`

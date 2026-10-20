@@ -1,4 +1,4 @@
-# Day 65 — 2026-12-23: Protect local session and issue writes with CSRF
+# Day 65 — 2026-12-23: Verify CSRF enforcement and rejected writes
 
 ## Contract
 
@@ -35,7 +35,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 
 - [Spring Security CSRF protection — CSRF protection and token repository](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html)
 
-**Design sketch:** Protect local session and issue writes with CSRF: show the key trust boundary or data invariant and which layer owns it.
+**Design sketch:** Verify CSRF enforcement and rejected writes: show the key trust boundary or data invariant and which layer owns it.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

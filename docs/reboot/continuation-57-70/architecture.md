@@ -37,9 +37,10 @@ StreamForge work, production customer data, or a board update.
 - Learner-owned implementation remains in `LocalReadinessGate.assess`,
   `LocalReadinessGate.securityCheckpoint`, owner-scoped JDBC reads,
   authenticated owner resolution, and the normal local React UI. The Day 48
-  renewal-read and Day 49 preview TODOs also remain unresolved. Days 68–69
-  currently stop at the Day 49 HTTP 500; that response is a blocker, never a
-  successful end-to-end acceptance.
+  renewal-read and Day 49 preview TODOs also remain unresolved. Current Days
+  68–69 browser runs stop first at missing Day 66 UI controls; once those are
+  supplied, the upstream Day 48/49/62 TODOs can still block the journey. An
+  HTTP 500 is a failure, never end-to-end acceptance.
 
 ## Test boundaries
 
@@ -47,10 +48,10 @@ Instructor tests prove schema migration repeatability, loopback safety,
 packaging/wiring prerequisites, browser harness plumbing, and fixture
 integrity. Passing scaffold selectors verify instructor-provided setup only.
 Learner selectors cover the remaining implementation seams and are expected
-red until those are completed. Days 68–69 are browser integration checks
-blocked by the existing Day 49 TODO. HTTP 500 is recorded as failure, never
-acceptance success, and no temporary service witness is counted as learner
-evidence.
+red until those are completed. Day 68–69 first encounter missing Day 66 UI
+controls; after UI work, existing Day 48/49/62 TODOs may be the next blockers.
+HTTP 500 is recorded as failure, never acceptance success, and no temporary
+service witness is counted as learner evidence.
 
 ## PostgreSQL compatibility decision
 

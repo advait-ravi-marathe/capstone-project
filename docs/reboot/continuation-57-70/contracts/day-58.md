@@ -1,4 +1,4 @@
-# Day 58 — 2026-12-16: Add the dedicated local entry point and explicit composition
+# Day 58 — 2026-12-16: Trace the dedicated local entry point and explicit composition
 
 ## Contract
 
@@ -35,7 +35,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 
 - [Spring Boot Configuration Classes — Importing Additional Configuration Classes](https://docs.spring.io/spring-boot/reference/using/configuration-classes.html)
 
-**Design sketch:** Add the dedicated local entry point and explicit composition: show the key trust boundary or data invariant and which layer owns it.
+**Design sketch:** Trace the dedicated local entry point and explicit composition: show the key trust boundary or data invariant and which layer owns it.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

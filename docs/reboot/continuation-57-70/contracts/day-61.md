@@ -1,4 +1,4 @@
-# Day 61 — 2026-12-19: Install the local runtime security chain
+# Day 61 — 2026-12-19: Trace the supplied local runtime security chain
 
 ## Contract
 
@@ -37,7 +37,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 - [Running a Test as a User in Spring MVC Test — RequestPostProcessor authentication](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html)
 - [Testing with CSRF Protection — CSRF header, invalid token and request post-processors](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html)
 
-**Design sketch:** Install the local runtime security chain: show the key trust boundary or data invariant and which layer owns it.
+**Design sketch:** Trace the supplied local runtime security chain: show the key trust boundary or data invariant and which layer owns it.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

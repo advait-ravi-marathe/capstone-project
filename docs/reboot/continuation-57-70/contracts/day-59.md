@@ -1,4 +1,4 @@
-# Day 59 — 2026-12-17: Bootstrap a versioned synthetic schema without resetting rows
+# Day 59 — 2026-12-17: Inspect the additive versioned schema migration without resetting rows
 
 ## Contract
 
@@ -35,7 +35,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 
 - [Spring Boot SQL database initialization — Flyway migrations — Initialize a Database Using Flyway](https://docs.spring.io/spring-boot/how-to/data-initialization.html)
 
-**Design sketch:** Bootstrap a versioned synthetic schema without resetting rows: show the key trust boundary or data invariant and which layer owns it.
+**Design sketch:** Inspect the additive versioned schema migration without resetting rows: show the key trust boundary or data invariant and which layer owns it.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 
