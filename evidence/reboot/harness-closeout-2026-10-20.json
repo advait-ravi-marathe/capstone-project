@@ -143,13 +143,28 @@
       "command": "python3 -m json.tool docs/reboot/manifest.json; python3 -m json.tool docs/reboot/scrum-owner-manifest.json; python3 -m json.tool evidence/reboot/harness-closeout-2026-10-20.json; git diff --check",
       "result": "pass",
       "summary": "All three JSON files parse and git diff has no whitespace errors."
+    },
+    {
+      "command": "Public GitHub Actions workflow run for commit 46a4aae3253047686eb13b542a8f6f9587ba0e6d (run #7)",
+      "result": "pass_with_deprecation_warnings",
+      "summary": "CoverStory starter checks run #7 completed successfully in 57 seconds on main. GitHub showed two action deprecation warnings (actions/setup-java@v4 and Node.js 20 actions being forced to Node.js 24) and a notice about the ubuntu-latest image migration. Run URL: https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39387941328. Public status page verified; run logs require sign-in."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 org.owasp:dependency-check-maven:13.0.0:check -Dformat=HTML,JSON -DfailOnError=false -DskipTestScope=false",
+      "result": "blocked_no_current_vulnerability_report",
+      "summary": "OWASP Dependency-Check 13.0.0 plugin resolved, but its NVD API, hosted suppressions, and CISA KEV updates returned HTTP 403 in this environment. The plugin warned it would use local data, then could not continue analysis; Maven returned BUILD SUCCESS because failOnError=false, but no dependency-check report was generated. This is not a clean scan. Initial plugin resolution also required the container Java trust store."
+    },
+    {
+      "command": "NPM_CONFIG_CACHE=/tmp/npm-cache npm --prefix frontend audit --audit-level=low --json",
+      "result": "pass_frontend_only",
+      "summary": "npm audit found 0 info/low/moderate/high/critical advisories across 149 dependency entries. This covers the frontend npm lockfile only; it does not cover Maven dependencies."
     }
   ],
   "remaining": {
     "day28": "Independent validator reports the revised browser/API/embedded-PostgreSQL harness passed 1/1 using temporary conforming witnesses, which were restored. This is harness validation only; learner TODO behavior remains unimplemented and learner acceptance is not certified complete.",
     "learner_work": "All domain, schema, API policy, security policy/config, UI, persistence, readiness, DSA assignments remain learner owned and incomplete TODOs. Independent runtime witness runs validate harnesses only; no learner implementation credit is implied.",
-    "ci": "Workflow scaffold and local structural check are present; remote Actions execution remains unverified (GitHub API returned HTTP 403 in the earlier check).",
-    "sca": "npm audit applies only to frontend lockfile; no full Maven/transitive SCA completed.",
+    "ci": "GitHub Actions run #7 for published main 46a4aae completed successfully in 57 seconds (public run URL recorded above). GitHub reports deprecation warnings for actions/setup-java@v4 and Node.js 20 actions, plus an ubuntu-latest migration notice. Public status is confirmed; logs require sign-in.",
+    "sca": "Frontend npm audit passes with 0 advisories across 149 dependency entries. A Maven OWASP Dependency-Check 13.0.0 attempt could not update NVD/hosted-suppressions/CISA feeds because the environment returned HTTP 403; no Maven SCA report was generated. Do not claim Maven dependencies are clean.",
     "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed.",
     "day14": "Expanded six-case real PostgreSQL selector was run: 4 failures + 2 errors, all at explicit Days4, 7, 11, and 12 TODOs. Stale/expired and ownership guards now use direct synthetic SQL fixture rows and have no Day15 dependency. No solution witnesses or learner implementations were supplied.",
     "scrum_manifest": "One Story per date (30 total), not one per track. Each Story links both the 120-minute engineering and separate 60-minute Java DSA assignments, relevant resources and evidence paths. Two-week sprint story counts are 14/14/2; canonical engineering and DSA assignments, dates, and budgets are unchanged.",
