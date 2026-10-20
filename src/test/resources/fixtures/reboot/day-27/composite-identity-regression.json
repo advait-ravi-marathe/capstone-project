@@ -1,0 +1,11 @@
+{
+  "description": "Saved boundary reproducer: identical quote version under distinct journeys must remain distinct.",
+  "selections": [
+    {"journeyId": "journey-A", "quoteVersionId": "home-secure-v1"},
+    {"journeyId": "journey-B", "quoteVersionId": "home-secure-v1"}
+  ],
+  "expected": [
+    {"journeyId": "journey-A", "quoteVersionId": "home-secure-v1"},
+    {"journeyId": "journey-B", "quoteVersionId": "home-secure-v1"}
+  ]
+}

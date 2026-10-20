@@ -1,10 +1,10 @@
 # Day 30 — 2026-11-18: Defend and assess the slice
 
-**State:** Machine-checkable open-evidence checklist and instructor integrity test are installed; no learner completion is recorded.
+**State:** Machine-checkable evidence checklist and instructor integrity test are installed; learner status remains evidence-driven and may evolve truthfully from open/blocked to passed when local evidence exists.
 
 ## Learner seam
 
-`docs/reboot/acceptance-checklist.md` plus `Day30ContractTest` in `src/test/java/assignments/reboot/Day30ContractTest.java`. The test verifies evidence links and manifest statuses, leaving absent/unverified records open; it does not mark learner work complete. The architecture note records the explanation and ranked backlog. Do not implement later-day behavior early.
+`docs/reboot/acceptance-checklist.md` plus `Day30ContractTest` in `src/test/java/assignments/reboot/Day30ContractTest.java`. The test verifies evidence links and manifest statuses, leaves absent/unverified records open, and accepts valid evidence-backed completion; it does not mark learner work complete. The architecture note records the explanation and ranked backlog. Do not implement later-day behavior early.
 
 ## Acceptance invariants
 
@@ -32,7 +32,7 @@ SDE II trade-off discussion and technical communication.
 
 `./mvnw -Plearner-tests -Dtest=Day30ContractTest test`
 
-This instructor integrity selector is expected to pass while checking that the checklist remains open and does not auto-complete learner status. Infrastructure checks are separate.
+This instructor integrity selector is expected to pass against fixed status/evidence fixtures and the live evolving checklist. It rejects unsupported statuses and passed rows without a repository-local evidence file; it does not require the live checklist to stay open. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
@@ -46,6 +46,6 @@ This instructor integrity selector is expected to pass while checking that the c
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [Amazon official behavioral expectations; A3](../interview-evidence-overlay.md#amazon official behavioral expectations; a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 **Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.

@@ -1,8 +1,8 @@
 {
   "date": "2026-10-20",
   "branch": "learning/2026-10-20-scrum-reboot",
-  "base_sha": "bd1f54a5c6ec70b91bf29f937521a910183bdde3",
-  "scope": "Record reviewed 30-day contract set and one test-only synthetic HomeSecure catalog fixture.",
+  "base_sha": "76b4680701ed4ed478b1f07d8c25f951b626ef12",
+  "scope": "Record reviewed 30-day contract set, test-only synthetic HomeSecure fixture, and installed Day 2-7 learner TODO scaffolds.",
   "contract_manifest": "docs/reboot/manifest.json",
   "contract_files": 30,
   "scheduled_dates": {
@@ -17,7 +17,7 @@
     "concept_course": 25,
     "evidence": 10
   },
-  "status_integrity": "Day 1 scaffold is installed; learner and integration status remain pending/blocked. Days 2-30 have contract text only, no test class, implementation, or completion claim. Calendar dates never update completion status.",
+  "status_integrity": "Snapshot captured at the contract-roadmap commit; superseded for current scaffold status by evidence/reboot/implementation-2026-10-20.json. Calendar dates never update completion status.",
   "fixture": {
     "path": "src/test/resources/assignments/reboot/homesecure-catalog.json",
     "only_synthetic": true,
@@ -27,12 +27,17 @@
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 test",
       "result": "passed",
-      "detail": "Tests run: 6, failures: 0, errors: 0, skipped: 0. Includes fixture integrity and all existing infrastructure checks."
+      "detail": "Tests run: 6, failures: 0, errors: 0, skipped: 0. Includes existing infrastructure checks and the synthetic fixture integrity test; learnerAcceptance tag is excluded by default."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day02ContractTest,Day03ContractTest,Day04ContractTest,Day05ContractTest,Day06ContractTest,Day07ContractTest test",
+      "result": "expected_todo_failures",
+      "detail": "17 tests ran; 4 assertion failures and 13 errors, all due to explicit Day 2-7 UnsupportedOperationException TODOs or assertions expecting the still-unimplemented behavior. All selected classes compiled and executed; this is not a green learner result."
     },
     {
       "command": "git diff --check",
       "result": "passed",
-      "detail": "No whitespace errors in pending changes."
+      "detail": "No whitespace errors."
     },
     {
       "command": "Python manifest validation inline: parse JSON; assert 30 sequential dates from 2026-10-20 through 2026-11-18; assert all 30 contract files exist and match dates; assert all integration states remain blocked.",
@@ -41,8 +46,10 @@
     }
   ],
   "limitations": [
-    "Day 2-30 acceptance test classes and production seams are not installed yet; their documented selectors must not be run or counted as passing.",
-    "Day 17-28 UI/security/actuator contracts require infrastructure not present in the Day 1 checkout; the contract pages state this explicitly.",
+    "Day 2 validator scaffold is partial: HTTP adapter wiring and service-call-count contract remain open. Days 3-7 learner acceptance tests currently fail at explicit TODOs by design; learner implementations remain untouched.",
+    "Day 8-30 acceptance tests and production seams are not installed; their documented selectors must not be run or counted as passing.",
+    "Day 17-28 UI/security/actuator contracts require infrastructure not present in the current starter; the contract pages state this explicitly.",
     "HomeSecure rates and eligibility are synthetic educational rules, not real insurance terms or advice."
-  ]
+  ],
+  "record_type": "historical checkpoint receipt for base_sha; later scaffold work is recorded in implementation-2026-10-20.json"
 }

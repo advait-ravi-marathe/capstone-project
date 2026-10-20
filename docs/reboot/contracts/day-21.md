@@ -32,7 +32,7 @@ Security integration matrix. Record dated attempt state (`not attempted`, `attem
 
 `./mvnw -Plearner-tests -Dtest=Day21ContractTest test`
 
-The selector is not runnable yet because the Spring Security dependency and production filter-chain seam are absent. Add the security dependency and isolated route configuration before acceptance testing. Keep the Day 1 route behavior intact while doing so; use a real Spring Security filter chain for the 401/403/valid-token matrix. Infrastructure checks are separate.
+An actual Spring Security filter chain is installed in the instructor test harness. It exercises CSRF rejection on `POST /api/quote-selections` before the learner policy runs. Production cookie/session configuration and the valid-token business success path remain learner work; the test-only users and chain are not application configuration.
 
 ## Separate Java DSA block (60 minutes)
 
@@ -46,4 +46,4 @@ The selector is not runnable yet because the Spring Security dependency and prod
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.

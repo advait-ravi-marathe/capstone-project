@@ -17,7 +17,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class QuoteSelectionApiAcceptanceTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final MockMvc mvc = MockMvcBuilders.standaloneSetup(
-            new QuoteSelectionController(new QuoteSelectionPolicy())).build();
+            new QuoteSelectionController(new QuoteSelectionPolicy(), request -> {
+                if (request == null || request.selections() == null
+                        || request.selections().stream().anyMatch(selection -> selection == null
+                        || selection.journeyId() == null || selection.journeyId().isBlank()
+                        || selection.quoteVersionId() == null || selection.quoteVersionId().isBlank())) {
+                    throw new IllegalArgumentException("test fixture rejected request");
+                }
+            })).build();
 
     @Test
     void validSelectionReturnsExactOrderedArrayAndRemovesDuplicates() throws Exception {
