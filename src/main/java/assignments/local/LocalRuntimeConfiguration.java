@@ -9,12 +9,18 @@ import assignments.renewal.PreviewAdmission;
 import assignments.renewal.PreviewCapacityPolicy;
 import assignments.renewal.PreviewCapacityExceptionHandler;
 import assignments.renewal.PreviewMetrics;
+import assignments.renewal.PreviewReadBudgetPolicy;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.time.Clock;
@@ -33,8 +39,38 @@ public class LocalRuntimeConfiguration {
     }
 
     @Bean
-    LocalApplicationComposition.Components localComponents(Clock localClock, DataSource dataSource) {
-        return LocalApplicationComposition.compose(localClock, dataSource);
+    PlatformTransactionManager renewalReadTransactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean
+    JdbcTemplate renewalReadJdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    TransactionTemplate renewalReadTransactionTemplate(PlatformTransactionManager transactionManager) {
+        TransactionTemplate template = new TransactionTemplate(transactionManager);
+        template.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        template.setReadOnly(true);
+        return template;
+    }
+
+    @Bean
+    PreviewReadBudgetPolicy previewReadBudgetPolicy(
+            @Value("${coverstory.preview.lock-timeout-millis:500}") long lockTimeoutMillis,
+            @Value("${coverstory.preview.statement-timeout-millis:2000}") long statementTimeoutMillis) {
+        PreviewReadBudgetPolicy policy = new PreviewReadBudgetPolicy(lockTimeoutMillis, statementTimeoutMillis);
+        policy.validate();
+        return policy;
+    }
+
+    @Bean
+    LocalApplicationComposition.Components localComponents(Clock localClock, DataSource dataSource,
+            JdbcTemplate renewalReadJdbcTemplate, TransactionTemplate renewalReadTransactionTemplate,
+            PreviewReadBudgetPolicy previewReadBudgetPolicy) {
+        return LocalApplicationComposition.compose(localClock, dataSource, renewalReadJdbcTemplate,
+                renewalReadTransactionTemplate, previewReadBudgetPolicy);
     }
 
     @Bean

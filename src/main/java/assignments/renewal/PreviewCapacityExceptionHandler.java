@@ -24,4 +24,10 @@ public final class PreviewCapacityExceptionHandler {
         // LEARNER TODO Day 78: return only the fixed PREVIEW_UNAVAILABLE 503 envelope.
         throw new UnsupportedOperationException("Day 78 learner TODO: map unavailable safely");
     }
+
+    @ExceptionHandler(PreviewReadInterruptedException.class)
+    public ResponseEntity<Map<String, String>> readInterrupted(PreviewReadInterruptedException ignored) {
+        // LEARNER TODO Day 92: return the fixed safe 503 envelope; do not disclose SQL or policy data.
+        throw new UnsupportedOperationException("Day 92 learner TODO: map interrupted read safely");
+    }
 }

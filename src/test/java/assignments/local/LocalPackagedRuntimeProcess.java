@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /** Starts the actual executable archive against a disposable PostgreSQL instance. */
@@ -33,6 +34,11 @@ final class LocalPackagedRuntimeProcess implements AutoCloseable {
     }
 
     static LocalPackagedRuntimeProcess start(EmbeddedPostgres postgres, String fixedClockInstant) throws Exception {
+        return start(postgres, fixedClockInstant, Map.of());
+    }
+
+    static LocalPackagedRuntimeProcess start(EmbeddedPostgres postgres, String fixedClockInstant,
+                                             Map<String, String> testOnlyProperties) throws Exception {
         Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT.jar").toAbsolutePath();
         if (!Files.isRegularFile(jar)) throw new IllegalStateException("Packaged local JAR is missing: " + jar);
         int port;
@@ -48,6 +54,7 @@ final class LocalPackagedRuntimeProcess implements AutoCloseable {
                 "--spring.datasource.url=" + postgres.getJdbcUrl("postgres", "postgres"),
                 "--spring.datasource.username=postgres", "--spring.datasource.password="));
         if (fixedClockInstant != null) command.add("--coverstory.local.fixed-clock=" + fixedClockInstant);
+        testOnlyProperties.forEach((key, value) -> command.add("--" + key + "=" + value));
         Process process = new ProcessBuilder(command).redirectErrorStream(true).redirectOutput(log.toFile()).start();
         LocalPackagedRuntimeProcess runtime = new LocalPackagedRuntimeProcess(process, port, log);
         try {
