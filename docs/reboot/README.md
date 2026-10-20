@@ -4,7 +4,7 @@ This folder records the reviewed roadmap proposal for 20 October–18 November
 2026. It is a set of contracts and schedule metadata, not a completion report.
 The existing Day 1 feature remains the live starter; future-day files specify
 the intended acceptance contract before learner implementations are created.
-Days 2–13 have instructor acceptance scaffolds and explicit learner TODOs. Day 2 HTTP wiring is covered by call-count checks and a real Spring Boot app-context test with the global advice active. Days 8–10 exercise real embedded PostgreSQL; Days 11–13 remain isolated policy/readiness tests and do not claim the unavailable security/CI integration. The dated DSA sequence groups Top Interview 150 problems by patterns; its pattern label is shown in the manifest.
+Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wiring has call-count checks and a real Boot app-context test. Days 8–10 and 14 use disposable PostgreSQL. Day 12 has an isolated real Spring Security HTTP chain for authentication and CSRF; the learner ownership policy remains open. Day 13 has a fail-closed GitHub Actions workflow. Day 21 exercises CSRF on the actual quote-selection route through the same test-only chain. Day 28 has a real Chromium acceptance harness that serves the built React test route from Spring, calls test-only endpoints backed by the actual learner services, and checks PostgreSQL persistence and browser reload. It is expected red until the learner components and backend methods are implemented. The dated DSA sequence groups Top Interview 150 problems by patterns and carries planned D+3/D+7/D+21 reviews in the manifest.
 
 ## Products and scope
 
@@ -22,8 +22,9 @@ Dates schedule attempts only. Record `not attempted`, `attempted`, `contract
 passed`, and `integrated passed` separately. A day or milestone is never
 automatically complete because its date passed.
 
-The chronological manifest holds each date, prerequisite note, DSA problem,
-and separate contract/scaffold/learner/integration statuses:
+The chronological manifest holds each date, sprint, prerequisite note, focused
+engineering concept and exact section link, DSA pattern/problem/review anchors,
+guide path, and separate contract/scaffold/runtime/learner/integration statuses:
 [manifest.json](manifest.json). Every day has a dated page under
 [`contracts/`](contracts/). Day 1's active runnable guide and fixed tests stay
 at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
@@ -43,7 +44,7 @@ at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 | 09 · 2026-10-28 | [Day 09](contracts/day-09.md) — Persist/read immutable quote snapshots | LC 238 Product of Array Except Self — new pattern anchor | installed / not_attempted / blocked |
 | 10 · 2026-10-29 | [Day 10](contracts/day-10.md) — Persist selection batch atomically | Review due anchors: LC1, LC49; no new problem | installed / not_attempted / blocked |
 | 11 · 2026-10-30 | [Day 11](contracts/day-11.md) — Reject stale quote selection | LC 125 Valid Palindrome — new pattern anchor | installed / not_attempted / blocked |
-| 12 · 2026-10-31 | [Day 12](contracts/day-12.md) — Enforce owner-scoped access | Review due anchors: LC383, LC238; no new problem | partial / not_attempted / blocked |
+| 12 · 2026-10-31 | [Day 12](contracts/day-12.md) — Enforce owner-scoped access | Review due anchors: LC383, LC238; no new problem | installed / not_attempted / blocked |
 | 13 · 2026-11-01 | [Day 13](contracts/day-13.md) — Add honest repeatable CI | LC 167 Two Sum II - Input Array Is Sorted — new pattern anchor | installed / not_attempted / blocked |
 | 14 · 2026-11-02 | [Day 14](contracts/day-14.md) — Milestone 1 backend vertical slice | Review due anchors: LC49, LC125; no new problem | installed / not_attempted / blocked |
 | 15 · 2026-11-03 | [Day 15](contracts/day-15.md) — Read journey summary | LC 11 Container With Most Water — new pattern anchor | installed / not_attempted / blocked |
@@ -52,20 +53,20 @@ at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 | 18 · 2026-11-06 | [Day 18](contracts/day-18.md) — Capture quote input | Review due anchors: LC125, LC11; no new problem | installed / not_attempted / blocked |
 | 19 · 2026-11-07 | [Day 19](contracts/day-19.md) — Display quote snapshot | LC 209 Minimum Size Subarray Sum — new pattern anchor | installed / not_attempted / blocked |
 | 20 · 2026-11-08 | [Day 20](contracts/day-20.md) — Connect selection action UI | Review due anchors: LC167, LC3; no new problem | installed / not_attempted / blocked |
-| 21 · 2026-11-09 | [Day 21](contracts/day-21.md) — Protect cookie-authenticated writes | LC 20 Valid Parentheses — new pattern anchor | not_installed / not_attempted / blocked |
+| 21 · 2026-11-09 | [Day 21](contracts/day-21.md) — Protect cookie-authenticated writes | LC 20 Valid Parentheses — new pattern anchor | installed / not_attempted / blocked |
 | 22 · 2026-11-10 | [Day 22](contracts/day-22.md) — Add safe request correlation | Review due anchors: LC121, LC11, LC209; no new problem | installed / not_attempted / blocked |
 | 23 · 2026-11-11 | [Day 23](contracts/day-23.md) — Expose minimal operational health | LC 155 Min Stack — new pattern anchor | installed / not_attempted / blocked |
 | 24 · 2026-11-12 | [Day 24](contracts/day-24.md) — Explain and improve one real query | Review due anchors: LC1, LC3, LC20; no new problem | installed / not_attempted / blocked |
 | 25 · 2026-11-13 | [Day 25](contracts/day-25.md) — Handle concurrent repeated selection | LC 704 Binary Search — new pattern anchor | installed / not_attempted / blocked |
 | 26 · 2026-11-14 | [Day 26](contracts/day-26.md) — Record minimal selection audit | Review due anchors: LC383, LC209, LC155; no new problem | installed / not_attempted / blocked |
 | 27 · 2026-11-15 | [Day 27](contracts/day-27.md) — Fix one evidence-backed regression | LC 35 Search Insert Position — new pattern anchor | installed / not_attempted / blocked |
-| 28 · 2026-11-16 | [Day 28](contracts/day-28.md) — Milestone 2 browser-to-database acceptance | Review due anchors: LC49, LC20, LC704; no new problem | installed / not_attempted / blocked |
-| 29 · 2026-11-17 | [Day 29](contracts/day-29.md) — Make the slice reproducible | LC 153 Find Minimum in Rotated Sorted Array — new pattern anchor | partial / not_attempted / blocked |
+| 28 · 2026-11-16 | [Day 28](contracts/day-28.md) — Milestone 2 browser-to-database acceptance | Review due anchors: LC49, LC20, LC704; no new problem | partial / not_attempted / blocked |
+| 29 · 2026-11-17 | [Day 29](contracts/day-29.md) — Make the slice reproducible | LC 153 Find Minimum in Rotated Sorted Array — new pattern anchor | installed / not_attempted / blocked |
 | 30 · 2026-11-18 | [Day 30](contracts/day-30.md) — Defend and assess the slice | Review due anchors: LC238, LC155, LC35; no new problem | installed / not_attempted / blocked |
 
 ## Scaffold and dependency rules
 
-Future contract pages alone are not tests. Days 2–30 have focused scaffolds and learner seams except Day 21, whose Spring Security prerequisite is not installed. Learner behavior intentionally fails at explicit TODOs where applicable. Day 12 security integration, Day 13 remote CI, Day 25 HTTP/auth wiring, and Day 28 end-to-end integration remain open. Day 29 positive database reset remains unverified because `psql` is unavailable. System design is practiced inside the 85/25/10 engineering split: use
+Contract pages distinguish scaffolding from learner completion. Day 12 and Day 21 use actual Spring Security filters in an isolated HTTP test chain; production security policy/configuration remains a learner TODO. Day 13 has an instructor test for the runnable workflow and its fail-closed commands; local expected-red evidence is separate from remote Actions execution. Day 14 now has a real PostgreSQL integration path through actual learner components, tagged acceptance, that exposes the first incomplete TODO. Day 25 HTTP/auth composition remains open. Day 28's Playwright browser harness renders the actual React test route and checks the full quote, selection and reload path against disposable PostgreSQL; expected-red results are recorded separately from infrastructure checks. Day 29 has an embedded PostgreSQL positive reset path that does not need psql; the external URI mode remains guarded. System design is practiced inside the 85/25/10 engineering split: use
 only the diagram/ADR or measurement suited to that day, with the blank prompts
 in the [system design practice guide](system-design-practice.md). Every focused test must
 instantiate only its own subject; prior collaborators use explicit test-only

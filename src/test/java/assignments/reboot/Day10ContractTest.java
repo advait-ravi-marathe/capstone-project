@@ -83,10 +83,12 @@ class Day10ContractTest {
 
     @Test
     void secondRowFailureRollsBackBatchAndPreservesPreExistingRows() throws Exception {
-        execute("INSERT INTO selections VALUES ('journey-A', 'v0', 0)");
+        // Leave order 0 free so the valid first batch row is inserted; the second
+        // row then fails its composite quote-version FK and must roll back that row.
+        execute("INSERT INTO selections VALUES ('journey-A', 'v0', 9)");
         assertThrows(SQLException.class,
                 () -> service.persistBatch(List.of(key("v1"), key("missing-quote"))));
-        assertEquals(List.of("v0:0"), readSelections());
+        assertEquals(List.of("v0:9"), readSelections());
     }
 
     private static QuoteSelectionKey key(String quoteVersionId) {

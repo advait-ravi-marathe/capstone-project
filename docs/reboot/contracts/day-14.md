@@ -1,6 +1,6 @@
 # Day 14 — 2026-11-02: Milestone 1 backend vertical slice
 
-**State:** Readiness-only infrastructure check installed. It reads current manifest evidence and verifies that the Day 14 integration gate remains blocked while any Day 1–13 prerequisite is unverified; it does not run the full backend slice.
+**State:** Real PostgreSQL backend-slice acceptance test installed and tagged `learnerAcceptance`. It wires the actual fixture, catalog, eligibility, premium, quote, repository, selection, and read-query components. It currently fails at the first explicit learner TODO; a green readiness test is not a substitute for this path.
 
 ## Learner seam
 
@@ -16,7 +16,7 @@ Full success readback; duplicate; stale/expired; invalid; unauthorized with no s
 
 ## Prerequisite and isolation
 
-Days 1–13 are required; the integration gate contains no business-policy fakes. The installed readiness check reads current manifest evidence only and reports the gate as blocked until every prerequisite is genuinely complete.
+Days 1–13 are required; the integration gate contains no business-policy fakes. The integration test uses no business-rule fakes; it runs against disposable PostgreSQL and exposes the earliest incomplete component.
 
 **System-design prompt (within the 25-minute concept block):** Draw the full product-to-database path and list missing prerequisites; keep the gate blocked until real components pass. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
 
@@ -30,9 +30,9 @@ Integration report, short demo, prerequisite gaps. Record dated attempt state (`
 
 ## Planned isolated command
 
-`./mvnw -Dtest=Day14ContractTest test`
+`./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test`
 
-This readiness check passes only by confirming the gate is blocked. It is not a Day 14 integration pass. `BackendSliceIT` remains uninstalled until every prerequisite is genuinely complete.
+This fixed acceptance test currently fails at Day 4 `ProductCatalogService.findByCode`; that red result is expected. Do not mark integration passed until the entire component path succeeds.
 
 ## Separate Java DSA block (60 minutes)
 
@@ -46,6 +46,6 @@ This readiness check passes only by confirming the gate is blocked. It is not a 
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [Amazon official lifecycle expectations; A3](../interview-evidence-overlay.md#amazon official lifecycle expectations; a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 **Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.

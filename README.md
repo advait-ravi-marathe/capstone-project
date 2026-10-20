@@ -75,9 +75,10 @@ section of [the Day 1 guide](docs/day-1.md), implement
 it also runs the older CAP-43, CAP-42, and CAP-45 TODO suites. It is not the
 primary Day 1 command.
 
-The dated [30-day CoverStory contract index](docs/reboot/README.md) describes
-the proposed sequence after Day 1. Those future contracts are not completed
-assignments or test results; Day 1 remains the only installed daily slice.
+The dated [30-day CoverStory contract index](docs/reboot/README.md) contains
+individual contract guides and a chronological manifest with sprint, concept,
+source link, DSA anchor/reviews, and scaffold/runtime evidence fields. Learner
+TODOs remain unimplemented; scaffold and runtime status are separate.
 
 ## Legacy exercises retained
 

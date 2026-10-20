@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** Real PostgreSQL checks for the learner-owned Day 8 migration constraints. */
 @Tag("learnerAcceptance")
@@ -55,32 +56,28 @@ class Day08ContractTest {
 
     @Test
     void rejectsNullRequiredFields() throws Exception {
-        assertThrows(SQLException.class, () -> execute("INSERT INTO journeys VALUES (NULL)"));
-        assertThrows(SQLException.class, () -> {
-            execute("INSERT INTO journeys VALUES ('journey-A')");
-            execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', NULL)");
-        });
-        assertThrows(SQLException.class, () -> {
-            execute("INSERT INTO journeys VALUES ('journey-A')");
-            execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', 'v1')");
-            execute("INSERT INTO selections (journey_id, quote_version_id, selection_order) VALUES ('journey-A', 'v1', NULL)");
-        });
+        assertSqlState("23502", "INSERT INTO journeys VALUES (NULL)");
+        execute("INSERT INTO journeys VALUES ('journey-null-quote')");
+        assertSqlState("23502", "INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-null-quote', NULL)");
+        execute("INSERT INTO journeys VALUES ('journey-null-order')");
+        execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-null-order', 'v1')");
+        assertSqlState("23502", "INSERT INTO selections (journey_id, quote_version_id, selection_order) VALUES ('journey-null-order', 'v1', NULL)");
     }
 
     @Test
     void rejectsDuplicateCompositeQuoteVersion() throws Exception {
         execute("INSERT INTO journeys VALUES ('journey-A')");
         execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', 'v1')");
-        assertThrows(SQLException.class,
-                () -> execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', 'v1')"));
+        assertSqlState("23505",
+                "INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', 'v1')");
     }
 
     @Test
     void rejectsOrphanAndCrossJourneySelectionReferences() throws Exception {
         execute("INSERT INTO journeys VALUES ('journey-A'), ('journey-B')");
         execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', 'v1')");
-        assertThrows(SQLException.class, () -> execute("INSERT INTO selections VALUES ('journey-A', 'missing', 0)"));
-        assertThrows(SQLException.class, () -> execute("INSERT INTO selections VALUES ('journey-B', 'v1', 0)"));
+        assertSqlState("23503", "INSERT INTO selections VALUES ('journey-A', 'missing', 0)");
+        assertSqlState("23503", "INSERT INTO selections VALUES ('journey-B', 'v1', 0)");
     }
 
     @Test
@@ -88,7 +85,12 @@ class Day08ContractTest {
         execute("INSERT INTO journeys VALUES ('journey-A')");
         execute("INSERT INTO quote_versions (journey_id, quote_version_id) VALUES ('journey-A', 'v1'), ('journey-A', 'v2')");
         execute("INSERT INTO selections VALUES ('journey-A', 'v1', 0), ('journey-A', 'v2', 1)");
-        assertThrows(SQLException.class, () -> execute("INSERT INTO selections VALUES ('journey-A', 'v1', 2)"));
+        assertSqlState("23505", "INSERT INTO selections VALUES ('journey-A', 'v1', 2)");
+    }
+
+    private static void assertSqlState(String expected, String sql) {
+        SQLException error = assertThrows(SQLException.class, () -> execute(sql));
+        assertEquals(expected, error.getSQLState(), "wrong PostgreSQL constraint class for: " + sql);
     }
 
     private static void execute(String sql) throws Exception {

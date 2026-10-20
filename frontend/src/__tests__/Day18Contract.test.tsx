@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { waitFor } from '@testing-library/react';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QuoteForm } from '../components/QuoteForm';
@@ -23,6 +24,7 @@ describe('Day 18 quote input', () => {
     await user.type(screen.getByLabelText('Occupancy'), 'owner-occupied');
     await user.type(screen.getByLabelText('Rebuild amount (INR)'), '2500000');
     await user.selectOptions(screen.getByLabelText('Coverage'), 'PLUS');
+    await user.click(screen.getByLabelText('Occupancy'));
     await user.keyboard('{Enter}');
     expect(submit).toHaveBeenCalledTimes(1);
     expect(submit).toHaveBeenCalledWith({ occupancy: 'owner-occupied', rebuildAmountRupees: '2500000', coverageCode: 'PLUS' });
@@ -38,8 +40,19 @@ describe('Day 18 quote input', () => {
 
   it('disables repeat submit while the request is pending', async () => {
     const user = userEvent.setup();
-    view();
-    await user.click(screen.getByRole('button', { name: 'Get quote' }));
-    expect(screen.getByRole('button', { name: 'Get quote' }).hasAttribute('disabled')).toBe(true);
+    let resolveRequest!: () => void;
+    const pending = new Promise<void>((resolve) => { resolveRequest = resolve; });
+    const submitPending = vi.fn(() => pending);
+    render(<QuoteForm coverageCodes={['BASIC', 'PLUS']} onSubmit={submitPending} />);
+    await user.type(screen.getByLabelText('Occupancy'), 'owner-occupied');
+    await user.type(screen.getByLabelText('Rebuild amount (INR)'), '2500000');
+    await user.selectOptions(screen.getByLabelText('Coverage'), 'PLUS');
+    const button = screen.getByRole('button', { name: 'Get quote' });
+    await user.click(button);
+    expect(button.hasAttribute('disabled')).toBe(true);
+    await user.click(button);
+    expect(submitPending).toHaveBeenCalledTimes(1);
+    resolveRequest();
+    await waitFor(() => expect(button.hasAttribute('disabled')).toBe(false));
   });
 });

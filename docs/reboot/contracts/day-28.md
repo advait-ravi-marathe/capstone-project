@@ -1,6 +1,6 @@
 # Day 28 — 2026-11-16: Milestone 2 browser-to-database acceptance
 
-**State:** Blocked-readiness policy seam and fixed test are installed. It does not implement or claim the browser-to-database integration; Days 14–27 remain prerequisites.
+**State:** A tagged real Chromium → built React test route → Spring MVC → actual learner service methods → disposable PostgreSQL acceptance harness is installed. It checks form submission, quote snapshot rendering, selection, summary refresh, reload readback and direct row counts independently. In the committed learner state it must fail at the explicit TODO seams; no successful lifecycle behavior is claimed. Days 14–27 remain prerequisites.
 
 ## Learner seam
 
@@ -30,9 +30,11 @@ Automated report/screenshots and milestone rubric. Record dated attempt state (`
 
 ## Planned isolated command
 
-`./mvnw -Plearner-tests -Dtest=Day28ContractTest test`
+`cd frontend && npm ci && npm run build`
 
-This selector checks the readiness policy only. It is expected to fail at its explicit TODO while prerequisites are incomplete. It does not run or substitute for the browser-to-database gate. Infrastructure checks are separate.
+`cd .. && CHROMIUM_BIN=/path/to/chromium ./mvnw -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test`
+
+The harness runs the real Playwright/Chromium browser against the built test route and reports all lifecycle assertions even when an earlier learner TODO blocks downstream behavior. The route is isolated for acceptance and does not change the production product page. Infrastructure setup and learner acceptance are separate; use the learner profile only when inspecting expected TODO failures.
 
 ## Separate Java DSA block (60 minutes)
 
@@ -46,6 +48,6 @@ This selector checks the readiness policy only. It is expected to fail at its ex
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal); [A6](../interview-evidence-overlay.md#a6) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal); [A6](../interview-evidence-overlay.md#a6) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 **Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.

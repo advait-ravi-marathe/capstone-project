@@ -1,7 +1,6 @@
 package assignments.reboot;
 
 import assignments.insurance.ApiError;
-import assignments.insurance.QuoteSelectionInput;
 import assignments.insurance.QuoteSelectionKey;
 import assignments.insurance.QuoteSelectionRequest;
 import assignments.insurance.QuoteSelectionRequestValidation;
@@ -13,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import tools.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -53,12 +51,7 @@ class Day02ApiAcceptanceTest {
             return List.of();
         };
         MockMvc mvc = mvc(service, request -> {
-            if (request == null || request.selections() == null
-                    || request.selections().stream().anyMatch(selection -> selection == null
-                    || selection.journeyId() == null || selection.journeyId().isBlank()
-                    || selection.quoteVersionId() == null || selection.quoteVersionId().isBlank())) {
-                throw new IllegalArgumentException("test fixture rejected request");
-            }
+            throw new IllegalArgumentException("canned rejection");
         });
 
         var response = mvc.perform(post("/api/quote-selections")

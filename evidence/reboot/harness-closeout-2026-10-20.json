@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-20",
+  "branch": "learning/coverstory-day-02-30",
+  "starting_sha": "6b405b3d9b543b45109cccf54e28215eee8191e7",
+  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and concise ticket manifest fields. No learner solution supplied.",
+  "verification": [
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
+      "result": "pass",
+      "summary": "20 tests, 0 failures/errors/skips; includes 3 real Spring Security HTTP authentication/CSRF tests, Day2 adapter call-count tests and app context, actuator, embedded PostgreSQL reset, checklist/readiness infrastructure."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
+      "result": "expected_todo_red",
+      "summary": "Real disposable PostgreSQL and actual product, eligibility, premium, quote, repository, selection and summary collaborators execute to Day4 ProductCatalogService TODO. Exit 1; no learner behavior implemented."
+    },
+    {
+      "command": "cd frontend && NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && npm run build; cd .. && JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH CHROMIUM_BIN=/usr/bin/chromium /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test",
+      "result": "expected_todo_red",
+      "summary": "Playwright launched Chromium, rendered the built React test route from the Spring server, submitted the valid form, clicked the selection action, and attempted the summary reload. The fixed test reported 11 independent learner failures: no quote POST, snapshot, selection POST, or persisted selection/readback because the frontend and domain TODOs are intentionally unimplemented. PostgreSQL row-count and selection-order assertions executed. This expected-red result does not claim a complete lifecycle pass. A temporary witness pass for this updated full browser harness is still outstanding."
+    },
+    {
+      "command": "Temporary Day14 backend collaborator witnesses -> Day14BackendSliceIT -> restored TODO source files",
+      "result": "pass_then_restored",
+      "summary": "The real PostgreSQL Day14 backend acceptance passed with temporary uncommitted collaborator witnesses. Original product/domain/persistence TODO files were restored and rechecked; no witness implementation is committed."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day12SecurityHarnessTest test",
+      "result": "pass",
+      "summary": "3 real HTTP security tests pass: login/authenticated resource, CSRF reject missing/invalid and accept valid token, and unauthenticated quote-selection write blocked before learner policy."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day29ResetIntegrationTest test",
+      "result": "pass",
+      "summary": "Embedded PostgreSQL 14.22 positive reset ran twice; exactly the synthetic training journey and quote remained."
+    },
+    {
+      "command": "NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && NPM_CONFIG_CACHE=/tmp/npm-cache npm run build && NPM_CONFIG_CACHE=/tmp/npm-cache npm test && NPM_CONFIG_CACHE=/tmp/npm-cache npm audit --audit-level=low",
+      "result": "pass",
+      "summary": "Lockfile install and Vite build pass; one instructor React/jsdom harness smoke passes; npm audit reports 0 frontend vulnerabilities. UI learner suites remain separate via npm run test:learner."
+    },
+    {
+      "command": "Temporary QuoteForm implementation -> RUN_LEARNER_ACCEPTANCE=true npx vitest run src/__tests__/Day18Contract.test.tsx -> restored TODO",
+      "result": "pass_then_restored",
+      "summary": "All 4 fixed Day18 tests passed with a temporary uncommitted implementation. Original learner TODO was restored immediately; no solution is committed."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
+      "result": "pass",
+      "summary": "Full default infrastructure suite: 21 tests, 0 failures/errors/skips, including Day13 workflow structure, Day12 Spring Security HTTP, Day2 API/application-context, Day23 actuator and Day29 disposable PostgreSQL reset. Learner-tagged acceptance remained excluded."
+    },
+    {
+      "command": "NPM_CONFIG_CACHE=/tmp/npm-cache npm ci && npm run build && npm test && npm audit --audit-level=low",
+      "result": "pass",
+      "summary": "Clean lockfile install; production React build passed; instructor UI smoke 1/1 passed; npm audit reported 0 vulnerabilities."
+    },
+    {
+      "command": "git diff --check; python3 JSON/POM parser; bash -n scripts/reset-synthetic-homesecure.sh",
+      "result": "pass",
+      "summary": "Whitespace, manifest/package JSON, POM XML and shell syntax checks passed."
+    }
+  ],
+  "remaining": {
+    "day28": "The real React test route, Playwright/Chromium, Spring test endpoints, and PostgreSQL assertions are connected. The learner acceptance is expected red across quote creation, snapshot display, selection, and reload. A temporary implementation witness run for this revised full harness was attempted but not completed; no successful product lifecycle is claimed.",
+    "learner_work": "All domain, schema, API policy, security policy/config, UI, persistence, readiness, DSA assignments remain learner owned and incomplete TODOs.",
+    "ci": "Workflow is added; remote Actions execution remains pending until branch push and queried result.",
+    "sca": "npm audit applies only to frontend lockfile; no full Maven/transitive SCA completed.",
+    "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed."
+  }
+}

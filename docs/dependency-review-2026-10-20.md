@@ -27,8 +27,8 @@ Verification used a temporary Oracle JDK `21.0.12.1` under `/tmp` after the
 container's preinstalled Java runtime was found to lack `javac`. Maven needed a
 temporary proxy settings file and OS CA truststore to resolve Central artifacts,
 and `-Dmaven.repo.local=/tmp/d1-m2` because `/home/agent/.m2` is not writable.
-With those execution-only overrides, `./mvnw test` passed all five
-infrastructure tests. The focused learner suites ran and failed at their
+With those execution-only overrides, the latest clean default Maven suite passed
+20 tests, including live Spring Security/CSRF checks and the embedded PostgreSQL fixture reset. The focused learner suites ran and failed at their
 explicit TODOs, as designed. The Spring Boot app started; a valid quote request
 returned 500 at the unimplemented TODO, and a missing request body returned
 400. These override runs are recorded in

@@ -1,6 +1,6 @@
 # Day 29 — 2026-11-17: Make the slice reproducible
 
-**State:** Safety-gated reset script and refusal tests are installed. Positive reset verification remains blocked where psql or a disposable target database is unavailable.
+**State:** Safety/refusal tests and a positive reset integration test on fresh embedded PostgreSQL are installed. `--embedded-test --confirm-disposable` needs no psql or remote target; external URI reset remains explicitly guarded.
 
 ## Learner seam
 
@@ -30,9 +30,9 @@ Another clean setup or exact unverified steps/blocker. Record dated attempt stat
 
 ## Planned isolated command
 
-`./mvnw -Plearner-tests -Dtest=Day29ContractTest test`
+`./mvnw -Dtest=Day29ResetIntegrationTest test`
 
-This selector verifies only fail-closed argument handling and no-connect refusals. It does not prove a successful reset against disposable PostgreSQL; psql and a disposable test database are required for that positive check. Infrastructure checks are separate.
+The positive check resets twice in a newly started embedded PostgreSQL instance and verifies the exact synthetic rows. The shell command is `./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable`; external URI mode still needs psql and a confirmed `*_test` target.
 
 ## Separate Java DSA block (60 minutes)
 
@@ -46,4 +46,4 @@ This selector verifies only fail-closed argument handling and no-connect refusal
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [Amazon official documentation/operation expectations](../interview-evidence-overlay.md#amazon official documentation/operation expectations) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official). These references guide practice; they do not establish question frequency or predict interview content.

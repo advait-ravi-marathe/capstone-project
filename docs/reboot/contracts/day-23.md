@@ -46,4 +46,4 @@ Run `Day23ActuatorInfrastructureTest` for the live Actuator path and exposure ch
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [Amazon official operation/security expectations; A7](../interview-evidence-overlay.md#amazon official operation/security expectations; a7) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A7](../interview-evidence-overlay.md#a7) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.

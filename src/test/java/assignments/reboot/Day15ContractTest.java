@@ -56,8 +56,13 @@ class Day15ContractTest {
         try (Connection connection = dataSource.getConnection(); Statement sql = connection.createStatement()) {
             sql.execute("TRUNCATE selections, quote_versions, journeys");
             sql.execute("INSERT INTO journeys VALUES ('journey-A', 'owner-A'), ('journey-B', 'owner-B')");
-            sql.execute("INSERT INTO quote_versions VALUES ('journey-A','v1','HOME_SECURE','hs-2026-01','rate-2026-01',100000.00,'STANDARD','INR',1250.25,'2026-10-20T10:00:00Z','2026-10-20T10:15:00Z')");
-            sql.execute("INSERT INTO selections VALUES ('journey-A','v1',2), ('journey-A','v1',0), ('journey-A','v1',1)");
+            sql.execute("""
+                    INSERT INTO quote_versions VALUES
+                    ('journey-A','v1','HOME_SECURE','hs-2026-01','rate-2026-01',100000.00,'STANDARD','INR',1250.25,'2026-10-20T10:00:00Z','2026-10-20T10:15:00Z'),
+                    ('journey-A','v2','HOME_SECURE','hs-2026-01','rate-2026-01',110000.00,'STANDARD','INR',1350.25,'2026-10-20T09:00:00Z','2026-10-20T09:15:00Z'),
+                    ('journey-A','v3','HOME_SECURE','hs-2026-01','rate-2026-01',120000.00,'STANDARD','INR',1450.25,'2026-10-20T08:00:00Z','2026-10-20T08:15:00Z')
+                    """);
+            sql.execute("INSERT INTO selections VALUES ('journey-A','v1',2), ('journey-A','v2',0), ('journey-A','v3',1)");
         }
     }
 
@@ -73,6 +78,8 @@ class Day15ContractTest {
         assertEquals(java.util.List.of(0, 1, 2), summary.selections().stream()
                 .map(item -> item.selectionOrder()).toList());
         assertEquals("v1", summary.quote().quoteVersionId());
+        assertEquals(java.util.List.of("v2", "v3", "v1"), summary.selections().stream()
+                .map(item -> item.quoteVersionId()).toList());
         var json = new ObjectMapper().valueToTree(summary);
         assertEquals(java.util.Set.of("journeyId", "quote", "selections"), fieldNames(json));
         assertEquals(java.util.Set.of("quoteVersionId", "productCode", "productVersion", "rateVersion",

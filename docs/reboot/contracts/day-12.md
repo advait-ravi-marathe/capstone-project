@@ -1,6 +1,6 @@
 # Day 12 — 2026-10-31: Enforce owner-scoped access
 
-**State:** The isolated owner-policy seam and fixed learner tests are installed. HTTP security configuration/session wiring remains open; learner attempt is pending and the focused suite is expected to fail at its TODO.
+**State:** Installed: a real Spring Security test filter chain verifies HTTP Basic authentication and CSRF token rejection/acceptance. The production owner policy and production security configuration remain learner TODOs. The owner-policy HTTP acceptance test is tagged and expected red until the policy is implemented.
 
 ## Learner seam
 
@@ -18,7 +18,7 @@ Anonymous, own, other owner, forged owner field.
 
 Days 3, 9–11; Spring test principals and fixed owned-resource fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Map identity source, ownership check, and resource lookup boundary; note unresolved HTTP security wiring. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**System-design prompt (within the 25-minute concept block):** Map identity source, ownership check, and resource lookup boundary; note unresolved production filter-chain wiring. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
 
 ## Concept (25 minutes)
 
@@ -46,4 +46,4 @@ This selector runs the installed owner-policy cases with a fixed principal fixtu
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [A4](../interview-evidence-overlay.md#a4) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [A4](../interview-evidence-overlay.md#a4) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.

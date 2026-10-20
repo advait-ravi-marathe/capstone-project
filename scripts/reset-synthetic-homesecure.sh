@@ -3,12 +3,17 @@ set -euo pipefail
 
 database_url=""
 confirmed=false
+embedded_test=false
 while (($#)); do
   case "$1" in
     --database-url)
       (($# >= 2)) || { echo "missing value for --database-url" >&2; exit 2; }
       database_url="$2"
       shift 2
+      ;;
+    --embedded-test)
+      embedded_test=true
+      shift
       ;;
     --confirm-disposable)
       confirmed=true
@@ -18,8 +23,14 @@ while (($#)); do
   esac
 done
 
-[[ -n "$database_url" ]] || { echo "--database-url is required" >&2; exit 2; }
 [[ "$confirmed" == true ]] || { echo "refusing reset without --confirm-disposable" >&2; exit 2; }
+if [[ "$embedded_test" == true ]]; then
+  [[ -z "$database_url" ]] || { echo "--embedded-test cannot be combined with --database-url" >&2; exit 2; }
+  repo_root="$(cd "$(dirname "$0")/.." && pwd)"
+  cd "$repo_root"
+  exec ./mvnw -Dtest=Day29ResetIntegrationTest test
+fi
+[[ -n "$database_url" ]] || { echo "--database-url is required" >&2; exit 2; }
 [[ "$database_url" =~ ^postgres(ql)?://[^/]+/([a-zA-Z0-9_]+)(\?.*)?$ ]] || {
   echo "database URL must be a PostgreSQL URI with a plain database name" >&2; exit 2;
 }

@@ -46,4 +46,4 @@ This focused test and its learner TODO seam are installed. The command was run w
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
-**Related source:** [A3; official testing expectations](../interview-evidence-overlay.md#a3; official testing expectations) (anecdotal). These sources motivate practice only; they do not establish question frequency or predict an interview.
+**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
