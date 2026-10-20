@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Learner feature acceptance driven through UI controls against the built executable JAR. */
 class LocalPackagedBrowserAcceptanceTest {
     private static final Path OUTPUT = Path.of("target/local-coverstory-browser").toAbsolutePath();
-    private static final String PREVIEW_TEST_CLOCK = "2026-01-01T12:00:00Z";
+    private static final String PREVIEW_TEST_CLOCK = "2027-01-01T12:00:00Z";
 
     @Test
     @Tag("learnerAcceptance")
