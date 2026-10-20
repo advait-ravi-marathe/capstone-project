@@ -6,7 +6,7 @@ lifecycle with a small quote-selection domain rule. All products and quote IDs
 are fixtures; no real insurer, customer, payment, or policy system is connected.
 The learner implementation stays in one explicit TODO method.
 
-## Run
+## Run the Day 1 checks
 
 With Java 21 and network access to Maven Central on first use:
 
@@ -15,12 +15,17 @@ With Java 21 and network access to Maven Central on first use:
 ```
 
 The official Maven Wrapper downloads Maven 3.10.0 and verifies its SHA-256
-before use. The default run compiles the project and runs infrastructure smoke
-checks. To run the visible learner acceptance tests (which are expected to
-fail until the TODO is complete), use:
+before use. Start with the focused Day 1 infrastructure smoke check:
 
 ```sh
-./mvnw -Plearner-tests test
+./mvnw -Dtest=QuoteSelectionInfrastructureTest test
+```
+
+Run the quote-selection learner acceptance tests separately; failures at the
+explicit TODO are expected until implementation:
+
+```sh
+./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test
 ```
 
 ## Day 1: preserve quote selection identity and order (120 engineering minutes)
@@ -43,7 +48,8 @@ maps valid input to HTTP 200 and invalid input to HTTP 400. Before then, valid
 requests reach the explicit TODO and return HTTP 500; a missing body returns
 HTTP 400.
 
-Run infrastructure checks:
+The infrastructure check also runs through the default test command `./mvnw
+test`, which includes legacy harness checks. Run the focused Day 1 check with:
 
 ```sh
 ./mvnw -Dtest=QuoteSelectionInfrastructureTest test
@@ -62,6 +68,10 @@ section of [the Day 1 guide](docs/day-1.md), implement
 ```sh
 ./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test
 ```
+
+`./mvnw -Plearner-tests test` is an aggregate legacy-inclusive learner suite;
+it also runs the older CAP-43, CAP-42, and CAP-45 TODO suites. It is not the
+primary Day 1 command.
 
 ## Legacy exercises retained
 
@@ -165,9 +175,11 @@ until the learner query is implemented. The combined learner suite is
 
 ## Study plan
 
-The learner time budget is at most 150 minutes on each of the seven days.
-Certification preparation runs alongside every stage and is integrated with
-the related practical concepts inside that same daily budget. No exam purchases
-are included. Project setup and instructor-provided fixtures, boilerplate, and
-test harnesses are outside the learner budget. Repository implementation
-belongs to the learner; the Scrum owner manages the roadmap only.
+The authoritative daily allocation is 180 minutes: 60 minutes of Java DSA
+separately, plus 120 engineering minutes. Engineering time is 85 minutes for
+implementation and testing, 25 minutes for concept/course work, and 10 minutes
+for evidence. Certification preparation is included in the related concept
+allocation; no exam purchases are included. Project setup and instructor-
+provided fixtures, boilerplate, and test harnesses are outside the learner
+budget. Repository implementation belongs to the learner; the Scrum owner
+manages the roadmap only.
