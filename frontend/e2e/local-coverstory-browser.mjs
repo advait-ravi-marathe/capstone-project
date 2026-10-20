@@ -12,71 +12,81 @@ const browser = await chromium.launch({
 });
 
 try {
-  const page = await browser.newPage();
-  let sessionCookie = null;
-  page.on('request', async (request) => {
-    if (!new URL(request.url()).pathname.startsWith('/api/')) return;
-    const cookieHeader = (await request.allHeaders()).cookie ?? '';
-    const match = cookieHeader.match(/(?:^|;\s*)JSESSIONID=([^; ,]+)/);
-    if (match) sessionCookie = match[1];
-  });
-  page.on('response', async (response) => {
-    if (response.request().method() !== 'POST' || new URL(response.url()).pathname !== '/api/session') return;
-    const setCookie = (await response.headers())['set-cookie'] ?? '';
-    const match = setCookie.match(/(?:^|,\s*)JSESSIONID=([^; ,]+)/);
-    if (match) sessionCookie = match[1];
-  });
+  const context = await browser.newContext();
   if (scenario === 'day69-restart-check' && savedSessionCookie) {
-    await page.context().addCookies([{ name: 'JSESSIONID', value: savedSessionCookie, url: baseUrl }]);
+    await context.addCookies([{ name: 'JSESSIONID', value: savedSessionCookie, url: baseUrl }]);
   }
-  const pageResponse = await page.goto(`${baseUrl}/local.html`);
+  const page = await context.newPage();
+  const apiResponses = [];
+  let sessionCookie = savedSessionCookie ?? null;
+  page.on('response', async (response) => {
+    const request = response.request();
+    const url = new URL(response.url());
+    if (!url.pathname.startsWith('/api/')) return;
+    const body = await response.text().catch(() => '');
+    apiResponses.push({ method: request.method(), path: url.pathname, status: response.status(), body });
+    if (request.method() === 'POST' && url.pathname === '/api/session') {
+      const cookie = (await response.headers())['set-cookie'] ?? '';
+      const match = cookie.match(/(?:^|,\s*)JSESSIONID=([^; ,]+)/);
+      if (match) sessionCookie = match[1];
+    }
+  });
+
+  const pageResponse = await page.goto(baseUrl);
   const heading = await page.getByRole('heading', { name: 'CoverStory local training' }).textContent().catch(() => null);
-  const result = await page.evaluate(async (flow) => {
-    async function session() {
-      const response = await fetch('/api/session', { credentials: 'same-origin' });
-      return { status: response.status, body: await response.text() };
+  const click = async (name) => {
+    const button = page.getByRole('button', { name, exact: true });
+    const available = (await button.count()) > 0;
+    if (available) {
+      await button.first().click({ timeout: 3000 });
+      await page.waitForTimeout(75);
     }
-    const csrfResponse = await fetch('/api/csrf', { credentials: 'same-origin' });
-    const csrf = await csrfResponse.json();
-    async function select(ownerId) {
-      const response = await fetch('/api/session', {
-        method: 'POST', credentials: 'same-origin',
-        headers: { 'content-type': 'application/json', [csrf.headerName]: csrf.token },
-        body: JSON.stringify({ ownerId }),
-      });
-      return { status: response.status, body: await response.text() };
+    return available;
+  };
+  const controls = {};
+  const result = { apiResponses, controls };
+  const currentSessionCookie = async () => (await context.cookies(baseUrl)).find((cookie) => cookie.name === 'JSESSIONID')?.value ?? null;
+  const previews = () => apiResponses.filter((r) => r.method === 'GET' && r.path.endsWith('/renewal-preview'));
+  const latestPreview = () => previews().at(-1) ?? null;
+  const issues = () => apiResponses.filter((r) => r.method === 'POST' && r.path === '/api/policies');
+  const readbacks = () => apiResponses.filter((r) => r.method === 'GET' && /^\/api\/policies\/[^/]+$/.test(r.path));
+
+  if (scenario === 'day69-restart-check') {
+    controls.reselectOwnerA = await click('Use owner-a');
+    controls.viewPreviewAfterRestart = await click('View preview');
+    result.afterRestartSession = apiResponses.find((r) => r.method === 'GET' && r.path === '/api/session') ?? null;
+    result.previewAfterRestart = latestPreview();
+  } else {
+    controls.selectOwnerA = await click('Use owner-a');
+    result.ownerASessionCookie = await currentSessionCookie();
+    if (scenario === 'day68-preview' || scenario === 'day69') {
+      controls.viewPreviewAsOwnerA = await click('View preview');
+      result.previewAsOwnerA = latestPreview();
     }
-    async function preview() {
-      const response = await fetch('/api/policies/policy-renewal-a/renewal-preview', { credentials: 'same-origin' });
-      return { status: response.status, body: await response.text() };
+    if (scenario === 'day68-issue') {
+      controls.issueSelectedQuote = await click('Issue selected quote');
+      controls.readIssuedPolicy = await click('View issued policy');
+      controls.replayIssue = await click('Replay issue request');
+      result.issueResponses = issues();
+      result.readbackResponses = readbacks();
     }
-    if (flow === 'day69-restart-check') return { afterRestart: await session() };
-    const health = await fetch('/actuator/health');
-    const anonymousBeforeSession = await session();
-    const selectedOwnerA = await select('owner-a');
-    const authenticatedOwnerA = await session();
-    const previewAsOwnerA = await preview();
-    if (flow === 'day68') {
-      return { healthStatus: health.status, anonymousBeforeSession, selectedOwnerA, authenticatedOwnerA, previewAsOwnerA };
+    if (scenario === 'day69') {
+      controls.selectOwnerB = await click('Use owner-b');
+      result.ownerBSessionSelection = apiResponses.filter((r) => r.method === 'POST' && r.path === '/api/session').at(-1) ?? null;
+      result.ownerBSessionCookie = await currentSessionCookie();
+      result.sessionCookie = result.ownerBSessionCookie;
+      controls.viewForeignPreview = await click('View preview');
+      result.previewAsOwnerB = latestPreview();
+      controls.logout = await click('Log out');
+      const responseStart = apiResponses.length;
+      await page.reload();
+      result.sessionAfterLogout = apiResponses.slice(responseStart).find((r) => r.method === 'GET' && r.path === '/api/session') ?? null;
     }
-    const selectedOwnerB = await select('owner-b');
-    const previewAsOwnerB = await preview();
-    const logoutResponse = await fetch('/api/session/logout', {
-      method: 'POST', credentials: 'same-origin',
-      headers: { 'content-type': 'application/json', [csrf.headerName]: csrf.token }, body: '{}',
-    });
-    const afterLogout = await session();
-    return {
-      healthStatus: health.status, anonymousBeforeSession, selectedOwnerA, authenticatedOwnerA,
-      previewAsOwnerA, selectedOwnerB, previewAsOwnerB,
-      logoutStatus: logoutResponse.status, afterLogout,
-    };
-  }, scenario);
-  await page.waitForTimeout(25);
-  if (scenario === 'day69') result.sessionCookie = sessionCookie;
+  }
+
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, JSON.stringify({ browserOpened: true, pageStatus: pageResponse?.status(), heading, ...result }, null, 2));
-  await page.close();
+  await context.close();
 } finally {
   await browser.close();
 }

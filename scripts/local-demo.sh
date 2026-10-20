@@ -26,5 +26,5 @@ trap cleanup EXIT INT TERM
 docker compose -p "$project_name" -f compose.local.yaml up -d --wait postgres
 published_port="$(docker compose -p "$project_name" -f compose.local.yaml port postgres 5432 | awk -F: '{print $NF}')"
 export COVERSTORY_DB_URL="jdbc:postgresql://127.0.0.1:${published_port}/coverstory_local"
-echo "CoverStory local app: http://127.0.0.1:${COVERSTORY_APP_PORT}/local.html"
+echo "CoverStory local app: http://127.0.0.1:${COVERSTORY_APP_PORT}/"
 java -jar "$jar_file" --spring.profiles.active=local --server.address=127.0.0.1 --server.port="$COVERSTORY_APP_PORT"

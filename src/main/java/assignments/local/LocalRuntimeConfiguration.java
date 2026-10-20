@@ -48,4 +48,9 @@ public class LocalRuntimeConfiguration {
 
     @Bean
     LocalPolicyOwnerResolver localPolicyOwnerResolver() { return new LocalPolicyOwnerResolver(); }
+
+    @Bean
+    PolicyIssueReceiptReadStore policyIssueReceiptReadStore(DataSource dataSource) {
+        return new PolicyIssueReceiptReadStore(dataSource);
+    }
 }

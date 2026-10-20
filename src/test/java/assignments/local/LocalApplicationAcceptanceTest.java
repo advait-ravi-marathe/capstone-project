@@ -2,6 +2,7 @@ package assignments.local;
 
 import assignments.insurance.PolicyIssueRequest;
 import assignments.insurance.PolicyLifecycleService;
+import assignments.insurance.PolicyReadStore;
 import assignments.insurance.PolicySnapshot;
 import assignments.insurance.PolicyStatus;
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
@@ -79,6 +80,8 @@ class LocalApplicationAcceptanceTest {
         PolicyLifecycleService lifecycle = mock(PolicyLifecycleService.class);
         LocalPolicyOwnerResolver ownerResolver = mock(LocalPolicyOwnerResolver.class);
         DataSource source = mock(DataSource.class);
+        PolicyReadStore readStore = mock(PolicyReadStore.class);
+        PolicyIssueReceiptReadStore receiptReadStore = mock(PolicyIssueReceiptReadStore.class);
         Authentication authentication = mock(Authentication.class);
         PolicyIssueRequest request = new PolicyIssueRequest("journey-a", "quote-a", "request-a",
                 LocalDate.parse("2026-12-20"));
@@ -86,13 +89,17 @@ class LocalApplicationAcceptanceTest {
                 "home-secure-v1", "home-secure-rate-v1", new BigDecimal("125.00"), "INR",
                 request.effectiveDate(), PolicyStatus.ISSUED, 1, List.of(), null);
         when(ownerResolver.ownerId(authentication)).thenReturn(Optional.of("owner-a"));
+        when(receiptReadStore.find("owner-a", "request-a")).thenReturn(Optional.empty());
+        when(lifecycle.issueHttpStatus(request, Optional.empty())).thenReturn(201);
         when(lifecycle.persistIssueAtomically(source, request, "owner-a")).thenReturn(expected);
 
-        var response = new LocalPolicyIssueController(lifecycle, ownerResolver, source).issue(request, authentication);
+        var response = new LocalPolicyIssueController(lifecycle, ownerResolver, source, readStore, receiptReadStore)
+                .issue(request, authentication);
 
         assertEquals(201, response.getStatusCode().value());
         assertSame(expected, response.getBody());
         verify(lifecycle, times(1)).persistIssueAtomically(source, request, "owner-a");
+        verify(receiptReadStore).find("owner-a", "request-a");
     }
 
     private long countPolicies() {

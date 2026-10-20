@@ -54,7 +54,7 @@ class LocalSecurityAcceptanceTest {
     void day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted() throws Exception {
         mvc.perform(get("/api/policies/policy-renewal-a/renewal-preview"))
                 .andExpect(status().isUnauthorized());
-        mvc.perform(get("/local.html")).andExpect(status().isOk())
+        mvc.perform(get("/")).andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("CoverStory Local Training")));
         mvc.perform(post("/api/session").with(csrf()).contentType(MediaType.APPLICATION_JSON)
                         .content("{\"ownerId\":\"owner-a\"}"))

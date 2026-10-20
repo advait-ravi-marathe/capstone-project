@@ -1,24 +1,30 @@
-# Day 67 — 2026-12-25: Package, start and safely reset the local demo
+# Day 67 — 2026-12-25: Run and verify the disposable packaged local demo
 
 ## Contract
 
-**Learner-owned seam:** `scripts/package-local-demo.sh and scripts/local-demo.sh`
-**Status:** Contract defined; learner implementation not attempted.
+**Instructor-provided scaffold to inspect:** `scripts/package-local-demo.sh and scripts/local-demo.sh`
+**Status:** Scripts and runtime are instructor scaffolding; learner run/inspection evidence is pending.
 **Time:** 180 minutes: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
 ### Expected behavior
 
-The documented workflow packages the main application and UI, starts loopback-only app plus disposable PostgreSQL, verifies health, and removes only the named synthetic container. Reset fails closed unless explicitly requested and never touches other databases.
+The documented workflow builds the root UI into the executable JAR, starts a loopback-only app with a unique, disposable PostgreSQL container, and prints the health-checkable URL. The database uses tmpfs and is automatically destroyed when the launcher exits or is interrupted; there is no persistence mode and this is not a user-database reset. The separate guarded fixture-reset script applies only to an explicitly confirmed database ending in `_test`.
 
 ## Acceptance and expected TODO state
 
-The instructor infrastructure selector is installed and was run; it does not establish learner completion.
+The instructor scaffold-verification selector is installed and passed; that result does not establish learner completion.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackageInfrastructureTest.java`
 **Acceptance selector:** `day67PackageIncludesNormalUiAndNoTestRoutes`
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test`
+**Scaffold verification command:** `./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+## Learner task — explain/debug acceptance
+
+Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
+
+Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -35,7 +41,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-67.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, teach-back/design note and learner explanation/trace and any changed paths (use `[]` for a read-only exercise) in `evidence/continuation-57-70/day-67.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate Java DSA block (60 minutes)
 

@@ -15,7 +15,7 @@ class LocalPackageInfrastructureTest {
         assertTrue(Files.isExecutable(packageScript));
         assertTrue(Files.isExecutable(launchScript));
         assertTrue(Files.readString(Path.of("pom.xml")).contains("<targetPath>static</targetPath>"));
-        assertTrue(Files.isRegularFile(Path.of("frontend/local.html")));
+        assertTrue(Files.isRegularFile(Path.of("frontend/local/index.html")));
         String entry = Files.readString(Path.of("frontend/src/local-main.tsx"));
         assertFalse(entry.contains("__e2e"));
         assertFalse(entry.contains("/test/"));

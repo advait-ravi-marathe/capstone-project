@@ -1,5 +1,5 @@
 {
-  "title": "Sprint 5 Scrum owner export \u2014 CoverStory local application assembly",
+  "title": "Sprint 5 Scrum owner export — CoverStory local application assembly",
   "canonical_daily_manifest": "docs/reboot/continuation-57-70/manifest.json",
   "board_model": "14 consolidated daily Stories; no board mutation performed.",
   "sprint_boundaries": [
@@ -49,7 +49,7 @@
           },
           "resources": [
             {
-              "title": "GitHub Actions workflow syntax \u2014 job dependencies and conditional jobs",
+              "title": "GitHub Actions workflow syntax — job dependencies and conditional jobs",
               "section": "needs dependencies and status-check conditions",
               "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
             }
@@ -60,7 +60,9 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-57.md",
         "evidence_reference": "evidence/continuation-57-70/day-57.json",
-        "acceptance_selector_status": "installed_expected_todo_red"
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Implement fail-closed readiness: missing or failed prior evidence selects recovery inside the fixed 85-minute implementation/testing allocation.",
+        "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -85,7 +87,7 @@
       "sequence": 2,
       "day_number": 58,
       "date": "2026-12-16",
-      "title": "Day58: Add the dedicated local entry point and explicit composition",
+      "title": "Trace and explain the prebuilt local application composition",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -95,15 +97,11 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Add the dedicated local entry point and explicit composition",
-        "learner_seam": "LocalApplicationComposition.compose(Clock, DataSource)",
+        "scope": "Trace and explain the prebuilt local application composition",
+        "learner_seam": "LocalApplicationComposition.compose(Clock, DataSource) (trace and explain; scaffold is instructor-provided)",
         "status": "not_attempted",
-        "scaffold_status": "partial",
+        "scaffold_status": "instructor_scaffold_complete",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-58.md",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
-        ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
@@ -117,9 +115,9 @@
           },
           "resources": [
             {
-              "title": "Spring Boot application structure \u2014 @SpringBootConfiguration and explicit configuration",
-              "section": "structuring code and locating the main application class",
-              "url": "https://docs.spring.io/spring-boot/reference/using/structuring-your-code.html"
+              "title": "Spring Boot Configuration Classes",
+              "section": "Importing Additional Configuration Classes",
+              "url": "https://docs.spring.io/spring-boot/reference/using/configuration-classes.html"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -128,7 +126,13 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-58.md",
         "evidence_reference": "evidence/continuation-57-70/day-58.json",
-        "acceptance_selector_status": "installed_scaffold_passes"
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Run the scaffold selector, trace LocalCoverStoryApplication → LocalRuntimeConfiguration → LocalApplicationComposition, and explain how Clock, DataSource and adapters reach the service. Add a short diagram/teach-back; do not reimplement instructor-provided setup.",
+        "learner_evidence_mode": "explain_debug",
+        "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "scaffold_verification_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+        ]
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -147,13 +151,13 @@
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 58 protect, which layer enforces it, and how will you prove it?",
-      "scaffold_status": "partial"
+      "scaffold_status": "instructor_scaffold_complete"
     },
     {
       "sequence": 3,
       "day_number": 59,
       "date": "2026-12-17",
-      "title": "Day59: Bootstrap a versioned synthetic schema without resetting rows \u2014 LC 104 Maximum Depth of Binary Tree",
+      "title": "Verify and explain the versioned synthetic migration lifecycle",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -163,15 +167,11 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Bootstrap a versioned synthetic schema without resetting rows",
-        "learner_seam": "Local Flyway startup migration",
+        "scope": "Verify and explain the versioned synthetic migration lifecycle",
+        "learner_seam": "Flyway V001–V003 bootstrap and non-destructive repeat run (instructor-provided)",
         "status": "not_attempted",
-        "scaffold_status": "partial",
+        "scaffold_status": "instructor_scaffold_complete",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-59.md",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
-        ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
@@ -185,7 +185,7 @@
           },
           "resources": [
             {
-              "title": "Spring Boot SQL database initialization \u2014 Flyway migrations",
+              "title": "Spring Boot SQL database initialization — Flyway migrations",
               "section": "Execute Flyway Database Migrations on Startup",
               "url": "https://docs.spring.io/spring-boot/how-to/data-initialization.html"
             }
@@ -196,7 +196,13 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-59.md",
         "evidence_reference": "evidence/continuation-57-70/day-59.json",
-        "acceptance_selector_status": "instructor_infrastructure_complete"
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Run the packaged migration verification; inspect V001–V003 and explain migration order, checksums, the second no-op migrate, and why the sentinel row survives. Record how a future schema change would be additive.",
+        "learner_evidence_mode": "explain_debug",
+        "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
+        "scaffold_verification_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
+        ]
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -228,7 +234,7 @@
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 59 protect, which layer enforces it, and how will you prove it?",
-      "scaffold_status": "partial"
+      "scaffold_status": "instructor_scaffold_complete"
     },
     {
       "sequence": 4,
@@ -266,9 +272,14 @@
           },
           "resources": [
             {
-              "title": "Spring JDBC \u2014 JdbcClient and transactions",
-              "section": "Using JdbcClient; transaction management",
+              "title": "Spring JDBC",
+              "section": "Using JdbcClient",
               "url": "https://docs.spring.io/spring-boot/reference/data/sql.html"
+            },
+            {
+              "title": "Spring transaction annotations",
+              "section": "@Transactional Settings",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -277,7 +288,9 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-60.md",
         "evidence_reference": "evidence/continuation-57-70/day-60.json",
-        "acceptance_selector_status": "installed_expected_upstream_day48_todo_red"
+        "acceptance_selector_status": "installed_expected_upstream_day48_todo_red",
+        "learner_task": "Implement owner-scoped policy readback and prove read requests do not change policy/event/idempotency row counts. Resolve the existing Day 48 read adapter TODO as a prerequisite.",
+        "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -302,7 +315,7 @@
       "sequence": 5,
       "day_number": 61,
       "date": "2026-12-19",
-      "title": "Day61: Install the local runtime security chain \u2014 LC 100 Same Tree",
+      "title": "Trace and verify the instructor-provided local security chain",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -312,15 +325,11 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Install the local runtime security chain",
-        "learner_seam": "LocalSecurityConfiguration.securityFilterChain(HttpSecurity)",
+        "scope": "Trace and verify the instructor-provided local security chain",
+        "learner_seam": "LocalSecurityConfiguration.securityFilterChain(HttpSecurity) (trace and explain; scaffold is instructor-provided)",
         "status": "not_attempted",
-        "scaffold_status": "partial",
+        "scaffold_status": "instructor_scaffold_complete",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-61.md",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
-        ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
@@ -334,9 +343,19 @@
           },
           "resources": [
             {
-              "title": "Spring Security authorization \u2014 authorize HTTP requests",
-              "section": "authorize HTTP requests and request matchers",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html"
+              "title": "Spring Security MockMvc Setup",
+              "section": "Configuring MockMvc with Spring Security",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html"
+            },
+            {
+              "title": "Running a Test as a User in Spring MVC Test",
+              "section": "RequestPostProcessor authentication",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html"
+            },
+            {
+              "title": "Testing with CSRF Protection",
+              "section": "CSRF header, invalid token and request post-processors",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -345,7 +364,13 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-61.md",
         "evidence_reference": "evidence/continuation-57-70/day-61.json",
-        "acceptance_selector_status": "installed_scaffold_passes"
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Run the security selector and trace anonymous access, fixed synthetic session selection, CSRF enforcement, and the loopback guard. Explain which filter/handler owns each observed response; this is inspection of supplied setup, not a security-chain TODO.",
+        "learner_evidence_mode": "explain_debug",
+        "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "scaffold_verification_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+        ]
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -377,7 +402,7 @@
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 61 protect, which layer enforces it, and how will you prove it?",
-      "scaffold_status": "partial"
+      "scaffold_status": "instructor_scaffold_complete"
     },
     {
       "sequence": 6,
@@ -426,7 +451,9 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-62.md",
         "evidence_reference": "evidence/continuation-57-70/day-62.json",
-        "acceptance_selector_status": "installed_expected_todo_red"
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Implement authenticated owner resolution so request-supplied owner IDs cannot override the authenticated synthetic principal; preserve the fixed owner allowlist.",
+        "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -483,9 +510,19 @@
           },
           "resources": [
             {
-              "title": "Spring Security testing \u2014 MockMvc and security request post-processors",
-              "section": "testing authentication, authorization and CSRF with MockMvc",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html"
+              "title": "Spring Security MockMvc Setup",
+              "section": "Configuring MockMvc with Spring Security",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html"
+            },
+            {
+              "title": "Running a Test as a User in Spring MVC Test",
+              "section": "RequestPostProcessor authentication",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html"
+            },
+            {
+              "title": "Testing with CSRF Protection",
+              "section": "CSRF header, invalid token and request post-processors",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -494,7 +531,9 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-63.md",
         "evidence_reference": "evidence/continuation-57-70/day-63.json",
-        "acceptance_selector_status": "installed_expected_todo_red"
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Implement the recovery/security checkpoint result within the existing 85-minute block; trace one rejected unauthenticated request from route through security and record the recovery decision.",
+        "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -519,7 +558,7 @@
       "sequence": 8,
       "day_number": 64,
       "date": "2026-12-22",
-      "title": "Day64: Add the thin local policy issue adapter",
+      "title": "Trace the instructor-provided local policy issue adapter boundary",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -529,15 +568,11 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Add the thin local policy issue adapter",
-        "learner_seam": "LocalPolicyIssueController.issue(PolicyIssueRequest)",
+        "scope": "Trace the instructor-provided local policy issue adapter boundary",
+        "learner_seam": "LocalPolicyIssueController.issue(PolicyIssueRequest) (trace and explain; adapter is instructor-provided)",
         "status": "not_attempted",
-        "scaffold_status": "partial",
+        "scaffold_status": "instructor_scaffold_complete",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-64.md",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
-        ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
@@ -551,9 +586,14 @@
           },
           "resources": [
             {
-              "title": "Spring MVC request mapping \u2014 @RestController and request body handling",
-              "section": "request body and method argument resolution",
+              "title": "Spring MVC Handler Method Arguments",
+              "section": "@RequestBody and java.security.Principal argument resolution",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            },
+            {
+              "title": "Spring MVC @RequestBody",
+              "section": "Reading the request body through message conversion",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -562,7 +602,13 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-64.md",
         "evidence_reference": "evidence/continuation-57-70/day-64.json",
-        "acceptance_selector_status": "installed_scaffold_passes"
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Run the adapter selector and trace POST /api/policies from HTTP mapping through owner resolution, idempotency status decision, lifecycle service, and response. Explain why atomicity/idempotency belongs in the domain service; this supplied adapter is not a learner TODO.",
+        "learner_evidence_mode": "explain_debug",
+        "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "scaffold_verification_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
+        ]
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -581,13 +627,13 @@
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 64 protect, which layer enforces it, and how will you prove it?",
-      "scaffold_status": "partial"
+      "scaffold_status": "instructor_scaffold_complete"
     },
     {
       "sequence": 9,
       "day_number": 65,
       "date": "2026-12-23",
-      "title": "Day65: Protect local session and issue writes with CSRF \u2014 LC 102 Binary Tree Level Order Traversal",
+      "title": "Reproduce and explain CSRF rejection in the local runtime",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -597,15 +643,11 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Protect local session and issue writes with CSRF",
-        "learner_seam": "LocalSecurityConfiguration security + LocalPolicyIssueController",
+        "scope": "Reproduce and explain CSRF rejection in the local runtime",
+        "learner_seam": "LocalSecurityConfiguration CSRF chain and LocalPolicyIssueController (verify/debug; setup is instructor-provided)",
         "status": "not_attempted",
-        "scaffold_status": "partial",
+        "scaffold_status": "instructor_scaffold_complete",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-65.md",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
-        ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
@@ -630,7 +672,13 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-65.md",
         "evidence_reference": "evidence/continuation-57-70/day-65.json",
-        "acceptance_selector_status": "installed_scaffold_passes"
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.",
+        "learner_evidence_mode": "explain_debug",
+        "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "scaffold_verification_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+        ]
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -662,7 +710,7 @@
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 65 protect, which layer enforces it, and how will you prove it?",
-      "scaffold_status": "partial"
+      "scaffold_status": "instructor_scaffold_complete"
     },
     {
       "sequence": 10,
@@ -678,8 +726,8 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Build the normal React route and typed local API client",
-        "learner_seam": "LocalCoverStoryApp and localPolicyApi",
+        "scope": "Build the normal React application at / with typed session, preview, issue, readback and replay flows",
+        "learner_seam": "LocalCoverStoryApp and typed same-origin local API client at /",
         "status": "not_attempted",
         "scaffold_status": "partial",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-66.md",
@@ -700,7 +748,7 @@
           },
           "resources": [
             {
-              "title": "MDN Fetch API \u2014 credentials, HTTP errors and response JSON",
+              "title": "MDN Fetch API — credentials, HTTP errors and response JSON",
               "section": "including credentials; handling HTTP response status",
               "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
             }
@@ -711,7 +759,9 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-66.md",
         "evidence_reference": "evidence/continuation-57-70/day-66.json",
-        "acceptance_selector_status": "installed_expected_todo_red"
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Implement the accessible normal React route at / with typed same-origin session, preview, issue, readback and replay flows; pass the fixed UI acceptance suite.",
+        "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -736,7 +786,7 @@
       "sequence": 11,
       "day_number": 67,
       "date": "2026-12-25",
-      "title": "Day67: Package, start and safely reset the local demo \u2014 LC 98 Validate Binary Search Tree",
+      "title": "Day67: Run and verify the disposable packaged application lifecycle",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -746,15 +796,11 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Package, start and safely reset the local demo",
-        "learner_seam": "scripts/package-local-demo.sh and scripts/local-demo.sh",
+        "scope": "Run and verify the disposable packaged application lifecycle",
+        "learner_seam": "scripts/package-local-demo.sh and scripts/local-demo.sh (execute and inspect; scripts are instructor-provided)",
         "status": "not_attempted",
-        "scaffold_status": "partial",
+        "scaffold_status": "instructor_scaffold_complete",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-67.md",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test"
-        ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
@@ -779,7 +825,13 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-67.md",
         "evidence_reference": "evidence/continuation-57-70/day-67.json",
-        "acceptance_selector_status": "instructor_package_smoke_installed"
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.",
+        "learner_evidence_mode": "explain_debug",
+        "scaffold_verification_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
+        "scaffold_verification_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test"
+        ]
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -811,13 +863,13 @@
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 67 protect, which layer enforces it, and how will you prove it?",
-      "scaffold_status": "partial"
+      "scaffold_status": "instructor_scaffold_complete"
     },
     {
       "sequence": 12,
       "day_number": 68,
       "date": "2026-12-26",
-      "title": "Day68: Exercise the packaged main app through browser and PostgreSQL",
+      "title": "Drive packaged UI acceptance: issue/readback/replay and restart/no-write checks",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -828,13 +880,14 @@
           "evidence": 10
         },
         "scope": "Exercise the packaged main app through browser and PostgreSQL",
-        "learner_seam": "Local packaged app \u2192 browser \u2192 policy API \u2192 PostgreSQL",
+        "learner_seam": "Executable JAR → real browser UI controls → policy API → PostgreSQL; issue/readback/replay/preview",
         "status": "not_attempted",
         "scaffold_status": "partial",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-68.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test"
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -849,9 +902,14 @@
           },
           "resources": [
             {
-              "title": "Playwright Page and Response APIs",
-              "section": "goto, getByRole and waitForResponse",
+              "title": "Playwright Page API",
+              "section": "goto, getByRole and click",
               "url": "https://playwright.dev/docs/api/class-page"
+            },
+            {
+              "title": "Playwright Response API",
+              "section": "status, json and text",
+              "url": "https://playwright.dev/docs/api/class-response"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -860,7 +918,10 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-68.md",
         "evidence_reference": "evidence/continuation-57-70/day-68.json",
-        "acceptance_selector_status": "installed_expected_upstream_day49_todo_red"
+        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "learner_task": "Use real UI controls against the packaged JAR to exercise preview, issue, readback and same-key replay. Compare database rows around preview and issue. Record the actual Day 48/49/62 blocker if it prevents the contract; HTTP 500 is a failed acceptance, not a pass.",
+        "learner_evidence_mode": "explain_debug",
+        "acceptance_selector": "day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -885,7 +946,7 @@
       "sequence": 13,
       "day_number": 69,
       "date": "2026-12-27",
-      "title": "Day69: Prove restart, logout, foreign-owner and no-write behavior",
+      "title": "Compare UI preview, foreign owner and session behavior across restart",
       "sprint": "Sprint 5",
       "budget_minutes": 180,
       "engineering": {
@@ -896,13 +957,13 @@
           "evidence": 10
         },
         "scope": "Prove restart, logout, foreign-owner and no-write behavior",
-        "learner_seam": "Local runtime security and preview acceptance",
+        "learner_seam": "Executable JAR → real browser UI controls → owner/session/preview/restart; no-write invariants",
         "status": "not_attempted",
         "scaffold_status": "partial",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-69.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test"
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -917,9 +978,14 @@
           },
           "resources": [
             {
-              "title": "Spring Security logout and PostgreSQL transaction snapshots",
-              "section": "logout URL, session invalidation and CSRF",
+              "title": "Spring Security Handling Logouts",
+              "section": "Understanding Logout’s Architecture and Customizing Logout URIs",
               "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
+            },
+            {
+              "title": "PostgreSQL Transaction Isolation",
+              "section": "Read Committed statement snapshots",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -928,7 +994,10 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-69.md",
         "evidence_reference": "evidence/continuation-57-70/day-69.json",
-        "acceptance_selector_status": "installed_expected_upstream_day49_todo_red"
+        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "learner_task": "Drive owner A/owner B, preview, logout and restart through packaged UI controls. Compare preview JSON before and after restart, verify old-session rejection and no preview writes; retain expected foreign-owner 404 separately from current Day 49 blocker.",
+        "learner_evidence_mode": "explain_debug",
+        "acceptance_selector": "day69PreviewIsStableAcrossPackagedRestartAndLogout"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -985,9 +1054,19 @@
           },
           "resources": [
             {
-              "title": "C4 model \u2014 software system, container and component boundaries",
-              "section": "system, container and component abstractions",
-              "url": "https://c4model.com/abstractions"
+              "title": "C4 Software System",
+              "section": "software system",
+              "url": "https://c4model.com/abstractions/software-system"
+            },
+            {
+              "title": "C4 Container",
+              "section": "container",
+              "url": "https://c4model.com/abstractions/container"
+            },
+            {
+              "title": "C4 Component",
+              "section": "component",
+              "url": "https://c4model.com/abstractions/component"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, Playwright and the PostgreSQL major selected for this branch. The named section is a focused 10-minute reading target.",
@@ -996,7 +1075,9 @@
         },
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-70.md",
         "evidence_reference": "evidence/continuation-57-70/day-70.json",
-        "acceptance_selector_status": "instructor_integrity_only"
+        "acceptance_selector_status": "instructor_integrity_only",
+        "learner_task": "Review the recorded pass/fail evidence, complete the C4/trust-boundary explanation and recovery/interview mock. Report unresolved upstream blockers without upgrading scaffold status to learner completion.",
+        "learner_evidence_mode": "explain_debug"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",

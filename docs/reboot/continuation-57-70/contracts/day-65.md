@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Learner-owned seam:** `LocalSecurityConfiguration security + LocalPolicyIssueController`
+**Instructor-provided scaffold to inspect:** `LocalSecurityConfiguration security + LocalPolicyIssueController`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180 minutes: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
@@ -12,13 +12,19 @@ Missing or invalid CSRF tokens return 403 and do not change any lifecycle row. A
 
 ## Acceptance and expected TODO state
 
-The fixed selector is installed and currently passes as instructor scaffolding; learner behavior remains unimplemented.
+This feature is already supplied as instructor scaffolding. Its selector verifies setup only; it is not learner implementation acceptance or evidence of learner mastery. Complete the explain/debug task below.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
 **Acceptance selector:** `day65InvalidCsrfCannotCreatePolicyRows`
-**Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
+**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+## Learner task — explain/debug acceptance
+
+Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.
+
+Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -35,7 +41,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-65.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, teach-back/design note and learner explanation/trace and any changed paths (use `[]` for a read-only exercise) in `evidence/continuation-57-70/day-65.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate Java DSA block (60 minutes)
 

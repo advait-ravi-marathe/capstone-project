@@ -8,15 +8,15 @@
 
 ### Expected behavior
 
-Restart preserves only the disposable PostgreSQL synthetic lifecycle rows; the preview remains byte-for-byte stable and read-only. Logout clears the session; a foreign owner remains concealed after restart.
+The packaged JAR is stopped and restarted against the same disposable PostgreSQL instance. The old session cookie is rejected, a newly selected synthetic owner sees byte-for-byte identical preview JSON, preview does not change policy rows, and the other owner cannot read the fixed owner-A policy (HTTP 404).
 
 ## Acceptance and expected TODO state
 
-The fixed browser selector is installed and runs against the packaged app and PostgreSQL. It currently fails where the existing Day 49 renewal-preview TODO returns HTTP 500 (the foreign-owner path expected 404); this is an expected upstream blocker.
+The fixed browser selector launches the executable JAR and drives UI controls across two app processes. Current Day 66/49 TODOs can prevent successful preview and foreign-owner checks; the expected 404 is not replaced with 500, and no 500 is treated as pass.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
-**Acceptance selector:** `day69RestartLogoutForeignOwnerAndPreviewNoWrite`
-**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test`
+**Acceptance selector:** `day69PreviewIsStableAcrossPackagedRestartAndLogout`
+**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -27,7 +27,8 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
 
-- [Spring Security logout and PostgreSQL transaction snapshots — logout URL, session invalidation and CSRF](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html)
+- [Spring Security Handling Logouts — Understanding Logout’s Architecture and Customizing Logout URIs](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html)
+- [PostgreSQL Transaction Isolation — Read Committed statement snapshots](https://www.postgresql.org/docs/18/transaction-iso.html)
 
 **Design sketch:** Prove restart, logout, foreign-owner and no-write behavior: show the key trust boundary or data invariant and which layer owns it.
 

@@ -21,27 +21,41 @@ StreamForge work, production customer data, or a board update.
   owner-scoped JDBC adapters. It never scans test packages or uses static
   mutable collaborators.
 - A versioned local schema migration runs against a disposable PostgreSQL
-  instance. Repeated application startup preserves issued test rows; only an
-  explicit reset removes the disposable instance.
-- The packaged local page uses a dedicated React entry point and typed API
-  client. The packaged server exposes no `/test/**` or `__e2e/**` route.
-- Security, owner propagation, request composition, and the local preview UI
-  remain learner-owned TODO seams. Instructor fixtures, dependencies, migration
-  setup, and deterministic harnesses do not claim those seams are implemented.
+  instance. Repeated application startup preserves synthetic test rows. The
+  launcher uses a unique tmpfs-backed container and automatically removes only
+  that disposable instance on exit; there is no persistent local mode.
+- The packaged local page uses a dedicated React entry point and instructor
+  shell. Its typed API client and policy/preview states remain learner TODOs.
+  The packaged server exposes no `/test/**` or `/__e2e/**` route.
+- Instructor setup is already present for explicit application composition,
+  Flyway bootstrap, the loopback-only security chain and synthetic session,
+  the thin policy issue adapter, CSRF protection, package/launch scripts, and
+  deterministic fixtures. Their passing selectors verify scaffold behavior;
+  they do not establish learner mastery. Days 58, 59, 61, 64, 65, and 67 ask
+  learners to trace, explain, and verify the supplied boundary rather than
+  reimplement it.
+- Learner-owned implementation remains in `LocalReadinessGate.assess`,
+  `LocalReadinessGate.securityCheckpoint`, owner-scoped JDBC reads,
+  authenticated owner resolution, and the normal local React UI. The Day 48
+  renewal-read and Day 49 preview TODOs also remain unresolved. Days 68–69
+  currently stop at the Day 49 HTTP 500; that response is a blocker, never a
+  successful end-to-end acceptance.
 
 ## Test boundaries
 
 Instructor tests prove schema migration repeatability, loopback safety,
 packaging/wiring prerequisites, browser harness plumbing, and fixture
-integrity. Tagged learner acceptance tests assert real API, security, session,
-CSRF, ownership, UI, restart, and no-write behavior. They remain expected red at
-the explicit day-specific TODO until the learner completes it. A temporary
-service witness may be used locally only to verify the Day 68 browser harness;
-it must be removed before publication and must not count as learner evidence.
+integrity. Passing scaffold selectors verify instructor-provided setup only.
+Learner selectors cover the remaining implementation seams and are expected
+red until those are completed. Days 68–69 are browser integration checks
+blocked by the existing Day 49 TODO. HTTP 500 is recorded as failure, never
+acceptance success, and no temporary service witness is counted as learner
+evidence.
 
 ## PostgreSQL compatibility decision
 
 See [`postgresql-options.md`](postgresql-options.md). The branch started from a
-test harness pinned to embedded PostgreSQL 14.22. The test binary migration is
-held until the user selects the major target. The local application uses a new,
-disposable synthetic database and does not migrate any existing user database.
+test harness pinned to embedded PostgreSQL 14.22. PostgreSQL 18.6 is selected
+for this isolated disposable harness after official support and platform
+artifact checks; the actual embedded binary reports 18.6. The local app uses a
+fresh synthetic database and does not migrate any existing user database.

@@ -39,5 +39,5 @@ fi
 if [[ -n "${MAVEN_REPO_LOCAL:-}" ]]; then
   maven_args+=("-Dmaven.repo.local=$MAVEN_REPO_LOCAL")
 fi
-./mvnw "${maven_args[@]}" test
 ./mvnw "${maven_args[@]}" -Plocal-app -DskipTests clean package
+./mvnw "${maven_args[@]}" test

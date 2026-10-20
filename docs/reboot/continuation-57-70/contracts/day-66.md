@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-The packaged `/` route uses a typed client for demo-session selection, preview and issue. It presents loading, ready, unavailable and expired-session states accessibly; it contains no `/test/**` route.
+The packaged root route `/` uses a typed same-origin client for demo-session selection, renewal preview, policy issue, policy readback and same-key replay. It presents loading, ready, unavailable and expired-session states accessibly; it contains no `/test/**` or `/__e2e/**` route.
 
 ## Acceptance and expected TODO state
 
@@ -29,7 +29,7 @@ Read the named primary source for 10 minutes; spend 10 minutes sketching the tru
 
 - [MDN Fetch API — credentials, HTTP errors and response JSON — including credentials; handling HTTP response status](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 
-**Design sketch:** Build the normal React route and typed local API client: show the key trust boundary or data invariant and which layer owns it.
+**Design sketch:** Build and test the normal React route and typed local API client at `/`; show which API call carries the owner session, CSRF token and unchanged replay request.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

@@ -5,12 +5,16 @@
   "published_sha": null,
   "checks": [
     {
-      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
-      "result": "15 passed"
+      "command": "scripts/package-local-demo.sh",
+      "result": "build/package succeeded; instructor Maven suite 35/35 passed, including an executable-JAR process against disposable PostgreSQL 18.6; package included Flyway core and startup applied V001\u2013V003; root returned 200, health returned 200, anonymous protected endpoints returned 401, authenticated missing-CSRF POST returned 403, unknown smoke routes returned 404."
     },
     {
-      "command": "npm --prefix frontend audit --audit-level=low",
-      "result": "passed; 0 vulnerabilities reported by the npm registry audit for the frontend dependency tree"
+      "command": "CHROMIUM_BIN=/usr/bin/chromium npm --prefix frontend run test:local",
+      "result": "expected learner red: 3 tests fail because the Day 66 shell has no owner selection, preview, issue, or readback UI controls; no feature success inferred."
+    },
+    {
+      "command": "export JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_SETTINGS_FILE=/tmp/capstone-maven-settings.xml MAVEN_REPO_LOCAL=/tmp/capstone-m2 MAVEN_USER_HOME=/tmp/capstone-maven-user JAVA_TOOL_OPTIONS=\"-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit\" CHROMIUM_BIN=/usr/bin/chromium; ./mvnw -Dmaven.repo.local=/tmp/capstone-m2 -s /tmp/capstone-maven-settings.xml -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+      "result": "expected learner acceptance red (1 test): executable JAR/browser harness ran, but real UI lacks owner-a and preview controls; no successful preview claimed."
     },
     {
       "command": "npm --prefix frontend run build",
@@ -18,95 +22,45 @@
     },
     {
       "command": "npm --prefix frontend run build:local",
-      "result": "passed; dedicated local.html and local bundle emitted"
+      "result": "passed; local route emitted at /local/index.html with root index.html available in packaged runtime"
     },
     {
-      "command": "npm --prefix frontend run test:local",
-      "result": "expected learner red: 2 failures at missing session-expiry UI and missing preview action in Day66 shell"
+      "command": "npm --prefix frontend audit --audit-level=low",
+      "result": "passed; 0 vulnerabilities reported by npm registry audit for frontend dependency tree"
     },
     {
-      "command": "scripts/package-local-demo.sh",
-      "result": "passed end to end; default Maven suite 34/34, then local-app executable jar package succeeded after npm ci and both frontend builds. Temporary proxy/truststore/Maven-cache overrides were set as recorded under runtime."
+      "command": "./mvnw -Dtest=LocalPackagedRuntimeInfrastructureTest test",
+      "result": "passed 1/1; packaged JAR startup, migrations, static root, health, anonymous 401, CSRF 403, unknown routes 404."
     },
     {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test",
-      "result": "passed 1/1 on embedded PostgreSQL 18.6"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test",
-      "result": "passed 1/1"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test",
-      "result": "passed 1/1"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test",
-      "result": "passed 1/1"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test",
-      "result": "passed 1/1"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test",
-      "result": "passed 1/1"
-    },
-    {
-      "command": "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test",
-      "result": "passed 1/1"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
-      "result": "expected error at explicit Day57 assess TODO"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
-      "result": "expected error at explicit Day63 securityCheckpoint TODO"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test",
-      "result": "expected error at existing Day48 owner-scoped renewal read TODO"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test",
-      "result": "expected error at explicit Day62 owner resolver TODO"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test",
-      "result": "expected learner assertion red: packaged browser and PostgreSQL work, preview returns HTTP500 at existing Day49 TODO (expected 200)"
-    },
-    {
-      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test",
-      "result": "expected learner assertion red: browser session restart/logout and PostgreSQL flow execute, preview returns HTTP500 at existing Day49 TODO (foreign-owner path expected 404)"
-    },
-    {
-      "command": "CHROMIUM_BIN=/usr/bin/chromium node frontend/e2e/local-coverstory-browser.mjs http://127.0.0.1:<ephemeral-port> target/local-coverstory-browser/packaged-day68.json day68",
-      "result": "passed browser launch and app flow; saved owner-a session, health 200, local page 200, anonymous API 401, owner selection 200; preview TODO returned 500"
+      "command": "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test",
+      "result": "passed 3/3; manifest and Day70 integrity checks"
     },
     {
       "command": "git diff --check",
       "result": "passed"
     },
     {
-      "command": "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test",
-      "result": "passed 3/3; validates 14 dated contracts, paths, budgets, loopback guard and Day70 integrity"
+      "command": "/tmp/embedded-pg/PG-59e8d331a924ec3d78c088ab74e1aede/bin/postgres --version",
+      "result": "PostgreSQL 18.6; disposable binary used by the packaged Java infrastructure witness."
     }
   ],
   "runtime": {
-    "packaged_demo": "Started on loopback with ephemeral app port and disposable PostgreSQL 18.6 Compose project; health and page returned 200, session API returned 401 anonymous, excluded /test and /__e2e routes returned 404; Ctrl-C invoked cleanup trap.",
-    "browser_evidence": "target/local-coverstory-browser/day68.json; Maven browser selectors also generate day69-before-restart.json and day69-after-restart.json.",
+    "packaged_demo": "scripts/package-local-demo.sh launched the executable Spring Boot JAR against disposable PostgreSQL 18.6. V001\u2013V003 were applied. GET / and health returned 200. Anonymous session and protected policy read returned 401. After CSRF-protected synthetic owner selection, missing-CSRF protected POST returned 403 and excluded /test and /__e2e routes returned 404.",
+    "browser_evidence": "Maven LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly runs a real Chromium browser against the packaged JAR; expected red at missing learner UI controls. Frontend test: npm run test:local reports 3 TODO failures at the same missing controls.",
     "temporary_build_environment": "Oracle JDK 21 at /tmp/oracle-jdk21; Maven proxy settings /tmp/capstone-maven-settings.xml; trusted proxy store /tmp/capstone-jdk21-cacerts; local repository /tmp/capstone-m2; Chromium /usr/bin/chromium."
   },
   "unresolved": [
-    "Learner TODOs for Days 57, 60, 62, 63, and 66 remain unimplemented by design.",
-    "Days 68 and 69 are blocked at the existing Day49 renewal-preview TODO; no all-days runtime completion is claimed.",
-    "No remote CI run is available; earlier repository CI endpoint returned 403.",
-    "Security advisory audit of the newly added Maven dependency graph is not yet recorded; no all-clear claim."
+    "Learner-owned policy lifecycle work for Days 57, 60, 62, 63, and 66 remains incomplete; readiness and security checkpoints remain TODO.",
+    "Day68/69 packaged browser acceptance does not pass: the starter UI has no owner selection, preview, issue, or readback controls. The Java feature tests remain expected red at those missing controls; HTTP 500 or a missing action is a failure, not acceptance.",
+    "Maven dependency security/advisory review remains outstanding; no all-clear claim.",
+    "Hosted CI must run against the final pushed continuation SHA before treating this checkpoint as published/verified."
   ],
   "resolved_since_checkpoint": [
-    "Selected PostgreSQL 18.6 for this isolated disposable runtime; the official support window extends to 2030-11-14. This does not alter any existing database.",
-    "Restored JDK21 and Maven through environment-specific proxy settings and ran the packaged app against disposable PostgreSQL.",
-    "The original /workspace/capstone-project worktree is still at 3a9db48b9d495d6165373c8e473ac63418275f04 with its 104 pre-existing dirty entries; it was not modified."
+    "Recovered the existing /tmp/capstone-days57-70 checkout at 3d485fcf5be8bdaeabb62e299fe1e845973d513b; remote continuation branch was exactly the same SHA before local changes.",
+    "The separate /workspace/capstone-project worktree remains at 3a9db48b9d495d6165373c8e473ac63418275f04 with 104 pre-existing dirty entries and was not modified.",
+    "Fixed packaged static entry access by narrowly allowing GET /index.html alongside GET / and static assets; /api paths remain protected.",
+    "Added runtime Flyway core to the local-app packaged profile and verified the executable JAR applies all three migrations against disposable PostgreSQL 18.6.",
+    "Packaged infrastructure test passes and checks root, health, anonymous authorization, session CSRF and excluded routes."
   ]
 }

@@ -35,7 +35,7 @@ public class LocalSecurityConfiguration {
         http
                 .securityContext(context -> context.securityContextRepository(localSecurityContextRepository))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/", "/local.html", "/assets/**", "/favicon.ico",
+                        .requestMatchers(HttpMethod.GET, "/", "/index.html", "/assets/**", "/favicon.ico",
                                 "/actuator/health", "/api/csrf", "/api/session").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/session").permitAll()
                         .anyRequest().authenticated())

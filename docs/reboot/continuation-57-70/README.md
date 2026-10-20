@@ -10,13 +10,20 @@ board was changed.
 
 ## Current scaffold status
 
-- Fixed selectors are installed for Days 57–70. Instructor/runtime scaffolding
-  passes for Days 58, 59, 61, 64, 65, 67 and 70. Learner selectors for Days 57,
-  60, 62, 63 and 66 remain red at explicit TODOs; Days 68–69 reach the browser
-  and PostgreSQL but stop at the existing Day 49 preview TODO.
-- The packaged local route, cookie-backed synthetic owner selection, security
-  chain, migrations and safe disposable PostgreSQL launcher are implemented as
-  instructor scaffolding. Domain/owner/preview learner logic remains TODO.
+- Instructor scaffolding is complete for composition, migrations, security,
+  CSRF, the thin policy adapter and packaging. Their green selectors verify
+  setup only; the scheduled learner work is a trace/debug explanation with
+  evidence, not a claim that the learner completed the supplied code.
+- Learner implementation remains for readiness/recovery gates, owner-scoped
+  reads and owner resolution, and the normal UI. Packaged browser selectors
+  drive actual React controls and assert preview, issue/readback/replay, and
+  restart behavior. They remain blocked by those UI/domain TODOs; an HTTP 500
+  is a failing acceptance result.
+- The canonical local UI route is `/`. The packaged-JAR infrastructure test
+  verifies V001–V003 actually run against disposable PostgreSQL 18.6, the
+  health endpoint, anonymous denial, CSRF rejection and absence of test routes.
+- `scripts/local-demo.sh` uses a unique tmpfs-backed database container and
+  automatically deletes it on exit. There is no persistent local-demo mode.
 - PostgreSQL 18.6 was selected for the disposable embedded test harness after
   checking official support dates and Linux amd64/macOS ARM64/macOS Intel
   artifact availability. Prior test contracts are preserved as historical

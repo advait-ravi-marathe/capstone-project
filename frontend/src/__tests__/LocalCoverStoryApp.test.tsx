@@ -8,9 +8,17 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
+const response = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
+const issued = {
+  policyId: 'policy-training-1', ownerId: 'owner-a', journeyId: 'homesecure-training-journey',
+  quoteVersionId: 'home-secure-training-v1', productVersion: 'home-secure-v1',
+  rateVersion: 'home-secure-training-rate-v1', annualPremiumRupees: '125.00', currency: 'INR',
+  effectiveDate: '2026-10-20', status: 'ISSUED', version: 1,
+};
+
 describe('Day 66 local CoverStory route', () => {
-  it('offers only the fixed synthetic owners after the session expires', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('{"code":"UNAUTHENTICATED"}', { status: 401 })));
+  it('offers only fixed synthetic owners when the session expires', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response({ code: 'UNAUTHENTICATED' }, 401)));
     render(<LocalCoverStoryApp />);
 
     expect(await screen.findByRole('alert')).toHaveTextContent(/session expired|select a synthetic owner/i);
@@ -19,13 +27,23 @@ describe('Day 66 local CoverStory route', () => {
     expect(screen.queryByRole('textbox', { name: /email|password/i })).toBeNull();
   });
 
-  it('sends owner-scoped API requests and shows renewal preview as reference-only', async () => {
-    const fetchMock = vi.fn()
-      .mockResolvedValueOnce(new Response('{"ownerId":"owner-a"}', { status: 200 }))
-      .mockResolvedValueOnce(new Response('{"policyId":"policy-renewal-a","sourcePolicyVersion":3,"productVersion":"home-secure-v1","rateVersion":"home-secure-rate-v1","currentAnnualPremiumRupees":"125.00","currency":"INR","nextTermEffectiveDate":"2027-01-15","notice":"Reference only; not a renewal offer or coverage commitment."}', { status: 200 }));
+  it('uses the same-origin session and shows read-only preview as reference only', async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url === '/api/session' && (!init || init.method === 'GET')) return response({ code: 'UNAUTHENTICATED' }, 401);
+      if (url === '/api/csrf') return response({ headerName: 'X-XSRF-TOKEN', token: 'synthetic-csrf' });
+      if (url === '/api/session') return response({ ownerId: 'owner-a' });
+      if (url.endsWith('/renewal-preview')) return response({
+        policyId: 'policy-renewal-a', sourcePolicyVersion: 3, productVersion: 'home-secure-v1',
+        rateVersion: 'home-secure-rate-v1', currentAnnualPremiumRupees: '125.00', currency: 'INR',
+        nextTermEffectiveDate: '2027-01-15', notice: 'Reference only; not a renewal offer or coverage commitment.',
+      });
+      return response({ code: 'NOT_FOUND' }, 404);
+    });
     vi.stubGlobal('fetch', fetchMock);
     render(<LocalCoverStoryApp />);
 
+    await userEvent.click(await screen.findByRole('button', { name: 'Use owner-a' }));
     await userEvent.click(await screen.findByRole('button', { name: 'View preview' }));
     expect(await screen.findByRole('region', { name: 'Renewal preview' })).toBeTruthy();
     expect(screen.getByText('Current annual premium (reference only): 125.00 INR')).toBeTruthy();
@@ -33,5 +51,40 @@ describe('Day 66 local CoverStory route', () => {
     expect(fetchMock).toHaveBeenCalledWith('/api/policies/policy-renewal-a/renewal-preview',
       expect.objectContaining({ method: 'GET', credentials: 'same-origin' }));
     expect(screen.queryByRole('button', { name: /purchase|accept|renew now/i })).toBeNull();
+  });
+
+  it('issues, reads back and replays with the same client request ID', async () => {
+    const requestBodies: string[] = [];
+    let issueCount = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url === '/api/session' && (!init || init.method === 'GET')) return response({ code: 'UNAUTHENTICATED' }, 401);
+      if (url === '/api/csrf') return response({ headerName: 'X-XSRF-TOKEN', token: 'synthetic-csrf' });
+      if (url === '/api/session') return response({ ownerId: 'owner-a' });
+      if (url === '/api/policies' && init?.method === 'POST') {
+        requestBodies.push(String(init.body));
+        issueCount += 1;
+        return response(issued, issueCount === 1 ? 201 : 200);
+      }
+      if (url === '/api/policies/policy-training-1') return response(issued);
+      return response({ code: 'NOT_FOUND' }, 404);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    render(<LocalCoverStoryApp />);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Use owner-a' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Issue selected quote' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'View issued policy' }));
+    expect(await screen.findByRole('region', { name: 'Issued policy' })).toBeTruthy();
+    expect(screen.getByText(/policy-training-1/)).toBeTruthy();
+    await userEvent.click(screen.getByRole('button', { name: 'Replay issue request' }));
+
+    expect(requestBodies).toHaveLength(2);
+    expect(JSON.parse(requestBodies[0])).toEqual(JSON.parse(requestBodies[1]));
+    expect(fetchMock).toHaveBeenCalledWith('/api/policies', expect.objectContaining({
+      method: 'POST', credentials: 'same-origin', headers: expect.objectContaining({ 'X-XSRF-TOKEN': 'synthetic-csrf' }),
+    }));
+    expect(fetchMock).toHaveBeenCalledWith('/api/policies/policy-training-1',
+      expect.objectContaining({ method: 'GET', credentials: 'same-origin' }));
   });
 });

@@ -27,7 +27,8 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
 
-- [Spring JDBC — JdbcClient and transactions — Using JdbcClient; transaction management](https://docs.spring.io/spring-boot/reference/data/sql.html)
+- [Spring JDBC — Using JdbcClient](https://docs.spring.io/spring-boot/reference/data/sql.html)
+- [Spring transaction annotations — @Transactional Settings](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)
 
 **Design sketch:** Wire owner-scoped policy reads and prove preview performs no writes: show the key trust boundary or data invariant and which layer owns it.
 

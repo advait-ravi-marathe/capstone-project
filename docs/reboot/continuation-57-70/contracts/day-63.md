@@ -27,7 +27,9 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
 
-- [Spring Security testing — MockMvc and security request post-processors — testing authentication, authorization and CSRF with MockMvc](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html)
+- [Spring Security MockMvc Setup — Configuring MockMvc with Spring Security](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html)
+- [Running a Test as a User in Spring MVC Test — RequestPostProcessor authentication](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html)
+- [Testing with CSRF Protection — CSRF header, invalid token and request post-processors](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html)
 
 **Design sketch:** Run the security trace and recovery checkpoint: show the key trust boundary or data invariant and which layer owns it.
 

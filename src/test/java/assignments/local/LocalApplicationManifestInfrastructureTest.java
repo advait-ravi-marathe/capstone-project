@@ -28,8 +28,9 @@ class LocalApplicationManifestInfrastructureTest {
             assertEquals(start.plusDays(i).toString(), day.get("date").asString());
             assertEquals("not_attempted", day.get("learner_status").asString());
             assertTrue(day.get("scaffold_status").asString().equals("partial")
-                            || day.get("scaffold_status").asString().equals("not_installed"),
-                    "contracts must not imply a complete scaffold for Day " + (57 + i));
+                            || day.get("scaffold_status").asString().equals("instructor_scaffold_complete"),
+                    "scaffold status must distinguish instructor setup from learner mastery for Day " + (57 + i));
+            assertFalse(day.get("engineering").get("learner_task").asString().isBlank());
             assertEquals("blocked until prior evidence gate and actual learner selectors pass",
                     day.get("integration_status").asString());
             assertTrue(Files.isRegularFile(Path.of(day.get("contract_file").asString())));

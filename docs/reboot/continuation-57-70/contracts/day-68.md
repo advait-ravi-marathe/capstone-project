@@ -8,15 +8,20 @@
 
 ### Expected behavior
 
-The real browser opens the packaged main application, selects a synthetic local owner, reads the preview and issues the fixed selected quote through the main API. Any completed learner service witnesses are temporary harness-only fixtures and are removed before publication.
+Playwright launches the built executable JAR, opens the canonical packaged route `/`, and clicks the real React controls for owner selection, preview, issue, readback and same-key replay. The browser acceptance asserts preview no-write, first issue HTTP 201, owner-scoped readback HTTP 200, same-request replay HTTP 200 with one policy row, and stable snapshot identity. Current Day 66 UI, Day 62 owner, Day 34–35 issue, Day 36 read and Day 49 preview TODOs can block these assertions; any HTTP 500 is an acceptance failure.
 
 ## Acceptance and expected TODO state
 
-The fixed browser selector is installed and runs against the packaged app and PostgreSQL. It currently fails where the existing Day 49 renewal-preview TODO returns HTTP 500 (the foreign-owner path expected 404); this is an expected upstream blocker.
+The fixed browser selectors now launch the packaged JAR and drive real UI controls. Preview and issue/readback/replay are separate checks so policy counts can be measured around each operation. They are expected to fail while the UI or upstream domain TODOs remain; no 500 is a pass. Day 69 owns the separate foreign-owner 404 expectation.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
-**Acceptance selector:** `day68BrowserUsesPackagedMainAppAndPostgres`
-**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test`
+**Acceptance selectors:** `day68PackagedUiPreviewIsReadOnly`; `day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce`
+**Learner acceptance commands:**
+
+```sh
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test
+```
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -27,7 +32,8 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
 
-- [Playwright Page and Response APIs — goto, getByRole and waitForResponse](https://playwright.dev/docs/api/class-page)
+- [Playwright Page API — goto, getByRole and click](https://playwright.dev/docs/api/class-page)
+- [Playwright Response API — status, json and text](https://playwright.dev/docs/api/class-response)
 
 **Design sketch:** Exercise the packaged main app through browser and PostgreSQL: show the key trust boundary or data invariant and which layer owns it.
 

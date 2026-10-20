@@ -12,12 +12,11 @@ Present the system boundary, trust/ownership flow, CSRF choice, migration lifecy
 
 ## Acceptance and expected TODO state
 
-The instructor integrity selector is installed and verifies the evidence boundary; it is not a learner completion test.
-Fixed acceptance tests verify the observable contract and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Until the named learner seam is completed, the learner selector is expected to fail at that explicit TODO. Instructor infrastructure checks are separate and should pass. Record the real command, exit code, output, TODO reached and learner-owned paths in `evidence/continuation-57-70/day-70.json`. A green infrastructure harness does not prove learner behavior.
+The instructor integrity selector is installed and passed 3/3; it checks the evidence boundary only and is not a learner completion test. The learner task is to review the recorded results and complete the explain/design mock. No TODO failure is expected from this integrity selector.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Acceptance selector:** `day70EvidenceAndDesignMockStayWithinTheDefinedSlice`
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test`
+**Instructor integrity command:** `./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -28,7 +27,9 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
 
-- [C4 model — software system, container and component boundaries — system, container and component abstractions](https://c4model.com/abstractions)
+- [C4 Software System — software system](https://c4model.com/abstractions/software-system)
+- [C4 Container — container](https://c4model.com/abstractions/container)
+- [C4 Component — component](https://c4model.com/abstractions/component)
 
 **Design sketch:** Complete the mastery, recovery and design mock: show the key trust boundary or data invariant and which layer owns it.
 
