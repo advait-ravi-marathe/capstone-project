@@ -56,17 +56,17 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Explain how the demonstrated HTTP request reaches a Java controller method and how its returned bean becomes JSON.",
+          "After reproducing the guided endpoint, describe the one tiny request/response change you made and the observed result."
         ],
         "assessment_axes": [
-          "behavior",
-          "explanation",
+          "request_flow",
+          "observed_behavior",
           "independent_adaptation"
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Backend foundation: composite identity and API contracts; first API learning bridge (no AWS certification mapping).",
+      "engineering_concept": "Beginner API flow: HTTP request → controller method → Java bean → JSON; quote-selection acceptance remains deferred until this prerequisite is understood.",
       "concept_reference": "docs/day-1.md",
       "guide_deep_link": "docs/day-1.md",
       "dsa_board_summary": {
@@ -90,7 +90,7 @@
       "dsa_concept": "running-state array",
       "board_summary": {
         "engineering": "Quote selection identity/order",
-        "concept_25m": "Beginner API bridge, then local composite-identity concept; no AWS certification task.",
+        "concept_25m": "Watch the verified 22:21 beginner API sequence (within 25m). Use 85m to reproduce and adapt; 10m to explain request → method → JSON. No AWS task.",
         "concept_link": "docs/day-1.md",
         "repo_guide": "docs/day-1.md",
         "dsa_60m": "121 Best Time to Buy and Sell Stock",

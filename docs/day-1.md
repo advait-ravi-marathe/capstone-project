@@ -47,13 +47,15 @@ longer an expected TODO failure:
 
 ## Feature and learning goal
 
+The learner is new to implementing APIs. The first goal is to see one request map to one Java method and one returned JSON value, then reproduce the course example and make one tiny adaptation. The existing quote-selection policy is a later learner task: the Hello World bridge does not complete its behavior or acceptance contract.
+
 ## First API lesson — follow along before adapting
 
-**Owned Udemy course:** [*Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), by in28Minutes Official. In **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate,”** study these verified lesson titles in order: **“Step 00 - Creating a REST API with Spring Boot - An Overview” (4:04), “Step 01 - Initializing a REST API Project with Spring Boot” (7:26), “Step 02 - Creating a Hello World REST API with Spring Boot” (6:21),** and **“Step 03 - Enhancing the Hello World REST API to return a Bean” (4:30).** Total viewing time is 22:21 at 1×. Stop at 25 minutes, allowing a small pause/retrieval margin. Match by title rather than number. Carry the next lesson, **“Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06),** forward if the cap is reached.
+**Owned Udemy course:** [*Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), by in28Minutes Official. In **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate,”** study these verified lesson titles in order: **“Step 00 - Creating a REST API with Spring Boot - An Overview” (4:04), “Step 01 - Initializing a REST API Project with Spring Boot” (7:26), “Step 02 - Creating a Hello World REST API with Spring Boot” (6:21),** and **“Step 03 - Enhancing the Hello World REST API to return a Bean” (4:30).** Total viewing time is 22:21 at 1×. This entire sequence uses the 25-minute course allocation; pause/replay time counts, so carry unfinished lessons forward and reduce implementation scope. Match by title rather than number. Carry the next lesson, **“Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06),** forward if the cap is reached.
 
-Pass the instructor readiness gate (`./mvnw -Dtest=QuoteSelectionInfrastructureTest test`). If it fails, record the blocker and use the instructor-provided runnable app; do not spend learner time on setup. First reproduce the demonstrated endpoint with the course. Then make a tiny adaptation: send one request to `POST /api/quote-selections` and observe its documented response/error behavior. This orientation does not complete the full quote-selection assignment. Its acceptance contract remains authoritative; composite identity/order behavior and full learner acceptance remain deferred until the API prerequisite is understood.
+Pass the instructor readiness gate (`./mvnw -Dtest=QuoteSelectionInfrastructureTest test`). If it fails, record the blocker and use the instructor-provided runnable app; do not spend learner time on setup. Use the 85-minute implementation/testing allocation to reproduce the lesson’s simple Hello World endpoint and its returned bean, then make one tiny change to its request or returned field. This is guided practice with the course example, not a new production route in this repository. The original quote-selection assignment remains separate: its provided `/api/quote-selections` endpoint has an unfinished learner TODO, so valid input intentionally returns HTTP 500. Do not mistake the Hello World exercise for completion of the quote-selection contract. Its acceptance contract remains authoritative; composite identity/order behavior and full learner acceptance remain deferred until the API prerequisite is understood.
 
-Keep course study within the existing 25-minute course allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. No extra hours or design case study are required. Explain: **How does a request reach a Java method, and how does its result become JSON?**
+Keep course study within the existing 25-minute course allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. No extra hours or design case study are required. In the 10-minute evidence allocation, write one concise reflection: **How did the request reach a Java method, and how did its result become JSON?**
 
 ```text
 HTTP request (path + JSON) → Spring maps it to a controller Java method
@@ -77,25 +79,19 @@ authentication, payment, policy activation, Kafka, or frontend is needed for
 this exercise.
 
 The learner implementation belongs only in
-`src/main/java/assignments/insurance/QuoteSelectionPolicy.java`. For the 25-minute
-concept block, pair the API objective with the short request-flow view below;
-write a brief reason for composite identity and encounter order without writing
-the implementation. This is the day's design practice, not extra work.
+`src/main/java/assignments/insurance/QuoteSelectionPolicy.java`. The 85-minute
+build/test block is where the learner reproduces the guided Hello World endpoint
+and returned bean from the course example, then makes one tiny adaptation. Only
+if that prerequisite is clear should the learner begin the existing TODO; the
+full quote-selection acceptance contract remains deferred as needed. Do not add
+an architecture case study or extra hours.
 
-```mermaid
-sequenceDiagram
-    actor Client
-    participant Controller as QuoteSelectionController
-    participant Policy as QuoteSelectionPolicy
-    Client->>Controller: POST selections
-    Controller->>Policy: selection list
-    Policy-->>Controller: result list
-    Controller-->>Client: response array or client error
-```
+The only requested explanation is the simple course flow shown above; the existing quote-selection design and implementation remain deferred until the API prerequisite is clear.
 
-Keep the design note inside the existing 10-minute evidence allocation. The
-[system design practice guide](reboot/system-design-practice.md) provides a
-blank prompt and templates; there is no required infrastructure setup.
+
+Use the 10-minute evidence allocation for the short request → method → JSON
+reflection and exact run/test results. There is no required infrastructure
+setup.
 
 ## Behavioral cases
 
@@ -144,9 +140,15 @@ The regular documented project command remains:
 ./mvnw test
 ```
 
-## Concept prompt — local API and request contract (inside the existing 25 minutes)
+## Course/concept allocation — 25 minutes
 
-Use the course lessons above to see how an HTTP request reaches a Spring controller, how the controller calls Java code, and how a returned Java value becomes JSON. For the tiny adaptation, identify the request body, Java method, response JSON, and status code. Do not implement the quote-selection policy during the concept block. Explain why exact composite identity and encounter order are part of this API’s response contract; the full acceptance assignment stays deferred until the API prerequisite is understood. No AWS account, infrastructure, or cloud deployment is part of Day 1.
+Watch the listed course sequence only (22:21 at 1×); use the remaining time for a pause or brief recall. If the sequence overruns because of pauses, stop and carry the next lesson forward. Reproduction and the tiny adaptation belong to the separate 85-minute build/test allocation. Keep quote-selection implementation partial if needed; this bridge does not satisfy the original acceptance tests. No AWS account, infrastructure, or cloud deployment is part of Day 1.
+
+```text
+HTTP request (path + JSON) → Spring maps it to a controller Java method
+→ method returns a Java value → Spring serializes it as JSON
+→ HTTP response (status + JSON)
+```
 
 ## Evidence
 
