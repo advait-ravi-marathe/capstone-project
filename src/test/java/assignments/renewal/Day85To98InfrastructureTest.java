@@ -85,6 +85,9 @@ class Day85To98InfrastructureTest {
                 "the historical success-under-lock test needs its explicit finite test-only budget");
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java")),
                 "short-budget lock/statement cases remain separate learner acceptance checks");
+        String day97 = Files.readString(Path.of("src/test/java/assignments/local/Day97PackagedTimeoutBrowserAcceptanceTest.java"));
+        assertTrue(day97.contains("LocalPackagedRuntimeProcess.start(postgres, \"2027-01-01T12:00:00Z\")"),
+                "the seeded 2026-01-15 policy must be preview-eligible in the packaged retry test");
     }
 
     @Test

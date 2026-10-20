@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-On the existing renewal route, show a safe bounded-read response under real ACCESS EXCLUSIVE lock; release holder; require one explicit user retry to succeed. Preserve ownership, bounded metrics and byte-for-byte no-write snapshots. Earlier Day48–81 learner seams remain prerequisites.
+On the existing renewal route, show a safe bounded-read response under real ACCESS EXCLUSIVE lock; release holder; require one explicit user retry to succeed. Preserve ownership, bounded metrics and byte-for-byte no-write snapshots. Start the packaged test app with fixed test clock `2027-01-01T12:00:00Z`, placing the seeded `2026-01-15` policy inside its deterministic renewal window; do not depend on the machine's current date. Earlier Day48–81 learner seams remain prerequisites.
 
 ### Acceptance and expected TODO state
 
@@ -31,7 +31,7 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 If the existing React state concepts need review, the selected course has prior reference titles **Rendering Content Conditionally** (section **React Essentials - Components, JSX, Props, State & More**) and **Handling Loading States** (section **Sending Http Requests (e.g. Connecting to a Database)**). This is optional retrieval, not new assigned viewing; it must replace part of this same 25-minute cap.
 
-**Worked example (within the same cap):** In packaged browser, select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.
+**Worked example (within the same cap):** With the fixed eligible test clock, select owner in the packaged browser, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.
 
 **Focused sources:**
 - [MDN ARIA status role — Polite status announcements](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role)

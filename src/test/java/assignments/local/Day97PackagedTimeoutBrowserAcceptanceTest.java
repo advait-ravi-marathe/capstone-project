@@ -26,7 +26,7 @@ class Day97PackagedTimeoutBrowserAcceptanceTest {
     @Tag("learnerAcceptance")
     void safeTimeoutIsVisibleBeforeReleaseThenOneExplicitRetrySucceeds() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
-             LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres);
+             LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres, "2027-01-01T12:00:00Z");
              Connection holder = postgres.getPostgresDatabase().getConnection()) {
             DataSource dataSource = postgres.getPostgresDatabase();
             DatabaseSnapshot before = snapshot(dataSource);
