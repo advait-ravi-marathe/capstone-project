@@ -32,6 +32,8 @@ class Day99To112InfrastructureTest {
         for (int index = 0; index < 14; index++) {
             JsonNode day = manifest.path("days").get(index);
             JsonNode card = export.path("cards").get(index);
+            JsonNode evidence = mapper.readTree(Files.readString(Path.of(
+                    day.path("engineering").path("evidence_reference").asString())));
             assertEquals(99 + index, day.path("day").asInt());
             assertEquals(first.plusDays(index).toString(), day.path("date").asString());
             assertEquals(day.path("title").asString(), card.path("title").asString());
@@ -49,6 +51,23 @@ class Day99To112InfrastructureTest {
                     + study.path("worked_reference_seconds").asInt()
                     + study.path("teachback_seconds").asInt());
             String contract = Files.readString(Path.of(day.path("contract_file").asString()));
+            for (JsonNode command : day.path("engineering").path("acceptance_commands")) {
+                assertTrue(contract.contains(command.asString()),
+                        "dated contract must publish every canonical runnable acceptance command: " + command.asString());
+            }
+            for (JsonNode command : day.path("engineering").path("infrastructure_commands")) {
+                assertTrue(contract.contains(command.asString()),
+                        "dated contract must publish every canonical instructor infrastructure command: " + command.asString());
+            }
+            assertEquals(day.path("engineering").path("acceptance_commands"), evidence.path("acceptance_commands"),
+                    "verification receipt must list the same acceptance commands as the canonical card");
+            JsonNode canonicalInfrastructure = day.path("engineering").path("infrastructure_commands");
+            if (evidence.has("infrastructure_commands")) {
+                assertEquals(canonicalInfrastructure, evidence.path("infrastructure_commands"));
+            } else {
+                assertEquals(1, canonicalInfrastructure.size(), "legacy receipt form is only valid for one infrastructure command");
+                assertEquals(canonicalInfrastructure.get(0), evidence.path("infrastructure_command"));
+            }
             for (JsonNode lesson : study.path("lessons")) {
                 assertEquals("1341538", lesson.path("course_id").asString());
                 assertFalse(lesson.path("source_item_id").asString().isBlank());
@@ -111,7 +130,12 @@ class Day99To112InfrastructureTest {
         assertTrue(restart.contains("terminateAndAwait(restarted") && restart.contains("terminateAndAwait(child"),
                 "both child JVMs are forcibly terminated and waited on every exit path");
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java")));
-        assertFalse(Files.readString(Path.of("src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java"))
+        String durableAcceptance = Files.readString(Path.of("src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java"));
+        assertTrue(durableAcceptance.contains("day101RejectsInvalidCaptureLimitsBeforeChangingRows")
+                        && durableAcceptance.contains("day102RejectsInvalidPendingLimitsWithoutChangingRows")
+                        && durableAcceptance.contains("day106RejectsOutOfRangeBatchLimitBeforeAnyStoreCall"),
+                "actual learner store and dispatcher seams have fixed invalid-limit boundary selectors");
+        assertFalse(durableAcceptance
                         .contains("day100SchemaConstraintsRejectDuplicateAndInvalidRows"),
                 "Day 100 is instructor-owned migration assessment, not a learner TODO selector");
     }

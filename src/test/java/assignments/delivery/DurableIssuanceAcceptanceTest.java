@@ -77,6 +77,20 @@ class DurableIssuanceAcceptanceTest {
     }
 
     @Test
+    void day101RejectsInvalidCaptureLimitsBeforeChangingRows() throws Exception {
+        try (Fixture fixture = new Fixture()) {
+            int sourceCountBefore = fixture.committedIssuedSourceCount();
+            int workCountBefore = fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work", Integer.class);
+            for (int limit : List.of(0, -1, 21)) {
+                assertThrows(IllegalArgumentException.class, () -> fixture.store.captureCommittedIssuances(limit),
+                        "capture limit must be in [1,20]: " + limit);
+            }
+            assertEquals(sourceCountBefore, fixture.committedIssuedSourceCount());
+            assertEquals(workCountBefore, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work", Integer.class));
+        }
+    }
+
+    @Test
     void day103ReceiptReplayIsStableAndConflictingPayloadIsVisible() throws Exception {
         try (Fixture fixture = new Fixture()) {
             fixture.insertCommittedSource("receipt-a", "ISSUED");
@@ -113,6 +127,20 @@ class DurableIssuanceAcceptanceTest {
             fixture.store.acceptReceipt(first.getFirst());
             assertTrue(fixture.store.acknowledge(first.getFirst()));
             assertTrue(fixture.store.findPending(10).stream().noneMatch(e -> e.policyId().equals("map-a")));
+        }
+    }
+
+    @Test
+    void day102RejectsInvalidPendingLimitsWithoutChangingRows() throws Exception {
+        try (Fixture fixture = new Fixture()) {
+            int workCountBefore = fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work", Integer.class);
+            int receiptCountBefore = fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_delivery_receipt", Integer.class);
+            for (int limit : List.of(0, -1, 21)) {
+                assertThrows(IllegalArgumentException.class, () -> fixture.store.findPending(limit),
+                        "pending read limit must be in [1,20]: " + limit);
+            }
+            assertEquals(workCountBefore, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work", Integer.class));
+            assertEquals(receiptCountBefore, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_delivery_receipt", Integer.class));
         }
     }
 
@@ -226,6 +254,31 @@ class DurableIssuanceAcceptanceTest {
             assertEquals(2, fixture.workKeys().size(), "only the bounded capture batch is materialized");
             assertEquals(3, fixture.committedIssuedSourceCount(), "a source backlog larger than the limit is retained");
             assertEquals(0, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work WHERE acknowledged_at IS NULL", Integer.class));
+        }
+    }
+
+    @Test
+    void day106RejectsOutOfRangeBatchLimitBeforeAnyStoreCall() throws Exception {
+        try (Fixture fixture = new Fixture()) {
+            var calls = new ArrayList<String>();
+            IssuanceWorkStore observing = new DelegatingStore(fixture.store) {
+                @Override public int captureCommittedIssuances(int limit) {
+                    calls.add("capture:" + limit);
+                    return super.captureCommittedIssuances(limit);
+                }
+                @Override public List<IssuanceEnvelope> findPending(int limit) {
+                    calls.add("pending:" + limit);
+                    return super.findPending(limit);
+                }
+            };
+            OneBatchDispatcher dispatcher = new OneBatchDispatcher(observing, fixture.transactions);
+            for (int limit : List.of(0, -1, 21)) {
+                assertThrows(IllegalArgumentException.class, () -> dispatcher.runOnce(limit),
+                        "dispatch limit must be in [1,20]: " + limit);
+            }
+            assertTrue(calls.isEmpty(), "invalid limits are rejected before capture or pending reads");
+            assertEquals(0, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work", Integer.class));
+            assertEquals(0, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_delivery_receipt", Integer.class));
         }
     }
 

@@ -4,12 +4,14 @@
   "learner_status": "not_attempted",
   "contract_status": "defined",
   "acceptance_commands": [
-    "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest test",
-    "./mvnw -Plocal-app,learner-tests -Dtest=DurableWorkRestartAcceptanceTest test"
+    "./mvnw -Plearner-tests '-Dtest=DurableIssuanceAcceptanceTest#day99*+day101*+day102*+day103*+day104*' test"
   ],
-  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
   "witness_status": "not_run",
   "learner_attempts": [],
-  "notes": "Review/remediation day only. Commands rerun Days99–104 and fresh-JVM restart; still-red named learner seams remain pending.",
-  "verification_status": "review_only_pending_learner_work"
+  "notes": "Review/remediation only for Days 99–104; includes the instructor-owned Day 100 migration assessment. Does not run Day 106 dispatcher or fresh-JVM restart work.",
+  "verification_status": "review_only_pending_learner_work",
+  "infrastructure_commands": [
+    "./mvnw -Dtest=LocalSchemaMigrationInfrastructureTest test",
+    "./mvnw -Dtest=Day99To112InfrastructureTest test"
+  ]
 }
