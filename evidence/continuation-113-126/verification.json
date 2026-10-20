@@ -1,7 +1,7 @@
 {
   "status": "verified",
   "base_sha": "640ae79d1d07801634664b8a02056b053504631e",
-  "tested_tree_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
+  "tested_tree_sha": "9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c",
   "tests": [
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
@@ -97,29 +97,37 @@
   },
   "board_changes": false,
   "main_branch_changes": false,
-  "notes": "Temporary witness passes establish test-harness behavior only, not learner completion. The restored starter is intentionally red at named learner TODOs. The new packaged selector covers local recovery CLI/JAR/PostgreSQL, not HTTP or Chromium. Existing protected issuance/renewal and browser regression selectors remain separate. Main, Scrum board, and original dirty checkout were not changed. Runtime code was tested at 5b762e59d5fba72148c67abdcdd13bb77eed36e4 with exact-head CI #52 success. This receipt was corrected in metadata-only descendant ea6e3a1a0d4b374ff95b153426022619669a077a, which also passed exact-head CI #53; the next receipt-only correction has separate final-head CI.",
-  "tested_code_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
+  "notes": "The restored starter remains intentionally red at named learner TODOs; temporary witness results are instructor harness evidence only, not learner completion. The new packaged selector is local CLI/JAR/PostgreSQL, not HTTP or Chromium. Main, Scrum board, and original dirty checkout were not changed. Code snapshot 9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c passed exact-head CI #56; this verification receipt will be a metadata-only descendant and receive its own exact-head CI.",
+  "tested_code_sha": "9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c",
   "code_commit_exact_head_ci": {
     "workflow": "CoverStory starter checks",
-    "run_number": 52,
-    "run_id": 39496105422,
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39496105422",
-    "head_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
+    "run_number": 56,
+    "run_id": 39498763257,
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39498763257",
+    "head_sha": "9b68ae4994f9b1ab4c8a60acf61cf1f7fdbf0d4c",
     "status": "completed",
     "conclusion": "success",
-    "completed_at": "2026-10-20T20:56:38Z",
-    "source": "Authenticated GitHub Actions run and job read; exact head SHA matched."
-  },
-  "receipt_commit_ci": {
-    "commit_sha": "ea6e3a1a0d4b374ff95b153426022619669a077a",
-    "workflow": "CoverStory starter checks",
-    "run_number": 53,
-    "run_id": 39496348697,
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39496348697",
-    "head_sha": "ea6e3a1a0d4b374ff95b153426022619669a077a",
-    "status": "completed",
-    "conclusion": "success",
-    "completed_at": "2026-10-20T20:58:27Z",
+    "completed_at": "2026-10-20T21:15:57Z",
     "source": "Authenticated GitHub Actions run/jobs read; exact head matched."
+  },
+  "review_correction_evidence": {
+    "scope": "Test-only exact-state oracle tightening; no learner/runtime implementation changed.",
+    "assertions": [
+      "Day116/117 preserve all work columns except explicit control fields, retain source and receipt JSON, preserve every previous history row exactly, and validate each appended action/reason/revision/time.",
+      "Day120 ambient transaction test counts prepared JDBC statements and proves rejection occurs before any store observation.",
+      "Concurrency tests compare the allowed work/control/history deltas and capture the complete receipt JSON, including received_at, in the writer transaction before release.",
+      "Day123 compares the complete work row excluding only acknowledged_at across fresh-JVM reconciliation; ack is checked separately.",
+      "Packaged CLI recovery begins with prior history and proves quarantine/release/retry append only allowed state while preserving original history, full work envelope, source and receipt state."
+    ],
+    "temporary_conforming_witnesses": {
+      "acceptance_selector_tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "packaged_cli_tests": 1,
+      "packaged_failures": 0,
+      "packaged_errors": 0,
+      "result": "passed"
+    },
+    "temporary_witnesses_are_not_learner_completion": true
   }
 }
