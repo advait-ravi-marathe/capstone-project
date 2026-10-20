@@ -8,7 +8,7 @@ Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wi
 
 ## Course and lesson guidance
 
-The [Days 1–30 course/lesson map](course-learning-map.md) links contracts to verified lecture titles or explicitly records that no direct match exists. Course study remains one combined 25-minute allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. Future batches must verify course catalogs, distinguish exact coverage from partial support, label missing lessons honestly, and never invent a mapping or add daily hours. The learner's AWS certification courses and preferred React instructor are listed in the map; pending lesson mappings are not treated as assignments. Generic Spring-course AWS/React content does not substitute for those tracks.
+The [Days 1–30 course/lesson map](course-learning-map.md) and ticket-ready [machine-readable course blocks](course-learning-blocks.json) give exact verified lecture titles where useful. The [short worked guides](course-learning-supplements.md) close the documented teaching gaps without replacing learner acceptance work. Course study remains one combined 25-minute allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. The supplied course catalogs were checked for titles, but videos were not watched. Additional in28Minutes recommendations and the preferred React course have unconfirmed access; do not purchase or enroll. The owned AWS courses are optional future references only; there is no required AWS lecture in Days 1–30.
 
 ## Products and scope
 

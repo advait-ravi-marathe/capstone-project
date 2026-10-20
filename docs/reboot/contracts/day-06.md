@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** Conditional reference to [Java Programming for Complete Beginners — in28Minutes Official](https://www.udemy.com/course/java-programming-tutorial-for-beginners/); “Primitive Data Types And Alternatives in Java Programming”: “Step 05 - Introduction to BigDecimal Java Class” (6:58), “Step 06 - BigDecimal Puzzles - Adding Integers” (3:13), and “Step 07 - BigDecimal Exercises - Simple Interest Calculation” (11:34), 21:45 total. Direct BigDecimal foundation; use the contract’s supplied premium formula and rounding. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md).
+**Course lesson:** Conditional reference to [Java Programming for Complete Beginners — in28Minutes Official](https://www.udemy.com/course/java-programming-tutorial-for-beginners/); “Primitive Data Types And Alternatives in Java Programming”: “Step 05 - Introduction to BigDecimal Java Class” (6:58), “Step 06 - BigDecimal Puzzles - Adding Integers” (3:13), and “Step 07 - BigDecimal Exercises - Simple Interest Calculation” (11:34), 21:45 total. Direct BigDecimal foundation; use the contract’s premium formula and the linked rounding guide. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-6---decimal-calculation-and-rounding).
 
 ## Learner seam
 

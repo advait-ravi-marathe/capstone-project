@@ -2,7 +2,7 @@
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 
-**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. “React Essentials - Deep Dive”: “User Input & Two-Way-Binding” (7:42). “Working with Forms & User Input”: “Managing & Getting User Input via State & Generic Handlers” (11:12). Total 18:54. These teach controlled input patterns; client/server error reconciliation remains a project exercise. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md).
+**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. “React Essentials - Deep Dive”: “User Input & Two-Way-Binding” (7:42). “Working with Forms & User Input”: “Managing & Getting User Input via State & Generic Handlers” (11:12). Total 18:54. These teach controlled input patterns; use the linked example for client/server error reconciliation. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-18---input-and-server-errors).
 
 ## Learner seam
 

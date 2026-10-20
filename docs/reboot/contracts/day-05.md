@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Java functional programming appendices”. Watch: “Core concepts of Functional Programming” (6:43); “Step 05 - Do Functional Programming Exercises with Streams, Filters and Lambdas” (5:30). 12:13 viewing. Supporting material only; pure functions, decision tables, and this insurance eligibility rule require a supplied worked example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Java functional programming appendices”. Watch: “Core concepts of Functional Programming” (6:43); “Step 05 - Do Functional Programming Exercises with Streams, Filters and Lambdas” (5:30). 12:13 viewing. Supporting material only; pure functions, decision tables, and this insurance eligibility rule use the linked worked example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-5---pure-eligibility-decision).
 
 ## Learner seam
 

@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL concurrent service contract is installed with a barrier and an isolated composite-key table. The writer is an explicit learner TODO; an HTTP endpoint/200-response integration remains open.
 
-**Course lesson:** No directly matching lecture in the verified owned course catalog. No concurrency/idempotency/unique-key race lesson was found. Supply a two-request worked example grounded in the fixed database test. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy.
+**Course lesson:** No exact verified course lecture covers this database race. Use the linked two-request example grounded in the fixed database test; the database constraint remains the cross-instance guard. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-25---concurrent-idempotent-selection).
 
 ## Learner seam
 

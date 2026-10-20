@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Spring Framework: Getting Started with Java Spring Framework — Playing with Spring Framework; Key Questions about Spring”. Watch: “Step 09 - Creating More Java Spring Beans in Spring Java Configuration File” (6:41); “Step 13 - Exploring Java Bean vs POJO vs Spring Bean” (5:15). 11:56 viewing. These are introductory bean concepts, not a lesson on immutable catalog invariants; add only a small supplied records/collections example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Spring Framework: Getting Started with Java Spring Framework — Playing with Spring Framework; Key Questions about Spring”. Watch: “Step 09 - Creating More Java Spring Beans in Spring Java Configuration File” (6:41); “Step 13 - Exploring Java Bean vs POJO vs Spring Bean” (5:15). 11:56 viewing. These are introductory bean concepts, not a lesson on immutable catalog invariants; use the linked records/collections worked example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-4---immutable-catalog-values).
 
 ## Learner seam
 

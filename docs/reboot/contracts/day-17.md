@@ -2,7 +2,7 @@
 
 **State:** Minimal React/TypeScript workspace, fixed component tests, and learner TODO are installed. The UI workspace builds, while all component behavior tests currently fail at the placeholder.
 
-**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/), Academind by Maximilian Schwarzmüller; course access is not confirmed. “React Essentials - Components, JSX, Props, State & More”: “Making Components Reusable with Props [Core Concept]” (9:06). “React + TypeScript”: “Working with Props & TypeScript” (14:20). Total 23:26. Use these for typed props only; discriminated UI-state behavior still needs the project example. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md).
+**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/), Academind by Maximilian Schwarzmüller; course access is not confirmed. “React Essentials - Components, JSX, Props, State & More”: “Making Components Reusable with Props [Core Concept]” (9:06). “React + TypeScript”: “Working with Props & TypeScript” (14:20). Total 23:26. Use these for typed props only; use the linked project example for discriminated UI-state behavior. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-17---typed-props-and-ui-state).
 
 ## Learner seam
 
