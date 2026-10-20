@@ -8,6 +8,10 @@ import assignments.delivery.IssuanceWorkStore;
 import assignments.delivery.JdbcIssuanceWorkStore;
 import assignments.delivery.LocalIssuanceDeliveryCommand;
 import assignments.delivery.OneBatchDispatcher;
+import assignments.delivery.recovery.JdbcManualRecoveryStore;
+import assignments.delivery.recovery.ManualRecoveryService;
+import assignments.delivery.recovery.RecoveryAwareIssuanceWorkStore;
+import assignments.delivery.recovery.LocalManualRecoveryCommand;
 import assignments.renewal.PolicyRenewalPreviewController;
 import assignments.renewal.PreviewAdmission;
 import assignments.renewal.PreviewCapacityPolicy;
@@ -21,6 +25,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -36,7 +41,7 @@ import java.time.ZoneOffset;
 @Configuration(proxyBeanMethods = false)
 @Profile("local")
 @Import({PolicyRenewalPreviewController.class, PreviewCapacityExceptionHandler.class,
-        LocalIssuanceDeliveryCommand.class})
+        LocalIssuanceDeliveryCommand.class, LocalManualRecoveryCommand.class})
 public class LocalRuntimeConfiguration {
     @Bean
     Clock localClock(@Value("${coverstory.local.fixed-clock:}") String fixedClock) {
@@ -65,15 +70,35 @@ public class LocalRuntimeConfiguration {
     }
 
     @Bean
-    IssuanceWorkStore issuanceWorkStore(@Qualifier("issuanceDeliveryJdbcTemplate") JdbcTemplate issuanceDeliveryJdbcTemplate) {
+    IssuanceWorkStore rawIssuanceWorkStore(@Qualifier("issuanceDeliveryJdbcTemplate") JdbcTemplate issuanceDeliveryJdbcTemplate) {
         return new JdbcIssuanceWorkStore(issuanceDeliveryJdbcTemplate);
     }
 
     @Bean
-    OneBatchDispatcher oneBatchDispatcher(IssuanceWorkStore store,
+    JdbcManualRecoveryStore jdbcManualRecoveryStore(@Qualifier("issuanceDeliveryJdbcTemplate") JdbcTemplate jdbc) {
+        return new JdbcManualRecoveryStore(jdbc);
+    }
+
+    @Bean
+    @Primary
+    IssuanceWorkStore issuanceWorkStore(@Qualifier("rawIssuanceWorkStore") IssuanceWorkStore raw,
+            JdbcManualRecoveryStore recovery,
+            @Qualifier("issuanceDeliveryJdbcTemplate") JdbcTemplate jdbc) {
+        return new RecoveryAwareIssuanceWorkStore(raw, recovery, jdbc);
+    }
+
+    @Bean
+    OneBatchDispatcher oneBatchDispatcher(@Qualifier("issuanceWorkStore") IssuanceWorkStore store,
             @Qualifier("issuanceDeliveryTransactionManager")
             PlatformTransactionManager issuanceDeliveryTransactionManager) {
         return new OneBatchDispatcher(store, issuanceDeliveryTransactionManager);
+    }
+
+    @Bean
+    ManualRecoveryService manualRecoveryService(JdbcManualRecoveryStore recovery,
+            @Qualifier("issuanceWorkStore") IssuanceWorkStore guarded,
+            @Qualifier("issuanceDeliveryTransactionManager") PlatformTransactionManager tx) {
+        return new ManualRecoveryService(recovery, guarded, tx);
     }
 
     @Bean

@@ -1,0 +1,97 @@
+{
+  "status": "local_validation_passed_pending_publish_and_exact_head_ci",
+  "base_sha": "640ae79d1d07801634664b8a02056b053504631e",
+  "tested_tree_sha": null,
+  "code_commit_sha": null,
+  "final_head_sha": null,
+  "exact_head_ci": null,
+  "tests": [
+    {
+      "command": "./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
+      "result": "passed",
+      "details": "Packaged executable JAR from the restored starter TODO sources with Java 21 and local frontend assets."
+    },
+    {
+      "command": "./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 test",
+      "result": "passed",
+      "tests": 50,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "details": "Default instructor/infrastructure regression suite; includes prior browser transport infrastructure harness. No learner acceptance tests were counted as completion."
+    },
+    {
+      "command": "python3 -m unittest scripts/test_continuation_113_126_manifest.py scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+      "result": "passed",
+      "tests": 22,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-09",
+      "result": "passed",
+      "details": "Canonical queue preserved; no new attempts or anchors recorded. Existing actual_first_attempt_date fields remain null; this does not assert private work was not done."
+    },
+    {
+      "command": "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest test",
+      "result": "expected_learner_todo_red",
+      "tests": 15,
+      "failures": 5,
+      "errors": 10,
+      "details": "Restored starter reached named Day 113/115/116/117/118/120/121/124 TODOs and prior Day 99/103 prerequisite TODOs. This is not instructor infrastructure failure and is not learner completion."
+    }
+  ],
+  "temporary_conforming_witnesses": [
+    {
+      "command": "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest,Day113To126InfrastructureTest test",
+      "result": "passed",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "details": "Temporary witnesses supplied existing Day 99 and Day 101\u2013104 prerequisites plus new Day 113/115\u2013118/120/121/124 seams. Real PostgreSQL acceptance included both controlled lock orders, row-state rollback, stale release/ABA, independent receipt visibility before ack, fresh-JVM hold/release, and V005 constraints."
+    },
+    {
+      "command": "./mvnw -Plocal-app -DskipTests clean package && ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test",
+      "result": "passed",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "details": "Temporary witnesses only; packaged executable JAR exercised inspect/quarantine/release/retry/replay and full state/source snapshots against disposable PostgreSQL. HTTP-client/JAR integration only; no new Chromium/UI claim."
+    }
+  ],
+  "negative_witnesses": [
+    {
+      "mutation": "filter quarantined rows after SQL LIMIT",
+      "result": "killed",
+      "details": "Day 118 selector failed with expected one eligible row but got zero."
+    },
+    {
+      "mutation": "ignore expected revision on release (boolean-only stale check)",
+      "result": "killed",
+      "details": "Day 117 ABA selector rejected the mutant and asserted revision 3/history preservation."
+    },
+    {
+      "mutation": "remove shared work-row FOR UPDATE lock",
+      "result": "killed",
+      "details": "Both PostgreSQL concurrency selectors failed their bounded actual-lock-wait assertions."
+    },
+    {
+      "mutation": "acknowledge before creating the receipt",
+      "result": "killed",
+      "details": "Day 120 selector observed ACK_WITHOUT_RECEIPT; no receipt was created first."
+    }
+  ],
+  "restoration": {
+    "status": "verified",
+    "existing_learner_sources_restored": {
+      "src/main/java/assignments/delivery/IssuanceEnvelope.java": "sha256:59cb4facbbfba4c88d4f0731abf586581be984049147c9cc37bf9a2bbde03937",
+      "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java": "sha256:1ca0467f8c0e585603f11c631a87a5e1bef481c0c3ae3ebc7c35aee36ef00951"
+    },
+    "new_learner_seams": "restored to named TODO implementations (Days 113, 115\u2013118, 120, 121, 124)",
+    "jar_rebuilt_from_restored_sources": true,
+    "git_diff_review": "No temporary witness edits remain; temporary files are under /tmp only."
+  },
+  "board_changes": false,
+  "main_branch_changes": false,
+  "notes": "Temporary witness passes establish test-harness behavior only. User learner status remains not_attempted. This packaged selector covers the new explicit local recovery CLI and PostgreSQL, not Chromium or the existing protected issuance/renewal compatibility selectors."
+}

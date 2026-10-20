@@ -19,10 +19,19 @@ class LocalSchemaMigrationInfrastructureTest {
             DataSource dataSource = postgres.getPostgresDatabase();
             Flyway flyway = Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load();
 
-            assertEquals(4, flyway.migrate().migrationsExecuted);
+            assertEquals(5, flyway.migrate().migrationsExecuted);
             assertEquals(3, countPolicies(dataSource));
             assertEquals(0, countRows(dataSource, "training_issuance_work"));
             assertEquals(0, countRows(dataSource, "training_issuance_delivery_receipt"));
+            assertEquals(0, countRows(dataSource, "training_issuance_recovery_history"));
+            try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
+                statement.executeUpdate("""
+                        INSERT INTO training_issuance_work(policy_id,source_version,event_type,effective_date,envelope_schema_version)
+                        SELECT policy_id,version,event_type,effective_date,1 FROM training_policy_lifecycle_event
+                         WHERE event_type='ISSUED'
+                        """);
+            }
+            assertEquals(3, count(dataSource, "SELECT count(*) FROM training_issuance_work WHERE control_revision=0 AND quarantined_at IS NULL"));
             try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
                 statement.executeUpdate("""
                         INSERT INTO training_policy_lifecycle
@@ -37,11 +46,12 @@ class LocalSchemaMigrationInfrastructureTest {
             assertEquals(0, flyway.migrate().migrationsExecuted);
             assertEquals(4, countPolicies(dataSource));
             assertTrue(hasPolicy(dataSource, "policy-sentinel"));
+            assertEquals(3, count(dataSource, "SELECT count(*) FROM training_issuance_work WHERE control_revision=0 AND quarantined_at IS NULL"));
         }
     }
 
     private static int countRows(DataSource dataSource, String table) throws Exception {
-        if (!table.matches("training_issuance_(work|delivery_receipt)")) throw new IllegalArgumentException("fixed table only");
+        if (!table.matches("training_issuance_(work|delivery_receipt|recovery_history)")) throw new IllegalArgumentException("fixed table only");
         try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();
              var rows = statement.executeQuery("SELECT count(*) FROM " + table)) {
             assertTrue(rows.next());
@@ -55,6 +65,11 @@ class LocalSchemaMigrationInfrastructureTest {
             assertTrue(rows.next());
             return rows.getInt(1);
         }
+    }
+
+    private static int count(DataSource dataSource, String sql) throws Exception {
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();
+             var rows = statement.executeQuery(sql)) { assertTrue(rows.next()); return rows.getInt(1); }
     }
 
     private static boolean hasPolicy(DataSource dataSource, String policyId) throws Exception {

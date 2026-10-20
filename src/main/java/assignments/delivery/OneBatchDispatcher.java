@@ -25,6 +25,8 @@ public final class OneBatchDispatcher {
         TransactionTemplate template = new TransactionTemplate(manager);
         template.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
         template.setReadOnly(false);
+        // PostgreSQL's existing default, made explicit for the row-lock recovery contract.
+        template.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
         return template;
     }
 

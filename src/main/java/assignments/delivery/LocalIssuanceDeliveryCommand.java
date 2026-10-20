@@ -21,6 +21,8 @@ public final class LocalIssuanceDeliveryCommand implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        if (args.containsOption("coverstory.delivery.run-once") && args.containsOption("coverstory.recovery.action"))
+            throw new IllegalArgumentException("delivery and recovery modes are mutually exclusive");
         if (!args.containsOption("coverstory.delivery.run-once")) return;
         int result = execute(args, System.out, System.err);
         int exitCode = SpringApplication.exit(context, () -> result);

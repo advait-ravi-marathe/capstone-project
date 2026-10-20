@@ -7,9 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = "assignments.local")
 public class LocalCoverStoryApplication {
     public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(LocalCoverStoryApplication.class);
+        boolean recoveryOnly = java.util.Arrays.stream(args).anyMatch(arg -> arg.startsWith("--coverstory.recovery.action="));
+        SpringApplication application = new SpringApplication(recoveryOnly
+                ? assignments.delivery.recovery.RecoveryOnlyApplication.class : LocalCoverStoryApplication.class);
         application.setAdditionalProfiles("local");
-        if (java.util.Arrays.stream(args).anyMatch("--coverstory.delivery.run-once"::equals)) {
+        if (recoveryOnly || java.util.Arrays.stream(args).anyMatch("--coverstory.delivery.run-once"::equals)) {
             application.setWebApplicationType(org.springframework.boot.WebApplicationType.NONE);
         }
         application.setDefaultProperties(java.util.Map.of("server.address", "127.0.0.1"));
