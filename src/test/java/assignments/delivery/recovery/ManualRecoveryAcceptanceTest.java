@@ -50,14 +50,23 @@ class ManualRecoveryAcceptanceTest {
  @Test void day116QuarantineIsAtomicAndReceiptAware() throws Exception {
   try(Fixture f=new Fixture()) {
    f.insertWork("hold-a",1,false);
+   var key=new IssuanceSourceKey("hold-a",1);
+   f.service.quarantine(key,0,RecoveryReason.MANUAL_HOLD);
+   f.service.release(key,1,RecoveryReason.REVIEWED_FOR_RETRY);
    String sourceBefore=f.sourceSnapshot("hold-a"),receiptBefore=f.receiptSnapshot("hold-a");
-   RecoveryTransitionResult result=f.service.quarantine(new IssuanceSourceKey("hold-a",1),0,RecoveryReason.MANUAL_HOLD);
-   assertEquals(1,result.controlRevision());
-   assertEquals("1|MANUAL_HOLD",f.jdbc.queryForObject("SELECT control_revision||'|'||quarantine_reason FROM training_issuance_work WHERE policy_id='hold-a' AND source_version=1",String.class));
-   assertEquals(1,f.jdbc.queryForObject("SELECT count(*) FROM training_issuance_recovery_history WHERE policy_id='hold-a' AND source_version=1 AND control_revision=1 AND action='QUARANTINE'",Integer.class));
-   String heldSnapshot=f.fullSnapshot("hold-a");assertTrue(heldSnapshot.contains("MANUAL_HOLD"));assertEquals(sourceBefore,f.sourceSnapshot("hold-a"));assertEquals(receiptBefore,f.receiptSnapshot("hold-a"));
-   assertThrows(RecoveryPreconditionException.class,()->f.service.quarantine(new IssuanceSourceKey("hold-a",1),1,RecoveryReason.MANUAL_HOLD));
-   assertEquals(1,f.jdbc.queryForObject("SELECT count(*) FROM training_issuance_recovery_history WHERE policy_id='hold-a' AND source_version=1",Integer.class));
+   String immutableWorkBefore=f.immutableWorkSnapshot("hold-a");List<String> historyBefore=f.historyRows("hold-a");
+   String preTransition=f.fullSnapshot("hold-a");
+   RecoveryTransitionResult result=f.service.quarantine(key,2,RecoveryReason.MANUAL_HOLD);
+   assertEquals(3,result.controlRevision());
+   assertEquals("3|MANUAL_HOLD",f.jdbc.queryForObject("SELECT control_revision||'|'||quarantine_reason FROM training_issuance_work WHERE policy_id='hold-a' AND source_version=1",String.class));
+   assertNotNull(f.jdbc.queryForObject("SELECT quarantined_at FROM training_issuance_work WHERE policy_id='hold-a' AND source_version=1",java.time.OffsetDateTime.class));
+   assertEquals(immutableWorkBefore,f.immutableWorkSnapshot("hold-a"),"quarantine changes only the documented control columns");
+   assertEquals(sourceBefore,f.sourceSnapshot("hold-a"));assertEquals(receiptBefore,f.receiptSnapshot("hold-a"));
+   assertHistoryAppend(f,"hold-a",historyBefore,3,"QUARANTINE","MANUAL_HOLD");
+   String heldSnapshot=f.fullSnapshot("hold-a");
+   assertNotEquals(preTransition,heldSnapshot);
+   assertThrows(RecoveryPreconditionException.class,()->f.service.quarantine(key,3,RecoveryReason.MANUAL_HOLD));
+   assertEquals(heldSnapshot,f.fullSnapshot("hold-a"),"refused repeated quarantine preserves every row and timestamp");
   }
  }
  @Test void day116ControlAndHistoryRollbackTogetherOnHistoryInsertFailure() throws Exception {
@@ -72,13 +81,22 @@ class ManualRecoveryAcceptanceTest {
  }
  @Test void day117ReleaseRequiresExpectedRevisionAndRejectsAba() throws Exception {
   try(Fixture f=new Fixture()) {
-   f.insertWork("aba-a",1,false); var k=new IssuanceSourceKey("aba-a",1);String sourceBefore=f.sourceSnapshot("aba-a"),receiptBefore=f.receiptSnapshot("aba-a");
-   f.service.quarantine(k,0,RecoveryReason.MANUAL_HOLD); f.service.release(k,1,RecoveryReason.REVIEWED_FOR_RETRY);
+   f.insertWork("aba-a",1,false); var k=new IssuanceSourceKey("aba-a",1);
+   f.service.quarantine(k,0,RecoveryReason.MANUAL_HOLD);f.service.release(k,1,RecoveryReason.REVIEWED_FOR_RETRY);
+   String immutableWorkBefore=f.immutableWorkSnapshot("aba-a"),sourceBefore=f.sourceSnapshot("aba-a"),receiptBefore=f.receiptSnapshot("aba-a");
+   List<String> historyBefore=f.historyRows("aba-a");
+   f.service.quarantine(k,2,RecoveryReason.MANUAL_HOLD); f.service.release(k,3,RecoveryReason.REVIEWED_FOR_RETRY);
    String releasedSnapshot=f.fullSnapshot("aba-a");
-   f.service.quarantine(k,2,RecoveryReason.OBSERVED_FAILURE);
+   assertEquals(immutableWorkBefore,f.immutableWorkSnapshot("aba-a"));
+   assertHistoryPrefix(f,"aba-a",historyBefore);
+   f.service.quarantine(k,4,RecoveryReason.OBSERVED_FAILURE);
+   assertEquals("5|OBSERVED_FAILURE",f.jdbc.queryForObject("SELECT control_revision||'|'||quarantine_reason FROM training_issuance_work WHERE policy_id='aba-a' AND source_version=1",String.class));
+   List<String> beforeStaleRelease=f.historyRows("aba-a");String stateBeforeStale=f.fullSnapshot("aba-a");
    assertThrows(RecoveryPreconditionException.class,()->f.service.release(k,1,RecoveryReason.REVIEWED_FOR_RETRY));
-   assertEquals("3|OBSERVED_FAILURE",f.jdbc.queryForObject("SELECT control_revision||'|'||quarantine_reason FROM training_issuance_work WHERE policy_id='aba-a' AND source_version=1",String.class));
-   assertEquals(List.of("QUARANTINE","RELEASE","QUARANTINE"),f.jdbc.queryForList("SELECT action FROM training_issuance_recovery_history WHERE policy_id='aba-a' ORDER BY control_revision",String.class));
+   assertEquals(stateBeforeStale,f.fullSnapshot("aba-a"),"stale release must not change any work, receipt, or history field");
+   assertEquals(beforeStaleRelease,f.historyRows("aba-a"));
+   assertEquals(immutableWorkBefore,f.immutableWorkSnapshot("aba-a"));
+   assertEquals(List.of("QUARANTINE","RELEASE","QUARANTINE","RELEASE","QUARANTINE"),f.jdbc.queryForList("SELECT action FROM training_issuance_recovery_history WHERE policy_id='aba-a' ORDER BY control_revision",String.class));
    assertNotEquals(releasedSnapshot,f.fullSnapshot("aba-a"));assertEquals(sourceBefore,f.sourceSnapshot("aba-a"));assertEquals(receiptBefore,f.receiptSnapshot("aba-a"));
   }
  }
@@ -152,9 +170,16 @@ class ManualRecoveryAcceptanceTest {
  @Test void day120RejectsAmbientBeforeInspection() throws Exception {
   try(Fixture f=new Fixture()) {
    f.insertWork("ambient-a",1,false);
-   new TransactionTemplate(f.tx).executeWithoutResult(s->{
-    RecoveryPreconditionException failure=assertThrows(RecoveryPreconditionException.class,()->f.service.retryOne(new IssuanceSourceKey("ambient-a",1),0));
+   CountingDataSource counted=new CountingDataSource(f.ds);JdbcTemplate observedJdbc=new JdbcTemplate(counted);
+   JdbcManualRecoveryStore observedStore=new JdbcManualRecoveryStore(observedJdbc);
+   var observedGuarded=new RecoveryAwareIssuanceWorkStore(new JdbcIssuanceWorkStore(observedJdbc),observedStore,observedJdbc);
+   var observedTx=new DataSourceTransactionManager(counted);
+   var observedService=new ManualRecoveryService(observedStore,observedGuarded,observedTx);
+   new TransactionTemplate(observedTx).executeWithoutResult(s->{
+    int statementsBefore=counted.preparedStatements();
+    RecoveryPreconditionException failure=assertThrows(RecoveryPreconditionException.class,()->observedService.retryOne(new IssuanceSourceKey("ambient-a",1),0));
     assertEquals(RecoveryPreconditionException.Code.AMBIENT_TRANSACTION,failure.code());
+    assertEquals(statementsBefore,counted.preparedStatements(),"ambient rejection occurs before inspection or any JDBC store call");
    });
    assertEquals("0|-",f.jdbc.queryForObject("SELECT control_revision||'|'||coalesce(quarantine_reason,'-') FROM training_issuance_work WHERE policy_id='ambient-a'",String.class));
   }
@@ -236,7 +261,29 @@ class ManualRecoveryAcceptanceTest {
   String sourceSnapshot(String id){return jdbc.queryForObject("SELECT (SELECT coalesce(jsonb_agg(to_jsonb(p) ORDER BY policy_id),'[]'::jsonb)::text FROM training_policy_lifecycle p WHERE policy_id=?)||'|'||(SELECT coalesce(jsonb_agg(to_jsonb(e) ORDER BY version),'[]'::jsonb)::text FROM training_policy_lifecycle_event e WHERE policy_id=?)",String.class,id,id);}
   String receiptSnapshot(String id){return jdbc.queryForObject("SELECT coalesce(jsonb_agg(to_jsonb(r) ORDER BY source_version),'[]'::jsonb)::text FROM training_issuance_delivery_receipt r WHERE policy_id=?",String.class,id);}
   String historySnapshot(String id){return jdbc.queryForObject("SELECT coalesce(jsonb_agg(to_jsonb(h) ORDER BY control_revision),'[]'::jsonb)::text FROM training_issuance_recovery_history h WHERE policy_id=?",String.class,id);}
+  String immutableWorkSnapshot(String id){return jdbc.queryForObject("SELECT coalesce(jsonb_agg(to_jsonb(w)-'control_revision'-'quarantined_at'-'quarantine_reason' ORDER BY source_version),'[]'::jsonb)::text FROM training_issuance_work w WHERE policy_id=?",String.class,id);}
+  List<String> historyRows(String id){return jdbc.queryForList("SELECT to_jsonb(h)::text FROM training_issuance_recovery_history h WHERE policy_id=? ORDER BY source_version,control_revision",String.class,id);}
   String fullSnapshot(String id){return sourceSnapshot(id)+"|WORK="+jdbc.queryForObject("SELECT coalesce(jsonb_agg(to_jsonb(w) ORDER BY source_version),'[]'::jsonb)::text FROM training_issuance_work w WHERE policy_id=?",String.class,id)+"|RECEIPT="+receiptSnapshot(id)+"|HISTORY="+historySnapshot(id);}
   public void close() throws Exception {pg.close();}
+ }
+ private static void assertHistoryPrefix(Fixture f,String id,List<String> before){List<String> after=f.historyRows(id);assertTrue(after.size()>=before.size());assertEquals(before,after.subList(0,before.size()),"existing history rows remain byte-for-byte equivalent as JSON");}
+ private static void assertHistoryAppend(Fixture f,String id,List<String> before,int revision,String action,String reason){
+  List<String> after=f.historyRows(id);assertEquals(before.size()+1,after.size());assertEquals(before,after.subList(0,before.size()),"transition may append but cannot rewrite prior history");
+  String row=f.jdbc.queryForObject("SELECT control_revision||'|'||action||'|'||reason_code||'|'||(decided_at IS NOT NULL) FROM training_issuance_recovery_history WHERE policy_id=? AND source_version=1 AND control_revision=?",String.class,id,revision);
+  assertEquals(revision+"|"+action+"|"+reason+"|true",row);
+ }
+ private static final class CountingDataSource extends org.springframework.jdbc.datasource.DelegatingDataSource {
+  private final java.util.concurrent.atomic.AtomicInteger prepared=new java.util.concurrent.atomic.AtomicInteger();
+  CountingDataSource(DataSource target){super(target);}
+  int preparedStatements(){return prepared.get();}
+  @Override public java.sql.Connection getConnection() throws java.sql.SQLException{return instrument(super.getConnection());}
+  @Override public java.sql.Connection getConnection(String user,String password) throws java.sql.SQLException{return instrument(super.getConnection(user,password));}
+  private java.sql.Connection instrument(java.sql.Connection connection){
+   return (java.sql.Connection)java.lang.reflect.Proxy.newProxyInstance(connection.getClass().getClassLoader(),new Class<?>[]{java.sql.Connection.class},(proxy,method,args)->{
+    Object result;try{result=method.invoke(connection,args);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause();}
+    if(result instanceof java.sql.PreparedStatement statement){prepared.incrementAndGet();return statement;}
+    return result;
+   });
+  }
  }
 }

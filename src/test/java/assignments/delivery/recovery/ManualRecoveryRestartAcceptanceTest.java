@@ -50,7 +50,7 @@ class ManualRecoveryRestartAcceptanceTest {
     assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM training_issuance_delivery_receipt WHERE policy_id='recover-held-a' AND source_version=1",Integer.class));
     String committedReceipt=jdbc.queryForObject("SELECT to_jsonb(r)::text FROM training_issuance_delivery_receipt r WHERE policy_id='recover-held-a' AND source_version=1",String.class);
     assertNull(jdbc.queryForObject("SELECT acknowledged_at FROM training_issuance_work WHERE policy_id='recover-held-a' AND source_version=1",java.time.OffsetDateTime.class));
-    String pendingAfterReceipt=fullSnapshot(jdbc,"recover-held-a");
+    String pendingAfterReceipt=snapshotWithoutAck(jdbc,"recover-held-a");
     terminate(crashed);crashed=null;
     recovery=retryChild(pg.getJdbcUrl("postgres","postgres"),output,"retry","recover-held-a","2").start();
     assertNotEquals(crashedPid,recovery.pid());
@@ -58,8 +58,8 @@ class ManualRecoveryRestartAcceptanceTest {
     assertTrue(Files.readString(output).contains("RECOVERY_RESULT=RECONCILED"));
     assertEquals(committedReceipt,jdbc.queryForObject("SELECT to_jsonb(r)::text FROM training_issuance_delivery_receipt r WHERE policy_id='recover-held-a' AND source_version=1",String.class));
     assertNotNull(jdbc.queryForObject("SELECT acknowledged_at FROM training_issuance_work WHERE policy_id='recover-held-a' AND source_version=1",java.time.OffsetDateTime.class));
-    String reconciled=fullSnapshot(jdbc,"recover-held-a");
-    assertEquals(pendingAfterReceipt.replace("ACK=NULL","ACK=SET"),reconciled,"fresh JVM reconciliation changes only acknowledgement; receipt, source, control history, and captured payload remain stable");
+    String reconciled=snapshotWithoutAck(jdbc,"recover-held-a");
+    assertEquals(pendingAfterReceipt,reconciled,"fresh JVM reconciliation changes only acknowledged_at; every other work field, receipt field/timestamp, and history row remains stable");
     assertEquals(sourceA,sourceSnapshot(jdbc,"recover-held-a"));
     assertEquals("QUARANTINE,RELEASE",jdbc.queryForObject("SELECT string_agg(action,',' ORDER BY control_revision) FROM training_issuance_recovery_history WHERE policy_id='recover-held-a'",String.class));
     assertEquals(2,jdbc.queryForObject("SELECT control_revision FROM training_issuance_work WHERE policy_id='recover-held-a'",Integer.class));
@@ -96,7 +96,13 @@ class ManualRecoveryRestartAcceptanceTest {
  }
  private static String sourceSnapshot(JdbcTemplate j,String id){return j.queryForObject("SELECT coalesce((SELECT to_jsonb(p)::text FROM training_policy_lifecycle p WHERE policy_id=?),'{}')||'|'||coalesce((SELECT jsonb_agg(to_jsonb(e) ORDER BY version)::text FROM training_policy_lifecycle_event e WHERE policy_id=?),'[]')",String.class,id,id);}
  private static String fullSnapshot(JdbcTemplate j,String id){
-  String work=j.queryForObject("SELECT 'REV='||control_revision||'|HOLD='||coalesce(quarantine_reason,'-')||'|ACK='||CASE WHEN acknowledged_at IS NULL THEN 'NULL' ELSE 'SET' END||'|CAPTURE='||captured_at::text FROM training_issuance_work WHERE policy_id=? AND source_version=1",String.class,id);
+  String work=j.queryForObject("SELECT to_jsonb(w)::text FROM training_issuance_work w WHERE policy_id=? AND source_version=1",String.class,id);
+  String receipt=j.queryForObject("SELECT coalesce(to_jsonb(r)::text,'ABSENT') FROM (SELECT 1) x LEFT JOIN training_issuance_delivery_receipt r ON r.policy_id=? AND r.source_version=1",String.class,id);
+  String history=j.queryForObject("SELECT coalesce(jsonb_agg(to_jsonb(h) ORDER BY control_revision)::text,'[]') FROM training_issuance_recovery_history h WHERE policy_id=? AND source_version=1",String.class,id);
+  return work+"|RECEIPT="+receipt+"|HISTORY="+history;
+ }
+ private static String snapshotWithoutAck(JdbcTemplate j,String id){
+  String work=j.queryForObject("SELECT (to_jsonb(w)-'acknowledged_at')::text FROM training_issuance_work w WHERE policy_id=? AND source_version=1",String.class,id);
   String receipt=j.queryForObject("SELECT coalesce(to_jsonb(r)::text,'ABSENT') FROM (SELECT 1) x LEFT JOIN training_issuance_delivery_receipt r ON r.policy_id=? AND r.source_version=1",String.class,id);
   String history=j.queryForObject("SELECT coalesce(jsonb_agg(to_jsonb(h) ORDER BY control_revision)::text,'[]') FROM training_issuance_recovery_history h WHERE policy_id=? AND source_version=1",String.class,id);
   return work+"|RECEIPT="+receipt+"|HISTORY="+history;
