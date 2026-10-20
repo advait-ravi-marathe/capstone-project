@@ -1,10 +1,20 @@
 {
-  "status": "local_validation_passed_pending_publish_and_exact_head_ci",
+  "status": "verified_exact_head_ci_success",
   "base_sha": "640ae79d1d07801634664b8a02056b053504631e",
-  "tested_tree_sha": null,
-  "code_commit_sha": null,
-  "final_head_sha": null,
-  "exact_head_ci": null,
+  "tested_tree_sha": "91cb09ffc7e680c50c6a0025875b69166e36cbee",
+  "code_commit_sha": "c46066108098e52e8074550f6d0946a77ee4f8c8",
+  "final_head_sha": "c46066108098e52e8074550f6d0946a77ee4f8c8",
+  "exact_head_ci": {
+    "workflow": "CoverStory starter checks",
+    "run_number": 50,
+    "run_id": 39492589711,
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39492589711",
+    "head_sha": "c46066108098e52e8074550f6d0946a77ee4f8c8",
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-10-20T20:32:26Z",
+    "source": "Authenticated GitHub Actions run read; exact head SHA matched."
+  },
   "tests": [
     {
       "command": "./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
@@ -93,5 +103,5 @@
   },
   "board_changes": false,
   "main_branch_changes": false,
-  "notes": "Temporary witness passes establish test-harness behavior only. User learner status remains not_attempted. This packaged selector covers the new explicit local recovery CLI and PostgreSQL, not Chromium or the existing protected issuance/renewal compatibility selectors."
+  "notes": "Temporary witness passes establish test-harness behavior only. User learner status remains not_attempted. This packaged selector covers the new explicit local recovery CLI and PostgreSQL, not Chromium or the existing protected issuance/renewal compatibility selectors. Exact-head hosted CI #50 passed on c46066108098e52e8074550f6d0946a77ee4f8c8. The receipt update is metadata-only and records this tested code snapshot."
 }
