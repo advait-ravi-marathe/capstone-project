@@ -3,32 +3,35 @@
 ## Contract
 
 **Learner-owned seam:** `Day83 JAR + browser + PostgreSQL lock harness`
-**Status:** Contract defined; learner work not attempted.
+**Status:** Fixed instructor integration harness installed; learner implementation remains pending.
 **Time:** 180 minutes: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
 ### Expected behavior
 
-Start the built local application JAR against disposable PostgreSQL and drive its real read-only renewal-preview route from Chromium. In a test-owned transaction, hold an `ACCESS EXCLUSIVE` lock on the preview's policy table. Issue two browser-backed preview requests and observe both in PostgreSQL `pg_stat_activity` waiting on a lock before issuing a third. The third request must return HTTP 503 `PREVIEW_BUSY` immediately without a JDBC checkout. Release the lock in `finally`, verify both admitted requests and a user-triggered browser retry recover, and compare the policy, lifecycle-event and idempotency rows before and after. No fault route or production test hook.
+Start the built local application JAR against disposable PostgreSQL and drive its real read-only renewal-preview route from Chromium. In a test-owned transaction, hold an `ACCESS EXCLUSIVE` lock on the preview's policy table. Issue two browser-backed preview requests and observe both in PostgreSQL `pg_stat_activity` waiting on a lock before issuing a third. The third request must return HTTP 503 `PREVIEW_BUSY` immediately without a JDBC checkout. Release the lock in `finally`, verify both admitted requests recover, the third request presents an accessible busy state, a single explicit browser retry recovers, bounded metrics record route outcomes, and compare the policy, lifecycle-event and idempotency rows before and after. No fault route or production test hook.
 
 ### Acceptance and expected TODO state
 
-No runnable fixed acceptance selector is installed for this multi-process browser milestone yet; do not mistake the planning contract for executable coverage. The independent infrastructure selector checks contract shape only and never counts as learner completion.
+The fixed multi-process acceptance selector is installed. It runs the actual packaged application JAR, Chromium, and disposable PostgreSQL. It remains expected red until prerequisite learner seams are implemented; the separate infrastructure selector checks only contract shape.
 
-**Learner acceptance test:** not installed. The current evidence records this harness as blocked until its exact packaged-JAR/browser/real-lock implementation is added after prerequisite learner seams pass.
-**Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
+**Learner acceptance test:** `src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java`
+**Commands:** `npm --prefix frontend ci`; `npm --prefix frontend run build:local`; `./mvnw -Plocal-app -DskipTests package`; `./mvnw -Plearner-tests -Plocal-app -Dtest=Day83PackagedLockBrowserAcceptanceTest test` (run in order).
+**Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java` (contract shape only, not the real lock integration test)
 **Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 
 ## Implementation/testing allocation (85 minutes)
 
-Work only this contract. Keep synchronous MVC/JDBC, a process-local gate of 2, and the existing Hikari maximum of 4. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Preserve the owner-scoped Day 48 query and learner-owned SQL; do not edit it. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
+Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
-The harness must use real process/package/browser/database boundaries and fixed synthetic rows. Do not substitute `UPDATE`, a mock lock, a sleep, an app-level blocking call, or a test-only HTTP fault endpoint. Poll PostgreSQL's observed lock-wait state with a finite watchdog used only to fail a hung test. Preserve the Day 48 SQL TODO until the learner owns it; temporary witness implementations may be used locally for validation and must be restored before publication.
+The harness must use real process/package/browser/database boundaries and fixed synthetic rows. Do not substitute `UPDATE`, a mock lock, a sleep, an app-level blocking call, or a test-only HTTP fault endpoint. Poll PostgreSQL's observed lock-wait state with a finite watchdog used only to fail a hung test. Use the learner-completed Day 48 owner-scoped SQL without duplicating it. Temporary conforming witnesses may be used only for local integration validation and must be restored before publication.
 
 ## Concept/course allocation (25 minutes)
 
 Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
 
-- [PostgreSQL explicit locking — ACCESS EXCLUSIVE lock](https://www.postgresql.org/docs/18/explicit-locking.html)
+- [PostgreSQL explicit locking — ACCESS EXCLUSIVE mode](https://www.postgresql.org/docs/18/explicit-locking.html)
+- [PostgreSQL `pg_locks` — `granted=false` waiting rows](https://www.postgresql.org/docs/18/view-pg-locks.html)
+- [PostgreSQL monitoring stats — `pg_stat_activity` wait events](https://www.postgresql.org/docs/18/monitoring-stats.html)
 
 **Design sketch:** Sketch lock owner, blocked sessions and release signal; watchdog only prevents hangs.
 

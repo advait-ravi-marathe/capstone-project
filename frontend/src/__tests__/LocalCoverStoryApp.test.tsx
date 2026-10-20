@@ -53,6 +53,38 @@ describe('Day 66 local CoverStory route', () => {
     expect(screen.queryByRole('button', { name: /purchase|accept|renew now/i })).toBeNull();
   });
 
+  it('shows the real renewal route busy state and retries only after the user activates Retry', async () => {
+    let previewCalls = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url === '/api/session' && (!init || init.method === 'GET')) return response({ code: 'UNAUTHENTICATED' }, 401);
+      if (url === '/api/csrf') return response({ headerName: 'X-XSRF-TOKEN', token: 'synthetic-csrf' });
+      if (url === '/api/session') return response({ ownerId: 'owner-a' });
+      if (url.endsWith('/renewal-preview')) {
+        previewCalls += 1;
+        if (previewCalls === 1) return response({ code: 'PREVIEW_BUSY', message: 'Renewal preview is busy' }, 503);
+        return response({
+          policyId: 'policy-renewal-a', sourcePolicyVersion: 3, productVersion: 'home-secure-v1',
+          rateVersion: 'home-secure-rate-v1', currentAnnualPremiumRupees: '125.00', currency: 'INR',
+          nextTermEffectiveDate: '2027-01-15', notice: 'Reference only; not a renewal offer or coverage commitment.',
+        });
+      }
+      return response({ code: 'NOT_FOUND' }, 404);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    render(<LocalCoverStoryApp />);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Use owner-a' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'View preview' }));
+    expect(await screen.findByRole('status')).toHaveTextContent(/busy/i);
+    expect(screen.getByText(/policy-renewal-a/)).toBeTruthy();
+    expect(previewCalls).toBe(1);
+    await userEvent.click(screen.getByRole('button', { name: /retry/i }));
+    expect(await screen.findByRole('region', { name: 'Renewal preview' })).toBeTruthy();
+    expect(screen.getByText('Current annual premium (reference only): 125.00 INR')).toBeTruthy();
+    expect(previewCalls).toBe(2);
+  });
+
   it('issues, reads back and replays with the same client request ID', async () => {
     const requestBodies: string[] = [];
     let issueCount = 0;

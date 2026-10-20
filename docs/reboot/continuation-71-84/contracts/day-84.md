@@ -12,7 +12,7 @@ Run installed selectors; record known TODOs/blockers; explain bounds/recovery; k
 
 ### Acceptance and expected TODO state
 
-The learner selector is expected red at the explicit TODO until implemented. Day 83 is a future integration selector and is not installed or claimed runnable. The independent infrastructure selector checks contract shape only and never counts as learner completion.
+This is an instructor evidence/contract check, not a learner implementation acceptance test. Record learner implementation and integration outcomes separately; do not infer completion from this selector.
 
 **Learner acceptance test:** `src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java`
 **Learner command:** `./mvnw -Plearner-tests -Dtest=Day84ContractInfrastructureTest test`
@@ -21,7 +21,7 @@ The learner selector is expected red at the explicit TODO until implemented. Day
 
 ## Implementation/testing allocation (85 minutes)
 
-Work only this contract. Keep synchronous MVC/JDBC, a process-local gate of 2, and the existing Hikari maximum of 4. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Preserve the owner-scoped Day 48 query and learner-owned SQL; do not edit it. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
+Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
 Independent evidence review; no feature.
 

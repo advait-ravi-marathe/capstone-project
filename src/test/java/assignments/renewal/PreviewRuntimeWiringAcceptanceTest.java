@@ -17,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
   assertTrue(properties.lines().anyMatch(s->s.trim().equals("spring.datasource.hikari.maximum-pool-size=4")));
   assertTrue(properties.lines().anyMatch(s->s.trim().equals("spring.datasource.hikari.connection-timeout=1000")));
   String wiring=Files.readString(Path.of("src/main/java/assignments/local/LocalRuntimeConfiguration.java"));
-  assertTrue(wiring.contains("LEARNER TODO Day 79"));
+  assertTrue(wiring.contains("PreviewCapacityExceptionHandler.class"), "the real local app must register the 503 advice");
+  assertTrue(wiring.contains("PreviewMetrics metrics"), "the bounded store must receive the runtime metrics recorder");
  }
 
  @Test void actualLocalCompositionUsesOneSingletonDecoratorAroundTheExistingStore() throws Exception {
@@ -28,6 +29,8 @@ import static org.junit.jupiter.api.Assertions.*;
            "spring.datasource.hikari.maximum-pool-size", "4",
            "spring.datasource.hikari.connection-timeout", "1000")));
    context.registerBean("testDataSource", DataSource.class, () -> new DriverManagerDataSource());
+   context.registerBean("testMeterRegistry", io.micrometer.core.instrument.MeterRegistry.class,
+           io.micrometer.core.instrument.simple.SimpleMeterRegistry::new);
    context.register(LocalRuntimeConfiguration.class);
    context.refresh();
    PolicyRenewalReadStore first = context.getBean(PolicyRenewalReadStore.class);
@@ -38,6 +41,21 @@ import static org.junit.jupiter.api.Assertions.*;
    LocalApplicationComposition.Components components = context.getBean(LocalApplicationComposition.Components.class);
    assertSame(components.renewalReadStore(), delegate.get(first));
    assertEquals(1000, context.getBean(PreviewCapacityPolicy.class).connectionTimeoutMillis());
+  }
+ }
+
+ @Test void localConfigurationRejectsInvalidCapacityBeforeServingRequests() {
+  try (var context = new AnnotationConfigApplicationContext()) {
+   context.getEnvironment().setActiveProfiles("local");
+   context.getEnvironment().getPropertySources().addFirst(new MapPropertySource("invalid-test", Map.of(
+           "coverstory.preview.permit-capacity", "5",
+           "spring.datasource.hikari.maximum-pool-size", "4",
+           "spring.datasource.hikari.connection-timeout", "1000")));
+   context.registerBean("testDataSource", DataSource.class, () -> new DriverManagerDataSource());
+   context.registerBean("testMeterRegistry", io.micrometer.core.instrument.MeterRegistry.class,
+           io.micrometer.core.instrument.simple.SimpleMeterRegistry::new);
+   context.register(LocalRuntimeConfiguration.class);
+   assertThrows(org.springframework.beans.factory.BeanCreationException.class, context::refresh);
   }
  }
 }

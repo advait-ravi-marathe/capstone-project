@@ -1,8 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { RenewalPreviewBusyState } from './RenewalPreviewBusyState';
 
 describe('Day 81 manual preview recovery', () => {
+  afterEach(cleanup);
   it('announces busy state, keeps policy context, and retries only on explicit action', () => {
     const onRetry = vi.fn();
     render(<RenewalPreviewBusyState policyId="policy-demo" state="busy" onRetry={onRetry} />);

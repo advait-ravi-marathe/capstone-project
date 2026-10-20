@@ -1,5 +1,5 @@
 {
-  "title": "Days 71–84 planning export; documentation only, no board writes",
+  "title": "Days 71\u201384 planning export; documentation only, no board writes",
   "story_count": 14,
   "sprint_boundaries": [
     {
@@ -18,9 +18,9 @@
       "budget_minutes": 180,
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-71.md",
-        "acceptance_reference": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
+        "acceptance_reference": "Instructor evidence review; no learner acceptance selector",
         "evidence_reference": "evidence/continuation-71-84/day-71.json",
-        "acceptance_test_path": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
+        "acceptance_test_path": null,
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
       },
       "java_dsa": {
@@ -35,12 +35,12 @@
     {
       "day_number": 72,
       "date": "2026-12-30",
-      "title": "Validate finite preview capacity policy",
+      "title": "Validate preview gate and pool bounds; DSA review/consolidation",
       "sprint": "Sprint 6",
       "budget_minutes": 180,
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-72.md",
-        "acceptance_reference": "src/test/java/assignments/renewal/PreviewCapacityPolicyAcceptanceTest.java",
+        "acceptance_reference": "PreviewCapacityPolicy.validate() and runtime configuration validation",
         "evidence_reference": "evidence/continuation-71-84/day-72.json",
         "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityPolicyAcceptanceTest.java",
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
@@ -244,9 +244,10 @@
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-81.md",
         "acceptance_reference": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
         "evidence_reference": "evidence/continuation-71-84/day-81.json",
-        "acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
-        "acceptance_command": "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx"
+        "acceptance_command": "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx",
+        "integration_acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -289,7 +290,7 @@
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-83.md",
         "acceptance_reference": null,
         "evidence_reference": "evidence/continuation-71-84/day-83.json",
-        "acceptance_test_path": null,
+        "acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
       },
       "java_dsa": {
@@ -309,9 +310,9 @@
       "budget_minutes": 180,
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-84.md",
-        "acceptance_reference": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
+        "acceptance_reference": "Instructor evidence review; no learner acceptance selector",
         "evidence_reference": "evidence/continuation-71-84/day-84.json",
-        "acceptance_test_path": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
+        "acceptance_test_path": null,
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
       },
       "java_dsa": {

@@ -8,7 +8,7 @@ public final class PreviewAdmission {
     private final Semaphore permits;
 
     public PreviewAdmission(PreviewCapacityPolicy policy) {
-        this.permits = new Semaphore(policy.permitCapacity(), true);
+        this.permits = new Semaphore(policy.permitCapacity());
     }
 
     public Optional<PreviewLease> tryEnter() {

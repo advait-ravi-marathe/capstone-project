@@ -4,51 +4,40 @@
   "scope": "Days 71-84 contracts, instructor harnesses and deliberate learner seams; no learner solution implemented",
   "verification": [
     {
-      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=Day71To84InfrastructureTest,Day84ContractInfrastructureTest test",
-      "result": "PASS, 3 tests"
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app -DskipTests package",
+      "result": "PASS; packaged Spring Boot JAR; project compiled with Java 21."
     },
     {
-      "command": "./mvnw -Plearner-tests -Dtest=PreviewAdmissionAcceptanceTest,PreviewLeaseAcceptanceTest,BoundedPolicyRenewalReadStoreAcceptanceTest,PreviewRecoveryAcceptanceTest,PreviewCapacityHttpAcceptanceTest,PreviewMetricsAcceptanceTest,PreviewRuntimeWiringAcceptanceTest,PathSumAcceptanceTest,KthSmallestInBstAcceptanceTest test (with documented JDK/Maven settings)",
-      "result": "EXPECTED TODO RED, 12 tests: 1 failure (Day79 wiring TODO), 10 errors at explicit Day73-75/78/80 and DSA TODOs, 1 pass; exit 1"
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 test",
+      "result": "39 tests: 38 pass; LocalPackagedRuntimeInfrastructureTest errors because Day72 learner TODO PreviewCapacityPolicy.validate() intentionally blocks local-app startup. This is the expected saved-learner state; no completion inferred."
     },
     {
-      "command": "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 test (with documented JDK/Maven settings)",
-      "result": "PASS, 38 tests in prior full instructor run; this run predates latest test-only refresh"
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 '-Dtest=!LocalPackagedRuntimeInfrastructureTest' test",
+      "result": "PASS; 38 instructor tests, 0 failures/errors. Excludes only the packaged local-app test that cannot boot until Day72 learner TODO is implemented."
     },
     {
-      "command": "./mvnw -Plocal-app -DskipTests package (with documented JDK/Maven settings)",
-      "result": "PASS in prior verification; packaged JAR contains HikariCP 7.0.2 and PostgreSQL JDBC 42.7.14"
+      "command": "npm --prefix frontend test && npm --prefix frontend run build && npm --prefix frontend run build:local",
+      "result": "PASS; frontend instructor test 1/1, production build and isolated local build."
     },
     {
-      "command": "npm run build && npm run build:local && npm test (frontend, npm cache at /tmp/coverstory-npm-cache)",
-      "result": "PASS in prior verification; production/local builds and infrastructure tests"
+      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+      "result": "PASS; 19 tests. DSA attempt log remains empty; no attempts or reviews inferred."
     },
     {
-      "command": "RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx",
-      "result": "EXPECTED TODO RED, 2 failures in prior verification"
+      "command": "git diff --check; python3 -m json.tool docs/reboot/continuation-71-84/manifest.json; python3 -m json.tool docs/reboot/continuation-71-84/scrum-owner-manifest.json; python3 -m json.tool evidence/continuation-71-84/day-83.json; python3 -m json.tool evidence/continuation-71-84/verification.json",
+      "result": "PASS before commit."
     },
     {
-      "command": "python3 scripts/test_dsa_review_queue_71_84.py",
-      "result": "PASS, 19 tests in prior verification; no attempts inferred"
-    },
-    {
-      "command": "npm audit --json",
-      "result": "0 vulnerabilities reported in prior verification; not a complete Maven SCA review"
-    },
-    {
-      "command": "./mvnw -Plocal-app -Dincludes=org.postgresql:postgresql,org.springframework:spring-jdbc,com.zaxxer:HikariCP dependency:tree (with documented JDK/Maven settings)",
-      "result": "PASS in prior verification; Spring JDBC 7.0.9, HikariCP 7.0.2, PostgreSQL JDBC 42.7.14"
-    },
-    {
-      "command": "git diff --check",
-      "result": "PASS"
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Plocal-app -Dtest=Day83PackagedLockBrowserAcceptanceTest test",
+      "result": "EXPECTED TODO BLOCK: selector starts the packaged app but fails before Chromium at Day72 PreviewCapacityPolicy.validate(); temporary witnesses are not in the published tree."
     }
   ],
   "important_limits": [
-    "Day83 packaged-JAR/browser plus real-PostgreSQL ACCESS EXCLUSIVE lock acceptance harness is not installed; contract records it as blocked/unverified.",
-    "Temporary instructor witnesses for Day82 pool-recovery verification were restored byte-for-byte; learner-owned Day73-75 TODOs remain unimplemented.",
-    "Maven emitted 403 warnings for unrelated remote metadata repositories; required dependencies resolved from Central.",
-    "Dependency review is targeted, not full Maven SCA and not an all-advisories-resolved claim.",
-    "No remote CI result is claimed."
+    "Day83 fixed packaged-JAR/Chromium/real-PostgreSQL-lock acceptance harness is installed and passed 1/1 only with temporary local conforming witnesses. Saved learner TODOs were restored and checksum-verified; the harness does not establish learner completion.",
+    "With learner TODOs restored, the ordinary Maven suite has 38 passing tests and one expected local packaged-runtime startup error at Day72 PreviewCapacityPolicy.validate(). The 38-test instructor suite passes when only LocalPackagedRuntimeInfrastructureTest is excluded.",
+    "The two-permit gate does not reserve Hikari capacity for other routes.",
+    "Maven emitted HTTP 403 warnings for unrelated remote metadata repositories; required dependencies resolved and the package/test commands ran.",
+    "Dependency review is targeted, not full Maven SCA and not an all-advisories-resolved claim. The prior npm audit reported 0 vulnerabilities; not repeated in this continuation.",
+    "The checked-in GitHub Actions workflow push filter does not include learning/coverstory-days-71-84, so this branch has no automatic push CI run; no CI pass is claimed."
   ]
 }

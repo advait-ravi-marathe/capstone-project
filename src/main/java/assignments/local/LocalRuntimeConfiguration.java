@@ -7,6 +7,9 @@ import assignments.insurance.PolicyReadStore;
 import assignments.renewal.PolicyRenewalPreviewController;
 import assignments.renewal.PreviewAdmission;
 import assignments.renewal.PreviewCapacityPolicy;
+import assignments.renewal.PreviewCapacityExceptionHandler;
+import assignments.renewal.PreviewMetrics;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +24,7 @@ import java.time.ZoneOffset;
 /** Explicitly assembles the local app; it does not scan the Day 1 or test harness packages. */
 @Configuration(proxyBeanMethods = false)
 @Profile("local")
-@Import(PolicyRenewalPreviewController.class)
+@Import({PolicyRenewalPreviewController.class, PreviewCapacityExceptionHandler.class})
 public class LocalRuntimeConfiguration {
     @Bean
     Clock localClock(@Value("${coverstory.local.fixed-clock:}") String fixedClock) {
@@ -54,7 +57,9 @@ public class LocalRuntimeConfiguration {
             @Value("${coverstory.preview.permit-capacity:2}") int permitCapacity,
             @Value("${spring.datasource.hikari.maximum-pool-size:4}") int poolMaximumSize,
             @Value("${spring.datasource.hikari.connection-timeout:1000}") int connectionTimeoutMillis) {
-        return new PreviewCapacityPolicy(permitCapacity, poolMaximumSize, connectionTimeoutMillis);
+        PreviewCapacityPolicy policy = new PreviewCapacityPolicy(permitCapacity, poolMaximumSize, connectionTimeoutMillis);
+        policy.validate();
+        return policy;
     }
 
     @Bean
@@ -63,10 +68,16 @@ public class LocalRuntimeConfiguration {
     }
 
     @Bean
-    PolicyRenewalReadStore policyRenewalReadStore(LocalApplicationComposition.Components components) {
+    PreviewMetrics previewMetrics(MeterRegistry registry) {
+        return new PreviewMetrics(registry);
+    }
+
+    @Bean
+    PolicyRenewalReadStore policyRenewalReadStore(LocalApplicationComposition.Components components,
+                                                   PreviewAdmission admission, PreviewMetrics metrics) {
         // LEARNER TODO Day 79: wrap this exact existing owner-scoped store once in the
         // bounded singleton decorator; do not duplicate or replace its SQL adapter.
-        return components.renewalReadStore();
+        throw new UnsupportedOperationException("Day 79 learner TODO: wire one bounded store around the existing adapter");
     }
 
     @Bean

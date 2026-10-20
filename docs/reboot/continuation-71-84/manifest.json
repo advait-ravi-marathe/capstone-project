@@ -1,10 +1,10 @@
 {
-  "title": "CoverStory bounded synchronous renewal-preview reads: Days 71–84",
+  "title": "CoverStory bounded synchronous renewal-preview reads: Days 71\u201384",
   "base_sha": "db2caf3adabf11e6d619ab9a7f7e1f5aa40f2a24",
   "effective_start": "2026-12-29",
   "effective_end": "2027-01-11",
   "status_semantics": "Contracts and seams are plans. Scaffold, learner implementation, runtime verification and integration status are independent. Dates never imply learner completion.",
-  "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new route, schema change, fault route, or infrastructure for its own sake. Preserve Day48 SQL ownership.",
+  "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new route, schema change, fault route, or infrastructure for its own sake. Reuse the completed Day48 owner-scoped SQL without duplicating its query.",
   "capacity_decision": {
     "application_permits": 2,
     "existing_hikari_maximum_pool_size": 4,
@@ -15,7 +15,8 @@
     ],
     "execution_model": "synchronous servlet MVC and JDBC",
     "admission": "immediate nonblocking rejection; no wait queue",
-    "reserve": "two Hikari slots remain for non-preview work"
+    "pool_availability_guarantee": "none; a two-permit preview gate does not reserve Hikari connections or guarantee availability to other routes",
+    "connection_timeout_policy_note": "250..30000ms is the project validation range, not a Hikari library maximum"
   },
   "daily_budget_minutes": {
     "total": 180,
@@ -81,16 +82,14 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Record the existing synchronous path and fixed pool ceiling; no runtime feature.",
-        "learner_seam": "Record the existing synchronous path and fixed pool ceiling; no runtime feature.",
+        "scope": "Instructor evidence/contract review only; no learner acceptance implementation selector.",
+        "learner_seam": "Evidence review only; no learner implementation selector.",
         "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-71.md",
         "evidence_reference": "evidence/continuation-71-84/day-71.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_test_path": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=Day71BaselineAcceptanceTest test"
-        ],
+        "acceptance_test_path": null,
+        "acceptance_commands": [],
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day71To84InfrastructureTest test"
@@ -113,9 +112,9 @@
           "design_prompt": "Record the request path, one overload failure and the layer that must bound it.",
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
-        "learner_task": "Baseline the read route and identify unfinished ownership/readiness prerequisites.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "acceptance_selector_status": "instructor_evidence_check_only",
+        "learner_task": "Review the evidence contract; do not infer learner completion from infrastructure checks.",
+        "learner_evidence_mode": "evidence_review"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -151,7 +150,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "PreviewCapacityPolicy constructor",
+        "scope": "PreviewCapacityPolicy.validate() and enforcement in the runtime configuration bean",
         "learner_seam": "PreviewCapacityPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-72.md",
         "evidence_reference": "evidence/continuation-71-84/day-72.json",
@@ -180,11 +179,11 @@
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
-          "design_prompt": "Sketch the inequality that reserves two pool connections.",
+          "design_prompt": "Sketch the relationship between a two-request gate and a four-connection pool; explain why this does not reserve pool slots.",
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
         "acceptance_selector_status": "installed_expected_todo_red",
-        "learner_task": "Require positive capacities, permits <= pool maximum, and connectionTimeoutMillis in the configured 250..30000ms bounds.",
+        "learner_task": "Require positive capacities, permits <= pool maximum, and a finite connection timeout in the project policy range 250..30000ms. Ensure local runtime configuration calls validate() before serving requests.",
         "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
@@ -409,9 +408,9 @@
           },
           "resources": [
             {
-              "title": "Spring JDBC exception translation",
-              "section": "CannotGetJdbcConnectionException",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+              "title": "CannotGetJdbcConnectionException Javadoc",
+              "section": "Class description and inheritance",
+              "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html"
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
@@ -629,9 +628,9 @@
           },
           "resources": [
             {
-              "title": "RFC 9110 Service Unavailable",
-              "section": "503 semantics",
-              "url": "https://www.rfc-editor.org/rfc/r9110.html#name-503-service-unavailable"
+              "title": "RFC 9110 HTTP Semantics",
+              "section": "Section 15.6.4, 503 Service Unavailable",
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable"
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
@@ -705,7 +704,7 @@
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
-          "design_prompt": "Trace singleton lifetime and controller → decorator → existing store.",
+          "design_prompt": "Trace singleton lifetime and controller \u2192 decorator \u2192 existing store.",
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
         "acceptance_selector_status": "installed_expected_todo_red",
@@ -794,9 +793,9 @@
           },
           "resources": [
             {
-              "title": "Micrometer Timers",
-              "section": "record durations and avoid high-cardinality tags",
-              "url": "https://docs.micrometer.io/micrometer/reference/concepts/timers.html"
+              "title": "Micrometer Naming",
+              "section": "Tag Values",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values"
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
@@ -804,7 +803,7 @@
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
         "acceptance_selector_status": "installed_expected_todo_red",
-        "learner_task": "Record finite timer/counter outcomes; no IDs as tags; meter count cannot grow per request.",
+        "learner_task": "Implement finite outcome counters and latency timers, then integrate them in the bounded store used by the real renewal route. Never tag request/policy identifiers; demonstrate bounded meter count across repeated IDs/outcomes.",
         "learner_evidence_mode": "implementation_acceptance"
       },
       "java_dsa": {
@@ -857,9 +856,9 @@
         "evidence_reference": "evidence/continuation-71-84/day-81.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_partial",
-        "acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "acceptance_commands": [
-          "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx"
+          "npm --prefix frontend run test:local"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
         "infrastructure_commands": [
@@ -874,9 +873,9 @@
           },
           "resources": [
             {
-              "title": "WAI-ARIA alert pattern",
-              "section": "status/alert semantics",
-              "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+              "title": "WAI-ARIA 1.2",
+              "section": "status role and alert role",
+              "url": "https://www.w3.org/TR/wai-aria-1.2/#status"
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
@@ -884,8 +883,9 @@
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
         "acceptance_selector_status": "installed_expected_todo_red",
-        "learner_task": "Accessible busy/unavailable status and one explicit retry; no auto retry or session reset; preserve policy context.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_task": "Integrate RenewalPreviewBusyState into the normal local route: show accessible busy status retaining policy context, one explicit retry action, no automatic retry/session reset, then render the successful read-only preview after recovery.",
+        "learner_evidence_mode": "implementation_acceptance",
+        "integration_acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -913,7 +913,7 @@
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
       "learner_status": "not_attempted",
-      "integration_status": "installed_expected_todo_red; requires Day48 and Days72–75 learner seams",
+      "integration_status": "installed_expected_todo_red; requires Day48 and Days72\u201375 learner seams",
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -993,7 +993,7 @@
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
       "learner_status": "not_attempted",
-      "integration_status": "not_installed; requires Day48/49–51/72–80 learner seams, JDK21, PostgreSQL and browser",
+      "integration_status": "not_installed; requires Day48/49\u201351/72\u201380 learner seams, JDK21, PostgreSQL and browser",
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1006,9 +1006,14 @@
         "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-83.md",
         "evidence_reference": "evidence/continuation-71-84/day-83.json",
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_partial",
-        "acceptance_test_path": null,
-        "acceptance_commands": [],
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+        "acceptance_commands": [
+          "npm --prefix frontend ci",
+          "npm --prefix frontend run build:local",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plearner-tests -Plocal-app -Dtest=Day83PackagedLockBrowserAcceptanceTest test"
+        ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day71To84InfrastructureTest test"
@@ -1025,15 +1030,26 @@
               "title": "PostgreSQL explicit locking",
               "section": "ACCESS EXCLUSIVE lock",
               "url": "https://www.postgresql.org/docs/18/explicit-locking.html"
+            },
+            {
+              "title": "pg_locks system view",
+              "section": "granted=false rows for waiting locks",
+              "url": "https://www.postgresql.org/docs/18/view-pg-locks.html"
+            },
+            {
+              "title": "PostgreSQL monitoring statistics",
+              "section": "pg_stat_activity wait_event_type and wait_event fields",
+              "url": "https://www.postgresql.org/docs/18/monitoring-stats.html"
             }
           ],
           "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
-          "design_prompt": "Sketch lock owner, blocked sessions and release signal; watchdog only prevents hangs.",
+          "design_prompt": "Sketch the lock owner, two waiting app sessions, busy response, bounded metrics, and finally release; watchdog polling only observes state and prevents a hang.",
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
-        "acceptance_selector_status": "not_installed",
-        "learner_task": "Use test-owned ACCESS EXCLUSIVE lock and observed blocked queries; third request rejected before JDBC; release lock, manual browser retry recovers; state unchanged. No fault route.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "acceptance_selector_status": "installed_expected_red_until_prerequisite_learner_seams_pass",
+        "learner_task": "Use the real packaged app, Chromium, and PostgreSQL ACCESS EXCLUSIVE lock; observe two sessions waiting in pg_stat_activity; reject third with 503 before JDBC; show accessible busy UI and one explicit user retry after release; prove bounded route metrics and byte-for-byte database state preservation.",
+        "learner_evidence_mode": "implementation_acceptance",
+        "integration_status": "installed; requires completed Day48 and learner implementation Days72-81"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -1069,16 +1085,14 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Independent evidence review; no feature",
+        "scope": "Instructor evidence/contract review only; no learner acceptance implementation selector.",
         "learner_seam": "Independent evidence review; no feature",
         "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-84.md",
         "evidence_reference": "evidence/continuation-71-84/day-84.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_test_path": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
-        "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=Day84ContractInfrastructureTest test"
-        ],
+        "acceptance_test_path": null,
+        "acceptance_commands": [],
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day71To84InfrastructureTest test"
@@ -1101,9 +1115,9 @@
           "design_prompt": "Summarize invariant, failure mode, tradeoff and integration evidence.",
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
-        "learner_task": "Run installed selectors; record known TODOs/blockers; explain bounds/recovery; keep outcome axes separate.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "acceptance_selector_status": "instructor_evidence_check_only",
+        "learner_task": "Review the evidence contract; do not infer learner completion from infrastructure checks.",
+        "learner_evidence_mode": "evidence_review"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",

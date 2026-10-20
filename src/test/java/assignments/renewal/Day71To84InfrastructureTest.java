@@ -24,7 +24,7 @@ class Day71To84InfrastructureTest {
         assertEquals(14, manifest.get("days").size());
         assertEquals(14, stories.get("story_count").asInt());
         assertTrue(Files.isRegularFile(Path.of(manifest.get("dependency_review_path").asString())));
-        assertTrue(manifest.get("scope").asString().contains("Preserve Day48 SQL ownership"));
+        assertTrue(manifest.get("scope").asString().contains("Reuse the completed Day48 owner-scoped SQL"));
         LocalDate start = LocalDate.parse("2026-12-29");
         for (int i = 0; i < 14; i++) {
             JsonNode day = manifest.get("days").get(i);
@@ -47,8 +47,9 @@ class Day71To84InfrastructureTest {
                 assertTrue(Files.isRegularFile(Path.of(path)), "missing " + path);
             }
             if (day.get("day").asInt() == 83) {
-                assertTrue(day.get("engineering").get("acceptance_commands").isEmpty());
-                assertEquals("not_installed", day.get("engineering").get("acceptance_selector_status").asString());
+                assertFalse(day.get("engineering").get("acceptance_commands").isEmpty());
+                assertTrue(day.get("engineering").get("acceptance_selector_status").asString()
+                        .startsWith("installed_"));
             }
             assertEquals(day.get("date").asString(), card.get("date").asString());
             assertEquals(180, card.get("budget_minutes").asInt());

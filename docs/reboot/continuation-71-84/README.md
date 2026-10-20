@@ -19,7 +19,4 @@ errors, fixed-cardinality metrics, accessible manual retry, and recovery
 verification using real pool/lock contention. No work queue, asynchronous
 execution, automatic retry, fault route or extra infrastructure is added.
 
-All learner implementations remain unattempted. Day 83 packaged JAR/browser
-lock recovery is not installed until its real prerequisites and test harness
-are available. The actual-attempt log is empty; DSA review forecasts are not
-completion evidence.
+All learner implementations remain unattempted. Day 83 now has a fixed packaged-JAR/browser/real-PostgreSQL-lock acceptance harness; it is intentionally expected to fail at prerequisite learner TODOs until those contracts are completed. The attempt log is empty; planned DSA reviews are not completion evidence. The two-permit gate does not reserve Hikari slots or guarantee capacity for other routes.

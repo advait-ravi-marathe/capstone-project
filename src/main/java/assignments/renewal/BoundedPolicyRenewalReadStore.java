@@ -10,10 +10,13 @@ import java.util.Optional;
 public final class BoundedPolicyRenewalReadStore implements PolicyRenewalReadStore {
     private final PolicyRenewalReadStore delegate;
     private final PreviewAdmission admission;
+    private final PreviewMetrics metrics;
 
-    public BoundedPolicyRenewalReadStore(PolicyRenewalReadStore delegate, PreviewAdmission admission) {
+    public BoundedPolicyRenewalReadStore(PolicyRenewalReadStore delegate, PreviewAdmission admission,
+                                         PreviewMetrics metrics) {
         this.delegate = delegate;
         this.admission = admission;
+        this.metrics = metrics;
     }
 
     @Override
