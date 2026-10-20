@@ -1,0 +1,1206 @@
+{
+  "title": "CoverStory continuation Days 31\u201344",
+  "effective_start": "2026-11-19",
+  "effective_end": "2026-12-02",
+  "status_semantics": {
+    "contract": "defined does not mean scaffolded or passed",
+    "learner": "not_attempted | attempted | contract_passed",
+    "integration": "blocked | ready | passed; evidence changes status",
+    "scaffold": "not_installed | partial | installed",
+    "runtime_harness": "pending until actual documented command completes"
+  },
+  "scope": "Synthetic HomeSecure policy servicing lifecycle. No real binding, payments, PII, legal coverage promise, Kafka/outbox, or StreamForge.",
+  "daily_budget_minutes": {
+    "java_dsa": 60,
+    "engineering": 120,
+    "engineering_build_test": 85,
+    "concept_course": 25,
+    "evidence": 10
+  },
+  "sprints": [
+    {
+      "name": "Sprint 3",
+      "dates": "2026-11-17..2026-11-30",
+      "days_in_this_batch": [
+        31,
+        42
+      ],
+      "batch_story_count": 12,
+      "sprint_total_after_batch": 14,
+      "previous_stories_days": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "Sprint 4",
+      "dates": "2026-12-01..2026-12-14",
+      "days_in_this_batch": [
+        43,
+        44
+      ],
+      "batch_story_count": 2,
+      "sprint_total_after_batch": 2,
+      "remaining_dates_unpopulated": 12
+    }
+  ],
+  "days": [
+    {
+      "day": 31,
+      "date": "2026-11-19",
+      "title": "Issue eligibility and quote linkage",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-31.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Issue eligibility and quote linkage",
+        "learner_seam": "PolicyIssueRequest / PolicyLifecycleService.issue",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-31.md",
+        "evidence_reference": "evidence/continuation-31-44/day-31.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 141,
+        "problem_name": "Linked List Cycle",
+        "concept": "fast/slow pointers",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-19",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-22",
+          "2026-11-26",
+          "2026-12-10"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 1, Skill 1.1.6: develop API actions and versioned interfaces."
+    },
+    {
+      "day": 32,
+      "date": "2026-11-20",
+      "title": "Idempotent policy issue",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-32.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Idempotent policy issue",
+        "learner_seam": "PolicyLifecycleService.issue",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-32.md",
+        "evidence_reference": "evidence/continuation-31-44/day-32.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 153,
+            "anchor_day": 29,
+            "planned_anchor_date": "2026-11-17",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-20",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-20",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 1, Skills 1.1.6 and 1.3.2: stable API requests and consistency across retries."
+    },
+    {
+      "day": 33,
+      "date": "2026-11-21",
+      "title": "Immutable issue snapshot",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-33.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Immutable issue snapshot",
+        "learner_seam": "PolicyIssueSnapshot",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-33.md",
+        "evidence_reference": "evidence/continuation-31-44/day-33.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 206,
+        "problem_name": "Reverse Linked List",
+        "concept": "pointer rewiring",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-21",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-24",
+          "2026-11-28",
+          "2026-12-12"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-21",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 1, Skill 1.3.5: serialize and deserialize application data for persistence."
+    },
+    {
+      "day": 34,
+      "date": "2026-11-22",
+      "title": "Issue endpoint and stable errors",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-34.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Issue endpoint and stable errors",
+        "learner_seam": "POST /api/policies",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-34.md",
+        "evidence_reference": "evidence/continuation-31-44/day-34.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 141,
+            "anchor_day": 31,
+            "planned_anchor_date": "2026-11-19",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-22",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-22",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 1, Skill 1.1.6: develop API actions and map response semantics."
+    },
+    {
+      "day": 35,
+      "date": "2026-11-23",
+      "title": "Atomic PostgreSQL issuance",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-35.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Atomic PostgreSQL issuance",
+        "learner_seam": "PolicyLifecycleRepository.issueAtomically",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-35.md",
+        "evidence_reference": "evidence/continuation-31-44/day-35.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 21,
+        "problem_name": "Merge Two Sorted Lists",
+        "concept": "two-pointer merge",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-23",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-26",
+          "2026-11-30",
+          "2026-12-14"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-23",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 3, Skill 3.2.2: test integrations with external dependencies; locally use disposable PostgreSQL only."
+    },
+    {
+      "day": 36,
+      "date": "2026-11-24",
+      "title": "Owner-scoped policy read",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-36.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Owner-scoped policy read",
+        "learner_seam": "GET /api/policies/{policyId}",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-36.md",
+        "evidence_reference": "evidence/continuation-31-44/day-36.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 206,
+            "anchor_day": 33,
+            "planned_anchor_date": "2026-11-21",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-24",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-24",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 2, Skill 2.1.7: implement application-level authentication and authorization."
+    },
+    {
+      "day": 37,
+      "date": "2026-11-25",
+      "title": "Endorsement command validation",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-37.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Endorsement command validation",
+        "learner_seam": "PolicyEndorsementRequest",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-37.md",
+        "evidence_reference": "evidence/continuation-31-44/day-37.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 143,
+        "problem_name": "Reorder List",
+        "concept": "split, reverse, weave",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-25",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-28",
+          "2026-12-02",
+          "2026-12-16"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-25",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 1, Skill 1.1.6: validate API request contracts and supported versions."
+    },
+    {
+      "day": 38,
+      "date": "2026-11-26",
+      "title": "Append immutable endorsement",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-38.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Append immutable endorsement",
+        "learner_seam": "PolicyLifecycleService.endorse",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-38.md",
+        "evidence_reference": "evidence/continuation-31-44/day-38.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 141,
+            "anchor_day": 31,
+            "planned_anchor_date": "2026-11-19",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-11-26",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 21,
+            "anchor_day": 35,
+            "planned_anchor_date": "2026-11-23",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-26",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-26",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 1, Skill 1.3.7: manage application data and lifecycle changes."
+    },
+    {
+      "day": 39,
+      "date": "2026-11-27",
+      "title": "Optimistic version conflict",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-39.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Optimistic version conflict",
+        "learner_seam": "PolicyLifecycleRepository.endorseAtomically",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-39.md",
+        "evidence_reference": "evidence/continuation-31-44/day-39.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 19,
+        "problem_name": "Remove Nth Node From End of List",
+        "concept": "lead/lag pointers",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-27",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-30",
+          "2026-12-04",
+          "2026-12-18"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-27",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 1, Skill 1.3.2: manage consistency in application data."
+    },
+    {
+      "day": 40,
+      "date": "2026-11-28",
+      "title": "Schedule cancellation",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-40.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Schedule cancellation",
+        "learner_seam": "PolicyLifecycleService.scheduleCancellation",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-40.md",
+        "evidence_reference": "evidence/continuation-31-44/day-40.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 206,
+            "anchor_day": 33,
+            "planned_anchor_date": "2026-11-21",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-11-28",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 143,
+            "anchor_day": 37,
+            "planned_anchor_date": "2026-11-25",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-28",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-28",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 1, Skill 1.3.7: implement lifecycle state changes; Domain 2, Skill 2.1.7: authorize servicing actions."
+    },
+    {
+      "day": 41,
+      "date": "2026-11-29",
+      "title": "Apply due cancellation",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-41.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Apply due cancellation",
+        "learner_seam": "PolicyLifecycleService.applyDueCancellation",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-41.md",
+        "evidence_reference": "evidence/continuation-31-44/day-41.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 138,
+        "problem_name": "Copy List with Random Pointer",
+        "concept": "identity map",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-29",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-02",
+          "2026-12-06",
+          "2026-12-20"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-29",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 1, Skill 1.1.5: develop fault-tolerant application behavior for due transitions."
+    },
+    {
+      "day": 42,
+      "date": "2026-11-30",
+      "title": "Block post-cancellation writes",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-42.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Block post-cancellation writes",
+        "learner_seam": "PolicyLifecycleService.endorse",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-42.md",
+        "evidence_reference": "evidence/continuation-31-44/day-42.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 21,
+            "anchor_day": 35,
+            "planned_anchor_date": "2026-11-23",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-11-30",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 19,
+            "anchor_day": 39,
+            "planned_anchor_date": "2026-11-27",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-30",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-30",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 2, Skill 2.1.7: authorize application actions according to policy state."
+    },
+    {
+      "day": 43,
+      "date": "2026-12-01",
+      "title": "React servicing summary",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-43.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "React servicing summary",
+        "learner_seam": "PolicyServicingPanel",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-43.md",
+        "evidence_reference": "evidence/continuation-31-44/day-43.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
+        "acceptance_commands": [
+          "cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 2,
+        "problem_name": "Add Two Numbers",
+        "concept": "carry state",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-01",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-04",
+          "2026-12-08",
+          "2026-12-22"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-01",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "aws_concept_mapping": "Domain 2, Skill 2.3.5: mask and sanitize sensitive information in application output."
+    },
+    {
+      "day": 44,
+      "date": "2026-12-02",
+      "title": "Lifecycle integration acceptance contract",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-44.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Lifecycle integration acceptance contract",
+        "learner_seam": "PolicyLifecycleService.verifyLifecycleReadback",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-44.md",
+        "evidence_reference": "evidence/continuation-31-44/day-44.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ]
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 143,
+            "anchor_day": 37,
+            "planned_anchor_date": "2026-11-25",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-12-02",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 138,
+            "anchor_day": 41,
+            "planned_anchor_date": "2026-11-29",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-02",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-02",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "dsa_role": "consolidation",
+      "mandatory_new_problem": false,
+      "aws_concept_mapping": "Domain 3, Skill 3.2.2: integration testing; Domain 4: deployment readiness, monitoring, and observability evidence."
+    }
+  ],
+  "dsa_revision_policy": {
+    "intervals_days": [
+      3,
+      7,
+      21
+    ],
+    "due_date_anchor": "actual_first_attempt_date from docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+    "retrieval_method": "cold recall and re-solve; do not reread",
+    "daily_budget_minutes": 60,
+    "failed_review_action": "repair in the same 60-minute block and displace that day's new problem; do not add minutes",
+    "cross_batch_source_manifest": "docs/reboot/manifest.json",
+    "actual_attempt_dates_supplied": false,
+    "carryover_anchors_from_days_01_30": [
+      {
+        "anchor_day": 1,
+        "problem_id": 121,
+        "planned_first_attempt_date": "2026-10-20",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-23",
+          "2026-10-27",
+          "2026-11-10"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 3,
+        "problem_id": 1,
+        "planned_first_attempt_date": "2026-10-22",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-25",
+          "2026-10-29",
+          "2026-11-12"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 5,
+        "problem_id": 383,
+        "planned_first_attempt_date": "2026-10-24",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-27",
+          "2026-10-31",
+          "2026-11-14"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 7,
+        "problem_id": 49,
+        "planned_first_attempt_date": "2026-10-26",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-29",
+          "2026-11-02",
+          "2026-11-16"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 9,
+        "problem_id": 238,
+        "planned_first_attempt_date": "2026-10-28",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-31",
+          "2026-11-04",
+          "2026-11-18"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 11,
+        "problem_id": 125,
+        "planned_first_attempt_date": "2026-10-30",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-02",
+          "2026-11-06",
+          "2026-11-20"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 13,
+        "problem_id": 167,
+        "planned_first_attempt_date": "2026-11-01",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-04",
+          "2026-11-08",
+          "2026-11-22"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 15,
+        "problem_id": 11,
+        "planned_first_attempt_date": "2026-11-03",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-06",
+          "2026-11-10",
+          "2026-11-24"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 17,
+        "problem_id": 3,
+        "planned_first_attempt_date": "2026-11-05",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-08",
+          "2026-11-12",
+          "2026-11-26"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 19,
+        "problem_id": 209,
+        "planned_first_attempt_date": "2026-11-07",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-10",
+          "2026-11-14",
+          "2026-11-28"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 21,
+        "problem_id": 20,
+        "planned_first_attempt_date": "2026-11-09",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-12",
+          "2026-11-16",
+          "2026-11-30"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 23,
+        "problem_id": 155,
+        "planned_first_attempt_date": "2026-11-11",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-14",
+          "2026-11-18",
+          "2026-12-02"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 25,
+        "problem_id": 704,
+        "planned_first_attempt_date": "2026-11-13",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-16",
+          "2026-11-20",
+          "2026-12-04"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 27,
+        "problem_id": 35,
+        "planned_first_attempt_date": "2026-11-15",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-18",
+          "2026-11-22",
+          "2026-12-06"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 29,
+        "problem_id": 153,
+        "planned_first_attempt_date": "2026-11-17",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-20",
+          "2026-11-24",
+          "2026-12-08"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      }
+    ]
+  }
+}

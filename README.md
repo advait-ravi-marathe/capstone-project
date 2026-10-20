@@ -80,6 +80,11 @@ individual contract guides and a chronological manifest with sprint, concept,
 source link, DSA anchor/reviews, and scaffold/runtime evidence fields. Learner
 TODOs remain unimplemented; scaffold and runtime status are separate.
 
+The [Days 31–44 continuation](docs/reboot/continuation-31-44/README.md) adds a
+synthetic HomeSecure policy servicing lifecycle. It continues across two native
+sprints (Days 31–42 fill Sprint 3; Days 43–44 begin Sprint 4) and is a repository
+proposal only; no project board was updated.
+
 ## Legacy exercises retained
 
 The following earlier contracts remain in place and unchanged. Their old

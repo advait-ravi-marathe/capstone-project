@@ -1,0 +1,65 @@
+{
+  "branch": "learning/coverstory-days-31-44",
+  "base_sha": "65dc57f88fc844291cab3b80484a01c206e42916",
+  "scope": "Days 31\u201344 synthetic HomeSecure lifecycle; main and board untouched",
+  "maven_default_suite": {
+    "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 test",
+    "exit_code": 0,
+    "tests": 25,
+    "failures": 0,
+    "errors": 0
+  },
+  "lifecycle_acceptance": {
+    "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest test",
+    "exit_code": 1,
+    "tests": 14,
+    "failures": 0,
+    "errors": 14,
+    "result": "all errors reached matching explicit Day 31\u201344 TODOs; expected red; no learner implementation supplied"
+  },
+  "ui_build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "result": "TypeScript and Vite production build passed"
+  },
+  "day43_ui_acceptance": {
+    "command": "npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx",
+    "exit_code": 1,
+    "tests": 4,
+    "failures": 4,
+    "result": "expected learner TODO red: snapshot and accessible state output not yet implemented"
+  },
+  "fixture_install": {
+    "command": "npm ci --cache /tmp/capstone-npm-cache",
+    "exit_code": 0,
+    "result": "107 packages installed; no package manifest/lock changes"
+  },
+  "manifest_validation": {
+    "command": "./mvnw -Dtest=ContinuationManifestInfrastructureTest test",
+    "executed_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Dtest=ContinuationManifestInfrastructureTest test",
+    "exit_code": 0,
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "result": "14 contracts, date sequence, per-day commands and test paths, DSA actual-date policy/carryovers, and embedded-PostgreSQL constraints verified"
+  },
+  "blockers": [
+    "Day44 full React-to-Spring-to-PostgreSQL browser runtime remains a future learner implementation; current fixed acceptance reaches the explicit DB readback seam only.",
+    "Remote Actions/CI was not run in this work session.",
+    "No dependency versions changed; no new SCA/advisory scan was performed."
+  ],
+  "learner_completion": false,
+  "dsa_review_queue": {
+    "tests_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+    "tests_exit_code": 0,
+    "tests_passed": 4,
+    "representative_cases": [
+      "actual first attempt date overrides planned ticket date for D+3/D+7/D+21",
+      "Day 29 LC 153 carries into Day 31 based on actual logged attempt; unrecorded attempts remain awaiting with no due dates",
+      "failed D+3 recall displaces new work inside the same 60-minute block",
+      "Days 1\u201330 carryovers LC 238/155/35 remain undated without real attempt records"
+    ],
+    "current_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
+    "current_queue_result": "22 anchors from both batches; empty actual-attempt log; all awaiting; no completion claimed"
+  }
+}

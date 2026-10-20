@@ -1,0 +1,738 @@
+{
+  "title": "CoverStory continuation Scrum export \u2014 Days 31\u201344",
+  "canonical_daily_manifest": "docs/reboot/continuation-31-44/manifest.json",
+  "board_model": "One consolidated story per date, containing independently timed engineering and Java DSA work. This repository export is a proposal, not a board write.",
+  "sprint_boundaries": [
+    {
+      "sprint": "Sprint 3 (17\u201330 Nov 2026)",
+      "existing_story_days": [
+        29,
+        30
+      ],
+      "continuation_days": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "batch_story_count": 12,
+      "sprint_story_count_after_batch": 14
+    },
+    {
+      "sprint": "Sprint 4 (1\u201314 Dec 2026)",
+      "continuation_days": [
+        43,
+        44
+      ],
+      "batch_story_count": 2,
+      "sprint_story_count_after_batch": 2,
+      "remaining_dates_unpopulated": 12
+    }
+  ],
+  "story_count": 14,
+  "cards": [
+    {
+      "sequence": 1,
+      "day_number": 31,
+      "date": "2026-11-19",
+      "title": "Day31: Issue eligibility and quote linkage \u2014 LC 141 fast/slow pointers",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-31.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day31PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-31.json",
+        "seam": "PolicyIssueRequest / PolicyLifecycleService.issue",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.1.6: develop API actions and versioned interfaces."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 141,
+        "concept": "fast/slow pointers",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 2,
+      "day_number": 32,
+      "date": "2026-11-20",
+      "title": "Day32: Idempotent policy issue \u2014 LC 153 D+3",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-32.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day32PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-32.json",
+        "seam": "PolicyLifecycleService.issue",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skills 1.1.6 and 1.3.2: stable API requests and consistency across retries."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 153,
+            "anchor_day": 29,
+            "planned_anchor_date": "2026-11-17",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-20",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-20",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 3,
+      "day_number": 33,
+      "date": "2026-11-21",
+      "title": "Day33: Immutable issue snapshot \u2014 LC 206 pointer rewiring",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-33.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day33PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-33.json",
+        "seam": "PolicyIssueSnapshot",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.3.5: serialize and deserialize application data for persistence."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 206,
+        "concept": "pointer rewiring",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-21",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 4,
+      "day_number": 34,
+      "date": "2026-11-22",
+      "title": "Day34: Issue endpoint and stable errors \u2014 LC 141 D+3",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-34.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day34PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-34.json",
+        "seam": "POST /api/policies",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.1.6: develop API actions and map response semantics."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 141,
+            "anchor_day": 31,
+            "planned_anchor_date": "2026-11-19",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-22",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-22",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 5,
+      "day_number": 35,
+      "date": "2026-11-23",
+      "title": "Day35: Atomic PostgreSQL issuance \u2014 LC 21 two-pointer merge",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-35.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day35PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-35.json",
+        "seam": "PolicyLifecycleRepository.issueAtomically",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 3, Skill 3.2.2: test integrations with external dependencies; locally use disposable PostgreSQL only."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 21,
+        "concept": "two-pointer merge",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-23",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 6,
+      "day_number": 36,
+      "date": "2026-11-24",
+      "title": "Day36: Owner-scoped policy read \u2014 LC 206 D+3",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-36.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day36PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-36.json",
+        "seam": "GET /api/policies/{policyId}",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 2, Skill 2.1.7: implement application-level authentication and authorization."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 206,
+            "anchor_day": 33,
+            "planned_anchor_date": "2026-11-21",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-24",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-24",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 7,
+      "day_number": 37,
+      "date": "2026-11-25",
+      "title": "Day37: Endorsement command validation \u2014 LC 143 split, reverse, weave",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-37.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day37PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-37.json",
+        "seam": "PolicyEndorsementRequest",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.1.6: validate API request contracts and supported versions."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 143,
+        "concept": "split, reverse, weave",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-25",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 8,
+      "day_number": 38,
+      "date": "2026-11-26",
+      "title": "Day38: Append immutable endorsement \u2014 LC 141 D+7; LC 21 D+3",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-38.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day38PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-38.json",
+        "seam": "PolicyLifecycleService.endorse",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.3.7: manage application data and lifecycle changes."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 141,
+            "anchor_day": 31,
+            "planned_anchor_date": "2026-11-19",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-11-26",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 21,
+            "anchor_day": 35,
+            "planned_anchor_date": "2026-11-23",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-26",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-26",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 9,
+      "day_number": 39,
+      "date": "2026-11-27",
+      "title": "Day39: Optimistic version conflict \u2014 LC 19 lead/lag pointers",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-39.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day39PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-39.json",
+        "seam": "PolicyLifecycleRepository.endorseAtomically",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.3.2: manage consistency in application data."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 19,
+        "concept": "lead/lag pointers",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-27",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 10,
+      "day_number": 40,
+      "date": "2026-11-28",
+      "title": "Day40: Schedule cancellation \u2014 LC 206 D+7; LC 143 D+3",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-40.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day40PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-40.json",
+        "seam": "PolicyLifecycleService.scheduleCancellation",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.3.7: implement lifecycle state changes; Domain 2, Skill 2.1.7: authorize servicing actions."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 206,
+            "anchor_day": 33,
+            "planned_anchor_date": "2026-11-21",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-11-28",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 143,
+            "anchor_day": 37,
+            "planned_anchor_date": "2026-11-25",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-28",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-28",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 11,
+      "day_number": 41,
+      "date": "2026-11-29",
+      "title": "Day41: Apply due cancellation \u2014 LC 138 identity map",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-41.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day41PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-41.json",
+        "seam": "PolicyLifecycleService.applyDueCancellation",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 1, Skill 1.1.5: develop fault-tolerant application behavior for due transitions."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 138,
+        "concept": "identity map",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-29",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 12,
+      "day_number": 42,
+      "date": "2026-11-30",
+      "title": "Day42: Block post-cancellation writes \u2014 LC 21 D+7; LC 19 D+3",
+      "sprint": "Sprint 3",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-42.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day42PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-42.json",
+        "seam": "PolicyLifecycleService.endorse",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 2, Skill 2.1.7: authorize application actions according to policy state."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 21,
+            "anchor_day": 35,
+            "planned_anchor_date": "2026-11-23",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-11-30",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 19,
+            "anchor_day": 39,
+            "planned_anchor_date": "2026-11-27",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-11-30",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-30",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 13,
+      "day_number": 43,
+      "date": "2026-12-01",
+      "title": "Day43: React servicing summary \u2014 LC 2 carry state",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-43.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day43PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-43.json",
+        "seam": "PolicyServicingPanel",
+        "acceptance_test_path": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
+        "acceptance_commands": [
+          "cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 2, Skill 2.3.5: mask and sanitize sensitive information in application output."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "new_pattern_anchor",
+        "problem_id": 2,
+        "concept": "carry state",
+        "review_anchors": [],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-01",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 14,
+      "day_number": 44,
+      "date": "2026-12-02",
+      "title": "Day44: Lifecycle integration acceptance contract \u2014 LC 143 D+7; LC 138 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "contract_path": "docs/reboot/continuation-31-44/contracts/day-44.md",
+        "acceptance_reference": "src/test/java/assignments/reboot/Day44PolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-31-44/day-44.json",
+        "seam": "PolicyLifecycleService.verifyLifecycleReadback",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "aws_concept_mapping": "Domain 3, Skill 3.2.2: integration testing; Domain 4: deployment readiness, monitoring, and observability evidence."
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "concept": null,
+        "review_anchors": [
+          {
+            "problem_id": 143,
+            "anchor_day": 37,
+            "planned_anchor_date": "2026-11-25",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-12-02",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "problem_id": 138,
+            "anchor_day": 41,
+            "planned_anchor_date": "2026-11-29",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-02",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
+        "review_queue_first": true,
+        "failed_review_displaces_new_work_within_same_60_minutes": true,
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-02",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    }
+  ],
+  "dsa_revision_queue": {
+    "tracker": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+    "queue_command": "python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD",
+    "intervals_days": [
+      3,
+      7,
+      21
+    ],
+    "date_anchor": "actual first-attempt date, not ticket date",
+    "failed_review_rule": "replace new DSA work within same 60-minute block; no extra minutes",
+    "new_learner_actuals_recorded": false
+  }
+}
