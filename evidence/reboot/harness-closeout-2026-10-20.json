@@ -2,7 +2,7 @@
   "date": "2026-10-20",
   "branch": "learning/coverstory-day-02-30",
   "starting_sha": "6b405b3d9b543b45109cccf54e28215eee8191e7",
-  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and one consolidated Scrum Story per date, combining engineering and DSA tracks. No learner solution supplied. Reviewer fixes reconciled: Day14 direct database readback/no Day15 dependency and expanded no-write rejection coverage; Day30 status evaluator accepts evolving evidence-backed live statuses; DSA due reviews represented in Scrum export; Day13 workflow scaffold/learner CI responsibilities clarified; added 30-Story Scrum owner manifest with 14/14/2 sprint counts.",
+  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and one consolidated Scrum Story per date, combining engineering and DSA tracks. No learner solution supplied. Reviewer fixes reconciled: Day14 direct database readback/no Day15 dependency and expanded no-write rejection coverage; Day30 status evaluator accepts evolving evidence-backed live statuses; DSA due reviews represented in Scrum export; Day13 workflow scaffold/learner CI responsibilities clarified; added 30-Story Scrum owner manifest with 14/14/2 sprint counts. Final manifest hygiene fix: runnable commands are separated from paths, all manifest/export paths are repository-root-relative or URLs, and Day 1 DSA guide anchor resolves to docs/day-1.md.",
   "verification": [
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
@@ -113,6 +113,16 @@
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
       "result": "pass",
       "summary": "Full instructor suite: 23 tests, 0 failures/errors/skips after Day12 test harness and Day28 test source fixes. Day28 browser runtime was excluded by independent-validator instruction."
+    },
+    {
+      "command": "python3 repository-root path/command/anchor integrity validation for docs/reboot/manifest.json and docs/reboot/scrum-owner-manifest.json; git diff --check",
+      "result": "pass",
+      "summary": "Validated 30 Stories. acceptance_commands and infrastructure_commands contain runnable shell commands only; source/evidence files are in separate path fields. Concept references are repository-root-relative paths or URLs. All DSA guide anchors resolve, including Day 1 to docs/day-1.md#separate-java-dsa-block-leetcode-121-60-minutes; referenced source/evidence paths exist."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day30ContractTest test",
+      "result": "pass",
+      "summary": "Existing unchanged integrity test passes 3/3 against the updated manifest/export; no test or production source changed in this manifest-only fix."
     }
   ],
   "remaining": {
@@ -123,6 +133,7 @@
     "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed.",
     "day14": "Expanded six-case real PostgreSQL selector was run: 4 failures + 2 errors, all at explicit Days4, 7, 11, and 12 TODOs. Stale/expired and ownership guards now use direct synthetic SQL fixture rows and have no Day15 dependency. No solution witnesses or learner implementations were supplied.",
     "scrum_manifest": "One Story per date (30 total), not one per track. Each Story links both the 120-minute engineering and separate 60-minute Java DSA assignments, relevant resources and evidence paths. Two-week sprint story counts are 14/14/2; canonical engineering and DSA assignments, dates, and budgets are unchanged.",
-    "day12": "Four instructor HTTP/security checks pass. The isolated owner-read learner acceptance remains expected red at Day12 JourneyAccessPolicy TODO; it no longer depends on implicit PathVariable naming or Day3 global error mapping."
+    "day12": "Four instructor HTTP/security checks pass. The isolated owner-read learner acceptance remains expected red at Day12 JourneyAccessPolicy TODO; it no longer depends on implicit PathVariable naming or Day3 global error mapping.",
+    "manifest_hygiene": "Corrected on this staging commit: commands are executable-only arrays, evidence/source references are separate root-relative paths, concept links resolve from repository root, and Day1 DSA points to the real guide heading."
   }
 }

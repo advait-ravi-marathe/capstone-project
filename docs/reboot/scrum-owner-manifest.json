@@ -76,14 +76,29 @@
         "contract_path": "docs/reboot/contracts/day-01.md",
         "active_guide_path": "docs/day-1.md",
         "acceptance_reference": "docs/reboot/contracts/day-01.md",
-        "acceptance_command": [],
         "concept": "Composite identity and API contracts; AWS DVA-C02 Domain 1, Task 1, Skill 1.1.6",
         "concept_reference": "https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html",
         "evidence_reference": "docs/reboot/contracts/day-01.md",
-        "evidence_output": "evidence/reboot/day-01.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test"
+        ],
+        "infrastructure_commands": [
+          "./mvnw -Dtest=QuoteSelectionInfrastructureTest test"
+        ],
+        "related_paths": [
+          "src/main/java/assignments/insurance/QuoteSelectionPolicy.java",
+          "src/test/java/assignments/insurance/QuoteSelectionAcceptanceTest.java",
+          "src/test/java/assignments/insurance/QuoteSelectionApiAcceptanceTest.java"
+        ],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-01.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -98,7 +113,7 @@
         "problem": "121 Best Time to Buy and Sell Stock",
         "planned_attempt_date": "2026-10-20",
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-01.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/day-1.md#separate-java-dsa-block-leetcode-121-60-minutes",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-01-dsa.json",
         "planned_review_forecast_dates": [
@@ -111,6 +126,13 @@
         "resource_references": [
           "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
           "docs/reboot/dsa-error-log-template.md"
+        ],
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test"
+        ],
+        "related_paths": [
+          "src/main/java/assignments/dsa/BestTimeToBuySellStock.java",
+          "src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java"
         ]
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
@@ -138,16 +160,23 @@
         "contract_path": "docs/reboot/contracts/day-02.md",
         "active_guide_path": "docs/reboot/contracts/day-02.md",
         "acceptance_reference": "docs/reboot/contracts/day-02.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day02ContractTest,Day02ApiAcceptanceTest test"
-        ],
         "concept": "HTTP request contracts and boundary vs domain validation",
-        "concept_reference": "contracts/day-02.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-02.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-02.md",
-        "evidence_output": "evidence/reboot/day-02.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day02ContractTest,Day02ApiAcceptanceTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-02.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -170,7 +199,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -197,17 +228,25 @@
         "contract_path": "docs/reboot/contracts/day-03.md",
         "active_guide_path": "docs/reboot/contracts/day-03.md",
         "acceptance_reference": "docs/reboot/contracts/day-03.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day03ContractTest test",
-          "evidence/reboot/initial-contracts-2026-10-20.json"
-        ],
         "concept": "HTTP status semantics and failure boundaries",
-        "concept_reference": "contracts/day-03.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-03.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-03.md",
-        "evidence_output": "evidence/reboot/day-03.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day03ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-03.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -235,7 +274,9 @@
         "resource_references": [
           "https://leetcode.com/problems/two-sum/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -262,17 +303,25 @@
         "contract_path": "docs/reboot/contracts/day-04.md",
         "active_guide_path": "docs/reboot/contracts/day-04.md",
         "acceptance_reference": "docs/reboot/contracts/day-04.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day04ContractTest test",
-          "evidence/reboot/initial-contracts-2026-10-20.json"
-        ],
         "concept": "Java records, immutable collections, API vs domain models",
-        "concept_reference": "contracts/day-04.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-04.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-04.md",
-        "evidence_output": "evidence/reboot/day-04.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day04ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-04.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -305,7 +354,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -332,17 +383,25 @@
         "contract_path": "docs/reboot/contracts/day-05.md",
         "active_guide_path": "docs/reboot/contracts/day-05.md",
         "acceptance_reference": "docs/reboot/contracts/day-05.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day05ContractTest test",
-          "evidence/reboot/initial-contracts-2026-10-20.json"
-        ],
         "concept": "Pure functions, invariants and decision tables",
-        "concept_reference": "contracts/day-05.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-05.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-05.md",
-        "evidence_output": "evidence/reboot/day-05.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day05ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-05.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -370,7 +429,9 @@
         "resource_references": [
           "https://leetcode.com/problems/ransom-note/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -397,17 +458,25 @@
         "contract_path": "docs/reboot/contracts/day-06.md",
         "active_guide_path": "docs/reboot/contracts/day-06.md",
         "acceptance_reference": "docs/reboot/contracts/day-06.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day06ContractTest test",
-          "evidence/reboot/initial-contracts-2026-10-20.json"
-        ],
         "concept": "Value types, BigDecimal precision and rounding",
-        "concept_reference": "contracts/day-06.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-06.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-06.md",
-        "evidence_output": "evidence/reboot/day-06.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day06ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-06.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -440,7 +509,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -467,17 +538,25 @@
         "contract_path": "docs/reboot/contracts/day-07.md",
         "active_guide_path": "docs/reboot/contracts/day-07.md",
         "acceptance_reference": "docs/reboot/contracts/day-07.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day07ContractTest test",
-          "evidence/reboot/initial-contracts-2026-10-20.json"
-        ],
         "concept": "Wall time vs elapsed time; deterministic tests",
-        "concept_reference": "contracts/day-07.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-07.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-07.md",
-        "evidence_output": "evidence/reboot/day-07.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day07ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [
+          "evidence/reboot/initial-contracts-2026-10-20.json"
+        ],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-07.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -505,7 +584,9 @@
         "resource_references": [
           "https://leetcode.com/problems/group-anagrams/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -532,17 +613,25 @@
         "contract_path": "docs/reboot/contracts/day-08.md",
         "active_guide_path": "docs/reboot/contracts/day-08.md",
         "acceptance_reference": "docs/reboot/contracts/day-08.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day08ContractTest test",
-          "src/main/resources/db/migration/V001__homesecure_quotes.sql"
-        ],
         "concept": "Relational keys, normalization and integrity",
-        "concept_reference": "contracts/day-08.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-08.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-08.md",
-        "evidence_output": "evidence/reboot/day-08.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day08ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [
+          "src/main/resources/db/migration/V001__homesecure_quotes.sql"
+        ],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-08.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -584,7 +673,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -611,16 +702,23 @@
         "contract_path": "docs/reboot/contracts/day-09.md",
         "active_guide_path": "docs/reboot/contracts/day-09.md",
         "acceptance_reference": "docs/reboot/contracts/day-09.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day09ContractTest test"
-        ],
         "concept": "SQL queries, repository boundaries and ORM mapping",
-        "concept_reference": "contracts/day-09.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-09.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-09.md",
-        "evidence_output": "evidence/reboot/day-09.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day09ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-09.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -648,7 +746,9 @@
         "resource_references": [
           "https://leetcode.com/problems/product-of-array-except-self/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -675,16 +775,23 @@
         "contract_path": "docs/reboot/contracts/day-10.md",
         "active_guide_path": "docs/reboot/contracts/day-10.md",
         "acceptance_reference": "docs/reboot/contracts/day-10.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day10ContractTest test"
-        ],
         "concept": "Transactions, atomicity and rollback",
-        "concept_reference": "contracts/day-10.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-10.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-10.md",
-        "evidence_output": "evidence/reboot/day-10.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day10ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-10.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -726,7 +833,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -753,16 +862,23 @@
         "contract_path": "docs/reboot/contracts/day-11.md",
         "active_guide_path": "docs/reboot/contracts/day-11.md",
         "acceptance_reference": "docs/reboot/contracts/day-11.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day11ContractTest test"
-        ],
         "concept": "Optimistic concurrency vs stale reads",
-        "concept_reference": "contracts/day-11.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-11.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-11.md",
-        "evidence_output": "evidence/reboot/day-11.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day11ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-11.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -790,7 +906,9 @@
         "resource_references": [
           "https://leetcode.com/problems/valid-palindrome/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -817,16 +935,23 @@
         "contract_path": "docs/reboot/contracts/day-12.md",
         "active_guide_path": "docs/reboot/contracts/day-12.md",
         "acceptance_reference": "docs/reboot/contracts/day-12.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day12ContractTest test"
-        ],
         "concept": "Authentication vs authorization and object access control",
-        "concept_reference": "contracts/day-12.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-12.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-12.md",
-        "evidence_output": "evidence/reboot/day-12.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day12ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-12.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -868,7 +993,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -895,17 +1022,25 @@
         "contract_path": "docs/reboot/contracts/day-13.md",
         "active_guide_path": "docs/reboot/contracts/day-13.md",
         "acceptance_reference": "docs/reboot/contracts/day-13.md",
-        "acceptance_command": [
-          "./mvnw -Dtest=Day13WorkflowInfrastructureTest test",
-          "./mvnw -Plearner-tests -Dtest=Day13ContractTest test"
-        ],
         "concept": "Test pyramid, reproducibility and CI failure signals",
-        "concept_reference": "contracts/day-13.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-13.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-13.md",
-        "evidence_output": "evidence/reboot/day-13.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day13ContractTest test"
+        ],
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day13WorkflowInfrastructureTest test"
+        ],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-13.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -933,7 +1068,9 @@
         "resource_references": [
           "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -960,17 +1097,25 @@
         "contract_path": "docs/reboot/contracts/day-14.md",
         "active_guide_path": "docs/reboot/contracts/day-14.md",
         "acceptance_reference": "docs/reboot/contracts/day-14.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test",
-          "ProductCatalogService.findByCode"
-        ],
         "concept": "Trace request lifecycle, data ownership and transaction boundary",
-        "concept_reference": "contracts/day-14.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-14.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-14.md",
-        "evidence_output": "evidence/reboot/day-14.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [
+          "ProductCatalogService.findByCode"
+        ],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-14.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1012,7 +1157,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1039,16 +1186,23 @@
         "contract_path": "docs/reboot/contracts/day-15.md",
         "active_guide_path": "docs/reboot/contracts/day-15.md",
         "acceptance_reference": "docs/reboot/contracts/day-15.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day15ContractTest test"
-        ],
         "concept": "SQL joins, projections and null/empty semantics",
-        "concept_reference": "contracts/day-15.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-15.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-15.md",
-        "evidence_output": "evidence/reboot/day-15.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day15ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-15.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1076,7 +1230,9 @@
         "resource_references": [
           "https://leetcode.com/problems/container-with-most-water/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1103,16 +1259,23 @@
         "contract_path": "docs/reboot/contracts/day-16.md",
         "active_guide_path": "docs/reboot/contracts/day-16.md",
         "acceptance_reference": "docs/reboot/contracts/day-16.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day16ContractTest test"
-        ],
         "concept": "Sorting, pagination cost and query complexity",
-        "concept_reference": "contracts/day-16.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-16.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-16.md",
-        "evidence_output": "evidence/reboot/day-16.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day16ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-16.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1154,7 +1317,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1181,17 +1346,25 @@
         "contract_path": "docs/reboot/contracts/day-17.md",
         "active_guide_path": "docs/reboot/contracts/day-17.md",
         "acceptance_reference": "docs/reboot/contracts/day-17.md",
-        "acceptance_command": [
-          "npm --prefix frontend test -- src/components/ProductPanel.test.tsx",
-          "npm --prefix frontend run build"
-        ],
         "concept": "Typed props and discriminated UI state",
-        "concept_reference": "contracts/day-17.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-17.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-17.md",
-        "evidence_output": "evidence/reboot/day-17.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "npm --prefix frontend test -- src/components/ProductPanel.test.tsx"
+        ],
+        "infrastructure_commands": [
+          "npm --prefix frontend run build"
+        ],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-17.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1219,7 +1392,9 @@
         "resource_references": [
           "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1246,16 +1421,23 @@
         "contract_path": "docs/reboot/contracts/day-18.md",
         "active_guide_path": "docs/reboot/contracts/day-18.md",
         "acceptance_reference": "docs/reboot/contracts/day-18.md",
-        "acceptance_command": [
-          "npm --prefix frontend test -- --run src/__tests__/Day18Contract.test.tsx"
-        ],
         "concept": "Controlled inputs, derived state and client/server validation",
-        "concept_reference": "contracts/day-18.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-18.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-18.md",
-        "evidence_output": "evidence/reboot/day-18.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "npm --prefix frontend test -- --run src/__tests__/Day18Contract.test.tsx"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-18.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1297,7 +1479,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1324,16 +1508,23 @@
         "contract_path": "docs/reboot/contracts/day-19.md",
         "active_guide_path": "docs/reboot/contracts/day-19.md",
         "acceptance_reference": "docs/reboot/contracts/day-19.md",
-        "acceptance_command": [
-          "npm --prefix frontend test -- --run src/__tests__/Day19Contract.test.tsx"
-        ],
         "concept": "Async UI, race conditions and state ownership",
-        "concept_reference": "contracts/day-19.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-19.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-19.md",
-        "evidence_output": "evidence/reboot/day-19.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "npm --prefix frontend test -- --run src/__tests__/Day19Contract.test.tsx"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-19.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1361,7 +1552,9 @@
         "resource_references": [
           "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1388,16 +1581,23 @@
         "contract_path": "docs/reboot/contracts/day-20.md",
         "active_guide_path": "docs/reboot/contracts/day-20.md",
         "acceptance_reference": "docs/reboot/contracts/day-20.md",
-        "acceptance_command": [
-          "npm --prefix frontend test -- --run src/__tests__/Day20Contract.test.tsx"
-        ],
         "concept": "HTTP side effects, retry decisions and truthful UI state",
-        "concept_reference": "contracts/day-20.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-20.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-20.md",
-        "evidence_output": "evidence/reboot/day-20.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "npm --prefix frontend test -- --run src/__tests__/Day20Contract.test.tsx"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-20.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1439,7 +1639,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1466,17 +1668,25 @@
         "contract_path": "docs/reboot/contracts/day-21.md",
         "active_guide_path": "docs/reboot/contracts/day-21.md",
         "acceptance_reference": "docs/reboot/contracts/day-21.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day21ContractTest test",
-          "POST /api/quote-selections"
-        ],
         "concept": "Cookies, CSRF vs CORS and browser trust boundaries",
-        "concept_reference": "contracts/day-21.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-21.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-21.md",
-        "evidence_output": "evidence/reboot/day-21.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day21ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [
+          "POST /api/quote-selections"
+        ],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-21.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1504,7 +1714,9 @@
         "resource_references": [
           "https://leetcode.com/problems/valid-parentheses/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1531,16 +1743,23 @@
         "contract_path": "docs/reboot/contracts/day-22.md",
         "active_guide_path": "docs/reboot/contracts/day-22.md",
         "acceptance_reference": "docs/reboot/contracts/day-22.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day22ContractTest test"
-        ],
         "concept": "Observability vs privacy; logs vs metrics",
-        "concept_reference": "contracts/day-22.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-22.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-22.md",
-        "evidence_output": "evidence/reboot/day-22.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day22ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-22.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1591,7 +1810,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1618,20 +1839,29 @@
         "contract_path": "docs/reboot/contracts/day-23.md",
         "active_guide_path": "docs/reboot/contracts/day-23.md",
         "acceptance_reference": "docs/reboot/contracts/day-23.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day23ContractTest test",
-          "Day23ActuatorInfrastructureTest",
-          "Day23ContractTest",
+        "concept": "Liveness/readiness and failure detection",
+        "concept_reference": "docs/reboot/contracts/day-23.md#concept-25-minutes",
+        "evidence_reference": "docs/reboot/contracts/day-23.md",
+        "status": "not_attempted",
+        "runtime_harness_status": "verified",
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day23ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [
+          "src/test/java/assignments/reboot/Day23ActuatorInfrastructureTest.java",
+          "src/test/java/assignments/reboot/Day23ContractTest.java"
+        ],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [
           "groups",
           "status"
         ],
-        "concept": "Liveness/readiness and failure detection",
-        "concept_reference": "contracts/day-23.md#concept-25-minutes",
-        "evidence_reference": "docs/reboot/contracts/day-23.md",
-        "evidence_output": "evidence/reboot/day-23.json",
-        "status": "not_attempted",
-        "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-23.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1659,7 +1889,9 @@
         "resource_references": [
           "https://leetcode.com/problems/min-stack/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1686,16 +1918,23 @@
         "contract_path": "docs/reboot/contracts/day-24.md",
         "active_guide_path": "docs/reboot/contracts/day-24.md",
         "acceptance_reference": "docs/reboot/contracts/day-24.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day24ContractTest test"
-        ],
         "concept": "B-tree indexes, selectivity, EXPLAIN vs EXPLAIN ANALYZE",
-        "concept_reference": "contracts/day-24.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-24.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-24.md",
-        "evidence_output": "evidence/reboot/day-24.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day24ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-24.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1746,7 +1985,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1773,16 +2014,23 @@
         "contract_path": "docs/reboot/contracts/day-25.md",
         "active_guide_path": "docs/reboot/contracts/day-25.md",
         "acceptance_reference": "docs/reboot/contracts/day-25.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day25ContractTest test"
-        ],
         "concept": "Race conditions, database uniqueness and idempotency",
-        "concept_reference": "contracts/day-25.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-25.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-25.md",
-        "evidence_output": "evidence/reboot/day-25.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day25ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-25.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1810,7 +2058,9 @@
         "resource_references": [
           "https://leetcode.com/problems/binary-search/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1837,16 +2087,23 @@
         "contract_path": "docs/reboot/contracts/day-26.md",
         "active_guide_path": "docs/reboot/contracts/day-26.md",
         "acceptance_reference": "docs/reboot/contracts/day-26.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day26ContractTest test"
-        ],
         "concept": "Atomic audit and data minimization",
-        "concept_reference": "contracts/day-26.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-26.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-26.md",
-        "evidence_output": "evidence/reboot/day-26.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day26ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-26.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1897,7 +2154,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1924,16 +2183,23 @@
         "contract_path": "docs/reboot/contracts/day-27.md",
         "active_guide_path": "docs/reboot/contracts/day-27.md",
         "acceptance_reference": "docs/reboot/contracts/day-27.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day27ContractTest test"
-        ],
         "concept": "Debugging hypothesis, regression prevention and scope control",
-        "concept_reference": "contracts/day-27.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-27.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-27.md",
-        "evidence_output": "evidence/reboot/day-27.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day27ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-27.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -1961,7 +2227,9 @@
         "resource_references": [
           "https://leetcode.com/problems/search-insert-position/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -1988,17 +2256,29 @@
         "contract_path": "docs/reboot/contracts/day-28.md",
         "active_guide_path": "docs/reboot/contracts/day-28.md",
         "acceptance_reference": "docs/reboot/contracts/day-28.md",
-        "acceptance_command": [
-          "cd frontend && npm ci && npm run build",
-          "cd .. && CHROMIUM_BIN=/path/to/chromium ./mvnw -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test"
-        ],
         "concept": "One request end to end, security and consistency boundaries",
-        "concept_reference": "contracts/day-28.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-28.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-28.md",
-        "evidence_output": "evidence/reboot/day-28.json",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "CHROMIUM_BIN=\"${CHROMIUM_BIN:?set CHROMIUM_BIN}\" ./mvnw -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test"
+        ],
+        "infrastructure_commands": [
+          "npm --prefix frontend ci",
+          "npm --prefix frontend run build"
+        ],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "environment_requirements": [
+          "Set CHROMIUM_BIN to an installed Chromium executable before running the browser acceptance command."
+        ],
+        "evidence_output_path": "evidence/reboot/day-28.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -2049,7 +2329,9 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -2076,18 +2358,27 @@
         "contract_path": "docs/reboot/contracts/day-29.md",
         "active_guide_path": "docs/reboot/contracts/day-29.md",
         "acceptance_reference": "docs/reboot/contracts/day-29.md",
-        "acceptance_command": [
-          "./mvnw -Dtest=Day29ResetIntegrationTest test",
-          "./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable",
-          "*_test"
-        ],
         "concept": "Configuration, environment parity and safe operations",
-        "concept_reference": "contracts/day-29.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-29.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-29.md",
-        "evidence_output": "evidence/reboot/day-29.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Dtest=Day29ResetIntegrationTest test"
+        ],
+        "infrastructure_commands": [
+          "./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable"
+        ],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [
+          "Disposable database name must end with _test."
+        ],
+        "evidence_output_path": "evidence/reboot/day-29.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -2115,7 +2406,9 @@
         "resource_references": [
           "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
           "docs/reboot/dsa-error-log-template.md"
-        ]
+        ],
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     },
@@ -2142,16 +2435,23 @@
         "contract_path": "docs/reboot/contracts/day-30.md",
         "active_guide_path": "docs/reboot/contracts/day-30.md",
         "acceptance_reference": "docs/reboot/contracts/day-30.md",
-        "acceptance_command": [
-          "./mvnw -Plearner-tests -Dtest=Day30ContractTest test"
-        ],
         "concept": "SDE II trade-off discussion and technical communication",
-        "concept_reference": "contracts/day-30.md#concept-25-minutes",
+        "concept_reference": "docs/reboot/contracts/day-30.md#concept-25-minutes",
         "evidence_reference": "docs/reboot/contracts/day-30.md",
-        "evidence_output": "evidence/reboot/day-30.json",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
-        "integration_status": "blocked"
+        "integration_status": "blocked",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day30ContractTest test"
+        ],
+        "infrastructure_commands": [],
+        "related_paths": [],
+        "related_evidence_paths": [],
+        "learner_seams": [],
+        "api_endpoints": [],
+        "asserted_response_fields": [],
+        "safety_preconditions": [],
+        "evidence_output_path": "evidence/reboot/day-30.json"
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -2202,9 +2502,12 @@
         "resource_references": [
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "acceptance_commands": [],
+        "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
     }
-  ]
+  ],
+  "path_base": "repository root"
 }
