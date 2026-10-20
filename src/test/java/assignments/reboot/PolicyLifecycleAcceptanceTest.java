@@ -263,7 +263,12 @@ class PolicyLifecycleAcceptanceTest {
     }
     private static Object getRaceResult(Future<PolicySnapshot> future) throws Exception {
         try { return future.get(10, TimeUnit.SECONDS); }
-        catch (ExecutionException e) { return e.getCause(); }
+        catch (ExecutionException e) {
+            // Keep an unfinished learner seam visible as its TODO error instead of
+            // misreporting it as a concurrency assertion failure.
+            if (e.getCause() instanceof UnsupportedOperationException todo) throw todo;
+            return e.getCause();
+        }
     }
     private static PolicyLifecycleService serviceStatic() { return new PolicyLifecycleService(CLOCK); }
     private static Clock clockOn(String date) { return Clock.fixed(Instant.parse(date + "T12:00:00Z"), ZoneOffset.UTC); }

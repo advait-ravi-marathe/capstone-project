@@ -110,6 +110,7 @@ class Day44BrowserTransportInfrastructureTest {
     }
 
     private static void runBrowser(String url, String phase, Path result) throws Exception {
+        Files.createDirectories(result.toAbsolutePath().getParent());
         ProcessBuilder process = new ProcessBuilder("node", "e2e/day44-browser.mjs", url, phase, result.toString())
                 .directory(Path.of("frontend").toFile()).redirectErrorStream(true)
                 .redirectOutput(Path.of("target/day44-harness", phase + ".log").toFile());
@@ -163,7 +164,7 @@ class Day44BrowserTransportInfrastructureTest {
         @PostMapping("/test/day44/lifecycle/issue")
         PolicySnapshot issue() {
             var request = request();
-            var facts = new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-a", true, true, LocalDate.parse("2026-12-01"), true);
+            var facts = new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-a", true, true, LocalDate.parse("2026-12-15"), true);
             if (!service.validateIssue(request, facts)) throw new IllegalArgumentException("quote failed fixed training facts");
             return service.persistIssueAtomically(dataSource, request, "owner-a");
         }
