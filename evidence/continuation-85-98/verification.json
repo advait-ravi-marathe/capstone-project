@@ -3,7 +3,7 @@
   "state": "published_and_exact_head_verified",
   "base_checkpoint": "034d6c02f6f21d03ce3467d4b4d60512f91cc469",
   "guidance_ancestry_commit": "d983c384cf7295c9ba0424e2d604d32f12dfdc06",
-  "published_sha": "9ca5f319e084e229eda84f1a5cab416a3909fbce",
+  "published_sha": "63ca9ffd8d8327aede1cb9f88d91e6b97038c375",
   "branch": "learning/coverstory-days-85-98",
   "scope": "Instructor scaffolding, executable tests, packaged/browser harness, docs, course blocks and branch-specific CI. Learner implementation seams remain unchanged TODOs.",
   "environment": {
@@ -44,7 +44,7 @@
         "TimedPolicyRenewalReadStore.java",
         "PreviewReadFailureTranslator.java"
       ],
-      "restoration": "all four learner seams restored to pre-witness SHA256 from /tmp/witness-original.sha256; original TODO sources verified byte-for-byte against /tmp/day85-witness-backup/before.sha256"
+      "restoration": "Historically reported restored after the run; later inspection found currently retained /tmp/witness-* source files are original TODOs, so the conforming source snapshot is not reproducible from those retained files. These runs did not include the subsequently added Day96 lock-recovery scenario."
     },
     {
       "name": "Earlier temporary full witness suite including cancellation lab",
@@ -57,7 +57,7 @@
         "four learner seams",
         "JdbcCancellationLabAcceptanceTest"
       ],
-      "restoration": "five files restored and SHA256 verified against /tmp/day85-witness-backup/before.sha256"
+      "restoration": "Historically reported restored after the run; later inspection found currently retained /tmp/witness-* source files are original TODOs, so the conforming source snapshot is not reproducible from those retained files. These runs did not include the subsequently added Day96 lock-recovery scenario."
     },
     {
       "name": "Restored learner selectors",
@@ -152,13 +152,22 @@
   "hosted_ci": {
     "status": "completed",
     "conclusion": "success",
-    "head_sha": "9ca5f319e084e229eda84f1a5cab416a3909fbce",
-    "run_number": 36,
-    "run_id": 39464823552,
+    "head_sha": "63ca9ffd8d8327aede1cb9f88d91e6b97038c375",
+    "run_number": 39,
+    "run_id": 39467022043,
     "run_attempt": 1,
-    "run_url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39464823552",
-    "started_at": "2026-10-20T17:17:48Z",
-    "completed_at": "2026-10-20T17:19:23Z",
-    "readback": "authenticated GitHub REST Actions run endpoint; terminal status and head_sha confirmed; job steps 1-12 all succeeded"
+    "run_url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39467022043",
+    "started_at": "2026-10-20T17:32:47Z",
+    "completed_at": "2026-10-20T17:34:09Z",
+    "readback": "Authenticated GitHub Actions run and jobs endpoints; exact head SHA confirmed; Java infrastructure/instructor harness, frontend instructor tests and dependency audit all succeeded."
+  },
+  "follow_up_corrections": {
+    "tested_code_sha": "63ca9ffd8d8327aede1cb9f88d91e6b97038c375",
+    "day96": "Added real ACCESS EXCLUSIVE lock-timeout recovery to repeatedRecoveryRestoresSessionBaselineBeforePermitReuse(); asserts SQLSTATE 55P03, worker/connection idle with no open transaction, and same backend PID/backend_start plus baseline settings before permit reuse. Cases cover successful read, lock timeout, mapping failure, and statement timeout.",
+    "day97": "Lock-phase snapshot now reads through the lock-holding connection, avoiding a second connection blocked by the holder lock. A test-only finite SET LOCAL statement_timeout watchdog aborts broken fixture ordering. Fixed clock 2027-01-01T12:00:00Z places seeded V003 (2026-01-15) inside its deterministic preview window. No acceptance assertions weakened.",
+    "local_verification": "After these changes, documented default Maven instructor suite passed 42/42; focused Day85To98InfrastructureTest passed 3/3; JSON parse and git diff --check passed. Four learner seams restored to their original TODO SHA256 values.",
+    "independent_runtime_witness": "Reviewer independently reported Day97 packaged Chromium -> authenticated JAR -> PostgreSQL lock timeout 503 -> explicit retry 200, 1/1, plus Day83 1/1, PostgreSQL timeout/recovery 4/4, cancellation 1/1, infrastructure 11/11. The witness was temporary and restored; it does not establish learner completion.",
+    "witness_limit": "The retained /tmp/witness-* sources were later verified as original TODO files. Do not use them to reproduce a conforming witness. An attempted Day96 run exited at the deliberate Day89 TODO and did not reach the new Day96 lock case; no conforming Day96 witness result is claimed.",
+    "receipt_commit": "This receipt update is documentation-only and is a descendant of tested_code_sha. Hosted CI above is for the tested code SHA; any receipt-only descendant requires its own exact-head CI confirmation."
   }
 }
