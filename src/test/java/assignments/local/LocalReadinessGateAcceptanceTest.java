@@ -19,4 +19,10 @@ class LocalReadinessGateAcceptanceTest {
         assertEquals(LocalReadinessGate.Readiness.READY,
                 gate.assess(Map.of("day-55", true, "day-56", true)));
     }
+
+    @Test
+    void day63SecurityCheckpointKeepsRecoveryInsideDailyBudget() {
+        assertEquals(new LocalReadinessGate.SecurityCheckpoint(true, 85, false),
+                new LocalReadinessGate().securityCheckpoint(Map.of("day-62-security", false), 85));
+    }
 }

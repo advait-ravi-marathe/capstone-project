@@ -1,32 +1,112 @@
 {
   "branch": "learning/coverstory-days-57-70",
-  "base_sha": "023117b0f966da3d4e1153029e642f0c345b5f3a",
-  "status": "partial_unpublished",
+  "base_sha": "6649f9adf368a5ac11c85458cbb0abb94f6a4eb0",
+  "status": "verified_scaffold_with_expected_learner_blockers",
+  "published_sha": null,
   "checks": [
     {
       "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py",
       "result": "15 passed"
     },
     {
-      "command": "npm run build:local",
-      "working_directory": "frontend",
-      "result": "passed; Vite emitted dedicated dist-local/local.html and local bundle"
+      "command": "npm --prefix frontend audit --audit-level=low",
+      "result": "passed; 0 vulnerabilities reported by the npm registry audit for the frontend dependency tree"
     },
     {
-      "command": "npm test",
-      "working_directory": "frontend",
-      "result": "passed; 1 file, 1 test"
+      "command": "npm --prefix frontend run build",
+      "result": "passed"
     },
     {
-      "command": "MAVEN_USER_HOME=/tmp/capstone-maven-user ./mvnw -B -ntp -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=LocalApplicationManifestInfrastructureTest test",
-      "result": "blocked before compilation: DNS resolution for repo.maven.apache.org failed while resolving Spring Boot 4.1.1 BOM"
+      "command": "npm --prefix frontend run build:local",
+      "result": "passed; dedicated local.html and local bundle emitted"
+    },
+    {
+      "command": "npm --prefix frontend run test:local",
+      "result": "expected learner red: 2 failures at missing session-expiry UI and missing preview action in Day66 shell"
+    },
+    {
+      "command": "scripts/package-local-demo.sh",
+      "result": "passed end to end; default Maven suite 34/34, then local-app executable jar package succeeded after npm ci and both frontend builds. Temporary proxy/truststore/Maven-cache overrides were set as recorded under runtime."
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test",
+      "result": "passed 1/1 on embedded PostgreSQL 18.6"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test",
+      "result": "passed 1/1"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test",
+      "result": "passed 1/1"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test",
+      "result": "passed 1/1"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test",
+      "result": "passed 1/1"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test",
+      "result": "passed 1/1"
+    },
+    {
+      "command": "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test",
+      "result": "passed 1/1"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+      "result": "expected error at explicit Day57 assess TODO"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+      "result": "expected error at explicit Day63 securityCheckpoint TODO"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test",
+      "result": "expected error at existing Day48 owner-scoped renewal read TODO"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test",
+      "result": "expected error at explicit Day62 owner resolver TODO"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test",
+      "result": "expected learner assertion red: packaged browser and PostgreSQL work, preview returns HTTP500 at existing Day49 TODO (expected 200)"
+    },
+    {
+      "command": "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test",
+      "result": "expected learner assertion red: browser session restart/logout and PostgreSQL flow execute, preview returns HTTP500 at existing Day49 TODO (foreign-owner path expected 404)"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium node frontend/e2e/local-coverstory-browser.mjs http://127.0.0.1:<ephemeral-port> target/local-coverstory-browser/packaged-day68.json day68",
+      "result": "passed browser launch and app flow; saved owner-a session, health 200, local page 200, anonymous API 401, owner selection 200; preview TODO returned 500"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test",
+      "result": "passed 3/3; validates 14 dated contracts, paths, budgets, loopback guard and Day70 integrity"
     }
   ],
+  "runtime": {
+    "packaged_demo": "Started on loopback with ephemeral app port and disposable PostgreSQL 18.6 Compose project; health and page returned 200, session API returned 401 anonymous, excluded /test and /__e2e routes returned 404; Ctrl-C invoked cleanup trap.",
+    "browser_evidence": "target/local-coverstory-browser/day68.json; Maven browser selectors also generate day69-before-restart.json and day69-after-restart.json.",
+    "temporary_build_environment": "Oracle JDK 21 at /tmp/oracle-jdk21; Maven proxy settings /tmp/capstone-maven-settings.xml; trusted proxy store /tmp/capstone-jdk21-cacerts; local repository /tmp/capstone-m2; Chromium /usr/bin/chromium."
+  },
   "unresolved": [
-    "PostgreSQL test binary target decision is pending; embedded PostgreSQL dependency was not changed.",
-    "No Java compiler is installed; Java test suite could not be compiled or run.",
-    "Fixed acceptance test source/selectors for Days 58-62 and 64-69 are not yet installed despite planned paths in manifest.",
-    "No packaged Spring runtime or PostgreSQL integration smoke has been executed."
+    "Learner TODOs for Days 57, 60, 62, 63, and 66 remain unimplemented by design.",
+    "Days 68 and 69 are blocked at the existing Day49 renewal-preview TODO; no all-days runtime completion is claimed.",
+    "No remote CI run is available; earlier repository CI endpoint returned 403.",
+    "Security advisory audit of the newly added Maven dependency graph is not yet recorded; no all-clear claim."
   ],
-  "published_sha": null
+  "resolved_since_checkpoint": [
+    "Selected PostgreSQL 18.6 for this isolated disposable runtime; the official support window extends to 2030-11-14. This does not alter any existing database.",
+    "Restored JDK21 and Maven through environment-specific proxy settings and ran the packaged app against disposable PostgreSQL.",
+    "The original /workspace/capstone-project worktree is still at 3a9db48b9d495d6165373c8e473ac63418275f04 with its 104 pre-existing dirty entries; it was not modified."
+  ]
 }

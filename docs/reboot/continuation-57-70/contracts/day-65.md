@@ -12,14 +12,13 @@ Missing or invalid CSRF tokens return 403 and do not change any lifecycle row. A
 
 ## Acceptance and expected TODO state
 
-The behavioral acceptance selector for this day is planned but its test source is not installed yet. The command below is not runnable evidence until the test is added. Do not implement learner behavior in the starter or mark the contract complete. Instructor manifest and DSA checks are separate and do not prove the day's API, security, UI or integration behavior. Record the actual command, result, and learner-owned paths in `evidence/continuation-57-70/day-65.json` only after the selector exists and is run.
+The fixed selector is installed and currently passes as instructor scaffolding; learner behavior remains unimplemented.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
 **Acceptance selector:** `day65InvalidCsrfCannotCreatePolicyRows`
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
+**Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
-
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.

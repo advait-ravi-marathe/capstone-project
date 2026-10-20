@@ -207,5 +207,7 @@ issue/readback and renewal-preview rules. It adds a dedicated frontend entry
 shell and explicit learner seams. Several day-specific fixed acceptance
 selectors and the packaged PostgreSQL runtime are not installed yet; the
 manifest marks those scaffold entries `not_installed` and integration remains
-blocked. PostgreSQL major-version selection is pending, so the test binary pin
-has not been changed. No board update is included.
+blocked. This branch upgrades its disposable embedded PostgreSQL test target
+to 18.6 after checking official support and platform artifact availability;
+historical contracts are retained, and no existing user database is migrated.
+No board update is included.

@@ -10,16 +10,21 @@ board was changed.
 
 ## Current scaffold status
 
-- Days 57 and 70 have fixed learner/instructor Java tests; Day 58 has the
-  composition seam but its acceptance test is not installed.
-- Days 59–65 and 67–69 still need their fixed test sources and some production
-  seams. Their commands in the contracts are planned selectors, not runnable
-  evidence; the manifest marks them `not_installed`.
-- Day 66 has a dedicated React entry shell; its behavioral acceptance test and
-  typed API client are not installed.
-- PostgreSQL target selection is pending. No existing embedded PostgreSQL
-  version was changed and no migration was applied.
-- The day evidence files remain blank until a learner executes the work.
+- Fixed selectors are installed for Days 57–70. Instructor/runtime scaffolding
+  passes for Days 58, 59, 61, 64, 65, 67 and 70. Learner selectors for Days 57,
+  60, 62, 63 and 66 remain red at explicit TODOs; Days 68–69 reach the browser
+  and PostgreSQL but stop at the existing Day 49 preview TODO.
+- The packaged local route, cookie-backed synthetic owner selection, security
+  chain, migrations and safe disposable PostgreSQL launcher are implemented as
+  instructor scaffolding. Domain/owner/preview learner logic remains TODO.
+- PostgreSQL 18.6 was selected for the disposable embedded test harness after
+  checking official support dates and Linux amd64/macOS ARM64/macOS Intel
+  artifact availability. Prior test contracts are preserved as historical
+  records; the shared test harness on this branch now uses the 18.6.0 binary
+  BOM. No existing user database is upgraded.
+- `evidence/continuation-57-70/scaffold-verification.json` records actual
+  instructor commands, runtime smoke results and expected TODO failures. Day
+  learner evidence stays unclaimed until learner work is completed.
 
 ## Checks available now
 
@@ -28,10 +33,13 @@ python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_que
 npm --prefix frontend ci --cache /tmp/capstone-npm-cache
 npm --prefix frontend run build:local
 npm --prefix frontend test
+scripts/package-local-demo.sh
+scripts/local-demo.sh
 ```
 
-Java commands require a JDK 21 and Maven Central access. The current execution
-environment has Java 21 without `javac`; resolving the Spring Boot BOM also
-failed because Maven Central DNS was unavailable. See
+Java commands require a JDK 21 and Maven Central access. The cloud run used
+Oracle JDK 21 and temporary proxy settings outside the repository. `npm audit
+--audit-level=low` reported zero frontend vulnerabilities; a Maven dependency
+advisory review is still pending. See
 [`evidence/continuation-57-70/scaffold-verification.json`](../../../evidence/continuation-57-70/scaffold-verification.json)
 for exact results and blockers.

@@ -9,5 +9,12 @@ public final class LocalReadinessGate {
         throw new UnsupportedOperationException("Day 57 learner TODO: assess prior evidence");
     }
 
+    public SecurityCheckpoint securityCheckpoint(Map<String, Boolean> evidence, int implementationMinutes) {
+        // LEARNER TODO Day 63: use recovery inside today's 85-minute engineering block, with no added overtime.
+        throw new UnsupportedOperationException("Day 63 learner TODO: record bounded security checkpoint");
+    }
+
     public enum Readiness { READY, RECOVERY_REQUIRED }
+
+    public record SecurityCheckpoint(boolean recoveryRequired, int engineeringMinutes, boolean newWorkAdded) { }
 }

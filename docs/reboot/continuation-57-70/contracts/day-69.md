@@ -12,14 +12,13 @@ Restart preserves only the disposable PostgreSQL synthetic lifecycle rows; the p
 
 ## Acceptance and expected TODO state
 
-The behavioral acceptance selector for this day is planned but its test source is not installed yet. The command below is not runnable evidence until the test is added. Do not implement learner behavior in the starter or mark the contract complete. Instructor manifest and DSA checks are separate and do not prove the day's API, security, UI or integration behavior. Record the actual command, result, and learner-owned paths in `evidence/continuation-57-70/day-69.json` only after the selector exists and is run.
+The fixed browser selector is installed and runs against the packaged app and PostgreSQL. It currently fails where the existing Day 49 renewal-preview TODO returns HTTP 500 (the foreign-owner path expected 404); this is an expected upstream blocker.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
 **Acceptance selector:** `day69RestartLogoutForeignOwnerAndPreviewNoWrite`
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test`
+**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
-
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.

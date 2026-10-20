@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LocalCoverStoryApplication {
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(LocalCoverStoryApplication.class);
+        application.setAdditionalProfiles("local");
         application.setDefaultProperties(java.util.Map.of("server.address", "127.0.0.1"));
         application.addListeners(event -> {
             if (event instanceof org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent prepared) {

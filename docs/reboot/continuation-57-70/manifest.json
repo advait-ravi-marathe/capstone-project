@@ -1,10 +1,10 @@
 {
-  "title": "CoverStory local application assembly: Days 57–70",
+  "title": "CoverStory local application assembly: Days 57\u201370",
   "base_sha": "023117b0f966da3d4e1153029e642f0c345b5f3a",
   "effective_start": "2026-12-15",
   "effective_end": "2026-12-28",
   "status_semantics": "Contracts are plans. Scaffold, learner implementation, integration and actual completion are independent states. Only recorded learner evidence can advance learner status.",
-  "scope": "A loopback-only, passwordless synthetic local runtime for existing policy issuance/readback and read-only renewal preview. The local DB is disposable. No new product feature, no StreamForge, no real data, and no changes to Days 1–56 contracts. PostgreSQL test target pending user selection; no database-major migration applied yet.",
+  "scope": "A loopback-only, passwordless synthetic local runtime for existing policy issuance/readback and read-only renewal preview. The local DB is disposable. No new product feature, no StreamForge, no real data, and no changes to Days 1\u201356 contracts. PostgreSQL 18.6 is selected for the disposable test harness. No existing user database is upgraded.",
   "daily_budget_minutes": {
     "total": 180,
     "java_dsa": 60,
@@ -44,7 +44,7 @@
       "unpopulated_dates": []
     }
   ],
-  "postgresql_target_decision": "pending; see docs/reboot/continuation-57-70/postgresql-options.md",
+  "postgresql_target_decision": "PostgreSQL 18.6 selected for the disposable embedded test harness after official support and platform-artifact checks; see docs/reboot/continuation-57-70/postgresql-options.md",
   "days": [
     {
       "day": 57,
@@ -85,7 +85,7 @@
           },
           "resources": [
             {
-              "title": "GitHub Actions workflow syntax — job dependencies and conditional jobs",
+              "title": "GitHub Actions workflow syntax \u2014 job dependencies and conditional jobs",
               "section": "needs dependencies and status-check conditions",
               "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
             }
@@ -139,7 +139,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -154,7 +154,7 @@
           },
           "resources": [
             {
-              "title": "Spring Boot application structure — @SpringBootConfiguration and explicit configuration",
+              "title": "Spring Boot application structure \u2014 @SpringBootConfiguration and explicit configuration",
               "section": "structuring code and locating the main application class",
               "url": "https://docs.spring.io/spring-boot/reference/using/structuring-your-code.html"
             }
@@ -163,7 +163,7 @@
           "design_prompt": "Add the dedicated local entry point and explicit composition: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_scaffold_passes"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -190,7 +190,7 @@
       "title": "Bootstrap a versioned synthetic schema without resetting rows",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-59.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -205,7 +205,7 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-59.md",
         "evidence_reference": "evidence/continuation-57-70/day-59.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
@@ -223,7 +223,7 @@
           },
           "resources": [
             {
-              "title": "Spring Boot SQL database initialization — Flyway migrations",
+              "title": "Spring Boot SQL database initialization \u2014 Flyway migrations",
               "section": "Execute Flyway Database Migrations on Startup",
               "url": "https://docs.spring.io/spring-boot/how-to/data-initialization.html"
             }
@@ -232,7 +232,7 @@
           "design_prompt": "Bootstrap a versioned synthetic schema without resetting rows: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "instructor_infrastructure_complete"
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -272,7 +272,7 @@
       "title": "Wire owner-scoped policy reads and prove preview performs no writes",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-60.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -287,10 +287,10 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-60.md",
         "evidence_reference": "evidence/continuation-57-70/day-60.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -305,7 +305,7 @@
           },
           "resources": [
             {
-              "title": "Spring JDBC — JdbcClient and transactions",
+              "title": "Spring JDBC \u2014 JdbcClient and transactions",
               "section": "Using JdbcClient; transaction management",
               "url": "https://docs.spring.io/spring-boot/reference/data/sql.html"
             }
@@ -314,7 +314,7 @@
           "design_prompt": "Wire owner-scoped policy reads and prove preview performs no writes: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_expected_upstream_day48_todo_red"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -341,7 +341,7 @@
       "title": "Install the local runtime security chain",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-61.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -356,10 +356,10 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-61.md",
         "evidence_reference": "evidence/continuation-57-70/day-61.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -374,7 +374,7 @@
           },
           "resources": [
             {
-              "title": "Spring Security authorization — authorize HTTP requests",
+              "title": "Spring Security authorization \u2014 authorize HTTP requests",
               "section": "authorize HTTP requests and request matchers",
               "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html"
             }
@@ -383,7 +383,7 @@
           "design_prompt": "Install the local runtime security chain: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_scaffold_passes"
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -423,7 +423,7 @@
       "title": "Derive policy ownership from the authenticated principal",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-62.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -438,10 +438,10 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-62.md",
         "evidence_reference": "evidence/continuation-57-70/day-62.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -465,7 +465,7 @@
           "design_prompt": "Derive policy ownership from the authenticated principal: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_expected_todo_red"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -492,7 +492,7 @@
       "title": "Run the security trace and recovery checkpoint",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-63.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -507,7 +507,7 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-63.md",
         "evidence_reference": "evidence/continuation-57-70/day-63.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
@@ -525,7 +525,7 @@
           },
           "resources": [
             {
-              "title": "Spring Security testing — MockMvc and security request post-processors",
+              "title": "Spring Security testing \u2014 MockMvc and security request post-processors",
               "section": "testing authentication, authorization and CSRF with MockMvc",
               "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html"
             }
@@ -534,7 +534,7 @@
           "design_prompt": "Run the security trace and recovery checkpoint: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_expected_todo_red"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -561,7 +561,7 @@
       "title": "Add the thin local policy issue adapter",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-64.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -576,10 +576,10 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-64.md",
         "evidence_reference": "evidence/continuation-57-70/day-64.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueApiDelegatesAndPreservesIdempotency test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -594,7 +594,7 @@
           },
           "resources": [
             {
-              "title": "Spring MVC request mapping — @RestController and request body handling",
+              "title": "Spring MVC request mapping \u2014 @RestController and request body handling",
               "section": "request body and method argument resolution",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
             }
@@ -603,7 +603,7 @@
           "design_prompt": "Add the thin local policy issue adapter: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_scaffold_passes"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -630,7 +630,7 @@
       "title": "Protect local session and issue writes with CSRF",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-65.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -645,10 +645,10 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-65.md",
         "evidence_reference": "evidence/continuation-57-70/day-65.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -672,7 +672,7 @@
           "design_prompt": "Protect local session and issue writes with CSRF: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_scaffold_passes"
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -730,7 +730,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalCoverStoryApp.test#day66NormalRouteUsesTypedApiAndHandlesExpiredSession test"
+          "npm --prefix frontend run test:local"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -745,7 +745,7 @@
           },
           "resources": [
             {
-              "title": "MDN Fetch API — credentials, HTTP errors and response JSON",
+              "title": "MDN Fetch API \u2014 credentials, HTTP errors and response JSON",
               "section": "including credentials; handling HTTP response status",
               "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
             }
@@ -754,7 +754,7 @@
           "design_prompt": "Build the normal React route and typed local API client: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_expected_todo_red"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -781,7 +781,7 @@
       "title": "Package, start and safely reset the local demo",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-67.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -796,7 +796,7 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-67.md",
         "evidence_reference": "evidence/continuation-57-70/day-67.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test"
@@ -823,7 +823,7 @@
           "design_prompt": "Package, start and safely reset the local demo: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "instructor_package_smoke_installed"
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -863,7 +863,7 @@
       "title": "Exercise the packaged main app through browser and PostgreSQL",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-68.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -874,14 +874,14 @@
           "evidence": 10
         },
         "scope": "Exercise the packaged main app through browser and PostgreSQL",
-        "learner_seam": "Local packaged app → browser → policy API → PostgreSQL",
+        "learner_seam": "Local packaged app \u2192 browser \u2192 policy API \u2192 PostgreSQL",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-68.md",
         "evidence_reference": "evidence/continuation-57-70/day-68.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test"
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68BrowserUsesPackagedMainAppAndPostgres test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -905,7 +905,7 @@
           "design_prompt": "Exercise the packaged main app through browser and PostgreSQL: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_expected_upstream_day49_todo_red"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -932,7 +932,7 @@
       "title": "Prove restart, logout, foreign-owner and no-write behavior",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-69.md",
       "contract_status": "defined",
-      "scaffold_status": "not_installed",
+      "scaffold_status": "partial",
       "learner_status": "not_attempted",
       "integration_status": "blocked until prior evidence gate and actual learner selectors pass",
       "engineering": {
@@ -947,10 +947,10 @@
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-69.md",
         "evidence_reference": "evidence/continuation-57-70/day-69.json",
         "status": "not_attempted",
-        "scaffold_status": "not_installed",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test"
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69RestartLogoutForeignOwnerAndPreviewNoWrite test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -974,7 +974,7 @@
           "design_prompt": "Prove restart, logout, foreign-owner and no-write behavior: sketch the trust or data boundary and name its enforcing layer.",
           "teachback_prompt": "State one invariant, its enforcing layer and the observable evidence that proves it."
         },
-        "acceptance_selector_status": "planned_not_installed"
+        "acceptance_selector_status": "installed_expected_upstream_day49_todo_red"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -1034,7 +1034,7 @@
           },
           "resources": [
             {
-              "title": "C4 model — software system, container and component boundaries",
+              "title": "C4 model \u2014 software system, container and component boundaries",
               "section": "system, container and component abstractions",
               "url": "https://c4model.com/abstractions"
             }
