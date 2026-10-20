@@ -61,8 +61,8 @@
           "resources": [
             {
               "title": "PostgreSQL 18 transactions",
-              "section": "The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.",
-              "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
+              "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html",
+              "reading_focus": "The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary."
             }
           ],
           "video_seconds": 349,
@@ -97,7 +97,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 59 - Transaction Management - ACID Properties — exact section: Transaction Management (5:49)\n- Worked supplement: Which committed row makes recovery possible? — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.\n- PostgreSQL 18 transactions — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.: https://www.postgresql.org/docs/18/tutorial-transactions.html\n- Cap: video 5:49, worked/reference 14:11, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 59 - Transaction Management - ACID Properties — exact section: Transaction Management (5:49)\n- Worked supplement: Which committed row makes recovery possible? — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.\n- Reading focus: PostgreSQL 18 transactions — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary. (https://www.postgresql.org/docs/18/tutorial-transactions.html)\n- Cap: video 5:49, worked/reference 14:11, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "partial_foundation_with_project_supplement"
     },
     {
@@ -113,15 +113,15 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Add constraints in a new additive migration. Leave V001–V003 unchanged; never rewrite existing rows.",
-        "learner_seam": "V004__event_log_delivery_work.sql constraints",
+        "scope": "Inspect the supplied instructor-owned V004 migration and explain how stable identity, ISSUED-only, and foreign-key constraints protect the data; do not author migration SQL.",
+        "learner_seam": "Explain-back: map each supplied V004 constraint to one invariant; no migration coding TODO.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-100.md",
         "evidence_reference": "evidence/continuation-99-112/day-100.json",
-        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day100SchemaConstraintsRejectDuplicateAndInvalidRows test"
+          "./mvnw -Dtest=Day99To112InfrastructureTest#migrationEnforcesStableIdentityAndRequiredFields test"
         ],
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "instructor_migration_fixture_green_learner_assessment_pending",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -134,15 +134,15 @@
           "resources": [
             {
               "title": "PostgreSQL 18 constraints",
-              "section": "Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.",
-              "url": "https://www.postgresql.org/docs/18/ddl-constraints.html"
+              "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+              "reading_focus": "Primary keys, unique constraints, checks, foreign keys, and not-null constraints"
             }
           ],
           "video_seconds": 0,
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.",
+          "scope_note": "The additive V004 migration is supplied instructor scaffolding. Inspect its primary key, ISSUED-only check, and receipt-to-work foreign key; connect each to a stable source identity and unchanged historical rows.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -170,7 +170,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: One durable identity across source, work, and receipt — Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.\n- PostgreSQL 18 constraints — Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.: https://www.postgresql.org/docs/18/ddl-constraints.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: One durable identity across source, work, and receipt — Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.\n- Reading focus: PostgreSQL 18 constraints — Primary keys, unique constraints, checks, foreign keys, and not-null constraints (https://www.postgresql.org/docs/18/ddl-constraints.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -186,7 +186,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Rescan committed ISSUED events missing from work, insert stable keys up to limit, and make repeats harmless. Exclude other event types.",
+        "scope": "Rescan committed ISSUED events missing from work, insert stable keys up to limit, and make repeats harmless. Exclude other event types. Before capture: source A/B/C committed; work/receipt/ack rows absent. After capture(limit=2): work A/B exists, C is still absent; repeat capture is harmless and later-committing earlier keys remain discoverable.",
         "learner_seam": "JdbcIssuanceWorkStore.captureCommittedIssuances(int)",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-101.md",
         "evidence_reference": "evidence/continuation-99-112/day-101.json",
@@ -207,15 +207,15 @@
           "resources": [
             {
               "title": "PostgreSQL 18 INSERT",
-              "section": "Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.",
-              "url": "https://www.postgresql.org/docs/18/sql-insert.html"
+              "url": "https://www.postgresql.org/docs/18/sql-insert.html",
+              "reading_focus": "Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys."
             }
           ],
           "video_seconds": 0,
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.",
+          "scope_note": "Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys. Worked row-state trace (limit 2): source A/B/C → work A/B, C absent → repeat unchanged; no watermark skips a later commit.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -243,7 +243,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Recover by reconciliation, not by a high-watermark — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.\n- PostgreSQL 18 INSERT — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.: https://www.postgresql.org/docs/18/sql-insert.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Recover by reconciliation, not by a high-watermark — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.\n- Reading focus: PostgreSQL 18 INSERT — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys. (https://www.postgresql.org/docs/18/sql-insert.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -265,7 +265,9 @@
         "evidence_reference": "evidence/continuation-99-112/day-102.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day102MapsCapturedPendingEnvelopeInStableBoundedOrder test"
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day102MapsCapturedPendingEnvelopeInStableBoundedOrder test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest#day102UsesTheCapturedPayloadWhenTheSourceEventRowLaterChanges test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest#day102RejectsAnUnsupportedPersistedEnvelopeSchemaVersion test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
@@ -297,8 +299,8 @@
           "resources": [
             {
               "title": "Spring JDBC core reference",
-              "section": "Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html",
+              "reading_focus": "Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values."
             }
           ],
           "video_seconds": 298,
@@ -333,7 +335,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 12 - Creating a custom Spring JDBC RowMapper — exact section: Journey From Spring  JDBC to JPA (4:58)\n- Worked supplement: Map the captured event, not today’s mutable policy — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.\n- Spring JDBC core reference — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.: https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html\n- Cap: video 4:58, worked/reference 15:02, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 12 - Creating a custom Spring JDBC RowMapper — exact section: Journey From Spring  JDBC to JPA (4:58)\n- Worked supplement: Map the captured event, not today’s mutable policy — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.\n- Reading focus: Spring JDBC core reference — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values. (https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)\n- Cap: video 4:58, worked/reference 15:02, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "partial_foundation_with_project_supplement"
     },
     {
@@ -349,7 +351,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "The receipt is the full synthetic effect. Identical replay is a no-op; same-key changed payload fails; original fields/time never change.",
+        "scope": "The receipt is the full synthetic effect. Identical replay is a no-op; same-key changed payload fails; original fields/time never change. Before receipt: work key K has payload P. First request with same K but payload Q is rejected and creates no receipt. P creates one receipt; replay P preserves its original received_at; later Q still conflicts and never overwrites the receipt.",
         "learner_seam": "JdbcIssuanceWorkStore.acceptReceipt(IssuanceEnvelope)",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-103.md",
         "evidence_reference": "evidence/continuation-99-112/day-103.json",
@@ -387,15 +389,15 @@
           "resources": [
             {
               "title": "Spring JDBC core reference",
-              "section": "Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html",
+              "reading_focus": "Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at."
             }
           ],
           "video_seconds": 519,
           "worked_reference_seconds": 681,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.",
+          "scope_note": "Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at. Worked row-state trace: pending work(K,P), no receipt → first mismatch(K,Q) rejected, still no receipt → accept(K,P) creates one → replay(P) unchanged → conflict(Q) leaves original payload/time.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -423,7 +425,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 11 - Implementing insert and update Spring JDBC Update Methods — exact section: Journey From Spring  JDBC to JPA (8:39)\n- Worked supplement: Insert-or-recognize is not overwrite-on-replay — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.\n- Spring JDBC core reference — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.: https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html\n- Cap: video 8:39, worked/reference 11:21, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 11 - Implementing insert and update Spring JDBC Update Methods — exact section: Journey From Spring  JDBC to JPA (8:39)\n- Worked supplement: Insert-or-recognize is not overwrite-on-replay — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.\n- Reading focus: Spring JDBC core reference — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at. (https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)\n- Cap: video 8:39, worked/reference 11:21, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "partial_foundation_with_project_supplement"
     },
     {
@@ -460,8 +462,8 @@
           "resources": [
             {
               "title": "AWS transactional outbox pattern",
-              "section": "Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.",
-              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html"
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+              "reading_focus": "Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery."
             }
           ],
           "video_seconds": 0,
@@ -496,7 +498,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: The effect-before-acknowledgment crash window — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.\n- AWS transactional outbox pattern — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.: https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: The effect-before-acknowledgment crash window — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.\n- Reading focus: AWS transactional outbox pattern — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery. (https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -512,15 +514,16 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day; repair earlier seams and predict persistent rows at each failure point. No new feature.",
-        "learner_seam": "Repair earlier failing selector(s)",
+        "scope": "Recovery/remediation only: rerun Days 99–104 learner acceptance and the fresh-JVM recovery selector, repair earlier seams, and explain predicted persistent rows. No new feature.",
+        "learner_seam": "Review and remediate existing Days 99–104; no new implementation seam.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-105.md",
         "evidence_reference": "evidence/continuation-99-112/day-105.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=DurableWorkRestartAcceptanceTest test"
         ],
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "review_only_existing_selectors_expected_todo_red",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -533,15 +536,15 @@
           "resources": [
             {
               "title": "Spring programmatic transactions",
-              "section": "Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html",
+              "reading_focus": "Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections."
             }
           ],
           "video_seconds": 0,
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.",
+          "scope_note": "Recovery study only. Predict the existing source/work/receipt/ack rows across failure points, rerun Days 99–104 and fresh-JVM recovery, and carry any unfinished proof forward within the same time cap.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -569,7 +572,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Crash-window tabletop: predict rows before running the test — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.\n- Spring programmatic transactions — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Crash-window tabletop: predict rows before running the test — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.\n- Reading focus: Spring programmatic transactions — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections. (https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -585,14 +588,15 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Run capture then deliver each item. Receipt and ack are separate commits; stop on first error, report committed progress, no auto retry or skip.",
+        "scope": "Capture and drain at most one validated batch per invocation. Commit receipt before acknowledgment for each selected item; stop at first error, report committed progress, no auto retry or skip. Worked row-state trace: capture batch K1/K2 once → receipt K1 commits → ack K1 commits → receipt K2 fails → stop; K1 remains delivered and K2 remains pending. Do not loop into the next page or silently swallow the error.",
         "learner_seam": "OneBatchDispatcher.runOnce(int)",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-106.md",
         "evidence_reference": "evidence/continuation-99-112/day-106.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test",
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReportsOnlyEarlierCommittedProgressWhenLaterItemFails test"
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReportsOnlyEarlierCommittedProgressWhenLaterItemFails test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest#day106RejectsAmbientTransactionAndProcessesAtMostOneBoundedBatch test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
@@ -624,15 +628,15 @@
           "resources": [
             {
               "title": "Spring programmatic transactions",
-              "section": "Capture separately. For each item commit receipt before ack; prove receipt visible from fresh connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending.",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html",
+              "reading_focus": "Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending."
             }
           ],
           "video_seconds": 278,
           "worked_reference_seconds": 922,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Capture separately. For each item commit receipt before ack; prove receipt visible from fresh connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending.",
+          "scope_note": "Capture once; read one bounded page only. For each item, receipt commit precedes ack. If K2 fails after K1 succeeds, retain K1 delivered/K2 pending, report only committed progress, and return. Do not loop through a larger backlog.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -660,7 +664,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 63 - Implementing Transaction Management - 3 Things to Decide — exact section: Transaction Management (4:38)\n- Worked supplement: Two completed transactions, not one enclosing transaction — Capture separately. For each item commit receipt before ack; prove receipt visible from fresh connection at ack. Reject ambient transaction; stop visibly on first failure.\n- Spring programmatic transactions — Capture separately. For each item commit receipt before ack; prove receipt visible from fresh connection at ack. Reject ambient transaction; stop visibly on first failure.: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Cap: video 4:38, worked/reference 15:22, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 63 - Implementing Transaction Management - 3 Things to Decide — exact section: Transaction Management (4:38)\n- Worked supplement: Two completed transactions, not one enclosing transaction — Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure.\n- Reading focus: Spring programmatic transactions — Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending. (https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)\n- Cap: video 4:38, worked/reference 15:22, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "partial_foundation_with_project_supplement"
     },
     {
@@ -697,8 +701,8 @@
           "resources": [
             {
               "title": "PostgreSQL 18 transaction isolation",
-              "section": "Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.",
-              "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+              "reading_focus": "Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses."
             }
           ],
           "video_seconds": 0,
@@ -733,7 +737,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: An earlier key can commit later — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.\n- PostgreSQL 18 transaction isolation — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.: https://www.postgresql.org/docs/18/transaction-iso.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: An earlier key can commit later — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.\n- Reading focus: PostgreSQL 18 transaction isolation — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses. (https://www.postgresql.org/docs/18/transaction-iso.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -770,8 +774,8 @@
           "resources": [
             {
               "title": "Spring test transaction management",
-              "section": "Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.",
-              "url": "https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html"
+              "url": "https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html",
+              "reading_focus": "Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible."
             }
           ],
           "video_seconds": 0,
@@ -806,7 +810,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Prove a real commit boundary, not a test-transaction illusion — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.\n- Spring test transaction management — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.: https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Prove a real commit boundary, not a test-transaction illusion — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.\n- Reading focus: Spring test transaction management — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible. (https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -843,8 +847,8 @@
           "resources": [
             {
               "title": "Java 21 Process API",
-              "section": "Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.",
-              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html"
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html",
+              "reading_focus": "Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability."
             }
           ],
           "video_seconds": 0,
@@ -879,7 +883,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Process cancellation does not undo an earlier commit — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.\n- Java 21 Process API — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Process cancellation does not undo an earlier commit — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.\n- Reading focus: Java 21 Process API — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -895,15 +899,17 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Supply command that captures/drains once and exits. Normal startup performs no delivery. Validate bounded CLI argument and exit status.",
-        "learner_seam": "LocalIssuanceDeliveryCommand / --coverstory.delivery.run-once",
+        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned.",
+        "learner_seam": "Explain-back: trace one invocation, invalid bounds, empty batch, and partial failure from command output to committed rows.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-110.md",
         "evidence_reference": "evidence/continuation-99-112/day-110.json",
-        "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
+        "acceptance_test_path": "src/test/java/assignments/delivery/LocalIssuanceDeliveryCommandTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest#protectedIssueThenManualCommandLeavesOneReceiptAndNoPreviewWrites test"
+          "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "instructor_command_tests_green_learner_explain_back_pending",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -933,15 +939,15 @@
           "resources": [
             {
               "title": "Spring Boot SpringApplication runners",
-              "section": "Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.",
-              "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html"
+              "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html",
+              "reading_focus": "Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup."
             }
           ],
           "video_seconds": 345,
           "worked_reference_seconds": 855,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.",
+          "scope_note": "Command runner and process plumbing are supplied instructor fixtures. Learner explains explicit opt-in, one bounded pass, invalid bounds, empty output, and nonzero partial-failure exit. It is not an unimplemented learner seam.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -969,7 +975,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 06 - Execute the findAll method using CommandLineRunner — exact section: Journey From Spring  JDBC to JPA (5:45)\n- Worked supplement: An opt-in one-shot command, not an accidental startup worker — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.\n- Spring Boot SpringApplication runners — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.: https://docs.spring.io/spring-boot/reference/features/spring-application.html\n- Cap: video 5:45, worked/reference 14:15, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 06 - Execute the findAll method using CommandLineRunner — exact section: Journey From Spring  JDBC to JPA (5:45)\n- Worked supplement: An opt-in one-shot command, not an accidental startup worker — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.\n- Reading focus: Spring Boot SpringApplication runners — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)\n- Cap: video 5:45, worked/reference 14:15, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "partial_foundation_with_project_supplement"
     },
     {
@@ -985,13 +991,14 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Issue by existing protected route, run packaged command, confirm one effect, replay safely, and prove preview does not write new tables.",
+        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage.",
         "learner_seam": "Packaged route plus command",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-111.md",
         "evidence_reference": "evidence/continuation-99-112/day-111.json",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest#protectedIssueThenManualCommandLeavesOneReceiptAndNoPreviewWrites test"
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
@@ -1006,20 +1013,20 @@
           "resources": [
             {
               "title": "Day 35 atomic issuance contract",
-              "section": "Existing policy, idempotency receipt and ISSUED event commit together",
-              "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md"
+              "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md",
+              "reading_focus": "Existing policy, idempotency receipt and ISSUED event commit together"
             },
             {
               "title": "Days 85–98 renewal contract",
-              "section": "Renewal preview read-only integration boundary",
-              "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md"
+              "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md",
+              "reading_focus": "Renewal preview read-only integration boundary"
             }
           ],
           "video_seconds": 0,
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Compare full snapshots to seeded baseline. Same-key issue replay adds no event; renewal preview stays read-only.",
+          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1047,7 +1054,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: One issuance, repeated requests, one local effect — Compare full snapshots to seeded baseline. Same-key issue replay adds no event; renewal preview stays read-only.\n- Day 35 atomic issuance contract — Existing policy, idempotency receipt and ISSUED event commit together: https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md\n- Days 85–98 renewal contract — Renewal preview read-only integration boundary: https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No new course lesson is assigned; use the provided harness and focused prior contracts within the existing 25-minute study block.\n- Worked supplement: One issuance, repeated requests, one local effect — Compare full snapshots to seeded baseline. Same-key issue replay adds no event; renewal preview stays read-only.\n- Reading focus: Day 35 atomic issuance contract — Existing policy, idempotency receipt and ISSUED event commit together (https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md)\n- Reading focus: Days 85–98 renewal contract — Renewal preview read-only integration boundary (https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     },
     {
@@ -1063,15 +1070,19 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery and independent assessment. Run all affected selectors and diagnose early-ack or lost-late-commit defect. No new feature.",
-        "learner_seam": "All affected selectors",
+        "scope": "Recovery and independent assessment only. Rerun affected prior contracts, fresh-JVM replay, packaged command/API integration, and renewal timeout/read-only regressions; diagnose early-ack or lost-late-commit defects. No new feature.",
+        "learner_seam": "Review/remediate all affected selectors; no new implementation seam.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-112.md",
         "evidence_reference": "evidence/continuation-99-112/day-112.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test"
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test",
+          "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
         ],
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "review_only_affected_selectors_expected_todo_red_until_learner_prerequisites_complete",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -1084,15 +1095,15 @@
           "resources": [
             {
               "title": "AWS transactional outbox pattern",
-              "section": "Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.",
-              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html"
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+              "reading_focus": "Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits."
             }
           ],
           "video_seconds": 0,
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.",
+          "scope_note": "Assessment/recovery only: run the complete affected source, restart, packaged command/API, issuance, renewal read-only, lock, and timeout selectors. Diagnose a deliberately defective early ack or high-watermark capture. No new implementation or lecture.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1120,7 +1131,7 @@
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Defend the conditional recovery guarantee — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.\n- AWS transactional outbox pattern — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.: https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Defend the conditional recovery guarantee — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.\n- Reading focus: AWS transactional outbox pattern — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits. (https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
     }
   ]

@@ -43,33 +43,6 @@ class DurableIssuanceAcceptanceTest {
     }
 
     @Test
-    void day100SchemaConstraintsRejectDuplicateAndInvalidRows() throws Exception {
-        try (Fixture fixture = new Fixture()) {
-            fixture.insertCommittedSource("schema-a", "ISSUED");
-            fixture.jdbc.update("""
-                    INSERT INTO training_issuance_work
-                    (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                    VALUES ('schema-a',1,'ISSUED',DATE '2027-01-26',1)
-                    """);
-            assertThrows(org.springframework.dao.DuplicateKeyException.class, () -> fixture.jdbc.update("""
-                    INSERT INTO training_issuance_work
-                    (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                    VALUES (?,1,'ISSUED',DATE '2027-01-26',1)
-                    """, "schema-a"));
-            assertThrows(org.springframework.dao.DataIntegrityViolationException.class, () -> fixture.jdbc.update("""
-                    INSERT INTO training_issuance_work
-                    (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                    VALUES ('schema-a',1,'ENDORSED',DATE '2027-01-26',1)
-                    """));
-            assertThrows(org.springframework.dao.DataIntegrityViolationException.class, () -> fixture.jdbc.update("""
-                    INSERT INTO training_issuance_delivery_receipt
-                    (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                    VALUES ('missing',1,'ISSUED',DATE '2027-01-26',1)
-                    """));
-        }
-    }
-
-    @Test
     void day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents() throws Exception {
         try (Fixture fixture = new Fixture()) {
             var data = fixture.dataSource;
@@ -109,6 +82,11 @@ class DurableIssuanceAcceptanceTest {
             fixture.insertCommittedSource("receipt-a", "ISSUED");
             assertEquals(1, fixture.store.captureCommittedIssuances(1));
             IssuanceEnvelope envelope = fixture.store.findPending(1).getFirst();
+            IssuanceEnvelope firstInsertConflict = new IssuanceEnvelope(envelope.policyId(), envelope.sourceVersion(),
+                    envelope.eventType(), LocalDate.parse("2027-01-27"), envelope.schemaVersion());
+            assertThrows(IllegalStateException.class, () -> fixture.store.acceptReceipt(firstInsertConflict),
+                    "the first receipt must match captured work even before a receipt row exists");
+            assertEquals(0, fixture.receiptCount(envelope), "first mismatched receipt is rejected without insertion");
             assertEquals(DeliveryReceiptResult.CREATED, fixture.store.acceptReceipt(envelope));
             String originalTimestamp = fixture.receiptTimestamp(envelope);
             assertEquals(DeliveryReceiptResult.IDENTICAL_REPLAY, fixture.store.acceptReceipt(envelope));
@@ -139,6 +117,37 @@ class DurableIssuanceAcceptanceTest {
     }
 
     @Test
+    void day102UsesTheCapturedPayloadWhenTheSourceEventRowLaterChanges() throws Exception {
+        try (Fixture fixture = new Fixture()) {
+            fixture.insertCommittedSource("captured-a", "ISSUED");
+            assertEquals(1, fixture.store.captureCommittedIssuances(1));
+            fixture.jdbc.update("UPDATE training_policy_lifecycle_event SET effective_date=DATE '2030-12-31' WHERE policy_id='captured-a' AND version=1");
+            IssuanceEnvelope captured = fixture.store.findPending(1).getFirst();
+            assertEquals("captured-a", captured.policyId());
+            assertEquals(LocalDate.parse("2027-01-26"), captured.effectiveDate(),
+                    "the work row preserves the event payload captured at the boundary");
+        }
+    }
+
+    @Test
+    void day102RejectsAnUnsupportedPersistedEnvelopeSchemaVersion() throws Exception {
+        try (Fixture fixture = new Fixture()) {
+            fixture.insertCommittedSource("malformed-a", "ISSUED");
+            assertEquals(1, fixture.store.captureCommittedIssuances(1));
+            String constraint = fixture.jdbc.queryForObject("""
+                    SELECT conname FROM pg_constraint
+                     WHERE conrelid='training_issuance_work'::regclass AND contype='c'
+                       AND pg_get_constraintdef(oid) ILIKE '%envelope_schema_version%'
+                    """, String.class);
+            assertTrue(constraint.matches("[a-zA-Z0-9_]+"), "only a catalog-returned identifier is interpolated");
+            fixture.jdbc.execute("ALTER TABLE training_issuance_work DROP CONSTRAINT \"" + constraint + "\"");
+            fixture.jdbc.update("UPDATE training_issuance_work SET envelope_schema_version=99 WHERE policy_id='malformed-a' AND source_version=1");
+            assertThrows(IllegalArgumentException.class, () -> fixture.store.findPending(1),
+                    "unknown persisted envelopes fail visibly instead of being mapped or skipped");
+        }
+    }
+
+    @Test
     void day104CannotAcknowledgeBeforeCommittedReceiptAndPreservesFirstAcknowledgment() throws Exception {
         try (Fixture fixture = new Fixture()) {
             fixture.insertCommittedSource("ack-a", "ISSUED");
@@ -165,7 +174,7 @@ class DurableIssuanceAcceptanceTest {
                     return result;
                 }
                 @Override public boolean acknowledge(IssuanceEnvelope envelope) {
-                    assertEquals(1, fixture.receiptCount(envelope), "receipt must be committed on a fresh connection first");
+                    assertEquals(1, fixture.independentReceiptCount(envelope), "receipt must be committed on an independent physical connection first");
                     events.add("acknowledge");
                     return super.acknowledge(envelope);
                 }
@@ -187,6 +196,36 @@ class DurableIssuanceAcceptanceTest {
             assertThrows(IllegalStateException.class, () -> new OneBatchDispatcher(failing, fixture.transactions).runOnce(10));
             assertEquals(0, fixture.receiptCount(new IssuanceEnvelope("dispatch-fail", 1, "ISSUED",
                     LocalDate.parse("2027-01-26"), 1)));
+        }
+    }
+
+    @Test
+    void day106RejectsAmbientTransactionAndProcessesAtMostOneBoundedBatch() throws Exception {
+        try (Fixture fixture = new Fixture()) {
+            for (String id : List.of("bounded-a", "bounded-b", "bounded-c")) fixture.insertCommittedSource(id, "ISSUED");
+            var calls = new ArrayList<String>();
+            IssuanceWorkStore observing = new DelegatingStore(fixture.store) {
+                @Override public int captureCommittedIssuances(int limit) {
+                    calls.add("capture:" + limit);
+                    return super.captureCommittedIssuances(limit);
+                }
+                @Override public List<IssuanceEnvelope> findPending(int limit) {
+                    calls.add("pending:" + limit);
+                    return super.findPending(limit);
+                }
+            };
+            OneBatchDispatcher dispatcher = new OneBatchDispatcher(observing, fixture.transactions);
+            var ambient = new org.springframework.transaction.support.TransactionTemplate(fixture.transactions);
+            assertThrows(IllegalStateException.class, () -> ambient.execute(status -> dispatcher.runOnce(2)),
+                    "the dispatcher cannot silently join an application-owned ambient transaction");
+            assertTrue(calls.isEmpty(), "ambient rejection occurs before any capture or delegate call");
+
+            assertEquals(new BatchDeliveryReport(2, 2, 0, 2, 0), dispatcher.runOnce(2));
+            assertEquals(List.of("capture:2", "pending:2"), calls,
+                    "one invocation captures once and reads one bounded batch; it must not loop over the backlog");
+            assertEquals(2, fixture.workKeys().size(), "only the bounded capture batch is materialized");
+            assertEquals(3, fixture.committedIssuedSourceCount(), "a source backlog larger than the limit is retained");
+            assertEquals(0, fixture.jdbc.queryForObject("SELECT count(*) FROM training_issuance_work WHERE acknowledged_at IS NULL", Integer.class));
         }
     }
 
@@ -286,6 +325,19 @@ class DurableIssuanceAcceptanceTest {
         int receiptCount(IssuanceEnvelope e) {
             return jdbc.queryForObject("SELECT count(*) FROM training_issuance_delivery_receipt WHERE policy_id=? AND source_version=?",
                     Integer.class, e.policyId(), e.sourceVersion());
+        }
+        int independentReceiptCount(IssuanceEnvelope e) {
+            try (var connection = dataSource.getConnection(); var statement = connection.prepareStatement(
+                    "SELECT count(*) FROM training_issuance_delivery_receipt WHERE policy_id=? AND source_version=?")) {
+                statement.setString(1, e.policyId());
+                statement.setLong(2, e.sourceVersion());
+                try (var rows = statement.executeQuery()) { rows.next(); return rows.getInt(1); }
+            } catch (java.sql.SQLException failure) {
+                throw new IllegalStateException("independent receipt observation failed", failure);
+            }
+        }
+        int committedIssuedSourceCount() {
+            return jdbc.queryForObject("SELECT count(*) FROM training_policy_lifecycle_event WHERE event_type='ISSUED' AND policy_id LIKE 'bounded-%'", Integer.class);
         }
         String receiptTimestamp(IssuanceEnvelope e) {
             return jdbc.queryForObject("SELECT received_at::text FROM training_issuance_delivery_receipt WHERE policy_id=? AND source_version=?",

@@ -23,11 +23,14 @@ class DurableWorkRestartAcceptanceTest {
         Path signal = directory.resolve("receipt-committed-before-ack.txt");
         Path firstLog = directory.resolve("child-before-crash.log");
         Path recoveryLog = directory.resolve("child-after-restart.log");
+        Process child = null;
+        Process restarted = null;
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+          try {
             DataSource dataSource = postgres.getPostgresDatabase();
             Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load().migrate();
             insertCommittedSource(dataSource);
-            Process child = child(postgres.getJdbcUrl("postgres", "postgres"), "block-before-ack", signal)
+            child = child(postgres.getJdbcUrl("postgres", "postgres"), "block-before-ack", signal)
                     .redirectErrorStream(true).redirectOutput(firstLog.toFile()).start();
             long blockedChildPid = child.pid();
             try {
@@ -44,13 +47,10 @@ class DurableWorkRestartAcceptanceTest {
                 assertTrue(child.waitFor(5, TimeUnit.SECONDS), "parent confirms the first JVM terminated");
                 assertFalse(child.isAlive());
             } finally {
-                if (child.isAlive()) {
-                    child.destroyForcibly();
-                    child.waitFor(5, TimeUnit.SECONDS);
-                }
+                terminateAndAwait(child, "pre-crash child");
             }
 
-            Process restarted = child(postgres.getJdbcUrl("postgres", "postgres"), "run", null)
+            restarted = child(postgres.getJdbcUrl("postgres", "postgres"), "run", null)
                     .redirectErrorStream(true).redirectOutput(recoveryLog.toFile()).start();
             long recoveryChildPid = restarted.pid();
             assertTrue(restarted.waitFor(30, TimeUnit.SECONDS), "fresh JVM recovery watchdog");
@@ -63,12 +63,23 @@ class DurableWorkRestartAcceptanceTest {
             assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM training_issuance_delivery_receipt WHERE policy_id='policy-demo-1' AND source_version=1", Integer.class));
             System.out.printf("temporary restart witness: killed-child-pid=%d exit=%d recovery-child-pid=%d exit=%d%n",
                     blockedChildPid, child.exitValue(), recoveryChildPid, restarted.exitValue());
+          } finally {
+            terminateAndAwait(child, "pre-crash child cleanup");
+            terminateAndAwait(restarted, "recovery child cleanup");
+          }
         } finally {
             Files.deleteIfExists(signal);
             Files.deleteIfExists(firstLog);
             Files.deleteIfExists(recoveryLog);
             Files.deleteIfExists(directory);
         }
+    }
+
+    private static void terminateAndAwait(Process process, String label) throws InterruptedException {
+        if (process == null) return;
+        if (process.isAlive()) process.destroyForcibly();
+        assertTrue(process.waitFor(5, TimeUnit.SECONDS), label + " must terminate on every test path");
+        assertFalse(process.isAlive(), label + " must not leak after its parent test ends");
     }
 
     private static ProcessBuilder child(String url, String mode, Path marker) {

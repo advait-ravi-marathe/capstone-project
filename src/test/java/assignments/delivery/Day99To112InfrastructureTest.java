@@ -1,9 +1,15 @@
 package assignments.delivery;
 
 import org.junit.jupiter.api.Test;
+import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
+import org.flywaydb.core.Flyway;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
+import java.sql.SQLException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,8 +35,8 @@ class Day99To112InfrastructureTest {
             assertEquals(99 + index, day.path("day").asInt());
             assertEquals(first.plusDays(index).toString(), day.path("date").asString());
             assertEquals(day.path("title").asString(), card.path("title").asString());
-            assertEquals(day.path("engineering").path("concept_course"),
-                    card.path("engineering").path("concept_course"));
+            assertEquals(day.path("engineering"), card.path("engineering"),
+                    "ticket export must preserve the canonical daily scope, selector, and course block");
             assertEquals(60, day.path("java_dsa").path("budget_minutes").asInt());
             String queue = day.path("java_dsa").path("review_queue_command").asString();
             assertTrue(queue.endsWith(first.plusDays(index).toString()));
@@ -57,6 +63,9 @@ class Day99To112InfrastructureTest {
             for (JsonNode reference : study.path("resources")) {
                 assertEquals("https", URI.create(reference.path("url").asString()).getScheme());
                 assertTrue(contract.contains(reference.path("url").asString()));
+                assertFalse(reference.path("reading_focus").asString().isBlank(),
+                        "project-specific guidance is labeled as a reading focus, not an invented document heading");
+                assertFalse(reference.has("section"), "do not label project reading guidance as an official source section");
             }
         }
     }
@@ -90,5 +99,91 @@ class Day99To112InfrastructureTest {
                 "renewal preview uses a deterministic fixed clock inside the seeded policy's window");
         assertTrue(packaged.contains("/api/policies"));
         assertTrue(packaged.contains("--coverstory.delivery.run-once"));
+        assertTrue(packaged.contains("issueReplay") && packaged.contains("policyRows()")
+                && packaged.contains("eventRows()") && packaged.contains("idempotencyRows()")
+                && packaged.contains("workPayloadRows()") && packaged.contains("receiptPayloadRows()"),
+                "packaged replay snapshots compare full source, idempotency, work, receipt, and timestamp payloads");
+        assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/delivery/LocalIssuanceDeliveryCommandTest.java")),
+                "the supplied command has fixed invalid/empty/partial result checks");
+        String commandChecks = Files.readString(Path.of("src/test/java/assignments/delivery/LocalIssuanceDeliveryCommandTest.java"));
+        assertTrue(commandChecks.contains("\"0\"") && commandChecks.contains("\"-1\"")
+                && commandChecks.contains("\"21\"") && commandChecks.contains("partialFailureReturnsNonzero"));
+        assertTrue(restart.contains("terminateAndAwait(restarted") && restart.contains("terminateAndAwait(child"),
+                "both child JVMs are forcibly terminated and waited on every exit path");
+        assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java")));
+        assertFalse(Files.readString(Path.of("src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java"))
+                        .contains("day100SchemaConstraintsRejectDuplicateAndInvalidRows"),
+                "Day 100 is instructor-owned migration assessment, not a learner TODO selector");
+    }
+
+    @Test
+    void migrationEnforcesStableIdentityAndRequiredFields() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var dataSource = postgres.getPostgresDatabase();
+            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load().migrate();
+            JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+            assertEquals(3, countSeedPolicies(jdbc),
+                    "the additive migration preserves the three versioned V003 synthetic policies");
+            insertSource(jdbc, "schema-a");
+            insertSource(jdbc, "schema-b");
+
+            String insertWork = """
+                    INSERT INTO training_issuance_work
+                    (policy_id,source_version,event_type,effective_date,envelope_schema_version)
+                    VALUES (?,1,'ISSUED',DATE '2027-01-26',1)
+                    """;
+            jdbc.update(insertWork, "schema-a");
+            DuplicateKeyException duplicate = assertThrows(DuplicateKeyException.class,
+                    () -> jdbc.update(insertWork, "schema-a"));
+            assertEquals("23505", sqlState(duplicate), "duplicate source identity violates the primary key");
+
+            DataIntegrityViolationException invalidType = assertThrows(DataIntegrityViolationException.class,
+                    () -> jdbc.update("""
+                            INSERT INTO training_issuance_work
+                            (policy_id,source_version,event_type,effective_date,envelope_schema_version)
+                            VALUES ('schema-b',1,'ENDORSED',DATE '2027-01-26',1)
+                            """));
+            assertEquals("23514", sqlState(invalidType), "a distinct key reaches the ISSUED-only check constraint");
+
+            DataIntegrityViolationException missingRequiredValue = assertThrows(DataIntegrityViolationException.class,
+                    () -> jdbc.update("""
+                            INSERT INTO training_issuance_work
+                            (policy_id,source_version,event_type,effective_date,envelope_schema_version)
+                            VALUES ('schema-b',1,'ISSUED',NULL,1)
+                            """));
+            assertEquals("23502", sqlState(missingRequiredValue), "required event payload fields are not nullable");
+
+            DataIntegrityViolationException missingWork = assertThrows(DataIntegrityViolationException.class,
+                    () -> jdbc.update("""
+                            INSERT INTO training_issuance_delivery_receipt
+                            (policy_id,source_version,event_type,effective_date,envelope_schema_version)
+                            VALUES ('missing-policy',1,'ISSUED',DATE '2027-01-26',1)
+                            """));
+            assertEquals("23503", sqlState(missingWork), "receipt requires its source work row");
+            assertEquals(3, countSeedPolicies(jdbc), "constraint probes do not alter prior lifecycle rows");
+        }
+    }
+
+    private static void insertSource(JdbcTemplate jdbc, String policyId) {
+        jdbc.update("""
+                INSERT INTO training_policy_lifecycle
+                  (policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,
+                   annual_premium_rupees,currency,effective_date,status,version)
+                VALUES (?, 'owner-a', ?, ?, 'home-secure-v1', 'training-rate-v1',
+                        125.00, 'INR', DATE '2027-01-26', 'ISSUED', 1)
+                """, policyId, "journey-" + policyId, "quote-" + policyId);
+        jdbc.update("INSERT INTO training_policy_lifecycle_event(policy_id,version,event_type,effective_date) VALUES (?,1,'ISSUED',DATE '2027-01-26')",
+                policyId);
+    }
+
+    private static int countSeedPolicies(JdbcTemplate jdbc) {
+        return jdbc.queryForObject("SELECT count(*) FROM training_policy_lifecycle WHERE policy_id LIKE 'policy-%'", Integer.class);
+    }
+
+    private static String sqlState(Throwable failure) {
+        for (Throwable cause = failure; cause != null; cause = cause.getCause()) {
+            if (cause instanceof SQLException sql) return sql.getSQLState();
+        }
+        return null;
     }
 }

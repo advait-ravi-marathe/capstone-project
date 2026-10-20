@@ -4,11 +4,14 @@
   "learner_status": "not_attempted",
   "contract_status": "defined",
   "acceptance_commands": [
-    "./mvnw -Plearner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest#protectedIssueThenManualCommandLeavesOneReceiptAndNoPreviewWrites test"
+    "./mvnw -Plocal-app -DskipTests package",
+    "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
   ],
   "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
-  "witness_status": "passed_temporary_packaged_integration_witness",
+  "witness_status": "not_run_for_revised_acceptance",
   "learner_attempts": [],
-  "notes": "Evidence fields only; no attempts or completion inferred.",
-  "temporary_witness_evidence": "Loopback packaged app PID 484488; protected issue returned 201; command PIDs 484595 and 484654. Three seeded ISSUED events plus test issuance yielded 4 retained work rows, receipts, and acknowledgments; replay and preview preserved the snapshot."
+  "notes": "Selector drives authenticated Java HTTP client requests into the packaged JAR and disposable PostgreSQL, not Chromium. It checks same-key replay identity and complete ordered table snapshots, one-shot command/replay, and preview no-write. Browser evidence from Days83/97 is separate.",
+  "verification_status": "packaged_http_client_acceptance_installed_expected_prerequisite_todo",
+  "browser_claim": "No Chromium is used by the Day111 packaged selector; actual browser verification is in separate Days83/97 harness evidence.",
+  "prior_witness_note": "An earlier, narrower packaged smoke was recorded before the current same-key replay/full-snapshot and partial-failure acceptance was added. It is not evidence that the revised selector passed."
 }
