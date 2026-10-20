@@ -85,11 +85,17 @@ class ManualRecoveryAcceptanceTest {
    f.service.quarantine(k,0,RecoveryReason.MANUAL_HOLD);f.service.release(k,1,RecoveryReason.REVIEWED_FOR_RETRY);
    String immutableWorkBefore=f.immutableWorkSnapshot("aba-a"),sourceBefore=f.sourceSnapshot("aba-a"),receiptBefore=f.receiptSnapshot("aba-a");
    List<String> historyBefore=f.historyRows("aba-a");
-   f.service.quarantine(k,2,RecoveryReason.MANUAL_HOLD); f.service.release(k,3,RecoveryReason.REVIEWED_FOR_RETRY);
+   f.service.quarantine(k,2,RecoveryReason.MANUAL_HOLD);
+   assertHistoryAppend(f,"aba-a",historyBefore,3,"QUARANTINE","MANUAL_HOLD");
+   List<String> afterSecondQuarantine=f.historyRows("aba-a");
+   f.service.release(k,3,RecoveryReason.REVIEWED_FOR_RETRY);
+   assertHistoryAppend(f,"aba-a",afterSecondQuarantine,4,"RELEASE","REVIEWED_FOR_RETRY");
    String releasedSnapshot=f.fullSnapshot("aba-a");
    assertEquals(immutableWorkBefore,f.immutableWorkSnapshot("aba-a"));
    assertHistoryPrefix(f,"aba-a",historyBefore);
+   List<String> beforeThirdQuarantine=f.historyRows("aba-a");
    f.service.quarantine(k,4,RecoveryReason.OBSERVED_FAILURE);
+   assertHistoryAppend(f,"aba-a",beforeThirdQuarantine,5,"QUARANTINE","OBSERVED_FAILURE");
    assertEquals("5|OBSERVED_FAILURE",f.jdbc.queryForObject("SELECT control_revision||'|'||quarantine_reason FROM training_issuance_work WHERE policy_id='aba-a' AND source_version=1",String.class));
    List<String> beforeStaleRelease=f.historyRows("aba-a");String stateBeforeStale=f.fullSnapshot("aba-a");
    assertThrows(RecoveryPreconditionException.class,()->f.service.release(k,1,RecoveryReason.REVIEWED_FOR_RETRY));
