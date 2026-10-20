@@ -1,4 +1,5 @@
 import datetime
+from decimal import Decimal
 import json
 import pathlib
 import re
@@ -105,6 +106,27 @@ class Continuation127To140ManifestTest(unittest.TestCase):
         source = (ROOT / "src/test/java/assignments/ops/AwsLabDesignPolicyAcceptanceTest.java").read_text()
         self.assertRegex(source, r"@Test\s+void\s+day138CostsRetainedResourcesWithoutInventingPrices\s*\(")
 
+    def test_every_named_method_selector_resolves_in_source(self):
+        for day in self.manifest["days"]:
+            for command in day["engineering"]["acceptance_commands"]:
+                match = re.search(r"-Dtest=([\w.,+]+)#([\w+]+)", command)
+                if not match:
+                    continue
+                classes, methods = match.groups()
+                class_name = classes.split(",")[-1]
+                source = ROOT / "src/test/java/assignments/ops" / f"{class_name}.java"
+                self.assertTrue(source.is_file(), (day["day"], command, source))
+                contents = source.read_text()
+                for method in methods.split("+"):
+                    self.assertRegex(contents, rf"@Test\s+void\s+{re.escape(method)}\s*\(",
+                                     (day["day"], command, method))
+
+    def test_restore_and_cleanup_selectors_are_published(self):
+        d131 = self.manifest["days"][131 - 127]["engineering"]["acceptance_commands"]
+        self.assertTrue(any("day131ValidArchiveFailureRollsBackWorkAlreadyStarted" in c for c in d131))
+        d136 = self.manifest["days"][136 - 127]["engineering"]["acceptance_commands"]
+        self.assertTrue(any("day136ToolWatchdogCleansOnlyItsContainerAndPreservesSentinel" in c for c in d136))
+
     def test_recovery_commands_are_prior_only_and_paths_resolve(self):
         for day in self.manifest["days"]:
             self.assertTrue((ROOT / day["contract_file"]).is_file())
@@ -124,11 +146,24 @@ class Continuation127To140ManifestTest(unittest.TestCase):
         design = json.loads((CON / "aws-lab-design.json").read_text())
         self.assertEqual("offline_plan_only", design["status"])
         self.assertFalse(design["cloud_execution_authorized"])
+        self.assertFalse(design["cloud_action_requested"])
         self.assertFalse(design["cloud_verified"])
         self.assertFalse(design["permission_review"]["grants_created"])
         self.assertFalse(design["candidate_topology"]["deployment_template"])
         self.assertFalse((CON / "cloudformation.yaml").exists())
         self.assertFalse(self.manifest["cloud_execution_not_performed"] is False)
+        topology = design["candidate_topology"]
+        self.assertFalse(topology["public_application"])
+        self.assertFalse(topology["public_database"])
+        self.assertFalse(topology["networking_selected"])
+        model = design["cost_model"]
+        lines = model["lines"]
+        components = {line["component"] for line in lines}
+        self.assertTrue({"compute", "database-storage", "backups-snapshots", "logs", "secrets", "transfer"} <= components)
+        self.assertTrue(all(line["currency"] == "USD" and line["label"] == "FICTIONAL_TEST_RATE" for line in lines))
+        for line in lines:
+            self.assertEqual(Decimal(line["rate"]) * Decimal(line["quantity"]), Decimal(line["amount"]))
+        self.assertEqual(sum((Decimal(line["amount"]) for line in lines), Decimal("0")), Decimal(model["total"]))
 
 
 if __name__ == "__main__":

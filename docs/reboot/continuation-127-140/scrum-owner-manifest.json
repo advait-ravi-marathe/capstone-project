@@ -1,5 +1,5 @@
 {
-  "title": "Days 127–140 chronological course guidance and ticket-ready Scrum export; no board writes",
+  "title": "Days 127\u2013140 chronological course guidance and ticket-ready Scrum export; no board writes",
   "story_count": 14,
   "sprint_boundaries": [
     {
@@ -91,12 +91,12 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Shared Responsibility Model & AWS Acceptable Policy | Section: What is Cloud Computing? | 96 sec",
           "Worked guide: scope S and T as different run-owned fixtures; reject source=target, unrelated loopback DB, DNS aliases, remote endpoints, and cloud mode.",
-          "Reading focus: PostgreSQL 18 pg_dump — Archive formats and connection options; local source only. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump \u2014 Archive formats and connection options; local source only. (https://www.postgresql.org/docs/18/app-pgdump.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -114,7 +114,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001–V005 digests. A green scaffold build is not learner-completion evidence.",
+        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001\u2013V005 digests. A green scaffold build is not learner-completion evidence.",
         "learner_seam": "ReleaseManifestPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-128.md",
         "evidence_reference": "evidence/continuation-127-140/day-128.json",
@@ -165,10 +165,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
           "Worked guide: Compare manifest hashes against the supplied artifact and migration set; reject altered JAR bytes, mismatch, omitted version, or secrets.",
-          "Reading focus: Java 21 MessageDigest — SHA-256 identifies exact bytes; do not put credentials in the manifest. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html)"
+          "Reading focus: Java 21 MessageDigest \u2014 SHA-256 identifies exact bytes; do not put credentials in the manifest. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -237,10 +237,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
           "Worked guide: A changed receipt timestamp/payload, missing history, or substituted row fails even where table counts still match.",
-          "Reading focus: PostgreSQL 18 pg_restore — Custom archive listing and restore behavior. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore \u2014 Custom archive listing and restore behavior. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -327,12 +327,12 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: RDS & Aurora - Backup and Monitoring | Section: AWS Fundamentals: RDS + Aurora + ElastiCache | 336 sec",
           "Worked guide: Require a nonempty custom archive and successful real client process; a failed tool or missing file is not backup success.",
-          "Reading focus: PostgreSQL 18 pg_dump — Use custom format against the quiesced synthetic fixture. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump \u2014 Use custom format against the quiesced synthetic fixture. (https://www.postgresql.org/docs/18/app-pgdump.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -350,14 +350,15 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Create T from template0 in this run; it must differ from S and contain no public application relations. Restore only the trusted run archive with single-transaction, no-owner/no-acl; no --clean or --create.",
+        "scope": "Create T from template0; restore to a different fresh target with the fixed single-transaction options. Keep both invalid-header and valid-archive mid-restore failure selectors in the day command.",
         "learner_seam": "RestoreCommandPolicy.arguments",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-131.md",
         "evidence_reference": "evidence/continuation-127-140/day-131.json",
         "acceptance_test_path": "src/test/java/assignments/ops/DatabaseRestoreAcceptanceTest.java",
         "instructor_harness_test_path": null,
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day131RestoresFreshTargetFailClosed test"
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day131RestoresFreshTargetFailClosed test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest#day131CorruptArchiveFailsWithoutPartialTargetData+day131ValidArchiveFailureRollsBackWorkAlreadyStarted test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "concept_course": {
@@ -376,7 +377,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Real restore succeeds and source remains unchanged; reject source target, populated target, unknown archive/hash mismatch, destructive flags, or corrupt archive.",
+          "scope_note": "A malformed archive is rejected, and a valid custom archive truncated only after its TOC passes listing but fails during restore work; the single transaction leaves no partial target schema/data.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -401,10 +402,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Worked guide: Real restore succeeds and source remains unchanged; reject source target, populated target, unknown archive/hash mismatch, destructive flags, or corrupt archive.",
-          "Reading focus: PostgreSQL 18 pg_restore — Single-transaction restore to a new empty target; do not use --clean or --create. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Worked guide: Real restore succeeds and source remains unchanged. A malformed header is rejected; a valid archive truncated after a valid TOC fails during restore and leaves no partial target schema/data.",
+          "Reading focus: PostgreSQL 18 pg_restore \u2014 Single-transaction restore to a new empty target; do not use --clean or --create. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -422,7 +423,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "After full snapshot/migration comparison, run the actual packaged JAR’s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
+        "scope": "After full snapshot/migration comparison, run the actual packaged JAR\u2019s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
         "learner_seam": "RehearsalEvidencePolicy.requireActivationEvidence",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-132.md",
         "evidence_reference": "evidence/continuation-127-140/day-132.json",
@@ -492,12 +493,12 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: CloudWatch Metrics & CloudWatch Alarms Overview | Section: Cloud Monitoring | 216 sec",
           "Worked guide: Restored full state matches before activation; actual JAR reads the held identity; no-write snapshot remains identical.",
-          "Reading focus: Spring Boot application availability — Application starts only after the restored migration history and configured data source validate. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)"
+          "Reading focus: Spring Boot application availability \u2014 Application starts only after the restored migration history and configured data source validate. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -515,7 +516,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day: rerun only Days 127–132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
+        "scope": "Recovery day: rerun only Days 127\u2013132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
         "learner_seam": "Prior-only review and remediation; no new feature",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-133.md",
         "evidence_reference": "evidence/continuation-127-140/day-133.json",
@@ -570,10 +571,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
           "Worked guide: Explain the recovery point and that a deliberately post-backup write is absent from T. Record tool/TODO blockers honestly.",
-          "Reading focus: PostgreSQL 18 pg_dump — A logical archive captures a recovery point, not writes committed after archive completion. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump \u2014 A logical archive captures a recovery point, not writes committed after archive completion. (https://www.postgresql.org/docs/18/app-pgdump.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -591,7 +592,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Keep known-good A selected until candidate B points at T, uses the same identified JAR, passes readiness and business-data gates, and remains loopback-only.",
+        "scope": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
         "learner_seam": "ActivationDecisionPolicy.choose",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-134.md",
         "evidence_reference": "evidence/continuation-127-140/day-134.json",
@@ -637,14 +638,15 @@
           "worked_reference_seconds": 988,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Any wrong DB, digest, business state, or bind target leaves CURRENT selected; only all gates select CANDIDATE.",
+          "scope_note": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
           "viewing_is_not_completion": true,
           "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
           "catalog_verified_at": "2026-10-20",
-          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time.",
+          "worked_example": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S."
         },
         "study_seconds": {
           "video": 212,
@@ -662,12 +664,12 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: EC2 Basics | Section: EC2 Fundamentals | 212 sec",
-          "Worked guide: Any wrong DB, digest, business state, or bind target leaves CURRENT selected; only all gates select CANDIDATE.",
-          "Reading focus: EC2 instance types — Offline resource sizing concepts only; no regional availability or price claim. (https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html)"
+          "Worked example: A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
+          "Reading focus: EC2 instance types \u2014 Offline resource sizing concepts only; no regional availability or price claim. (https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -739,10 +741,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
           "Worked guide: Quiesced no-write return is allowed; a write after divergence, schema mismatch, or missing artifact blocks blind rollback.",
-          "Reading focus: PostgreSQL 18 pg_restore — Restore creates a target database state; it does not rewind another database. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore \u2014 Restore creates a target database state; it does not rewind another database. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -767,7 +769,9 @@
         "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
         "instructor_harness_test_path": null,
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day136RequiresOwnedCleanupEvidence test"
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day136RequiresOwnedCleanupEvidence test",
+          "./mvnw -Dtest=Day127To140InfrastructureTest#day136ToolWatchdogCleansOnlyItsContainerAndPreservesSentinel test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest#day130RealPgDumpRestoresFullSyntheticRecoveryStateIntoFreshDatabase test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "concept_course": {
@@ -786,7 +790,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Any failed phase or cleanup fails the overall result; terminate/await owned children and preserve unrelated sentinel fixtures.",
+          "scope_note": "Record monotonic dump/restore/full-snapshot durations with fixture size; force a local tool watchdog and prove it removes only its unique run-owned container while an unrelated sentinel remains alive.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -811,10 +815,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
           "Worked guide: Any failed phase or cleanup fails the overall result; terminate/await owned children and preserve unrelated sentinel fixtures.",
-          "Reading focus: Spring Boot graceful shutdown — Bounded shutdown and resource ownership; the harness must await its own process termination. (https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)"
+          "Reading focus: Spring Boot graceful shutdown \u2014 Bounded shutdown and resource ownership; the harness must await its own process termination. (https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -832,7 +836,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Create only an offline plan. Candidate private one-compute/private PostgreSQL design is not a deployment template; account, region and operator access remain pending.",
+        "scope": "Offline validation rejects public application/database, wildcard administration, embedded secrets, cloud execution requests and cloudVerified=true; no AWS action is made.",
         "learner_seam": "AwsLabDesignPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-137.md",
         "evidence_reference": "evidence/continuation-127-140/day-137.json",
@@ -883,7 +887,7 @@
           "worked_reference_seconds": 787,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Public app/DB, wildcard admin, embedded secret, cloudVerified=true, or cloud execution request must fail offline validation.",
+          "scope_note": "Offline validation rejects public application or database, wildcard admin, embedded secrets, a cloud execution request, and cloudVerified=true; only pending access/account design is represented.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -908,13 +912,13 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: CloudFormation Intro | Section: Other Services | 211 sec",
           "Lesson: IAM Introduction: Users, Groups, Policies | Section: IAM & AWS CLI | 202 sec",
-          "Worked guide: Public app/DB, wildcard admin, embedded secret, cloudVerified=true, or cloud execution request must fail offline validation.",
-          "Reading focus: AWS CloudFormation change sets — Offline planning and later validation concepts; a design record is not a change set. (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)"
+          "Worked guide: Offline validation independently rejects public app/database, wildcard admin, embedded secret, cloud request and cloudVerified=true. Pending user choices are data, never authorization.",
+          "Reading focus: AWS CloudFormation change sets \u2014 Offline planning and later validation concepts; a design record is not a change set. (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -932,7 +936,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Use conspicuously fictional decimal rates; include runtime, storage, backups, logs, secrets, transfer and selected networking components. Budget alerts are not synchronous spend stops.",
+        "scope": "Use fictional decimal rate fixtures with unit and currency per line; require compute, database storage, retained backups/snapshots, logs, secrets and transfer, with networking when selected. Check formula, unit/currency consistency and total; actual prices remain unknown.",
         "learner_seam": "AwsLabDesignPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-138.md",
         "evidence_reference": "evidence/continuation-127-140/day-138.json",
@@ -980,7 +984,7 @@
           "worked_reference_seconds": 936,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "No missing-rate zero total; reject unit/currency mismatch and omit neither retained backup nor runtime.",
+          "scope_note": "Require fictional decimal lines for compute, database storage, backups/snapshots, logs, secrets and transfer; selected networking is explicit. Validate each unit, common currency, calculated line and total; never invent missing rates or zero cost.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1005,13 +1009,13 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Monitoring Costs in the Cloud - Billing Alarms & AWS Budgets | Section: Account Management, Billing & Support | 264 sec",
-          "Worked guide: No missing-rate zero total; reject unit/currency mismatch and omit neither retained backup nor runtime.",
-          "Reading focus: AWS Pricing Calculator — Cost model components; real regional prices remain unverified until scope is selected. (https://docs.aws.amazon.com/cost-management/latest/userguide/pricing-calculator.html)",
-          "Reading focus: AWS Budgets practices — Alerts are delayed notifications, not synchronous spending caps. (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html)"
+          "Worked example: Fictional lines: compute 2 instance-hours \u00d7 $0.10 = $0.20; database 5 GB-month \u00d7 $0.02 = $0.10; backup 3 GB-month \u00d7 $0.01 = $0.03. Add logs, secrets and transfer for $0.44 total; selected networking is explicit. Missing rates never become zero.",
+          "Reading focus: AWS Pricing Calculator \u2014 Cost model components; real regional prices remain unverified until scope is selected. (https://docs.aws.amazon.com/cost-management/latest/userguide/pricing-calculator.html)",
+          "Reading focus: AWS Budgets practices \u2014 Alerts are delayed notifications, not synchronous spending caps. (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -1104,12 +1108,12 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Security Groups & Classic Ports Overview | Section: EC2 Fundamentals | 438 sec",
           "Worked guide: Full local evidence and source preservation; no AWS SDK/CLI/deploy call, cloudVerified remains false, and unresolved user choices remain explicit.",
-          "Reading focus: AWS Security Group rules — Private access boundaries concept only; no security group is created. (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)"
+          "Reading focus: AWS Security Group rules \u2014 Private access boundaries concept only; no security group is created. (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }
@@ -1127,7 +1131,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day: rerun prior Days 127–139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
+        "scope": "Recovery day: rerun prior Days 127\u2013139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
         "learner_seam": "Prior-only review and remediation; no new feature",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-140.md",
         "evidence_reference": "evidence/continuation-127-140/day-140.json",
@@ -1185,10 +1189,10 @@
         "new_anchor_required": false
       },
       "learning_block": {
-        "heading": "Learning resources — 25 minutes total",
+        "heading": "Learning resources \u2014 25 minutes total",
         "lines": [
           "Worked guide: Explain pg_dump vs RDS PITR, cost/retention limits, and why same-version config rollback is blocked after candidate writes.",
-          "Reading focus: Amazon RDS point-in-time restore — PITR creates a new instance; local pg_dump is not an RDS restore test. (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html)"
+          "Reading focus: Amazon RDS point-in-time restore \u2014 PITR creates a new instance; local pg_dump is not an RDS restore test. (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
       }

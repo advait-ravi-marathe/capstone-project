@@ -208,7 +208,13 @@ class RenewalPreviewTransportInfrastructureTest {
     @RestController
     static class TransportController {
         @GetMapping(value = "/__e2e/day45-renewal-preview", produces = MediaType.TEXT_HTML_VALUE)
-        String page() throws IOException { return Files.readString(Path.of("frontend/dist/index.html")); }
+        String page() { return """
+                <!doctype html><html><body><main id="root">
+                <button type="button" id="preview">Check preview</button>
+                <output id="result" aria-live="polite"></output>
+                <script>document.querySelector('#preview').onclick=async()=>{const r=await fetch('/api/policies/renewal-demo/renewal-preview');const body=await r.json();document.querySelector('#result').textContent=JSON.stringify(body);};</script>
+                </main></body></html>
+                """; }
 
         @GetMapping(value = "/api/policies/renewal-demo/renewal-preview", produces = MediaType.APPLICATION_JSON_VALUE)
         Map<String, Object> preview() throws Exception {

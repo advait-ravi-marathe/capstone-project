@@ -21,4 +21,8 @@ class Day127To140InfrastructureTest {
         assertFalse(json.contains("SecretAccessKey"));
         assertFalse(json.contains("CloudFormation"), "offline plan must not smuggle in deployable infrastructure");
     }
+
+    @Test void day136ToolWatchdogCleansOnlyItsContainerAndPreservesSentinel() throws Exception {
+        Postgres18ToolHarness.timeoutCleanupPreservesUnrelatedSentinel();
+    }
 }

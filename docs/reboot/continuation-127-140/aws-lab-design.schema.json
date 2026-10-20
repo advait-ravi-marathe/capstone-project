@@ -3,18 +3,159 @@
   "$id": "https://example.invalid/coverstory/aws-lab-design.schema.json",
   "title": "CoverStory offline AWS lab design record",
   "type": "object",
-  "required": ["schema_version", "status", "cloud_execution_authorized", "cloud_verified", "candidate_topology", "permission_review", "cost_model"],
+  "required": [
+    "schema_version",
+    "status",
+    "cloud_execution_authorized",
+    "cloud_verified",
+    "candidate_topology",
+    "permission_review",
+    "cost_model",
+    "cloud_action_requested"
+  ],
   "properties": {
-    "schema_version": {"const": 1},
-    "status": {"const": "offline_plan_only"},
-    "cloud_execution_authorized": {"const": false},
-    "cloud_verified": {"const": false},
-    "account_id": {"type": ["string", "null"]},
-    "region": {"type": ["string", "null"]},
-    "access_model": {"type": "string"},
-    "candidate_topology": {"type": "object", "required": ["public_application", "public_database", "deployment_template"], "properties": {"public_application": {"const": false}, "public_database": {"const": false}, "deployment_template": {"const": false}}},
-    "permission_review": {"type": "object", "required": ["actions", "resources", "grants_created"], "properties": {"actions": {"type": "array", "items": {"type": "string"}}, "resources": {"type": "array", "items": {"type": "string"}}, "grants_created": {"const": false}}},
-    "cost_model": {"type": "object", "required": ["rate_status", "lines", "includes_retained_resources", "budget_alert_is_synchronous_spend_cap"], "properties": {"rate_status": {"type": "string"}, "lines": {"type": "array", "items": {"type": "object", "required": ["component", "rate", "hours", "amount", "label"]}}, "includes_retained_resources": {"const": true}, "budget_alert_is_synchronous_spend_cap": {"const": false}}}
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "offline_plan_only"
+    },
+    "cloud_execution_authorized": {
+      "const": false
+    },
+    "cloud_verified": {
+      "const": false
+    },
+    "account_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "access_model": {
+      "type": "string"
+    },
+    "candidate_topology": {
+      "type": "object",
+      "required": [
+        "public_application",
+        "public_database",
+        "deployment_template",
+        "networking_selected"
+      ],
+      "properties": {
+        "public_application": {
+          "const": false
+        },
+        "public_database": {
+          "const": false
+        },
+        "deployment_template": {
+          "const": false
+        },
+        "networking_selected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "permission_review": {
+      "type": "object",
+      "required": [
+        "actions",
+        "resources",
+        "grants_created"
+      ],
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grants_created": {
+          "const": false
+        }
+      }
+    },
+    "cost_model": {
+      "type": "object",
+      "required": [
+        "rate_status",
+        "lines",
+        "includes_retained_resources",
+        "budget_alert_is_synchronous_spend_cap"
+      ],
+      "properties": {
+        "rate_status": {
+          "type": "string"
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "component",
+              "rate",
+              "unit",
+              "quantity",
+              "amount",
+              "currency",
+              "label"
+            ],
+            "properties": {
+              "component": {
+                "type": "string"
+              },
+              "rate": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "string"
+              },
+              "currency": {
+                "type": "string"
+              },
+              "label": {
+                "const": "FICTIONAL_TEST_RATE"
+              }
+            }
+          }
+        },
+        "includes_retained_resources": {
+          "const": true
+        },
+        "budget_alert_is_synchronous_spend_cap": {
+          "const": false
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "cloud_action_requested": {
+      "const": false
+    }
   },
   "additionalProperties": true
 }

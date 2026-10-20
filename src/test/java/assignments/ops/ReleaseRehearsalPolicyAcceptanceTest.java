@@ -23,10 +23,18 @@ class ReleaseRehearsalPolicyAcceptanceTest {
 
     @Test void day128ChecksArtifactAndMigrationIdentity() {
         var policy = new ReleaseManifestPolicy();
-        var manifest = new ReleaseManifestPolicy.ReleaseManifest("abc123", "a".repeat(64), "21.0.8",
-                "18.6", "18.6", Map.of("V001.sql", "b".repeat(64)), false);
-        assertDoesNotThrow(() -> policy.validate(manifest, "a".repeat(64), Map.of("V001.sql", "b".repeat(64))));
+        var migrations = Map.of("V001__quote_selection.sql", "1".repeat(64), "V002__local_policy_lifecycle.sql", "2".repeat(64),
+                "V003__seed_synthetic_local_policies.sql", "3".repeat(64), "V004__event_log_delivery_work.sql", "4".repeat(64),
+                "V005__manual_issuance_recovery_controls.sql", "5".repeat(64));
+        var manifest = new ReleaseManifestPolicy.ReleaseManifest("a".repeat(40), "a".repeat(64), "21.0.8",
+                "18.6", "18.6", migrations, false);
+        assertDoesNotThrow(() -> policy.validate(manifest, "a".repeat(64), migrations));
         assertThrows(IllegalArgumentException.class, () -> policy.validate(manifest, "c".repeat(64), manifest.migrationSha256()));
+        var altered = new java.util.HashMap<>(migrations); altered.put("V005__manual_issuance_recovery_controls.sql", "6".repeat(64));
+        assertThrows(IllegalArgumentException.class, () -> policy.validate(manifest, manifest.jarSha256(), altered));
+        var omitted = new java.util.HashMap<>(migrations); omitted.remove("V004__event_log_delivery_work.sql");
+        assertThrows(IllegalArgumentException.class, () -> policy.validate(new ReleaseManifestPolicy.ReleaseManifest(
+                manifest.sourceSha(), manifest.jarSha256(), manifest.javaVersion(), manifest.postgresServerVersion(), manifest.pgDumpVersion(), omitted, false), manifest.jarSha256(), migrations));
         assertThrows(IllegalArgumentException.class, () -> policy.validate(new ReleaseManifestPolicy.ReleaseManifest(
                 "abc123", manifest.jarSha256(), "21", "18.6", "18.6", manifest.migrationSha256(), true), manifest.jarSha256(), manifest.migrationSha256()));
     }
@@ -51,9 +59,11 @@ class ReleaseRehearsalPolicyAcceptanceTest {
         var args = policy.arguments("source", "restore_00000000000000000000000000000001", "a".repeat(64), "a".repeat(64), true,
                 List.of("--single-transaction", "--no-owner", "--no-acl"));
         assertEquals(List.of("--single-transaction", "--no-owner", "--no-acl"), args);
-        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "source", "a".repeat(64), "a".repeat(64), true, List.of()));
-        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "restore_00000000000000000000000000000001", "a".repeat(64), "a".repeat(64), false, List.of("--clean")));
-        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "restore_00000000000000000000000000000001", "b".repeat(64), "a".repeat(64), true, List.of()));
+        var safeOptions = List.of("--single-transaction", "--no-owner", "--no-acl");
+        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "source", "a".repeat(64), "a".repeat(64), true, safeOptions));
+        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "restore_00000000000000000000000000000001", "a".repeat(64), "a".repeat(64), false, safeOptions));
+        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "restore_00000000000000000000000000000001", "b".repeat(64), "a".repeat(64), true, safeOptions));
+        assertThrows(IllegalArgumentException.class, () -> policy.arguments("source", "restore_00000000000000000000000000000001", "a".repeat(64), "a".repeat(64), true, List.of("--single-transaction", "--clean", "--no-acl")));
     }
 
     @Test void day132RequiresDataAndApplicationEvidence() {
@@ -67,6 +77,9 @@ class ReleaseRehearsalPolicyAcceptanceTest {
     @Test void day134FailedCandidateCannotDisplaceKnownGood() {
         var policy = new ActivationDecisionPolicy();
         assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, policy.choose(true, true, true, true, true));
+        assertEquals(ActivationDecisionPolicy.Selection.CURRENT, policy.choose(false, true, true, true, true));
+        assertEquals(ActivationDecisionPolicy.Selection.CURRENT, policy.choose(true, false, true, true, true));
+        assertEquals(ActivationDecisionPolicy.Selection.CURRENT, policy.choose(true, true, false, true, true));
         assertEquals(ActivationDecisionPolicy.Selection.CURRENT, policy.choose(true, true, true, false, true));
         assertEquals(ActivationDecisionPolicy.Selection.CURRENT, policy.choose(true, true, true, true, false));
     }

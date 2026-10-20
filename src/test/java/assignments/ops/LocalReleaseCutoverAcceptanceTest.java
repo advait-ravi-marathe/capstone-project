@@ -50,22 +50,25 @@ class LocalReleaseCutoverAcceptanceTest {
                 ActivationDecisionPolicy.Selection selected = ActivationDecisionPolicy.Selection.CURRENT;
                 ActivationDecisionPolicy.Selection failed = activation.choose(true, true, true, false, true);
                 assertEquals(ActivationDecisionPolicy.Selection.CURRENT, failed, "failed business gate must leave A selected");
-                assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(sourceUrl));
+                assertEquals(sourceUrl, selectedUrl(selected, sourceUrl, targetUrl), "failed candidate leaves client target on S");
+                assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(selectedUrl(selected, sourceUrl, targetUrl)));
                 assertEquals(targetState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl));
-                assertTrue(inspect(jar, sourceUrl).contains("MANUAL_HOLD"), "known-good A remains usable after candidate rejection");
+                assertTrue(inspect(jar, selectedUrl(selected, sourceUrl, targetUrl)).contains("MANUAL_HOLD"), "known-good A remains usable after candidate rejection");
 
                 selected = activation.choose(true, true, true, true, true);
                 assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected);
-                assertTrue(inspect(jar, targetUrl).contains("MANUAL_HOLD"), "same packaged JAR observes the restored target state");
+                assertEquals(targetUrl, selectedUrl(selected, sourceUrl, targetUrl), "passing candidate routes the test client to restored T");
+                assertTrue(inspect(jar, selectedUrl(selected, sourceUrl, targetUrl)).contains("MANUAL_HOLD"), "same packaged JAR observes the restored target state");
                 assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(sourceUrl), "candidate inspection does not mutate S");
                 assertEquals(targetState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl), "candidate inspection does not mutate T");
 
                 if (verifyRollback) {
                     RollbackDecisionPolicy rollback = new RollbackDecisionPolicy();
                     assertTrue(rollback.mayReturnToSource(true, true, true), "quiesced same-artifact configuration return is allowed");
-                    selected = ActivationDecisionPolicy.Selection.CURRENT;
+                    selected = rollback.mayReturnToSource(true, true, true)
+                            ? ActivationDecisionPolicy.Selection.CURRENT : ActivationDecisionPolicy.Selection.CANDIDATE;
                     assertEquals(ActivationDecisionPolicy.Selection.CURRENT, selected);
-                    assertTrue(inspect(jar, sourceUrl).contains("MANUAL_HOLD"), "source remains available for quiesced return");
+                    assertTrue(inspect(jar, selectedUrl(selected, sourceUrl, targetUrl)).contains("MANUAL_HOLD"), "source remains available for quiesced return");
 
                     selected = activation.choose(true, true, true, true, true);
                     assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected);
@@ -74,6 +77,8 @@ class LocalReleaseCutoverAcceptanceTest {
                     String divergedTarget = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl);
                     assertNotEquals(sourceState, divergedTarget, "accepted candidate write establishes divergence");
                     assertFalse(rollback.mayReturnToSource(true, true, false), "stale source rollback is blocked after a T write");
+                    selected = rollback.mayReturnToSource(true, true, false)
+                            ? ActivationDecisionPolicy.Selection.CURRENT : ActivationDecisionPolicy.Selection.CANDIDATE;
                     assertEquals(ActivationDecisionPolicy.Selection.CANDIDATE, selected, "blocked rollback leaves candidate selected");
                     assertEquals(sourceState, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(sourceUrl), "S is never modified by the rehearsal");
                     assertEquals(divergedTarget, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(targetUrl), "T retains the accepted post-cutover write");
@@ -83,6 +88,10 @@ class LocalReleaseCutoverAcceptanceTest {
                 Files.deleteIfExists(archive);
             }
         }
+    }
+
+    private static String selectedUrl(ActivationDecisionPolicy.Selection selection, String sourceUrl, String targetUrl) {
+        return selection == ActivationDecisionPolicy.Selection.CURRENT ? sourceUrl : targetUrl;
     }
 
     private static String inspect(Path jar, String url) throws Exception {

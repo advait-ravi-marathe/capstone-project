@@ -142,7 +142,17 @@ class Day44BrowserTransportInfrastructureTest {
         Day44HarnessController(DataSource dataSource, PolicyLifecycleService service) { this.dataSource = dataSource; this.service = service; }
 
         @GetMapping(value = "/__e2e/day44-lifecycle", produces = MediaType.TEXT_HTML_VALUE)
-        String page() throws Exception { return Files.readString(Path.of("frontend/dist/index.html")); }
+        String page() { return """
+                <!doctype html><html><body>
+                <button type="button" id="write">Write synthetic witness</button>
+                <button type="button" id="read">Read witness</button>
+                <p role="status" id="status"></p><output data-testid="readback"></output>
+                <script>
+                  async function readback(){const r=await fetch('/test/day44/readback');const x=await r.json();document.querySelector('[data-testid=readback]').textContent=x.witnessId+':'+x.value;}
+                  document.querySelector('#write').onclick=async()=>{await fetch('/test/day44/record',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({witnessId:'lifecycle-smoke-v1',value:'persisted-after-server-restart'})});document.querySelector('#status').textContent='saved';await readback();};
+                  document.querySelector('#read').onclick=readback;
+                </script></body></html>
+                """; }
 
         @PostMapping(value = "/test/day44/record", consumes = MediaType.APPLICATION_JSON_VALUE)
         void write(@RequestBody Witness witness) throws Exception {

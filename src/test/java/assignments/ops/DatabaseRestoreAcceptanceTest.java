@@ -28,7 +28,9 @@ class DatabaseRestoreAcceptanceTest {
             seedRecoveryStates(new JdbcTemplate(source));
             String sourceUrl = url(pg, "postgres");
             String before = fullDatabaseSnapshot(sourceUrl);
+            long dumpStarted = System.nanoTime();
             Path archive = Postgres18ToolHarness.dump(pg);
+            long dumpNanos = System.nanoTime() - dumpStarted;
             String target = null;
             try {
                 target = Postgres18ToolHarness.createFreshTarget(pg);
@@ -40,9 +42,26 @@ class DatabaseRestoreAcceptanceTest {
                         "\" archive_size_bytes=" + Files.size(archive) + " archive_sha256=" + sha256(archive));
                 assertNotEquals("postgres", target);
                 assertEquals(0, tableCount(url(pg, target)), "restore destination must be empty before pg_restore");
+                long restoreStarted = System.nanoTime();
                 Postgres18ToolHarness.restore(pg, archive, target);
+                long restoreNanos = System.nanoTime() - restoreStarted;
+                long verifyStarted = System.nanoTime();
                 String restored = fullDatabaseSnapshot(url(pg, target));
+                long verifyNanos = System.nanoTime() - verifyStarted;
+                System.out.println("LOCAL_REHEARSAL_MONOTONIC_PHASE_NANOS fixture_tables=" + tableCount(sourceUrl) +
+                        " archive_dump=" + dumpNanos + " restore=" + restoreNanos + " full_snapshot_verify=" + verifyNanos);
                 assertEquals(before, restored, "full ordered row payloads/timestamps, schema and migration history survive logical restore");
+                int quoteRowsBeforeTypeMutation = scalarInt(url(pg, target), "SELECT count(*) FROM quote_versions");
+                try (Connection c = DriverManager.getConnection(url(pg, target), "postgres", ""); Statement s = c.createStatement()) {
+                    s.execute("ALTER TABLE quote_versions ALTER COLUMN annual_premium_rupees TYPE NUMERIC(13,2)");
+                }
+                assertEquals(quoteRowsBeforeTypeMutation, scalarInt(url(pg, target), "SELECT count(*) FROM quote_versions"),
+                        "type modifier mutation leaves row count unchanged");
+                assertNotEquals(restored, fullDatabaseSnapshot(url(pg, target)),
+                        "formatted PostgreSQL type modifiers must be part of the restore oracle");
+                try (Connection c = DriverManager.getConnection(url(pg, target), "postgres", ""); Statement s = c.createStatement()) {
+                    s.execute("ALTER TABLE quote_versions ALTER COLUMN annual_premium_rupees TYPE NUMERIC(14,2)");
+                }
                 try (Connection c = DriverManager.getConnection(url(pg, target), "postgres", ""); Statement s = c.createStatement()) {
                     s.executeUpdate("UPDATE training_issuance_delivery_receipt SET received_at=received_at + INTERVAL '1 second' WHERE policy_id='restore-complete'");
                 }
@@ -75,6 +94,36 @@ class DatabaseRestoreAcceptanceTest {
             } finally {
                 Postgres18ToolHarness.dropOwnedTarget(pg, target);
                 Files.deleteIfExists(corrupt);
+            }
+        }
+    }
+
+    @Test void day131ValidArchiveFailureRollsBackWorkAlreadyStarted() throws Exception {
+        try (EmbeddedPostgres pg = EmbeddedPostgres.builder().start()) {
+            DataSource source = pg.getPostgresDatabase();
+            Flyway.configure().dataSource(source).locations("classpath:db/migration").load().migrate();
+            seedRecoveryStates(new JdbcTemplate(source));
+            String sourceBefore = fullDatabaseSnapshot(url(pg, "postgres"));
+            Path archive = Postgres18ToolHarness.dump(pg);
+            Path truncated = Files.createTempFile("coverstory-mid-restore-failure-", ".dump");
+            String target = Postgres18ToolHarness.createFreshTarget(pg);
+            try {
+                byte[] bytes = Files.readAllBytes(archive);
+                assertTrue(bytes.length > 256);
+                Files.write(truncated, java.util.Arrays.copyOf(bytes, bytes.length - 64));
+                Postgres18ToolHarness.Result listing = Postgres18ToolHarness.listArchive(pg, truncated);
+                assertEquals(0, listing.exitCode(), "truncated data stream retains a valid custom-archive header and TOC: " + listing.output());
+                assertEquals(0, tableCount(url(pg, target)));
+                Postgres18ToolHarness.Result result = Postgres18ToolHarness.restoreResult(pg, truncated, target);
+                assertNotEquals(0, result.exitCode(), result.output());
+                assertTrue(result.output().contains("processing") || result.output().contains("creating"),
+                        "failure must occur after restore work started: " + result.output());
+                assertEquals(0, tableCount(url(pg, target)), "single transaction rolls back partially restored schema/data");
+                assertEquals(sourceBefore, fullDatabaseSnapshot(url(pg, "postgres")));
+            } finally {
+                Postgres18ToolHarness.dropOwnedTarget(pg, target);
+                Files.deleteIfExists(archive);
+                Files.deleteIfExists(truncated);
             }
         }
     }
@@ -154,7 +203,7 @@ class DatabaseRestoreAcceptanceTest {
                      UNION ALL SELECT 'training_issuance_recovery_history',coalesce(jsonb_agg(to_jsonb(x) ORDER BY policy_id,source_version,control_revision),'[]'::jsonb) FROM training_issuance_recovery_history x
                      UNION ALL SELECT 'flyway_schema_history',coalesce(jsonb_agg(to_jsonb(x) ORDER BY installed_rank),'[]'::jsonb) FROM flyway_schema_history x
                    ) t)||'|'||
-                   (SELECT coalesce(jsonb_agg(jsonb_build_object('table',table_name,'column',column_name,'type',data_type,'nullable',is_nullable,'default',column_default) ORDER BY table_name,ordinal_position),'[]'::jsonb)::text FROM information_schema.columns WHERE table_schema='public')||'|'||
+                   (SELECT coalesce(jsonb_agg(jsonb_build_object('table',c.table_name,'column',c.column_name,'type',c.data_type,'formatted_type',format_type(a.atttypid,a.atttypmod),'numeric_precision',c.numeric_precision,'numeric_scale',c.numeric_scale,'nullable',c.is_nullable,'default',c.column_default) ORDER BY c.table_name,c.ordinal_position),'[]'::jsonb)::text FROM information_schema.columns c JOIN pg_namespace n ON n.nspname=c.table_schema JOIN pg_class t ON t.relnamespace=n.oid AND t.relname=c.table_name JOIN pg_attribute a ON a.attrelid=t.oid AND a.attname=c.column_name WHERE c.table_schema='public' AND a.attnum>0 AND NOT a.attisdropped)||'|'||
                    (SELECT coalesce(jsonb_agg(jsonb_build_object('table',conrelid::regclass::text,'name',conname,'definition',pg_get_constraintdef(oid)) ORDER BY conrelid::regclass::text,conname),'[]'::jsonb)::text FROM pg_constraint WHERE connamespace='public'::regnamespace)||'|'||
                    (SELECT coalesce(jsonb_agg(jsonb_build_object('table',tablename,'name',indexname,'definition',indexdef) ORDER BY tablename,indexname),'[]'::jsonb)::text FROM pg_indexes WHERE schemaname='public')
                  """)) {

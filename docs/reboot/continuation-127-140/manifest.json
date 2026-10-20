@@ -1,5 +1,5 @@
 {
-  "title": "CoverStory Days 127–140 local restore rehearsal and offline AWS permission gate",
+  "title": "CoverStory Days 127\u2013140 local restore rehearsal and offline AWS permission gate",
   "status": "scaffold_plan_not_learner_completion",
   "base_commit": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
   "start_date": "2027-02-23",
@@ -18,7 +18,7 @@
     "Only fixture-owned source/target databases and loopback processes; target is fresh template0 and never pre-migrated or Flyway-seeded.",
     "Use real PostgreSQL 18.6 pg_dump/pg_restore custom archive tools from pinned official postgres:18.6 image; record tool/server versions.",
     "No --clean/--create, arbitrary URLs, source overwrite, production credentials/data, AWS CLI/SDK/resources, or public exposure.",
-    "Restore preserves V001–V005 schema, Flyway history, lifecycle/idempotency/work/receipt/quarantine/history payloads and timestamps.",
+    "Restore preserves V001\u2013V005 schema, Flyway history, lifecycle/idempotency/work/receipt/quarantine/history payloads and timestamps.",
     "Same-artifact quiesced configuration rollback only; candidate writes block blind fallback to stale source. No schema or binary rollback claim.",
     "AWS plan is offline/non-deployable with fictional rates only; cloud execution not authorized/performed.",
     "Recovery days 133 and 140 review prior work only. DSA is actual-attempt queue first; no new anchor/completion inferred."
@@ -162,7 +162,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001–V005 digests. A green scaffold build is not learner-completion evidence.",
+        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001\u2013V005 digests. A green scaffold build is not learner-completion evidence.",
         "learner_seam": "ReleaseManifestPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-128.md",
         "evidence_reference": "evidence/continuation-127-140/day-128.json",
@@ -394,7 +394,8 @@
         "acceptance_test_path": "src/test/java/assignments/ops/DatabaseRestoreAcceptanceTest.java",
         "instructor_harness_test_path": null,
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day131RestoresFreshTargetFailClosed test"
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day131RestoresFreshTargetFailClosed test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest#day131CorruptArchiveFailsWithoutPartialTargetData+day131ValidArchiveFailureRollsBackWorkAlreadyStarted test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "concept_course": {
@@ -413,7 +414,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Real restore succeeds and source remains unchanged; reject source target, populated target, unknown archive/hash mismatch, destructive flags, or corrupt archive.",
+          "scope_note": "A malformed archive is rejected, and a valid custom archive truncated only after its TOC passes listing but fails during restore work; the single transaction leaves no partial target schema/data.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -456,7 +457,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "After full snapshot/migration comparison, run the actual packaged JAR’s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
+        "scope": "After full snapshot/migration comparison, run the actual packaged JAR\u2019s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
         "learner_seam": "RehearsalEvidencePolicy.requireActivationEvidence",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-132.md",
         "evidence_reference": "evidence/continuation-127-140/day-132.json",
@@ -544,7 +545,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day: rerun only Days 127–132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
+        "scope": "Recovery day: rerun only Days 127\u2013132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
         "learner_seam": "Prior-only review and remediation; no new feature",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-133.md",
         "evidence_reference": "evidence/continuation-127-140/day-133.json",
@@ -617,7 +618,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Keep known-good A selected until candidate B points at T, uses the same identified JAR, passes readiness and business-data gates, and remains loopback-only.",
+        "scope": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
         "learner_seam": "ActivationDecisionPolicy.choose",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-134.md",
         "evidence_reference": "evidence/continuation-127-140/day-134.json",
@@ -663,14 +664,15 @@
           "worked_reference_seconds": 988,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Any wrong DB, digest, business state, or bind target leaves CURRENT selected; only all gates select CANDIDATE.",
+          "scope_note": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
           "viewing_is_not_completion": true,
           "source_sha": "e6efb002431b77d0b6c5ec1cad9602ba45f8ea2d",
           "catalog_verified_at": "2026-10-20",
-          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+          "allocation_rule": "Video, pauses, worked example, focused reading, and teach-back fit one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time.",
+          "worked_example": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S."
         },
         "study_seconds": {
           "video": 212,
@@ -785,7 +787,9 @@
         "acceptance_test_path": "src/test/java/assignments/ops/ReleaseRehearsalPolicyAcceptanceTest.java",
         "instructor_harness_test_path": null,
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day136RequiresOwnedCleanupEvidence test"
+          "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day136RequiresOwnedCleanupEvidence test",
+          "./mvnw -Dtest=Day127To140InfrastructureTest#day136ToolWatchdogCleansOnlyItsContainerAndPreservesSentinel test",
+          "./mvnw -Dtest=DatabaseRestoreAcceptanceTest#day130RealPgDumpRestoresFullSyntheticRecoveryStateIntoFreshDatabase test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "concept_course": {
@@ -804,7 +808,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Any failed phase or cleanup fails the overall result; terminate/await owned children and preserve unrelated sentinel fixtures.",
+          "scope_note": "Record monotonic dump/restore/full-snapshot durations with fixture size; force a local tool watchdog and prove it removes only its unique run-owned container while an unrelated sentinel remains alive.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -898,7 +902,7 @@
           "worked_reference_seconds": 787,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Public app/DB, wildcard admin, embedded secret, cloudVerified=true, or cloud execution request must fail offline validation.",
+          "scope_note": "Offline validation rejects public application or database, wildcard admin, embedded secrets, a cloud execution request, and cloudVerified=true; only pending access/account design is represented.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -989,7 +993,7 @@
           "worked_reference_seconds": 936,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "No missing-rate zero total; reject unit/currency mismatch and omit neither retained backup nor runtime.",
+          "scope_note": "Require fictional decimal lines for compute, database storage, backups/snapshots, logs, secrets and transfer; selected networking is explicit. Validate each unit, common currency, calculated line and total; never invent missing rates or zero cost.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1125,7 +1129,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day: rerun prior Days 127–139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
+        "scope": "Recovery day: rerun prior Days 127\u2013139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
         "learner_seam": "Prior-only review and remediation; no new feature",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-140.md",
         "evidence_reference": "evidence/continuation-127-140/day-140.json",

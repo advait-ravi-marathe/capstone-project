@@ -58,10 +58,43 @@ final class Postgres18ToolHarness {
     static Result restoreResult(EmbeddedPostgres pg, Path archive, String freshTarget) throws Exception {
         int port = port(pg);
         List<String> command = List.of("docker", "run", "--rm", "--interactive", "--network", "host",
-                "--entrypoint", "pg_restore", IMAGE, "--exit-on-error", "--single-transaction",
+                "--entrypoint", "pg_restore", IMAGE, "--verbose", "--exit-on-error", "--single-transaction",
                 "--no-owner", "--no-acl", "--host=127.0.0.1", "--port=" + port,
                 "--username=postgres", "--dbname=" + freshTarget);
         return run(command, archive, null, 90);
+    }
+
+    static Result listArchive(EmbeddedPostgres pg, Path archive) throws Exception {
+        Path output = Files.createTempFile("coverstory-pg-archive-list-", ".txt");
+        try {
+            Result result = run(List.of("docker", "run", "--rm", "--interactive", "--network", "host",
+                    "--entrypoint", "pg_restore", IMAGE, "--list"), archive, output, 30);
+            return new Result(result.exitCode(), result.output() + Files.readString(output));
+        } finally {
+            Files.deleteIfExists(output);
+        }
+    }
+
+    static void timeoutCleanupPreservesUnrelatedSentinel() throws Exception {
+        String sentinel = "coverstory-sentinel-" + UUID.randomUUID().toString().replace("-", "");
+        Process start = new ProcessBuilder("docker", "run", "--detach", "--name", sentinel, "--network", "none",
+                IMAGE, "sh", "-c", "sleep 60").redirectErrorStream(true).start();
+        Assertions.assertTrue(start.waitFor(20, TimeUnit.SECONDS), "sentinel fixture startup watchdog");
+        Assertions.assertEquals(0, start.exitValue(), new String(start.getInputStream().readAllBytes()));
+        try {
+            Assertions.assertThrows(AssertionError.class, () -> run(List.of("docker", "run", "--rm", "--network", "none",
+                    "--entrypoint", "sh", IMAGE, "-c", "sleep 60"), null, null, 1));
+            Process inspect = new ProcessBuilder("docker", "inspect", "--format={{.State.Running}}", sentinel)
+                    .redirectErrorStream(true).start();
+            Assertions.assertTrue(inspect.waitFor(10, TimeUnit.SECONDS), "sentinel inspection watchdog");
+            Assertions.assertEquals(0, inspect.exitValue());
+            Assertions.assertEquals("true", new String(inspect.getInputStream().readAllBytes()).trim(),
+                    "watchdog cleanup may remove only the generated tool container, not an unrelated sentinel");
+        } finally {
+            Process cleanup = new ProcessBuilder("docker", "rm", "--force", sentinel).redirectErrorStream(true).start();
+            Assertions.assertTrue(cleanup.waitFor(10, TimeUnit.SECONDS), "owned sentinel cleanup watchdog");
+            Assertions.assertEquals(0, cleanup.exitValue());
+        }
     }
 
     static void dropOwnedTarget(EmbeddedPostgres pg, String database) throws Exception {
@@ -80,7 +113,14 @@ final class Postgres18ToolHarness {
     private static Result run(List<String> command, Path input, Path output, int timeoutSeconds) throws Exception {
         Path log = Files.createTempFile("coverstory-pgtool-", ".log");
         Path stdout = output == null ? Files.createTempFile("coverstory-pgtool-", ".out") : output;
-        ProcessBuilder builder = new ProcessBuilder(command).redirectError(log.toFile()).redirectOutput(stdout.toFile());
+        List<String> actualCommand = new java.util.ArrayList<>(command);
+        String ownedContainer = null;
+        if (actualCommand.size() > 2 && actualCommand.get(0).equals("docker") && actualCommand.get(1).equals("run")) {
+            ownedContainer = "coverstory-pgtool-" + UUID.randomUUID().toString().replace("-", "");
+            actualCommand.add(2, "--name");
+            actualCommand.add(3, ownedContainer);
+        }
+        ProcessBuilder builder = new ProcessBuilder(actualCommand).redirectError(log.toFile()).redirectOutput(stdout.toFile());
         if (input != null) builder.redirectInput(input.toFile());
         Process process = builder.start();
         try {
@@ -88,7 +128,8 @@ final class Postgres18ToolHarness {
             if (!finished) {
                 process.destroyForcibly();
                 Assertions.assertTrue(process.waitFor(5, TimeUnit.SECONDS), "PostgreSQL tool process must terminate after watchdog");
-                throw new AssertionError("PostgreSQL tool watchdog expired: " + String.join(" ", command));
+                if (ownedContainer != null) stopOwnedContainer(ownedContainer);
+                throw new AssertionError("PostgreSQL tool watchdog expired: " + String.join(" ", actualCommand));
             }
             String details = Files.readString(log);
             if (output == null && Files.size(stdout) > 0) details += Files.readString(stdout);
@@ -101,6 +142,19 @@ final class Postgres18ToolHarness {
             Files.deleteIfExists(log);
             if (output == null) Files.deleteIfExists(stdout);
         }
+    }
+
+    private static void stopOwnedContainer(String name) throws Exception {
+        Assertions.assertTrue(name.matches("coverstory-pgtool-[0-9a-f]{32}"), "cleanup is restricted to the run-owned container name");
+        Process stop = new ProcessBuilder("docker", "stop", "--time", "2", name).redirectErrorStream(true).start();
+        Assertions.assertTrue(stop.waitFor(10, TimeUnit.SECONDS), "owned Docker container stop watchdog");
+        if (stop.exitValue() != 0) {
+            Process remove = new ProcessBuilder("docker", "rm", "--force", name).redirectErrorStream(true).start();
+            Assertions.assertTrue(remove.waitFor(10, TimeUnit.SECONDS), "owned Docker container removal watchdog");
+        }
+        Process inspect = new ProcessBuilder("docker", "inspect", name).redirectErrorStream(true).start();
+        Assertions.assertTrue(inspect.waitFor(10, TimeUnit.SECONDS), "owned Docker container cleanup verification watchdog");
+        Assertions.assertNotEquals(0, inspect.exitValue(), "timed-out run-owned container must be removed");
     }
 
     record Result(int exitCode, String output) {}
