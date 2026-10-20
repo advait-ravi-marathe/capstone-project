@@ -26,7 +26,7 @@ class LocalPackagedBrowserAcceptanceTest {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
              LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
             PolicyDatabaseSnapshot before = policySnapshot(postgres.getPostgresDatabase());
-            JsonNode result = runBrowser(app.port(), "day68-preview", OUTPUT.resolve("day68-preview.json"), null);
+            JsonNode result = runBrowser(app.port(), "day68-preview", OUTPUT.resolve("day68-preview.json"), null, null);
             PolicyDatabaseSnapshot after = policySnapshot(postgres.getPostgresDatabase());
             boolean previewControlsPresent = result.path("controls").path("selectOwnerA").asBoolean()
                     && result.path("controls").path("viewPreviewAsOwnerA").asBoolean();
@@ -54,7 +54,7 @@ class LocalPackagedBrowserAcceptanceTest {
             DataSource dataSource = postgres.getPostgresDatabase();
             long before = policyCount(dataSource);
             PolicyDatabaseSnapshot beforeRows = policySnapshot(dataSource);
-            JsonNode result = runBrowser(app.port(), "day68-issue", OUTPUT.resolve("day68-issue.json"), null);
+            JsonNode result = runBrowser(app.port(), "day68-issue", OUTPUT.resolve("day68-issue.json"), null, null);
             long after = policyCount(dataSource);
             PolicyDatabaseSnapshot afterRows = policySnapshot(dataSource);
             JsonNode issues = result.path("issueResponses");
@@ -100,20 +100,26 @@ class LocalPackagedBrowserAcceptanceTest {
             JsonNode first;
             PolicyDatabaseSnapshot beforeFirstPreview;
             PolicyDatabaseSnapshot afterFirstPreview;
-            try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
-                // Start the packaged app first so Flyway creates and seeds the database before queries run.
-                beforeFirstPreview = policySnapshot(dataSource);
-                first = runBrowser(app.port(), "day69", OUTPUT.resolve("day69-before-restart.json"), null);
-                afterFirstPreview = policySnapshot(dataSource);
-            }
+            Path sessionCookieFile = privateSessionCookieFile();
             JsonNode restarted;
             PolicyDatabaseSnapshot beforeRestartPreview;
             PolicyDatabaseSnapshot afterRestartPreview;
-            try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
-                beforeRestartPreview = policySnapshot(dataSource);
-                restarted = runBrowser(app.port(), "day69-restart-check",
-                        OUTPUT.resolve("day69-after-restart.json"), first.path("sessionCookie").asString());
-                afterRestartPreview = policySnapshot(dataSource);
+            try {
+                try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
+                    // Start the packaged app first so Flyway creates and seeds the database before queries run.
+                    beforeFirstPreview = policySnapshot(dataSource);
+                    first = runBrowser(app.port(), "day69", OUTPUT.resolve("day69-before-restart.json"),
+                            null, sessionCookieFile);
+                    afterFirstPreview = policySnapshot(dataSource);
+                }
+                try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
+                    beforeRestartPreview = policySnapshot(dataSource);
+                    restarted = runBrowser(app.port(), "day69-restart-check",
+                            OUTPUT.resolve("day69-after-restart.json"), sessionCookieFile, null);
+                    afterRestartPreview = policySnapshot(dataSource);
+                }
+            } finally {
+                Files.deleteIfExists(sessionCookieFile);
             }
             boolean firstJourneyControlsPresent = first.path("controls").path("selectOwnerA").asBoolean()
                     && first.path("controls").path("viewPreviewAsOwnerA").asBoolean()
@@ -134,8 +140,8 @@ class LocalPackagedBrowserAcceptanceTest {
                         if (!firstJourneyControlsPresent) return;
                         assertEquals(200, first.path("previewAsOwnerA").path("status").asInt());
                         assertEquals(200, first.path("ownerBSessionSelection").path("status").asInt());
-                        assertNotEquals(first.path("ownerASessionCookie").asString(),
-                                first.path("ownerBSessionCookie").asString(), "switching synthetic owners rotates the session ID");
+                        assertTrue(first.path("ownerSessionRotated").asBoolean(),
+                                "switching synthetic owners rotates the session ID");
                         assertEquals(404, first.path("previewAsOwnerB").path("status").asInt(), "foreign owner remains concealed");
                         assertEquals(204, responseStatus(first.path("apiResponses"), "POST", "/api/session/logout"));
                         assertEquals(401, first.path("sessionAfterLogout").path("status").asInt());
@@ -157,16 +163,22 @@ class LocalPackagedBrowserAcceptanceTest {
         }
     }
 
-    private static JsonNode runBrowser(int port, String scenario, Path output, String sessionCookie) throws Exception {
+    private static JsonNode runBrowser(int port, String scenario, Path output,
+                                       Path sessionCookieInput, Path sessionCookieOutput) throws Exception {
         Files.createDirectories(output.getParent());
         Path log = output.resolveSibling(output.getFileName() + ".log");
         var command = new java.util.ArrayList<>(java.util.List.of("node", "e2e/local-coverstory-browser.mjs",
                 "http://127.0.0.1:" + port, output.toString(), scenario));
-        if (sessionCookie != null) command.add(sessionCookie);
         ProcessBuilder builder = new ProcessBuilder(command).directory(Path.of("frontend").toFile())
                 .redirectErrorStream(true).redirectOutput(log.toFile());
         String chromium = System.getenv("CHROMIUM_BIN");
         if (chromium != null && !chromium.isBlank()) builder.environment().put("CHROMIUM_BIN", chromium);
+        if (sessionCookieInput != null) {
+            builder.environment().put("COVERSTORY_SESSION_COOKIE_INPUT", sessionCookieInput.toString());
+        }
+        if (sessionCookieOutput != null) {
+            builder.environment().put("COVERSTORY_SESSION_COOKIE_OUTPUT", sessionCookieOutput.toString());
+        }
         Process runner = builder.start();
         if (!runner.waitFor(45, TimeUnit.SECONDS)) {
             runner.destroyForcibly();
@@ -175,6 +187,17 @@ class LocalPackagedBrowserAcceptanceTest {
         }
         assertEquals(0, runner.exitValue(), Files.readString(log));
         return new ObjectMapper().readTree(Files.readString(output));
+    }
+
+    private static Path privateSessionCookieFile() throws Exception {
+        Files.createDirectories(OUTPUT);
+        Path path = Files.createTempFile(OUTPUT, "day69-session-", ".cookie");
+        try {
+            Files.setPosixFilePermissions(path, java.nio.file.attribute.PosixFilePermissions.fromString("rw-------"));
+        } catch (UnsupportedOperationException ignored) {
+            // The generated temp file is always deleted in a finally block.
+        }
+        return path;
     }
 
     private record PolicyDatabaseSnapshot(String policies, String lifecycleEvents, String idempotency) { }

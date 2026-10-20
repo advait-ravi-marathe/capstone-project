@@ -2,8 +2,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
-const [baseUrl, outputPath, scenario, savedSessionCookie] = process.argv.slice(2);
+const [baseUrl, outputPath, scenario] = process.argv.slice(2);
 if (!baseUrl || !outputPath || !scenario) throw new Error('Expected base URL, output JSON path, and scenario.');
+
+const sessionCookieInput = process.env.COVERSTORY_SESSION_COOKIE_INPUT;
+const sessionCookieOutput = process.env.COVERSTORY_SESSION_COOKIE_OUTPUT;
+let savedSessionCookie = null;
+if (sessionCookieInput) {
+  savedSessionCookie = fs.readFileSync(sessionCookieInput, 'utf8');
+  fs.rmSync(sessionCookieInput, { force: true });
+}
 
 const browser = await chromium.launch({
   headless: true,
@@ -28,7 +36,7 @@ try {
     apiResponses.push(entry);
     const settleBody = response.text().then((body) => { entry.body = body; }).catch(() => {});
     const settleSession = request.method() === 'POST' && url.pathname === '/api/session'
-      ? response.headers().then((headers) => {
+      ? response.allHeaders().then((headers) => {
         const match = (headers['set-cookie'] ?? '').match(/(?:^|,\s*)JSESSIONID=([^; ,]+)/);
         if (match) sessionCookie = match[1];
       })
@@ -72,7 +80,7 @@ try {
     result.previewAfterRestart = latestPreview();
   } else {
     controls.selectOwnerA = await click('Use owner-a', { method: 'POST', path: /^\/api\/session$/ });
-    result.ownerASessionCookie = await currentSessionCookie();
+    const ownerASessionCookie = await currentSessionCookie();
     if (scenario === 'day68-preview' || scenario === 'day69') {
       controls.viewPreviewAsOwnerA = await click('View preview', { method: 'GET', path: /\/renewal-preview$/ });
       result.previewAsOwnerA = latestPreview();
@@ -87,23 +95,30 @@ try {
     if (scenario === 'day69') {
       controls.selectOwnerB = await click('Use owner-b', { method: 'POST', path: /^\/api\/session$/ });
       result.ownerBSessionSelection = apiResponses.filter((r) => r.method === 'POST' && r.path === '/api/session').at(-1) ?? null;
-      result.ownerBSessionCookie = await currentSessionCookie();
-      result.sessionCookie = result.ownerBSessionCookie;
+      const ownerBSessionCookie = await currentSessionCookie();
+      result.ownerSessionRotated = Boolean(ownerASessionCookie && ownerBSessionCookie
+        && ownerASessionCookie !== ownerBSessionCookie);
       controls.viewForeignPreview = await click('View preview', { method: 'GET', path: /\/renewal-preview$/ });
       result.previewAsOwnerB = latestPreview();
       controls.logout = await click('Log out', { method: 'POST', path: /^\/api\/session\/logout$/ });
-      const responseStart = apiResponses.length;
-      const reloadedSession = page.waitForResponse((response) => {
-        const request = response.request();
-        return request.method() === 'GET' && new URL(response.url()).pathname === '/api/session';
-      });
-      await page.reload();
-      const sessionResponse = await reloadedSession;
-      await responseSettlers.get(sessionResponse);
-      result.sessionAfterLogout = apiResponses.slice(responseStart).find((r) => r.method === 'GET' && r.path === '/api/session') ?? null;
+      if (controls.logout) {
+        const responseStart = apiResponses.length;
+        const reloadedSession = page.waitForResponse((response) => {
+          const request = response.request();
+          return request.method() === 'GET' && new URL(response.url()).pathname === '/api/session';
+        });
+        await page.reload();
+        const sessionResponse = await reloadedSession;
+        await responseSettlers.get(sessionResponse);
+        result.sessionAfterLogout = apiResponses.slice(responseStart).find((r) => r.method === 'GET' && r.path === '/api/session') ?? null;
+      }
     }
   }
 
+  if (sessionCookieOutput && scenario === 'day69') {
+    fs.mkdirSync(path.dirname(sessionCookieOutput), { recursive: true });
+    fs.writeFileSync(sessionCookieOutput, sessionCookie ?? '', { mode: 0o600 });
+  }
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, JSON.stringify({ browserOpened: true, pageStatus: pageResponse?.status(), heading, ...result }, null, 2));
   await context.close();
