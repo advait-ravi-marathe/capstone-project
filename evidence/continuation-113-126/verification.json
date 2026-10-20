@@ -1,7 +1,7 @@
 {
-  "status": "locally_verified_pending_publish",
+  "status": "verified",
   "base_sha": "640ae79d1d07801634664b8a02056b053504631e",
-  "tested_tree_sha": "working-tree-before-correction-commit",
+  "tested_tree_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
   "tests": [
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean -Plocal-app -DskipTests package",
@@ -97,5 +97,17 @@
   },
   "board_changes": false,
   "main_branch_changes": false,
-  "notes": "Temporary witness runs establish harness behavior only, not learner completion. The newly added packaged selector covers local recovery CLI/JAR/PostgreSQL, not HTTP or Chromium. Earlier protected issuance/renewal and browser checks remain separate regressions. Main, Scrum board, and original dirty checkout were not changed. Exact-head hosted CI for the correction commit is pending publication."
+  "notes": "Temporary witness passes establish test-harness behavior only, not learner completion. The restored starter is intentionally red at named learner TODOs. The new packaged selector covers local recovery CLI/JAR/PostgreSQL, not HTTP or Chromium. Existing protected issuance/renewal and browser regression selectors remain separate. Main, Scrum board, and original dirty checkout were not changed. This receipt is included in the tested code commit; if later updated, that receipt-only descendant requires separate exact-head CI.",
+  "tested_code_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
+  "code_commit_exact_head_ci": {
+    "workflow": "CoverStory starter checks",
+    "run_number": 52,
+    "run_id": 39496105422,
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39496105422",
+    "head_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-10-20T20:56:38Z",
+    "source": "Authenticated GitHub Actions run and job read; exact head SHA matched."
+  }
 }
