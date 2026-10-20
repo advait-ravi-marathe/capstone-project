@@ -13,6 +13,7 @@ class Day84ContractInfrastructureTest {
     void assessmentSeparatesInstructorEvidenceFromLearnerIntegration() throws Exception {
         var mapper = new ObjectMapper();
         var manifest = mapper.readTree(Files.readString(Path.of("docs/reboot/continuation-71-84/manifest.json")));
+        var stories = mapper.readTree(Files.readString(Path.of("docs/reboot/continuation-71-84/scrum-owner-manifest.json")));
         assertFalse(manifest.path("dsa_revision_policy").path("actual_attempt_dates_supplied").asBoolean());
         assertTrue(manifest.path("scope").asText().contains("Reuse the completed Day48 owner-scoped SQL"));
         assertTrue(manifest.path("capacity_decision").path("pool_availability_guarantee").asText().startsWith("none;"));
@@ -21,5 +22,38 @@ class Day84ContractInfrastructureTest {
                 manifest.path("days").get(12).path("engineering").path("acceptance_test_path").asText());
         assertTrue(Files.exists(Path.of("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java")));
         assertTrue(Files.exists(Path.of("frontend/e2e/day83-lock-recovery.mjs")));
+        String workflow = Files.readString(Path.of(".github/workflows/coverstory-starter.yml"));
+        assertTrue(workflow.contains("learning/coverstory-days-71-84"), "pushes to this continuation must run CI");
+        String pom = Files.readString(Path.of("pom.xml"));
+        assertTrue(pom.contains("<excludeLearnerAcceptance>learnerAcceptance</excludeLearnerAcceptance>"));
+        assertTrue(Files.exists(Path.of("src/test/java/assignments/local/LocalPackagedRuntimeBoundaryAcceptanceTest.java")));
+        String learnerRuntime = Files.readString(
+                Path.of("src/test/java/assignments/local/LocalPackagedRuntimeBoundaryAcceptanceTest.java"));
+        assertTrue(learnerRuntime.contains("@Tag(\"learnerAcceptance\")"));
+        assertEquals("frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
+                manifest.path("days").get(10).path("engineering").path("acceptance_test_path").asText());
+        assertEquals("frontend/src/components/RenewalPreviewBusyState.test.tsx",
+                manifest.path("days").get(10).path("engineering").path("focused_acceptance_test_path").asText());
+        assertEquals("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+                manifest.path("days").get(12).path("engineering").path("acceptance_reference").asText());
+        assertEquals("instructor_scaffold_complete", manifest.path("days").get(12).path("scaffold_status").asText());
+        assertTrue(manifest.path("days").get(12).path("integration_status").asText().startsWith("installed;"));
+        assertEquals("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+                stories.path("cards").get(12).path("engineering").path("acceptance_reference").asText());
+        assertEquals("frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
+                stories.path("cards").get(10).path("engineering").path("acceptance_test_path").asText());
+        assertEquals("frontend/src/components/RenewalPreviewBusyState.test.tsx",
+                stories.path("cards").get(10).path("engineering").path("focused_acceptance_test_path").asText());
+        assertEquals(manifest.path("days").get(1).path("title").asText(),
+                stories.path("cards").get(1).path("title").asText());
+        assertEquals("src/test/java/assignments/local/LocalMetricsExposureInfrastructureTest.java",
+                manifest.path("days").get(9).path("engineering").path("infrastructure_test_path").asText());
+        assertEquals("https://docs.micrometer.io/micrometer/reference/concepts/timers.html",
+                manifest.path("days").get(9).path("engineering").path("concept_course")
+                        .path("resources").get(0).path("url").asText());
+        for (int dayIndex : new int[]{0, 13}) {
+            assertTrue(manifest.path("days").get(dayIndex).path("engineering").path("acceptance_test_path").isNull());
+            assertTrue(stories.path("cards").get(dayIndex).path("engineering").path("acceptance_test_path").isNull());
+        }
     }
 }

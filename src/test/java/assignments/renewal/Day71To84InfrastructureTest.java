@@ -40,6 +40,7 @@ class Day71To84InfrastructureTest {
             for (JsonNode reference : new JsonNode[]{day.get("contract_file"),
                     day.get("engineering").get("evidence_reference"),
                     day.get("engineering").get("acceptance_test_path"),
+                    day.get("engineering").get("focused_acceptance_test_path"),
                     day.get("engineering").get("infrastructure_test_path"),
                     day.get("java_dsa").get("guide_path")}) {
                 if (reference == null || reference.isNull()) continue;

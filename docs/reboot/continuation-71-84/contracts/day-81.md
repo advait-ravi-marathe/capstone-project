@@ -14,14 +14,16 @@ Integrate the accessible `RenewalPreviewBusyState` in the normal `LocalCoverStor
 
 The learner selector remains red only where an explicit learner TODO is incomplete. The Day 83 packaged-app integration selector is now installed and depends on the earlier learner seams; the contract-shape infrastructure test is not learner completion evidence.
 
-**Learner acceptance test:** `frontend/src/components/RenewalPreviewBusyState.test.tsx`
-**Learner command:** `cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx`
+**Integrated learner acceptance test:** `frontend/src/__tests__/LocalCoverStoryApp.test.tsx`, case `shows the real renewal route busy state and retries only after the user activates Retry`.
+**Integrated command:** `cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/__tests__/LocalCoverStoryApp.test.tsx -t 'shows the real renewal route busy state and retries only after the user activates Retry'`
+**Focused component acceptance test:** `frontend/src/components/RenewalPreviewBusyState.test.tsx`.
+**Focused command:** `cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx`
 **Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 
 ## Implementation/testing allocation (85 minutes)
 
-Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
+Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added business endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
 RenewalPreviewBusyState.
 

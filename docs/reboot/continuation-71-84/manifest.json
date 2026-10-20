@@ -4,7 +4,7 @@
   "effective_start": "2026-12-29",
   "effective_end": "2027-01-11",
   "status_semantics": "Contracts and seams are plans. Scaffold, learner implementation, runtime verification and integration status are independent. Dates never imply learner completion.",
-  "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new route, schema change, fault route, or infrastructure for its own sake. Reuse the completed Day48 owner-scoped SQL without duplicating its query.",
+  "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new business route, schema change, fault route, or infrastructure for its own sake. Reuse the completed Day48 owner-scoped SQL without duplicating its query.",
   "capacity_decision": {
     "application_permits": 2,
     "existing_hikari_maximum_pool_size": 4,
@@ -780,9 +780,9 @@
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PreviewMetricsAcceptanceTest test"
         ],
-        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalMetricsExposureInfrastructureTest.java",
         "infrastructure_commands": [
-          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+          "./mvnw -Dtest=LocalMetricsExposureInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
@@ -792,6 +792,11 @@
             "teachback": 5
           },
           "resources": [
+            {
+              "title": "Micrometer Timers",
+              "section": "short-duration latency and event count",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/timers.html"
+            },
             {
               "title": "Micrometer Naming",
               "section": "Tag Values",
@@ -804,7 +809,9 @@
         },
         "acceptance_selector_status": "installed_expected_todo_red",
         "learner_task": "Implement finite outcome counters and latency timers, then integrate them in the bounded store used by the real renewal route. Never tag request/policy identifiers; demonstrate bounded meter count across repeated IDs/outcomes.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "batch_integrity_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "batch_integrity_command": "./mvnw -Dtest=Day71To84InfrastructureTest test"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -858,7 +865,7 @@
         "scaffold_status": "instructor_scaffold_partial",
         "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "acceptance_commands": [
-          "npm --prefix frontend run test:local"
+          "npm --prefix frontend run test:local -- -t 'shows the real renewal route busy state and retries only after the user activates Retry'"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
         "infrastructure_commands": [
@@ -885,7 +892,9 @@
         "acceptance_selector_status": "installed_expected_todo_red",
         "learner_task": "Integrate RenewalPreviewBusyState into the normal local route: show accessible busy status retaining policy context, one explicit retry action, no automatic retry/session reset, then render the successful read-only preview after recovery.",
         "learner_evidence_mode": "implementation_acceptance",
-        "integration_acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"
+        "integration_acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+        "focused_acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "focused_acceptance_command": "RUN_LEARNER_ACCEPTANCE=true npm --prefix frontend exec -- vitest run src/components/RenewalPreviewBusyState.test.tsx"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -908,7 +917,7 @@
     {
       "day": 82,
       "date": "2027-01-09",
-      "title": "Prove finite recovery under real Hikari pool exhaustion",
+      "title": "Validate finite preview capacity policy",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-82.md",
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
@@ -991,9 +1000,9 @@
       "title": "Prove packaged browser recovery under a real database lock",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-83.md",
       "contract_status": "defined",
-      "scaffold_status": "instructor_scaffold_partial",
+      "scaffold_status": "instructor_scaffold_complete",
       "learner_status": "not_attempted",
-      "integration_status": "not_installed; requires Day48/49\u201351/72\u201380 learner seams, JDK21, PostgreSQL and browser",
+      "integration_status": "installed; blocked at learner TODOs in Day48 and Days72-81",
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1003,7 +1012,7 @@
         },
         "scope": "Day83 JAR + browser + PostgreSQL lock harness",
         "learner_seam": "Day83 JAR + browser + PostgreSQL lock harness",
-        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-83.md",
+        "acceptance_reference": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-71-84/day-83.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
@@ -1046,10 +1055,10 @@
           "design_prompt": "Sketch the lock owner, two waiting app sessions, busy response, bounded metrics, and finally release; watchdog polling only observes state and prevents a hang.",
           "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
         },
-        "acceptance_selector_status": "installed_expected_red_until_prerequisite_learner_seams_pass",
+        "acceptance_selector_status": "installed_expected_todo_red_until_prerequisite_learner_seams_pass",
         "learner_task": "Use the real packaged app, Chromium, and PostgreSQL ACCESS EXCLUSIVE lock; observe two sessions waiting in pg_stat_activity; reject third with 503 before JDBC; show accessible busy UI and one explicit user retry after release; prove bounded route metrics and byte-for-byte database state preservation.",
         "learner_evidence_mode": "implementation_acceptance",
-        "integration_status": "installed; requires completed Day48 and learner implementation Days72-81"
+        "integration_status": "installed; blocked at learner TODOs in Day48 and Days72-81"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",

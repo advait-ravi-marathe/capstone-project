@@ -14,14 +14,14 @@ Baseline the read route and identify unfinished ownership/readiness prerequisite
 
 This is an instructor evidence/contract check, not a learner implementation acceptance test. Record learner implementation and integration outcomes separately; do not infer completion from this selector.
 
-**Learner acceptance test:** `src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java`
-**Learner command:** `./mvnw -Plearner-tests -Dtest=Day71BaselineAcceptanceTest test`
-**Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
+**Instructor baseline check:** `src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java`
+**Instructor command:** `./mvnw -Dtest=Day71BaselineAcceptanceTest test`
+**Batch contract-integrity check:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
+**Batch command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 
 ## Implementation/testing allocation (85 minutes)
 
-Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
+Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added business endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
 Record the existing synchronous path and fixed pool ceiling; no runtime feature..
 

@@ -71,10 +71,9 @@ try {
   await busyPage.getByRole('button', { name: 'View preview', exact: true }).waitFor({ state: 'visible' });
   const thirdResponsePromise = busyPage.waitForResponse(response =>
     new URL(response.url()).pathname === previewPath && response.request().method() === 'GET');
-  const thirdStarted = performance.now();
   await busyPage.getByRole('button', { name: 'View preview', exact: true }).click();
   const thirdResponse = await thirdResponsePromise;
-  const third = { ...(await responseData(thirdResponse)), elapsedMillis: performance.now() - thirdStarted };
+  const third = await responseData(thirdResponse);
   await busyPage.getByRole('status').filter({ hasText: /busy/i }).waitFor({ state: 'visible' });
   await busyPage.getByText('policy-renewal-a').waitFor({ state: 'visible' });
   await busyPage.getByRole('button', { name: /retry/i }).waitFor({ state: 'visible' });

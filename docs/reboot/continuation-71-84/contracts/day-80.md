@@ -16,19 +16,24 @@ The learner selector remains red only where an explicit learner TODO is incomple
 
 **Learner acceptance test:** `src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java`
 **Learner command:** `./mvnw -Plearner-tests -Dtest=PreviewMetricsAcceptanceTest test`
-**Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
+**Observability infrastructure test:** `src/test/java/assignments/local/LocalMetricsExposureInfrastructureTest.java`
+**Infrastructure command:** `./mvnw -Dtest=LocalMetricsExposureInfrastructureTest test`
+**Batch contract-integrity test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
+**Batch command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 
 ## Implementation/testing allocation (85 minutes)
 
-Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
+Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added business endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
 Connect `PreviewMetrics` to `BoundedPolicyRenewalReadStore` and the local singleton configuration. Each real route outcome contributes a finite `outcome` tag and bounded timer/counter data.
+
+For the packaged synthetic local demo, `GET /actuator/metrics` is an explicit read-only observability endpoint. It is available only in the `local` profile, the application enforces loopback binding, Spring Security requires the synthetic owner session, and a Micrometer allow-list exposes only `coverstory.preview.requests`, `coverstory.preview.latency`, and `hikaricp.connections.active`; route tags are limited to the fixed outcome enum. It is not a business endpoint or a fault-injection route. The HTTP endpoint itself is instructor-owned configuration; learner work is recording the route metrics.
 
 ## Concept/course allocation (25 minutes)
 
 Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
 
+- [Micrometer Timers](https://docs.micrometer.io/micrometer/reference/concepts/timers.html)
 - [Micrometer Naming — Tag Values](https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values)
 
 **Design sketch:** List allowed metric dimensions and explain raw-ID cardinality.

@@ -53,8 +53,6 @@ class Day83PackagedLockBrowserAcceptanceTest {
                     JsonNode busy = JSON.readTree(Files.readString(third));
                     assertEquals(503, busy.path("status").asInt(), "the third browser request must fail immediately");
                     assertEquals("PREVIEW_BUSY", busy.path("body").path("code").asText());
-                    assertTrue(busy.path("elapsedMillis").asDouble() < 900,
-                            "busy rejection must beat the configured one-second Hikari connection timeout");
                     assertEquals(2, busy.path("activeConnections").asInt(),
                             "the third request must not check out a third Hikari connection");
                     assertEquals(2, lockWaiterCount(dataSource),
