@@ -1,10 +1,10 @@
 # Day 17 — 2026-11-05: Render product choices in React/TypeScript
 
-**State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
+**State:** Minimal React/TypeScript workspace, fixed component tests, and learner TODO are installed. The UI workspace builds, while all component behavior tests currently fail at the placeholder.
 
 ## Learner seam
 
-`ProductPanel.tsx` in UI workspace if established. Keep the business rule in this focused subject. Do not implement later-day behavior early.
+`frontend/src/components/ProductPanel.tsx`. Keep the business rule in this focused subject. Do not implement later-day behavior early.
 
 ## Acceptance invariants
 
@@ -18,6 +18,8 @@ Loading, error, empty, product options, accessibility query, no real fetch.
 
 Day 4 contract; canned fetch adapter. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**System-design prompt (within the 25-minute concept block):** Sketch the UI state and API boundary needed for product choices; keep server policy authoritative. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 Typed props and discriminated UI state [K,L].
@@ -28,10 +30,18 @@ Component tests and screenshot. Record dated attempt state (`not attempted`, `at
 
 ## Planned isolated command
 
-`./mvnw -Plearner-tests -Dtest=Day17ContractTest test`
+`npm --prefix frontend test -- src/components/ProductPanel.test.tsx`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+Run this focused component suite; its four failures are expected at the Day 17 TODO. `npm --prefix frontend run build` verifies TypeScript/bundling separately. The Vite app is only a test scaffold; it does not claim a finished UI.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 125 Valid Palindrome. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**New pattern anchor:** LeetCode 3 Longest Substring Without Repeating Characters — variable sliding window. Learn the pattern for 25 minutes, solve independently for 20 minutes, and spend 15 minutes on same-day D recall plus the error log. Record the actual first-attempt date; schedule D+3, D+7 and D+21 reviews from that date. Planned dates in the manifest are forecasts only. A failed prerequisite/review displaces the next new anchor; do not add overtime. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 17 (Render product choices in React/TypeScript) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.

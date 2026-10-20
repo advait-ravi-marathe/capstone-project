@@ -1,6 +1,6 @@
 # Day 26 — 2026-11-14: Record minimal selection audit
 
-**State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
+**State:** Real PostgreSQL scaffold and fixed learner tests are installed; the JDBC transaction/audit behavior remains a learner TODO.
 
 ## Learner seam
 
@@ -18,6 +18,8 @@ Success, repeat, rollback; exact event count/fields; no payload column.
 
 Days 10, 12 and 25; fixed actor/time and seeded input. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**System-design prompt (within the 25-minute concept block):** Trace the minimal audit fields from action to stored record without copying personal data. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 Atomic audit and data minimization.
@@ -30,8 +32,16 @@ Success/repeat/rollback database counts. Record dated attempt state (`not attemp
 
 `./mvnw -Plearner-tests -Dtest=Day26ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This selector runs the fixed cases against real embedded PostgreSQL. The tests are expected to fail at the learner-owned transaction/audit TODO. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 290 Word Pattern. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**Consolidation day — no new mandatory problem.** Use 25 minutes to refresh due patterns, 20 minutes to cold-solve the weakest due anchor, and 15 minutes for same-day/other due active recall and the error log. Planned review items: LC 383 (D+21 from Day 5), LC 209 (D+7 from Day 19), LC 155 (D+3 from Day 23). Recompute from actual first-attempt dates and record completion only after the review. If no review is actually due, cold-recall the weakest earlier anchor; failed recall displaces the next new anchor. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 26 (Record minimal selection audit) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.

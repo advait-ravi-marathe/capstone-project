@@ -18,6 +18,8 @@ Amounts `99999.99`, `100000.00`, `10000000.00`, `10000000.01`; absent fields; no
 
 Day 4; catalog bounds fixture, no live controller. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**System-design prompt (within the 25-minute concept block):** Record the eligibility invariant and reason-precedence decision table. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 Pure functions, invariants and decision tables.
@@ -30,8 +32,16 @@ Decision table mapped to parameterized tests. Record dated attempt state (`not a
 
 `./mvnw -Plearner-tests -Dtest=Day05ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 80 Remove Duplicates from Sorted Array II. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**New pattern anchor:** LeetCode 383 Ransom Note — frequency counting. Learn the pattern for 25 minutes, solve independently for 20 minutes, and spend 15 minutes on same-day D recall plus the error log. Record the actual first-attempt date; schedule D+3, D+7 and D+21 reviews from that date. Planned dates in the manifest are forecasts only. A failed prerequisite/review displaces the next new anchor; do not add overtime. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 5 (Decide HomeSecure eligibility) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.

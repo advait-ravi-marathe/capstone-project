@@ -1,6 +1,6 @@
 # Day 10 — 2026-10-29: Persist selection batch atomically
 
-**State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
+**State:** Instructor scaffold installed; learner implementation pending. Transaction behavior is checked with real PostgreSQL and a fixed schema/quote fixture that bypasses earlier service rules.
 
 ## Learner seam
 
@@ -18,6 +18,8 @@ Empty batch, two valid rows, induced second-row failure, pre-existing rows remai
 
 Days 8–9; canned normalized pairs and forced repository failure. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**PostgreSQL design prompt:** Identify primary/composite keys, normalization, constraints, and transaction/isolation boundary relevant to this day's schema/write; do not add infrastructure beyond the contract. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 Transactions, atomicity, rollback [G].
@@ -30,8 +32,16 @@ Database state after injected mid-batch failure. Record dated attempt state (`no
 
 `./mvnw -Plearner-tests -Dtest=Day10ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This selector runs the installed batch tests against a real embedded PostgreSQL server. The expected learner TODO failures are not a passing result. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 45 Jump Game II. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**Consolidation day — no new mandatory problem.** Use 25 minutes to refresh due patterns, 20 minutes to cold-solve the weakest due anchor, and 15 minutes for same-day/other due active recall and the error log. Planned review items: LC 1 (D+7 from Day 3), LC 49 (D+3 from Day 7). Recompute from actual first-attempt dates and record completion only after the review. If no review is actually due, cold-recall the weakest earlier anchor; failed recall displaces the next new anchor. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 10 (Persist selection batch atomically) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.

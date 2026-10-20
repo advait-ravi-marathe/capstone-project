@@ -5,7 +5,8 @@
   "status_semantics": {
     "contract": "defined does not mean scaffolded or passed",
     "learner": "not_attempted | attempted | contract_passed",
-    "integration": "blocked | ready | passed; only evidence can change status"
+    "integration": "blocked | ready | passed; only evidence can change status",
+    "scaffold": "not_installed | partial | installed; partial means an isolated contract exists but application wiring or contract tests remain open"
   },
   "products": {
     "primary": "CoverStory",
@@ -36,7 +37,33 @@
       "infrastructure_evidence_file": "../../evidence/day-1/verification.json",
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 121
+      "dsa_problem_id": 121,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-10-20",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-10-23",
+          "2026-10-27",
+          "2026-11-10"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "running-state array",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 2,
@@ -47,12 +74,34 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "88 Merge Sorted Array",
+      "dsa_problem": null,
       "prerequisite_note": "Day 1 for integration; mocked selection service for isolation.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 88
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 3,
@@ -63,12 +112,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "27 Remove Element",
+      "dsa_problem": "1 Two Sum",
       "prerequisite_note": "Day 2; mocked service throws fixed fixture exceptions.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 27
+      "dsa_problem_id": 1,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-10-22",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-10-25",
+          "2026-10-29",
+          "2026-11-12"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "hash lookup",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 4,
@@ -79,12 +154,42 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "26 Remove Duplicates from Sorted Array",
+      "dsa_problem": null,
       "prerequisite_note": "Day 3; test-only fixed product fixture.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 26
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 3,
+            "due_date": "2026-10-23",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 5,
@@ -95,12 +200,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "80 Remove Duplicates from Sorted Array II",
+      "dsa_problem": "383 Ransom Note",
       "prerequisite_note": "Day 4; catalog bounds fixture, no live controller.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 80
+      "dsa_problem_id": 383,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-10-24",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-10-27",
+          "2026-10-31",
+          "2026-11-14"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "frequency counting",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 6,
@@ -111,12 +242,42 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "169 Majority Element",
+      "dsa_problem": null,
       "prerequisite_note": "Day 4; fixed eligible input and rate fixture.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 169
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 3,
+            "due_date": "2026-10-25",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 7,
@@ -127,12 +288,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "189 Rotate Array",
-      "prerequisite_note": "Days 5\u20136; canned eligibility/premium; fixed Clock.",
+      "dsa_problem": "49 Group Anagrams",
+      "prerequisite_note": "Days 5–6; canned eligibility/premium; fixed Clock.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 189
+      "dsa_problem_id": 49,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-10-26",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-10-29",
+          "2026-11-02",
+          "2026-11-16"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "grouping key",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 8,
@@ -143,12 +330,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "122 Best Time to Buy and Sell Stock II",
+      "dsa_problem": null,
       "prerequisite_note": "Days 1 and 7; SQL seeds bypass services.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 122
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 7,
+            "due_date": "2026-10-27",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 3,
+            "due_date": "2026-10-27",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 9,
@@ -159,12 +383,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "55 Jump Game",
+      "dsa_problem": "238 Product of Array Except Self",
       "prerequisite_note": "Day 8; seeded rows, no quote-creation service.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 55
+      "dsa_problem_id": 238,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-10-28",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-10-31",
+          "2026-11-04",
+          "2026-11-18"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "prefix/suffix products",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 10,
@@ -175,12 +425,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "45 Jump Game II",
-      "prerequisite_note": "Days 8\u20139; canned normalized pairs and forced repository failure.",
+      "dsa_problem": null,
+      "prerequisite_note": "Days 8–9; canned normalized pairs and forced repository failure.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 45
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 7,
+            "due_date": "2026-10-29",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 3,
+            "due_date": "2026-10-29",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 11,
@@ -191,12 +478,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "13 Roman to Integer",
-      "prerequisite_note": "Days 7 and 9\u201310; fixed current-version metadata and Clock.",
+      "dsa_problem": "125 Valid Palindrome",
+      "prerequisite_note": "Days 7 and 9–10; fixed current-version metadata and Clock.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 13
+      "dsa_problem_id": 125,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-10-30",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-02",
+          "2026-11-06",
+          "2026-11-20"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "inward pointers",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 12,
@@ -207,12 +520,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "14 Longest Common Prefix",
-      "prerequisite_note": "Days 3, 9\u201311; Spring test principals and fixed owned-resource fixture.",
+      "dsa_problem": null,
+      "prerequisite_note": "Days 3, 9–11; Spring test principals and fixed owned-resource fixture.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 14
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 7,
+            "due_date": "2026-10-31",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 3,
+            "due_date": "2026-10-31",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 13,
@@ -223,12 +573,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "58 Length of Last Word",
-      "prerequisite_note": "Days 1\u201312 status manifest and fixture smoke.",
+      "dsa_problem": "167 Two Sum II - Input Array Is Sorted",
+      "prerequisite_note": "Days 1–12 status manifest and fixture smoke.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 58
+      "dsa_problem_id": 167,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-01",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-04",
+          "2026-11-08",
+          "2026-11-22"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "sorted two pointers",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 14,
@@ -239,12 +615,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "28 Find the Index of the First Occurrence in a String",
-      "prerequisite_note": "Days 1\u201313 all required; no business-policy fakes in integration gate.",
+      "dsa_problem": null,
+      "prerequisite_note": "Days 1–13 all required; no business-policy fakes in integration gate.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 28
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 7,
+            "due_date": "2026-11-02",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 11,
+            "problem_id": 125,
+            "review_interval_days": 3,
+            "due_date": "2026-11-02",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 15,
@@ -255,12 +668,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "151 Reverse Words in a String",
+      "dsa_problem": "11 Container With Most Water",
       "prerequisite_note": "Days 9 and 12; seeded read model.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 151
+      "dsa_problem_id": 11,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-03",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-06",
+          "2026-11-10",
+          "2026-11-24"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "pointer-elimination proof",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 16,
@@ -271,12 +710,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "6 Zigzag Conversion",
+      "dsa_problem": null,
       "prerequisite_note": "Days 9 and 12; seeded history.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 6
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 7,
+            "due_date": "2026-11-04",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 13,
+            "problem_id": 167,
+            "review_interval_days": 3,
+            "due_date": "2026-11-04",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 17,
@@ -287,12 +763,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "125 Valid Palindrome",
+      "dsa_problem": "3 Longest Substring Without Repeating Characters",
       "prerequisite_note": "Day 4 contract; canned fetch adapter.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 125
+      "dsa_problem_id": 3,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-05",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-08",
+          "2026-11-12",
+          "2026-11-26"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "variable sliding window",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 18,
@@ -303,12 +805,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "392 Is Subsequence",
+      "dsa_problem": null,
       "prerequisite_note": "Day 5 request contract; fake submit promise.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 392
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 11,
+            "problem_id": 125,
+            "review_interval_days": 7,
+            "due_date": "2026-11-06",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 15,
+            "problem_id": 11,
+            "review_interval_days": 3,
+            "due_date": "2026-11-06",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 19,
@@ -319,12 +858,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "167 Two Sum II - Input Array Is Sorted",
+      "dsa_problem": "209 Minimum Size Subarray Sum",
       "prerequisite_note": "Day 7 response contract; controlled deferred promises.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 167
+      "dsa_problem_id": 209,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-07",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-10",
+          "2026-11-14",
+          "2026-11-28"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "shrinking valid window",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 20,
@@ -335,12 +900,49 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "11 Container With Most Water",
+      "dsa_problem": null,
       "prerequisite_note": "Days 1, 3 and 11 response contracts; fake API.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 11
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 13,
+            "problem_id": 167,
+            "review_interval_days": 7,
+            "due_date": "2026-11-08",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 17,
+            "problem_id": 3,
+            "review_interval_days": 3,
+            "due_date": "2026-11-08",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 21,
@@ -351,12 +953,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "15 3Sum",
-      "prerequisite_note": "Days 12 and 18\u201320; session/CSRF test helpers.",
+      "dsa_problem": "20 Valid Parentheses",
+      "prerequisite_note": "Days 12 and 18–20; session/CSRF test helpers.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 15
+      "dsa_problem_id": 20,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-09",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-12",
+          "2026-11-16",
+          "2026-11-30"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "stack",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 22,
@@ -367,12 +995,56 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "209 Minimum Size Subarray Sum",
+      "dsa_problem": null,
       "prerequisite_note": "Day 3; fixed request fixtures and fake logger.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 209
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 21,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 15,
+            "problem_id": 11,
+            "review_interval_days": 7,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 19,
+            "problem_id": 209,
+            "review_interval_days": 3,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 23,
@@ -383,12 +1055,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "3 Longest Substring Without Repeating Characters",
+      "dsa_problem": "155 Min Stack",
       "prerequisite_note": "Days 8 and 12; disposable DB lifecycle fixture.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 3
+      "dsa_problem_id": 155,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-11",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-14",
+          "2026-11-18",
+          "2026-12-02"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "augmented stack",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 24,
@@ -399,12 +1097,56 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "383 Ransom Note",
+      "dsa_problem": null,
       "prerequisite_note": "Days 8 and 16; deterministic larger SQL seed.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 383
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 21,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 17,
+            "problem_id": 3,
+            "review_interval_days": 7,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 21,
+            "problem_id": 20,
+            "review_interval_days": 3,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 25,
@@ -415,12 +1157,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "205 Isomorphic Strings",
-      "prerequisite_note": "Days 8 and 10\u201312; canned authorized/current quote.",
+      "dsa_problem": "704 Binary Search",
+      "prerequisite_note": "Days 8 and 10–12; canned authorized/current quote.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 205
+      "dsa_problem_id": 704,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-13",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-16",
+          "2026-11-20",
+          "2026-12-04"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "binary-search bridge (outside Top Interview 150)",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 26,
@@ -431,12 +1199,56 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "290 Word Pattern",
+      "dsa_problem": null,
       "prerequisite_note": "Days 10, 12 and 25; fixed actor/time and seeded input.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 290
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 21,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 19,
+            "problem_id": 209,
+            "review_interval_days": 7,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 23,
+            "problem_id": 155,
+            "review_interval_days": 3,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 27,
@@ -447,12 +1259,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "242 Valid Anagram",
+      "dsa_problem": "35 Search Insert Position",
       "prerequisite_note": "Relevant failed day; saved fixture reproducer.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 242
+      "dsa_problem_id": 35,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-15",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-18",
+          "2026-11-22",
+          "2026-12-06"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "boundary search",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 28,
@@ -463,12 +1301,56 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "1 Two Sum",
-      "prerequisite_note": "Days 14\u201327; readiness checker reports gaps; real completed components and PostgreSQL.",
+      "dsa_problem": null,
+      "prerequisite_note": "Days 14–27; readiness checker reports gaps; real completed components and PostgreSQL.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 1
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 21,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 21,
+            "problem_id": 20,
+            "review_interval_days": 7,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 25,
+            "problem_id": 704,
+            "review_interval_days": 3,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 29,
@@ -479,12 +1361,38 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "49 Group Anagrams",
+      "dsa_problem": "153 Find Minimum in Rotated Sorted Array",
       "prerequisite_note": "Days 13 and 28; fresh disposable environment.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 49
+      "dsa_problem_id": 153,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": "2026-11-17",
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-20",
+          "2026-11-24",
+          "2026-12-08"
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "rotated-array search",
+      "dsa_role": "new_pattern_anchor",
+      "mandatory_new_problem": true,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     },
     {
       "day": 30,
@@ -495,12 +1403,75 @@
       "scaffold_status": "not_installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "202 Happy Number",
-      "prerequisite_note": "Days 28\u201329; no manufactured integrated success.",
+      "dsa_problem": null,
+      "prerequisite_note": "Days 28–29; no manufactured integrated success.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 202
+      "dsa_problem_id": null,
+      "dsa_review_schedule": {
+        "first_attempt_date": null,
+        "planned_first_attempt_date": null,
+        "planned_review_items_due": [
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 21,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 23,
+            "problem_id": 155,
+            "review_interval_days": 7,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 27,
+            "problem_id": 35,
+            "review_interval_days": 3,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ],
+        "review_status": "pending"
+      },
+      "dsa_pattern": "consolidation and active retrieval",
+      "dsa_role": "consolidation_no_new_problem",
+      "mandatory_new_problem": false,
+      "understanding_check": {
+        "timebox_minutes": 10,
+        "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
+        "prompts": [
+          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
+          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+        ],
+        "assessment_axes": [
+          "behavior",
+          "explanation",
+          "independent_adaptation"
+        ]
+      }
     }
-  ]
+  ],
+  "dsa_roadmap": {
+    "baseline": "LeetCode Top Interview 150 as the coverage baseline; organize new anchors by recurring pattern and prerequisites rather than original list order.",
+    "daily_budget_minutes": {
+      "pattern_learning": 25,
+      "independent_solving": 20,
+      "active_retrieval_and_error_logging": 15,
+      "total": 60
+    },
+    "anchor_cadence": "New pattern anchors are scheduled on odd-numbered study days; even-numbered days consolidate with no new mandatory problem. D+3, D+7 and D+21 reviews from actual first-attempt dates fall on consolidation days. The even-day solve window cold-solves the weakest due anchor; remaining due items receive active recall in the final window. Same-day D recall is included.",
+    "review_intervals_days": [
+      0,
+      3,
+      7,
+      21
+    ],
+    "review_policy": "Only actual first-attempt dates establish review due dates. Planned dates are forecasts. Up to three due anchors may share a consolidation day. Failed prerequisites or recall displace a new anchor; no overtime is added and no review is marked complete automatically.",
+    "error_log_template": "dsa-error-log-template.md",
+    "outside_baseline_bridge": "LC 704 Binary Search on Day 25 is an explicit prerequisite bridge outside Top Interview 150; it does not create a second tracker."
+  }
 }

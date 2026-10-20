@@ -1,6 +1,6 @@
 # Day 30 — 2026-11-18: Defend and assess the slice
 
-**State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
+**State:** Machine-checkable open-evidence checklist and instructor integrity test are installed; no learner completion is recorded.
 
 ## Learner seam
 
@@ -18,6 +18,8 @@ Machine-check checklist against actual manifest and referenced evidence; missing
 
 Days 28–29; no manufactured integrated success. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**System-design prompt (within the 25-minute concept block):** Choose one view to explain the implemented slice and one verified trade-off. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 SDE II trade-off discussion and technical communication.
@@ -30,8 +32,16 @@ SDE II trade-off discussion and technical communication.
 
 `./mvnw -Plearner-tests -Dtest=Day30ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This instructor integrity selector is expected to pass while checking that the checklist remains open and does not auto-complete learner status. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 202 Happy Number. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**Consolidation day — no new mandatory problem.** Use 25 minutes to refresh due patterns, 20 minutes to cold-solve the weakest due anchor, and 15 minutes for same-day/other due active recall and the error log. Planned review items: LC 238 (D+21 from Day 9), LC 155 (D+7 from Day 23), LC 35 (D+3 from Day 27). Recompute from actual first-attempt dates and record completion only after the review. If no review is actually due, cold-recall the weakest earlier anchor; failed recall displaces the next new anchor. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 30 (Defend and assess the slice) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.

@@ -1,6 +1,6 @@
 # Day 23 — 2026-11-11: Expose minimal operational health
 
-**State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
+**State:** The Actuator starter and live endpoint test are installed with a test-only health contributor. Database-readiness policy remains an explicit TODO; no real database readiness integration is claimed. Spring Boot 4.1.1 adds a public `groups` field to health responses when readiness/liveness groups are enabled; the requested status-only body therefore remains a known contract gap requiring a custom response boundary.
 
 ## Learner seam
 
@@ -18,6 +18,8 @@ Healthy, DB unavailable, unauthorized management detail, exact response allowlis
 
 Days 8 and 12; disposable DB lifecycle fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**System-design prompt (within the 25-minute concept block):** State which dependencies health represents and which it deliberately omits. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 Liveness/readiness and failure detection [N].
@@ -30,8 +32,16 @@ Healthy/unavailable responses with exposure check. Record dated attempt state (`
 
 `./mvnw -Plearner-tests -Dtest=Day23ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+Run `Day23ActuatorInfrastructureTest` for the live Actuator path and exposure check with a canned contributor, then `Day23ContractTest` for the learner-owned DB readiness policy TODO. The surface test confirms Boot 4.1.1 emits `groups` alongside `status`; this does not meet the strict status-only contract. The surface check is not evidence of DB availability. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 3 Longest Substring Without Repeating Characters. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**New pattern anchor:** LeetCode 155 Min Stack — augmented stack. Learn the pattern for 25 minutes, solve independently for 20 minutes, and spend 15 minutes on same-day D recall plus the error log. Record the actual first-attempt date; schedule D+3, D+7 and D+21 reviews from that date. Planned dates in the manifest are forecasts only. A failed prerequisite/review displaces the next new anchor; do not add overtime. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 23 (Expose minimal operational health) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.

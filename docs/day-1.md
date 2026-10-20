@@ -13,15 +13,25 @@ a learner attempt has been measured.
 
 This is Advait's first independent attempt. Prior completion is zero; earlier
 assisted practice records remain historical and do not count as solved. The
-learner method is `src/main/java/assignments/dsa/BestTimeToBuySellStock.java`
+planned first-attempt date is 20 October 2026; the actual attempt date and
+review completion remain unrecorded until Advait records them. Use 25 minutes
+to learn the running-state array pattern, 20 minutes to solve independently, and
+15 minutes for active retrieval and the error log (60 minutes total). The D+3,
+D+7, and D+21 reviews are due from the actual first-attempt date. If the first
+attempt occurs on 20 October, planned review dates are 23 October, 27 October,
+and 10 November; recalculate if the actual date differs. These reviews remain
+inside the same 60-minute DSA block and are not complete automatically. Use the
+[error-log template](reboot/dsa-error-log-template.md) to record independent
+or assisted status, mistakes, next action, and due/completed review dates.
+The learner method is `src/main/java/assignments/dsa/BestTimeToBuySellStock.java`
 and its fixed acceptance tests are
 `src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java`.
 Implement the maximum profit from one buy followed by one later sell. Return
 zero for empty, one-day, or non-profitable input; reject `null`; do not mutate
 the array. Prices follow LeetCode 121's inclusive range `0..10_000`. Expected
-target: O(n) time and O(1) auxiliary space. Explain the descending-price,
-repeated-price, and minimum/maximum boundary cases. The
-solution is intentionally left as a TODO.
+target: O(n) time and O(1) auxiliary space. Explain descending-price, repeated-
+price, and minimum/maximum boundary cases. The solution is intentionally left
+as a TODO.
 
 Run the acceptance check separately; it is expected to fail at the explicit
 TODO until implemented:
@@ -43,7 +53,25 @@ authentication, payment, policy activation, Kafka, or frontend is needed for
 this exercise.
 
 The learner implementation belongs only in
-`src/main/java/assignments/insurance/QuoteSelectionPolicy.java`.
+`src/main/java/assignments/insurance/QuoteSelectionPolicy.java`. For the 25-minute
+concept block, pair the API objective with the short request-flow view below;
+write a brief reason for composite identity and encounter order without writing
+the implementation. This is the day's design practice, not extra work.
+
+```mermaid
+sequenceDiagram
+    actor Client
+    participant Controller as QuoteSelectionController
+    participant Policy as QuoteSelectionPolicy
+    Client->>Controller: POST selections
+    Controller->>Policy: selection list
+    Policy-->>Controller: result list
+    Controller-->>Client: response array or client error
+```
+
+Keep the design note inside the existing 10-minute evidence allocation. The
+[system design practice guide](reboot/system-design-practice.md) provides a
+blank prompt and templates; there is no required infrastructure setup.
 
 ## Behavioral cases
 
@@ -99,12 +127,27 @@ Task 1, Skill 1.1.6, “Create, extend, and maintain APIs.” The 25 minutes is 
 planner allocation, not an AWS-published lesson duration. Use this local Spring
 endpoint to define request validation, response shape, and HTTP success/error
 codes; no AWS account, infrastructure, or cloud deployment is part of Day 1.
-Also explain why a composite key is needed, how encounter-order deduplication
-can be implemented in expected O(n) time, and why an in-memory selection is
-neither durable state nor authorization.
+In the same concept block, explain why exact composite identity matters, how
+encounter order is part of the response contract, and why an in-memory selection
+is neither durable state nor authorization. Distinguish this in-memory rule from
+later database uniqueness, transaction atomicity, and concurrent retry safety. Distinguish this in-memory rule from
+later database uniqueness, transaction atomicity, and concurrent retry safety. Do not implement the policy during
+the concept block.
+
+Sketch the request → controller → policy → response path and mark the
+validation boundary. State the composite-identity and encounter-order
+invariants in your own words. Choose a sequence or module view; do not add a
+database, cache, service, or infrastructure for this in-memory slice. Use the
+blank [design note](reboot/templates/design-note.md), [diagram prompt](reboot/templates/diagram-prompt.md),
+and, only if a material choice merits it, [ADR template](reboot/templates/adr.md).
+This fits inside the existing 85/25/10 engineering allocations; it is not extra
+setup or a separate task.
 
 ## Evidence
 
 Use the 10-minute evidence allocation to record exact commands, exit codes,
-test counts, and any first TODO stack trace in the learner's own notes. Do not
-mark the learner task complete from infrastructure checks alone.
+test counts, and any first TODO stack trace in the learner's own notes. Choose
+one or two short understanding prompts: explain the invariant, a design choice,
+an alternative and a failure case; then make or debug one small change without
+AI assistance. Keep behavior, explanation, and independent adaptation as separate
+results. Do not mark the learner task complete from infrastructure checks alone.

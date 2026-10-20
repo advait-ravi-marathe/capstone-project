@@ -1,10 +1,10 @@
 # Day 13 — 2026-11-01: Add honest repeatable CI
 
-**State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
+**State:** Evidence-based readiness seam and fixed tests are installed. The repository still has no CI workflow, no learner attempt is recorded, and the focused suite is expected to fail at its TODO.
 
 ## Learner seam
 
-existing CI workflow/build config. Keep the business rule in this focused subject. Do not implement later-day behavior early.
+`CiReadinessPolicy` for the evidence-checking part of CI readiness. The actual CI workflow/build configuration remains learner work; do not mark it complete from the readiness model alone.
 
 ## Acceptance invariants
 
@@ -18,6 +18,8 @@ Clean-checkout commands; deliberate test failure proves nonzero propagation; man
 
 Days 1–12 status manifest and fixture smoke. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+**System-design prompt (within the 25-minute concept block):** Show which evidence inputs make readiness blocked or ready; calendar date is not an input. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+
 ## Concept (25 minutes)
 
 Test pyramid, reproducibility, CI failure signals [I].
@@ -30,8 +32,16 @@ Actual local/CI-equivalent output; do not claim remote run if absent. Record dat
 
 `./mvnw -Plearner-tests -Dtest=Day13ContractTest test`
 
-This exact selector is part of the contract, but this test class is not installed yet. The command must not be reported as passing until the instructor scaffold exists and is actually run. Infrastructure checks are separate.
+This selector runs the installed readiness-policy acceptance tests and currently fails at the explicit TODO. It does not claim a workflow exists or a remote CI run occurred; local evidence still shows the Day 2–7 learner suites fail at TODOs. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
-LeetCode 58 Length of Last Word. Use 10 minutes recall/example, 35 minutes independent attempt, 10 minutes tests/complexity and 5 minutes error log. An unfinished attempt is valid work, not a solved claim. Prior solved history is preserved and must not be inferred from a scaffold.
+**New pattern anchor:** LeetCode 167 Two Sum II - Input Array Is Sorted — sorted two pointers. Learn the pattern for 25 minutes, solve independently for 20 minutes, and spend 15 minutes on same-day D recall plus the error log. Record the actual first-attempt date; schedule D+3, D+7 and D+21 reviews from that date. Planned dates in the manifest are forecasts only. A failed prerequisite/review displaces the next new anchor; do not add overtime. Use [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
+## Understanding check (within the existing 10-minute evidence block)
+
+Choose one or two prompts and keep the response brief. This check uses the existing 10 evidence minutes; it is not extra work.
+
+1. Explain what Day 13 (Add honest repeatable CI) does, why its data structure, module boundary, or transaction choice fits, one alternative, and one failure case.
+2. Without AI assistance, make or debug one small change to this feature and explain the observed result.
+
+Record behavior (fixed-test result), explanation (invariants and trade-offs), and independent adaptation as separate outcomes. A scaffold or passing tests alone earns no explanation or adaptation credit.
