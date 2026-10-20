@@ -25,9 +25,13 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 15 - Writing an Integration Test using @SpringBootTest**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51).
+- Fit: partial foundation. The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.
+- Focused worked references: [Spring Boot application testing — testing with a running server and application context](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html).
+- Video viewing: 8:51 at 1×; the remaining 16:09 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Verify the owner-scoped preview against PostgreSQL — @SpringBootTest MOCK uses a mock web environment; RANDOM_PORT starts a real web server](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html)
 
 **Design sketch:** Verify the owner-scoped preview against PostgreSQL: sketch the protected invariant and the layer that owns it.
 

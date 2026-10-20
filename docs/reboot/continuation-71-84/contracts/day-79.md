@@ -27,9 +27,14 @@ LocalRuntimeConfiguration.policyRenewalReadStore.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 03 - Exploring Java Spring Framework Bean Scopes - Prototype and Singleton**; exact section title: **Exploring Spring Framework Advanced Features** (9:17).
+- Exact lesson title: **Step 04 - Comparing Prototype vs Singleton - Spring Framework Bean Scopes**; exact section title: **Exploring Spring Framework Advanced Features** (2:06).
+- Fit: partial foundation. Trace one shared singleton gate around the existing adapter and a finite Hikari acquisition timeout. No duplicate SQL or request-scoped gate.
+- Focused worked references: [Spring Framework bean scopes — singleton scope](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html).
+- Video viewing: 11:23 at 1×; the remaining 13:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Spring Framework bean scopes — singleton scope](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html)
 
 **Design sketch:** Trace singleton lifetime and controller → decorator → existing store.
 

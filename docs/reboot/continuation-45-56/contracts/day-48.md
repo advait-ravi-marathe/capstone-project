@@ -25,9 +25,14 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 04 - Getting Started with Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (3:58).
+- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).
+- Fit: partial foundation. The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.
+- Focused worked references: [Spring JdbcTemplate reference — query with parameters and a RowMapper](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html).
+- Video viewing: 9:34 at 1×; the remaining 15:26 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Add owner-scoped PostgreSQL renewal projection — parameter binding and scoped query execution](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html)
 
 **Design sketch:** Add owner-scoped PostgreSQL renewal projection: sketch the protected invariant and the layer that owns it.
 

@@ -26,9 +26,14 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Java Tip 14 - Why Enum and Enum Basics - ordinal and values**; exact section title: **Java Tips** (7:28).
+- Exact lesson title: **Java Tip 15 - Enum - Constructor, variables and methods**; exact section title: **Java Tips** (3:40).
+- Fit: partial foundation. Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.
+- Focused worked references: [Java enum tutorial — Enum types for a closed set of explicit states](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html).
+- Video viewing: 11:08 at 1×; the remaining 13:52 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Java enum tutorial — Enum types for a closed set of explicit states](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html)
 
 **Design sketch:** Block post-cancellation writes — sketch the invariant, enforcing layer, and failure response.
 

@@ -25,11 +25,12 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: recovery review no new lecture. No new lecture or implementation feature. In the shared 25-minute study block, explain the existing security trace and recover only the first failing prerequisite; use the supplied instructor runtime and distinguish observed evidence from learner completion.
+- Focused worked references: [Spring Security architecture — servlet architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Spring Security MockMvc Setup — Configuring MockMvc with Spring Security](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html)
-- [Running a Test as a User in Spring MVC Test — RequestPostProcessor authentication](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html)
-- [Testing with CSRF Protection — CSRF header, invalid token and request post-processors](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html)
 
 **Design sketch:** Run the security trace and recovery checkpoint: show the key trust boundary or data invariant and which layer owns it.
 

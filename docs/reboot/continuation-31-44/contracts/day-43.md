@@ -26,10 +26,13 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).
+- Fit: partial foundation. Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.
+- Focused worked references: [React conditional rendering — Loading, empty, auth, not-found, and success states](https://react.dev/learn/conditional-rendering); [React choosing state structure — Avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).
+- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [React conditional rendering — Loading, empty, auth, not-found, and success states](https://react.dev/learn/conditional-rendering)
-- [React choosing state structure — Avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure)
 
 **Design sketch:** React servicing summary — sketch the invariant, enforcing layer, and failure response.
 

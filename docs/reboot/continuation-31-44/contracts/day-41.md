@@ -26,10 +26,12 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: no exact catalog match. No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.
+- Focused worked references: [Java 21 Clock API — Fixed and offset clocks for deterministic boundaries](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Java 21 Clock API — Fixed and offset clocks for deterministic boundaries](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html)
-- [Java 21 IdentityHashMap API — identity-based rather than equals-based key semantics](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/IdentityHashMap.html)
 
 **Design sketch:** Apply due cancellation — sketch the invariant, enforcing layer, and failure response.
 

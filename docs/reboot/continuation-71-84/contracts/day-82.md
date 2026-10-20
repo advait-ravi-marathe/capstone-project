@@ -27,9 +27,12 @@ PreviewPoolRecoveryAcceptanceTest.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: no exact catalog match. No exact Hikari exhaustion/recovery lab was found. Trace four held connections → finite acquisition failure → permit release and finally-close → recovered useful read; keep the test watchdog separate from correctness.
+- Focused worked references: [HikariCP configuration knobs — connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [HikariCP configuration knobs — connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby)
 
 **Design sketch:** Mark test-owned holds and finally cleanup; distinguish app permits from pool slots.
 
