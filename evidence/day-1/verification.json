@@ -4,46 +4,58 @@
   "starting_sha": "4f362eb30739d73a4e90405a30aada6401145afe",
   "starting_worktree": "clean",
   "preserved_practice_branch_sha": "bee1828002b4b377ca112ef4f749f1e892f802db",
-  "java": "openjdk 21.0.12.1",
-  "maven_wrapper": "3.10.0, SHA-256 pinned",
+  "java": "Oracle JDK 21.0.12.1, downloaded to /tmp after installed-toolchain inspection found no javac",
+  "maven_wrapper": "Apache Maven 3.10.0, SHA-256 pinned",
+  "sandbox_overrides": [
+    "JAVA_HOME=/tmp/oracle-jdk21 and PATH prepended with its bin",
+    "MAVEN_USER_HOME=/tmp/maven-wrapper-test",
+    "MAVEN_OPTS=-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts to use the trusted OS CA store",
+    "-s /tmp/maven-proxy-settings.xml, generated from the configured HTTPS proxy without printing credentials",
+    "-Dmaven.repo.local=/tmp/d1-m2 because /home/agent/.m2 is not writable"
+  ],
   "commands": [
     {
       "command": "./mvnw -Dtest=QuoteSelectionInfrastructureTest test",
       "result": "blocked",
-      "detail": "The sandbox default Maven cache /home/agent/.m2 is not writable."
+      "detail": "Default Maven local repository /home/agent/.m2 is not writable in this sandbox."
     },
     {
-      "command": "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Dtest=QuoteSelectionInfrastructureTest test",
-      "result": "blocked",
-      "detail": "Maven could not resolve the Spring Boot BOM because Java DNS resolution for repo.maven.apache.org failed. No compilation or test execution occurred."
-    },
-    {
-      "command": "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=QuoteSelectionInfrastructureTest test",
-      "result": "blocked",
-      "detail": "The temporary Maven proxy settings resolved dependencies, but compilation stopped because javac is absent. The environment has a Java 21 runtime only; Maven reported release version 21 not supported. No test executed."
-    },
-    {
-      "command": "curl -L --fail https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse -o /tmp/temurin21.tar.gz",
-      "result": "blocked",
-      "detail": "The download endpoint returned HTTP 403, so no temporary JDK was installed."
-    },
-    {
-      "command": "git diff --check",
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=QuoteSelectionInfrastructureTest test",
       "result": "passed",
-      "detail": "No whitespace errors in the working diff."
+      "detail": "Tests run: 1, failures: 0, errors: 0."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 test",
+      "result": "passed",
+      "detail": "Tests run: 5, failures: 0, errors: 0. This includes Linux PostgreSQL infrastructure, legacy event infrastructure, and the Day 1 quote API smoke test."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test",
+      "result": "expected learner TODO failures",
+      "detail": "Tests run: 8. The malformed-JSON assertion passed; 6 tests errored when they reached the explicit uniqueSelections TODO, and the invalid-input assertion received UnsupportedOperationException instead of the learner-required IllegalArgumentException."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test",
+      "result": "expected learner TODO failures",
+      "detail": "Tests run: 4. Three errored at the explicit maxProfit TODO; the null-input assertion received UnsupportedOperationException instead of IllegalArgumentException."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 spring-boot:run",
+      "result": "passed",
+      "detail": "Spring Boot 4.1.1 started on port 8080. Live POST with valid synthetic selection returned HTTP 500 at the learner TODO; POST with no body returned HTTP 400. Process was stopped after the smoke check."
+    },
+    {
+      "command": "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -version",
+      "result": "passed",
+      "detail": "Apache Maven 3.10.0 and the preinstalled Java 21 runtime were reported. The runtime had no javac; Oracle JDK 21.0.12.1 was used for test execution."
+    },
+    {
+      "command": "git diff --cached --check",
+      "result": "passed",
+      "detail": "Staged whitespace validation passed before the recorded commits."
     }
   ],
-  "expected_learner_failures": [
-    "QuoteSelectionAcceptanceTest reaches the explicit learner TODO until implemented.",
-    "QuoteSelectionApiAcceptanceTest valid request reaches the explicit learner TODO until implemented.",
-    "BestTimeToBuySellStockAcceptanceTest reaches the explicit DSA learner TODO until implemented."
-  ],
-  "additional_checks": [
-    "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -version: passed; Apache Maven 3.10.0 and Java 21.0.12.1 runtime reported.",
-    "Python XML and JSON parsing of pom.xml and this evidence file: passed.",
-    "git diff --cached --check: passed for the complete staged change set."
-  ],
-  "dependency_review": "Spring Boot 4.1.1 and JUnit Jupiter 6.1.3 are published in Maven Central. Dependencies resolved through a temporary Maven proxy configuration. Spring advisory index reviewed. No full SCA scan completed; no clean-SCA claim is made. See docs/dependency-review-2026-10-20.md.",
+  "dependency_review": "Maven Central metadata checked for Spring Boot web starter, JUnit Jupiter, embedded-postgres wrapper, and PostgreSQL binaries. Spring advisories reviewed. No full transitive SCA scan completed and no clean-SCA claim is made; see docs/dependency-review-2026-10-20.md.",
   "published_sha": null,
-  "publication_blocker": "Build/test verification could not complete because javac is missing and the temporary JDK download returned HTTP 403. Branch push and archive-tag verification have not been attempted."
+  "publication_blocker": "Build and infrastructure verification now pass with the recorded temporary JDK/proxy/cache settings. Branch publication and archive-tag verification remain pending."
 }
