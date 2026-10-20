@@ -2,7 +2,7 @@
 
 **State:** Instructor-owned fail-closed GitHub Actions workflow and its local infrastructure check are installed. The learner-owned readiness evaluator remains a TODO; no learner attempt is recorded. Remote Actions success is unverified until a run is observed.
 
-**Course lesson:** Conditional reference to [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps — in28Minutes Official](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/), “Getting Started with Continuous Integration, Deployment and Delivery”: “Getting Started with Continuous Integration, Deployment and Delivery” (4:50). Pair the concept lesson with the existing GitHub Actions failure walkthrough inside the 25-minute limit. Do not install Azure DevOps or Jenkins. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-13---ci-concept-to-this-repository).
+**Course lesson:** Conditional reference to [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps — in28Minutes Official](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/), “Getting Started with Continuous Integration, Deployment and Delivery”: “Getting Started with Continuous Integration, Deployment and Delivery” (4:50). Pair the concept lesson with the existing GitHub Actions failure walkthrough inside the 25-minute limit. Do not install Azure DevOps or Jenkins. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-13--ci-concept-to-this-repository).
 
 ## Learner seam
 

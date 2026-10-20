@@ -2,7 +2,7 @@
 
 **State:** Real PostgreSQL scaffold and fixed learner tests are installed; the JDBC transaction/audit behavior remains a learner TODO.
 
-**Course lesson:** No exact verified course lecture covers atomic audit/data minimization. Use the linked short transaction-bound example with only contract-approved fields. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-26---atomic-audit-and-minimization).
+**Course lesson:** No exact verified course lecture covers atomic audit/data minimization. Use the linked short transaction-bound example with only contract-approved fields. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-26--atomic-audit-and-minimization).
 
 ## Learner seam
 

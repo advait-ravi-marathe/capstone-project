@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL test fixture and learner query seam installed. The acceptance tests currently stop at the explicit query TODO; no learner implementation is included.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 07 - Querying Data using Spring JDBC” (5:36). Section “APPENDIX - Introduction to Functional Programming with Java”: “Step 07 - Understanding Optional class in Java” (7:14). Total 12:50. Use the linked PostgreSQL join/projection example; select only contract-approved response fields. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-15---join-and-projection).
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 07 - Querying Data using Spring JDBC” (5:36). Section “APPENDIX - Introduction to Functional Programming with Java”: “Step 07 - Understanding Optional class in Java” (7:14). Total 12:50. Use the linked PostgreSQL join/projection example; select only contract-approved response fields. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-15--join-and-projection).
 
 ## Learner seam
 

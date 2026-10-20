@@ -2,7 +2,7 @@
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location” (11:24). Total 20:00 is the full course allocation. These cover backend POST/status semantics; use the linked small UI state/retry example without adding React viewing. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-20---honest-mutation-states-and-retry).
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location” (11:24). Total 20:00 is the full course allocation. These cover backend POST/status semantics; use the linked small UI state/retry example without adding React viewing. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-20--honest-mutation-states-and-retry).
 
 ## Learner seam
 

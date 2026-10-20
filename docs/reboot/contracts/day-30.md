@@ -2,7 +2,7 @@
 
 **State:** Machine-checkable evidence checklist and instructor integrity test are installed; learner status remains evidence-driven and may evolve truthfully from open/blocked to passed when local evidence exists.
 
-**Course lesson:** No new lecture required; review the weakest previously mapped lesson. Use the evidence checklist and explain observed behavior. Do not impose new architecture or unexplained SDE II expectations. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-30---explain-observed-behavior).
+**Course lesson:** No new lecture required; review the weakest previously mapped lesson. Use the evidence checklist and explain observed behavior. Do not impose new architecture or unexplained SDE II expectations. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-30--explain-observed-behavior).
 
 ## Learner seam
 

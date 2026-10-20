@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** No exact verified lecture covers Clock injection or deterministic business time. Use the linked Java Clock guide inside this block; distinguish wall-clock expiry from monotonic elapsed-time measurement. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-7---deterministic-time).
+**Course lesson:** No exact verified lecture covers Clock injection or deterministic business time. Use the linked Java Clock guide inside this block; distinguish wall-clock expiry from monotonic elapsed-time measurement. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-7--deterministic-time).
 
 ## Learner seam
 

@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL pagination fixture and learner query seam installed. The focused tests currently stop at the explicit pagination TODO.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 11 - Exploring features of Spring Data JPA” (5:11). Total 11:47. These are query context only; use the linked stable PostgreSQL pagination example and preserve JDBC. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-16---stable-pagination).
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 11 - Exploring features of Spring Data JPA” (5:11). Total 11:47. These are query context only; use the linked stable PostgreSQL pagination example and preserve JDBC. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-16--stable-pagination).
 
 ## Learner seam
 
