@@ -2,6 +2,8 @@
 
 **State:** Real-PostgreSQL test fixture and learner query seam installed. The acceptance tests currently stop at the explicit query TODO; no learner implementation is included.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “JDBC and Java Optional: Getting Started with JPA and Hibernate; Introduction to Functional Programming with Java”. Watch: “Step 07 - Querying Data using Spring JDBC” (5:36); “Step 07 - Understanding Optional class in Java” (7:14). 12:50 viewing. A PostgreSQL join/projection worked example is still needed for this day’s summary query. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 `JourneySummaryQuery`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

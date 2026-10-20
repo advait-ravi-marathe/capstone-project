@@ -2,6 +2,8 @@
 
 **State:** Contract defined; isolated policy scaffold and learner acceptance tests are installed. Learner attempt is pending; the focused suite is expected to fail at its explicit TODO.
 
+**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 60 - Understanding Dirty, Phanthom and Non Repeatable Reads” (9:25), “Step 61 - Understand 4 Isolation Levels” (5:48), and “Step 62 - Choosing between Isolation Levels” (4:03), 19:16 total. These cover isolation/stale-read concepts only, not optimistic locking/version checks; use a short version-conflict worked example within the remaining 25-minute block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md).
+
 ## Learner seam
 
 `QuoteFreshnessPolicy`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

@@ -2,6 +2,8 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. Tests use real PostgreSQL and a fixed test-only schema/seed that bypass Days 7–8.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “JPA and Hibernate: Getting Started with JPA and Hibernate with Spring and Spring Boot”. Watch: “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01); “Step 07 - Querying Data using Spring JDBC” (5:36). 14:37 viewing. Transfer the JDBC ideas to the existing PostgreSQL adapter; do not replace that adapter with JPA. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 `QuoteRepositoryAdapter`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

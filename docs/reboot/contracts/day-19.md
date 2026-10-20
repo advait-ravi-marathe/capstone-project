@@ -2,6 +2,8 @@
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 
+**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. “Sending Http Requests (e.g. Connecting to a Database)”: “Sending HTTP Requests (GET Request) via useEffect” (3:59), “Using async / await” (2:25), “Handling Loading States” (5:27); “Handling Side Effects & Working with the useEffect() Hook”: “Introducing useEffect's Cleanup Function” (4:49). Total 16:40. These are a request/effect foundation only. Preserve the roadmap’s TanStack Query requirement where the task calls for it; do not replace it with generic useEffect code. Exact TanStack Query lesson mapping is pending verification. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md).
+
 ## Learner seam
 
 `QuoteSummary.tsx`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

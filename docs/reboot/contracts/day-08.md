@@ -2,6 +2,8 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. PostgreSQL acceptance cases are fixed and currently fail because the scaffold migration omits the required constraints.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “JPA and Hibernate: Getting Started with JPA and Hibernate with Spring and Spring Boot”. Watch: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24); “Step 04 - Getting Started with Spring JDBC” (3:58). 11:22 viewing. H2/JDBC is an introduction only. Keep PostgreSQL and its required constraints; supply the PostgreSQL-specific schema example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 Versioned `V...__homesecure_quotes.sql` migration. Keep the business rule in this focused subject. Do not implement later-day behavior early.

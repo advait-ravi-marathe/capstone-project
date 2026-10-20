@@ -2,6 +2,8 @@
 
 **State:** Instructor-owned fail-closed GitHub Actions workflow and its local infrastructure check are installed. The learner-owned readiness evaluator remains a TODO; no learner attempt is recorded. Remote Actions success is unverified until a run is observed.
 
+**Course lesson:** Conditional reference to [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps — in28Minutes Official](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/), “Getting Started with Continuous Integration, Deployment and Delivery”: “Getting Started with Continuous Integration, Deployment and Delivery” (4:50). Pair the concept lesson with the existing GitHub Actions failure walkthrough inside the 25-minute limit. Do not install Azure DevOps or Jenkins. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md).
+
 ## Learner seam
 
 `CiReadinessPolicy` for the evidence-checking part of CI readiness. The instructor supplies `.github/workflows/coverstory-starter.yml`, which runs the Java 21 infrastructure suite, frontend install/build/instructor tests, and frontend audit with failures propagated. Learner work is the evidence-based readiness evaluation and recording truthful local/remote results; a workflow file alone does not establish a successful remote run.
@@ -22,7 +24,7 @@ Days 1–12 status manifest and fixture smoke. Earlier unfinished collaborators 
 
 ## Concept (25 minutes)
 
-Test pyramid, reproducibility, CI failure signals [I].
+Test pyramid, reproducibility, CI failure signals [I]. Within this same 25-minute block, trace `.github/workflows/coverstory-starter.yml`: push/pull-request trigger → Ubuntu job → Java 21 and Node setup → Maven infrastructure command → `npm ci`, build, instructor tests, and audit. Each nonzero step fails the job. Distinguish this instructor check from the learner readiness TODO; a local green run is not a remote Actions result.
 
 ## Evidence (10 minutes)
 

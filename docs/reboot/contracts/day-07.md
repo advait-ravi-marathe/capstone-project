@@ -2,6 +2,8 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
+**Course lesson:** No directly matching lecture in the verified owned course catalog. No Clock injection or deterministic-time lesson was found. Use a brief supplied Java Clock example; do not treat elapsed-time mechanics as covered. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy.
+
 ## Learner seam
 
 `QuoteVersionService`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

@@ -2,6 +2,8 @@
 
 **State:** Saved JSON boundary reproducer and fixed learner test are installed; the regression behavior remains a learner acceptance failure until verified.
 
+**Course lesson:** Conditional reference to [Master Java Unit Testing with Spring Boot & Mockito — in28Minutes Official](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/), “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 26 - Good Unit Tests” (5:34); “Section 1 - Mocking With Mockito”: “Step 11 - Mockito Tips - Verify method calls” (6:40); and “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 03 - Using Response Matchers to check status and content” (5:07), 17:21 total. Partial test-quality support only; keep a short compatibility note for the project’s JUnit/Spring versions inside the same block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md).
+
 ## Learner seam
 
 targeted learner test and small production fix. Keep the business rule in this focused subject. Do not implement later-day behavior early.

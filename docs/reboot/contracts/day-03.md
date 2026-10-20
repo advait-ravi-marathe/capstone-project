@@ -2,6 +2,8 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “REST API: Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”. Watch: “Step 11 - Implementing Exception Handling - 404 Resource Not Found” (7:49); “Step 12 - Implementing Generic Exception Handling for all Resources” (11:29). 19:18 viewing. The course example is a social-media API; adapt only its failure boundary to the synthetic quote case. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 `ApiExceptionHandler`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

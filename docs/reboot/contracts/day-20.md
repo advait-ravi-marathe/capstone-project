@@ -2,6 +2,8 @@
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Backend REST API: Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”. Watch: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location” (11:24). 20:00 viewing. These cover backend POST/status semantics only; preferred React course/lesson remains pending, so do not claim UI learning is covered. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 `SelectQuoteButton.tsx`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

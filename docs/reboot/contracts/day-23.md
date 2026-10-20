@@ -2,6 +2,8 @@
 
 **State:** The Actuator starter and live endpoint test are installed with a test-only health contributor. Database-readiness policy remains an explicit TODO; no real database readiness integration is claimed. Spring Boot 4.1.1 adds a public `groups` field to health responses when readiness/liveness groups are enabled; the requested status-only body therefore remains a known contract gap requiring a custom response boundary.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Spring Boot: Getting Started with Spring Boot”. Watch: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). Actuator foundation only. Add the precise liveness/readiness and exposure contract; do not expose every endpoint. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 Actuator config / health test. Keep the business rule in this focused subject. Do not implement later-day behavior early.

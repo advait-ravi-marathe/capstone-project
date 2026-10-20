@@ -6,6 +6,10 @@ The existing Day 1 feature remains the live starter; future-day files specify
 the intended acceptance contract before learner implementations are created.
 Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wiring has call-count checks and a real Boot app-context test. Days 8–10 and 14 use disposable PostgreSQL. Day 12 has an isolated real Spring Security HTTP chain for authentication and CSRF; the learner ownership policy remains open. Day 13 has a fail-closed GitHub Actions workflow. Day 21 exercises CSRF on the actual quote-selection route through the same test-only chain. Day 28 has a real Chromium acceptance harness that serves the built React test route from Spring, calls test-only endpoints backed by the actual learner services, and checks PostgreSQL persistence and browser reload. An independent validator reports that the revised browser/API/database harness passes with temporary conforming witnesses; those witnesses were restored, so this validates the harness only and does not establish learner completion. The dated DSA sequence groups Top Interview 150 problems by patterns and carries planned D+3/D+7/D+21 reviews in the manifest.
 
+## Course and lesson guidance
+
+The [Days 1–30 course/lesson map](course-learning-map.md) links contracts to verified lecture titles or explicitly records that no direct match exists. Course study remains one combined 25-minute allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. Future batches must verify course catalogs, distinguish exact coverage from partial support, label missing lessons honestly, and never invent a mapping or add daily hours. The learner's AWS certification courses and preferred React instructor are listed in the map; pending lesson mappings are not treated as assignments. Generic Spring-course AWS/React content does not substitute for those tracks.
+
 ## Products and scope
 
 CoverStory is the primary enterprise-insurance lifecycle application.

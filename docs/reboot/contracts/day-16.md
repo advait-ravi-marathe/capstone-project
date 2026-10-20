@@ -2,6 +2,8 @@
 
 **State:** Real-PostgreSQL pagination fixture and learner query seam installed. The focused tests currently stop at the explicit pagination TODO.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “JPA/query context: Creating a Java REST API with Spring Boot, Spring Framework and Hibernate; Getting Started with JPA and Hibernate”. Watch: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36); “Step 11 - Exploring features of Spring Data JPA” (5:11). 11:47 viewing. These are context only; no PostgreSQL pagination/query-plan lecture was found. Preserve the JDBC design and supply an ordered-query example. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 `QuoteHistoryQuery`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

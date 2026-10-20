@@ -2,6 +2,8 @@
 
 **State:** Real-PostgreSQL fixture and plan/result acceptance test are installed. The index migration is an explicit learner TODO; no query-plan improvement is claimed.
 
+**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Performance Tuning Tips with Hibernate & JPA”: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), 3:40 total. Conceptual support only; add the short PostgreSQL EXPLAIN/B-tree example inside this same block. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md).
+
 ## Learner seam
 
 history query index migration / query note. Keep the business rule in this focused subject. Do not implement later-day behavior early.

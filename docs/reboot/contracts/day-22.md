@@ -2,6 +2,8 @@
 
 **State:** Fixed filter scaffold and learner acceptance tests are installed; the filter TODO remains unimplemented.
 
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Logging/monitoring: APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate; REST API section”. Watch: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53); “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54). 16:47 viewing. These introduce logging and monitoring, not request-ID propagation or privacy rules; include a brief project-specific trace. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+
 ## Learner seam
 
 request filter / error mapping. Keep the business rule in this focused subject. Do not implement later-day behavior early.

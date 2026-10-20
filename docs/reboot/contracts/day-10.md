@@ -2,6 +2,8 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. Transaction behavior is checked with real PostgreSQL and a fixed schema/quote fixture that bypasses earlier service rules.
 
+**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 58 - Introduction to Transaction Management” (4:43), “Step 59 - Transaction Management - ACID Properties” (5:49), and “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38), 15:10 total. These teach transaction concepts; use a short fixed PostgreSQL atomic-batch example and preserve this repo’s JDBC boundary rather than copying JPA wiring. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md).
+
 ## Learner seam
 
 `SelectionService`. Keep the business rule in this focused subject. Do not implement later-day behavior early.

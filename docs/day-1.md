@@ -12,14 +12,14 @@ a learner attempt has been measured.
 ## Separate Java DSA block — LeetCode 121 (60 minutes)
 
 This is Advait's first independent LeetCode 121 attempt; independent-solve
-credit for this problem is currently zero. This is a DSA-credit status only:
-it preserves the historical reports of three screenshots and seven assisted
-practice sessions, which remain recorded as assisted practice rather than
-independent solves. The
-planned first-attempt date is 20 October 2026; the actual attempt date and
-review completion remain unrecorded until Advait records them. Use 25 minutes
-to learn the running-state array pattern, 20 minutes to solve independently, and
-15 minutes for active retrieval and the error log (60 minutes total). The D+3,
+credit remains zero until an unaided attempt is recorded. Preserve the
+historical reports of three screenshots and seven assisted practice sessions
+as assisted practice. Advait reports that today's DSA course/learning portion
+is complete; this does not mark the independent solve or reviews complete.
+The planned first-attempt date is 20 October 2026; actual attempt and review
+completion remain unrecorded. Use the remaining planned 20 minutes to solve
+independently and 15 minutes for active retrieval/error log, within the same
+60-minute DSA block (no extra time). The D+3,
 D+7, and D+21 reviews are due from the actual first-attempt date. If the first
 attempt occurs on 20 October, planned review dates are 23 October, 27 October,
 and 10 November; recalculate if the actual date differs. These reviews remain
@@ -30,20 +30,41 @@ The learner method is `src/main/java/assignments/dsa/BestTimeToBuySellStock.java
 and its fixed acceptance tests are
 `src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java`.
 Implement the maximum profit from one buy followed by one later sell. Return
-zero for empty, one-day, or non-profitable input; reject `null`; do not mutate
+zero for null, empty, one-day, or non-profitable input; do not mutate
 the array. Prices follow LeetCode 121's inclusive range `0..10_000`. Expected
 target: O(n) time and O(1) auxiliary space. Explain descending-price, repeated-
-price, and minimum/maximum boundary cases. The solution is intentionally left
-as a TODO.
+price, and minimum/maximum boundary cases. The current main revision contains
+a learner-authored implementation. This documentation update did not run the
+DSA acceptance selector; independent-solve credit remains unrecorded until the
+learner confirms an unaided attempt.
 
-Run the acceptance check separately; it is expected to fail at the explicit
-TODO until implemented:
+Run the acceptance check separately and record its actual result; it is no
+longer an expected TODO failure:
 
 ```sh
 ./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test
 ```
 
 ## Feature and learning goal
+
+## First API lesson — follow along before adapting
+
+**Owned Udemy course:** [*Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), by in28Minutes Official. In **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate,”** study these verified lesson titles in order: **“Step 00 - Creating a REST API with Spring Boot - An Overview” (4:04), “Step 01 - Initializing a REST API Project with Spring Boot” (7:26), “Step 02 - Creating a Hello World REST API with Spring Boot” (6:21),** and **“Step 03 - Enhancing the Hello World REST API to return a Bean” (4:30).** Total viewing time is 22:21 at 1×. Stop at 25 minutes, allowing a small pause/retrieval margin. Match by title rather than number. Carry the next lesson, **“Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06),** forward if the cap is reached.
+
+Pass the instructor readiness gate (`./mvnw -Dtest=QuoteSelectionInfrastructureTest test`). If it fails, record the blocker and use the instructor-provided runnable app; do not spend learner time on setup. First reproduce the demonstrated endpoint with the course. Then make a tiny adaptation: send one request to `POST /api/quote-selections` and observe its documented response/error behavior. This orientation does not complete the full quote-selection assignment. Its acceptance contract remains authoritative; composite identity/order behavior and full learner acceptance remain deferred until the API prerequisite is understood.
+
+Keep course study within the existing 25-minute course allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. No extra hours or design case study are required. Explain: **How does a request reach a Java method, and how does its result become JSON?**
+
+```text
+HTTP request (path + JSON) → Spring maps it to a controller Java method
+→ method returns a Java value → Spring serializes it as JSON
+→ HTTP response (status + JSON)
+```
+
+The full Days 1–30 lesson map is [here](reboot/course-learning-map.md). Do not overwrite the learner TODO or claim assignment completion from the follow-along.
+
+**AWS certification:** No AWS certification course or lecture is assigned on Day 1. The confirmed AWS courses are CLF-C02 Cloud Practitioner and Solutions Architect Associate; neither is Developer Associate. This day’s concept is local backend API learning, not AWS exam study.
+
 
 CoverStory starts as an enterprise insurance lifecycle simulation. Day 1 uses
 the single synthetic product fixture at `fixtures/day-1/home-secure.json` for
@@ -123,28 +144,9 @@ The regular documented project command remains:
 ./mvnw test
 ```
 
-## Concept prompt — AWS DVA-C02 Domain 1, Task 1, Skill 1.1.6
+## Concept prompt — local API and request contract (inside the existing 25 minutes)
 
-Read the [official Developer Associate Domain 1 objective](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html),
-Task 1, Skill 1.1.6, “Create, extend, and maintain APIs.” The 25 minutes is our
-planner allocation, not an AWS-published lesson duration. Use this local Spring
-endpoint to define request validation, response shape, and HTTP success/error
-codes; no AWS account, infrastructure, or cloud deployment is part of Day 1.
-In the same concept block, explain why exact composite identity matters, how
-encounter order is part of the response contract, and why an in-memory selection
-is neither durable state nor authorization. Distinguish this in-memory rule from
-later database uniqueness, transaction atomicity, and concurrent retry safety. Distinguish this in-memory rule from
-later database uniqueness, transaction atomicity, and concurrent retry safety. Do not implement the policy during
-the concept block.
-
-Sketch the request → controller → policy → response path and mark the
-validation boundary. State the composite-identity and encounter-order
-invariants in your own words. Choose a sequence or module view; do not add a
-database, cache, service, or infrastructure for this in-memory slice. Use the
-blank [design note](reboot/templates/design-note.md), [diagram prompt](reboot/templates/diagram-prompt.md),
-and, only if a material choice merits it, [ADR template](reboot/templates/adr.md).
-This fits inside the existing 85/25/10 engineering allocations; it is not extra
-setup or a separate task.
+Use the course lessons above to see how an HTTP request reaches a Spring controller, how the controller calls Java code, and how a returned Java value becomes JSON. For the tiny adaptation, identify the request body, Java method, response JSON, and status code. Do not implement the quote-selection policy during the concept block. Explain why exact composite identity and encounter order are part of this API’s response contract; the full acceptance assignment stays deferred until the API prerequisite is understood. No AWS account, infrastructure, or cloud deployment is part of Day 1.
 
 ## Evidence
 
