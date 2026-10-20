@@ -894,7 +894,7 @@
         "learner_evidence_mode": "implementation_acceptance",
         "integration_acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
         "focused_acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
-        "focused_acceptance_command": "RUN_LEARNER_ACCEPTANCE=true npm --prefix frontend exec -- vitest run src/components/RenewalPreviewBusyState.test.tsx"
+        "focused_acceptance_command": "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx"
       },
       "java_dsa": {
         "mode": "review_and_consolidation",

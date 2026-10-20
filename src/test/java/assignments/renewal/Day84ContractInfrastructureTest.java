@@ -43,6 +43,8 @@ class Day84ContractInfrastructureTest {
                 manifest.path("days").get(10).path("engineering").path("acceptance_test_path").asText());
         assertEquals("frontend/src/components/RenewalPreviewBusyState.test.tsx",
                 manifest.path("days").get(10).path("engineering").path("focused_acceptance_test_path").asText());
+        assertEquals("cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx",
+                manifest.path("days").get(10).path("engineering").path("focused_acceptance_command").asText());
         assertEquals("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
                 manifest.path("days").get(12).path("engineering").path("acceptance_reference").asText());
         assertEquals("instructor_scaffold_complete", manifest.path("days").get(12).path("scaffold_status").asText());
@@ -53,6 +55,8 @@ class Day84ContractInfrastructureTest {
                 stories.path("cards").get(10).path("engineering").path("acceptance_test_path").asText());
         assertEquals("frontend/src/components/RenewalPreviewBusyState.test.tsx",
                 stories.path("cards").get(10).path("engineering").path("focused_acceptance_test_path").asText());
+        assertEquals(manifest.path("days").get(10).path("engineering").path("focused_acceptance_command").asText(),
+                stories.path("cards").get(10).path("engineering").path("focused_acceptance_command").asText());
         assertEquals(manifest.path("days").get(1).path("title").asText(),
                 stories.path("cards").get(1).path("title").asText());
         assertEquals("src/test/java/assignments/local/LocalMetricsExposureInfrastructureTest.java",
