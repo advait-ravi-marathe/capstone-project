@@ -31,11 +31,14 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 02 - Using Mock Mvc to test Hello World Controller**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (12:40).
+- Exact lesson title: **Step 15 - Writing an Integration Test using @SpringBootTest**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51).
+- Fit: partial foundation. These titles support MockMvc and application context tests, but do not guarantee the repository’s Spring Security chain. Instructor fixture provides the chain; compare authenticated and anonymous requests, CSRF behavior, and zero service calls on denial.
+- Focused worked references: [Spring Security MockMvc testing — testing with MockMvc](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html).
+- Video viewing: 21:31 at 1×; the remaining 3:29 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Spring Security MockMvc Setup — Configuring MockMvc with Spring Security](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html)
-- [Running a Test as a User in Spring MVC Test — RequestPostProcessor authentication](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html)
-- [Testing with CSRF Protection — CSRF header, invalid token and request post-processors](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html)
 
 **Design sketch:** Trace the supplied local runtime security chain: show the key trust boundary or data invariant and which layer owns it.
 

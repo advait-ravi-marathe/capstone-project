@@ -27,9 +27,12 @@ Record the existing synchronous path and fixed pool ceiling; no runtime feature.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: evidence review no new lecture. No exact Hikari sizing/acquisition lecture was found. Work a two-admission/four-connection request timeline and mark which waits are finite.
+- Focused worked references: [HikariCP configuration knobs — maximumPoolSize and connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [HikariCP configuration knobs — maximumPoolSize and connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby)
 
 **Design sketch:** Record the request path, one overload failure and the layer that must bound it.
 

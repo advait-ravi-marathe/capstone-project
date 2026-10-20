@@ -27,11 +27,12 @@ The harness must use real process/package/browser/database boundaries and fixed 
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: no direct course match. No new video. Use the supplied real PostgreSQL lock, packaged-browser busy UI and explicit-retry harness. React mocks do not prove browser/database behavior; preserve the fixed instructor/learner evidence distinction.
+- Focused worked references: [PostgreSQL explicit locking — ACCESS EXCLUSIVE lock](https://www.postgresql.org/docs/18/explicit-locking.html); [pg_locks system view — granted=false rows for waiting locks](https://www.postgresql.org/docs/18/view-pg-locks.html); [PostgreSQL monitoring statistics — pg_stat_activity wait_event_type and wait_event fields](https://www.postgresql.org/docs/18/monitoring-stats.html).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [PostgreSQL explicit locking — ACCESS EXCLUSIVE mode](https://www.postgresql.org/docs/18/explicit-locking.html)
-- [PostgreSQL `pg_locks` — `granted=false` waiting rows](https://www.postgresql.org/docs/18/view-pg-locks.html)
-- [PostgreSQL monitoring stats — `pg_stat_activity` wait events](https://www.postgresql.org/docs/18/monitoring-stats.html)
 
 **Design sketch:** Sketch lock owner, blocked sessions and release signal; watchdog only prevents hangs.
 

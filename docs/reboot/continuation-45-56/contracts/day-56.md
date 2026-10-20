@@ -25,9 +25,12 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: integration review no new lecture. No exact course lesson verifies persistence across packaged restart or database no-write behavior. Use the supplied disposable packaged-browser harness; compare stable preview JSON and complete PostgreSQL snapshots before and after restart. Course viewing is unnecessary.
+- Focused worked references: [Spring Boot application testing — real application and server testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [PostgreSQL transaction isolation — read-only observations and statement snapshots](https://www.postgresql.org/docs/14/transaction-iso.html).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Prove preview stability across restart without writes — read-only transaction semantics and verification](https://www.postgresql.org/docs/14/sql-set-transaction.html)
 
 **Design sketch:** Prove preview stability across restart without writes: sketch the protected invariant and the layer that owns it.
 

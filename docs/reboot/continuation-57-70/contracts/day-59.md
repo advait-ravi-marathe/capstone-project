@@ -31,9 +31,12 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: no exact catalog match. No exact verified Flyway/schema-migration lesson was found in the inspected selected courses. Walk the supplied ordered migration files and schema-history row; show first application, repeat startup doing no duplicate migration, and checksum/version behavior without editing learner code.
+- Focused worked references: [Flyway versioned migrations — versioned migrations and schema history](https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Spring Boot SQL database initialization — Flyway migrations — Initialize a Database Using Flyway](https://docs.spring.io/spring-boot/how-to/data-initialization.html)
 
 **Design sketch:** Inspect the additive versioned schema migration without resetting rows: show the key trust boundary or data invariant and which layer owns it.
 

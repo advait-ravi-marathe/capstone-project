@@ -27,9 +27,13 @@ PreviewCapacityExceptionHandler.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 12 - Implementing Generic Exception Handling for all Resources**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:29).
+- Fit: partial foundation. Map only busy/unavailable to a sanitized 503. Preserve other errors; never expose exception causes or internal messages.
+- Focused worked references: [RFC 9110 HTTP Semantics — Section 15.6.4, 503 Service Unavailable](https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable).
+- Video viewing: 11:29 at 1×; the remaining 13:31 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [RFC 9110 Section 15.6.4 — 503 Service Unavailable](https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable)
 
 **Design sketch:** Separate overload from pool acquisition failure; no parsing exception messages.
 

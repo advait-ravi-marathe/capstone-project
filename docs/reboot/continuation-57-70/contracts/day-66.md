@@ -25,9 +25,13 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Working with Props & TypeScript**; exact section title: **React + TypeScript** (14:20).
+- Fit: partial foundation. The lesson supports typed props, not this API client’s cookie/CSRF behavior. Work narrow TypeScript request/response types and explicit fetch credentials/CSRF handling; keep calls on the same-origin local route.
+- Focused worked references: [TypeScript everyday types — object types](https://www.typescriptlang.org/docs/handbook/2/objects.html); [Fetch API — credentials and response status](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+- Video viewing: 14:20 at 1×; the remaining 10:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [MDN Fetch API — credentials, HTTP errors and response JSON — including credentials; handling HTTP response status](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 
 **Design sketch:** Build and test the normal React route and typed local API client at `/`; show which API call carries the owner session, CSRF token and unchanged replay request.
 

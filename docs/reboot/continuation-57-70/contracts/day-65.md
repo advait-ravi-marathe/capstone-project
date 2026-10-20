@@ -31,9 +31,14 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF**; exact section title: **Securing Spring Boot Applications with Spring Security** (11:08).
+- Exact lesson title: **Step 09 - Exploring Spring Security - CSRF for REST API**; exact section title: **Securing Spring Boot Applications with Spring Security** (8:40).
+- Fit: partial foundation. CSRF is cookie-session trust protection. Reproduce the supplied rejected write without a token and the allowed write with the expected token; never use the course’s disable-CSRF lesson as implementation guidance.
+- Focused worked references: [Spring Security CSRF protection — synchronizer token pattern and CSRF configuration](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html).
+- Video viewing: 19:48 at 1×; the remaining 5:12 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Spring Security CSRF protection — CSRF protection and token repository](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html)
 
 **Design sketch:** Verify CSRF enforcement and rejected writes: show the key trust boundary or data invariant and which layer owns it.
 

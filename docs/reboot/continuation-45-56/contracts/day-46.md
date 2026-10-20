@@ -25,9 +25,13 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**; exact section title: **Reference Types in Java Programming** (4:15).
+- Fit: partial foundation. This is date-type context, not a renewal eligibility lesson. Work a fixed Clock table at the exact opening/closing instants and one lifecycle state that must reject preview; the 25-minute study cap includes this example.
+- Focused worked references: [Java 21 Clock API — fixed clocks for deterministic boundary tests](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html).
+- Video viewing: 4:15 at 1×; the remaining 20:45 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Enforce renewal window and lifecycle eligibility — fixed Clock and deterministic boundary tests](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html)
 
 **Design sketch:** Enforce renewal window and lifecycle eligibility: sketch the protected invariant and the layer that owns it.
 

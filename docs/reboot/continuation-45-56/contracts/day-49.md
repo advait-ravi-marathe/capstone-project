@@ -25,9 +25,13 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).
+- Fit: partial foundation. Authentication is only the identity source. Work the controller flow: authenticated Principal → internal owner ID → service; no owner ID is accepted from query/body. Prove anonymous requests do not call the read store.
+- Focused worked references: [Spring MVC controller method arguments — Principal and request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).
+- Video viewing: 4:17 at 1×; the remaining 20:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Derive preview identity from the principal — Principal and path-bound controller arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html)
 
 **Design sketch:** Derive preview identity from the principal: sketch the protected invariant and the layer that owns it.
 

@@ -25,9 +25,13 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).
+- Fit: partial foundation. The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.
+- Focused worked references: [React choosing state structure — avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).
+- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Render the renewal reference view in React — conditional rendering without a renewal action](https://react.dev/learn/conditional-rendering)
 
 **Design sketch:** Render the renewal reference view in React: sketch the protected invariant and the layer that owns it.
 

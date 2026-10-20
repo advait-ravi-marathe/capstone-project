@@ -25,10 +25,14 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Dynamic Query Functions & Query Keys**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (13:05).
+- Exact lesson title: **The Query Configuration Object & Aborting Requests**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (5:27).
+- Fit: partial foundation. TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.
+- Focused worked references: [TanStack Query query keys — query-key identity and variables](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys); [Fetch API — credentials and HTTP error handling](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+- Video viewing: 18:32 at 1×; the remaining 6:28 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Playwright Page API: goto, getByRole and waitForResponse](https://playwright.dev/docs/api/class-page)
-- [Playwright Response API: status() and json()](https://playwright.dev/docs/api/class-response)
 
 **Design sketch:** Connect the React preview to Spring and PostgreSQL: sketch the protected invariant and the layer that owns it.
 

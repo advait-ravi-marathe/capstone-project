@@ -26,10 +26,14 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Hibernate and JPA with Spring Boot in 100 Steps](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 58 - Introduction to Transaction Management**; exact section title: **Transaction Management** (4:43).
+- Exact lesson title: **Step 63 - Implementing Transaction Management - 3 Things to Decide**; exact section title: **Transaction Management** (4:38).
+- Fit: partial foundation. Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.
+- Focused worked references: [PostgreSQL 14 tutorial: transactions — Section 3.4, transactions](https://www.postgresql.org/docs/14/tutorial-transactions.html); [JDBC transactions tutorial — Commit and rollback boundaries](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html).
+- Video viewing: 9:21 at 1×; the remaining 15:39 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [PostgreSQL 14 tutorial: transactions — Section 3.4, transactions](https://www.postgresql.org/docs/14/tutorial-transactions.html)
-- [JDBC transactions tutorial — Commit and rollback boundaries](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html)
 
 **Design sketch:** Atomic PostgreSQL issuance — sketch the invariant, enforcing layer, and failure response.
 

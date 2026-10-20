@@ -25,10 +25,13 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 03 - Enhancing the Hello World REST API to return a Bean**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30).
+- Fit: partial foundation. A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.
+- Focused worked references: [Spring MVC controller return types — returning a response body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).
+- Video viewing: 4:30 at 1×; the remaining 20:30 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official Spring guide: Create a Resource Representation Class and Create a Resource Controller](https://spring.io/guides/gs/rest-service/)
-- [Official Spring Framework reference: ResponseEntity](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html) — ResponseEntity specifies status, headers and body; DTO field selection remains the application contract.
 
 **Design sketch:** Expose a minimal non-binding preview response: sketch the protected invariant and the layer that owns it.
 

@@ -29,10 +29,12 @@ RenewalPreviewBusyState.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: no direct course match. No exact accessible manual-only retry lesson was verified. Sketch retained policy context and mutually exclusive UI state. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.
+- Focused worked references: [WAI-ARIA 1.2 — status role and alert role](https://www.w3.org/TR/wai-aria-1.2/#status).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [WAI-ARIA 1.2 — status role](https://www.w3.org/TR/wai-aria-1.2/#status)
-- [ARIA Authoring Practices — Alert Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
 **Design sketch:** Draw state transitions and prove retry follows explicit action.
 

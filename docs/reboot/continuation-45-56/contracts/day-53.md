@@ -25,10 +25,14 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Handling Loading States**; exact section title: **Sending Http Requests (e.g. Connecting to a Database)** (5:27).
+- Exact lesson title: **Handling HTTP Loading & Error States**; exact section title: **Practice Project: Building a Food Order App** (3:12).
+- Fit: partial foundation. The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.
+- Focused worked references: [WAI-ARIA status role — status messages](https://www.w3.org/TR/wai-aria-1.2/#status); [WAI-ARIA alert role — important dynamic messages](https://www.w3.org/TR/wai-aria-1.2/#alert).
+- Video viewing: 8:39 at 1×; the remaining 16:21 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Official reference: Add accessible loading and unavailable states — alert and status roles for asynchronous feedback](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
-- [W3C WAI technique ARIA22: role=status — status messages use polite live-region semantics](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22)
 
 **Design sketch:** Add accessible loading and unavailable states: sketch the protected invariant and the layer that owns it.
 

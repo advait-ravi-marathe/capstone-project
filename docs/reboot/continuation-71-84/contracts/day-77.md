@@ -27,9 +27,12 @@ Mocked rejection/recovery test.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: recovery review no new lecture. No new feature or video. In the 25-minute study block, trace saturation → release → successful retry using deterministic test doubles; add no route or feature.
+- Focused worked references: [Java Semaphore API — permit release and reacquisition](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Java Semaphore API — permit release and reacquisition](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html)
 
 **Design sketch:** Identify recovery signal and why a test-only fault route weakens boundaries.
 

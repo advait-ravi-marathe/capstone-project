@@ -31,9 +31,13 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**; exact section title: **Getting Started with Spring Boot** (7:05).
+- Fit: partial foundation. Profiles are configuration context, not packaging instruction. Follow the supplied package/local-demo scripts and inspect the generated JAR; confirm the disposable process/database lifecycle without deploying or creating cloud resources.
+- Focused worked references: [Spring Boot executable jar packaging — repackage goal and executable archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html).
+- Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Spring Boot executable jar packaging — repackage goal and executable archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html)
 
 **Design sketch:** Package, start and safely reset the local demo: show the key trust boundary or data invariant and which layer owns it.
 

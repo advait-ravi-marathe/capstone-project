@@ -25,11 +25,12 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- No exact matching course lesson was verified for this task; no unrelated video is assigned.
+- Fit: assessment review no new lecture. No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.
+- Focused worked references: [C4 Software System — software system](https://c4model.com/abstractions/software-system); [C4 Container — container](https://c4model.com/abstractions/container); [C4 Component — component](https://c4model.com/abstractions/component).
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [C4 Software System — software system](https://c4model.com/abstractions/software-system)
-- [C4 Container — container](https://c4model.com/abstractions/container)
-- [C4 Component — component](https://c4model.com/abstractions/component)
 
 **Design sketch:** Complete the mastery, recovery and design mock: show the key trust boundary or data invariant and which layer owns it.
 

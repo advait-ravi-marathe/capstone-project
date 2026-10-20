@@ -26,9 +26,13 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Getting Started with Continuous Integration, Deployment and Delivery**; exact section title: **Getting Started with Continuous Integration, Deployment and Delivery** (4:50).
+- Fit: partial foundation. This short lesson is CI/CD vocabulary only. Use the supplied GitHub Actions workflow walkthrough for the actual local gate; do not set up Azure DevOps, deploy, or change infrastructure.
+- Focused worked references: [GitHub Actions workflow syntax — workflow and job structure](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
+- Video viewing: 4:50 at 1×; the remaining 20:10 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [GitHub Actions workflow syntax — job dependencies and conditional jobs — needs dependencies and status-check conditions](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions)
 
 **Design sketch:** Gate the local assembly on prior learner evidence: show the key trust boundary or data invariant and which layer owns it.
 

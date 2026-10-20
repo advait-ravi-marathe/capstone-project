@@ -27,9 +27,14 @@ BoundedPolicyRenewalReadStore.findByPolicyIdAndOwnerId.
 
 ## Concept/course allocation (25 minutes)
 
-Read the primary source for 10 minutes; sketch the invariant/data flow for 10 minutes; teach it back in 5 minutes. These are planner allocations, not setup tasks.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Step 05 - Basics of Handling Exceptions - Need for finally**; exact section title: **Introduction to Exception Handling in Java** (6:23).
+- Exact lesson title: **Step 11 - Throwing a Custom Exception - CurrenciesDoNotMatchException**; exact section title: **Introduction to Exception Handling in Java** (3:54).
+- Fit: partial foundation. Trace permit release on success, empty result and failure. Translate only CannotGetJdbcConnectionException; unrelated exceptions must retain their meaning, never be swallowed.
+- Focused worked references: [CannotGetJdbcConnectionException Javadoc — Class description and inheritance](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html).
+- Video viewing: 10:17 at 1×; the remaining 14:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [CannotGetJdbcConnectionException Javadoc — class description and inheritance](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html)
 
 **Design sketch:** Trace exact exception types without parsing messages.
 

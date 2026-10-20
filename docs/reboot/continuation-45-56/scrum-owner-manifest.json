@@ -64,16 +64,49 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime",
+              "section_title": "Reference Types in Java Programming",
+              "duration_seconds": 255,
+              "duration": "4:15",
+              "source_item_id": "9565624",
+              "course_id": "1535678"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Define annual policy term boundaries",
               "section": "plusYears(long): month-end adjustment and date arithmetic",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+            },
+            {
+              "title": "Java 21 LocalDate API",
+              "section": "plusYears(long) and date arithmetic",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Define annual policy term boundaries: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 255,
+          "remaining_study_seconds": 1245,
+          "fit": "partial_foundation",
+          "scope_note": "The lesson introduces date value types. Worked supplement: term [start, anniversary), use LocalDate.plusYears(1), and check February 29 and month-end adjustment; never approximate a year as 365 days.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-45.md"
       },
@@ -106,7 +139,8 @@
         "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**; exact section title: **Reference Types in Java Programming** (4:15).\n- Fit: partial foundation. The lesson introduces date value types. Worked supplement: term [start, anniversary), use LocalDate.plusYears(1), and check February 29 and month-end adjustment; never approximate a year as 365 days.\n- Focused worked references: [Java 21 LocalDate API — plusYears(long) and date arithmetic](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Video viewing: 4:15 at 1×; the remaining 20:45 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 2,
@@ -143,16 +177,49 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime",
+              "section_title": "Reference Types in Java Programming",
+              "duration_seconds": 255,
+              "duration": "4:15",
+              "source_item_id": "9565624",
+              "course_id": "1535678"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Enforce renewal window and lifecycle eligibility",
               "section": "fixed Clock and deterministic boundary tests",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+            },
+            {
+              "title": "Java 21 Clock API",
+              "section": "fixed clocks for deterministic boundary tests",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Enforce renewal window and lifecycle eligibility: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 255,
+          "remaining_study_seconds": 1245,
+          "fit": "partial_foundation",
+          "scope_note": "This is date-type context, not a renewal eligibility lesson. Work a fixed Clock table at the exact opening/closing instants and one lifecycle state that must reject preview; the 25-minute study cap includes this example.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-46.md"
       },
@@ -182,7 +249,8 @@
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**; exact section title: **Reference Types in Java Programming** (4:15).\n- Fit: partial foundation. This is date-type context, not a renewal eligibility lesson. Work a fixed Clock table at the exact opening/closing instants and one lifecycle state that must reject preview; the 25-minute study cap includes this example.\n- Focused worked references: [Java 21 Clock API — fixed clocks for deterministic boundary tests](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html).\n- Video viewing: 4:15 at 1×; the remaining 20:45 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 3,
@@ -219,16 +287,57 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 15 - Exploring Java New Features - Records",
+              "section_title": "Java New Features - Java 10 to Java 24",
+              "duration_seconds": 544,
+              "duration": "9:04",
+              "source_item_id": "25694168",
+              "course_id": "1535678"
+            },
+            {
+              "title": "3 Questions - Best practices with Records",
+              "section_title": "Core Java in Depth - Java Review (Interview) Guide",
+              "duration_seconds": 598,
+              "duration": "9:58",
+              "source_item_id": "49557599",
+              "course_id": "1535678"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Freeze the renewal reference snapshot",
               "section": "record components are final references (shallow immutability); choose immutable component value types",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+            },
+            {
+              "title": "Java 21 Record API",
+              "section": "record components and shallow immutability",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Freeze the renewal reference snapshot: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 1142,
+          "remaining_study_seconds": 358,
+          "fit": "partial_foundation",
+          "scope_note": "Record guidance is only a foundation because record components can reference mutable objects. Work a preview snapshot containing immutable value types and prove later source changes do not alter it; preview never reprices or commits a renewal.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-47.md"
       },
@@ -261,7 +370,8 @@
         "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 15 - Exploring Java New Features - Records**; exact section title: **Java New Features - Java 10 to Java 24** (9:04).\n- Exact lesson title: **3 Questions - Best practices with Records**; exact section title: **Core Java in Depth - Java Review (Interview) Guide** (9:58).\n- Fit: partial foundation. Record guidance is only a foundation because record components can reference mutable objects. Work a preview snapshot containing immutable value types and prove later source changes do not alter it; preview never reprices or commits a renewal.\n- Focused worked references: [Java 21 Record API — record components and shallow immutability](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html).\n- Video viewing: 19:02 at 1×; the remaining 5:58 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 4,
@@ -298,16 +408,57 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 04 - Getting Started with Spring JDBC",
+              "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+              "duration_seconds": 238,
+              "duration": "3:58",
+              "source_item_id": "35019874",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 07 - Querying Data using Spring JDBC",
+              "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+              "duration_seconds": 336,
+              "duration": "5:36",
+              "source_item_id": "35019858",
+              "course_id": "4993276"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Add owner-scoped PostgreSQL renewal projection",
               "section": "parameter binding and scoped query execution",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html"
+            },
+            {
+              "title": "Spring JdbcTemplate reference",
+              "section": "query with parameters and a RowMapper",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Add owner-scoped PostgreSQL renewal projection: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 574,
+          "remaining_study_seconds": 926,
+          "fit": "partial_foundation",
+          "scope_note": "The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-48.md"
       },
@@ -337,7 +488,8 @@
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 04 - Getting Started with Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (3:58).\n- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).\n- Fit: partial foundation. The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.\n- Focused worked references: [Spring JdbcTemplate reference — query with parameters and a RowMapper](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html).\n- Video viewing: 9:34 at 1×; the remaining 15:26 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 5,
@@ -374,16 +526,49 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 21 - Understanding Spring Security Authentication",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 257,
+              "duration": "4:17",
+              "source_item_id": "35017628",
+              "course_id": "4993276"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Derive preview identity from the principal",
               "section": "Principal and path-bound controller arguments",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            },
+            {
+              "title": "Spring MVC controller method arguments",
+              "section": "Principal and request-bound arguments",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Derive preview identity from the principal: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 257,
+          "remaining_study_seconds": 1243,
+          "fit": "partial_foundation",
+          "scope_note": "Authentication is only the identity source. Work the controller flow: authenticated Principal → internal owner ID → service; no owner ID is accepted from query/body. Prove anonymous requests do not call the read store.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-49.md"
       },
@@ -418,7 +603,8 @@
         ],
         "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock."
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).\n- Fit: partial foundation. Authentication is only the identity source. Work the controller flow: authenticated Principal → internal owner ID → service; no owner ID is accepted from query/body. Prove anonymous requests do not call the read store.\n- Focused worked references: [Spring MVC controller method arguments — Principal and request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Video viewing: 4:17 at 1×; the remaining 20:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 6,
@@ -455,16 +641,57 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 469,
+              "duration": "7:49",
+              "source_item_id": "35018810",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 12 - Implementing Generic Exception Handling for all Resources",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 689,
+              "duration": "11:29",
+              "source_item_id": "35018806",
+              "course_id": "4993276"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Map unavailable previews to stable HTTP errors",
               "section": "ResponseEntity status, headers and body",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            },
+            {
+              "title": "Spring MVC controller return types",
+              "section": "ResponseEntity and response status/body",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Map unavailable previews to stable HTTP errors: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 1158,
+          "remaining_study_seconds": 342,
+          "fit": "partial_foundation",
+          "scope_note": "The course examples are not this application’s error contract. Work a fixed mapping table for unavailable/foreign=404, infrastructure failure=sanitized 503, and unexpected failure=generic 500; never expose exception text.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-50.md"
       },
@@ -503,7 +730,8 @@
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49).\n- Exact lesson title: **Step 12 - Implementing Generic Exception Handling for all Resources**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:29).\n- Fit: partial foundation. The course examples are not this application’s error contract. Work a fixed mapping table for unavailable/foreign=404, infrastructure failure=sanitized 503, and unexpected failure=generic 500; never expose exception text.\n- Focused worked references: [Spring MVC controller return types — ResponseEntity and response status/body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 19:18 at 1×; the remaining 5:42 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 7,
@@ -540,6 +768,26 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 03 - Enhancing the Hello World REST API to return a Bean",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 270,
+              "duration": "4:30",
+              "source_item_id": "35018834",
+              "course_id": "4993276"
+            }
+          ],
           "resources": [
             {
               "title": "Official Spring reference: response DTO design",
@@ -550,11 +798,24 @@
               "title": "Official Spring Framework reference: ResponseEntity",
               "section": "ResponseEntity specifies the full response including status, headers and body; it does not filter DTO fields",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            },
+            {
+              "title": "Spring MVC controller return types",
+              "section": "returning a response body",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Expose a minimal non-binding preview response: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 270,
+          "remaining_study_seconds": 1230,
+          "fit": "partial_foundation",
+          "scope_note": "A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-51.md"
       },
@@ -589,7 +850,8 @@
         ],
         "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock."
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 03 - Enhancing the Hello World REST API to return a Bean**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30).\n- Fit: partial foundation. A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.\n- Focused worked references: [Spring MVC controller return types — returning a response body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 4:30 at 1×; the remaining 20:30 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 8,
@@ -626,16 +888,49 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1362070",
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Rendering Content Conditionally",
+              "section_title": "React Essentials - Components, JSX, Props, State & More",
+              "duration_seconds": 483,
+              "duration": "8:03",
+              "source_item_id": "39649252",
+              "course_id": "1362070"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Render the renewal reference view in React",
               "section": "conditional rendering without a renewal action",
               "url": "https://react.dev/learn/conditional-rendering"
+            },
+            {
+              "title": "React choosing state structure",
+              "section": "avoid contradictory UI state",
+              "url": "https://react.dev/learn/choosing-the-state-structure"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Render the renewal reference view in React: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 483,
+          "remaining_study_seconds": 1017,
+          "fit": "partial_foundation",
+          "scope_note": "The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-52.md"
       },
@@ -665,7 +960,8 @@
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).\n- Fit: partial foundation. The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.\n- Focused worked references: [React choosing state structure — avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).\n- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 9,
@@ -702,6 +998,34 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1362070",
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Handling Loading States",
+              "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+              "duration_seconds": 327,
+              "duration": "5:27",
+              "source_item_id": "39836954",
+              "course_id": "1362070"
+            },
+            {
+              "title": "Handling HTTP Loading & Error States",
+              "section_title": "Practice Project: Building a Food Order App",
+              "duration_seconds": 192,
+              "duration": "3:12",
+              "source_item_id": "8244672",
+              "course_id": "1362070"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Add accessible loading and unavailable states",
@@ -712,11 +1036,29 @@
               "title": "W3C WAI technique ARIA22: role=status",
               "section": "The status role exposes a status message with polite live-region semantics",
               "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22"
+            },
+            {
+              "title": "WAI-ARIA status role",
+              "section": "status messages",
+              "url": "https://www.w3.org/TR/wai-aria-1.2/#status"
+            },
+            {
+              "title": "WAI-ARIA alert role",
+              "section": "important dynamic messages",
+              "url": "https://www.w3.org/TR/wai-aria-1.2/#alert"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Add accessible loading and unavailable states: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 519,
+          "remaining_study_seconds": 981,
+          "fit": "partial_foundation",
+          "scope_note": "The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-53.md"
       },
@@ -749,7 +1091,8 @@
         "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Handling Loading States**; exact section title: **Sending Http Requests (e.g. Connecting to a Database)** (5:27).\n- Exact lesson title: **Handling HTTP Loading & Error States**; exact section title: **Practice Project: Building a Food Order App** (3:12).\n- Fit: partial foundation. The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.\n- Focused worked references: [WAI-ARIA status role — status messages](https://www.w3.org/TR/wai-aria-1.2/#status); [WAI-ARIA alert role — important dynamic messages](https://www.w3.org/TR/wai-aria-1.2/#alert).\n- Video viewing: 8:39 at 1×; the remaining 16:21 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 10,
@@ -786,16 +1129,49 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1635492",
+              "title": "Master Java Unit Testing with Spring Boot & Mockito",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/learn-unit-testing-with-spring-boot/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 15 - Writing an Integration Test using @SpringBootTest",
+              "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
+              "duration_seconds": 531,
+              "duration": "8:51",
+              "source_item_id": "9968368",
+              "course_id": "1635492"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Verify the owner-scoped preview against PostgreSQL",
               "section": "@SpringBootTest webEnvironment MOCK versus RANDOM_PORT: mock application context versus a real embedded server",
               "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            },
+            {
+              "title": "Spring Boot application testing",
+              "section": "testing with a running server and application context",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Verify the owner-scoped preview against PostgreSQL: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 531,
+          "remaining_study_seconds": 969,
+          "fit": "partial_foundation",
+          "scope_note": "The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-54.md"
       },
@@ -825,7 +1201,8 @@
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 15 - Writing an Integration Test using @SpringBootTest**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51).\n- Fit: partial foundation. The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.\n- Focused worked references: [Spring Boot application testing — testing with a running server and application context](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html).\n- Video viewing: 8:51 at 1×; the remaining 16:09 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 11,
@@ -862,6 +1239,34 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1362070",
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Dynamic Query Functions & Query Keys",
+              "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
+              "duration_seconds": 785,
+              "duration": "13:05",
+              "source_item_id": "39499434",
+              "course_id": "1362070"
+            },
+            {
+              "title": "The Query Configuration Object & Aborting Requests",
+              "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
+              "duration_seconds": 327,
+              "duration": "5:27",
+              "source_item_id": "39499460",
+              "course_id": "1362070"
+            }
+          ],
           "resources": [
             {
               "title": "Official reference: Connect the React preview to Spring and PostgreSQL",
@@ -872,11 +1277,29 @@
               "title": "Playwright Response API",
               "section": "HTTP response status() and json() for inspecting the matched response",
               "url": "https://playwright.dev/docs/api/class-response"
+            },
+            {
+              "title": "TanStack Query query keys",
+              "section": "query-key identity and variables",
+              "url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
+            },
+            {
+              "title": "Fetch API",
+              "section": "credentials and HTTP error handling",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Connect the React preview to Spring and PostgreSQL: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 1112,
+          "remaining_study_seconds": 388,
+          "fit": "partial_foundation",
+          "scope_note": "TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-55.md"
       },
@@ -911,7 +1334,8 @@
         ],
         "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock."
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Dynamic Query Functions & Query Keys**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (13:05).\n- Exact lesson title: **The Query Configuration Object & Aborting Requests**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (5:27).\n- Fit: partial foundation. TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.\n- Focused worked references: [TanStack Query query keys — query-key identity and variables](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys); [Fetch API — credentials and HTTP error handling](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).\n- Video viewing: 18:32 at 1×; the remaining 6:28 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     },
     {
       "sequence": 12,
@@ -948,16 +1372,37 @@
             "design_sketch": 10,
             "teachback": 5
           },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
           "resources": [
             {
               "title": "Official reference: Prove preview stability across restart without writes",
               "section": "read-only transaction semantics and verification",
               "url": "https://www.postgresql.org/docs/14/sql-set-transaction.html"
+            },
+            {
+              "title": "Spring Boot application testing",
+              "section": "real application and server testing",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            },
+            {
+              "title": "PostgreSQL transaction isolation",
+              "section": "read-only observations and statement snapshots",
+              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
             }
           ],
-          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
-          "design_prompt": "Prove preview stability across restart without writes: sketch the protected invariant and the layer that owns it.",
-          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "integration_review_no_new_lecture",
+          "scope_note": "No exact course lesson verifies persistence across packaged restart or database no-write behavior. Use the supplied disposable packaged-browser harness; compare stable preview JSON and complete PostgreSQL snapshots before and after restart. Course viewing is unnecessary.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-56.md"
       },
@@ -987,7 +1432,8 @@
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: integration review no new lecture. No exact course lesson verifies persistence across packaged restart or database no-write behavior. Use the supplied disposable packaged-browser harness; compare stable preview JSON and complete PostgreSQL snapshots before and after restart. Course viewing is unnecessary.\n- Focused worked references: [Spring Boot application testing — real application and server testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [PostgreSQL transaction isolation — read-only observations and statement snapshots](https://www.postgresql.org/docs/14/transaction-iso.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion."
     }
   ],
   "dsa_revision_queue": {

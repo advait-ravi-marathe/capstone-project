@@ -30,10 +30,13 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
-Read the named primary source for 10 minutes; spend 10 minutes sketching the trust/data boundary; use 5 minutes for a teach-back. These are planner allocations, not a lecture count.
+**Learning guidance (inside the single 25-minute engineering study allocation):**
+- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
+- Exact lesson title: **Testing User Interaction & State**; exact section title: **Testing React Apps (Unit Tests)** (14:00).
+- Fit: partial foundation. This is component-level test guidance, not real browser-to-JAR/PostgreSQL evidence. Use the supplied packaged browser selectors and explicit database snapshots; treat the test course as optional if unavailable, and stop at the 25-minute cap.
+- Focused worked references: [Playwright Page API — navigation and user interactions](https://playwright.dev/docs/api/class-page); [Playwright Response API — status and JSON response](https://playwright.dev/docs/api/class-response).
+- Video viewing: 14:00 at 1×; the remaining 11:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-- [Playwright Page API — goto, getByRole and click](https://playwright.dev/docs/api/class-page)
-- [Playwright Response API — status, json and text](https://playwright.dev/docs/api/class-response)
 
 **Design sketch:** Exercise the packaged main app through browser and PostgreSQL: show the key trust boundary or data invariant and which layer owns it.
 
