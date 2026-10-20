@@ -51,6 +51,47 @@ class DsaReviewQueueTest(unittest.TestCase):
         self.assertEqual("2026-11-21", anchor["reviews"][0]["due_date_from_actual_attempt"])
         self.assertEqual("due", anchor["reviews"][0]["status"])
 
+    def test_planned_revisits_keep_original_anchor_and_no_clock_without_attempt(self):
+        result = queue_module.build_queue([], "2026-12-14")
+        for problem_id, canonical_day in ((49, 7), (20, 21), (155, 23)):
+            matches = [a for a in result["anchors"] if a["problem_id"] == problem_id]
+            self.assertEqual(1, len(matches))
+            self.assertEqual(canonical_day, matches[0]["anchor_day"])
+            self.assertIsNone(matches[0]["actual_first_attempt_date"])
+            self.assertEqual("awaiting_actual_attempt", matches[0]["status"])
+            self.assertEqual([], matches[0]["reviews"])
+
+    def test_first_attempt_on_revisit_date_attaches_to_original_anchor(self):
+        result = queue_module.build_queue([{
+            "anchor_day": 49, "problem_id": 49, "kind": "first_attempt",
+            "date": "2026-12-07", "result": "attempted"
+        }], "2026-12-10")
+        anchor = next(a for a in result["anchors"] if a["problem_id"] == 49)
+        self.assertEqual(7, anchor["anchor_day"])
+        self.assertEqual("2026-12-07", anchor["actual_first_attempt_date"])
+        self.assertEqual("2026-12-10", anchor["reviews"][0]["due_date_from_actual_attempt"])
+        self.assertEqual("due", anchor["reviews"][0]["status"])
+
+    def test_later_first_attempt_event_does_not_reset_clock(self):
+        result = queue_module.build_queue([
+            {"anchor_day": 7, "problem_id": 49, "kind": "first_attempt", "date": "2026-10-26", "result": "attempted"},
+            {"anchor_day": 49, "problem_id": 49, "kind": "first_attempt", "date": "2026-12-07", "result": "attempted"},
+        ], "2026-12-07")
+        anchor = next(a for a in result["anchors"] if a["problem_id"] == 49)
+        self.assertEqual(7, anchor["anchor_day"])
+        self.assertEqual("2026-10-26", anchor["actual_first_attempt_date"])
+        self.assertEqual("2026-10-29", anchor["reviews"][0]["due_date_from_actual_attempt"])
+
+    def test_original_anchor_review_evidence_survives_later_planned_revisit(self):
+        result = queue_module.build_queue([
+            {"anchor_day": 7, "problem_id": 49, "kind": "first_attempt", "date": "2026-10-26", "result": "attempted"},
+            {"anchor_day": 7, "problem_id": 49, "kind": "review", "interval_days": 3, "date": "2026-10-29", "result": "passed"},
+        ], "2026-12-07")
+        matches = [a for a in result["anchors"] if a["problem_id"] == 49]
+        self.assertEqual(1, len(matches))
+        self.assertEqual(7, matches[0]["anchor_day"])
+        self.assertEqual("passed_with_recorded_evidence", matches[0]["reviews"][0]["status"])
+
 
 if __name__ == "__main__":
     unittest.main()

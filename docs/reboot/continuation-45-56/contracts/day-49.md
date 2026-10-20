@@ -39,7 +39,7 @@ Record actual command/output, one design or teach-back note, and the learner's o
 
 ## Separate Java DSA block (60 minutes)
 
-New anchor: [LC 49 Group Anagrams](https://leetcode.com/problems/group-anagrams/) (canonical keys and hash grouping). First attempt planned for 2026-12-07; conditional D+3/D+7/D+21 forecasts are 2026-12-10, 2026-12-14, 2026-12-28. Recompute from the actual attempt date in the shared log; do not count the planned date as completion.
+Revisit: [LC 49 Group Anagrams](https://leetcode.com/problems/group-anagrams/) from the original Day 7 anchor (planned 2026-10-26). No attempt is recorded in the shared log. This is consolidation, not a new mandatory problem. If this is the first actual attempt, record it against Day 7; calculate D+3/D+7/D+21 from that actual date. If it was already attempted, keep the existing actual date and review clock.
 
 - 25 minutes pattern learning/retrieval
 - 20 minutes independent first attempt or cold review

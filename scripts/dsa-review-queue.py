@@ -36,23 +36,55 @@ def anchors_from_manifests():
             result.append({"anchor_day": day["day"], "problem_id": problem_id,
                            "pattern": pattern, "planned_first_attempt_date": planned,
                            "batch": batch})
-    return result
+    # A problem has one canonical anchor. Revisit entries never start a new
+    # clock; retain the earliest declared anchor in the combined history.
+    canonical = {}
+    for anchor in sorted(result, key=lambda a: a["anchor_day"]):
+        canonical.setdefault(anchor["problem_id"], anchor)
+    return list(canonical.values())
+
+
+def accepted_anchor_pairs():
+    """Return historical and planned revisit identifiers accepted for logging."""
+    pairs = set()
+    sources = [
+        (ROOT / "docs/reboot/manifest.json", True),
+        (ROOT / "docs/reboot/continuation-31-44/manifest.json", False),
+        (ROOT / "docs/reboot/continuation-45-56/manifest.json", False),
+    ]
+    for path, legacy in sources:
+        manifest = json.loads(path.read_text())
+        for day in manifest["days"]:
+            dsa = day.get("java_dsa", {})
+            if legacy:
+                if day.get("dsa_role") == "new_pattern_anchor":
+                    pairs.add((day["day"], day["dsa_problem_id"]))
+            elif dsa.get("mode") == "new_pattern_anchor":
+                pairs.add((day["day"], dsa["problem_id"]))
+            else:
+                for revisit in dsa.get("review_anchors", []):
+                    # Revisit-day entry uses the same canonical problem ID.
+                    if revisit.get("planned_revisit_date"):
+                        pairs.add((day["day"], revisit["problem_id"]))
+    return pairs
 
 
 def build_queue(events, on_date):
     on_date = dt.date.fromisoformat(on_date)
     anchors = anchors_from_manifests()
-    index = {(a["anchor_day"], a["problem_id"]): a for a in anchors}
-    grouped = {key: [] for key in index}
+    by_problem = {a["problem_id"]: a for a in anchors}
+    valid_anchor_pairs = accepted_anchor_pairs()
+    grouped = {problem_id: [] for problem_id in by_problem}
     for event in events:
         key = (event.get("anchor_day"), event.get("problem_id"))
-        if key not in grouped:
+        if key not in valid_anchor_pairs:
             raise ValueError(f"attempt log references unknown anchor: {key}")
         dt.date.fromisoformat(event["date"])
-        grouped[key].append(event)
+        grouped[event["problem_id"]].append(event)
     queue = []
-    for key, anchor in index.items():
-        firsts = [e for e in grouped[key] if e.get("kind") == "first_attempt"]
+    for problem_id, anchor in by_problem.items():
+        problem_events = grouped[problem_id]
+        firsts = [e for e in problem_events if e.get("kind") == "first_attempt"]
         if not firsts:
             queue.append({**anchor, "actual_first_attempt_date": None,
                           "status": "awaiting_actual_attempt", "reviews": []})
@@ -62,7 +94,7 @@ def build_queue(events, on_date):
         reviews = []
         for interval in INTERVALS:
             due = first_date + dt.timedelta(days=interval)
-            events_for_interval = [e for e in grouped[key]
+            events_for_interval = [e for e in problem_events
                                    if e.get("kind") == "review" and e.get("interval_days") == interval]
             passes = [e for e in events_for_interval if e.get("result") == "passed"]
             failures = [e for e in events_for_interval if e.get("result") == "failed"]

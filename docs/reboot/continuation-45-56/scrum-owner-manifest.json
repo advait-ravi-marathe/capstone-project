@@ -1,10 +1,10 @@
 {
-  "title": "CoverStory continuation owner export: Days 45\u201356",
+  "title": "CoverStory continuation owner export: Days 45–56",
   "canonical_daily_manifest": "docs/reboot/continuation-45-56/manifest.json",
   "board_model": "12 consolidated daily Stories for owner review; export only, not written to any board.",
   "sprint_boundaries": [
     {
-      "sprint": "Sprint 4 (1\u201314 Dec 2026)",
+      "sprint": "Sprint 4 (1–14 Dec 2026)",
       "existing_story_days": [
         43,
         44
@@ -33,7 +33,7 @@
       "sequence": 1,
       "day_number": 45,
       "date": "2026-12-03",
-      "title": "Day45: Define annual policy term boundaries \u2014 LC 128 Longest Consecutive Sequence",
+      "title": "Day45: Define annual policy term boundaries — LC 128 Longest Consecutive Sequence",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -103,7 +103,7 @@
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-03",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/",
-        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
@@ -112,7 +112,7 @@
       "sequence": 2,
       "day_number": 46,
       "date": "2026-12-04",
-      "title": "Day46: Enforce renewal window and lifecycle eligibility \u2014 LC 2 D+3",
+      "title": "Day46: Enforce renewal window and lifecycle eligibility — LC 2 D+3",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -188,7 +188,7 @@
       "sequence": 3,
       "day_number": 47,
       "date": "2026-12-05",
-      "title": "Day47: Freeze the renewal reference snapshot \u2014 LC 15 3Sum",
+      "title": "Day47: Freeze the renewal reference snapshot — LC 15 3Sum",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -222,7 +222,7 @@
           "resources": [
             {
               "title": "Official reference: Freeze the renewal reference snapshot",
-              "section": "record components and immutable value snapshots",
+              "section": "record components are final references (shallow immutability); choose immutable component value types",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
             }
           ],
@@ -258,7 +258,7 @@
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-05",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "problem_url": "https://leetcode.com/problems/3sum/",
-        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
@@ -267,7 +267,7 @@
       "sequence": 4,
       "day_number": 48,
       "date": "2026-12-06",
-      "title": "Day48: Add owner-scoped PostgreSQL renewal projection \u2014 LC 128 D+3",
+      "title": "Day48: Add owner-scoped PostgreSQL renewal projection — LC 128 D+3",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -343,7 +343,7 @@
       "sequence": 5,
       "day_number": 49,
       "date": "2026-12-07",
-      "title": "Day49: Derive preview identity from the principal \u2014 LC 49 Group Anagrams",
+      "title": "Day49: Derive preview identity from the principal — LC 49 Group Anagrams revisit (original Day7 anchor; no attempt recorded)",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -388,22 +388,10 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-49.md"
       },
       "java_dsa": {
-        "mode": "new_pattern_anchor",
-        "mandatory_new_problem": true,
         "problem_id": 49,
         "problem_name": "Group Anagrams",
         "concept": "canonical keys and hash grouping",
         "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
-        "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-07",
-        "actual_first_attempt_date": null,
-        "review_due_dates_if_attempted_on_plan": [
-          "2026-12-10",
-          "2026-12-14",
-          "2026-12-28"
-        ],
-        "actual_review_dates": [],
-        "review_status": "pending",
         "budget_minutes": 60,
         "allocation_minutes": {
           "pattern_learning": 25,
@@ -413,8 +401,22 @@
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-07",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "problem_url": "https://leetcode.com/problems/group-anagrams/",
-        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
-        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 49,
+            "anchor_day": 7,
+            "planned_anchor_date": "2026-10-26",
+            "actual_first_attempt_date": null,
+            "planned_revisit_date": "2026-12-07",
+            "status": "planned_revisit_not_attempted",
+            "problem_url": "https://leetcode.com/problems/group-anagrams/",
+            "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
+          }
+        ],
+        "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock."
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
     },
@@ -422,7 +424,7 @@
       "sequence": 6,
       "day_number": 50,
       "date": "2026-12-08",
-      "title": "Day50: Map unavailable previews to stable HTTP errors \u2014 LC 2 D+7; LC 15 D+3",
+      "title": "Day50: Map unavailable previews to stable HTTP errors — LC 2 D+7; LC 15 D+3",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -507,7 +509,7 @@
       "sequence": 7,
       "day_number": 51,
       "date": "2026-12-09",
-      "title": "Day51: Expose a minimal non-binding preview response \u2014 LC 20 Valid Parentheses",
+      "title": "Day51: Expose a minimal non-binding preview response — LC 20 Valid Parentheses revisit (original Day21 anchor; no attempt recorded)",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -540,8 +542,13 @@
           },
           "resources": [
             {
-              "title": "Official reference: Expose a minimal non-binding preview response",
-              "section": "explicit response projection and response fields",
+              "title": "Official Spring reference: response DTO design",
+              "section": "Create a Resource Representation Class; Create a Resource Controller",
+              "url": "https://spring.io/guides/gs/rest-service/"
+            },
+            {
+              "title": "Official Spring Framework reference: ResponseEntity",
+              "section": "ResponseEntity specifies the full response including status, headers and body; it does not filter DTO fields",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
             }
           ],
@@ -552,22 +559,10 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-51.md"
       },
       "java_dsa": {
-        "mode": "new_pattern_anchor",
-        "mandatory_new_problem": true,
         "problem_id": 20,
         "problem_name": "Valid Parentheses",
         "concept": "stack invariants and matching delimiters",
         "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
-        "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-09",
-        "actual_first_attempt_date": null,
-        "review_due_dates_if_attempted_on_plan": [
-          "2026-12-12",
-          "2026-12-16",
-          "2026-12-30"
-        ],
-        "actual_review_dates": [],
-        "review_status": "pending",
         "budget_minutes": 60,
         "allocation_minutes": {
           "pattern_learning": 25,
@@ -577,8 +572,22 @@
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-09",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "problem_url": "https://leetcode.com/problems/valid-parentheses/",
-        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
-        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 20,
+            "anchor_day": 21,
+            "planned_anchor_date": "2026-11-09",
+            "actual_first_attempt_date": null,
+            "planned_revisit_date": "2026-12-09",
+            "status": "planned_revisit_not_attempted",
+            "problem_url": "https://leetcode.com/problems/valid-parentheses/",
+            "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
+          }
+        ],
+        "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock."
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
     },
@@ -586,7 +595,7 @@
       "sequence": 8,
       "day_number": 52,
       "date": "2026-12-10",
-      "title": "Day52: Render the renewal reference view in React \u2014 LC 128 D+7; LC 49 D+3",
+      "title": "Day52: Render the renewal reference view in React — LC 128 conditional D+7",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -642,15 +651,6 @@
             "planned_due_date": "2026-12-10",
             "status": "pending_actual_attempt",
             "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
-          },
-          {
-            "problem_id": 49,
-            "anchor_day": 49,
-            "planned_anchor_date": "2026-12-07",
-            "review_interval_days": 3,
-            "planned_due_date": "2026-12-10",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/group-anagrams/"
           }
         ],
         "budget_minutes": 60,
@@ -671,7 +671,7 @@
       "sequence": 9,
       "day_number": 53,
       "date": "2026-12-11",
-      "title": "Day53: Add accessible loading and unavailable states \u2014 LC 150 Evaluate Reverse Polish Notation",
+      "title": "Day53: Add accessible loading and unavailable states — LC 150 Evaluate Reverse Polish Notation",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -707,6 +707,11 @@
               "title": "Official reference: Add accessible loading and unavailable states",
               "section": "alert and status roles for asynchronous feedback",
               "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+            },
+            {
+              "title": "W3C WAI technique ARIA22: role=status",
+              "section": "The status role exposes a status message with polite live-region semantics",
+              "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
@@ -741,7 +746,7 @@
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-11",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
@@ -750,7 +755,7 @@
       "sequence": 10,
       "day_number": 54,
       "date": "2026-12-12",
-      "title": "Day54: Verify the owner-scoped preview against PostgreSQL \u2014 LC 15 D+7; LC 20 D+3",
+      "title": "Day54: Verify the owner-scoped preview against PostgreSQL — LC 15 conditional D+7",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -784,7 +789,7 @@
           "resources": [
             {
               "title": "Official reference: Verify the owner-scoped preview against PostgreSQL",
-              "section": "test application contexts and real server/application boundaries",
+              "section": "@SpringBootTest webEnvironment MOCK versus RANDOM_PORT: mock application context versus a real embedded server",
               "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
             }
           ],
@@ -806,15 +811,6 @@
             "planned_due_date": "2026-12-12",
             "status": "pending_actual_attempt",
             "problem_url": "https://leetcode.com/problems/3sum/"
-          },
-          {
-            "problem_id": 20,
-            "anchor_day": 51,
-            "planned_anchor_date": "2026-12-09",
-            "review_interval_days": 3,
-            "planned_due_date": "2026-12-12",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/valid-parentheses/"
           }
         ],
         "budget_minutes": 60,
@@ -835,7 +831,7 @@
       "sequence": 11,
       "day_number": 55,
       "date": "2026-12-13",
-      "title": "Day55: Connect the React preview to Spring and PostgreSQL \u2014 LC 155 Min Stack",
+      "title": "Day55: Connect the React preview to Spring and PostgreSQL — LC 155 Min Stack revisit (original Day23 anchor; no attempt recorded)",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -846,7 +842,7 @@
           "evidence": 10
         },
         "scope": "Connect the React preview to Spring and PostgreSQL",
-        "learner_seam": "browser \u2192 React \u2192 GET renewal preview",
+        "learner_seam": "browser → React → GET renewal preview",
         "acceptance_reference": "src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java",
         "evidence_reference": "evidence/continuation-45-56/day-55.json",
         "status": "not_attempted",
@@ -871,6 +867,11 @@
               "title": "Official reference: Connect the React preview to Spring and PostgreSQL",
               "section": "page navigation, role locators and response inspection",
               "url": "https://playwright.dev/docs/api/class-page"
+            },
+            {
+              "title": "Playwright Response API",
+              "section": "HTTP response status() and json() for inspecting the matched response",
+              "url": "https://playwright.dev/docs/api/class-response"
             }
           ],
           "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
@@ -880,22 +881,10 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-55.md"
       },
       "java_dsa": {
-        "mode": "new_pattern_anchor",
-        "mandatory_new_problem": true,
         "problem_id": 155,
         "problem_name": "Min Stack",
         "concept": "stack plus cached minimum invariant",
         "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
-        "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-13",
-        "actual_first_attempt_date": null,
-        "review_due_dates_if_attempted_on_plan": [
-          "2026-12-16",
-          "2026-12-20",
-          "2027-01-03"
-        ],
-        "actual_review_dates": [],
-        "review_status": "pending",
         "budget_minutes": 60,
         "allocation_minutes": {
           "pattern_learning": 25,
@@ -905,8 +894,22 @@
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-13",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
         "problem_url": "https://leetcode.com/problems/min-stack/",
-        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
-        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 155,
+            "anchor_day": 23,
+            "planned_anchor_date": "2026-11-11",
+            "actual_first_attempt_date": null,
+            "planned_revisit_date": "2026-12-13",
+            "status": "planned_revisit_not_attempted",
+            "problem_url": "https://leetcode.com/problems/min-stack/",
+            "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
+          }
+        ],
+        "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock."
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
     },
@@ -914,7 +917,7 @@
       "sequence": 12,
       "day_number": 56,
       "date": "2026-12-14",
-      "title": "Day56: Prove preview stability across restart without writes \u2014 LC 49 D+7; LC 150 D+3",
+      "title": "Day56: Prove preview stability across restart without writes — LC 150 conditional D+3",
       "sprint": "Sprint 4",
       "budget_minutes": 180,
       "engineering": {
@@ -962,15 +965,6 @@
         "mode": "review_and_consolidation",
         "mandatory_new_problem": false,
         "review_anchors": [
-          {
-            "problem_id": 49,
-            "anchor_day": 49,
-            "planned_anchor_date": "2026-12-07",
-            "review_interval_days": 7,
-            "planned_due_date": "2026-12-14",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/group-anagrams/"
-          },
           {
             "problem_id": 150,
             "anchor_day": 53,

@@ -22,9 +22,16 @@ class DsaReviewQueueDays45To56Test(unittest.TestCase):
     def test_new_anchors_without_attempts_have_no_invented_due_dates(self):
         result = queue_module.build_queue([], "2026-12-14")
         new_anchors = [a for a in result["anchors"] if a["batch"] == "continuation-45-56"]
-        self.assertEqual({45, 47, 49, 51, 53, 55}, {a["anchor_day"] for a in new_anchors})
+        self.assertEqual({45, 47, 53}, {a["anchor_day"] for a in new_anchors})
         self.assertTrue(all(a["actual_first_attempt_date"] is None for a in new_anchors))
         self.assertTrue(all(a["status"] == "awaiting_actual_attempt" and not a["reviews"] for a in new_anchors))
+
+    def test_revisited_problems_are_not_duplicate_new_anchors(self):
+        result = queue_module.build_queue([], "2026-12-14")
+        for problem_id, original_day in ((49, 7), (20, 21), (155, 23)):
+            matches = [a for a in result["anchors"] if a["problem_id"] == problem_id]
+            self.assertEqual(1, len(matches))
+            self.assertEqual(original_day, matches[0]["anchor_day"])
 
 
 if __name__ == "__main__":

@@ -27,7 +27,8 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
 
-- [Official reference: Connect the React preview to Spring and PostgreSQL — page navigation, role locators and response inspection](https://playwright.dev/docs/api/class-page)
+- [Playwright Page API: goto, getByRole and waitForResponse](https://playwright.dev/docs/api/class-page)
+- [Playwright Response API: status() and json()](https://playwright.dev/docs/api/class-response)
 
 **Design sketch:** Connect the React preview to Spring and PostgreSQL: sketch the protected invariant and the layer that owns it.
 
@@ -39,7 +40,7 @@ Record actual command/output, one design or teach-back note, and the learner's o
 
 ## Separate Java DSA block (60 minutes)
 
-New anchor: [LC 155 Min Stack](https://leetcode.com/problems/min-stack/) (stack plus cached minimum invariant). First attempt planned for 2026-12-13; conditional D+3/D+7/D+21 forecasts are 2026-12-16, 2026-12-20, 2027-01-03. Recompute from the actual attempt date in the shared log; do not count the planned date as completion.
+Revisit: [LC 155 Min Stack](https://leetcode.com/problems/min-stack/) from the original Day 23 anchor (planned 2026-11-11). No attempt is recorded in the shared log. This is consolidation, not a new mandatory problem. If this is the first actual attempt, record it against Day 23; calculate D+3/D+7/D+21 from that actual date. If it was already attempted, keep the existing actual date and review clock.
 
 - 25 minutes pattern learning/retrieval
 - 20 minutes independent first attempt or cold review

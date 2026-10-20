@@ -8,11 +8,11 @@
 
 ### Expected behavior
 
-A real Spring MVC request backed by embedded PostgreSQL returns 200 and the next-term date for the owner; another owner receives concealed 404. Both requests leave policy row count unchanged.
+A MockMvc Spring MVC request backed by embedded PostgreSQL returns 200 and the next-term date for the owner; another owner receives concealed 404. Both requests leave policy row count unchanged.
 
 ## Acceptance and expected TODO state
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-54.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-54.json`. A MockMvc contract is an in-process application test, not a real HTTP server/browser check. Days 55–56 own the later real-server/browser integration gate. A contract or infrastructure smoke does not claim product behavior is implemented.
 
 **Acceptance test:** `src/test/java/assignments/renewal/PolicyRenewalPostgresAcceptanceTest.java`
 **Acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test`
@@ -27,7 +27,7 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
 
-- [Official reference: Verify the owner-scoped preview against PostgreSQL — test application contexts and real server/application boundaries](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html)
+- [Official reference: Verify the owner-scoped preview against PostgreSQL — @SpringBootTest MOCK uses a mock web environment; RANDOM_PORT starts a real web server](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html)
 
 **Design sketch:** Verify the owner-scoped preview against PostgreSQL: sketch the protected invariant and the layer that owns it.
 
@@ -42,7 +42,6 @@ Record actual command/output, one design or teach-back note, and the learner's o
 No mandatory new problem. Use the actual-attempt queue first; the forecast anchors below are conditional and are not completion evidence.
 
 - LC 15 D+7: forecast 2026-12-12 from Day 47 only if its first attempt occurred on schedule.
-- LC 20 D+3: forecast 2026-12-12 from Day 51 only if its first attempt occurred on schedule.
 
 - 25 minutes pattern learning/retrieval
 - 20 minutes independent first attempt or cold review

@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-For available preview return HTTP 200 with exactly the public PolicyRenewalPreview projection. Do not expose owner, journey, quote-version IDs or mutation/acceptance fields.
+For available preview return HTTP 200 with exactly the public PolicyRenewalPreview projection. ResponseEntity controls the full HTTP response (including status, headers and body); the DTO and its contract tests define which fields are exposed. Do not expose owner, journey, quote-version IDs or mutation/acceptance fields.
 
 ## Acceptance and expected TODO state
 
@@ -27,7 +27,8 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
 
-- [Official reference: Expose a minimal non-binding preview response — explicit response projection and response fields](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html)
+- [Official Spring guide: Create a Resource Representation Class and Create a Resource Controller](https://spring.io/guides/gs/rest-service/)
+- [Official Spring Framework reference: ResponseEntity](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html) — ResponseEntity specifies status, headers and body; DTO field selection remains the application contract.
 
 **Design sketch:** Expose a minimal non-binding preview response: sketch the protected invariant and the layer that owns it.
 
@@ -39,7 +40,7 @@ Record actual command/output, one design or teach-back note, and the learner's o
 
 ## Separate Java DSA block (60 minutes)
 
-New anchor: [LC 20 Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) (stack invariants and matching delimiters). First attempt planned for 2026-12-09; conditional D+3/D+7/D+21 forecasts are 2026-12-12, 2026-12-16, 2026-12-30. Recompute from the actual attempt date in the shared log; do not count the planned date as completion.
+Revisit: [LC 20 Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) from the original Day 21 anchor (planned 2026-11-09). No attempt is recorded in the shared log. This is consolidation, not a new mandatory problem. If this is the first actual attempt, record it against Day 21; calculate D+3/D+7/D+21 from that actual date. If it was already attempted, keep the existing actual date and review clock.
 
 - 25 minutes pattern learning/retrieval
 - 20 minutes independent first attempt or cold review

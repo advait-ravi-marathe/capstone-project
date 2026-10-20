@@ -28,6 +28,7 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
 
 - [Official reference: Add accessible loading and unavailable states — alert and status roles for asynchronous feedback](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
+- [W3C WAI technique ARIA22: role=status — status messages use polite live-region semantics](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22)
 
 **Design sketch:** Add accessible loading and unavailable states: sketch the protected invariant and the layer that owns it.
 

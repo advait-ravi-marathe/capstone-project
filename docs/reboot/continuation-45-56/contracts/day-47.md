@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-Copy the frozen source policy ID/version, product/rate versions, current annual premium and currency into a preview; derive only the next term effective date. Include an explicit reference-only notice stating this is not a renewal offer or coverage commitment. Do not calculate a new price or mutate state.
+Copy the frozen source policy ID/version, product/rate versions, current annual premium and currency into a preview; derive only the next term effective date. Records provide shallow immutability: their component references are final, but referenced mutable objects are not frozen. Prefer immutable value types for snapshot components. Include an explicit reference-only notice stating this is not a renewal offer or coverage commitment. Do not calculate a new price or mutate state.
 
 ## Acceptance and expected TODO state
 
@@ -27,7 +27,7 @@ Implement only this day's seam, run its fixed selector, and keep prior learner o
 
 Read the named primary-source section for 10 minutes; spend 10 minutes sketching the invariant and layer boundary; use 5 minutes for a teach-back. These are planner allocations, not a course lecture count.
 
-- [Official reference: Freeze the renewal reference snapshot — record components and immutable value snapshots](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html)
+- [Official reference: Freeze the renewal reference snapshot — record components are final references (shallow immutability); immutable component value types](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html)
 
 **Design sketch:** Freeze the renewal reference snapshot: sketch the protected invariant and the layer that owns it.
 

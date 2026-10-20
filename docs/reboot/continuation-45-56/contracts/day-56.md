@@ -41,7 +41,6 @@ Record actual command/output, one design or teach-back note, and the learner's o
 
 No mandatory new problem. Use the actual-attempt queue first; the forecast anchors below are conditional and are not completion evidence.
 
-- LC 49 D+7: forecast 2026-12-14 from Day 49 only if its first attempt occurred on schedule.
 - LC 150 D+3: forecast 2026-12-14 from Day 53 only if its first attempt occurred on schedule.
 
 - 25 minutes pattern learning/retrieval
