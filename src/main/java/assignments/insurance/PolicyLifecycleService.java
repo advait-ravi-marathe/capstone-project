@@ -15,12 +15,12 @@ public final class PolicyLifecycleService {
         this.clock = clock;
     }
 
-    public boolean validateIssue(PolicyIssueRequest request) {
-        // LEARNER TODO Day 31: verify selected quote ownership, eligibility and freshness.
+    public boolean validateIssue(PolicyIssueRequest request, PolicyIssueFacts facts) {
+        // LEARNER TODO Day 31: validate request against authenticated-owner and quote fixture facts.
         throw todo(31);
     }
 
-    public PolicySnapshot issue(PolicyIssueRequest request) {
+    public PolicySnapshot issue(PolicyIssueRequest request, String authenticatedOwnerId) {
         // LEARNER TODO Day 32: idempotency key and request fingerprint semantics.
         throw todo(32);
     }
@@ -35,13 +35,13 @@ public final class PolicyLifecycleService {
         throw todo(34);
     }
 
-    public PolicySnapshot persistIssueAtomically(DataSource dataSource, PolicyIssueRequest request) {
+    public PolicySnapshot persistIssueAtomically(DataSource dataSource, PolicyIssueRequest request, String authenticatedOwnerId) {
         // LEARNER TODO Day 35: insert snapshot and idempotency receipt in one transaction.
         throw todo(35);
     }
 
-    public Optional<PolicySnapshot> readForOwner(String ownerId, String policyId) {
-        // LEARNER TODO Day 36: owner-scoped lookup; foreign and absent both appear absent.
+    public Optional<PolicySnapshot> readForOwner(PolicyReadStore store, String ownerId, String policyId) {
+        // LEARNER TODO Day 36: query the supplied data seam with both policy and owner identifiers.
         throw todo(36);
     }
 
@@ -61,13 +61,19 @@ public final class PolicyLifecycleService {
         throw todo(39);
     }
 
-    public PolicySnapshot scheduleCancellation(PolicySnapshot policy, PolicyCancellationRequest request) {
-        // LEARNER TODO Day 40: allowlisted reason, future date, idempotent schedule.
+    public PolicySnapshot scheduleCancellation(PolicySnapshot policy, PolicyCancellationRequest request,
+                                                PolicyCancellationReceiptStore receipts) {
+        // LEARNER TODO Day 40: use the receipt data seam to replay identical intent and reject conflicting intent.
         throw todo(40);
     }
 
     public PolicySnapshot applyDueCancellation(PolicySnapshot policy) {
         // LEARNER TODO Day 41: use injected clock, transition once, append system history.
+        throw todo(41);
+    }
+
+    public PolicySnapshot applyDueCancellation(DataSource dataSource, PolicySnapshot policy) {
+        // LEARNER TODO Day 41/44: persist the due transition and system history atomically.
         throw todo(41);
     }
 

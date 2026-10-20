@@ -2,13 +2,13 @@
 
 ## Contract
 
-**Learner-owned seam:** `PolicyLifecycleService.scheduleCancellation`
+**Learner-owned seam:** `PolicyLifecycleService.scheduleCancellation(policy, request, PolicyCancellationReceiptStore)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180 minutes total: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
 ### Expected behavior
 
-Schedule cancellation with a future effective date, reason code from the synthetic allowlist, and expected version; duplicate request is idempotent; invalid dates do not mutate state.
+A seeded `PolicyCancellationReceiptStore` drives the replay cases. Same key/date/reason returns the stored original; the same key with a changed date throws `IdempotencyConflictException`; a past date throws `IllegalArgumentException`. Unknown reasons and mismatched expected versions are rejected.
 
 ## Acceptance and expected red state
 
@@ -26,9 +26,13 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Read the mapped AWS Developer Associate DVA-C02 objective as a comparison for the engineering concept; apply it locally with Java/Spring Boot only. No AWS account, service, or setup is part of this contract. In the remaining time, make one small architecture sketch or ADR note and answer one understanding prompt in your own words.
+Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
 
-**AWS mapping:** Domain 1, Skill 1.3.7: implement lifecycle state changes; Domain 2, Skill 2.1.7: authorize servicing actions. See the [official DVA-C02 exam guide](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html), [Domain 1](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html), [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain2.html), [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain3.html), and [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain4.html). AWS content is a comparison only; no cloud account, service, or setup is required.
+- [Java 21 LocalDate API — now(Clock), isBefore, isAfter, isEqual](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html)
+
+**Design sketch:** Schedule cancellation — sketch the invariant, enforcing layer, and failure response.
+
+**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
 
 ## Evidence allocation (10 minutes)
 

@@ -16,6 +16,12 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,16 +32,24 @@ class PolicyLifecycleAcceptanceTest {
     private final PolicyLifecycleService service = new PolicyLifecycleService(CLOCK);
 
     @Test void day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue() {
-        var valid = new PolicyIssueRequest("owner-a", "journey-a", "quote-a", "req-a", LocalDate.parse("2026-12-01"));
-        assertTrue(service.validateIssue(valid));
-        assertFalse(service.validateIssue(new PolicyIssueRequest("owner-b", "journey-a", "quote-a", "req-b", valid.effectiveDate())));
+        var valid = issueRequest();
+        var selected = new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-a", true, true, LocalDate.parse("2026-12-01"), true);
+        assertAll("quote facts control eligibility independently",
+                () -> assertTrue(service.validateIssue(valid, selected)),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-b", "owner-a", "journey-a", "quote-a", true, true, LocalDate.parse("2026-12-01"), true)), "authenticated principal must own the quote"),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-a", false, true, LocalDate.parse("2026-12-01"), true)), "unselected quote must be rejected"),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-a", true, true, LocalDate.parse("2026-11-18"), true)), "expired quote must be rejected against injected clock"),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-a", true, false, LocalDate.parse("2026-12-01"), true)), "ineligible quote must be rejected"),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-a", "owner-a", "journey-other", "quote-a", true, true, LocalDate.parse("2026-12-01"), true)), "quote journey must match request"),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-a", "owner-a", "journey-a", "quote-other", true, true, LocalDate.parse("2026-12-01"), true)), "quote version must match request"),
+                () -> assertFalse(service.validateIssue(valid, new PolicyIssueFacts("owner-a", null, "journey-a", "quote-a", true, true, LocalDate.parse("2026-12-01"), false)), "missing quote must be rejected"));
     }
 
     @Test void day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts() {
         var request = issueRequest();
         var created = issued();
-        assertEquals(created, service.issue(request));
-        assertEquals(409, service.issueHttpStatus(new PolicyIssueRequest("owner-a", "journey-a", "quote-other", "req-a", request.effectiveDate()), Optional.of(created)));
+        assertEquals(created, service.issue(request, "owner-a"));
+        assertEquals(409, service.issueHttpStatus(new PolicyIssueRequest("journey-a", "quote-other", "req-a", request.effectiveDate()), Optional.of(created)));
     }
 
     @Test void day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges() {
@@ -55,18 +69,49 @@ class PolicyLifecycleAcceptanceTest {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var dataSource = postgres.getPostgresDatabase();
             initializeLifecycleSchema(dataSource);
-            assertNotNull(service.persistIssueAtomically(dataSource, issueRequest()));
+            assertAll("successful issue persists its policy, receipt, and event atomically",
+                    () -> assertNotNull(service.persistIssueAtomically(dataSource, issueRequest(), "owner-a")),
+                    () -> assertEquals(1, count(dataSource, "training_policy_lifecycle")),
+                    () -> assertEquals(1, count(dataSource, "training_policy_idempotency")),
+                    () -> assertEquals(1, count(dataSource, "training_policy_lifecycle_event")));
+        }
+    }
+
+    @Test void day35ReceiptConflictRollsBackPolicyAndEvent() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var dataSource = postgres.getPostgresDatabase();
+            initializeLifecycleSchema(dataSource);
+            try (Connection c = dataSource.getConnection(); Statement s = c.createStatement()) {
+                s.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('old-policy','owner-a','journey-old','quote-old','home-secure-v1','rate-v1',125.00,'INR',DATE '2026-12-01','ISSUED',1,NULL)");
+                s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('old-policy',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
+                s.executeUpdate("INSERT INTO training_policy_idempotency VALUES ('owner-a','req-a','different-fingerprint','old-policy')");
+            }
+            RuntimeException conflict = assertThrows(RuntimeException.class,
+                    () -> service.persistIssueAtomically(dataSource, issueRequest(), "owner-a"));
+            assertInstanceOf(IdempotencyConflictException.class, conflict);
+            assertEquals(1, count(dataSource, "training_policy_lifecycle"), "failed receipt write must roll back the new policy row");
+            assertEquals(1, count(dataSource, "training_policy_idempotency"), "pre-existing receipt remains the only receipt");
+            assertEquals(1, count(dataSource, "training_policy_lifecycle_event"), "failed transaction leaves no new issue event");
         }
     }
 
     @Test void day36ForeignAndAbsentPolicyAreBothNotFound() {
-        assertTrue(service.readForOwner("owner-b", "policy-a").isEmpty());
-        assertTrue(service.readForOwner("owner-a", "missing").isEmpty());
+        var seeded = issued();
+        PolicyReadStore seededReadStore = (policyId, ownerId) ->
+                "policy-a".equals(policyId) && "owner-a".equals(ownerId) ? Optional.of(seeded) : Optional.empty();
+        assertAll("seeded owner read and concealment cases",
+                () -> assertEquals(Optional.of(seeded), service.readForOwner(seededReadStore, "owner-a", "policy-a"), "owner can read a seeded policy"),
+                () -> assertTrue(service.readForOwner(seededReadStore, "owner-b", "policy-a").isEmpty(), "foreign owner is not distinguishable from absence"),
+                () -> assertTrue(service.readForOwner(seededReadStore, "owner-a", "missing").isEmpty(), "absent policy has the same result"));
     }
 
     @Test void day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion() {
-        assertTrue(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))));
-        assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-30"), "UNKNOWN", new BigDecimal("200000.00"))));
+        assertAll("endorsement command invariants",
+                () -> assertTrue(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00")))),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-30"), "UNKNOWN", new BigDecimal("200000.00")))),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(0, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "stale expected version 0 must be rejected for current version 1"),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(2, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "future expected version must be rejected"),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("125.00"))), "no-op amount must be rejected"));
     }
 
     @Test void day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder() {
@@ -83,28 +128,61 @@ class PolicyLifecycleAcceptanceTest {
             var dataSource = postgres.getPostgresDatabase();
             initializeLifecycleSchema(dataSource);
             seedPolicy(dataSource);
-            assertNotNull(service.endorseAtExpectedVersion(dataSource, issued(),
-                    new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))));
+            seedIssueEvent(dataSource);
+            CountDownLatch ready = new CountDownLatch(2);
+            CountDownLatch start = new CountDownLatch(1);
+            try (ExecutorService pool = Executors.newFixedThreadPool(2)) {
+                var first = pool.submit(() -> raceEndorse(ready, start, dataSource, "2026-12-02", "200000.00"));
+                var second = pool.submit(() -> raceEndorse(ready, start, dataSource, "2026-12-03", "300000.00"));
+                assertTrue(ready.await(5, TimeUnit.SECONDS));
+                start.countDown();
+                Object firstResult = getRaceResult(first);
+                Object secondResult = getRaceResult(second);
+                assertEquals(1, (firstResult instanceof PolicySnapshot ? 1 : 0) + (secondResult instanceof PolicySnapshot ? 1 : 0), "exactly one writer wins version 1");
+                assertEquals(1, (firstResult instanceof VersionConflictException ? 1 : 0) + (secondResult instanceof VersionConflictException ? 1 : 0), "the loser gets a stale-version conflict");
+                assertEquals(2, scalarLong(dataSource, "SELECT version FROM training_policy_lifecycle WHERE policy_id='policy-a'"));
+                assertEquals(2, count(dataSource, "training_policy_lifecycle_event"), "only issued and winning endorsement events exist");
+            }
         }
     }
 
     @Test void day40CancellationMustBeFutureAndRequestReplayIsIdempotent() {
         var request = new PolicyCancellationRequest(1, "cancel-a", LocalDate.parse("2026-12-10"), "CUSTOMER_REQUEST");
-        var scheduled = service.scheduleCancellation(issued(), request);
-        assertEquals(PolicyStatus.CANCEL_SCHEDULED, scheduled.status());
-        assertEquals(LocalDate.parse("2026-12-10"), scheduled.cancellationEffectiveDate());
+        var scheduled = new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v1", "training-rate-v1",
+                new BigDecimal("125.00"), "INR", LocalDate.parse("2026-12-01"), PolicyStatus.CANCEL_SCHEDULED, 2, List.of(), LocalDate.parse("2026-12-10"));
+        PolicyCancellationReceiptStore empty = (owner, key) -> Optional.empty();
+        PolicyCancellationReceiptStore replayReceipt = (owner, key) -> "owner-a".equals(owner) && "cancel-a".equals(key)
+                ? Optional.of(new PolicyCancellationReceipt("owner-a", "cancel-a", LocalDate.parse("2026-12-10"), "CUSTOMER_REQUEST", scheduled))
+                : Optional.empty();
+        assertAll("schedule, same-intent replay, conflicting replay, and past-date rejection",
+                () -> assertEquals(PolicyStatus.CANCEL_SCHEDULED, service.scheduleCancellation(issued(), request, empty).status()),
+                () -> assertEquals(scheduled, service.scheduleCancellation(scheduled, request, replayReceipt), "same request replay returns original scheduled snapshot"),
+                () -> assertThrows(IdempotencyConflictException.class, () -> service.scheduleCancellation(scheduled,
+                        new PolicyCancellationRequest(2, "cancel-a", LocalDate.parse("2026-12-11"), "CUSTOMER_REQUEST"), replayReceipt)),
+                () -> assertThrows(IllegalArgumentException.class, () -> service.scheduleCancellation(issued(),
+                        new PolicyCancellationRequest(1, "cancel-past", LocalDate.parse("2026-11-18"), "CUSTOMER_REQUEST"), empty)));
     }
 
     @Test void day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce() {
         var scheduled = new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v1", "training-rate-v1",
                 new BigDecimal("125.00"), "INR", LocalDate.parse("2026-12-01"), PolicyStatus.CANCEL_SCHEDULED, 2, List.of(), LocalDate.parse("2026-12-10"));
-        assertEquals(PolicyStatus.CANCELLED, service.applyDueCancellation(scheduled).status());
+            var before = new PolicyLifecycleService(clockOn("2026-12-09"));
+            var onDate = new PolicyLifecycleService(clockOn("2026-12-10"));
+            var after = new PolicyLifecycleService(clockOn("2026-12-11"));
+            var cancelled = new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v1", "training-rate-v1",
+                    new BigDecimal("125.00"), "INR", LocalDate.parse("2026-12-01"), PolicyStatus.CANCELLED, 3, List.of(), LocalDate.parse("2026-12-10"));
+            assertAll("fixed-clock due-date boundaries and retry",
+                    () -> assertEquals(PolicyStatus.CANCEL_SCHEDULED, before.applyDueCancellation(scheduled).status(), "one day before is unchanged"),
+                    () -> assertEquals(PolicyStatus.CANCELLED, onDate.applyDueCancellation(scheduled).status(), "effective date transitions once due"),
+                    () -> assertEquals(PolicyStatus.CANCELLED, after.applyDueCancellation(scheduled).status(), "after effective date remains cancelled"),
+                    () -> assertEquals(cancelled, after.applyDueCancellation(cancelled), "retry after transition is idempotent"));
     }
 
     @Test void day42CancelledPolicyRejectsWritesButRemainsReadable() {
         var cancelled = withStatus(PolicyStatus.CANCELLED);
         assertFalse(service.permitsServicingWrite(cancelled));
-        assertEquals(cancelled, service.readForOwner("owner-a", "policy-a").orElse(cancelled));
+        PolicyReadStore store = (policyId, ownerId) -> Optional.of(cancelled);
+        assertEquals(Optional.of(cancelled), service.readForOwner(store, "owner-a", "policy-a"));
     }
 
     @Test void day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds() {
@@ -124,13 +202,18 @@ class PolicyLifecycleAcceptanceTest {
             try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
                 statement.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
                 statement.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',2,'ENDORSED',DATE '2026-12-03','REBUILD_AMOUNT',200000.00)");
+                statement.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',3,'CANCEL_SCHEDULED',DATE '2026-12-10','CUSTOMER_REQUEST',NULL)");
+                statement.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',4,'CANCELLED',DATE '2026-12-10',NULL,NULL)");
+                statement.executeUpdate("UPDATE training_policy_lifecycle SET status='CANCELLED',version=4,cancellation_effective_date=DATE '2026-12-10' WHERE policy_id='policy-a'");
             }
+            assertEquals(4, count(dataSource, "training_policy_lifecycle_event"));
+            assertEquals(4, scalarLong(dataSource, "SELECT version FROM training_policy_lifecycle WHERE policy_id='policy-a'"));
             service.verifyLifecycleReadback(dataSource, "policy-a");
         }
     }
 
     private static PolicyIssueRequest issueRequest() {
-        return new PolicyIssueRequest("owner-a", "journey-a", "quote-a", "req-a", LocalDate.parse("2026-12-01"));
+        return new PolicyIssueRequest("journey-a", "quote-a", "req-a", LocalDate.parse("2026-12-01"));
     }
     private static PolicySnapshot issued() {
         return new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v1", "training-rate-v1",
@@ -156,4 +239,32 @@ class PolicyLifecycleAcceptanceTest {
             statement.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('policy-a','owner-a','journey-a','quote-a','home-secure-v1','training-rate-v1',125.00,'INR',DATE '2026-12-01','ISSUED',1,NULL)");
         }
     }
+
+    private static long count(javax.sql.DataSource dataSource, String table) throws Exception {
+        try (Connection c = dataSource.getConnection(); Statement s = c.createStatement(); var rows = s.executeQuery("SELECT count(*) FROM " + table)) {
+            rows.next(); return rows.getLong(1);
+        }
+    }
+    private static long scalarLong(javax.sql.DataSource dataSource, String sql) throws Exception {
+        try (Connection c = dataSource.getConnection(); Statement s = c.createStatement(); var rows = s.executeQuery(sql)) {
+            assertTrue(rows.next()); return rows.getLong(1);
+        }
+    }
+    private static void seedIssueEvent(javax.sql.DataSource dataSource) throws Exception {
+        try (Connection c = dataSource.getConnection(); Statement s = c.createStatement()) {
+            s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
+        }
+    }
+    private static PolicySnapshot raceEndorse(CountDownLatch ready, CountDownLatch start, javax.sql.DataSource dataSource,
+                                               String effectiveDate, String amount) throws Exception {
+        ready.countDown(); if (!start.await(5, TimeUnit.SECONDS)) throw new IllegalStateException("race start timed out");
+        return serviceStatic().endorseAtExpectedVersion(dataSource, issued(),
+                new PolicyEndorsementRequest(1, LocalDate.parse(effectiveDate), "REBUILD_AMOUNT", new BigDecimal(amount)));
+    }
+    private static Object getRaceResult(Future<PolicySnapshot> future) throws Exception {
+        try { return future.get(10, TimeUnit.SECONDS); }
+        catch (ExecutionException e) { return e.getCause(); }
+    }
+    private static PolicyLifecycleService serviceStatic() { return new PolicyLifecycleService(CLOCK); }
+    private static Clock clockOn(String date) { return Clock.fixed(Instant.parse(date + "T12:00:00Z"), ZoneOffset.UTC); }
 }

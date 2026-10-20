@@ -2,13 +2,13 @@
 
 ## Contract
 
-**Learner-owned seam:** `PolicyLifecycleRepository.endorseAtomically`
+**Learner-owned seam:** `PolicyLifecycleService.endorseAtExpectedVersion(dataSource, policy, request)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180 minutes total: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
 ### Expected behavior
 
-Concurrent endorsements using the same expected version yield exactly one accepted write; loser gets 409 and no partial history row.
+Two synchronized writers with expected version 1 race against persisted version 1. Exactly one accepted write wins and the loser returns `VersionConflictException`. PostgreSQL must contain version 2 and only the issue event plus the winning endorsement event—no partial loser row.
 
 ## Acceptance and expected red state
 
@@ -26,9 +26,13 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Read the mapped AWS Developer Associate DVA-C02 objective as a comparison for the engineering concept; apply it locally with Java/Spring Boot only. No AWS account, service, or setup is part of this contract. In the remaining time, make one small architecture sketch or ADR note and answer one understanding prompt in your own words.
+Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
 
-**AWS mapping:** Domain 1, Skill 1.3.2: manage consistency in application data. See the [official DVA-C02 exam guide](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html), [Domain 1](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html), [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain2.html), [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain3.html), and [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain4.html). AWS content is a comparison only; no cloud account, service, or setup is required.
+- [PostgreSQL 14 transaction isolation — Section 13.2.1, Read Committed](https://www.postgresql.org/docs/14/transaction-iso.html)
+
+**Design sketch:** Optimistic version conflict — sketch the invariant, enforcing layer, and failure response.
+
+**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
 
 ## Evidence allocation (10 minutes)
 
@@ -36,7 +40,7 @@ Record command and result in `evidence/continuation-31-44/day-39.json`. Include 
 
 ## DSA block (60 minutes)
 
-New Top 150 anchor: LeetCode 19 Remove Nth Node From End of List (lead/lag pointers). First attempt planned 2026-11-27; forecast reviews 2026-11-30, 2026-12-04, 2026-12-18 only if attempted as planned. Recompute from the learner's actual first attempt.
+New Top 150 anchor: [LeetCode 19 Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) (lead/lag pointers). First attempt planned 2026-11-27; forecast reviews 2026-11-30, 2026-12-04, 2026-12-18 only if attempted as planned. Recompute from the learner's actual first attempt.
 
 - 25 minutes pattern study/retrieval
 - 20 minutes independent attempt or cold review

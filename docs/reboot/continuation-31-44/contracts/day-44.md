@@ -8,17 +8,17 @@
 
 ### Expected behavior
 
-The completed learner slice must prove issue, replay, endorsement, history, scheduled cancellation and readback through the React browser, Spring API and disposable PostgreSQL, including restart persistence. The fixed starter test currently seeds the lifecycle fixture in PostgreSQL and reaches the named integration TODO; it does not claim the browser-to-database runtime is already installed. The runtime harness remains pending until the API and servicing UI are implemented.
+The completed learner slice must prove issue, replay, endorsement, history, scheduled cancellation and readback through the React browser, Spring API and disposable PostgreSQL, including restart persistence. A fixed learner acceptance now drives issue, replay, endorsement, history, and cancellation requests from a real Chromium page through a Spring Boot server to an isolated PostgreSQL instance; it is expected red at learner TODOs. A separate instructor transport smoke writes and reads a synthetic harness row through the browser and Spring API, restarts the Spring server while keeping PostgreSQL alive, then confirms persisted readback. That smoke validates the reproducible runtime harness only; it does not claim lifecycle behavior is implemented.
 
 ## Acceptance and expected red state
 
 Fixed acceptance tests are learner-owned behavior checks; they must assert the cases above and must not be weakened to make the starter green. Until the TODO is implemented, a valid operation is expected to fail at the named TODO. Invalid-input and non-mutation cases should be asserted independently where fixtures permit. Record the exact command, exit code, failing assertions/errors, and TODO reached in `evidence/continuation-31-44/day-44.json`. Instructor infrastructure checks are separate and must pass. No learner completion is inferred from a contract or from infrastructure tests.
 
 **Acceptance selector:** `src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java#day44LifecycleIntegrationSeamMustVerifyReadback`
-**Infrastructure selector:** `assignments.reboot.ContinuationManifestInfrastructureTest`
+**Infrastructure selector:** `assignments.reboot.Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart` plus `assignments.reboot.ContinuationManifestInfrastructureTest`
 
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test`
-**Instructor infrastructure command:** `./mvnw -Dtest=ContinuationManifestInfrastructureTest test`
+**Learner acceptance commands:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test` and `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test`
+**Instructor infrastructure commands:** `npm --prefix frontend run build` then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart,ContinuationManifestInfrastructureTest test`. CI installs Chromium through Playwright and uses its managed executable.
 
 ## Build / test allocation (85 minutes)
 
@@ -26,9 +26,14 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Read the mapped AWS Developer Associate DVA-C02 objective as a comparison for the engineering concept; apply it locally with Java/Spring Boot only. No AWS account, service, or setup is part of this contract. In the remaining time, make one small architecture sketch or ADR note and answer one understanding prompt in your own words.
+Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
 
-**AWS mapping:** Domain 3, Skill 3.2.2: integration testing; Domain 4: deployment readiness, monitoring, and observability evidence. See the [official DVA-C02 exam guide](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html), [Domain 1](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html), [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain2.html), [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain3.html), and [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain4.html). AWS content is a comparison only; no cloud account, service, or setup is required.
+- [Spring Boot application testing — Real server and RANDOM_PORT testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html)
+- [Chrome Headless mode — Run Chromium browser automation in headless mode](https://developer.chrome.com/docs/automation-and-testing/headless)
+
+**Design sketch:** Lifecycle integration acceptance contract — sketch the invariant, enforcing layer, and failure response.
+
+**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
 
 ## Evidence allocation (10 minutes)
 

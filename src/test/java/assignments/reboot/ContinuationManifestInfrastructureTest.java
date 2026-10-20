@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.net.URI;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,6 +26,41 @@ class ContinuationManifestInfrastructureTest {
         JsonNode cards = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
         assertEquals(14, manifest.get("days").size());
         assertEquals(14, cards.get("cards").size());
+        for (JsonNode card : cards.get("cards")) {
+            JsonNode engineering = card.get("engineering");
+            assertEquals(engineering.get("acceptance_test_path").asString(),
+                    engineering.get("acceptance_reference").asString());
+            for (String field : new String[]{"contract_path", "acceptance_reference", "evidence_reference",
+                    "acceptance_test_path", "infrastructure_test_path"}) {
+                assertTrue(Files.isRegularFile(Path.of(engineering.get(field).asString())),
+                        "Broken Scrum manifest link in " + field + " for Day " + card.get("day_number").asInt());
+            }
+            assertTrue(Files.isRegularFile(Path.of(card.get("java_dsa").get("guide_path").asString())));
+            assertTrue(Files.isRegularFile(Path.of(card.get("java_dsa").get("review_queue_command").asString()
+                    .split(" ")[1])));
+            assertTrue(Files.isRegularFile(Path.of(card.get("java_dsa").get("review_queue_test_command").asString()
+                    .split(" ")[3])));
+            JsonNode concept = engineering.get("concept_course");
+            assertEquals(25, concept.get("minutes").asInt());
+            assertEquals(10, concept.get("allocation_minutes").get("focused_reading").asInt());
+            assertEquals(10, concept.get("allocation_minutes").get("design_sketch").asInt());
+            assertEquals(5, concept.get("allocation_minutes").get("teachback").asInt());
+            assertTrue(concept.get("resources").size() > 0);
+            for (JsonNode resource : concept.get("resources")) {
+                assertTrue(URI.create(resource.get("url").asString()).getScheme().equals("https"));
+                assertFalse(resource.get("title").asString().isBlank());
+                assertFalse(resource.get("section").asString().isBlank());
+            }
+            JsonNode dsa = card.get("java_dsa");
+            if (!dsa.get("problem_id").isNull()) {
+                assertTrue(dsa.get("problem_url").asString().startsWith("https://leetcode.com/problems/"));
+                assertTrue(dsa.get("problem_url").asString().endsWith("/"));
+                if (Set.of(206, 143).contains(dsa.get("problem_id").asInt())) {
+                    assertTrue(dsa.get("plan_membership").asString().contains("supplemental"));
+                    assertTrue(card.get("title").asString().contains("supplemental bridge"));
+                }
+            }
+        }
         JsonNode revisionPolicy = manifest.get("dsa_revision_policy");
         assertEquals("actual_first_attempt_date from docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
                 revisionPolicy.get("due_date_anchor").asString());
@@ -62,11 +98,22 @@ class ContinuationManifestInfrastructureTest {
             assertTrue(Files.isRegularFile(Path.of(eng.get("evidence_reference").asString())));
             assertTrue(Files.isRegularFile(Path.of(eng.get("acceptance_test_path").asString())));
             assertTrue(Files.isRegularFile(Path.of(eng.get("infrastructure_test_path").asString())));
+            JsonNode concept = eng.get("concept_course");
+            assertEquals(25, concept.get("minutes").asInt());
+            assertEquals(10, concept.get("allocation_minutes").get("focused_reading").asInt());
+            assertEquals(10, concept.get("allocation_minutes").get("design_sketch").asInt());
+            assertEquals(5, concept.get("allocation_minutes").get("teachback").asInt());
+            assertTrue(concept.get("resources").size() > 0);
+            for (JsonNode resource : concept.get("resources")) {
+                assertEquals("https", URI.create(resource.get("url").asString()).getScheme());
+                assertFalse(resource.get("section").asString().isBlank());
+            }
             assertTrue(eng.get("acceptance_commands").isArray() && eng.get("acceptance_commands").size() > 0);
             assertTrue(eng.get("infrastructure_commands").isArray() && eng.get("infrastructure_commands").size() > 0);
             assertTrue(eng.get("acceptance_commands").get(0).asString().startsWith("./mvnw")
                     || eng.get("acceptance_commands").get(0).asString().startsWith("cd frontend && npm"));
-            assertTrue(eng.get("infrastructure_commands").get(0).asString().startsWith("./mvnw"));
+            assertTrue(eng.get("infrastructure_commands").get(0).asString().startsWith("./mvnw")
+                    || eng.get("infrastructure_commands").get(0).asString().startsWith("npm --prefix frontend"));
             assertEquals(60, day.get("java_dsa").get("budget_minutes").asInt());
             JsonNode dsa = day.get("java_dsa");
             JsonNode card = cards.get("cards").get(i);

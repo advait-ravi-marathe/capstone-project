@@ -1,5 +1,5 @@
 {
-  "title": "CoverStory continuation Days 31\u201344",
+  "title": "CoverStory continuation Days 31–44",
   "effective_start": "2026-11-19",
   "effective_end": "2026-12-02",
   "status_semantics": {
@@ -74,7 +74,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring MVC controller method arguments",
+              "section": "Principal, @RequestBody, and request-bound arguments",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Issue eligibility and quote linkage — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -100,7 +118,8 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -135,7 +154,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+              "section": "Retries and semantic equivalence; same client request ID, different intent",
+              "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Idempotent policy issue — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -147,7 +184,8 @@
             "planned_anchor_date": "2026-11-17",
             "review_interval_days": 3,
             "planned_due_date": "2026-11-20",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
           }
         ],
         "budget_minutes": 60,
@@ -194,7 +232,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java 21 Record API",
+              "section": "Record components and shallow immutability",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Immutable issue snapshot — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -220,7 +276,9 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-21",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/reverse-linked-list/",
+        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -255,7 +313,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring MVC controller return types",
+              "section": "ResponseEntity and response status/body",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Issue endpoint and stable errors — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -267,7 +343,8 @@
             "planned_anchor_date": "2026-11-19",
             "review_interval_days": 3,
             "planned_due_date": "2026-11-22",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
           }
         ],
         "budget_minutes": 60,
@@ -309,12 +386,36 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test"
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35ReceiptConflictRollsBackPolicyAndEvent test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "PostgreSQL 14 tutorial: transactions",
+              "section": "Section 3.4, transactions",
+              "url": "https://www.postgresql.org/docs/14/tutorial-transactions.html"
+            },
+            {
+              "title": "JDBC transactions tutorial",
+              "section": "Commit and rollback boundaries",
+              "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html"
+            }
+          ],
+          "version_note": "PostgreSQL 14 documentation matches the pinned fixture server; Oracle JDBC tutorial is stable background material.",
+          "design_prompt": "Atomic PostgreSQL issuance — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -340,7 +441,8 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-23",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -375,7 +477,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Security method authorization",
+              "section": "How Method Security Works (conceptual model only; annotations are not assumed enabled)",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html"
+            }
+          ],
+          "version_note": "Method-security documentation is conceptual only; this task does not assume method-security annotations are enabled.",
+          "design_prompt": "Owner-scoped policy read — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -387,7 +507,8 @@
             "planned_anchor_date": "2026-11-21",
             "review_interval_days": 3,
             "planned_due_date": "2026-11-24",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/reverse-linked-list/"
           }
         ],
         "budget_minutes": 60,
@@ -434,7 +555,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring MVC validation",
+              "section": "Validation for @RequestMapping handler methods",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Endorsement command validation — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -460,7 +599,9 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-25",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/reorder-list/",
+        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -495,7 +636,30 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "PostgreSQL 14 constraints",
+              "section": "Unique, check, not-null, and foreign-key constraints",
+              "url": "https://www.postgresql.org/docs/14/ddl-constraints.html"
+            },
+            {
+              "title": "PostgreSQL 14 sorting rows",
+              "section": "ORDER BY and deterministic ordering",
+              "url": "https://www.postgresql.org/docs/14/queries-order.html"
+            }
+          ],
+          "version_note": "PostgreSQL 14 references match the pinned fixture server.",
+          "design_prompt": "Append immutable endorsement — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -507,7 +671,8 @@
             "planned_anchor_date": "2026-11-19",
             "review_interval_days": 7,
             "planned_due_date": "2026-11-26",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
           },
           {
             "problem_id": 21,
@@ -515,7 +680,8 @@
             "planned_anchor_date": "2026-11-23",
             "review_interval_days": 3,
             "planned_due_date": "2026-11-26",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
           }
         ],
         "budget_minutes": 60,
@@ -562,7 +728,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "PostgreSQL 14 transaction isolation",
+              "section": "Section 13.2.1, Read Committed",
+              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+            }
+          ],
+          "version_note": "PostgreSQL 14 references match the pinned fixture server.",
+          "design_prompt": "Optimistic version conflict — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -588,7 +772,8 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-27",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -623,7 +808,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java 21 LocalDate API",
+              "section": "now(Clock), isBefore, isAfter, isEqual",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Schedule cancellation — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -635,7 +838,8 @@
             "planned_anchor_date": "2026-11-21",
             "review_interval_days": 7,
             "planned_due_date": "2026-11-28",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/reverse-linked-list/"
           },
           {
             "problem_id": 143,
@@ -643,7 +847,8 @@
             "planned_anchor_date": "2026-11-25",
             "review_interval_days": 3,
             "planned_due_date": "2026-11-28",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/reorder-list/"
           }
         ],
         "budget_minutes": 60,
@@ -690,7 +895,30 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java 21 Clock API",
+              "section": "Fixed and offset clocks for deterministic boundaries",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+            },
+            {
+              "title": "Java 21 IdentityHashMap API",
+              "section": "identity-based rather than equals-based key semantics",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/IdentityHashMap.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Apply due cancellation — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -716,7 +944,8 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-29",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -751,7 +980,25 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java enum tutorial",
+              "section": "Enum types for a closed set of explicit states",
+              "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Block post-cancellation writes — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -763,7 +1010,8 @@
             "planned_anchor_date": "2026-11-23",
             "review_interval_days": 7,
             "planned_due_date": "2026-11-30",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
           },
           {
             "problem_id": 19,
@@ -771,7 +1019,8 @@
             "planned_anchor_date": "2026-11-27",
             "review_interval_days": 3,
             "planned_due_date": "2026-11-30",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
           }
         ],
         "budget_minutes": 60,
@@ -818,7 +1067,30 @@
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "React conditional rendering",
+              "section": "Loading, empty, auth, not-found, and success states",
+              "url": "https://react.dev/learn/conditional-rendering"
+            },
+            {
+              "title": "React choosing state structure",
+              "section": "Avoid contradictory UI state",
+              "url": "https://react.dev/learn/choosing-the-state-structure"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "React servicing summary — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "new_pattern_anchor",
@@ -844,7 +1116,8 @@
           "active_retrieval_and_error_log": 15
         },
         "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-01",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "problem_url": "https://leetcode.com/problems/add-two-numbers/"
       },
       "dsa_role": "new_pattern_anchor",
       "mandatory_new_problem": true,
@@ -874,12 +1147,37 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test"
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test"
         ],
-        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/reboot/Day44BrowserTransportInfrastructureTest.java",
         "infrastructure_commands": [
-          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
-        ]
+          "npm --prefix frontend run build",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart,ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Boot application testing",
+              "section": "Real server and RANDOM_PORT testing",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            },
+            {
+              "title": "Chrome Headless mode",
+              "section": "Run Chromium browser automation in headless mode",
+              "url": "https://developer.chrome.com/docs/automation-and-testing/headless"
+            }
+          ],
+          "version_note": "Current official documentation; match examples to pinned repository versions.",
+          "design_prompt": "Lifecycle integration acceptance contract — sketch the invariant, enforcing layer, and failure response.",
+          "teachback_prompt": "Explain one invariant, where it is enforced, and what test/response demonstrates it."
+        }
       },
       "java_dsa": {
         "mode": "review_and_consolidation",
@@ -891,7 +1189,8 @@
             "planned_anchor_date": "2026-11-25",
             "review_interval_days": 7,
             "planned_due_date": "2026-12-02",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/reorder-list/"
           },
           {
             "problem_id": 138,
@@ -899,7 +1198,8 @@
             "planned_anchor_date": "2026-11-29",
             "review_interval_days": 3,
             "planned_due_date": "2026-12-02",
-            "status": "pending_actual_attempt"
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
           }
         ],
         "budget_minutes": 60,
@@ -1199,7 +1499,8 @@
           "2026-12-08"
         ],
         "status": "awaiting_actual_attempt",
-        "completion_claimed": false
+        "completion_claimed": false,
+        "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
       }
     ]
   }

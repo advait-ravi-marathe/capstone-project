@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Learner-owned seam:** `PolicyLifecycleRepository.issueAtomically`
+**Learner-owned seam:** `PolicyLifecycleService.persistIssueAtomically(dataSource, request, authenticatedOwnerId)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180 minutes total: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
@@ -17,7 +17,7 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 **Acceptance selector:** `src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt`
 **Infrastructure selector:** `assignments.reboot.ContinuationManifestInfrastructureTest`
 
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test`
+**Learner acceptance commands:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test` and `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35ReceiptConflictRollsBackPolicyAndEvent test`
 **Instructor infrastructure command:** `./mvnw -Dtest=ContinuationManifestInfrastructureTest test`
 
 ## Build / test allocation (85 minutes)
@@ -26,9 +26,14 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Read the mapped AWS Developer Associate DVA-C02 objective as a comparison for the engineering concept; apply it locally with Java/Spring Boot only. No AWS account, service, or setup is part of this contract. In the remaining time, make one small architecture sketch or ADR note and answer one understanding prompt in your own words.
+Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
 
-**AWS mapping:** Domain 3, Skill 3.2.2: test integrations with external dependencies; locally use disposable PostgreSQL only. See the [official DVA-C02 exam guide](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html), [Domain 1](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html), [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain2.html), [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain3.html), and [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain4.html). AWS content is a comparison only; no cloud account, service, or setup is required.
+- [PostgreSQL 14 tutorial: transactions — Section 3.4, transactions](https://www.postgresql.org/docs/14/tutorial-transactions.html)
+- [JDBC transactions tutorial — Commit and rollback boundaries](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html)
+
+**Design sketch:** Atomic PostgreSQL issuance — sketch the invariant, enforcing layer, and failure response.
+
+**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
 
 ## Evidence allocation (10 minutes)
 
@@ -36,7 +41,7 @@ Record command and result in `evidence/continuation-31-44/day-35.json`. Include 
 
 ## DSA block (60 minutes)
 
-New Top 150 anchor: LeetCode 21 Merge Two Sorted Lists (two-pointer merge). First attempt planned 2026-11-23; forecast reviews 2026-11-26, 2026-11-30, 2026-12-14 only if attempted as planned. Recompute from the learner's actual first attempt.
+New Top 150 anchor: [LeetCode 21 Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) (two-pointer merge). First attempt planned 2026-11-23; forecast reviews 2026-11-26, 2026-11-30, 2026-12-14 only if attempted as planned. Recompute from the learner's actual first attempt.
 
 - 25 minutes pattern study/retrieval
 - 20 minutes independent attempt or cold review

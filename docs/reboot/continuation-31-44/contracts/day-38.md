@@ -26,9 +26,14 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Read the mapped AWS Developer Associate DVA-C02 objective as a comparison for the engineering concept; apply it locally with Java/Spring Boot only. No AWS account, service, or setup is part of this contract. In the remaining time, make one small architecture sketch or ADR note and answer one understanding prompt in your own words.
+Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
 
-**AWS mapping:** Domain 1, Skill 1.3.7: manage application data and lifecycle changes. See the [official DVA-C02 exam guide](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html), [Domain 1](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html), [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain2.html), [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain3.html), and [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain4.html). AWS content is a comparison only; no cloud account, service, or setup is required.
+- [PostgreSQL 14 constraints — Unique, check, not-null, and foreign-key constraints](https://www.postgresql.org/docs/14/ddl-constraints.html)
+- [PostgreSQL 14 sorting rows — ORDER BY and deterministic ordering](https://www.postgresql.org/docs/14/queries-order.html)
+
+**Design sketch:** Append immutable endorsement — sketch the invariant, enforcing layer, and failure response.
+
+**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
 
 ## Evidence allocation (10 minutes)
 

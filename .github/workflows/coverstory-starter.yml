@@ -2,7 +2,7 @@ name: CoverStory starter checks
 
 on:
   push:
-    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30]
+    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44]
   pull_request:
     branches: [main]
 
@@ -24,14 +24,17 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: frontend/package-lock.json
-      - name: Verify Java infrastructure and instructor harness
-        run: ./mvnw -B -ntp test
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
+      - name: Install Chromium for the Day 44 transport harness
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
       - name: Frontend build
         working-directory: frontend
         run: npm run build
+      - name: Verify Java infrastructure and instructor harness
+        run: ./mvnw -B -ntp test
       - name: Frontend instructor tests
         working-directory: frontend
         run: npm test

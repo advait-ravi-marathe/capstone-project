@@ -2,13 +2,13 @@
 
 ## Contract
 
-**Learner-owned seam:** `PolicyIssueRequest / PolicyLifecycleService.issue`
+**Learner-owned seam:** `PolicyLifecycleService.validateIssue(request, PolicyIssueFacts)` and `PolicyLifecycleService.issue(request, authenticatedOwnerId)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180 minutes total: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
 ### Expected behavior
 
-Accept only an owned, selected, eligible synthetic HomeSecure quote; reject missing, stale, foreign-journey and ineligible quote references without creating a policy. Resolve `ownerId` from the authenticated server principal; never trust an owner identifier from client JSON.
+Accept only an owned, selected, eligible synthetic HomeSecure quote; reject missing, stale, foreign-journey, foreign-version and ineligible quote references without creating a policy. The fixed facts fixture supplies authenticated owner, quote existence, quote owner, journey, quote version, selected flag, eligibility result, and expiry date; assertions cover valid, missing, foreign-owner, unselected, stale, ineligible, foreign-journey and foreign-version cases. `PolicyIssueRequest` has no owner field, so identity comes only from the authenticated server principal.
 
 ## Acceptance and expected red state
 
@@ -26,9 +26,13 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-Read the mapped AWS Developer Associate DVA-C02 objective as a comparison for the engineering concept; apply it locally with Java/Spring Boot only. No AWS account, service, or setup is part of this contract. In the remaining time, make one small architecture sketch or ADR note and answer one understanding prompt in your own words.
+Use this focused sequence: **10 minutes** read the named official documentation section(s) below; **10 minutes** sketch the design decision for this day's contract; **5 minutes** explain one invariant and its test to yourself. The sketch and teach-back fit inside this 25-minute allocation. No course lecture number is asserted. The AWS exam objective is a secondary curriculum alignment label only; this is local Java/Spring/PostgreSQL/React study, with no cloud setup.
 
-**AWS mapping:** Domain 1, Skill 1.1.6: develop API actions and versioned interfaces. See the [official DVA-C02 exam guide](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html), [Domain 1](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain1.html), [Domain 2](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain2.html), [Domain 3](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain3.html), and [Domain 4](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02-domain4.html). AWS content is a comparison only; no cloud account, service, or setup is required.
+- [Spring MVC controller method arguments — Principal, @RequestBody, and request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html)
+
+**Design sketch:** Issue eligibility and quote linkage — sketch the invariant, enforcing layer, and failure response.
+
+**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
 
 ## Evidence allocation (10 minutes)
 
@@ -36,7 +40,7 @@ Record command and result in `evidence/continuation-31-44/day-31.json`. Include 
 
 ## DSA block (60 minutes)
 
-New Top 150 anchor: LeetCode 141 Linked List Cycle (fast/slow pointers). First attempt planned 2026-11-19; forecast reviews 2026-11-22, 2026-11-26, 2026-12-10 only if attempted as planned. Recompute from the learner's actual first attempt.
+New Top 150 anchor: [LeetCode 141 Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/) (fast/slow pointers). First attempt planned 2026-11-19; forecast reviews 2026-11-22, 2026-11-26, 2026-12-10 only if attempted as planned. Recompute from the learner's actual first attempt.
 
 - 25 minutes pattern study/retrieval
 - 20 minutes independent attempt or cold review
