@@ -97,7 +97,7 @@
   },
   "board_changes": false,
   "main_branch_changes": false,
-  "notes": "Temporary witness passes establish test-harness behavior only, not learner completion. The restored starter is intentionally red at named learner TODOs. The new packaged selector covers local recovery CLI/JAR/PostgreSQL, not HTTP or Chromium. Existing protected issuance/renewal and browser regression selectors remain separate. Main, Scrum board, and original dirty checkout were not changed. This receipt is included in the tested code commit; if later updated, that receipt-only descendant requires separate exact-head CI.",
+  "notes": "Temporary witness passes establish test-harness behavior only, not learner completion. The restored starter is intentionally red at named learner TODOs. The new packaged selector covers local recovery CLI/JAR/PostgreSQL, not HTTP or Chromium. Existing protected issuance/renewal and browser regression selectors remain separate. Main, Scrum board, and original dirty checkout were not changed. Runtime code was tested at 5b762e59d5fba72148c67abdcdd13bb77eed36e4 with exact-head CI #52 success. This receipt was corrected in metadata-only descendant ea6e3a1a0d4b374ff95b153426022619669a077a, which also passed exact-head CI #53; the next receipt-only correction has separate final-head CI.",
   "tested_code_sha": "5b762e59d5fba72148c67abdcdd13bb77eed36e4",
   "code_commit_exact_head_ci": {
     "workflow": "CoverStory starter checks",
@@ -109,5 +109,17 @@
     "conclusion": "success",
     "completed_at": "2026-10-20T20:56:38Z",
     "source": "Authenticated GitHub Actions run and job read; exact head SHA matched."
+  },
+  "receipt_commit_ci": {
+    "commit_sha": "ea6e3a1a0d4b374ff95b153426022619669a077a",
+    "workflow": "CoverStory starter checks",
+    "run_number": 53,
+    "run_id": 39496348697,
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39496348697",
+    "head_sha": "ea6e3a1a0d4b374ff95b153426022619669a077a",
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-10-20T20:58:27Z",
+    "source": "Authenticated GitHub Actions run/jobs read; exact head matched."
   }
 }
