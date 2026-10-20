@@ -1,0 +1,327 @@
+{
+  "title": "Days 71–84 planning export; documentation only, no board writes",
+  "story_count": 14,
+  "sprint_boundaries": [
+    {
+      "name": "Sprint 6",
+      "dates": "2026-12-29..2027-01-11",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "cards": [
+    {
+      "day_number": 71,
+      "date": "2026-12-29",
+      "title": "Establish preview contention baseline and verify prerequisites",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-71.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-71.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-29",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 72,
+      "date": "2026-12-30",
+      "title": "Validate finite preview capacity policy",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-72.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewCapacityPolicyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-72.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityPolicyAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-30",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 73,
+      "date": "2026-12-31",
+      "title": "Implement immediate two-permit preview admission; DSA LC 112 Path Sum",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-73.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewAdmissionAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-73.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewAdmissionAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "problem_id": 112,
+        "problem_url": "https://leetcode.com/problems/path-sum/",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-31",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "acceptance_test_path": "src/test/java/assignments/dsa/PathSumAcceptanceTest.java",
+        "acceptance_command": "./mvnw -Plearner-tests -Dtest=PathSumAcceptanceTest test"
+      }
+    },
+    {
+      "day_number": 74,
+      "date": "2027-01-01",
+      "title": "Make preview lease release atomic and idempotent",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-74.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewLeaseAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-74.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewLeaseAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-01",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 75,
+      "date": "2027-01-02",
+      "title": "Bound the existing owner-scoped read adapter",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-75.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/BoundedPolicyRenewalReadStoreAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-75.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/BoundedPolicyRenewalReadStoreAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-02",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 76,
+      "date": "2027-01-03",
+      "title": "Prove maximum concurrency and no permit leaks",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-76.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewAdmissionConcurrencyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-76.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewAdmissionConcurrencyAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-03",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 77,
+      "date": "2027-01-04",
+      "title": "Verify recovery without adding a feature",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-77.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewRecoveryAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-77.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewRecoveryAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-04",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 78,
+      "date": "2027-01-05",
+      "title": "Map busy and unavailable outcomes safely",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-78.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewCapacityHttpAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-78.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityHttpAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-05",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 79,
+      "date": "2027-01-06",
+      "title": "Wire one singleton gate around the existing route; DSA LC 230 Kth Smallest Element in a BST",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-79.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-79.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "problem_id": 230,
+        "problem_url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-06",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "acceptance_test_path": "src/test/java/assignments/dsa/KthSmallestInBstAcceptanceTest.java",
+        "acceptance_command": "./mvnw -Plearner-tests -Dtest=KthSmallestInBstAcceptanceTest test"
+      }
+    },
+    {
+      "day_number": 80,
+      "date": "2027-01-07",
+      "title": "Record fixed-cardinality preview outcomes",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-80.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-80.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-07",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 81,
+      "date": "2027-01-08",
+      "title": "Show an accessible manual retry state",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-81.md",
+        "acceptance_reference": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "evidence_reference": "evidence/continuation-71-84/day-81.json",
+        "acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "acceptance_command": "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-08",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 82,
+      "date": "2027-01-09",
+      "title": "Prove finite recovery under real Hikari pool exhaustion",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-82.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewPoolRecoveryAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-82.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewPoolRecoveryAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-09",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 83,
+      "date": "2027-01-10",
+      "title": "Prove packaged browser recovery under a real database lock",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-83.md",
+        "acceptance_reference": null,
+        "evidence_reference": "evidence/continuation-71-84/day-83.json",
+        "acceptance_test_path": null,
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-10",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    },
+    {
+      "day_number": 84,
+      "date": "2027-01-11",
+      "title": "Integrate recovery evidence and independent assessment",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-84.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-84.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-11",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      }
+    }
+  ]
+}

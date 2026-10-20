@@ -157,3 +157,8 @@ introduced.
 policy lifecycle with a read-only, non-binding renewal preview. Its canonical
 manifest and Scrum owner export are additive planning artifacts; neither edits
 the board or claims learner completion.
+
+[Days 71–84](continuation-71-84/README.md) continue the same read-only renewal
+preview with a bounded synchronous capacity gate and recovery evidence. The
+manifest and Story export are documentation only; this work does not update
+the Scrum board.

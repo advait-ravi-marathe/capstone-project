@@ -1,0 +1,15 @@
+{
+  "day": 82,
+  "date": "2027-01-09",
+  "status": "not_attempted",
+  "actual_attempt_date": null,
+  "commands": [],
+  "results": [],
+  "learner_changed_paths": [],
+  "blockers": [],
+  "instructor_harness_validation": {
+    "status": "passed_with_temporary_instructor_witnesses_restored",
+    "command": "./mvnw -Plearner-tests -Dtest=PreviewPoolRecoveryAcceptanceTest test (documented JDK/Maven settings)",
+    "result": "1/1 passed against embedded PostgreSQL 18.6 and HikariCP 7.0.2; witnesses for Day73 admission, Day74 lease close, and Day75 delegate were restored byte-for-byte; not learner completion"
+  }
+}

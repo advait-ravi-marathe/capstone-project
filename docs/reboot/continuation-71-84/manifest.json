@@ -1,0 +1,1128 @@
+{
+  "title": "CoverStory bounded synchronous renewal-preview reads: Days 71–84",
+  "base_sha": "db2caf3adabf11e6d619ab9a7f7e1f5aa40f2a24",
+  "effective_start": "2026-12-29",
+  "effective_end": "2027-01-11",
+  "status_semantics": "Contracts and seams are plans. Scaffold, learner implementation, runtime verification and integration status are independent. Dates never imply learner completion.",
+  "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new route, schema change, fault route, or infrastructure for its own sake. Preserve Day48 SQL ownership.",
+  "capacity_decision": {
+    "application_permits": 2,
+    "existing_hikari_maximum_pool_size": 4,
+    "connection_timeout_millis": 1000,
+    "connection_timeout_bounds_millis": [
+      250,
+      30000
+    ],
+    "execution_model": "synchronous servlet MVC and JDBC",
+    "admission": "immediate nonblocking rejection; no wait queue",
+    "reserve": "two Hikari slots remain for non-preview work"
+  },
+  "daily_budget_minutes": {
+    "total": 180,
+    "java_dsa": 60,
+    "engineering": 120,
+    "engineering_allocation_minutes": {
+      "implementation_and_testing": 85,
+      "concept_or_course": 25,
+      "evidence": 10
+    }
+  },
+  "sprints": [
+    {
+      "name": "Sprint 6",
+      "dates": "2026-12-29..2027-01-11",
+      "days_in_this_batch": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84
+      ],
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14,
+      "unpopulated_dates": []
+    }
+  ],
+  "dsa_revision_policy": {
+    "daily_budget_minutes": 60,
+    "intervals_days": [
+      3,
+      7,
+      21
+    ],
+    "due_date_anchor": "actual first-attempt date only",
+    "actual_attempt_dates_supplied": false,
+    "retrieval_method": "cold recall and re-solve; do not reread",
+    "failed_review_rule": "Failed due reviews displace new work within the same 60-minute block."
+  },
+  "days": [
+    {
+      "day": 71,
+      "date": "2026-12-29",
+      "title": "Establish preview contention baseline and verify prerequisites",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-71.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Record the existing synchronous path and fixed pool ceiling; no runtime feature.",
+        "learner_seam": "Record the existing synchronous path and fixed pool ceiling; no runtime feature.",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-71.md",
+        "evidence_reference": "evidence/continuation-71-84/day-71.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day71BaselineAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "HikariCP configuration knobs",
+              "section": "maximumPoolSize and connectionTimeout",
+              "url": "https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Record the request path, one overload failure and the layer that must bound it.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Baseline the read route and identify unfinished ownership/readiness prerequisites.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-29",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 72,
+      "date": "2026-12-30",
+      "title": "Validate finite preview capacity policy",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-72.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewCapacityPolicy constructor",
+        "learner_seam": "PreviewCapacityPolicy.validate",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-72.md",
+        "evidence_reference": "evidence/continuation-71-84/day-72.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityPolicyAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewCapacityPolicyAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "HikariCP configuration knobs",
+              "section": "connectionTimeout and maximumPoolSize",
+              "url": "https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Sketch the inequality that reserves two pool connections.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Require positive capacities, permits <= pool maximum, and connectionTimeoutMillis in the configured 250..30000ms bounds.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-30",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 73,
+      "date": "2026-12-31",
+      "title": "Implement immediate two-permit preview admission; DSA LC 112 Path Sum",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-73.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewAdmission.tryEnter",
+        "learner_seam": "PreviewAdmission.tryEnter",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-73.md",
+        "evidence_reference": "evidence/continuation-71-84/day-73.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewAdmissionAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewAdmissionAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java Semaphore API",
+              "section": "tryAcquire",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Draw two-permit transitions and immediate rejection.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Acquire without waiting; return empty immediately when full; accepted lease owns one release.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 112,
+        "problem_name": "Path Sum",
+        "concept": "tree recursion with remaining target",
+        "problem_url": "https://leetcode.com/problems/path-sum/",
+        "plan_membership": "Top Interview 150 membership not independently verified",
+        "planned_first_attempt_date": "2026-12-31",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          {
+            "interval_days": 3,
+            "planned_due_date": "2027-01-03",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "interval_days": 7,
+            "planned_due_date": "2027-01-07",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "interval_days": 21,
+            "planned_due_date": "2027-01-21",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-31",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "acceptance_test_path": "src/test/java/assignments/dsa/PathSumAcceptanceTest.java",
+        "acceptance_command": "./mvnw -Plearner-tests -Dtest=PathSumAcceptanceTest test"
+      },
+      "mandatory_new_problem": true
+    },
+    {
+      "day": 74,
+      "date": "2027-01-01",
+      "title": "Make preview lease release atomic and idempotent",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-74.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewLease.close",
+        "learner_seam": "PreviewLease.close",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-74.md",
+        "evidence_reference": "evidence/continuation-71-84/day-74.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewLeaseAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewLeaseAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java AtomicBoolean API",
+              "section": "compareAndSet",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/atomic/AtomicBoolean.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Show how check-then-set races can double-release.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Concurrent/repeated close invokes release callback exactly once.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-01",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 75,
+      "date": "2027-01-02",
+      "title": "Bound the existing owner-scoped read adapter",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-75.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "BoundedPolicyRenewalReadStore.findByPolicyIdAndOwnerId",
+        "learner_seam": "BoundedPolicyRenewalReadStore.findByPolicyIdAndOwnerId",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-75.md",
+        "evidence_reference": "evidence/continuation-71-84/day-75.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/BoundedPolicyRenewalReadStoreAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=BoundedPolicyRenewalReadStoreAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring JDBC exception translation",
+              "section": "CannotGetJdbcConnectionException",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Trace exact exception types without parsing messages.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Reject before delegate when full; preserve policy and owner IDs; release on success, empty and failure; wrap only CannotGetJdbcConnectionException.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-02",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 76,
+      "date": "2027-01-03",
+      "title": "Prove maximum concurrency and no permit leaks",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-76.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Latch-controlled acceptance",
+        "learner_seam": "Latch-controlled acceptance",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-76.md",
+        "evidence_reference": "evidence/continuation-71-84/day-76.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewAdmissionConcurrencyAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewAdmissionConcurrencyAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java CountDownLatch API",
+              "section": "await/countDown and happens-before",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Sketch latch schedule; distinguish barrier evidence from sleeps.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Observe at most two delegate entries; reject third immediately; release on all outcomes and double close.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "anchor_day": 73,
+            "problem_id": 112,
+            "planned_anchor_date": "2026-12-31",
+            "planned_due_date": "2027-01-03",
+            "review_interval_days": 3,
+            "actual_first_attempt_date": null,
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-03",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 77,
+      "date": "2027-01-04",
+      "title": "Verify recovery without adding a feature",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-77.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Mocked rejection/recovery test",
+        "learner_seam": "Mocked rejection/recovery test",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-77.md",
+        "evidence_reference": "evidence/continuation-71-84/day-77.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewRecoveryAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java Semaphore API",
+              "section": "permit release and reacquisition",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Identify recovery signal and why a test-only fault route weakens boundaries.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Exercise saturation, release and later successful delegation using deterministic doubles; no HTTP or fault route.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-04",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 78,
+      "date": "2027-01-05",
+      "title": "Map busy and unavailable outcomes safely",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-78.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewCapacityExceptionHandler",
+        "learner_seam": "PreviewCapacityExceptionHandler",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-78.md",
+        "evidence_reference": "evidence/continuation-71-84/day-78.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityHttpAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewCapacityHttpAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "RFC 9110 Service Unavailable",
+              "section": "503 semantics",
+              "url": "https://www.rfc-editor.org/rfc/r9110.html#name-503-service-unavailable"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Separate overload from pool acquisition failure; no parsing exception messages.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Map PREVIEW_BUSY and PREVIEW_UNAVAILABLE to sanitized HTTP 503; preserve unrelated errors; do not leak causes/messages.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-05",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 79,
+      "date": "2027-01-06",
+      "title": "Wire one singleton gate around the existing route; DSA LC 230 Kth Smallest Element in a BST",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-79.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "LocalRuntimeConfiguration and Hikari config",
+        "learner_seam": "LocalRuntimeConfiguration.policyRenewalReadStore",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-79.md",
+        "evidence_reference": "evidence/continuation-71-84/day-79.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewRuntimeWiringAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Spring Framework bean scopes",
+              "section": "singleton scope",
+              "url": "https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Trace singleton lifetime and controller → decorator → existing store.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Wrap the existing owner-scoped store in exactly one singleton BoundedPolicyRenewalReadStore, preserve the existing delegate, and retain the finite Hikari connectionTimeout=1000ms setting.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 230,
+        "problem_name": "Kth Smallest Element in a BST",
+        "concept": "inorder traversal with rank counting",
+        "problem_url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+        "plan_membership": "Top Interview 150 membership not independently verified",
+        "planned_first_attempt_date": "2027-01-06",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          {
+            "interval_days": 3,
+            "planned_due_date": "2027-01-09",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "interval_days": 7,
+            "planned_due_date": "2027-01-13",
+            "status": "pending_actual_attempt"
+          },
+          {
+            "interval_days": 21,
+            "planned_due_date": "2027-01-27",
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-06",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "acceptance_test_path": "src/test/java/assignments/dsa/KthSmallestInBstAcceptanceTest.java",
+        "acceptance_command": "./mvnw -Plearner-tests -Dtest=KthSmallestInBstAcceptanceTest test"
+      },
+      "mandatory_new_problem": true
+    },
+    {
+      "day": 80,
+      "date": "2027-01-07",
+      "title": "Record fixed-cardinality preview outcomes",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-80.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewMetrics.record",
+        "learner_seam": "PreviewMetrics.record",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-80.md",
+        "evidence_reference": "evidence/continuation-71-84/day-80.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewMetricsAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Micrometer Timers",
+              "section": "record durations and avoid high-cardinality tags",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/timers.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "List allowed metric dimensions and explain raw-ID cardinality.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Record finite timer/counter outcomes; no IDs as tags; meter count cannot grow per request.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "anchor_day": 73,
+            "problem_id": 112,
+            "planned_anchor_date": "2026-12-31",
+            "planned_due_date": "2027-01-07",
+            "review_interval_days": 7,
+            "actual_first_attempt_date": null,
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-07",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 81,
+      "date": "2027-01-08",
+      "title": "Show an accessible manual retry state",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-81.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "RenewalPreviewBusyState",
+        "learner_seam": "RenewalPreviewBusyState",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-81.md",
+        "evidence_reference": "evidence/continuation-71-84/day-81.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "acceptance_commands": [
+          "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "WAI-ARIA alert pattern",
+              "section": "status/alert semantics",
+              "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Draw state transitions and prove retry follows explicit action.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Accessible busy/unavailable status and one explicit retry; no auto retry or session reset; preserve policy context.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-08",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 82,
+      "date": "2027-01-09",
+      "title": "Prove finite recovery under real Hikari pool exhaustion",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-82.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "installed_expected_todo_red; requires Day48 and Days72–75 learner seams",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "PreviewPoolRecoveryAcceptanceTest",
+        "learner_seam": "PreviewPoolRecoveryAcceptanceTest",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-82.md",
+        "evidence_reference": "evidence/continuation-71-84/day-82.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewPoolRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PreviewPoolRecoveryAcceptanceTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "HikariCP configuration knobs",
+              "section": "connectionTimeout",
+              "url": "https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Mark test-owned holds and finally cleanup; distinguish app permits from pool slots.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "learner_task": "Hold all four test-owned connections; bounded read fails within finite timeout/releases permit; close in finally; useful read and permits recover.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "anchor_day": 79,
+            "problem_id": 230,
+            "planned_anchor_date": "2027-01-06",
+            "planned_due_date": "2027-01-09",
+            "review_interval_days": 3,
+            "actual_first_attempt_date": null,
+            "status": "pending_actual_attempt"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-09",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 83,
+      "date": "2027-01-10",
+      "title": "Prove packaged browser recovery under a real database lock",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-83.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_partial",
+      "learner_status": "not_attempted",
+      "integration_status": "not_installed; requires Day48/49–51/72–80 learner seams, JDK21, PostgreSQL and browser",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Day83 JAR + browser + PostgreSQL lock harness",
+        "learner_seam": "Day83 JAR + browser + PostgreSQL lock harness",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-83.md",
+        "evidence_reference": "evidence/continuation-71-84/day-83.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_partial",
+        "acceptance_test_path": null,
+        "acceptance_commands": [],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "PostgreSQL explicit locking",
+              "section": "ACCESS EXCLUSIVE lock",
+              "url": "https://www.postgresql.org/docs/18/explicit-locking.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Sketch lock owner, blocked sessions and release signal; watchdog only prevents hangs.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "not_installed",
+        "learner_task": "Use test-owned ACCESS EXCLUSIVE lock and observed blocked queries; third request rejected before JDBC; release lock, manual browser retry recovers; state unchanged. No fault route.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-10",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    },
+    {
+      "day": 84,
+      "date": "2027-01-11",
+      "title": "Integrate recovery evidence and independent assessment",
+      "contract_file": "docs/reboot/continuation-71-84/contracts/day-84.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked until earlier learner seams and actual integration selector pass",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Independent evidence review; no feature",
+        "learner_seam": "Independent evidence review; no feature",
+        "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-84.md",
+        "evidence_reference": "evidence/continuation-71-84/day-84.json",
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete",
+        "acceptance_test_path": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day84ContractInfrastructureTest test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day71To84InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Java jcmd",
+              "section": "thread dump diagnostics",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jcmd.html"
+            }
+          ],
+          "version_note": "Use Java 21 and repository-pinned Spring Boot 4.1.1/Micrometer. No extra runtime setup is assigned.",
+          "design_prompt": "Summarize invariant, failure mode, tradeoff and integration evidence.",
+          "teachback_prompt": "State the invariant, enforcing layer and observable evidence that proves it."
+        },
+        "acceptance_selector_status": "instructor_scaffold_verified",
+        "learner_task": "Run installed selectors; record known TODOs/blockers; explain bounds/recovery; keep outcome axes separate.",
+        "learner_evidence_mode": "implementation_acceptance"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "Run the actual-attempt queue first. Forecast dates never create attempts or reviews; failed review displaces new work.",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-11",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "mandatory_new_problem": false
+    }
+  ],
+  "dependency_review_path": "docs/reboot/continuation-71-84/dependency-review.md"
+}
