@@ -1,0 +1,1005 @@
+{
+  "title": "CoverStory continuation owner export: Days 45\u201356",
+  "canonical_daily_manifest": "docs/reboot/continuation-45-56/manifest.json",
+  "board_model": "12 consolidated daily Stories for owner review; export only, not written to any board.",
+  "sprint_boundaries": [
+    {
+      "sprint": "Sprint 4 (1\u201314 Dec 2026)",
+      "existing_story_days": [
+        43,
+        44
+      ],
+      "continuation_days": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "batch_story_count": 12,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "story_count": 12,
+  "cards": [
+    {
+      "sequence": 1,
+      "day_number": 45,
+      "date": "2026-12-03",
+      "title": "Day45: Define annual policy term boundaries \u2014 LC 128 Longest Consecutive Sequence",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Define annual policy term boundaries",
+        "learner_seam": "PolicyRenewalPreviewPolicy.termFor",
+        "acceptance_reference": "src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-45.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Define annual policy term boundaries",
+              "section": "plusYears(long): month-end adjustment and date arithmetic",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Define annual policy term boundaries: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-45.md"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 128,
+        "problem_name": "Longest Consecutive Sequence",
+        "concept": "hash-set sequence starts",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-03",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-06",
+          "2026-12-10",
+          "2026-12-24"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-03",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 2,
+      "day_number": 46,
+      "date": "2026-12-04",
+      "title": "Day46: Enforce renewal window and lifecycle eligibility \u2014 LC 2 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Enforce renewal window and lifecycle eligibility",
+        "learner_seam": "PolicyRenewalPreviewPolicy.eligibility",
+        "acceptance_reference": "src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-46.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day46RenewalWindowHasFixedOpenCloseAndLifecycleBoundaries test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Enforce renewal window and lifecycle eligibility",
+              "section": "fixed Clock and deterministic boundary tests",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Enforce renewal window and lifecycle eligibility: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-46.md"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 2,
+            "anchor_day": 43,
+            "planned_anchor_date": "2026-12-01",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-04",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/add-two-numbers/"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the same 60-minute block.",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-04",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 3,
+      "day_number": 47,
+      "date": "2026-12-05",
+      "title": "Day47: Freeze the renewal reference snapshot \u2014 LC 15 3Sum",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Freeze the renewal reference snapshot",
+        "learner_seam": "PolicyRenewalPreviewPolicy.buildPreview",
+        "acceptance_reference": "src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-47.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day47PreviewCopiesCurrentSnapshotAndMakesNoRenewalPriceOrCommitment test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Freeze the renewal reference snapshot",
+              "section": "record components and immutable value snapshots",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Freeze the renewal reference snapshot: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-47.md"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 15,
+        "problem_name": "3Sum",
+        "concept": "sort, then move two pointers",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-05",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-08",
+          "2026-12-12",
+          "2026-12-26"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-05",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "problem_url": "https://leetcode.com/problems/3sum/",
+        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 4,
+      "day_number": 48,
+      "date": "2026-12-06",
+      "title": "Day48: Add owner-scoped PostgreSQL renewal projection \u2014 LC 128 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Add owner-scoped PostgreSQL renewal projection",
+        "learner_seam": "JdbcPolicyRenewalReadStore.findByPolicyIdAndOwnerId",
+        "acceptance_reference": "src/test/java/assignments/insurance/PolicyRenewalRepositoryAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-48.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/insurance/PolicyRenewalRepositoryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalRepositoryAcceptanceTest#day48ReadIsOwnerScopedAndReturnsOnlyRenewalInputsWithoutWrites test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Add owner-scoped PostgreSQL renewal projection",
+              "section": "parameter binding and scoped query execution",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Add owner-scoped PostgreSQL renewal projection: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-48.md"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 128,
+            "anchor_day": 45,
+            "planned_anchor_date": "2026-12-03",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-06",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the same 60-minute block.",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-06",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 5,
+      "day_number": 49,
+      "date": "2026-12-07",
+      "title": "Day49: Derive preview identity from the principal \u2014 LC 49 Group Anagrams",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Derive preview identity from the principal",
+        "learner_seam": "PolicyRenewalPreviewController.authenticatedOwner",
+        "acceptance_reference": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-49.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Derive preview identity from the principal",
+              "section": "Principal and path-bound controller arguments",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Derive preview identity from the principal: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-49.md"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 49,
+        "problem_name": "Group Anagrams",
+        "concept": "canonical keys and hash grouping",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-07",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-10",
+          "2026-12-14",
+          "2026-12-28"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-07",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "problem_url": "https://leetcode.com/problems/group-anagrams/",
+        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 6,
+      "day_number": 50,
+      "date": "2026-12-08",
+      "title": "Day50: Map unavailable previews to stable HTTP errors \u2014 LC 2 D+7; LC 15 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Map unavailable previews to stable HTTP errors",
+        "learner_seam": "PolicyRenewalPreviewController.unavailable",
+        "acceptance_reference": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-50.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Map unavailable previews to stable HTTP errors",
+              "section": "ResponseEntity status, headers and body",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Map unavailable previews to stable HTTP errors: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-50.md"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 2,
+            "anchor_day": 43,
+            "planned_anchor_date": "2026-12-01",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-12-08",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/add-two-numbers/"
+          },
+          {
+            "problem_id": 15,
+            "anchor_day": 47,
+            "planned_anchor_date": "2026-12-05",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-08",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/3sum/"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the same 60-minute block.",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-08",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 7,
+      "day_number": 51,
+      "date": "2026-12-09",
+      "title": "Day51: Expose a minimal non-binding preview response \u2014 LC 20 Valid Parentheses",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Expose a minimal non-binding preview response",
+        "learner_seam": "PolicyRenewalPreviewController.available",
+        "acceptance_reference": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-51.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Expose a minimal non-binding preview response",
+              "section": "explicit response projection and response fields",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Expose a minimal non-binding preview response: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-51.md"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 20,
+        "problem_name": "Valid Parentheses",
+        "concept": "stack invariants and matching delimiters",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-09",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-12",
+          "2026-12-16",
+          "2026-12-30"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-09",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "problem_url": "https://leetcode.com/problems/valid-parentheses/",
+        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 8,
+      "day_number": 52,
+      "date": "2026-12-10",
+      "title": "Day52: Render the renewal reference view in React \u2014 LC 128 D+7; LC 49 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Render the renewal reference view in React",
+        "learner_seam": "PolicyRenewalPreviewPanel",
+        "acceptance_reference": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
+        "evidence_reference": "evidence/continuation-45-56/day-52.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
+        "acceptance_commands": [
+          "cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Render the renewal reference view in React",
+              "section": "conditional rendering without a renewal action",
+              "url": "https://react.dev/learn/conditional-rendering"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Render the renewal reference view in React: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-52.md"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 128,
+            "anchor_day": 45,
+            "planned_anchor_date": "2026-12-03",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-12-10",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+          },
+          {
+            "problem_id": 49,
+            "anchor_day": 49,
+            "planned_anchor_date": "2026-12-07",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-10",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/group-anagrams/"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the same 60-minute block.",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-10",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 9,
+      "day_number": 53,
+      "date": "2026-12-11",
+      "title": "Day53: Add accessible loading and unavailable states \u2014 LC 150 Evaluate Reverse Polish Notation",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Add accessible loading and unavailable states",
+        "learner_seam": "PolicyRenewalPreviewPanel",
+        "acceptance_reference": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
+        "evidence_reference": "evidence/continuation-45-56/day-53.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
+        "acceptance_commands": [
+          "cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"explicit|refresh\""
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Add accessible loading and unavailable states",
+              "section": "alert and status roles for asynchronous feedback",
+              "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Add accessible loading and unavailable states: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-53.md"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 150,
+        "problem_name": "Evaluate Reverse Polish Notation",
+        "concept": "stack evaluation",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-11",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-14",
+          "2026-12-18",
+          "2027-01-01"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-11",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 10,
+      "day_number": 54,
+      "date": "2026-12-12",
+      "title": "Day54: Verify the owner-scoped preview against PostgreSQL \u2014 LC 15 D+7; LC 20 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Verify the owner-scoped preview against PostgreSQL",
+        "learner_seam": "GET /api/policies/{policyId}/renewal-preview",
+        "acceptance_reference": "src/test/java/assignments/renewal/PolicyRenewalPostgresAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-54.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalPostgresAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Verify the owner-scoped preview against PostgreSQL",
+              "section": "test application contexts and real server/application boundaries",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Verify the owner-scoped preview against PostgreSQL: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-54.md"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 15,
+            "anchor_day": 47,
+            "planned_anchor_date": "2026-12-05",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-12-12",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/3sum/"
+          },
+          {
+            "problem_id": 20,
+            "anchor_day": 51,
+            "planned_anchor_date": "2026-12-09",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-12",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/valid-parentheses/"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the same 60-minute block.",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-12",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 11,
+      "day_number": 55,
+      "date": "2026-12-13",
+      "title": "Day55: Connect the React preview to Spring and PostgreSQL \u2014 LC 155 Min Stack",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Connect the React preview to Spring and PostgreSQL",
+        "learner_seam": "browser \u2192 React \u2192 GET renewal preview",
+        "acceptance_reference": "src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-55.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Connect the React preview to Spring and PostgreSQL",
+              "section": "page navigation, role locators and response inspection",
+              "url": "https://playwright.dev/docs/api/class-page"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Connect the React preview to Spring and PostgreSQL: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-55.md"
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
+        "problem_id": 155,
+        "problem_name": "Min Stack",
+        "concept": "stack plus cached minimum invariant",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-13",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-16",
+          "2026-12-20",
+          "2027-01-03"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-13",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "problem_url": "https://leetcode.com/problems/min-stack/",
+        "plan_membership": "Selected as a Top Interview 150 continuation anchor; link is the official problem statement.",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    },
+    {
+      "sequence": 12,
+      "day_number": 56,
+      "date": "2026-12-14",
+      "title": "Day56: Prove preview stability across restart without writes \u2014 LC 49 D+7; LC 150 D+3",
+      "sprint": "Sprint 4",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Prove preview stability across restart without writes",
+        "learner_seam": "read-only preview integration",
+        "acceptance_reference": "src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java",
+        "evidence_reference": "evidence/continuation-45-56/day-56.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "resources": [
+            {
+              "title": "Official reference: Prove preview stability across restart without writes",
+              "section": "read-only transaction semantics and verification",
+              "url": "https://www.postgresql.org/docs/14/sql-set-transaction.html"
+            }
+          ],
+          "version_note": "Use the pinned Java 21, Spring Boot 4.1.1, React 19, PostgreSQL 14 and Playwright versions in this repository; the named section is a 10-minute focused reading target.",
+          "design_prompt": "Prove preview stability across restart without writes: sketch the protected invariant and the layer that owns it.",
+          "teachback_prompt": "State one invariant, its enforcing layer, and the observable response that proves it."
+        },
+        "contract_path": "docs/reboot/continuation-45-56/contracts/day-56.md"
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "mandatory_new_problem": false,
+        "review_anchors": [
+          {
+            "problem_id": 49,
+            "anchor_day": 49,
+            "planned_anchor_date": "2026-12-07",
+            "review_interval_days": 7,
+            "planned_due_date": "2026-12-14",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/group-anagrams/"
+          },
+          {
+            "problem_id": 150,
+            "anchor_day": 53,
+            "planned_anchor_date": "2026-12-11",
+            "review_interval_days": 3,
+            "planned_due_date": "2026-12-14",
+            "status": "pending_actual_attempt",
+            "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+          }
+        ],
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the same 60-minute block.",
+        "guide_path": "docs/reboot/continuation-45-56/dsa/top-150-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-14",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+        "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json"
+      },
+      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?"
+    }
+  ],
+  "dsa_revision_queue": {
+    "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+    "command": "python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD",
+    "actual_dates_claimed": false,
+    "failed_review_rule": "A failed review displaces new work within the same 60-minute DSA block; no extra minutes."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "branch": "learning/coverstory-days-45-56",
+  "base_sha": "350aa931c15f7a4e4c54a8b572bc4b9c5596902c",
+  "published_sha": null,
+  "publish_status": "not_pushed_yet",
+  "ci_status": "pending_push",
+  "scope": "Days 45-56: read-only synthetic Home Secure annual renewal preview; 12 dated contract Stories in Sprint 4; no board edits or real customer data.",
+  "learner_ownership": {
+    "production_todos_restored": true,
+    "temporary_witnesses_removed": true,
+    "daily_evidence_remains_not_attempted": true,
+    "changed_learner_paths": []
+  },
+  "verification": [
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 test",
+      "result": "passed",
+      "detail": "29 tests, 0 failures/errors, including embedded PostgreSQL and real Day44/Day45 browser transport; final run after restore."
+    },
+    {
+      "command": "cd frontend && npm run build",
+      "result": "passed",
+      "detail": "TypeScript build and Vite production build."
+    },
+    {
+      "command": "cd frontend && npm test",
+      "result": "passed",
+      "detail": "1 infrastructure test passed."
+    },
+    {
+      "command": "cd frontend && npm audit --audit-level=low",
+      "result": "passed",
+      "detail": "0 reported vulnerabilities for frontend lockfile as of 2026-10-20; this is not a Java dependency advisory all-clear."
+    },
+    {
+      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py",
+      "result": "passed",
+      "detail": "6 tests passed; queue forecasts derive from actual attempt log and the new manifest."
+    },
+    {
+      "command": "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest,PolicyRenewalRepositoryAcceptanceTest,PolicyRenewalControllerAcceptanceTest,PolicyRenewalPostgresAcceptanceTest test",
+      "result": "expected_todo_red",
+      "detail": "8 tests errored only at explicit Days45-51 learner TODOs; daily learner evidence remains not_attempted."
+    },
+    {
+      "command": "cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
+      "result": "expected_todo_red",
+      "detail": "5 tests failed at Day52 presentation TODO; final run includes test-local DOM cleanup."
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests '-Dtest=RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres+day56PreviewReadIsStableAcrossRestartAndDoesNotWrite' test",
+      "result": "expected_todo_red",
+      "detail": "Both browser cases reach the API and return HTTP 500 at unfinished Day49\u201351/Days45\u201348 policy/store seams; no browser timeout or route-binding defect."
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests '-Dtest=PolicyRenewalAcceptanceTest,PolicyRenewalRepositoryAcceptanceTest,PolicyRenewalControllerAcceptanceTest,PolicyRenewalPostgresAcceptanceTest,RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres+day56PreviewReadIsStableAcrossRestartAndDoesNotWrite' test",
+      "result": "temporary_witness_passed",
+      "detail": "10 Java acceptance cases passed with temporary implementations; witness files were restored and rechecked for TODO markers. No learner solution is committed."
+    },
+    {
+      "command": "cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
+      "result": "temporary_witness_passed",
+      "detail": "5 React acceptance cases passed with temporary component implementation; restored after witness pass."
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed",
+      "detail": "No whitespace errors."
+    }
+  ],
+  "unresolved": [
+    "The exact push SHA and hosted CI run are not yet confirmed.",
+    "Java dependency advisory review was not independently completed in this continuation; no Java advisory-free claim is made.",
+    "LeetCode Top Interview 150 list membership for the selected anchor problems was not independently verified; official problem statements are linked and manifest says so."
+  ]
+}

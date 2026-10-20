@@ -14,6 +14,7 @@ def anchors_from_manifests():
     sources = [
         (ROOT / "docs/reboot/manifest.json", "legacy"),
         (ROOT / "docs/reboot/continuation-31-44/manifest.json", "continuation"),
+        (ROOT / "docs/reboot/continuation-45-56/manifest.json", "continuation-45-56"),
     ]
     result = []
     for path, batch in sources:

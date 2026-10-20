@@ -150,3 +150,10 @@ objectives](https://docs.aws.amazon.com/aws-certification/latest/developer-assoc
 and [PostgreSQL 14 EXPLAIN](https://www.postgresql.org/docs/14/using-explain.html).
 Match examples to the repository's installed versions when a future stack is
 introduced.
+
+## Later isolated continuation
+
+[Days 45–56](continuation-45-56/README.md) continue the synthetic HomeSecure
+policy lifecycle with a read-only, non-binding renewal preview. Its canonical
+manifest and Scrum owner export are additive planning artifacts; neither edits
+the board or claims learner completion.

@@ -2,7 +2,7 @@ name: CoverStory starter checks
 
 on:
   push:
-    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44]
+    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56]
   pull_request:
     branches: [main]
 
@@ -27,7 +27,7 @@ jobs:
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
-      - name: Install Chromium for the Day 44 transport harness
+      - name: Install Chromium for the Day 44 and Day 45 transport harnesses
         working-directory: frontend
         run: npx playwright install --with-deps chromium
       - name: Frontend build
