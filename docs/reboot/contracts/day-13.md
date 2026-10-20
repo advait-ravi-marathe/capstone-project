@@ -1,10 +1,10 @@
 # Day 13 — 2026-11-01: Add honest repeatable CI
 
-**State:** Evidence-based readiness seam and fixed tests are installed. The repository still has no CI workflow, no learner attempt is recorded, and the focused suite is expected to fail at its TODO.
+**State:** Instructor-owned fail-closed GitHub Actions workflow and its local infrastructure check are installed. The learner-owned readiness evaluator remains a TODO; no learner attempt is recorded. Remote Actions success is unverified until a run is observed.
 
 ## Learner seam
 
-`CiReadinessPolicy` for the evidence-checking part of CI readiness. The actual CI workflow/build configuration remains learner work; do not mark it complete from the readiness model alone.
+`CiReadinessPolicy` for the evidence-checking part of CI readiness. The instructor supplies `.github/workflows/coverstory-starter.yml`, which runs the Java 21 infrastructure suite, frontend install/build/instructor tests, and frontend audit with failures propagated. Learner work is the evidence-based readiness evaluation and recording truthful local/remote results; a workflow file alone does not establish a successful remote run.
 
 ## Acceptance invariants
 
@@ -30,9 +30,11 @@ Actual local/CI-equivalent output; do not claim remote run if absent. Record dat
 
 ## Planned isolated command
 
+`./mvnw -Dtest=Day13WorkflowInfrastructureTest test`
+
 `./mvnw -Plearner-tests -Dtest=Day13ContractTest test`
 
-This selector runs the installed readiness-policy acceptance tests and currently fails at the explicit TODO. It does not claim a workflow exists or a remote CI run occurred; local evidence still shows the Day 2–7 learner suites fail at TODOs. Infrastructure checks are separate.
+The first selector checks the supplied workflow and fail-closed commands; it passes locally. The second runs the learner readiness-policy acceptance tests and is expected red at the explicit TODO. The remote Actions result is not claimed until observed; local evidence and remote CI are separate.
 
 ## Separate Java DSA block (60 minutes)
 

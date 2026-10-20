@@ -1,10 +1,10 @@
 # Day 30 — 2026-11-18: Defend and assess the slice
 
-**State:** Machine-checkable open-evidence checklist and instructor integrity test are installed; no learner completion is recorded.
+**State:** Machine-checkable evidence checklist and instructor integrity test are installed; learner status remains evidence-driven and may evolve truthfully from open/blocked to passed when local evidence exists.
 
 ## Learner seam
 
-`docs/reboot/acceptance-checklist.md` plus `Day30ContractTest` in `src/test/java/assignments/reboot/Day30ContractTest.java`. The test verifies evidence links and manifest statuses, leaving absent/unverified records open; it does not mark learner work complete. The architecture note records the explanation and ranked backlog. Do not implement later-day behavior early.
+`docs/reboot/acceptance-checklist.md` plus `Day30ContractTest` in `src/test/java/assignments/reboot/Day30ContractTest.java`. The test verifies evidence links and manifest statuses, leaves absent/unverified records open, and accepts valid evidence-backed completion; it does not mark learner work complete. The architecture note records the explanation and ranked backlog. Do not implement later-day behavior early.
 
 ## Acceptance invariants
 
@@ -32,7 +32,7 @@ SDE II trade-off discussion and technical communication.
 
 `./mvnw -Plearner-tests -Dtest=Day30ContractTest test`
 
-This instructor integrity selector is expected to pass while checking that the checklist remains open and does not auto-complete learner status. Infrastructure checks are separate.
+This instructor integrity selector is expected to pass against fixed status/evidence fixtures and the live evolving checklist. It rejects unsupported statuses and passed rows without a repository-local evidence file; it does not require the live checklist to stay open. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 

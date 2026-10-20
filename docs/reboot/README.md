@@ -29,6 +29,12 @@ guide path, and separate contract/scaffold/runtime/learner/integration statuses:
 [`contracts/`](contracts/). Day 1's active runnable guide and fixed tests stay
 at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 
+For Scrum import, [scrum-owner-manifest.json](scrum-owner-manifest.json) expands
+the schedule into 60 chronological cards (one engineering and one Java DSA
+card per date), with sprint boundaries, guide links, fixed budgets, and planned
+DSA review forecasts. Actual attempts and review completions remain learner
+evidence; the forecasts do not mark work complete.
+
 ## Chronological index
 
 | Day/date | Engineering contract | DSA block | State |

@@ -83,7 +83,8 @@
             "2026-11-10"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "running-state array",
@@ -94,11 +95,7 @@
         "repo_guide": "contracts/day-01.md",
         "dsa_60m": "121 Best Time to Buy and Sell Stock",
         "dsa_pattern": "running-state array",
-        "dsa_reviews": [
-          "2026-10-23",
-          "2026-10-27",
-          "2026-11-10"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -152,7 +149,8 @@
           "planned_first_attempt_date": null,
           "planned_review_items_due": [],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "consolidation and active retrieval",
@@ -225,9 +223,10 @@
             "2026-11-12"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "hash lookup",
       "board_summary": {
         "engineering": "Map failures consistently",
@@ -236,11 +235,7 @@
         "repo_guide": "contracts/day-03.md",
         "dsa_60m": "1 Two Sum",
         "dsa_pattern": "hash lookup",
-        "dsa_reviews": [
-          "2026-10-25",
-          "2026-10-29",
-          "2026-11-12"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -310,9 +305,18 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 3,
+            "due_date": "2026-10-23",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Read one synthetic product",
@@ -321,7 +325,9 @@
         "repo_guide": "contracts/day-04.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 121 (Day 1, D+3, planned 2026-10-23)"
+        ]
       }
     },
     {
@@ -383,9 +389,10 @@
             "2026-11-14"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "frequency counting",
       "board_summary": {
         "engineering": "Decide HomeSecure eligibility",
@@ -394,11 +401,7 @@
         "repo_guide": "contracts/day-05.md",
         "dsa_60m": "383 Ransom Note",
         "dsa_pattern": "frequency counting",
-        "dsa_reviews": [
-          "2026-10-27",
-          "2026-10-31",
-          "2026-11-14"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -468,9 +471,18 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 3,
+            "due_date": "2026-10-25",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Calculate synthetic premium",
@@ -479,7 +491,9 @@
         "repo_guide": "contracts/day-06.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 1 (Day 3, D+3, planned 2026-10-25)"
+        ]
       }
     },
     {
@@ -541,9 +555,10 @@
             "2026-11-16"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "grouping key",
       "board_summary": {
         "engineering": "Create and expire quote version",
@@ -552,11 +567,7 @@
         "repo_guide": "contracts/day-07.md",
         "dsa_60m": "49 Group Anagrams",
         "dsa_pattern": "grouping key",
-        "dsa_reviews": [
-          "2026-10-29",
-          "2026-11-02",
-          "2026-11-16"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -640,9 +651,25 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 7,
+            "due_date": "2026-10-27",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 3,
+            "due_date": "2026-10-27",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Define PostgreSQL quote schema",
@@ -651,7 +678,10 @@
         "repo_guide": "contracts/day-08.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 121 (Day 1, D+7, planned 2026-10-27)",
+          "LC 383 (Day 5, D+3, planned 2026-10-27)"
+        ]
       }
     },
     {
@@ -713,9 +743,10 @@
             "2026-11-18"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "prefix/suffix products",
       "board_summary": {
         "engineering": "Persist/read immutable quote snapshots",
@@ -724,11 +755,7 @@
         "repo_guide": "contracts/day-09.md",
         "dsa_60m": "238 Product of Array Except Self",
         "dsa_pattern": "prefix/suffix products",
-        "dsa_reviews": [
-          "2026-10-31",
-          "2026-11-04",
-          "2026-11-18"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -812,9 +839,25 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 7,
+            "due_date": "2026-10-29",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 3,
+            "due_date": "2026-10-29",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Persist selection batch atomically",
@@ -823,7 +866,10 @@
         "repo_guide": "contracts/day-10.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 1 (Day 3, D+7, planned 2026-10-29)",
+          "LC 49 (Day 7, D+3, planned 2026-10-29)"
+        ]
       }
     },
     {
@@ -885,9 +931,10 @@
             "2026-11-20"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "inward pointers",
       "board_summary": {
         "engineering": "Reject stale quote selection",
@@ -896,11 +943,7 @@
         "repo_guide": "contracts/day-11.md",
         "dsa_60m": "125 Valid Palindrome",
         "dsa_pattern": "inward pointers",
-        "dsa_reviews": [
-          "2026-11-02",
-          "2026-11-06",
-          "2026-11-20"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -984,7 +1027,23 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 7,
+            "due_date": "2026-10-31",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 3,
+            "due_date": "2026-10-31",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "consolidation and active retrieval",
@@ -995,7 +1054,10 @@
         "repo_guide": "contracts/day-12.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 383 (Day 5, D+7, planned 2026-10-31)",
+          "LC 238 (Day 9, D+3, planned 2026-10-31)"
+        ]
       }
     },
     {
@@ -1057,7 +1119,8 @@
             "2026-11-22"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "sorted two pointers",
@@ -1068,11 +1131,7 @@
         "repo_guide": "contracts/day-13.md",
         "dsa_60m": "167 Two Sum II - Input Array Is Sorted",
         "dsa_pattern": "sorted two pointers",
-        "dsa_reviews": [
-          "2026-11-04",
-          "2026-11-08",
-          "2026-11-22"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -1156,7 +1215,23 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 7,
+            "due_date": "2026-11-02",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 11,
+            "problem_id": 125,
+            "review_interval_days": 3,
+            "due_date": "2026-11-02",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
       "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
@@ -1167,7 +1242,10 @@
         "repo_guide": "contracts/day-14.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 49 (Day 7, D+7, planned 2026-11-02)",
+          "LC 125 (Day 11, D+3, planned 2026-11-02)"
+        ]
       }
     },
     {
@@ -1229,9 +1307,10 @@
             "2026-11-24"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "pointer-elimination proof",
       "board_summary": {
         "engineering": "Read journey summary",
@@ -1240,11 +1319,7 @@
         "repo_guide": "contracts/day-15.md",
         "dsa_60m": "11 Container With Most Water",
         "dsa_pattern": "pointer-elimination proof",
-        "dsa_reviews": [
-          "2026-11-06",
-          "2026-11-10",
-          "2026-11-24"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -1328,9 +1403,25 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 7,
+            "due_date": "2026-11-04",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 13,
+            "problem_id": 167,
+            "review_interval_days": 3,
+            "due_date": "2026-11-04",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Bound quote-history reads",
@@ -1339,7 +1430,10 @@
         "repo_guide": "contracts/day-16.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 238 (Day 9, D+7, planned 2026-11-04)",
+          "LC 167 (Day 13, D+3, planned 2026-11-04)"
+        ]
       }
     },
     {
@@ -1401,9 +1495,10 @@
             "2026-11-26"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "variable sliding window",
       "board_summary": {
         "engineering": "Render product choices in React/TypeScript",
@@ -1412,11 +1507,7 @@
         "repo_guide": "contracts/day-17.md",
         "dsa_60m": "3 Longest Substring Without Repeating Characters",
         "dsa_pattern": "variable sliding window",
-        "dsa_reviews": [
-          "2026-11-08",
-          "2026-11-12",
-          "2026-11-26"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -1500,9 +1591,25 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 11,
+            "problem_id": 125,
+            "review_interval_days": 7,
+            "due_date": "2026-11-06",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 15,
+            "problem_id": 11,
+            "review_interval_days": 3,
+            "due_date": "2026-11-06",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Capture quote input",
@@ -1511,7 +1618,10 @@
         "repo_guide": "contracts/day-18.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 125 (Day 11, D+7, planned 2026-11-06)",
+          "LC 11 (Day 15, D+3, planned 2026-11-06)"
+        ]
       }
     },
     {
@@ -1573,9 +1683,10 @@
             "2026-11-28"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "shrinking valid window",
       "board_summary": {
         "engineering": "Display quote snapshot",
@@ -1584,11 +1695,7 @@
         "repo_guide": "contracts/day-19.md",
         "dsa_60m": "209 Minimum Size Subarray Sum",
         "dsa_pattern": "shrinking valid window",
-        "dsa_reviews": [
-          "2026-11-10",
-          "2026-11-14",
-          "2026-11-28"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -1672,9 +1779,25 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 13,
+            "problem_id": 167,
+            "review_interval_days": 7,
+            "due_date": "2026-11-08",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 17,
+            "problem_id": 3,
+            "review_interval_days": 3,
+            "due_date": "2026-11-08",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Connect selection action UI",
@@ -1683,7 +1806,10 @@
         "repo_guide": "contracts/day-20.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 167 (Day 13, D+7, planned 2026-11-08)",
+          "LC 3 (Day 17, D+3, planned 2026-11-08)"
+        ]
       }
     },
     {
@@ -1745,7 +1871,8 @@
             "2026-11-30"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "stack",
@@ -1756,11 +1883,7 @@
         "repo_guide": "contracts/day-21.md",
         "dsa_60m": "20 Valid Parentheses",
         "dsa_pattern": "stack",
-        "dsa_reviews": [
-          "2026-11-12",
-          "2026-11-16",
-          "2026-11-30"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -1858,9 +1981,32 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 1,
+            "problem_id": 121,
+            "review_interval_days": 21,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 15,
+            "problem_id": 11,
+            "review_interval_days": 7,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 19,
+            "problem_id": 209,
+            "review_interval_days": 3,
+            "due_date": "2026-11-10",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Add safe request correlation",
@@ -1869,7 +2015,11 @@
         "repo_guide": "contracts/day-22.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 121 (Day 1, D+21, planned 2026-11-10)",
+          "LC 11 (Day 15, D+7, planned 2026-11-10)",
+          "LC 209 (Day 19, D+3, planned 2026-11-10)"
+        ]
       }
     },
     {
@@ -1931,7 +2081,8 @@
             "2026-12-02"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "augmented stack",
@@ -1942,11 +2093,7 @@
         "repo_guide": "contracts/day-23.md",
         "dsa_60m": "155 Min Stack",
         "dsa_pattern": "augmented stack",
-        "dsa_reviews": [
-          "2026-11-14",
-          "2026-11-18",
-          "2026-12-02"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -2044,9 +2191,32 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 3,
+            "problem_id": 1,
+            "review_interval_days": 21,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 17,
+            "problem_id": 3,
+            "review_interval_days": 7,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 21,
+            "problem_id": 20,
+            "review_interval_days": 3,
+            "due_date": "2026-11-12",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Explain and improve one real query",
@@ -2055,7 +2225,11 @@
         "repo_guide": "contracts/day-24.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 1 (Day 3, D+21, planned 2026-11-12)",
+          "LC 3 (Day 17, D+7, planned 2026-11-12)",
+          "LC 20 (Day 21, D+3, planned 2026-11-12)"
+        ]
       }
     },
     {
@@ -2117,9 +2291,10 @@
             "2026-12-04"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "binary-search bridge (outside Top Interview 150)",
       "board_summary": {
         "engineering": "Handle concurrent repeated selection",
@@ -2128,11 +2303,7 @@
         "repo_guide": "contracts/day-25.md",
         "dsa_60m": "704 Binary Search",
         "dsa_pattern": "binary-search bridge (outside Top Interview 150)",
-        "dsa_reviews": [
-          "2026-11-16",
-          "2026-11-20",
-          "2026-12-04"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -2230,9 +2401,32 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 5,
+            "problem_id": 383,
+            "review_interval_days": 21,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 19,
+            "problem_id": 209,
+            "review_interval_days": 7,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 23,
+            "problem_id": 155,
+            "review_interval_days": 3,
+            "due_date": "2026-11-14",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Record minimal selection audit",
@@ -2241,7 +2435,11 @@
         "repo_guide": "contracts/day-26.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 383 (Day 5, D+21, planned 2026-11-14)",
+          "LC 209 (Day 19, D+7, planned 2026-11-14)",
+          "LC 155 (Day 23, D+3, planned 2026-11-14)"
+        ]
       }
     },
     {
@@ -2303,9 +2501,10 @@
             "2026-12-06"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
-      "runtime_harness_status": "pending",
+      "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "boundary search",
       "board_summary": {
         "engineering": "Fix one evidence-backed regression",
@@ -2314,11 +2513,7 @@
         "repo_guide": "contracts/day-27.md",
         "dsa_60m": "35 Search Insert Position",
         "dsa_pattern": "boundary search",
-        "dsa_reviews": [
-          "2026-11-18",
-          "2026-11-22",
-          "2026-12-06"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -2416,7 +2611,30 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 7,
+            "problem_id": 49,
+            "review_interval_days": 21,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 21,
+            "problem_id": 20,
+            "review_interval_days": 7,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 25,
+            "problem_id": 704,
+            "review_interval_days": 3,
+            "due_date": "2026-11-16",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
       "runtime_harness_status": "expected_todo_red",
       "dsa_concept": "consolidation and active retrieval",
@@ -2427,7 +2645,11 @@
         "repo_guide": "contracts/day-28.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 49 (Day 7, D+21, planned 2026-11-16)",
+          "LC 20 (Day 21, D+7, planned 2026-11-16)",
+          "LC 704 (Day 25, D+3, planned 2026-11-16)"
+        ]
       }
     },
     {
@@ -2489,7 +2711,8 @@
             "2026-12-08"
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": []
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "rotated-array search",
@@ -2500,11 +2723,7 @@
         "repo_guide": "contracts/day-29.md",
         "dsa_60m": "153 Find Minimum in Rotated Sorted Array",
         "dsa_pattern": "rotated-array search",
-        "dsa_reviews": [
-          "2026-11-20",
-          "2026-11-24",
-          "2026-12-08"
-        ]
+        "dsa_reviews": []
       }
     },
     {
@@ -2602,7 +2821,30 @@
             }
           ],
           "review_status": "pending"
-        }
+        },
+        "reviews_due_today": [
+          {
+            "anchor_day": 9,
+            "problem_id": 238,
+            "review_interval_days": 21,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 23,
+            "problem_id": 155,
+            "review_interval_days": 7,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan"
+          },
+          {
+            "anchor_day": 27,
+            "problem_id": 35,
+            "review_interval_days": 3,
+            "due_date": "2026-11-18",
+            "status": "pending_if_actual_attempt_on_plan"
+          }
+        ]
       },
       "runtime_harness_status": "verified",
       "dsa_concept": "consolidation and active retrieval",
@@ -2613,7 +2855,11 @@
         "repo_guide": "contracts/day-30.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
-        "dsa_reviews": []
+        "dsa_reviews": [
+          "LC 238 (Day 9, D+21, planned 2026-11-18)",
+          "LC 155 (Day 23, D+7, planned 2026-11-18)",
+          "LC 35 (Day 27, D+3, planned 2026-11-18)"
+        ]
       }
     }
   ],

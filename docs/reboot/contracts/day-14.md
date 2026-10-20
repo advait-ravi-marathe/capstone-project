@@ -1,6 +1,6 @@
 # Day 14 — 2026-11-02: Milestone 1 backend vertical slice
 
-**State:** Real PostgreSQL backend-slice acceptance test installed and tagged `learnerAcceptance`. It wires the actual fixture, catalog, eligibility, premium, quote, repository, selection, and read-query components. It currently fails at the first explicit learner TODO; a green readiness test is not a substitute for this path.
+**State:** Real PostgreSQL backend-slice acceptance test installed and tagged `learnerAcceptance`. It wires the actual fixture, catalog, eligibility, premium, quote, repository, selection, and read-query components. It currently fails at the first explicit learner TODO; a green readiness test is not a substitute for this path. The test reads persisted quotes/selections directly from PostgreSQL and does not call Day 15's summary query.
 
 ## Learner seam
 
@@ -8,7 +8,7 @@
 
 ## Acceptance invariants
 
-Real product → eligible quote → persist → owner selection → readback. Duplicate semantics remain Day 1’s; stale, expired, invalid and unauthorized cases cannot write. Real PostgreSQL and completed production policies.
+Real product → eligible quote → persist → owner selection → direct PostgreSQL readback. Duplicate semantics remain Day 1’s; stale, expired, invalid and unauthorized cases cannot write. Rejections are checked for zero quote/selection writes using real PostgreSQL and completed production policies.
 
 ## Required edge cases
 

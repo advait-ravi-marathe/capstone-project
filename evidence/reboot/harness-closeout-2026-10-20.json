@@ -2,12 +2,12 @@
   "date": "2026-10-20",
   "branch": "learning/coverstory-day-02-30",
   "starting_sha": "6b405b3d9b543b45109cccf54e28215eee8191e7",
-  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and concise ticket manifest fields. No learner solution supplied.",
+  "scope": "Close reviewer harness gaps, install test-only security and CI plumbing, add real Day14/Day28 PostgreSQL acceptance paths, embedded reset, and concise ticket manifest fields. No learner solution supplied. Reviewer fixes reconciled: Day14 direct database readback/no Day15 dependency and expanded no-write rejection coverage; Day30 status evaluator accepts evolving evidence-backed live statuses; DSA due reviews represented in Scrum export; Day13 workflow scaffold/learner CI responsibilities clarified; added 60-card Scrum owner manifest.",
   "verification": [
     {
-      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 clean test",
       "result": "pass",
-      "summary": "20 tests, 0 failures/errors/skips; includes 3 real Spring Security HTTP authentication/CSRF tests, Day2 adapter call-count tests and app context, actuator, embedded PostgreSQL reset, checklist/readiness infrastructure."
+      "summary": "Full default instructor infrastructure suite: 22 tests, 0 failures/errors/skips. Includes compilation of Day14BackendSliceIT and all Day2/12/13/23/29/30 infrastructure acceptance."
     },
     {
       "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
@@ -58,12 +58,32 @@
       "command": "git diff --check; python3 JSON/POM parser; bash -n scripts/reset-synthetic-homesecure.sh",
       "result": "pass",
       "summary": "Whitespace, manifest/package JSON, POM XML and shell syntax checks passed."
+    },
+    {
+      "command": "python3 JSON structural validation for docs/reboot/manifest.json and docs/reboot/scrum-owner-manifest.json",
+      "result": "pass",
+      "summary": "Validated 30 dates and 60 alternating engineering/Java DSA cards; date pairing, sprint pairing, guide paths, allocation budgets, and planned review forecasts match the canonical manifest."
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass",
+      "summary": "No whitespace errors in the reconciled reviewer-fix batch."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day14BackendSliceIT test",
+      "result": "not rerun",
+      "summary": "Expanded test now has direct PostgreSQL readback and stale/expired/invalid/duplicate/unauthorized no-write cases, without a Day15 dependency. Previously this gate was expected red at Day4 ProductCatalogService TODO. Do not claim a current result for the expanded selector until run."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH /tmp/apache-maven-3.10.0/bin/mvn -B -ntp -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day30ContractTest test",
+      "result": "pass",
+      "summary": "Three instructor tests pass, including fixed open/blocked/passed-status evaluator fixtures and 60-card Scrum manifest integrity."
     }
   ],
   "remaining": {
-    "day28": "The real React test route, Playwright/Chromium, Spring test endpoints, and PostgreSQL assertions are connected. The learner acceptance is expected red across quote creation, snapshot display, selection, and reload. A temporary implementation witness run for this revised full harness was attempted but not completed; no successful product lifecycle is claimed.",
+    "day28": "The real React test route, Playwright/Chromium, Spring test endpoints, and PostgreSQL assertions are connected. The learner acceptance is expected red across quote creation, snapshot display, selection, and reload. A temporary implementation witness run for this revised full harness was attempted but not completed; no successful product lifecycle is claimed. Per the independent validator request, Day28 was not rerun in this reconciliation pass.",
     "learner_work": "All domain, schema, API policy, security policy/config, UI, persistence, readiness, DSA assignments remain learner owned and incomplete TODOs.",
-    "ci": "Workflow is added; remote Actions execution remains pending until branch push and queried result.",
+    "ci": "Workflow scaffold and local structural check are present; remote Actions execution remains unverified (GitHub API returned HTTP 403 in the earlier check).",
     "sca": "npm audit applies only to frontend lockfile; no full Maven/transitive SCA completed.",
     "mac": "Apple Silicon support is the base Darwin ARM64 dependency; not executed on user's Mac. Linux amd64 test path executed."
   }
