@@ -38,8 +38,10 @@ Read [the Day 1 guide](docs/day-1.md). Implement `uniqueSelections` in
 The visible behavioral acceptance tests are fixed and expected to fail until
 the TODO is implemented. Instructor infrastructure checks only establish that
 Java/Maven compilation and the provided Spring MVC route are available; they
-do not implement the policy. The controller is provided and maps valid input
-to HTTP 200 and invalid input to HTTP 400.
+do not implement the policy. After the TODO is implemented, the controller
+maps valid input to HTTP 200 and invalid input to HTTP 400. Before then, valid
+requests reach the explicit TODO and return HTTP 500; a missing body returns
+HTTP 400.
 
 Run infrastructure checks:
 
@@ -113,8 +115,9 @@ The fixed fixtures use unique event IDs and one declared currency (USD). The
 main window is `2026-10-13T00:00:00Z` through `2026-10-14T00:00:00Z`, with the
 upper bound excluded. The harness starts real PostgreSQL 14.22 from
 test-scoped native binaries using
-`io.zonky.test:embedded-postgres:2.2.2`; the Darwin ARM64 binary is selected
-for this Apple Silicon checkout. It does not use H2 or Docker. PostgreSQL tests
+`io.zonky.test:embedded-postgres:2.2.2`; Darwin ARM64 and Linux amd64 binaries
+are available for Apple Silicon and cloud/Linux checkouts. It does not use H2
+or Docker. PostgreSQL tests
 are part of `./mvnw -Plearner-tests test` and intentionally fail until the SQL
 TODO is completed.
 
