@@ -17,6 +17,12 @@ class BestTimeToBuySellStockAcceptanceTest {
     }
 
     @Test
+    void handlesLeetCodePriceBoundaries() {
+        assertEquals(10_000, solution.maxProfit(new int[]{0, 10_000}));
+        assertEquals(0, solution.maxProfit(new int[]{10_000, 0}));
+    }
+
+    @Test
     void returnsZeroForDescendingPricesAndSingleDay() {
         assertEquals(0, solution.maxProfit(new int[]{7, 6, 4, 3, 1}));
         assertEquals(0, solution.maxProfit(new int[]{9}));

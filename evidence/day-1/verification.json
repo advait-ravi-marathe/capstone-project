@@ -53,9 +53,30 @@
       "command": "git diff --cached --check",
       "result": "passed",
       "detail": "Staged whitespace validation passed before the recorded commits."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Dtest=QuoteSelectionInfrastructureTest test",
+      "result": "passed",
+      "detail": "Tests run: 1, failures: 0, errors: 0 after API/domain acceptance hardening."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test",
+      "result": "expected learner TODO failures",
+      "detail": "Tests run: 12, failures: 1, errors: 9. Malformed JSON and missing/null selections (controller-level) return 400. Policy-dependent behavior fails at explicit uniqueSelections TODO; one null/invalid assertion observes UnsupportedOperationException before required IllegalArgumentException. No solutions supplied."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 test",
+      "result": "passed",
+      "detail": "Tests run: 5, failures: 0, errors: 0 after the Day 1 acceptance hardening."
+    },
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test",
+      "result": "expected learner TODO failures",
+      "detail": "Tests run: 5, failures: 1, errors: 4. Four functional cases reach explicit maxProfit TODO; the null-input expectation gets UnsupportedOperationException instead of required IllegalArgumentException. No implementation supplied."
     }
   ],
   "dependency_review": "Maven Central metadata checked for Spring Boot web starter, JUnit Jupiter, embedded-postgres wrapper, and PostgreSQL binaries. Spring advisories reviewed. No full transitive SCA scan completed and no clean-SCA claim is made; see docs/dependency-review-2026-10-20.md.",
-  "published_sha": null,
-  "publication_blocker": "Build and infrastructure verification now pass with the recorded temporary JDK/proxy/cache settings. Branch publication and archive-tag verification remain pending."
+  "verified_published_predecessor_sha": "6a12b9bf9207f9c69c55ff2d3e8c36673664de9c",
+  "publication_status": "Remote branch learning/2026-10-20-scrum-reboot was confirmed at the predecessor SHA above before these acceptance/documentation corrections. This receipt intentionally records the confirmed predecessor rather than its own future commit SHA.",
+  "acceptance_hardening": "Added null/empty key parts and delimiter-containing composite-pair cases; API now compares parsed complete JSON arrays including duplicate removal/order and empty response, and checks null/missing selections. DSA boundary tests cover 0 and 10000. Home Secure fixture is contextual; acceptance inputs remain inline and do not load it."
 }

@@ -47,6 +47,14 @@ class QuoteSelectionAcceptanceTest {
     void rejectsNullAndBlankKeysWithoutPartialOutput() {
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(null));
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
+                new QuoteSelectionInput(null, "home-secure-v1"))));
+        assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
+                new QuoteSelectionInput("journey-A", null))));
+        assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
+                new QuoteSelectionInput("", "home-secure-v1"))));
+        assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
+                new QuoteSelectionInput("journey-A", ""))));
+        assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
                 new QuoteSelectionInput("journey-A", "home-secure-v1"),
                 new QuoteSelectionInput("journey-B", " "))));
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
@@ -65,5 +73,15 @@ class QuoteSelectionAcceptanceTest {
                 policy.uniqueSelections(List.of(
                         new QuoteSelectionInput("journey-A", "home-secure-v1"),
                         new QuoteSelectionInput("journey-A", " home-secure-v1"))));
+    }
+
+    @Test
+    void compositeIdentityDoesNotCollideWhenPartsContainDelimiters() {
+        assertEquals(List.of(
+                new QuoteSelectionKey("journey-A|journey-B", "home-secure-v1"),
+                new QuoteSelectionKey("journey-A", "journey-B|home-secure-v1")),
+                policy.uniqueSelections(List.of(
+                        new QuoteSelectionInput("journey-A|journey-B", "home-secure-v1"),
+                        new QuoteSelectionInput("journey-A", "journey-B|home-secure-v1"))));
     }
 }

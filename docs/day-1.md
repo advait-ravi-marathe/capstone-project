@@ -18,8 +18,9 @@ and its fixed acceptance tests are
 `src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java`.
 Implement the maximum profit from one buy followed by one later sell. Return
 zero for empty, one-day, or non-profitable input; reject `null`; do not mutate
-the array. Expected target: O(n) time and O(1) auxiliary space. Explain the
-descending-price, repeated-price, and minimum/maximum boundary cases. The
+the array. Prices follow LeetCode 121's inclusive range `0..10_000`. Expected
+target: O(n) time and O(1) auxiliary space. Explain the descending-price,
+repeated-price, and minimum/maximum boundary cases. The
 solution is intentionally left as a TODO.
 
 Run the acceptance check separately; it is expected to fail at the explicit
@@ -32,7 +33,9 @@ TODO until implemented:
 ## Feature and learning goal
 
 CoverStory starts as an enterprise insurance lifecycle simulation. Day 1 uses
-the single synthetic product fixture at `fixtures/day-1/home-secure.json`.
+the single synthetic product fixture at `fixtures/day-1/home-secure.json` for
+product context; fixed acceptance inputs are inline and do not load that
+fixture.
 The small slice establishes that a quote selection is identified
 by both journey and quote version, duplicates are removed in first-seen order,
 and invalid input is rejected before a result is returned. No catalog database,
