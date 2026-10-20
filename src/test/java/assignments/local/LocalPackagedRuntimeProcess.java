@@ -11,6 +11,7 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +29,10 @@ final class LocalPackagedRuntimeProcess implements AutoCloseable {
     }
 
     static LocalPackagedRuntimeProcess start(EmbeddedPostgres postgres) throws Exception {
+        return start(postgres, null);
+    }
+
+    static LocalPackagedRuntimeProcess start(EmbeddedPostgres postgres, String fixedClockInstant) throws Exception {
         Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT.jar").toAbsolutePath();
         if (!Files.isRegularFile(jar)) throw new IllegalStateException("Packaged local JAR is missing: " + jar);
         int port;
@@ -37,11 +42,12 @@ final class LocalPackagedRuntimeProcess implements AutoCloseable {
         Path log = Path.of("target/local-coverstory-browser/packaged-process-" + port + ".log").toAbsolutePath();
         Files.createDirectories(log.getParent());
         String java = Path.of(System.getProperty("java.home"), "bin", "java").toString();
-        List<String> command = List.of(java, "-jar", jar.toString(),
+        List<String> command = new ArrayList<>(List.of(java, "-jar", jar.toString(),
                 "--spring.profiles.active=local", "--server.address=127.0.0.1", "--server.port=" + port,
                 "--logging.level.root=ERROR",
                 "--spring.datasource.url=" + postgres.getJdbcUrl("postgres", "postgres"),
-                "--spring.datasource.username=postgres", "--spring.datasource.password=");
+                "--spring.datasource.username=postgres", "--spring.datasource.password="));
+        if (fixedClockInstant != null) command.add("--coverstory.local.fixed-clock=" + fixedClockInstant);
         Process process = new ProcessBuilder(command).redirectErrorStream(true).redirectOutput(log.toFile()).start();
         LocalPackagedRuntimeProcess runtime = new LocalPackagedRuntimeProcess(process, port, log);
         try {

@@ -27,6 +27,7 @@ try {
   const page = await context.newPage();
   const apiResponses = [];
   const responseSettlers = new WeakMap();
+  const mergedApiResponses = new WeakSet();
   let sessionCookie = savedSessionCookie ?? null;
   page.on('response', (response) => {
     const request = response.request();
@@ -34,15 +35,51 @@ try {
     if (!url.pathname.startsWith('/api/')) return;
     const entry = { method: request.method(), path: url.pathname, status: response.status(), body: '' };
     apiResponses.push(entry);
-    const settleBody = response.text().then((body) => { entry.body = body; }).catch(() => {});
     const settleSession = request.method() === 'POST' && url.pathname === '/api/session'
       ? response.allHeaders().then((headers) => {
         const match = (headers['set-cookie'] ?? '').match(/(?:^|,\s*)JSESSIONID=([^; ,]+)/);
         if (match) sessionCookie = match[1];
       })
       : Promise.resolve();
-    responseSettlers.set(response, Promise.all([settleBody, settleSession]));
+    responseSettlers.set(response, settleSession);
   });
+  await page.addInitScript(() => {
+    window.__coverStoryApiCaptures = [];
+    window.__coverStoryApiCapturePromises = [];
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = async (input, init) => {
+      const response = await originalFetch(input, init);
+      const inputUrl = input instanceof Request ? input.url : String(input);
+      const url = new URL(inputUrl, window.location.href);
+      if (url.pathname.startsWith('/api/')) {
+        const requestMethod = init?.method ?? (input instanceof Request ? input.method : 'GET');
+        const capture = {
+          method: requestMethod.toUpperCase(), path: url.pathname, status: response.status, body: '',
+        };
+        window.__coverStoryApiCaptures.push(capture);
+        window.__coverStoryApiCapturePromises.push(
+          response.clone().text().then((body) => { capture.body = body; }).catch(() => {})
+        );
+      }
+      return response;
+    };
+  });
+  const mergePageCaptures = async () => {
+    const captures = await page.evaluate(async () => {
+      await Promise.all(window.__coverStoryApiCapturePromises);
+      return window.__coverStoryApiCaptures;
+    });
+    // Both lists are ordered by response arrival. FIFO per method/path/status handles repeated API calls.
+    for (const capture of captures) {
+      const entry = apiResponses.find((candidate) => !mergedApiResponses.has(candidate)
+        && candidate.method === capture.method && candidate.path === capture.path
+        && candidate.status === capture.status);
+      if (entry) {
+        entry.body = capture.body;
+        mergedApiResponses.add(entry);
+      }
+    }
+  };
 
   const pageResponse = await page.goto(baseUrl);
   const heading = await page.getByRole('heading', { name: 'CoverStory local training' }).textContent().catch(() => null);
@@ -61,6 +98,7 @@ try {
       if (responsePromise) {
         const response = await responsePromise;
         await responseSettlers.get(response);
+        await mergePageCaptures();
       }
     }
     return available;
@@ -102,6 +140,7 @@ try {
       result.previewAsOwnerB = latestPreview();
       controls.logout = await click('Log out', { method: 'POST', path: /^\/api\/session\/logout$/ });
       if (controls.logout) {
+        await mergePageCaptures();
         const responseStart = apiResponses.length;
         const reloadedSession = page.waitForResponse((response) => {
           const request = response.request();
@@ -115,6 +154,7 @@ try {
     }
   }
 
+  await mergePageCaptures();
   if (sessionCookieOutput && scenario === 'day69') {
     fs.mkdirSync(path.dirname(sessionCookieOutput), { recursive: true });
     fs.writeFileSync(sessionCookieOutput, sessionCookie ?? '', { mode: 0o600 });

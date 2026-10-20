@@ -5,6 +5,7 @@ import assignments.insurance.PolicyRenewalPreviewPolicy;
 import assignments.insurance.PolicyRenewalReadStore;
 import assignments.insurance.PolicyReadStore;
 import assignments.renewal.PolicyRenewalPreviewController;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneOffset;
 
 /** Explicitly assembles the local app; it does not scan the Day 1 or test harness packages. */
 @Configuration(proxyBeanMethods = false)
@@ -19,7 +22,10 @@ import java.time.Clock;
 @Import(PolicyRenewalPreviewController.class)
 public class LocalRuntimeConfiguration {
     @Bean
-    Clock localClock() { return Clock.systemUTC(); }
+    Clock localClock(@Value("${coverstory.local.fixed-clock:}") String fixedClock) {
+        return fixedClock.isBlank() ? Clock.systemUTC()
+                : Clock.fixed(Instant.parse(fixedClock), ZoneOffset.UTC);
+    }
 
     @Bean
     LocalApplicationComposition.Components localComponents(Clock localClock, DataSource dataSource) {

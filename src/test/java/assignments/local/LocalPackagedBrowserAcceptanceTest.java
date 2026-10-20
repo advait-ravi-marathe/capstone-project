@@ -19,12 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Learner feature acceptance driven through UI controls against the built executable JAR. */
 class LocalPackagedBrowserAcceptanceTest {
     private static final Path OUTPUT = Path.of("target/local-coverstory-browser").toAbsolutePath();
+    private static final String PREVIEW_TEST_CLOCK = "2026-01-01T12:00:00Z";
 
     @Test
     @Tag("learnerAcceptance")
     void day68PackagedUiPreviewIsReadOnly() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
-             LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
+             LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres, PREVIEW_TEST_CLOCK)) {
             PolicyDatabaseSnapshot before = policySnapshot(postgres.getPostgresDatabase());
             JsonNode result = runBrowser(app.port(), "day68-preview", OUTPUT.resolve("day68-preview.json"), null, null);
             PolicyDatabaseSnapshot after = policySnapshot(postgres.getPostgresDatabase());
@@ -75,7 +76,11 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertEquals(200, issues.path(1).path("status").asInt());
                         assertTrue(reads.isArray() && reads.size() >= 1, "capture owner-scoped GET readback");
                         assertEquals(200, reads.path(0).path("status").asInt());
-                        assertEquals(bodyField(issues.path(0), "policyId"), bodyField(issues.path(1), "policyId"));
+                        String issuedPolicyId = bodyField(issues.path(0), "policyId");
+                        assertEquals(issuedPolicyId, bodyField(issues.path(1), "policyId"),
+                                "same-key replay must return the issued policy ID");
+                        assertEquals(issuedPolicyId, bodyField(reads.path(0), "policyId"),
+                                "owner-scoped readback must return the issued policy ID");
                         assertEquals(before + 1, after, "replay must not create another policy row");
                         assertEquals(rowCount(beforeRows.lifecycleEvents()) + 1, rowCount(afterRows.lifecycleEvents()),
                                 "one new issued policy should add exactly one lifecycle event");
@@ -105,14 +110,14 @@ class LocalPackagedBrowserAcceptanceTest {
             PolicyDatabaseSnapshot beforeRestartPreview;
             PolicyDatabaseSnapshot afterRestartPreview;
             try {
-                try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
+                try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres, PREVIEW_TEST_CLOCK)) {
                     // Start the packaged app first so Flyway creates and seeds the database before queries run.
                     beforeFirstPreview = policySnapshot(dataSource);
                     first = runBrowser(app.port(), "day69", OUTPUT.resolve("day69-before-restart.json"),
                             null, sessionCookieFile);
                     afterFirstPreview = policySnapshot(dataSource);
                 }
-                try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres)) {
+                try (LocalPackagedRuntimeProcess app = LocalPackagedRuntimeProcess.start(postgres, PREVIEW_TEST_CLOCK)) {
                     beforeRestartPreview = policySnapshot(dataSource);
                     restarted = runBrowser(app.port(), "day69-restart-check",
                             OUTPUT.resolve("day69-after-restart.json"), sessionCookieFile, null);
