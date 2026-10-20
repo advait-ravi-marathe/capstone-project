@@ -1,30 +1,71 @@
-# Capstone starter
+# CoverStory Day 1 starter — synthetic insurance quote selection
 
-This clean starter begins with CAP-43, a small Java event-policy exercise. It
-uses Java 21 and Maven. The assignment code and its fixed tests are supplied;
-the classification and acceptance behavior remain learner work.
+This starter reuses the verified Java 21, Maven, Spring MVC, and fixed-test
+harness from the legacy capstone exercises. Day 1 begins a synthetic insurance
+lifecycle with a small quote-selection domain rule. All products and quote IDs
+are fixtures; no real insurer, customer, payment, or policy system is connected.
+The learner implementation stays in one explicit TODO method.
 
 ## Run
 
-With Java 21 and either Maven 3.9+ installed or an existing Maven Wrapper
-distribution cached for the current user:
+With Java 21 and network access to Maven Central on first use:
 
 ```sh
 ./mvnw test
 ```
 
-The repository-local `./mvnw` is a small portable helper, not the official Maven
-Wrapper. It uses `mvn` from `PATH` when available, otherwise it searches the
-current user's Maven Wrapper cache. It does not download Maven or install
-anything. The default run compiles the project and runs infrastructure smoke
+The official Maven Wrapper downloads Maven 3.10.0 and verifies its SHA-256
+before use. The default run compiles the project and runs infrastructure smoke
 checks. To run the visible learner acceptance tests (which are expected to
-fail until the TODOs are complete), use:
+fail until the TODO is complete), use:
 
 ```sh
 ./mvnw -Plearner-tests test
 ```
 
-## CAP-43: event policy (90 minutes)
+## Day 1: preserve quote selection identity and order (120 engineering minutes)
+
+Read [the Day 1 guide](docs/day-1.md). Implement `uniqueSelections` in
+`src/main/java/assignments/insurance/QuoteSelectionPolicy.java`.
+
+- A selection is identified by the exact pair `(journeyId, quoteVersionId)`.
+- Keep only the first occurrence of each pair and preserve encounter order.
+- Reject a null list, null entries, or blank key parts with
+  `IllegalArgumentException`; never return partial output.
+- Do not mutate the input, trim values, sort, persist, or infer authorization
+  from a journey identifier.
+
+The visible behavioral acceptance tests are fixed and expected to fail until
+the TODO is implemented. Instructor infrastructure checks only establish that
+Java/Maven compilation and the provided Spring MVC route are available; they
+do not implement the policy. The controller is provided and maps valid input
+to HTTP 200 and invalid input to HTTP 400.
+
+Run infrastructure checks:
+
+```sh
+./mvnw -Dtest=QuoteSelectionInfrastructureTest test
+```
+
+Run learner acceptance separately (expected TODO failures):
+
+```sh
+./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test
+```
+
+The separate 60-minute Java DSA assignment is LeetCode 121. See the first
+section of [the Day 1 guide](docs/day-1.md), implement
+`src/main/java/assignments/dsa/BestTimeToBuySellStock.java`, and run:
+
+```sh
+./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test
+```
+
+## Legacy exercises retained
+
+The following earlier contracts remain in place and unchanged.
+
+### CAP-43: event policy (90 minutes)
 
 Implement the two TODO methods in
 `src/main/java/assignments/events/EventPolicy.java`.
