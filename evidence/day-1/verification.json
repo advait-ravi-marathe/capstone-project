@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-20",
+  "branch": "learning/2026-10-20-scrum-reboot",
+  "starting_sha": "4f362eb30739d73a4e90405a30aada6401145afe",
+  "starting_worktree": "clean",
+  "preserved_practice_branch_sha": "bee1828002b4b377ca112ef4f749f1e892f802db",
+  "java": "openjdk 21.0.12.1",
+  "maven_wrapper": "3.10.0, SHA-256 pinned",
+  "commands": [
+    {
+      "command": "./mvnw -Dtest=QuoteSelectionInfrastructureTest test",
+      "result": "blocked",
+      "detail": "The sandbox default Maven cache /home/agent/.m2 is not writable."
+    },
+    {
+      "command": "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Dtest=QuoteSelectionInfrastructureTest test",
+      "result": "blocked",
+      "detail": "Maven could not resolve the Spring Boot BOM because Java DNS resolution for repo.maven.apache.org failed. No compilation or test execution occurred."
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed",
+      "detail": "No whitespace errors in the working diff."
+    }
+  ],
+  "expected_learner_failures": [
+    "QuoteSelectionAcceptanceTest reaches the explicit learner TODO until implemented.",
+    "QuoteSelectionApiAcceptanceTest valid request reaches the explicit learner TODO until implemented.",
+    "BestTimeToBuySellStockAcceptanceTest reaches the explicit DSA learner TODO until implemented."
+  ],
+  "additional_checks": [
+    "MAVEN_USER_HOME=/tmp/maven-wrapper-test ./mvnw -version: passed; Apache Maven 3.10.0 and Java 21.0.12.1 reported.",
+    "Python XML and JSON parsing of pom.xml and this evidence file: passed.",
+    "git diff --cached --check: passed for the complete staged change set."
+  ],
+  "dependency_review": "Spring Boot 4.1.1 and JUnit Jupiter 6.1.3 are published in Maven Central. Spring advisory index reviewed. Full dependency resolution and SCA scan were blocked; no clean-SCA claim is made. See docs/dependency-review-2026-10-20.md.",
+  "published_sha": null,
+  "publication_blocker": "Build verification could not run because of environment DNS/cache constraints; branch push and archive-tag verification have not been attempted."
+}
