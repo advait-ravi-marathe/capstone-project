@@ -8,7 +8,8 @@ The learner implementation stays in one explicit TODO method.
 
 ## Run the Day 1 checks
 
-With Java 21 and network access to Maven Central on first use:
+With a full JDK 21 (both `java` and `javac`) and network access to Maven
+Central on first use:
 
 ```sh
 ./mvnw test
@@ -35,7 +36,8 @@ Read [the Day 1 guide](docs/day-1.md). Implement `uniqueSelections` in
 
 - A selection is identified by the exact pair `(journeyId, quoteVersionId)`.
 - Keep only the first occurrence of each pair and preserve encounter order.
-- Reject a null list, null entries, or blank key parts with
+- Reject a null list, null entries, or null/empty/blank journey or quote-version
+  identifiers with
   `IllegalArgumentException`; never return partial output.
 - Do not mutate the input, trim values, sort, persist, or infer authorization
   from a journey identifier.
@@ -73,9 +75,15 @@ section of [the Day 1 guide](docs/day-1.md), implement
 it also runs the older CAP-43, CAP-42, and CAP-45 TODO suites. It is not the
 primary Day 1 command.
 
+The dated [30-day CoverStory contract index](docs/reboot/README.md) describes
+the proposed sequence after Day 1. Those future contracts are not completed
+assignments or test results; Day 1 remains the only installed daily slice.
+
 ## Legacy exercises retained
 
-The following earlier contracts remain in place and unchanged.
+The following earlier contracts remain in place and unchanged. Their old
+per-exercise time estimates are historical; the active dated plan uses the
+authoritative 60-minute DSA + 120-minute engineering daily allocation above.
 
 ### CAP-43: event policy (90 minutes)
 

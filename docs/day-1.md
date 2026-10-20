@@ -55,8 +55,9 @@ The fixed acceptance suite is
 | `[(journey-B, home-secure-v1), (journey-A, home-secure-v1), (journey-B, home-secure-v1)]` | First two exact pairs, same order; input unchanged |
 | `[]` | `[]` |
 | Same quote version under two journey IDs | Two distinct keys |
-| Null list, null entry, or blank key part | `IllegalArgumentException`; no partial result |
+| Null list, null entry, or null/empty/blank `journeyId` or `quoteVersionId` | `IllegalArgumentException`; no partial result |
 | `home-secure-v1` and ` home-secure-v1` | Distinct exact values; no trimming |
+| `("journey-A|journey-B", "home-secure-v1")` and `("journey-A", "journey-B|home-secure-v1")` | Distinct composite pairs even when values contain delimiters |
 
 The runnable Spring Boot app starts with `./mvnw spring-boot:run`. The supplied
 API is `POST /api/quote-selections`, with JSON

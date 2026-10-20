@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-20",
+  "branch": "learning/2026-10-20-scrum-reboot",
+  "base_sha": "bd1f54a5c6ec70b91bf29f937521a910183bdde3",
+  "scope": "Record reviewed 30-day contract set and one test-only synthetic HomeSecure catalog fixture.",
+  "contract_manifest": "docs/reboot/manifest.json",
+  "contract_files": 30,
+  "scheduled_dates": {
+    "first": "2026-10-20",
+    "last": "2026-11-18",
+    "consecutive_calendar_days": 30
+  },
+  "daily_budget_minutes": {
+    "java_dsa": 60,
+    "engineering": 120,
+    "build_test": 85,
+    "concept_course": 25,
+    "evidence": 10
+  },
+  "status_integrity": "Day 1 scaffold is installed; learner and integration status remain pending/blocked. Days 2-30 have contract text only, no test class, implementation, or completion claim. Calendar dates never update completion status.",
+  "fixture": {
+    "path": "src/test/resources/assignments/reboot/homesecure-catalog.json",
+    "only_synthetic": true,
+    "validation_test": "assignments.reboot.HomeSecureCatalogFixtureInfrastructureTest"
+  },
+  "commands": [
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/maven-wrapper-test MAVEN_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts' ./mvnw -s /tmp/maven-proxy-settings.xml -Dmaven.repo.local=/tmp/d1-m2 test",
+      "result": "passed",
+      "detail": "Tests run: 6, failures: 0, errors: 0, skipped: 0. Includes fixture integrity and all existing infrastructure checks."
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed",
+      "detail": "No whitespace errors in pending changes."
+    },
+    {
+      "command": "Python manifest validation inline: parse JSON; assert 30 sequential dates from 2026-10-20 through 2026-11-18; assert all 30 contract files exist and match dates; assert all integration states remain blocked.",
+      "result": "passed",
+      "detail": "30 consecutive dates and 30 linked contract pages verified."
+    }
+  ],
+  "limitations": [
+    "Day 2-30 acceptance test classes and production seams are not installed yet; their documented selectors must not be run or counted as passing.",
+    "Day 17-28 UI/security/actuator contracts require infrastructure not present in the Day 1 checkout; the contract pages state this explicitly.",
+    "HomeSecure rates and eligibility are synthetic educational rules, not real insurance terms or advice."
+  ]
+}
