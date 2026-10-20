@@ -1,0 +1,13 @@
+{
+  "day": 112,
+  "date": "2027-02-08",
+  "learner_status": "not_attempted",
+  "contract_status": "defined",
+  "acceptance_commands": [
+    "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test"
+  ],
+  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
+  "witness_status": "not_run",
+  "learner_attempts": [],
+  "notes": "Evidence fields only; no attempts or completion inferred."
+}

@@ -67,6 +67,7 @@ final class LocalPackagedRuntimeProcess implements AutoCloseable {
     }
 
     int port() { return port; }
+    long pid() { return process.pid(); }
 
     HttpResponse<String> get(String path) throws IOException, InterruptedException {
         return get(path, null);

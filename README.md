@@ -244,3 +244,5 @@ blocked. This branch upgrades its disposable embedded PostgreSQL test target
 to 18.6 after checking official support and platform artifact availability;
 historical contracts are retained, and no existing user database is migrated.
 No board update is included.
+
+The isolated [Days 99–112 continuation](docs/reboot/continuation-99-112/README.md) adds restart-safe local delivery contracts and fixed learner acceptance. It is not completion evidence and has not been added to the project board.

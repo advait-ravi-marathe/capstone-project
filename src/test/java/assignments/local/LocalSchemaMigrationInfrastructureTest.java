@@ -14,13 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /** Runs the actual versioned migrations against the configured embedded PostgreSQL binaries. */
 class LocalSchemaMigrationInfrastructureTest {
     @Test
-    void day59VersionedBootstrapIsRepeatableAndNonDestructive() throws Exception {
+    void versionedBootstrapIncludesEventLogDeliveryAndIsRepeatableAndNonDestructive() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             DataSource dataSource = postgres.getPostgresDatabase();
             Flyway flyway = Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load();
 
-            assertEquals(3, flyway.migrate().migrationsExecuted);
+            assertEquals(4, flyway.migrate().migrationsExecuted);
             assertEquals(3, countPolicies(dataSource));
+            assertEquals(0, countRows(dataSource, "training_issuance_work"));
+            assertEquals(0, countRows(dataSource, "training_issuance_delivery_receipt"));
             try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
                 statement.executeUpdate("""
                         INSERT INTO training_policy_lifecycle
@@ -35,6 +37,15 @@ class LocalSchemaMigrationInfrastructureTest {
             assertEquals(0, flyway.migrate().migrationsExecuted);
             assertEquals(4, countPolicies(dataSource));
             assertTrue(hasPolicy(dataSource, "policy-sentinel"));
+        }
+    }
+
+    private static int countRows(DataSource dataSource, String table) throws Exception {
+        if (!table.matches("training_issuance_(work|delivery_receipt)")) throw new IllegalArgumentException("fixed table only");
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();
+             var rows = statement.executeQuery("SELECT count(*) FROM " + table)) {
+            assertTrue(rows.next());
+            return rows.getInt(1);
         }
     }
 

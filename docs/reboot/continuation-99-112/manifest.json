@@ -1,0 +1,1178 @@
+{
+  "title": "CoverStory Days 99–112 restart-safe local delivery",
+  "status": "scaffold_plan_not_learner_completion",
+  "base_commit": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+  "start_date": "2027-01-26",
+  "end_date": "2027-02-08",
+  "sprint": "Sprint 8",
+  "daily_budget_minutes": 180,
+  "engineering_budget_minutes": 120,
+  "engineering_allocation_minutes": {
+    "implementation_and_testing": 85,
+    "concept_or_course": 25,
+    "evidence": 10
+  },
+  "java_dsa_budget_minutes": 60,
+  "outcome": "Restart-safe local delivery of committed ISSUED events via event-log-backed durable-work materialization and explicitly invoked bounded command.",
+  "constraints": [
+    "Day 35 source issuance transaction unchanged.",
+    "No Kafka, Redis, scheduler, automatic retries, leases, new HTTP route, cloud resource, credentials, or real customer data.",
+    "Receipt and acknowledgment are separate commits; no exactly-once/global-order claim.",
+    "Repeated anti-join reconciliation; no high-watermark.",
+    "Completed work retained.",
+    "Renewal preview read-only."
+  ],
+  "course_catalog": {
+    "verified_at": "2026-10-20",
+    "course_id": "1341538",
+    "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+    "instructor": "in28Minutes Official",
+    "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+    "access_status": "unconfirmed_reference_only",
+    "video_content_audited": false,
+    "source_note": "Catalog metadata supplied from verified Udemy search_courses/get_course_content; video contents not audited; lessons are partial foundations."
+  },
+  "days": [
+    {
+      "day": 99,
+      "date": "2027-01-26",
+      "title": "Define the durable source and minimal envelope",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-99.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Accept a supported immutable ISSUED envelope and trace the existing source transaction. Do not reimplement Day 35.",
+        "learner_seam": "IssuanceEnvelope.validateSupported()",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-99.md",
+        "evidence_reference": "evidence/continuation-99-112/day-99.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day99AcceptsOnlySupportedImmutableIssuedEnvelope test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 59 - Transaction Management - ACID Properties",
+              "section_title": "Transaction Management",
+              "duration_seconds": 349,
+              "source_item_id": "7907612",
+              "course_id": "1341538",
+              "section_id": "1926206"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 transactions",
+              "section": "The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.",
+              "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
+            }
+          ],
+          "video_seconds": 349,
+          "worked_reference_seconds": 851,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-26",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 100,
+      "date": "2027-01-27",
+      "title": "Constrain stable work and receipt identities",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-100.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Add constraints in a new additive migration. Leave V001–V003 unchanged; never rewrite existing rows.",
+        "learner_seam": "V004__event_log_delivery_work.sql constraints",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-100.md",
+        "evidence_reference": "evidence/continuation-99-112/day-100.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day100SchemaConstraintsRejectDuplicateAndInvalidRows test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 constraints",
+              "section": "Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.",
+              "url": "https://www.postgresql.org/docs/18/ddl-constraints.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-27",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 101,
+      "date": "2027-01-28",
+      "title": "Capture committed missing events in bounded batches",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-101.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Rescan committed ISSUED events missing from work, insert stable keys up to limit, and make repeats harmless. Exclude other event types.",
+        "learner_seam": "JdbcIssuanceWorkStore.captureCommittedIssuances(int)",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-101.md",
+        "evidence_reference": "evidence/continuation-99-112/day-101.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 INSERT",
+              "section": "Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.",
+              "url": "https://www.postgresql.org/docs/18/sql-insert.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-28",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 102,
+      "date": "2027-01-29",
+      "title": "Read and map captured pending envelopes",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-102.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Return bounded deterministic pending rows, exclude acknowledged work, and map the captured immutable payload. Unknown data stays an error.",
+        "learner_seam": "JdbcIssuanceWorkStore.findPending(int)",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-102.md",
+        "evidence_reference": "evidence/continuation-99-112/day-102.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day102MapsCapturedPendingEnvelopeInStableBoundedOrder test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 12 - Creating a custom Spring JDBC RowMapper",
+              "section_title": "Journey From Spring  JDBC to JPA",
+              "duration_seconds": 298,
+              "source_item_id": "7907420",
+              "course_id": "1341538",
+              "section_id": "1926220"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring JDBC core reference",
+              "section": "Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+            }
+          ],
+          "video_seconds": 298,
+          "worked_reference_seconds": 902,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-29",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 103,
+      "date": "2027-01-30",
+      "title": "Commit one duplicate-safe synthetic receipt",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-103.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "The receipt is the full synthetic effect. Identical replay is a no-op; same-key changed payload fails; original fields/time never change.",
+        "learner_seam": "JdbcIssuanceWorkStore.acceptReceipt(IssuanceEnvelope)",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-103.md",
+        "evidence_reference": "evidence/continuation-99-112/day-103.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day103ReceiptReplayIsStableAndConflictingPayloadIsVisible test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 11 - Implementing insert and update Spring JDBC Update Methods",
+              "section_title": "Journey From Spring  JDBC to JPA",
+              "duration_seconds": 519,
+              "source_item_id": "7907416",
+              "course_id": "1341538",
+              "section_id": "1926220"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring JDBC core reference",
+              "section": "Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+            }
+          ],
+          "video_seconds": 519,
+          "worked_reference_seconds": 681,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-30",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 104,
+      "date": "2027-01-31",
+      "title": "Acknowledge only completed delivery",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-104.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Acknowledge after receipt commit. Repeated ack preserves its first time; unknown work is not marked delivered.",
+        "learner_seam": "JdbcIssuanceWorkStore.acknowledge(IssuanceEnvelope)",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-104.md",
+        "evidence_reference": "evidence/continuation-99-112/day-104.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day104CannotAcknowledgeBeforeCommittedReceiptAndPreservesFirstAcknowledgment test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "AWS transactional outbox pattern",
+              "section": "Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.",
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-31",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 105,
+      "date": "2027-02-01",
+      "title": "Recover and explain the crash states",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-105.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery day; repair earlier seams and predict persistent rows at each failure point. No new feature.",
+        "learner_seam": "Repair earlier failing selector(s)",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-105.md",
+        "evidence_reference": "evidence/continuation-99-112/day-105.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transactions",
+              "section": "Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-01",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 106,
+      "date": "2027-02-02",
+      "title": "Orchestrate one bounded sequential batch",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-106.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Run capture then deliver each item. Receipt and ack are separate commits; stop on first error, report committed progress, no auto retry or skip.",
+        "learner_seam": "OneBatchDispatcher.runOnce(int)",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-106.md",
+        "evidence_reference": "evidence/continuation-99-112/day-106.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test",
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReportsOnlyEarlierCommittedProgressWhenLaterItemFails test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+              "section_title": "Transaction Management",
+              "duration_seconds": 278,
+              "source_item_id": "7907620",
+              "course_id": "1341538",
+              "section_id": "1926206"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transactions",
+              "section": "Capture separately. For each item commit receipt before ack; prove receipt visible from fresh connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending.",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html"
+            }
+          ],
+          "video_seconds": 278,
+          "worked_reference_seconds": 922,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Capture separately. For each item commit receipt before ack; prove receipt visible from fresh connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-02",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 107,
+      "date": "2027-02-03",
+      "title": "Prove late commits cannot fall behind a cursor",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-107.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Hold source A open with earlier key; commit/capture B; then commit/capture A. A must be found. Exclude uncommitted/rolled-back events.",
+        "learner_seam": "Capture two-connection fixture",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-107.md",
+        "evidence_reference": "evidence/continuation-99-112/day-107.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 transaction isolation",
+              "section": "Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-03",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 108,
+      "date": "2027-02-04",
+      "title": "Prove failed receipt transactions leave recoverable work",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-108.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Inject receipt-boundary failure. Receipt rolls back; pending work remains; no ack; later explicit run can complete.",
+        "learner_seam": "Receipt failure and retry fixture",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-108.md",
+        "evidence_reference": "evidence/continuation-99-112/day-108.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day108ReceiptFailureLeavesPendingWorkForManualRecovery test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring test transaction management",
+              "section": "Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.",
+              "url": "https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-04",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 109,
+      "date": "2027-02-05",
+      "title": "Prove fresh-JVM replay after receipt commit",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-109.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "A test child commits receipt, emits synchronization marker before ack, then blocks. Parent confirms state, kills it, starts fresh JVM against same live DB, checks one receipt and ack.",
+        "learner_seam": "DurableWorkRestartAcceptanceTest",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-109.md",
+        "evidence_reference": "evidence/continuation-99-112/day-109.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableWorkRestartAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableWorkRestartAcceptanceTest#freshJvmReplayFinishesAcknowledgmentWithoutDuplicatingCommittedReceipt test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Java 21 Process API",
+              "section": "Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-05",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 110,
+      "date": "2027-02-06",
+      "title": "Expose an explicit one-shot local command",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-110.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Supply command that captures/drains once and exits. Normal startup performs no delivery. Validate bounded CLI argument and exit status.",
+        "learner_seam": "LocalIssuanceDeliveryCommand / --coverstory.delivery.run-once",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-110.md",
+        "evidence_reference": "evidence/continuation-99-112/day-110.json",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest#protectedIssueThenManualCommandLeavesOneReceiptAndNoPreviewWrites test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 06 - Execute the findAll method using CommandLineRunner",
+              "section_title": "Journey From Spring  JDBC to JPA",
+              "duration_seconds": 345,
+              "source_item_id": "7907404",
+              "course_id": "1341538",
+              "section_id": "1926220"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring Boot SpringApplication runners",
+              "section": "Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.",
+              "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html"
+            }
+          ],
+          "video_seconds": 345,
+          "worked_reference_seconds": 855,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-06",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 111,
+      "date": "2027-02-07",
+      "title": "Integrate protected issuance, manual delivery, and read-only preview",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-111.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Issue by existing protected route, run packaged command, confirm one effect, replay safely, and prove preview does not write new tables.",
+        "learner_seam": "Packaged route plus command",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-111.md",
+        "evidence_reference": "evidence/continuation-99-112/day-111.json",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest#protectedIssueThenManualCommandLeavesOneReceiptAndNoPreviewWrites test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Day 35 atomic issuance contract",
+              "section": "Existing policy, idempotency receipt and ISSUED event commit together",
+              "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md"
+            },
+            {
+              "title": "Days 85–98 renewal contract",
+              "section": "Renewal preview read-only integration boundary",
+              "url": "https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Compare full snapshots to seeded baseline. Same-key issue replay adds no event; renewal preview stays read-only.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-07",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    },
+    {
+      "day": 112,
+      "date": "2027-02-08",
+      "title": "Recover, rerun, and defend the guarantee",
+      "contract_file": "docs/reboot/continuation-99-112/contracts/day-112.md",
+      "contract_status": "defined",
+      "scaffold_status": "instructor_scaffold_complete",
+      "learner_status": "not_attempted",
+      "integration_status": "harness_installed_pending_witness",
+      "prerequisite_note": "Entrance gate: demonstrated Day 35 atomic source issuance/event/idempotency, transaction/rollback/resource cleanup and local runtime. Scaffold, date, or temporary witness do not satisfy learner completion.",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery and independent assessment. Run all affected selectors and diagnose early-ack or lost-late-commit defect. No new feature.",
+        "learner_seam": "All affected selectors",
+        "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-112.md",
+        "evidence_reference": "evidence/continuation-99-112/day-112.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day106ReceiptCommitPrecedesAcknowledgmentAndFailureStopsBatch test"
+        ],
+        "acceptance_selector_status": "installed_expected_todo_red",
+        "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day99To112InfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "AWS transactional outbox pattern",
+              "section": "Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.",
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html"
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_verified_supplement_required",
+          "scope_note": "Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "videos_watched": false,
+          "viewing_is_not_completion": true,
+          "source_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+          "catalog_verified_at": "2026-10-20",
+          "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
+        },
+        "status": "not_attempted",
+        "scaffold_status": "instructor_scaffold_complete"
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "problem_id": null,
+        "planned_first_attempt_date": null,
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-08",
+        "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        "status": "not_attempted",
+        "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch."
+      }
+    }
+  ]
+}

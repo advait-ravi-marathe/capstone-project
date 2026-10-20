@@ -162,3 +162,7 @@ the board or claims learner completion.
 preview with a bounded synchronous capacity gate and recovery evidence. The
 manifest and Story export are documentation only; this work does not update
 the Scrum board.
+
+## Continued roadmap
+
+The isolated [Days 99–112 contracts](continuation-99-112/README.md) add event-log-backed durable-work materialization and a manual one-shot local command. These are contracts and learner TODO scaffolding; they do not indicate completion.

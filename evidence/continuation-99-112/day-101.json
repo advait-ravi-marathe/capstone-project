@@ -1,0 +1,14 @@
+{
+  "day": 101,
+  "date": "2027-01-28",
+  "learner_status": "not_attempted",
+  "contract_status": "defined",
+  "acceptance_commands": [
+    "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test"
+  ],
+  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
+  "witness_status": "passed_temporary_witness_and_bad_cursor_rejected",
+  "learner_attempts": [],
+  "notes": "Evidence fields only; no attempts or completion inferred.",
+  "temporary_witness_evidence": "Bounded repeated reconciliation recovered a-late after b-early committed first. V003 historical ISSUED events have a separate eligibility test. High-watermark mutant failed at the late-commit assertion."
+}

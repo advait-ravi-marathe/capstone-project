@@ -1,0 +1,104 @@
+{
+  "title": "Days 99–112 durable local delivery verification receipt",
+  "state": "verified_scaffold_temporary_witness_passed_learner_sources_restored",
+  "base_sha": "eb380f352f509740ecb5b9f4fbd96d6332136b8",
+  "branch": "learning/coverstory-days-99-112",
+  "verified_at": "2026-10-20T18:42:10Z",
+  "runtime_tested_tree_sha": "pending_source_commit_sha; default suite executed on restored learner-source tree before receipt update",
+  "scope": "Instructor scaffolding and fixed tests only. Learner implementation remains TODO; no completion inferred.",
+  "commands": [
+    {
+      "command": "cd frontend && npm ci --cache=/tmp/capstone-npm-cache",
+      "result": "passed; locked dependencies installed"
+    },
+    {
+      "command": "cd frontend && npm run build",
+      "result": "passed"
+    },
+    {
+      "command": "cd frontend && npm run build:local",
+      "result": "passed; built packaged local UI assets"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=Day99To112InfrastructureTest,LocalSchemaMigrationInfrastructureTest test",
+      "result": "passed; 3/3 instructor checks"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean test",
+      "result": "passed; 44 tests, 0 failures, 0 errors, 0 skipped; clean instructor/default profile, rerun 2026-10-20 18:41 UTC after latest source and contract changes."
+    },
+    {
+      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+      "result": "passed; 19 tests; no new DSA problem or attempt recorded"
+    },
+    {
+      "command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-26",
+      "result": "passed; queue reflects actual-attempt log only, no actual first attempts asserted by this artifact"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest test",
+      "result": "expected learner TODO red after restoration: 11 tests, 2 failures and 8 errors; Day 99, 101–104, 106, and 108 seams remain explicit TODOs; restart child reaches Day 106 TODO before its post-receipt marker. Day 100 schema test passes."
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test",
+      "result": "expected prerequisite TODO red after restoration: packaged app startup fails explicitly at Day 86 budget TODO; selector/tool/JAR are present."
+    }
+  ],
+  "temporary_witnesses": {
+    "status": "passed_then_removed",
+    "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest test",
+    "result": "Separate temporary witness runs passed: the durable-domain plus fresh-JVM suite passed 11/11 after the Day106 partial-progress acceptance was added; the packaged browser/API/command/read-only-preview selector separately passed 1/1 in an earlier temporary-witness run. These are harness evidence, not learner completion.",
+    "restart_witness": {
+      "child_pid": 488567,
+      "forced_exit_code": 137,
+      "recovery_pid": 488620,
+      "recovery_exit_code": 0,
+      "result": "Fresh independent JVM recovered one source identity/receipt and completed acknowledgment; V003 ISSUED seed rows were explicitly exercised."
+    },
+    "packaged_integration_witness": {
+      "local_runtime_pid": 484488,
+      "command_pid": 484595,
+      "replay_pid": 484654,
+      "result": "Actual packaged JAR and Chromium path: protected POST /api/policies returned 201; one-shot command materialized and acknowledged three committed V003 ISSUED seeds plus the new issue; second invocation made no changes; authenticated renewal preview returned 200 without changing work/receipt tables. This standalone witness run preceded only test/logging and Day106 failure-report changes; success-path runtime logic was unchanged."
+    },
+    "restoration": {
+      "learner_sources_restored": true,
+      "sha256_after_restore": {
+        "src/main/java/assignments/delivery/IssuanceEnvelope.java": "59cb4facbbfba4c88d4f0731abf586581be984049147c9cc37bf9a2bbde03937",
+        "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java": "1ca0467f8c0e585603f11c631a87a5e1bef481c0c3ae3ebc7c35aee36ef00951",
+        "src/main/java/assignments/delivery/OneBatchDispatcher.java": "b11bd814fe82a3d9f015b940c791d99dad7813963db846f22885a9ed145eba12",
+        "src/main/java/assignments/local/LocalRuntimeConfiguration.java": "5aa9d291d342ca21d3e49511ad125523e316a3b19ff201100e1723875c256e7c",
+        "src/main/java/assignments/local/LocalSecurityConfiguration.java": "92baa1ac0e9d9a5b06a25b6f3f3b591dc87106a1f08b44fb60133549bc9e65a3"
+      },
+      "other_temporary_sources_removed": true,
+      "witness_build_artifacts_removed_from_git": true,
+      "note": "LocalIssuanceDeliveryCommand is instructor-owned support, not a learner seam; its expected hash changed when partial-failure reporting was added. All three Days 99–106 learner seam files are restored to their recorded TODO hashes."
+    }
+  },
+  "negative_witnesses": [
+    {
+      "defect": "high-watermark capture cursor",
+      "expected_failure": "Day 101 late-commit acceptance failed at second reconciliation: expected 1 late source row, got 0; demonstrates loss of earlier-sorting late commit."
+    },
+    {
+      "defect": "acknowledgment before receipt commit",
+      "expected_failure": "Day 106 acceptance failed because a fresh connection observed 0 receipts at acknowledgment; test caught ordering defect."
+    },
+    {
+      "defect": "Day 106 partial-progress report discards already committed outcome",
+      "expected_failure": "Fixed instructor assertion now requires one acknowledged receipt to remain visible in committedProgress after the next envelope fails; conforming witness and the exact receipt fields were inspected."
+    }
+  ],
+  "source_changes_detected_by_packaged_harness": [
+    "Added explicit @Qualifier names for the two JdbcTemplate beans and transaction-template injection; Spring had failed local app startup due ambiguous JdbcTemplate injection.",
+    "Imported the opt-in delivery runner into LocalRuntimeConfiguration; package scan otherwise omitted assignments.delivery and command exited without doing work.",
+    "Added @EnableWebSecurity to local security config; actual package startup lacked HttpSecurity without it."
+  ],
+  "board_modified": false,
+  "main_modified": false,
+  "original_dirty_checkout_modified": false,
+  "hosted_ci": {
+    "status": "not_started",
+    "head_sha": null
+  }
+}

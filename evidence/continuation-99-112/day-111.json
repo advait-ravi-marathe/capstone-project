@@ -1,0 +1,14 @@
+{
+  "day": 111,
+  "date": "2027-02-07",
+  "learner_status": "not_attempted",
+  "contract_status": "defined",
+  "acceptance_commands": [
+    "./mvnw -Plearner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest#protectedIssueThenManualCommandLeavesOneReceiptAndNoPreviewWrites test"
+  ],
+  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
+  "witness_status": "passed_temporary_packaged_integration_witness",
+  "learner_attempts": [],
+  "notes": "Evidence fields only; no attempts or completion inferred.",
+  "temporary_witness_evidence": "Loopback packaged app PID 484488; protected issue returned 201; command PIDs 484595 and 484654. Three seeded ISSUED events plus test issuance yielded 4 retained work rows, receipts, and acknowledgments; replay and preview preserved the snapshot."
+}

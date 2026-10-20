@@ -4,6 +4,10 @@ import assignments.insurance.PolicyLifecycleService;
 import assignments.insurance.PolicyRenewalPreviewPolicy;
 import assignments.insurance.PolicyRenewalReadStore;
 import assignments.insurance.PolicyReadStore;
+import assignments.delivery.IssuanceWorkStore;
+import assignments.delivery.JdbcIssuanceWorkStore;
+import assignments.delivery.LocalIssuanceDeliveryCommand;
+import assignments.delivery.OneBatchDispatcher;
 import assignments.renewal.PolicyRenewalPreviewController;
 import assignments.renewal.PreviewAdmission;
 import assignments.renewal.PreviewCapacityPolicy;
@@ -12,6 +16,7 @@ import assignments.renewal.PreviewMetrics;
 import assignments.renewal.PreviewReadBudgetPolicy;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -30,7 +35,8 @@ import java.time.ZoneOffset;
 /** Explicitly assembles the local app; it does not scan the Day 1 or test harness packages. */
 @Configuration(proxyBeanMethods = false)
 @Profile("local")
-@Import({PolicyRenewalPreviewController.class, PreviewCapacityExceptionHandler.class})
+@Import({PolicyRenewalPreviewController.class, PreviewCapacityExceptionHandler.class,
+        LocalIssuanceDeliveryCommand.class})
 public class LocalRuntimeConfiguration {
     @Bean
     Clock localClock(@Value("${coverstory.local.fixed-clock:}") String fixedClock) {
@@ -44,12 +50,35 @@ public class LocalRuntimeConfiguration {
     }
 
     @Bean
+    PlatformTransactionManager issuanceDeliveryTransactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean
     JdbcTemplate renewalReadJdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 
     @Bean
-    TransactionTemplate renewalReadTransactionTemplate(PlatformTransactionManager transactionManager) {
+    JdbcTemplate issuanceDeliveryJdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    IssuanceWorkStore issuanceWorkStore(@Qualifier("issuanceDeliveryJdbcTemplate") JdbcTemplate issuanceDeliveryJdbcTemplate) {
+        return new JdbcIssuanceWorkStore(issuanceDeliveryJdbcTemplate);
+    }
+
+    @Bean
+    OneBatchDispatcher oneBatchDispatcher(IssuanceWorkStore store,
+            @Qualifier("issuanceDeliveryTransactionManager")
+            PlatformTransactionManager issuanceDeliveryTransactionManager) {
+        return new OneBatchDispatcher(store, issuanceDeliveryTransactionManager);
+    }
+
+    @Bean
+    TransactionTemplate renewalReadTransactionTemplate(
+            @Qualifier("renewalReadTransactionManager") PlatformTransactionManager transactionManager) {
         TransactionTemplate template = new TransactionTemplate(transactionManager);
         template.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
         template.setReadOnly(true);
@@ -67,7 +96,8 @@ public class LocalRuntimeConfiguration {
 
     @Bean
     LocalApplicationComposition.Components localComponents(Clock localClock, DataSource dataSource,
-            JdbcTemplate renewalReadJdbcTemplate, TransactionTemplate renewalReadTransactionTemplate,
+            @Qualifier("renewalReadJdbcTemplate") JdbcTemplate renewalReadJdbcTemplate,
+            @Qualifier("renewalReadTransactionTemplate") TransactionTemplate renewalReadTransactionTemplate,
             PreviewReadBudgetPolicy previewReadBudgetPolicy) {
         return LocalApplicationComposition.compose(localClock, dataSource, renewalReadJdbcTemplate,
                 renewalReadTransactionTemplate, previewReadBudgetPolicy);
