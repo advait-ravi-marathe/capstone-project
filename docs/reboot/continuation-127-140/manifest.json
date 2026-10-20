@@ -387,7 +387,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Create T from template0 in this run; it must differ from S and contain no public application relations. Restore only the trusted run archive with single-transaction, no-owner/no-acl; no --clean or --create.",
+        "scope": "Create T from template0; restore to a different fresh target with the fixed single-transaction options. Keep both invalid-header and valid-archive mid-restore failure selectors in the day command.",
         "learner_seam": "RestoreCommandPolicy.arguments",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-131.md",
         "evidence_reference": "evidence/continuation-127-140/day-131.json",
@@ -851,7 +851,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Create only an offline plan. Candidate private one-compute/private PostgreSQL design is not a deployment template; account, region and operator access remain pending.",
+        "scope": "Offline validation rejects public application/database, wildcard administration, embedded secrets, cloud execution requests and cloudVerified=true; no AWS action is made.",
         "learner_seam": "AwsLabDesignPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-137.md",
         "evidence_reference": "evidence/continuation-127-140/day-137.json",
@@ -945,7 +945,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Use conspicuously fictional decimal rates; include runtime, storage, backups, logs, secrets, transfer and selected networking components. Budget alerts are not synchronous spend stops.",
+        "scope": "Use fictional decimal rate fixtures with unit and currency per line; require compute, database storage, retained backups/snapshots, logs, secrets and transfer, with networking when selected. Check formula, unit/currency consistency and total; actual prices remain unknown.",
         "learner_seam": "AwsLabDesignPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-138.md",
         "evidence_reference": "evidence/continuation-127-140/day-138.json",

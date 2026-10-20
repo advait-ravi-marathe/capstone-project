@@ -50,12 +50,12 @@ class Day44BrowserTransportInfrastructureTest {
             Path writeJson = base.resolve("write.json");
             Path readJson = base.resolve("read.json");
             int firstPort;
-            try (ConfigurableApplicationContext first = startServer()) {
+            try (ConfigurableApplicationContext first = startServer(HarnessConfiguration.class)) {
                 firstPort = port(first);
                 runBrowser("http://127.0.0.1:" + firstPort + "/__e2e/day44-lifecycle", "write", writeJson);
                 assertTrue(Files.readString(writeJson).contains("lifecycle-smoke-v1:persisted-after-server-restart"));
             }
-            try (ConfigurableApplicationContext restarted = startServer()) {
+            try (ConfigurableApplicationContext restarted = startServer(HarnessConfiguration.class)) {
                 assertNotEquals(firstPort, port(restarted), "test should start a fresh Spring server instance");
                 runBrowser("http://127.0.0.1:" + port(restarted) + "/__e2e/day44-lifecycle", "read", readJson);
                 assertTrue(Files.readString(readJson).contains("lifecycle-smoke-v1:persisted-after-server-restart"));
@@ -76,14 +76,14 @@ class Day44BrowserTransportInfrastructureTest {
                 s.execute("CREATE TABLE harness_readback (witness_id TEXT PRIMARY KEY, value TEXT NOT NULL)");
             }
             Path result = Path.of("target/day44-harness/lifecycle-flow.json").toAbsolutePath();
-            try (ConfigurableApplicationContext app = startServer()) {
+            try (ConfigurableApplicationContext app = startServer(LearnerHarnessConfiguration.class)) {
                 runBrowser("http://127.0.0.1:" + port(app) + "/__e2e/day44-lifecycle", "flow", result);
             }
             var json = new tools.jackson.databind.ObjectMapper().readTree(Files.readString(result));
             var flow = json.get("flow").asString();
             assertTrue(json.get("browserOpened").asBoolean());
             Path restartResult = Path.of("target/day44-harness/lifecycle-restart.json").toAbsolutePath();
-            try (ConfigurableApplicationContext restarted = startServer()) {
+            try (ConfigurableApplicationContext restarted = startServer(LearnerHarnessConfiguration.class)) {
                 runBrowser("http://127.0.0.1:" + port(restarted) + "/__e2e/day44-lifecycle", "lifecycle-read", restartResult);
             }
             String restart = new tools.jackson.databind.ObjectMapper().readTree(Files.readString(restartResult)).get("lifecycleReadback").asString();
@@ -93,8 +93,8 @@ class Day44BrowserTransportInfrastructureTest {
         }
     }
 
-    private static ConfigurableApplicationContext startServer() {
-        return new SpringApplicationBuilder(assignments.insurance.InsuranceDayOneApplication.class, HarnessConfiguration.class)
+    private static ConfigurableApplicationContext startServer(Class<?> harnessConfiguration) {
+        return new SpringApplicationBuilder(assignments.insurance.InsuranceDayOneApplication.class, harnessConfiguration)
                 .web(WebApplicationType.SERVLET)
                 .properties("server.port=0", "spring.main.banner-mode=off", "logging.level.root=ERROR")
                 .run();
@@ -133,13 +133,25 @@ class Day44BrowserTransportInfrastructureTest {
         @Bean DataSource harnessDataSource() { return postgresDataSource; }
         @Bean PolicyLifecycleService policyLifecycleService() { return new PolicyLifecycleService(lifecycleClock); }
         @Bean Day44HarnessController day44HarnessController(DataSource dataSource, PolicyLifecycleService service) { return new Day44HarnessController(dataSource, service); }
+        @Bean Day44SmokePageController day44SmokePageController(DataSource dataSource) { return new Day44SmokePageController(dataSource); }
+    }
+
+    @Configuration(proxyBeanMethods = false)
+    static class LearnerHarnessConfiguration implements WebMvcConfigurer {
+        @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/assets/**")
+                    .addResourceLocations(Path.of("frontend/dist/assets").toAbsolutePath().toUri().toString());
+        }
+        @Bean DataSource harnessDataSource() { return postgresDataSource; }
+        @Bean PolicyLifecycleService policyLifecycleService() { return new PolicyLifecycleService(lifecycleClock); }
+        @Bean Day44HarnessController day44HarnessController(DataSource dataSource, PolicyLifecycleService service) { return new Day44HarnessController(dataSource, service); }
+        @Bean Day44LearnerPageController day44LearnerPageController() { return new Day44LearnerPageController(); }
     }
 
     @RestController
-    static class Day44HarnessController {
+    static class Day44SmokePageController {
         private final DataSource dataSource;
-        private final PolicyLifecycleService service;
-        Day44HarnessController(DataSource dataSource, PolicyLifecycleService service) { this.dataSource = dataSource; this.service = service; }
+        Day44SmokePageController(DataSource dataSource) { this.dataSource = dataSource; }
 
         @GetMapping(value = "/__e2e/day44-lifecycle", produces = MediaType.TEXT_HTML_VALUE)
         String page() { return """
@@ -153,6 +165,19 @@ class Day44BrowserTransportInfrastructureTest {
                   document.querySelector('#read').onclick=readback;
                 </script></body></html>
                 """; }
+    }
+
+    @RestController
+    static class Day44LearnerPageController {
+        @GetMapping(value = "/__e2e/day44-lifecycle", produces = MediaType.TEXT_HTML_VALUE)
+        String page() throws Exception { return Files.readString(Path.of("frontend/dist/index.html")); }
+    }
+
+    @RestController
+    static class Day44HarnessController {
+        private final DataSource dataSource;
+        private final PolicyLifecycleService service;
+        Day44HarnessController(DataSource dataSource, PolicyLifecycleService service) { this.dataSource = dataSource; this.service = service; }
 
         @PostMapping(value = "/test/day44/record", consumes = MediaType.APPLICATION_JSON_VALUE)
         void write(@RequestBody Witness witness) throws Exception {

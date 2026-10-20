@@ -79,20 +79,27 @@ final class Postgres18ToolHarness {
         String sentinel = "coverstory-sentinel-" + UUID.randomUUID().toString().replace("-", "");
         Process start = new ProcessBuilder("docker", "run", "--detach", "--name", sentinel, "--network", "none",
                 IMAGE, "sh", "-c", "sleep 60").redirectErrorStream(true).start();
-        Assertions.assertTrue(start.waitFor(20, TimeUnit.SECONDS), "sentinel fixture startup watchdog");
-        Assertions.assertEquals(0, start.exitValue(), new String(start.getInputStream().readAllBytes()));
         try {
-            Assertions.assertThrows(AssertionError.class, () -> run(List.of("docker", "run", "--rm", "--network", "none",
-                    "--entrypoint", "sh", IMAGE, "-c", "sleep 60"), null, null, 1));
+            awaitControlProcess(start, 20, "sentinel fixture startup watchdog");
+            Assertions.assertEquals(0, start.exitValue(), new String(start.getInputStream().readAllBytes()));
+            ToolWatchdogException timeout = Assertions.assertThrows(ToolWatchdogException.class,
+                    () -> run(List.of("docker", "run", "--rm", "--network", "none",
+                            "--entrypoint", "sh", IMAGE, "-c", "sleep 60"), null, null, 1));
+            Assertions.assertNotNull(timeout.ownedContainer(), "watchdog success identifies its cleaned container");
+            assertContainerAbsent(timeout.ownedContainer());
             Process inspect = new ProcessBuilder("docker", "inspect", "--format={{.State.Running}}", sentinel)
                     .redirectErrorStream(true).start();
-            Assertions.assertTrue(inspect.waitFor(10, TimeUnit.SECONDS), "sentinel inspection watchdog");
+            awaitControlProcess(inspect, 10, "sentinel inspection watchdog");
             Assertions.assertEquals(0, inspect.exitValue());
             Assertions.assertEquals("true", new String(inspect.getInputStream().readAllBytes()).trim(),
                     "watchdog cleanup may remove only the generated tool container, not an unrelated sentinel");
         } finally {
+            if (start.isAlive()) {
+                start.destroyForcibly();
+                Assertions.assertTrue(start.waitFor(5, TimeUnit.SECONDS), "sentinel startup child must be killed and awaited");
+            }
             Process cleanup = new ProcessBuilder("docker", "rm", "--force", sentinel).redirectErrorStream(true).start();
-            Assertions.assertTrue(cleanup.waitFor(10, TimeUnit.SECONDS), "owned sentinel cleanup watchdog");
+            awaitControlProcess(cleanup, 10, "owned sentinel cleanup watchdog");
             Assertions.assertEquals(0, cleanup.exitValue());
         }
     }
@@ -129,7 +136,7 @@ final class Postgres18ToolHarness {
                 process.destroyForcibly();
                 Assertions.assertTrue(process.waitFor(5, TimeUnit.SECONDS), "PostgreSQL tool process must terminate after watchdog");
                 if (ownedContainer != null) stopOwnedContainer(ownedContainer);
-                throw new AssertionError("PostgreSQL tool watchdog expired: " + String.join(" ", actualCommand));
+                throw new ToolWatchdogException("PostgreSQL tool watchdog expired: " + String.join(" ", actualCommand), ownedContainer);
             }
             String details = Files.readString(log);
             if (output == null && Files.size(stdout) > 0) details += Files.readString(stdout);
@@ -147,14 +154,54 @@ final class Postgres18ToolHarness {
     private static void stopOwnedContainer(String name) throws Exception {
         Assertions.assertTrue(name.matches("coverstory-pgtool-[0-9a-f]{32}"), "cleanup is restricted to the run-owned container name");
         Process stop = new ProcessBuilder("docker", "stop", "--time", "2", name).redirectErrorStream(true).start();
-        Assertions.assertTrue(stop.waitFor(10, TimeUnit.SECONDS), "owned Docker container stop watchdog");
-        if (stop.exitValue() != 0) {
+        awaitControlProcess(stop, 10, "owned Docker container stop watchdog");
+        if (!containerMissing(name)) {
             Process remove = new ProcessBuilder("docker", "rm", "--force", name).redirectErrorStream(true).start();
-            Assertions.assertTrue(remove.waitFor(10, TimeUnit.SECONDS), "owned Docker container removal watchdog");
+            awaitControlProcess(remove, 10, "owned Docker container removal watchdog");
+            String removalOutput = new String(remove.getInputStream().readAllBytes());
+            if (remove.exitValue() != 0)
+                Assertions.assertTrue(removalOutput.contains("No such container") || removalOutput.contains("No such object")
+                                || removalOutput.contains("removal of container") && removalOutput.contains("already in progress"),
+                        "removal may fail only when Docker reports absence or an in-progress owned cleanup: " + removalOutput);
         }
+        awaitContainerMissing(name, 10);
+    }
+
+    private static void assertContainerAbsent(String name) throws Exception {
+        Assertions.assertTrue(containerMissing(name), "independent inspection must confirm the run-owned container is absent");
+    }
+
+    private static boolean containerMissing(String name) throws Exception {
         Process inspect = new ProcessBuilder("docker", "inspect", name).redirectErrorStream(true).start();
-        Assertions.assertTrue(inspect.waitFor(10, TimeUnit.SECONDS), "owned Docker container cleanup verification watchdog");
-        Assertions.assertNotEquals(0, inspect.exitValue(), "timed-out run-owned container must be removed");
+        awaitControlProcess(inspect, 10, "owned-container inspection watchdog");
+        String output = new String(inspect.getInputStream().readAllBytes());
+        if (inspect.exitValue() == 0) return false;
+        Assertions.assertTrue(output.contains("No such object") || output.contains("No such container"),
+                "Docker inspection failed for a reason other than confirmed container absence: " + output);
+        return true;
+    }
+
+    private static void awaitContainerMissing(String name, int timeoutSeconds) throws Exception {
+        long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(timeoutSeconds);
+        while (System.nanoTime() < deadline) {
+            if (containerMissing(name)) return;
+            Thread.sleep(50);
+        }
+        Assertions.fail("owned Docker container remains after bounded cleanup: " + name);
+    }
+
+    private static void awaitControlProcess(Process child, int timeoutSeconds, String message) throws Exception {
+        if (!child.waitFor(timeoutSeconds, TimeUnit.SECONDS)) {
+            child.destroyForcibly();
+            Assertions.assertTrue(child.waitFor(5, TimeUnit.SECONDS), message + "; child must be killed and awaited");
+            Assertions.fail(message + "; child exceeded watchdog");
+        }
+    }
+
+    static final class ToolWatchdogException extends Exception {
+        private final String ownedContainer;
+        ToolWatchdogException(String message, String ownedContainer) { super(message); this.ownedContainer = ownedContainer; }
+        String ownedContainer() { return ownedContainer; }
     }
 
     record Result(int exitCode, String output) {}
