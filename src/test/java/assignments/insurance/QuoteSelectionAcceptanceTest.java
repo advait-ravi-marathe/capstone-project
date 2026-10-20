@@ -17,14 +17,14 @@ class QuoteSelectionAcceptanceTest {
     @Test
     void removesRepeatedCompositeKeyKeepingFirstSeenOrderWithoutMutation() {
         var input = new ArrayList<>(List.of(
-                new QuoteSelectionInput("journey-B", "home-v2"),
-                new QuoteSelectionInput("journey-A", "home-v1"),
-                new QuoteSelectionInput("journey-B", "home-v2")));
+                new QuoteSelectionInput("journey-B", "home-secure-v1"),
+                new QuoteSelectionInput("journey-A", "home-secure-v1"),
+                new QuoteSelectionInput("journey-B", "home-secure-v1")));
         var before = List.copyOf(input);
 
         assertEquals(List.of(
-                new QuoteSelectionKey("journey-B", "home-v2"),
-                new QuoteSelectionKey("journey-A", "home-v1")), policy.uniqueSelections(input));
+                new QuoteSelectionKey("journey-B", "home-secure-v1"),
+                new QuoteSelectionKey("journey-A", "home-secure-v1")), policy.uniqueSelections(input));
         assertEquals(before, input);
     }
 
@@ -36,23 +36,23 @@ class QuoteSelectionAcceptanceTest {
     @Test
     void journeyAndQuoteVersionBothFormIdentity() {
         assertEquals(List.of(
-                new QuoteSelectionKey("journey-A", "home-v1"),
-                new QuoteSelectionKey("journey-B", "home-v1")),
+                new QuoteSelectionKey("journey-A", "home-secure-v1"),
+                new QuoteSelectionKey("journey-B", "home-secure-v1")),
                 policy.uniqueSelections(List.of(
-                        new QuoteSelectionInput("journey-A", "home-v1"),
-                        new QuoteSelectionInput("journey-B", "home-v1"))));
+                        new QuoteSelectionInput("journey-A", "home-secure-v1"),
+                        new QuoteSelectionInput("journey-B", "home-secure-v1"))));
     }
 
     @Test
     void rejectsNullAndBlankKeysWithoutPartialOutput() {
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(null));
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
-                new QuoteSelectionInput("journey-A", "home-v1"),
+                new QuoteSelectionInput("journey-A", "home-secure-v1"),
                 new QuoteSelectionInput("journey-B", " "))));
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(List.of(
-                new QuoteSelectionInput(" ", "home-v1"))));
+                new QuoteSelectionInput(" ", "home-secure-v1"))));
         var withNull = new ArrayList<QuoteSelectionInput>();
-        withNull.add(new QuoteSelectionInput("journey-A", "home-v1"));
+        withNull.add(new QuoteSelectionInput("journey-A", "home-secure-v1"));
         withNull.add(null);
         assertThrows(IllegalArgumentException.class, () -> policy.uniqueSelections(withNull));
     }
@@ -60,10 +60,10 @@ class QuoteSelectionAcceptanceTest {
     @Test
     void doesNotTrimOrNormalizeKeyParts() {
         assertEquals(List.of(
-                new QuoteSelectionKey("journey-A", "home-v1"),
-                new QuoteSelectionKey("journey-A", " home-v1")),
+                new QuoteSelectionKey("journey-A", "home-secure-v1"),
+                new QuoteSelectionKey("journey-A", " home-secure-v1")),
                 policy.uniqueSelections(List.of(
-                        new QuoteSelectionInput("journey-A", "home-v1"),
-                        new QuoteSelectionInput("journey-A", " home-v1"))));
+                        new QuoteSelectionInput("journey-A", "home-secure-v1"),
+                        new QuoteSelectionInput("journey-A", " home-secure-v1"))));
     }
 }

@@ -23,7 +23,7 @@ class BestTimeToBuySellStockAcceptanceTest {
     }
 
     @Test
-    void handlesZeroProfitAndInputIsUnchanged() {
+    void handlesRepeatedPricesAndLeavesInputUnchanged() {
         int[] prices = {2, 2, 3, 1, 1};
         int[] before = prices.clone();
         assertEquals(1, solution.maxProfit(prices));
