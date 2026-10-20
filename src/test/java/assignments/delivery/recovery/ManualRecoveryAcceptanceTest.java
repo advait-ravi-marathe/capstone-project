@@ -51,8 +51,10 @@ class ManualRecoveryAcceptanceTest {
   try(Fixture f=new Fixture()) {
    f.insertWork("hold-a",1,false);
    var key=new IssuanceSourceKey("hold-a",1);
-   f.service.quarantine(key,0,RecoveryReason.MANUAL_HOLD);
-   f.service.release(key,1,RecoveryReason.REVIEWED_FOR_RETRY);
+   // Instructor fixture: model a prior completed quarantine/release episode without invoking
+   // Day 117's learner-owned release seam in this Day 116 selector.
+   f.jdbc.update("UPDATE training_issuance_work SET control_revision=2 WHERE policy_id='hold-a' AND source_version=1");
+   f.jdbc.update("INSERT INTO training_issuance_recovery_history(policy_id,source_version,control_revision,action,reason_code) VALUES ('hold-a',1,1,'QUARANTINE','MANUAL_HOLD'),('hold-a',1,2,'RELEASE','REVIEWED_FOR_RETRY')");
    String sourceBefore=f.sourceSnapshot("hold-a"),receiptBefore=f.receiptSnapshot("hold-a");
    String immutableWorkBefore=f.immutableWorkSnapshot("hold-a");List<String> historyBefore=f.historyRows("hold-a");
    String preTransition=f.fullSnapshot("hold-a");
