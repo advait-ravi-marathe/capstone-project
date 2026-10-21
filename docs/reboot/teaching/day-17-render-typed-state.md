@@ -6,7 +6,7 @@ Course access is unconfirmed. The single required reference is course 1362070, â
 
 ## Worked trace
 
-`Day17ProductStatesReference.test.tsx` defines a separate `TourState` union: `loading`, `error`, `empty`, or `ready` with a tour. `TourChoices` receives state as a prop; it performs no fetch. Loading is announced with `role=status`, error with `role=alert`, empty has an explicit message, and ready renders a heading and labelled radio options. The tests query by role and accessible name: Hindi is the visible name; `HI` is its value. On rerender to error, the radio controls disappear.
+`Day17ProductStatesReference.test.tsx` defines a separate `TourState` union: `loading`, `error`, `empty`, or `ready` with a tour. `TourChoices` receives state as a prop; it performs no fetch. Loading is announced with `role=status`, error with `role=alert`, empty has an explicit message, and ready renders a heading and labelled radio options. The tests query by role and accessible name: Hindi is the visible name; `HI` is its value. On rerender from ready to empty, the radio controls disappear.
 
 Run:
 

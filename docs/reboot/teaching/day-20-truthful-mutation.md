@@ -8,6 +8,8 @@ Required course reference 1362070: “Handling HTTP Errors” (9:16), access unc
 
 `Day20SelectionMutationReference.test.tsx` injects `select(journeyId, quoteVersionId): Promise<void>`. It sends the exact pair once. Pending disables the button and does not show success. Only promise fulfillment shows “Selection confirmed by server”; the resolved value is `void`, so there is no `result.status`. Rejections map 409 to refresh guidance, 401 to sign-in, 404 to unavailable, and 0/other failures to “Could not confirm…”. All outcomes release pending; a second click while pending is ignored. A transport rejection means outcome may be unknown; it does not prove the server made no change.
 
+The toy adapter contract is explicit: a successful HTTP 200 resolves `void`; unsuccessful HTTP responses reject with an object containing a numeric `status`; transport failure rejects with `status: 0`. The component does not receive a Fetch `Response` and must not read `result.status` after a resolved `Promise<void>`.
+
 Run:
 
 ```sh

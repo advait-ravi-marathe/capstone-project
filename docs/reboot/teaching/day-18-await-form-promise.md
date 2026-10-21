@@ -20,4 +20,6 @@ Observed instructor reference: **2 tests pass**, including controlled-promise su
 
 Use 15 minutes for the supplied form and tests, 10 minutes for the toy max-length variation, then work the actual `QuoteForm` contract. Existing command: `npm --prefix frontend test -- --run src/__tests__/Day18Contract.test.tsx`.
 
+For the toy variation, set a local maximum alias length of **8 characters**: blank is rejected without calling `saveAlias`; length 8 is allowed; length 9 shows field feedback and makes zero calls. While a valid request is pending, a duplicate submit still makes only one call. If the server rejects the accepted value, show the safe error, retain the typed value, and clear pending. These are toy boundaries only; the capstone keeps its existing domain constraints.
+
 Transfer only the taught state ownership and `Promise<void>` lifecycle. Keep the contract’s exact domain bounds and feedback. Local checks help the user; server validation remains authoritative. Explain why pending cannot clear immediately after starting the promise and why both resolve and reject need cleanup. Do not add another API or change the method signature.

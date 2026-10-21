@@ -44,7 +44,7 @@ This selector starts a real embedded PostgreSQL instance with timestamp ties and
 
 **Question:** Why does sorting only by timestamp fail? What happens when rows are inserted between offset-page requests?
 
-**Observable evidence:** Demonstrate stable fixture ties; explain offset limitation and cursor alternative conceptually without expanding implementation scope.
+**Observable evidence:** Demonstrate stable fixture ties; explain the bounded OFFSET tradeoff and why intervening inserts can change later pages. Cursor pagination is outside this assignment.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
