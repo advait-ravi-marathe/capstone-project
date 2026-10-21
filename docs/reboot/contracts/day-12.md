@@ -32,7 +32,7 @@ Owner/other/anonymous matrix. Record dated attempt state (`not attempted`, `atte
 
 ## Planned isolated command
 
-`./mvnw -Dtest=Day12SecurityHarnessTest test` checks the untagged form-login, authentication, CSRF and protected-route harness cases. `./mvnw -Plearner-tests -Dtest=Day12ContractTest,Day12SecurityHarnessTest test` includes the tagged owner-policy learner case, which remains expected red at its TODO.
+`./mvnw -Dtest=Day12SecurityHarnessTest test` checks the four untagged form-login, authentication, CSRF and protected-route harness cases. Separately, `./mvnw -Plearner-tests -Dtest=Day12SecurityHarnessTest#ownerScopedJourneyHttpReadUsesLearnerPolicy test` runs the tagged owner-policy learner case, which remains expected red at its TODO. The original `Day12ContractTest` selector remains unchanged.
 
 The untagged harness cases verify only the instructor test filter chain. Its anonymous 401 and protected-route behavior are expected outcomes of this isolated harness, not learner achievement or production security evidence. The tagged owner-scoped read remains blocked at the learner policy TODO until it is implemented and the tagged selector passes.
 

@@ -2,7 +2,7 @@
 
 No exact verified preferred-course lecture teaches this pure metadata guard. Required supplement: Java 21 [`Instant.isBefore`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html) review (5 minutes), then this worked trace (16 minutes) and readiness check (4 minutes): 25 minutes total. The 19-minute isolation-level video bundle is not required today; it does not teach this predicate.
 
-The guard receives fixed facts: requested member/journey, stored member/journey, requested version, current version, expiry instant, and `now`. It checks these in order: conceal wrong owner/journey; reject expiry at equality; reject a superseded version; otherwise allow.
+The library reservation is a toy analogy, not a new capstone domain object. Its `requestedMember`/`recordMember` comparison teaches the ownership/scope check. In the actual capstone, the corresponding fields are `requestedJourneyId` and `quoteJourneyId`; do not add member or edition fields to `QuoteFreshnessState`. Its `requestedEdition`/`currentEdition` comparison illustrates the same current-version check using the capstone's requested/current quote-version fields. Both use the same ordering: conceal wrong owner/journey; reject expiry at equality; reject a superseded version; otherwise allow.
 
 ```java
 record ReservationState(String requestedMember, String recordMember,
