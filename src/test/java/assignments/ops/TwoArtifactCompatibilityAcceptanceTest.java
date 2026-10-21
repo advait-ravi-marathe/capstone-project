@@ -203,6 +203,7 @@ class TwoArtifactCompatibilityAcceptanceTest {
             assertEquals(workBefore,workInvariantSnapshot(url)); assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
             assertControlState(url,4,false,null,true); assertReceiptAppend(receiptsBefore,receiptRows(url),POLICY,VERSION);
             assertEquals(historyAfterRelease,historyRows(url));
+            assertEquals(schemaBefore,schemaFingerprint(url),"B retry preserves the full pre-matrix schema and Flyway history identity");
             String beforeReplay=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
             String aCompletedObservation=run(a,url,action("inspect",null,null));
             assertTrue(aCompletedObservation.contains("acknowledgedAt=")
