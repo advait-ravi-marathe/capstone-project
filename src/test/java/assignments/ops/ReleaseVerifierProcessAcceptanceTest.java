@@ -57,6 +57,23 @@ class ReleaseVerifierProcessAcceptanceTest {
         }
     }
 
+    @Test void day152ForciblyReapsTermResistantOwnedDescendants() throws Exception {
+        Process sentinel = new ProcessBuilder("sleep", "30").start();
+        try {
+            var result = runner.run(List.of("/bin/sh", "-c",
+                    "(trap '' TERM; exec sleep 30) & child=$!; echo $child; wait"),
+                    Duration.ofMillis(250), 4096);
+            assertTrue(result.timedOut());
+            long ownedPid = Long.parseLong(result.capturedOutput().trim());
+            assertFalse(processRunning(ownedPid), "TERM-resistant owned child is forcibly terminated and awaited");
+            assertFalse(processRunning(result.pid()), "timed-out root is reaped after descendant cleanup");
+            assertTrue(sentinel.isAlive(), "unrelated sentinel remains alive");
+        } finally {
+            sentinel.destroyForcibly();
+            assertTrue(sentinel.waitFor(5, java.util.concurrent.TimeUnit.SECONDS));
+        }
+    }
+
     private static boolean processRunning(long pid) throws Exception {
         var stat = java.nio.file.Path.of("/proc", Long.toString(pid), "stat");
         if (!java.nio.file.Files.exists(stat)) return false;

@@ -12,7 +12,7 @@ For instructor validation, create two JSON overlay manifests outside the reposit
 
 The matrix selectors consume the helper's immutable `baseline.jar`, `candidate.jar`, and `artifact-pair-manifest.json`. They no longer accept free-form strings as provenance. The exact local matrix command is listed in Day 148, Day 149, and Day 153 contracts.
 
-The compatibility matrix uses one retained database and no reset. The new inspection context validates requests before constructing Spring, disables Flyway/SQL initialization and refuses absent schema. The v1 contract is [report-v1.md](report-v1.md). Its framed report is evidence, not authority: compare complete database snapshots independently.
+Before Day 146 packaged checks, build the ordinary candidate from the repository root with `./mvnw -Plocal-app -DskipTests package`; this creates `target/capstone-starter-1.0-SNAPSHOT.jar` and does not depend on Day 148 artifact-pair setup. The inspection context validates requests before constructing Spring, disables Flyway/SQL initialization, refuses absent or mismatched migration history, and verifies the exact public column names and formatted types for V001–V005. This bounded preflight does not certify every check constraint, foreign key, default, or index. The v1 contract is [report-v1.md](report-v1.md). Its framed report is evidence, not authority: compare complete database snapshots independently.
 
 No AWS resources, credentials, grants, spending, deployment, schema changes, public endpoint or later-day work is authorized. Temporary witness success is instructor evidence only.
 
@@ -32,6 +32,6 @@ These links support the existing engineering study block; they are not extra stu
 - Day 148: [Maven build lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html) — default lifecycle, package, verify.
 - Day 149: [AWS rollback safety](https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/) — testing rollback safety, version transitions.
 - Day 150: [AWS rollback safety](https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/) — testing rollback safety, version transitions.
-- Day 151: [JUnit 6.1.3 User Guide](https://docs.junit.org/6.1.3/overview.html) — Assertions.
+- Day 151: [JUnit 6.1.3 User Guide](https://docs.junit.org/6.1.3/writing-tests/assertions.html) — Assertions.
 - Day 152: [Java 21 Process API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html) — waitFor, destroy, destroyForcibly, descendants, onExit.
 - Day 153: [AWS rollback safety](https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/) — testing rollback safety, version transitions.

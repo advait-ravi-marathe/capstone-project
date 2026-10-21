@@ -27,9 +27,7 @@ public final class ReleaseInspectionCommandRunner implements ApplicationRunner {
         int code = 1;
         try {
             ReleaseInspectionRequest request = requests.parse(toArgs(args));
-            schema.requireV001ThroughV005();
-            RecoveryReadResult result = recovery.inspect(request.key());
-            InspectionReport report = reports.map(result);
+            InspectionReport report = inspectOnce(request);
             System.out.println(codec.encode(report));
             code = 0;
         } catch (Exception failure) {
@@ -38,6 +36,12 @@ public final class ReleaseInspectionCommandRunner implements ApplicationRunner {
         }
         int exitCode = code;
         System.exit(SpringApplication.exit(context, () -> exitCode));
+    }
+
+    InspectionReport inspectOnce(ReleaseInspectionRequest request) {
+        schema.requireV001ThroughV005();
+        RecoveryReadResult result = recovery.inspect(request.key());
+        return reports.map(result);
     }
 
     private static String[] toArgs(ApplicationArguments args) {

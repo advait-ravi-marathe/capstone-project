@@ -124,6 +124,7 @@ public final class BoundedProcessRunner {
         for (ProcessHandle handle : owned.values()) if (handle.isAlive()) handle.destroy();
         signalGroup(processGroup, "-TERM");
         if (root.isAlive()) root.destroy();
+        // TERM is best effort. A descendant may ignore it; that must not skip KILL.
         awaitOwned(owned, 2);
         for (ProcessHandle handle : owned.values()) if (handle.isAlive()) handle.destroyForcibly();
         signalGroup(processGroup, "-KILL");
@@ -138,6 +139,7 @@ public final class BoundedProcessRunner {
     private static void terminateOwnedDescendants(long processGroup, Map<Long, ProcessHandle> owned) throws IOException, InterruptedException {
         for (ProcessHandle handle : owned.values()) if (handle.isAlive()) handle.destroy();
         signalGroup(processGroup, "-TERM");
+        // Do not throw before the forced stage when a process ignores TERM.
         awaitOwned(owned, 2);
         for (ProcessHandle handle : owned.values()) if (handle.isAlive()) handle.destroyForcibly();
         signalGroup(processGroup, "-KILL");
@@ -164,12 +166,13 @@ public final class BoundedProcessRunner {
         throw new IOException("owned process group remains alive: " + group);
     }
 
-    private static void awaitOwned(Map<Long, ProcessHandle> owned, int seconds) throws IOException, InterruptedException {
+    private static boolean awaitOwned(Map<Long, ProcessHandle> owned, int seconds) throws InterruptedException {
         long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(seconds);
         while (owned.values().stream().anyMatch(handle -> processRunning(handle.pid()))) {
-            if (System.nanoTime() >= deadline) throw new IOException("owned descendant cleanup timed out");
+            if (System.nanoTime() >= deadline) return false;
             Thread.sleep(10);
         }
+        return true;
     }
 
     private static void assertNoOwnedDescendants(Map<Long, ProcessHandle> owned) throws IOException {

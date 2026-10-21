@@ -21,6 +21,9 @@ class BinaryFallbackAcceptanceTest {
                         a.sha256(),b.sha256(),"fixture-123","schema-v001-v005"));
         assertEquals(BinaryFallbackPolicy.FallbackDecision.BLOCKED,
                 policy.decide(passed,a.sha256(),b.sha256(),"other-fixture","schema-v001-v005"));
+        assertEquals(BinaryFallbackPolicy.FallbackDecision.BLOCKED,
+                policy.decide(passed,a.sha256(),b.sha256(),"fixture-123","changed-current-schema"),
+                "a current schema fingerprint different from the tested fingerprint must block fallback");
     }
 
     @Test void day151BlocksMissingOrMisleadingCandidateEvidence() {

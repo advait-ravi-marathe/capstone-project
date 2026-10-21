@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HexFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,6 +41,8 @@ class TwoArtifactCompatibilityAcceptanceTest {
             var result=runRaw(b,url,args);
             assertNotEquals(0,result.exitCode(),"absent schema is a nonzero refusal");
             assertFalse(result.capturedOutput().contains(InspectionReportCodec.PREFIX),"failure emits no success frame");
+            assertTrue(result.capturedOutput().contains("release inspection failed (BadSqlGrammarException)"),
+                    "an absent migration history table is diagnosed as the intended schema refusal");
             assertEquals(before,scalar(url,"SELECT count(*) FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public' AND c.relkind IN ('r','p','v','m','f')"),
                     "startup and schema preflight cannot migrate or seed the database");
         }
@@ -69,6 +72,17 @@ class TwoArtifactCompatibilityAcceptanceTest {
             assertFalse(report.workPresent()); assertNull(report.envelope()); assertEquals(RecoveryRecommendation.NOT_FOUND,report.recommendation());
             assertEquals(before,DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url),"valid startup and absent-work inspection preserve every table and schema row");
         }
+    }
+
+    @Test void day146DatabaseReadFailureEmitsNoSuccessFrame() throws Exception {
+        Path b=artifact("coverstory.release.candidate.jar");
+        var result=runRaw(b,"jdbc:postgresql://127.0.0.1:1/no_database",List.of(
+                "--coverstory.release.inspect","--coverstory.release.policy-id=valid-request","--coverstory.release.source-version=1"));
+        assertNotEquals(0,result.exitCode(),"a valid request with database failure must fail closed");
+        assertFalse(result.capturedOutput().contains(InspectionReportCodec.PREFIX),"read failure cannot produce a success frame");
+        assertTrue(result.capturedOutput().contains("release inspection failed ("),"failure is diagnosed without raw connection details");
+        assertTrue(result.capturedOutput().contains("CannotGetJdbcConnectionException"),"valid request reached the database-read failure path");
+        assertFalse(result.capturedOutput().contains("127.0.0.1"),"database URL is not exposed in diagnostics");
     }
 
     @Test void day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation() throws Exception {
@@ -159,30 +173,43 @@ class TwoArtifactCompatibilityAcceptanceTest {
         try(EmbeddedPostgres pg=EmbeddedPostgres.builder().start()) {
             var ds=pg.getPostgresDatabase(); Flyway.configure().dataSource(ds).locations("classpath:db/migration").load().migrate();
             JdbcTemplate jdbc=new JdbcTemplate(ds);
-            jdbc.update("INSERT INTO training_issuance_work(policy_id,source_version,event_type,effective_date,envelope_schema_version) VALUES (?, ?, 'ISSUED', DATE '2026-12-01', 1)",POLICY,VERSION);
+            seedCompatibilityFixture(jdbc);
             String url=pg.getJdbcUrl("postgres","postgres");
-            String sourceBefore=sourceSnapshot(url); String immutableBefore=immutableWorkSnapshot(url);
+            String sourceBefore=sourceSnapshot(url); String workBefore=workInvariantSnapshot(url);
+            String targetImmutableBefore=targetImmutableWorkSnapshot(url), schemaBefore=schemaFingerprint(url);
+            Map<String,String> historyBefore=historyRows(url), receiptsBefore=receiptRows(url);
             String original=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
-            run(b,url,action("quarantine",0,"MANUAL_HOLD"));
+            run(b,url,action("quarantine",2,"MANUAL_HOLD"));
             String quarantined=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
-            assertNotEquals(original,quarantined); assertEquals(sourceBefore,sourceSnapshot(url)); assertEquals(immutableBefore,immutableWorkSnapshot(url));
+            assertNotEquals(original,quarantined); assertEquals(sourceBefore,sourceSnapshot(url));
+            assertEquals(workBefore,workInvariantSnapshot(url)); assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
+            assertEquals(schemaBefore,schemaFingerprint(url)); assertControlState(url,3,true,"MANUAL_HOLD",false);
+            Map<String,String> historyAfterQuarantine=historyRows(url);
+            assertHistoryAppend(historyBefore,historyAfterQuarantine,POLICY,VERSION,3,"QUARANTINE","MANUAL_HOLD",1);
+            assertEquals(receiptsBefore,receiptRows(url));
             assertTrue(run(a,url,action("inspect",null,null)).contains("MANUAL_HOLD"));
             assertEquals(quarantined,DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url),"A legacy inspect is read-only on B-retained state");
-            run(a,url,action("release",1,"REVIEWED_FOR_RETRY"));
-            String released=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url); String history=historySnapshot(url);
-            assertEquals(2,scalar(url,"SELECT control_revision FROM training_issuance_work WHERE policy_id='policy-demo-1'"));
-            assertEquals(immutableBefore,immutableWorkSnapshot(url));
-            run(b,url,action("retry",2,null));
+            run(a,url,action("release",3,"REVIEWED_FOR_RETRY"));
+            String released=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
+            assertControlState(url,4,false,null,false); assertEquals(sourceBefore,sourceSnapshot(url));
+            assertEquals(workBefore,workInvariantSnapshot(url)); assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
+            assertEquals(schemaBefore,schemaFingerprint(url));
+            assertHistoryAppend(historyAfterQuarantine,historyRows(url),POLICY,VERSION,4,"RELEASE","REVIEWED_FOR_RETRY",1);
+            Map<String,String> historyAfterRelease=historyRows(url);
+            assertEquals(receiptsBefore,receiptRows(url));
+            run(b,url,action("retry",4,null));
             String completed=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url); String receipt=receiptSnapshot(url);
             assertNotEquals(released,completed); assertEquals(sourceBefore,sourceSnapshot(url));
-            assertEquals(history,historySnapshot(url)); assertEquals(1,scalar(url,"SELECT count(*) FROM training_issuance_delivery_receipt WHERE policy_id='policy-demo-1'"));
+            assertEquals(workBefore,workInvariantSnapshot(url)); assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
+            assertControlState(url,4,false,null,true); assertReceiptAppend(receiptsBefore,receiptRows(url),POLICY,VERSION);
+            assertEquals(historyAfterRelease,historyRows(url));
             String beforeReplay=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
             String aCompletedObservation=run(a,url,action("inspect",null,null));
             assertTrue(aCompletedObservation.contains("acknowledgedAt=")
                     && aCompletedObservation.contains("receiptRelation=MATCHING"),
                     "A's original inspection contract must observe the matching acknowledged receipt");
             assertEquals(beforeReplay,DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url));
-            run(a,url,action("retry",2,null)); assertEquals(beforeReplay,DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url));
+            run(a,url,action("retry",4,null)); assertEquals(beforeReplay,DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url));
             assertEquals(receipt,receiptSnapshot(url),"A replay does not replace receipt identity or payload");
         }
     }
@@ -204,9 +231,14 @@ class TwoArtifactCompatibilityAcceptanceTest {
             var ds = pg.getPostgresDatabase();
             Flyway.configure().dataSource(ds).locations("classpath:db/migration").load().migrate();
             JdbcTemplate jdbc = new JdbcTemplate(ds);
-            jdbc.update("INSERT INTO training_issuance_work(policy_id,source_version,event_type,effective_date,envelope_schema_version) VALUES (?, ?, 'ISSUED', DATE '2026-12-01', 1)", POLICY, VERSION);
             String url = pg.getJdbcUrl("postgres", "postgres");
+            String schemaBeforeMatrix=schemaFingerprint(url);
+            seedCompatibilityFixture(jdbc);
             String start = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
+            String sourceBefore = sourceSnapshot(url);
+            String workBefore=workInvariantSnapshot(url);
+            String targetImmutableBefore=targetImmutableWorkSnapshot(url);
+            Map<String,String> historyBefore=historyRows(url), receiptsBefore=receiptRows(url);
             String aLegacyOutput = assertReadOnly(a, url, "inspect");
             String afterAInspect = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
             assertEquals(start, afterAInspect);
@@ -233,27 +265,32 @@ class TwoArtifactCompatibilityAcceptanceTest {
                     && report.recommendation() != null;
             assertTrue(reportModePassed, "B's parsed report is bound to the independent database oracle");
 
-            String sourceBefore = sourceSnapshot(url);
-            String immutableWorkBefore=immutableWorkSnapshot(url);
-            run(b, url, action("quarantine", 0, "MANUAL_HOLD"));
+            run(b, url, action("quarantine", 2, "MANUAL_HOLD"));
             String quarantined=DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
             assertEquals(sourceBefore,sourceSnapshot(url),"B quarantine cannot rewrite journeys, quotes, selections, lifecycle or idempotency rows");
-            assertEquals(immutableWorkBefore,immutableWorkSnapshot(url),"B quarantine changes only the key's control fields");
-            assertEquals(1,scalar(url,"SELECT count(*) FROM training_issuance_recovery_history WHERE policy_id='policy-demo-1' AND action='QUARANTINE' AND control_revision=1"));
+            assertEquals(workBefore,workInvariantSnapshot(url),"only target control fields may change; all unrelated work rows remain exact");
+            assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url),"target source envelope and capture identity remain exact");
+            assertEquals(schemaBeforeMatrix,schemaFingerprint(url),"schema identity matches the pre-matrix measurement");
+            assertControlState(url,3,true,"MANUAL_HOLD",false);
+            Map<String,String> historyAfterQuarantine=historyRows(url);
+            assertHistoryAppend(historyBefore,historyAfterQuarantine,POLICY,VERSION,3,"QUARANTINE","MANUAL_HOLD",1);
+            assertEquals(receiptsBefore,receiptRows(url),"quarantine preserves all prior receipts");
             assertEquals("MANUAL_HOLD",scalarText(url,"SELECT quarantine_reason FROM training_issuance_work WHERE policy_id='policy-demo-1'"));
 
             // The fallback decision is evaluated on the live fixture immediately before A resumes.
             // Evidence inputs below come from actual process exits, parsed report, hashes and DB snapshots.
             String schemaBeforeResume=schemaFingerprint(url);
             verifiedSchemaFingerprint=schemaBeforeResume;
-            assertEquals(schemaBeforeResume,schemaFingerprint(url),"schema identity is freshly measured before A is invoked");
+            assertEquals(schemaBeforeMatrix,schemaBeforeResume,"schema identity remains equal to its pre-matrix value");
             String fixtureIdentity="embedded-postgres:"+url;
             assertEquals(aHash,sha(a),"A bytes remain the tested immutable artifact");
             assertEquals(bHash,sha(b),"B bytes remain the tested immutable artifact");
             boolean retainedStateVerified = quarantined.equals(DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url))
                     && sourceBefore.equals(sourceSnapshot(url))
-                    && immutableWorkBefore.equals(immutableWorkSnapshot(url))
-                    && scalar(url,"SELECT count(*) FROM training_issuance_recovery_history WHERE policy_id='policy-demo-1' AND action='QUARANTINE' AND control_revision=1") == 1;
+                    && workBefore.equals(workInvariantSnapshot(url))
+                    && targetImmutableBefore.equals(targetImmutableWorkSnapshot(url))
+                    && historyRows(url).size()==historyBefore.size()+1
+                    && receiptsBefore.equals(receiptRows(url));
             assertTrue(retainedStateVerified, "the expected quarantined state is still present on the live fixture");
             // BoundedProcessRunner.run() returns only after exit, timeout, output, and owned-process
             // cleanup checks have succeeded. Count completed invocations from this thread.
@@ -268,34 +305,42 @@ class TwoArtifactCompatibilityAcceptanceTest {
             assertEquals(BinaryFallbackPolicy.FallbackDecision.ALLOW_TESTED_PAIR,
                     new BinaryFallbackPolicy().decide(evidence,sha(a),sha(b),"embedded-postgres:"+url,schemaFingerprint(url)),
                     "fallback authorization is checked against current artifact, fixture and schema identity before invoking A");
+            assertEquals(BinaryFallbackPolicy.FallbackDecision.BLOCKED,
+                    new BinaryFallbackPolicy().decide(evidence,sha(a),sha(b),"embedded-postgres:"+url,"stale-schema-fingerprint"),
+                    "fallback refuses when the freshly measured current schema differs from the tested schema");
             assertTrue(run(a, url, action("inspect", null, null)).contains("MANUAL_HOLD"));
             assertEquals(quarantined,DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url),"A inspection must preserve all rows");
-            assertEquals(immutableWorkBefore,immutableWorkSnapshot(url));
-            run(a, url, action("release", 1, "REVIEWED_FOR_RETRY"));
+            run(a, url, action("release", 3, "REVIEWED_FOR_RETRY"));
             String released = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
-            String historyAfterRelease=historySnapshot(url);
-            assertEquals(2,scalar(url,"SELECT control_revision FROM training_issuance_work WHERE policy_id='policy-demo-1'"));
-            assertEquals(immutableWorkBefore,immutableWorkSnapshot(url));
-            run(b, url, action("retry", 2, null));
+            assertControlState(url,4,false,null,false);
+            assertEquals(sourceBefore,sourceSnapshot(url)); assertEquals(workBefore,workInvariantSnapshot(url));
+            assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
+            assertEquals(schemaBeforeMatrix,schemaFingerprint(url));
+            assertHistoryAppend(historyAfterQuarantine,historyRows(url),POLICY,VERSION,4,"RELEASE","REVIEWED_FOR_RETRY",1);
+            Map<String,String> historyAfterRelease=historyRows(url);
+            assertEquals(receiptsBefore,receiptRows(url));
+            run(b, url, action("retry", 4, null));
             String completed = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
             String receiptAfterDelivery=receiptSnapshot(url);
             assertEquals(sourceBefore, sourceSnapshot(url), "source/lifecycle/idempotency data is retained");
-            assertEquals(1, scalar(url, "SELECT count(*) FROM training_issuance_delivery_receipt WHERE policy_id='policy-demo-1'"));
-            assertEquals(2, scalar(url, "SELECT count(*) FROM training_issuance_recovery_history WHERE policy_id='policy-demo-1'"));
+            assertEquals(workBefore,workInvariantSnapshot(url)); assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
+            assertControlState(url,4,false,null,true);
+            assertReceiptAppend(receiptsBefore,receiptRows(url),POLICY,VERSION);
             assertTrue(released.contains("REVIEWED_FOR_RETRY"));
             assertEquals(1, scalar(url, "SELECT count(*) FROM training_issuance_work WHERE policy_id='policy-demo-1' AND acknowledged_at IS NOT NULL"));
-            assertEquals(immutableWorkBefore,immutableWorkSnapshot(url),"delivery/ack may change only ack and receipt columns");
-            assertEquals(historyAfterRelease,historySnapshot(url),"retry cannot rewrite recovery history");
+            assertEquals(workBefore,workInvariantSnapshot(url),"delivery/ack may change only selected-key acknowledgement/receipt evidence");
+            assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
+            assertEquals(historyAfterRelease,historyRows(url),"retry cannot rewrite recovery history");
             assertNotEquals(released, completed, "receipt then acknowledgment are visible persisted changes");
             String beforeAReplay = DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url);
             run(a, url, action("inspect", null, null));
             assertEquals(beforeAReplay, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url));
-            run(a, url, action("retry", 2, null));
+            run(a, url, action("retry", 4, null));
             assertEquals(beforeAReplay, DatabaseRestoreAcceptanceTest.fullDatabaseSnapshot(url),
                     "A replays retained completion without replacing receipt or timestamps");
             assertEquals(receiptAfterDelivery,receiptSnapshot(url),"replay preserves original receipt payload/time");
             assertTrue(sha(a).equals(aHash) && sha(b).equals(bHash), "artifact bytes remain immutable during the matrix");
-            assertEquals(schemaBeforeResume,schemaFingerprint(url),"the retained database schema and migration identity stay unchanged");
+            assertEquals(schemaBeforeMatrix,schemaFingerprint(url),"schema and migration identity stay equal to the pre-matrix baseline");
         }
         System.out.println("TWO_ARTIFACT_MATRIX_PASSED A="+aHash+" B="+bHash+" sourceA="+aSource+" sourceB="+bSource+
                 " buildA="+aBuild+" buildB="+bBuild+" schema="+verifiedSchemaFingerprint);
@@ -387,17 +432,61 @@ class TwoArtifactCompatibilityAcceptanceTest {
             assertTrue(r.next()); return r.getString(1);
         }
     }
-    private static String immutableWorkSnapshot(String url) throws Exception {
+    private static void seedCompatibilityFixture(JdbcTemplate jdbc) {
+        jdbc.update("INSERT INTO training_issuance_work(policy_id,source_version,event_type,effective_date,envelope_schema_version,captured_at,control_revision) VALUES ('policy-demo-1',1,'ISSUED',DATE '2026-12-01',1,TIMESTAMPTZ '2026-10-01 10:02:00+00',2)");
+        jdbc.update("INSERT INTO training_issuance_recovery_history(policy_id,source_version,control_revision,action,reason_code,decided_at) VALUES ('policy-demo-1',1,1,'QUARANTINE','OBSERVED_FAILURE',TIMESTAMPTZ '2026-10-01 12:10:00+00'),('policy-demo-1',1,2,'RELEASE','REVIEWED_FOR_RETRY',TIMESTAMPTZ '2026-10-01 12:20:00+00')");
+        jdbc.update("INSERT INTO training_issuance_work(policy_id,source_version,event_type,effective_date,envelope_schema_version,captured_at,acknowledged_at,quarantined_at,quarantine_reason,control_revision) VALUES ('policy-renewal-a',1,'ISSUED',DATE '2026-01-15',1,TIMESTAMPTZ '2026-10-01 10:05:00+00',TIMESTAMPTZ '2026-10-01 12:30:00+00',TIMESTAMPTZ '2026-10-01 12:25:00+00','MANUAL_HOLD',1)");
+        jdbc.update("INSERT INTO training_issuance_delivery_receipt(policy_id,source_version,event_type,effective_date,envelope_schema_version,received_at) VALUES ('policy-renewal-a',1,'ISSUED',DATE '2026-01-15',1,TIMESTAMPTZ '2026-10-01 12:31:00+00')");
+        jdbc.update("INSERT INTO training_issuance_recovery_history(policy_id,source_version,control_revision,action,reason_code,decided_at) VALUES ('policy-renewal-a',1,1,'QUARANTINE','MANUAL_HOLD',TIMESTAMPTZ '2026-10-01 12:25:00+00')");
+    }
+    private static String workInvariantSnapshot(String url) throws Exception {
         try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery(
-                "SELECT coalesce(jsonb_agg((to_jsonb(w)-'quarantined_at'-'quarantine_reason'-'control_revision'-'acknowledged_at') ORDER BY policy_id,source_version),'[]'::jsonb)::text FROM training_issuance_work w")) {
+                "SELECT coalesce(jsonb_agg(CASE WHEN policy_id='policy-demo-1' AND source_version=1 THEN to_jsonb(w)-'quarantined_at'-'quarantine_reason'-'control_revision'-'acknowledged_at' ELSE to_jsonb(w) END ORDER BY policy_id,source_version),'[]'::jsonb)::text FROM training_issuance_work w")) {
             assertTrue(r.next()); return r.getString(1);
         }
     }
-    private static String historySnapshot(String url) throws Exception {
+    private static String targetImmutableWorkSnapshot(String url) throws Exception {
         try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery(
-                "SELECT coalesce(jsonb_agg(to_jsonb(h) ORDER BY policy_id,source_version,control_revision),'[]'::jsonb)::text FROM training_issuance_recovery_history h")) {
+                "SELECT (to_jsonb(w)-'quarantined_at'-'quarantine_reason'-'control_revision'-'acknowledged_at')::text FROM training_issuance_work w WHERE policy_id='policy-demo-1' AND source_version=1")) {
             assertTrue(r.next()); return r.getString(1);
         }
+    }
+    private static void assertControlState(String url,int revision,boolean quarantined,String reason,boolean acknowledged) throws Exception {
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery(
+                "SELECT control_revision,quarantined_at,quarantine_reason,acknowledged_at FROM training_issuance_work WHERE policy_id='policy-demo-1' AND source_version=1")) {
+            assertTrue(r.next()); assertEquals(revision,r.getInt(1)); assertEquals(quarantined,r.getTimestamp(2)!=null);
+            assertEquals(reason,r.getString(3)); assertEquals(acknowledged,r.getTimestamp(4)!=null);
+        }
+    }
+    private static Map<String,String> historyRows(String url) throws Exception {
+        var rows=new java.util.TreeMap<String,String>();
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery(
+                "SELECT policy_id,source_version,control_revision,action,reason_code,decided_at FROM training_issuance_recovery_history ORDER BY policy_id,source_version,control_revision")) {
+            while(r.next()) rows.put(r.getString(1)+"|"+r.getLong(2)+"|"+r.getInt(3),r.getString(4)+"|"+r.getString(5)+"|"+r.getTimestamp(6).toInstant());
+        }
+        return rows;
+    }
+    private static void assertHistoryAppend(Map<String,String> before,Map<String,String> after,String policy,long version,int revision,
+            String action,String reason,int additions) {
+        assertEquals(before.size()+additions,after.size(),"only the intended recovery-history append rows may be added");
+        before.forEach((key,value)->assertEquals(value,after.get(key),"preexisting history row was rewritten: "+key));
+        String key=policy+"|"+version+"|"+revision;
+        assertTrue(after.containsKey(key),"expected history row is present: "+key);
+        assertTrue(after.get(key).startsWith(action+"|"+reason+"|"),"history row has the exact action and reason");
+    }
+    private static Map<String,String> receiptRows(String url) throws Exception {
+        var rows=new java.util.TreeMap<String,String>();
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery(
+                "SELECT policy_id,source_version,event_type,effective_date,envelope_schema_version,received_at FROM training_issuance_delivery_receipt ORDER BY policy_id,source_version")) {
+            while(r.next()) rows.put(r.getString(1)+"|"+r.getLong(2),r.getString(3)+"|"+r.getDate(4)+"|"+r.getInt(5)+"|"+r.getTimestamp(6).toInstant());
+        }
+        return rows;
+    }
+    private static void assertReceiptAppend(Map<String,String> before,Map<String,String> after,String policy,long version) {
+        assertEquals(before.size()+1,after.size(),"retry appends exactly one receipt row");
+        before.forEach((key,value)->assertEquals(value,after.get(key),"preexisting receipt was rewritten: "+key));
+        assertTrue(after.containsKey(policy+"|"+version),"target receipt was created");
+        assertTrue(after.get(policy+"|"+version).startsWith("ISSUED|2026-12-01|1|"));
     }
     private static String receiptSnapshot(String url) throws Exception {
         try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery(
@@ -458,8 +547,20 @@ class TwoArtifactCompatibilityAcceptanceTest {
     }
     private static String schemaFingerprint(String url) throws Exception {
         StringBuilder identity=new StringBuilder();
-        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT c.relname,a.attname,pg_catalog.format_type(a.atttypid,a.atttypmod) FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace JOIN pg_catalog.pg_attribute a ON a.attrelid=c.oid WHERE n.nspname='public' AND c.relkind IN ('r','p') AND a.attnum>0 AND NOT a.attisdropped ORDER BY c.relname,a.attnum")) {
-            while(r.next()) identity.append(r.getString(1)).append('.').append(r.getString(2)).append(':').append(r.getString(3)).append('\n');
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT c.relname,a.attname,pg_catalog.format_type(a.atttypid,a.atttypmod),a.attnotnull,coalesce(pg_get_expr(d.adbin,d.adrelid),'<none>') FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace JOIN pg_catalog.pg_attribute a ON a.attrelid=c.oid LEFT JOIN pg_catalog.pg_attrdef d ON d.adrelid=c.oid AND d.adnum=a.attnum WHERE n.nspname='public' AND c.relkind IN ('r','p') AND a.attnum>0 AND NOT a.attisdropped ORDER BY c.relname,a.attnum")) {
+            while(r.next()) identity.append("column|").append(r.getString(1)).append('.').append(r.getString(2)).append(':').append(r.getString(3)).append('|').append(r.getBoolean(4)).append('|').append(r.getString(5)).append('\n');
+        }
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT conrelid::regclass::text,conname,pg_get_constraintdef(oid),convalidated,condeferrable,condeferred FROM pg_catalog.pg_constraint WHERE connamespace='public'::regnamespace ORDER BY conrelid::regclass::text,conname")) {
+            while(r.next()) identity.append("constraint|").append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getBoolean(4)).append('|').append(r.getBoolean(5)).append('|').append(r.getBoolean(6)).append('\n');
+        }
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT tablename,indexname,indexdef FROM pg_catalog.pg_indexes WHERE schemaname='public' ORDER BY tablename,indexname")) {
+            while(r.next()) identity.append("index|").append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('\n');
+        }
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT tgrelid::regclass::text,tgname,pg_get_triggerdef(oid),tgenabled FROM pg_catalog.pg_trigger WHERE NOT tgisinternal ORDER BY tgrelid::regclass::text,tgname")) {
+            while(r.next()) identity.append("trigger|").append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getString(4)).append('\n');
+        }
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT schemaname,tablename,rulename,definition FROM pg_catalog.pg_rules WHERE schemaname='public' ORDER BY tablename,rulename")) {
+            while(r.next()) identity.append("rule|").append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getString(4)).append('\n');
         }
         try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT version,description,script,checksum,success FROM flyway_schema_history ORDER BY installed_rank")) {
             while(r.next()) identity.append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getString(4)).append('|').append(r.getBoolean(5)).append('\n');
