@@ -1,0 +1,1038 @@
+{
+  "title": "Draft Days 183–196 owner export; not published to board",
+  "batch": "StreamForge bounded content-profile experiment",
+  "story_count": 14,
+  "publication_status": "draft_not_board_published",
+  "board_writes": false,
+  "sprint_boundaries": [
+    {
+      "name": "Sprint 14",
+      "dates": "2027-04-20..2027-05-03",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "cards": [
+    {
+      "day_number": 183,
+      "date": "2027-04-20",
+      "title": "Encode one fixed genre",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 183",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "encode_genre",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "encode_genre(genre) -> tuple[int, ...]",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day183Test"
+      ],
+      "study_refs": [
+        "FEATURE_VECTOR"
+      ],
+      "study_guidance": [
+        {
+          "key": "FEATURE_VECTOR",
+          "title": "Categorical data: Vocabulary and one-hot encoding",
+          "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+          "sections": [
+            "Dimension/vocabulary introduction",
+            "Index numbers",
+            "One-hot encoding"
+          ]
+        }
+      ],
+      "prerequisite_days": [],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-183.md"
+    },
+    {
+      "day_number": 184,
+      "date": "2027-04-21",
+      "title": "Bind item features without fitting the holdout",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 184",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "catalog_features",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "catalog_features(catalog) -> immutable feature map",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day184Test"
+      ],
+      "study_refs": [
+        "FEATURE_VECTOR",
+        "CONTENT_PROFILE"
+      ],
+      "study_guidance": [
+        {
+          "key": "FEATURE_VECTOR",
+          "title": "Categorical data: Vocabulary and one-hot encoding",
+          "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+          "sections": [
+            "Dimension/vocabulary introduction",
+            "Index numbers",
+            "One-hot encoding"
+          ]
+        },
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        183
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-184.md"
+    },
+    {
+      "day_number": 185,
+      "date": "2027-04-22",
+      "title": "Count distinct positive training interests",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 185",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "profile_counts",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "profile_counts(train_pairs, features, training_viewer_ids) -> immutable count state",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day185Test"
+      ],
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "TRAIN_ONLY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        184,
+        169
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-185.md"
+    },
+    {
+      "day_number": 186,
+      "date": "2027-04-23",
+      "title": "Normalize profiles with exact fractions",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 186",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "normalize_profiles",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "normalize_profiles(count_state) -> immutable profile map",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day186Test"
+      ],
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "SIMILARITY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "SIMILARITY",
+          "title": "Candidate generation overview",
+          "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+          "sections": [
+            "Similarity measures",
+            "Cosine",
+            "Dot product"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        185
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-186.md"
+    },
+    {
+      "day_number": 187,
+      "date": "2027-04-24",
+      "title": "Score candidate features transparently",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 187",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "score_candidates",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "score_candidates(weights, candidate_features) -> immutable score map",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day187Test"
+      ],
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "SIMILARITY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "SIMILARITY",
+          "title": "Candidate generation overview",
+          "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+          "sections": [
+            "Similarity measures",
+            "Cosine",
+            "Dot product"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        184,
+        186
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-187.md"
+    },
+    {
+      "day_number": 188,
+      "date": "2027-04-25",
+      "title": "Rank profiles and explicit cold-start fallbacks",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 188",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "rank_for_viewer",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "rank_for_viewer(viewer_id, profiles, counts, candidates, features, global_rank) -> QueryPrediction",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day188Test"
+      ],
+      "study_refs": [
+        "LIMITATIONS",
+        "CONTENT_PROFILE"
+      ],
+      "study_guidance": [
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        },
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        187,
+        172
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-188.md"
+    },
+    {
+      "day_number": 189,
+      "date": "2027-04-26",
+      "title": "Recover feature and ranking contracts",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 189",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "prior_only_183_188",
+      "module": null,
+      "signature": "prior_only_183_188",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day183Test ai.streamforge.tests.test_content_contracts.Day184Test ai.streamforge.tests.test_content_contracts.Day185Test ai.streamforge.tests.test_content_contracts.Day186Test ai.streamforge.tests.test_content_contracts.Day187Test ai.streamforge.tests.test_content_contracts.Day188Test"
+      ],
+      "study_refs": [
+        "TRAIN_ONLY",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "recovery_day": true,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-189.md"
+    },
+    {
+      "day_number": 190,
+      "date": "2027-04-27",
+      "title": "Freeze an immutable predictor state",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 190",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "assemble_predictor_state",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "assemble_predictor_state(protocol, features, counts, profiles, training_viewers, candidates, global_state, global_rank) -> PredictorState",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day190Test"
+      ],
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        184,
+        185,
+        186,
+        188
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-190.md"
+    },
+    {
+      "day_number": 191,
+      "date": "2027-04-28",
+      "title": "Evaluate per-viewer rankings on the same cohort",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 191",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "evaluate_profiles",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "evaluate_profiles(state, targets) -> ProfileEvaluation",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day191Test"
+      ],
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        190,
+        173,
+        174
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-191.md"
+    },
+    {
+      "day_number": 192,
+      "date": "2027-04-29",
+      "title": "Compare with the unchanged global algorithm",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 192",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "compare_against_global",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "compare_against_global(profile_evaluation, global_evaluation) -> ProfileComparison",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day192Test"
+      ],
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "TRAIN_ONLY"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        191,
+        176
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-192.md"
+    },
+    {
+      "day_number": 193,
+      "date": "2027-04-30",
+      "title": "Assemble the complete evidence report",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 193",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "assemble_profile_report",
+      "module": "ai.streamforge.content_contracts",
+      "signature": "assemble_profile_report(protocol, state, profile_evaluation, comparison, lineage) -> dict",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day193Test"
+      ],
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        190,
+        191,
+        192
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-193.md"
+    },
+    {
+      "day_number": 194,
+      "date": "2027-05-01",
+      "title": "Run the real local composition",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 194",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "evaluate_content_fixture",
+      "module": "ai.streamforge.content_evaluate",
+      "signature": "evaluate_content_fixture(fixture_name) -> dict",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_cli.Day194Test"
+      ],
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        190,
+        191,
+        192,
+        193,
+        179
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-194.md"
+    },
+    {
+      "day_number": 195,
+      "date": "2027-05-02",
+      "title": "Prove sensitivity and reject plausible wrong code",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 195",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "supplied_adversarial_and_fresh_process_assertions",
+      "module": null,
+      "signature": "supplied_adversarial_and_fresh_process_assertions",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_adversarial.Day195Test",
+        "python3 -m unittest ai.streamforge.tests.test_content_cli.Day195Test"
+      ],
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-195.md"
+    },
+    {
+      "day_number": 196,
+      "date": "2027-05-03",
+      "title": "Recover and defend the experiment",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "allocation_minutes": {
+          "one_timeboxed_substantive_exercise": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 196",
+        "forecast_is_not_attempt": true,
+        "priority": "Failed repair, oldest overdue, then due review. Use remaining capacity for a sourced user question or explicitly labeled curated practice.",
+        "actual_attempt_clock": "D, D+3, D+7, and D+21 from actual first attempt in Asia/Kolkata; retain original due dates and unfinished slots."
+      },
+      "learner_seam": "prior_only_183_195",
+      "module": null,
+      "signature": "prior_only_183_195",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts ai.streamforge.tests.test_content_adversarial ai.streamforge.tests.test_content_cli"
+      ],
+      "study_refs": [
+        "LIMITATIONS",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ],
+      "prerequisite_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "recovery_day": true,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded",
+      "contract_path": "docs/reboot/continuation-183-196/contracts/day-196.md"
+    }
+  ]
+}

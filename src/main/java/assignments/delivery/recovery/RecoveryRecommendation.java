@@ -1,0 +1,12 @@
+package assignments.delivery.recovery;
+
+public enum RecoveryRecommendation {
+    NOT_FOUND,
+    ELIGIBLE_FOR_ONE_ATTEMPT,
+    RECONCILE_ACKNOWLEDGMENT,
+    ALREADY_COMPLETE,
+    QUARANTINED_NO_RECEIPT,
+    QUARANTINED_WITH_CONFLICT,
+    INTEGRITY_VIOLATION,
+    REFUSE
+}

@@ -1,0 +1,768 @@
+{
+  "title": "StreamForge Days 183–196 bounded content-profile experiment",
+  "status": "starter_not_learner_completion_or_board_published",
+  "branch": "learning/streamforge-days-183-196",
+  "base_commit": "fa45d70868e93da79bb2ff84a8c4a4ca77510924",
+  "start_date": "2027-04-20",
+  "end_date": "2027-05-03",
+  "engineering_minutes": 165,
+  "engineering_allocation": {
+    "study": 35,
+    "practice_and_tests": 115,
+    "evidence": 15
+  },
+  "shared_interview_or_remaining_reviews_minutes": 45,
+  "total_daily_minutes": 210,
+  "recovery_days": [
+    189,
+    196
+  ],
+  "protocol_id": "streamforge-cutoff-genre-profile-v1",
+  "k": 3,
+  "genres": [
+    "animation",
+    "comedy",
+    "documentary",
+    "drama",
+    "science-fiction"
+  ],
+  "limits": [
+    "Hand-engineered arithmetic profile, not optimizer-trained ML.",
+    "Previously inspected holdout is development comparison, not untouched final test.",
+    "Synthetic observed-positive overlap does not prove preferences, causal lift, fairness, business success or production readiness.",
+    "Single-genre features are coarse and scores are not calibrated probabilities.",
+    "Catalog schedule assumed known at cutoff; no historical point-in-time catalog evidence.",
+    "No real data, new dependencies, cloud resources, service, purchase or new fixture dataset.",
+    "Hashes identify bytes/projections, not authenticity, privacy, rights or quality.",
+    "Static cutoff list; no per-event availability reranking."
+  ],
+  "days": [
+    {
+      "day": 183,
+      "date": "2027-04-20",
+      "title": "Encode one fixed genre",
+      "learner_seam": "encode_genre",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day183Test"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "encode_genre(genre) -> tuple[int, ...]",
+      "study_refs": [
+        "FEATURE_VECTOR"
+      ],
+      "study_guidance": [
+        {
+          "key": "FEATURE_VECTOR",
+          "title": "Categorical data: Vocabulary and one-hot encoding",
+          "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+          "sections": [
+            "Dimension/vocabulary introduction",
+            "Index numbers",
+            "One-hot encoding"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 184,
+      "date": "2027-04-21",
+      "title": "Bind item features without fitting the holdout",
+      "learner_seam": "catalog_features",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day184Test"
+      ],
+      "depends_on_days": [
+        183
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "catalog_features(catalog) -> immutable feature map",
+      "study_refs": [
+        "FEATURE_VECTOR",
+        "CONTENT_PROFILE"
+      ],
+      "study_guidance": [
+        {
+          "key": "FEATURE_VECTOR",
+          "title": "Categorical data: Vocabulary and one-hot encoding",
+          "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+          "sections": [
+            "Dimension/vocabulary introduction",
+            "Index numbers",
+            "One-hot encoding"
+          ]
+        },
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 185,
+      "date": "2027-04-22",
+      "title": "Count distinct positive training interests",
+      "learner_seam": "profile_counts",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day185Test"
+      ],
+      "depends_on_days": [
+        184,
+        169
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "profile_counts(train_pairs, features, training_viewer_ids) -> immutable count state",
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "TRAIN_ONLY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 186,
+      "date": "2027-04-23",
+      "title": "Normalize profiles with exact fractions",
+      "learner_seam": "normalize_profiles",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day186Test"
+      ],
+      "depends_on_days": [
+        185
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "normalize_profiles(count_state) -> immutable profile map",
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "SIMILARITY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "SIMILARITY",
+          "title": "Candidate generation overview",
+          "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+          "sections": [
+            "Similarity measures",
+            "Cosine",
+            "Dot product"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 187,
+      "date": "2027-04-24",
+      "title": "Score candidate features transparently",
+      "learner_seam": "score_candidates",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day187Test"
+      ],
+      "depends_on_days": [
+        184,
+        186
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "score_candidates(weights, candidate_features) -> immutable score map",
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "SIMILARITY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "SIMILARITY",
+          "title": "Candidate generation overview",
+          "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+          "sections": [
+            "Similarity measures",
+            "Cosine",
+            "Dot product"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 188,
+      "date": "2027-04-25",
+      "title": "Rank profiles and explicit cold-start fallbacks",
+      "learner_seam": "rank_for_viewer",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day188Test"
+      ],
+      "depends_on_days": [
+        187,
+        172
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "rank_for_viewer(viewer_id, profiles, counts, candidates, features, global_rank) -> QueryPrediction",
+      "study_refs": [
+        "LIMITATIONS",
+        "CONTENT_PROFILE"
+      ],
+      "study_guidance": [
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        },
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 189,
+      "date": "2027-04-26",
+      "title": "Recover feature and ranking contracts",
+      "learner_seam": "prior_only_183_188",
+      "module": null,
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day183Test ai.streamforge.tests.test_content_contracts.Day184Test ai.streamforge.tests.test_content_contracts.Day185Test ai.streamforge.tests.test_content_contracts.Day186Test ai.streamforge.tests.test_content_contracts.Day187Test ai.streamforge.tests.test_content_contracts.Day188Test"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "recovery_day": true,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "prior_only_183_188",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 190,
+      "date": "2027-04-27",
+      "title": "Freeze an immutable predictor state",
+      "learner_seam": "assemble_predictor_state",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day190Test"
+      ],
+      "depends_on_days": [
+        184,
+        185,
+        186,
+        188
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "assemble_predictor_state(protocol, features, counts, profiles, training_viewers, candidates, global_state, global_rank) -> PredictorState",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 191,
+      "date": "2027-04-28",
+      "title": "Evaluate per-viewer rankings on the same cohort",
+      "learner_seam": "evaluate_profiles",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day191Test"
+      ],
+      "depends_on_days": [
+        190,
+        173,
+        174
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "evaluate_profiles(state, targets) -> ProfileEvaluation",
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 192,
+      "date": "2027-04-29",
+      "title": "Compare with the unchanged global algorithm",
+      "learner_seam": "compare_against_global",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day192Test"
+      ],
+      "depends_on_days": [
+        191,
+        176
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "compare_against_global(profile_evaluation, global_evaluation) -> ProfileComparison",
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "TRAIN_ONLY"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 193,
+      "date": "2027-04-30",
+      "title": "Assemble the complete evidence report",
+      "learner_seam": "assemble_profile_report",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day193Test"
+      ],
+      "depends_on_days": [
+        190,
+        191,
+        192
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "assemble_profile_report(protocol, state, profile_evaluation, comparison, lineage) -> dict",
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 194,
+      "date": "2027-05-01",
+      "title": "Run the real local composition",
+      "learner_seam": "evaluate_content_fixture",
+      "module": "ai.streamforge.content_evaluate",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_cli.Day194Test"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        190,
+        191,
+        192,
+        193,
+        179
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "evaluate_content_fixture(fixture_name) -> dict",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 195,
+      "date": "2027-05-02",
+      "title": "Prove sensitivity and reject plausible wrong code",
+      "learner_seam": "supplied_adversarial_and_fresh_process_assertions",
+      "module": null,
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_adversarial.Day195Test",
+        "python3 -m unittest ai.streamforge.tests.test_content_cli.Day195Test"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "supplied_adversarial_and_fresh_process_assertions",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 196,
+      "date": "2027-05-03",
+      "title": "Recover and defend the experiment",
+      "learner_seam": "prior_only_183_195",
+      "module": null,
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts ai.streamforge.tests.test_content_adversarial ai.streamforge.tests.test_content_cli"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "recovery_day": true,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "prior_only_183_195",
+      "study_refs": [
+        "LIMITATIONS",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "status": "offline_plan_only",
+  "cloud_execution_authorized": false,
+  "cloud_verified": false,
+  "account_id": null,
+  "region": null,
+  "access_model": "pending_user_decision",
+  "candidate_topology": {
+    "compute": "one private synthetic application unit",
+    "database": "private managed PostgreSQL candidate; exact engine/minor/region availability unverified",
+    "operator_access": "pending explicit selection and action-time review",
+    "public_application": false,
+    "public_database": false,
+    "deployment_template": false,
+    "networking_selected": false
+  },
+  "permission_review": {
+    "principal": "pending",
+    "actions": [],
+    "resources": [],
+    "secret_storage": "pending",
+    "grants_created": false
+  },
+  "cost_model": {
+    "currency": "USD",
+    "rate_status": "fictional_test_rates_only; real region and prices not selected",
+    "lines": [
+      {
+        "component": "compute",
+        "rate": "0.10",
+        "unit": "instance-hour",
+        "quantity": "2",
+        "amount": "0.20",
+        "currency": "USD",
+        "label": "FICTIONAL_TEST_RATE"
+      },
+      {
+        "component": "database-storage",
+        "rate": "0.02",
+        "unit": "GB-month",
+        "quantity": "5",
+        "amount": "0.10",
+        "currency": "USD",
+        "label": "FICTIONAL_TEST_RATE"
+      },
+      {
+        "component": "backups-snapshots",
+        "rate": "0.01",
+        "unit": "GB-month",
+        "quantity": "3",
+        "amount": "0.03",
+        "currency": "USD",
+        "label": "FICTIONAL_TEST_RATE"
+      },
+      {
+        "component": "logs",
+        "rate": "0.01",
+        "unit": "GB-month",
+        "quantity": "2",
+        "amount": "0.02",
+        "currency": "USD",
+        "label": "FICTIONAL_TEST_RATE"
+      },
+      {
+        "component": "secrets",
+        "rate": "0.05",
+        "unit": "secret-month",
+        "quantity": "1",
+        "amount": "0.05",
+        "currency": "USD",
+        "label": "FICTIONAL_TEST_RATE"
+      },
+      {
+        "component": "transfer",
+        "rate": "0.01",
+        "unit": "GB",
+        "quantity": "4",
+        "amount": "0.04",
+        "currency": "USD",
+        "label": "FICTIONAL_TEST_RATE"
+      }
+    ],
+    "total": "0.44",
+    "includes_retained_resources": true,
+    "budget_alert_is_synchronous_spend_cap": false,
+    "notes": "All rates, quantities and amounts are fictional test fixtures; networking is added explicitly if selected. Not an AWS estimate."
+  },
+  "lifetime_hours": null,
+  "cleanup_owner": null,
+  "retention_and_deletion_choices": "pending_user_decision",
+  "notes": [
+    "This JSON is a planning record, not a deployable infrastructure template.",
+    "No AWS CLI/SDK call, credentials lookup, resource, change set, IAM grant, network rule, secret, or billable action is created by the local rehearsal.",
+    "The current passwordless synthetic local application remains loopback-only and must never be exposed publicly.",
+    "Local PostgreSQL archive restore does not verify RDS point-in-time restore, service availability, regional pricing, cloud recovery time, or production security."
+  ],
+  "cloud_action_requested": false
+}

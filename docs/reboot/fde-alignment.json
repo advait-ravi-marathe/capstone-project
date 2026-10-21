@@ -1,0 +1,1572 @@
+{
+  "schema_version": 1,
+  "purpose": "Reference-only FDE alignment overlay for the existing roadmap; no new tracker, dates, attempts, scores, completion flags or scheduling authority.",
+  "source_commit": "3a93ed9ae93dd68a9eda0418518713ac29a38eb6",
+  "amends_existing_document": {
+    "title": "Staff Forward Deployed Engineer: Three-Year North Star",
+    "date": "2026-10-21",
+    "library_file_id": "libfile_b15efc4a78cc819183e7ed248f3975f4",
+    "publication_note": "Reference the existing user document; do not expose internal transfer paths or create a competing roadmap."
+  },
+  "protected": {
+    "days": [
+      1,
+      30
+    ],
+    "no_changes": true,
+    "no_prompts": true,
+    "all_dsa_files_logs_unchanged": true,
+    "main_unchanged": true,
+    "original_dirty_worktree_unchanged": true,
+    "preserve_baselines_separately": true
+  },
+  "budget": {
+    "through_day": 171,
+    "engineering": 120,
+    "engineering_allocation": {
+      "study": 25,
+      "practice_and_tests": 85,
+      "evidence": 10
+    },
+    "dsa_by_exercises": {
+      "1_or_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "daily_total_by_dsa_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "from_day_172": {
+      "engineering": 165,
+      "shared_interview_or_unfinished_reviews": 45,
+      "total": 210
+    },
+    "no_new_guided_dsa_after": 150
+  },
+  "pillars": {
+    "A": "Backend and distributed systems",
+    "B": "Production AI engineering",
+    "C": "Cloud and enterprise integration",
+    "D": "Customer-facing engineering",
+    "E": "Technical leadership and platform leverage"
+  },
+  "readiness": {
+    "dimensions": [
+      "Problem discovery",
+      "Backend and distributed systems",
+      "Production AI and evaluation",
+      "Cloud, security and operations",
+      "Enterprise integration",
+      "Customer communication",
+      "Technical design ownership",
+      "Mentoring and cross-team influence",
+      "Reusable platform impact"
+    ],
+    "scale": {
+      "0": "No evidence",
+      "1": "Learning or prototype",
+      "2": "Production contribution",
+      "3": "Independent ownership",
+      "4": "Repeated Staff-level leverage"
+    },
+    "new_scores_awarded": false,
+    "unassessed_is_not_zero": true,
+    "evidence_scopes": [
+      "instructor_scaffold",
+      "learner_portfolio",
+      "simulated_enterprise",
+      "professional"
+    ],
+    "collection_status_separate_from_score": [
+      "not_requested",
+      "reported_awaiting_verification",
+      "verified",
+      "unavailable"
+    ],
+    "prior_professional_claims": "Preserve provenance and supported assessments; verify shareable artifacts without copying confidential employer/customer material."
+  },
+  "phase_ranges": [
+    {
+      "days": [
+        31,
+        44
+      ],
+      "range": "31-44",
+      "pillars": [
+        "A"
+      ],
+      "purpose": "Synthetic policy issuance, endorsement and cancellation",
+      "source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "existing_readme": "docs/reboot/continuation-31-44/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-31-44/contracts/day-{day}.md",
+      "prerequisite_note": "Actual protected vertical-slice prerequisites and each existing daily contract dependency.",
+      "evidence_boundary": "Learner local synthetic servicing; no real policy binding, customer ownership or production claim.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-31-44/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        45,
+        56
+      ],
+      "range": "45-56",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "purpose": "Read-only renewal preview",
+      "source_manifest": "docs/reboot/continuation-45-56/manifest.json",
+      "existing_readme": "docs/reboot/continuation-45-56/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-45-56/contracts/day-{day}.md",
+      "prerequisite_note": "Actual lifecycle, owner/version/date behavior and existing daily contract prerequisites.",
+      "evidence_boundary": "Read-only synthetic preview; not policy renewal or legal coverage.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-45-56/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        57,
+        70
+      ],
+      "range": "57-70",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "purpose": "Reusable runnable local application composition",
+      "source_manifest": "docs/reboot/continuation-57-70/manifest.json",
+      "existing_readme": "docs/reboot/continuation-57-70/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-57-70/contracts/day-{day}.md",
+      "prerequisite_note": "Day 57 actual prior-evidence gate and existing packaged-application dependencies.",
+      "evidence_boundary": "Local synthetic UI/API/PostgreSQL acceptance; not production identity or customer UAT.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-57-70/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        71,
+        84
+      ],
+      "range": "71-84",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "purpose": "Bounded resource and concurrency correctness",
+      "source_manifest": "docs/reboot/continuation-71-84/manifest.json",
+      "existing_readme": "docs/reboot/continuation-71-84/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-71-84/contracts/day-{day}.md",
+      "prerequisite_note": "Actual runnable local composition and current daily resource prerequisites.",
+      "evidence_boundary": "Measured local boundedness; not a universal latency or distributed-system guarantee.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-71-84/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        85,
+        98
+      ],
+      "range": "85-98",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "purpose": "Database timeout and transaction cleanup correctness",
+      "source_manifest": "docs/reboot/continuation-85-98/manifest.json",
+      "existing_readme": "docs/reboot/continuation-85-98/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-85-98/contracts/day-{day}.md",
+      "prerequisite_note": "Actual prior bounded-resource evidence; current transaction and connection-ownership rules.",
+      "evidence_boundary": "Local query/lock timeout and cleanup proof; HTTP timeout does not establish database cancellation.",
+      "evidence_locator": {
+        "kind": "existing_contract_evidence_requirement",
+        "path_pattern": "docs/reboot/continuation-85-98/contracts/day-{day}.md",
+        "daily_json_present": false,
+        "note": "Daily JSON is an intended learner output, not a present blob; use the contract evidence requirement."
+      }
+    },
+    {
+      "days": [
+        99,
+        112
+      ],
+      "range": "99-112",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "purpose": "Local durable work, receipts and replay",
+      "source_manifest": "docs/reboot/continuation-99-112/manifest.json",
+      "existing_readme": "docs/reboot/continuation-99-112/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-99-112/contracts/day-{day}.md",
+      "prerequisite_note": "Actual transaction/resource foundations and current durable-work prerequisites.",
+      "evidence_boundary": "Local synthetic durable processing; no external delivery or broker guarantee.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-99-112/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        113,
+        126
+      ],
+      "range": "113-126",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "purpose": "Bounded manual retry, quarantine and operational recovery",
+      "source_manifest": "docs/reboot/continuation-113-126/manifest.json",
+      "existing_readme": "docs/reboot/continuation-113-126/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-113-126/contracts/day-{day}.md",
+      "prerequisite_note": "Actual durable-work/receipt/replay foundations and current recovery-state rules.",
+      "evidence_boundary": "Local manual recovery; no unbounded retry, irreversible deletion or real customer operations.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-113-126/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        127,
+        140
+      ],
+      "range": "127-140",
+      "pillars": [
+        "C",
+        "A"
+      ],
+      "purpose": "Restore/cutover rehearsal and offline AWS boundary",
+      "source_manifest": "docs/reboot/continuation-127-140/manifest.json",
+      "existing_readme": "docs/reboot/continuation-127-140/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-127-140/contracts/day-{day}.md",
+      "prerequisite_note": "Actual local issuance/durable recovery/packaging/resource-cleanup evidence.",
+      "evidence_boundary": "Local rehearsal only. Cloud execution and verification remain false; fictional rates are not AWS prices.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-127-140/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        141,
+        154
+      ],
+      "range": "141-154",
+      "pillars": [
+        "C",
+        "A"
+      ],
+      "purpose": "Distinct binary and retained-state compatibility",
+      "source_manifest": "docs/reboot/continuation-141-154/manifest.json",
+      "existing_readme": "docs/reboot/continuation-141-154/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-141-154/contracts/day-{day}.md",
+      "prerequisite_note": "Actual local rehearsal proof and checksum-bound real A/B artifact prerequisites.",
+      "evidence_boundary": "Unchanged-schema local compatibility; not cloud deployment, production authentication or schema rollback.",
+      "evidence_locator": {
+        "kind": "existing_daily_template",
+        "path_pattern": "evidence/continuation-141-154/day-{day}.json",
+        "daily_json_present": true,
+        "note": "Template presence is not a completed learner record."
+      }
+    },
+    {
+      "days": [
+        155,
+        168
+      ],
+      "range": "155-168",
+      "pillars": [
+        "B",
+        "A"
+      ],
+      "purpose": "Conditional synthetic data foundations",
+      "source_manifest": "docs/reboot/continuation-155-168/manifest.json",
+      "existing_readme": "docs/reboot/continuation-155-168/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-155-168/contracts/day-{day}.md",
+      "prerequisite_note": "Preserve existing actual CoverStory readiness gates, then Python bridge and prior daily data contracts.",
+      "evidence_boundary": "Synthetic offline learning; batch instructor receipts do not establish learner completion or deployed AI.",
+      "evidence_locator": {
+        "kind": "existing_contract_evidence_requirement",
+        "path_pattern": "docs/reboot/continuation-155-168/contracts/day-{day}.md",
+        "daily_json_present": false,
+        "note": "Daily JSON is an intended learner output, not a present blob; use the contract evidence requirement."
+      }
+    },
+    {
+      "days": [
+        169,
+        182
+      ],
+      "range": "169-182",
+      "pillars": [
+        "B",
+        "A"
+      ],
+      "purpose": "Conditional offline baseline and evaluation",
+      "source_manifest": "docs/reboot/continuation-169-182/manifest.json",
+      "existing_readme": "docs/reboot/continuation-169-182/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-169-182/contracts/day-{day}.md",
+      "prerequisite_note": "Actual prior data-foundation/Day 168 defense, unresolved CoverStory gates and frozen protocol.",
+      "evidence_boundary": "Offline benchmark; not user preference truth, production recommendation impact or cloud completion.",
+      "evidence_locator": {
+        "kind": "existing_contract_evidence_requirement",
+        "path_pattern": "docs/reboot/continuation-169-182/contracts/day-{day}.md",
+        "daily_json_present": false,
+        "note": "Daily JSON is an intended learner output, not a present blob; use the contract evidence requirement."
+      }
+    },
+    {
+      "days": [
+        183,
+        196
+      ],
+      "range": "183-196",
+      "pillars": [
+        "B",
+        "A"
+      ],
+      "purpose": "Conditional bounded content-feature comparison",
+      "source_manifest": "docs/reboot/continuation-183-196/manifest.json",
+      "existing_readme": "docs/reboot/continuation-183-196/README.md",
+      "contract_path_pattern": "docs/reboot/continuation-183-196/contracts/day-{day}.md",
+      "prerequisite_note": "Actual prior baseline/Day 182 defense, unresolved CoverStory gates and immutable report/oracle contracts.",
+      "evidence_boundary": "Offline fixed-genre experiment; not optimizer-trained ML, production AI, customer adoption or Staff ownership.",
+      "evidence_locator": {
+        "kind": "existing_contract_evidence_requirement",
+        "path_pattern": "docs/reboot/continuation-183-196/contracts/day-{day}.md",
+        "daily_json_present": false,
+        "note": "Daily JSON is an intended learner output, not a present blob; use the contract evidence requirement."
+      }
+    }
+  ],
+  "next14_existing_days": [
+    {
+      "day": 31,
+      "date": "2026-11-19",
+      "title": "Issue eligibility and quote linkage",
+      "issue_id": "EAI-31",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "Existing Days 28–30 protected vertical-slice evidence and quote/API/DB/React prerequisites; missing proof means defer, not alter Days 1–30.",
+      "actual_source_seam": "validateIssue(PolicyIssueRequest, PolicyIssueFacts)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-31.md",
+      "evidence": "evidence/continuation-31-44/day-31.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Five-line simulated problem statement and observable acceptance matrix; trace owned/selected/current/eligible.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 31,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 21 - Understanding Spring Security Authentication",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 257,
+            "duration": "4:17",
+            "source_item_id": "35017628",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "duration": "9:47",
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Spring MVC controller method arguments",
+            "section": "Principal, @RequestBody, and request-bound arguments",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+          }
+        ],
+        "video_seconds": 844,
+        "remaining_study_seconds": 656,
+        "fit": "partial_foundation",
+        "scope_note": "Authentication and authorization are prerequisites. Work an owned-selected-current-eligible quote matrix; identity comes only from the principal, never an owner request field.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 31",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 32,
+      "date": "2026-11-20",
+      "title": "Idempotent policy issue",
+      "issue_id": "EAI-32",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "issue(PolicyIssueRequest, String authenticatedOwnerId)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-32.md",
+      "evidence": "evidence/continuation-31-44/day-32.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain duplicate-issuance harm and safe retry contract.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 32,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [],
+        "lessons": [],
+        "resources": [
+          {
+            "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+            "section": "Retries and semantic equivalence; same client request ID, different intent",
+            "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "No exact idempotency lecture was found. Work one owner+key+intent receipt: the same intent returns its original result; a changed intent conflicts without mutation.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 32",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 33,
+      "date": "2026-11-21",
+      "title": "Immutable issue snapshot",
+      "issue_id": "EAI-33",
+      "pillars": [
+        "A"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "isImmutableIssueSnapshot(PolicySnapshot before, PolicySnapshot after)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-33.md",
+      "evidence": "evidence/continuation-31-44/day-33.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain the business promise after catalog change; note records are shallowly immutable.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 33,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 15 - Exploring Java New Features - Records",
+            "section_title": "Java New Features - Java 10 to Java 24",
+            "duration_seconds": 544,
+            "duration": "9:04",
+            "source_item_id": "25694168",
+            "course_id": "1535678"
+          },
+          {
+            "title": "3 Questions - Best practices with Records",
+            "section_title": "Core Java in Depth - Java Review (Interview) Guide",
+            "duration_seconds": 598,
+            "duration": "9:58",
+            "source_item_id": "49557599",
+            "course_id": "1535678"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Java 21 Record API",
+            "section": "Record components and shallow immutability",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+          }
+        ],
+        "video_seconds": 1142,
+        "remaining_study_seconds": 358,
+        "fit": "partial_foundation",
+        "scope_note": "Records support immutable snapshots, but persistence freeze and no-repricing need a project example; Java records are only shallowly immutable.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 33",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 34,
+      "date": "2026-11-22",
+      "title": "Issue endpoint and stable errors",
+      "issue_id": "EAI-34",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "issueHttpStatus(PolicyIssueRequest, Optional<PolicySnapshot>)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-34.md",
+      "evidence": "evidence/continuation-31-44/day-34.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain the existing status table with one useful, non-leaking recovery message.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 34,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 684,
+            "duration": "11:24",
+            "source_item_id": "35018814",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 469,
+            "duration": "7:49",
+            "source_item_id": "35018810",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Spring MVC controller return types",
+            "section": "ResponseEntity and response status/body",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+          }
+        ],
+        "video_seconds": 1153,
+        "remaining_study_seconds": 347,
+        "fit": "partial_foundation",
+        "scope_note": "Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 34",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 35,
+      "date": "2026-11-23",
+      "title": "Atomic PostgreSQL issuance",
+      "issue_id": "EAI-35",
+      "pillars": [
+        "A",
+        "E"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "persistIssueAtomically(DataSource, PolicyIssueRequest, String)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-35.md",
+      "evidence": "evidence/continuation-31-44/day-35.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test",
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35ReceiptConflictRollsBackPolicyAndEvent test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Tiny ADR: policy/receipt/event transaction boundary and one rejected partial-write alternative.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 35,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "1341538",
+            "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 58 - Introduction to Transaction Management",
+            "section_title": "Transaction Management",
+            "duration_seconds": 283,
+            "duration": "4:43",
+            "source_item_id": "7907610",
+            "course_id": "1341538"
+          },
+          {
+            "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+            "section_title": "Transaction Management",
+            "duration_seconds": 278,
+            "duration": "4:38",
+            "source_item_id": "7907620",
+            "course_id": "1341538"
+          }
+        ],
+        "resources": [
+          {
+            "title": "PostgreSQL 14 tutorial: transactions",
+            "section": "Section 3.4, transactions",
+            "url": "https://www.postgresql.org/docs/14/tutorial-transactions.html"
+          },
+          {
+            "title": "JDBC transactions tutorial",
+            "section": "Commit and rollback boundaries",
+            "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html"
+          }
+        ],
+        "video_seconds": 561,
+        "remaining_study_seconds": 939,
+        "fit": "partial_foundation",
+        "scope_note": "Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 35",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 36,
+      "date": "2026-11-24",
+      "title": "Owner-scoped policy read",
+      "issue_id": "EAI-36",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "readForOwner(PolicyReadStore, String ownerId, String policyId)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-36.md",
+      "evidence": "evidence/continuation-31-44/day-36.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "State the existing owner access boundary and why absent/foreign are concealed equally.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 36,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 07 - Querying Data using Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 336,
+            "duration": "5:36",
+            "source_item_id": "35019858",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "duration": "9:47",
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Spring Security method authorization",
+            "section": "How Method Security Works (conceptual model only; annotations are not assumed enabled)",
+            "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html"
+          }
+        ],
+        "video_seconds": 923,
+        "remaining_study_seconds": 577,
+        "fit": "partial_foundation",
+        "scope_note": "Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 36",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 37,
+      "date": "2026-11-25",
+      "title": "Endorsement command validation",
+      "issue_id": "EAI-37",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "validateEndorsement(PolicySnapshot, PolicyEndorsementRequest)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-37.md",
+      "evidence": "evidence/continuation-31-44/day-37.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Frame existing validation rules as simulated acceptance criteria.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 37,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 14 - Implementing Validations for REST API",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 707,
+            "duration": "11:47",
+            "source_item_id": "35018798",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Spring MVC validation",
+            "section": "Validation for @RequestMapping handler methods",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html"
+          }
+        ],
+        "video_seconds": 707,
+        "remaining_study_seconds": 793,
+        "fit": "partial_foundation",
+        "scope_note": "Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 37",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 38,
+      "date": "2026-11-26",
+      "title": "Append immutable endorsement",
+      "issue_id": "EAI-38",
+      "pillars": [
+        "A"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "endorse(PolicySnapshot, PolicyEndorsementRequest)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-38.md",
+      "evidence": "evidence/continuation-31-44/day-38.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain immutable history and its limit to a simulated operations reviewer.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 38,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [],
+        "lessons": [],
+        "resources": [
+          {
+            "title": "PostgreSQL 14 constraints",
+            "section": "Unique, check, not-null, and foreign-key constraints",
+            "url": "https://www.postgresql.org/docs/14/ddl-constraints.html"
+          },
+          {
+            "title": "PostgreSQL 14 sorting rows",
+            "section": "ORDER BY and deterministic ordering",
+            "url": "https://www.postgresql.org/docs/14/queries-order.html"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "No exact append-only version-history lecture was found. Draw the prior immutable snapshot, one new version, one event, and explicit chronological ordering.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 38",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 39,
+      "date": "2026-11-27",
+      "title": "Optimistic version conflict",
+      "issue_id": "EAI-39",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "endorseAtExpectedVersion(DataSource, PolicySnapshot, PolicyEndorsementRequest)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-39.md",
+      "evidence": "evidence/continuation-31-44/day-39.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain a safe conflict response instead of silent overwrite.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 39,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [],
+        "lessons": [],
+        "resources": [
+          {
+            "title": "PostgreSQL 14 transaction isolation",
+            "section": "Section 13.2.1, Read Committed",
+            "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "Isolation lectures are not optimistic-locking instruction. Work a version-predicate UPDATE, check affected-row count, and insert the event in the same transaction. A synchronized two-writer example has one winner and no loser event.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 39",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 40,
+      "date": "2026-11-28",
+      "title": "Schedule cancellation",
+      "issue_id": "EAI-40",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "scheduleCancellation(PolicySnapshot, PolicyCancellationRequest, PolicyCancellationReceiptStore)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-40.md",
+      "evidence": "evidence/continuation-31-44/day-40.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "State effective-date/clock assumptions and changed-intent handling.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 40,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif",
+            "section_title": "Reference Types in Java Programming",
+            "duration_seconds": 320,
+            "duration": "5:20",
+            "source_item_id": "9565628",
+            "course_id": "1535678"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Java 21 LocalDate API",
+            "section": "now(Clock), isBefore, isAfter, isEqual",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+          }
+        ],
+        "video_seconds": 320,
+        "remaining_study_seconds": 1180,
+        "fit": "partial_foundation",
+        "scope_note": "Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 40",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 41,
+      "date": "2026-11-29",
+      "title": "Apply due cancellation",
+      "issue_id": "EAI-41",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "applyDueCancellation(PolicySnapshot); persisted overload applyDueCancellation(DataSource, PolicySnapshot)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-41.md",
+      "evidence": "evidence/continuation-31-44/day-41.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Give the bounded rerun walkthrough; no external exactly-once claim.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 41,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [],
+        "lessons": [],
+        "resources": [
+          {
+            "title": "Java 21 Clock API",
+            "section": "Fixed and offset clocks for deterministic boundaries",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 41",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 42,
+      "date": "2026-11-30",
+      "title": "Block post-cancellation writes",
+      "issue_id": "EAI-42",
+      "pillars": [
+        "A",
+        "C"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "permitsServicingWrite(PolicySnapshot)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-42.md",
+      "evidence": "evidence/continuation-31-44/day-42.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain safe read access and operational handover after the cancelled-state write barrier.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 42,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Java Tip 14 - Why Enum and Enum Basics - ordinal and values",
+            "section_title": "Java Tips",
+            "duration_seconds": 448,
+            "duration": "7:28",
+            "source_item_id": "9565990",
+            "course_id": "1535678"
+          },
+          {
+            "title": "Java Tip 15 - Enum - Constructor, variables and methods",
+            "section_title": "Java Tips",
+            "duration_seconds": 220,
+            "duration": "3:40",
+            "source_item_id": "9565992",
+            "course_id": "1535678"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Java enum tutorial",
+            "section": "Enum types for a closed set of explicit states",
+            "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+          }
+        ],
+        "video_seconds": 668,
+        "remaining_study_seconds": 832,
+        "fit": "partial_foundation",
+        "scope_note": "Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 42",
+      "native_sprint": "Sprint 3"
+    },
+    {
+      "day": 43,
+      "date": "2026-12-01",
+      "title": "React servicing summary",
+      "issue_id": "EAI-43",
+      "pillars": [
+        "A",
+        "D"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "toServicingView(PolicySnapshot); PolicyServicingPanel",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-43.md",
+      "evidence": "evidence/continuation-31-44/day-43.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java",
+        "frontend/src/components/PolicyServicingPanel.tsx"
+      ],
+      "acceptance_commands": [
+        "cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx"
+      ],
+      "test_path": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Explain one already-run servicing-panel observation: status and allowed next action; label it simulated, not customer UAT/adoption.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 43,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [
+          {
+            "course_id": "1362070",
+            "title": "React - The Complete Guide (incl. Next.js, Redux)",
+            "instructor": "Academind / Maximilian Schwarzmüller",
+            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Rendering Content Conditionally",
+            "section_title": "React Essentials - Components, JSX, Props, State & More",
+            "duration_seconds": 483,
+            "duration": "8:03",
+            "source_item_id": "39649252"
+          }
+        ],
+        "resources": [
+          {
+            "title": "React conditional rendering",
+            "section": "Loading, empty, auth, not-found, and success states",
+            "url": "https://react.dev/learn/conditional-rendering"
+          },
+          {
+            "title": "React choosing state structure",
+            "section": "Avoid contradictory UI state",
+            "url": "https://react.dev/learn/choosing-the-state-structure"
+          }
+        ],
+        "video_seconds": 483,
+        "remaining_study_seconds": 1017,
+        "fit": "partial_foundation",
+        "scope_note": "Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 43",
+      "native_sprint": "Sprint 4"
+    },
+    {
+      "day": 44,
+      "date": "2026-12-02",
+      "title": "Lifecycle integration acceptance contract",
+      "issue_id": "EAI-44",
+      "pillars": [
+        "A",
+        "D",
+        "E"
+      ],
+      "prerequisite": "See existing contract dependencies.",
+      "actual_source_seam": "verifyLifecycleReadback(DataSource, String policyId)",
+      "contract": "docs/reboot/continuation-31-44/contracts/day-44.md",
+      "evidence": "evidence/continuation-31-44/day-44.json",
+      "files": [
+        "src/main/java/assignments/insurance/PolicyLifecycleService.java"
+      ],
+      "acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+        "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test"
+      ],
+      "test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+      "within_existing_evidence_minutes": 10,
+      "explain_back": "Summarize the demonstrated issue/service/cancel/readback flow, cite three existing cases, name a limitation and next decision; missing proof is a blocker.",
+      "study_source_manifest": "docs/reboot/continuation-31-44/manifest.json",
+      "study_lookup_day": 44,
+      "study": {
+        "minutes": 25,
+        "allocation_minutes": {
+          "focused_reading": 10,
+          "design_sketch": 10,
+          "teachback": 5
+        },
+        "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+        "courses": [],
+        "lessons": [],
+        "resources": [
+          {
+            "title": "Spring Boot application testing",
+            "section": "Real server and RANDOM_PORT testing",
+            "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+          },
+          {
+            "title": "Chrome Headless mode",
+            "section": "Run Chromium browser automation in headless mode",
+            "url": "https://developer.chrome.com/docs/automation-and-testing/headless"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "integration_review_no_new_lecture",
+        "scope_note": "No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+      },
+      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 44",
+      "native_sprint": "Sprint 4"
+    }
+  ],
+  "checkpoint_addenda": [
+    {
+      "day": 57,
+      "issue_id": "EAI-57",
+      "text": "Missing or failed prior learner evidence selects bounded recovery. Scaffold installation and temporary instructor witnesses do not satisfy the gate."
+    },
+    {
+      "day": 68,
+      "issue_id": "EAI-68",
+      "text": "Keep packaged UI/API/DB proof local and synthetic; automated browser acceptance is not customer UAT."
+    },
+    {
+      "day": 69,
+      "issue_id": "EAI-69",
+      "text": "Restart, logout, owner concealment and no-write checks are local security/reliability evidence, not production authentication."
+    },
+    {
+      "day": 70,
+      "issue_id": "EAI-70",
+      "text": "Use the existing design defense; distinguish learner proof from instructor witness and simulated demonstration from customer acceptance."
+    },
+    {
+      "day": 137,
+      "issue_id": "EAI-137",
+      "text": "The resource/access packet is offline. No AWS action, public endpoint, credentials, persistent access or cloudVerified=true is authorized."
+    },
+    {
+      "day": 138,
+      "issue_id": "EAI-138",
+      "text": "Retain fictional, unit-labelled cost arithmetic and cleanup obligations. Actual AWS prices/budget/permissions remain pending."
+    },
+    {
+      "day": 139,
+      "issue_id": "EAI-139",
+      "text": "Local restore/cutover proof does not satisfy actual target-environment deployment. Keep synthetic identity private and loopback-bound."
+    },
+    {
+      "day": 140,
+      "issue_id": "EAI-140",
+      "text": "Recovery only. Defend the permission boundary; no new feature, cloud action or course padding."
+    },
+    {
+      "day": 153,
+      "issue_id": "EAI-153",
+      "text": "Require the real checksum-bound artifact matrix and current selector crosswalk. Claim unchanged-schema local compatibility only."
+    },
+    {
+      "day": 154,
+      "issue_id": "EAI-154",
+      "text": "Recovery only. Reproduce an existing bad-candidate case and explain unchanged-schema limits; missing baseline artifacts remain blocked."
+    },
+    {
+      "day": 155,
+      "issue_id": "EAI-155",
+      "text": "Apply the existing actual CoverStory readiness gate and Python bridge before activating StreamForge; otherwise carry forward the named prerequisite."
+    },
+    {
+      "day": 168,
+      "issue_id": "EAI-168",
+      "text": "Show the data-foundation learner evidence chain or blockers. AWS execution remains a separate pending milestone."
+    },
+    {
+      "day": 182,
+      "issue_id": "EAI-182",
+      "text": "Show learner baseline/evaluation evidence or blockers. Keep recovery-only scope; offline metrics do not prove deployed AI."
+    },
+    {
+      "day": 196,
+      "issue_id": "EAI-196",
+      "text": "Show the full learner experiment/evaluation chain or blockers. No automatic Day 197+ expansion; review the smallest unmet CoverStory gate."
+    }
+  ],
+  "next14_calendar_rule": "Days 31–42 remain in native Sprint 3, Days 43–44 in native Sprint 4; no sprint/date/membership changes.",
+  "activation_rule": "Preserve the existing actual CoverStory gates and daily dependencies. Unmet gate means named carry-forward remediation within budget, not later-task completion or date migration. StreamForge is a conditional prepared bank; do not require all future CoverStory AI/reuse milestones as invented prerequisites. CoverStory stays primary.",
+  "new_batch_status": {
+    "days197_to210": "paused_uncommitted_not_authorized_for_activation",
+    "new_issues": 0,
+    "new_sprints": 0
+  },
+  "repository_release": {
+    "new_branch_base": "3a93ed9ae93dd68a9eda0418518713ac29a38eb6",
+    "use_new_isolated_worktree": true,
+    "new_files": [
+      "docs/reboot/fde-north-star-amendment.md",
+      "docs/reboot/fde-alignment.json",
+      "docs/reboot/fde-current-command-crosswalk.md"
+    ],
+    "append_only_existing_files": [
+      "docs/reboot/continuation-31-44/README.md",
+      "docs/reboot/continuation-45-56/README.md",
+      "docs/reboot/continuation-57-70/README.md",
+      "docs/reboot/continuation-71-84/README.md",
+      "docs/reboot/continuation-85-98/README.md",
+      "docs/reboot/continuation-99-112/README.md",
+      "docs/reboot/continuation-113-126/README.md",
+      "docs/reboot/continuation-127-140/README.md",
+      "docs/reboot/continuation-141-154/README.md",
+      "docs/reboot/continuation-155-168/README.md",
+      "docs/reboot/continuation-169-182/README.md",
+      "docs/reboot/continuation-183-196/README.md"
+    ],
+    "readme_append_template": "FDE alignment: See ../fde-north-star-amendment.md and ../fde-alignment.json. Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; the amendment adds purpose and evidence boundaries, not completion credit.",
+    "do_not_edit": [
+      "docs/reboot/README.md",
+      "docs/reboot/manifest.json",
+      "docs/reboot/scrum-owner-manifest.json",
+      "first-30 contracts/guides/criteria",
+      "any DSA file/log",
+      "existing continuation manifests/owner exports",
+      "learner implementation",
+      "historical evidence JSON"
+    ],
+    "crosswalk_days": [
+      148,
+      149,
+      153,
+      154
+    ],
+    "independent_verification_before_board": true
+  },
+  "board_release": {
+    "project": "EAI",
+    "board": "204-10",
+    "existing_issue_range": [
+      31,
+      196
+    ],
+    "total_after": 196,
+    "native_sprints_after": 14,
+    "create_issues": false,
+    "create_sprints": false,
+    "mutate_metadata": false,
+    "append_only": true,
+    "idempotent_marker": "FDE alignment amendment — 2026-10-21",
+    "fresh_read_required": true,
+    "conflict_policy": "If original prefix, update timestamp or existing marker differs unexpectedly, stop that issue and reconcile. Do not overwrite.",
+    "immutable_url_template": "https://github.com/advait-ravi-marathe/capstone-project/blob/{VERIFIED_AMENDMENT_COMMIT}/docs/reboot/fde-north-star-amendment.md",
+    "ordinary_block_template": [
+      "FDE alignment amendment — 2026-10-21",
+      "Pillars: {actual mapped pillar names}.",
+      "Prerequisite: Keep the existing contract dependency and phase gate: {immutable existing contract URL}. Missing proof means bounded carry-forward, not completion.",
+      "Evidence: {existing daily template URL OR existing contract evidence requirement URL}. {phase evidence boundary}",
+      "Governing amendment: {verified immutable amendment URL}. Existing engineering, DSA, dates and acceptance criteria remain unchanged."
+    ],
+    "extra_for_days31_44": "Append only the mapped explanation within the existing 10-minute evidence slot.",
+    "extra_for_checkpoint_days": "Append the mapped checkpoint sentence, retaining existing recovery-only scope.",
+    "never_replace_existing_text": true,
+    "no_new_custom_fields_or_tags": true
+  },
+  "acceptance": {
+    "source_only_checks": [
+      "JSON parses and exactly covers Days 31–196 once through ranges.",
+      "Every existing contract resolves in source tree.",
+      "Every linked existing evidence file resolves; absent daily records link contract requirements instead.",
+      "Exact five pillar names and nine readiness labels.",
+      "Fourteen existing days retain titles/dates/commands and exact course metadata; access caveats preserved.",
+      "Current command selectors and manifest property exist at the base.",
+      "Protected first-30 hashes and all DSA paths unchanged for both independent baselines.",
+      "README changes append-only; no other existing path changes."
+    ],
+    "writer_execution_checks": [
+      "Record applicable default/manifest/DSA regression commands and results in the isolated environment.",
+      "Do not solve learner TODOs to turn documentation validation green.",
+      "Run current artifact commands only when real prerequisite artifacts exist; otherwise record exact blocked check.",
+      "Hosted CI head SHA equals amendment commit and result is actually verified."
+    ],
+    "board_checks": [
+      "Fresh read every issue before patch.",
+      "EAI-1–30 descriptions/metadata remain unchanged.",
+      "EAI-31–196 original descriptions are exact prefixes plus only approved block.",
+      "All 196 IDs,14 sprints,dates,titles,states,priorities,assignees and memberships unchanged.",
+      "Read back every changed issue and immutable href."
+    ]
+  },
+  "external_sources": [
+    {
+      "title": "Anthropic — Staff Forward Deployed Engineer",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449229008",
+      "verified_at": "2026-10-21",
+      "caveat": "Hands-on agent prototypes count; production-system and enterprise advisory expectations remain separate."
+    },
+    {
+      "title": "Google Cloud — Senior Forward Deployed Engineer, GenAI",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/83160180652417734-forward-deployed-engineer/",
+      "verified_at": "2026-10-21",
+      "caveat": "Employer-specific current role benchmark, not universal eligibility or hiring promise."
+    }
+  ],
+  "authorization_limits": [
+    "No cloud resources or spend",
+    "No credentials, OAuth, IAM or persistent access changes",
+    "No public exposure of synthetic identity",
+    "No real customer/PII/media ingestion",
+    "No certification purchase",
+    "No professional scope inferred from portfolio",
+    "No repository/board writes by this planner"
+  ]
+}

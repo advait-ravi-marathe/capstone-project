@@ -1,0 +1,11 @@
+{
+  "day": 149,
+  "status": "not_attempted",
+  "evidence_status": "not_run",
+  "command": "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test",
+  "tested_source_sha": null,
+  "artifact_hashes": [],
+  "learner_completion": false,
+  "temporary_witness": false,
+  "aws_execution": "not_performed"
+}

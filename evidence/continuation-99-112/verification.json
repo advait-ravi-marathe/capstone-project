@@ -1,0 +1,106 @@
+{
+  "title": "Days 99–112 durable local delivery review verification receipt",
+  "state": "instructor_scaffold_and_temporary_witnesses_verified; learner_todos_restored; restored-starter-packaged-selector-blocked-at-explicit-Day86-TODO",
+  "base_sha": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
+  "branch": "learning/coverstory-days-99-112",
+  "source_and_contract_sha": "9a3a11b56a1b8f2e568f378deccc453144d0b78e",
+  "verified_at": "2026-10-20T19:31:16Z",
+  "scope": "Review fixes and fixed acceptance/instructor scaffolding only. No learner solution, DSA attempt, board edit, main change, or original dirty-worktree change is recorded.",
+  "commands": [
+    {
+      "command": "cd frontend && npm ci --cache=/tmp/capstone-npm-cache && npm run build && npm run build:local",
+      "result": "passed; locked dependencies installed and both frontend builds completed"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=Day99To112InfrastructureTest,LocalIssuanceDeliveryCommandTest,LocalSchemaMigrationInfrastructureTest test",
+      "result": "passed; 7/7 instructor tests"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean test",
+      "result": "passed; 48 tests, 0 failures, 0 errors, 0 skipped. This includes the two earlier Day44/45 transport checks with system Chromium selected."
+    },
+    {
+      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+      "result": "passed; 19 tests; no new problem or attempt recorded"
+    },
+    {
+      "command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-26",
+      "result": "passed; reports only actual-attempt-based due queue; all first-attempt fields in the published artifact remain empty"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app -DskipTests package",
+      "result": "passed; packaged the actual local Spring Boot JAR after frontend build"
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest test",
+      "result": "expected learner TODO red after restoration: 13 tests, 2 assertion failures and 11 errors. Failures/errors reach Day99, Day101, and Day106 explicit TODOs; restart child exits at Day106 before the receipt marker. Both child processes are terminated and awaited by the revised finally cleanup. No missing selector/tool."
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test",
+      "result": "not acceptance-ready with restored learner sources: packaged app startup stops at the explicit Day86 PreviewReadBudgetPolicy TODO. The partial-command case also cannot reach its intended command boundary until this prerequisite is complete. The selector and packaged JAR are present; this is not recorded as a pass."
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest test (temporary conforming Day99–106 witness sources)",
+      "result": "passed; domain/restart witness suite 13/13. Fresh-JVM child was forcibly terminated (exit 137); recovery JVM completed with exit 0 and no duplicate receipt. This is instructor harness evidence, not learner completion."
+    }
+  ],
+  "negative_witnesses": [
+    {
+      "defect": "high-watermark capture cursor",
+      "result": "failed as intended: late-earlier-commit acceptance expected the next reconciliation to insert 1 row but observed 0"
+    },
+    {
+      "defect": "acknowledgment before receipt commit",
+      "result": "failed as intended: an independent raw connection observed 0 receipts at the acknowledgment boundary"
+    }
+  ],
+  "learner_source_restoration": {
+    "status": "verified_byte_for_byte_against_branch_baseline",
+    "sha256": {
+      "src/main/java/assignments/delivery/IssuanceEnvelope.java": "59cb4facbbfba4c88d4f0731abf586581be984049147c9cc37bf9a2bbde03937",
+      "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java": "1ca0467f8c0e585603f11c631a87a5e1bef481c0c3ae3ebc7c35aee36ef00951",
+      "src/main/java/assignments/delivery/OneBatchDispatcher.java": "b11bd814fe82a3d9f015b940c791d99dad7813963db846f22885a9ed145eba12"
+    },
+    "temporary_witness_files_removed_after_receipt": true,
+    "no_learner_solution_committed": true
+  },
+  "packaged_integration_witness": {
+    "current_revised_selector": "Independent reviewer reported 2/2 passing with complete temporary prerequisite and Days99–112 witnesses at code SHA c688706755b189c82c0ef7d3d90495200c39f238; the restored learner-source run remains blocked at the explicit Day86 PreviewReadBudgetPolicy TODO.",
+    "earlier_narrower_witness": "An earlier run before the same-key replay/full-snapshot and partial-failure assertions passed a narrower packaged API/command/preview smoke. It is not evidence for the revised selector and is not counted as a current pass.",
+    "browser_scope": "Day111 uses authenticated Java HTTP client requests against the packaged JAR, not Chromium. Day83/97 browser evidence is separate."
+  },
+  "environment_note": "A default run without CHROMIUM_BIN initially failed because Playwright's browser CDN cache was absent. With documented CHROMIUM_BIN=/usr/bin/chromium, the full clean default suite passed, including both Day44/45 browser checks. The continuation README documents this system-Chromium path.",
+  "static_checks": {
+    "git_diff_check": "passed",
+    "json_parse": "passed for manifest, ticket export, and modified daily evidence",
+    "manifest_export_contract": "passed 14/14 title/date/engineering equality; every course block totals 1500 study seconds; every lesson title/section and source URL is present in its dated contract; resource focus is labeled reading_focus, not a fabricated official section"
+  },
+  "board_modified": false,
+  "main_modified": false,
+  "original_dirty_checkout_modified": false,
+  "hosted_ci": {
+    "status": "completed_success",
+    "run_number": 48,
+    "run_id": 39483944509,
+    "head_sha": "9a3a11b56a1b8f2e568f378deccc453144d0b78e",
+    "completed_at": "2026-10-20T19:31:16Z",
+    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39483944509",
+    "result": "Exact-head workflow passed all steps including frontend setup/build, Chromium setup, packaged Spring Boot app, Java instructor/infrastructure harness, frontend instructor tests, and dependency audit."
+  },
+  "followup_review": {
+    "reviewed_code_sha": "c688706755b189c82c0ef7d3d90495200c39f238",
+    "independent_runtime_result": "Reviewer reports durable/restart/command selectors 16/16 and revised packaged HTTP-client + JAR + PostgreSQL selector 2/2 with temporary conforming prerequisites; prior infrastructure 4/4 and exact-head CI run 45 passed.",
+    "packaged_scope": "Authenticated Java HTTP client against packaged JAR and disposable PostgreSQL; not Chromium. The independent reviewer confirmed witness cleanup/restoration.",
+    "new_delta_after_review": "The post-c688706 delta adds fixed invalid-limit acceptance tests, corrects the Day101 three-call trace, makes Day105 strictly prior-only, synchronizes contract/export/evidence commands, and adds static synchronization assertions. It does not change runtime implementation. The temporary packaged witness was independently reported at c688706, before this delta. The subsequent documentation-only correction wraps the Day111/112 frontend build in a subshell so following Maven commands run from repository root.",
+    "learner_completion": "not credited"
+  },
+  "current_followup_checks": {
+    "instructor_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=Day99To112InfrastructureTest,LocalSchemaMigrationInfrastructureTest test",
+    "instructor_result": "passed, 4/4 tests after the current static contract/evidence synchronization assertion and documentation/test delta",
+    "new_limit_acceptance_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests '-Dtest=DurableIssuanceAcceptanceTest#day101RejectsInvalidCaptureLimitsBeforeChangingRows+day102RejectsInvalidPendingLimitsWithoutChangingRows+day106RejectsOutOfRangeBatchLimitBeforeAnyStoreCall' test",
+    "new_limit_acceptance_result": "expected TODO red: 3 tests, 3 assertion failures, all due to the restored Day101/102/106 methods throwing the corresponding named UnsupportedOperationException TODO instead of IllegalArgumentException. No missing selector or infrastructure failure.",
+    "static_result": "passed: manifest/export/contracts/evidence acceptance and infrastructure command equality 14/14; Day101 three-call trace, Day105 prior-only scope, JSON parsing, and git diff --check.",
+    "prior_only_day105_selector": "executed exact documented prior-only pattern: 10 tests, 2 assertion failures and 8 errors at named Day99/101/102/103/104 TODOs; no Day106 or restart tests were selected.",
+    "command_cwd_result": "passed: every Days99–112 acceptance/infrastructure command sequence keeps repository-root working directory; Day111/112 frontend install/build uses a subshell."
+  }
+}

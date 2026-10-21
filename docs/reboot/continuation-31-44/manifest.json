@@ -1,0 +1,2882 @@
+{
+  "title": "CoverStory continuation Days 31–44",
+  "effective_start": "2026-11-19",
+  "effective_end": "2026-12-02",
+  "status_semantics": {
+    "contract": "defined does not mean scaffolded or passed",
+    "learner": "not_attempted | attempted | contract_passed",
+    "integration": "blocked | ready | passed; evidence changes status",
+    "scaffold": "not_installed | partial | installed",
+    "runtime_harness": "pending until actual documented command completes"
+  },
+  "scope": "Synthetic HomeSecure policy servicing lifecycle. No real binding, payments, PII, legal coverage promise, Kafka/outbox, or StreamForge.",
+  "daily_budget_minutes": {
+    "java_dsa": {
+      "by_substantive_exercise_count": {
+        "1_or_2": 60,
+        "3": 75,
+        "4": 90
+      }
+    },
+    "engineering": 120,
+    "engineering_build_test": 85,
+    "concept_course": 25,
+    "evidence": 10,
+    "java_dsa_tier_minutes": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "total_by_dsa_tier_minutes": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "java_dsa_by_exercise_count": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "total": {
+      "by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      }
+    },
+    "daily_total_range_minutes": [
+      180,
+      210
+    ]
+  },
+  "sprints": [
+    {
+      "name": "Sprint 3",
+      "dates": "2026-11-17..2026-11-30",
+      "days_in_this_batch": [
+        31,
+        42
+      ],
+      "batch_story_count": 12,
+      "sprint_total_after_batch": 14,
+      "previous_stories_days": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "Sprint 4",
+      "dates": "2026-12-01..2026-12-14",
+      "days_in_this_batch": [
+        43,
+        44
+      ],
+      "batch_story_count": 2,
+      "sprint_total_after_batch": 2,
+      "remaining_dates_unpopulated": 12
+    }
+  ],
+  "days": [
+    {
+      "day": 31,
+      "date": "2026-11-19",
+      "title": "Issue eligibility and quote linkage",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-31.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Issue eligibility and quote linkage",
+        "learner_seam": "PolicyIssueRequest / PolicyLifecycleService.issue",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-31.md",
+        "evidence_reference": "evidence/continuation-31-44/day-31.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 21 - Understanding Spring Security Authentication",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 257,
+              "duration": "4:17",
+              "source_item_id": "35017628",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 22 - Exploring Spring Security Authorization",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 587,
+              "duration": "9:47",
+              "source_item_id": "35017626",
+              "course_id": "4993276"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Spring MVC controller method arguments",
+              "section": "Principal, @RequestBody, and request-bound arguments",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            }
+          ],
+          "video_seconds": 844,
+          "remaining_study_seconds": 656,
+          "fit": "partial_foundation",
+          "scope_note": "Authentication and authorization are prerequisites. Work an owned-selected-current-eligible quote matrix; identity comes only from the principal, never an owner request field.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-19",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-22",
+          "2026-11-26",
+          "2026-12-10"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 31",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 31",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 141,
+          "problem_name": "Linked List Cycle",
+          "concept": "fast/slow pointers",
+          "planned_first_attempt_date": "2026-11-19",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-11-22",
+            "2026-11-26",
+            "2026-12-10"
+          ],
+          "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 21 - Understanding Spring Security Authentication",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 257,
+            "duration": "4:17",
+            "source_item_id": "35017628",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "duration": "9:47",
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "video_seconds": 844,
+        "remaining_study_seconds": 656,
+        "fit": "partial_foundation",
+        "scope_note": "Authentication and authorization are prerequisites. Work an owned-selected-current-eligible quote matrix; identity comes only from the principal, never an owner request field.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Spring MVC controller method arguments",
+            "section": "Principal, @RequestBody, and request-bound arguments",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 32,
+      "date": "2026-11-20",
+      "title": "Idempotent policy issue",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-32.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Idempotent policy issue",
+        "learner_seam": "PolicyLifecycleService.issue",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-32.md",
+        "evidence_reference": "evidence/continuation-31-44/day-32.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+              "section": "Retries and semantic equivalence; same client request ID, different intent",
+              "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "No exact idempotency lecture was found. Work one owner+key+intent receipt: the same intent returns its original result; a changed intent conflicts without mutation.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 32",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 32",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 153,
+              "anchor_day": 29,
+              "planned_anchor_date": "2026-11-17",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-11-20",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [],
+        "lessons": [],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "No exact idempotency lecture was found. Work one owner+key+intent receipt: the same intent returns its original result; a changed intent conflicts without mutation.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+            "section": "Retries and semantic equivalence; same client request ID, different intent",
+            "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    },
+    {
+      "day": 33,
+      "date": "2026-11-21",
+      "title": "Immutable issue snapshot",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-33.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Immutable issue snapshot",
+        "learner_seam": "PolicyIssueSnapshot",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-33.md",
+        "evidence_reference": "evidence/continuation-31-44/day-33.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 15 - Exploring Java New Features - Records",
+              "section_title": "Java New Features - Java 10 to Java 24",
+              "duration_seconds": 544,
+              "duration": "9:04",
+              "source_item_id": "25694168",
+              "course_id": "1535678"
+            },
+            {
+              "title": "3 Questions - Best practices with Records",
+              "section_title": "Core Java in Depth - Java Review (Interview) Guide",
+              "duration_seconds": 598,
+              "duration": "9:58",
+              "source_item_id": "49557599",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Java 21 Record API",
+              "section": "Record components and shallow immutability",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+            }
+          ],
+          "video_seconds": 1142,
+          "remaining_study_seconds": 358,
+          "fit": "partial_foundation",
+          "scope_note": "Records support immutable snapshots, but persistence freeze and no-repricing need a project example; Java records are only shallowly immutable.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-21",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-24",
+          "2026-11-28",
+          "2026-12-12"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 33",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 33",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 206,
+          "problem_name": "Reverse Linked List",
+          "concept": "pointer rewiring",
+          "planned_first_attempt_date": "2026-11-21",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-11-24",
+            "2026-11-28",
+            "2026-12-12"
+          ],
+          "problem_url": "https://leetcode.com/problems/reverse-linked-list/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 15 - Exploring Java New Features - Records",
+            "section_title": "Java New Features - Java 10 to Java 24",
+            "duration_seconds": 544,
+            "duration": "9:04",
+            "source_item_id": "25694168",
+            "course_id": "1535678"
+          },
+          {
+            "title": "3 Questions - Best practices with Records",
+            "section_title": "Core Java in Depth - Java Review (Interview) Guide",
+            "duration_seconds": 598,
+            "duration": "9:58",
+            "source_item_id": "49557599",
+            "course_id": "1535678"
+          }
+        ],
+        "video_seconds": 1142,
+        "remaining_study_seconds": 358,
+        "fit": "partial_foundation",
+        "scope_note": "Records support immutable snapshots, but persistence freeze and no-repricing need a project example; Java records are only shallowly immutable.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Java 21 Record API",
+            "section": "Record components and shallow immutability",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 34,
+      "date": "2026-11-22",
+      "title": "Issue endpoint and stable errors",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-34.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Issue endpoint and stable errors",
+        "learner_seam": "POST /api/policies",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-34.md",
+        "evidence_reference": "evidence/continuation-31-44/day-34.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 684,
+              "duration": "11:24",
+              "source_item_id": "35018814",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 469,
+              "duration": "7:49",
+              "source_item_id": "35018810",
+              "course_id": "4993276"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Spring MVC controller return types",
+              "section": "ResponseEntity and response status/body",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            }
+          ],
+          "video_seconds": 1153,
+          "remaining_study_seconds": 347,
+          "fit": "partial_foundation",
+          "scope_note": "Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 34",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 34",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 141,
+              "anchor_day": 31,
+              "planned_anchor_date": "2026-11-19",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-11-22",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 684,
+            "duration": "11:24",
+            "source_item_id": "35018814",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 469,
+            "duration": "7:49",
+            "source_item_id": "35018810",
+            "course_id": "4993276"
+          }
+        ],
+        "video_seconds": 1153,
+        "remaining_study_seconds": 347,
+        "fit": "partial_foundation",
+        "scope_note": "Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Spring MVC controller return types",
+            "section": "ResponseEntity and response status/body",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    },
+    {
+      "day": 35,
+      "date": "2026-11-23",
+      "title": "Atomic PostgreSQL issuance",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-35.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Atomic PostgreSQL issuance",
+        "learner_seam": "PolicyLifecycleRepository.issueAtomically",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-35.md",
+        "evidence_reference": "evidence/continuation-31-44/day-35.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35ReceiptConflictRollsBackPolicyAndEvent test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 58 - Introduction to Transaction Management",
+              "section_title": "Transaction Management",
+              "duration_seconds": 283,
+              "duration": "4:43",
+              "source_item_id": "7907610",
+              "course_id": "1341538"
+            },
+            {
+              "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+              "section_title": "Transaction Management",
+              "duration_seconds": 278,
+              "duration": "4:38",
+              "source_item_id": "7907620",
+              "course_id": "1341538"
+            }
+          ],
+          "resources": [
+            {
+              "title": "PostgreSQL 14 tutorial: transactions",
+              "section": "Section 3.4, transactions",
+              "url": "https://www.postgresql.org/docs/14/tutorial-transactions.html"
+            },
+            {
+              "title": "JDBC transactions tutorial",
+              "section": "Commit and rollback boundaries",
+              "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html"
+            }
+          ],
+          "video_seconds": 561,
+          "remaining_study_seconds": 939,
+          "fit": "partial_foundation",
+          "scope_note": "Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-23",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-26",
+          "2026-11-30",
+          "2026-12-14"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 35",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 35",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 21,
+          "problem_name": "Merge Two Sorted Lists",
+          "concept": "two-pointer merge",
+          "planned_first_attempt_date": "2026-11-23",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-11-26",
+            "2026-11-30",
+            "2026-12-14"
+          ],
+          "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "1341538",
+            "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 58 - Introduction to Transaction Management",
+            "section_title": "Transaction Management",
+            "duration_seconds": 283,
+            "duration": "4:43",
+            "source_item_id": "7907610",
+            "course_id": "1341538"
+          },
+          {
+            "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+            "section_title": "Transaction Management",
+            "duration_seconds": 278,
+            "duration": "4:38",
+            "source_item_id": "7907620",
+            "course_id": "1341538"
+          }
+        ],
+        "video_seconds": 561,
+        "remaining_study_seconds": 939,
+        "fit": "partial_foundation",
+        "scope_note": "Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "PostgreSQL 14 tutorial: transactions",
+            "section": "Section 3.4, transactions",
+            "url": "https://www.postgresql.org/docs/14/tutorial-transactions.html"
+          },
+          {
+            "title": "JDBC transactions tutorial",
+            "section": "Commit and rollback boundaries",
+            "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 36,
+      "date": "2026-11-24",
+      "title": "Owner-scoped policy read",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-36.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Owner-scoped policy read",
+        "learner_seam": "GET /api/policies/{policyId}",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-36.md",
+        "evidence_reference": "evidence/continuation-31-44/day-36.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 07 - Querying Data using Spring JDBC",
+              "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+              "duration_seconds": 336,
+              "duration": "5:36",
+              "source_item_id": "35019858",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 22 - Exploring Spring Security Authorization",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 587,
+              "duration": "9:47",
+              "source_item_id": "35017626",
+              "course_id": "4993276"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Spring Security method authorization",
+              "section": "How Method Security Works (conceptual model only; annotations are not assumed enabled)",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html"
+            }
+          ],
+          "video_seconds": 923,
+          "remaining_study_seconds": 577,
+          "fit": "partial_foundation",
+          "scope_note": "Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 36",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 36",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 206,
+              "anchor_day": 33,
+              "planned_anchor_date": "2026-11-21",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-11-24",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/reverse-linked-list/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 07 - Querying Data using Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 336,
+            "duration": "5:36",
+            "source_item_id": "35019858",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "duration": "9:47",
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "video_seconds": 923,
+        "remaining_study_seconds": 577,
+        "fit": "partial_foundation",
+        "scope_note": "Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Spring Security method authorization",
+            "section": "How Method Security Works (conceptual model only; annotations are not assumed enabled)",
+            "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    },
+    {
+      "day": 37,
+      "date": "2026-11-25",
+      "title": "Endorsement command validation",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-37.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Endorsement command validation",
+        "learner_seam": "PolicyEndorsementRequest",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-37.md",
+        "evidence_reference": "evidence/continuation-31-44/day-37.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 14 - Implementing Validations for REST API",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 707,
+              "duration": "11:47",
+              "source_item_id": "35018798",
+              "course_id": "4993276"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Spring MVC validation",
+              "section": "Validation for @RequestMapping handler methods",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html"
+            }
+          ],
+          "video_seconds": 707,
+          "remaining_study_seconds": 793,
+          "fit": "partial_foundation",
+          "scope_note": "Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-25",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-28",
+          "2026-12-02",
+          "2026-12-16"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 37",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 37",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 143,
+          "problem_name": "Reorder List",
+          "concept": "split, reverse, weave",
+          "planned_first_attempt_date": "2026-11-25",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-11-28",
+            "2026-12-02",
+            "2026-12-16"
+          ],
+          "problem_url": "https://leetcode.com/problems/reorder-list/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 14 - Implementing Validations for REST API",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 707,
+            "duration": "11:47",
+            "source_item_id": "35018798",
+            "course_id": "4993276"
+          }
+        ],
+        "video_seconds": 707,
+        "remaining_study_seconds": 793,
+        "fit": "partial_foundation",
+        "scope_note": "Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Spring MVC validation",
+            "section": "Validation for @RequestMapping handler methods",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 38,
+      "date": "2026-11-26",
+      "title": "Append immutable endorsement",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-38.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Append immutable endorsement",
+        "learner_seam": "PolicyLifecycleService.endorse",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-38.md",
+        "evidence_reference": "evidence/continuation-31-44/day-38.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 14 constraints",
+              "section": "Unique, check, not-null, and foreign-key constraints",
+              "url": "https://www.postgresql.org/docs/14/ddl-constraints.html"
+            },
+            {
+              "title": "PostgreSQL 14 sorting rows",
+              "section": "ORDER BY and deterministic ordering",
+              "url": "https://www.postgresql.org/docs/14/queries-order.html"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "No exact append-only version-history lecture was found. Draw the prior immutable snapshot, one new version, one event, and explicit chronological ordering.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 38",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 38",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 141,
+              "anchor_day": 31,
+              "planned_anchor_date": "2026-11-19",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-11-26",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
+            },
+            {
+              "problem_id": 21,
+              "anchor_day": 35,
+              "planned_anchor_date": "2026-11-23",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-11-26",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [],
+        "lessons": [],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "No exact append-only version-history lecture was found. Draw the prior immutable snapshot, one new version, one event, and explicit chronological ordering.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "PostgreSQL 14 constraints",
+            "section": "Unique, check, not-null, and foreign-key constraints",
+            "url": "https://www.postgresql.org/docs/14/ddl-constraints.html"
+          },
+          {
+            "title": "PostgreSQL 14 sorting rows",
+            "section": "ORDER BY and deterministic ordering",
+            "url": "https://www.postgresql.org/docs/14/queries-order.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    },
+    {
+      "day": 39,
+      "date": "2026-11-27",
+      "title": "Optimistic version conflict",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-39.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Optimistic version conflict",
+        "learner_seam": "PolicyLifecycleRepository.endorseAtomically",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-39.md",
+        "evidence_reference": "evidence/continuation-31-44/day-39.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 14 transaction isolation",
+              "section": "Section 13.2.1, Read Committed",
+              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "Isolation lectures are not optimistic-locking instruction. Work a version-predicate UPDATE, check affected-row count, and insert the event in the same transaction. A synchronized two-writer example has one winner and no loser event.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-27",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-30",
+          "2026-12-04",
+          "2026-12-18"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 39",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 39",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 19,
+          "problem_name": "Remove Nth Node From End of List",
+          "concept": "lead/lag pointers",
+          "planned_first_attempt_date": "2026-11-27",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-11-30",
+            "2026-12-04",
+            "2026-12-18"
+          ],
+          "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [],
+        "lessons": [],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "Isolation lectures are not optimistic-locking instruction. Work a version-predicate UPDATE, check affected-row count, and insert the event in the same transaction. A synchronized two-writer example has one winner and no loser event.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "PostgreSQL 14 transaction isolation",
+            "section": "Section 13.2.1, Read Committed",
+            "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 40,
+      "date": "2026-11-28",
+      "title": "Schedule cancellation",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-40.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Schedule cancellation",
+        "learner_seam": "PolicyLifecycleService.scheduleCancellation",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-40.md",
+        "evidence_reference": "evidence/continuation-31-44/day-40.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif",
+              "section_title": "Reference Types in Java Programming",
+              "duration_seconds": 320,
+              "duration": "5:20",
+              "source_item_id": "9565628",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Java 21 LocalDate API",
+              "section": "now(Clock), isBefore, isAfter, isEqual",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+            }
+          ],
+          "video_seconds": 320,
+          "remaining_study_seconds": 1180,
+          "fit": "partial_foundation",
+          "scope_note": "Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 40",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 40",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 206,
+              "anchor_day": 33,
+              "planned_anchor_date": "2026-11-21",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-11-28",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/reverse-linked-list/"
+            },
+            {
+              "problem_id": 143,
+              "anchor_day": 37,
+              "planned_anchor_date": "2026-11-25",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-11-28",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/reorder-list/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif",
+            "section_title": "Reference Types in Java Programming",
+            "duration_seconds": 320,
+            "duration": "5:20",
+            "source_item_id": "9565628",
+            "course_id": "1535678"
+          }
+        ],
+        "video_seconds": 320,
+        "remaining_study_seconds": 1180,
+        "fit": "partial_foundation",
+        "scope_note": "Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Java 21 LocalDate API",
+            "section": "now(Clock), isBefore, isAfter, isEqual",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    },
+    {
+      "day": 41,
+      "date": "2026-11-29",
+      "title": "Apply due cancellation",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-41.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Apply due cancellation",
+        "learner_seam": "PolicyLifecycleService.applyDueCancellation",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-41.md",
+        "evidence_reference": "evidence/continuation-31-44/day-41.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "Java 21 Clock API",
+              "section": "Fixed and offset clocks for deterministic boundaries",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-29",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-02",
+          "2026-12-06",
+          "2026-12-20"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 41",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 41",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 138,
+          "problem_name": "Copy List with Random Pointer",
+          "concept": "identity map",
+          "planned_first_attempt_date": "2026-11-29",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-12-02",
+            "2026-12-06",
+            "2026-12-20"
+          ],
+          "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [],
+        "lessons": [],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "no_exact_catalog_match",
+        "scope_note": "No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Java 21 Clock API",
+            "section": "Fixed and offset clocks for deterministic boundaries",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 42,
+      "date": "2026-11-30",
+      "title": "Block post-cancellation writes",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-42.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Block post-cancellation writes",
+        "learner_seam": "PolicyLifecycleService.endorse",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-42.md",
+        "evidence_reference": "evidence/continuation-31-44/day-42.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Java Tip 14 - Why Enum and Enum Basics - ordinal and values",
+              "section_title": "Java Tips",
+              "duration_seconds": 448,
+              "duration": "7:28",
+              "source_item_id": "9565990",
+              "course_id": "1535678"
+            },
+            {
+              "title": "Java Tip 15 - Enum - Constructor, variables and methods",
+              "section_title": "Java Tips",
+              "duration_seconds": 220,
+              "duration": "3:40",
+              "source_item_id": "9565992",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Java enum tutorial",
+              "section": "Enum types for a closed set of explicit states",
+              "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+            }
+          ],
+          "video_seconds": 668,
+          "remaining_study_seconds": 832,
+          "fit": "partial_foundation",
+          "scope_note": "Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 42",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 42",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 21,
+              "anchor_day": 35,
+              "planned_anchor_date": "2026-11-23",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-11-30",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+            },
+            {
+              "problem_id": 19,
+              "anchor_day": 39,
+              "planned_anchor_date": "2026-11-27",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-11-30",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Java Tip 14 - Why Enum and Enum Basics - ordinal and values",
+            "section_title": "Java Tips",
+            "duration_seconds": 448,
+            "duration": "7:28",
+            "source_item_id": "9565990",
+            "course_id": "1535678"
+          },
+          {
+            "title": "Java Tip 15 - Enum - Constructor, variables and methods",
+            "section_title": "Java Tips",
+            "duration_seconds": 220,
+            "duration": "3:40",
+            "source_item_id": "9565992",
+            "course_id": "1535678"
+          }
+        ],
+        "video_seconds": 668,
+        "remaining_study_seconds": 832,
+        "fit": "partial_foundation",
+        "scope_note": "Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Java enum tutorial",
+            "section": "Enum types for a closed set of explicit states",
+            "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    },
+    {
+      "day": 43,
+      "date": "2026-12-01",
+      "title": "React servicing summary",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-43.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "React servicing summary",
+        "learner_seam": "PolicyServicingPanel",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-43.md",
+        "evidence_reference": "evidence/continuation-31-44/day-43.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
+        "acceptance_commands": [
+          "cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
+        "infrastructure_commands": [
+          "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1362070",
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Rendering Content Conditionally",
+              "section_title": "React Essentials - Components, JSX, Props, State & More",
+              "duration_seconds": 483,
+              "duration": "8:03",
+              "source_item_id": "39649252"
+            }
+          ],
+          "resources": [
+            {
+              "title": "React conditional rendering",
+              "section": "Loading, empty, auth, not-found, and success states",
+              "url": "https://react.dev/learn/conditional-rendering"
+            },
+            {
+              "title": "React choosing state structure",
+              "section": "Avoid contradictory UI state",
+              "url": "https://react.dev/learn/choosing-the-state-structure"
+            }
+          ],
+          "video_seconds": 483,
+          "remaining_study_seconds": 1017,
+          "fit": "partial_foundation",
+          "scope_note": "Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-01",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-04",
+          "2026-12-08",
+          "2026-12-22"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 43",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": null,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 43",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 2,
+          "problem_name": "Add Two Numbers",
+          "concept": "carry state",
+          "planned_first_attempt_date": "2026-12-01",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-12-04",
+            "2026-12-08",
+            "2026-12-22"
+          ],
+          "problem_url": "https://leetcode.com/problems/add-two-numbers/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [
+          {
+            "course_id": "1362070",
+            "title": "React - The Complete Guide (incl. Next.js, Redux)",
+            "instructor": "Academind / Maximilian Schwarzmüller",
+            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Rendering Content Conditionally",
+            "section_title": "React Essentials - Components, JSX, Props, State & More",
+            "duration_seconds": 483,
+            "duration": "8:03",
+            "source_item_id": "39649252"
+          }
+        ],
+        "video_seconds": 483,
+        "remaining_study_seconds": 1017,
+        "fit": "partial_foundation",
+        "scope_note": "Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "React conditional rendering",
+            "section": "Loading, empty, auth, not-found, and success states",
+            "url": "https://react.dev/learn/conditional-rendering"
+          },
+          {
+            "title": "React choosing state structure",
+            "section": "Avoid contradictory UI state",
+            "url": "https://react.dev/learn/choosing-the-state-structure"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": true,
+      "historical_dsa_role": "new_pattern_anchor"
+    },
+    {
+      "day": 44,
+      "date": "2026-12-02",
+      "title": "Lifecycle integration acceptance contract",
+      "contract_file": "docs/reboot/continuation-31-44/contracts/day-44.md",
+      "contract_status": "defined",
+      "scaffold_status": "partial",
+      "learner_status": "not_attempted",
+      "integration_status": "blocked",
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Lifecycle integration acceptance contract",
+        "learner_seam": "PolicyLifecycleService.verifyLifecycleReadback",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-44.md",
+        "evidence_reference": "evidence/continuation-31-44/day-44.json",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
+        "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test"
+        ],
+        "infrastructure_test_path": "src/test/java/assignments/reboot/Day44BrowserTransportInfrastructureTest.java",
+        "infrastructure_commands": [
+          "npm --prefix frontend run build",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart,ContinuationManifestInfrastructureTest test"
+        ],
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "Spring Boot application testing",
+              "section": "Real server and RANDOM_PORT testing",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            },
+            {
+              "title": "Chrome Headless mode",
+              "section": "Run Chromium browser automation in headless mode",
+              "url": "https://developer.chrome.com/docs/automation-and-testing/headless"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "integration_review_no_new_lecture",
+          "scope_note": "No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 44",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 44",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 143,
+              "anchor_day": 37,
+              "planned_anchor_date": "2026-11-25",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-12-02",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/reorder-list/"
+            },
+            {
+              "problem_id": 138,
+              "anchor_day": 41,
+              "planned_anchor_date": "2026-11-29",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-12-02",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
+            }
+          ],
+          "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
+      },
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "course_learning_status": "no_new_lesson_integration_review",
+      "course_learning": {
+        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false,
+        "courses": [],
+        "lessons": [],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "integration_review_no_new_lecture",
+        "scope_note": "No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.",
+        "supplement_required": true,
+        "resources": [
+          {
+            "title": "Spring Boot application testing",
+            "section": "Real server and RANDOM_PORT testing",
+            "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+          },
+          {
+            "title": "Chrome Headless mode",
+            "section": "Run Chromium browser automation in headless mode",
+            "url": "https://developer.chrome.com/docs/automation-and-testing/headless"
+          }
+        ]
+      },
+      "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
+      "dsa_current_guided_sequence_day": null,
+      "dsa_guided_sequence_problem_id": null,
+      "dsa_attempt_status_remains_actual_evidence_only": true,
+      "dsa_current_guided_sequence_problem_id": null,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "historical_mandatory_new_problem": false,
+      "historical_dsa_role": "consolidation"
+    }
+  ],
+  "dsa_revision_policy": {
+    "intervals_days": [
+      3,
+      7,
+      21
+    ],
+    "due_date_anchor": "earliest actual first-attempt date, including guided actual attempts",
+    "retrieval_method": "fresh similar-pattern transfer before editorial; assistance is not independent credit",
+    "daily_budget_minutes": 60,
+    "failed_review_action": "failed/overdue retrieval displaces new guidance; retain all original due dates including D+21",
+    "cross_batch_source_manifest": "docs/reboot/manifest.json",
+    "actual_attempt_dates_supplied": false,
+    "carryover_anchors_from_days_01_30": [
+      {
+        "anchor_day": 1,
+        "problem_id": 121,
+        "planned_first_attempt_date": "2026-10-20",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-23",
+          "2026-10-27",
+          "2026-11-10"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 3,
+        "problem_id": 1,
+        "planned_first_attempt_date": "2026-10-22",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-25",
+          "2026-10-29",
+          "2026-11-12"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 5,
+        "problem_id": 383,
+        "planned_first_attempt_date": "2026-10-24",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-27",
+          "2026-10-31",
+          "2026-11-14"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 7,
+        "problem_id": 49,
+        "planned_first_attempt_date": "2026-10-26",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-29",
+          "2026-11-02",
+          "2026-11-16"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 9,
+        "problem_id": 238,
+        "planned_first_attempt_date": "2026-10-28",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-10-31",
+          "2026-11-04",
+          "2026-11-18"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 11,
+        "problem_id": 125,
+        "planned_first_attempt_date": "2026-10-30",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-02",
+          "2026-11-06",
+          "2026-11-20"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 13,
+        "problem_id": 167,
+        "planned_first_attempt_date": "2026-11-01",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-04",
+          "2026-11-08",
+          "2026-11-22"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 15,
+        "problem_id": 11,
+        "planned_first_attempt_date": "2026-11-03",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-06",
+          "2026-11-10",
+          "2026-11-24"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 17,
+        "problem_id": 3,
+        "planned_first_attempt_date": "2026-11-05",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-08",
+          "2026-11-12",
+          "2026-11-26"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 19,
+        "problem_id": 209,
+        "planned_first_attempt_date": "2026-11-07",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-10",
+          "2026-11-14",
+          "2026-11-28"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 21,
+        "problem_id": 20,
+        "planned_first_attempt_date": "2026-11-09",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-12",
+          "2026-11-16",
+          "2026-11-30"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 23,
+        "problem_id": 155,
+        "planned_first_attempt_date": "2026-11-11",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-14",
+          "2026-11-18",
+          "2026-12-02"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 25,
+        "problem_id": 704,
+        "planned_first_attempt_date": "2026-11-13",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-16",
+          "2026-11-20",
+          "2026-12-04"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 27,
+        "problem_id": 35,
+        "planned_first_attempt_date": "2026-11-15",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-18",
+          "2026-11-22",
+          "2026-12-06"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false
+      },
+      {
+        "anchor_day": 29,
+        "problem_id": 153,
+        "planned_first_attempt_date": "2026-11-17",
+        "actual_first_attempt_date": null,
+        "review_intervals_days": [
+          3,
+          7,
+          21
+        ],
+        "forecast_due_dates_if_attempted_on_plan": [
+          "2026-11-20",
+          "2026-11-24",
+          "2026-12-08"
+        ],
+        "status": "awaiting_actual_attempt",
+        "completion_claimed": false,
+        "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+      }
+    ],
+    "superseded_by": "docs/reboot/dsa/guided-transfer-policy.md",
+    "daily_budget_minutes_by_exercise_count": {
+      "1_or_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "anchor_pattern": "actual-attempt queue; no odd/even assignment cadence",
+    "failed_review_rule": "failed/overdue retrieval displaces new guidance; retain original due dates including D+21"
+  },
+  "dsa_workload_policy": {
+    "source": "docs/reboot/dsa/guided-transfer-policy.md",
+    "minutes_by_exercise_count": {
+      "1_or_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "engineering_minutes": 120,
+    "totals": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "first_three_guided": [
+      121,
+      1,
+      383
+    ],
+    "new_guided_cutoff_day": 150,
+    "total_range": [
+      180,
+      210
+    ]
+  }
+}

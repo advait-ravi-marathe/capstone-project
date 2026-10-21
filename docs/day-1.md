@@ -2,30 +2,22 @@
 
 ## Work budget
 
-Total scheduled learning is 180 minutes: 60 minutes of Java DSA separately,
+Total scheduled learning is 180, 195, or 210 minutes according to the DSA tier: 60/75/90 minutes of Java DSA separately,
 plus 120 engineering minutes. Engineering is 85 minutes implementation and
 testing, 25 minutes concept/course, and 10 minutes evidence. Instructor-owned
 scaffolding and setup are outside this budget. There is no extra mandatory
 setup work. Record actual time; do not claim this allocation is validated until
 a learner attempt has been measured.
 
-## Separate Java DSA block — LeetCode 121 (60 minutes)
+## Guided DSA study — LeetCode 121
 
-This is Advait's first independent LeetCode 121 attempt; independent-solve
-credit remains zero until an unaided attempt is recorded. Preserve the
-historical reports of three screenshots and seven assisted practice sessions
-as assisted practice. Advait reports that today's DSA course/learning portion
-is complete; this does not mark the independent solve or reviews complete.
-The planned first-attempt date is 20 October 2026; actual attempt and review
-completion remain unrecorded. Use the remaining planned 20 minutes to solve
-independently and 15 minutes for active retrieval/error log, within the same
-60-minute DSA block (no extra time). The D+3,
-D+7, and D+21 reviews are due from the actual first-attempt date. If the first
-attempt occurs on 20 October, planned review dates are 23 October, 27 October,
-and 10 November; recalculate if the actual date differs. These reviews remain
-inside the same 60-minute DSA block and are not complete automatically. Use the
-[error-log template](reboot/dsa-error-log-template.md) to record independent
-or assisted status, mistakes, next action, and due/completed review dates.
+An earlier version of this guide called LC121 the planned first independent attempt. Preserve that historical description as a plan only: independent-solve credit remains zero, and no confirmed dated actual-attempt event is recorded here. The existing reports of three screenshots and seven assisted practice sessions remain assisted practice, not independent solves. Do not backfill dates or reclassify those sessions.
+
+The corrected initial sequence uses LeetCode Premium's problem statement/editorial as guided learning for LC121 on study Day1. Attempt the problem before opening the editorial when possible; if editorial guidance is used, record the attempt as assisted even if accepted. For this single guided exercise, use the 60-minute tier. Derive D+3, D+7 and D+21 only from an actual first-attempt date. Earlier planned dates (23 Oct, 27 Oct, 10 Nov) are forecasts only and do not establish an attempt or review. See the [shared DSA policy](reboot/dsa/guided-transfer-policy.md) and [error-log template](reboot/dsa-error-log-template.md).
+
+
+**Preserved learner record:** Advait reported the DSA course/learning portion complete; the independent solve and reviews remain unrecorded. The earlier planned first-attempt date of 20 October 2026 and forecast reviews of 23 October, 27 October, and 10 November remain forecasts only; actual attempt dates determine due work. The historical reports of three screenshots and seven assisted practice sessions remain assisted practice.
+
 The learner method is `src/main/java/assignments/dsa/BestTimeToBuySellStock.java`
 and its fixed acceptance tests are
 `src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java`.

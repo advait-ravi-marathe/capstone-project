@@ -1,0 +1,847 @@
+{
+  "title": "StreamForge Days 183–196 bounded content-profile experiment",
+  "status": "starter_not_learner_completion_or_board_published",
+  "prepared_on": "2026-10-21",
+  "branch": "learning/streamforge-days-183-196",
+  "source": {
+    "base_commit": "fa45d70868e93da79bb2ff84a8c4a4ca77510924",
+    "source_sha": "d84c6d42820083c2dc23b4171a351e2932e2dc8d",
+    "receipt_sha": "fa45d70868e93da79bb2ff84a8c4a4ca77510924",
+    "runtime": "Python 3.12.14"
+  },
+  "dates": {
+    "start": "2027-04-20",
+    "end": "2027-05-03",
+    "recovery_days": [
+      189,
+      196
+    ]
+  },
+  "budget": {
+    "engineering_minutes": 165,
+    "allocation": {
+      "study": 35,
+      "practice_and_tests": 115,
+      "evidence": 15
+    },
+    "shared_interview_or_remaining_reviews_minutes": 45,
+    "total": 210
+  },
+  "protocol": {
+    "id": "streamforge-cutoff-genre-profile-v1",
+    "evaluation_role": "development_comparison_on_previously_inspected_synthetic_holdout",
+    "genres": [
+      "animation",
+      "comedy",
+      "documentary",
+      "drama",
+      "science-fiction"
+    ],
+    "item_features": "fixed five-coordinate one-hot",
+    "training_signal": "distinct positive training viewer-media pairs; watch_seconds > 0",
+    "profile_counts": "distinct positive training media per genre, including valid expired history",
+    "profile_weights": "exact Fraction L1 normalization",
+    "score": "dot product",
+    "candidate_rule": "available_from_utc <= cutoff_utc < available_to_utc",
+    "ranking": "score descending then exact media_id ascending; at most 3",
+    "fallbacks": {
+      "cold": "global_cold_start",
+      "seen_without_positive_profile": "global_no_positive_profile",
+      "positive_profile_no_overlap": "genre_profile with ID order",
+      "empty_candidates": "no_candidates"
+    },
+    "precision": "hits / 3",
+    "recall": "hits / all distinct positive holdout targets, including unreachable future items",
+    "aggregation": "macro over identical positive-target viewers",
+    "status_precedence": [
+      "no_holdout",
+      "no_positive_holdout",
+      "no_candidates",
+      "available"
+    ],
+    "max_scored_pairs": 2500,
+    "limits": [
+      "Hand-engineered arithmetic profile, not optimizer-trained ML.",
+      "Previously inspected holdout is development comparison, not untouched final test.",
+      "Synthetic observed-positive overlap does not prove preferences, causal lift, fairness, business success or production readiness.",
+      "Single-genre features are coarse and scores are not calibrated probabilities.",
+      "Catalog schedule assumed known at cutoff; no historical point-in-time catalog evidence.",
+      "No real data, new dependencies, cloud resources, service, purchase or new fixture dataset.",
+      "Hashes identify bytes/projections, not authenticity, privacy, rights or quality.",
+      "Static cutoff list; no per-event availability reranking."
+    ]
+  },
+  "report_schema": {
+    "keys": [
+      "schema_version",
+      "protocol",
+      "predictor",
+      "queries",
+      "evaluations",
+      "preparation",
+      "limits"
+    ],
+    "ratio_format": "canonical reduced n/d or null only under frozen empty policy",
+    "preparation": "deep complete adapter lineage copy",
+    "state_hash": "canonical JSON SHA256 with trailing newline; exclude query/holdout/source hashes",
+    "old_train_hash": "existing projection has no trailing newline; preserve"
+  },
+  "oracle": {
+    "window": {
+      "start": "2027-01-01T00:00:00Z",
+      "cutoff": "2027-01-20T00:00:00Z",
+      "end": "2027-02-01T00:00:00Z"
+    },
+    "candidate_ids": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "genres": {
+      "a": "drama",
+      "b": "drama",
+      "c": "comedy",
+      "d": "documentary",
+      "e": "animation",
+      "f": "science-fiction",
+      "x": "comedy",
+      "y": "science-fiction"
+    },
+    "training_viewers": [
+      "v1",
+      "v2",
+      "v3",
+      "v4",
+      "v5",
+      "z"
+    ],
+    "profiles": {
+      "v1": {
+        "counts": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "weights": [
+          "0/1",
+          "2/3",
+          "0/1",
+          "1/3",
+          "0/1"
+        ]
+      },
+      "v2": {
+        "counts": [
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "weights": [
+          "1/3",
+          "0/1",
+          "1/3",
+          "1/3",
+          "0/1"
+        ]
+      },
+      "v3": {
+        "counts": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "weights": [
+          "0/1",
+          "0/1",
+          "1/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "v4": {
+        "counts": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "weights": [
+          "0/1",
+          "0/1",
+          "1/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "v5": {
+        "counts": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "weights": [
+          "1/1",
+          "0/1",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "z": {
+        "counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "weights": [
+          "0/1",
+          "0/1",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      }
+    },
+    "global_support": {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "d": 3,
+      "e": 2,
+      "f": 0
+    },
+    "global_order": [
+      "d",
+      "e",
+      "a",
+      "b",
+      "c",
+      "f"
+    ],
+    "queries": {
+      "n": {
+        "mode": "global_cold_start",
+        "top3": [
+          "d",
+          "e",
+          "a"
+        ]
+      },
+      "v1": {
+        "mode": "genre_profile",
+        "top3": [
+          "c",
+          "a",
+          "b"
+        ]
+      },
+      "v2": {
+        "mode": "genre_profile",
+        "top3": [
+          "a",
+          "b",
+          "d"
+        ]
+      },
+      "z": {
+        "mode": "global_no_positive_profile",
+        "top3": [
+          "d",
+          "e",
+          "a"
+        ]
+      }
+    },
+    "metrics": {
+      "profile_precision": "1/4",
+      "profile_recall": "1/2",
+      "global_precision": "1/4",
+      "global_recall": "1/2",
+      "precision_delta": "0/1",
+      "recall_delta": "0/1"
+    },
+    "counts": {
+      "all_holdout_viewers": 5,
+      "evaluated_viewers": 4,
+      "zero_positive_viewers": 1,
+      "positive_viewer_media_pairs": 6,
+      "candidate_unreachable_positive_pairs": 1,
+      "training_viewer_count": 6,
+      "cold_start_evaluated_viewers": 1,
+      "known_zero_profile_evaluated_viewers": 1,
+      "positive_profile_evaluated_viewers": 2,
+      "candidate_count": 6,
+      "returned_ids_total": 12
+    }
+  },
+  "changed_training": {
+    "edit": "Change t03 and t04 from x/c to d; candidate set unchanged.",
+    "v1_weights": [
+      "0/1",
+      "0/1",
+      "1/2",
+      "1/2",
+      "0/1"
+    ],
+    "v1_top3": [
+      "a",
+      "b",
+      "d"
+    ],
+    "profile_metrics": {
+      "precision": "1/6",
+      "recall": "3/8"
+    },
+    "global_metrics": {
+      "precision": "1/4",
+      "recall": "1/2"
+    },
+    "deltas": {
+      "precision": "-1/12",
+      "recall": "-1/8"
+    }
+  },
+  "selectors": {
+    "default_green": [
+      "python3 -m unittest ai.streamforge.tests.test_content_infrastructure scripts.test_streamforge_183_196_manifest",
+      "python3 -m unittest discover -s scripts -p 'test_*.py'"
+    ],
+    "learner_todo_red": [
+      "python3 -m unittest ai.streamforge.tests.test_content_contracts ai.streamforge.tests.test_content_adversarial ai.streamforge.tests.test_content_cli",
+      "python3 -m ai.streamforge.content_evaluate --fixture basic"
+    ]
+  },
+  "days": [
+    {
+      "day": 183,
+      "date": "2027-04-20",
+      "title": "Encode one fixed genre",
+      "learner_seam": "encode_genre",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day183Test"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "encode_genre(genre) -> tuple[int, ...]"
+    },
+    {
+      "day": 184,
+      "date": "2027-04-21",
+      "title": "Bind item features without fitting the holdout",
+      "learner_seam": "catalog_features",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day184Test"
+      ],
+      "depends_on_days": [
+        183
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "catalog_features(catalog) -> immutable feature map"
+    },
+    {
+      "day": 185,
+      "date": "2027-04-22",
+      "title": "Count distinct positive training interests",
+      "learner_seam": "profile_counts",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day185Test"
+      ],
+      "depends_on_days": [
+        184,
+        169
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "profile_counts(train_pairs, features, training_viewer_ids) -> immutable count state"
+    },
+    {
+      "day": 186,
+      "date": "2027-04-23",
+      "title": "Normalize profiles with exact fractions",
+      "learner_seam": "normalize_profiles",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day186Test"
+      ],
+      "depends_on_days": [
+        185
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "normalize_profiles(count_state) -> immutable profile map"
+    },
+    {
+      "day": 187,
+      "date": "2027-04-24",
+      "title": "Score candidate features transparently",
+      "learner_seam": "score_candidates",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day187Test"
+      ],
+      "depends_on_days": [
+        184,
+        186
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "score_candidates(weights, candidate_features) -> immutable score map"
+    },
+    {
+      "day": 188,
+      "date": "2027-04-25",
+      "title": "Rank profiles and explicit cold-start fallbacks",
+      "learner_seam": "rank_for_viewer",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day188Test"
+      ],
+      "depends_on_days": [
+        187,
+        172
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "rank_for_viewer(viewer_id, profiles, counts, candidates, features, global_rank) -> QueryPrediction"
+    },
+    {
+      "day": 189,
+      "date": "2027-04-26",
+      "title": "Recover feature and ranking contracts",
+      "learner_seam": "prior_only_183_188",
+      "module": null,
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day183Test ai.streamforge.tests.test_content_contracts.Day184Test ai.streamforge.tests.test_content_contracts.Day185Test ai.streamforge.tests.test_content_contracts.Day186Test ai.streamforge.tests.test_content_contracts.Day187Test ai.streamforge.tests.test_content_contracts.Day188Test"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "recovery_day": true,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "prior_only_183_188"
+    },
+    {
+      "day": 190,
+      "date": "2027-04-27",
+      "title": "Freeze an immutable predictor state",
+      "learner_seam": "assemble_predictor_state",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day190Test"
+      ],
+      "depends_on_days": [
+        184,
+        185,
+        186,
+        188
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "assemble_predictor_state(protocol, features, counts, profiles, training_viewers, candidates, global_state, global_rank) -> PredictorState"
+    },
+    {
+      "day": 191,
+      "date": "2027-04-28",
+      "title": "Evaluate per-viewer rankings on the same cohort",
+      "learner_seam": "evaluate_profiles",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day191Test"
+      ],
+      "depends_on_days": [
+        190,
+        173,
+        174
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "evaluate_profiles(state, targets) -> ProfileEvaluation"
+    },
+    {
+      "day": 192,
+      "date": "2027-04-29",
+      "title": "Compare with the unchanged global algorithm",
+      "learner_seam": "compare_against_global",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day192Test"
+      ],
+      "depends_on_days": [
+        191,
+        176
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "compare_against_global(profile_evaluation, global_evaluation) -> ProfileComparison"
+    },
+    {
+      "day": 193,
+      "date": "2027-04-30",
+      "title": "Assemble the complete evidence report",
+      "learner_seam": "assemble_profile_report",
+      "module": "ai.streamforge.content_contracts",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts.Day193Test"
+      ],
+      "depends_on_days": [
+        190,
+        191,
+        192
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "assemble_profile_report(protocol, state, profile_evaluation, comparison, lineage) -> dict"
+    },
+    {
+      "day": 194,
+      "date": "2027-05-01",
+      "title": "Run the real local composition",
+      "learner_seam": "evaluate_content_fixture",
+      "module": "ai.streamforge.content_evaluate",
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_cli.Day194Test"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        190,
+        191,
+        192,
+        193,
+        179
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "evaluate_content_fixture(fixture_name) -> dict"
+    },
+    {
+      "day": 195,
+      "date": "2027-05-02",
+      "title": "Prove sensitivity and reject plausible wrong code",
+      "learner_seam": "supplied_adversarial_and_fresh_process_assertions",
+      "module": null,
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_adversarial.Day195Test",
+        "python3 -m unittest ai.streamforge.tests.test_content_cli.Day195Test"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194
+      ],
+      "recovery_day": false,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "supplied_adversarial_and_fresh_process_assertions"
+    },
+    {
+      "day": 196,
+      "date": "2027-05-03",
+      "title": "Recover and defend the experiment",
+      "learner_seam": "prior_only_183_195",
+      "module": null,
+      "selectors": [
+        "python3 -m unittest ai.streamforge.tests.test_content_contracts ai.streamforge.tests.test_content_adversarial ai.streamforge.tests.test_content_cli"
+      ],
+      "depends_on_days": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "recovery_day": true,
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "prior_only_183_195"
+    }
+  ],
+  "state_and_report": {
+    "top_level_keys": [
+      "schema_version",
+      "protocol",
+      "predictor",
+      "queries",
+      "evaluations",
+      "preparation",
+      "limits"
+    ],
+    "predictor_payload": [
+      "protocol",
+      "candidate_ids",
+      "candidate_features",
+      "training_viewer_ids",
+      "profiles",
+      "global_popularity"
+    ],
+    "profile_evaluation_keys": [
+      "status",
+      "precision_at_3",
+      "recall_at_3",
+      "counts",
+      "selection_mode_counts",
+      "per_viewer_metrics"
+    ],
+    "profile_count_keys": [
+      "all_holdout_viewers",
+      "evaluated_viewers",
+      "zero_positive_viewers",
+      "positive_viewer_media_pairs",
+      "candidate_unreachable_positive_pairs",
+      "training_viewer_count",
+      "cold_start_evaluated_viewers",
+      "known_zero_profile_evaluated_viewers",
+      "positive_profile_evaluated_viewers",
+      "candidate_count",
+      "returned_ids_total"
+    ],
+    "per_viewer_keys": [
+      "viewer_id",
+      "positive_target_ids",
+      "hit_count",
+      "positive_target_count",
+      "candidate_unreachable_positive_pairs",
+      "precision_at_3",
+      "recall_at_3",
+      "status"
+    ],
+    "limits": "exact ordered protocol limits, once each",
+    "state_fingerprint": "Canonical JSON SHA256 with trailing newline over complete prediction payload; excludes holdout, queries and source hashes.",
+    "query_fingerprint": "Canonical JSON SHA256 with trailing newline over query projection plus state fingerprint; excludes targets and metrics.",
+    "preparation": "deep independent copy of complete prior adapter lineage"
+  },
+  "holdout_variants": [
+    {
+      "edit": "Add v2->y positive holdout event.",
+      "prediction_state_and_existing_queries": "unchanged",
+      "positive_pairs": 7,
+      "unreachable_pairs": 2,
+      "profile_precision": "1/4",
+      "profile_recall": "11/24",
+      "global_precision": "1/4",
+      "global_recall": "5/12",
+      "recall_delta": "1/24"
+    },
+    {
+      "edit": "Add newer->a positive holdout viewer.",
+      "prediction_state_and_existing_queries": "unchanged; add one cold query",
+      "all_holdout_viewers": 6,
+      "evaluated_viewers": 5,
+      "cold_start_evaluated": 2,
+      "profile_precision": "4/15",
+      "profile_recall": "3/5",
+      "global_precision": "4/15",
+      "global_recall": "3/5"
+    }
+  ],
+  "edge_oracles": [
+    {
+      "case": "positive profile with no candidate overlap",
+      "weights": [
+        "0/1",
+        "1/1",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "candidates": [
+        "a",
+        "d"
+      ],
+      "scores": [
+        "0/1",
+        "0/1"
+      ],
+      "order": [
+        "a",
+        "d"
+      ],
+      "mode": "genre_profile"
+    },
+    {
+      "case": "current global reference can win",
+      "profile_metrics": [
+        "1/4",
+        "3/4"
+      ],
+      "global_metrics": [
+        "1/3",
+        "1/1"
+      ],
+      "deltas": [
+        "-1/12",
+        "-1/4"
+      ]
+    },
+    {
+      "case": "profile can win",
+      "profile_metrics": [
+        "1/3",
+        "1/1"
+      ],
+      "global_metrics": [
+        "1/6",
+        "1/2"
+      ],
+      "deltas": [
+        "1/6",
+        "1/2"
+      ]
+    }
+  ]
+}

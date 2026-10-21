@@ -1,0 +1,962 @@
+{
+  "title": "StreamForge Days 169–182 frozen offline baseline and temporal evaluation",
+  "base_commit": "bb4cc3e5df7336c74a3f086b24510d325ea871e1",
+  "branch": "learning/streamforge-days-169-182",
+  "sprint": "Proposed Sprint 13",
+  "start_date": "2027-04-06",
+  "end_date": "2027-04-19",
+  "publication_status": "draft_not_board_published",
+  "board_writes": false,
+  "engineering_minutes_days_169_to_171": 120,
+  "engineering_minutes_day_172_onward": 165,
+  "engineering_allocation_day_172_onward": {
+    "study": 35,
+    "practice_and_test": 115,
+    "evidence": 15,
+    "status": "proposed planning allocation"
+  },
+  "interview_or_unfinished_review_minutes_day_172_onward": 45,
+  "post_171_review_allocation_proposal": {
+    "one_substantive_timebox": 30,
+    "brief_recall_or_explanation": 10,
+    "evidence": 5
+  },
+  "total_minutes_day_172_onward": 210,
+  "dsa_policy": {
+    "days_169_to_171_minutes_by_substantive_exercise_count": {
+      "1_to_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "day_172_onward_shared_interview_and_remaining_reviews_minutes": 45,
+    "post_171_max_substantive_dsa_reviews": 1,
+    "new_guided_anchors_after_day_150": false,
+    "actual_attempt_queue_only": true
+  },
+  "python_runtime_observed": "3.12.14",
+  "protocol_id": "streamforge-cutoff-popularity-v1",
+  "k": 3,
+  "outcome": "Deterministic local synthetic global popularity baseline from distinct positive training viewers, fixed ID-order reference and macro Precision@3/Recall@3 with explicit temporal, candidate and cohort boundaries.",
+  "constraints": [
+    "Python standard library only; local synthetic text fixtures.",
+    "No recommendation model, personalization, new service, data source or cloud resource.",
+    "No changes to CAP44 or prior 155–168 learner seams.",
+    "Starter publication and instructor witnesses do not establish learner mastery.",
+    "AWS deployment and access remain deferred and unverified."
+  ],
+  "frozen_protocol": {
+    "positive_rule": "watch_seconds > 0",
+    "support": "distinct positive training viewers per media",
+    "candidate_rule": "available_from_utc <= cutoff_utc < available_to_utc; include eligible zero-history items",
+    "ranking": "support descending, exact media_id ascending; at most three distinct IDs",
+    "scope": "One global cutoff-time list for all viewers; no seen-item removal or event-time reranking.",
+    "reference": "same candidate IDs in ascending exact ID order, at most three",
+    "targets": "all distinct positive holdout media IDs, including unreachable items",
+    "cohort": "positive-target holdout viewers for macro metrics; count all other holdout viewers explicitly",
+    "precision": "hits / 3, including short returned lists",
+    "recall": "hits / distinct positive target count",
+    "aggregation": "unweighted macro; no micro metrics"
+  },
+  "daily_total_minutes_by_phase": {
+    "169_to_171_dsa_1_or_2": 180,
+    "169_to_171_dsa_3": 195,
+    "169_to_171_dsa_4": 210,
+    "172_onward": 210
+  },
+  "days": [
+    {
+      "day": 169,
+      "date": "2027-04-06",
+      "title": "Define an observed signal without inventing preferences",
+      "contract_file": "contracts/day-169.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        },
+        "learner_seam": "positive_pairs",
+        "signature": "positive_pairs(events: Sequence[ViewingEvent]) -> frozenset[tuple[str, str]]",
+        "practice": "From already validated events, return distinct (viewer_id, media_id) pairs whose watch_seconds is greater than zero. Do not read files, aggregate holdout into training, or infer dislikes.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "SETS",
+            "FRAMING"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 25,
+          "reading_and_worked_minutes": 20,
+          "teach_back_minutes": 5,
+          "worked_example": "One viewer watches d twice with different event IDs: one positive pair. A zero-second event contributes none. An unseen item is not a negative label.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Repeated positive events for the same viewer/media collapse to one pair; different viewers remain distinct.",
+          "Zero-watch events are excluded; input events and order are not mutated.",
+          "The protocol is declared before inspecting aggregate holdout scores; no optimization of threshold or K."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day169Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "actual_attempt_review_transfer_repair_only",
+        "budget_minutes": null,
+        "maximum_substantive_coding_exercises": null,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 169",
+        "forecast_is_not_attempt": true,
+        "budget_minutes_by_substantive_exercise_count": {
+          "1_or_2": 60,
+          "3": 75,
+          "4": 90
+        },
+        "total_daily_minutes_by_dsa_tier": [
+          180,
+          195,
+          210
+        ],
+        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+      }
+    },
+    {
+      "day": 170,
+      "date": "2027-04-07",
+      "title": "Freeze the cutoff-time candidate set",
+      "contract_file": "contracts/day-170.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        },
+        "learner_seam": "cutoff_candidates",
+        "signature": "cutoff_candidates(catalog: Sequence[CatalogItem], cutoff: datetime) -> tuple[str, ...]",
+        "practice": "Select catalog IDs with available_from <= cutoff < available_to. Return every eligible ID in exact ID order, including items with no training history. The synthetic schedule is assumed known at cutoff.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "SETS",
+            "LEAK"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 25,
+          "reading_and_worked_minutes": 20,
+          "teach_back_minutes": 5,
+          "worked_example": "Item a starts exactly at cutoff and is included; x ends exactly at cutoff and is excluded; e begins tomorrow and is excluded.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Exact start/end equality behaves as specified; future and expired items are absent.",
+          "Zero-history eligible items remain; catalog and timestamps remain unchanged.",
+          "Availability filtering does not prove real historical metadata knowledge or availability throughout the later horizon."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day170Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "actual_attempt_review_transfer_repair_only",
+        "budget_minutes": null,
+        "maximum_substantive_coding_exercises": null,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 170",
+        "forecast_is_not_attempt": true,
+        "budget_minutes_by_substantive_exercise_count": {
+          "1_or_2": 60,
+          "3": 75,
+          "4": 90
+        },
+        "total_daily_minutes_by_dsa_tier": [
+          180,
+          195,
+          210
+        ],
+        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+      }
+    },
+    {
+      "day": 171,
+      "date": "2027-04-08",
+      "title": "Count distinct positive training viewers",
+      "contract_file": "contracts/day-171.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        },
+        "learner_seam": "training_popularity",
+        "signature": "training_popularity(train_positive_pairs, candidate_ids) -> PopularityState",
+        "practice": "Initialize every candidate score to zero; count distinct positive viewers from training pairs only. Use retained train events through positive_pairs, not the older event-count/watch-total summary.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "BASE",
+            "SETS",
+            "LEAK"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 25,
+          "reading_and_worked_minutes": 20,
+          "teach_back_minutes": 5,
+          "worked_example": "d has v1 twice, v2 and v3: support 3, not 4. b has v1, v2 and zero-watch v4: support 2. Expired x can have high historical support but cannot enter the candidate score map.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Counts match literal hand-calculated distinct-viewer support and include zero-count candidates.",
+          "Changing otherwise-valid held-out events cannot change support.",
+          "Adding a new positive training viewer changes the appropriate support; a repeated existing pair does not."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day171Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "actual_attempt_review_transfer_repair_only",
+        "budget_minutes": null,
+        "maximum_substantive_coding_exercises": null,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 171",
+        "forecast_is_not_attempt": true,
+        "budget_minutes_by_substantive_exercise_count": {
+          "1_or_2": 60,
+          "3": 75,
+          "4": 90
+        },
+        "total_daily_minutes_by_dsa_tier": [
+          180,
+          195,
+          210
+        ],
+        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+      }
+    },
+    {
+      "day": 172,
+      "date": "2027-04-09",
+      "title": "Produce one deterministic global top-three list",
+      "contract_file": "contracts/day-172.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "rank_popularity",
+        "signature": "rank_popularity(popularity_state) -> RankedList",
+        "practice": "Sort candidates by descending distinct-positive-viewer count, then exact media ID ascending; take at most three. The same list is used for every viewer, including already-seen items. Extra time goes to tie and short-list tests.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "SORT",
+            "BASE"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Scores d=3, b=2, c=1, a=0 produce [d, b, c]. Equal scores must ignore input order. Two candidates produce two recommendations, not padded duplicates.",
+          "optional_lesson": {
+            "course_id": "2196488",
+            "section_id": "7757212",
+            "section_title": "Machine Learning",
+            "item_id": "32411818",
+            "item_title": "Personalize Overview",
+            "duration_seconds": 96,
+            "use": "optional existing-access conceptual alternative within the study cap"
+          }
+        },
+        "acceptance": [
+          "Full order and top-three match the independent oracle; tied input permutations give identical order.",
+          "No duplicates, personalized seen-item filtering, random fallback, holdout input or adaptive K.",
+          "With no positive training signal, the tie-break is a visibly labeled ID-order fallback; with no candidates the list is empty."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day172Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 172",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 173,
+      "date": "2027-04-10",
+      "title": "Build the evaluation cohort without deleting difficult targets",
+      "contract_file": "contracts/day-173.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "holdout_targets",
+        "signature": "holdout_targets(holdout: Sequence[ViewingEvent]) -> HoldoutTargets",
+        "practice": "Group distinct positive holdout pairs by viewer, while separately retaining all observed holdout viewer IDs and zero-positive viewer count. Do not intersect targets with candidate IDs.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "SETS",
+            "SPLIT",
+            "FRAMING"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "new has positive targets c and future item e: keep {c, e}. zero has only a zero-second event: count the viewer but do not invent a recall denominator.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Repeated held-out viewer/media positives do not multiply targets.",
+          "Cold-start viewers and candidate-unreachable targets remain in the evaluable cohort.",
+          "No holdout and zero-positive holdout have distinct explicit statuses; all raw holdout viewers are accounted for."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day173Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 173",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 174,
+      "date": "2027-04-11",
+      "title": "Compute one viewer’s fixed-slot precision and recall",
+      "contract_file": "contracts/day-174.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "score_viewer",
+        "signature": "score_viewer(recommendation_ids, positive_target_ids) -> ViewerScore",
+        "practice": "Using supplied typed recommendation and target inputs, compute hits, positive-target count, Precision@3 = hits/3 and Recall@3 = hits/target_count. Keep the fixed-slot denominator even for a shorter list.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "RANK",
+            "SPARK"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Recommendations [b, a], positives {a, c}: one hit, Precision@3=1/3, Recall@3=1/2. Empty candidates with a positive target give zero, not NaN.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Duplicate recommendations or more than three entries are rejected by the supplied boundary; no double-counted hit.",
+          "Empty targets produce explicit non-evaluable/null metrics, never a fabricated zero or perfect recall.",
+          "Literal fractions verify all-hit, all-miss, short-list and unreachable-target cases."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day174Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 174",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 175,
+      "date": "2027-04-12",
+      "title": "Recover the signal and metric boundary",
+      "contract_file": "contracts/day-175.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": true,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "prior_only_169_174",
+        "signature": "Supplied assertion seam or prior-only recovery; no new production function.",
+        "practice": "Repair one earlier seam and reproduce one independently chosen counterexample. No comparison, report, CLI or future-day acceptance selector.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "TEST",
+            "RANK"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Explain why a repeated positive event does not increase support and why dropping future e would inflate recall.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Only Days 169–174 selectors are used; repair or exact unresolved blocker is recorded.",
+          "Repeat one prior negative case without an answer key; preserve assistance labels and incomplete learner gates."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day169Test ai.streamforge.tests.test_baseline_contracts.Day170Test ai.streamforge.tests.test_baseline_contracts.Day171Test ai.streamforge.tests.test_baseline_contracts.Day172Test ai.streamforge.tests.test_baseline_contracts.Day173Test ai.streamforge.tests.test_baseline_contracts.Day174Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 175",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 176,
+      "date": "2027-04-13",
+      "title": "Aggregate macro metrics with explicit coverage counts",
+      "contract_file": "contracts/day-176.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "evaluate_baseline",
+        "signature": "evaluate_baseline(ranked_list, candidate_ids, holdout_targets, all_training_viewer_ids) -> BaselineEvaluation",
+        "practice": "Apply the per-viewer scorer to every positive-target viewer and take unweighted means. Add explicit cohort/coverage counts, not new quality metrics. Cold-start means absent from all training interactions, including zero-watch interactions.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "RANK",
+            "SPARK",
+            "FRAMING"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Three recalls 1, 1, 1/2 give macro 5/6; three precisions 1/3, 2/3, 1/3 give 4/9. Seven raw held-out rows are not the denominator.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Report all holdout viewers, evaluated viewers, zero-positive viewers, positive viewer-media pairs, candidate-unreachable pairs, cold-start evaluated viewers, candidate count and returned count.",
+          "No-positive cohort yields null averages with reason; positive cohort plus no candidates yields zero metrics.",
+          "A viewer with only zero-watch training events is seen, not cold-start. No difficult viewer is silently dropped."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day176Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 176",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 177,
+      "date": "2027-04-14",
+      "title": "Compare two predeclared baselines on the same cohort",
+      "contract_file": "contracts/day-177.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "compare_baselines",
+        "signature": "compare_baselines(popularity_ranked_list, candidate_ids, holdout_targets, all_training_viewer_ids) -> BaselineComparison",
+        "practice": "Evaluate popularity and the instructor-owned ID-order reference using identical candidates, targets, K and cohort. Report both metrics and signed deltas; do not choose a winner or tune on holdout.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "SPLIT",
+            "FRAMING",
+            "RULES"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Toy popularity recall 5/6 versus reference 1/3 gives delta 1/2. Another fixture may favor the reference: preserve that result rather than changing the protocol.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Both sides use the same cohort/config; a mismatched-cohort comparison is rejected or structurally impossible.",
+          "Undefined metrics produce null deltas; ties and negative deltas remain honest.",
+          "The favorable designed toy is arithmetic evidence, not real-world quality or causal improvement."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day177Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 177",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 178,
+      "date": "2027-04-15",
+      "title": "Separate prediction lineage from evaluation evidence",
+      "contract_file": "contracts/day-178.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "assemble_evaluation_report",
+        "signature": "assemble_evaluation_report(prepared_lineage, protocol, candidates, popularity_state, ranked_list, comparison) -> dict",
+        "practice": "Compose supplied result containers and canonical helpers into a versioned report. Keep prediction payload/fingerprint separate from holdout metrics and full-source provenance. Write a short concepts-to-evidence/gaps note within study time.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "JSON",
+            "LEAK",
+            "AIF"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "A valid new holdout target can change recall and full input hashes, but not candidate/support/ranking payload. Changing catalog eligibility can change predictions even when the old train-content hash is unchanged.",
+          "optional_lesson": {
+            "course_id": "2196488",
+            "section_id": "7757212",
+            "section_title": "Machine Learning",
+            "item_id": "32411808",
+            "item_title": "SageMaker AI Overview",
+            "duration_seconds": 209,
+            "use": "optional existing-access conceptual alternative within the study cap"
+          }
+        },
+        "acceptance": [
+          "Prediction fingerprint includes frozen protocol/cutoff, eligible candidate IDs, support counts and ranked IDs; never holdout targets/metrics or full raw-input hashes.",
+          "Full report retains source/preparation lineage and explicit limits without claiming authenticity or mastery.",
+          "Same semantic inputs reproduce prediction fingerprint; unsupported model/deployment/certification claims are absent."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day178Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 178",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 179,
+      "date": "2027-04-16",
+      "title": "Compose the existing preparation and offline evaluation CLI",
+      "contract_file": "contracts/day-179.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "evaluate_fixture",
+        "signature": "evaluate_fixture(fixture_name: str) -> dict",
+        "practice": "Wire prior completed preparation through the instructor typed adapter and existing local fixture registry to this baseline/evaluator. Use supplied CLI/error/output framing; no new arbitrary path, URL, parser, storage or network adapter.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "TEST",
+            "JSON"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "A conflicting duplicate in holdout must fail preparation before any evaluation document appears. An unknown fixture fails with nonzero status, not a canned successful report.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Actual CLI emits one complete JSON document only on success, stderr diagnostics/nonzero/no success JSON on error.",
+          "It invokes real earlier validation and current learner seams; a missing prerequisite yields its named TODO, not fabricated input.",
+          "No input files change; no cloud, subprocess service, external media or secret is required."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_evaluation_cli.Day179Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 179",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 180,
+      "date": "2027-04-17",
+      "title": "Make leakage and denominator defects fail independent tests",
+      "contract_file": "contracts/day-180.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "supplied_independent_negative_assertions",
+        "signature": "Complete the supplied Day180 assertion tests; no production function or learner implementation is added.",
+        "practice": "Complete the supplied independent assertion seam for holdout isolation, duplicate-pair invariance, second-fixture anti-canned output, unreachable targets and fixed-slot denominators. This is test-harness/evidence work, not a new production function.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "TEST",
+            "LEAK",
+            "RANK"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Bad witnesses count events, include expired x, remove future e, divide by returned length, or return a constant ranking. Each must fail its intended assertion after setup succeeds.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Literal expected IDs/counts and independent fraction arithmetic detect each named defect.",
+          "Valid holdout mutation remains in holdout and does not conflict with event IDs; invalid holdout still fails validation.",
+          "Changing watch_seconds from 1 to 2 need not change binary targets or metrics; only assert changes when relevant semantics change."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_evaluation_adversarial.Day180Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 180",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 181,
+      "date": "2027-04-18",
+      "title": "Reproduce the bounded experiment in fresh processes",
+      "contract_file": "contracts/day-181.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "supplied_fresh_process_evidence_assertions",
+        "signature": "Complete the supplied Day181 subprocess assertions; no production function or learner implementation is added.",
+        "practice": "Complete the supplied fresh-process acceptance assertions and evidence note. This is test-harness/evidence work, not a new production function.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "TEST",
+            "JSON",
+            "AIF"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Identical bytes/config give identical output bytes; shuffling raw input may change source hashes while preserving prediction/metric semantics. The hash is not a signature.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Run actual CLI in fresh interpreters; prior and new outputs are not mocked/canned; process cleanup is bounded by harness timeout.",
+          "Python network API guards detect attempted network use; this is not proof of OS-wide network isolation or platform-independent timing.",
+          "Record observed elapsed time only, not an unmeasured SLO. Identify AI-concept coverage and missing cloud/production/statistics/GenAI competence honestly."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_evaluation_cli.Day181Test",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 181",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    },
+    {
+      "day": 182,
+      "date": "2027-04-19",
+      "title": "Recover and defend the offline baseline boundary",
+      "contract_file": "contracts/day-182.md",
+      "status": "starter_draft_not_board_published",
+      "recovery_day": true,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        },
+        "learner_seam": "prior_only_169_181",
+        "signature": "Supplied assertion seam or prior-only recovery; no new production function.",
+        "practice": "Repair prior seams, cold-reproduce an earlier counterexample and explain the complete evidence chain. No new model, new metric, course, service or future-day selector.",
+        "guidance": {
+          "kind": "required_primary_document_worked_supplement",
+          "source_keys": [
+            "TEST",
+            "FRAMING"
+          ],
+          "required_video_seconds": 0,
+          "study_minutes": 35,
+          "reading_and_worked_minutes": 30,
+          "teach_back_minutes": 5,
+          "worked_example": "Defend why this is a deterministic synthetic global baseline, not personalized ML, unbiased real preference measurement, cloud deployment or certification readiness.",
+          "optional_lesson": null
+        },
+        "acceptance": [
+          "Actual learner readiness is demonstrated or named carry-forward repairs remain.",
+          "Prior CoverStory/AWS deferred gates are not silently cleared; learner work is distinguished from instructor witnesses.",
+          "No next phase is opened merely because fourteen starter days exist."
+        ],
+        "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts ai.streamforge.tests.test_evaluation_adversarial ai.streamforge.tests.test_evaluation_cli",
+        "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
+      },
+      "interview_or_dsa": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 182",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      }
+    }
+  ],
+  "hand_oracle": {
+    "supports": {
+      "a": 0,
+      "b": 2,
+      "c": 1,
+      "d": 3
+    },
+    "full_popularity_order": [
+      "d",
+      "b",
+      "c",
+      "a"
+    ],
+    "popularity_top3": [
+      "d",
+      "b",
+      "c"
+    ],
+    "reference_top3": [
+      "a",
+      "b",
+      "c"
+    ],
+    "macro": {
+      "popularity_recall": "5/6",
+      "popularity_precision": "4/9",
+      "reference_recall": "1/3",
+      "reference_precision": "2/9",
+      "recall_delta": "1/2",
+      "precision_delta": "2/9"
+    },
+    "counts": {
+      "raw_holdout_events": 7,
+      "positive_events": 6,
+      "all_holdout_viewers": 4,
+      "evaluated_viewers": 3,
+      "zero_positive_viewers": 1,
+      "cold_start_evaluated_viewers": 1,
+      "positive_viewer_media_pairs": 5,
+      "candidate_unreachable_positive_pairs": 1,
+      "candidate_count": 4,
+      "returned_count": 3
+    }
+  },
+  "source_references": {
+    "SETS": {
+      "title": "Python 3.12 tutorial: Data Structures — Sets and Dictionaries",
+      "url": "https://docs.python.org/3.12/tutorial/datastructures.html#sets"
+    },
+    "SORT": {
+      "title": "Python 3.12 Sorting Techniques — Key Functions",
+      "url": "https://docs.python.org/3.12/howto/sorting.html#key-functions"
+    },
+    "TEST": {
+      "title": "Python 3.12 unittest — Basic example",
+      "url": "https://docs.python.org/3.12/library/unittest.html#basic-example"
+    },
+    "JSON": {
+      "title": "Python 3.12 json — Basic Usage",
+      "url": "https://docs.python.org/3.12/library/json.html#basic-usage"
+    },
+    "LEAK": {
+      "title": "scikit-learn: Common pitfalls and recommended practices — Data leakage",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
+    },
+    "BASE": {
+      "title": "Popularity-Count recipe",
+      "url": "https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-popularity.html"
+    },
+    "RANK": {
+      "title": "Recommenders evaluation module — precision_at_k and recall_at_k",
+      "url": "https://recommenders-team.github.io/recommenders/evaluation.html"
+    },
+    "SPARK": {
+      "title": "Apache Spark Evaluation Metrics — Ranking systems",
+      "url": "https://spark.apache.org/docs/latest/mllib-evaluation-metrics.html#ranking-systems"
+    },
+    "FRAMING": {
+      "title": "Framing an ML problem",
+      "url": "https://developers.google.com/machine-learning/problem-framing/ml-framing"
+    },
+    "SPLIT": {
+      "title": "Datasets: Dividing the original dataset",
+      "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets"
+    },
+    "RULES": {
+      "title": "Rules of Machine Learning",
+      "url": "https://developers.google.com/machine-learning/guides/rules-of-ml"
+    },
+    "AIF": {
+      "title": "AWS Certified AI Practitioner (AIF-C01): Content Domain 1 — Fundamentals of AI and ML",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+    }
+  },
+  "entry_gates": [
+    "Pin and verify the predecessor batch at its final exact source SHA before publication. This batch is based on bb4cc3e5df7336c74a3f086b24510d325ea871e1.",
+    "Actual learner mastery of prior synthetic schema, event conflict/dedup, temporal partition, train-only outputs, deterministic CLI and Day 168 defense, plus unresolved CoverStory gates, remains evidence-gated.",
+    "An incomplete prior gate makes the daily slot carry-forward remediation, not silently completed baseline progress.",
+    "Use the existing Python 3.12.14 runtime and instructor-provided fixtures/adapters. No package installation or runtime upgrade.",
+    "Freeze protocol and hand-computed oracle before inspecting aggregate holdout metrics."
+  ],
+  "review_practice_examples": {
+    "172": "Explain the difference between a global popularity list and personalized recommendations without adding services.",
+    "173": "Why is an unobserved item not a reliable negative preference label?",
+    "174": "Why can Precision@3 be at most 2/3 when only two items can be returned?",
+    "175": "Use the oldest failed/overdue review first; otherwise defend one prior counterexample.",
+    "176": "Explain why averaging per-viewer recall differs from dividing total hits by total targets.",
+    "177": "How would you prevent a holdout from becoming a tuning set?",
+    "178": "What does a content hash prove, and what does it not prove?",
+    "179": "Why must validation finish before emitting the success document?",
+    "180": "How can a test reject a canned implementation that passes one golden example?",
+    "181": "What evidence would be missing before calling this cloud-deployed or production-ready?",
+    "182": "Defend the limits of the synthetic offline experiment and name one unresolved gate."
+  },
+  "review_practice_examples_note": "Curated explain-back prompts, not claims about actual company interview questions. Use only remaining 45-minute capacity after pending review/repair; no automatic canonical DSA event or anchor is created."
+}

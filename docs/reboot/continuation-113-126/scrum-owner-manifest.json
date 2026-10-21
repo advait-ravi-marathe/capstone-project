@@ -1,0 +1,1518 @@
+{
+  "title": "Days 113–126 chronological course guidance and ticket export; no board writes",
+  "story_count": 14,
+  "sprint_boundaries": [
+    {
+      "name": "Sprint 9",
+      "dates": "2027-02-09..2027-02-22",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "cards": [
+    {
+      "day_number": 113,
+      "date": "2027-02-09",
+      "title": "Classify durable recovery evidence",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Classify exact-key work, receipt, acknowledgement and quarantine evidence without inferring a missing commit. Learner seam: RecoveryDecisionPolicy.",
+        "learner_seam": "RecoveryDecisionPolicy.classify",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-113.md",
+        "evidence_reference": "evidence/continuation-113-126/day-113.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day113ClassifiesEvidenceWithoutInventingDelivery test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 constraints",
+              "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+              "reading_focus": "Distinguish row constraints from transactional cross-table evidence."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "Pending with no receipt means one attempt may be eligible; pending with matching receipt means reconcile acknowledgement. A conflicting receipt is an integrity violation, not a successful replay.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 113",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 113",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 114,
+      "date": "2027-02-10",
+      "title": "Constrain reversible recovery metadata",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Assess instructor-supplied V005 metadata constraints, old rows defaulting to revision zero, and invalid hold/reason/revision combinations. Do not edit V004.",
+        "learner_seam": "Instructor-owned V005 migration assessment (no learner SQL seam)",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-114.md",
+        "evidence_reference": "evidence/continuation-113-126/day-114.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/Day113To126InfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Dtest=Day113To126InfrastructureTest test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 constraints",
+              "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+              "reading_focus": "CHECK, NOT NULL, UNIQUE and foreign-key scope."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "A hold marker without a reason and revision -1 are invalid. A SQL CHECK cannot compare two tables; matching receipt and acknowledgement rules remain transactional checks.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 114",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 114",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 115,
+      "date": "2027-02-11",
+      "title": "Inspect one retained work identity",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Implement exact-key inspection of absent, matching, conflicting, and missing work/receipt evidence with no mutations; history is separate supplementary data limited to 20 rows.",
+        "learner_seam": "JdbcManualRecoveryStore.inspect",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-115.md",
+        "evidence_reference": "evidence/continuation-113-126/day-115.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day115InspectionIsExactKeyReadOnlyAndConflictAware test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 12 - Creating a custom Spring JDBC RowMapper",
+              "section_title": "Journey From Spring  JDBC to JPA",
+              "section_id": "1926220",
+              "source_item_id": "7907420",
+              "course_id": "1341538",
+              "duration_seconds": 298,
+              "duration": "4:58"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring JDBC RowMapper reference",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html",
+              "reading_focus": "Map an exact-key immutable row; supplementary history is separately labeled."
+            }
+          ],
+          "video_seconds": 298,
+          "worked_reference_seconds": 902,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "For (demo-a,1), return work envelope, revision 0, no hold, and receipt ABSENT. If receipt matches but ack is NULL, recommend reconciliation; never label database failure ABSENT.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 298,
+          "worked_reference": 902,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 115",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 115",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 116,
+      "date": "2027-02-12",
+      "title": "Quarantine atomically with retained evidence",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Quarantine one pending identity by expected control revision; persist hold and fixed reason history in the same transaction. Matching receipt refuses; conflicting receipt remains visible.",
+        "learner_seam": "JdbcManualRecoveryStore.quarantine",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-116.md",
+        "evidence_reference": "evidence/continuation-113-126/day-116.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day116* test"
+        ],
+        "acceptance_selector_status": "installed_amended_pending_witness",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 11 - Implementing insert and update Spring JDBC Update Methods",
+              "section_title": "Journey From Spring  JDBC to JPA",
+              "section_id": "1926220",
+              "source_item_id": "7907416",
+              "course_id": "1341538",
+              "duration_seconds": 519,
+              "duration": "8:39"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 row-level locks",
+              "url": "https://www.postgresql.org/docs/18/explicit-locking.html#LOCKING-ROWS",
+              "reading_focus": "Lock the work row before checking receipt eligibility."
+            }
+          ],
+          "video_seconds": 519,
+          "worked_reference_seconds": 681,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "At revision 0/no matching receipt: quarantine writes (held, revision 1, MANUAL_HOLD, one history row). If the transaction fails before commit, neither row change nor history is visible.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 519,
+          "worked_reference": 681,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 116",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 116",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 117,
+      "date": "2027-02-13",
+      "title": "Release only the expected hold revision",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Release only the active hold at the expected revision, advance revision and append reasoned history atomically. Prove ABA r0→r1→r2→r3 rejects stale r1.",
+        "learner_seam": "JdbcManualRecoveryStore.release",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-117.md",
+        "evidence_reference": "evidence/continuation-113-126/day-117.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day117ReleaseRequiresExpectedRevisionAndRejectsAba test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 row-level locks",
+              "url": "https://www.postgresql.org/docs/18/explicit-locking.html#LOCKING-ROWS",
+              "reading_focus": "Serialize revision transitions on the same retained work row."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "Quarantine r0→r1; release with expected r1→r2; quarantine→r3. A stale release expecting r1 must leave r3 and its history unchanged.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 117",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 117",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 118,
+      "date": "2027-02-14",
+      "title": "Exclude held work before the batch limit",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Compose the recovery-aware store around the existing JDBC store. Filter holds in SQL before ORDER BY/LIMIT and reject limits outside [1,20] before querying.",
+        "learner_seam": "RecoveryAwareIssuanceWorkStore.findPending",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-118.md",
+        "evidence_reference": "evidence/continuation-113-126/day-118.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day118FiltersHoldsBeforeLimit test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 SELECT",
+              "url": "https://www.postgresql.org/docs/18/sql-select.html",
+              "reading_focus": "Apply the quarantine predicate in WHERE before ORDER BY and LIMIT."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "Given 25 held keys before B, eligible LIMIT 1 must return B. Filtering after delegate LIMIT 1 incorrectly returns empty; test defeats that implementation.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 118",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 118",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 119,
+      "date": "2027-02-15",
+      "title": "Recover and assess Days 113–118",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery only: rerun and repair Days 113–118. Do not test retry, concurrency, process restart, command or package work planned later.",
+        "learner_seam": "Review/remediation only",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-119.md",
+        "evidence_reference": "evidence/continuation-113-126/day-119.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day113*+day114*+day115*+day116*+day117*+day118* test",
+          "./mvnw -Dtest=Day113To126InfrastructureTest test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transactions",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html",
+              "reading_focus": "Review prior transaction boundaries only."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "Tabletop only for capture/inspection/control transitions/filtering; use existing evidence to repair them. No new runtime seam is scheduled.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 119",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 119",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 120,
+      "date": "2027-02-16",
+      "title": "Retry one identity across separate commits",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Retry/reconcile exactly one stable key; reject ambient transactions before stores. Prove receipt commit is visible from a raw connection distinct from the transaction-bound backend before ack; injected ack failure retains receipt.",
+        "learner_seam": "ManualRecoveryService.retryOne",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-120.md",
+        "evidence_reference": "evidence/continuation-113-126/day-120.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day120* test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+              "section_title": "Transaction Management",
+              "section_id": "1926206",
+              "source_item_id": "7907620",
+              "course_id": "1341538",
+              "duration_seconds": 278,
+              "duration": "4:38"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring programmatic transactions",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html",
+              "reading_focus": "Keep receipt and acknowledgement as separately committed operations."
+            }
+          ],
+          "video_seconds": 278,
+          "worked_reference_seconds": 922,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "A matching receipt with no ack skips receipt insertion and commits ack separately. An absent receipt creates one receipt commit, then ack commit; failure never triggers an in-process retry.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 278,
+          "worked_reference": 922,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 120",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 120",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 121,
+      "date": "2027-02-17",
+      "title": "Report uncertain outcomes honestly",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Exercise lost reply after receipt commit, fresh evidence/reconciliation, database unavailable as unknown, and service-level refusal of ack-without-receipt/conflicting evidence.",
+        "learner_seam": "RecoveryOutcomePolicy.afterAcknowledgment",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-121.md",
+        "evidence_reference": "evidence/continuation-113-126/day-121.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/Day121RecoveryOutcomePolicyTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day121RecoveryOutcomePolicyTest test",
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest#day121* test"
+        ],
+        "acceptance_selector_status": "installed_amended_pending_witness",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 transactions",
+              "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html",
+              "reading_focus": "Commit outcome and lost caller response are different observations."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "A lost reply remains unknown until fresh exact-key inspection. Map only a successful attempt from observed receipt/ack evidence; do not infer rollback from an exception.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 121",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 121",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 122,
+      "date": "2027-02-18",
+      "title": "Serialize competing recovery commands",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use the same work-row lock for quarantine/release/receipt/ack; prove both lock orders and fresh receipt statement after waiting with barriers, not sleeps.",
+        "learner_seam": "ManualRecoveryConcurrencyAcceptanceTest assertions",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-122.md",
+        "evidence_reference": "evidence/continuation-113-126/day-122.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryConcurrencyAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryConcurrencyAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 62 - Choosing between Isolation Levels",
+              "section_title": "Transaction Management",
+              "section_id": "1926206",
+              "source_item_id": "7907618",
+              "course_id": "1341538",
+              "duration_seconds": 243,
+              "duration": "4:03"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 READ COMMITTED",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+              "reading_focus": "After a row-lock wait, issue a fresh statement for receipt evidence."
+            }
+          ],
+          "video_seconds": 243,
+          "worked_reference_seconds": 957,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "If quarantine commits first, receipt refuses. If receipt commits first, waiting quarantine reads receipt in a new statement after lock and refuses.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 243,
+          "worked_reference": 957,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 122",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 122",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 123,
+      "date": "2027-02-19",
+      "title": "Keep recovery decisions across fresh JVMs",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Prove fresh JVM recovery: held A remains held while JVM B retries eligible B; after release, kill JVM after receipt commit/before ack and reconcile same receipt in JVM C.",
+        "learner_seam": "ManualRecoveryRestartAcceptanceTest assertions",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-123.md",
+        "evidence_reference": "evidence/continuation-113-126/day-123.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryRestartAcceptanceTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryRestartAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "installed_amended_pending_witness",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Java 21 Process API",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html",
+              "reading_focus": "Bound child waits, terminate and await both processes on every path."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "JVM A quarantines A and exits; JVM B still skips A and advances eligible B. After release, a fresh process reconciles the same receipt without replacing its timestamp.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 123",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 123",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 124,
+      "date": "2027-02-20",
+      "title": "Expose an explicit one-action local command",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Add explicit one-action inspect/quarantine/release/retry CLI. Normal startup is inert; mutually exclusive delivery/recovery flags fail before mutations.",
+        "learner_seam": "LocalManualRecoveryCommand argument validation",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-124.md",
+        "evidence_reference": "evidence/continuation-113-126/day-124.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/LocalManualRecoveryCommandTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalManualRecoveryCommandTest#oneActionCommandRejectsInvalidAndConflictingFlags test"
+        ],
+        "acceptance_selector_status": "installed_and_temporary_witness_passed",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [
+            {
+              "course_id": "1341538",
+              "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 06 - Execute the findAll method using CommandLineRunner",
+              "section_title": "Journey From Spring  JDBC to JPA",
+              "section_id": "1926220",
+              "source_item_id": "7907404",
+              "course_id": "1341538",
+              "duration_seconds": 345,
+              "duration": "5:45"
+            }
+          ],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "Spring Boot SpringApplication",
+              "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html",
+              "reading_focus": "ApplicationRunner is explicitly invoked; ordinary startup does not recover work."
+            }
+          ],
+          "video_seconds": 345,
+          "worked_reference_seconds": 855,
+          "teachback_seconds": 300,
+          "fit": "partial_foundation_with_project_supplement",
+          "scope_note": "An operator chooses exactly one action/key/revision. A stale revision refuses; it never reloads revision and silently retries.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 345,
+          "worked_reference": 855,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 124",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 124",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 125,
+      "date": "2027-02-21",
+      "title": "Verify packaged operational recovery",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use the packaged JAR CLI and disposable PostgreSQL to prove recovery of held A and eligible B, stable receipt/evidence, and complete row snapshots. Existing protected issuance/preview compatibility is separate.",
+        "learner_seam": "LocalPackagedManualRecoveryAcceptanceTest integration assertion",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-125.md",
+        "evidence_reference": "evidence/continuation-113-126/day-125.json",
+        "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "installed_amended_pending_witness",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL 18 transactions",
+              "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html",
+              "reading_focus": "Observe durable changes through independent connections and full row snapshots."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "Manual CLI and persistent recovery state only. Reuse the existing protected issuance-replay/renewal-preview contract as a separate compatibility regression; do not claim this selector adds browser/UI coverage.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 125",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 125",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    },
+    {
+      "day_number": 126,
+      "date": "2027-02-22",
+      "title": "Recover and defend the exit gate",
+      "sprint": "Sprint 9",
+      "budget_minutes": null,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery only: complete prior selectors, replay one cold failure and explain evidence/limits. No new implementation or feature.",
+        "learner_seam": "Review/remediation only",
+        "acceptance_reference": "docs/reboot/continuation-113-126/contracts/day-126.md",
+        "evidence_reference": "evidence/continuation-113-126/day-126.json",
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ManualRecoveryAcceptanceTest.java",
+        "acceptance_commands": [
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest,Day113To126InfrastructureTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
+        ],
+        "acceptance_selector_status": "installed_amended_pending_witness",
+        "concept_course": {
+          "minutes": 25,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
+          "resources": [
+            {
+              "title": "AWS transactional outbox pattern",
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+              "reading_focus": "Keep local evidence distinct from distributed/external delivery claims."
+            }
+          ],
+          "video_seconds": 0,
+          "worked_reference_seconds": 1200,
+          "teachback_seconds": 300,
+          "fit": "no_exact_course_lesson_worked_supplement",
+          "scope_note": "Quarantine does not prove no effect; release does not repair data; receipt identity prevents duplicate local effect but proves neither external delivery nor eventual completion.",
+          "supplement_required": true,
+          "allocation_rule": "Video (if any), pauses, worked example, focused reading, and teach-back share one 25-minute cap; carry unfinished study forward and reduce implementation scope."
+        },
+        "study_seconds": {
+          "video": 0,
+          "worked_reference": 1200,
+          "teachback": 300,
+          "total": 1500
+        }
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 126",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 126",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "historical_planned_assignment": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
+      },
+      "scaffold_status": "scaffold_ready",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
+    }
+  ],
+  "dsa_workload_policy": {
+    "source": "docs/reboot/dsa/guided-transfer-policy.md",
+    "tier_minutes": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "engineering_minutes": 120,
+    "total_minutes_by_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "guided_first_sequence": {
+      "1": 121,
+      "2": 1,
+      "3": 383
+    },
+    "new_guided_cutoff_roadmap_day": 150,
+    "minutes_by_exercise_count": {
+      "1_or_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "totals": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "new_guided_cutoff_day": 150,
+    "failed_review_rule": "Failed/overdue retrieval displaces new guidance; excess due tasks carry with their original dates."
+  },
+  "daily_budgets_minutes": {
+    "total_by_dsa_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "total_min": 180,
+    "total_max": 210,
+    "engineering": 120,
+    "java_dsa_by_exercise_count": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    }
+  }
+}

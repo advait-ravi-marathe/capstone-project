@@ -1,0 +1,1155 @@
+{
+  "schema_version": "1.0",
+  "created_at_utc": "2026-10-21T00:48:21Z",
+  "scope": {
+    "canonical_anchor_count": 31,
+    "requested_roadmap_days": [
+      1,
+      154
+    ],
+    "writes": "Only this requested research artifact; no repository, code, or board changes.",
+    "status": "VERIFIED_SEED_CATALOG_WITH_EXPLICIT_GAPS_NOT_93_COMPLETE_TRANSFER_ASSIGNMENTS"
+  },
+  "methodology": {
+    "source_policy": "Official LeetCode problem statements inspected, not copied editorials. Candidate titles, requirements, and source URLs checked.",
+    "relationship_policy": "All transfer classifications and invariants are independent pedagogical analysis, not official LeetCode labels.",
+    "freshness_policy": "Candidate IDs outside the current canonical set are not automatically unseen. Check learner history before assignment.",
+    "top150_membership": "Not verified; do not infer membership or non-membership.",
+    "coverage_policy": "Do not force three candidates per anchor. Partial-component and prerequisite-extension edges must not be scored as full same-invariant retention.",
+    "timing_policy": "D+3,D+7,D+21 anchor to earliest actual FIRST ATTEMPT, including a guided actual attempt. Never use completion date or reset a historical clock. Earlier assistance unknown remains unknown.",
+    "budget_context": "Latest user policy:1–2 substantive scheduled exercises60min;3=75min;4=90min. Engineering120 unchanged. Brief recall does not inflate exercise count.",
+    "spoiler_policy": "Coach-facing invariant explanations and selection tags should not be shown in blind learner prompts.",
+    "cutoff": "No new guided anchors after roadmap Day150. Days151–154 allow review, repair and fresh similar-pattern transfer of already introduced patterns."
+  },
+  "entries": [
+    {
+      "canonical_id": 121,
+      "canonical_title": "Best Time to Buy and Sell Stock",
+      "canonical_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+      "candidates": [
+        {
+          "id": 2016,
+          "title": "Maximum Difference Between Increasing Elements",
+          "url": "https://leetcode.com/problems/maximum-difference-between-increasing-elements/",
+          "relation": "near",
+          "invariant": "For each right endpoint retain the minimum strictly earlier value and best valid ordered difference.",
+          "new_prerequisites": [
+            "Strict positive difference; return -1 instead of0 when no increasing pair.",
+            "Different input constraints; do not copy repository-specific null/empty behavior into LeetCode statement."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 1014,
+          "title": "Best Sightseeing Pair",
+          "url": "https://leetcode.com/problems/best-sightseeing-pair/",
+          "relation": "prerequisite_extension",
+          "invariant": "Keep the best score contributed by earlier indices while scanning possible later endpoints.",
+          "new_prerequisites": [
+            "Derive a transformed score using values and index distance; Medium rather than Easy.",
+            "Keep exact transformation coach-facing; do not disclose it before independent attempt."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No third distinct validated blind near-transfer established; do not manufacture one or relabel the original."
+      ],
+      "notes": [
+        "LC122 StockII allows multiple transactions and is not a clean transfer of the one ordered-pair invariant.",
+        "Existing Day1 narrative records seven assisted practice sessions and three screenshots, zero independent-solve credit, and no confirmed dated actual-attempt event. Preserve all of that."
+      ]
+    },
+    {
+      "canonical_id": 1,
+      "canonical_title": "Two Sum",
+      "canonical_url": "https://leetcode.com/problems/two-sum/",
+      "candidates": [
+        {
+          "id": 2441,
+          "title": "Largest Positive Integer That Exists With Its Negative",
+          "url": "https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/",
+          "relation": "near",
+          "invariant": "Retain earlier values and test the complement before inserting; here the complementary pair sums to zero.",
+          "new_prerequisites": [
+            "Track maximum positive magnitude rather than indices.",
+            "Return -1 if no pair exists."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 454,
+          "title": "4Sum II",
+          "url": "https://leetcode.com/problems/4sum-ii/",
+          "relation": "prerequisite_extension",
+          "invariant": "Look up the additive complement of a partial sum.",
+          "new_prerequisites": [
+            "Enumerate sums of pairs from two arrays.",
+            "Count pair-sum multiplicities rather than stop after one match."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one clean near-transfer verified; the second is a concept extension."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 383,
+      "canonical_title": "Ransom Note",
+      "canonical_url": "https://leetcode.com/problems/ransom-note/",
+      "candidates": [
+        {
+          "id": 1160,
+          "title": "Find Words That Can Be Formed by Characters",
+          "url": "https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/",
+          "relation": "near",
+          "invariant": "Every character's demand must stay within the available supply.",
+          "new_prerequisites": [
+            "Reset the supply independently for each word.",
+            "Sum lengths of accepted words."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 49,
+      "canonical_title": "Group Anagrams",
+      "canonical_url": "https://leetcode.com/problems/group-anagrams/",
+      "candidates": [
+        {
+          "id": 893,
+          "title": "Groups of Special-Equivalent Strings",
+          "url": "https://leetcode.com/problems/groups-of-special-equivalent-strings/",
+          "relation": "near_with_new_signature",
+          "invariant": "Equal canonical signatures identify exactly the equivalent strings.",
+          "new_prerequisites": [
+            "Derive separate character counts for even and odd positions.",
+            "Count equivalence classes instead of returning all members."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 2273,
+          "title": "Find Resultant Array After Removing Anagrams",
+          "url": "https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/",
+          "relation": "partial_component_transfer",
+          "invariant": "A character-multiset signature identifies anagram equivalence.",
+          "new_prerequisites": [
+            "Retain one representative of each adjacent anagram run instead of grouping globally."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Does not test global hash-map grouping."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No three full grouping transfers verified."
+      ],
+      "notes": [
+        "249 Group Shifted Strings was Premium-blocked in the public read and is not included as a verified candidate."
+      ]
+    },
+    {
+      "canonical_id": 238,
+      "canonical_title": "Product of Array Except Self",
+      "canonical_url": "https://leetcode.com/problems/product-of-array-except-self/",
+      "candidates": [
+        {
+          "id": 2906,
+          "title": "Construct Product Matrix",
+          "url": "https://leetcode.com/problems/construct-product-matrix/",
+          "relation": "near",
+          "invariant": "Exclusive prefix and suffix products combine to exclude the current element.",
+          "new_prerequisites": [
+            "Traverse a matrix in a fixed linear order.",
+            "Apply modulo 12345 safely using wide arithmetic or reduced factors."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Do not use modular division; the modulus is composite and some factors are non-invertible."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 724,
+          "title": "Find Pivot Index",
+          "url": "https://leetcode.com/problems/find-pivot-index/",
+          "relation": "partial_component_transfer",
+          "invariant": "Maintain aggregates strictly to the left and right of the current index.",
+          "new_prerequisites": [
+            "Use sums instead of products and compare the two sides.",
+            "Return the first matching index."
+          ],
+          "duplicate_family": "724=1991",
+          "access_caveats": [
+            "A total-minus-prefix solution does not test the original two-pass product construction."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only 2906 verifies the full exclusive-product pattern."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 125,
+      "canonical_title": "Valid Palindrome",
+      "canonical_url": "https://leetcode.com/problems/valid-palindrome/",
+      "candidates": [
+        {
+          "id": 2108,
+          "title": "Find First Palindromic String in the Array",
+          "url": "https://leetcode.com/problems/find-first-palindromic-string-in-the-array/",
+          "relation": "near",
+          "invariant": "Compared characters at opposite ends agree while the unchecked interval shrinks.",
+          "new_prerequisites": [
+            "Scan multiple lowercase words and return the first palindrome."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Lowercase words remove LC125's filtering and case-normalization requirements."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 680,
+          "title": "Valid Palindrome II",
+          "url": "https://leetcode.com/problems/valid-palindrome-ii/",
+          "relation": "prerequisite_extension",
+          "invariant": "After consuming the optional deletion, ordinary mirrored-end palindrome checking applies.",
+          "new_prerequisites": [
+            "At the first mismatch, consider deleting either endpoint.",
+            "Track the one-deletion budget."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Second candidate adds a branching decision rather than testing identical validity logic."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 167,
+      "canonical_title": "Two Sum II - Input Array Is Sorted",
+      "canonical_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+      "candidates": [
+        {
+          "id": 633,
+          "title": "Sum of Square Numbers",
+          "url": "https://leetcode.com/problems/sum-of-square-numbers/",
+          "relation": "near",
+          "invariant": "Ordered sums permit discarding one endpoint based on whether the sum is below or above target.",
+          "new_prerequisites": [
+            "Use implicit sorted nonnegative square values up to sqrt(c).",
+            "Allow equal endpoints because the same square value may be used twice.",
+            "Use wide arithmetic."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 2824,
+          "title": "Count Pairs Whose Sum is Less than Target",
+          "url": "https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/",
+          "relation": "prerequisite_extension",
+          "invariant": "A sorted two-pointer frontier moves monotonically as sums cross the target.",
+          "new_prerequisites": [
+            "Sort the input.",
+            "Count entire blocks of valid pairs rather than return one pair."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only the first is a clean two-pointer decision transfer."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 11,
+      "canonical_title": "Container With Most Water",
+      "canonical_url": "https://leetcode.com/problems/container-with-most-water/",
+      "candidates": [
+        {
+          "id": 42,
+          "title": "Trapping Rain Water",
+          "url": "https://leetcode.com/problems/trapping-rain-water/",
+          "relation": "prerequisite_extension_only",
+          "invariant": "Both can use boundary reasoning, but LC11's dominated-shorter-end proof does not establish the per-position trapped-water invariant.",
+          "new_prerequisites": [
+            "Maintain boundary maxima.",
+            "Finalize and accumulate water per position."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Not a verified same-invariant transfer; shared water vocabulary and two pointers are insufficient."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No clean same-invariant candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 3,
+      "canonical_title": "Longest Substring Without Repeating Characters",
+      "canonical_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+      "candidates": [
+        {
+          "id": 1695,
+          "title": "Maximum Erasure Value",
+          "url": "https://leetcode.com/problems/maximum-erasure-value/",
+          "relation": "near",
+          "invariant": "Advance the left boundary until the expanding window contains no duplicate value.",
+          "new_prerequisites": [
+            "Maintain the window's sum instead of its length.",
+            "Use positivity to justify that the largest valid window ending at each right endpoint maximizes its score."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 209,
+      "canonical_title": "Minimum Size Subarray Sum",
+      "canonical_url": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+      "candidates": [
+        {
+          "id": 1004,
+          "title": "Max Consecutive Ones III",
+          "url": "https://leetcode.com/problems/max-consecutive-ones-iii/",
+          "relation": "near_with_objective_reversal",
+          "invariant": "A nonnegative window statistic changes monotonically as either boundary moves.",
+          "new_prerequisites": [
+            "Count zeros rather than sum values.",
+            "Shrink when invalid and maximize valid length, rather than shrink while a minimum-sum condition remains satisfied."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Tests monotone sliding-window reasoning but reverses the objective and shrink condition."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 713,
+          "title": "Subarray Product Less Than K",
+          "url": "https://leetcode.com/problems/subarray-product-less-than-k/",
+          "relation": "prerequisite_extension",
+          "invariant": "Positive integer products support a monotone valid left boundary.",
+          "new_prerequisites": [
+            "Remove left factors by division.",
+            "Handle k&lt;=1.",
+            "Count all valid suffixes ending at each position."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No identical objective/invariant transfer verified; both variants require explicit differences."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 20,
+      "canonical_title": "Valid Parentheses",
+      "canonical_url": "https://leetcode.com/problems/valid-parentheses/",
+      "candidates": [
+        {
+          "id": 921,
+          "title": "Minimum Add to Make Parentheses Valid",
+          "url": "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/",
+          "relation": "partial_reduced_matching_transfer",
+          "invariant": "Maintain unmatched opening parentheses and account for closing parentheses lacking a matching opening.",
+          "new_prerequisites": [
+            "Count repairs instead of returning validity."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "One bracket type permits a counter and does not independently test multi-type LIFO matching."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 1249,
+          "title": "Minimum Remove to Make Valid Parentheses",
+          "url": "https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/",
+          "relation": "prerequisite_extension",
+          "invariant": "Unmatched opening positions and unmatched closings identify invalid parentheses.",
+          "new_prerequisites": [
+            "Mark necessary removals.",
+            "Preserve non-parenthesis letters and reconstruct output.",
+            "Justify minimality."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No verified full multi-type LIFO-validation near-transfer."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 155,
+      "canonical_title": "Min Stack",
+      "canonical_url": "https://leetcode.com/problems/min-stack/",
+      "candidates": [],
+      "gaps": [
+        "No verified direct candidate preserving the restorable prefix-minimum invariant."
+      ],
+      "notes": [
+        "716 Max Stack public official statement was Premium-blocked; popMax also requires deletion of a possibly non-top maximum, so it must not be relabeled as min renamed max.",
+        "225 Implement Stack using Queues does not test minimum metadata and is rejected as a direct transfer."
+      ]
+    },
+    {
+      "canonical_id": 704,
+      "canonical_title": "Binary Search",
+      "canonical_url": "https://leetcode.com/problems/binary-search/",
+      "candidates": [
+        {
+          "id": 374,
+          "title": "Guess Number Higher or Lower",
+          "url": "https://leetcode.com/problems/guess-number-higher-or-lower/",
+          "relation": "direct",
+          "invariant": "The unknown target remains inside the current ordered interval; each comparison removes an impossible half.",
+          "new_prerequisites": [
+            "Interpret the provided guess API's signs.",
+            "Use an overflow-safe midpoint."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 35,
+      "canonical_title": "Search Insert Position",
+      "canonical_url": "https://leetcode.com/problems/search-insert-position/",
+      "candidates": [
+        {
+          "id": 744,
+          "title": "Find Smallest Letter Greater Than Target",
+          "url": "https://leetcode.com/problems/find-smallest-letter-greater-than-target/",
+          "relation": "near",
+          "invariant": "Binary search preserves the first-true boundary.",
+          "new_prerequisites": [
+            "Change the boundary predicate from >= target to > target.",
+            "Handle duplicate letters and wraparound."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 34,
+          "title": "Find First and Last Position of Element in Sorted Array",
+          "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "relation": "near",
+          "invariant": "Use first-true boundary search for >= target and > target.",
+          "new_prerequisites": [
+            "Run two boundary searches.",
+            "Handle missing targets, empty arrays, and inclusive range endpoints."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Two candidates verified, not three."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 153,
+      "canonical_title": "Find Minimum in Rotated Sorted Array",
+      "canonical_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+      "candidates": [
+        {
+          "id": 154,
+          "title": "Find Minimum in Rotated Sorted Array II",
+          "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/",
+          "relation": "prerequisite_extension",
+          "invariant": "The current interval continues to contain a minimum.",
+          "new_prerequisites": [
+            "Handle inconclusive midpoint/end comparisons caused by duplicates.",
+            "Safely discard one equal endpoint.",
+            "Explain degradation to worst-case O(n)."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No candidate preserving the original guaranteed logarithmic decision rule verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 141,
+      "canonical_title": "Linked List Cycle",
+      "canonical_url": "https://leetcode.com/problems/linked-list-cycle/",
+      "candidates": [
+        {
+          "id": 202,
+          "title": "Happy Number",
+          "url": "https://leetcode.com/problems/happy-number/",
+          "relation": "near",
+          "invariant": "Slow and fast states follow the same deterministic successor function; meeting detects a cycle.",
+          "new_prerequisites": [
+            "Compute the digit-square successor.",
+            "Distinguish reaching successful fixed point 1."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Applies to Floyd cycle detection, not merely a visited-set implementation."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 206,
+      "canonical_title": "Reverse Linked List",
+      "canonical_url": "https://leetcode.com/problems/reverse-linked-list/",
+      "candidates": [
+        {
+          "id": 92,
+          "title": "Reverse Linked List II",
+          "url": "https://leetcode.com/problems/reverse-linked-list-ii/",
+          "relation": "near",
+          "invariant": "A reversed processed prefix and untouched suffix remain correctly linked during reversal.",
+          "new_prerequisites": [
+            "Find segment boundaries.",
+            "Keep the original segment head as its eventual tail.",
+            "Reconnect both ends of the reversed segment."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 21,
+      "canonical_title": "Merge Two Sorted Lists",
+      "canonical_url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+      "candidates": [
+        {
+          "id": 88,
+          "title": "Merge Sorted Array",
+          "url": "https://leetcode.com/problems/merge-sorted-array/",
+          "relation": "near",
+          "invariant": "Select the next extreme from two sorted frontiers to maintain a correct merged region.",
+          "new_prerequisites": [
+            "Write backward into spare array capacity to protect unread values."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Transfers merge-frontier reasoning, not linked-node splicing."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 143,
+      "canonical_title": "Reorder List",
+      "canonical_url": "https://leetcode.com/problems/reorder-list/",
+      "candidates": [
+        {
+          "id": 2130,
+          "title": "Maximum Twin Sum of a Linked List",
+          "url": "https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/",
+          "relation": "partial_composite_transfer",
+          "invariant": "Midpoint, reverse-second-half, and lockstep traversal align original mirror indices i and n-1-i.",
+          "new_prerequisites": [
+            "Aggregate pair sums rather than weave alternating nodes.",
+            "Even-length inputs simplify splitting."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Does not test the final alternating node-weaving invariant.",
+            "To assess this pipeline, require an O(1)-auxiliary-space solution; storing list values bypasses reversal.",
+            "The memory target is a coaching constraint, not claimed to be an explicit official requirement."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No full composite including final weave transfer verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 19,
+      "canonical_title": "Remove Nth Node From End of List",
+      "canonical_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+      "candidates": [
+        {
+          "id": 1721,
+          "title": "Swapping Nodes in a Linked List",
+          "url": "https://leetcode.com/problems/swapping-nodes-in-a-linked-list/",
+          "relation": "near",
+          "invariant": "A fixed gap between pointers identifies the kth node from the end.",
+          "new_prerequisites": [
+            "Also retain the kth node from the start.",
+            "Swap values."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Official task asks for value swapping, not node rewiring; does not test deletion."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only the positional fixed-gap component transfers."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 138,
+      "canonical_title": "Copy List with Random Pointer",
+      "canonical_url": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+      "candidates": [
+        {
+          "id": 133,
+          "title": "Clone Graph",
+          "url": "https://leetcode.com/problems/clone-graph/",
+          "relation": "prerequisite_extension",
+          "invariant": "Each original object maps to exactly one clone and cloned edges preserve original relationships.",
+          "new_prerequisites": [
+            "Graph DFS or BFS.",
+            "Arbitrary neighbor lists and cycle-safe discovery."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Transfers the identity-map solution to LC138, not its interleaving trick."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No no-new-concept near-transfer verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 2,
+      "canonical_title": "Add Two Numbers",
+      "canonical_url": "https://leetcode.com/problems/add-two-numbers/",
+      "candidates": [
+        {
+          "id": 67,
+          "title": "Add Binary",
+          "url": "https://leetcode.com/problems/add-binary/",
+          "relation": "near",
+          "invariant": "Emitted low-order digits plus carry represent the processed partial sum.",
+          "new_prerequisites": [
+            "Use base 2.",
+            "Traverse strings from right to left and construct output in reverse order."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 445,
+          "title": "Add Two Numbers II",
+          "url": "https://leetcode.com/problems/add-two-numbers-ii/",
+          "relation": "prerequisite_extension",
+          "invariant": "Process low-order digits with carry to preserve the partial-sum invariant.",
+          "new_prerequisites": [
+            "Access forward-order digits using stacks or reversal."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "The no-input-reversal follow-up needs stacks or another separately established prerequisite."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one no-new-data-structure near-transfer verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 128,
+      "canonical_title": "Longest Consecutive Sequence",
+      "canonical_url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+      "candidates": [
+        {
+          "id": 2501,
+          "title": "Longest Square Streak in an Array",
+          "url": "https://leetcode.com/problems/longest-square-streak-in-an-array/",
+          "relation": "prerequisite_extension",
+          "invariant": "In a hash set, start a chain only when its predecessor is absent; then follow successors.",
+          "new_prerequisites": [
+            "Change successor x+1 to x*x.",
+            "Identify predecessors by exact square roots or build predecessor markers by squaring existing values.",
+            "Guard arithmetic overflow.",
+            "Return -1 for streak lengths below two.",
+            "Use nums[i]>=2 to prove strictly increasing disjoint chains."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No direct no-new-concept candidate verified."
+      ],
+      "notes": [
+        "163 Missing Ranges scans sorted gaps, not the unsorted hash-set start-without-predecessor invariant."
+      ]
+    },
+    {
+      "canonical_id": 15,
+      "canonical_title": "3Sum",
+      "canonical_url": "https://leetcode.com/problems/3sum/",
+      "candidates": [
+        {
+          "id": 16,
+          "title": "3Sum Closest",
+          "url": "https://leetcode.com/problems/3sum-closest/",
+          "relation": "near",
+          "invariant": "Sort, fix one element, and move two pointers monotonically according to the sum's relation to target.",
+          "new_prerequisites": [
+            "Track minimum absolute error.",
+            "Return a sum instead of enumerating unique triples."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Does not independently test full duplicate-output suppression."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 18,
+          "title": "4Sum",
+          "url": "https://leetcode.com/problems/4sum/",
+          "relation": "near",
+          "invariant": "After fixing outer elements, solve the remaining ordered pair with the same two-pointer frontier.",
+          "new_prerequisites": [
+            "Fix two elements rather than one.",
+            "Suppress duplicates at both fixed positions.",
+            "Use wide arithmetic for four values and target."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Recursive k-sum is optional, not a prerequisite."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Two candidates verified, not three."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 150,
+      "canonical_title": "Evaluate Reverse Polish Notation",
+      "canonical_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+      "candidates": [
+        {
+          "id": 1106,
+          "title": "Parsing A Boolean Expression",
+          "url": "https://leetcode.com/problems/parsing-a-boolean-expression/",
+          "relation": "prerequisite_extension_only",
+          "invariant": "A completed subexpression reduces to one value, but the parsing state differs from postfix evaluation.",
+          "new_prerequisites": [
+            "Prefix operators.",
+            "Delimiter scopes.",
+            "Variable operand counts.",
+            "Boolean operations."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Not a direct postfix operand-reduction transfer."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No verified clean direct RPN transfer."
+      ],
+      "notes": [
+        "682 Baseball Game '+' reads prior scores without consuming them; its score-history stack is not a pending-expression-values stack.",
+        "1006 Clumsy Factorial adds infix precedence and generated operator order; extension only, not selected as a direct substitute.",
+        "227 Basic Calculator II was proposed but not statement-verified in this bounded pass, so it is not an accepted candidate."
+      ]
+    },
+    {
+      "canonical_id": 104,
+      "canonical_title": "Maximum Depth of Binary Tree",
+      "canonical_url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+      "candidates": [
+        {
+          "id": 559,
+          "title": "Maximum Depth of N-ary Tree",
+          "url": "https://leetcode.com/problems/maximum-depth-of-n-ary-tree/",
+          "relation": "direct",
+          "invariant": "Depth is one plus maximum child depth; an empty tree has depth zero.",
+          "new_prerequisites": [
+            "Loop over a children collection instead of two child fields."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one candidate verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 100,
+      "canonical_title": "Same Tree",
+      "canonical_url": "https://leetcode.com/problems/same-tree/",
+      "candidates": [
+        {
+          "id": 101,
+          "title": "Symmetric Tree",
+          "url": "https://leetcode.com/problems/symmetric-tree/",
+          "relation": "near",
+          "invariant": "Paired subtrees must agree in null structure and values before recursively comparing children.",
+          "new_prerequisites": [
+            "Cross-pair left and right children instead of same-side children."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 572,
+          "title": "Subtree of Another Tree",
+          "url": "https://leetcode.com/problems/subtree-of-another-tree/",
+          "relation": "prerequisite_extension",
+          "invariant": "Use complete paired-subtree equality at a candidate root.",
+          "new_prerequisites": [
+            "Outer traversal over possible roots.",
+            "Repeated comparisons and their time complexity."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Only one clean paired-recursion near-transfer verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 102,
+      "canonical_title": "Binary Tree Level Order Traversal",
+      "canonical_url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+      "candidates": [
+        {
+          "id": 107,
+          "title": "Binary Tree Level Order Traversal II",
+          "url": "https://leetcode.com/problems/binary-tree-level-order-traversal-ii/",
+          "relation": "direct",
+          "invariant": "Queue-layer batching processes exactly one tree depth at a time.",
+          "new_prerequisites": [
+            "Reverse the completed sequence of levels."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        },
+        {
+          "id": 429,
+          "title": "N-ary Tree Level Order Traversal",
+          "url": "https://leetcode.com/problems/n-ary-tree-level-order-traversal/",
+          "relation": "direct",
+          "invariant": "Queue-layer batching processes exactly one tree depth at a time.",
+          "new_prerequisites": [
+            "Iterate a children collection."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "Two candidates verified, not three."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 98,
+      "canonical_title": "Validate Binary Search Tree",
+      "canonical_url": "https://leetcode.com/problems/validate-binary-search-tree/",
+      "candidates": [
+        {
+          "id": 99,
+          "title": "Recover Binary Search Tree",
+          "url": "https://leetcode.com/problems/recover-binary-search-tree/",
+          "relation": "conditional_prerequisite_extension",
+          "invariant": "If LC98 was taught by inorder traversal, strict inorder order exposes misplaced values.",
+          "new_prerequisites": [
+            "Identify two swapped values from one or two order violations.",
+            "Repair the swapped values."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [
+            "Does not transfer inherited lower/upper-bound validation.",
+            "Morris traversal is not required merely because a constant-space follow-up exists."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No verified direct candidate for inherited lower/upper-bound method."
+      ],
+      "notes": [
+        "700 Search in a Binary Search Tree is not the same invariant."
+      ]
+    },
+    {
+      "canonical_id": 112,
+      "canonical_title": "Path Sum",
+      "canonical_url": "https://leetcode.com/problems/path-sum/",
+      "candidates": [
+        {
+          "id": 113,
+          "title": "Path Sum II",
+          "url": "https://leetcode.com/problems/path-sum-ii/",
+          "relation": "prerequisite_extension",
+          "invariant": "The root-to-current accumulated or remaining sum is correct, and acceptance is at leaves only.",
+          "new_prerequisites": [
+            "Maintain path buffers with backtracking or copied state.",
+            "Enumerate all valid paths instead of short-circuiting after one."
+          ],
+          "duplicate_family": null,
+          "access_caveats": [],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No no-new-concept near-transfer verified."
+      ],
+      "notes": []
+    },
+    {
+      "canonical_id": 230,
+      "canonical_title": "Kth Smallest Element in a BST",
+      "canonical_url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+      "candidates": [
+        {
+          "id": 530,
+          "title": "Minimum Absolute Difference in BST",
+          "url": "https://leetcode.com/problems/minimum-absolute-difference-in-bst/",
+          "relation": "partial_component_extension",
+          "invariant": "Inorder traversal emits BST values in sorted order.",
+          "new_prerequisites": [
+            "Prove that a minimum difference occurs between adjacent sorted values.",
+            "Retain previous value and aggregate the minimum over the full traversal."
+          ],
+          "duplicate_family": "530=783",
+          "access_caveats": [
+            "Does not test kth-rank counting.",
+            "Official statement says this is the same problem as 783."
+          ],
+          "source_verification_status": "official_problem_statement_verified",
+          "source_verification_date": "2026-10-21",
+          "canonical_reuse": false,
+          "unseen_status": "unknown_requires_learner_history_check"
+        }
+      ],
+      "gaps": [
+        "No direct kth-order-statistic transfer verified."
+      ],
+      "notes": []
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # Small system design inside the daily engineering block
 
 Use system design as the short reasoning step that shapes the feature being
-built that day. It is part of the existing 180-minute plan, not a separate
-assignment: 85 engineering minutes include design, implementation and testing;
+built that day. It is part of the existing 180/195/210-minute daily plan,
+depending on the DSA exercise tier, not a separate assignment: 85 engineering minutes include design, implementation and testing;
 25 concept/course minutes cover the day's relevant design topic; 10 evidence
 minutes capture the decision and result. Choose only the artifact the feature
 needs. Do not draw every diagram type every day.

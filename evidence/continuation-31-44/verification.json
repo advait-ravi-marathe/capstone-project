@@ -1,0 +1,125 @@
+{
+  "branch": "learning/coverstory-days-31-44",
+  "base_sha": "65dc57f88fc844291cab3b80484a01c206e42916",
+  "scope": "Days 31–44 synthetic HomeSecure lifecycle; main and board untouched",
+  "maven_default_suite": {
+    "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 test",
+    "exit_code": 0,
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "result": "all instructor/default tests pass; includes Day44 Chromium→Spring→PostgreSQL marker readback after Spring server restart"
+  },
+  "lifecycle_acceptance": {
+    "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest test",
+    "exit_code": 1,
+    "tests": 14,
+    "failures": 0,
+    "errors": 14,
+    "result": "all errors reached matching explicit Day 31–44 TODOs; expected red; no learner implementation supplied"
+  },
+  "ui_build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "result": "TypeScript and Vite production build passed"
+  },
+  "day43_ui_acceptance": {
+    "command": "npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx",
+    "exit_code": 1,
+    "tests": 4,
+    "failures": 4,
+    "result": "expected learner TODO red: snapshot and accessible state output not yet implemented"
+  },
+  "fixture_install": {
+    "command": "npm ci --cache /tmp/capstone-npm-cache",
+    "exit_code": 0,
+    "result": "107 packages installed; no package manifest/lock changes"
+  },
+  "manifest_validation": {
+    "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day44BrowserTransportInfrastructureTest,ContinuationManifestInfrastructureTest test",
+    "exit_code": 0,
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "result": "Scrum/contract/evidence/test/guide paths resolve; 25-minute focused concept allocations and URLs are valid; PostgreSQL14 constraints and real browser restart smoke pass"
+  },
+  "blockers": [
+    "Learner-owned Day31–44 behavior remains incomplete; learner acceptance intentionally remains red at matching TODOs.",
+    "The full browser lifecycle run is exercised through real Chromium and Spring routes but returns expected HTTP 500 at unimplemented learner seams; the separate infrastructure transport smoke passes restart persistence.",
+    "GitHub Actions exact-commit run is pending publication of this branch-only workflow change.",
+    "No Maven SCA report exists; only the previously reported frontend npm audit covered frontend packages."
+  ],
+  "learner_completion": false,
+  "dsa_review_queue": {
+    "tests_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+    "tests_exit_code": 0,
+    "tests_passed": 4,
+    "representative_cases": [
+      "actual first attempt date overrides planned ticket date for D+3/D+7/D+21",
+      "Day 29 LC 153 carries into Day 31 based on actual logged attempt; unrecorded attempts remain awaiting with no due dates",
+      "failed D+3 recall displaces new work inside the same 60-minute block",
+      "Days 1–30 carryovers LC 238/155/35 remain undated without real attempt records"
+    ],
+    "current_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
+    "current_queue_result": "22 anchors from both batches; empty actual-attempt log; all awaiting; no completion claimed"
+  },
+  "independent_harness_report": {
+    "context": "Earlier external validator report for predecessor cf73ccdf47208642d5d2666c64d7af6cbcc71307 concerned Day28/14/12 harness checks only; it is unrelated to the new Day44 harness.",
+    "interpretation": "Do not treat it as evidence for this branch. Day44 now has its own reproducible transport smoke and a temporary witness result recorded separately."
+  },
+  "github_actions": {
+    "workflow": ".github/workflows/coverstory-starter.yml",
+    "push_branch_filter": [
+      "main",
+      "learning/coverstory-day-02-30",
+      "learning/coverstory-beyond-30",
+      "learning/coverstory-days-31-44"
+    ],
+    "pull_request_base_filter": [
+      "main"
+    ],
+    "result": "branch trigger is included in the branch-local workflow change; exact-commit Actions run has not yet been observed"
+  },
+  "learner_acceptance": {
+    "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest,Day44BrowserTransportInfrastructureTest test",
+    "exit_code": 1,
+    "tests": 17,
+    "failures": 9,
+    "errors": 7,
+    "result": "expected_todo_red; all learner-owned methods remain TODO; tests now use actual ownership/selection/staleness/eligibility fixtures, owner-seeded read cases, policy+receipt+event count and rollback checks, real concurrent expected-version writers, cancellation replay conflicts, and fixed-clock before/on/after boundaries",
+    "day44_browser_trace": "Chromium reached five Spring endpoints (issue, replay, endorsement, cancellation, history); all returned 500 at their explicit Day31/32/39/40/44 TODO seams. A second browser after Spring restart reached history and received 500 at Day44 readback TODO. This is expected red, not proof of successful lifecycle behavior."
+  },
+  "day44_temporary_witness": {
+    "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest test",
+    "exit_code": 0,
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "result": "passed once with a temporary test-only service witness, then all witness source was restored. Witness wrote issue+receipt+event, endorsement, scheduled/due cancellation, and verified cancelled status/version/event count after restarting Spring against the same disposable PostgreSQL. This only validates the browser/API/database test harness; it is not learner code or production behavior."
+  },
+  "frontend": {
+    "build_command": "npm --prefix frontend run build",
+    "build_exit_code": 0,
+    "instructor_test_command": "npm --prefix frontend test",
+    "instructor_test_exit_code": 0,
+    "instructor_tests": 1,
+    "instructor_failures": 0
+  },
+  "actions_workflow": {
+    "path": ".github/workflows/coverstory-starter.yml",
+    "branch_only_change": "workflow is changed on learning/coverstory-days-31-44 only; push filter now includes this branch; main is untouched",
+    "workflow_provisions": "npm ci, Playwright Chromium install, frontend build before Maven so Day44 browser infrastructure test is runnable",
+    "current_ci": "exact commit run pending publication"
+  },
+  "reviewer_repairs": [
+    "Day 31 facts fixture includes authenticated principal separately from client command plus quote existence, ownership, selected state, freshness, eligibility, journey and quote-version matches.",
+    "Day 35 success and idempotency conflict/rollback are separate tests; check policy, receipt and event table counts.",
+    "Day 36 injected PolicyReadStore has a seeded positive owner read plus foreign and absent concealment cases.",
+    "Day 37 sends stale expected versions 0 and 2 against current 1.",
+    "Day 39 synchronizes two real PostgreSQL writers at expected version 1 and asserts one winner, one conflict, version 2, and no partial event.",
+    "Day 40 seeded PolicyCancellationReceiptStore distinguishes same-intent replay from changed-date conflict and past date.",
+    "Day 41 injects fixed clocks before, on and after due date and asserts retry idempotence.",
+    "Day 44 includes a reproducible real Chromium-to-Spring-to-PostgreSQL smoke with server restart persistence and a separate full lifecycle browser/API acceptance route that reaches explicit learner TODOs.",
+    "Broken manifest acceptance references now resolve; all 14 contracts have focused engineering references and 10/10/5 allocation."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "verifiedAt": "2026-10-21T06:31:46Z",
+  "scope": "Read-only public primary-document guidance for the bounded StreamForge content-profile exercise.",
+  "decision": "Use focused free primary-document supplements. No new paid course, cloud service, framework, or optional lecture is assigned.",
+  "constraints": {
+    "runtime": "Python 3.12 standard library only",
+    "study_minutes": 35,
+    "engineering_minutes": 165,
+    "shared_interview_minutes": 45,
+    "no_new_guided_dsa_after_day": 150,
+    "claim_limit": "Synthetic behavior only; no user-value, causal, production, certification, or exam-readiness claim."
+  },
+  "catalogAudit": {
+    "courseId": "2196488",
+    "courseTitle": "Ultimate AWS Certified Solutions Architect Associate 2026",
+    "sectionId": "7757212",
+    "sectionTitle": "Machine Learning",
+    "finding": "The section contains service overview material but no title-specific genre feature/profile or train-only scoring lesson. Metadata does not prove spoken content, ownership, or entitlement.",
+    "excludedPriorLessons": [
+      {"itemId":"32411808","itemTitle":"SageMaker AI Overview","durationInSeconds":209,"reason":"Already covered in prior-phase guidance."},
+      {"itemId":"32411818","itemTitle":"Personalize Overview","durationInSeconds":96,"reason":"Already covered in prior-phase guidance."}
+    ],
+    "assignedOptionalLessons": [],
+    "accessCaveat": "No lecture deep link is invented; catalog URLs do not verify access."
+  },
+  "primaryReferences": [
+    {"key":"FEATURE_VECTOR","provider":"Google for Developers","title":"Categorical data: Vocabulary and one-hot encoding","url":"https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding","sections":["Dimension/vocabulary introduction","Index numbers","One-hot encoding"],"minutes":12,"workedExample":"Freeze five genre labels and encode one-hot; category indices are not ordinal scores.","caution":"No hashing, embeddings, holdout vocabulary discovery, or expanded taxonomy."},
+    {"key":"CONTENT_PROFILE","provider":"Google for Developers","title":"Content-based filtering","url":"https://developers.google.com/machine-learning/recommendation/content-based/basics","sections":["Feature-matrix/user-profile example","Dot product similarity"],"minutes":15,"workedExample":"Distinct positive media with counts [2,1,0,0,0] produce exact profile [2/3,1/3,0,0,0]; candidate dot scores are 2/3 and 1/3.","caution":"Distinct-item counting and L1 normalization are local choices; scores are not calibrated preference probabilities."},
+    {"key":"SIMILARITY","provider":"Google for Developers","title":"Candidate generation overview","url":"https://developers.google.com/machine-learning/recommendation/overview/candidate-generation","sections":["Similarity measures","Cosine","Dot product"],"minutes":10,"workedExample":"Explain that for unit one-hot items and a fixed nonzero profile, cosine and dot may preserve within-user order; implementation uses dot only.","caution":"No second scoring model; cosine is undefined for zero profiles."},
+    {"key":"TRAIN_ONLY","provider":"scikit-learn official documentation","title":"Common pitfalls and recommended practices","url":"https://scikit-learn.org/stable/common_pitfalls.html","sections":["Inconsistent preprocessing","Data leakage","How to avoid data leakage"],"minutes":12,"workedExample":"Mutate holdout and verify train/catalog-only state and fixed-viewer predictions do not change; new holdout-only viewers may change query cohort.","caution":"Read conceptually; install no scikit-learn. Reused holdout is not untouched final test."},
+    {"key":"HOLDOUT_REUSE","provider":"Google for Developers","title":"Datasets: Dividing the original dataset","url":"https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets","sections":["Training, validation, and test sets","Repeated evaluation","Validation/test reuse"],"minutes":10,"workedExample":"Freeze one heuristic before comparison and label the reused synthetic holdout honestly.","caution":"No silent resplit or claim of unbiased final generalization."},
+    {"key":"LIMITATIONS","provider":"Google for Developers","title":"Content-based filtering advantages & disadvantages","url":"https://developers.google.com/machine-learning/recommendation/content-based/summary","sections":["Advantages","Disadvantages"],"minutes":6,"workedExample":"Same-genre titles tie; unseen users have zero profile; state the unchanged popularity fallback explicitly.","caution":"Do not describe a genre-only heuristic as rich personalization."}
+  ],
+  "studyRule": "35 minutes total including reading, worked exercise, and five-minute explain-back. No course purchase, service use, or new lesson assignment.",
+  "sourceCaveat": "References explain general concepts. The five-coordinate exact-Fraction profile, duplicate policy, tie handling, and fallback are local exercise choices, not source-prescribed semantics."
+}

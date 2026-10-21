@@ -1,0 +1,660 @@
+{
+  "title": "Draft Days 169–182 owner export; not published to board",
+  "batch": "StreamForge frozen offline baseline and temporal evaluation",
+  "story_count": 14,
+  "publication_status": "draft_not_board_published",
+  "board_writes": false,
+  "sprint_boundaries": [
+    {
+      "name": "Sprint 13",
+      "dates": "2027-04-06..2027-04-19",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "cards": [
+    {
+      "day_number": 169,
+      "date": "2027-04-06",
+      "title": "Define an observed signal without inventing preferences",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 180,
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 120,
+        "allocation": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "actual_attempt_review_transfer_repair_only",
+        "budget_minutes": null,
+        "maximum_substantive_coding_exercises": null,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 169",
+        "forecast_is_not_attempt": true,
+        "budget_minutes_by_substantive_exercise_count": {
+          "1_or_2": 60,
+          "3": 75,
+          "4": 90
+        },
+        "total_daily_minutes_by_dsa_tier": [
+          180,
+          195,
+          210
+        ],
+        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+      },
+      "learner_seam": "positive_pairs",
+      "prerequisite_days": [
+        155,
+        157,
+        158,
+        159,
+        160,
+        162,
+        168
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 170,
+      "date": "2027-04-07",
+      "title": "Freeze the cutoff-time candidate set",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 180,
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 120,
+        "allocation": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "actual_attempt_review_transfer_repair_only",
+        "budget_minutes": null,
+        "maximum_substantive_coding_exercises": null,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 170",
+        "forecast_is_not_attempt": true,
+        "budget_minutes_by_substantive_exercise_count": {
+          "1_or_2": 60,
+          "3": 75,
+          "4": 90
+        },
+        "total_daily_minutes_by_dsa_tier": [
+          180,
+          195,
+          210
+        ],
+        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+      },
+      "learner_seam": "cutoff_candidates",
+      "prerequisite_days": [
+        157,
+        158,
+        162,
+        168
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 171,
+      "date": "2027-04-08",
+      "title": "Count distinct positive training viewers",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 180,
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 120,
+        "allocation": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "actual_attempt_review_transfer_repair_only",
+        "budget_minutes": null,
+        "maximum_substantive_coding_exercises": null,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 171",
+        "forecast_is_not_attempt": true,
+        "budget_minutes_by_substantive_exercise_count": {
+          "1_or_2": 60,
+          "3": 75,
+          "4": 90
+        },
+        "total_daily_minutes_by_dsa_tier": [
+          180,
+          195,
+          210
+        ],
+        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+      },
+      "learner_seam": "training_popularity",
+      "prerequisite_days": [
+        169,
+        170
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 172,
+      "date": "2027-04-09",
+      "title": "Produce one deterministic global top-three list",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 172",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "rank_popularity",
+      "prerequisite_days": [
+        170,
+        171
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 173,
+      "date": "2027-04-10",
+      "title": "Build the evaluation cohort without deleting difficult targets",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 173",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "holdout_targets",
+      "prerequisite_days": [
+        169
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 174,
+      "date": "2027-04-11",
+      "title": "Compute one viewer’s fixed-slot precision and recall",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 174",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "score_viewer",
+      "prerequisite_days": [
+        172,
+        173
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 175,
+      "date": "2027-04-12",
+      "title": "Recover the signal and metric boundary",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 175",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "prior_only_169_174",
+      "prerequisite_days": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174
+      ],
+      "recovery_day": true,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 176,
+      "date": "2027-04-13",
+      "title": "Aggregate macro metrics with explicit coverage counts",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 176",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "evaluate_baseline",
+      "prerequisite_days": [
+        169,
+        170,
+        172,
+        173,
+        174
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 177,
+      "date": "2027-04-14",
+      "title": "Compare two predeclared baselines on the same cohort",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 177",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "compare_baselines",
+      "prerequisite_days": [
+        170,
+        172,
+        173,
+        174,
+        176
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 178,
+      "date": "2027-04-15",
+      "title": "Separate prediction lineage from evaluation evidence",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 178",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "assemble_evaluation_report",
+      "prerequisite_days": [
+        170,
+        171,
+        172,
+        176,
+        177
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 179,
+      "date": "2027-04-16",
+      "title": "Compose the existing preparation and offline evaluation CLI",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 179",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "evaluate_fixture",
+      "prerequisite_days": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        176,
+        177,
+        178
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 180,
+      "date": "2027-04-17",
+      "title": "Make leakage and denominator defects fail independent tests",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 180",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "supplied_independent_negative_assertions",
+      "prerequisite_days": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        176,
+        177,
+        178,
+        179
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 181,
+      "date": "2027-04-18",
+      "title": "Reproduce the bounded experiment in fresh processes",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 181",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "supplied_fresh_process_evidence_assertions",
+      "prerequisite_days": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "recovery_day": false,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    },
+    {
+      "day_number": 182,
+      "date": "2027-04-19",
+      "title": "Recover and defend the offline baseline boundary",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "budget_minutes": 210,
+      "budget_minutes_min": 210,
+      "budget_minutes_max": 210,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "study": 35,
+          "practice_and_test": 115,
+          "evidence": 15
+        }
+      },
+      "interview_or_remaining_reviews": {
+        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+        "budget_minutes": 45,
+        "maximum_substantive_coding_exercises": 1,
+        "new_guided_anchors_allowed": false,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 182",
+        "forecast_is_not_attempt": true,
+        "allocation_minutes": {
+          "one_substantive_timebox": 30,
+          "recall_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        },
+        "total_daily_minutes": 210
+      },
+      "learner_seam": "prior_only_169_181",
+      "prerequisite_days": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181
+      ],
+      "recovery_day": true,
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "evidence_status": "not_recorded"
+    }
+  ]
+}

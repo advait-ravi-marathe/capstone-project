@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "path": "baseline.jar",
+    "sha256": "5d34d0ec46c24866f8a0ac5bc5df2ad7308fd745103408174f81f423c92e9a08",
+    "source_commit": "105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3",
+    "overlay": [
+      {
+        "source": "/tmp/day113-prereq-witness/IssuanceEnvelope.java",
+        "destination": "src/main/java/assignments/delivery/IssuanceEnvelope.java",
+        "sha256": "135b9804d028c2c5e80795a2cebabaec1437c6d186e4e83bd9caa08110870aad"
+      },
+      {
+        "source": "/tmp/day113-prereq-witness/JdbcIssuanceWorkStore.java",
+        "destination": "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java",
+        "sha256": "6c7c530a5b5d0ec71d653a0a11ddd4cc3c01ef9ab0661468da764ca5b842092c"
+      },
+      {
+        "source": "/tmp/day113-witness-RecoveryDecisionPolicy.java",
+        "destination": "src/main/java/assignments/delivery/recovery/RecoveryDecisionPolicy.java",
+        "sha256": "3a4d0cfee9e5b672e9a36e60cbbe044e72312d12399676dd8e65f3a2502d44f7"
+      },
+      {
+        "source": "/tmp/day113-witness-JdbcManualRecoveryStore.java",
+        "destination": "src/main/java/assignments/delivery/recovery/JdbcManualRecoveryStore.java",
+        "sha256": "839e5d0bdd979f1cfeb14e3609adae3d2e4b2396df74f1306d153b5d441b68cc"
+      },
+      {
+        "source": "/tmp/day113-witness-RecoveryAwareIssuanceWorkStore.java",
+        "destination": "src/main/java/assignments/delivery/recovery/RecoveryAwareIssuanceWorkStore.java",
+        "sha256": "186de1748acfe49f3ca38e7d7657d266752d521506951fabfda3e61d6ac1b79e"
+      },
+      {
+        "source": "/tmp/day113-witness-ManualRecoveryService.java",
+        "destination": "src/main/java/assignments/delivery/recovery/ManualRecoveryService.java",
+        "sha256": "4fb523b055c96936ecc652a95d805837cf2e32a090bb558552d97a4f7129c772"
+      },
+      {
+        "source": "/tmp/day113-witness-LocalManualRecoveryCommand.java",
+        "destination": "src/main/java/assignments/delivery/recovery/LocalManualRecoveryCommand.java",
+        "sha256": "a1a0864e1bb4ae0ec0865d73c513aa85a4c915292f0dd39125d0d86eb768e27f"
+      },
+      {
+        "source": "/tmp/day113-starter-RecoveryOutcomePolicy.java",
+        "destination": "src/main/java/assignments/delivery/recovery/RecoveryOutcomePolicy.java",
+        "sha256": "1ba82430ac2b0d939fc8f8db373e91061fb60ad9e4b8b1e145214417825061e9"
+      }
+    ]
+  },
+  "candidate": {
+    "path": "candidate.jar",
+    "sha256": "b33642409708684c589024eb1e23df0bb2d7d88a189c36c75af28b179a3b47b9",
+    "source_commit": "ae4e5fa4a7b3f49d189cbdd939bf077e788a3669",
+    "overlay": [
+      {
+        "source": "/tmp/day113-prereq-witness/IssuanceEnvelope.java",
+        "destination": "src/main/java/assignments/delivery/IssuanceEnvelope.java",
+        "sha256": "135b9804d028c2c5e80795a2cebabaec1437c6d186e4e83bd9caa08110870aad"
+      },
+      {
+        "source": "/tmp/day113-prereq-witness/JdbcIssuanceWorkStore.java",
+        "destination": "src/main/java/assignments/delivery/JdbcIssuanceWorkStore.java",
+        "sha256": "6c7c530a5b5d0ec71d653a0a11ddd4cc3c01ef9ab0661468da764ca5b842092c"
+      },
+      {
+        "source": "/tmp/RecoveryDecisionPolicy.day113-conforming.java",
+        "destination": "src/main/java/assignments/delivery/recovery/RecoveryDecisionPolicy.java",
+        "sha256": "4bf74919a8df94982117313c323dadca746e24980dfa8ba5b5322f3c3b6325f4"
+      },
+      {
+        "source": "/tmp/day113-witness-JdbcManualRecoveryStore.java",
+        "destination": "src/main/java/assignments/delivery/recovery/JdbcManualRecoveryStore.java",
+        "sha256": "839e5d0bdd979f1cfeb14e3609adae3d2e4b2396df74f1306d153b5d441b68cc"
+      },
+      {
+        "source": "/tmp/day113-witness-RecoveryAwareIssuanceWorkStore.java",
+        "destination": "src/main/java/assignments/delivery/recovery/RecoveryAwareIssuanceWorkStore.java",
+        "sha256": "186de1748acfe49f3ca38e7d7657d266752d521506951fabfda3e61d6ac1b79e"
+      },
+      {
+        "source": "/tmp/day113-witness-ManualRecoveryService.java",
+        "destination": "src/main/java/assignments/delivery/recovery/ManualRecoveryService.java",
+        "sha256": "4fb523b055c96936ecc652a95d805837cf2e32a090bb558552d97a4f7129c772"
+      },
+      {
+        "source": "/tmp/day113-witness-LocalManualRecoveryCommand.java",
+        "destination": "src/main/java/assignments/delivery/recovery/LocalManualRecoveryCommand.java",
+        "sha256": "a1a0864e1bb4ae0ec0865d73c513aa85a4c915292f0dd39125d0d86eb768e27f"
+      },
+      {
+        "source": "/tmp/day113-starter-RecoveryOutcomePolicy.java",
+        "destination": "src/main/java/assignments/delivery/recovery/RecoveryOutcomePolicy.java",
+        "sha256": "1ba82430ac2b0d939fc8f8db373e91061fb60ad9e4b8b1e145214417825061e9"
+      },
+      {
+        "source": "/tmp/ReleaseArtifactPairPolicy.witness.java",
+        "destination": "src/main/java/assignments/ops/ReleaseArtifactPairPolicy.java",
+        "sha256": "a755f297c89ccb35b5f6e69ae50b233382bfb79a69a98d7931fd65b13dd54a78"
+      },
+      {
+        "source": "/tmp/BinaryFallbackPolicy.witness.java",
+        "destination": "src/main/java/assignments/ops/BinaryFallbackPolicy.java",
+        "sha256": "4a5d6e415c21a9d6327364a9751861eeca6fbfbb785bc3fa0987ecd8e20396cc"
+      },
+      {
+        "source": "/tmp/InspectionReportMapper.witness.java",
+        "destination": "src/main/java/assignments/delivery/recovery/InspectionReportMapper.java",
+        "sha256": "5c33a6d1f4e64f76da4a17ef87cf03eaac56cef16782fce7c5628a5e381ea341"
+      },
+      {
+        "source": "/tmp/InspectionReportCodec.witness.java",
+        "destination": "src/main/java/assignments/delivery/recovery/InspectionReportCodec.java",
+        "sha256": "439fbd8127092b41852d5cd17e371fc8dd43045c29f2af1e6767c1b6eefda9e0"
+      },
+      {
+        "source": "/tmp/ReleaseInspectionRequestPolicy.witness.java",
+        "destination": "src/main/java/assignments/delivery/recovery/ReleaseInspectionRequestPolicy.java",
+        "sha256": "0eebc1cfefcff353b52f4fc21ba2b03090686abc090f01c73704ba6d44faaab9"
+      },
+      {
+        "source": "/tmp/capstone-days141-154-repair/src/main/java/assignments/delivery/recovery/ReleaseInspectionCommandRunner.java",
+        "destination": "src/main/java/assignments/delivery/recovery/ReleaseInspectionCommandRunner.java",
+        "sha256": "9907511059475bda83ba041034e9f7507f65dcc4567b68c83dce9ba51d308c58"
+      }
+    ]
+  },
+  "capability_check": {
+    "baseline_absent": "ReleaseInspectionOnlyApplication",
+    "candidate_present": "ReleaseInspectionOnlyApplication"
+  },
+  "build_recipe": "isolated detached git worktrees; checksum-verified overlays; ./mvnw -o -Plocal-app -DskipTests clean package",
+  "java_version": "java version \"21.0.12.1\" 2026-08-18 LTS",
+  "maven_version": "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+  "migration_sources": [
+    {
+      "name": "V001__homesecure_quotes.sql",
+      "sha256": "cfb4aa4204ab90c3d5965347824c5c26399345cc06e8582686af17a9baefa805"
+    },
+    {
+      "name": "V002__local_policy_lifecycle.sql",
+      "sha256": "af921dbef43a3c773524876131a840a5f39135030ec5721465a5cf0f9ba31cf2"
+    },
+    {
+      "name": "V003__seed_synthetic_local_policies.sql",
+      "sha256": "0e32121d204842d9ecf1f7e63ccf0c30eb7c23337f1949d9ed718ebb56a12786"
+    },
+    {
+      "name": "V004__event_log_delivery_work.sql",
+      "sha256": "1b0d1375928c4239f57742490a541ac6852f913c7841f26e27fd3151feb8b882"
+    },
+    {
+      "name": "V005__manual_issuance_recovery_controls.sql",
+      "sha256": "30cc98cc015e48ac04a8e8e607cb075ecd8f397462f36d548121904ff40bb9b3"
+    }
+  ]
+}
