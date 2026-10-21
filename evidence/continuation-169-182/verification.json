@@ -1,60 +1,73 @@
 {
-  "status": "LOCAL_VERIFICATION_COMPLETE_HOSTED_CI_FAILED_MAVEN_PACKAGING",
+  "status": "SOURCE_REPAIRS_AND_LOCAL_VALIDATION_PASS_HOSTED_CI_NOT_OBSERVED_FOR_FINAL_BRANCH_TIP",
   "branch": "learning/streamforge-days-169-182",
   "base_commit": "bb4cc3e5df7336c74a3f086b24510d325ea871e1",
-  "tested_commit": "cc6455433773b5f16f04f9b8e35251d0ce72d364",
+  "tested_source_commit": "41dbd7c339c290256542ed5bc10e104b2f424b02",
   "runtime": {
     "python": "3.12.14",
-    "maven": "Maven wrapper with cached dependencies; local compile unavailable because the container has no javac"
+    "java": "Oracle JDK 21 runtime; javac unavailable",
+    "maven": "Maven wrapper with cached dependencies; package compilation succeeds from the cached repository"
   },
-  "local_checks": [
-    {"command": "python3 -m unittest ai.streamforge.tests.test_evaluation_infrastructure scripts.test_streamforge_169_182_manifest scripts.test_dsa_post171_budget", "result": "PASS", "tests": 14},
-    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "PASS", "tests": 81},
-    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure", "result": "PASS", "tests": 8},
-    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "PASS", "tests": 2},
-    {"command": "python3 -m unittest scripts.test_dsa_review_queue scripts.test_dsa_review_queue_45_56 scripts.test_dsa_review_queue_57_70 scripts.test_dsa_review_queue_71_84 scripts.test_dsa_guided_transfer_policy", "result": "PASS", "tests": 50}
+  "repairs": [
+    "Day 179 now documents and exports the actual test_evaluation_cli.Day179Test selector; the manifest checker resolves all exported selectors.",
+    "Added an instructor-owned typed evaluation adapter that calls prepare_dataset exactly once, validates the complete supported preparation result and partitions, converts retained catalog/train/holdout/outside rows, preserves lineage/status, and propagates prior TODO failures.",
+    "Added independent Day 178 complete-report and actual CLI report oracles, including frozen protocol, prediction payload/fingerprint, both evaluations, counts, deltas, source/preparation lineage, status and limits.",
+    "Added semantic edge cases for shared unreachable targets, zero-watch-only training viewers, empty targets, all-hit/all-miss scoring, fallback labeling, immutable inputs and support-sensitive ranking.",
+    "Replaced ineffective holdout tests with actual composed CLI cases for holdout mutation, source-input shuffling, watch-seconds 1-to-2 invariance, catalog eligibility fingerprint changes, duplicate replay and cross-cutoff conflicts.",
+    "Updated Day 180/181 descriptions to identify supplied assertion/evidence work rather than nonexistent learner production seams."
   ],
-  "temporary_witnesses": {
-    "positive_pure_contracts": {"result": "PASS", "tests": 14, "note": "Temporary in-memory conformance implementations; no learner source retained."},
-    "positive_cli": {"result": "PASS", "tests": 5, "note": "Isolated temporary package copy with prerequisite and evaluator witnesses; removed after run."},
-    "deliberately_wrong_pure_implementations": {"result": "Each failed its intended assertion", "count": 8, "defects": ["event count instead of distinct pairs", "wrong cutoff", "insertion-order ties", "drop unreachable targets", "wrong precision denominator", "wrong macro aggregation", "favorable-only baseline comparison", "holdout/source leakage into prediction fingerprint"]},
-    "deliberately_wrong_cli_implementations": {"result": "Each failed its intended assertion", "count": 5, "defects": ["cutoff equality", "split before duplicate conflict detection", "holdout leakage", "constant ranker", "canned report"]}
+  "local_checks": [
+    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "PASS", "tests": 82},
+    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter", "result": "PASS", "tests": 18},
+    {"command": "python3 -m unittest scripts.test_dsa_review_queue scripts.test_dsa_review_queue_45_56 scripts.test_dsa_review_queue_57_70 scripts.test_dsa_review_queue_71_84 scripts.test_dsa_guided_transfer_policy", "result": "PASS", "tests": 50},
+    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "PASS", "tests": 2},
+    {"command": "MAVEN_USER_HOME=/tmp/capstone-maven-home JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH ./mvnw -B -ntp -Plocal-app -DskipTests clean package -Dmaven.repo.local=/tmp/capstone-m2", "result": "PASS", "tests": 0, "note": "Package compilation check; test execution was intentionally skipped by this command."},
+    {"command": "MAVEN_USER_HOME=/tmp/capstone-maven-home JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH CHROMIUM_BIN=/usr/bin/chromium ./mvnw -B -ntp test -Dmaven.repo.local=/tmp/capstone-m2", "result": "PASS", "tests": 59, "failures": 0, "errors": 0, "skipped": 0}
+  ],
+  "temporary_conformance_witnesses": {
+    "positive_pure_contracts": {"result": "PASS", "tests": 20, "scope": "Days 169-174, 176-178, and 180 using temporary in-memory conformance functions."},
+    "positive_actual_cli": {"result": "PASS", "tests": 10, "scope": "Day 179 and Day 181 selectors in an isolated copied package with temporary prior-preparation and evaluator witnesses."},
+    "wrong_pure_implementations": [
+      {"defect": "wrong cutoff equality", "selector": "Day170Test", "outcome": "failed the candidate eligibility assertion after valid setup"},
+      {"defect": "constant ranking despite changed support", "selector": "Day172Test", "outcome": "failed the independent ranking assertion"},
+      {"defect": "precision divided by returned count", "selector": "Day174Test", "outcome": "failed the fixed-slot fraction assertion"},
+      {"defect": "unique media instead of viewer-media unreachable pairs", "selector": "Day176Test", "outcome": "failed the independent pair-count assertion"},
+      {"defect": "holdout/source leakage into prediction fingerprint", "selector": "Day178Test", "outcome": "failed the prediction-invariance assertion"}
+    ],
+    "wrong_actual_cli_implementations": [
+      {"defect": "constant ranker", "selector": "Day179Test", "outcome": "failed the full CLI oracle after positive setup"},
+      {"defect": "holdout counted in training", "selector": "Day179Test", "outcome": "failed the holdout-isolation assertion after positive setup"},
+      {"defect": "split before global duplicate conflict detection", "selector": "Day179Test", "outcome": "failed the cross-cutoff duplicate rejection assertion after positive setup"},
+      {"defect": "canned report", "selector": "Day181Test", "outcome": "failed the changed-fixture CLI oracle after positive setup"}
+    ],
+    "cleanup": "Temporary implementations and copied packages were removed after execution; no learner source solution was retained."
   },
-  "restoration": {
-    "prior_learner_contracts_and_preparation": "Byte-for-byte unchanged from base; prior TODOs remain.",
-    "attempt_log_git_blob": "52387b4afc37188fe4f31f9d18d129d4b11e32b0",
-    "temporary_overlay_status": "Removed; no conformance solution retained.",
-    "learner_acceptance_expected_result": "TODO-red: Day169 learner seam and Day179 evaluate_fixture remain unimplemented. The invalid-duplicate CLI case reaches the Day179 TODO before duplicate semantics, pending learner implementation."
+  "restoration_and_remaining_learner_gates": {
+    "prior_learner_files_unchanged_from_base": {
+      "ai/streamforge/contracts.py": "sha256:1856694d39104d96074609692b9d0b1627be010163b6147bb1844eea9c164233",
+      "ai/streamforge/prepare.py": "sha256:bc0d3e2578027bef1f1b8f01fe0b8394650c3b3d3541bdf2ca976be0a7fe5e29",
+      "ai/streamforge/models.py": "sha256:c92975b95ae5602e04b7d5f442ad344e05117c562b11b441f15600844eacf427",
+      "ai/streamforge/fixture_io.py": "sha256:cc85b372606887bfe9f91769572a5c386c260e12d206d96523f892135e6fc68e",
+      "ai/streamforge/fixture_registry.py": "sha256:5e7d5cc6d5f24150c3ffaf1e86948199f7c4c4e6c81488f8b6b332b9b01af12f"
+    },
+    "actual_attempt_log_git_blob": "52387b4afc37188fe4f31f9d18d129d4b11e32b0",
+    "restored_starter_cli": {"command": "python3 -m ai.streamforge.evaluate --fixture basic", "exit_code": 2, "stdout_bytes": 0, "stderr": "Day 179 learner TODO: implement evaluate_fixture", "interpretation": "Expected named learner TODO; this is not learner completion."},
+    "temporary_build_artifacts": "Removed; temporary overlay witnesses restored/removed."
   },
   "hosted_ci": {
-    "run": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39550408054",
-    "head_commit": "cc6455433773b5f16f04f9b8e35251d0ce72d364",
-    "result": "FAILED_STEP_OBSERVED_RUN_TERMINAL_STATE_UNAVAILABLE",
-    "failed_step": "Package isolated Spring Boot app",
-    "observed_job_duration": "45 seconds",
-    "detail": "The public job page reports this step exited 1. Its summary simultaneously shows In progress/re-running, and its logs are not exposed while signed out; therefore the run's terminal state and hosted Maven error remain unconfirmed. The branch-filtered Actions page shows only run 74 for cc645543, not a run for receipt tip 25c2c88 as of this evidence update.",
-    "read_only_access_limits": "gh run view and the GitHub Actions logs API returned Forbidden; the public web page exposes only the failing step annotation, not Maven output."
+    "final_source_run": null,
+    "result": "NOT_OBSERVED_FOR_TESTED_SOURCE_COMMIT",
+    "evidence": "The public filtered Actions page still exposes only earlier run #74 for cc645543; it does not show a run for 41dbd7c. The origin/main workflow push allowlist omits learning/streamforge-days-169-182, while no pull request was created. No hosted pass is claimed.",
+    "historical_context": [
+      "Parent-provided independent evidence says prior run #74 for cc645543 failed because Maven Central returned HTTP 403 for embedded-postgres-binaries-bom 18.6.0 and spring-boot-dependencies 4.1.1; that is distinct from this container's local DNS/toolchain limits.",
+      "Prior run #75 for 25c2c88 was independently reported successful, but it is not this repaired source commit."
+    ]
   },
-  "packaging_investigation": {
-    "compared_range": "bb4cc3e5df7336c74a3f086b24510d325ea871e1..cc6455433773b5f16f04f9b8e35251d0ce72d364",
-    "pom_wrapper_java_source_resource_and_frontend_packaging_inputs_changed": false,
-    "workflow_delta": ["Added new branch to push trigger.", "Added Python evaluation infrastructure selector."],
-    "packaging_command_changed": false,
-    "maven_attempts": [
-      "With an empty task-specific repository, Maven could not resolve repo.maven.apache.org; project BOMs were unavailable due DNS failure.",
-      "With the existing /tmp/capstone-m2 cache, Maven resolved the BOMs and reached javac compilation, then failed with 'release version 21 not supported'. This container has Java 21 runtime but no javac executable, so this is a local toolchain limit and does not identify the hosted failure cause."
-    ],
-    "hosted_failure_cause": "Unknown; do not attribute it to DNS or source changes without the private step log."
-  },
-  "other_environment_limits": [
-    "Java package/test validation remains blocked locally: empty-cache Maven resolution fails DNS; cached Maven reaches compilation but no javac is installed.",
-    "Frontend vitest and tsc binaries are absent; npm install was not run."
-  ],
   "scope": {
-    "learner_completion_claimed": false,
     "main_modified": false,
     "pull_request_created": false,
     "board_modified": false,
-    "cloud_resources_or_paid_services_used": false
+    "cloud_resources_or_paid_services_used": false,
+    "learner_completion_claimed": false
   }
 }
