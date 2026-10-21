@@ -17,7 +17,7 @@ The largest current gap is between prepared local acceptance scaffolds and demon
 | Pillar | Capability | Evidence sought |
 |---|---|---|
 | A | Backend and distributed systems | Java 21/Spring Boot, SQL/PostgreSQL, JVM/OS/concurrency, networking, reliability, transactions, event-driven design, caching, scale, testing and security. |
-| B | Production AI engineering | Python, model/tool integration, retrieval where justified, evaluation, failure and hallucination analysis, prompt-injection defenses, latency/cost and AI observability. |
+| B | Production AI engineering | Python, probability, statistics, linear algebra, optimization, model/tool integration, retrieval where justified, evaluation, failure and hallucination analysis, prompt-injection defenses, latency/cost and AI observability. |
 | C | Cloud and enterprise integration | AWS, containers/Kubernetes when justified, IAM/secrets, APIs, asynchronous processing, telemetry, CI/CD, deployment, audit, incident response and SLOs. |
 | D | Customer-facing engineering | Discovery, stakeholder interviews, problem framing, workshops, tradeoffs, demos, UAT, adoption measurement and executive communication. |
 | E | Technical leadership and platform leverage | ADRs, design/code reviews, debt prioritization, mentoring, reusable components, standards and cross-team impact. |
@@ -52,7 +52,7 @@ Build technical direction across connected workstreams, set standards used by ot
 
 ### CoverStory's ordered milestones
 
-1. **Production-ready application:** harden existing local domain/reliability work, then add authorized security, deployment, telemetry, recovery and target-environment acceptance. The current synthetic passwordless session and loopback guard are demo boundaries, not production authentication. Do not expose publicly before an approved, tested design. Actual cloud work needs separate authorization.
+1. **Production-ready application:** harden existing local domain/reliability work with automated integration and performance tests, then add authorized security, deployment, logs, metrics, traces, alerts, recovery and target-environment acceptance. The current synthetic passwordless session and loopback guard are demo boundaries, not production authentication. Do not expose publicly before an approved, tested design. Actual cloud work needs separate authorization.
 2. **Applied AI integration:** choose one discovery-backed insurance workflow such as source-grounded policy explanation or assisted operations. Add retrieval/source grounding when appropriate, permission and data boundaries, human approval for sensitive actions, evaluation cases, fallbacks, auditability, and quality/latency/cost measures. Do not automate consequential underwriting or claims decisions in this capstone.
 3. **Second simulated enterprise integration:** vary data contracts, identity and operating constraints enough to test transfer. Label simulated customers, requirements, UAT and business results as simulated.
 4. **Reusable platform capability:** demonstrate an extracted asset in two distinct contexts, with a decision record and measurable improvement. Reuse alone is not platform impact.
