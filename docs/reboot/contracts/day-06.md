@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** Conditional reference to [Java Programming for Complete Beginners — in28Minutes Official](https://www.udemy.com/course/java-programming-tutorial-for-beginners/); “Primitive Data Types And Alternatives in Java Programming”: “Step 05 - Introduction to BigDecimal Java Class” (6:58), “Step 06 - BigDecimal Puzzles - Adding Integers” (3:13), and “Step 07 - BigDecimal Exercises - Simple Interest Calculation” (11:34), 21:45 total. Direct BigDecimal foundation; use the contract’s premium formula and the linked rounding guide. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-6--decimal-calculation-and-rounding).
+**Conditional course reference:** [Java Programming for Complete Beginners — in28Minutes Official](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) (course 1535678; access unconfirmed; no purchase/enrollment), section “Primitive Data Types And Alternatives in Java Programming”: “Step 05 - Introduction to BigDecimal Java Class” (6:58; item 9565516). Other BigDecimal videos are optional, not stacked today. Use the [worked rounding guide](../teaching/day-06-decimal-rounding.md) before implementation. If course access is unavailable, the official Java 21 BigDecimal reference takes seven minutes. Total study remains 25 minutes: 6:58 or 7:00 reference, 14:02 or 14:00 worked guide, 4:00 readiness.
 
 ## Learner seam
 
@@ -20,15 +20,15 @@ Zero and negative; `100.00 * 0.00125 = 0.125` rounds to `0.13`; contents adjustm
 
 Day 4; fixed eligible input and rate fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Show which input fields affect premium and where decimal rounding occurs. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Design/readiness prompt (inside the existing evidence block):** Explain why rounding before addition changes the worked result, and why zero is allowed by this calculator contract but rejected by Day 5 eligibility. Do not add pricing rules.
 
 ## Concept (25 minutes)
 
-Value types, BigDecimal precision/rounding [C].
+Decimal-string construction, exact arithmetic, `HALF_UP` at the declared final boundary, and scale-sensitive representation. The course is conditional; the worked supplement teaches the demonstrated arithmetic before the frozen premium task.
 
 ## Evidence (10 minutes)
 
-Hand-calculated expected fixture, independent of implementation. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation. DSA notes include Java attempt, edge cases, complexity and independent-solve status.
+Record the exact and premature-rounding outputs, then the actual learner selector result and the frozen premium calculation outcome. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, and assistance. DSA notes remain separate.
 
 ## Planned isolated command
 
@@ -42,9 +42,9 @@ This focused test and its learner TODO seam are installed. The command was run w
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** Why can binary floating point be wrong here? Where are scale and rounding defined?
+**Question:** What changes if rounding occurs before addition? Why does zero have different meaning at the calculator and eligibility seams?
 
-**Observable evidence:** Hand-calculate a rounding boundary; explain value equality versus representation without inventing a new formula.
+**Observable evidence:** Reproduce both exact and early-rounded examples, then identify the existing premium formula's named rounding boundary without inventing a formula.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** No exact verified lecture covers Clock injection or deterministic business time. Use the linked Java Clock guide inside this block; distinguish wall-clock expiry from monotonic elapsed-time measurement. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-7--deterministic-time).
+**Focused official supplement:** No exact verified course lecture covers `Clock` injection or deterministic business time. Read Java 21 [`Clock.fixed(Instant, ZoneId)`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html) and [`Instant.plusSeconds`/`isBefore`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html), then use the [worked deterministic-time guide](../teaching/day-07-deterministic-time.md). Total study remains 25 minutes: 6 minutes focused reading, 15 minutes worked example, 4 minutes readiness.
 
 ## Learner seam
 
@@ -20,7 +20,7 @@ One tick before/at/after expiry; fixed ID and clock; ineligible fixture; exact s
 
 Days 5–6; canned eligibility/premium; fixed Clock. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Draw quote creation sequence with the clock, policy collaborators, and expiry boundary. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Design/readiness prompt (inside the existing evidence block):** Explain why time is injected instead of waiting, name the captured price that remains fixed, and distinguish business wall time from elapsed-time measurement. No architecture drawing is added.
 
 ## Concept (25 minutes)
 
@@ -28,7 +28,7 @@ Wall time vs elapsed time; deterministic tests [D].
 
 ## Evidence (10 minutes)
 
-Expiry boundary assertions. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation. DSA notes include Java attempt, edge cases, complexity and independent-solve status.
+Record the fixed-clock before/equal/after prediction, the existing quote snapshot result, exact selector command/exit and assistance. A reference result is not integrated learner completion. DSA notes remain separate.
 
 ## Planned isolated command
 
@@ -42,9 +42,9 @@ This focused test and its learner TODO seam are installed. The command was run w
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** Is a quote valid exactly at expiry? Why inject time and IDs?
+**Question:** Why inject time rather than wait? Which captured value stays fixed when the catalog changes?
 
-**Observable evidence:** Predict before/at/after behavior; distinguish a snapshot from recalculation; reproduce tests without sleeping.
+**Observable evidence:** Predict before/equal/after with a fixed clock, then explain the existing 15-minute snapshot fixture and its captured values.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

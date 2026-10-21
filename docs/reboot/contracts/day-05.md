@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “APPENDIX - Functional Programming - A Quick Review using Q&A Format”: “Core concepts of Functional Programming” (6:43). Section “APPENDIX - Introduction to Functional Programming with Java”: “Step 05 - Do Functional Programming Exercises with Streams, Filters and Lambdas” (5:30). Total 12:13. Supporting material only; use the linked pure-function and decision-table example for the insurance eligibility rule. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-5--pure-eligibility-decision).
+**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “APPENDIX - Functional Programming - A Quick Review using Q&A Format”: “Core concepts of Functional Programming” (6:43; item 49578631). “Step 05 - Do Functional Programming Exercises with Streams, Filters and Lambdas” (5:30; item 35017372) is optional later; streams are not required. Catalog titles verified; playback not verified. First work the [decision-table guide](../teaching/day-05-decision-table.md), then transfer the method to the frozen insurance contract. Total study remains 25 minutes: 6:43 lesson, 14:17 worked guide, 4:00 readiness.
 
 ## Learner seam
 
@@ -20,15 +20,15 @@ Amounts `99999.99`, `100000.00`, `10000000.00`, `10000000.01`; absent fields; no
 
 Day 4; catalog bounds fixture, no live controller. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Record the eligibility invariant and reason-precedence decision table. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Design/readiness prompt (inside the existing evidence block):** Explain a toy-table row with simultaneous invalidities, then identify the corresponding frozen insurance rule and precedence. Do not assign an unexplained architecture template.
 
 ## Concept (25 minutes)
 
-Pure functions, invariants and decision tables.
+Pure rule evaluation, first-applicable-rule precedence, inclusive boundaries, and deterministic repeated calls. The lesson is context; the worked parcel table teaches the method before the insurance policy task.
 
 ## Evidence (10 minutes)
 
-Decision table mapped to parameterized tests. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation. DSA notes include Java attempt, edge cases, complexity and independent-solve status.
+Record the two predicted toy outcomes, then the actual insurance selector result and a short precedence explanation. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, and assistance. DSA notes remain separate.
 
 ## Planned isolated command
 
@@ -42,9 +42,9 @@ This focused test and its learner TODO seam are installed. The command was run w
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** Why make eligibility a pure policy? Which exact boundary is eligible?
+**Question:** For a row with multiple invalid fields, which rule applies first and why?
 
-**Observable evidence:** Turn the frozen decision table into boundary tests; explain why database and HTTP concerns do not belong in the rule.
+**Observable evidence:** Predict and test the parcel variation, then map the insurance table's existing boundaries and reason precedence without importing toy values.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

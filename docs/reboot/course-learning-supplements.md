@@ -22,39 +22,27 @@ Use [the complete safe-errors guide](teaching/day-03-safe-errors.md) after requi
 
 ## Day 4 — Immutable catalog values
 
-A Java `record Product(String code, String displayName)` is a compact value carrier. `List.copyOf(input)` prevents callers from changing the collection through an alias; it does not validate duplicate codes or blank fields. Inspect one supplied catalog fixture and identify which checks belong at construction versus request validation. Keep those invariants as explicit learner work.
+Use the [complete collection-ownership guide](teaching/day-04-immutable-values.md) after required “Step 13 - Exploring Java Bean vs POJO vs Spring Bean” (5:15; item 35020094). The bean lesson does not teach collection ownership; the guide works through constructor copying, caller mutation, an unmodifiable returned list, and its limits. “Step 09 - Creating More Java Spring Beans in Spring Java Configuration File” (6:41; item 35020124) is optional later, not stacked today. Total: 5:15 lesson + 15:45 worked guide + 4:00 readiness = 25 minutes.
 
-
-**Concrete example:** Example: `record Product(String code, String name) {}` and `List<Product> snapshot = List.copyOf(input);`. This freezes collection membership; a separate check still has to reject duplicate/blank codes.
-
-**Primary reference:** [Java records](https://docs.oracle.com/en/java/javase/21/language/records.html)
+**Primary reference:** [Java 21 `List.copyOf` and unmodifiable lists](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html).
 
 ## Day 5 — Pure eligibility decision
 
-Treat eligibility as a function of an input and fixed rules: same input, same decision, no database writes or clock reads. Make a two-column decision table from the contract's allowed and denied examples, then identify the first rule that rejects each denied case. Implement only the assigned policy seam; do not add an unrequested rule.
+Use the [complete decision-table guide](teaching/day-05-decision-table.md) after required “Core concepts of Functional Programming” (6:43; item 49578631). The optional streams lesson (5:30) is not required. The guide teaches ordered rule precedence with a separate parcel example, then asks you to map the existing insurance table without copying toy values. Total: 6:43 lesson + 14:17 guide + 4:00 readiness = 25 minutes.
 
-
-**Concrete example:** Example shape: `Eligibility decide(QuoteInput input, Rules rules)` returns a decision and performs no repository call. Write each fixed rule as one decision-table row, then map one allowed and one denied fixture to it.
-
-**Primary reference:** [Java functional interfaces and lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
+**Course scope:** the video is supporting context; the instructor guide supplies the concrete table and worked outcomes.
 
 ## Day 6 — Decimal calculation and rounding
 
-`new BigDecimal("12.30")` preserves decimal intent; `new BigDecimal(12.30)` starts from a binary floating-point approximation. Multiplication does not itself choose the business rounding rule. Apply the contract's scale/mode only at the named premium boundary, then compare the supplied boundary examples. The formula and policy are fixed by the fixture; do not invent pricing rules.
+Use the [complete decimal rounding guide](teaching/day-06-decimal-rounding.md) with conditional “Step 05 - Introduction to BigDecimal Java Class” (6:58; item 9565516; access unconfirmed). The other BigDecimal videos are optional, not stacked. If inaccessible, use the named Java 21 documentation sections instead. The guide works exact versus premature rounding before the existing premium formula. Total: 6:58 + 14:02 + 4:00, or 7:00 official reading + 14:00 + 4:00; both fit 25 minutes.
 
-
-**Concrete example:** Example: `new BigDecimal("12.30").multiply(rate).setScale(2, RoundingMode.HALF_UP)`. The scale/mode shown is illustrative only; apply the capstone contract’s exact rounding rule instead.
-
-**Primary reference:** [Java 21 `BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)
+**Primary reference:** [Java 21 `BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html). No purchase or enrollment.
 
 ## Day 7 — Deterministic time
 
-`Clock` supplies wall-clock instants to code that needs business time. A test can use `Clock.fixed(instant, ZoneOffset.UTC)` so expiry behavior is repeatable. Wall time answers “what time is it?”; elapsed-time measurement answers “how long did this take?” and uses a monotonic source such as `System.nanoTime()`. Inject the provided clock seam; do not use sleeps or change the expiry rule.
+No exact verified course lecture covers `Clock` injection. Use the [complete deterministic-time guide](teaching/day-07-deterministic-time.md) with official Java 21 `Clock.fixed`, `Instant.plusSeconds`, and `Instant.isBefore` sections. The guide works the exact-before/equal/after expiry rule and retained snapshot value before the quote-version task. Total: 6 minutes reading + 15 minutes worked example + 4 minutes readiness = 25 minutes.
 
-
-**Concrete example:** Example: `Clock clock = Clock.fixed(Instant.parse("2026-10-20T12:00:00Z"), ZoneOffset.UTC);`. The business policy compares instants from the injected clock; do not sleep in tests or substitute a monotonic timer for expiry.
-
-**Primary reference:** [Java 21 `Clock`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html)
+**Primary references:** [Java 21 `Clock`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html) and [Java 21 `Instant`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html).
 
 ## Day 8 — PostgreSQL schema and constraints
 

@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with Java Spring Framework - 4 - Playing with Spring Framework”: “Step 09 - Creating More Java Spring Beans in Spring Java Configuration File” (6:41). Section “Getting Started with Java Spring Framework - 5 - Key Questions about Spring”: “Step 13 - Exploring Java Bean vs POJO vs Spring Bean” (5:15). Total 11:56. These support bean foundations; use the linked records/collections example for immutable catalog invariants. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-4--immutable-catalog-values).
+**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Getting Started with Java Spring Framework - 5 - Key Questions about Spring”: “Step 13 - Exploring Java Bean vs POJO vs Spring Bean” (5:15; item 35020094). Optional later: section “Getting Started with Java Spring Framework - 4 - Playing with Spring Framework,” “Step 09 - Creating More Java Spring Beans in Spring Java Configuration File” (6:41; item 35020124). Catalog titles verified; playback not verified. Use the [worked collection-ownership guide](../teaching/day-04-immutable-values.md) before implementation. Total study remains 25 minutes: 5:15 lesson, 15:45 guide, 4:00 readiness.
 
 ## Learner seam
 
@@ -20,15 +20,15 @@ Known/unknown code, stable order, attempted mutation, exact fields and fixture v
 
 Day 3; test-only fixed product fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Show catalog ownership and how immutable product values reach the caller. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Design/readiness prompt (inside the existing evidence block):** After the worked example, explain who owns the source list, why a record alone does not prevent caller mutation, and one copying cost or mutable-element limitation. Do not add an architecture essay.
 
 ## Concept (25 minutes)
 
-Java records, immutable collections, API vs domain models [J].
+Record component references, collection aliasing, `List.copyOf`, and limits of shallow immutability. The bean lesson is background only; the worked guide teaches collection behavior before the product task.
 
 ## Evidence (10 minutes)
 
-Fixture read and mutation-resistance test. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation. DSA notes include Java attempt, edge cases, complexity and independent-solve status.
+Run the source-add and source-remove reference observations, then record the actual capstone selector result and one ownership explanation. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, and assistance. DSA notes remain separate.
 
 ## Planned isolated command
 
@@ -42,9 +42,9 @@ This focused test and its learner TODO seam are installed. The command was run w
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** Why separate API and domain representations? Can a caller mutate the returned catalog?
+**Question:** Who owns the source list? Why does a record alone not prevent caller mutation?
 
-**Observable evidence:** Identify mutable-state ownership; show the mutation-resistance test; explain where immutability helps and what it costs.
+**Observable evidence:** Predict source mutation/removal, run the isolated reference, and explain what `List.copyOf` protects and does not protect.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 
