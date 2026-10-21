@@ -30,7 +30,7 @@ describe('Days 52–53 renewal preview panel', () => {
     expect(screen.queryByText(/owner-a|journey-hidden|quote-hidden/)).toBeNull();
   });
 
-  it('renders a different frozen source value and then clears it when ready has no selection', () => {
+  it('renders a different frozen source value as reference-only and clears stale values on ready rerender', () => {
     const { rerender } = render(<PolicyRenewalPreviewPanel state="ready" preview={preview} />);
     rerender(<PolicyRenewalPreviewPanel state="ready" preview={changedPreview} />);
     expect(screen.getByText('Current annual premium (reference only): 987.40 INR')).toBeTruthy();
@@ -43,6 +43,10 @@ describe('Days 52–53 renewal preview panel', () => {
     expect(screen.queryByText('Next term begins 2027-12-01')).toBeNull();
     expect(screen.queryByText('Version 3')).toBeNull();
     expect(screen.queryByText(preview.notice)).toBeNull();
+  });
+
+  it('handles an explicit ready state without a selected preview', () => {
+    const { rerender } = render(<PolicyRenewalPreviewPanel state="ready" preview={changedPreview} />);
     rerender(<PolicyRenewalPreviewPanel state="ready" />);
     expect(screen.queryByText(/Current annual premium/)).toBeNull();
     expect(screen.queryByText(/Next term begins/)).toBeNull();

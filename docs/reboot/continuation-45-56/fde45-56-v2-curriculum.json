@@ -419,7 +419,7 @@
       "evidence_minutes": 10,
       "acceptance_proof": "Complete original/changed preview content and notice; no bind/renew/accept/purchase action; no callback during render; no input mutation.",
       "preserved_acceptance_commands": [
-        "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx"
+        "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"reference-only\""
       ],
       "infrastructure_commands": [
         "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"

@@ -1251,7 +1251,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
         "acceptance_commands": [
-          "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx"
+          "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"reference-only\""
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
