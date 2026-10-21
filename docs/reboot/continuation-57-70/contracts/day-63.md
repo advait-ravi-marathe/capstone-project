@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-Review the authorization path end to end, record the prior evidence gate, and take the timed mock checkpoint. If security acceptance is still red, repair it inside the same engineering budget before any planned next task.
+Review the authorization path end to end, record the prior evidence gate, and take the timed mock checkpoint. The required `day-62-security` evidence controls recovery. `implementationMinutes` is remaining practice time: accept and return any value from 0 through 85 unchanged; reject values outside that range. Missing, null or false evidence requires recovery; true avoids recovery. Both branches keep `newWorkAdded=false`. If security acceptance is still red, repair it inside the same engineering budget before any planned next task.
 
 ## Acceptance and expected TODO state
 
@@ -37,7 +37,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 **Official references:**
 - [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication
 
-**Worked guide:** [day-63.md](docs/reboot/continuation-57-70/worked/day-63.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-63.md](../worked/day-63.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

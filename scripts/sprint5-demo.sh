@@ -15,12 +15,12 @@ if ! command -v docker >/dev/null || ! docker compose version >/dev/null 2>&1; t
 fi
 
 expected_head="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["sourceCommit"])' "$evidence_file")"
-expected_status="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["workingTreeStatusSha256"])' "$evidence_file")"
+expected_source="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["sourceContentSha256"])' "$evidence_file")"
 expected_artifact="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["artifactSha256"])' "$evidence_file")"
-actual_status="$(printf '%s' "$(git status --porcelain --untracked-files=all)" | sha256sum | cut -d' ' -f1)"
+actual_source="$(python3 scripts/sprint5-source-fingerprint.py)"
 actual_artifact="$(sha256sum "$jar_file" | cut -d' ' -f1)"
-[[ "$(git rev-parse HEAD)" == "$expected_head" && "$actual_status" == "$expected_status" \
-   && "$actual_artifact" == "$expected_artifact" ]] || {
+[[ "$(git rev-parse HEAD)" == "$expected_head" \
+   && "$actual_source" == "$expected_source" && "$actual_artifact" == "$expected_artifact" ]] || {
   echo "Source or archive changed since the recorded Sprint 5 package; rebuild before running." >&2
   exit 1
 }

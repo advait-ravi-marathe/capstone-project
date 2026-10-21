@@ -10,4 +10,4 @@ The native trace is: stage entry → `Sprint5LocalConfiguration` → existing tw
 
 **Tradeoff:** an explicit import list makes this early slice reviewable; broad scanning would accidentally include later work. This is supplied instructor wiring, not learner framework implementation.
 
-**Practice 85:** 15 predict dependencies, 35 draw the four-arrow trace, 20 run selectors, 15 explain the tradeoff. **Selector:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test`.
+**Practice 85:** 15 predict dependencies, 35 draw the four-arrow trace, 20 run selectors, 15 explain the tradeoff. **Selector:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test`.

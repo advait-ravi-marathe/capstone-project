@@ -8,4 +8,4 @@
 
 Native trace: owner resolution → owner/key receipt lookup → lifecycle decision → replay200, rejection safe response, or persist once for201. `issue` takes `(PolicyIssueRequest, Authentication)`. The domain service owns the issue decision and atomic persistence. Course Location semantics are not automatically part of this endpoint.
 
-**Practice 85:** annotate 10, branch tests 35, trace 25, predict 15. **Selector:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test`.
+**Practice 85:** annotate 10, branch tests 35, trace 25, predict 15. **Selector:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test`.

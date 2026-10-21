@@ -37,7 +37,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 **Official references:**
 - [C4 model: Container](https://c4model.com/abstractions/container) — Container
 
-**Worked guide:** [day-70.md](docs/reboot/continuation-57-70/worked/day-70.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-70.md](../worked/day-70.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

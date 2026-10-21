@@ -10,4 +10,4 @@ The runnable parcel model in [`parcel_restart_reference.py`](../../../../scripts
 
 Keep owner switching/foreign concealment/logout as one journey. For restart, establish an active session and successful preview in the same server context immediately before stop; do not logout it. Retain the cookie privately, restart a distinct PID with the same database and fixed clock, verify old session401, reselect owner, and compare full preview plus DB state. Delete the temporary cookie; never record its value.
 
-**Practice 85:** 20 predictions, 40 journeys/snapshots, 15 diagnosis, 10 limitations. **Command:** `scripts/package-sprint5-demo.sh`, then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`.
+**Practice 85:** 20 predictions, 40 journeys/snapshots, 15 diagnosis, 10 limitations. **Command:** `scripts/package-sprint5-demo.sh`, then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`.

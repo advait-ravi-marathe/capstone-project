@@ -16,7 +16,7 @@ The fixed learner selector is installed and currently fails at this day’s expl
 
 **Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
 **Acceptance selector:** `day62PrincipalOwnsReadsAndForgedOwnerIsIgnored`
-**Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test`
+**Learner acceptance command:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -40,7 +40,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 **Official references:**
 - [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication, SecurityContextHolder, SecurityContext
 
-**Worked guide:** [day-62.md](docs/reboot/continuation-57-70/worked/day-62.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-62.md](../worked/day-62.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

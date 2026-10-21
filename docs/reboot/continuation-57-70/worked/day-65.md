@@ -8,4 +8,4 @@ The gallery reference proves two distinct gates: a valid token cannot authentica
 
 Native instructor test creates a real synthetic session, submits the same issue request with absent then wrong token, expects 403 both times, and compares complete ordered policy/event/idempotency rows after each. A valid-token request is the positive control; if it reaches an earlier learner TODO, report that exact blocker rather than substituting a 201.
 
-**Practice 85:** 10 hypothesis matrix, 45 requests, 20 snapshots, 10 explanation. **Selector:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`.
+**Practice 85:** 10 hypothesis matrix, 45 requests, 20 snapshots, 10 explanation. **Selector:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`.

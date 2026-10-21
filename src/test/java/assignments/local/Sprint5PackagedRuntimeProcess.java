@@ -35,8 +35,7 @@ final class Sprint5PackagedRuntimeProcess implements AutoCloseable {
         if (!Files.isRegularFile(jar) || !Files.isRegularFile(evidence)) {
             throw new IllegalStateException("Build a fresh Sprint 5 archive with scripts/package-sprint5-demo.sh first.");
         }
-        String expected = new ObjectMapper().readTree(Files.readString(evidence)).path("artifactSha256").asString();
-        if (!expected.equals(sha256(jar))) throw new IllegalStateException("Sprint 5 archive no longer matches its build receipt.");
+        verifyArtifactReceipt(jar, evidence);
         int port;
         try (ServerSocket socket = new ServerSocket(0, 0, java.net.InetAddress.getByName("127.0.0.1"))) {
             port = socket.getLocalPort();
@@ -69,6 +68,32 @@ final class Sprint5PackagedRuntimeProcess implements AutoCloseable {
                 HttpResponse.BodyHandlers.ofString());
     }
 
+    HttpResponse<String> getWithCookie(String path, String cookie) throws Exception {
+        return client.send(HttpRequest.newBuilder(uri(path)).header("Cookie", cookie).GET()
+                        .timeout(Duration.ofSeconds(3)).build(), HttpResponse.BodyHandlers.ofString());
+    }
+
+    String selectOwnerA() throws Exception {
+        var csrfResponse = get("/api/csrf");
+        if (csrfResponse.statusCode() != 200) throw new IllegalStateException("Could not obtain local CSRF token.");
+        String token = new ObjectMapper().readTree(csrfResponse.body()).path("token").asString();
+        String csrfCookie = csrfResponse.headers().allValues("set-cookie").stream()
+                .filter(value -> value.startsWith("XSRF-TOKEN="))
+                .map(value -> value.substring("XSRF-TOKEN=".length(), value.indexOf(';') < 0 ? value.length() : value.indexOf(';')))
+                .findFirst().orElseThrow(() -> new IllegalStateException("CSRF cookie was not issued."));
+        var selection = client.send(HttpRequest.newBuilder(uri("/api/session"))
+                        .header("Cookie", "XSRF-TOKEN=" + csrfCookie)
+                        .header("X-XSRF-TOKEN", token)
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString("{\"ownerId\":\"owner-a\"}"))
+                        .timeout(Duration.ofSeconds(3)).build(), HttpResponse.BodyHandlers.ofString());
+        if (selection.statusCode() != 200) throw new IllegalStateException("Could not select synthetic owner-a.");
+        return selection.headers().allValues("set-cookie").stream()
+                .filter(value -> value.startsWith("JSESSIONID="))
+                .map(value -> value.substring(0, value.indexOf(';') < 0 ? value.length() : value.indexOf(';')))
+                .findFirst().orElseThrow(() -> new IllegalStateException("Session cookie was not issued."));
+    }
+
     private URI uri(String path) { return URI.create("http://127.0.0.1:" + port + path); }
 
     private void waitUntilReady() throws Exception {
@@ -85,6 +110,41 @@ final class Sprint5PackagedRuntimeProcess implements AutoCloseable {
     private static String sha256(Path path) throws Exception {
         byte[] digest = MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(path));
         return java.util.HexFormat.of().formatHex(digest);
+    }
+
+    static String git(String... arguments) throws Exception {
+        var command = new ArrayList<String>();
+        command.add("git");
+        command.addAll(List.of(arguments));
+        Process process = new ProcessBuilder(command).redirectErrorStream(true).start();
+        String output = new String(process.getInputStream().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).trim();
+        if (!process.waitFor(5, TimeUnit.SECONDS) || process.exitValue() != 0) {
+            throw new IllegalStateException("Could not verify current source identity: " + output);
+        }
+        return output;
+    }
+
+    static String sourceFingerprint() throws Exception {
+        Process process = new ProcessBuilder("python3", "scripts/sprint5-source-fingerprint.py")
+                .redirectErrorStream(true).start();
+        String output = new String(process.getInputStream().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).trim();
+        if (!process.waitFor(5, TimeUnit.SECONDS) || process.exitValue() != 0) {
+            throw new IllegalStateException("Could not fingerprint current Sprint 5 source: " + output);
+        }
+        return output;
+    }
+
+    static void verifyArtifactReceipt(Path jar, Path evidence) throws Exception {
+        var receipt = new ObjectMapper().readTree(Files.readString(evidence));
+        if (!receipt.path("sourceCommit").asString().equals(git("rev-parse", "HEAD"))) {
+            throw new IllegalStateException("Sprint 5 receipt belongs to a different source commit.");
+        }
+        if (!receipt.path("sourceContentSha256").asString().equals(sourceFingerprint())) {
+            throw new IllegalStateException("Current source contents differ from the Sprint 5 package receipt.");
+        }
+        if (!receipt.path("artifactSha256").asString().equals(sha256(jar))) {
+            throw new IllegalStateException("Sprint 5 archive no longer matches its build receipt.");
+        }
     }
 
     @Override public void close() throws Exception {

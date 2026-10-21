@@ -19,8 +19,8 @@ The fixed browser selectors now launch the packaged JAR and drive real UI contro
 **Learner acceptance commands:**
 
 ```sh
-CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test
-CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test
 ```
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
@@ -44,11 +44,13 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Playwright: Response](https://playwright.dev/docs/api/class-response) — json, status
 - [PostgreSQL18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED) — Read Committed Isolation Level
 
-**Worked guide:** [day-68.md](docs/reboot/continuation-57-70/worked/day-68.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-68.md](../worked/day-68.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 
 **Runnable acceptance commands:**
+- `scripts/package-sprint5-demo.sh`
+- `scripts/package-sprint5-demo.sh`
 - `scripts/package-sprint5-demo.sh`
 - `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test`
 - `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test`

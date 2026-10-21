@@ -39,7 +39,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [GOV.UK: Writing user stories](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories) — Acceptance criteria
 - [Java SE21: Map](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html) — get(Object), containsKey(Object), Unmodifiable Maps
 
-**Worked guide:** [day-57.md](docs/reboot/continuation-57-70/worked/day-57.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-57.md](../worked/day-57.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

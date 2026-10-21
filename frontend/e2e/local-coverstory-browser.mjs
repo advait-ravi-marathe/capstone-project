@@ -8,6 +8,7 @@ if (!baseUrl || !outputPath || !scenario) throw new Error('Expected base URL, ou
 
 const sessionCookieInput = process.env.COVERSTORY_SESSION_COOKIE_INPUT;
 const sessionCookieOutput = process.env.COVERSTORY_SESSION_COOKIE_OUTPUT;
+const milestoneDir = process.env.COVERSTORY_MILESTONE_DIR;
 let savedSessionCookie = null;
 if (sessionCookieInput) {
   savedSessionCookie = fs.readFileSync(sessionCookieInput, 'utf8');
@@ -15,6 +16,21 @@ if (sessionCookieInput) {
 }
 
 let browser;
+const apiResponses = [];
+const controls = {};
+const result = { apiResponses, controls, completed: false };
+const checkpoint = async (name) => {
+  if (!milestoneDir) return;
+  fs.mkdirSync(milestoneDir, { recursive: true });
+  const reached = path.join(milestoneDir, `${name}.reached`);
+  const proceed = path.join(milestoneDir, `${name}.continue`);
+  fs.writeFileSync(reached, 'observed');
+  const deadline = Date.now() + 45000;
+  while (!fs.existsSync(proceed)) {
+    if (Date.now() > deadline) throw new Error(`Timed out waiting for test observer at ${name}`);
+    await new Promise((resolve) => setTimeout(resolve, 25));
+  }
+};
 try {
   browser = await chromium.launch({
     headless: true,
@@ -26,7 +42,6 @@ try {
     await context.addCookies([{ name: 'JSESSIONID', value: savedSessionCookie, url: baseUrl }]);
   }
   const page = await context.newPage();
-  const apiResponses = [];
   const responseSettlers = new WeakMap();
   const mergeApiCaptures = createApiCaptureMerger(apiResponses);
   let captureDocumentId = 0;
@@ -76,7 +91,10 @@ try {
   };
 
   const pageResponse = await page.goto(baseUrl);
+  result.browserOpened = true;
+  result.pageStatus = pageResponse?.status() ?? null;
   const heading = await page.getByRole('heading', { name: 'CoverStory local training' }).textContent().catch(() => null);
+  result.heading = heading;
   const click = async (name, expectedResponse) => {
     const button = page.getByRole('button', { name, exact: true });
     try { await button.waitFor({ state: 'visible', timeout: 2500 }); } catch { /* retain a finite missing-control result */ }
@@ -98,8 +116,6 @@ try {
     }
     return available;
   };
-  const controls = {};
-  const result = { apiResponses, controls };
   result.prohibitedControls = {
     buttons: await page.getByRole('button', { name: /purchase|renew now|buy coverage/i }).count(),
     links: await page.getByRole('link', { name: /purchase|renew now|buy coverage/i }).count(),
@@ -125,9 +141,13 @@ try {
       result.visibleAfterOwnerA = await page.locator('body').innerText();
     }
     if (scenario === 'day68-issue') {
+      await checkpoint('before-issue');
       controls.issueSelectedQuote = await click('Issue selected quote', { method: 'POST', path: /^\/api\/policies$/ });
+      await checkpoint('after-issue');
       controls.readIssuedPolicy = await click('View issued policy', { method: 'GET', path: /^\/api\/policies\/[^/]+$/ });
+      await checkpoint('after-read');
       controls.replayIssue = await click('Replay issue request', { method: 'POST', path: /^\/api\/policies$/ });
+      await checkpoint('after-replay');
       result.issueResponses = issues();
       result.readbackResponses = readbacks();
       result.visibleAfterIssueFlow = await page.locator('body').innerText();
@@ -144,6 +164,7 @@ try {
       controls.logout = await click('Log out', { method: 'POST', path: /^\/api\/session\/logout$/ });
       if (controls.logout) {
         await mergePageCaptures();
+        result.visibleImmediatelyAfterLogout = await page.locator('body').innerText();
         const responseStart = apiResponses.length;
         const reloadedSession = page.waitForResponse((response) => {
           const request = response.request();
@@ -174,9 +195,20 @@ try {
     fs.mkdirSync(path.dirname(sessionCookieOutput), { recursive: true });
     fs.writeFileSync(sessionCookieOutput, sessionCookie ?? '', { mode: 0o600 });
   }
+  if (sessionCookieOutput && scenario === 'day69') {
+    fs.mkdirSync(path.dirname(sessionCookieOutput), { recursive: true });
+    fs.writeFileSync(sessionCookieOutput, sessionCookie ?? '', { mode: 0o600 });
+  }
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, JSON.stringify({ browserOpened: true, pageStatus: pageResponse?.status(), heading, ...result }, null, 2));
+  result.completed = true;
+  fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
   await context.close();
+} catch (error) {
+  result.completed = false;
+  result.failure = { name: error?.name ?? 'Error', message: error?.message ?? String(error) };
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
+  throw error;
 } finally {
   await browser?.close();
 }

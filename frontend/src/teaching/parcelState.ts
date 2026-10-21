@@ -40,3 +40,15 @@ export class ParcelView {
     if (mine === this.generation) this.state = result;
   }
 }
+
+/** One explicit user action. The caller creates and freezes the request body once. */
+export async function submitParcelHold(send: typeof fetch, frozenBody: string, csrfToken: string): Promise<number> {
+  const response = await send('/api/parcel-holds', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json', 'X-XSRF-TOKEN': csrfToken },
+    body: frozenBody,
+  });
+  // 204 is bodyless. Return the status without trying to parse JSON or retrying.
+  return response.status;
+}

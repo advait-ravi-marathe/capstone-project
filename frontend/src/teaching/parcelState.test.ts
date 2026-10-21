@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { ParcelView, readParcel } from './parcelState';
+import { ParcelView, readParcel, submitParcelHold } from './parcelState';
 
 describe('parcel transport/state teaching reference', () => {
   it('checks status before parsing, validates unknown JSON, and clears late owner results', async () => {
@@ -23,5 +23,20 @@ describe('parcel transport/state teaching reference', () => {
       .toEqual({ kind: 'unavailable', reason: 'http' });
     expect(await readParcel(vi.fn<typeof fetch>().mockRejectedValue(new Error('offline'))))
       .toEqual({ kind: 'unavailable', reason: 'network' });
+  });
+
+  it('uses an explicit frozen POST twice only when requested and handles bodyless 204', async () => {
+    const request = Object.freeze({ parcelId: 'p-7', clientRequestId: 'hold-17' });
+    const body = JSON.stringify(request);
+    const send = vi.fn<typeof fetch>().mockResolvedValue(new Response(null, { status: 204 }));
+    expect(send).toHaveBeenCalledTimes(0);
+    expect(await submitParcelHold(send, body, 'toy-token')).toBe(204);
+    expect(await submitParcelHold(send, body, 'toy-token')).toBe(204);
+    expect(send).toHaveBeenCalledTimes(2);
+    expect(send.mock.calls.map(call => call[1]?.body)).toEqual([body, body]);
+    expect(send).toHaveBeenNthCalledWith(1, '/api/parcel-holds', expect.objectContaining({
+      method: 'POST', credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json', 'X-XSRF-TOKEN': 'toy-token' }, body,
+    }));
   });
 });

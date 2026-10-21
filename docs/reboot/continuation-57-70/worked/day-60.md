@@ -12,4 +12,4 @@ The expected mapping is an immutable `LoanView`; SQL exceptions remain failures 
 
 Implement the actual `JdbcPolicyReadStore.findByPolicyIdAndOwnerId` seam. Keep the existing renewal-read assertion as a prerequisite, but call the policy read store directly for the issued seeded row and a distinct fixture. Verify every current-row field and nullable cancellation date; these issued rows have no endorsement history, so do not claim aggregation. Compare all three lifecycle tables after each read.
 
-**Practice 85:** 10 map prediction, 50 adapter, 25 tests. **Selector:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test`.
+**Practice 85:** 10 map prediction, 50 adapter, 25 tests. **Selector:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test`.

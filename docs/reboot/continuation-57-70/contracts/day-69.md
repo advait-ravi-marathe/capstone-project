@@ -16,7 +16,7 @@ The fixed browser selector launches the executable JAR and drives UI controls ac
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
 **Acceptance selector:** `day69PreviewIsStableAcrossPackagedRestartAndLogout`
-**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
+**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -39,11 +39,13 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Spring Security: Handling Logouts](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html) — Understanding Logout's Architecture, Creating a Custom Logout Endpoint
 - [PostgreSQL18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED) — Read Committed Isolation Level
 
-**Worked guide:** [day-69.md](docs/reboot/continuation-57-70/worked/day-69.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-69.md](../worked/day-69.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 
 **Runnable acceptance commands:**
+- `scripts/package-sprint5-demo.sh`
+- `scripts/package-sprint5-demo.sh`
 - `scripts/package-sprint5-demo.sh`
 - `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
 

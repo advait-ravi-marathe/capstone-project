@@ -41,6 +41,10 @@ class LocalReadinessGateAcceptanceTest {
                 new LocalReadinessGate().securityCheckpoint(Map.of(), 60));
         assertEquals(new LocalReadinessGate.SecurityCheckpoint(true, 60, false),
                 new LocalReadinessGate().securityCheckpoint(null, 60));
+        var nullEvidence = new HashMap<String, Boolean>();
+        nullEvidence.put("day-62-security", null);
+        assertEquals(new LocalReadinessGate.SecurityCheckpoint(true, 60, false),
+                new LocalReadinessGate().securityCheckpoint(nullEvidence, 60));
         assertEquals(new LocalReadinessGate.SecurityCheckpoint(false, 60, false),
                 new LocalReadinessGate().securityCheckpoint(Map.of("day-62-security", true), 60));
         assertEquals(new LocalReadinessGate.SecurityCheckpoint(false, 0, false),

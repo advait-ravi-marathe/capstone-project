@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `LocalPolicyIssueController.issue(PolicyIssueRequest)`
+**Instructor-provided scaffold to inspect:** `LocalPolicyIssueController.issue(PolicyIssueRequest, Authentication)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
@@ -16,7 +16,7 @@ This feature is already supplied as instructor scaffolding. Its selector verifie
 
 **Acceptance test:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
 **Acceptance selector:** `day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test`
+**Scaffold verification command:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Learner task — explain/debug acceptance
@@ -46,7 +46,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 **Official references:**
 - [Spring Framework: Return Values](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html) — HttpEntity<B>, ResponseEntity<B> table entry
 
-**Worked guide:** [day-64.md](docs/reboot/continuation-57-70/worked/day-64.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-64.md](../worked/day-64.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

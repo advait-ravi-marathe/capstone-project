@@ -15,6 +15,39 @@ import static org.junit.jupiter.api.Assertions.*;
 @Tag("learnerAcceptance")
 class Sprint5PackagedInfrastructureTest {
     @Test
+    void day67PackageReceiptRejectsChangedContentsOfAnAlreadyDirtyPath() throws Exception {
+        Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT-sprint5.jar");
+        Path probe = Path.of("scripts/.sprint5-fingerprint-probe");
+        Path receipt = Path.of("target/sprint5-demo/fingerprint-probe-receipt.json");
+        Files.createDirectories(receipt.getParent());
+        try {
+            Files.writeString(probe, "first contents");
+            var original = new ObjectMapper().readTree(Files.readString(
+                    Path.of("target/sprint5-demo/package-evidence.json"))).deepCopy();
+            ((tools.jackson.databind.node.ObjectNode) original).put("sourceCommit",
+                    Sprint5PackagedRuntimeProcess.git("rev-parse", "HEAD"));
+            String status = Sprint5PackagedRuntimeProcess.git("status", "--porcelain", "--untracked-files=all");
+            String statusHash = java.util.HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256")
+                    .digest(status.getBytes(java.nio.charset.StandardCharsets.UTF_8)));
+            ((tools.jackson.databind.node.ObjectNode) original).put("workingTreeStatusSha256", statusHash);
+            ((tools.jackson.databind.node.ObjectNode) original).put("sourceContentSha256",
+                    Sprint5PackagedRuntimeProcess.sourceFingerprint());
+            Files.writeString(receipt, original.toString());
+
+            Files.writeString(probe, "changed contents, same dirty path");
+            String changedStatus = Sprint5PackagedRuntimeProcess.git("status", "--porcelain", "--untracked-files=all");
+            assertEquals(status, changedStatus, "the path list is unchanged");
+            assertNotEquals(original.path("sourceContentSha256").asString(),
+                    Sprint5PackagedRuntimeProcess.sourceFingerprint(), "content hash changes without a path change");
+            assertThrows(IllegalStateException.class,
+                    () -> Sprint5PackagedRuntimeProcess.verifyArtifactReceipt(jar, receipt));
+        } finally {
+            Files.deleteIfExists(probe);
+            Files.deleteIfExists(receipt);
+        }
+    }
+
+    @Test
     void day67FreshSprint5ArchiveHasDedicatedEntryAndNormalAssets() throws Exception {
         Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT-sprint5.jar");
         Path receipt = Path.of("target/sprint5-demo/package-evidence.json");
@@ -62,11 +95,20 @@ class Sprint5PackagedInfrastructureTest {
              Sprint5PackagedRuntimeProcess app = Sprint5PackagedRuntimeProcess.start(postgres,
                      "2026-12-19T12:00:00Z")) {
             assertTrue(app.pid() > 0);
-            assertEquals(200, app.get("/").statusCode());
+            var root = app.get("/");
+            assertEquals(200, root.statusCode());
+            var assetMatcher = java.util.regex.Pattern.compile("src=\"([^\"]+)\"").matcher(root.body());
+            assertTrue(assetMatcher.find(), "packaged root must reference its normal JavaScript bundle");
+            assertEquals(200, app.get(assetMatcher.group(1)).statusCode(), "root-referenced asset is served by the JAR");
             assertEquals(200, app.get("/actuator/health").statusCode());
             assertEquals(401, app.get("/api/session").statusCode());
-            assertEquals(401, app.get("/test/day44").statusCode(), "test path is protected and has no public test response");
-            assertEquals(401, app.get("/__e2e/day44-lifecycle").statusCode(), "e2e path is protected and has no public test response");
+            String session = app.selectOwnerA();
+            assertEquals(200, app.getWithCookie("/api/session", session).statusCode(),
+                    "the bounded runtime supports its real synthetic session boundary");
+            assertEquals(404, app.getWithCookie("/test/day44", session).statusCode(),
+                    "authenticated test routes are absent from the packaged runtime");
+            assertEquals(404, app.getWithCookie("/__e2e/day44-lifecycle", session).statusCode(),
+                    "authenticated e2e routes are absent from the packaged runtime");
             assertEquals(3, scalar(postgres, "SELECT count(*) FROM flyway_schema_history WHERE success"));
             assertEquals(0, scalar(postgres, "SELECT count(*) FROM flyway_schema_history WHERE version='4'"));
             assertEquals(0, scalar(postgres, "SELECT count(*) FROM flyway_schema_history WHERE version='5'"));

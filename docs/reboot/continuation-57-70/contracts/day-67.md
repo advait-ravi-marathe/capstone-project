@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `scripts/package-local-demo.sh and scripts/local-demo.sh`
+**Instructor-provided scaffold to inspect:** `scripts/package-sprint5-demo.sh and scripts/sprint5-demo.sh`
 **Status:** Scripts and runtime are instructor scaffolding; learner run/inspection evidence is pending.
 **Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
@@ -14,14 +14,14 @@ The documented workflow builds the root UI into the executable JAR, starts a loo
 
 The instructor scaffold-verification selector is installed and passed; that result does not establish learner completion.
 
-**Acceptance test:** `src/test/java/assignments/local/LocalPackageInfrastructureTest.java`
-**Acceptance selector:** `day67PackageIncludesNormalUiAndNoTestRoutes`
-**Scaffold verification command:** `./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test`
+**Source-shape test only:** `LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes` inspects source, not an archive.
+**Packaged acceptance test:** `src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java`
+**Selectors:** `day67FreshSprint5ArchiveHasDedicatedEntryAndNormalAssets`; `day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Learner task — explain/debug acceptance
 
-Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
+Run `scripts/package-sprint5-demo.sh` before the two packaged acceptance selectors above; then inspect the stage JAR entry/assets and routes, verify loopback health/session behavior, and stop the unique ephemeral demo. The package step verifies current source contents against the artifact receipt. The older `LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes` remains source inspection only. There is no persistent local mode.
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
@@ -45,13 +45,15 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Spring Boot: Packaging Executable Archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html) — Packaging Executable Archives, mainClass, classifier
 - [Spring Boot: Profiles](https://docs.spring.io/spring-boot/reference/features/profiles.html) — Profiles, Adding Active Profiles
 
-**Worked guide:** [day-67.md](docs/reboot/continuation-57-70/worked/day-67.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-67.md](../worked/day-67.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 
+The source-shape selector does not prove packaging. First run `scripts/package-sprint5-demo.sh`; it builds the local UI, creates the fresh classifier JAR and records its source/artifact receipt.
+
 **Runnable acceptance commands:**
-- `./mvnw -Plocal-app,sprint5-local -DskipTests package`
-- `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#stageArchiveHasExplicitEntryAndPackagedUi+stageJarServesOnlyTheBoundedRuntime test`
+- `scripts/package-sprint5-demo.sh`
+- `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67FreshSprint5ArchiveHasDedicatedEntryAndNormalAssets+day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test`
 
 ## Evidence allocation (10 minutes)
 

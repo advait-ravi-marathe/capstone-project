@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `LocalSecurityConfiguration.securityFilterChain(HttpSecurity)`
+**Instructor-provided scaffold to inspect:** `LocalSecurityConfiguration.localSecurityFilterChain(HttpSecurity, SecurityContextRepository)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
@@ -16,7 +16,7 @@ This feature is already supplied as instructor scaffolding. Its selector verifie
 
 **Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
 **Acceptance selector:** `day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test`
+**Scaffold verification command:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Learner task — explain/debug acceptance
@@ -47,7 +47,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Spring Security: Testing with CSRF Protection](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html) — Testing with CSRF Protection
 - [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication, SecurityContextHolder, SecurityContext
 
-**Worked guide:** [day-61.md](docs/reboot/continuation-57-70/worked/day-61.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-61.md](../worked/day-61.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-Missing or invalid CSRF tokens return 403 and do not change any lifecycle row. A same-origin request with a valid synthetic session and token reaches the issue adapter.
+For an authenticated synthetic session, both a missing token and a wrong token return 403, invoke no controller/service path, and leave every ordered policy, lifecycle-event, and idempotency row unchanged. An anonymous request remains 401 even with a valid token. A valid session and current token reach the actual issue adapter once; any upstream learner TODO remains a blocker, not a successful issue.
 
 ## Acceptance and expected TODO state
 
@@ -16,12 +16,12 @@ This feature is already supplied as instructor scaffolding. Its selector verifie
 
 **Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
 **Acceptance selector:** `day65InvalidCsrfCannotCreatePolicyRows`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
+**Scaffold verification command:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Learner task — explain/debug acceptance
 
-Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.
+Reproduce authenticated POSTs with missing and wrong tokens, the anonymous-plus-valid-token control, and the valid-session-plus-current-token control. Compare full ordered snapshots of all three lifecycle tables after each rejection and record adapter/service call counts. Explain why rejection occurs before the handler. Do not substitute a mocked success or treat an upstream TODO failure as a pass. This supplied protection is not a learner TODO.
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
@@ -47,7 +47,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Spring Security: Cross Site Request Forgery](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html) — Understanding CSRF Protection's Components, Using the CookieCsrfTokenRepository
 - [Spring Security: Testing with CSRF Protection](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html) — Testing with CSRF Protection
 
-**Worked guide:** [day-65.md](docs/reboot/continuation-57-70/worked/day-65.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-65.md](../worked/day-65.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

@@ -14,6 +14,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import assignments.sprint5.Sprint5LocalApplication;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,6 +23,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.MockMvc;
+import assignments.insurance.PolicyLifecycleService;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -42,6 +44,8 @@ class LocalSecurityAcceptanceTest {
     @Autowired MockMvc mvc;
     @Autowired LocalPolicyOwnerResolver ownerResolver;
     @Autowired javax.sql.DataSource dataSource;
+    @MockitoSpyBean LocalPolicyIssueController issueController;
+    @MockitoSpyBean PolicyLifecycleService lifecycleService;
 
     @DynamicPropertySource
     static void database(DynamicPropertyRegistry registry) {
@@ -122,10 +126,21 @@ class LocalSecurityAcceptanceTest {
                 "unknown", "", AuthorityUtils.NO_AUTHORITIES)).isEmpty());
         assertTrue(ownerResolver.ownerId(UsernamePasswordAuthenticationToken.authenticated(
                 " ", "", AuthorityUtils.NO_AUTHORITIES)).isEmpty());
+        for (var rejected : java.util.List.of(
+                UsernamePasswordAuthenticationToken.unauthenticated("owner-a", ""), anonymous,
+                UsernamePasswordAuthenticationToken.authenticated("unknown", "", AuthorityUtils.NO_AUTHORITIES),
+                UsernamePasswordAuthenticationToken.authenticated(" ", "", AuthorityUtils.NO_AUTHORITIES))) {
+            assertTrue(ownerResolver.ownerId(rejected, "owner-a").isEmpty(),
+                    "untrusted requested owner cannot make an invalid principal valid");
+            assertTrue(ownerResolver.ownerId(rejected, "owner-b").isEmpty());
+        }
+        assertTrue(ownerResolver.ownerId(null, "owner-a").isEmpty());
+        assertTrue(ownerResolver.ownerId(null, null).isEmpty());
     }
 
     @Test
     void day65InvalidCsrfCannotCreatePolicyRows() throws Exception {
+        org.mockito.Mockito.clearInvocations(issueController, lifecycleService);
         MvcResult sessionResult = mvc.perform(post("/api/session").with(csrf()).contentType(MediaType.APPLICATION_JSON)
                         .content("{\"ownerId\":\"owner-a\"}"))
                 .andExpect(status().isOk()).andReturn();
@@ -135,12 +150,29 @@ class LocalSecurityAcceptanceTest {
         mvc.perform(post("/api/policies").session(session).contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(status().isForbidden());
         assertEquals(beforeMissing, allLifecycleRows());
+        org.mockito.Mockito.verify(issueController, org.mockito.Mockito.never())
+                .issue(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+        org.mockito.Mockito.verify(lifecycleService, org.mockito.Mockito.never())
+                .issueHttpStatus(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
 
         String beforeWrong = allLifecycleRows();
         mvc.perform(post("/api/policies").session(session).with(csrf().asHeader().useInvalidToken())
                         .contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(status().isForbidden());
         assertEquals(beforeWrong, allLifecycleRows());
+        org.mockito.Mockito.verify(issueController, org.mockito.Mockito.never())
+                .issue(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+        org.mockito.Mockito.verify(lifecycleService, org.mockito.Mockito.never())
+                .issueHttpStatus(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+
+        String beforeAnonymousWithToken = allLifecycleRows();
+        mvc.perform(post("/api/policies").with(csrf()).contentType(MediaType.APPLICATION_JSON).content(request))
+                .andExpect(status().isUnauthorized());
+        assertEquals(beforeAnonymousWithToken, allLifecycleRows());
+        org.mockito.Mockito.verify(issueController, org.mockito.Mockito.never())
+                .issue(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+        org.mockito.Mockito.verify(lifecycleService, org.mockito.Mockito.never())
+                .issueHttpStatus(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
 
         // Valid-token positive control reaches the real route; unresolved earlier learner TODOs fail here.
         mvc.perform(post("/api/policies").session(session).with(csrf())

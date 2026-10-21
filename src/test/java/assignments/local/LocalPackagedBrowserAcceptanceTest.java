@@ -20,6 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class LocalPackagedBrowserAcceptanceTest {
     private static final Path OUTPUT = Path.of("target/local-coverstory-browser").toAbsolutePath();
     private static final String PREVIEW_TEST_CLOCK = "2027-01-01T12:00:00Z";
+    private static final String ISSUE_TEST_CLOCK = "2026-12-19T12:00:00Z";
+    private static final String ISSUE_TEST_EFFECTIVE_DATE = "2026-12-20";
+
+    @Test
+    void day68WireAmountsRequireNumericJsonAndIgnoreDecimalScale() throws Exception {
+        assertNumericAmount(new ObjectMapper().readTree("125.0"), "125.00");
+        assertThrows(AssertionError.class,
+                () -> assertNumericAmount(new ObjectMapper().readTree("\"125.00\""), "125.00"));
+    }
 
     @Test
     @Tag("learnerAcceptance")
@@ -51,13 +60,11 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertEquals("home-secure-v1", body.path("productVersion").asString());
                         assertEquals("home-secure-rate-v1", body.path("rateVersion").asString());
                         assertTrue(body.path("currentAnnualPremiumRupees").isNumber());
-                        assertEquals(new java.math.BigDecimal("125.00"), body.path("currentAnnualPremiumRupees").decimalValue());
+                        assertNumericAmount(body.path("currentAnnualPremiumRupees"), "125.00");
                         assertEquals("INR", body.path("currency").asString());
                         assertEquals("2027-01-15", body.path("nextTermEffectiveDate").asString());
                         assertEquals("Reference only; not a renewal offer or coverage commitment.", body.path("notice").asString());
-                        assertTrue(result.path("visibleAfterOwnerA").asString().contains("125.00"));
-                        assertTrue(result.path("visibleAfterOwnerA").asString().contains("2027-01-15"));
-                        assertTrue(result.path("visibleAfterOwnerA").asString().contains(body.path("notice").asString()));
+                        assertPreviewVisible(result.path("visibleAfterOwnerA").asString());
                         assertFalse(result.path("visibleAfterOwnerA").asString().toLowerCase().matches("(?s).*(purchase|renew now|buy coverage).*"));
                     },
                     () -> assertEquals(before, after,
@@ -70,13 +77,16 @@ class LocalPackagedBrowserAcceptanceTest {
     @Tag("learnerAcceptance")
     void day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
-             Sprint5PackagedRuntimeProcess app = Sprint5PackagedRuntimeProcess.start(postgres, "2026-12-19T12:00:00Z")) {
+             Sprint5PackagedRuntimeProcess app = Sprint5PackagedRuntimeProcess.start(postgres, ISSUE_TEST_CLOCK)) {
             DataSource dataSource = postgres.getPostgresDatabase();
-            long before = policyCount(dataSource);
             PolicyDatabaseSnapshot beforeRows = policySnapshot(dataSource);
-            JsonNode result = runBrowser(app.port(), "day68-issue", OUTPUT.resolve("day68-issue.json"), null, null);
-            long after = policyCount(dataSource);
-            PolicyDatabaseSnapshot afterRows = policySnapshot(dataSource);
+            BrowserSnapshotRun observation = runIssueBrowserWithSnapshots(app.port(),
+                    OUTPUT.resolve("day68-issue.json"), dataSource);
+            JsonNode result = observation.result();
+            PolicyDatabaseSnapshot afterIssue = observation.snapshots().get(1);
+            PolicyDatabaseSnapshot afterRead = observation.snapshots().get(2);
+            PolicyDatabaseSnapshot afterReplay = observation.snapshots().get(3);
+            PolicyDatabaseSnapshot afterRows = afterReplay;
             JsonNode issues = result.path("issueResponses");
             JsonNode reads = result.path("readbackResponses");
             boolean issueFlowControlsPresent = result.path("controls").path("selectOwnerA").asBoolean()
@@ -105,11 +115,14 @@ class LocalPackagedBrowserAcceptanceTest {
                         JsonNode request = new ObjectMapper().readTree(issues.path(0).path("requestBody").asString());
                         assertEquals("journey-a", request.path("journeyId").asString());
                         assertEquals("quote-a", request.path("quoteVersionId").asString());
+                        assertEquals(ISSUE_TEST_EFFECTIVE_DATE, request.path("effectiveDate").asString(),
+                                "expected date is fixed independently of the observed request");
                         assertFalse(request.path("clientRequestId").asString().isBlank());
                         assertPolicyProjection(new ObjectMapper().readTree(issues.path(0).path("body").asString()), request);
                         assertPolicyProjection(new ObjectMapper().readTree(issues.path(1).path("body").asString()), request);
                         assertPolicyProjection(new ObjectMapper().readTree(reads.path(0).path("body").asString()), request);
-                        assertEquals(1, rowCount(afterRows.policies()) - rowCount(beforeRows.policies()));
+                        assertEquals(beforeRows, observation.snapshots().get(0), "pre-issue barrier is the baseline");
+                        assertEquals(1, rowCount(afterIssue.policies()) - rowCount(beforeRows.policies()));
                         JsonNode createdRows = new ObjectMapper().readTree(afterRows.policies());
                         JsonNode createdRow = findRow(createdRows, "policy_id", issuedPolicyId);
                         assertNotNull(createdRow);
@@ -118,19 +131,39 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertEquals("quote-a", createdRow.path("quote_version_id").asString());
                         assertEquals("home-secure-v1", createdRow.path("product_version").asString());
                         assertEquals("training-rate-v1", createdRow.path("rate_version").asString());
-                        assertEquals(new java.math.BigDecimal("125.00"), createdRow.path("annual_premium_rupees").decimalValue());
+                        assertNumericAmount(createdRow.path("annual_premium_rupees"), "125.00");
                         assertEquals("INR", createdRow.path("currency").asString().trim());
-                        assertEquals(request.path("effectiveDate").asString(), createdRow.path("effective_date").asString());
+                        assertEquals(ISSUE_TEST_EFFECTIVE_DATE, createdRow.path("effective_date").asString());
                         assertEquals("ISSUED", createdRow.path("status").asString());
                         assertEquals(1, createdRow.path("version").asInt());
                         assertTrue(createdRow.path("cancellation_effective_date").isNull());
-                        assertEquals(before + 1, after, "replay must not create another policy row");
-                        assertEquals(rowCount(beforeRows.lifecycleEvents()) + 1, rowCount(afterRows.lifecycleEvents()),
-                                "one new issued policy should add exactly one lifecycle event");
-                        assertEquals(rowCount(beforeRows.idempotency()) + 1, rowCount(afterRows.idempotency()),
-                                "same-key replay must add only the original idempotency record");
+                        JsonNode eventRows = new ObjectMapper().readTree(afterRows.lifecycleEvents());
+                        JsonNode newEvent = findRow(eventRows, "policy_id", issuedPolicyId);
+                        assertNotNull(newEvent);
+                        assertEquals(1, newEvent.path("version").asInt());
+                        assertEquals("ISSUED", newEvent.path("event_type").asString());
+                        assertEquals(ISSUE_TEST_EFFECTIVE_DATE, newEvent.path("effective_date").asString());
+                        JsonNode receipts = new ObjectMapper().readTree(afterRows.idempotency());
+                        JsonNode receipt = findRow(receipts, "client_request_id", request.path("clientRequestId").asString());
+                        assertNotNull(receipt);
+                        assertEquals("owner-a", receipt.path("owner_id").asString());
+                        assertEquals(issuedPolicyId, receipt.path("policy_id").asString());
+                        assertFalse(receipt.path("request_fingerprint").asString().isBlank());
+                        assertEquals(rowCount(beforeRows.lifecycleEvents()) + 1, rowCount(afterIssue.lifecycleEvents()));
+                        assertEquals(rowCount(beforeRows.idempotency()) + 1, rowCount(afterIssue.idempotency()));
+                        assertEquals(afterIssue, afterRead, "readback cannot change any stored value");
+                        assertEquals(afterIssue, afterReplay, "replay cannot change any stored value");
+                        String visible = result.path("visibleAfterIssueFlow").asString();
+                        assertTrue(visible.contains(issuedPolicyId), "captured DOM must show the actual issued policy");
+                        assertTrue(visible.contains("owner-a"));
+                        assertTrue(visible.contains("home-secure-v1"));
+                        assertTrue(visible.contains("training-rate-v1"));
+                        assertTrue(visible.contains("125.00"));
+                        assertTrue(visible.contains("INR"));
+                        assertTrue(visible.contains(ISSUE_TEST_EFFECTIVE_DATE));
+                        assertTrue(visible.contains("ISSUED"));
                     },
-                    () -> assertTrue(preservesEveryRow(beforeRows.policies(), afterRows.policies()),
+            () -> assertTrue(preservesEveryRow(beforeRows.policies(), afterRows.policies()),
                             "issue/readback/replay must not update any preexisting policy values or versions"),
                     () -> assertTrue(preservesEveryRow(beforeRows.lifecycleEvents(), afterRows.lifecycleEvents()),
                             "issue/readback/replay must preserve all preexisting lifecycle history"),
@@ -152,6 +185,7 @@ class LocalPackagedBrowserAcceptanceTest {
             PolicyDatabaseSnapshot beforeActiveSession;
             PolicyDatabaseSnapshot afterActiveSession;
             Path sessionCookieFile = privateSessionCookieFile();
+            Path loggedOutCookieFile = privateSessionCookieFile();
             JsonNode restarted;
             PolicyDatabaseSnapshot beforeRestartPreview;
             PolicyDatabaseSnapshot afterRestartPreview;
@@ -163,7 +197,7 @@ class LocalPackagedBrowserAcceptanceTest {
                     // Start the packaged app first so Flyway creates and seeds the database before queries run.
                     beforeLogoutJourney = policySnapshot(dataSource);
                     logoutJourney = runBrowser(app.port(), "day69", OUTPUT.resolve("day69-logout.json"),
-                            null, null);
+                            null, loggedOutCookieFile);
                     afterLogoutJourney = policySnapshot(dataSource);
                     beforeActiveSession = policySnapshot(dataSource);
                     first = runBrowser(app.port(), "day69-restart-seed", OUTPUT.resolve("day69-before-restart.json"),
@@ -172,6 +206,9 @@ class LocalPackagedBrowserAcceptanceTest {
                 }
                 try (Sprint5PackagedRuntimeProcess app = Sprint5PackagedRuntimeProcess.start(postgres, PREVIEW_TEST_CLOCK)) {
                     restartedServerPid = app.pid();
+                    String alreadyLoggedOutCookie = "JSESSIONID=" + Files.readString(loggedOutCookieFile);
+                    assertEquals(401, app.getWithCookie("/api/session", alreadyLoggedOutCookie).statusCode(),
+                            "an already-invalidated cookie is a negative control, not restart evidence");
                     beforeRestartPreview = policySnapshot(dataSource);
                     restarted = runBrowser(app.port(), "day69-restart-check",
                             OUTPUT.resolve("day69-after-restart.json"), sessionCookieFile, null);
@@ -179,6 +216,7 @@ class LocalPackagedBrowserAcceptanceTest {
                 }
             } finally {
                 Files.deleteIfExists(sessionCookieFile);
+                Files.deleteIfExists(loggedOutCookieFile);
             }
             assertNotEquals(firstServerPid, restartedServerPid, "the second JAR launch is a distinct server process");
             boolean firstJourneyControlsPresent = logoutJourney.path("controls").path("selectOwnerA").asBoolean()
@@ -206,8 +244,12 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertFalse(logoutJourney.path("visibleAfterOwnerB").asString()
                                 .contains("Reference only; not a renewal offer or coverage commitment."),
                                 "owner-b view must remove owner-a preview text");
+                        assertOwnerAPreviewAbsent(logoutJourney.path("visibleAfterOwnerB").asString(),
+                                "owner-b view must remove every owner-a preview value");
                         assertEquals(204, responseStatus(logoutJourney.path("apiResponses"), "POST", "/api/session/logout"));
                         assertEquals(401, logoutJourney.path("sessionAfterLogout").path("status").asInt());
+                        assertOwnerAPreviewAbsent(logoutJourney.path("visibleImmediatelyAfterLogout").asString(),
+                                "logout must clear owner-a values before any page reload");
                         assertFalse(logoutJourney.path("visibleAfterLogout").asString()
                                 .contains("Reference only; not a renewal offer or coverage commitment."),
                                 "logout must remove authenticated preview text");
@@ -217,13 +259,19 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertTrue(first.path("sessionCookieActiveBeforeRestart").asBoolean(),
                                 "restart cookie must be demonstrably active before process stop");
                         assertEquals(200, first.path("sessionBeforeRestart").path("status").asInt());
+                        assertEquals(200, first.path("previewBeforeRestart").path("status").asInt(),
+                                "restart sample preview must succeed before stopping the first process");
+                        assertPreviewProjection(new ObjectMapper().readTree(
+                                first.path("previewBeforeRestart").path("body").asString()));
                         if (!restartControlsPresent) return;
                         assertEquals(401, restarted.path("afterRestartSession").path("status").asInt());
                         assertEquals(200, restarted.path("previewAfterRestart").path("status").asInt());
+                        JsonNode restartedPreview = new ObjectMapper().readTree(
+                                restarted.path("previewAfterRestart").path("body").asString());
+                        assertPreviewProjection(restartedPreview);
                         assertEquals(first.path("previewBeforeRestart").path("body").asString(),
-                                restarted.path("previewAfterRestart").path("body").asString(), "preview response is stable across restart");
-                        assertTrue(restarted.path("visibleAfterRestart").asString().contains("125.00"));
-                        assertTrue(restarted.path("visibleAfterRestart").asString().contains("2027-01-15"));
+                                restarted.path("previewAfterRestart").path("body").asString(), "complete expected preview remains stable across restart");
+                        assertPreviewVisible(restarted.path("visibleAfterRestart").asString());
                     },
                     () -> assertEquals(beforeLogoutJourney, afterLogoutJourney,
                             "preview, owner switch and logout must not change policy values, versions, history, or idempotency records"),
@@ -263,6 +311,76 @@ class LocalPackagedBrowserAcceptanceTest {
         }
         assertEquals(0, runner.exitValue(), Files.readString(log));
         return new ObjectMapper().readTree(Files.readString(output));
+    }
+
+    private record BrowserSnapshotRun(JsonNode result, java.util.List<PolicyDatabaseSnapshot> snapshots) { }
+
+    private static BrowserSnapshotRun runIssueBrowserWithSnapshots(int port, Path output, DataSource dataSource)
+            throws Exception {
+        Files.createDirectories(output.getParent());
+        Path log = output.resolveSibling(output.getFileName() + ".log");
+        Path barriers = Files.createTempDirectory(output.getParent(), "day68-db-barriers-");
+        Files.deleteIfExists(output);
+        Files.deleteIfExists(log);
+        var command = java.util.List.of("node", "e2e/local-coverstory-browser.mjs",
+                "http://127.0.0.1:" + port, output.toString(), "day68-issue");
+        ProcessBuilder builder = new ProcessBuilder(command).directory(Path.of("frontend").toFile())
+                .redirectErrorStream(true).redirectOutput(log.toFile());
+        String chromium = System.getenv("CHROMIUM_BIN");
+        if (chromium != null && !chromium.isBlank()) builder.environment().put("CHROMIUM_BIN", chromium);
+        builder.environment().put("COVERSTORY_MILESTONE_DIR", barriers.toString());
+        Process runner = null;
+        var snapshots = new java.util.ArrayList<PolicyDatabaseSnapshot>();
+        var names = java.util.List.of("before-issue", "after-issue", "after-read", "after-replay");
+        try {
+            runner = builder.start();
+            for (String name : names) {
+                Path reached = barriers.resolve(name + ".reached");
+                long deadline = System.nanoTime() + java.time.Duration.ofSeconds(50).toNanos();
+                while (!Files.exists(reached) && runner.isAlive() && System.nanoTime() < deadline) {
+                    Thread.sleep(25);
+                }
+                if (!Files.exists(reached)) {
+                    String reason = "Browser did not reach database observation barrier " + name;
+                    writeBrowserFailure(output, log, reason, names.subList(0, snapshots.size()));
+                    throw new IllegalStateException(reason + ": " + Files.readString(log));
+                }
+                snapshots.add(policySnapshot(dataSource));
+                Files.writeString(barriers.resolve(name + ".continue"), "observed");
+            }
+            if (!runner.waitFor(45, TimeUnit.SECONDS)) {
+                runner.destroyForcibly();
+                runner.waitFor();
+                String reason = "Packaged-JAR issue browser flow timed out";
+                writeBrowserFailure(output, log, reason, names);
+                throw new IllegalStateException(reason + ": " + Files.readString(log));
+            }
+            if (runner.exitValue() != 0) {
+                String reason = "Packaged-JAR issue browser flow exited " + runner.exitValue();
+                writeBrowserFailure(output, log, reason, names);
+                throw new IllegalStateException(reason + ": " + Files.readString(log));
+            }
+            return new BrowserSnapshotRun(new ObjectMapper().readTree(Files.readString(output)), java.util.List.copyOf(snapshots));
+        } finally {
+            if (runner != null && runner.isAlive()) {
+                for (String name : names) Files.writeString(barriers.resolve(name + ".continue"), "cleanup");
+                runner.destroyForcibly();
+                runner.waitFor();
+            }
+            try (var paths = Files.walk(barriers)) {
+                for (Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) Files.deleteIfExists(path);
+            }
+        }
+    }
+
+    private static void writeBrowserFailure(Path output, Path log, String reason, java.util.List<String> reached)
+            throws Exception {
+        var failure = new ObjectMapper().createObjectNode();
+        failure.put("completed", false);
+        failure.put("failure", reason);
+        failure.put("diagnosticLog", Files.exists(log) ? Files.readString(log) : "");
+        failure.set("reachedMilestones", new ObjectMapper().valueToTree(reached));
+        Files.writeString(output, new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(failure));
     }
 
     private static Path privateSessionCookieFile() throws Exception {
@@ -353,7 +471,7 @@ class LocalPackagedBrowserAcceptanceTest {
         assertEquals("home-secure-v1", actual.path("productVersion").asString());
         assertEquals("training-rate-v1", actual.path("rateVersion").asString());
         assertTrue(actual.path("annualPremiumRupees").isNumber());
-        assertEquals(new java.math.BigDecimal("125.00"), actual.path("annualPremiumRupees").decimalValue());
+        assertNumericAmount(actual.path("annualPremiumRupees"), "125.00");
         assertEquals("INR", actual.path("currency").asString());
         assertEquals(request.path("effectiveDate").asString(), actual.path("effectiveDate").asString());
         assertEquals("ISSUED", actual.path("status").asString());
@@ -362,6 +480,45 @@ class LocalPackagedBrowserAcceptanceTest {
         assertTrue(actual.path("endorsements").isArray());
         assertEquals(0, actual.path("endorsements").size());
         assertTrue(actual.path("cancellationEffectiveDate").isNull());
+    }
+
+    private static void assertNumericAmount(JsonNode actual, String expected) {
+        assertTrue(actual.isNumber(), "amount must retain a numeric JSON wire type");
+        assertEquals(0, new java.math.BigDecimal(expected).compareTo(actual.decimalValue()),
+                "numeric amount must match without imposing a decimal scale encoding");
+    }
+
+    private static void assertPreviewProjection(JsonNode actual) {
+        assertEquals(java.util.Set.of("policyId", "sourcePolicyVersion", "productVersion", "rateVersion",
+                "currentAnnualPremiumRupees", "currency", "nextTermEffectiveDate", "notice"), jsonKeys(actual));
+        assertEquals("policy-renewal-a", actual.path("policyId").asString());
+        assertTrue(actual.path("sourcePolicyVersion").isIntegralNumber());
+        assertEquals(3, actual.path("sourcePolicyVersion").asInt());
+        assertEquals("home-secure-v1", actual.path("productVersion").asString());
+        assertEquals("home-secure-rate-v1", actual.path("rateVersion").asString());
+        assertNumericAmount(actual.path("currentAnnualPremiumRupees"), "125.00");
+        assertEquals("INR", actual.path("currency").asString());
+        assertEquals("2027-01-15", actual.path("nextTermEffectiveDate").asString());
+        assertEquals("Reference only; not a renewal offer or coverage commitment.", actual.path("notice").asString());
+    }
+
+    private static void assertPreviewVisible(String visible) {
+        assertTrue(visible.contains("policy-renewal-a"));
+        assertTrue(visible.contains("Version 3"));
+        assertTrue(visible.contains("home-secure-v1"));
+        assertTrue(visible.contains("home-secure-rate-v1"));
+        assertTrue(visible.contains("125.00"));
+        assertTrue(visible.contains("INR"));
+        assertTrue(visible.contains("2027-01-15"));
+        assertTrue(visible.contains("Reference only; not a renewal offer or coverage commitment."));
+    }
+
+    private static void assertOwnerAPreviewAbsent(String visible, String message) {
+        for (String value : java.util.List.of("policy-renewal-a", "Version 3", "home-secure-v1",
+                "home-secure-rate-v1", "125.00", "INR", "2027-01-15", "ISSUED",
+                "Reference only; not a renewal offer or coverage commitment.")) {
+            assertFalse(visible.contains(value), message + ": stale value " + value);
+        }
     }
 
     private static JsonNode findRow(JsonNode rows, String key, String value) {

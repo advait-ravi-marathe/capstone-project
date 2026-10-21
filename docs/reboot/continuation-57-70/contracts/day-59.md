@@ -45,7 +45,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Redgate: Flyway Target Setting](https://documentation.red-gate.com/flyway/reference/configuration/flyway-namespace/flyway-target-setting) — Migrate, API
 - [Spring Boot: Database Initialization](https://docs.spring.io/spring-boot/how-to/data-initialization.html) — Execute Flyway Database Migrations on Startup
 
-**Worked guide:** [day-59.md](docs/reboot/continuation-57-70/worked/day-59.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-59.md](../worked/day-59.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

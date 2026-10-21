@@ -91,6 +91,15 @@ class LocalApplicationAcceptanceTest {
                     """);
             statement.executeUpdate("INSERT INTO training_policy_lifecycle_event(policy_id,version,event_type,effective_date) VALUES ('policy-day60-b',7,'ISSUED',DATE '2026-11-21')");
             statement.executeUpdate("INSERT INTO training_policy_idempotency(owner_id,client_request_id,request_fingerprint,policy_id) VALUES ('owner-b','day60-sentinel','fingerprint-day60','policy-day60-b')");
+            statement.executeUpdate("""
+                    INSERT INTO training_policy_lifecycle
+                      (policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,
+                       annual_premium_rupees,currency,effective_date,status,version,cancellation_effective_date)
+                    VALUES ('policy-day60-c','owner-a','journey-day60-c','quote-day60-c','home-secure-v3',
+                       'day60-rate-v3',321.75,'INR',DATE '2026-11-22','CANCELLED',8,DATE '2026-11-28')
+                    """);
+            statement.executeUpdate("INSERT INTO training_policy_lifecycle_event(policy_id,version,event_type,effective_date) VALUES ('policy-day60-c',8,'CANCELLED',DATE '2026-11-28')");
+            statement.executeUpdate("INSERT INTO training_policy_idempotency(owner_id,client_request_id,request_fingerprint,policy_id) VALUES ('owner-a','day60-sentinel-c','fingerprint-day60-c','policy-day60-c')");
         }
         var beforePolicyReads = lifecycleRows();
         assertEquals(new PolicySnapshot("policy-demo-1", "owner-a", "journey-demo-a", "quote-demo-a",
@@ -103,6 +112,15 @@ class LocalApplicationAcceptanceTest {
                         LocalDate.parse("2026-11-21"), PolicyStatus.ISSUED, 7, List.of(), null),
                 components.policyReadStore().findByPolicyIdAndOwnerId("policy-day60-b", "owner-b").orElseThrow());
         assertEquals(beforePolicyReads, lifecycleRows(), "changed-row read must preserve all three full tables");
+        assertEquals(new PolicySnapshot("policy-day60-c", "owner-a", "journey-day60-c", "quote-day60-c",
+                        "home-secure-v3", "day60-rate-v3", new BigDecimal("321.75"), "INR",
+                        LocalDate.parse("2026-11-22"), PolicyStatus.CANCELLED, 8, List.of(), LocalDate.parse("2026-11-28")),
+                components.policyReadStore().findByPolicyIdAndOwnerId("policy-day60-c", "owner-a").orElseThrow(),
+                "non-null cancellation date must map from the current row");
+        assertEquals(beforePolicyReads, lifecycleRows(), "non-null date read must preserve all three full tables");
+        assertTrue(components.policyReadStore().findByPolicyIdAndOwnerId("policy-day60-b' OR '1'='1", "owner-b").isEmpty(),
+                "SQL-looking identifiers are bound literal values");
+        assertEquals(beforePolicyReads, lifecycleRows(), "SQL-looking input must not change any stored row");
         assertTrue(components.policyReadStore().findByPolicyIdAndOwnerId("policy-day60-b", "owner-a").isEmpty());
         assertEquals(beforePolicyReads, lifecycleRows(), "foreign policy read must preserve all three full tables");
         assertTrue(components.policyReadStore().findByPolicyIdAndOwnerId("policy-not-present", "owner-a").isEmpty());
@@ -134,6 +152,40 @@ class LocalApplicationAcceptanceTest {
         assertSame(expected, response.getBody());
         verify(lifecycle, times(1)).persistIssueAtomically(source, request, "owner-a");
         verify(receiptReadStore).find("owner-a", "request-a");
+
+        reset(lifecycle, ownerResolver, receiptReadStore);
+        when(ownerResolver.ownerId(authentication)).thenReturn(Optional.of("owner-a"));
+        when(receiptReadStore.find("owner-a", "request-a")).thenReturn(Optional.of(expected));
+        when(lifecycle.issueHttpStatus(request, Optional.of(expected))).thenReturn(200);
+        var replay = new LocalPolicyIssueController(lifecycle, ownerResolver, source, readStore, receiptReadStore)
+                .issue(request, authentication);
+        assertEquals(200, replay.getStatusCode().value());
+        assertSame(expected, replay.getBody());
+        verify(receiptReadStore).find("owner-a", "request-a");
+        verify(lifecycle).issueHttpStatus(request, Optional.of(expected));
+        verify(lifecycle, never()).persistIssueAtomically(any(), any(), anyString());
+
+        reset(lifecycle, ownerResolver, receiptReadStore);
+        when(ownerResolver.ownerId(authentication)).thenReturn(Optional.of("owner-b"));
+        when(receiptReadStore.find("owner-b", "request-a")).thenReturn(Optional.empty());
+        when(lifecycle.issueHttpStatus(request, Optional.empty())).thenReturn(409);
+        var conflict = new LocalPolicyIssueController(lifecycle, ownerResolver, source, readStore, receiptReadStore)
+                .issue(request, authentication);
+        assertEquals(409, conflict.getStatusCode().value());
+        assertEquals(java.util.Map.of("code", "ISSUE_REJECTED"), conflict.getBody());
+        verify(receiptReadStore).find("owner-b", "request-a");
+        verify(lifecycle).issueHttpStatus(request, Optional.empty());
+        verify(lifecycle, never()).persistIssueAtomically(any(), any(), anyString());
+
+        reset(lifecycle, ownerResolver, receiptReadStore);
+        when(ownerResolver.ownerId(authentication)).thenReturn(Optional.empty());
+        var anonymous = new LocalPolicyIssueController(lifecycle, ownerResolver, source, readStore, receiptReadStore)
+                .issue(request, authentication);
+        assertEquals(401, anonymous.getStatusCode().value());
+        assertEquals(java.util.Map.of("code", "UNAUTHENTICATED"), anonymous.getBody());
+        verify(receiptReadStore, never()).find(anyString(), anyString());
+        verify(lifecycle, never()).issueHttpStatus(any(), any());
+        verify(lifecycle, never()).persistIssueAtomically(any(), any(), anyString());
     }
 
     private String lifecycleRows() throws Exception {

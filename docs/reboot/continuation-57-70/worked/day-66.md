@@ -4,7 +4,7 @@
 
 ## Worked example
 
-In [`parcelState.ts`](../../../../frontend/src/teaching/parcelState.ts) and its [Vitest reference](../../../../frontend/src/teaching/parcelState.test.ts), `401` returns `expired` before parsing an HTML body; string revision is rejected despite valid JSON; a response captured for the previous owner is ignored after generation changes. Two explicit POST actions keep the same frozen request key/body and treat 204 as bodyless. No automatic POST retry occurs.
+In [`parcelState.ts`](../../../../frontend/src/teaching/parcelState.ts) and its [Vitest reference](../../../../frontend/src/teaching/parcelState.test.ts), `401` returns `expired` before parsing an HTML body; string revision is rejected despite valid JSON; a response captured for the previous owner is ignored after generation changes. `submitParcelHold` takes an already frozen body and current CSRF token, makes exactly one same-origin POST, returns the status without parsing a 204 body, and never retries. The test makes two explicit calls and confirms both use the same request body/key; this is an independent reference, not the native app implementation.
 
 ## Transfer
 

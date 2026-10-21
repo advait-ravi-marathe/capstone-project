@@ -33,6 +33,7 @@ jar tf "$jar_file" | grep -q '^BOOT-INF/classes/static/assets/' \
 head_sha="$(git rev-parse HEAD)"
 tree_status="$(git status --porcelain --untracked-files=all)"
 status_sha="$(printf '%s' "$tree_status" | sha256sum | cut -d' ' -f1)"
+source_sha="$(python3 scripts/sprint5-source-fingerprint.py)"
 jar_sha="$(sha256sum "$jar_file" | cut -d' ' -f1)"
 manifest_sha="$(printf '%s' "$manifest" | sha256sum | cut -d' ' -f1)"
 mkdir -p target/sprint5-demo
@@ -41,6 +42,7 @@ cat > target/sprint5-demo/package-evidence.json <<EOF
   "sourceCommit": "$head_sha",
   "workingTreeStatusSha256": "$status_sha",
   "workingTreeStatus": "$(if [[ -z "$tree_status" ]]; then printf clean; else printf dirty; fi)",
+  "sourceContentSha256": "$source_sha",
   "artifact": "$jar_file",
   "artifactSha256": "$jar_sha",
   "manifestSha256": "$manifest_sha",

@@ -2,13 +2,13 @@
 
 ## Contract
 
-**Learner-owned seam:** `LocalRenewalRepositoryConfiguration`
+**Learner-owned seam:** `JdbcPolicyReadStore.findByPolicyIdAndOwnerId`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 
 ### Expected behavior
 
-The local runtime wires the existing owner-scoped policy and preview repositories. Same-owner preview reads return the approved snapshot; a foreign owner is absent and every read leaves policy rows unchanged.
+Implement the actual JdbcPolicyReadStore.findByPolicyIdAndOwnerId seam. Map every approved current-row field, including both null and non-null cancellation dates; bind both policy ID and owner ID as SQL parameters. Same-owner reads return the expected changed fixture; foreign and absent IDs are empty. Compare complete ordered policy/event/idempotency rows after every read.
 
 ## Acceptance and expected TODO state
 
@@ -16,7 +16,7 @@ The fixed selector is installed. It currently reaches the explicit Day 48 owner-
 
 **Acceptance test:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
 **Acceptance selector:** `day60OwnerScopedPreviewReadDoesNotWrite`
-**Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test`
+**Learner acceptance command:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -38,7 +38,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Java SE21: PreparedStatement](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html) — setString(int,String), executeQuery()
 - [Java SE21: ResultSet](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/ResultSet.html) — getDate(String), getBigDecimal(String)
 
-**Worked guide:** [day-60.md](docs/reboot/continuation-57-70/worked/day-60.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-60.md](../worked/day-60.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

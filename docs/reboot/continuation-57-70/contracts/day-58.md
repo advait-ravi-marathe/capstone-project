@@ -16,12 +16,12 @@ This feature is already supplied as instructor scaffolding. Its selector verifie
 
 **Acceptance test:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
 **Acceptance selector:** `day58DedicatedEntryPointWiresClockAndDataSourceExplicitly`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test`
+**Scaffold verification command:** `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Learner task — explain/debug acceptance
 
-Run the scaffold selector, trace LocalCoverStoryApplication → LocalRuntimeConfiguration → LocalApplicationComposition, and explain how Clock, DataSource and adapters reach the service. Add a short diagram/teach-back; do not reimplement instructor-provided setup.
+Run the scaffold selector against the supplied Sprint 5 stage. Trace Sprint5LocalApplication → Sprint5LocalConfiguration → the original two-argument LocalApplicationComposition.compose(Clock, DataSource), then explain how the same Clock, DataSource and existing adapters reach the service. Do not boot the later default runtime or reimplement instructor-provided setup.
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
@@ -47,7 +47,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [Spring Boot: Configuration Classes](https://docs.spring.io/spring-boot/reference/using/configuration-classes.html) — Importing Additional Configuration Classes
 - [Spring Boot: Profiles](https://docs.spring.io/spring-boot/reference/features/profiles.html) — Profiles, Adding Active Profiles
 
-**Worked guide:** [day-58.md](docs/reboot/continuation-57-70/worked/day-58.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-58.md](../worked/day-58.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 

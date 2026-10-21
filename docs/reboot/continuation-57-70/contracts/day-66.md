@@ -15,8 +15,7 @@ The packaged root route `/` uses a typed same-origin client for demo-session sel
 The fixed learner selector is installed and currently fails at this day’s explicit TODO. Do not implement learner behavior in the starter or mark the contract complete.
 
 **Acceptance test:** `frontend/src/__tests__/LocalCoverStoryApp.test.tsx`
-**Acceptance selector:** `day66NormalRouteUsesTypedApiAndHandlesExpiredSession`
-**Learner acceptance command:** `npm --prefix frontend run test:local`
+**Learner acceptance command:** `npm --prefix frontend run test:sprint5`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Implementation/testing allocation (85 minutes)
@@ -39,11 +38,11 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - [TypeScript: Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) — Discriminated unions, type predicates
 - [React: useEffect](https://react.dev/reference/react/useEffect#fetching-data-with-effects) — Fetching data with Effects
 
-**Worked guide:** [day-66.md](docs/reboot/continuation-57-70/worked/day-66.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+**Worked guide:** [day-66.md](../worked/day-66.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
 
 **Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
 
-**Runnable acceptance commands:**
+**Runnable acceptance command:**
 - `npm --prefix frontend run test:sprint5`
 
 ## Evidence allocation (10 minutes)
