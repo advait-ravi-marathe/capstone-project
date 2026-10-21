@@ -1,6 +1,6 @@
 """Actual-process acceptance seams; no canned report is supplied."""
 from __future__ import annotations
-import csv, hashlib, io, json, os, shutil, subprocess, sys, tempfile, unittest
+import csv, hashlib, io, json, os, shutil, subprocess, sys, tempfile, unittest, copy
 from pathlib import Path
 from ai.streamforge.tests.golden import install_fixture
 
@@ -43,6 +43,55 @@ def _expected_complete_report(input_bytes):
     global_eval={"recommendation_ids":["d","e","a"],"status":"available","precision_at_3":"1/4","recall_at_3":"1/2","counts":{"all_holdout_viewers":5,"evaluated_viewers":4,"zero_positive_viewers":1,"positive_viewer_media_pairs":6,"candidate_unreachable_positive_pairs":1,"training_viewer_count":6,"cold_start_evaluated_viewers":1,"candidate_count":6,"returned_count":3}}
     limits=["The profile is an arithmetic feature aggregation, not an optimizer-trained model.","The previously inspected holdout is development evaluation, not an untouched final test.","Synthetic observed-positive overlap does not establish preference, unbiased quality, causal lift, fairness, or business success.","Single-genre features are deliberately coarse and may miss interests; scores are not calibrated preference probabilities.","Catalog schedule is assumed known at cutoff; no historical catalog snapshot is established.","No real dataset, new dependency, model optimizer, cloud resource, service, paid enrollment, or new registered fixture dataset.","Content hashes identify bytes/semantic projections, not authenticity, privacy, rights or quality.","Lists are static at cutoff; no per-event availability reranking."]
     return {"schema_version":1,"protocol":protocol,"predictor":dict(payload,fingerprint=state_fp),"queries":queries,"evaluations":{"profile":profile_eval,"global_popularity":global_eval,"signed_deltas":{"precision_at_3":"0/1","recall_at_3":"0/1"},"status":"available"},"preparation":lineage,"limits":limits}
+
+def _expected_training_edit_report(input_bytes):
+    """Literal independent projection for t03/t04 changing from x/c to d."""
+    expected=copy.deepcopy(_expected_complete_report(input_bytes))
+    p=expected["predictor"]
+    p["profiles"]["v1"]={"genre_counts":[0,0,1,1,0],"weights":["0/1","0/1","1/2","1/2","0/1"],"positive_train_pairs":2}
+    p["global_popularity"]["support"]={"a":1,"b":1,"c":0,"d":4,"e":2,"f":0}
+    payload={k:v for k,v in p.items() if k!="fingerprint"}
+    p["fingerprint"]=_sha(payload)
+    for q in expected["queries"]:
+        q["state_fingerprint"]=p["fingerprint"]
+        if q["viewer_id"]=="v1":
+            q["positive_train_pairs"]=2
+            q["scores_by_media"]={"a":"1/2","b":"1/2","c":"0/1","d":"1/2","e":"0/1","f":"0/1"}
+            q["full_order"]=["a","b","d","c","e","f"]
+            q["recommendation_ids"]=["a","b","d"]
+        projection={k:v for k,v in q.items() if k!="fingerprint"}
+        q["fingerprint"]=_sha(projection)
+    ev=expected["evaluations"]
+    ev["profile"]["per_viewer_metrics"][1]={"viewer_id":"v1","positive_target_ids":["c","y"],"hit_count":0,"positive_target_count":2,"candidate_unreachable_positive_pairs":1,"precision_at_3":"0/1","recall_at_3":"0/1","status":"available"}
+    ev["profile"]["precision_at_3"]="1/6";ev["profile"]["recall_at_3"]="3/8"
+    ev["signed_deltas"]={"precision_at_3":"-1/12","recall_at_3":"-1/8"}
+    prep=expected["preparation"]
+    rows=list(csv.DictReader(io.StringIO(input_bytes["events.csv"].decode())))
+    for row in rows:
+        if row["event_id"] in {"t03","t04"}: row["media_id"]="d"
+    train=[{"event_id":r["event_id"],"viewer_id":r["viewer_id"],"media_id":r["media_id"],"occurred_at_utc":r["occurred_at_utc"],"watch_seconds":int(r["watch_seconds"])} for r in rows if r["event_id"].startswith("t")]
+    summary={"status":"available","event_count":11,"distinct_viewer_count":6,"media_event_counts":{"a":2,"b":1,"d":5,"e":2,"f":1},"media_watch_seconds":{"a":30,"b":10,"d":50,"e":20,"f":0}}
+    train_projection={"schema_version":1,"window_start_utc":expected["protocol"]["window_start_utc"],"cutoff_utc":expected["protocol"]["cutoff_utc"],"train":train,"training":summary}
+    summary["content_sha256"]=_sha(train_projection,trailing=False)
+    prep["training"]=summary
+    prep["holdout_diagnostics"]={"status":"available","viewer_item_seen_in_train":3,"viewer_seen_item_unseen":3,"viewer_unseen_item_seen":2,"viewer_item_unseen":0}
+    return expected
+
+def _expected_holdout_edit_report(input_bytes):
+    """Literal independent projection after adding positive v2→y holdout."""
+    expected=copy.deepcopy(_expected_complete_report(input_bytes));ev=expected["evaluations"]
+    ev["profile"]["per_viewer_metrics"][2]={"viewer_id":"v2","positive_target_ids":["d","e","y"],"hit_count":1,"positive_target_count":3,"candidate_unreachable_positive_pairs":1,"precision_at_3":"1/3","recall_at_3":"1/3","status":"available"}
+    ev["profile"]["counts"]["positive_viewer_media_pairs"]=7
+    ev["profile"]["counts"]["candidate_unreachable_positive_pairs"]=2
+    ev["profile"]["precision_at_3"]="1/4";ev["profile"]["recall_at_3"]="11/24"
+    ev["global_popularity"]["counts"]["positive_viewer_media_pairs"]=7
+    ev["global_popularity"]["counts"]["candidate_unreachable_positive_pairs"]=2
+    ev["global_popularity"]["recall_at_3"]="5/12"
+    ev["signed_deltas"]={"precision_at_3":"0/1","recall_at_3":"1/24"}
+    prep=expected["preparation"]
+    prep["partition_counts"]["holdout"]=9
+    prep["holdout_diagnostics"]["viewer_seen_item_unseen"]=2
+    return expected
 
 class ContentCliHarness(unittest.TestCase):
     def setUp(self):
@@ -129,7 +178,9 @@ class Day195Test(ContentCliHarness):
         (self.fixture/"events.csv").write_text(stream.getvalue(),encoding="utf-8",newline="")
     def test_holdout_addition_changes_metrics_not_prediction_state(self):
         base=self._report();rows=self._rows();rows.append({"event_id":"h09","viewer_id":"v2","media_id":"y","occurred_at_utc":"2027-01-22T00:00:00Z","watch_seconds":"10"});self._save_rows(rows)
+        expected=_expected_holdout_edit_report(self._input_bytes())
         changed=self._report()
+        self.assertEqual(expected,changed)
         self.assertEqual(base["predictor"],changed["predictor"])
         self.assertEqual(base["queries"],changed["queries"])
         self.assertEqual(("1/4","11/24"),(changed["evaluations"]["profile"]["precision_at_3"],changed["evaluations"]["profile"]["recall_at_3"]))
@@ -148,7 +199,9 @@ class Day195Test(ContentCliHarness):
         base=self._report();rows=self._rows()
         next(row for row in rows if row["event_id"]=="t03")["media_id"]="d"
         next(row for row in rows if row["event_id"]=="t04")["media_id"]="d";self._save_rows(rows)
+        expected=_expected_training_edit_report(self._input_bytes())
         changed=self._report()
+        self.assertEqual(expected,changed)
         self.assertEqual(base["predictor"]["candidate_ids"],changed["predictor"]["candidate_ids"])
         self.assertEqual(["a","b","d"],next(q["recommendation_ids"] for q in changed["queries"] if q["viewer_id"]=="v1"))
         self.assertEqual([0,0,1,1,0],changed["predictor"]["profiles"]["v1"]["genre_counts"])
@@ -174,3 +227,20 @@ class Day195Test(ContentCliHarness):
         invalid=self.run_cli();self.assertNotEqual(0,invalid.returncode);self.assertEqual(b"",invalid.stdout)
         self._install_oracle_fixture();rows=self._rows();rows.append({"event_id":"t01","viewer_id":"other","media_id":"a","occurred_at_utc":"2027-01-22T00:00:00Z","watch_seconds":"10"});self._save_rows(rows)
         conflict=self.run_cli();self.assertNotEqual(0,conflict.returncode);self.assertEqual(b"",conflict.stdout)
+    def test_scored_pair_limit_rejects_without_truncating_or_emitting_json(self):
+        with (self.fixture/"catalog.csv").open(newline="",encoding="utf-8") as stream:
+            catalog_rows=list(csv.DictReader(stream))
+        genres=("animation","comedy","documentary","drama","science-fiction")
+        for i in range(22):
+            media_id=f"g{i:02d}"
+            catalog_rows.append({"media_id":media_id,"title":f"Synthetic {media_id}","genre":genres[i%len(genres)],"duration_s":"100","available_from_utc":"2027-01-01T00:00:00Z","available_to_utc":"2027-03-01T00:00:00Z"})
+        with (self.fixture/"catalog.csv").open("w",newline="",encoding="utf-8") as stream:
+            writer=csv.DictWriter(stream,fieldnames=["media_id","title","genre","duration_s","available_from_utc","available_to_utc"],lineterminator="\n");writer.writeheader();writer.writerows(catalog_rows)
+        train_rows=[row for row in self._rows() if row["event_id"].startswith("t")]
+        candidates=[row["media_id"] for row in catalog_rows if row["media_id"] not in {"x","y"}]
+        holdout=[{"event_id":f"bound-{i:03d}","viewer_id":f"bound-viewer-{i:03d}","media_id":candidates[i%len(candidates)],"occurred_at_utc":"2027-01-22T00:00:00Z","watch_seconds":"10"} for i in range(90)]
+        self._save_rows(train_rows+holdout)
+        result=self.run_cli()
+        self.assertNotEqual(0,result.returncode)
+        self.assertEqual(b"",result.stdout)
+        self.assertIn(b"scored-pair limit exceeded",result.stderr)

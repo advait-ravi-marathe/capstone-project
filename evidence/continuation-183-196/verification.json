@@ -11,12 +11,30 @@
     "selector_resolution": "scripts.test_streamforge_183_196_manifest validates every exported selector with unittest.TestLoader; rejects failed/empty selectors and future dependencies."
   },
   "current_source_checks": [
-    {"command": "python3 -m unittest ai.streamforge.tests.test_content_infrastructure scripts.test_streamforge_183_196_manifest ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest", "result": "PASS 8 tests"},
-    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "PASS 85 tests"},
-    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter", "result": "PASS 19 tests"},
-    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "PASS 2 tests"},
-    {"command": "python3 -m unittest scripts.test_dsa_review_queue scripts.test_dsa_review_queue_45_56 scripts.test_dsa_review_queue_57_70 scripts.test_dsa_review_queue_71_84 scripts.test_dsa_guided_transfer_policy", "result": "PASS 50 tests"},
-    {"command": "python3 -m py_compile ai/streamforge/content_models.py ai/streamforge/content_io.py ai/streamforge/content_contracts.py ai/streamforge/content_evaluate.py ai/streamforge/tests/test_content_contracts.py ai/streamforge/tests/test_content_adversarial.py ai/streamforge/tests/test_content_cli.py ai/streamforge/tests/test_content_infrastructure.py scripts/test_streamforge_183_196_manifest.py && git diff --check", "result": "PASS"}
+    {
+      "command": "python3 -m unittest ai.streamforge.tests.test_content_infrastructure scripts.test_streamforge_183_196_manifest ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest",
+      "result": "PASS 8 tests"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+      "result": "PASS 85 tests"
+    },
+    {
+      "command": "python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter",
+      "result": "PASS 19 tests"
+    },
+    {
+      "command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py",
+      "result": "PASS 2 tests"
+    },
+    {
+      "command": "python3 -m unittest scripts.test_dsa_review_queue scripts.test_dsa_review_queue_45_56 scripts.test_dsa_review_queue_57_70 scripts.test_dsa_review_queue_71_84 scripts.test_dsa_guided_transfer_policy",
+      "result": "PASS 50 tests"
+    },
+    {
+      "command": "python3 -m py_compile ai/streamforge/content_models.py ai/streamforge/content_io.py ai/streamforge/content_contracts.py ai/streamforge/content_evaluate.py ai/streamforge/tests/test_content_contracts.py ai/streamforge/tests/test_content_adversarial.py ai/streamforge/tests/test_content_cli.py ai/streamforge/tests/test_content_infrastructure.py scripts/test_streamforge_183_196_manifest.py && git diff --check",
+      "result": "PASS"
+    }
   ],
   "learner_todo_red": {
     "pure_selectors": "Days 183-193 and Day195 pure selector are intentionally unimplemented and raise their named learner TODOs. A direct aggregate run produced 12 expected NotImplementedError failures among 14 tests; it was not reported as a pass.",
@@ -26,19 +44,127 @@
   "temporary_witnesses": {
     "positive_control": "Temporary in-memory pure-function conformance implementation passed 14 selected tests (Days 183-188, 190-193 and Day195 pure). It was not retained and is not learner completion.",
     "intended_mutants": [
-      {"mutant": "ordinal one-hot scoring", "result": "failed intended feature/ranking assertion after positive setup"},
-      {"mutant": "raw event counting", "result": "failed distinct-positive-media count assertion"},
-      {"mutant": "unnormalized profile", "result": "failed exact Fraction normalization assertion"},
-      {"mutant": "canned global ranking", "result": "failed changed-training/same-candidate ranking assertion"},
-      {"mutant": "nested mutable state alias", "result": "failed pre-call snapshot / immutability assertion"},
-      {"mutant": "incomplete canned report", "result": "failed complete independent report equality"},
-      {"mutant": "constant ranking after training change", "result": "failed intended Day195 sensitivity assertion"},
-      {"mutant": "work-bound truncation", "result": "failed 2500/2501 resource guard assertion"},
-      {"mutant": "available status with null metrics", "result": "failed typed result validation assertion"},
-      {"mutant": "canned CLI output", "result": "actual Day194 subprocess rejected {} against full report oracle; setup/process completed and no learner solution was retained"}
+      {
+        "mutant": "ordinal one-hot scoring",
+        "result": "failed intended feature/ranking assertion after positive setup"
+      },
+      {
+        "mutant": "raw event counting",
+        "result": "failed distinct-positive-media count assertion"
+      },
+      {
+        "mutant": "unnormalized profile",
+        "result": "failed exact Fraction normalization assertion"
+      },
+      {
+        "mutant": "canned global ranking",
+        "result": "failed changed-training/same-candidate ranking assertion"
+      },
+      {
+        "mutant": "nested mutable state alias",
+        "result": "failed pre-call snapshot / immutability assertion"
+      },
+      {
+        "mutant": "incomplete canned report",
+        "result": "failed complete independent report equality"
+      },
+      {
+        "mutant": "constant ranking after training change",
+        "result": "failed intended Day195 sensitivity assertion"
+      },
+      {
+        "mutant": "work-bound truncation",
+        "result": "failed 2500/2501 resource guard assertion"
+      },
+      {
+        "mutant": "available status with null metrics",
+        "result": "failed typed result validation assertion"
+      },
+      {
+        "mutant": "canned CLI output",
+        "result": "actual Day194 subprocess rejected {} against full report oracle; setup/process completed and no learner solution was retained"
+      }
     ],
-    "limitation": "Actual CLI positive conformance could not be demonstrated because Day194 composition and prior prepare_dataset remain learner TODOs. Actual CLI invalid/no-success-output path and canned-output rejection are scaffold checks; do not treat them as a positive end-to-end implementation pass.",
-    "restoration": "All committed learner seam implementations remain explicit TODOs. Temporary in-memory witnesses and CLI mutant files were restored/removed. No solved overlay is included in this branch."
+    "limitation": "A temporary conformance overlay demonstrated positive actual-process CLI reports for the base, changed-training, and changed-holdout fixtures. It was removed afterward. The checked-in learner implementation remains TODO-red; these results do not establish learner completion.",
+    "restoration": "All committed learner seam implementations remain explicit TODOs. Temporary in-memory witnesses and CLI mutant files were restored/removed. No solved overlay is included in this branch.",
+    "end_to_end_cli_positive_controls": {
+      "selector": "python3 -m unittest ai.streamforge.tests.test_content_cli.Day194Test ai.streamforge.tests.test_content_cli.Day195Test",
+      "result": "PASS 8 tests with temporary prior-preparation, baseline, and Day194-193 conformance witnesses installed only for the run; not a learner completion result.",
+      "path": "Fresh child processes used the registered fixture registry and actual prepare_evaluation_input adapter. The prior prepare_dataset path was called exactly once per invocation. Full report dictionaries were compared against independent literal base, changed-training, and changed-holdout goldens. Copied fixture bytes were checked before and after every subprocess.",
+      "base": {
+        "stdout_bytes": 7829,
+        "stdout_sha256": "a008a2c2e3c910706d0b3c8c047892b058e59624b8c7db3cfe7250a66ad3226d",
+        "catalog_sha256": "d83089dd00ef80fb247018beddc4d5de9b7274fd428818fb2745241ae2d987aa",
+        "events_sha256": "04404b7b16a85f70ac7b85d0e3144e2f7b9e7a66b074491a68f418c9858d6dbd",
+        "manifest_sha256": "4757475b6863c6352c31e26eecf56164e6c0a4ea5131c64b4a749cccaacbe535",
+        "prepare_calls": 1
+      },
+      "changed_training": {
+        "edit": "t03 and t04 media_id changed to d; all six cutoff candidates unchanged",
+        "stdout_bytes": 7806,
+        "stdout_sha256": "ac5dddf205dbd109e9e4d41bc09005f7e969c1009b1b17e7cfd64521b658bd46",
+        "events_sha256": "409cfbc92392ecd827901d05cb1ed89dc0c95a0f5727ec26ae16195478df79c7",
+        "prepare_calls": 1,
+        "independent_expected": "v1 counts [0,0,1,1,0], top3 [a,b,d], macro profile P=1/6 R=3/8; current global support c=0,d=4; signed deltas -1/12,-1/8."
+      },
+      "changed_holdout": {
+        "edit": "add v2 positive target y while retaining the frozen candidate set",
+        "stdout_bytes": 7837,
+        "stdout_sha256": "48717a526f2b945bd1d9f217560d09e8e1b1c73bdb1fd2b77dec688916541078",
+        "events_sha256": "6e613630833c4ecb11e22aa0af70858dbe52b7115ed23a778e73f61d643183cd",
+        "prepare_calls": 1,
+        "independent_expected": "Predictor and fixed query rows unchanged; profile recall 11/24, global recall 5/12, recall delta 1/24; unreachable target pairs 2."
+      }
+    },
+    "actual_cli_mutants": [
+      {
+        "mutant": "frozen profiles",
+        "selector": "Day195Test.test_same_candidate_training_edit_changes_profile_and_current_baseline",
+        "result": "FAIL at complete changed-training report equality; valid base report setup passed."
+      },
+      {
+        "mutant": "holdout leakage",
+        "selector": "Day195Test.test_holdout_addition_changes_metrics_not_prediction_state",
+        "result": "FAIL at complete changed-holdout report equality; base control passed, new h09 row alone contaminated profile state."
+      },
+      {
+        "mutant": "stale global popularity state",
+        "selector": "Day195Test.test_same_candidate_training_edit_changes_profile_and_current_baseline",
+        "result": "FAIL at complete changed-training report equality; stale support was c=1,d=3 instead of c=0,d=4."
+      },
+      {
+        "mutant": "canned metrics",
+        "selector": "Day195Test.test_same_candidate_training_edit_changes_profile_and_current_baseline",
+        "result": "FAIL at complete changed-training report equality; mutant retained base P=1/4,R=1/2."
+      },
+      {
+        "mutant": "canned signed deltas",
+        "selector": "Day195Test.test_same_candidate_training_edit_changes_profile_and_current_baseline",
+        "result": "FAIL at complete changed-training report equality; mutant returned 0/1 deltas instead of -1/12,-1/8."
+      },
+      {
+        "mutant": "omitted preparation lineage status",
+        "selector": "Day194Test.test_actual_child_process_composition_matches_literal_oracle",
+        "result": "FAIL at full base report equality because preparation_status was missing."
+      },
+      {
+        "mutant": "mutated copied input after evaluation",
+        "selector": "Day194Test.test_actual_child_process_composition_matches_literal_oracle",
+        "result": "FAIL at the before/after fixture-byte equality assertion; child returned a report but changed events.csv."
+      },
+      {
+        "mutant": "silent scored-pair truncation to 80 viewers",
+        "selector": "Day195Test.test_scored_pair_limit_rejects_without_truncating_or_emitting_json",
+        "result": "FAIL because the mutant exited 0; the valid 28 candidates × 90 evaluated viewers fixture must reject with no stdout."
+      }
+    ],
+    "restoration_hashes": {
+      "ai/streamforge/contracts.py": "1856694d39104d96074609692b9d0b1627be010163b6147bb1844eea9c164233",
+      "ai/streamforge/baseline_contracts.py": "425c29f13ad9f5ca868fc4ce0b657db26686c581bae8f088c0526884444bcec2",
+      "ai/streamforge/content_contracts.py": "dccfea9a47ab496f450a91188c635c38ab31e62e604b7d10b1c2fa4d95e709ff",
+      "ai/streamforge/content_evaluate.py": "37af2ba1a185f5a177d80cb52b5cddd23e522af66b5b616b604ad7d97e16f9c8"
+    },
+    "restored_todo_check": "After restoring exact learner-file hashes, python3 -m ai.streamforge.content_evaluate --fixture basic exited 2 with zero stdout bytes and the named Day 194 learner TODO on stderr. Day194Test failed only because the actual child returned that named TODO status instead of success."
   },
   "scope": {
     "prior_learner_files": "unchanged",
@@ -50,10 +176,20 @@
     "aws_execution": "still unverified"
   },
   "hosted_ci": {
-    "run_id": 39559850120,
-    "tested_source_sha": "7da2926312cf89de4e134148251c72c17ce0cc67",
-    "result": "SUCCESS",
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39559850120",
-    "note": "Workflow job starter completed successfully, including Java packaging, infrastructure/manifest tests, frontend tests and dependency audit. The receipt-only follow-up commit is tested by the next exact-SHA run."
+    "verified_runs": [
+      {
+        "run_id": 39559850120,
+        "tested_source_sha": "7da2926312cf89de4e134148251c72c17ce0cc67",
+        "result": "SUCCESS",
+        "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39559850120"
+      },
+      {
+        "run_id": 39560326089,
+        "tested_source_sha": "1fc11d4520e234482f1cedff3ffb91e57c0d6fb3",
+        "result": "SUCCESS",
+        "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39560326089"
+      }
+    ],
+    "note": "The latest verified run is exact for the prior final SHA. The independent full changed-fixture oracle and scored-pair CLI test were added afterward; the new exact-tip workflow run remains to be verified."
   }
 }
