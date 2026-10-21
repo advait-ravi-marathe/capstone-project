@@ -234,6 +234,10 @@ class Day193Test(unittest.TestCase):
         report["protocol"]["k"]=99;report["protocol"]["genres"][0]="mutated"
         self.assertEqual(protocol_before,protocol,"returned protocol must not alias caller protocol")
         self.assertEqual(state_before,state,"returned protocol mutation must not alias predictor state")
+        report["predictor"]["protocol"]["k"]=99
+        report["predictor"]["protocol"]["genres"][0]="mutated"
+        self.assertEqual(protocol_before,protocol,"predictor protocol must not alias caller protocol")
+        self.assertEqual(state_before,state,"predictor protocol must not alias predictor state")
         report["preparation"]["training"]["content_sha256"]="mutated"
         self.assertEqual(before,lineage)
         self.assertEqual(empty_before,empty);self.assertEqual(comparison_before,comparison)
@@ -286,6 +290,9 @@ class Day193Test(unittest.TestCase):
             self.assertEqual(before[-1],lineage)
             report["protocol"]["k"]=99;report["protocol"]["genres"][0]="mutated"
             self.assertEqual(before,(protocol,state,profile_eval,comparison,lineage),"mutating returned report must not mutate any caller input")
+            report["predictor"]["protocol"]["k"]=99
+            report["predictor"]["protocol"]["genres"][0]="mutated"
+            self.assertEqual(before,(protocol,state,profile_eval,comparison,lineage),"predictor protocol output must not alias any caller input")
         finally:
             harness.tearDown()
 

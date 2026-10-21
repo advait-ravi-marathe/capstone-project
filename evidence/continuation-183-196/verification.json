@@ -331,5 +331,33 @@
     "current_hosted_ci": "Not yet observed for 049c441ad45b71e9cf683be32b3e7ca7fc19804c at receipt preparation time; prior CI85/86 do not test these three repairs.",
     "restoration": "No learner implementation files changed. Original SHA256 hashes of ai/streamforge/contracts.py, baseline_contracts.py, content_contracts.py, content_evaluate.py remain the values in restored_learner_sha256 above. Temporary semantic witnesses were applied only in isolated processes/copies.",
     "mastery": "No learner completion is claimed."
+  },
+  "source_audit_followup_3": {
+    "repairs": {
+      "returned_predictor_protocol_ownership": "PASS: both empty and nonempty Day 193 tests now mutate report.predictor.protocol.k and report.predictor.protocol.genres[0], then verify every caller input, including protocol and PredictorState, remains unchanged. Existing top-level report.protocol and preparation-lineage mutation probes remain.",
+      "scope": "Only Day 193 ownership tests and this receipt changed in this follow-up; no learner implementation or unrelated project files changed."
+    },
+    "targeted_checks": [
+      {
+        "command": "PYTHONPATH=/tmp/capstone-streamforge-183-196 python3 /tmp/run_content_witness.py",
+        "result": "PASS 31 selected pure and actual-CLI tests with temporary conformance witnesses only in isolated copies."
+      },
+      {
+        "command": "PYTHONPATH=/tmp/capstone-streamforge-183-196 python3 /tmp/run_three_mutants.py",
+        "result": "PASS: six intended mutant selectors failed after valid controls, comprising Day 190 caller-input mutation, Day 192 limited-count comparison, Day 193 returned top-level protocol alias in empty and nonempty cases, and the reported predictor.protocol alias in empty and nonempty cases."
+      },
+      {
+        "command": "python3 -m unittest ai.streamforge.tests.test_content_infrastructure scripts.test_streamforge_183_196_manifest ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest",
+        "result": "PASS 11 tests."
+      },
+      {
+        "command": "python3 -m py_compile ai/streamforge/tests/test_content_contracts.py && git diff --check",
+        "result": "PASS."
+      }
+    ],
+    "predictor_protocol_alias_mutant": "Temporary assembler returned an otherwise complete report whose predictor.protocol referenced the mutable caller protocol. Both Day193 selectors failed on caller input snapshots after mutating returned k and genre values; normal conformance controls passed.",
+    "previous_exact_sha_ci": "CI88 at 8f28ccb was reported by the parent as present and running. It covers the pre-follow-up source, not this receipt/test correction.",
+    "learner_files": "All prior and new learner seam files remain unchanged with their previously recorded SHA256 values. No TODO implementation was retained; learner completion is not claimed.",
+    "current_followup_publication": "The test and receipt correction is committed locally on the same learning branch; hosted CI for its new exact SHA must be checked separately."
   }
 }
