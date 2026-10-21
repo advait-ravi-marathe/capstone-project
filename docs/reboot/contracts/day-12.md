@@ -20,11 +20,11 @@ Anonymous, own, other owner, forged owner field.
 
 Days 3, 9–11; Spring test principals and fixed owned-resource fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Map identity source, ownership check, and resource lookup boundary; note unresolved production filter-chain wiring. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Readiness question (inside the existing evidence slot):** Who supplies the trusted identity, and why is a request-body owner field not proof? Distinguish the actual test filter-chain check from the pure owner-policy decision and production wiring.
 
 ## Concept (25 minutes)
 
-Authentication vs authorization and object access control [H].
+Authentication and authorization plus the existing fixture trace: `owner-a` reads its seeded journey; `owner-b` receives concealed 404; an owner value in the request does not change the principal. The course supplies the distinction; this concrete test walkthrough connects it to the seam without claiming production security is configured.
 
 ## Evidence (10 minutes)
 

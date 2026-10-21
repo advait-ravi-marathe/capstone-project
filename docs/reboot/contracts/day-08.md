@@ -2,7 +2,7 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. PostgreSQL acceptance cases are fixed and currently fail because the scaffold migration omits the required constraints.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24); “Step 04 - Getting Started with Spring JDBC” (3:58). Total 11:22. H2/JDBC is an introduction only; keep PostgreSQL and use the linked schema/constraint example. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-8--postgresql-schema-and-constraints).
+**Required course background:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24; item 35019878). “Step 04 - Getting Started with Spring JDBC” (3:58; item 35019874) is optional later. H2 is table-introduction only; use the [worked composite-constraint example](../teaching/day-08-composite-constraints.md) for PostgreSQL keys and SQLSTATEs. Total study: 7:24 + 13:36 + 4:00 readiness = 25 minutes. Catalog verified; playback not verified.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Valid insert; null required field, duplicate pair, orphan quote reference, cross
 
 Days 1 and 7; SQL seeds bypass services. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**PostgreSQL design prompt:** Identify primary/composite keys, normalization, constraints, and transaction/isolation boundary relevant to this day's schema/write; do not add infrastructure beyond the contract. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Readiness question (inside the existing evidence slot):** Why must the foreign key compare the complete pair? Which invalid state would pass if it checked only `revision_id`? The instructor schema is separate; apply the reasoning to the contract's named tables without expanding scope.
 
 ## Concept (25 minutes)
 
-Relational keys, normalization, integrity [E].
+Composite primary-key identity, matching composite foreign keys, required columns, and observed SQLSTATEs. The H2 lesson does not teach the PostgreSQL constraint matrix; the worked guide does so before the migration task.
 
 ## Evidence (10 minutes)
 

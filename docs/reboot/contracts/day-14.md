@@ -20,11 +20,11 @@ Full success readback; duplicate; stale/expired; invalid; unauthorized with no s
 
 Days 1–13 are required; the integration gate contains no business-policy fakes. The integration test uses no business-rule fakes; it runs against disposable PostgreSQL and exposes the earliest incomplete component.
 
-**System-design prompt (within the 25-minute concept block):** Draw the full product-to-database path and list missing prerequisites; keep the gate blocked until real components pass. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Readiness question (inside the existing evidence slot):** Trace one observed positive or blocked path and identify its earliest failing boundary. Name a previously taught value-ownership or transaction guarantee; missing prerequisite evidence remains a blocker.
 
 ## Concept (25 minutes)
 
-Trace request lifecycle, data ownership, transaction boundary.
+Annotated trace of the existing integration test: catalog → eligibility/premium → quote snapshot → repository → selection guard/persistence → direct PostgreSQL readback. Mark the actual failure stop and one prior-taught transaction boundary. No new architecture theory or rejected-abstraction essay is assigned.
 
 ## Evidence (10 minutes)
 
@@ -42,9 +42,9 @@ This fixed acceptance test currently fails at Day 4 `ProductCatalogService.findB
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** Trace quote creation and selection end to end. Defend one transaction boundary and one rejected abstraction.
+**Question:** Where did the real acceptance path stop, or what did it read back? Which earlier-taught transaction boundary protects that observation?
 
-**Observable evidence:** 20-minute mock replaces implementation: 5 minutes flow, 5 failure demo, 5 alternative/cost, 5 ownership reflection. Use actual gate output; do not claim a demo with fake components is integration.
+**Observable evidence:** Use the existing 20-minute mock to trace actual output and one real blocker; do not claim a passing demo with fake components or add a new alternative-analysis assignment.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

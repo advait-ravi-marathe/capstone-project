@@ -810,8 +810,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Why does the foreign key compare both columns in the parent key? Which wrong-pair insert distinguishes a composite constraint from separate existence checks?"
         ],
         "assessment_axes": [
           "behavior",
@@ -820,9 +819,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Relational keys, normalization and integrity",
-      "concept_reference": "docs/reboot/contracts/day-08.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-08.md",
+      "engineering_concept": "Composite primary keys and foreign-key constraints",
+      "concept_reference": "docs/reboot/teaching/day-08-composite-constraints.md",
+      "guide_deep_link": "docs/reboot/teaching/day-08-composite-constraints.md",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -870,9 +869,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Define PostgreSQL quote schema",
-        "concept_25m": "Relational keys, normalization and integrity",
-        "concept_link": "docs/reboot/contracts/day-08.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-08.md",
+        "concept_25m": "Composite primary keys and foreign-key constraints",
+        "concept_link": "docs/reboot/teaching/day-08-composite-constraints.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-08-composite-constraints.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -880,7 +879,7 @@
           "LC 383 (Day 5, D+3, planned 2026-10-27)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-8--postgresql-schema-and-constraints",
+      "course_learning_supplement": "docs/reboot/teaching/day-08-composite-constraints.md",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -945,8 +944,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "How do placeholders keep values separate from SQL syntax? Why is an absent row different from a database error?"
         ],
         "assessment_axes": [
           "behavior",
@@ -955,9 +953,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "SQL queries, repository boundaries and ORM mapping",
-      "concept_reference": "docs/reboot/contracts/day-09.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-09.md",
+      "engineering_concept": "Parameterized JDBC, resource ownership and immutable row mapping",
+      "concept_reference": "docs/reboot/teaching/day-09-jdbc-boundary.md",
+      "guide_deep_link": "docs/reboot/teaching/day-09-jdbc-boundary.md",
       "dsa_board_summary": {
         "pattern": "prefix/suffix products",
         "problem": "238 Product of Array Except Self",
@@ -979,9 +977,9 @@
       "dsa_concept": "prefix/suffix products",
       "board_summary": {
         "engineering": "Persist/read immutable quote snapshots",
-        "concept_25m": "SQL queries, repository boundaries and ORM mapping",
-        "concept_link": "docs/reboot/contracts/day-09.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-09.md",
+        "concept_25m": "Parameterized JDBC, resource ownership and immutable row mapping",
+        "concept_link": "docs/reboot/teaching/day-09-jdbc-boundary.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-09-jdbc-boundary.md",
         "dsa_60m": "238 Product of Array Except Self",
         "dsa_pattern": "prefix/suffix products",
         "dsa_reviews": []
@@ -1016,7 +1014,8 @@
         "ticket_block_markdown": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01); “Step 07 - Querying Data using Spring JDBC” (5:36). Total 14:37. Transfer the JDBC ideas to the existing PostgreSQL adapter; do not replace it with JPA. See the [Days 1–30 map](docs/reboot/course-learning-map.md). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "course_learning_supplement": "docs/reboot/teaching/day-09-jdbc-boundary.md"
     },
     {
       "day": 10,
@@ -1061,8 +1060,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Which writes share one connection and transaction? What does a fresh-connection read prove after rollback?"
         ],
         "assessment_axes": [
           "behavior",
@@ -1071,9 +1069,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Transactions, atomicity and rollback",
-      "concept_reference": "docs/reboot/contracts/day-10.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-10.md",
+      "engineering_concept": "One-connection JDBC transaction ownership and rollback",
+      "concept_reference": "docs/reboot/teaching/day-10-jdbc-transaction.md",
+      "guide_deep_link": "docs/reboot/teaching/day-10-jdbc-transaction.md",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -1121,9 +1119,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Persist selection batch atomically",
-        "concept_25m": "Transactions, atomicity and rollback",
-        "concept_link": "docs/reboot/contracts/day-10.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-10.md",
+        "concept_25m": "One-connection JDBC transaction ownership and rollback",
+        "concept_link": "docs/reboot/teaching/day-10-jdbc-transaction.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-10-jdbc-transaction.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -1131,7 +1129,7 @@
           "LC 49 (Day 7, D+3, planned 2026-10-29)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-10--atomic-write-and-rollback",
+      "course_learning_supplement": "docs/reboot/teaching/day-10-jdbc-transaction.md",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1205,8 +1203,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Which rejection runs first? What changes at exact expiry, and what does callback suppression prove?"
         ],
         "assessment_axes": [
           "behavior",
@@ -1215,9 +1212,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Optimistic concurrency vs stale reads",
-      "concept_reference": "docs/reboot/contracts/day-11.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-11.md",
+      "engineering_concept": "Immutable freshness metadata, expiry boundary and rejection precedence",
+      "concept_reference": "docs/reboot/teaching/day-11-freshness-order.md",
+      "guide_deep_link": "docs/reboot/teaching/day-11-freshness-order.md",
       "dsa_board_summary": {
         "pattern": "inward pointers",
         "problem": "125 Valid Palindrome",
@@ -1239,14 +1236,14 @@
       "dsa_concept": "inward pointers",
       "board_summary": {
         "engineering": "Reject stale quote selection",
-        "concept_25m": "Optimistic concurrency vs stale reads",
-        "concept_link": "docs/reboot/contracts/day-11.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-11.md",
+        "concept_25m": "Immutable freshness metadata, expiry boundary and rejection precedence",
+        "concept_link": "docs/reboot/teaching/day-11-freshness-order.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-11-freshness-order.md",
         "dsa_60m": "125 Valid Palindrome",
         "dsa_pattern": "inward pointers",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-11--version-check-versus-lost-update",
+      "course_learning_supplement": "docs/reboot/teaching/day-11-freshness-order.md",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1331,8 +1328,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Who vouches for identity in the supplied test harness, and why can the request body not change that identity? What does the owner guard prove separately from HTTP authentication?"
         ],
         "assessment_axes": [
           "behavior",
@@ -1341,9 +1337,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Authentication vs authorization and object access control",
-      "concept_reference": "docs/reboot/contracts/day-12.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-12.md",
+      "engineering_concept": "Trusted identity versus object-owner authorization",
+      "concept_reference": "docs/reboot/teaching/day-12-owner-access.md#worked-example",
+      "guide_deep_link": "docs/reboot/course-learning-supplements.md#day-12--object-ownership-beside-the-real-security-test-fixture",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -1391,9 +1387,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Enforce owner-scoped access",
-        "concept_25m": "Authentication vs authorization and object access control",
-        "concept_link": "docs/reboot/contracts/day-12.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-12.md",
+        "concept_25m": "Trusted identity versus object-owner authorization",
+        "concept_link": "docs/reboot/teaching/day-12-owner-access.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-12-owner-access.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -1401,7 +1397,7 @@
           "LC 238 (Day 9, D+3, planned 2026-10-31)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-12--object-ownership",
+      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-12--object-ownership-beside-the-real-security-test-fixture",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1466,8 +1462,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "What could the passing workflow-infrastructure test still fail to prove? Point to the observed failed step and distinguish its local evidence from a hosted Actions result."
         ],
         "assessment_axes": [
           "behavior",
@@ -1476,9 +1471,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Test pyramid, reproducibility and CI failure signals",
-      "concept_reference": "docs/reboot/contracts/day-13.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-13.md",
+      "engineering_concept": "CI logs, failure propagation and evidence boundaries",
+      "concept_reference": "docs/reboot/teaching/day-13-ci-evidence.md#worked-example",
+      "guide_deep_link": "docs/reboot/course-learning-supplements.md#day-13--trace-real-workflow-logs-and-readiness-evidence",
       "dsa_board_summary": {
         "pattern": "sorted two pointers",
         "problem": "167 Two Sum II - Input Array Is Sorted",
@@ -1500,14 +1495,14 @@
       "dsa_concept": "sorted two pointers",
       "board_summary": {
         "engineering": "Add honest repeatable CI",
-        "concept_25m": "Test pyramid, reproducibility and CI failure signals",
-        "concept_link": "docs/reboot/contracts/day-13.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-13.md",
+        "concept_25m": "CI logs, failure propagation and evidence boundaries",
+        "concept_link": "docs/reboot/teaching/day-13-ci-evidence.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-13-ci-evidence.md",
         "dsa_60m": "167 Two Sum II - Input Array Is Sorted",
         "dsa_pattern": "sorted two pointers",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-13--ci-concept-to-this-repository",
+      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-13--trace-real-workflow-logs-and-readiness-evidence",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1578,8 +1573,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Trace the existing integration from catalog through readback. If an earlier learner TODO stops it, which downstream claims remain unobserved? Name one transaction boundary taught earlier."
         ],
         "assessment_axes": [
           "behavior",
@@ -1588,9 +1582,9 @@
         ]
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
-      "engineering_concept": "Trace request lifecycle, data ownership and transaction boundary",
-      "concept_reference": "docs/reboot/contracts/day-14.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-14.md",
+      "engineering_concept": "Trace the existing backend slice and locate the first failure boundary",
+      "concept_reference": "docs/reboot/teaching/day-14-backend-trace.md#worked-example",
+      "guide_deep_link": "docs/reboot/course-learning-supplements.md#day-14--trace-and-diagnose-the-real-backend-slice",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -1638,9 +1632,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Milestone 1 backend vertical slice",
-        "concept_25m": "Trace request lifecycle, data ownership and transaction boundary",
-        "concept_link": "docs/reboot/contracts/day-14.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-14.md",
+        "concept_25m": "Trace the existing backend slice and locate the first failure boundary",
+        "concept_link": "docs/reboot/teaching/day-14-backend-trace.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-14-backend-trace.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -1648,7 +1642,7 @@
           "LC 125 (Day 11, D+3, planned 2026-11-02)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-14--requestdata-ownership-trace",
+      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-14--trace-and-diagnose-the-real-backend-slice",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [

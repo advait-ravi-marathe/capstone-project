@@ -217,8 +217,8 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24); “Step 04 - Getting Started with Spring JDBC” (3:58). Total 11:22. H2/JDBC is an introduction only; keep PostgreSQL and use the linked schema/constraint example. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-8--postgresql-schema-and-constraints). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-8--postgresql-schema-and-constraints",
+      "verified_lessons_line": "Required: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24). “Step 04 - Getting Started with Spring JDBC” (3:58) is optional later. The H2 lesson only introduces a table; the linked worked example teaches the PostgreSQL composite-key constraint. Study budget: 7:24 lesson + 13:36 worked guide + 4:00 readiness, within 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-08-composite-constraints.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -226,16 +226,12 @@
           "title": "Step 03 - Launching up H2 Console and Creating Course Table in H2",
           "duration": "7:24",
           "duration_seconds": 444,
-          "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot"
-        },
-        {
-          "title": "Step 04 - Getting Started with Spring JDBC",
-          "duration": "3:58",
-          "duration_seconds": 238,
-          "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot"
+          "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+          "source_item_id": "35019878",
+          "course_id": "4993276"
         }
       ],
-      "total_viewing_seconds": 682
+      "total_viewing_seconds": 444
     },
     {
       "day": 9,
@@ -248,25 +244,21 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01); “Step 07 - Querying Data using Spring JDBC” (5:36). Total 14:37. Transfer the JDBC ideas to the existing PostgreSQL adapter; do not replace it with JPA. See the [Days 1–30 map](docs/reboot/course-learning-map.md). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": null,
+      "verified_lessons_line": "Required: “Step 07 - Querying Data using Spring JDBC” (5:36), a higher-level background lesson. “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01) is optional later. The focused guide teaches this repository’s raw DataSource/JDBC seam. Study budget: 5:36 lesson + 15:24 worked guide + 4:00 readiness, within 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-09-jdbc-boundary.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
         {
-          "title": "Step 06 - Inserting and Deleting Data using Spring JDBC",
-          "duration": "9:01",
-          "duration_seconds": 541,
-          "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot"
-        },
-        {
           "title": "Step 07 - Querying Data using Spring JDBC",
           "duration": "5:36",
           "duration_seconds": 336,
-          "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot"
+          "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+          "source_item_id": "35019858",
+          "course_id": "4993276"
         }
       ],
-      "total_viewing_seconds": 877
+      "total_viewing_seconds": 336
     },
     {
       "day": 10,
@@ -279,8 +271,8 @@
           "access_status": "access_unconfirmed"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 58 - Introduction to Transaction Management” (4:43), “Step 59 - Transaction Management - ACID Properties” (5:49), and “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38), 15:10 total. These teach transaction concepts; use a short fixed PostgreSQL atomic-batch example and preserve this repo’s JDBC boundary rather than copying JPA wiring. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-10--atomic-write-and-rollback). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-10--atomic-write-and-rollback",
+      "verified_lessons_line": "Conditional reference if accessible: “Step 58 - Introduction to Transaction Management” (4:43) and “Step 59 - Transaction Management - ACID Properties” (5:49), 10:32 total. “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38) is optional later. If access is unavailable, use the linked official JDBC Connection methods for the same study time; no purchase/enrollment. The example owns one JDBC connection and does not teach Spring-managed transactions. Study budget: 10:32 foundation + 10:28 worked trace + 4:00 readiness, within 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-10-jdbc-transaction.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -289,64 +281,30 @@
           "duration": "4:43",
           "duration_seconds": 283,
           "section_title": "Transaction Management",
-          "source_item_id": "7907610"
+          "source_item_id": "7907610",
+          "course_id": "1341538"
         },
         {
           "title": "Step 59 - Transaction Management - ACID Properties",
           "duration": "5:49",
           "duration_seconds": 349,
           "section_title": "Transaction Management",
-          "source_item_id": "7907612"
-        },
-        {
-          "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
-          "duration": "4:38",
-          "duration_seconds": 278,
-          "section_title": "Transaction Management",
-          "source_item_id": "7907620"
+          "source_item_id": "7907612",
+          "course_id": "1341538"
         }
       ],
-      "total_viewing_seconds": 910
+      "total_viewing_seconds": 632
     },
     {
       "day": 11,
       "contract_path": "docs/reboot/contracts/day-11.md",
-      "courses": [
-        {
-          "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
-          "instructor": "in28Minutes Official",
-          "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
-          "access_status": "access_unconfirmed"
-        }
-      ],
-      "verified_lessons_line": "**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 60 - Understanding Dirty, Phanthom and Non Repeatable Reads” (9:25), “Step 61 - Understand 4 Isolation Levels” (5:48), and “Step 62 - Choosing between Isolation Levels” (4:03), 19:16 total. These cover isolation/stale-read concepts only, not optimistic locking/version checks; use the linked version-conflict example within the same 25-minute block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-11--version-check-versus-lost-update). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-11--version-check-versus-lost-update",
+      "courses": [],
+      "verified_lessons_line": "No exact course lesson verified for this pure freshness guard. Use the focused Java 21 Instant “isBefore” reference and linked worked boundary/precedence example; do not substitute transaction-isolation lessons. Study budget: 5:00 official API reading + 16:00 worked trace + 4:00 readiness, within 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-11-freshness-order.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
-      "lesson_details": [
-        {
-          "title": "Step 60 - Understanding Dirty, Phanthom and Non Repeatable Reads",
-          "duration": "9:25",
-          "duration_seconds": 565,
-          "section_title": "Transaction Management",
-          "source_item_id": "7907614"
-        },
-        {
-          "title": "Step 61 - Understand 4 Isolation Levels",
-          "duration": "5:48",
-          "duration_seconds": 348,
-          "section_title": "Transaction Management",
-          "source_item_id": "7907616"
-        },
-        {
-          "title": "Step 62 - Choosing between Isolation Levels",
-          "duration": "4:03",
-          "duration_seconds": 243,
-          "section_title": "Transaction Management",
-          "source_item_id": "7907618"
-        }
-      ],
-      "total_viewing_seconds": 1156
+      "lesson_details": [],
+      "total_viewing_seconds": 0
     },
     {
       "day": 12,
@@ -359,8 +317,8 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Securing Spring Boot Applications with Spring Security”. Watch: “Step 21 - Understanding Spring Security Authentication” (4:17); “Step 22 - Exploring Spring Security Authorization” (9:47). 14:04 viewing. Use the distinction as background; use the linked object-owner guard example because general authorization does not teach object-level access control. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-12--object-ownership). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-12--object-ownership",
+      "verified_lessons_line": "Required: “Step 21 - Understanding Spring Security Authentication” (4:17) and “Step 22 - Exploring Spring Security Authorization” (9:47), 14:04 total. Use the linked owner-guard fixture to connect general authorization to object ownership; its test principal is not production authentication. Study budget: 14:04 viewing + 6:56 fixture trace + 4:00 readiness, within 25 minutes.",
+      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-12--object-ownership-beside-the-real-security-test-fixture",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -368,13 +326,17 @@
           "title": "Step 21 - Understanding Spring Security Authentication",
           "duration": "4:17",
           "duration_seconds": 257,
-          "section_title": "Securing Spring Boot Applications with Spring Security"
+          "section_title": "Securing Spring Boot Applications with Spring Security",
+          "source_item_id": "35017628",
+          "course_id": "4993276"
         },
         {
           "title": "Step 22 - Exploring Spring Security Authorization",
           "duration": "9:47",
           "duration_seconds": 587,
-          "section_title": "Securing Spring Boot Applications with Spring Security"
+          "section_title": "Securing Spring Boot Applications with Spring Security",
+          "source_item_id": "35017626",
+          "course_id": "4993276"
         }
       ],
       "total_viewing_seconds": 844
@@ -390,8 +352,8 @@
           "access_status": "access_unconfirmed"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** Conditional reference to [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps — in28Minutes Official](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/), “Getting Started with Continuous Integration, Deployment and Delivery”: “Getting Started with Continuous Integration, Deployment and Delivery” (4:50). Pair the concept lesson with the existing GitHub Actions failure walkthrough inside the 25-minute limit. Do not install Azure DevOps or Jenkins. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-13--ci-concept-to-this-repository). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-13--ci-concept-to-this-repository",
+      "verified_lessons_line": "Conditional reference if accessible: “Getting Started with Continuous Integration, Deployment and Delivery” (4:50), access unconfirmed; no purchase/enrollment. Alternatively use the focused official GitHub Actions workflow-log guide. Trace the existing workflow failure evidence within the same block; do not install Azure DevOps or Jenkins. Study budget: 4:50 lesson (or focused official reading) + 16:10 repository trace + 4:00 readiness.",
+      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-13--trace-real-workflow-logs-and-readiness-evidence",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -400,7 +362,8 @@
           "duration": "4:50",
           "duration_seconds": 290,
           "section_title": "Getting Started with Continuous Integration, Deployment and Delivery",
-          "source_item_id": "18086493"
+          "source_item_id": "18086493",
+          "course_id": "2813427"
         }
       ],
       "total_viewing_seconds": 290
@@ -416,8 +379,8 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Review only unfamiliar material. Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06). Section “Getting Started with Spring Boot”: “Step 13 - Understanding Spring Boot vs Spring vs Spring MVC” (3:55). Total 13:01. Use the linked request/data-ownership trace. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-14--requestdata-ownership-trace). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-14--requestdata-ownership-trace",
+      "verified_lessons_line": "Optional review only, if a prior concept is unfamiliar: “Step 04 - What’s happening in the background? Spring Boot Starters & Autoconfig” (9:06) and “Step 13 - Understanding Spring Boot vs Spring vs Spring MVC” (3:55), 13:01 maximum. No new course is required; prioritize the linked trace of the existing integration test and its actual first failure. Stay within the 25-minute study block.",
+      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-14--trace-and-diagnose-the-real-backend-slice",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -425,13 +388,17 @@
           "title": "Step 04 - What’s happening in the background? Spring Boot Starters & Autoconfig",
           "duration": "9:06",
           "duration_seconds": 546,
-          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
+          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+          "source_item_id": "35018830",
+          "course_id": "4993276"
         },
         {
           "title": "Step 13 - Understanding Spring Boot vs Spring vs Spring MVC",
           "duration": "3:55",
           "duration_seconds": 235,
-          "section_title": "Getting Started with Spring Boot"
+          "section_title": "Getting Started with Spring Boot",
+          "source_item_id": "35019898",
+          "course_id": "4993276"
         }
       ],
       "total_viewing_seconds": 781

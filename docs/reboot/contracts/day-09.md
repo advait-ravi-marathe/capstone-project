@@ -2,7 +2,7 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. Tests use real PostgreSQL and a fixed test-only schema/seed that bypass Days 7–8.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01); “Step 07 - Querying Data using Spring JDBC” (5:36). Total 14:37. Transfer the JDBC ideas to the existing PostgreSQL adapter; do not replace it with JPA. See the [Days 1–30 map](../course-learning-map.md).
+**Required course background:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 07 - Querying Data using Spring JDBC” (5:36; item 35019858). “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01; item 35019864) is optional later. The course is higher-level context; the [raw-JDBC worked guide](../teaching/day-09-jdbc-boundary.md) teaches the `DataSource`/`PreparedStatement` code before this adapter task. Total: 5:36 + 15:24 + 4:00 readiness = 25 minutes. Catalog verified; playback not verified.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Round-trip precision, absent ID, wrong journey, update attempt.
 
 Day 8; seeded rows, no quote-creation service. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**PostgreSQL design prompt:** Identify primary/composite keys, normalization, constraints, and transaction/isolation boundary relevant to this day's schema/write; do not add infrastructure beyond the contract. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Readiness question (inside the existing evidence slot):** Why does this `SELECT` bind both scope fields? Why is a missing row different from a SQL exception? Point to the reference's resource-closing boundaries; no ORM decision is assigned.
 
 ## Concept (25 minutes)
 
-SQL queries, repository boundaries and ORM mapping [F].
+Parameterized JDBC, connection/statement/result resource ownership, mapping a row to a value, and explicit absence. The lesson is background only; the worked guide teaches these raw-JDBC operations before the repository task. No JPA/ORM conversion is assigned.
 
 ## Evidence (10 minutes)
 
@@ -42,9 +42,9 @@ This selector runs the installed adapter tests against a real embedded PostgreSQ
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** What SQL does this repository operation need? What can ORM obscure?
+**Question:** What does empty `Optional` mean here, and how is it different from a database failure?
 
-**Observable evidence:** Explain a scoped read, decimal/time round trip and explicit absence; inspect emitted SQL if available rather than claiming ORM makes all queries efficient or safe.
+**Observable evidence:** Trace bound parameters and resource closure in the teaching case, then explain the existing scoped read, decimal/time contract, and explicit absence.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

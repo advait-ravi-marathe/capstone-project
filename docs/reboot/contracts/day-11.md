@@ -2,7 +2,7 @@
 
 **State:** Contract defined; isolated policy scaffold and learner acceptance tests are installed. Learner attempt is pending; the focused suite is expected to fail at its explicit TODO.
 
-**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 60 - Understanding Dirty, Phanthom and Non Repeatable Reads” (9:25), “Step 61 - Understand 4 Isolation Levels” (5:48), and “Step 62 - Choosing between Isolation Levels” (4:03), 19:16 total. These cover isolation/stale-read concepts only, not optimistic locking/version checks; use the linked version-conflict example within the same 25-minute block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-11--version-check-versus-lost-update).
+**Focused official supplement:** No exact verified preferred-course lecture covers this pure freshness guard. Read Java 21 [`Instant.isBefore`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html), then the [worked owner/expiry/version ordering guide](../teaching/day-11-freshness-order.md). The earlier 19:16 isolation-level video bundle is not assigned today; it does not teach this predicate. Total: 5 minutes reading + 16 minutes worked cases + 4 minutes readiness = 25 minutes.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Current, expired-at-now, superseded, wrong journey, and no-write checks.
 
 Days 7 and 9–10; fixed current-version metadata and Clock. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Show how current-version metadata is checked before the selection transaction. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Readiness question (inside the existing evidence slot):** What is checked first, and why? What does a zero callback count prove—and not prove? Name the check/write race without designing a database CAS or lock.
 
 ## Concept (25 minutes)
 
-Optimistic concurrency vs stale reads [G].
+Immutable freshness metadata, strict expiry equality, and the fixed journey → expiry → version rejection order. `now.isBefore(expiresAt)` rejects equality. The worked example precedes the policy task; it does not teach or require SQL compare-and-set.
 
 ## Evidence (10 minutes)
 
@@ -42,9 +42,9 @@ This selector is installed and runs the fixed Day 11 cases. It currently fails a
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** If a version becomes stale between checking and writing, what assumption is missing?
+**Question:** Which rejection wins when the record is expired and also superseded?
 
-**Observable evidence:** Identify the check/write race and current guarantees; show expired/stale negatives; explain a possible atomic database guard without implementing later scope early.
+**Observable evidence:** Predict owner/expiry/version outcomes, show that rejected cases invoke no callback, and state that this pure guard cannot make checking and writing atomic.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

@@ -2,7 +2,7 @@
 
 **State:** Instructor scaffold installed; learner implementation pending. Transaction behavior is checked with real PostgreSQL and a fixed schema/quote fixture that bypasses earlier service rules.
 
-**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 58 - Introduction to Transaction Management” (4:43), “Step 59 - Transaction Management - ACID Properties” (5:49), and “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38), 15:10 total. These teach transaction concepts; use a short fixed PostgreSQL atomic-batch example and preserve this repo’s JDBC boundary rather than copying JPA wiring. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-10--atomic-write-and-rollback).
+**Conditional course reference:** [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Transaction Management”: “Step 58 - Introduction to Transaction Management” (4:43; item 7907610) and “Step 59 - Transaction Management - ACID Properties” (5:49; item 7907612), 10:32 total. Access is unconfirmed; no purchase or enrollment. “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38; item 7907620) is optional later. The [worked JDBC transaction guide](../teaching/day-10-jdbc-transaction.md) teaches this connection-owning seam; it does not teach Spring proxy semantics or audit wiring. Total: 10:32 + 10:28 + 4:00 readiness = 25 minutes.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Empty batch, two valid rows, induced second-row failure, pre-existing rows remai
 
 Days 8–9; canned normalized pairs and forced repository failure. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**PostgreSQL design prompt:** Identify primary/composite keys, normalization, constraints, and transaction/isolation boundary relevant to this day's schema/write; do not add infrastructure beyond the contract. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Readiness question (inside the existing evidence slot):** Draw one connection spanning both inserts and the commit/rollback branch. Why does rollback preserve a row committed earlier? Distinguish this atomicity example from concurrency isolation.
 
 ## Concept (25 minutes)
 
-Transactions, atomicity, rollback [G].
+One raw JDBC connection, auto-commit off, explicit commit after all rows, and rollback/rethrow on a statement failure. The course is conditional; the worked connection-owning example precedes the batch task. It does not promise uncertain commit outcome handling.
 
 ## Evidence (10 minutes)
 
@@ -42,9 +42,9 @@ This selector runs the installed batch tests against a real embedded PostgreSQL 
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** Where does the transaction begin and end? What if the second insert fails?
+**Question:** If the second insert fails, what can a fresh connection read and why?
 
-**Observable evidence:** Show post-failure database state; distinguish atomicity from isolation; explain the Spring transaction boundary and a proxy/self-invocation caveat.
+**Observable evidence:** Run the positive and controlled-duplicate cases; show post-failure readback; distinguish batch atomicity from concurrency isolation.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

@@ -46,57 +46,49 @@ No exact verified course lecture covers `Clock` injection. Use the [complete det
 
 ## Day 8 — PostgreSQL schema and constraints
 
-A primary key identifies a row; a unique constraint enforces a business uniqueness rule even under concurrent requests; a foreign key enforces a relationship. The supplied PostgreSQL migration is authoritative. Read its column types and constraints, then trace one invalid insert to the database constraint. The course's H2 example is introductory only; do not switch databases or add ORM setup.
+Use the [complete composite-constraint guide](teaching/day-08-composite-constraints.md) after the required “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24; item 35019878). H2 is only table-concept background; the guide runs a separate disposable PostgreSQL schema and shows actual SQLSTATEs for pair mismatch, null, and duplicate rows. “Step 04 - Getting Started with Spring JDBC” (3:58; item 35019874) is optional later. Total: 7:24 + 13:36 worked guide + 4:00 readiness = 25 minutes. The reference does not apply or solve the learner migration.
 
+**Primary reference:** PostgreSQL [constraints](https://www.postgresql.org/docs/current/ddl-constraints.html), not-null, primary-key, and foreign-key sections.
 
-**Concrete example:** Illustrative invariant: `UNIQUE (journey_id, quote_version_id)` makes the composite rule hold even when requests race. A `FOREIGN KEY` can enforce the related journey; the repository migration has the actual names and is authoritative.
+## Day 9 — Parameterized JDBC, resource ownership, and row mapping
 
-**Primary reference:** [PostgreSQL constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
+Use the [complete raw-JDBC guide](teaching/day-09-jdbc-boundary.md) after “Step 07 - Querying Data using Spring JDBC” (5:36; item 35019858). It is higher-level background; the guide teaches the actual raw `DataSource`/`PreparedStatement` shape using a separate table, fresh PostgreSQL connections, bound parameters, explicit absence, and SQL-failure handling. “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01; item 35019864) is optional later. Total: 5:36 + 15:24 guide + 4:00 readiness = 25 minutes. Do not switch the adapter to JPA or `JdbcTemplate`.
 
-## Day 10 — Atomic write and rollback
+**Primary references:** pgJDBC [query and result processing](https://jdbc.postgresql.org/documentation/query/), Java [`PreparedStatement`](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html), and short [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) lifetime example.
 
-A transaction groups related SQL writes so they commit together or roll back together. For the supplied two-write example, ask what remains if the second write fails: the expected answer is neither partial write survives. Follow the current Spring/JDBC transaction boundary and its fixed test; do not replace it with JPA or add manual commits.
+## Day 10 — Atomic write and rollback on one connection
 
+Use the [complete JDBC transaction guide](teaching/day-10-jdbc-transaction.md) after “Step 58 - Introduction to Transaction Management” (4:43; item 7907610) and “Step 59 - Transaction Management - ACID Properties” (5:49; item 7907612), if accessible. Access is unconfirmed; no purchase or enrollment. “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38) is optional later. If the course is unavailable, the guide names Java 21 `Connection` methods for the same 10:32 study budget. Total: 10:32 foundation + 10:28 worked trace + 4:00 readiness = 25 minutes. This repository seam owns one raw JDBC connection; don't import Spring `TransactionTemplate`, JPA, audit code, or proxy questions into today's task.
 
-**Concrete example:** Pattern only: `transactionTemplate.execute(status -> { insertSelection(); insertAudit(); return null; });`. If either statement fails, the transaction boundary must roll back both; follow the existing JDBC flow and acceptance test.
+**Primary reference:** Java [`Connection`](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Connection.html): `setAutoCommit`, `commit`, `rollback`, `close`.
 
-**Primary reference:** [Spring programmatic transaction management](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
+## Day 11 — Immutable freshness metadata and rejection precedence
 
-## Day 11 — Version check versus lost update
+Use the [complete freshness-order guide](teaching/day-11-freshness-order.md). There is no exact preferred-course lesson for this pure guard; read Java 21 `Instant.isBefore` for 5 minutes, the fixed owner/expiry/version decision example for 16 minutes, and readiness for 4 minutes. Do not stack the earlier 19:16 isolation-level video bundle: it neither teaches this predicate nor supports the present implementation choice. The guide shows equality expiry, ordered rejection, callback counts, and the check/write race limitation before the policy task.
 
-Two clients can read version 4. If client A writes version 5 first, client B's update must require `WHERE id = ? AND version = 4`; zero affected rows means the earlier view is stale. Isolation-level lessons explain transaction visibility but do not implement this optimistic check. Use the contract's version conflict example and preserve its exact conflict response.
+**Primary reference:** Java 21 [`Instant.isBefore`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html).
 
+## Day 12 — Object ownership beside the real security test fixture
 
-**Concrete example:** Illustrative SQL: `UPDATE quote SET value = ?, version = version + 1 WHERE id = ? AND version = ?`. Check the affected-row count: zero means the expected version was stale. Use the contract’s response mapping.
+Required course remains “Step 21 - Understanding Spring Security Authentication” (4:17; item 35017628) and “Step 22 - Exploring Spring Security Authorization” (9:47; item 35017626), total 14:04. Then spend 6:56 tracing the already installed test plus 4:00 readiness: 25 minutes total. The test configuration supplies two in-memory test users (`owner-a`, `owner-b`) and a real Spring Security filter chain. A trusted principal for `owner-a` reads its seeded `journey-a`; `owner-b` receives concealed 404. A forged `ownerId` request value does not replace `Principal`. Anonymous identity is rejected at the HTTP filter boundary; a unit policy call alone is not proof of HTTP authentication. A write without a CSRF token is 403; with the test token it reaches the test adapter. This harness does not install production security or create credentials/accounts.
 
-**Primary reference:** [PostgreSQL `UPDATE`](https://www.postgresql.org/docs/18/sql-update.html)
+**Readiness question:** Who vouches for identity, and why is a request-body owner value not proof? Use existing tests; do not add JWT, accounts, or security configuration changes.
 
-## Day 12 — Object ownership
+## Day 13 — Trace real workflow logs and readiness evidence
 
-Authentication answers who is making the request; authorization answers whether that identity may access this object. Compare the authenticated principal's owner key with the journey's owner key before returning or mutating the journey. A guessed object ID is not proof of ownership. Follow the fixed anonymous/foreign-owner tests; do not reveal whether another user's object exists.
+Conditional course reference: *Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps* (in28Minutes Official; access unconfirmed), “Getting Started with Continuous Integration, Deployment and Delivery” (4:50; item 18086493). If unavailable, use the official [GitHub Actions workflow-run logs](https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs) topic for the same 4:50. Spend 16:10 tracing the checked-in workflow and frozen evidence example, then 4:00 on readiness: 25 minutes total. No Azure/Jenkins setup.
 
+The worked evidence record `[true,false,false,true,false,true]` means: compile observed, infrastructure failed, selected acceptance failed, clean command documented, failure propagation unproven, and calendar independent. The result is `ready=false`, with ordered blockers `infrastructure_tests`, `selected_acceptance_tests`, `failure_propagation`. An actual workflow step with nonzero exit stops the job; identify it in the run log separately from local reproduction. A green local test is not a remote Actions result, and a future date is not evidence. The existing practice variation changes only clean-command evidence to false and predicts its blocker.
 
-**Concrete example:** Guard shape: load the target, compare `principal.ownerId()` with `target.ownerId()`, and only then return or mutate it. Keep nonexistent and foreign-owner response behavior exactly as the contract specifies.
+**Readiness question:** What could a green infrastructure build still fail to establish? Existing commands remain `./mvnw -Dtest=Day13WorkflowInfrastructureTest test` and `./mvnw -Plearner-tests -Dtest=Day13ContractTest test`; the latter is the learner policy task.
 
-**Primary reference:** [Spring Security method authorization](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html)
+## Day 14 — Trace and diagnose the real backend slice
 
-## Day 13 — CI concept to this repository
+This is review/integration, not another course. If useful, revisit only unfamiliar parts of owned course 4993276: “Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06; item 35018830) or “Step 13 - Understanding Spring Boot vs Spring vs Spring MVC” (3:55; item 35019898), within the same 25 minutes. No new theory or rejected-abstraction essay is assigned.
 
-A CI workflow checks out a commit, installs the declared runtime, restores dependencies, and runs the repository's documented checks. In `.github/workflows/coverstory-starter.yml`, trace each step to its command and identify which failure would stop later steps. The in28Minutes lecture is conceptual; use the existing GitHub Actions workflow as the concrete example. Do not configure Azure DevOps, Jenkins, or deployment.
+Before the existing integration attempt, annotate the actual test with a small legend: call arrow, value handoff, database write, failure stop. The path is catalog → eligibility/premium → quote snapshot → repository → selection guard/persistence → direct PostgreSQL readback. If a learner component such as product lookup is still its named TODO, downstream success is unobserved: record the earliest failing boundary, rerun its focused selector after actual repair, then rerun `./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test`. This diagnosis is a worked hypothetical until you observe current output. The existing 85-minute practice remains 65 build/test + 20 mock; use the mock to explain an actual blocker, not to pretend the path passed.
 
-
-**Concrete example:** Trace the existing workflow from checkout → Java setup → Maven test → npm ci → frontend build/test. A failing step returns nonzero and stops the job; do not add deploy credentials or deploy stages.
-
-**Primary reference:** [GitHub Actions workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions)
-
-## Day 14 — Request/data ownership trace
-
-Draw one request through controller → policy/service → repository → PostgreSQL and back. At each arrow name the input/output type and the layer that owns validation, authorization, and transaction scope. Use the existing fixed test to confirm the trace; this is a review exercise, not a new architecture task.
-
-
-**Concrete example:** Concrete trace: `POST` JSON → controller request object → validator → service/policy → JDBC adapter → transaction result → response DTO. At each step, point to the actual class and fixed test; do not invent a new layer.
-
-**Primary reference:** [Spring MVC controller return values](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responsebody.html)
+**Readiness question:** Trace one real positive or blocked path and name one prior-taught transaction boundary. No fake integration, added feature, or Day 15 dependency.
 
 ## Day 15 — Join and projection
 
