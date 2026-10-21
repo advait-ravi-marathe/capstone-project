@@ -64,7 +64,9 @@
         "https://docs.python.org/3.12/tutorial/controlflow.html",
         "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
         "https://docs.python.org/3.12/library/unittest.html#basic-example"
-      ]
+      ],
+      "readiness_command": "python3 -m ai.streamforge.readiness_bridge",
+      "readiness_gate": "Run within the existing 25-minute study block; carry Python basics forward if it fails."
     },
     {
       "day": 156,

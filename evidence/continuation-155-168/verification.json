@@ -30,10 +30,10 @@
     {
       "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts ai.streamforge.tests.test_cli",
       "result": "temporary_conformance_overlay_passed",
-      "tests": 24,
-      "temporary_overlay_sha256": "0d0be6edffc0f480f10cde23ade2b94085cb8f9cd85676666a6a8652d5310366",
+      "tests": 25,
+      "temporary_overlay_sha256": "5996d51abb3542716816cb3885b0fcbc043eae9b80105ef9489c0d9ee8a305c9",
       "restored_contracts_sha256": "1856694d39104d96074609692b9d0b1627be010163b6147bb1844eea9c164233",
-      "notes": "Temporary instructor witness only. Includes independently calculated CLI golden output, copied-input preservation, nested duplicate-JSON-key rejection, invalid-input/no-output, cutoff/leakage, holdout mutation, constant-hash and canned-output adversarial checks. Learner seams remain TODO."
+      "notes": "Temporary instructor witness only. Includes complete reference-catalog golden, actual positive duplicate replay collapse with count 1, copied-input preservation, nested duplicate-JSON-key rejection, invalid-input/no-output, and exact CLI golden checks. Learner seams remain TODO."
     },
     {
       "command": "python3 -m ai.streamforge.prepare --fixture basic",
@@ -59,8 +59,41 @@
     "dsa_attempt_history_changed": false,
     "days_155_plus_beyond_168_created": false,
     "temporary_witnesses_restored_byte_for_byte": true,
-    "temporary_witness_sha256": "0d0be6edffc0f480f10cde23ade2b94085cb8f9cd85676666a6a8652d5310366",
+    "temporary_witness_sha256": "5996d51abb3542716816cb3885b0fcbc043eae9b80105ef9489c0d9ee8a305c9",
     "learner_contracts_restored_sha256": "1856694d39104d96074609692b9d0b1627be010163b6147bb1844eea9c164233"
   },
-  "hosted_ci": "Not yet observed for the repaired final SHA; previous CI run #71 covers b713ac1 only."
+  "hosted_ci": "CI run #72 (39547874725) passed for e3e06be, confirmed by independent runtime review. This follow-up commit is not covered yet; its push-triggered CI result is pending.",
+  "mutation_witnesses": [
+    {
+      "mutation": "wrong-cutoff boundary assignment",
+      "selector": "Day166Test.test_actual_cli_matches_independent_hand_calculated_rows_counts_and_hashes",
+      "result": "rejected",
+      "observed_assertion": "train rows/cutoff membership/order"
+    },
+    {
+      "mutation": "last-write-wins duplicate conflict handling",
+      "selector": "Day167Test.test_cross_cutoff_conflicting_id_fails_before_partition_and_has_no_output",
+      "result": "rejected",
+      "observed_assertion": "expected nonzero CLI exit; mutant exited 0"
+    },
+    {
+      "mutation": "holdout leakage into training",
+      "selector": "Day166Test.test_actual_cli_matches_independent_hand_calculated_rows_counts_and_hashes",
+      "result": "rejected",
+      "observed_assertion": "train rows/cutoff membership/order"
+    },
+    {
+      "mutation": "constant training content hash",
+      "selector": "Day166Test.test_actual_cli_matches_independent_hand_calculated_rows_counts_and_hashes",
+      "result": "rejected",
+      "observed_assertion": "complete train-only summary and content hash"
+    },
+    {
+      "mutation": "frozen canned bundle despite changed holdout",
+      "selector": "Day167Test.test_valid_holdout_mutation_leaves_entire_training_result_unchanged",
+      "result": "rejected",
+      "observed_assertion": "holdout output must change for valid holdout mutation"
+    }
+  ],
+  "independent_runtime_review": "Parent relayed that the independent runtime reviewer additionally confirmed split-before-dedup conflict handling is rejected by the cross-cutoff duplicate selector. This is corroboration, not a local mutation run."
 }

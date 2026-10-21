@@ -38,7 +38,8 @@
         "scope": "Admit a fixed synthetic manifest without parsing UTC strings; run the Python readiness bridge within the existing 25-minute study block and use carry-forward repair if it fails.",
         "learner_seam": "admit_fixture_manifest",
         "acceptance_commands": [
-          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test",
+          "python3 -m ai.streamforge.readiness_bridge"
         ],
         "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
         "concept_course": {
@@ -68,7 +69,9 @@
           "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
-        "publication_status": "draft_not_board_published"
+        "publication_status": "draft_not_board_published",
+        "readiness_command": "python3 -m ai.streamforge.readiness_bridge",
+        "readiness_gate": "Run within the existing 25-minute study block; if it fails, carry Python basics forward before Day 156."
       },
       "java_dsa": {
         "budget_minutes": null,

@@ -80,6 +80,23 @@ class Day167Test(unittest.TestCase):
         self.assertEqual(first.stdout, second.stdout)
         self.assertEqual(source_before, self.fixture_bytes())
 
+    def test_exact_duplicate_event_replay_collapses_once_in_actual_cli(self):
+        first, before = self.successful_bundle()
+        rows = self.read_events()
+        rows.append(dict(rows[0]))
+        self.write_events(rows)
+        result, after = self.successful_bundle()
+        self.assertEqual(0, result.returncode)
+        self.assertEqual(1, after["duplicate_events_collapsed"])
+        self.assertEqual(before["reference_catalog"], after["reference_catalog"])
+        self.assertEqual(before["train"], after["train"])
+        self.assertEqual(before["holdout"], after["holdout"])
+        self.assertEqual(before["outside_window"], after["outside_window"])
+        self.assertEqual(before["training"], after["training"])
+        self.assertEqual(before["holdout_diagnostics"], after["holdout_diagnostics"])
+        self.assertEqual(0, before["duplicate_events_collapsed"])
+        self.assertNotEqual(before["source_sha256"], after["source_sha256"])
+
     def test_shuffled_source_rows_preserve_semantics_but_change_raw_hash(self):
         before, before_bundle = self.successful_bundle()
         assert_golden_bundle(self, before_bundle, self.fixture)

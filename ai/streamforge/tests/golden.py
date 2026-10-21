@@ -37,6 +37,14 @@ OUTSIDE = [{"event_id": "e-04", "viewer_id": "synthetic-viewer-3", "media_id": "
             "occurred_at_utc": "2027-02-01T00:00:00Z", "watch_seconds": 30}]
 SUMMARY = {"status": "available", "event_count": 2, "distinct_viewer_count": 2,
            "media_event_counts": {"m1": 1, "m2": 1}, "media_watch_seconds": {"m1": 10, "m2": 20}}
+REFERENCE_CATALOG = [
+    {"media_id": "m1", "title": "Glass Harbor", "genre": "drama", "duration_s": 100,
+     "available_from_utc": "2026-01-01T00:00:00Z", "available_to_utc": "2028-01-01T00:00:00Z"},
+    {"media_id": "m2", "title": "Paper Comet", "genre": "animation", "duration_s": 100,
+     "available_from_utc": "2026-01-01T00:00:00Z", "available_to_utc": "2028-01-01T00:00:00Z"},
+    {"media_id": "m3", "title": "Quiet Signal", "genre": "documentary", "duration_s": 100,
+     "available_from_utc": "2026-01-01T00:00:00Z", "available_to_utc": "2028-01-01T00:00:00Z"},
+]
 COVERAGE = {"status": "available", "viewer_item_seen_in_train": 0,
             "viewer_seen_item_unseen": 1, "viewer_unseen_item_seen": 0, "viewer_item_unseen": 0}
 
@@ -64,6 +72,7 @@ def assert_golden_bundle(testcase, bundle: dict, fixture_directory: Path, *, tra
                          holdout=HOLDOUT, outside=OUTSIDE, summary=SUMMARY,
                          coverage=COVERAGE, duplicate_count=0) -> None:
     testcase.assertEqual(1, bundle.get("schema_version"), "bundle schema version")
+    testcase.assertEqual(REFERENCE_CATALOG, bundle.get("reference_catalog"), "complete reference catalog")
     testcase.assertEqual(train, bundle.get("train"), "train rows/cutoff membership/order")
     testcase.assertEqual(holdout, bundle.get("holdout"), "holdout rows/cutoff membership/order")
     testcase.assertEqual(outside, bundle.get("outside_window"), "outside-window rows")

@@ -45,10 +45,13 @@ class Day155Test(unittest.TestCase):
     def test_manifest_admission_and_rejection_without_mutation(self):
         original = dict(MANIFEST)
         admitted = contracts.admit_fixture_manifest(MANIFEST)
-        self.assertEqual(MANIFEST["cutoff_utc"], admitted.cutoff_utc)
-        self.assertIsInstance(admitted.window_start_utc, str)
-        for key, value in (("schema_version", 2), ("media_source", "external"),
-                           ("viewer_source", "real_account")):
+        self.assertEqual(FixtureAdmission(1, 1, "synthetic_hand_authored", "catalog.csv", "events.csv",
+                                          MANIFEST["window_start_utc"], MANIFEST["cutoff_utc"],
+                                          MANIFEST["window_end_utc"]), admitted)
+        for key, value in (("schema_version", 2), ("fixture_id", "other"),
+                           ("source_kind", "external_dataset"), ("media_source", "external"),
+                           ("viewer_source", "real_account"), ("catalog_file", "other.csv"),
+                           ("events_file", "other.csv")):
             bad = dict(MANIFEST, **{key: value})
             with self.subTest(key=key), self.assertRaises(DatasetContractError):
                 contracts.admit_fixture_manifest(bad)
@@ -104,6 +107,8 @@ class Day158Test(unittest.TestCase):
                     [dict(CATALOG_ROWS[0], duration_s="7201")],
                     [dict(CATALOG_ROWS[0], duration_s="0")],
                     [dict(CATALOG_ROWS[0], duration_s="+1200")],
+                    [dict(CATALOG_ROWS[0], duration_s=" 1200")],
+                    [dict(CATALOG_ROWS[0], duration_s="1200 ")],
                     [dict(CATALOG_ROWS[0], duration_s="١٢٠٠")],
                     [dict(CATALOG_ROWS[0], available_to_utc="2026-12-01T00:00:00Z")],
                     [dict(CATALOG_ROWS[0], available_from_utc="2027-04-01T00:00:00Z")],
@@ -125,7 +130,8 @@ class Day159Test(unittest.TestCase):
                          contracts.validate_events([base], catalog)[0])
         for bad in (dict(base, media_id="unknown"), dict(base, watch_seconds="-1"),
                     dict(base, watch_seconds="1201"), dict(base, watch_seconds="1.2"),
-                    dict(base, watch_seconds="+1"), dict(base, watch_seconds="١"),
+                    dict(base, watch_seconds="+1"), dict(base, watch_seconds=" 1"),
+                    dict(base, watch_seconds="1 "), dict(base, watch_seconds="١"),
                     dict(base, occurred_at_utc="2026-12-31T23:59:59Z"),
                     dict(base, occurred_at_utc="2027-02-01T00:00:00Z"),
                     dict(base, event_id=""), dict(base, event_id=" e1"),
@@ -209,7 +215,8 @@ class Day163Test(unittest.TestCase):
 
 class Day164Test(unittest.TestCase):
     def test_summary_uses_train_only_and_empty_is_explicit(self):
-        catalog = [CatalogItem("m1", "Glass Harbor", "drama", 1200, utc("2026-01-01T00:00:00Z"), utc("2028-01-01T00:00:00Z"))]
+        catalog = [CatalogItem("m1", "Glass Harbor", "drama", 1200, utc("2026-01-01T00:00:00Z"), utc("2028-01-01T00:00:00Z")),
+                   CatalogItem("m2", "Paper Comet", "animation", 900, utc("2026-01-01T00:00:00Z"), utc("2028-01-01T00:00:00Z"))]
         train = [ViewingEvent("t1", "v1", "m1", utc("2027-01-01T00:00:00Z"), 10),
                  ViewingEvent("t2", "v1", "m1", utc("2027-01-02T00:00:00Z"), 15),
                  ViewingEvent("t3", "v2", "m2", utc("2027-01-03T00:00:00Z"), 7)]

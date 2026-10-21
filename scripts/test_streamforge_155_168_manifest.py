@@ -78,6 +78,17 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         contract167 = (BATCH / day167["contract_file"]).read_text(encoding="utf-8")
         self.assertIn("Handling Exceptions", contract155)
         self.assertIn("readiness bridge", contract155)
+        command = "python3 -m ai.streamforge.readiness_bridge"
+        self.assertEqual(command, day155["engineering"]["readiness_command"])
+        self.assertIn(command, day155["engineering"]["acceptance_commands"])
+        owner = json.loads((BATCH / "scrum-owner-manifest.json").read_text(encoding="utf-8"))
+        owner155 = next(card for card in owner["cards"] if card["day_number"] == 155)
+        self.assertEqual(command, owner155["engineering"]["readiness_command"])
+        self.assertIn(command, owner155["engineering"]["acceptance_commands"])
+        plan = json.loads((BATCH / "transfer-plan.json").read_text(encoding="utf-8"))
+        plan155 = next(row for row in plan["daily_contracts"] if row["day"] == 155)
+        self.assertEqual(command, plan155["readiness_command"])
+        self.assertIn("25-minute study block", plan155["readiness_gate"])
         self.assertIn("no new learner function", contract167)
 
     def test_four_kib_field_limit_is_utf8_bytes_not_characters(self):
