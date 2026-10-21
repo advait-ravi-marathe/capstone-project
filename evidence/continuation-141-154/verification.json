@@ -2,7 +2,7 @@
   "status": "narrow_source_fixes_validated_packaged_matrix_revalidation_pending",
   "batch": "CoverStory Days 141-154",
   "branch": "learning/coverstory-days-141-154-source-repair",
-  "tested_source_sha": "d081ee33960fe42cecde05a5d91bc6b13340ee9d",
+  "tested_source_sha": "9f5721d2d3cd667f8dd0f74ad665ea715dda3f45",
   "base_sha": "fe709e603dcc06d8ccb0da96c67c1915bd16d0a6",
   "local_validation": {
     "default_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home MAVEN_OPTS=-Dmaven.repo.local=/tmp/capstone-m2 CHROMIUM_BIN=/usr/bin/chromium ./mvnw -o clean test",
@@ -15,10 +15,10 @@
     "manifest_and_docs_result": "Day141To154InfrastructureTest 2/2; JSON parsing and git diff --check passed; daily contracts, manifests and owner exports synchronized",
     "latest_narrow_recheck": {
       "default_maven": "./mvnw -o clean test, then ./mvnw -o test after the final source edits",
-      "default_result": "59 tests, 0 failures, 0 errors, 0 skipped",
+      "default_result": "59 tests, 0 failures, 0 errors, 0 skipped after Day 149 post-retry schema assertion",
       "python": "python3 -m unittest discover -s scripts -p test_*.py: 64 passed",
       "docs_and_manifest": "Day144 selector synchronized across contract, canonical manifest, and Scrum export; JSON parses and git diff --check passes",
-      "scope": "Day143 test no longer invokes the Day144 decoder; Day144 invalid cases mutate a single already-framed valid report, with valid near-limit control; Day142 asserts every envelope field and includes inconsistent acknowledged/ABSENT evidence; Day145 states its own unit selector scope and identifies the later Day146 packaged startup gate; matrix checks full Flyway history fields and schema after B retry."
+      "scope": "Day143 test no longer invokes the Day144 decoder; Day144 invalid cases mutate a single already-framed valid report, with valid near-limit control; Day142 asserts every envelope field and includes inconsistent acknowledged/ABSENT evidence; Day145 states its own unit selector scope and identifies the later Day146 packaged startup gate; matrix checks full Flyway history fields and schema after B retry. Day 149 now also asserts the full pre-matrix schema/Flyway fingerprint immediately after B retry and before A replay."
     }
   },
   "two_artifact_runtime": {
