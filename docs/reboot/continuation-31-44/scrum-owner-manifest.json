@@ -56,7 +56,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-31.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-31.json",
-        "seam": "PolicyIssueRequest / PolicyLifecycleService.issue",
+        "seam": "validateIssue",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
@@ -67,16 +67,17 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "verified_video": 257,
+            "focused_discovery_acceptance": 300,
+            "worked_example": 703,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "4993276",
-              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
               "instructor": "in28Minutes Official",
               "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
               "access_status": "confirmed_owned"
@@ -90,7 +91,9 @@
               "duration": "4:17",
               "source_item_id": "35017628",
               "course_id": "4993276"
-            },
+            }
+          ],
+          "optional_replacement_only_lessons": [
             {
               "title": "Step 22 - Exploring Spring Security Authorization",
               "section_title": "Securing Spring Boot Applications with Spring Security",
@@ -102,22 +105,55 @@
           ],
           "resources": [
             {
-              "title": "Spring MVC controller method arguments",
-              "section": "Principal, @RequestBody, and request-bound arguments",
+              "title": "GOV.UK Service Manual: Plan user research for your service",
+              "section": "Agree research questions",
+              "url": "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service"
+            },
+            {
+              "title": "GOV.UK Service Manual: Writing user stories",
+              "section": "Acceptance criteria",
+              "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
+            },
+            {
+              "title": "Spring Framework: Method Arguments",
+              "section": "java.security.Principal table entry; @RequestBody table entry",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
             }
           ],
-          "video_seconds": 844,
-          "remaining_study_seconds": 656,
+          "video_seconds": 257,
+          "remaining_study_seconds": 1243,
           "fit": "partial_foundation",
-          "scope_note": "Authentication and authorization are prerequisites. Work an owned-selected-current-eligible quote matrix; identity comes only from the principal, never an owner request field.",
+          "scope_note": "Existing independent eligibility cases; actual problem assumptions and cases, not discovery quality from a schema.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md#worked-example",
+          "prerequisites": [
+            "Actual Day28–30 evidence, not delivered scaffold status",
+            "Main repaired request/validator/service, value/time and security guides"
+          ],
+          "study_segments": [
+            {
+              "activity": "verified_video",
+              "seconds": 257
+            },
+            {
+              "activity": "focused_discovery_acceptance",
+              "seconds": 300
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 703
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Existing independent eligibility cases; actual problem assumptions and cases, not discovery quality from a schema.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -176,8 +212,97 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).\n- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).\n- Fit: partial foundation. Authentication and authorization are prerequisites. Work an owned-selected-current-eligible quote matrix; identity comes only from the principal, never an owner request field.\n- Focused worked references: [Spring MVC controller method arguments — Principal, @RequestBody, and request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "Which inputs express intent, which facts come from the trusted principal/server lookup, and which three cases distinguish allowed from denied?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "verified_video": 257,
+          "focused_discovery_acceptance": 300,
+          "worked_example": 703,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 21 - Understanding Spring Security Authentication",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 257,
+            "duration": "4:17",
+            "source_item_id": "35017628",
+            "course_id": "4993276"
+          }
+        ],
+        "optional_replacement_only_lessons": [
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "duration": "9:47",
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "GOV.UK Service Manual: Plan user research for your service",
+            "section": "Agree research questions",
+            "url": "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service"
+          },
+          {
+            "title": "GOV.UK Service Manual: Writing user stories",
+            "section": "Acceptance criteria",
+            "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
+          },
+          {
+            "title": "Spring Framework: Method Arguments",
+            "section": "java.security.Principal table entry; @RequestBody table entry",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+          }
+        ],
+        "video_seconds": 257,
+        "remaining_study_seconds": 1243,
+        "fit": "partial_foundation",
+        "scope_note": "Existing independent eligibility cases; actual problem assumptions and cases, not discovery quality from a schema.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md#worked-example",
+        "prerequisites": [
+          "Actual Day28–30 evidence, not delivered scaffold status",
+          "Main repaired request/validator/service, value/time and security guides"
+        ],
+        "study_segments": [
+          {
+            "activity": "verified_video",
+            "seconds": 257
+          },
+          {
+            "activity": "focused_discovery_acceptance",
+            "seconds": 300
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 703
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Existing independent eligibility cases; actual problem assumptions and cases, not discovery quality from a schema.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -209,7 +334,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-32.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-32.json",
-        "seam": "PolicyLifecycleService.issue",
+        "seam": "issue",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
@@ -220,32 +345,52 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "focused_official_source": 360,
+            "worked_example": 900,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [],
           "lessons": [],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
               "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
-              "section": "Retries and semantic equivalence; same client request ID, different intent",
+              "section": "Retries and semantic equivalence; Same client request ID, different intent",
               "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "no_exact_catalog_match",
-          "scope_note": "No exact idempotency lecture was found. Work one owner+key+intent receipt: the same intent returns its original result; a changed intent conflicts without mutation.",
+          "fit": "authored_bridge",
+          "scope_note": "Repeat actual issue calls; full original equality; three independent changed-intent conflicts; original unchanged after rejection; scoped owner/key; counted construction not repeated.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md#worked-example",
+          "prerequisites": [
+            "Day31 request/fact distinction",
+            "Supplied snapshot factory fixture, no later learner TODO"
+          ],
+          "study_segments": [
+            {
+              "activity": "focused_official_source",
+              "seconds": 360
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 900
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Repeat actual issue calls; full original equality; three independent changed-intent conflicts; original unchanged after rejection; scoped owner/key; counted construction not repeated.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -296,9 +441,57 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact idempotency lecture was found. Work one owner+key+intent receipt: the same intent returns its original result; a changed intent conflicts without mutation.\n- Focused worked references: [AWS Builders’ Library: Making retries safe with idempotent APIs — Retries and semantic equivalence; same client request ID, different intent](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "understanding_prompt": "At what key and intent does the retry return its original receipt, and which changed input must conflict without replacing it?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "focused_official_source": 360,
+          "worked_example": 900,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [],
+        "lessons": [],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+            "section": "Retries and semantic equivalence; Same client request ID, different intent",
+            "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "authored_bridge",
+        "scope_note": "Repeat actual issue calls; full original equality; three independent changed-intent conflicts; original unchanged after rejection; scoped owner/key; counted construction not repeated.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md#worked-example",
+        "prerequisites": [
+          "Day31 request/fact distinction",
+          "Supplied snapshot factory fixture, no later learner TODO"
+        ],
+        "study_segments": [
+          {
+            "activity": "focused_official_source",
+            "seconds": 360
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 900
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Repeat actual issue calls; full original equality; three independent changed-intent conflicts; original unchanged after rejection; scoped owner/key; counted construction not repeated.",
+        "criteria_version": "fde-coursework-v2"
+      },
+      "course_learning_status": "official_worked_bridge_video_not_required",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -329,7 +522,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-33.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-33.json",
-        "seam": "PolicyIssueSnapshot",
+        "seam": "isImmutableIssueSnapshot",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
@@ -340,12 +533,12 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "video_or_official_fallback": 544,
+            "worked_example": 716,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "1535678",
@@ -363,7 +556,9 @@
               "duration": "9:04",
               "source_item_id": "25694168",
               "course_id": "1535678"
-            },
+            }
+          ],
+          "optional_replacement_only_lessons": [
             {
               "title": "3 Questions - Best practices with Records",
               "section_title": "Core Java in Depth - Java Review (Interview) Guide",
@@ -375,22 +570,41 @@
           ],
           "resources": [
             {
-              "title": "Java 21 Record API",
-              "section": "Record components and shallow immutability",
+              "title": "Java SE 21: Class Record",
+              "section": "Class Record; API Note",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
             }
           ],
-          "video_seconds": 1142,
-          "remaining_study_seconds": 358,
+          "video_seconds": 544,
+          "remaining_study_seconds": 956,
           "fit": "partial_foundation",
-          "scope_note": "Records support immutable snapshots, but persistence freeze and no-repricing need a project example; Java records are only shallowly immutable.",
+          "scope_note": "One-field changes; unchanged old input/list; explain snapshot comparison does not itself run catalog SQL.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md#worked-example",
+          "prerequisites": [
+            "Day32 receipt snapshot",
+            "Main immutable values guide"
+          ],
+          "study_segments": [
+            {
+              "activity": "video_or_official_fallback",
+              "seconds": 544
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 716
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "One-field changes; unchanged old input/list; explain snapshot comparison does not itself run catalog SQL.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -450,8 +664,82 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 15 - Exploring Java New Features - Records**; exact section title: **Java New Features - Java 10 to Java 24** (9:04).\n- Exact lesson title: **3 Questions - Best practices with Records**; exact section title: **Core Java in Depth - Java Review (Interview) Guide** (9:58).\n- Fit: partial foundation. Records support immutable snapshots, but persistence freeze and no-repricing need a project example; Java records are only shallowly immutable.\n- Focused worked references: [Java 21 Record API — Record components and shallow immutability](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html).\n- Video viewing: 19:02 at 1×; the remaining 5:58 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "Which captured values stay fixed after the catalog changes, and what comparison does the current isolated test actually make?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "video_or_official_fallback": 544,
+          "worked_example": 716,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 15 - Exploring Java New Features - Records",
+            "section_title": "Java New Features - Java 10 to Java 24",
+            "duration_seconds": 544,
+            "duration": "9:04",
+            "source_item_id": "25694168",
+            "course_id": "1535678"
+          }
+        ],
+        "optional_replacement_only_lessons": [
+          {
+            "title": "3 Questions - Best practices with Records",
+            "section_title": "Core Java in Depth - Java Review (Interview) Guide",
+            "duration_seconds": 598,
+            "duration": "9:58",
+            "source_item_id": "49557599",
+            "course_id": "1535678"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Java SE 21: Class Record",
+            "section": "Class Record; API Note",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+          }
+        ],
+        "video_seconds": 544,
+        "remaining_study_seconds": 956,
+        "fit": "partial_foundation",
+        "scope_note": "One-field changes; unchanged old input/list; explain snapshot comparison does not itself run catalog SQL.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md#worked-example",
+        "prerequisites": [
+          "Day32 receipt snapshot",
+          "Main immutable values guide"
+        ],
+        "study_segments": [
+          {
+            "activity": "video_or_official_fallback",
+            "seconds": 544
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 716
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "One-field changes; unchanged old input/list; explain snapshot comparison does not itself run catalog SQL.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -483,10 +771,11 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-34.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-34.json",
-        "seam": "POST /api/policies",
+        "seam": "issueHttpStatus + NEW issueResponse",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test"
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test",
+          "./mvnw -Plearner-tests -Dtest=Day34IssueHttpMappingAcceptanceTest test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -494,16 +783,16 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "verified_video": 684,
+            "worked_example": 576,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "4993276",
-              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
               "instructor": "in28Minutes Official",
               "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
               "access_status": "confirmed_owned"
@@ -517,7 +806,9 @@
               "duration": "11:24",
               "source_item_id": "35018814",
               "course_id": "4993276"
-            },
+            }
+          ],
+          "optional_replacement_only_lessons": [
             {
               "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
               "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
@@ -529,22 +820,51 @@
           ],
           "resources": [
             {
-              "title": "Spring MVC controller return types",
-              "section": "ResponseEntity and response status/body",
+              "title": "Spring Framework: Method Arguments",
+              "section": "java.security.Principal table entry; @RequestBody table entry",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            },
+            {
+              "title": "Spring Framework: Return Values",
+              "section": "HttpEntity and ResponseEntity table entry",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            },
+            {
+              "title": "Spring Framework: MockMvc",
+              "section": "MockMvc",
+              "url": "https://docs.spring.io/spring-framework/reference/testing/mockmvc.html"
             }
           ],
-          "video_seconds": 1153,
-          "remaining_study_seconds": 347,
+          "video_seconds": 684,
+          "remaining_study_seconds": 816,
           "fit": "partial_foundation",
-          "scope_note": "Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.",
+          "scope_note": "Actual standalone MockMvc JSON/principal/header/body assertions using learner domain service; 201/200/400/401/404/409 and sanitized unexpected failure separated.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md#worked-example",
+          "prerequisites": [
+            "Days31/32 actual domain selectors",
+            "Main request/DTO/error mapping bridge; supplied test-only MVC wiring"
+          ],
+          "study_segments": [
+            {
+              "activity": "verified_video",
+              "seconds": 684
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 576
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Actual standalone MockMvc JSON/principal/header/body assertions using learner domain service; 201/200/400/401/404/409 and sanitized unexpected failure separated.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -595,8 +915,92 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:24).\n- Exact lesson title: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49).\n- Fit: partial foundation. Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.\n- Focused worked references: [Spring MVC controller return types — ResponseEntity and response status/body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 19:13 at 1×; the remaining 5:47 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "For create, replay, invalid, inaccessible and changed-intent requests, what status/body/header is observed and which fixture boundary produced it?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "verified_video": 684,
+          "worked_example": 576,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 684,
+            "duration": "11:24",
+            "source_item_id": "35018814",
+            "course_id": "4993276"
+          }
+        ],
+        "optional_replacement_only_lessons": [
+          {
+            "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 469,
+            "duration": "7:49",
+            "source_item_id": "35018810",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Spring Framework: Method Arguments",
+            "section": "java.security.Principal table entry; @RequestBody table entry",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+          },
+          {
+            "title": "Spring Framework: Return Values",
+            "section": "HttpEntity and ResponseEntity table entry",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+          },
+          {
+            "title": "Spring Framework: MockMvc",
+            "section": "MockMvc",
+            "url": "https://docs.spring.io/spring-framework/reference/testing/mockmvc.html"
+          }
+        ],
+        "video_seconds": 684,
+        "remaining_study_seconds": 816,
+        "fit": "partial_foundation",
+        "scope_note": "Actual standalone MockMvc JSON/principal/header/body assertions using learner domain service; 201/200/400/401/404/409 and sanitized unexpected failure separated.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md#worked-example",
+        "prerequisites": [
+          "Days31/32 actual domain selectors",
+          "Main request/DTO/error mapping bridge; supplied test-only MVC wiring"
+        ],
+        "study_segments": [
+          {
+            "activity": "verified_video",
+            "seconds": 684
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 576
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Actual standalone MockMvc JSON/principal/header/body assertions using learner domain service; 201/200/400/401/404/409 and sanitized unexpected failure separated.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -628,7 +1032,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-35.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-35.json",
-        "seam": "PolicyLifecycleRepository.issueAtomically",
+        "seam": "persistIssueAtomically",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test",
@@ -640,12 +1044,13 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "video_or_tx_fallback": 278,
+            "focused_ADR": 240,
+            "worked_example": 742,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "1341538",
@@ -657,14 +1062,6 @@
           ],
           "lessons": [
             {
-              "title": "Step 58 - Introduction to Transaction Management",
-              "section_title": "Transaction Management",
-              "duration_seconds": 283,
-              "duration": "4:43",
-              "source_item_id": "7907610",
-              "course_id": "1341538"
-            },
-            {
               "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
               "section_title": "Transaction Management",
               "duration_seconds": 278,
@@ -673,29 +1070,63 @@
               "course_id": "1341538"
             }
           ],
-          "resources": [
+          "optional_replacement_only_lessons": [
             {
-              "title": "PostgreSQL 14 tutorial: transactions",
-              "section": "Section 3.4, transactions",
-              "url": "https://www.postgresql.org/docs/14/tutorial-transactions.html"
-            },
-            {
-              "title": "JDBC transactions tutorial",
-              "section": "Commit and rollback boundaries",
-              "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html"
+              "title": "Step 58 - Introduction to Transaction Management",
+              "section_title": "Transaction Management",
+              "duration_seconds": 283,
+              "duration": "4:43",
+              "source_item_id": "7907610",
+              "course_id": "1341538"
             }
           ],
-          "video_seconds": 561,
-          "remaining_study_seconds": 939,
+          "resources": [
+            {
+              "title": "AWS Prescriptive Guidance: Appendix – ADR template",
+              "section": "Context; Decision; Consequences; Compliance",
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html"
+            },
+            {
+              "title": "PostgreSQL 18 tutorial",
+              "section": "3.4. Transactions",
+              "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
+            }
+          ],
+          "video_seconds": 278,
+          "remaining_study_seconds": 1222,
           "fit": "partial_foundation",
-          "scope_note": "Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.",
+          "scope_note": "Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md#worked-example",
+          "prerequisites": [
+            "Day32 receipt logic",
+            "Main raw JDBC same-connection transaction bridge",
+            "Day34 HTTP mapping is not the durable implementation"
+          ],
+          "study_segments": [
+            {
+              "activity": "video_or_tx_fallback",
+              "seconds": 278
+            },
+            {
+              "activity": "focused_ADR",
+              "seconds": 240
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 742
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -754,8 +1185,93 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Hibernate and JPA with Spring Boot in 100 Steps](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 58 - Introduction to Transaction Management**; exact section title: **Transaction Management** (4:43).\n- Exact lesson title: **Step 63 - Implementing Transaction Management - 3 Things to Decide**; exact section title: **Transaction Management** (4:38).\n- Fit: partial foundation. Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.\n- Focused worked references: [PostgreSQL 14 tutorial: transactions — Section 3.4, transactions](https://www.postgresql.org/docs/14/tutorial-transactions.html); [JDBC transactions tutorial — Commit and rollback boundaries](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html).\n- Video viewing: 9:21 at 1×; the remaining 15:39 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "When does the candidate become replayable relative to database commit, and what fresh-read rows survive a receipt conflict?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "video_or_tx_fallback": 278,
+          "focused_ADR": 240,
+          "worked_example": 742,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "1341538",
+            "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+            "section_title": "Transaction Management",
+            "duration_seconds": 278,
+            "duration": "4:38",
+            "source_item_id": "7907620",
+            "course_id": "1341538"
+          }
+        ],
+        "optional_replacement_only_lessons": [
+          {
+            "title": "Step 58 - Introduction to Transaction Management",
+            "section_title": "Transaction Management",
+            "duration_seconds": 283,
+            "duration": "4:43",
+            "source_item_id": "7907610",
+            "course_id": "1341538"
+          }
+        ],
+        "resources": [
+          {
+            "title": "AWS Prescriptive Guidance: Appendix – ADR template",
+            "section": "Context; Decision; Consequences; Compliance",
+            "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html"
+          },
+          {
+            "title": "PostgreSQL 18 tutorial",
+            "section": "3.4. Transactions",
+            "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
+          }
+        ],
+        "video_seconds": 278,
+        "remaining_study_seconds": 1222,
+        "fit": "partial_foundation",
+        "scope_note": "Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md#worked-example",
+        "prerequisites": [
+          "Day32 receipt logic",
+          "Main raw JDBC same-connection transaction bridge",
+          "Day34 HTTP mapping is not the durable implementation"
+        ],
+        "study_segments": [
+          {
+            "activity": "video_or_tx_fallback",
+            "seconds": 278
+          },
+          {
+            "activity": "focused_ADR",
+            "seconds": 240
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 742
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -787,7 +1303,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-36.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-36.json",
-        "seam": "GET /api/policies/{policyId}",
+        "seam": "readForOwner",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
@@ -798,16 +1314,17 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "verified_video_foundation": 336,
+            "focused_authorization": 180,
+            "worked_example": 744,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "4993276",
-              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
               "instructor": "in28Minutes Official",
               "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
               "access_status": "confirmed_owned"
@@ -821,7 +1338,9 @@
               "duration": "5:36",
               "source_item_id": "35019858",
               "course_id": "4993276"
-            },
+            }
+          ],
+          "optional_replacement_only_lessons": [
             {
               "title": "Step 22 - Exploring Spring Security Authorization",
               "section_title": "Securing Spring Boot Applications with Spring Security",
@@ -833,22 +1352,45 @@
           ],
           "resources": [
             {
-              "title": "Spring Security method authorization",
-              "section": "How Method Security Works (conceptual model only; annotations are not assumed enabled)",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html"
+              "title": "OWASP Authorization Cheat Sheet",
+              "section": "Enforce Least Privileges; Validate the Permissions on Every Request",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
             }
           ],
-          "video_seconds": 923,
-          "remaining_study_seconds": 577,
+          "video_seconds": 336,
+          "remaining_study_seconds": 1164,
           "fit": "partial_foundation",
-          "scope_note": "Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.",
+          "scope_note": "Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md#worked-example",
+          "prerequisites": [
+            "Main JDBC/Optional and authorization distinctions",
+            "Supplied PolicyReadStore"
+          ],
+          "study_segments": [
+            {
+              "activity": "verified_video_foundation",
+              "seconds": 336
+            },
+            {
+              "activity": "focused_authorization",
+              "seconds": 180
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 744
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -899,8 +1441,87 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).\n- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).\n- Fit: partial foundation. Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.\n- Focused worked references: [Spring Security method authorization — How Method Security Works (conceptual model only; annotations are not assumed enabled)](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html).\n- Video viewing: 15:23 at 1×; the remaining 9:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "Which exact (policyId, ownerId) pair reaches the read store, and why do foreign and absent both look empty?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "verified_video_foundation": 336,
+          "focused_authorization": 180,
+          "worked_example": 744,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 07 - Querying Data using Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 336,
+            "duration": "5:36",
+            "source_item_id": "35019858",
+            "course_id": "4993276"
+          }
+        ],
+        "optional_replacement_only_lessons": [
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "duration": "9:47",
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "resources": [
+          {
+            "title": "OWASP Authorization Cheat Sheet",
+            "section": "Enforce Least Privileges; Validate the Permissions on Every Request",
+            "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+          }
+        ],
+        "video_seconds": 336,
+        "remaining_study_seconds": 1164,
+        "fit": "partial_foundation",
+        "scope_note": "Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md#worked-example",
+        "prerequisites": [
+          "Main JDBC/Optional and authorization distinctions",
+          "Supplied PolicyReadStore"
+        ],
+        "study_segments": [
+          {
+            "activity": "verified_video_foundation",
+            "seconds": 336
+          },
+          {
+            "activity": "focused_authorization",
+            "seconds": 180
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 744
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -932,7 +1553,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-37.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-37.json",
-        "seam": "PolicyEndorsementRequest",
+        "seam": "validateEndorsement",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
@@ -943,16 +1564,16 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "verified_video": 707,
+            "worked_example": 553,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "4993276",
-              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
               "instructor": "in28Minutes Official",
               "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
               "access_status": "confirmed_owned"
@@ -968,24 +1589,44 @@
               "course_id": "4993276"
             }
           ],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "Spring MVC validation",
-              "section": "Validation for @RequestMapping handler methods",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html"
+              "title": "Spring Framework: Method Arguments",
+              "section": "java.security.Principal table entry; @RequestBody table entry",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
             }
           ],
           "video_seconds": 707,
           "remaining_study_seconds": 793,
           "fit": "partial_foundation",
-          "scope_note": "Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.",
+          "scope_note": "Independent reason/date/version/no-op cases with otherwise valid baseline.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md#worked-example",
+          "prerequisites": [
+            "Issued snapshot and date/version facts",
+            "Main DTO validation bridge"
+          ],
+          "study_segments": [
+            {
+              "activity": "verified_video",
+              "seconds": 707
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 553
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Independent reason/date/version/no-op cases with otherwise valid baseline.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -1045,8 +1686,73 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 14 - Implementing Validations for REST API**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:47).\n- Fit: partial foundation. Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.\n- Focused worked references: [Spring MVC validation — Validation for @RequestMapping handler methods](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html).\n- Video viewing: 11:47 at 1×; the remaining 13:13 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "What single changed fact makes each independent command invalid, and what rule is already specified rather than inferred?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "verified_video": 707,
+          "worked_example": 553,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 14 - Implementing Validations for REST API",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 707,
+            "duration": "11:47",
+            "source_item_id": "35018798",
+            "course_id": "4993276"
+          }
+        ],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "Spring Framework: Method Arguments",
+            "section": "java.security.Principal table entry; @RequestBody table entry",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+          }
+        ],
+        "video_seconds": 707,
+        "remaining_study_seconds": 793,
+        "fit": "partial_foundation",
+        "scope_note": "Independent reason/date/version/no-op cases with otherwise valid baseline.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md#worked-example",
+        "prerequisites": [
+          "Issued snapshot and date/version facts",
+          "Main DTO validation bridge"
+        ],
+        "study_segments": [
+          {
+            "activity": "verified_video",
+            "seconds": 707
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 553
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Independent reason/date/version/no-op cases with otherwise valid baseline.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -1078,7 +1784,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-38.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-38.json",
-        "seam": "PolicyLifecycleService.endorse",
+        "seam": "endorse",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
@@ -1089,37 +1795,56 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "focused_official_source": 300,
+            "worked_example": 960,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [],
           "lessons": [],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "PostgreSQL 14 constraints",
-              "section": "Unique, check, not-null, and foreign-key constraints",
-              "url": "https://www.postgresql.org/docs/14/ddl-constraints.html"
+              "title": "PostgreSQL 18: Constraints",
+              "section": "5.5.3. Unique Constraints; 5.5.4. Primary Keys",
+              "url": "https://www.postgresql.org/docs/18/ddl-constraints.html"
             },
             {
-              "title": "PostgreSQL 14 sorting rows",
-              "section": "ORDER BY and deterministic ordering",
-              "url": "https://www.postgresql.org/docs/14/queries-order.html"
+              "title": "Java SE 21: Class Record",
+              "section": "Class Record; API Note",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "no_exact_catalog_match",
-          "scope_note": "No exact append-only version-history lecture was found. Draw the prior immutable snapshot, one new version, one event, and explicit chronological ordering.",
+          "fit": "authored_bridge",
+          "scope_note": "Complete original and returned history; unchanged input; expected increment/order and changed fixture.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-38-append-history.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-38-append-history.md#worked-example",
+          "prerequisites": [
+            "Day37 validation and immutable values"
+          ],
+          "study_segments": [
+            {
+              "activity": "focused_official_source",
+              "seconds": 300
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 960
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Complete original and returned history; unchanged input; expected increment/order and changed fixture.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -1179,9 +1904,61 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact append-only version-history lecture was found. Draw the prior immutable snapshot, one new version, one event, and explicit chronological ordering.\n- Focused worked references: [PostgreSQL 14 constraints — Unique, check, not-null, and foreign-key constraints](https://www.postgresql.org/docs/14/ddl-constraints.html); [PostgreSQL 14 sorting rows — ORDER BY and deterministic ordering](https://www.postgresql.org/docs/14/queries-order.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "understanding_prompt": "What is the complete prior-history prefix before and after append, and which tie-breaker is already part of the ordering contract?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "focused_official_source": 300,
+          "worked_example": 960,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [],
+        "lessons": [],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "PostgreSQL 18: Constraints",
+            "section": "5.5.3. Unique Constraints; 5.5.4. Primary Keys",
+            "url": "https://www.postgresql.org/docs/18/ddl-constraints.html"
+          },
+          {
+            "title": "Java SE 21: Class Record",
+            "section": "Class Record; API Note",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "authored_bridge",
+        "scope_note": "Complete original and returned history; unchanged input; expected increment/order and changed fixture.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-38-append-history.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-38-append-history.md#worked-example",
+        "prerequisites": [
+          "Day37 validation and immutable values"
+        ],
+        "study_segments": [
+          {
+            "activity": "focused_official_source",
+            "seconds": 300
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 960
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Complete original and returned history; unchanged input; expected increment/order and changed fixture.",
+        "criteria_version": "fde-coursework-v2"
+      },
+      "course_learning_status": "official_worked_bridge_video_not_required",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1212,7 +1989,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-39.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-39.json",
-        "seam": "PolicyLifecycleRepository.endorseAtomically",
+        "seam": "endorseAtExpectedVersion",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
@@ -1223,32 +2000,57 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "focused_official_source": 360,
+            "worked_example": 900,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [],
           "lessons": [],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "PostgreSQL 14 transaction isolation",
-              "section": "Section 13.2.1, Read Committed",
-              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+              "title": "PostgreSQL 18: Transaction Isolation",
+              "section": "13.2.1. Read Committed Isolation Level",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
+            },
+            {
+              "title": "Java SE 21: PreparedStatement",
+              "section": "executeUpdate()",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html#executeUpdate()"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "no_exact_catalog_match",
-          "scope_note": "Isolation lectures are not optimistic-locking instruction. Work a version-predicate UPDATE, check affected-row count, and insert the event in the same transaction. A synchronized two-writer example has one winner and no loser event.",
+          "fit": "authored_bridge",
+          "scope_note": "Synchronized real two-connection race, one winner/one version conflict, full persisted winner payload and no loser event.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md#worked-example",
+          "prerequisites": [
+            "Days35/38 transactions and history",
+            "Main concurrency/rollback prerequisite"
+          ],
+          "study_segments": [
+            {
+              "activity": "focused_official_source",
+              "seconds": 360
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 900
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Synchronized real two-connection race, one winner/one version conflict, full persisted winner payload and no loser event.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -1307,9 +2109,62 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. Isolation lectures are not optimistic-locking instruction. Work a version-predicate UPDATE, check affected-row count, and insert the event in the same transaction. A synchronized two-writer example has one winner and no loser event.\n- Focused worked references: [PostgreSQL 14 transaction isolation — Section 13.2.1, Read Committed](https://www.postgresql.org/docs/14/transaction-iso.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "understanding_prompt": "Which conditional update wins, which exact event matches it, and what does the loser observe after the barrier?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "focused_official_source": 360,
+          "worked_example": 900,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [],
+        "lessons": [],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "PostgreSQL 18: Transaction Isolation",
+            "section": "13.2.1. Read Committed Isolation Level",
+            "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
+          },
+          {
+            "title": "Java SE 21: PreparedStatement",
+            "section": "executeUpdate()",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html#executeUpdate()"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "authored_bridge",
+        "scope_note": "Synchronized real two-connection race, one winner/one version conflict, full persisted winner payload and no loser event.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md#worked-example",
+        "prerequisites": [
+          "Days35/38 transactions and history",
+          "Main concurrency/rollback prerequisite"
+        ],
+        "study_segments": [
+          {
+            "activity": "focused_official_source",
+            "seconds": 360
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 900
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Synchronized real two-connection race, one winner/one version conflict, full persisted winner payload and no loser event.",
+        "criteria_version": "fde-coursework-v2"
+      },
+      "course_learning_status": "official_worked_bridge_video_not_required",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1340,7 +2195,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-40.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-40.json",
-        "seam": "PolicyLifecycleService.scheduleCancellation",
+        "seam": "scheduleCancellation",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
@@ -1351,12 +2206,12 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "video_or_date_fallback": 320,
+            "worked_example": 940,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "1535678",
@@ -1376,24 +2231,49 @@
               "course_id": "1535678"
             }
           ],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "Java 21 LocalDate API",
-              "section": "now(Clock), isBefore, isAfter, isEqual",
+              "title": "Java SE 21: LocalDate",
+              "section": "now(Clock); isBefore(ChronoLocalDate); isAfter(ChronoLocalDate)",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+            },
+            {
+              "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+              "section": "Retries and semantic equivalence; Same client request ID, different intent",
+              "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
             }
           ],
           "video_seconds": 320,
           "remaining_study_seconds": 1180,
           "fit": "partial_foundation",
-          "scope_note": "Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.",
+          "scope_note": "Stored original replay despite old expectedVersion; changed date/reason conflict; independent version/reason/date negatives; same-day non-past semantics preserved.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md#worked-example",
+          "prerequisites": [
+            "Day32 receipt semantics",
+            "Date/Clock and current policy version"
+          ],
+          "study_segments": [
+            {
+              "activity": "video_or_date_fallback",
+              "seconds": 320
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 940
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Stored original replay despite old expectedVersion; changed date/reason conflict; independent version/reason/date negatives; same-day non-past semantics preserved.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -1453,8 +2333,78 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif**; exact section title: **Reference Types in Java Programming** (5:20).\n- Fit: partial foundation. Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.\n- Focused worked references: [Java 21 LocalDate API — now(Clock), isBefore, isAfter, isEqual](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Video viewing: 5:20 at 1×; the remaining 19:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "How do same-key replay, changed intent, stale expected version, today and past date differ under the injected clock?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "video_or_date_fallback": 320,
+          "worked_example": 940,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif",
+            "section_title": "Reference Types in Java Programming",
+            "duration_seconds": 320,
+            "duration": "5:20",
+            "source_item_id": "9565628",
+            "course_id": "1535678"
+          }
+        ],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "Java SE 21: LocalDate",
+            "section": "now(Clock); isBefore(ChronoLocalDate); isAfter(ChronoLocalDate)",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+          },
+          {
+            "title": "AWS Builders’ Library: Making retries safe with idempotent APIs",
+            "section": "Retries and semantic equivalence; Same client request ID, different intent",
+            "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+          }
+        ],
+        "video_seconds": 320,
+        "remaining_study_seconds": 1180,
+        "fit": "partial_foundation",
+        "scope_note": "Stored original replay despite old expectedVersion; changed date/reason conflict; independent version/reason/date negatives; same-day non-past semantics preserved.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md#worked-example",
+        "prerequisites": [
+          "Day32 receipt semantics",
+          "Date/Clock and current policy version"
+        ],
+        "study_segments": [
+          {
+            "activity": "video_or_date_fallback",
+            "seconds": 320
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 940
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Stored original replay despite old expectedVersion; changed date/reason conflict; independent version/reason/date negatives; same-day non-past semantics preserved.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -1486,10 +2436,11 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-41.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-41.json",
-        "seam": "PolicyLifecycleService.applyDueCancellation",
+        "seam": "applyDueCancellation (both overloads)",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1497,32 +2448,51 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "focused_clock": 240,
+            "worked_example": 1020,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [],
           "lessons": [],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "Java 21 Clock API",
-              "section": "Fixed and offset clocks for deterministic boundaries",
+              "title": "Java SE 21: Clock",
+              "section": "Class Clock; fixed(Instant, ZoneId)",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "no_exact_catalog_match",
-          "scope_note": "No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.",
+          "fit": "authored_bridge",
+          "scope_note": "Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md#worked-example",
+          "prerequisites": [
+            "Day40 scheduling receipt semantics"
+          ],
+          "study_segments": [
+            {
+              "activity": "focused_clock",
+              "seconds": 240
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 1020
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -1581,9 +2551,56 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.\n- Focused worked references: [Java 21 Clock API — Fixed and offset clocks for deterministic boundaries](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "understanding_prompt": "What are the before/equal/after results with a fixed clock, and why does a repeat not add another version?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "focused_clock": 240,
+          "worked_example": 1020,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [],
+        "lessons": [],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "Java SE 21: Clock",
+            "section": "Class Clock; fixed(Instant, ZoneId)",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "authored_bridge",
+        "scope_note": "Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md#worked-example",
+        "prerequisites": [
+          "Day40 scheduling receipt semantics"
+        ],
+        "study_segments": [
+          {
+            "activity": "focused_clock",
+            "seconds": 240
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 1020
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.",
+        "criteria_version": "fde-coursework-v2"
+      },
+      "course_learning_status": "official_worked_bridge_video_not_required",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1614,7 +2631,7 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-42.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-42.json",
-        "seam": "PolicyLifecycleService.endorse",
+        "seam": "permitsServicingWrite",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
@@ -1625,12 +2642,13 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "video_or_state_fallback": 448,
+            "focused_runbook": 180,
+            "worked_example": 632,
+            "prerequisite_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
           "courses": [
             {
               "course_id": "1535678",
@@ -1648,7 +2666,9 @@
               "duration": "7:28",
               "source_item_id": "9565990",
               "course_id": "1535678"
-            },
+            }
+          ],
+          "optional_replacement_only_lessons": [
             {
               "title": "Java Tip 15 - Enum - Constructor, variables and methods",
               "section_title": "Java Tips",
@@ -1660,22 +2680,49 @@
           ],
           "resources": [
             {
-              "title": "Java enum tutorial",
-              "section": "Enum types for a closed set of explicit states",
-              "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+              "title": "AWS Well-Architected Operational Excellence: Use runbooks to perform procedures",
+              "section": "Implementation guidance; Implementation steps",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html"
+            },
+            {
+              "title": "Java SE 21: Enum",
+              "section": "Class Enum; name(); ordinal()",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html"
             }
           ],
-          "video_seconds": 668,
-          "remaining_study_seconds": 832,
+          "video_seconds": 448,
+          "remaining_study_seconds": 1052,
           "fit": "partial_foundation",
-          "scope_note": "Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.",
+          "scope_note": "Cancelled blocks writes while owned read remains available; executable short handover with a failure branch.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md",
+          "worked_example_section": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md#worked-example",
+          "prerequisites": [
+            "Day36 owner read and Days40–41 state transitions"
+          ],
+          "study_segments": [
+            {
+              "activity": "video_or_state_fallback",
+              "seconds": 448
+            },
+            {
+              "activity": "focused_runbook",
+              "seconds": 180
+            },
+            {
+              "activity": "worked_example",
+              "seconds": 632
+            },
+            {
+              "activity": "prerequisite_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Cancelled blocks writes while owned read remains available; executable short handover with a failure branch.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -1735,8 +2782,91 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Java Tip 14 - Why Enum and Enum Basics - ordinal and values**; exact section title: **Java Tips** (7:28).\n- Exact lesson title: **Java Tip 15 - Enum - Constructor, variables and methods**; exact section title: **Java Tips** (3:40).\n- Fit: partial foundation. Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.\n- Focused worked references: [Java enum tutorial — Enum types for a closed set of explicit states](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html).\n- Video viewing: 11:08 at 1×; the remaining 13:52 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "Which safe read and rejected write commands belong in the operator handover, and what is the stop branch?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "video_or_state_fallback": 448,
+          "focused_runbook": 180,
+          "worked_example": 632,
+          "prerequisite_prediction": 240
+        },
+        "allocation_note": "The required lessons, official reading, worked example and pauses fit inside this 25-minute study block. Optional course videos are reference-only outside today's scheduled path; do not stack them or replace assigned work with them. If required course playback is unavailable, use the listed official/worked alternative in the same allocated seconds. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Java Tip 14 - Why Enum and Enum Basics - ordinal and values",
+            "section_title": "Java Tips",
+            "duration_seconds": 448,
+            "duration": "7:28",
+            "source_item_id": "9565990",
+            "course_id": "1535678"
+          }
+        ],
+        "optional_replacement_only_lessons": [
+          {
+            "title": "Java Tip 15 - Enum - Constructor, variables and methods",
+            "section_title": "Java Tips",
+            "duration_seconds": 220,
+            "duration": "3:40",
+            "source_item_id": "9565992",
+            "course_id": "1535678"
+          }
+        ],
+        "resources": [
+          {
+            "title": "AWS Well-Architected Operational Excellence: Use runbooks to perform procedures",
+            "section": "Implementation guidance; Implementation steps",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html"
+          },
+          {
+            "title": "Java SE 21: Enum",
+            "section": "Class Enum; name(); ordinal()",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html"
+          }
+        ],
+        "video_seconds": 448,
+        "remaining_study_seconds": 1052,
+        "fit": "partial_foundation",
+        "scope_note": "Cancelled blocks writes while owned read remains available; executable short handover with a failure branch.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md",
+        "worked_example_section": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md#worked-example",
+        "prerequisites": [
+          "Day36 owner read and Days40–41 state transitions"
+        ],
+        "study_segments": [
+          {
+            "activity": "video_or_state_fallback",
+            "seconds": 448
+          },
+          {
+            "activity": "focused_runbook",
+            "seconds": 180
+          },
+          {
+            "activity": "worked_example",
+            "seconds": 632
+          },
+          {
+            "activity": "prerequisite_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Cancelled blocks writes while owned read remains available; executable short handover with a failure branch.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,

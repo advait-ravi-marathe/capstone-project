@@ -2,9 +2,12 @@
 
 ## Contract
 
-**Learner-owned seam:** `PolicyLifecycleService.endorse`
+**Learner-owned seam:** `PolicyLifecycleService.permitsServicingWrite`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
+
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
 
 ### Expected behavior
 
@@ -26,18 +29,21 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Java Tip 14 - Why Enum and Enum Basics - ordinal and values**; exact section title: **Java Tips** (7:28).
-- Exact lesson title: **Java Tip 15 - Enum - Constructor, variables and methods**; exact section title: **Java Tips** (3:40).
-- Fit: partial foundation. Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.
-- Focused worked references: [Java enum tutorial — Enum types for a closed set of explicit states](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html).
-- Video viewing: 11:08 at 1×; the remaining 13:52 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-42-operational-handover.md](../../continuation-31-44/worked/day-42-operational-handover.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: Java Tip 14 - Why Enum and Enum Basics - ordinal and values (7:28). Optional reference-only lessons (outside today's 25-minute scheduled path): Java Tip 15 - Enum - Constructor, variables and methods. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** Block post-cancellation writes — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [AWS Well-Architected Operational Excellence: Use runbooks to perform procedures](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html) — Implementation guidance; Implementation steps.
+- [Java SE 21: Enum](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html) — Class Enum; name(); ordinal().
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** video or state fallback 7:28; focused runbook 3:00; worked example 10:32; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 15 / 55 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Cancelled blocks writes while owned read remains available; executable short handover with a failure branch.
 
 ## Evidence allocation (10 minutes)
 

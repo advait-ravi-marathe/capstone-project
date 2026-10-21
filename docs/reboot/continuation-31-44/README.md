@@ -1,16 +1,11 @@
-# CoverStory continuation: Days 31–44
+# CoverStory continuation Days 31–44
 
-This is an isolated 14-day continuation proposal based on main SHA `65dc57f88fc844291cab3b80484a01c206e42916`. It does not modify the first-30-day canonical manifest or the board.
+This branch is a prospective, bounded revision of existing Days 31–44 coursework (`fde-coursework-v2`). It teaches problem framing, domain/API choices, transactions, authorization, UI states and observed UAT before each corresponding implementation task. It is not evidence that any learner task is complete.
 
-- [Canonical daily manifest](manifest.json): authoritative planned scope and independent DSA/engineering status.
-- [Scrum owner export](scrum-owner-manifest.json): one consolidated story per day, for owner review; it has not been written to YouTrack or any project board.
-- [DSA Top 150 map](dsa/top-150-map.md), [actual-attempt log](dsa/actual-attempt-log.json), and [revision log template](dsa/revision-log-template.md).
-- Cross-batch queue command: `python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD`; behavior checks: `python3 -m unittest scripts/test_dsa_review_queue.py`.
-- [Day contracts](contracts/).
+The source lifecycle is continuation commit `1b756ef3dde7730c6b2ca8df68fc714aeb4e006b`. First-30 prerequisite teaching links point to immutable main commit `80cb3cdb1305bf6ed75ccde33e69267a5c333786`; commands in those guides run only in that main checkout and are not asserted to exist on this continuation branch. Reconcile actual learner prerequisite implementations and evidence path by path before activating dependent work. Do not merge entire main or continuation manifests across their divergent baselines.
 
-Days 31–42 fill Sprint 3's remaining 12 dates after existing Days 29–30. Days 43–44 are the first 2 of 14 Sprint 4 dates; the other 12 dates remain unpopulated. Sprint membership follows the existing calendar, so this 14-day batch spans two sprints.
+Each day retains engineering 120 minutes: study 25 minutes, build/test 85 minutes, evidence 10 minutes. Exact second-level study segments, prerequisites, sources and commands are in `fde31-44-v2-curriculum.json` and `fde31-44-v2-guidance.json`. Course access not confirmed remains optional; use the official/project-authored alternative in the same block without purchase or added time. The DSA plan, dates, story identities, statuses and actual-attempt history are preserved.
 
-The feature is a synthetic HomeSecure policy servicing lifecycle. It is not a real insurance offer or production binding flow. No payments, PII, legal coverage promise, Kafka/outbox, StreamForge, or AWS setup is in scope. New scaffolds and acceptance tests are deliberately learner-owned; TODOs remain unresolved.
+Use one shared [`lifecycle-delivery-v2.json` exercise template](templates/lifecycle-delivery-v2.json), not a parallel tracker. `python3 scripts/validate-lifecycle-delivery-v2.py PATH.json` checks structure and evidence references only; human review determines the quality of the problem, tradeoff, acceptance and handover. Record observations only when actually attempted.
 
-Daily total is 180/195/210 minutes: 60/75/90 DSA by exercise count + unchanged 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). These are local application tasks; no AWS certification videos or cloud setup are required in this batch. D+3/D+7/D+21 are always anchored to recorded actual first attempts, including carryover from Days 1–30. Failed reviews replace new work inside the same workload-tiered DSA allocation.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.
+Worked references in `worked/` are project-authored teaching examples. They are not official transcripts, learner answers, production claims or completion evidence. Day32 snapshot construction is instructor plumbing; receipt semantics remain learner-owned. Day34 MVC mapping is isolated test scaffolding, not an enabled production endpoint. Day44 UAT must stop at the first unmet learner prerequisite and preserve actual observations separately from frozen expectations.
