@@ -1,0 +1,68 @@
+{
+  "day": 44,
+  "date": "2026-12-02",
+  "status": "instructor_verified_expected_todo_red",
+  "base_sha": "65dc57f88fc844291cab3b80484a01c206e42916",
+  "acceptance_commands": [
+    "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+    "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test"
+  ],
+  "infrastructure_commands": [
+    "npm --prefix frontend run build",
+    "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart,ContinuationManifestInfrastructureTest test"
+  ],
+  "acceptance_result": {
+    "status": "expected_todo_red",
+    "executed_command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest test",
+    "exit_code": 1,
+    "tests": 2,
+    "failures": 1,
+    "errors": 0,
+    "browser_flow": "all five API routes returned HTTP 500 at explicit learner TODOs; after Spring restart the history route also returned HTTP 500 at Day44 readback TODO",
+    "learner_work_completed": false
+  },
+  "infrastructure_result": {
+    "status": "passed",
+    "executed_command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 -Dtest=Day44BrowserTransportInfrastructureTest,ContinuationManifestInfrastructureTest test",
+    "exit_code": 0,
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "includes": "real Chromium synthetic write/read through Spring and disposable PostgreSQL, Spring restart persistence, manifest and schema checks"
+  },
+  "todo_failures": [
+    "The full browser flow currently observes 500 at Day31 issue validation, Day32 replay, Day39 endorsement, Day40 cancellation, and Day44 history seams because those learner-owned TODOs remain unimplemented.",
+    "The post-restart browser history check receives 500 at the explicit Day44 readback TODO."
+  ],
+  "learner_work_completed": false,
+  "overall_default_suite": {
+    "status": "passed",
+    "command": "CHROMIUM_BIN=/usr/bin/chromium JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven /tmp/apache-maven-3.10.0/bin/mvn -o -B -ntp -Dmaven.repo.local=/tmp/d1-m2 test",
+    "exit_code": 0,
+    "tests": 26,
+    "failures": 0,
+    "errors": 0
+  },
+  "dsa_evidence": {
+    "status": "not_attempted",
+    "actual_first_attempt_date": null,
+    "planned_first_attempt_date": null,
+    "review_dates_are_forecasts_only": true
+  },
+  "dsa_review_queue_verification": {
+    "status": "passed",
+    "test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+    "tests": 4,
+    "actual_first_attempt_dates_supplied": false,
+    "empty_log_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
+    "queue_result": "22 anchors loaded across both batches; all await actual attempts; no due dates or completions fabricated",
+    "failed_review_rule": "cold recall/re-solve only; failure displaces new work within same 60-minute block"
+  },
+  "temporary_witness_run": {
+    "status": "passed_then_removed",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "summary": "Temporary test-only witness persisted policy/receipt/issue event, endorsement and cancellation state; Chromium/API flow and restarted Spring readback confirmed CANCELLED, version 4, 4 events. Temporary code was removed; learner TODOs remain."
+  }
+}

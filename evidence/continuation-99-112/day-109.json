@@ -1,0 +1,14 @@
+{
+  "day": 109,
+  "date": "2027-02-05",
+  "learner_status": "not_attempted",
+  "contract_status": "defined",
+  "acceptance_commands": [
+    "./mvnw -Plearner-tests -Dtest=DurableWorkRestartAcceptanceTest#freshJvmReplayFinishesAcknowledgmentWithoutDuplicatingCommittedReceipt test"
+  ],
+  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
+  "witness_status": "passed_temporary_fresh_jvm_restart_witness",
+  "learner_attempts": [],
+  "notes": "Evidence fields only; no attempts or completion inferred.",
+  "temporary_witness_evidence": "Child PID 484775 was forcibly terminated (exit 137) after independently observed receipt commit; fresh JVM PID 484806 exited 0 and completed recovery."
+}

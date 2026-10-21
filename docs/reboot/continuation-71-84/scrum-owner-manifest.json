@@ -1,0 +1,913 @@
+{
+  "title": "Days 71–84 planning export; documentation only, no board writes",
+  "story_count": 14,
+  "sprint_boundaries": [
+    {
+      "name": "Sprint 6",
+      "dates": "2026-12-29..2027-01-11",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "cards": [
+    {
+      "day_number": 71,
+      "date": "2026-12-29",
+      "title": "Establish preview contention baseline and verify prerequisites",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-71.md",
+        "acceptance_reference": null,
+        "evidence_reference": "evidence/continuation-71-84/day-71.json",
+        "acceptance_test_path": null,
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "acceptance_command": null,
+        "instructor_check_path": "src/test/java/assignments/renewal/Day71BaselineAcceptanceTest.java",
+        "instructor_check_command": "./mvnw -Dtest=Day71BaselineAcceptanceTest test",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "HikariCP configuration knobs",
+              "section": "maximumPoolSize and connectionTimeout",
+              "url": "https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "evidence_review_no_new_lecture",
+          "scope_note": "No exact Hikari sizing/acquisition lecture was found. Work a two-admission/four-connection request timeline and mark which waits are finite.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-29",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: evidence review no new lecture. No exact Hikari sizing/acquisition lecture was found. Work a two-admission/four-connection request timeline and mark which waits are finite.\n- Focused worked references: [HikariCP configuration knobs — maximumPoolSize and connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 72,
+      "date": "2026-12-30",
+      "title": "Validate finite preview capacity policy",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-72.md",
+        "acceptance_reference": "PreviewCapacityPolicy.validate() and runtime configuration validation",
+        "evidence_reference": "evidence/continuation-71-84/day-72.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityPolicyAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "HikariCP configuration knobs",
+              "section": "connectionTimeout and maximumPoolSize",
+              "url": "https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "No exact Hikari configuration validation lecture was found. Work a table requiring positive permits ≤ pool maximum and a finite 250–30000 ms acquisition timeout; keep acquisition timeout distinct from SQL/lock timeout.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-30",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Hikari configuration validation lecture was found. Work a table requiring positive permits ≤ pool maximum and a finite 250–30000 ms acquisition timeout; keep acquisition timeout distinct from SQL/lock timeout.\n- Focused worked references: [HikariCP configuration knobs — connectionTimeout and maximumPoolSize](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 73,
+      "date": "2026-12-31",
+      "title": "Implement immediate two-permit preview admission; DSA LC 112 Path Sum",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-73.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewAdmissionAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-73.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewAdmissionAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "3 Questions - ThreadLocal vs Semaphore vs CountDownLatch",
+              "section_title": "Threads and Concurrency - Java Review (Interview) Guide",
+              "duration_seconds": 383,
+              "duration": "6:23",
+              "source_item_id": "49557431",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Java Semaphore API",
+              "section": "tryAcquire",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html"
+            }
+          ],
+          "video_seconds": 383,
+          "remaining_study_seconds": 1117,
+          "fit": "partial_foundation",
+          "scope_note": "The comparison is conceptual, not API training. Work two admitted callers and an immediately rejected third; only a lease owner releases its permit.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "problem_id": 112,
+        "problem_url": "https://leetcode.com/problems/path-sum/",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-31",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "acceptance_test_path": "src/test/java/assignments/dsa/PathSumAcceptanceTest.java",
+        "acceptance_command": "./mvnw -Plearner-tests -Dtest=PathSumAcceptanceTest test"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **3 Questions - ThreadLocal vs Semaphore vs CountDownLatch**; exact section title: **Threads and Concurrency - Java Review (Interview) Guide** (6:23).\n- Fit: partial foundation. The comparison is conceptual, not API training. Work two admitted callers and an immediately rejected third; only a lease owner releases its permit.\n- Focused worked references: [Java Semaphore API — tryAcquire](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).\n- Video viewing: 6:23 at 1×; the remaining 18:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "verified_titles_video_not_watched"
+    },
+    {
+      "day_number": 74,
+      "date": "2027-01-01",
+      "title": "Make preview lease release atomic and idempotent",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-74.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewLeaseAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-74.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewLeaseAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 04 - Introduction to Atomic Classes - AtomicInteger",
+              "section_title": "More Concurrency with Concurrent Collections and Atomic Operations",
+              "duration_seconds": 250,
+              "duration": "4:10",
+              "source_item_id": "9565924",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Java AtomicBoolean API",
+              "section": "compareAndSet",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/atomic/AtomicBoolean.html"
+            }
+          ],
+          "video_seconds": 250,
+          "remaining_study_seconds": 1250,
+          "fit": "partial_foundation",
+          "scope_note": "AtomicInteger is only conceptual support. Show AtomicBoolean.compareAndSet guarding close so repeated or concurrent close invokes release exactly once.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-01",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 04 - Introduction to Atomic Classes - AtomicInteger**; exact section title: **More Concurrency with Concurrent Collections and Atomic Operations** (4:10).\n- Fit: partial foundation. AtomicInteger is only conceptual support. Show AtomicBoolean.compareAndSet guarding close so repeated or concurrent close invokes release exactly once.\n- Focused worked references: [Java AtomicBoolean API — compareAndSet](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/atomic/AtomicBoolean.html).\n- Video viewing: 4:10 at 1×; the remaining 20:50 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "verified_titles_video_not_watched"
+    },
+    {
+      "day_number": 75,
+      "date": "2027-01-02",
+      "title": "Bound the existing owner-scoped read adapter",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-75.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/BoundedPolicyRenewalReadStoreAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-75.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/BoundedPolicyRenewalReadStoreAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 05 - Basics of Handling Exceptions - Need for finally",
+              "section_title": "Introduction to Exception Handling in Java",
+              "duration_seconds": 383,
+              "duration": "6:23",
+              "source_item_id": "9565874",
+              "course_id": "1535678"
+            },
+            {
+              "title": "Step 11 - Throwing a Custom Exception - CurrenciesDoNotMatchException",
+              "section_title": "Introduction to Exception Handling in Java",
+              "duration_seconds": 234,
+              "duration": "3:54",
+              "source_item_id": "9565888",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "CannotGetJdbcConnectionException Javadoc",
+              "section": "Class description and inheritance",
+              "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html"
+            }
+          ],
+          "video_seconds": 617,
+          "remaining_study_seconds": 883,
+          "fit": "partial_foundation",
+          "scope_note": "Trace permit release on success, empty result and failure. Translate only CannotGetJdbcConnectionException; unrelated exceptions must retain their meaning, never be swallowed.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-02",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 05 - Basics of Handling Exceptions - Need for finally**; exact section title: **Introduction to Exception Handling in Java** (6:23).\n- Exact lesson title: **Step 11 - Throwing a Custom Exception - CurrenciesDoNotMatchException**; exact section title: **Introduction to Exception Handling in Java** (3:54).\n- Fit: partial foundation. Trace permit release on success, empty result and failure. Translate only CannotGetJdbcConnectionException; unrelated exceptions must retain their meaning, never be swallowed.\n- Focused worked references: [CannotGetJdbcConnectionException Javadoc — Class description and inheritance](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html).\n- Video viewing: 10:17 at 1×; the remaining 14:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "verified_titles_video_not_watched"
+    },
+    {
+      "day_number": 76,
+      "date": "2027-01-03",
+      "title": "Prove maximum concurrency and no permit leaks",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-76.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewAdmissionConcurrencyAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-76.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewAdmissionConcurrencyAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "3 Questions - ThreadLocal vs Semaphore vs CountDownLatch",
+              "section_title": "Threads and Concurrency - Java Review (Interview) Guide",
+              "duration_seconds": 383,
+              "duration": "6:23",
+              "source_item_id": "49557431",
+              "course_id": "1535678"
+            },
+            {
+              "title": "Step 11 - Executor Service - Returning a Future from Thread using Callable",
+              "section_title": "Introduction to Threads And Concurrency in Java",
+              "duration_seconds": 403,
+              "duration": "6:43",
+              "source_item_id": "9565858",
+              "course_id": "1535678"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Java CountDownLatch API",
+              "section": "await/countDown and happens-before",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html"
+            }
+          ],
+          "video_seconds": 786,
+          "remaining_study_seconds": 714,
+          "fit": "partial_foundation",
+          "scope_note": "Use latch barriers, join/get every Future, propagate worker failures, prove maximum two entries, recovery after failure and a complete second cycle. Avoid sleep-based race tests.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-03",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **3 Questions - ThreadLocal vs Semaphore vs CountDownLatch**; exact section title: **Threads and Concurrency - Java Review (Interview) Guide** (6:23).\n- Exact lesson title: **Step 11 - Executor Service - Returning a Future from Thread using Callable**; exact section title: **Introduction to Threads And Concurrency in Java** (6:43).\n- Fit: partial foundation. Use latch barriers, join/get every Future, propagate worker failures, prove maximum two entries, recovery after failure and a complete second cycle. Avoid sleep-based race tests.\n- Focused worked references: [Java CountDownLatch API — await/countDown and happens-before](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html).\n- Video viewing: 13:06 at 1×; the remaining 11:54 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "verified_titles_video_not_watched"
+    },
+    {
+      "day_number": 77,
+      "date": "2027-01-04",
+      "title": "Verify recovery without adding a feature",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-77.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewRecoveryAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-77.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewRecoveryAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "Java Semaphore API",
+              "section": "permit release and reacquisition",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "recovery_review_no_new_lecture",
+          "scope_note": "No new feature or video. In the 25-minute study block, trace saturation → release → successful retry using deterministic test doubles; add no route or feature.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-04",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: recovery review no new lecture. No new feature or video. In the 25-minute study block, trace saturation → release → successful retry using deterministic test doubles; add no route or feature.\n- Focused worked references: [Java Semaphore API — permit release and reacquisition](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 78,
+      "date": "2027-01-05",
+      "title": "Map busy and unavailable outcomes safely",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-78.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewCapacityHttpAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-78.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewCapacityHttpAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 12 - Implementing Generic Exception Handling for all Resources",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 689,
+              "duration": "11:29",
+              "source_item_id": "35018806",
+              "course_id": "4993276"
+            }
+          ],
+          "resources": [
+            {
+              "title": "RFC 9110 HTTP Semantics",
+              "section": "Section 15.6.4, 503 Service Unavailable",
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable"
+            }
+          ],
+          "video_seconds": 689,
+          "remaining_study_seconds": 811,
+          "fit": "partial_foundation",
+          "scope_note": "Map only busy/unavailable to a sanitized 503. Preserve other errors; never expose exception causes or internal messages.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-05",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 12 - Implementing Generic Exception Handling for all Resources**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:29).\n- Fit: partial foundation. Map only busy/unavailable to a sanitized 503. Preserve other errors; never expose exception causes or internal messages.\n- Focused worked references: [RFC 9110 HTTP Semantics — Section 15.6.4, 503 Service Unavailable](https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable).\n- Video viewing: 11:29 at 1×; the remaining 13:31 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "verified_titles_video_not_watched"
+    },
+    {
+      "day_number": 79,
+      "date": "2027-01-06",
+      "title": "Wire one singleton gate around the existing route; DSA LC 230 Kth Smallest Element in a BST",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-79.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-79.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "lessons": [
+            {
+              "title": "Step 03 - Exploring Java Spring Framework Bean Scopes - Prototype and Singleton",
+              "section_title": "Exploring Spring Framework Advanced Features",
+              "duration_seconds": 557,
+              "duration": "9:17",
+              "source_item_id": "35019976",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 04 - Comparing Prototype vs Singleton - Spring Framework Bean Scopes",
+              "section_title": "Exploring Spring Framework Advanced Features",
+              "duration_seconds": 126,
+              "duration": "2:06",
+              "source_item_id": "35019974",
+              "course_id": "4993276"
+            }
+          ],
+          "resources": [
+            {
+              "title": "Spring Framework bean scopes",
+              "section": "singleton scope",
+              "url": "https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html"
+            }
+          ],
+          "video_seconds": 683,
+          "remaining_study_seconds": 817,
+          "fit": "partial_foundation",
+          "scope_note": "Trace one shared singleton gate around the existing adapter and a finite Hikari acquisition timeout. No duplicate SQL or request-scoped gate.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "new_pattern_anchor",
+        "problem_id": 230,
+        "problem_url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-06",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+        "acceptance_test_path": "src/test/java/assignments/dsa/KthSmallestInBstAcceptanceTest.java",
+        "acceptance_command": "./mvnw -Plearner-tests -Dtest=KthSmallestInBstAcceptanceTest test"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 03 - Exploring Java Spring Framework Bean Scopes - Prototype and Singleton**; exact section title: **Exploring Spring Framework Advanced Features** (9:17).\n- Exact lesson title: **Step 04 - Comparing Prototype vs Singleton - Spring Framework Bean Scopes**; exact section title: **Exploring Spring Framework Advanced Features** (2:06).\n- Fit: partial foundation. Trace one shared singleton gate around the existing adapter and a finite Hikari acquisition timeout. No duplicate SQL or request-scoped gate.\n- Focused worked references: [Spring Framework bean scopes — singleton scope](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html).\n- Video viewing: 11:23 at 1×; the remaining 13:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "verified_titles_video_not_watched"
+    },
+    {
+      "day_number": 80,
+      "date": "2027-01-07",
+      "title": "Record fixed-cardinality preview outcomes",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-80.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-80.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/local/LocalMetricsExposureInfrastructureTest.java",
+        "batch_integrity_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "batch_integrity_command": "./mvnw -Dtest=Day71To84InfrastructureTest test",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "Micrometer Timers",
+              "section": "short-duration latency and event count",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/timers.html"
+            },
+            {
+              "title": "Micrometer Naming",
+              "section": "Tag Values",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "No exact Micrometer timer/counter/cardinality lesson was found. Work fixed outcome tags, record timer/counter values on the actual route, and keep the meter count bounded; never tag with policy, owner or request IDs.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-07",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Micrometer timer/counter/cardinality lesson was found. Work fixed outcome tags, record timer/counter values on the actual route, and keep the meter count bounded; never tag with policy, owner or request IDs.\n- Focused worked references: [Micrometer Timers — short-duration latency and event count](https://docs.micrometer.io/micrometer/reference/concepts/timers.html); [Micrometer Naming — Tag Values](https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 81,
+      "date": "2027-01-08",
+      "title": "Show an accessible manual retry state",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-81.md",
+        "acceptance_reference": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
+        "evidence_reference": "evidence/continuation-71-84/day-81.json",
+        "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "acceptance_command": "npm --prefix frontend run test:local -- -t 'shows the real renewal route busy state and retries only after the user activates Retry'",
+        "integration_acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+        "focused_acceptance_test_path": "frontend/src/components/RenewalPreviewBusyState.test.tsx",
+        "focused_acceptance_command": "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "WAI-ARIA 1.2",
+              "section": "status role and alert role",
+              "url": "https://www.w3.org/TR/wai-aria-1.2/#status"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_direct_course_match",
+          "scope_note": "No exact accessible manual-only retry lesson was verified. Sketch retained policy context and mutually exclusive UI state. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-08",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no direct course match. No exact accessible manual-only retry lesson was verified. Sketch retained policy context and mutually exclusive UI state. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.\n- Focused worked references: [WAI-ARIA 1.2 — status role and alert role](https://www.w3.org/TR/wai-aria-1.2/#status).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 82,
+      "date": "2027-01-09",
+      "title": "Prove finite recovery under real Hikari pool exhaustion",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-82.md",
+        "acceptance_reference": "src/test/java/assignments/renewal/PreviewPoolRecoveryAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-82.json",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PreviewPoolRecoveryAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "HikariCP configuration knobs",
+              "section": "connectionTimeout",
+              "url": "https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_exact_catalog_match",
+          "scope_note": "No exact Hikari exhaustion/recovery lab was found. Trace four held connections → finite acquisition failure → permit release and finally-close → recovered useful read; keep the test watchdog separate from correctness.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-09",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Hikari exhaustion/recovery lab was found. Trace four held connections → finite acquisition failure → permit release and finally-close → recovered useful read; keep the test watchdog separate from correctness.\n- Focused worked references: [HikariCP configuration knobs — connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 83,
+      "date": "2027-01-10",
+      "title": "Prove packaged browser recovery under a real database lock",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-83.md",
+        "acceptance_reference": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+        "evidence_reference": "evidence/continuation-71-84/day-83.json",
+        "acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "PostgreSQL explicit locking",
+              "section": "ACCESS EXCLUSIVE lock",
+              "url": "https://www.postgresql.org/docs/18/explicit-locking.html"
+            },
+            {
+              "title": "pg_locks system view",
+              "section": "granted=false rows for waiting locks",
+              "url": "https://www.postgresql.org/docs/18/view-pg-locks.html"
+            },
+            {
+              "title": "PostgreSQL monitoring statistics",
+              "section": "pg_stat_activity wait_event_type and wait_event fields",
+              "url": "https://www.postgresql.org/docs/18/monitoring-stats.html"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "no_direct_course_match",
+          "scope_note": "No new video. Use the supplied real PostgreSQL lock, packaged-browser busy UI and explicit-retry harness. React mocks do not prove browser/database behavior; preserve the fixed instructor/learner evidence distinction.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-10",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no direct course match. No new video. Use the supplied real PostgreSQL lock, packaged-browser busy UI and explicit-retry harness. React mocks do not prove browser/database behavior; preserve the fixed instructor/learner evidence distinction.\n- Focused worked references: [PostgreSQL explicit locking — ACCESS EXCLUSIVE lock](https://www.postgresql.org/docs/18/explicit-locking.html); [pg_locks system view — granted=false rows for waiting locks](https://www.postgresql.org/docs/18/view-pg-locks.html); [PostgreSQL monitoring statistics — pg_stat_activity wait_event_type and wait_event fields](https://www.postgresql.org/docs/18/monitoring-stats.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    },
+    {
+      "day_number": 84,
+      "date": "2027-01-11",
+      "title": "Integrate recovery evidence and independent assessment",
+      "sprint": "Sprint 6",
+      "budget_minutes": 180,
+      "engineering": {
+        "contract_path": "docs/reboot/continuation-71-84/contracts/day-84.md",
+        "acceptance_reference": null,
+        "evidence_reference": "evidence/continuation-71-84/day-84.json",
+        "acceptance_test_path": null,
+        "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
+        "acceptance_command": null,
+        "instructor_check_path": "src/test/java/assignments/renewal/Day84ContractInfrastructureTest.java",
+        "instructor_check_command": "./mvnw -Dtest=Day84ContractInfrastructureTest test",
+        "concept_course": {
+          "minutes": 25,
+          "allocation_minutes": {
+            "focused_reading": 10,
+            "design_sketch": 10,
+            "teachback": 5
+          },
+          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "courses": [],
+          "lessons": [],
+          "resources": [
+            {
+              "title": "Java jcmd",
+              "section": "thread dump diagnostics",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jcmd.html"
+            }
+          ],
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "assessment_review_no_new_lecture",
+          "scope_note": "No feature or course. Explain capacity/acquisition/query-wait boundaries, safe error mapping and independent evidence axes using observed selector results; unresolved prerequisites become recovery work.",
+          "supplement_required": true,
+          "daily_study_cap_minutes": 25,
+          "viewing_is_not_completion": true,
+          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "catalog_verified_at": "2026-10-20",
+          "videos_watched": false,
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        }
+      },
+      "java_dsa": {
+        "mode": "review_and_consolidation",
+        "problem_id": null,
+        "problem_url": null,
+        "guide_path": "docs/reboot/continuation-71-84/dsa/tree-study-map.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-11",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+      },
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: assessment review no new lecture. No feature or course. Explain capacity/acquisition/query-wait boundaries, safe error mapping and independent evidence axes using observed selector results; unresolved prerequisites become recovery work.\n- Focused worked references: [Java jcmd — thread dump diagnostics](https://docs.oracle.com/en/java/javase/21/docs/specs/man/jcmd.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+    }
+  ]
+}

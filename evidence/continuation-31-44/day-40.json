@@ -1,0 +1,62 @@
+{
+  "day": 40,
+  "date": "2026-11-28",
+  "status": "instructor_verified_expected_todo_red",
+  "base_sha": "65dc57f88fc844291cab3b80484a01c206e42916",
+  "acceptance_commands": [
+    "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
+  ],
+  "infrastructure_commands": [
+    "./mvnw -Dtest=ContinuationManifestInfrastructureTest test"
+  ],
+  "acceptance_result": {
+    "status": "expected_todo_red",
+    "executed_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest test",
+    "exit_code": 1,
+    "suite_summary": "14 tests; 0 assertion failures; 14 errors, each at its matching explicit Day 31\u201344 learner TODO",
+    "target_test": "day40CancellationMustBeFutureAndRequestReplayIsIdempotent test",
+    "learner_work_completed": false
+  },
+  "infrastructure_result": {
+    "status": "passed",
+    "executed_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 -Dtest=ContinuationManifestInfrastructureTest test",
+    "exit_code": 0,
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "includes": "manifest/date/budget/contract/evidence integrity and isolated PostgreSQL constraint checks",
+    "full_default_suite": {
+      "exit_code": 0,
+      "tests": 25,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "todo_failures": [
+    "PolicyLifecycleService method for Day 40 throws UnsupportedOperationException at the explicit learner TODO. The suite error is expected and does not indicate infrastructure failure."
+  ],
+  "learner_work_completed": false,
+  "overall_default_suite": {
+    "status": "passed",
+    "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven ./mvnw -Dmaven.repo.local=/tmp/d1-m2 test",
+    "exit_code": 0,
+    "tests": 25,
+    "failures": 0,
+    "errors": 0
+  },
+  "dsa_evidence": {
+    "status": "not_attempted",
+    "actual_first_attempt_date": null,
+    "planned_first_attempt_date": null,
+    "review_dates_are_forecasts_only": true
+  },
+  "dsa_review_queue_verification": {
+    "status": "passed",
+    "test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+    "tests": 4,
+    "actual_first_attempt_dates_supplied": false,
+    "empty_log_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
+    "queue_result": "22 anchors loaded across both batches; all await actual attempts; no due dates or completions fabricated",
+    "failed_review_rule": "cold recall/re-solve only; failure displaces new work within same 60-minute block"
+  }
+}

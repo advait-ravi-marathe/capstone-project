@@ -1,0 +1,19 @@
+{
+  "day": 112,
+  "date": "2027-02-08",
+  "learner_status": "not_attempted",
+  "contract_status": "defined",
+  "acceptance_commands": [
+    "(cd frontend && npm ci && npm run build && npm run build:local)",
+    "./mvnw -Plocal-app -DskipTests package",
+    "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
+    "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
+    "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test",
+    "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+  ],
+  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
+  "witness_status": "not_run",
+  "learner_attempts": [],
+  "notes": "Recovery/assessment only: run source, fresh-JVM, packaged API/command, issuance, renewal, lock, and timeout selectors; no new implementation seam. Frontend npm install/build and packaged-JAR build are explicit prerequisites in the acceptance command list.",
+  "verification_status": "review_only_pending_learner_work"
+}
