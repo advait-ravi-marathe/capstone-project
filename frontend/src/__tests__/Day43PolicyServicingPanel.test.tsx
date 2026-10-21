@@ -68,6 +68,7 @@ describe('Day 43 policy servicing panel', () => {
     rerender(<PolicyServicingPanel state={state} summary={summary} />);
     expect(within(panel).getByRole(state === 'loading' ? 'status' : 'alert')).toBeTruthy();
     expect(within(panel).queryByText('policy-demo-1')).toBeNull();
+    expect(within(panel).queryByText('home-secure-v1')).toBeNull();
     expect(within(panel).queryByText('125.00 INR')).toBeNull();
     expect(within(panel).queryByText('CANCEL_SCHEDULED')).toBeNull();
     expect(within(panel).queryByText('Version 3')).toBeNull();
