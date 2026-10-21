@@ -285,5 +285,51 @@
     },
     "prior_learner_status": "No learner completion claimed. Actual new Day 194/Day 183 selectors remain named TODO-red after restoration; prior learner seams, event logs and canonical inventory unchanged.",
     "publication_status": "The repair commit 011a475b7ab75d7d7104746ab202efbfe1e81d5a was pushed to learning/streamforge-days-183-196. On the post-push check, GitHub combined status returned no checks and commit workflow-runs lookup returned an empty list; exact-tip hosted CI remains unobserved, not claimed. Branch push is confirmed by origin ls-remote."
+  },
+  "source_audit_followup_2": {
+    "source_sha_with_three_repairs": "049c441ad45b71e9cf683be32b3e7ca7fc19804c",
+    "repairs": {
+      "valid_positive_controls": "PASS: Day 191 50×50 evaluator control now has a valid three-item recommendation prefix; its state is validated before evaluation. Day 192 and Day 195 use distinct predictions whose exact hits and metric fractions agree with their common target sets.",
+      "learner_acceptance_red": "PASS as intended: removed the Day 191 TODO-to-skip conversion. Restored work-bound selector fails directly with `NotImplementedError: Day 191 learner TODO: implement evaluate_profiles`.",
+      "state_and_report_ownership": "PASS: Day 190 snapshots every input before assembly, compares the complete independently formed PredictorState and canonical digest, and checks later mutations cannot alter the state. Both Day 193 report tests mutate returned protocol/genres and preparation, then verify all caller values remain unchanged.",
+      "observable_context": "PASS: Day 192 tests valid independent mismatches for positive target-pair count, unreachable pairs, training-viewer count and cold-start count. Evaluated and zero-positive counts are tested as a valid coupled alternate cohort because they sum to the fixed all-viewer count."
+    },
+    "targeted_checks": [
+      {
+        "command": "PYTHONPATH=/tmp/capstone-streamforge-183-196 python3 /tmp/run_content_witness.py",
+        "result": "PASS 31 tests with temporary conformance witnesses only in isolated copies."
+      },
+      {
+        "command": "PYTHONPATH=/tmp/capstone-streamforge-183-196 python3 /tmp/run_three_mutants.py",
+        "result": "PASS four intended mutant selectors: Day 190 returned state after mutating caller inputs; Day 193 output protocol alias (empty report); Day 193 output protocol alias (nonempty report); Day 192 comparator ignoring observable count mismatches. Each valid control ran and its intended assertion(s) failed."
+      },
+      {
+        "command": "python3 -m unittest ai.streamforge.tests.test_content_infrastructure scripts.test_streamforge_183_196_manifest ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest",
+        "result": "PASS 11 tests."
+      },
+      {
+        "command": "python3 -m py_compile ai/streamforge/tests/test_content_contracts.py ai/streamforge/tests/test_content_adversarial.py ai/streamforge/tests/test_content_cli.py ai/streamforge/content_io.py ai/streamforge/tests/test_content_infrastructure.py scripts/test_streamforge_183_196_manifest.py && git diff --check",
+        "result": "PASS."
+      },
+      {
+        "command": "python3 -m unittest ai.streamforge.tests.test_content_adversarial.Day195Test.test_real_evaluator_checks_work_bound_before_any_viewer_rank",
+        "result": "Expected restored learner failure at Day 191 TODO; no skip."
+      }
+    ],
+    "prior_checkpoint_hosted_ci": [
+      {
+        "run_id": 39563389366,
+        "tested_source_sha": "312fe0b629d1b1fcd55ab25af4739c4cfaa2f3e8",
+        "result": "SUCCESS"
+      },
+      {
+        "run_id": 39563391040,
+        "tested_source_sha": "312fe0b629d1b1fcd55ab25af4739c4cfaa2f3e8",
+        "result": "SUCCESS"
+      }
+    ],
+    "current_hosted_ci": "Not yet observed for 049c441ad45b71e9cf683be32b3e7ca7fc19804c at receipt preparation time; prior CI85/86 do not test these three repairs.",
+    "restoration": "No learner implementation files changed. Original SHA256 hashes of ai/streamforge/contracts.py, baseline_contracts.py, content_contracts.py, content_evaluate.py remain the values in restored_learner_sha256 above. Temporary semantic witnesses were applied only in isolated processes/copies.",
+    "mastery": "No learner completion is claimed."
   }
 }
