@@ -26,3 +26,4 @@ CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day99To112InfrastructureTest test
 ```
 
 Learner acceptance remains separate and expected red at named TODOs.
+FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

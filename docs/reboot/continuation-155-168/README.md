@@ -53,3 +53,4 @@ python3 -m ai.streamforge.prepare --fixture basic
 ```
 
 Full infrastructure/regression and manifest checks are recorded in the local receipt. Temporary witnesses are instructor evidence only, are restored byte-for-byte, and do not confer learner completion.
+FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

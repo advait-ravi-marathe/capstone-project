@@ -35,3 +35,4 @@ These links support the existing engineering study block; they are not extra stu
 - Day 151: [JUnit 6.1.3 User Guide](https://docs.junit.org/6.1.3/writing-tests/assertions.html) — Assertions.
 - Day 152: [Java 21 Process API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html) — waitFor, destroy, destroyForcibly, descendants, onExit.
 - Day 153: [AWS rollback safety](https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/) — testing rollback safety, version transitions.
+FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

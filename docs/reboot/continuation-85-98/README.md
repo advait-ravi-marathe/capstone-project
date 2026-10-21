@@ -70,3 +70,4 @@ an authenticated browser session, and a real PostgreSQL relation lock.
   waiting; it does not cancel SQL. The worker owns statement execution,
   rollback, close, and backend reuse. No production cancellation route or
   HTTP-to-JDBC bridge is added.
+FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

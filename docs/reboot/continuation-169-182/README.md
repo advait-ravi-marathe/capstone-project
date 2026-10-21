@@ -32,3 +32,4 @@ python3 -m unittest discover -s ai/tests -p test_infrastructure.py
 ```
 
 Learner acceptance remains expected red at named TODOs until actual work is completed. AWS execution, production validation, exam choice, and future model work remain deferred.
+FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

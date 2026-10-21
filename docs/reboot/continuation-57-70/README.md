@@ -50,3 +50,4 @@ Oracle JDK 21 and temporary proxy settings outside the repository. `npm audit
 advisory review is still pending. See
 [`evidence/continuation-57-70/scaffold-verification.json`](../../../evidence/continuation-57-70/scaffold-verification.json)
 for exact results and blockers.
+FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.
