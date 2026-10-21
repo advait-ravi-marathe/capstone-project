@@ -473,7 +473,7 @@
         25
       ],
       "evidence_minutes": 10,
-      "acceptance_proof": "Nonready overrides stale summary; status/alert semantics; changed-ready recovery clears old alert/data; explicit refresh callback only once per activation.",
+      "acceptance_proof": "Ready without a selected preview shows a safe unavailable alert; nonready overrides stale summary; status/alert semantics; changed-ready recovery clears old alert/data; explicit refresh callback only once per activation.",
       "preserved_acceptance_commands": [
         "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"explicit|refresh\""
       ],

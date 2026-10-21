@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-Loading is role=status; unauthenticated/unavailable are role=alert. Non-ready state clears stale details. Changed ready data clears old alert. Refresh exists only when supplied and runs once on click, never during render/rerender.
+Loading is role=status; unauthenticated/unavailable are role=alert. Ready without a selected preview shows a safe unavailable alert. Non-ready state clears stale details. Changed ready data clears old alert. Refresh exists only when supplied and runs once on click, never during render/rerender.
 
 ### Readiness before the task
 

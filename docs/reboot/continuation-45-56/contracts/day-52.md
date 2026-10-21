@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-Display all approved reference fields with the existing string premium prop, exact date/version/notice, and no renew/accept/purchase/bind action. A changed fixture replaces all old values; ready without a preview is a safe unavailable state. Rendering does not mutate or call back.
+Display all approved reference fields with the existing string premium prop, exact date/version/notice, and no renew/accept/purchase/bind action. A changed fixture replaces all old values. Rendering does not mutate or call back.
 
 ### Readiness before the task
 
