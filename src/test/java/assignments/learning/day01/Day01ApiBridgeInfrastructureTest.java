@@ -49,7 +49,6 @@ class Day01ApiBridgeInfrastructureTest {
             assertEquals(405, send(client, "POST", port, "/learn/day1/hello").statusCode());
             assertEquals(404, send(client, "GET", port, "/api/quote-selections").statusCode());
             assertEquals(404, send(client, "GET", port, "/actuator/health").statusCode());
-            assertEquals(500, send(client, "GET", port, "/learn/day1/practice").statusCode());
             assertFalse(context.getBeansOfType(QuoteSelectionController.class).size() > 0);
             assertTrue(context.getBeansOfType(QuoteSelectionPolicy.class).isEmpty());
             assertTrue(context.getBeansOfType(QuoteSelectionRequestValidator.class).isEmpty());

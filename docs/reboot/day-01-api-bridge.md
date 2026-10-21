@@ -1,6 +1,6 @@
 # Day 1 API bridge: request, Java method, response
 
-This runnable, test-runtime-only lesson supports the existing Day 1 backend assignment. It does not implement quote selection or change the production application. Keep engineering within its existing 120 minutes: 25 study, 85 practice/tests, 10 evidence. DSA remains a separate unchanged 60-minute block.
+This runnable, test-runtime-only lesson supports the existing Day 1 backend assignment. It does not implement quote selection or change the production application. Keep engineering within its existing 120 minutes: 25 study, 85 practice/tests, 10 evidence. Keep the existing tiered DSA allocation unchanged: 60 minutes for one or two substantive exercises, 75 for three, and 90 for four.
 
 ## Study before practice
 
