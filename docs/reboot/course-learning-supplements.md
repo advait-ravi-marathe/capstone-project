@@ -137,55 +137,37 @@ Use the [Day 19 worked guide](teaching/day-19-latest-refresh.md#worked-trace) an
 Use the [Day 20 worked guide](teaching/day-20-truthful-mutation.md#worked-trace) and executable React tests. The injected selection function returns `Promise<void>`; do not read a status from its resolved value or retry blindly.
 ## Day 21 — CSRF boundary
 
-A browser automatically attaches a session cookie, which is why a state-changing request needs the contract's CSRF token/header. CORS controls which origins may read/use browser responses; it does not replace CSRF protection. Verify the existing cookie-session flow and keep the assigned CSRF protections enabled.
-
-
-**Concrete example:** For the cookie session, a state-changing request includes the server-issued CSRF value in the configured header. Missing/invalid token is rejected; CORS configuration is a separate browser-origin rule.
+Use the [complete Day 21 CSRF guide](teaching/day-21-csrf-boundaries.md): required owned-course Step 08 (11:08), then the token/session/authorization trace in the existing 25-minute block. Run the supporting check `./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test`; missing/invalid token returns 403 and a valid token reaches the synthetic handler. The documented `Day21ContractTest` selector has no source file, so full Day 21 acceptance remains blocked. This supporting harness is not production security evidence.
 
 **Primary reference:** [Spring Security CSRF protection](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html)
 
 ## Day 22 — Correlation and privacy
 
-A request ID is diagnostic metadata, not identity or authorization. Generate/validate it at the boundary, return the same value in the response, and include it in logs without logging quote payloads, credentials, or personal data. Follow the fixed format and test that separate requests get distinct IDs; do not expose the full request body.
-
-
-**Concrete example:** Boundary sketch: accept a valid request ID or generate one; place it in response header and logging context; clear context after the request. Do not put customer or quote payloads into logs.
+Use the [complete Day 22 correlation guide](teaching/day-22-correlation.md) and run `./mvnw -Dtest=Day22CorrelationReferenceTest test`. The executable toy checks ID selection before the handler, response/header agreement, audit only for errors, and unsafe-ID replacement. Apply the actual capstone 64-character grammar only after the toy is understood.
 
 **Primary reference:** [Spring Boot logging](https://docs.spring.io/spring-boot/reference/features/logging.html)
 
 ## Day 23 — Liveness, readiness, and exposure
 
-Liveness asks whether the process should be restarted; readiness asks whether it can serve traffic now. A dependency failure may make the app unready without proving the process is irrecoverably dead. Expose only the contract-approved health information; do not copy a tutorial's broad actuator exposure setting. Confirm the expected response fields in the existing test.
-
-
-**Concrete example:** Check only the configured health groups: liveness represents process viability; readiness includes whether the app can accept work. Do not expose environment, beans, or all actuator endpoints as part of this task.
+Use the [complete Day 23 readiness guide](teaching/day-23-readiness.md) and run `./mvnw -Dtest=Day23ReadinessProjectionReferenceTest test` for indicator/projection separation. The real endpoint fixture is `./mvnw -Dtest=Day23ActuatorInfrastructureTest test`; it uses disposable PostgreSQL and observes `groups` alongside `status` on overall health, which does not meet the strict status-only contract. Do not claim the mismatch is fixed or the toy proves a live endpoint.
 
 **Primary reference:** [Spring Boot Actuator endpoints](https://docs.spring.io/spring-boot/reference/actuator/endpoints.html)
 
 ## Day 24 — Read a PostgreSQL plan
 
-`EXPLAIN` shows a planned access path without executing the query; compare estimated rows and scan choices for the supplied selective lookup. An index can help reads but adds storage and write cost. Do not infer actual speed from one plan or run `EXPLAIN ANALYZE` on a mutating query. The course index lesson is conceptual; use PostgreSQL's official `EXPLAIN` documentation and the repository's fixed query.
-
-
-**Concrete example:** Example command: `EXPLAIN SELECT id FROM quote WHERE journey_id = 42 ORDER BY created_at DESC;`. Inspect estimated rows and chosen scan; this is not a promise of latency, and plain EXPLAIN does not execute the query.
+Use the [complete Day 24 plan guide](teaching/day-24-explain.md), the two conditional index lectures (3:40 total; access unconfirmed), and the 25-minute cap. Run `./mvnw -Dtest=Day24ExplainReferenceTest test` for a disposable PostgreSQL example with actual rows and plans. Transfer the method, not the toy index, to the existing query.
 
 **Primary reference:** [PostgreSQL using EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html)
 
 ## Day 25 — Concurrent idempotent selection
 
-Two requests can both observe “not selected” before either writes. A database unique constraint is the final race-safe guard; the losing request must map the duplicate outcome to the contract's response without creating a second row. Trace the supplied two-request test and count committed rows. A Java synchronized block cannot protect multiple application instances.
-
-
-**Concrete example:** The final database guard is an illustrative `UNIQUE (journey_id, quote_version_id)`. If requests A and B race, one insert wins; the other observes the mapped duplicate outcome; committed row count remains one.
+Use the [complete Day 25 transaction guide](teaching/day-25-unique-race.md) and run `./mvnw -Dtest=Day25TwoTransactionReferenceTest test`. The real PostgreSQL toy checks the held winner, SQLSTATE 23505, loser rollback, fresh-connection read, and one final row. The learner acceptance stays separate.
 
 **Primary reference:** [PostgreSQL unique constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
 ## Day 26 — Atomic audit and minimization
 
-Write the business change and its audit record in the same transaction so neither can commit alone. Record only contract-approved identifiers/action/time; never copy the full request, credentials, or unrelated personal fields. Use the supplied accepted/rejected snapshots to check both atomicity and data minimization.
-
-
-**Concrete example:** Illustrative transaction: `insert business row; insert audit(action, subject_id, occurred_at); commit`. A failure of the audit insert must roll back the business change too; omit payloads and credentials.
+Use the [complete Day 26 audit guide](teaching/day-26-audit.md) and run `./mvnw -Dtest=Day26AuditReferenceTest test`. The real disposable PostgreSQL reference verifies first insert, repeat without another event, and trigger failure rolling back both rows; it checks exact fields and row counts.
 
 **Primary reference:** [Spring programmatic transaction management](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
 

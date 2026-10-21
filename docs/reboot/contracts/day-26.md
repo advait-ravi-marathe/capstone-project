@@ -2,7 +2,7 @@
 
 **State:** Real PostgreSQL scaffold and fixed learner tests are installed; the JDBC transaction/audit behavior remains a learner TODO.
 
-**Course lesson:** No exact verified course lecture covers atomic audit/data minimization. Use the linked short transaction-bound example with only contract-approved fields. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-26--atomic-audit-and-minimization).
+**Course/concept bridge:** No exact verified audit lecture. Read the named PostgreSQL transactions and `INSERT ... RETURNING` sections, then run the [Day 26 guide](../teaching/day-26-audit.md#first-change-repeat-and-failure) within the existing 25-minute block. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Success, repeat, rollback; exact event count/fields; no payload column.
 
 Days 10, 12 and 25; fixed actor/time and seeded input. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Trace the minimal audit fields from action to stored record without copying personal data. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked prompt:** Compare first, repeated, and failed-audit paths. Why is a business creation event not the same as a request log?
 
 ## Concept (25 minutes)
 
-Atomic audit and data minimization.
+First-change versus repeat semantics, one transaction, minimal event fields, and rollback.
 
 ## Evidence (10 minutes)
 

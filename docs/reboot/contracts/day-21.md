@@ -1,8 +1,8 @@
 # Day 21 — 2026-11-09: Protect cookie-authenticated writes
 
-**State:** Blocked; no Spring Security dependency/configuration is installed. The current Day 1 application remains intentionally unauthenticated. No stub-only test is presented as CSRF evidence.
+**State:** A test-only form-login/CSRF harness exists in `Day12SecurityHarnessTest`; it does not configure production authentication. The full Day21ContractTest source is absent, so full Day21 acceptance is blocked.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Securing Spring Boot Applications with Spring Security”. Watch: “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08); “Step 09 - Exploring Spring Security - CSRF for REST API” (8:40); “Step 11 - Exploring Spring Security - Getting Started with CORS” (2:34). 22:22 viewing. Retain CSRF protection; do not copy the separate lecture on disabling CSRF. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-21--csrf-boundary).
+**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](../teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
@@ -10,7 +10,7 @@ security config / API client. Keep the business rule in this focused subject. Do
 
 ## Acceptance invariants
 
-Keep Spring Security CSRF enabled for cookie-authenticated writes. Missing/invalid token returns 403; valid session plus token is accepted. Use supported session/test principal and default `XSRF-TOKEN` cookie / `X-XSRF-TOKEN` header; do not build a credential system.
+Keep Spring Security CSRF enabled for cookie-authenticated writes. Missing/invalid token returns 403; a valid session plus token passes the CSRF check, after which authentication, authorization, and business validation still apply. Use supported session/test principal and default `XSRF-TOKEN` cookie / `X-XSRF-TOKEN` header; do not build a credential system.
 
 ## Required edge cases
 
@@ -20,11 +20,11 @@ Anonymous/session, missing/invalid/valid CSRF token.
 
 Days 12 and 18–20; session/CSRF test helpers. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Diagram cookie, CSRF token/header, and write request; identify the trust boundary. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked prompt:** Which boundary checks the CSRF token, establishes identity, and authorizes this object? Distinguish the supporting Day12 harness from the missing full Day21 acceptance.
 
 ## Concept (25 minutes)
 
-Cookies, CSRF vs CORS and browser trust boundaries [M].
+Cookie session, CSRF header, identity, and object authorization are separate checks. Full Day21 acceptance is blocked because the documented test source is missing.
 
 ## Evidence (10 minutes)
 
@@ -32,9 +32,9 @@ Security integration matrix. Record dated attempt state (`not attempted`, `attem
 
 ## Planned isolated command
 
-`./mvnw -Plearner-tests -Dtest=Day21ContractTest test`
+`./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test` (supporting test only; the documented `Day21ContractTest` has no source and full acceptance is blocked)
 
-An actual Spring Security filter chain is installed in the instructor test harness. It exercises CSRF rejection on `POST /api/quote-selections` before the learner policy runs. Production cookie/session configuration and the valid-token business success path remain learner work; the test-only users and chain are not application configuration.
+The supporting test uses a test-only form-login session. Missing/invalid CSRF tokens return 403; a valid token passes the CSRF filter. It does not fulfill the missing Day21 contract, prove production authentication, or establish ownership.
 
 ## Separate Java DSA block (60 minutes)
 

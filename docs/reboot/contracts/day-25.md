@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL concurrent service contract is installed with a barrier and an isolated composite-key table. The writer is an explicit learner TODO; an HTTP endpoint/200-response integration remains open.
 
-**Course lesson:** No exact verified course lecture covers this database race. Use the linked two-request example grounded in the fixed database test; the database constraint remains the cross-instance guard. See the [Days 1–30 map](../course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-25--concurrent-idempotent-selection).
+**Course/concept bridge:** No exact verified lecture covers this race. Read the named PostgreSQL transactions, Read Committed, and `INSERT ... ON CONFLICT` sections, then run the [Day 25 guide](../teaching/day-25-unique-race.md#two-transaction-trace) within the existing 25-minute block. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Concurrent same pair, different pair, final row count and both response bodies.
 
 Days 8 and 10–12; canned authorized/current quote. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Draw two competing transactions and state the uniqueness/idempotency invariant; compare against a baseline. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked prompt:** Draw both transaction lanes and explain why the losing transaction must rollback before a fresh read.
 
 ## Concept (25 minutes)
 
-Race conditions, DB uniqueness, idempotency [E,G].
+Unique-key collision, PostgreSQL aborted transaction, rollback, and fresh-connection read.
 
 ## Evidence (10 minutes)
 

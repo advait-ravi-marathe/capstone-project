@@ -2,7 +2,7 @@
 
 **State:** The Actuator starter and live endpoint test are installed with a test-only health contributor. Database-readiness policy remains an explicit TODO; no real database readiness integration is claimed. Spring Boot 4.1.1 adds a public `groups` field to health responses when readiness/liveness groups are enabled; the requested status-only body therefore remains a known contract gap requiring a custom response boundary.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Getting Started with Spring Boot”. Watch: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). Actuator foundation only. Use the linked precise liveness/readiness and exposure guide; do not expose every endpoint. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-23--liveness-readiness-and-exposure).
+**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](../teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Healthy, DB unavailable, unauthorized management detail, exact response allowlis
 
 Days 8 and 12; disposable DB lifecycle fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** State which dependencies health represents and which it deliberately omits. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked prompt:** Separate readiness indicator truth, public projection, endpoint exposure, and real database availability. What is the observed `groups` limitation?
 
 ## Concept (25 minutes)
 
-Liveness/readiness and failure detection [N].
+Readiness truth, health response projection, endpoint exposure, and evidence boundaries. The overall endpoint currently includes `groups` as well as `status`.
 
 ## Evidence (10 minutes)
 

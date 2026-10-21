@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL fixture and plan/result acceptance test are installed. The index migration is an explicit learner TODO; no query-plan improvement is claimed.
 
-**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Performance Tuning Tips with Hibernate & JPA”: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), 3:40 total. Conceptual support only; use the linked short PostgreSQL EXPLAIN/B-tree guide inside this same block. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-24--read-a-postgresql-plan).
+**Course lesson:** Conditional, access-unconfirmed reference to course 1341538: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), total 3:40. If unavailable, replace that time with the named PostgreSQL reading; do not purchase/enroll. The [Day 24 guide](../teaching/day-24-explain.md#observed-postgresql-run) contains the runnable plan/output example. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Before/after EXPLAIN, result equivalence, index write/storage trade-off.
 
 Days 8 and 16; deterministic larger SQL seed. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Record a baseline query plan and measurement before changing one query/index. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked prompt:** Identify filter, sort, and limit in the before plan; state the observed after-plan change and one storage/write cost.
 
 ## Concept (25 minutes)
 
-B-tree indexes, selectivity, EXPLAIN vs EXPLAIN ANALYZE [O].
+Read the observed EXPLAIN shape and compare the exact output before/after an index; no timing claim.
 
 ## Evidence (10 minutes)
 

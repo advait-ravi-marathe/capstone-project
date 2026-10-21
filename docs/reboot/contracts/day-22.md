@@ -2,7 +2,7 @@
 
 **State:** Fixed filter scaffold and learner acceptance tests are installed; the filter TODO remains unimplemented.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54). Total 16:47. These introduce logging and monitoring; use the linked request-ID/privacy trace. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-22--correlation-and-privacy).
+**Course lesson:** Required owned-course 4993276, section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54) is optional later only. Use the [Day 22 guide](../teaching/day-22-correlation.md#worked-run) within the same study block. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Absent, valid, malformed ID; captured-log redaction assertions.
 
 Day 3; fixed request fixtures and fake logger. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Show request-ID creation/validation and which log fields must be excluded. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked prompt:** Trace one 400 and one 200 through ID selection, handler execution, and audit. Why validate before echoing or recording?
 
 ## Concept (25 minutes)
 
-Observability vs privacy, logs vs metrics.
+Request-ID selection, validation, response propagation, and error-only audit; never log request data.
 
 ## Evidence (10 minutes)
 

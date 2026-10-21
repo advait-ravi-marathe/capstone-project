@@ -592,31 +592,25 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Securing Spring Boot Applications with Spring Security”. Watch: “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08); “Step 09 - Exploring Spring Security - CSRF for REST API” (8:40); “Step 11 - Exploring Spring Security - Getting Started with CORS” (2:34). 22:22 viewing. Retain CSRF protection; do not copy the separate lecture on disabling CSRF. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-21--csrf-boundary). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-21--csrf-boundary",
+      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation.",
+      "worked_guide_path": "docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
         {
           "title": "Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF",
-          "duration": "11:08",
+          "section_title": "Securing Spring Boot Applications with Spring Security",
           "duration_seconds": 668,
-          "section_title": "Securing Spring Boot Applications with Spring Security"
-        },
-        {
-          "title": "Step 09 - Exploring Spring Security - CSRF for REST API",
-          "duration": "8:40",
-          "duration_seconds": 520,
-          "section_title": "Securing Spring Boot Applications with Spring Security"
-        },
-        {
-          "title": "Step 11 - Exploring Spring Security - Getting Started with CORS",
-          "duration": "2:34",
-          "duration_seconds": 154,
-          "section_title": "Securing Spring Boot Applications with Spring Security"
+          "duration": "11:08",
+          "source_item_id": "35017674",
+          "role": "essential"
         }
       ],
-      "total_viewing_seconds": 1342
+      "total_viewing_seconds": 1342,
+      "scope_note": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation.",
+      "daily_study_note": "25-minute total. The 11:08 CSRF lesson is required; REST-CSRF and CORS lectures are optional later references. The worked guide then separates cookie, token, identity, and ownership within the same 25-minute study block.",
+      "reference_test_path": "src/test/java/assignments/reboot/Day12SecurityHarnessTest.java",
+      "reference_command": "./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test"
     },
     {
       "day": 22,
@@ -629,25 +623,25 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54). Total 16:47. These introduce logging and monitoring; use the linked request-ID/privacy trace. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-22--correlation-and-privacy). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-22--correlation-and-privacy",
+      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54) is optional later only. Use the [Day 22 guide](docs/reboot/teaching/day-22-correlation.md#worked-run) within the same study block.",
+      "worked_guide_path": "docs/reboot/teaching/day-22-correlation.md#worked-run",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
         {
           "title": "Step 09 - Quick Overview - Importance of Logging with Spring Boot",
-          "duration": "9:53",
+          "section_title": "APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate",
           "duration_seconds": 593,
-          "section_title": "APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate"
-        },
-        {
-          "title": "Step 25 - Monitoring APIs with Spring Boot Actuator",
-          "duration": "6:54",
-          "duration_seconds": 414,
-          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
+          "duration": "9:53",
+          "source_item_id": "35018950",
+          "role": "essential"
         }
       ],
-      "total_viewing_seconds": 1007
+      "total_viewing_seconds": 1007,
+      "scope_note": "**Course lesson:** Required owned-course 4993276, section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54) is optional later only. Use the [Day 22 guide](docs/reboot/teaching/day-22-correlation.md#worked-run) within the same study block.",
+      "daily_study_note": "25-minute total. The 9:53 logging overview is required; Actuator monitoring is optional later. Use the complete reference filter trace in the remaining same-day study block.",
+      "reference_test_path": "src/test/java/assignments/learning/Day22CorrelationReferenceTest.java",
+      "reference_command": "./mvnw -Dtest=Day22CorrelationReferenceTest test"
     },
     {
       "day": 23,
@@ -660,19 +654,25 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Getting Started with Spring Boot”. Watch: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). Actuator foundation only. Use the linked precise liveness/readiness and exposure guide; do not expose every endpoint. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-23--liveness-readiness-and-exposure). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-23--liveness-readiness-and-exposure",
+      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch.",
+      "worked_guide_path": "docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
         {
           "title": "Step 12 - Get Production Ready with Spring Boot - 4 - Actuator",
-          "duration": "7:33",
+          "section_title": "Getting Started with Spring Boot",
           "duration_seconds": 453,
-          "section_title": "Getting Started with Spring Boot"
+          "duration": "7:33",
+          "source_item_id": "35019902",
+          "role": "essential"
         }
       ],
-      "total_viewing_seconds": 453
+      "total_viewing_seconds": 453,
+      "scope_note": "**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch.",
+      "daily_study_note": "25-minute total. The 7:33 Actuator lesson is foundation only. The worked guide separates indicator logic from response projection and documents the current groups/status endpoint mismatch.",
+      "reference_test_path": "src/test/java/assignments/learning/Day23ReadinessProjectionReferenceTest.java",
+      "reference_command": "./mvnw -Dtest=Day23ReadinessProjectionReferenceTest test"
     },
     {
       "day": 24,
@@ -685,49 +685,63 @@
           "access_status": "access_unconfirmed"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** Conditional reference to [Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/), “Performance Tuning Tips with Hibernate & JPA”: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), 3:40 total. Conceptual support only; use the linked short PostgreSQL EXPLAIN/B-tree guide inside this same block. Access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-24--read-a-postgresql-plan). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-24--read-a-postgresql-plan",
+      "verified_lessons_line": "**Course lesson:** Conditional, access-unconfirmed reference to course 1341538: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), total 3:40. If unavailable, replace that time with the named PostgreSQL reading; do not purchase/enroll. The [Day 24 guide](docs/reboot/teaching/day-24-explain.md#observed-postgresql-run) contains the runnable plan/output example.",
+      "worked_guide_path": "docs/reboot/teaching/day-24-explain.md#observed-postgresql-run",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
         {
           "title": "Step 82 - Performance Tuning - Measure before Tuning",
-          "duration": "1:56",
-          "duration_seconds": 116,
           "section_title": "Performance Tuning Tips with Hibernate & JPA",
-          "source_item_id": "7907664"
+          "duration_seconds": 116,
+          "duration": "1:56",
+          "source_item_id": "7907664",
+          "role": "optional_conditional"
         },
         {
           "title": "Step 83 - Performance Tuning - Indexes",
-          "duration": "1:44",
-          "duration_seconds": 104,
           "section_title": "Performance Tuning Tips with Hibernate & JPA",
-          "source_item_id": "7907666"
+          "duration_seconds": 104,
+          "duration": "1:44",
+          "source_item_id": "7907666",
+          "role": "optional_conditional"
         }
       ],
-      "total_viewing_seconds": 220
+      "total_viewing_seconds": 220,
+      "scope_note": "**Course lesson:** Conditional, access-unconfirmed reference to course 1341538: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), total 3:40. If unavailable, replace that time with the named PostgreSQL reading; do not purchase/enroll. The [Day 24 guide](docs/reboot/teaching/day-24-explain.md#observed-postgresql-run) contains the runnable plan/output example.",
+      "daily_study_note": "25-minute total. Conditional reference only, access unconfirmed. Use official PostgreSQL EXPLAIN/B-tree sections and the observed disposable-PostgreSQL example within 25 minutes.",
+      "reference_test_path": "src/test/java/assignments/learning/Day24ExplainReferenceTest.java",
+      "reference_command": "./mvnw -Dtest=Day24ExplainReferenceTest test"
     },
     {
       "day": 25,
       "contract_path": "docs/reboot/contracts/day-25.md",
       "courses": [],
-      "verified_lessons_line": "**Course lesson:** No exact verified course lecture covers this database race. Use the linked two-request example grounded in the fixed database test; the database constraint remains the cross-instance guard. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-25--concurrent-idempotent-selection). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-25--concurrent-idempotent-selection",
+      "verified_lessons_line": "**Course/concept bridge:** No exact verified lecture covers this race. Read the named PostgreSQL transactions, Read Committed, and `INSERT ... ON CONFLICT` sections, then run the [Day 25 guide](docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace) within the existing 25-minute block.",
+      "worked_guide_path": "docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [],
-      "total_viewing_seconds": 0
+      "total_viewing_seconds": 0,
+      "scope_note": "**Course/concept bridge:** No exact verified lecture covers this race. Read the named PostgreSQL transactions, Read Committed, and `INSERT ... ON CONFLICT` sections, then run the [Day 25 guide](docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace) within the existing 25-minute block.",
+      "daily_study_note": "25-minute total. No exact verified lecture. Use PostgreSQL transaction/Read Committed/ON CONFLICT sections and the real two-transaction reference within the existing 25-minute block.",
+      "reference_test_path": "src/test/java/assignments/learning/Day25TwoTransactionReferenceTest.java",
+      "reference_command": "./mvnw -Dtest=Day25TwoTransactionReferenceTest test"
     },
     {
       "day": 26,
       "contract_path": "docs/reboot/contracts/day-26.md",
       "courses": [],
-      "verified_lessons_line": "**Course lesson:** No exact verified course lecture covers atomic audit/data minimization. Use the linked short transaction-bound example with only contract-approved fields. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-26--atomic-audit-and-minimization). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-26--atomic-audit-and-minimization",
+      "verified_lessons_line": "**Course/concept bridge:** No exact verified audit lecture. Read the named PostgreSQL transactions and `INSERT ... RETURNING` sections, then run the [Day 26 guide](docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure) within the existing 25-minute block.",
+      "worked_guide_path": "docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [],
-      "total_viewing_seconds": 0
+      "total_viewing_seconds": 0,
+      "scope_note": "**Course/concept bridge:** No exact verified audit lecture. Read the named PostgreSQL transactions and `INSERT ... RETURNING` sections, then run the [Day 26 guide](docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure) within the existing 25-minute block.",
+      "daily_study_note": "25-minute total. No exact verified lecture. Use PostgreSQL transaction/INSERT sections and the real minimal-audit reference within the existing 25-minute block.",
+      "reference_test_path": "src/test/java/assignments/learning/Day26AuditReferenceTest.java",
+      "reference_command": "./mvnw -Dtest=Day26AuditReferenceTest test"
     },
     {
       "day": 27,
