@@ -108,6 +108,21 @@ exercise. It is not a full same-invariant transfer, never earns independent
 transfer credit, and leaves the original checkpoint due. A relation already
 classified as a full transfer belongs on `--confirmed-transfer` instead.
 
-After Day 171, any future engineering/interview-question time policy is outside
-this Days 1–154 correction. It does not remove pending DSA reviews. No Days
-155+ material is created here.
+## Prospective post-Day-171 shared time block
+
+For roadmap Day 172 and later, the daily budget is 165 minutes of engineering
+plus one shared 45-minute block for interview questions and any remaining DSA
+reviews, for 210 minutes total. The 45 minutes are shared; they are not 45
+minutes of DSA plus a separate interview allocation. Days through 171 retain
+the prior 120-minute engineering budget and, when the roadmap day is explicit,
+the existing 60/75/90-minute DSA tiers.
+
+The queue selects at most one substantive DSA review or repair after Day 171.
+Failed and overdue work keeps priority and its original due date; all
+unselected reviews remain visible as deferred. A brief recall may use the
+shared block but does not close an independent-transfer checkpoint. No new
+guided anchors are introduced after Day 150. A question supplied by the learner
+may be used as interview practice with its actual source; otherwise an
+instructor prompt must be labeled curated practice, never attributed to a
+company interview without evidence. An omitted roadmap day keeps legacy budget
+behavior and carries an explicit phase-unspecified notice.

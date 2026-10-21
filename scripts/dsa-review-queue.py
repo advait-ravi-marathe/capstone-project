@@ -546,6 +546,12 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
     if overlap:
         raise ValueError(f"a slot cannot schedule both a repair and a fresh transfer: {sorted(overlap)}")
 
+    # The post-Day-171 policy reserves a single 30-minute substantive
+    # exercise inside the shared 45-minute interview/review block. The older
+    # four-exercise tiers remain in force through Day 171.
+    post171_mode = roadmap_day is not None and roadmap_day >= 172
+    substantive_cap = 1 if post171_mode else 4
+
     selected_anchors = set()
     for task in due_tasks:
         target = confirmed_repair_map.get(task["slot_id"])
@@ -555,8 +561,10 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
         if aid in selected_anchors:
             deferred.append({**task, "deferred_reason": "one retrieval exercise per anchor per session; preserve original due date"})
             continue
-        if len(selected) >= 4:
-            deferred.append({**task, "deferred_reason": "four-exercise daily cap; preserve original due date"})
+        if len(selected) >= substantive_cap:
+            reason = "post-Day-171 one-exercise cap; preserve original due date" if post171_mode else \
+                     "four-exercise daily cap; preserve original due date"
+            deferred.append({**task, "deferred_reason": reason})
             continue
         selected.append({**task, "target_problem_id": target, "activity": "repair_attempt",
                          "repairs_event_id": task["failed_event_id"],
@@ -572,8 +580,10 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
         if aid in selected_anchors:
             deferred.append({**task, "deferred_reason": "one retrieval exercise per anchor per session; preserve original due date"})
             continue
-        if len(selected) >= 4:
-            deferred.append({**task, "deferred_reason": "four-exercise daily cap; preserve original due date"})
+        if len(selected) >= substantive_cap:
+            reason = "post-Day-171 one-exercise cap; preserve original due date" if post171_mode else \
+                     "four-exercise daily cap; preserve original due date"
+            deferred.append({**task, "deferred_reason": reason})
             continue
         candidate = candidate if candidate is not None else extension
         task["target_problem_id"] = candidate["id"]
@@ -612,7 +622,7 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
         for anchor in planned:
             if anchor["anchor_id"] in selected_anchors:
                 continue
-            if len(selected) < 4:
+            if len(selected) < substantive_cap:
                 selected.append({"anchor_id": anchor["anchor_id"], "problem_id": anchor["problem_id"],
                                  "slot_id": f"guided:{anchor['anchor_id']}", "status": "planned_guided_encounter",
                                  "activity": "guided_anchor", "assistance": "editorial_allowed_not_independent_credit"})
@@ -620,7 +630,9 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
                 deferred.append({"anchor_id": anchor["anchor_id"], "problem_id": anchor["problem_id"],
                                  "slot_id": f"guided:{anchor['anchor_id']}", "status": "guided_introduction_deferred",
                                  "activity": "guided_anchor",
-                                 "deferred_reason": "four-exercise daily cap; due retrievals retain priority"})
+                                 "deferred_reason": ("post-Day-171 review capacity is reserved for at most one substantive exercise"
+                                                     if post171_mode else
+                                                     "four-exercise daily cap; due retrievals retain priority")})
             break
     elif planned:
         deferred.append({"problem_id": planned[0]["problem_id"], "status": "guided_introduction_deferred",
@@ -640,11 +652,26 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
         row["catalog_gap"] = entry.get("gaps", [])
 
     count = len(selected)
-    dsa_minutes = _tiers(count)
+    dsa_minutes = 45 if post171_mode else _tiers(count)
+    engineering_minutes = 165 if post171_mode else 120
     return {"as_of_date": as_of.isoformat(), "roadmap_day": roadmap_day,
             "policy_effective_date": "2026-10-22", "timezone": "Asia/Kolkata",
-            "daily_dsa_budget_minutes": dsa_minutes, "engineering_minutes": 120,
-            "total_daily_minutes": dsa_minutes + 120, "substantive_exercises_selected": count,
+            "daily_dsa_budget_minutes": dsa_minutes, "engineering_minutes": engineering_minutes,
+            "engineering_allocation_minutes": ({"study": 35, "practice_and_test": 115, "evidence": 15,
+                                                "status": "proposed planning allocation"} if post171_mode else
+                                               {"study": 25, "practice_and_test": 85, "evidence": 10,
+                                                "status": "existing allocation"}),
+            "total_daily_minutes": (210 if post171_mode else dsa_minutes + engineering_minutes),
+            "budget_mode": "interview_and_remaining_reviews" if post171_mode else
+                           "legacy_tiered_dsa_and_engineering" if roadmap_day is not None else "phase_unspecified_legacy",
+            "roadmap_day_required_for_phase_budget": roadmap_day is None,
+            "shared_interview_and_remaining_reviews_minutes": 45 if post171_mode else None,
+            "daily_dsa_budget_label": "shared interview and remaining reviews" if post171_mode else "tiered DSA work",
+            "substantive_exercise_cap": substantive_cap if roadmap_day is not None else None,
+            "legacy_tier_rule_applies": not post171_mode,
+            "interview_prompt_source_rule": ("use a user-provided actual question with its source, or label an instructor prompt curated practice; do not invent company attribution"
+                                             if post171_mode else None),
+            "substantive_exercises_selected": count,
             "tier_rule": {"1_to_2": 60, "3": 75, "4": 90},
             "intervals_days": list(INTERVALS), "date_anchor": "earliest actual first-attempt date only",
             "failed_review_rule": "Failed or overdue retrieval displaces new guidance; no extra minutes, and no due slot is dropped.",
