@@ -2,9 +2,12 @@
 
 ## Contract
 
-**Learner-owned seam:** `PolicyServicingPanel`
+**Learner-owned seam:** `PolicyLifecycleService.toServicingView` and `PolicyServicingPanel`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
+
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
 
 ### Expected behavior
 
@@ -17,7 +20,7 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 **Acceptance selector:** `frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx`
 **Infrastructure selector:** `assignments.reboot.ContinuationManifestInfrastructureTest`
 
-**Learner acceptance command:** `cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx`
+**Learner acceptance commands:** `npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx` and `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test`
 **Instructor infrastructure command:** `./mvnw -Dtest=ContinuationManifestInfrastructureTest test`
 
 ## Build / test allocation (85 minutes)
@@ -26,17 +29,22 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).
-- Fit: partial foundation. Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.
-- Focused worked references: [React conditional rendering — Loading, empty, auth, not-found, and success states](https://react.dev/learn/conditional-rendering); [React choosing state structure — Avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).
-- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-43-response-state-ui.md](../../continuation-31-44/worked/day-43-response-state-ui.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: Rendering Content Conditionally (8:03). Replacement-only optional lessons: none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** React servicing summary — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [React: Conditional Rendering](https://react.dev/learn/conditional-rendering#conditionally-returning-jsx) — Conditionally returning JSX.
+- [React: Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state) — Avoid contradictions in state.
+- [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole/) — API.
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** video or React fallback 8:03; focused source and prerequisite 3:57; worked component trace test 9:00; transfer prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 10 / 40 / 25 / 10 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.
 
 ## Evidence allocation (10 minutes)
 
