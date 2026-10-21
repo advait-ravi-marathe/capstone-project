@@ -90,7 +90,8 @@ class DsaReviewQueueTest(unittest.TestCase):
         matches = [a for a in result["anchors"] if a["problem_id"] == 49]
         self.assertEqual(1, len(matches))
         self.assertEqual(7, matches[0]["anchor_day"])
-        self.assertEqual("passed_with_recorded_evidence", matches[0]["reviews"][0]["status"])
+        self.assertEqual("historical_passed_unclassified", matches[0]["reviews"][0]["status"])
+        self.assertFalse(matches[0]["reviews"][0]["independent_transfer_evidence"])
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
+> **Current policy:** This dated map is historical schedule metadata, not an actual assignment calendar. Select work from the shared queue using real attempts and exposure history. LeetCode Premium/editorials support guided learning; assisted work is not independent credit. Use 60/75/90-minute DSA tiers with 120 minutes of engineering, preserve D+3/D+7/D+21 due dates, and do not follow old odd/even cadence. New guided introductions stop after Day150. See [shared policy](../../dsa/guided-transfer-policy.md).
+
 # Java DSA Top 150 continuation map — Days 31–44
 
-Scope continues the sequence through LC 153; it adds linked-list anchors on odd study days and no mandatory new problem on even days. Every planned first attempt is pending until recorded by the learner.
+Scope continues the sequence through LC 153; it adds linked-list anchors on historical anchor dates and no mandatory new problem on other historical dates. Every planned first attempt is pending until recorded by the learner.
 
 | Day | Date | Assignment | Role / forecast |
 |---:|---|---|---|
@@ -27,7 +29,7 @@ Problems: [LC 141 Linked List Cycle](https://leetcode.com/problems/linked-list-c
 
 The first-30 manifest has 15 planned pattern anchors and no recorded actual first-attempt dates. Their D+3/D+7/D+21 dates remain conditional forecasts. The continuation carries all 15 anchors without inventing dates or completions. `actual-attempt-log.json` intentionally starts empty.
 
-Before taking a new problem, compute the queue using the learner's real log. Reviews are cold recall and re-solving, not rereading. If a review fails, repair the gap in that same 60-minute DSA block and displace that day's new assignment; do not add study time.
+Before taking a new problem, compute the queue using the learner's real log. Reviews are cold recall and re-solving, not rereading. If a review fails, repair the gap in that selected 60/75/90-minute DSA tier and displace that day's new assignment; do not add study time.
 
 - Queue: `python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD`
 - Representative behavior tests: `python3 -m unittest scripts/test_dsa_review_queue.py`

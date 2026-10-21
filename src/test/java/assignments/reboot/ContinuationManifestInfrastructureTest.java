@@ -64,8 +64,11 @@ class ContinuationManifestInfrastructureTest {
         JsonNode revisionPolicy = manifest.get("dsa_revision_policy");
         assertEquals("actual_first_attempt_date from docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
                 revisionPolicy.get("due_date_anchor").asString());
-        assertEquals("cold recall and re-solve; do not reread", revisionPolicy.get("retrieval_method").asString());
-        assertEquals(60, revisionPolicy.get("daily_budget_minutes").asInt());
+        assertEquals("fresh similar-pattern transfer before editorial; assistance is not independent credit",
+                revisionPolicy.get("retrieval_method").asString());
+        assertEquals(60, revisionPolicy.get("daily_budget_minutes_by_exercise_count").get("1_or_2").asInt());
+        assertEquals(75, revisionPolicy.get("daily_budget_minutes_by_exercise_count").get("3").asInt());
+        assertEquals(90, revisionPolicy.get("daily_budget_minutes_by_exercise_count").get("4").asInt());
         assertFalse(revisionPolicy.get("actual_attempt_dates_supplied").asBoolean());
         assertEquals(15, revisionPolicy.get("carryover_anchors_from_days_01_30").size());
         for (JsonNode carryover : revisionPolicy.get("carryover_anchors_from_days_01_30")) {
@@ -114,18 +117,21 @@ class ContinuationManifestInfrastructureTest {
                     || eng.get("acceptance_commands").get(0).asString().startsWith("cd frontend && npm"));
             assertTrue(eng.get("infrastructure_commands").get(0).asString().startsWith("./mvnw")
                     || eng.get("infrastructure_commands").get(0).asString().startsWith("npm --prefix frontend"));
-            assertEquals(60, day.get("java_dsa").get("budget_minutes").asInt());
             JsonNode dsa = day.get("java_dsa");
+            assertEquals(60, dsa.get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
+            assertEquals(75, dsa.get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
+            assertEquals(90, dsa.get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
             JsonNode card = cards.get("cards").get(i);
             assertEquals(31 + i, card.get("day_number").asInt());
-            assertEquals(180, card.get("budget_minutes").asInt());
+            assertEquals(180, card.get("budget_minutes_min").asInt());
+            assertEquals(210, card.get("budget_minutes_max").asInt());
             assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString())));
-            assertEquals("python3 scripts/dsa-review-queue.py --on-date " + day.get("date").asString(),
+            assertEquals("python3 scripts/dsa-review-queue.py --on-date " + day.get("date").asString() + " --roadmap-day " + day.get("day").asInt(),
                     dsa.get("review_queue_command").asString());
-            assertEquals("python3 -m unittest scripts/test_dsa_review_queue.py",
-                    dsa.get("review_queue_test_command").asString());
+            assertTrue(dsa.get("review_queue_test_command").asString().contains("test_dsa_guided_transfer_policy.py"));
             if (dsa.get("mode").asString().equals("new_pattern_anchor")) {
-                assertTrue(day.get("mandatory_new_problem").asBoolean());
+                assertFalse(day.get("mandatory_new_problem").asBoolean());
+                assertTrue(day.get("historical_mandatory_new_problem").asBoolean());
                 assertTrue(dsa.get("actual_first_attempt_date").isNull());
                 assertEquals(3, dsa.get("review_due_dates_if_attempted_on_plan").size());
                 assertTrue(card.get("title").asString().contains("LC " + dsa.get("problem_id").asInt()));

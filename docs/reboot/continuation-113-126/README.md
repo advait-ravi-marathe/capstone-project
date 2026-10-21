@@ -12,7 +12,7 @@ The receipt and acknowledgment paths and recovery transitions share a lock on th
 
 ## Daily budget
 
-Every date totals 180 minutes: separate 60-minute Java DSA, and 120 minutes engineering (one shared 25-minute study cap, 85 minutes build/test, 10 minutes evidence). Video, pauses, worked traces, focused reading and teach-back all fit inside the same 25 minutes. Carry unfinished study forward and reduce implementation scope. No new mandatory DSA anchor is introduced; the actual-attempt queue runs first.
+Daily total is 180/195/210 minutes: 60/75/90 minutes of DSA by exercise count and unchanged 120 minutes engineering (one shared 25-minute study cap, 85 minutes build/test, 10 minutes evidence). Video, pauses, worked traces, focused reading and teach-back all fit inside the same 25 minutes. Carry unfinished study forward and reduce implementation scope. No new mandatory DSA anchor is introduced; the actual-attempt queue runs first.
 
 The optional reference course is **Master Hibernate and JPA with Spring Boot in 100 Steps**, in28Minutes Official, course ID 1341538. Access is unconfirmed; course videos were not audited. Exact catalog titles, section titles, item IDs and durations appear in the manifest and individual contracts. These are JDBC/transaction foundations, not lessons on this exact recovery implementation. Use the worked guide and focused official reading if inaccessible. No purchase or enrollment is implied.
 

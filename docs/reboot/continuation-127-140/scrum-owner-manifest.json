@@ -1,5 +1,5 @@
 {
-  "title": "Days 127\u2013140 chronological course guidance and ticket-ready Scrum export; no board writes",
+  "title": "Days 127–140 chronological course guidance and ticket-ready Scrum export; no board writes",
   "story_count": 14,
   "sprint_boundaries": [
     {
@@ -86,20 +86,41 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-23",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-23 --roadmap-day 127",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-23 --roadmap-day 127",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Shared Responsibility Model & AWS Acceptable Policy | Section: What is Cloud Computing? | 96 sec",
           "Worked guide: scope S and T as different run-owned fixtures; reject source=target, unrelated loopback DB, DNS aliases, remote endpoints, and cloud mode.",
-          "Reading focus: PostgreSQL 18 pg_dump \u2014 Archive formats and connection options; local source only. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump — Archive formats and connection options; local source only. (https://www.postgresql.org/docs/18/app-pgdump.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 128,
@@ -114,7 +135,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001\u2013V005 digests. A green scaffold build is not learner-completion evidence.",
+        "scope": "Bind the exercise to the already-built JAR, Java/PostgreSQL tool versions, and V001–V005 digests. A green scaffold build is not learner-completion evidence.",
         "learner_seam": "ReleaseManifestPolicy.validate",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-128.md",
         "evidence_reference": "evidence/continuation-127-140/day-128.json",
@@ -160,18 +181,39 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-24",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-24 --roadmap-day 128",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-24 --roadmap-day 128",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Compare manifest hashes against the supplied artifact and migration set; reject altered JAR bytes, mismatch, omitted version, or secrets.",
-          "Reading focus: Java 21 MessageDigest \u2014 SHA-256 identifies exact bytes; do not put credentials in the manifest. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html)"
+          "Reading focus: Java 21 MessageDigest — SHA-256 identifies exact bytes; do not put credentials in the manifest. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 129,
@@ -232,18 +274,39 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-25",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-25 --roadmap-day 129",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-25 --roadmap-day 129",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: A changed receipt timestamp/payload, missing history, or substituted row fails even where table counts still match.",
-          "Reading focus: PostgreSQL 18 pg_restore \u2014 Custom archive listing and restore behavior. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore — Custom archive listing and restore behavior. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 130,
@@ -322,20 +385,41 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-26",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-26 --roadmap-day 130",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-26 --roadmap-day 130",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: RDS & Aurora - Backup and Monitoring | Section: AWS Fundamentals: RDS + Aurora + ElastiCache | 336 sec",
           "Worked guide: Require a nonempty custom archive and successful real client process; a failed tool or missing file is not backup success.",
-          "Reading focus: PostgreSQL 18 pg_dump \u2014 Use custom format against the quiesced synthetic fixture. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump — Use custom format against the quiesced synthetic fixture. (https://www.postgresql.org/docs/18/app-pgdump.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 131,
@@ -397,18 +481,39 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-27",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-27 --roadmap-day 131",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-27 --roadmap-day 131",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Real restore succeeds and source remains unchanged. A malformed header is rejected; a valid archive truncated after a valid TOC fails during restore and leaves no partial target schema/data.",
-          "Reading focus: PostgreSQL 18 pg_restore \u2014 Single-transaction restore to a new empty target; do not use --clean or --create. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore — Single-transaction restore to a new empty target; do not use --clean or --create. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 132,
@@ -423,7 +528,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "After full snapshot/migration comparison, run the actual packaged JAR\u2019s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
+        "scope": "After full snapshot/migration comparison, run the actual packaged JAR’s recovery-only inspection against T and observe retained quarantine evidence without mutation. Health alone is insufficient.",
         "learner_seam": "RehearsalEvidencePolicy.requireActivationEvidence",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-132.md",
         "evidence_reference": "evidence/continuation-127-140/day-132.json",
@@ -488,20 +593,41 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-28",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-28 --roadmap-day 132",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-28 --roadmap-day 132",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: CloudWatch Metrics & CloudWatch Alarms Overview | Section: Cloud Monitoring | 216 sec",
           "Worked guide: Restored full state matches before activation; actual JAR reads the held identity; no-write snapshot remains identical.",
-          "Reading focus: Spring Boot application availability \u2014 Application starts only after the restored migration history and configured data source validate. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)"
+          "Reading focus: Spring Boot application availability — Application starts only after the restored migration history and configured data source validate. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 133,
@@ -516,7 +642,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day: rerun only Days 127\u2013132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
+        "scope": "Recovery day: rerun only Days 127–132 and repair the weakest prior seam. A fresh JVM on S is not the same proof as restoring a fresh database from an archive.",
         "learner_seam": "Prior-only review and remediation; no new feature",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-133.md",
         "evidence_reference": "evidence/continuation-127-140/day-133.json",
@@ -566,18 +692,40 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-01",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-01 --roadmap-day 133",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-01 --roadmap-day 133",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "recovery_only": true
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Explain the recovery point and that a deliberately post-backup write is absent from T. Record tool/TODO blockers honestly.",
-          "Reading focus: PostgreSQL 18 pg_dump \u2014 A logical archive captures a recovery point, not writes committed after archive completion. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump — A logical archive captures a recovery point, not writes committed after archive completion. (https://www.postgresql.org/docs/18/app-pgdump.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 134,
@@ -659,20 +807,41 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-02",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-02 --roadmap-day 134",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-02 --roadmap-day 134",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: EC2 Basics | Section: EC2 Fundamentals | 212 sec",
           "Worked example: A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
-          "Reading focus: EC2 instance types \u2014 Offline resource sizing concepts only; no regional availability or price claim. (https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html)"
+          "Reading focus: EC2 instance types — Offline resource sizing concepts only; no regional availability or price claim. (https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 135,
@@ -736,18 +905,39 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-03",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-03 --roadmap-day 135",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-03 --roadmap-day 135",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Quiesced no-write return is allowed; a write after divergence, schema mismatch, or missing artifact blocks blind rollback.",
-          "Reading focus: PostgreSQL 18 pg_restore \u2014 Restore creates a target database state; it does not rewind another database. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore — Restore creates a target database state; it does not rewind another database. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 136,
@@ -810,18 +1000,39 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-04",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-04 --roadmap-day 136",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-04 --roadmap-day 136",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Any failed phase or cleanup fails the overall result; terminate/await owned children and preserve unrelated sentinel fixtures.",
-          "Reading focus: Spring Boot graceful shutdown \u2014 Bounded shutdown and resource ownership; the harness must await its own process termination. (https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)"
+          "Reading focus: Spring Boot graceful shutdown — Bounded shutdown and resource ownership; the harness must await its own process termination. (https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 137,
@@ -907,21 +1118,42 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-05",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-05 --roadmap-day 137",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-05 --roadmap-day 137",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: CloudFormation Intro | Section: Other Services | 211 sec",
           "Lesson: IAM Introduction: Users, Groups, Policies | Section: IAM & AWS CLI | 202 sec",
           "Worked guide: Offline validation independently rejects public app/database, wildcard admin, embedded secret, cloud request and cloudVerified=true. Pending user choices are data, never authorization.",
-          "Reading focus: AWS CloudFormation change sets \u2014 Offline planning and later validation concepts; a design record is not a change set. (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)"
+          "Reading focus: AWS CloudFormation change sets — Offline planning and later validation concepts; a design record is not a change set. (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 138,
@@ -1004,21 +1236,42 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-06",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-06 --roadmap-day 138",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-06 --roadmap-day 138",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Monitoring Costs in the Cloud - Billing Alarms & AWS Budgets | Section: Account Management, Billing & Support | 264 sec",
-          "Worked example: Fictional lines: compute 2 instance-hours \u00d7 $0.10 = $0.20; database 5 GB-month \u00d7 $0.02 = $0.10; backup 3 GB-month \u00d7 $0.01 = $0.03. Add logs, secrets and transfer for $0.44 total; selected networking is explicit. Missing rates never become zero.",
-          "Reading focus: AWS Pricing Calculator \u2014 Cost model components; real regional prices remain unverified until scope is selected. (https://docs.aws.amazon.com/cost-management/latest/userguide/pricing-calculator.html)",
-          "Reading focus: AWS Budgets practices \u2014 Alerts are delayed notifications, not synchronous spending caps. (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html)"
+          "Worked example: Fictional lines: compute 2 instance-hours × $0.10 = $0.20; database 5 GB-month × $0.02 = $0.10; backup 3 GB-month × $0.01 = $0.03. Add logs, secrets and transfer for $0.44 total; selected networking is explicit. Missing rates never become zero.",
+          "Reading focus: AWS Pricing Calculator — Cost model components; real regional prices remain unverified until scope is selected. (https://docs.aws.amazon.com/cost-management/latest/userguide/pricing-calculator.html)",
+          "Reading focus: AWS Budgets practices — Alerts are delayed notifications, not synchronous spending caps. (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 139,
@@ -1103,20 +1356,41 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-07",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-07 --roadmap-day 139",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-07 --roadmap-day 139",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
-          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 \u2014 Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
+          "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Security Groups & Classic Ports Overview | Section: EC2 Fundamentals | 438 sec",
           "Worked guide: Full local evidence and source preservation; no AWS SDK/CLI/deploy call, cloudVerified remains false, and unresolved user choices remain explicit.",
-          "Reading focus: AWS Security Group rules \u2014 Private access boundaries concept only; no security group is created. (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)"
+          "Reading focus: AWS Security Group rules — Private access boundaries concept only; no security group is created. (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 140,
@@ -1131,7 +1405,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Recovery day: rerun prior Days 127\u2013139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
+        "scope": "Recovery day: rerun prior Days 127–139 and one cold controlled failure. No new feature, AWS course padding, cloud action, or DSA anchor.",
         "learner_seam": "Prior-only review and remediation; no new feature",
         "acceptance_reference": "docs/reboot/continuation-127-140/contracts/day-140.md",
         "evidence_reference": "evidence/continuation-127-140/day-140.json",
@@ -1184,20 +1458,62 @@
       },
       "java_dsa": {
         "budget_minutes": 60,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-08",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-08 --roadmap-day 140",
         "actual_attempts_only": true,
-        "new_anchor_required": false
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-08 --roadmap-day 140",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false,
+        "recovery_only": true
       },
       "learning_block": {
-        "heading": "Learning resources \u2014 25 minutes total",
+        "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Explain pg_dump vs RDS PITR, cost/retention limits, and why same-version config rollback is blocked after candidate writes.",
-          "Reading focus: Amazon RDS point-in-time restore \u2014 PITR creates a new instance; local pg_dump is not an RDS restore test. (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html)"
+          "Reading focus: Amazon RDS point-in-time restore — PITR creates a new instance; local pg_dump is not an RDS restore test. (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html)"
         ],
         "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
-      }
+      },
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     }
   ],
   "board_changes": false,
-  "direct_learning_titles_required": true
+  "direct_learning_titles_required": true,
+  "dsa_workload_policy": {
+    "source": "docs/reboot/dsa/guided-transfer-policy.md",
+    "tier_minutes": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "engineering_minutes": 120,
+    "total_minutes_by_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "guided_first_sequence": {
+      "1": 121,
+      "2": 1,
+      "3": 383
+    },
+    "new_guided_cutoff_roadmap_day": 150
+  }
 }

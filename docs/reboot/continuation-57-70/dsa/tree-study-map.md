@@ -1,6 +1,8 @@
+> **Current policy:** This dated map is historical schedule metadata, not an actual assignment calendar. Select work from the shared queue using real attempts and exposure history. LeetCode Premium/editorials support guided learning; assisted work is not independent credit. Use 60/75/90-minute DSA tiers with 120 minutes of engineering, preserve D+3/D+7/D+21 due dates, and do not follow old odd/even cadence. New guided introductions stop after Day150. See [shared policy](../../dsa/guided-transfer-policy.md).
+
 # Java DSA continuation map — Days 57–70
 
-The daily 60-minute DSA block begins with the shared queue. New tree-pattern
+The daily 60/75/90-minute DSA tier begins with the shared queue. New tree-pattern
 anchors are scheduled only on Days 59, 61, 65 and 67. Days 57–58, 60, 62–64,
 66 and 68–70 consolidate actual due reviews or use cold retrieval; none adds a
 mandatory problem. The shared actual-attempt log is currently empty. Planned
@@ -29,7 +31,7 @@ the official problem statement. The actual-attempt log and queue are
 [shared across Days 1–70](../../continuation-31-44/dsa/actual-attempt-log.json);
 review dates derive only from actual first attempts, including reviews that
 carry forward from earlier days. A failed review replaces planned new work
-inside the same 60-minute block.
+inside the selected DSA tier.
 
 - New anchor allocation: 25 minutes pattern learning, 20 minutes independent solve, 15 minutes active retrieval/error log.
 - Consolidation allocation: 25 minutes pattern recall, 20 minutes due cold review(s), 15 minutes error-log repair.

@@ -1,6 +1,8 @@
+> **Current policy:** This dated map is historical schedule metadata, not an actual assignment calendar. Select work from the shared queue using real attempts and exposure history. LeetCode Premium/editorials support guided learning; assisted work is not independent credit. Use 60/75/90-minute DSA tiers with 120 minutes of engineering, preserve D+3/D+7/D+21 due dates, and do not follow old odd/even cadence. New guided introductions stop after Day150. See [shared policy](../../dsa/guided-transfer-policy.md).
+
 # Java DSA continuation map — Days 71–84
 
-The independent DSA block remains 60 minutes: 25 minutes pattern learning,
+The DSA block is 60/75/90 minutes according to scheduled substantive exercises: 25 minutes pattern learning,
 20 minutes independent solving or actual due cold review, and 15 minutes
 active retrieval/error logging. Run the shared queue first. The attempt log is
 currently empty; planned dates below never count as attempts or reviews.
@@ -26,7 +28,7 @@ LC112 planned attempt is Dec 31; its forecast reviews are Jan 3, Jan 7 and
 Jan 21. LC230 planned attempt is Jan 6; forecast reviews are Jan 9, Jan 13 and
 Jan 27. Forecasts are not actual attempts. The shared queue computes due dates
 only from the actual first-attempt date. Failed reviews displace any new work
-inside the same 60-minute DSA block.
+inside the selected 60/75/90-minute DSA tier.
 
 LeetCode Top Interview 150 membership was not independently verified for
 these tree questions; the links are the official problem statements. New

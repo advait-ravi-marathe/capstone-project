@@ -1,6 +1,8 @@
+> **Current policy:** This dated map is historical schedule metadata, not an actual assignment calendar. Select work from the shared queue using real attempts and exposure history. LeetCode Premium/editorials support guided learning; assisted work is not independent credit. Use 60/75/90-minute DSA tiers with 120 minutes of engineering, preserve D+3/D+7/D+21 due dates, and do not follow old odd/even cadence. New guided introductions stop after Day150. See [shared policy](../../dsa/guided-transfer-policy.md).
+
 # Java DSA continuation map — Days 45–56
 
-One 60-minute block daily: designated anchor dates introduce patterns; other dates prioritize actual due reviews and active retrieval. Days 49, 51 and 55 revisit problems with canonical planned anchors on Days 7, 21 and 23, respectively; they are not new assignments. The shared actual-attempt log and queue remain authoritative. No actual attempt dates or mastery are claimed by this plan.
+The original dated table below is retained as historical plan metadata. Its odd/even cadence and fixed 60-minute assignments have been superseded by the shared actual-attempt queue and 60/75/90 workload tiers. Days 49, 51 and 55 preserve original anchor identities; they do not create new anchor clocks. No actual attempts or mastery are claimed.
 
 | Day | Date | Assignment | Role / conditional review |
 |---:|---|---|---|
@@ -25,4 +27,4 @@ D+3/D+7/D+21 are conditional forecasts only. Append an actual first-attempt even
 - Tests: `python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py`
 - New anchors use 25 minutes pattern learning, 20 independent solve, 15 retrieval/error log.
 - Consolidation days use 25 minutes pattern recall, 20 cold review(s), 15 error-log repair.
-- A failed review displaces new work inside the same 60-minute block.
+- A failed review displaces new work inside the selected DSA tier.

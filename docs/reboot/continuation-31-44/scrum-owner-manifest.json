@@ -121,21 +121,54 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 141,
+        "problem_name": "Linked List Cycle",
         "concept": "fast/slow pointers",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
-        "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-19",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-22",
+          "2026-11-26",
+          "2026-12-10"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19 --roadmap-day 31",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": "https://leetcode.com/problems/linked-list-cycle/",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-19 --roadmap-day 31",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).\n- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).\n- Fit: partial foundation. Authentication and authorization are prerequisites. Work an owned-selected-current-eligible quote matrix; identity comes only from the principal, never an owner request field.\n- Focused worked references: [Spring MVC controller method arguments — Principal, @RequestBody, and request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 2,
@@ -194,10 +227,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 153,
@@ -209,15 +240,39 @@
             "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-20",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-20 --roadmap-day 32",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-20 --roadmap-day 32",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact idempotency lecture was found. Work one owner+key+intent receipt: the same intent returns its original result; a changed intent conflicts without mutation.\n- Focused worked references: [AWS Builders’ Library: Making retries safe with idempotent APIs — Retries and semantic equivalence; same client request ID, different intent](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 3,
@@ -301,22 +356,55 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 206,
+        "problem_name": "Reverse Linked List",
         "concept": "pointer rewiring",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-21",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-21",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-24",
+          "2026-11-28",
+          "2026-12-12"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-21 --roadmap-day 33",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "problem_url": "https://leetcode.com/problems/reverse-linked-list/",
-        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified"
+        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-21 --roadmap-day 33",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 15 - Exploring Java New Features - Records**; exact section title: **Java New Features - Java 10 to Java 24** (9:04).\n- Exact lesson title: **3 Questions - Best practices with Records**; exact section title: **Core Java in Depth - Java Review (Interview) Guide** (9:58).\n- Fit: partial foundation. Records support immutable snapshots, but persistence freeze and no-repricing need a project example; Java records are only shallowly immutable.\n- Focused worked references: [Java 21 Record API — Record components and shallow immutability](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html).\n- Video viewing: 19:02 at 1×; the remaining 5:58 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 4,
@@ -400,10 +488,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 141,
@@ -415,15 +501,39 @@
             "problem_url": "https://leetcode.com/problems/linked-list-cycle/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-22",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-22 --roadmap-day 34",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-22 --roadmap-day 34",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:24).\n- Exact lesson title: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49).\n- Fit: partial foundation. Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.\n- Focused worked references: [Spring MVC controller return types — ResponseEntity and response status/body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 19:13 at 1×; the remaining 5:47 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 5,
@@ -513,21 +623,54 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 21,
+        "problem_name": "Merge Two Sorted Lists",
         "concept": "two-pointer merge",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-23",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
-        "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-23",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-26",
+          "2026-11-30",
+          "2026-12-14"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-23 --roadmap-day 35",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-23 --roadmap-day 35",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Hibernate and JPA with Spring Boot in 100 Steps](https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 58 - Introduction to Transaction Management**; exact section title: **Transaction Management** (4:43).\n- Exact lesson title: **Step 63 - Implementing Transaction Management - 3 Things to Decide**; exact section title: **Transaction Management** (4:38).\n- Fit: partial foundation. Transaction concepts only; keep the JDBC stack. Trace two PostgreSQL writes and show the first insert rolls back when the receipt insert conflicts.\n- Focused worked references: [PostgreSQL 14 tutorial: transactions — Section 3.4, transactions](https://www.postgresql.org/docs/14/tutorial-transactions.html); [JDBC transactions tutorial — Commit and rollback boundaries](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html).\n- Video viewing: 9:21 at 1×; the remaining 15:39 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 6,
@@ -611,10 +754,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 206,
@@ -626,15 +767,39 @@
             "problem_url": "https://leetcode.com/problems/reverse-linked-list/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-24",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-24 --roadmap-day 36",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-24 --roadmap-day 36",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).\n- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).\n- Fit: partial foundation. Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.\n- Focused worked references: [Spring Security method authorization — How Method Security Works (conceptual model only; annotations are not assumed enabled)](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html).\n- Video viewing: 15:23 at 1×; the remaining 9:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 7,
@@ -710,22 +875,55 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 143,
+        "problem_name": "Reorder List",
         "concept": "split, reverse, weave",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-25",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-25",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-28",
+          "2026-12-02",
+          "2026-12-16"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-25 --roadmap-day 37",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "problem_url": "https://leetcode.com/problems/reorder-list/",
-        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified"
+        "plan_membership": "supplemental bridge; Top Interview 150 membership unverified",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-25 --roadmap-day 37",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 14 - Implementing Validations for REST API**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:47).\n- Fit: partial foundation. Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.\n- Focused worked references: [Spring MVC validation — Validation for @RequestMapping handler methods](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html).\n- Video viewing: 11:47 at 1×; the remaining 13:13 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 8,
@@ -789,10 +987,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 141,
@@ -813,15 +1009,39 @@
             "problem_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-26",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-26 --roadmap-day 38",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-26 --roadmap-day 38",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact append-only version-history lecture was found. Draw the prior immutable snapshot, one new version, one event, and explicit chronological ordering.\n- Focused worked references: [PostgreSQL 14 constraints — Unique, check, not-null, and foreign-key constraints](https://www.postgresql.org/docs/14/ddl-constraints.html); [PostgreSQL 14 sorting rows — ORDER BY and deterministic ordering](https://www.postgresql.org/docs/14/queries-order.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 9,
@@ -880,21 +1100,54 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 19,
+        "problem_name": "Remove Nth Node From End of List",
         "concept": "lead/lag pointers",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-27",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
-        "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-27",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-11-30",
+          "2026-12-04",
+          "2026-12-18"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-27 --roadmap-day 39",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-27 --roadmap-day 39",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. Isolation lectures are not optimistic-locking instruction. Work a version-predicate UPDATE, check affected-row count, and insert the event in the same transaction. A synchronized two-writer example has one winner and no loser event.\n- Focused worked references: [PostgreSQL 14 transaction isolation — Section 13.2.1, Read Committed](https://www.postgresql.org/docs/14/transaction-iso.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 10,
@@ -970,10 +1223,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 206,
@@ -994,15 +1245,39 @@
             "problem_url": "https://leetcode.com/problems/reorder-list/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-28",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-28 --roadmap-day 40",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-28 --roadmap-day 40",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif**; exact section title: **Reference Types in Java Programming** (5:20).\n- Fit: partial foundation. Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.\n- Focused worked references: [Java 21 LocalDate API — now(Clock), isBefore, isAfter, isEqual](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Video viewing: 5:20 at 1×; the remaining 19:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 11,
@@ -1061,21 +1336,54 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 138,
+        "problem_name": "Copy List with Random Pointer",
         "concept": "identity map",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-29",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
-        "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-11-29",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-02",
+          "2026-12-06",
+          "2026-12-20"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-29 --roadmap-day 41",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-29 --roadmap-day 41",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact injected-Clock or exactly-once transition lesson was found. Work a before/equal/after effective-date table and assert repeated cancellation adds no second history event.\n- Focused worked references: [Java 21 Clock API — Fixed and offset clocks for deterministic boundaries](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 12,
@@ -1159,10 +1467,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 21,
@@ -1183,15 +1489,39 @@
             "problem_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-30",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-30 --roadmap-day 42",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-30 --roadmap-day 42",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Java Tip 14 - Why Enum and Enum Basics - ordinal and values**; exact section title: **Java Tips** (7:28).\n- Exact lesson title: **Java Tip 15 - Enum - Constructor, variables and methods**; exact section title: **Java Tips** (3:40).\n- Fit: partial foundation. Enum fundamentals support explicit states. Work the CANCELLED transition, reject subsequent writes, and ensure replay adds no history.\n- Focused worked references: [Java enum tutorial — Enum types for a closed set of explicit states](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html).\n- Video viewing: 11:08 at 1×; the remaining 13:52 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 13,
@@ -1271,21 +1601,54 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "new_pattern_anchor",
+        "mandatory_new_problem": true,
         "problem_id": 2,
+        "problem_name": "Add Two Numbers",
         "concept": "carry state",
-        "review_anchors": [],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-01",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py",
-        "problem_url": "https://leetcode.com/problems/add-two-numbers/"
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "first_attempt_status": "not_attempted",
+        "planned_first_attempt_date": "2026-12-01",
+        "actual_first_attempt_date": null,
+        "review_due_dates_if_attempted_on_plan": [
+          "2026-12-04",
+          "2026-12-08",
+          "2026-12-22"
+        ],
+        "actual_review_dates": [],
+        "review_status": "pending",
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-01 --roadmap-day 43",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "problem_url": "https://leetcode.com/problems/add-two-numbers/",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-01 --roadmap-day 43",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).\n- Fit: partial foundation. Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.\n- Focused worked references: [React conditional rendering — Loading, empty, auth, not-found, and success states](https://react.dev/learn/conditional-rendering); [React choosing state structure — Avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).\n- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "verified_titles_video_not_watched"
+      "course_learning_status": "verified_titles_video_not_watched",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "sequence": 14,
@@ -1351,10 +1714,8 @@
         }
       },
       "java_dsa": {
-        "budget_minutes": 60,
         "mode": "review_and_consolidation",
-        "problem_id": null,
-        "concept": null,
+        "mandatory_new_problem": false,
         "review_anchors": [
           {
             "problem_id": 143,
@@ -1375,15 +1736,39 @@
             "problem_url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
           }
         ],
-        "guide_path": "docs/reboot/continuation-31-44/dsa/top-150-map.md",
-        "review_queue_first": true,
-        "failed_review_displaces_new_work_within_same_60_minutes": true,
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-02",
-        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py"
+        "budget_minutes": 60,
+        "allocation_minutes": {
+          "pattern_learning": 25,
+          "independent_solve_or_cold_review": 20,
+          "active_retrieval_and_error_log": 15
+        },
+        "note": "No new mandatory problem. Due-date forecasts are conditional on actual anchor attempts; recalculate from recorded actual date.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-02 --roadmap-day 44",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-02 --roadmap-day 44",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: integration review no new lecture. No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.\n- Focused worked references: [Spring Boot application testing — Real server and RANDOM_PORT testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Chrome Headless mode — Run Chromium browser automation in headless mode](https://developer.chrome.com/docs/automation-and-testing/headless).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_new_lesson_integration_review"
+      "course_learning_status": "no_new_lesson_integration_review",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     }
   ],
   "dsa_revision_queue": {
@@ -1395,7 +1780,27 @@
       21
     ],
     "date_anchor": "actual first-attempt date, not ticket date",
-    "failed_review_rule": "replace new DSA work within same 60-minute block; no extra minutes",
+    "failed_review_rule": "replace new DSA work within the 60/75/90-minute DSA tier; no extra minutes",
     "new_learner_actuals_recorded": false
+  },
+  "dsa_workload_policy": {
+    "source": "docs/reboot/dsa/guided-transfer-policy.md",
+    "tier_minutes": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "engineering_minutes": 120,
+    "total_minutes_by_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "guided_first_sequence": {
+      "1": 121,
+      "2": 1,
+      "3": 383
+    },
+    "new_guided_cutoff_roadmap_day": 150
   }
 }

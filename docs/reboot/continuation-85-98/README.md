@@ -18,7 +18,7 @@ dependency.
 
 ## Daily time budget
 
-Every day remains 60 minutes of Java DSA separately, plus 120 engineering
+DSA uses 60/75/90 minutes by exercise count, plus unchanged 120 engineering
 minutes: 85 implementation/testing, 25 concept/course, and 10 evidence. Video,
 pauses, worked examples, focused reading, and teach-back all fit inside that
 single 25-minute engineering study block. Carry unfinished study forward and

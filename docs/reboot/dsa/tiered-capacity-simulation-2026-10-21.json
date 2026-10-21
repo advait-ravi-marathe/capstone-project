@@ -1,0 +1,2649 @@
+{
+  "status": "SYNTHETIC_CAPACITY_ILLUSTRATION_NOT_LEARNER_EVENTS",
+  "policy": "workload_tiers_60_75_90",
+  "supersedes": "Earlier fixed90 capacity draft; do not implement that draft.",
+  "assumptions": [
+    "31 canonical anchors introduced in preserved order; initial three hypothetical guided study days are consecutive.",
+    "All selected independent targets are verified, fresh, prerequisite-ready and complete their bounded attempt slots without a failure requiring repair. This is an optimistic capacity model, not a mastery claim.",
+    "Zero failures, holidays or interruptions; actual events alone establish real due dates.",
+    "At most4 substantive exercises selected. New guidance displaced before exceeding4. Brief original recall is inside the tier and is not an extra counted problem.",
+    "Days without queued obligations do not create fake exercises to fill a tier; use existing error-log/recall work if study continues."
+  ],
+  "summary": {
+    "canonical_anchor_count": 31,
+    "last_guided_day": 31,
+    "independent_transfer_attempt_slots": 93,
+    "last_transfer_day": 52,
+    "max_substantive_exercises": 4,
+    "max_pending_after_selection": 0,
+    "active_days_by_tier": {
+      "60": 25,
+      "75": 17,
+      "90": 10
+    }
+  },
+  "rows": [
+    {
+      "simulation_day": 1,
+      "new_anchor_ordinal": 1,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 2,
+      "new_anchor_ordinal": 2,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 3,
+      "new_anchor_ordinal": 3,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 4,
+      "new_anchor_ordinal": 4,
+      "due_slots": [
+        "anchor-1-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-1-dplus-3",
+          "anchor_ordinal": 1,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 5,
+      "new_anchor_ordinal": 5,
+      "due_slots": [
+        "anchor-2-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-2-dplus-3",
+          "anchor_ordinal": 2,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 6,
+      "new_anchor_ordinal": 6,
+      "due_slots": [
+        "anchor-3-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-3-dplus-3",
+          "anchor_ordinal": 3,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 7,
+      "new_anchor_ordinal": 7,
+      "due_slots": [
+        "anchor-4-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-4-dplus-3",
+          "anchor_ordinal": 4,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 8,
+      "new_anchor_ordinal": 8,
+      "due_slots": [
+        "anchor-1-dplus-7",
+        "anchor-5-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-1-dplus-7",
+          "anchor_ordinal": 1,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-5-dplus-3",
+          "anchor_ordinal": 5,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 9,
+      "new_anchor_ordinal": 9,
+      "due_slots": [
+        "anchor-2-dplus-7",
+        "anchor-6-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-2-dplus-7",
+          "anchor_ordinal": 2,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-6-dplus-3",
+          "anchor_ordinal": 6,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 10,
+      "new_anchor_ordinal": 10,
+      "due_slots": [
+        "anchor-3-dplus-7",
+        "anchor-7-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-3-dplus-7",
+          "anchor_ordinal": 3,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-7-dplus-3",
+          "anchor_ordinal": 7,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 11,
+      "new_anchor_ordinal": 11,
+      "due_slots": [
+        "anchor-4-dplus-7",
+        "anchor-8-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-4-dplus-7",
+          "anchor_ordinal": 4,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-8-dplus-3",
+          "anchor_ordinal": 8,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 12,
+      "new_anchor_ordinal": 12,
+      "due_slots": [
+        "anchor-5-dplus-7",
+        "anchor-9-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-5-dplus-7",
+          "anchor_ordinal": 5,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-9-dplus-3",
+          "anchor_ordinal": 9,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 13,
+      "new_anchor_ordinal": 13,
+      "due_slots": [
+        "anchor-6-dplus-7",
+        "anchor-10-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-6-dplus-7",
+          "anchor_ordinal": 6,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-10-dplus-3",
+          "anchor_ordinal": 10,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 14,
+      "new_anchor_ordinal": 14,
+      "due_slots": [
+        "anchor-7-dplus-7",
+        "anchor-11-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-7-dplus-7",
+          "anchor_ordinal": 7,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-11-dplus-3",
+          "anchor_ordinal": 11,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 15,
+      "new_anchor_ordinal": 15,
+      "due_slots": [
+        "anchor-8-dplus-7",
+        "anchor-12-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-8-dplus-7",
+          "anchor_ordinal": 8,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-12-dplus-3",
+          "anchor_ordinal": 12,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 16,
+      "new_anchor_ordinal": 16,
+      "due_slots": [
+        "anchor-9-dplus-7",
+        "anchor-13-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-9-dplus-7",
+          "anchor_ordinal": 9,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-13-dplus-3",
+          "anchor_ordinal": 13,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 17,
+      "new_anchor_ordinal": 17,
+      "due_slots": [
+        "anchor-10-dplus-7",
+        "anchor-14-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-10-dplus-7",
+          "anchor_ordinal": 10,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-14-dplus-3",
+          "anchor_ordinal": 14,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 18,
+      "new_anchor_ordinal": 18,
+      "due_slots": [
+        "anchor-11-dplus-7",
+        "anchor-15-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-11-dplus-7",
+          "anchor_ordinal": 11,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-15-dplus-3",
+          "anchor_ordinal": 15,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 19,
+      "new_anchor_ordinal": 19,
+      "due_slots": [
+        "anchor-12-dplus-7",
+        "anchor-16-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-12-dplus-7",
+          "anchor_ordinal": 12,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-16-dplus-3",
+          "anchor_ordinal": 16,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 20,
+      "new_anchor_ordinal": 20,
+      "due_slots": [
+        "anchor-13-dplus-7",
+        "anchor-17-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-13-dplus-7",
+          "anchor_ordinal": 13,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-17-dplus-3",
+          "anchor_ordinal": 17,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 21,
+      "new_anchor_ordinal": 21,
+      "due_slots": [
+        "anchor-14-dplus-7",
+        "anchor-18-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-14-dplus-7",
+          "anchor_ordinal": 14,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-18-dplus-3",
+          "anchor_ordinal": 18,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 22,
+      "new_anchor_ordinal": 22,
+      "due_slots": [
+        "anchor-1-dplus-21",
+        "anchor-15-dplus-7",
+        "anchor-19-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-1-dplus-21",
+          "anchor_ordinal": 1,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-15-dplus-7",
+          "anchor_ordinal": 15,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-19-dplus-3",
+          "anchor_ordinal": 19,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 23,
+      "new_anchor_ordinal": 23,
+      "due_slots": [
+        "anchor-2-dplus-21",
+        "anchor-16-dplus-7",
+        "anchor-20-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-2-dplus-21",
+          "anchor_ordinal": 2,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-16-dplus-7",
+          "anchor_ordinal": 16,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-20-dplus-3",
+          "anchor_ordinal": 20,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 24,
+      "new_anchor_ordinal": 24,
+      "due_slots": [
+        "anchor-3-dplus-21",
+        "anchor-17-dplus-7",
+        "anchor-21-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-3-dplus-21",
+          "anchor_ordinal": 3,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-17-dplus-7",
+          "anchor_ordinal": 17,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-21-dplus-3",
+          "anchor_ordinal": 21,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 25,
+      "new_anchor_ordinal": 25,
+      "due_slots": [
+        "anchor-4-dplus-21",
+        "anchor-18-dplus-7",
+        "anchor-22-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-4-dplus-21",
+          "anchor_ordinal": 4,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-18-dplus-7",
+          "anchor_ordinal": 18,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-22-dplus-3",
+          "anchor_ordinal": 22,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 26,
+      "new_anchor_ordinal": 26,
+      "due_slots": [
+        "anchor-5-dplus-21",
+        "anchor-19-dplus-7",
+        "anchor-23-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-5-dplus-21",
+          "anchor_ordinal": 5,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-19-dplus-7",
+          "anchor_ordinal": 19,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-23-dplus-3",
+          "anchor_ordinal": 23,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 27,
+      "new_anchor_ordinal": 27,
+      "due_slots": [
+        "anchor-6-dplus-21",
+        "anchor-20-dplus-7",
+        "anchor-24-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-6-dplus-21",
+          "anchor_ordinal": 6,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-20-dplus-7",
+          "anchor_ordinal": 20,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-24-dplus-3",
+          "anchor_ordinal": 24,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 28,
+      "new_anchor_ordinal": 28,
+      "due_slots": [
+        "anchor-7-dplus-21",
+        "anchor-21-dplus-7",
+        "anchor-25-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-7-dplus-21",
+          "anchor_ordinal": 7,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-21-dplus-7",
+          "anchor_ordinal": 21,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-25-dplus-3",
+          "anchor_ordinal": 25,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 29,
+      "new_anchor_ordinal": 29,
+      "due_slots": [
+        "anchor-8-dplus-21",
+        "anchor-22-dplus-7",
+        "anchor-26-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-8-dplus-21",
+          "anchor_ordinal": 8,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-22-dplus-7",
+          "anchor_ordinal": 22,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-26-dplus-3",
+          "anchor_ordinal": 26,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 30,
+      "new_anchor_ordinal": 30,
+      "due_slots": [
+        "anchor-9-dplus-21",
+        "anchor-23-dplus-7",
+        "anchor-27-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-9-dplus-21",
+          "anchor_ordinal": 9,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-23-dplus-7",
+          "anchor_ordinal": 23,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-27-dplus-3",
+          "anchor_ordinal": 27,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 31,
+      "new_anchor_ordinal": 31,
+      "due_slots": [
+        "anchor-10-dplus-21",
+        "anchor-24-dplus-7",
+        "anchor-28-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-10-dplus-21",
+          "anchor_ordinal": 10,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-24-dplus-7",
+          "anchor_ordinal": 24,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-28-dplus-3",
+          "anchor_ordinal": 28,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 4,
+      "dsa_budget_minutes": 90,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 210,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 32,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-11-dplus-21",
+        "anchor-25-dplus-7",
+        "anchor-29-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-11-dplus-21",
+          "anchor_ordinal": 11,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-25-dplus-7",
+          "anchor_ordinal": 25,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-29-dplus-3",
+          "anchor_ordinal": 29,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 33,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-12-dplus-21",
+        "anchor-26-dplus-7",
+        "anchor-30-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-12-dplus-21",
+          "anchor_ordinal": 12,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-26-dplus-7",
+          "anchor_ordinal": 26,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-30-dplus-3",
+          "anchor_ordinal": 30,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 34,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-13-dplus-21",
+        "anchor-27-dplus-7",
+        "anchor-31-dplus-3"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-13-dplus-21",
+          "anchor_ordinal": 13,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-27-dplus-7",
+          "anchor_ordinal": 27,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-31-dplus-3",
+          "anchor_ordinal": 31,
+          "interval_days": 3,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 3,
+      "dsa_budget_minutes": 75,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 195,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 35,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-14-dplus-21",
+        "anchor-28-dplus-7"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-14-dplus-21",
+          "anchor_ordinal": 14,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-28-dplus-7",
+          "anchor_ordinal": 28,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 36,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-15-dplus-21",
+        "anchor-29-dplus-7"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-15-dplus-21",
+          "anchor_ordinal": 15,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-29-dplus-7",
+          "anchor_ordinal": 29,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 37,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-16-dplus-21",
+        "anchor-30-dplus-7"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-16-dplus-21",
+          "anchor_ordinal": 16,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-30-dplus-7",
+          "anchor_ordinal": 30,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 38,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-17-dplus-21",
+        "anchor-31-dplus-7"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-17-dplus-21",
+          "anchor_ordinal": 17,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        },
+        {
+          "slot": "anchor-31-dplus-7",
+          "anchor_ordinal": 31,
+          "interval_days": 7,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 2,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 39,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-18-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-18-dplus-21",
+          "anchor_ordinal": 18,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 40,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-19-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-19-dplus-21",
+          "anchor_ordinal": 19,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 41,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-20-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-20-dplus-21",
+          "anchor_ordinal": 20,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 42,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-21-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-21-dplus-21",
+          "anchor_ordinal": 21,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 43,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-22-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-22-dplus-21",
+          "anchor_ordinal": 22,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 44,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-23-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-23-dplus-21",
+          "anchor_ordinal": 23,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 45,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-24-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-24-dplus-21",
+          "anchor_ordinal": 24,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 46,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-25-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-25-dplus-21",
+          "anchor_ordinal": 25,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 47,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-26-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-26-dplus-21",
+          "anchor_ordinal": 26,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 48,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-27-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-27-dplus-21",
+          "anchor_ordinal": 27,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 49,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-28-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-28-dplus-21",
+          "anchor_ordinal": 28,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 50,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-29-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-29-dplus-21",
+          "anchor_ordinal": 29,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 51,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-30-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-30-dplus-21",
+          "anchor_ordinal": 30,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 52,
+      "new_anchor_ordinal": null,
+      "due_slots": [
+        "anchor-31-dplus-21"
+      ],
+      "selected_transfer_attempts": [
+        {
+          "slot": "anchor-31-dplus-21",
+          "anchor_ordinal": 31,
+          "interval_days": 21,
+          "target_problem_id": null,
+          "target_selection": "abstracted_in_capacity_only"
+        }
+      ],
+      "substantive_exercise_count": 1,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 53,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 54,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 55,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 56,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 57,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 58,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 59,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 60,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 61,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 62,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 63,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 64,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 65,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 66,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 67,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 68,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 69,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 70,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 71,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 72,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 73,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 74,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 75,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 76,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 77,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 78,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 79,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 80,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 81,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 82,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 83,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 84,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 85,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 86,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 87,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 88,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 89,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 90,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 91,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 92,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 93,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 94,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 95,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 96,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 97,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 98,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 99,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 100,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 101,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 102,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 103,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 104,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 105,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 106,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 107,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 108,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 109,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 110,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 111,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 112,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 113,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 114,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 115,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 116,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 117,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 118,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 119,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 120,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 121,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 122,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 123,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 124,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 125,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 126,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 127,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 128,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 129,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 130,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 131,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 132,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 133,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 134,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 135,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 136,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 137,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 138,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 139,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 140,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 141,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 142,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 143,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 144,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 145,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 146,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 147,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 148,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 149,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 150,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 151,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 152,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 153,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    },
+    {
+      "simulation_day": 154,
+      "new_anchor_ordinal": null,
+      "due_slots": [],
+      "selected_transfer_attempts": [],
+      "substantive_exercise_count": 0,
+      "dsa_budget_minutes": 60,
+      "engineering_minutes": 120,
+      "total_budget_minutes": 180,
+      "pending_after_selection": 0
+    }
+  ],
+  "adversarial_capacity_examples": [
+    {
+      "case": "Failure plus overdue plus five retrieval obligations",
+      "status": "SYNTHETIC_PLANNING_FIXTURE_NOT_ATTEMPTS",
+      "as_of_relative_day": 30,
+      "input": [
+        {
+          "slot": "A+3",
+          "original_due_day": 27,
+          "state": "failed_repair_pending"
+        },
+        {
+          "slot": "B+7",
+          "original_due_day": 28,
+          "state": "overdue"
+        },
+        {
+          "slot": "E+21",
+          "original_due_day": 29,
+          "state": "overdue"
+        },
+        {
+          "slot": "C+21",
+          "original_due_day": 30,
+          "state": "due"
+        },
+        {
+          "slot": "D+3",
+          "original_due_day": 30,
+          "state": "due"
+        },
+        {
+          "slot": "new-guided",
+          "state": "eligible_if_capacity"
+        }
+      ],
+      "selected": [
+        "A+3",
+        "B+7",
+        "E+21",
+        "C+21"
+      ],
+      "brief_recall_optional": [
+        "D+3"
+      ],
+      "deferred": [
+        {
+          "slot": "D+3",
+          "original_due_day": 30,
+          "reason": "capacity; brief recall would not close full-transfer evidence"
+        },
+        {
+          "slot": "new-guided",
+          "reason": "failed/overdue retrieval displaces introduction"
+        }
+      ],
+      "substantive_count": 4,
+      "dsa_minutes": 90,
+      "engineering_minutes": 120,
+      "total_minutes": 210,
+      "next_day": "D+3 remains overdue with original due day30; no clock reset or auto-pass."
+    },
+    {
+      "case": "Brief recalls do not inflate tier",
+      "selected_substantive_exercises": [
+        "one-guided",
+        "one-transfer"
+      ],
+      "brief_recall_activities": [
+        "original-anchor-sketch",
+        "prior-error-recall"
+      ],
+      "substantive_count": 2,
+      "dsa_minutes": 60,
+      "engineering_minutes": 120,
+      "total_minutes": 180
+    },
+    {
+      "case": "Revision-only cutoff",
+      "roadmap_day": 151,
+      "new_guided_anchors_remaining": 5,
+      "guided_introduction_allowed": false,
+      "fresh_transfer_of_learned_pattern_allowed": true,
+      "unfinished_anchors_marked_complete": false
+    }
+  ]
+}

@@ -50,7 +50,19 @@
   "daily_budgets_minutes": {
     "total": 180,
     "engineering": 120,
-    "java_dsa": 60
+    "java_dsa": 60,
+    "java_dsa_by_exercise_count": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "total_by_dsa_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "total_min": 180,
+    "total_max": 210
   },
   "cards": [
     {
@@ -107,22 +119,18 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "guided_first_encounter",
         "concept": "running-state array",
         "problem_id": 121,
         "problem": "121 Best Time to Buy and Sell Stock",
-        "planned_attempt_date": "2026-10-20",
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/day-1.md#separate-java-dsa-block-leetcode-121-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-01-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-10-23",
-          "2026-10-27",
-          "2026-11-10"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+        "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
         "resource_references": [
           "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
           "docs/reboot/dsa-error-log-template.md"
@@ -133,9 +141,31 @@
         "related_paths": [
           "src/main/java/assignments/dsa/BestTimeToBuySellStock.java",
           "src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java"
-        ]
+        ],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": 121,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 121,
+        "current_guided_encounter_problem_id": 121,
+        "current_policy_role": "guided_first_sequence",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-20 --roadmap-day 1",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-20 --roadmap-day 1"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY02",
@@ -185,13 +215,13 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "guided_first_encounter",
         "concept": "consolidation and active retrieval",
-        "problem_id": null,
-        "problem": null,
+        "problem_id": 1,
+        "problem": "1 Two Sum",
         "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-02.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-02-dsa.json",
@@ -201,9 +231,32 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": 1,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": 1,
+        "current_policy_role": "guided_first_sequence",
+        "problem_url": "https://leetcode.com/problems/two-sum/",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-21 --roadmap-day 2",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-21 --roadmap-day 2"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY03",
@@ -255,30 +308,48 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "guided_first_encounter",
         "concept": "hash lookup",
-        "problem_id": 1,
-        "problem": "1 Two Sum",
-        "planned_attempt_date": "2026-10-22",
+        "problem_id": 383,
+        "problem": "383 Ransom Note",
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-03.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-03-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-10-25",
-          "2026-10-29",
-          "2026-11-12"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/two-sum/description/",
+        "problem_url": "https://leetcode.com/problems/ransom-note/",
         "resource_references": [
           "https://leetcode.com/problems/two-sum/description/",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": 383,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 1,
+        "current_guided_encounter_problem_id": 383,
+        "current_policy_role": "guided_first_sequence",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-22 --roadmap-day 3",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-22 --roadmap-day 3"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY04",
@@ -330,7 +401,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -346,7 +417,7 @@
             "problem": "121 Best Time to Buy and Sell Stock"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-04.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-04-dsa.json",
@@ -356,9 +427,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-23 --roadmap-day 4",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-23 --roadmap-day 4"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY05",
@@ -410,20 +503,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "frequency counting",
-        "problem_id": 383,
-        "problem": "383 Ransom Note",
-        "planned_attempt_date": "2026-10-24",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-05.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-05-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-10-27",
-          "2026-10-31",
-          "2026-11-14"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/ransom-note/description/",
         "resource_references": [
@@ -431,9 +520,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 383,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-24 --roadmap-day 5",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-24 --roadmap-day 5"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY06",
@@ -485,7 +596,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -501,7 +612,7 @@
             "problem": "1 Two Sum"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-06.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-06-dsa.json",
@@ -511,9 +622,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-25 --roadmap-day 6",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-25 --roadmap-day 6"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY07",
@@ -565,20 +698,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "grouping key",
-        "problem_id": 49,
-        "problem": "49 Group Anagrams",
-        "planned_attempt_date": "2026-10-26",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-07.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-07-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-10-29",
-          "2026-11-02",
-          "2026-11-16"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
         "resource_references": [
@@ -586,9 +715,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 49,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-26 --roadmap-day 7",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-26 --roadmap-day 7"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY08",
@@ -640,7 +791,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -665,7 +816,7 @@
             "problem": "383 Ransom Note"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-08.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-08-dsa.json",
@@ -675,9 +826,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-27 --roadmap-day 8",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-27 --roadmap-day 8"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY09",
@@ -727,20 +900,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "prefix/suffix products",
-        "problem_id": 238,
-        "problem": "238 Product of Array Except Self",
-        "planned_attempt_date": "2026-10-28",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-09.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-09-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-10-31",
-          "2026-11-04",
-          "2026-11-18"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
         "resource_references": [
@@ -748,9 +917,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 238,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-28 --roadmap-day 9",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-28 --roadmap-day 9"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY10",
@@ -800,7 +991,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -825,7 +1016,7 @@
             "problem": "49 Group Anagrams"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-10.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-10-dsa.json",
@@ -835,9 +1026,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-29 --roadmap-day 10",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-29 --roadmap-day 10"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY11",
@@ -887,20 +1100,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "inward pointers",
-        "problem_id": 125,
-        "problem": "125 Valid Palindrome",
-        "planned_attempt_date": "2026-10-30",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-11.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-11-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-02",
-          "2026-11-06",
-          "2026-11-20"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
         "resource_references": [
@@ -908,9 +1117,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 125,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-30 --roadmap-day 11",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-30 --roadmap-day 11"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY12",
@@ -960,7 +1191,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -985,7 +1216,7 @@
             "problem": "238 Product of Array Except Self"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-12.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-12-dsa.json",
@@ -995,9 +1226,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-31 --roadmap-day 12",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-31 --roadmap-day 12"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY13",
@@ -1049,20 +1302,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "sorted two pointers",
-        "problem_id": 167,
-        "problem": "167 Two Sum II - Input Array Is Sorted",
-        "planned_attempt_date": "2026-11-01",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-13.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-13-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-04",
-          "2026-11-08",
-          "2026-11-22"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
         "resource_references": [
@@ -1070,9 +1319,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 167,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-01 --roadmap-day 13",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-01 --roadmap-day 13"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY14",
@@ -1124,7 +1395,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -1149,7 +1420,7 @@
             "problem": "125 Valid Palindrome"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-14.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-14-dsa.json",
@@ -1159,9 +1430,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-02 --roadmap-day 14",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-02 --roadmap-day 14"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY15",
@@ -1211,20 +1504,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "pointer-elimination proof",
-        "problem_id": 11,
-        "problem": "11 Container With Most Water",
-        "planned_attempt_date": "2026-11-03",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-15.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-15-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-06",
-          "2026-11-10",
-          "2026-11-24"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
         "resource_references": [
@@ -1232,9 +1521,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 11,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-03 --roadmap-day 15",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-03 --roadmap-day 15"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY16",
@@ -1284,7 +1595,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -1309,7 +1620,7 @@
             "problem": "167 Two Sum II - Input Array Is Sorted"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-16.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-16-dsa.json",
@@ -1319,9 +1630,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-04 --roadmap-day 16",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-04 --roadmap-day 16"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY17",
@@ -1373,20 +1706,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "variable sliding window",
-        "problem_id": 3,
-        "problem": "3 Longest Substring Without Repeating Characters",
-        "planned_attempt_date": "2026-11-05",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-17.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-17-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-08",
-          "2026-11-12",
-          "2026-11-26"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
         "resource_references": [
@@ -1394,9 +1723,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 3,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-05 --roadmap-day 17",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-05 --roadmap-day 17"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY18",
@@ -1446,7 +1797,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -1471,7 +1822,7 @@
             "problem": "11 Container With Most Water"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-18.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-18-dsa.json",
@@ -1481,9 +1832,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-06 --roadmap-day 18",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-06 --roadmap-day 18"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY19",
@@ -1533,20 +1906,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "shrinking valid window",
-        "problem_id": 209,
-        "problem": "209 Minimum Size Subarray Sum",
-        "planned_attempt_date": "2026-11-07",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-19.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-19-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-10",
-          "2026-11-14",
-          "2026-11-28"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
         "resource_references": [
@@ -1554,9 +1923,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 209,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-07 --roadmap-day 19",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-07 --roadmap-day 19"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY20",
@@ -1606,7 +1997,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -1631,7 +2022,7 @@
             "problem": "3 Longest Substring Without Repeating Characters"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-20.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-20-dsa.json",
@@ -1641,9 +2032,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-08 --roadmap-day 20",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-08 --roadmap-day 20"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY21",
@@ -1695,20 +2108,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "stack",
-        "problem_id": 20,
-        "problem": "20 Valid Parentheses",
-        "planned_attempt_date": "2026-11-09",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-21.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-21-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-12",
-          "2026-11-16",
-          "2026-11-30"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
         "resource_references": [
@@ -1716,9 +2125,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 20,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-09 --roadmap-day 21",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-09 --roadmap-day 21"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY22",
@@ -1768,7 +2199,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -1802,7 +2233,7 @@
             "problem": "209 Minimum Size Subarray Sum"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-22.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-22-dsa.json",
@@ -1812,9 +2243,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-10 --roadmap-day 22",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-10 --roadmap-day 22"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY23",
@@ -1870,20 +2323,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "augmented stack",
-        "problem_id": 155,
-        "problem": "155 Min Stack",
-        "planned_attempt_date": "2026-11-11",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-23.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-23-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-14",
-          "2026-11-18",
-          "2026-12-02"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/min-stack/description/",
         "resource_references": [
@@ -1891,9 +2340,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 155,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-11 --roadmap-day 23",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-11 --roadmap-day 23"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY24",
@@ -1943,7 +2414,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -1977,7 +2448,7 @@
             "problem": "20 Valid Parentheses"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-24.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-24-dsa.json",
@@ -1987,9 +2458,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-12 --roadmap-day 24",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-12 --roadmap-day 24"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY25",
@@ -2039,20 +2532,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "binary-search bridge (outside Top Interview 150)",
-        "problem_id": 704,
-        "problem": "704 Binary Search",
-        "planned_attempt_date": "2026-11-13",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-25.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-25-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-16",
-          "2026-11-20",
-          "2026-12-04"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/binary-search/description/",
         "resource_references": [
@@ -2060,9 +2549,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 704,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-13 --roadmap-day 25",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-13 --roadmap-day 25"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY26",
@@ -2112,7 +2623,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -2146,7 +2657,7 @@
             "problem": "155 Min Stack"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-26.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-26-dsa.json",
@@ -2156,9 +2667,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-14 --roadmap-day 26",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-14 --roadmap-day 26"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY27",
@@ -2208,20 +2741,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "boundary search",
-        "problem_id": 35,
-        "problem": "35 Search Insert Position",
-        "planned_attempt_date": "2026-11-15",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-27.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-27-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-18",
-          "2026-11-22",
-          "2026-12-06"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
         "resource_references": [
@@ -2229,9 +2758,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 35,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-15 --roadmap-day 27",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-15 --roadmap-day 27"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY28",
@@ -2287,7 +2838,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -2321,7 +2872,7 @@
             "problem": "704 Binary Search"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-28.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-28-dsa.json",
@@ -2331,9 +2882,31 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-16 --roadmap-day 28",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-16 --roadmap-day 28"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY29",
@@ -2387,20 +2960,16 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "new_pattern_anchor",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "rotated-array search",
-        "problem_id": 153,
-        "problem": "153 Find Minimum in Rotated Sorted Array",
-        "planned_attempt_date": "2026-11-17",
+        "problem_id": null,
+        "problem": null,
+        "planned_attempt_date": null,
         "review_anchors": [],
-        "guide_path": "docs/reboot/contracts/day-29.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-29-dsa.json",
-        "planned_review_forecast_dates": [
-          "2026-11-20",
-          "2026-11-24",
-          "2026-12-08"
-        ],
+        "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
         "resource_references": [
@@ -2408,9 +2977,31 @@
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": 153,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-17 --roadmap-day 29",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-17 --roadmap-day 29"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "id": "CS-DAY30",
@@ -2460,7 +3051,7 @@
           "independent_solve_or_cold_review": 20,
           "active_retrieval_and_error_log": 15
         },
-        "mode": "consolidation_no_new_problem",
+        "mode": "actual_attempt_queue_dynamic",
         "concept": "consolidation and active retrieval",
         "problem_id": null,
         "problem": null,
@@ -2494,7 +3085,7 @@
             "problem": "35 Search Insert Position"
           }
         ],
-        "guide_path": "docs/reboot/contracts/day-30.md#separate-java-dsa-block-60-minutes",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-30-dsa.json",
@@ -2504,10 +3095,52 @@
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
         "acceptance_commands": [],
-        "related_paths": []
+        "related_paths": [],
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "guided_first_sequence_problem_id": null,
+        "assistance_policy": "Premium/editorial guidance is assisted learning, not an independent pass.",
+        "attempts_inferred": false,
+        "historical_planned_problem_id": null,
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "actual_attempt_queue_dynamic",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-18 --roadmap-day 30",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-18 --roadmap-day 30"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes."
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     }
   ],
-  "path_base": "repository root"
+  "path_base": "repository root",
+  "dsa_workload_policy": {
+    "source": "docs/reboot/dsa/guided-transfer-policy.md",
+    "tier_minutes": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "engineering_minutes": 120,
+    "total_minutes_by_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "guided_first_sequence": {
+      "1": 121,
+      "2": 1,
+      "3": 383
+    },
+    "new_guided_cutoff_roadmap_day": 150
+  }
 }

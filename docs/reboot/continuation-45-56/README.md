@@ -10,4 +10,4 @@ This isolated additive branch continues the 31–44 policy lifecycle slice from 
 
 Scope is one synthetic, read-only annual renewal preview. It does not accept, bind, pay, change coverage, or promise insurance. The current snapshot premium is shown as reference-only; the work does not reprice or create a renewed policy. The 270-day horizon remains a planning frame, not a claim that every later day is approved or mastered.
 
-Each day remains 180 minutes: 60 Java DSA + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). D+3/D+7/D+21 review dates are recalculated from real first-attempt dates; no attempt or review is marked complete by this scaffold.
+Daily total is 180/195/210 minutes: 60/75/90 DSA by exercise count + unchanged 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). D+3/D+7/D+21 review dates are recalculated from real first-attempt dates; no attempt or review is marked complete by this scaffold.

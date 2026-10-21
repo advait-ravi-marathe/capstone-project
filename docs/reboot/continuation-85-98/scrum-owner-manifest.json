@@ -67,12 +67,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-12",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-12 --roadmap-day 85",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-12 --roadmap-day 85",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Client Connection Defaults — Statement Behavior: statement_timeout and lock_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- Spring DataSourceTransactionManager API — Thread-bound connection; Spring transaction timeout mechanism is context only and not configured here: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Draw admission → Hikari checkout → transaction → PostgreSQL lock/query wait → rollback/cleanup. Label which timeout governs each wait. Hikari checkout timeout does not bound SQL after checkout.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 86,
@@ -128,12 +149,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-13",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-13 --roadmap-day 86",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-13 --roadmap-day 86",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Client Connection Defaults — Statement Behavior: positive lock_timeout and statement_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Work zero, negative, valid, equal, reversed, and overflow budgets. PostgreSQL zero disables a timeout, so reject it; require positive representable integer milliseconds and lock budget < statement budget.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 87,
@@ -210,12 +252,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-14",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-14 --roadmap-day 87",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-14 --roadmap-day 87",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Course (access unconfirmed): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps)\n- Step 58 - Introduction to Transaction Management — exact section: Transaction Management (4:43)\n- Spring programmatic transaction management — TransactionTemplate, propagation and rollback: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Spring DataSourceTransactionManager API — Thread-bound connection lookup: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 4:43, worked/reference 16:13, teach-back 4:04; carry forward and shrink implementation if unfinished.\n- Worked example: Trace ambient-transaction rejection before settings or delegate call; then show TransactionTemplate, JdbcTemplate, and the existing TransactionAwareDataSourceProxy adapter reaching one PostgreSQL backend. Never join or use REQUIRES_NEW.",
-      "course_learning_status": "partial_foundation"
+      "course_learning_status": "partial_foundation",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 88,
@@ -276,12 +339,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-15",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-15 --roadmap-day 88",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-15 --roadmap-day 88",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 System Administration Functions — set_config and current_setting: https://www.postgresql.org/docs/18/functions-admin.html\n- PostgreSQL 18 SET — SET LOCAL transaction scope: https://www.postgresql.org/docs/18/sql-set.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 89,
@@ -358,12 +442,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-16",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-16 --roadmap-day 89",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-16 --roadmap-day 89",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Course (access unconfirmed): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps)\n- Step 63 - Implementing Transaction Management - 3 Things to Decide — exact section: Transaction Management (4:38)\n- Spring programmatic transaction management — TransactionTemplate, transaction settings and rollback: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Spring DataSourceTransactionManager API — Transaction-bound JDBC and transaction timeout integration: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 4:38, worked/reference 16:17, teach-back 4:05; carry forward and shrink implementation if unfinished.\n- Worked example: Trace the top-level read-only TransactionTemplate callback: validate positive PostgreSQL budget values, apply only the transaction-local PostgreSQL settings, call the unchanged owner-scoped adapter once, and preserve present/empty. Do not add TransactionTemplate.setTimeout or another timeout mechanism; PostgreSQL statement_timeout is the only SQL-execution budget in this slice.",
-      "course_learning_status": "partial_foundation"
+      "course_learning_status": "partial_foundation",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 90,
@@ -440,12 +545,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-17",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-17 --roadmap-day 90",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-17 --roadmap-day 90",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Course (access unconfirmed): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps)\n- FAQ 3 - Do read only methods need a transaction? — exact section: Let's review with a few FAQs about Hibernate and JPA (4:58)\n- Spring programmatic transaction management — TransactionTemplate rollback rules: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Spring DataSourceTransactionManager API — Read-only transaction behavior and connection cleanup: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 4:58, worked/reference 16:01, teach-back 4:01; carry forward and shrink implementation if unfinished.\n- Worked example: Compare successful commit with thrown mapping error/rollback. A Spring readOnly flag alone does not prove no write; use fixed PostgreSQL snapshots and an attempted write.",
-      "course_learning_status": "partial_foundation"
+      "course_learning_status": "partial_foundation",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 91,
@@ -506,12 +632,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-18",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-18 --roadmap-day 91",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-18 --roadmap-day 91",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- Spring programmatic transaction management — TransactionTemplate rollback: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- PostgreSQL 18 SET — SET LOCAL reset after commit or rollback: https://www.postgresql.org/docs/18/sql-set.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Review failure → rollback → local settings reset → outer admission release → successful next read. Repair prerequisite selectors; no feature.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 92,
@@ -567,12 +714,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-19",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-19 --roadmap-day 92",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-19 --roadmap-day 92",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Error Codes — 55P03 lock_not_available and 57014 query_canceled: https://www.postgresql.org/docs/18/errcodes-appendix.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Classify nested SQLExceptions while preserving causes and safe response. 57014 means query_canceled, not uniquely statement_timeout; 55P03 is not unique proof of a timeout either.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 93,
@@ -638,12 +806,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-20",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-20 --roadmap-day 93",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-20 --roadmap-day 93",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Explicit Locking — Table-level ACCESS SHARE and ACCESS EXCLUSIVE locks: https://www.postgresql.org/docs/18/explicit-locking.html\n- PostgreSQL 18 Client Connection Defaults — lock_timeout and statement_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- PostgreSQL 18 Monitoring Statistics — pg_stat_activity wait_event and transaction fields: https://www.postgresql.org/docs/18/monitoring-stats.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Use a holder connection with a real ACCESS EXCLUSIVE relation lock and the actual owner-scoped reader. Observe PostgreSQL wait state; prove failure and rollback before holder release; cleanup in finally.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 94,
@@ -704,12 +893,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-21",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-21 --roadmap-day 94",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-21 --roadmap-day 94",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Date/Time Functions — Delaying Execution with pg_sleep: https://www.postgresql.org/docs/18/functions-datetime.html\n- PostgreSQL 18 Client Connection Defaults — statement_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Run test-only `SELECT pg_sleep(...)` beyond the local statement budget with no lock contention. Verify cancellation/rollback and a useful next read; avoid latency thresholds.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 95,
@@ -780,12 +990,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-22",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-22 --roadmap-day 95",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-22 --roadmap-day 95",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- Java 21 Statement API — Statement.cancel(): https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html\n- Java 21 Future API — get(timeout, unit) versus cancel: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html\n- PostgreSQL 18 Protocol Flow — Canceling requests: https://www.postgresql.org/docs/18/protocol-flow.html#PROTOCOL-FLOW-CANCELING-REQUESTS\n- PostgreSQL 18 Error Codes — 57014 query_canceled: https://www.postgresql.org/docs/18/errcodes-appendix.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Contrast Future.get(timeout) with server work still running. Test-only worker owns its Statement, rollback and close; cancel that observed Statement and join worker completion before reborrow.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 96,
@@ -851,12 +1082,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-23",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-23 --roadmap-day 96",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-23 --roadmap-day 96",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 System Administration Functions — set_config and current_setting: https://www.postgresql.org/docs/18/functions-admin.html\n- PostgreSQL 18 SET — SET LOCAL transaction scope: https://www.postgresql.org/docs/18/sql-set.html\n- PostgreSQL 18 Monitoring Statistics — backend pid and backend_start: https://www.postgresql.org/docs/18/monitoring-stats.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Capture backend PID/backend_start and baseline settings. Run success, then hold a real ACCESS EXCLUSIVE relation lock while the one-slot reader fails; prove rollback and idle state before releasing the holder. Follow with statement-timeout and mapping-failure rollback. After every outcome deliberately reborrow the one-slot pool and assert the same PID/backend_start, reset settings, and pg_stat_activity idle with no open transaction.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 97,
@@ -919,7 +1171,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "reuse_existing_course_foundation",
-      "scope_note": "Use fixed packaged-test clock 2027-01-01T12:00:00Z so the seeded 2026-01-15 policy is inside its deterministic renewal window. Select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.",
+          "scope_note": "Use fixed packaged-test clock 2027-01-01T12:00:00Z so the seeded 2026-01-15 policy is inside its deterministic renewal window. Select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -940,12 +1192,33 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-24",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-24 --roadmap-day 97",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-24 --roadmap-day 97",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
-  "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Course (access unconfirmed): React - The Complete Guide (incl. Next.js, Redux) — Academind / Maximilian Schwarzmüller (https://www.udemy.com/course/react-the-complete-guide-incl-redux)\n- MDN ARIA status role — Polite status announcements: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role\n- MDN ARIA alert role — Urgent message announcements: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Use fixed packaged-test clock 2027-01-01T12:00:00Z so the seeded 2026-01-15 policy is inside its deterministic renewal window. Select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.",
-      "course_learning_status": "reuse_existing_course_foundation"
+      "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Course (access unconfirmed): React - The Complete Guide (incl. Next.js, Redux) — Academind / Maximilian Schwarzmüller (https://www.udemy.com/course/react-the-complete-guide-incl-redux)\n- MDN ARIA status role — Polite status announcements: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role\n- MDN ARIA alert role — Urgent message announcements: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Use fixed packaged-test clock 2027-01-01T12:00:00Z so the seeded 2026-01-15 policy is inside its deterministic renewal window. Select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.",
+      "course_learning_status": "reuse_existing_course_foundation",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     },
     {
       "day_number": 98,
@@ -1011,12 +1284,53 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-25",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-25 --roadmap-day 98",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-25 --roadmap-day 98",
+        "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "guided_first_sequence_problem_id": null,
+        "attempts_inferred": false
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Client Connection Defaults — lock_timeout and statement_timeout boundaries: https://www.postgresql.org/docs/18/runtime-config-client.html\n- PostgreSQL 18 Error Codes — 55P03 and 57014 semantics: https://www.postgresql.org/docs/18/errcodes-appendix.html\n- Java 21 Future API — Timed wait versus cancellation: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Explain checkout, lock, statement and caller-wait boundaries, local settings, same-backend cleanup and SQLSTATE ambiguity. Assess actual selectors, not dates or instructor pass.",
-      "course_learning_status": "no_exact_course_lesson_verified_supplement_required"
+      "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
+      "budget_minutes_min": 180,
+      "budget_minutes_max": 210,
+      "budget_minutes_by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      },
+      "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
+      "budget_minutes_is_minimum_tier": true
     }
-  ]
+  ],
+  "dsa_workload_policy": {
+    "source": "docs/reboot/dsa/guided-transfer-policy.md",
+    "tier_minutes": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    },
+    "engineering_minutes": 120,
+    "total_minutes_by_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "guided_first_sequence": {
+      "1": 121,
+      "2": 1,
+      "3": 383
+    },
+    "new_guided_cutoff_roadmap_day": 150
+  }
 }
