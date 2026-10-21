@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -59,32 +60,66 @@ class PolicyLifecycleAcceptanceTest {
             assertEquals(created, service.issue(request, "owner-a"), "conflict must not replace original receipt");
         }
         assertNotEquals(created, service.issue(new PolicyIssueRequest("journey-a", "quote-a", "req-b", request.effectiveDate().plusDays(2)), "owner-a"));
-        var ownerB = service.issue(request, "owner-b");
-        assertEquals("owner-b", ownerB.ownerId());
-        assertNotEquals(created, ownerB);
+        var ownerBResult = service.issue(request, "owner-b");
+        assertEquals("owner-b", ownerBResult.ownerId());
+        assertNotEquals(created, ownerBResult);
         assertEquals(created, service.issue(request, "owner-a"), "owner scope remains independent");
 
         AtomicInteger constructions = new AtomicInteger();
+        var facts = new HashMap<String, CandidateFacts>();
+        facts.put("owner-a|journey-a|quote-a", new CandidateFacts("home-secure-v1", "rate-a", new BigDecimal("125.00"), "INR"));
+        facts.put("owner-a|journey-a|quote-b", new CandidateFacts("home-secure-v2", "rate-b", new BigDecimal("175.00"), "INR"));
+        facts.put("owner-a|journey-other|quote-a", new CandidateFacts("home-secure-v3", "rate-c", new BigDecimal("225.00"), "INR"));
+        facts.put("owner-b|journey-a|quote-a", new CandidateFacts("home-secure-owner-b", "rate-owner-b", new BigDecimal("310.00"), "EUR"));
+        facts.put("owner-a|journey-b|quote-b", new CandidateFacts("home-secure-alt", "rate-alt", new BigDecimal("410.00"), "GBP"));
         PolicyIssueSnapshotFactory candidates = (command, owner) -> {
             int n=constructions.incrementAndGet();
-            return new PolicySnapshot("candidate-"+n,owner,command.journeyId(),command.quoteVersionId(),"home-secure-v1","fixture-rate-v1",
-                    new BigDecimal("125.00"),"INR",command.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null);
+            var quote=facts.get(owner+"|"+command.journeyId()+"|"+command.quoteVersionId());
+            if(quote==null) throw new IllegalArgumentException("missing independent candidate facts");
+            return new PolicySnapshot("candidate-"+n,owner,command.journeyId(),command.quoteVersionId(),quote.product(),quote.rate(),
+                    quote.premium(),quote.currency(),command.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null);
         };
         var observed = new PolicyLifecycleService(CLOCK,candidates);
-        var first=observed.issue(request,"owner-a"); assertEquals("candidate-1",first.policyId());
+        var expectedFirst=new PolicySnapshot("candidate-1","owner-a","journey-a","quote-a","home-secure-v1","rate-a",
+                new BigDecimal("125.00"),"INR",request.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null);
+        var first=observed.issue(request,"owner-a"); assertEquals(expectedFirst,first,"the entire supplied quote candidate is used");
+        facts.put("owner-a|journey-a|quote-a",new CandidateFacts("catalog-now-v9","rate-now-v9",new BigDecimal("999.00"),"CAD"));
         assertEquals(first,observed.issue(request,"owner-a")); assertEquals(1,constructions.get());
-        assertThrows(IdempotencyConflictException.class,()->observed.issue(new PolicyIssueRequest("journey-a","quote-b","req-a",request.effectiveDate()),"owner-a"));
-        assertEquals(first,observed.issue(request,"owner-a")); assertEquals(1,constructions.get());
-        var otherOwner=observed.issue(request,"owner-b"); assertEquals("candidate-2",otherOwner.policyId()); assertEquals("owner-b",otherOwner.ownerId());
-        var otherIntent=observed.issue(new PolicyIssueRequest("journey-a","quote-a","req-b",request.effectiveDate().plusDays(1)),"owner-a");
-        assertNotEquals(first,otherIntent); assertEquals(3,constructions.get());
+        var changedQuote=new PolicyIssueRequest("journey-a","quote-b","req-a",request.effectiveDate());
+        var changedJourney=new PolicyIssueRequest("journey-other","quote-a","req-a",request.effectiveDate());
+        var changedDate=new PolicyIssueRequest("journey-a","quote-a","req-a",request.effectiveDate().plusDays(1));
+        for(var changed:List.of(changedQuote,changedJourney,changedDate)) {
+            assertThrows(IdempotencyConflictException.class,()->observed.issue(changed,"owner-a"));
+            assertEquals(first,observed.issue(request,"owner-a"),"each conflict leaves the full original despite changed catalog facts");
+        }
+        assertEquals(1,constructions.get(),"replay and conflicts never construct a candidate");
+        var ownerB=observed.issue(request,"owner-b");
+        assertEquals(new PolicySnapshot("candidate-2","owner-b","journey-a","quote-a","home-secure-owner-b","rate-owner-b",
+                new BigDecimal("310.00"),"EUR",request.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null),ownerB);
+        var otherIntentRequest=new PolicyIssueRequest("journey-b","quote-b","req-b",request.effectiveDate().plusDays(2));
+        var otherIntent=observed.issue(otherIntentRequest,"owner-a");
+        assertEquals(new PolicySnapshot("candidate-3","owner-a","journey-b","quote-b","home-secure-alt","rate-alt",
+                new BigDecimal("410.00"),"GBP",otherIntentRequest.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null),otherIntent);
+        assertEquals(3,constructions.get());
+        assertEquals(first,observed.issue(request,"owner-a"),"other owner/key cannot replace the original receipt");
     }
 
     @Test void day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges() {
-        assertTrue(service.isImmutableIssueSnapshot(issued(), issued()));
-        var changedPrice = new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v2", "rate-v2",
-                new BigDecimal("999.00"), "INR", LocalDate.parse("2026-12-01"), PolicyStatus.ISSUED, 1, List.of(), null);
-        assertFalse(service.isImmutableIssueSnapshot(issued(), changedPrice));
+        var original=issued();
+        assertTrue(service.isImmutableIssueSnapshot(original,original));
+        var oneFieldChanges=List.of(
+                new PolicySnapshot("policy-b",original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),"owner-b",original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),"journey-b",original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),"quote-b",original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),"home-secure-v2",original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),"rate-v2",original.annualPremiumRupees(),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),new BigDecimal("999.00"),original.currency(),original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),"EUR",original.effectiveDate(),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()),
+                new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate().plusDays(1),original.status(),original.version(),original.endorsements(),original.cancellationEffectiveDate()));
+        for(var changed:oneFieldChanges) assertFalse(service.isImmutableIssueSnapshot(original,changed),"each captured issue field is independently immutable: "+changed);
+        var legitimatelyServiced=new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),PolicyStatus.ISSUED,2,List.of(new PolicyEndorsement(2,LocalDate.parse("2026-12-02"),"REBUILD_AMOUNT",new BigDecimal("200000.00"))),null);
+        assertTrue(service.isImmutableIssueSnapshot(original,legitimatelyServiced),"servicing status/version/history may change without repricing issue facts");
     }
 
     @Test void day34MapsCreateReplayAndConflictingReplayToStableHttpCodes() {
@@ -101,12 +136,22 @@ class PolicyLifecycleAcceptanceTest {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var dataSource = postgres.getPostgresDatabase();
             initializeLifecycleSchema(dataSource);
-            var committed = service.persistIssueAtomically(dataSource, issueRequest(), "owner-a");
+            AtomicInteger constructions=new AtomicInteger();
+            var transactionService=new PolicyLifecycleService(CLOCK,(request,owner)->new PolicySnapshot("candidate-"+constructions.incrementAndGet(),owner,request.journeyId(),request.quoteVersionId(),
+                    "home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",request.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null));
+            var committed = transactionService.persistIssueAtomically(dataSource, issueRequest(), "owner-a");
             assertNotNull(committed);
-            assertEquals(committed, service.issue(issueRequest(), "owner-a"), "same service instance must publish replay only after commit");
+            assertEquals(1,constructions.get());
+            assertEquals(committed, transactionService.issue(issueRequest(), "owner-a"), "same service instance must publish replay only after commit");
+            assertEquals(1,constructions.get(),"a committed replay returns the original without rebuilding a candidate");
             assertEquals(1, count(dataSource, "training_policy_lifecycle"));
             assertEquals(1, count(dataSource, "training_policy_idempotency"));
             assertEquals(1, count(dataSource, "training_policy_lifecycle_event"));
+            assertPersistedPolicy(dataSource,committed);
+            try(Connection c=dataSource.getConnection();var s=c.prepareStatement("SELECT owner_id,client_request_id,policy_id FROM training_policy_idempotency");var rs=s.executeQuery()){
+                assertTrue(rs.next());assertEquals("owner-a",rs.getString(1));assertEquals("req-a",rs.getString(2));assertEquals(committed.policyId(),rs.getString(3));assertFalse(rs.next());
+            }
+            assertEvent(dataSource,committed.policyId(),1,"ISSUED",committed.effectiveDate(),null,null);
         }
     }
 
@@ -114,17 +159,32 @@ class PolicyLifecycleAcceptanceTest {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var dataSource = postgres.getPostgresDatabase();
             initializeLifecycleSchema(dataSource);
+            AtomicInteger constructions=new AtomicInteger();
+            var transactionService=new PolicyLifecycleService(CLOCK,(request,owner)->new PolicySnapshot("candidate-"+constructions.incrementAndGet(),owner,request.journeyId(),request.quoteVersionId(),
+                    "home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",request.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null));
             try (Connection c = dataSource.getConnection(); Statement s = c.createStatement()) {
                 s.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('old-policy','owner-a','journey-old','quote-old','home-secure-v1','rate-v1',125.00,'INR',DATE '2026-12-01','ISSUED',1,NULL)");
                 s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('old-policy',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
                 s.executeUpdate("INSERT INTO training_policy_idempotency VALUES ('owner-a','req-a','different-fingerprint','old-policy')");
             }
             RuntimeException conflict = assertThrows(RuntimeException.class,
-                    () -> service.persistIssueAtomically(dataSource, issueRequest(), "owner-a"));
+                    () -> transactionService.persistIssueAtomically(dataSource, issueRequest(), "owner-a"));
             assertInstanceOf(IdempotencyConflictException.class, conflict);
+            assertEquals(1,constructions.get(),"candidate was constructed for the failed transaction but must not be published");
             assertEquals(1, count(dataSource, "training_policy_lifecycle"), "failed receipt write must roll back the new policy row");
             assertEquals(1, count(dataSource, "training_policy_idempotency"), "pre-existing receipt remains the only receipt");
             assertEquals(1, count(dataSource, "training_policy_lifecycle_event"), "failed transaction leaves no new issue event");
+            var old=new PolicySnapshot("old-policy","owner-a","journey-old","quote-old","home-secure-v1","rate-v1",new BigDecimal("125.00"),"INR",
+                    LocalDate.parse("2026-12-01"),PolicyStatus.ISSUED,1,List.of(),null);
+            assertPersistedPolicy(dataSource,old);
+            assertEvent(dataSource,"old-policy",1,"ISSUED",LocalDate.parse("2026-12-01"),null,null);
+            try(Connection c=dataSource.getConnection();var s=c.prepareStatement("SELECT owner_id,client_request_id,request_fingerprint,policy_id FROM training_policy_idempotency");var rs=s.executeQuery()){
+                assertTrue(rs.next());assertEquals("owner-a",rs.getString(1));assertEquals("req-a",rs.getString(2));assertEquals("different-fingerprint",rs.getString(3));assertEquals("old-policy",rs.getString(4));assertFalse(rs.next());
+            }
+            var afterRollback=transactionService.issue(issueRequest(),"owner-a");
+            assertEquals("candidate-2",afterRollback.policyId(),"after rollback the same intent constructs afresh rather than replaying a phantom");
+            assertEquals(2,constructions.get());
+            assertEquals(1,count(dataSource,"training_policy_lifecycle"),"the pure subsequent candidate did not alter the rolled-back database rows");
         }
     }
 
@@ -141,19 +201,23 @@ class PolicyLifecycleAcceptanceTest {
     @Test void day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion() {
         assertAll("endorsement command invariants",
                 () -> assertTrue(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00")))),
-                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-30"), "UNKNOWN", new BigDecimal("200000.00")))),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-18"), "UNKNOWN", new BigDecimal("200000.00")))),
                 () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(0, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "stale expected version 0 must be rejected for current version 1"),
                 () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(2, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "future expected version must be rejected"),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-18"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "past effective date is rejected independently of reason and version"),
                 () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("125.00"))), "no-op amount must be rejected"));
     }
 
     @Test void day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder() {
-        var prior = new PolicyEndorsement(2, LocalDate.parse("2026-12-03"), "REBUILD_AMOUNT", new BigDecimal("200000.00"));
-        var policy = withHistory(List.of(prior));
+        var firstPrior = new PolicyEndorsement(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("150000.00"));
+        var secondPrior = new PolicyEndorsement(2, LocalDate.parse("2026-12-03"), "REBUILD_AMOUNT", new BigDecimal("200000.00"));
+        var originalHistory=List.of(firstPrior,secondPrior);
+        var policy = withHistory(originalHistory);
         var changed = service.endorse(policy, new PolicyEndorsementRequest(2, LocalDate.parse("2026-12-04"), "REBUILD_AMOUNT", new BigDecimal("300000.00")));
         assertEquals(3, changed.version());
-        assertEquals(List.of(prior), changed.endorsements().subList(0, 1));
-        assertEquals(2, changed.endorsements().size());
+        assertEquals(List.of(firstPrior,secondPrior,new PolicyEndorsement(3,LocalDate.parse("2026-12-04"),"REBUILD_AMOUNT",new BigDecimal("300000.00"))),changed.endorsements());
+        assertEquals(2,policy.version(),"input value is unchanged");
+        assertEquals(originalHistory,policy.endorsements(),"input history remains unchanged");
     }
 
     @Test void day39StaleConcurrentEndorsementDoesNotCreatePartialVersion() throws Exception {
@@ -175,6 +239,10 @@ class PolicyLifecycleAcceptanceTest {
                 assertEquals(1, (firstResult instanceof VersionConflictException ? 1 : 0) + (secondResult instanceof VersionConflictException ? 1 : 0), "the loser gets a stale-version conflict");
                 assertEquals(2, scalarLong(dataSource, "SELECT version FROM training_policy_lifecycle WHERE policy_id='policy-a'"));
                 assertEquals(2, count(dataSource, "training_policy_lifecycle_event"), "only issued and winning endorsement events exist");
+                PolicySnapshot winner=firstResult instanceof PolicySnapshot p?p:(PolicySnapshot)secondResult;
+                var winningChange=winner.endorsements().get(winner.endorsements().size()-1);
+                assertPersistedPolicy(dataSource,winner);
+                assertEvent(dataSource,"policy-a",2,"ENDORSED",winningChange.effectiveDate(),winningChange.changeCode(),winningChange.trainingRebuildAmountRupees());
             }
         }
     }
@@ -192,8 +260,14 @@ class PolicyLifecycleAcceptanceTest {
                 () -> assertEquals(scheduled, service.scheduleCancellation(scheduled, request, replayReceipt), "same request replay returns original scheduled snapshot"),
                 () -> assertThrows(IdempotencyConflictException.class, () -> service.scheduleCancellation(scheduled,
                         new PolicyCancellationRequest(2, "cancel-a", LocalDate.parse("2026-12-11"), "CUSTOMER_REQUEST"), replayReceipt)),
+                () -> assertThrows(IdempotencyConflictException.class, () -> service.scheduleCancellation(scheduled,
+                        new PolicyCancellationRequest(2, "cancel-a", LocalDate.parse("2026-12-10"), "OTHER_REASON"), replayReceipt)),
                 () -> assertEquals(PolicyStatus.CANCEL_SCHEDULED, service.scheduleCancellation(issued(),
                         new PolicyCancellationRequest(1, "cancel-today", LocalDate.parse("2026-11-19"), "CUSTOMER_REQUEST"), empty).status(), "same day is non-past under injected Clock"),
+                () -> assertThrows(IllegalArgumentException.class, () -> service.scheduleCancellation(issued(),
+                        new PolicyCancellationRequest(0, "cancel-wrong-version", LocalDate.parse("2026-12-10"), "CUSTOMER_REQUEST"), empty), "wrong expected version is independently rejected"),
+                () -> assertThrows(IllegalArgumentException.class, () -> service.scheduleCancellation(issued(),
+                        new PolicyCancellationRequest(1, "cancel-bad-reason", LocalDate.parse("2026-12-10"), "UNKNOWN"), empty), "unknown reason is independently rejected"),
                 () -> assertThrows(IllegalArgumentException.class, () -> service.scheduleCancellation(issued(),
                         new PolicyCancellationRequest(1, "cancel-past", LocalDate.parse("2026-11-18"), "CUSTOMER_REQUEST"), empty)));
     }
@@ -211,6 +285,30 @@ class PolicyLifecycleAcceptanceTest {
                     () -> assertEquals(PolicyStatus.CANCELLED, onDate.applyDueCancellation(scheduled).status(), "effective date transitions once due"),
                     () -> assertEquals(PolicyStatus.CANCELLED, after.applyDueCancellation(scheduled).status(), "after effective date remains cancelled"),
                     () -> assertEquals(cancelled, after.applyDueCancellation(cancelled), "retry after transition is idempotent"));
+    }
+
+    @Test void day41PersistedDueCancellationUpdatesPolicyAndEventAtomically() throws Exception {
+        try(EmbeddedPostgres postgres=EmbeddedPostgres.builder().start()){
+            var dataSource=postgres.getPostgresDatabase();initializeLifecycleSchema(dataSource);
+            try(Connection c=dataSource.getConnection();Statement s=c.createStatement()){
+                s.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('policy-a','owner-a','journey-a','quote-a','home-secure-v1','training-rate-v1',125.00,'INR',DATE '2026-12-01','CANCEL_SCHEDULED',2,DATE '2026-12-10')");
+                s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
+                s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',2,'CANCEL_SCHEDULED',DATE '2026-12-10','CUSTOMER_REQUEST',NULL)");
+            }
+            var scheduled=new PolicySnapshot("policy-a","owner-a","journey-a","quote-a","home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",
+                    LocalDate.parse("2026-12-01"),PolicyStatus.CANCEL_SCHEDULED,2,List.of(),LocalDate.parse("2026-12-10"));
+            var before=new PolicyLifecycleService(clockOn("2026-12-09"));
+            assertEquals(scheduled,before.applyDueCancellation(dataSource,scheduled),"persisted overload leaves an early schedule unchanged");
+            assertPersistedPolicy(dataSource,scheduled);assertEquals(2,count(dataSource,"training_policy_lifecycle_event"));
+            var due=new PolicyLifecycleService(clockOn("2026-12-10"));
+            var cancelled=new PolicySnapshot("policy-a","owner-a","journey-a","quote-a","home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",
+                    LocalDate.parse("2026-12-01"),PolicyStatus.CANCELLED,3,List.of(),LocalDate.parse("2026-12-10"));
+            assertEquals(cancelled,due.applyDueCancellation(dataSource,scheduled));
+            assertPersistedPolicy(dataSource,cancelled);assertEquals(3,count(dataSource,"training_policy_lifecycle_event"));
+            assertEvent(dataSource,"policy-a",3,"CANCELLED",LocalDate.parse("2026-12-10"),null,null);
+            assertEquals(cancelled,due.applyDueCancellation(dataSource,cancelled),"retry does not append another state version");
+            assertPersistedPolicy(dataSource,cancelled);assertEquals(3,count(dataSource,"training_policy_lifecycle_event"));
+        }
     }
 
     @Test void day42CancelledPolicyRejectsWritesButRemainsReadable() {
@@ -250,6 +348,7 @@ class PolicyLifecycleAcceptanceTest {
     private static PolicyIssueRequest issueRequest() {
         return new PolicyIssueRequest("journey-a", "quote-a", "req-a", LocalDate.parse("2026-12-01"));
     }
+    private record CandidateFacts(String product, String rate, BigDecimal premium, String currency) {}
     private static PolicySnapshot issued() {
         return new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v1", "training-rate-v1",
                 new BigDecimal("125.00"), "INR", LocalDate.parse("2026-12-01"), PolicyStatus.ISSUED, 1, List.of(), null);
@@ -272,6 +371,27 @@ class PolicyLifecycleAcceptanceTest {
     private static void seedPolicy(javax.sql.DataSource dataSource) throws Exception {
         try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
             statement.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('policy-a','owner-a','journey-a','quote-a','home-secure-v1','training-rate-v1',125.00,'INR',DATE '2026-12-01','ISSUED',1,NULL)");
+        }
+    }
+
+    private static void assertPersistedPolicy(javax.sql.DataSource dataSource,PolicySnapshot expected)throws Exception {
+        try(Connection c=dataSource.getConnection();var s=c.prepareStatement("SELECT owner_id,journey_id,quote_version_id,product_version,rate_version,annual_premium_rupees,currency,effective_date,status,version,cancellation_effective_date FROM training_policy_lifecycle WHERE policy_id=?")){
+            s.setString(1,expected.policyId());try(var rs=s.executeQuery()){
+                assertTrue(rs.next(),"persisted policy row exists");
+                assertEquals(expected.ownerId(),rs.getString(1));assertEquals(expected.journeyId(),rs.getString(2));assertEquals(expected.quoteVersionId(),rs.getString(3));
+                assertEquals(expected.productVersion(),rs.getString(4));assertEquals(expected.rateVersion(),rs.getString(5));
+                assertEquals(0,expected.annualPremiumRupees().compareTo(rs.getBigDecimal(6)));assertEquals(expected.currency(),rs.getString(7).trim());
+                assertEquals(expected.effectiveDate(),rs.getDate(8).toLocalDate());assertEquals(expected.status().name(),rs.getString(9));assertEquals(expected.version(),rs.getLong(10));
+                java.sql.Date cancellation=rs.getDate(11);assertEquals(expected.cancellationEffectiveDate(),cancellation==null?null:cancellation.toLocalDate());assertFalse(rs.next());
+            }
+        }
+    }
+    private static void assertEvent(javax.sql.DataSource dataSource,String policyId,long version,String kind,LocalDate date,String code,BigDecimal rebuildAmount)throws Exception {
+        try(Connection c=dataSource.getConnection();var s=c.prepareStatement("SELECT event_type,effective_date,change_code,training_rebuild_amount_rupees FROM training_policy_lifecycle_event WHERE policy_id=? AND version=?")){
+            s.setString(1,policyId);s.setLong(2,version);try(var rs=s.executeQuery()){
+                assertTrue(rs.next(),"expected persisted event exists");assertEquals(kind,rs.getString(1));assertEquals(date,rs.getDate(2).toLocalDate());assertEquals(code,rs.getString(3));
+                BigDecimal amount=rs.getBigDecimal(4);if(rebuildAmount==null)assertNull(amount);else assertEquals(0,rebuildAmount.compareTo(amount));assertFalse(rs.next());
+            }
         }
     }
 

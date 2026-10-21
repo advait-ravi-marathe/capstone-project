@@ -36,7 +36,7 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-34-request-to-response.md](../../continuation-31-44/worked/day-34-request-to-response.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
-Required course foundation: Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location (11:24). Replacement-only optional lessons: Step 11 - Implementing Exception Handling - 404 Resource Not Found. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
+Required course foundation: Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location (11:24). Optional reference-only lessons (outside today's 25-minute scheduled path): Step 11 - Implementing Exception Handling - 404 Resource Not Found. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
 Focused sources:
 - [Spring Framework: Method Arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html) — java.security.Principal table entry; @RequestBody table entry.

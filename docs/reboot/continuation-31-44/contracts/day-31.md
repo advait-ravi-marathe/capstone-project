@@ -31,7 +31,7 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-31-discovery-and-facts.md](../../continuation-31-44/worked/day-31-discovery-and-facts.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
-Required course foundation: Step 21 - Understanding Spring Security Authentication (4:17). Replacement-only optional lessons: Step 22 - Exploring Spring Security Authorization. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
+Required course foundation: Step 21 - Understanding Spring Security Authentication (4:17). Optional reference-only lessons (outside today's 25-minute scheduled path): Step 22 - Exploring Spring Security Authorization. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
 Focused sources:
 - [GOV.UK Service Manual: Plan user research for your service](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service) — Agree research questions.

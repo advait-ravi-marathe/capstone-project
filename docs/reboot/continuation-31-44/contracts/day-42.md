@@ -31,7 +31,7 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-42-operational-handover.md](../../continuation-31-44/worked/day-42-operational-handover.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
-Required course foundation: Java Tip 14 - Why Enum and Enum Basics - ordinal and values (7:28). Replacement-only optional lessons: Java Tip 15 - Enum - Constructor, variables and methods. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
+Required course foundation: Java Tip 14 - Why Enum and Enum Basics - ordinal and values (7:28). Optional reference-only lessons (outside today's 25-minute scheduled path): Java Tip 15 - Enum - Constructor, variables and methods. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
 Focused sources:
 - [AWS Well-Architected Operational Excellence: Use runbooks to perform procedures](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html) — Implementation guidance; Implementation steps.

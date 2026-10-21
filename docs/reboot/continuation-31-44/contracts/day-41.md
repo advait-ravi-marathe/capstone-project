@@ -18,9 +18,10 @@ At injected Clock time equal to or after effective date, transition once to CANC
 Fixed acceptance tests are learner-owned behavior checks; they must assert the cases above and must not be weakened to make the starter green. Until the TODO is implemented, a valid operation is expected to fail at the named TODO. Invalid-input and non-mutation cases should be asserted independently where fixtures permit. Record the exact command, exit code, failing assertions/errors, and TODO reached in `evidence/continuation-31-44/day-41.json`. Instructor infrastructure checks are separate and must pass. No learner completion is inferred from a contract or from infrastructure tests.
 
 **Acceptance selector:** `src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce`
+**Persisted overload acceptance selector:** `src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically`
 **Infrastructure selector:** `assignments.reboot.ContinuationManifestInfrastructureTest`
 
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test`
+**Learner acceptance commands:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test` and `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically test`
 **Instructor infrastructure command:** `./mvnw -Dtest=ContinuationManifestInfrastructureTest test`
 
 ## Build / test allocation (85 minutes)
@@ -31,7 +32,7 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-41-clock-transition.md](../../continuation-31-44/worked/day-41-clock-transition.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
-Required course foundation: none; use the bounded authored/official bridge. Replacement-only optional lessons: none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
+Required course foundation: none; use the bounded authored/official bridge. Optional reference-only lessons (outside today's 25-minute scheduled path): none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
 Focused sources:
 - [Java SE 21: Clock](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html) — Class Clock; fixed(Instant, ZoneId).

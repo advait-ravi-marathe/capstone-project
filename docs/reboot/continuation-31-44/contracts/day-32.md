@@ -31,7 +31,7 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-32-receipt-trace.md](../../continuation-31-44/worked/day-32-receipt-trace.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
-Required course foundation: none; use the bounded authored/official bridge. Replacement-only optional lessons: none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
+Required course foundation: none; use the bounded authored/official bridge. Optional reference-only lessons (outside today's 25-minute scheduled path): none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
 Focused sources:
 - [AWS Builders’ Library: Making retries safe with idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) — Retries and semantic equivalence; Same client request ID, different intent.

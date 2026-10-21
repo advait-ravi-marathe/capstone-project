@@ -8,7 +8,7 @@ Toy scheduled state effective Dec10 is unchanged when fixed clock is Dec09; beco
 
 ## Transfer task
 
-Transfer: test before/equal/after and repeat boundaries. The persisted overload must keep state/event atomic when integrated; a pure function does not prove cross-service exactly-once processing.
+Transfer: implement both existing `applyDueCancellation` overloads in Day41: first the pure policy transition, then `applyDueCancellation(DataSource, PolicySnapshot)` using the same PostgreSQL state/event transaction boundary taught and verified on Day35. The persisted overload is Day41 work and a Day44 prerequisite; it must not be deferred to integration or called by the pure transition selector. Run the pure selector and `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically test`; the latter checks before-date no-op, due-date state plus event, and idempotent retry using a disposable embedded PostgreSQL fixture. Repeated local invocation safety does not prove cross-service exactly-once processing.
 
 ## Readiness check
 

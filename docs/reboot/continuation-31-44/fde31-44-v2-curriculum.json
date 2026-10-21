@@ -34,7 +34,7 @@
         "mvc_args"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md#worked-example",
       "readiness": [
         "Actual Day28–30 evidence, not delivered scaffold status",
         "Main repaired request/validator/service, value/time and security guides"
@@ -83,7 +83,7 @@
         "idempotency"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md#worked-example",
       "readiness": [
         "Day31 request/fact distinction",
         "Supplied snapshot factory fixture, no later learner TODO"
@@ -132,7 +132,7 @@
         "record"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md#worked-example",
       "readiness": [
         "Day32 receipt snapshot",
         "Main immutable values guide"
@@ -183,7 +183,7 @@
         "mockmvc"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md#worked-example",
       "readiness": [
         "Days31/32 actual domain selectors",
         "Main request/DTO/error mapping bridge; supplied test-only MVC wiring"
@@ -236,7 +236,7 @@
         "tx"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md#worked-example",
       "readiness": [
         "Day32 receipt logic",
         "Main raw JDBC same-connection transaction bridge",
@@ -291,7 +291,7 @@
         "authz"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md#worked-example",
       "readiness": [
         "Main JDBC/Optional and authorization distinctions",
         "Supplied PolicyReadStore"
@@ -342,7 +342,7 @@
         "mvc_args"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md#worked-example",
       "readiness": [
         "Issued snapshot and date/version facts",
         "Main DTO validation bridge"
@@ -388,7 +388,7 @@
         "record"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-38-append-history.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-38-append-history.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-38-append-history.md#worked-example",
       "readiness": [
         "Day37 validation and immutable values"
       ],
@@ -433,7 +433,7 @@
         "affected"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md#worked-example",
       "readiness": [
         "Days35/38 transactions and history",
         "Main concurrency/rollback prerequisite"
@@ -481,7 +481,7 @@
         "idempotency"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md#worked-example",
       "readiness": [
         "Day32 receipt semantics",
         "Date/Clock and current policy version"
@@ -526,7 +526,7 @@
         "clock"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md#worked-example",
       "readiness": [
         "Day40 scheduling receipt semantics"
       ],
@@ -554,8 +554,10 @@
       "preserved_acceptance_commands": [
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
       ],
-      "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "proposed_additional_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically test"
+      ],
+      "command_status": "The pure transition selector and persisted overload acceptance selector must both be run. Existing command inspected; newly added selector is compiled and must be executed before release. No runtime result claimed."
     },
     {
       "day": 42,
@@ -575,7 +577,7 @@
         "enum"
       ],
       "guide_path": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md",
-      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md — Worked example",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md#worked-example",
       "readiness": [
         "Day36 owner read and Days40–41 state transitions"
       ],
