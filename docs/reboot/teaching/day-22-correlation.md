@@ -1,6 +1,6 @@
 # Day 22 — Correlation without leaking request data
 
-Required study is the owned course “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). Actuator monitoring (6:54) is optional replacement-only reference. The 25-minute study block is 9:53 course, 2:00 focused reading, 8:00 worked trace, 3:00 prediction, and 2:07 pause buffer.
+Required study is the owned course “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). Actuator monitoring (6:54) is optional replacement-only reference. The 25-minute study block is 9:53 course, 2:00 focused reading of Spring’s [`OncePerRequestFilter.doFilterInternal` request/response/filter-chain contract](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/filter/OncePerRequestFilter.html) (skip async-dispatch behavior), 8:00 worked trace, 3:00 prediction, and 2:07 pause buffer.
 
 ## Worked run
 

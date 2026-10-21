@@ -6,7 +6,7 @@
 
 ## Learner seam
 
-security config / API client. Keep the business rule in this focused subject. Do not implement later-day behavior early.
+Test-only form-login/session and server-issued CSRF cookie/header flow, followed by the existing `JourneyAccessPolicy.assertCanAccess` owner-policy prerequisite. No production security configuration or API-client change is assigned; keep the owner rule in its existing learner-owned seam.
 
 ## Acceptance invariants
 

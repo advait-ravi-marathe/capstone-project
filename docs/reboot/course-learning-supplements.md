@@ -163,13 +163,13 @@ Use the [complete Day 24 plan guide](teaching/day-24-explain.md), the two condit
 
 Use the [complete Day 25 transaction guide](teaching/day-25-unique-race.md) and run `./mvnw -Dtest=Day25TwoTransactionReferenceTest test`. The real PostgreSQL toy checks the held winner, SQLSTATE 23505, loser rollback, fresh-connection read, and one final row. The learner acceptance stays separate.
 
-**Primary reference:** [PostgreSQL unique constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
+**Primary references:** [PostgreSQL transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html) (BEGIN/COMMIT/ROLLBACK and failed-transaction recovery), [Read Committed](https://www.postgresql.org/docs/18/transaction-iso.html) (fresh committed snapshot), and [INSERT](https://www.postgresql.org/docs/18/sql-insert.html) (`ON CONFLICT` alternative).
 
 ## Day 26 — Atomic audit and minimization
 
 Use the [complete Day 26 audit guide](teaching/day-26-audit.md) and run `./mvnw -Dtest=Day26AuditReferenceTest test`. The real disposable PostgreSQL reference verifies first insert, repeat without another event, and trigger failure rolling back both rows; it checks exact fields and row counts.
 
-**Primary reference:** [Spring programmatic transaction management](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
+**Primary references:** [PostgreSQL transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html) (atomic commit/rollback) and [INSERT](https://www.postgresql.org/docs/18/sql-insert.html) (`RETURNING` and inserted-row outcomes).
 
 ## Day 27 — Regression hypothesis and scope
 
