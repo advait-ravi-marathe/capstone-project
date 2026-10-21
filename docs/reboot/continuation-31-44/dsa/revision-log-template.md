@@ -12,6 +12,8 @@ history):
 ```json
 {"schema_version":2,"event_id":"unique-local-id","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"anchor_attempt","activity":"guided_anchor","target_problem_id":121,"assistance":["editorial"],"result":"attempted","minutes":25}
 {"schema_version":2,"event_id":"unique-local-id-2","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"retrieval_attempt","activity":"independent_transfer","review_interval_days":3,"review_slot_id":"lc:121+3","target_problem_id":2016,"attempt_id":"physical-attempt-1","evidence_reference":"local-evidence-1","assistance":["none"],"result":"passed","minutes":20,"invariant_explanation":"Write your own evidence here."}
+{"schema_version":2,"event_id":"unique-local-id-3","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"retrieval_attempt","activity":"repair","review_interval_days":3,"review_slot_id":"lc:121+3","target_problem_id":2016,"attempt_id":"physical-repair-1","evidence_reference":"local-repair-evidence-1","repairs_event_id":"earlier-failed-event-id","assistance":["none"],"result":"passed","minutes":15}
+{"schema_version":2,"event_id":"unique-local-id-4","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"retrieval_attempt","activity":"qualified_extension","review_interval_days":7,"review_slot_id":"lc:121+7","target_problem_id":1014,"attempt_id":"physical-extension-1","evidence_reference":"local-extension-evidence-1","assistance":["none"],"result":"attempted","minutes":20}
 ```
 
 Use `kind` values `anchor_attempt`, `retrieval_attempt`, `exposure`, or
@@ -24,8 +26,13 @@ earlier as-of queue.
 For an independent transfer, attempt before viewing the LeetCode Premium
 editorial or a targeted hint. Editorial, hint, walkthrough, other assistance,
 or unknown help is not an independent pass, even if LeetCode accepts the code.
-After help, record the work as assisted study/repair. A transfer is not a new
-canonical anchor and never starts its own review clock.
+After help, record the work as assisted study/repair. A repair references the
+earlier failed event and must keep its same anchor, slot and target. Only a
+passing unaided repair resolves that failure; it does not close independent
+transfer credit. A transfer is not a new canonical anchor and never starts
+its own review clock. A catalog-qualified extension or partial component uses
+`activity: "qualified_extension"`; it remains separate from independent
+transfer credit and leaves the checkpoint open.
 
 The only review clock starts at the earliest actual first attempt for that
 canonical anchor, including an assisted/guided attempt. D+3, D+7 and D+21 are

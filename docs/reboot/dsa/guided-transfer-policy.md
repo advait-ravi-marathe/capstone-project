@@ -85,10 +85,28 @@ LeetCode history, Premium access, or prerequisite readiness. After checking
 those personally, a due transfer may be supplied as
 `--confirmed-transfer lc:121+3=2016`. This is recorded as learner-asserted
 freshness/readiness, not independently verified fact. The tool rejects a
-candidate already present in the local event history, duplicate targets, a
-non-catalog candidate, a non-due slot, skipping an older due slot, or more
-than one exercise for the same anchor in one session. Without that input, the
-slot remains due and visible instead of being assigned an assumed-fresh task.
+candidate already present in the local event history, an equivalent exposed
+target, a duplicate target, a non-catalog/non-full-transfer candidate, or a
+non-due slot. An unconfirmed slot or catalog gap stays due with its original
+date while other eligible due anchors may use capacity; only one retrieval per
+anchor and at most four substantive exercises are selected.
+
+For a failed retrieval, use a repair only on the same canonical anchor, review
+slot and exact failed target. When the queue reports that target, an explicit
+selection looks like `--confirmed-repair lc:121+3=2016`. Record it as a v2
+`retrieval_attempt` with `activity: "repair"`, a unique attempt/evidence
+reference, and `repairs_event_id` naming the earlier failed event. An unrelated
+target, empty repair or repair without evidence is rejected. Only an evidenced
+unaided passing repair clears the failed-repair warning; repair is not fresh
+transfer credit, so the independent-transfer checkpoint remains due.
+
+When the catalog marks a fresh candidate as a prerequisite extension or partial
+component, it can be scheduled explicitly with
+`--confirmed-extension lc:121+7=1014` after checking history, access and
+prerequisites. The queue labels this as a qualified extension/component
+exercise. It is not a full same-invariant transfer, never earns independent
+transfer credit, and leaves the original checkpoint due. A relation already
+classified as a full transfer belongs on `--confirmed-transfer` instead.
 
 After Day 171, any future engineering/interview-question time policy is outside
 this Days 1–154 correction. It does not remove pending DSA reviews. No Days

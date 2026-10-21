@@ -14,8 +14,8 @@ class GuidedTransferPolicyTest(unittest.TestCase):
 
     @staticmethod
     def transfer_attempt(pid, interval, date, target, *, result="passed", activity="independent_transfer",
-                         assistance="none", attempt_id=None, evidence=None, slot=None):
-        return {"schema_version": 2, "event_id": f"event-{attempt_id or date}-{target}-{interval}",
+                         assistance="none", attempt_id=None, evidence=None, slot=None, repairs_event_id=None):
+        event = {"schema_version": 2, "event_id": f"event-{attempt_id or date}-{target}-{interval}",
                 "attempt_id": attempt_id or f"attempt-{date}-{target}-{interval}",
                 "evidence_reference": evidence or f"evidence/{date}-{target}-{interval}.json",
                 "review_slot_id": slot or f"lc:{pid}+{interval}", "date": date, "timezone": "Asia/Kolkata",
@@ -23,6 +23,9 @@ class GuidedTransferPolicyTest(unittest.TestCase):
                 "kind": "retrieval_attempt", "activity": activity, "assistance": assistance,
                 "review_interval_days": interval, "result": result,
                 "invariant_explanation": "I preserved the invariant on every step."}
+        if repairs_event_id is not None:
+            event["repairs_event_id"] = repairs_event_id
+        return event
 
     def test_registry_has_31_immutable_canonical_ids_and_initial_sequence(self):
         anchors = queue.load_registry()
@@ -206,7 +209,8 @@ class GuidedTransferPolicyTest(unittest.TestCase):
     def test_failed_slot_can_be_repaired_or_passed_by_a_later_distinct_attempt(self):
         first = self.anchor_attempt(35, 27, "2026-10-01")
         failed = self.transfer_attempt(35, 3, "2026-10-04", 744, result="failed", attempt_id="failed", evidence="failed.json")
-        repair = self.transfer_attempt(35, 3, "2026-10-05", 744, activity="repair", attempt_id="repair", evidence="repair.json")
+        repair = self.transfer_attempt(35, 3, "2026-10-05", 744, activity="repair", attempt_id="repair",
+                                       evidence="repair.json", repairs_event_id=failed["event_id"])
         row = next(a for a in queue.build_queue([first, failed, repair], "2026-10-05")["anchors"] if a["problem_id"] == 35)
         self.assertEqual("overdue", row["reviews"][0]["status"])
         self.assertTrue(row["reviews"][0]["failed_attempt_resolved_by_later_repair_or_transfer"])
@@ -215,6 +219,89 @@ class GuidedTransferPolicyTest(unittest.TestCase):
         row = next(a for a in queue.build_queue([first, failed, fresh], "2026-10-05")["anchors"] if a["problem_id"] == 35)
         self.assertEqual("passed_independent_transfer", row["reviews"][0]["status"])
         self.assertTrue(row["reviews"][0]["failed_attempt_resolved_by_later_repair_or_transfer"])
+
+    def test_repair_requires_explicit_same_failed_target_anchor_and_slot(self):
+        first = self.anchor_attempt(121, 1, "2026-10-22")
+        failed = self.transfer_attempt(121, 3, "2026-10-25", 2016, result="failed",
+                                       attempt_id="repair-target-failed", evidence="failed-2016.json")
+        base_repair = self.transfer_attempt(121, 3, "2026-10-26", 2016, activity="repair",
+                                            attempt_id="repair-2016", evidence="repair-2016.json",
+                                            repairs_event_id=failed["event_id"])
+        row = next(a for a in queue.build_queue([first, failed, base_repair], "2026-10-26")["anchors"]
+                   if a["problem_id"] == 121)
+        self.assertEqual("overdue", row["reviews"][0]["status"])
+        self.assertTrue(row["reviews"][0]["failed_attempt_resolved_by_later_repair_or_transfer"])
+        self.assertFalse(row["reviews"][0]["independent_transfer_evidence"])
+
+        no_link = {**base_repair, "event_id": "repair-no-link", "attempt_id": "repair-no-link"}
+        no_link.pop("repairs_event_id")
+        with self.assertRaisesRegex(ValueError, "requires repairs_event_id"):
+            queue.build_queue([first, failed, no_link], "2026-10-26")
+        unrelated_target = self.transfer_attempt(121, 3, "2026-10-26", 122, activity="repair",
+                                                 attempt_id="repair-122", evidence="repair-122.json",
+                                                 repairs_event_id=failed["event_id"])
+        with self.assertRaisesRegex(ValueError, "must match the failed attempt target"):
+            queue.build_queue([first, failed, unrelated_target], "2026-10-26")
+
+        wrong_slot_failure = self.transfer_attempt(121, 7, "2026-10-28", 1014, result="failed",
+                                                   attempt_id="failed-seven", evidence="failed-seven.json")
+        wrong_slot_repair = self.transfer_attempt(121, 3, "2026-10-29", 1014, activity="repair",
+                                                  attempt_id="wrong-slot-repair", evidence="wrong-slot.json",
+                                                  repairs_event_id=wrong_slot_failure["event_id"])
+        with self.assertRaisesRegex(ValueError, "same anchor and review slot"):
+            queue.build_queue([first, wrong_slot_failure, wrong_slot_repair], "2026-10-29")
+
+        wrong_anchor_repair = self.transfer_attempt(1, 3, "2026-10-26", 2016, activity="repair",
+                                                    attempt_id="wrong-anchor-repair", evidence="wrong-anchor.json",
+                                                    repairs_event_id=failed["event_id"])
+        with self.assertRaisesRegex(ValueError, "same anchor and review slot"):
+            queue.build_queue([first, failed, wrong_anchor_repair], "2026-10-26")
+
+        missing_attempt = {**base_repair, "event_id": "missing-attempt", "attempt_id": " ",
+                           "repairs_event_id": failed["event_id"]}
+        with self.assertRaisesRegex(ValueError, "attempt_id and evidence_reference"):
+            queue.build_queue([first, failed, missing_attempt], "2026-10-26")
+        missing_evidence = {**base_repair, "event_id": "missing-evidence", "evidence_reference": "",
+                            "repairs_event_id": failed["event_id"]}
+        with self.assertRaisesRegex(ValueError, "attempt_id and evidence_reference"):
+            queue.build_queue([first, failed, missing_evidence], "2026-10-26")
+
+        assisted_repair = {**base_repair, "event_id": "assisted-repair", "attempt_id": "assisted-repair",
+                           "assistance": ["editorial"], "repairs_event_id": failed["event_id"]}
+        row = next(a for a in queue.build_queue([first, failed, assisted_repair], "2026-10-26")["anchors"]
+                   if a["problem_id"] == 121)
+        self.assertEqual("failed_repair_pending", row["reviews"][0]["status"])
+
+    def test_repair_selection_reuses_only_the_failed_target_and_not_fresh_transfer_credit(self):
+        first = self.anchor_attempt(121, 1, "2026-10-22")
+        failed = self.transfer_attempt(121, 3, "2026-10-25", 2016, result="failed",
+                                       attempt_id="failed-2016-selection", evidence="failed-select.json")
+        result = queue.build_queue([first, failed], "2026-10-25", 4,
+                                   confirmed_repairs=["lc:121+3=2016"])
+        repair = result["selected_exercises"][0]
+        self.assertEqual("repair_attempt", repair["activity"])
+        self.assertEqual(2016, repair["target_problem_id"])
+        self.assertFalse(repair["independent_transfer_credit"])
+        self.assertEqual("failed_repair_pending", repair["status"])
+        self.assertFalse(any(item["activity"] == "guided_anchor" for item in result["selected_exercises"]))
+
+        with self.assertRaisesRegex(ValueError, "repair target must match failed target"):
+            queue.build_queue([first, failed], "2026-10-25", 4,
+                               confirmed_repairs=["lc:121+3=122"])
+        with self.assertRaisesRegex(ValueError, "not awaiting a failed-attempt repair"):
+            queue.build_queue([first], "2026-10-25", 4,
+                               confirmed_repairs=["lc:121+3=2016"])
+
+    def test_review_kind_repair_cannot_bypass_retrieval_evidence(self):
+        first = self.anchor_attempt(121, 1, "2026-10-22")
+        failed = self.transfer_attempt(121, 3, "2026-10-25", 2016, result="failed",
+                                       attempt_id="failed-review-kind", evidence="failed-review-kind.json")
+        fake = {"schema_version": 2, "event_id": "fake-review-repair", "date": "2026-10-26",
+                "timezone": "Asia/Kolkata", "anchor_id": "lc:121", "anchor_problem_id": 121,
+                "kind": "review", "activity": "repair", "review_interval_days": 3,
+                "result": "passed", "assistance": "none", "repairs_event_id": failed["event_id"]}
+        with self.assertRaisesRegex(ValueError, "must be a retrieval_attempt"):
+            queue.build_queue([first, failed, fake], "2026-10-26")
 
     def test_correction_must_reference_an_earlier_event_and_changes_its_projection(self):
         first = self.anchor_attempt(121, 1, "2026-10-22")
@@ -248,6 +335,28 @@ class GuidedTransferPolicyTest(unittest.TestCase):
         self.assertTrue(any(item.get("slot_id") == "lc:155+3" and "validated_transfer_needed" in item["deferred_reason"]
                             for item in result["deferred_exercises"]))
 
+    def test_qualified_extension_is_scheduled_separately_without_transfer_credit(self):
+        first = self.anchor_attempt(121, 1, "2026-10-01")
+        result = queue.build_queue([first], "2026-10-08", 10,
+                                   confirmed_extensions=["lc:121+7=1014"])
+        exercise = next(item for item in result["selected_exercises"] if item.get("slot_id") == "lc:121+7")
+        self.assertEqual("qualified_extension_attempt", exercise["activity"])
+        self.assertEqual("prerequisite_extension", exercise["candidate_relation"])
+        self.assertIn("does not close", exercise["credit_scope"])
+        self.assertFalse(exercise["independent_transfer_credit"])
+        row = next(a for a in result["anchors"] if a["problem_id"] == 121)
+        self.assertEqual("due", row["reviews"][1]["status"])
+        observed_extension = self.transfer_attempt(121, 7, "2026-10-08", 1014,
+                                                   activity="qualified_extension", attempt_id="extension-observed")
+        row = next(a for a in queue.build_queue([first, observed_extension], "2026-10-08")["anchors"]
+                   if a["problem_id"] == 121)
+        self.assertEqual("due", row["reviews"][1]["status"])
+        self.assertFalse(row["reviews"][1]["independent_transfer_evidence"])
+        self.assertFalse(row["reviews"][1]["assisted_observation_does_not_close_slot"])
+        with self.assertRaisesRegex(ValueError, "not a qualified non-full extension"):
+            queue.build_queue([first], "2026-10-04", 5,
+                              confirmed_extensions=["lc:121+3=2016"])
+
     def test_same_anchor_due_slot_does_not_block_another_anchor_and_five_confirmations_overflow(self):
         first_a = self.anchor_attempt(121, 1, "2026-10-01")
         first_b = self.anchor_attempt(1, 3, "2026-10-05")
@@ -263,6 +372,10 @@ class GuidedTransferPolicyTest(unittest.TestCase):
         self.assertEqual(4, len(result["selected_exercises"]))
         self.assertTrue(any(item.get("slot_id") == "lc:49+3" and
                             item["original_due_date"] == "2026-10-04" for item in result["deferred_exercises"]))
+        self.assertTrue(any(item.get("activity") == "guided_anchor" and
+                            item.get("status") == "guided_introduction_deferred" and
+                            "four-exercise daily cap" in item["deferred_reason"]
+                            for item in result["deferred_exercises"]))
 
     def test_conflicting_duplicate_event_ids_and_bad_timezone_fail_closed(self):
         event = {"schema_version": 2, "event_id": "dupe", "date": "2026-10-20", "timezone": "Asia/Kolkata",
