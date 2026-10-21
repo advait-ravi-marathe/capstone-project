@@ -2685,19 +2685,23 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-27.md",
-        "active_guide_path": "docs/reboot/contracts/day-27.md",
+        "active_guide_path": "docs/reboot/teaching/day-27-regression-hypothesis.md",
         "acceptance_reference": "docs/reboot/contracts/day-27.md",
-        "concept": "Debugging hypothesis, regression prevention and scope control",
-        "concept_reference": "docs/reboot/contracts/day-27.md#concept-25-minutes",
-        "evidence_reference": "docs/reboot/contracts/day-27.md",
+        "concept": "Regression hypotheses and boundary evidence",
+        "concept_reference": "docs/reboot/teaching/day-27-regression-hypothesis.md",
+        "evidence_reference": "docs/reboot/teaching/day-27-regression-hypothesis.md",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
         "integration_status": "blocked",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=Day27ContractTest test"
         ],
-        "infrastructure_commands": [],
-        "related_paths": [],
+        "infrastructure_commands": [
+          "./mvnw -Dtest=Day27RegressionHypothesisReferenceTest test"
+        ],
+        "related_paths": [
+          "docs/reboot/teaching/day-27-regression-hypothesis.md"
+        ],
         "related_evidence_paths": [],
         "learner_seams": [],
         "api_endpoints": [],
@@ -2736,9 +2740,9 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** Conditional reference to [Master Java Unit Testing with Spring Boot & Mockito — in28Minutes Official](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/), “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 26 - Good Unit Tests” (5:34); “Section 1 - Mocking With Mockito”: “Step 11 - Mockito Tips - Verify method calls” (6:40); and “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 03 - Using Response Matchers to check status and content” (5:07), 17:21 total. Partial test-quality support only; keep a short compatibility note for the project’s JUnit/Spring versions inside the same block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-27--test-compatibility). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+      "course_learning_block": "Conditional partial support: Good Unit Tests (5:34) and Response Matchers (5:07); Mockito Verify (6:40) is optional, not stacked. Use the Day 27 worked example to distinguish strict/inclusive boundary behavior from an input-unit issue. Access unconfirmed; no purchase. Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": "docs/reboot/course-learning-supplements.md#day-27--test-compatibility",
+      "course_learning_supplement_path": "docs/reboot/teaching/day-27-regression-hypothesis.md",
       "course_learning_access": [
         "access_unconfirmed"
       ],
@@ -2748,24 +2752,19 @@
           "duration": "5:34",
           "duration_seconds": 334,
           "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
-          "source_item_id": "9968398"
-        },
-        {
-          "title": "Step 11 - Mockito Tips - Verify method calls",
-          "duration": "6:40",
-          "duration_seconds": 400,
-          "section_title": "Section 1 - Mocking With Mockito",
-          "source_item_id": "9968306"
+          "source_item_id": "9968398",
+          "role": "conditional_partial_support"
         },
         {
           "title": "Step 03 - Using Response Matchers to check status and content",
           "duration": "5:07",
           "duration_seconds": 307,
           "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
-          "source_item_id": "9968332"
+          "source_item_id": "9968332",
+          "role": "conditional_partial_support"
         }
       ],
-      "course_learning_total_viewing_seconds": 1041
+      "course_learning_total_viewing_seconds": 641
     },
     {
       "id": "CS-DAY28",
@@ -2788,11 +2787,11 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-28.md",
-        "active_guide_path": "docs/reboot/contracts/day-28.md",
+        "active_guide_path": "docs/reboot/teaching/day-28-integrated-review.md",
         "acceptance_reference": "docs/reboot/contracts/day-28.md",
-        "concept": "One request end to end, security and consistency boundaries",
-        "concept_reference": "docs/reboot/contracts/day-28.md#concept-25-minutes",
-        "evidence_reference": "docs/reboot/contracts/day-28.md",
+        "concept": "Integrated evidence and blocked-boundary review",
+        "concept_reference": "docs/reboot/teaching/day-28-integrated-review.md",
+        "evidence_reference": "docs/reboot/teaching/day-28-integrated-review.md",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
         "integration_status": "blocked",
@@ -2803,7 +2802,9 @@
           "npm --prefix frontend ci",
           "npm --prefix frontend run build"
         ],
-        "related_paths": [],
+        "related_paths": [
+          "docs/reboot/teaching/day-28-integrated-review.md"
+        ],
         "related_evidence_paths": [],
         "learner_seams": [],
         "api_endpoints": [],
@@ -2868,9 +2869,9 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** No new lecture bundle. Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. Revisit an earlier lesson only if useful. No new study assignment: trace the browser/API/database harness and verify the actual contract. No purchase/enrollment or extra daily time. See the [Days 1–30 course map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+      "course_learning_block": "Review only; no new lecture or feature. Use the Day 28 integrated review to trace actual observations and name blocked prerequisites. Keep the existing mock inside practice: 65 build/test + 20 mock = 85 minutes. Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": "docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace",
+      "course_learning_supplement_path": "docs/reboot/teaching/day-28-integrated-review.md",
       "course_learning_access": [
         "preferred_access_unconfirmed"
       ],
@@ -2898,11 +2899,11 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-29.md",
-        "active_guide_path": "docs/reboot/contracts/day-29.md",
+        "active_guide_path": "docs/reboot/teaching/day-29-reset-safety.md",
         "acceptance_reference": "docs/reboot/contracts/day-29.md",
-        "concept": "Configuration, environment parity and safe operations",
-        "concept_reference": "docs/reboot/contracts/day-29.md#concept-25-minutes",
-        "evidence_reference": "docs/reboot/contracts/day-29.md",
+        "concept": "Disposable reset guards and target verification",
+        "concept_reference": "docs/reboot/teaching/day-29-reset-safety.md",
+        "evidence_reference": "docs/reboot/teaching/day-29-reset-safety.md",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
         "integration_status": "blocked",
@@ -2912,7 +2913,9 @@
         "infrastructure_commands": [
           "./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable"
         ],
-        "related_paths": [],
+        "related_paths": [
+          "docs/reboot/teaching/day-29-reset-safety.md"
+        ],
         "related_evidence_paths": [],
         "learner_seams": [],
         "api_endpoints": [],
@@ -2953,9 +2956,9 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Getting Started with Spring Boot”. Watch: “Step 09 - Get Production Ready with Spring Boot - 1 - Profiles” (7:05); “Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties” (7:31); “Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers” (6:27). 21:03 viewing. Use the linked project disposable-reset safety walkthrough; videos do not authorize destructive reset or cloud resources. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+      "course_learning_block": "Required owned-course Profiles lesson (7:05). ConfigurationProperties (7:31) and Embedded Servers (6:27) are optional later, not stacked. Use the Day 29 reset guide; run only the existing embedded PostgreSQL test path. Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": "docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset",
+      "course_learning_supplement_path": "docs/reboot/teaching/day-29-reset-safety.md",
       "course_learning_access": [
         "confirmed_owned"
       ],
@@ -2964,22 +2967,11 @@
           "title": "Step 09 - Get Production Ready with Spring Boot - 1 - Profiles",
           "duration": "7:05",
           "duration_seconds": 425,
-          "section_title": "Getting Started with Spring Boot"
-        },
-        {
-          "title": "Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties",
-          "duration": "7:31",
-          "duration_seconds": 451,
-          "section_title": "Getting Started with Spring Boot"
-        },
-        {
-          "title": "Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers",
-          "duration": "6:27",
-          "duration_seconds": 387,
-          "section_title": "Getting Started with Spring Boot"
+          "section_title": "Getting Started with Spring Boot",
+          "role": "required"
         }
       ],
-      "course_learning_total_viewing_seconds": 1263
+      "course_learning_total_viewing_seconds": 425
     },
     {
       "id": "CS-DAY30",
@@ -3002,11 +2994,11 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-30.md",
-        "active_guide_path": "docs/reboot/contracts/day-30.md",
+        "active_guide_path": "docs/reboot/teaching/day-30-evidence-review.md",
         "acceptance_reference": "docs/reboot/contracts/day-30.md",
-        "concept": "SDE II trade-off discussion and technical communication",
-        "concept_reference": "docs/reboot/contracts/day-30.md#concept-25-minutes",
-        "evidence_reference": "docs/reboot/contracts/day-30.md",
+        "concept": "Evidence, limitations, and next diagnostic",
+        "concept_reference": "docs/reboot/teaching/day-30-evidence-review.md",
+        "evidence_reference": "docs/reboot/teaching/day-30-evidence-review.md",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
         "integration_status": "blocked",
@@ -3014,7 +3006,9 @@
           "./mvnw -Plearner-tests -Dtest=Day30ContractTest test"
         ],
         "infrastructure_commands": [],
-        "related_paths": [],
+        "related_paths": [
+          "docs/reboot/teaching/day-30-evidence-review.md"
+        ],
         "related_evidence_paths": [],
         "learner_seams": [],
         "api_endpoints": [],
@@ -3076,9 +3070,9 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** No new lecture required; review the weakest previously mapped lesson. Use the evidence checklist and explain observed behavior. Do not impose new architecture or unexplained SDE II expectations. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+      "course_learning_block": "No new lecture. Review a previously taught boundary using the Day 30 evidence-state guide. Keep the existing 20-minute mock inside the 85-minute practice allocation (65 build/test + 20 mock). Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": "docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior",
+      "course_learning_supplement_path": "docs/reboot/teaching/day-30-evidence-review.md",
       "course_learning_access": [
         "no_video_assigned_use_named_project_guide_or_review"
       ],

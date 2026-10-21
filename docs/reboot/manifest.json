@@ -3221,8 +3221,8 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Which observation distinguishes a strict-versus-inclusive boundary bug from an input-unit conversion bug?",
+          "What adjacent boundary assertion would falsify your preferred hypothesis?"
         ],
         "assessment_axes": [
           "behavior",
@@ -3231,9 +3231,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "Debugging hypothesis, regression prevention and scope control",
-      "concept_reference": "docs/reboot/contracts/day-27.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-27.md",
+      "engineering_concept": "Regression hypotheses and boundary evidence",
+      "concept_reference": "docs/reboot/teaching/day-27-regression-hypothesis.md",
+      "guide_deep_link": "docs/reboot/teaching/day-27-regression-hypothesis.md",
       "dsa_board_summary": {
         "pattern": "boundary search",
         "problem": "35 Search Insert Position",
@@ -3255,14 +3255,14 @@
       "dsa_concept": "boundary search",
       "board_summary": {
         "engineering": "Fix one evidence-backed regression",
-        "concept_25m": "Debugging hypothesis, regression prevention and scope control",
-        "concept_link": "docs/reboot/contracts/day-27.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-27.md",
+        "concept_25m": "Regression hypotheses and boundary evidence",
+        "concept_link": "docs/reboot/teaching/day-27-regression-hypothesis.md",
+        "repo_guide": "docs/reboot/teaching/day-27-regression-hypothesis.md",
         "dsa_60m": "35 Search Insert Position",
         "dsa_pattern": "boundary search",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-27--test-compatibility",
+      "course_learning_supplement": "docs/reboot/teaching/day-27-regression-hypothesis.md",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -3279,29 +3279,26 @@
             "duration": "5:34",
             "duration_seconds": 334,
             "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
-            "source_item_id": "9968398"
-          },
-          {
-            "title": "Step 11 - Mockito Tips - Verify method calls",
-            "duration": "6:40",
-            "duration_seconds": 400,
-            "section_title": "Section 1 - Mocking With Mockito",
-            "source_item_id": "9968306"
+            "source_item_id": "9968398",
+            "role": "conditional_partial_support"
           },
           {
             "title": "Step 03 - Using Response Matchers to check status and content",
             "duration": "5:07",
             "duration_seconds": 307,
             "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
-            "source_item_id": "9968332"
+            "source_item_id": "9968332",
+            "role": "conditional_partial_support"
           }
         ],
-        "total_viewing_seconds": 1041,
+        "total_viewing_seconds": 641,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-27--test-compatibility",
-        "ticket_block_markdown": "**Course lesson:** Conditional reference to [Master Java Unit Testing with Spring Boot & Mockito — in28Minutes Official](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/), “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 26 - Good Unit Tests” (5:34); “Section 1 - Mocking With Mockito”: “Step 11 - Mockito Tips - Verify method calls” (6:40); and “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 03 - Using Response Matchers to check status and content” (5:07), 17:21 total. Partial test-quality support only; keep a short compatibility note for the project’s JUnit/Spring versions inside the same block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-27--test-compatibility). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-27-regression-hypothesis.md",
+        "ticket_block_markdown": "Conditional partial support: Good Unit Tests (5:34) and Response Matchers (5:07); Mockito Verify (6:40) is optional, not stacked. Use the Day 27 worked example to distinguish strict/inclusive boundary behavior from an input-unit issue. Access unconfirmed; no purchase. Study cap 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
-        "aws_course_assigned": false
+        "aws_course_assigned": false,
+        "instructor_reference_test_path": "src/test/java/assignments/learning/Day27RegressionHypothesisReferenceTest.java",
+        "instructor_reference_command": "./mvnw -Dtest=Day27RegressionHypothesisReferenceTest test"
       }
     },
     {
@@ -3354,8 +3351,8 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Which browser/API/database observations actually occurred, and which boundary remains blocked?",
+          "What fresh read or row-count evidence distinguishes persistence from UI state?"
         ],
         "assessment_axes": [
           "behavior",
@@ -3364,9 +3361,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "One request end to end, security and consistency boundaries",
-      "concept_reference": "docs/reboot/contracts/day-28.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-28.md",
+      "engineering_concept": "Integrated evidence and blocked-boundary review",
+      "concept_reference": "docs/reboot/teaching/day-28-integrated-review.md",
+      "guide_deep_link": "docs/reboot/teaching/day-28-integrated-review.md",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -3428,9 +3425,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Milestone 2 browser-to-database acceptance",
-        "concept_25m": "One request end to end, security and consistency boundaries",
-        "concept_link": "docs/reboot/contracts/day-28.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-28.md",
+        "concept_25m": "Integrated evidence and blocked-boundary review",
+        "concept_link": "docs/reboot/teaching/day-28-integrated-review.md",
+        "repo_guide": "docs/reboot/teaching/day-28-integrated-review.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -3439,7 +3436,7 @@
           "LC 704 (Day 25, D+3, planned 2026-11-16)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace",
+      "course_learning_supplement": "docs/reboot/teaching/day-28-integrated-review.md",
       "course_learning_status": "review_no_new_video",
       "course_learning": {
         "courses": [
@@ -3453,8 +3450,8 @@
         "lessons": [],
         "total_viewing_seconds": 0,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace",
-        "ticket_block_markdown": "**Course lesson:** No new lecture bundle. Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. Revisit an earlier lesson only if useful. No new study assignment: trace the browser/API/database harness and verify the actual contract. No purchase/enrollment or extra daily time. See the [Days 1–30 course map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-28-integrated-review.md",
+        "ticket_block_markdown": "Review only; no new lecture or feature. Use the Day 28 integrated review to trace actual observations and name blocked prerequisites. Keep the existing mock inside practice: 65 build/test + 20 mock = 85 minutes. Study cap 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
       }
@@ -3491,8 +3488,8 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Which checks happen before any connection or destructive SQL?",
+          "Why do a profile and a database-name suffix alone not prove a target is disposable?"
         ],
         "assessment_axes": [
           "behavior",
@@ -3501,9 +3498,9 @@
         ]
       },
       "sprint": "Sprint 3 (17–30 Nov 2026)",
-      "engineering_concept": "Configuration, environment parity and safe operations",
-      "concept_reference": "docs/reboot/contracts/day-29.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-29.md",
+      "engineering_concept": "Disposable reset guards and target verification",
+      "concept_reference": "docs/reboot/teaching/day-29-reset-safety.md",
+      "guide_deep_link": "docs/reboot/teaching/day-29-reset-safety.md",
       "dsa_board_summary": {
         "pattern": "rotated-array search",
         "problem": "153 Find Minimum in Rotated Sorted Array",
@@ -3525,14 +3522,14 @@
       "dsa_concept": "rotated-array search",
       "board_summary": {
         "engineering": "Make the slice reproducible",
-        "concept_25m": "Configuration, environment parity and safe operations",
-        "concept_link": "docs/reboot/contracts/day-29.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-29.md",
+        "concept_25m": "Disposable reset guards and target verification",
+        "concept_link": "docs/reboot/teaching/day-29-reset-safety.md",
+        "repo_guide": "docs/reboot/teaching/day-29-reset-safety.md",
         "dsa_60m": "153 Find Minimum in Rotated Sorted Array",
         "dsa_pattern": "rotated-array search",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset",
+      "course_learning_supplement": "docs/reboot/teaching/day-29-reset-safety.md",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -3548,25 +3545,14 @@
             "title": "Step 09 - Get Production Ready with Spring Boot - 1 - Profiles",
             "duration": "7:05",
             "duration_seconds": 425,
-            "section_title": "Getting Started with Spring Boot"
-          },
-          {
-            "title": "Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties",
-            "duration": "7:31",
-            "duration_seconds": 451,
-            "section_title": "Getting Started with Spring Boot"
-          },
-          {
-            "title": "Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers",
-            "duration": "6:27",
-            "duration_seconds": 387,
-            "section_title": "Getting Started with Spring Boot"
+            "section_title": "Getting Started with Spring Boot",
+            "role": "required"
           }
         ],
-        "total_viewing_seconds": 1263,
+        "total_viewing_seconds": 425,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset",
-        "ticket_block_markdown": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Getting Started with Spring Boot”. Watch: “Step 09 - Get Production Ready with Spring Boot - 1 - Profiles” (7:05); “Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties” (7:31); “Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers” (6:27). 21:03 viewing. Use the linked project disposable-reset safety walkthrough; videos do not authorize destructive reset or cloud resources. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-29-reset-safety.md",
+        "ticket_block_markdown": "Required owned-course Profiles lesson (7:05). ConfigurationProperties (7:31) and Embedded Servers (6:27) are optional later, not stacked. Use the Day 29 reset guide; run only the existing embedded PostgreSQL test path. Study cap 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
       }
@@ -3621,8 +3607,8 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "What invariant did you observe, what evidence supports it, and what limitation remains?",
+          "What bounded diagnostic comes next, and which claim would exceed the evidence?"
         ],
         "assessment_axes": [
           "behavior",
@@ -3631,9 +3617,9 @@
         ]
       },
       "sprint": "Sprint 3 (17–30 Nov 2026)",
-      "engineering_concept": "SDE II trade-off discussion and technical communication",
-      "concept_reference": "docs/reboot/contracts/day-30.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-30.md",
+      "engineering_concept": "Evidence, limitations, and next diagnostic",
+      "concept_reference": "docs/reboot/teaching/day-30-evidence-review.md",
+      "guide_deep_link": "docs/reboot/teaching/day-30-evidence-review.md",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -3695,9 +3681,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Defend and assess the slice",
-        "concept_25m": "SDE II trade-off discussion and technical communication",
-        "concept_link": "docs/reboot/contracts/day-30.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-30.md",
+        "concept_25m": "Evidence, limitations, and next diagnostic",
+        "concept_link": "docs/reboot/teaching/day-30-evidence-review.md",
+        "repo_guide": "docs/reboot/teaching/day-30-evidence-review.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -3706,15 +3692,15 @@
           "LC 35 (Day 27, D+3, planned 2026-11-18)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior",
+      "course_learning_supplement": "docs/reboot/teaching/day-30-evidence-review.md",
       "course_learning_status": "no_exact_lesson_verified_use_supplement",
       "course_learning": {
         "courses": [],
         "lessons": [],
         "total_viewing_seconds": 0,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior",
-        "ticket_block_markdown": "**Course lesson:** No new lecture required; review the weakest previously mapped lesson. Use the evidence checklist and explain observed behavior. Do not impose new architecture or unexplained SDE II expectations. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-30-evidence-review.md",
+        "ticket_block_markdown": "No new lecture. Review a previously taught boundary using the Day 30 evidence-state guide. Keep the existing 20-minute mock inside the 85-minute practice allocation (65 build/test + 20 mock). Study cap 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
       }

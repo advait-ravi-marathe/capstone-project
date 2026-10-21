@@ -20,11 +20,11 @@ Machine-check checklist against actual manifest and referenced evidence; missing
 
 Days 28–29; no manufactured integrated success. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Choose one view to explain the implemented slice and one verified trade-off. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Review prompt (within the 25-minute concept block):** Select one observed behavior and explain its invariant, evidence, limitation, and next diagnostic. Use the [evidence-state example](../teaching/day-30-evidence-review.md#three-evidence-states); do not add an architecture exercise.
 
 ## Concept (25 minutes)
 
-SDE II trade-off discussion and technical communication.
+Evidence-based explanation and honest limits. Review the [Day 30 worked example](../teaching/day-30-evidence-review.md#a-concise-evidence-based-explanation); no new SDE II vocabulary or feature is assigned.
 
 ## Evidence (10 minutes)
 
@@ -42,9 +42,9 @@ This instructor integrity selector is expected to pass against fixed status/evid
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** What did you own, what failed, what changed, and what evidence supports the outcome? What breaks first at 10× load?
+**Question:** What invariant did you observe, which evidence supports it, what limitation remains, and what bounded measurement or repair comes next? Treat 10× load as a hypothesis unless measured.
 
-**Observable evidence:** 20-minute mock replaces implementation: 5 minutes architecture, 5 dedup/money/transaction/security choice, 5 measured bottleneck versus hypothesis, 5 honest gap/behavior story. Do not invent users, impact or production incidents.
+**Observable evidence:** 20-minute mock replaces implementation: explain one existing sequence/data view, one already-taught trade-off, one actual observation, and one open gap. Do not invent users, impact, incidents, or performance measurements.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

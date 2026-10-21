@@ -171,38 +171,26 @@ Use the [complete Day 26 audit guide](teaching/day-26-audit.md) and run `./mvnw 
 
 **Primary reference:** [Spring programmatic transaction management](https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)
 
-## Day 27 — Test compatibility
+## Day 27 — Regression hypothesis and scope
 
-Read the test's arrange/act/assert boundaries and verify only behavior owned by the collaborator. The selected course is a conditional in28Minutes reference; its JUnit/Spring versions may differ from this repository. Follow this project's imports, dependency BOM, and existing test idioms rather than upgrading dependencies to match a lesson. A mock verification should prove an observable interaction, not mirror every implementation line.
-
-
-**Concrete example:** Use the repository’s existing test stack: arrange fixture → call one public behavior → assert response and observable collaborator behavior. Do not copy version-specific imports from a course until they match the project BOM.
+Use the [worked boundary example](teaching/day-27-regression-hypothesis.md). It shows the exact expected failure at 1,000 g, distinguishes a comparison bug from an input-unit bug, and reruns both neighboring boundaries. Then inspect the saved capstone reproducer; its expected TODO failure is not evidence of a production regression. Course access is unconfirmed; Good Unit Tests (5:34) and Response Matchers (5:07) are conditional partial support, while Mockito Verify (6:40) is optional only. Total study cap: 25 minutes.
 
 **Primary reference:** [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 
-## Day 28 — Browser/API/database trace
+## Day 28 — Browser/API/database review
 
-Use the installed harness to follow one browser action through the session cookie and CSRF header, API response, and PostgreSQL snapshot. Check both the visible result and the no-write/one-write evidence. Do not treat a bearer-token demo as equivalent to this app's cookie-session contract. This is review of existing behavior; no new lecture bundle is required.
-
-
-**Concrete example:** Take one browser action and record request method/path, cookie and CSRF presence, status/body, then compare the database before/after snapshot. Expected ownership and row-count assertions come from the installed test.
+Use the [integrated-gate review](teaching/day-28-integrated-review.md) to trace only actual observations through the installed harness. This is review-only and adds no lecture. The existing milestone uses 65 minutes for build/test and 20 minutes for the mock inside the same 85-minute practice block.
 
 **Primary reference:** [Spring Security CSRF protection](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html)
 
-## Day 29 — Safe fixture reset
+## Day 29 — Safe disposable reset
 
-Only use the repository's guarded synthetic fixture reset command against its disposable embedded test database. Read the script's guard before running it; never point it at a personal, shared, or production database. Run it twice and compare the exact synthetic rows to establish repeatability. Profiles/configuration lessons do not authorize destructive resets or cloud resources.
-
-
-**Concrete example:** Use exactly `./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable`; first inspect its guard and confirm the embedded test database. Never substitute a live URI or remove the explicit guard.
+Use the [reset-guard walkthrough](teaching/day-29-reset-safety.md). The required Profiles lesson is 7:05; ConfigurationProperties and Embedded Servers are optional later references, not stacked into today. The only supplied executable uses its own disposable embedded PostgreSQL database. Do not use external URI mode for this exercise.
 
 **Primary reference:** [Repository reset script](../../scripts/reset-synthetic-homesecure.sh)
 
-## Day 30 — Explain observed behavior
+## Day 30 — Evidence-based review
 
-Choose one earlier fixed test and explain its input, expected result, and the evidence that proves it. If the explanation exposes a gap, revisit that day's named lesson or worked guide within the existing allocation. This is a review and communication day, not an extra architecture assignment.
-
-
-**Concrete example:** Choose one already-installed test, write its given/when/then in three lines, and point to the assertion that proves the result. This checks explanation against observed behavior, not architecture vocabulary.
+Use the [evidence-state walkthrough](teaching/day-30-evidence-review.md) during the existing review/milestone block. It distinguishes component evidence, blocked integration, and actual end-to-end evidence. No new architecture or SDE II task is assigned. The 20-minute mock is inside practice (65 build/test +20 mock).
 
 **Primary reference:** [Day 30 checklist](acceptance-checklist.md)

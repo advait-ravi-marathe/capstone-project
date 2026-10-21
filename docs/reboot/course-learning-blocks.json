@@ -754,8 +754,8 @@
           "access_status": "access_unconfirmed"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** Conditional reference to [Master Java Unit Testing with Spring Boot & Mockito — in28Minutes Official](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/), “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 26 - Good Unit Tests” (5:34); “Section 1 - Mocking With Mockito”: “Step 11 - Mockito Tips - Verify method calls” (6:40); and “Section 2 - Unit Testing With Spring Boot And Mockito”: “Step 03 - Using Response Matchers to check status and content” (5:07), 17:21 total. Partial test-quality support only; keep a short compatibility note for the project’s JUnit/Spring versions inside the same block. Course access is unconfirmed; no purchase/enrollment. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-27--test-compatibility). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-27--test-compatibility",
+      "verified_lessons_line": "Conditional partial support: Good Unit Tests (5:34) and Response Matchers (5:07); Mockito Verify (6:40) is optional, not stacked. Use the Day 27 worked example to distinguish strict/inclusive boundary behavior from an input-unit issue. Access unconfirmed; no purchase. Study cap 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-27-regression-hypothesis.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -764,24 +764,19 @@
           "duration": "5:34",
           "duration_seconds": 334,
           "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
-          "source_item_id": "9968398"
-        },
-        {
-          "title": "Step 11 - Mockito Tips - Verify method calls",
-          "duration": "6:40",
-          "duration_seconds": 400,
-          "section_title": "Section 1 - Mocking With Mockito",
-          "source_item_id": "9968306"
+          "source_item_id": "9968398",
+          "role": "conditional_partial_support"
         },
         {
           "title": "Step 03 - Using Response Matchers to check status and content",
           "duration": "5:07",
           "duration_seconds": 307,
           "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
-          "source_item_id": "9968332"
+          "source_item_id": "9968332",
+          "role": "conditional_partial_support"
         }
       ],
-      "total_viewing_seconds": 1041
+      "total_viewing_seconds": 641
     },
     {
       "day": 28,
@@ -794,8 +789,8 @@
           "access_status": "preferred_access_unconfirmed"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** No new lecture bundle. Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. Revisit an earlier lesson only if useful. No new study assignment: trace the browser/API/database harness and verify the actual contract. No purchase/enrollment or extra daily time. See the [Days 1–30 course map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-28--browserapidatabase-trace",
+      "verified_lessons_line": "Review only; no new lecture or feature. Use the Day 28 integrated review to trace actual observations and name blocked prerequisites. Keep the existing mock inside practice: 65 build/test + 20 mock = 85 minutes. Study cap 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-28-integrated-review.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [],
@@ -812,8 +807,8 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Getting Started with Spring Boot”. Watch: “Step 09 - Get Production Ready with Spring Boot - 1 - Profiles” (7:05); “Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties” (7:31); “Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers” (6:27). 21:03 viewing. Use the linked project disposable-reset safety walkthrough; videos do not authorize destructive reset or cloud resources. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-29--safe-fixture-reset",
+      "verified_lessons_line": "Required owned-course Profiles lesson (7:05). ConfigurationProperties (7:31) and Embedded Servers (6:27) are optional later, not stacked. Use the Day 29 reset guide; run only the existing embedded PostgreSQL test path. Study cap 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-29-reset-safety.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [
@@ -821,29 +816,18 @@
           "title": "Step 09 - Get Production Ready with Spring Boot - 1 - Profiles",
           "duration": "7:05",
           "duration_seconds": 425,
-          "section_title": "Getting Started with Spring Boot"
-        },
-        {
-          "title": "Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties",
-          "duration": "7:31",
-          "duration_seconds": 451,
-          "section_title": "Getting Started with Spring Boot"
-        },
-        {
-          "title": "Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers",
-          "duration": "6:27",
-          "duration_seconds": 387,
-          "section_title": "Getting Started with Spring Boot"
+          "section_title": "Getting Started with Spring Boot",
+          "role": "required"
         }
       ],
-      "total_viewing_seconds": 1263
+      "total_viewing_seconds": 425
     },
     {
       "day": 30,
       "contract_path": "docs/reboot/contracts/day-30.md",
       "courses": [],
-      "verified_lessons_line": "**Course lesson:** No new lecture required; review the weakest previously mapped lesson. Use the evidence checklist and explain observed behavior. Do not impose new architecture or unexplained SDE II expectations. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for verified course source, gaps, and time policy. Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-30--explain-observed-behavior",
+      "verified_lessons_line": "No new lecture. Review a previously taught boundary using the Day 30 evidence-state guide. Keep the existing 20-minute mock inside the 85-minute practice allocation (65 build/test + 20 mock). Study cap 25 minutes.",
+      "worked_guide_path": "docs/reboot/teaching/day-30-evidence-review.md",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
       "lesson_details": [],

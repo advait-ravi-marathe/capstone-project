@@ -20,7 +20,7 @@ Success/reload; double submit; stale/expired; other user; outage.
 
 Days 14–27; readiness checker reports gaps; real completed components and PostgreSQL. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Draw the browser-to-database path and mark each prerequisite that is still blocked. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**System-design prompt (within the 25-minute concept block):** Draw the browser-to-database path and mark each prerequisite that is still blocked. Use the [review-only integrated trace](../teaching/day-28-integrated-review.md#worked-trace); annotate actual observed boundaries and blockers.
 
 ## Concept (25 minutes)
 
@@ -46,7 +46,7 @@ The harness runs the real Playwright/Chromium browser against the built test rou
 
 **Question:** Explain one browser-to-database request, then inject an outage or stale version. Where does truth live?
 
-**Observable evidence:** 20-minute mock replaces implementation: 5 minutes integrated demo, 5 controlled failure, 5 security/concurrency defense, 5 next bottleneck. Evidence must use real integrated components.
+**Observable evidence:** 20-minute mock replaces implementation time. Explain one observed browser/API/database case and one controlled failure; if blocked, explain the first failed boundary and next diagnostic without simulating success.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

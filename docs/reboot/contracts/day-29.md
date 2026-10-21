@@ -2,7 +2,7 @@
 
 **State:** Safety/refusal tests and a positive reset integration test on fresh embedded PostgreSQL are installed. `--embedded-test --confirm-disposable` needs no psql or remote target; external URI reset remains explicitly guarded.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Getting Started with Spring Boot”. Watch: “Step 09 - Get Production Ready with Spring Boot - 1 - Profiles” (7:05); “Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties” (7:31); “Step 11 - Get Production Ready with Spring Boot - 3 - Embedded Servers” (6:27). 21:03 viewing. Use the linked project disposable-reset safety walkthrough; videos do not authorize destructive reset or cloud resources. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-29--safe-fixture-reset).
+**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), “Step 09 - Get Production Ready with Spring Boot - 1 - Profiles” (7:05). ConfigurationProperties (7:31) and Embedded Servers (6:27) are optional later references, not stacked. Use the [Day 29 reset safety guide](../teaching/day-29-reset-safety.md#guard-decision-examples) inside the existing 25-minute study block; videos do not authorize destructive reset or cloud resources.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Reset disposable DB and verify exact seed; missing confirmation and DB name with
 
 Days 13 and 28; fresh disposable test-only environment. Reset must never target development, shared, staging, or production data. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Map one-command setup/reset lifecycle and identify the disposable-data safety boundary. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Design prompt (within the 25-minute concept block):** Which guards run before connection or destructive SQL, and why does a profile or database-name suffix alone not prove reset authority? Use the [worked guard table](../teaching/day-29-reset-safety.md#guard-decision-examples).
 
 ## Concept (25 minutes)
 
-Configuration, environment parity, safe operations.
+Configuration and reset safety, taught with the [Day 29 guard trace](../teaching/day-29-reset-safety.md#existing-safe-exercise). Required video 7:05; optional later videos are not part of today’s assigned time.
 
 ## Evidence (10 minutes)
 
@@ -34,7 +34,7 @@ Another clean setup or exact unverified steps/blocker. Record dated attempt stat
 
 `./mvnw -Dtest=Day29ResetIntegrationTest test`
 
-The positive check resets twice in a newly started embedded PostgreSQL instance and verifies the exact synthetic rows. The shell command is `./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable`; external URI mode still needs psql and a confirmed `*_test` target.
+The positive check resets twice in its newly started embedded PostgreSQL instance and verifies the exact synthetic rows. If using the wrapper, it runs only that same embedded test: `./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable`. Do not use external URI mode for this exercise.
 
 ## Separate Java DSA block (60 minutes)
 
