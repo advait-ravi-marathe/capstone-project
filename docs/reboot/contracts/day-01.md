@@ -6,28 +6,26 @@ Existing feature and acceptance paths are authoritative: `assignments.insurance.
 
 ## Fixed acceptance contract
 
-**Course bridge (inside the existing 25-minute concept/course allocation):** [in28Minutes Official, *Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate.”** Follow the verified title sequence **“Step 00 - Creating a REST API with Spring Boot - An Overview,” “Step 01 - Initializing a REST API Project with Spring Boot,” “Step 02 - Creating a Hello World REST API with Spring Boot,”** then **“Step 03 - Enhancing the Hello World REST API to return a Bean”** (22:21 total). The 22:21 viewing sequence uses the full 25-minute course allocation; count pause/replay time and carry unfinished lessons forward. In the separate 85-minute build/test allocation, reproduce the lesson’s Hello World endpoint and returned bean, then make one tiny request/response change. Use 10 minutes of evidence time for the simple request → Java method → JSON explanation. This beginner bridge does not replace the fixed quote-selection acceptance contract below; its composite identity/order implementation remains deferred and incomplete until the API prerequisite is understood. No AWS certification task is assigned; the day’s 25-minute concept is local API learning. Confirmed AWS courses are Cloud Practitioner CLF-C02 and Solutions Architect Associate, not Developer Associate. See the [Days 1–30 course/lesson map](../course-learning-map.md).
+**Prerequisite bridge:** Complete the studied reference and separate practice described in [`docs/reboot/day-01-api-bridge.md`](../day-01-api-bridge.md) before beginning quote-selection implementation. The essential course sequence is Step 02 (6:21) then Step 03 (4:30) inside the same 25-minute study block; use Step 00's overview only if API/request terms are unfamiliar. The guide supplies a runnable loopback-only test fixture, actual HTTP observations, and an independent practice TODO. It does not change the production app or solve this domain contract.
 
-Keep first occurrence of each exact `(journeyId, quoteVersionId)` pair in encounter order. Preserve existing null/validation behavior.
+**Learner-owned domain behavior remains unchanged:** keep the first occurrence of each exact `(journeyId, quoteVersionId)` pair in encounter order. Reject null list/entries and null, empty or blank key parts before returning any partial output. Do not trim or normalize exact identifiers. Do not mutate input. The original acceptance suite remains authoritative for duplicates, interleaving, same version across journeys, distinct versions within a journey, delimiters, blank values and empty input.
 
-**Edge cases:** Duplicate, interleaving, same version across journeys, distinct versions within a journey, exact strings, and existing invalid-input cases.
+**Repository boundary:** The request route is `POST /api/quote-selections`; the teaching fixture is a separate test-runtime app. The main application currently reaches the Day 2 request-validator TODO before the Day 1 selection TODO. Do not change production wiring or implement the Day 2 seam as part of this prerequisite. Existing isolated Day 1 API tests provide their own validator.
 
-**Prerequisite/isolation:** API concept prerequisite; use the guided Hello World example before the quote-selection TODO. Acceptance data is inline.
+**Course/concept (25 minutes):** See the linked bridge for verified lesson titles, access status, source sections, the worked request→method→Java value→HTTP response trace, and timing. Catalog verification is not proof of viewing. Carry unfinished material forward within the same budget.
 
-**Course/concept (25 minutes):** Watch the beginner API lesson sequence above (22:21 at 1×); use the remaining time for a pause or recall. Carry unfinished viewing forward. No AWS certification task.
+**Practice/test (within 85 minutes):** Start with `./mvnw -Dtest=Day01ApiBridgeInfrastructureTest test`; then make the one-field variation only in `src/test/java/assignments/learning/day01/Day01ApiPractice.java` and run `./mvnw -Plearner-tests -Dtest=Day01ApiPracticeAcceptanceTest test`. These prove the API bridge only. The original domain command remains separate: `./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test`.
 
-**Beginner reflection (inside the existing 10-minute evidence block):** In one or two sentences, explain how the request reaches a Java method and how the returned bean becomes JSON. Do not do a design case study before the API lesson.
-
-**Evidence:** See [`docs/day-1.md`](../../day-1.md) and the existing acceptance tests. Do not change the established public shape.
+**Evidence (within 10 minutes):** Record exact commands, status/body observed, assistance used, and a concise request → matched Java method → returned value → HTTP response explanation. If the prerequisite is unclear or the separate domain acceptance remains red, state that gap; do not award completion from the reference test.
 
 **Today’s first independent DSA pattern anchor:** LeetCode 121 Best Time to Buy and Sell Stock (running-state array scan). Planned first-attempt date: Oct 20; actual attempt and review status remain unrecorded. Use 25 minutes to learn the pattern, 20 minutes to solve, and 15 minutes for same-day recall and the error log. D+3/D+7/D+21 reviews fall on Oct 23, Oct 27, and Nov 10 if the actual attempt occurs Oct 20; recalculate from the actual date. Reviews stay within the 60-minute block and are never marked complete automatically. See [`../dsa-error-log-template.md`](../dsa-error-log-template.md).
 
-## Interview transfer (inside the current evidence block)
+## Interview transfer (inside the existing evidence block)
 
-**Question:** How did the course example turn an HTTP request into a JSON response? Composite selection identity/order is a later topic, not a Day 1 prerequisite.
+**Question:** Which path invokes `greeting()`, which Java value becomes its JSON `message`, and why is an unmapped route different from a stopped server?
 
-**Observable evidence:** Point to the request path, mapped Java method, returned bean, and JSON response in the guided example. Record the separate LC 121 attempt honestly; do not require a quote-selection implementation explanation before the API lesson.
+**Observable evidence:** Point to the actual running fixture and record its response. The quote-selection algorithm is not an API-prerequisite question; explain it only after its separate implementation is complete.
 
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
+**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. Passing an instructor fixture is not independent understanding or learner completion. Preserve the separate LC 121 history and all original review dates/statuses.
 
-**Related source:** [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A8](../interview-evidence-overlay.md#a8) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+**Related source:** [A3](../interview-evidence-overlay.md#a3) and [A8](../interview-evidence-overlay.md#a8) are anecdotal practice references, not frequency evidence.

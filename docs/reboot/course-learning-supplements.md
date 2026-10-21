@@ -4,12 +4,9 @@ These are instructor-provided bridges for topics the verified course titles only
 
 ## Day 1 — First API bridge
 
-A request such as `GET /hello` is matched by Spring MVC to a controller method. The method returns a Java value (for example, a small record); Spring's HTTP message converter serializes that value as JSON. First reproduce the instructor's Hello World endpoint and returned bean. Only after that works, change one harmless field or path and predict the response. Explain aloud: request → route/controller method → Java result → JSON response. The quote-selection endpoint remains a later adaptation; this bridge does not satisfy its acceptance cases.
+Use the complete runnable lesson in [Day 1 API bridge](day-01-api-bridge.md). It maps the verified Step 02 Hello World and Step 03 returned-bean course lessons to actual loopback HTTP, a complete `@RestController` example, status/header/body observations, and a distinct learner practice TODO. Step 00 is an optional overview when request/API terms are unfamiliar; Step 01 is optional setup because the supplied test-runtime fixture handles setup. The guide includes the required 25/85/10-minute boundaries and does not solve the quote-selection contract.
 
-
-**Concrete example:** A minimal Spring MVC illustration is `@RestController class HelloController { @GetMapping("/hello") Greeting hello() { return new Greeting("Hello"); } }`, with `record Greeting(String message) {}`. The request is `GET /hello`; the method returns a bean; Spring writes a JSON object such as `{"message":"Hello"}`. Follow the course demonstration rather than adding this route to the capstone.
-
-**Primary reference:** [Spring `@ResponseBody` and `@RestController`](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responsebody.html)
+**Primary references:** [Spring `@ResponseBody` and `@RestController`](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responsebody.html), [Spring MVC request mappings](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-requestmapping.html), and [Spring Boot Maven `test-run`](https://docs.spring.io/spring-boot/maven-plugin/run.html#run.test-run). These support the worked guide; the learner should run and observe the fixture rather than treat links as completion.
 
 ## Day 4 — Immutable catalog values
 

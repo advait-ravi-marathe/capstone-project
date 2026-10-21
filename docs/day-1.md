@@ -45,113 +45,27 @@ longer an expected TODO failure:
 ./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test
 ```
 
-## Feature and learning goal
+## Day 1 engineering task: API bridge first, quote selection separately
 
-The learner is new to implementing APIs. The first goal is to see one request map to one Java method and one returned JSON value, then reproduce the course example and make one tiny adaptation. The existing quote-selection policy is a later learner task: the Hello World bridge does not complete its behavior or acceptance contract.
+The Day 1 learner status remains pending. First study and run the [Day 1 API bridge](reboot/day-01-api-bridge.md), then complete its separate tiny practice endpoint if the prerequisite is understood. The bridge uses an isolated test-runtime fixture; it does not add a production route or alter the quote-selection API.
 
-## First API lesson — follow along before adapting
+The 25-minute study block uses the essential course lessons **Step 02 - Creating a Hello World REST API with Spring Boot** (6:21) and **Step 03 - Enhancing the Hello World REST API to return a Bean** (4:30), plus the worked guide and readiness check. Add Step 00's overview only if the request/API terms are new. Pause/replay time counts; carry unfinished viewing forward. The supplied fixture handles project setup, so Step 01 is optional. The course has a Spring Boot 3 title; this repository uses Java 21 / Spring Boot 4.1.1. Do not downgrade or copy old setup instructions.
 
-**Owned Udemy course:** [*Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), by in28Minutes Official. In **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate,”** study these verified lesson titles in order: **“Step 00 - Creating a REST API with Spring Boot - An Overview” (4:04), “Step 01 - Initializing a REST API Project with Spring Boot” (7:26), “Step 02 - Creating a Hello World REST API with Spring Boot” (6:21),** and **“Step 03 - Enhancing the Hello World REST API to return a Bean” (4:30).** Total viewing time is 22:21 at 1×. This entire sequence uses the 25-minute course allocation; pause/replay time counts, so carry unfinished lessons forward and reduce implementation scope. Match by title rather than number. Carry the next lesson, **“Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06),** forward if the cap is reached.
+The guide explains a real local request → Spring route → Java method → Java return value → HTTP response, with verified curl examples for plain text, JSON, 404, and 405. Practice modifies only `src/test/java/assignments/learning/day01/Day01ApiPractice.java`; the exact selector is `./mvnw -Plearner-tests -Dtest=Day01ApiPracticeAcceptanceTest test`. Instructor reference verification is `./mvnw -Dtest=Day01ApiBridgeInfrastructureTest test`. The teaching server is test-runtime-only and loopback-bound.
 
-Pass the instructor readiness gate (`./mvnw -Dtest=QuoteSelectionInfrastructureTest test`). If it fails, record the blocker and use the instructor-provided runnable app; do not spend learner time on setup. Use the 85-minute implementation/testing allocation to reproduce the lesson’s simple Hello World endpoint and its returned bean, then make one tiny change to its request or returned field. This is guided practice with the course example, not a new production route in this repository. The original quote-selection assignment remains separate: its provided `/api/quote-selections` endpoint has an unfinished learner TODO, so valid input intentionally returns HTTP 500. Do not mistake the Hello World exercise for completion of the quote-selection contract. Its acceptance contract remains authoritative; composite identity/order behavior and full learner acceptance remain deferred until the API prerequisite is understood.
+This API bridge does not implement quote selection. The original learner seam stays `src/main/java/assignments/insurance/QuoteSelectionPolicy.java#uniqueSelections`; its fixed acceptance suite and exact examples remain in [Day 01 contract](reboot/contracts/day-01.md). The original acceptance command is `./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test`. The current main application reaches the Day 2 request-validator TODO before Day 1 selection behavior; do not implement Day 2 or production wiring to make the Day 1 API lesson work. A completed practice endpoint is API-bridge evidence only. Keep quote selection pending until its own contract is independently met.
 
-Keep course study within the existing 25-minute course allocation inside 120 engineering minutes; unfinished lessons carry forward and implementation scope shrinks. No extra hours or design case study are required. In the 10-minute evidence allocation, write one concise reflection: **How did the request reach a Java method, and how did its result become JSON?**
+The original quote-selection behavior and edge cases are unchanged: preserve first-seen order for exact composite pairs; same quote version under different journeys is distinct; repeated exact pairs collapse; null list/entry or null, empty, or blank key parts are rejected without partial output; whitespace is not trimmed; and delimiter-containing fields do not collide. Empty input returns an empty list and inputs remain unchanged. The supplied API remains `POST /api/quote-selections` with `{"selections":[{"journeyId":"journey-B","quoteVersionId":"home-secure-v1"}]}`. After the learner policy is implemented, valid input returns HTTP 200 with the exact key array; malformed or invalid input returns HTTP 400. Before the TODO is implemented, the separate existing app may encounter Day 2 validation first, while the isolated original Day 1 acceptance test uses its own validator and reaches the Day 1 TODO.
 
-```text
-HTTP request (path + JSON) → Spring maps it to a controller Java method
-→ method returns a Java value → Spring serializes it as JSON
-→ HTTP response (status + JSON)
-```
+| Fixed input | Expected behavior |
+|---|---|
+| `[(journey-B, home-secure-v1), (journey-A, home-secure-v1), (journey-B, home-secure-v1)]` | Return the first two exact pairs in that order; leave input unchanged. |
+| `[]` | Return `[]`. |
+| Same quote version under two journey IDs | Keep both distinct composite keys. |
+| Null list, null entry, or null/empty/blank `journeyId` or `quoteVersionId` | Throw `IllegalArgumentException`; return no partial output. |
+| `home-secure-v1` and ` home-secure-v1` | Keep as distinct exact strings; do not trim. |
+| `("journey-A|journey-B", "home-secure-v1")` and `("journey-A", "journey-B|home-secure-v1")` | Keep as distinct pairs; composite identity must not collide on delimiters. |
 
-The full Days 1–30 lesson map is [here](reboot/course-learning-map.md). Do not overwrite the learner TODO or claim assignment completion from the follow-along.
+Use the existing 85-minute practice/testing allocation for the reference and small practice variation; use the 10-minute evidence allocation for exact commands/results and one concise request-to-response explanation. If the bridge is unclear, record the specific gap and carry quote-selection implementation forward within the existing plan. Do not add hours or an architecture case study.
 
-**AWS certification:** No AWS certification course or lecture is assigned on Day 1. The confirmed AWS courses are CLF-C02 Cloud Practitioner and Solutions Architect Associate; neither is Developer Associate. This day’s concept is local backend API learning, not AWS exam study.
-
-
-CoverStory starts as an enterprise insurance lifecycle simulation. Day 1 uses
-the single synthetic product fixture at `fixtures/day-1/home-secure.json` for
-product context; fixed acceptance inputs are inline and do not load that
-fixture.
-The small slice establishes that a quote selection is identified
-by both journey and quote version, duplicates are removed in first-seen order,
-and invalid input is rejected before a result is returned. No catalog database,
-authentication, payment, policy activation, Kafka, or frontend is needed for
-this exercise.
-
-The learner implementation belongs only in
-`src/main/java/assignments/insurance/QuoteSelectionPolicy.java`. The 85-minute
-build/test block is where the learner reproduces the guided Hello World endpoint
-and returned bean from the course example, then makes one tiny adaptation. Only
-if that prerequisite is clear should the learner begin the existing TODO; the
-full quote-selection acceptance contract remains deferred as needed. Do not add
-an architecture case study or extra hours.
-
-The only requested explanation is the simple course flow shown above; the existing quote-selection design and implementation remain deferred until the API prerequisite is clear.
-
-
-Use the 10-minute evidence allocation for the short request → method → JSON
-reflection and exact run/test results. There is no required infrastructure
-setup.
-
-## Behavioral cases
-
-The fixed acceptance suite is
-`src/test/java/assignments/insurance/QuoteSelectionAcceptanceTest.java`.
-
-| Input | Expected result |
-| --- | --- |
-| `[(journey-B, home-secure-v1), (journey-A, home-secure-v1), (journey-B, home-secure-v1)]` | First two exact pairs, same order; input unchanged |
-| `[]` | `[]` |
-| Same quote version under two journey IDs | Two distinct keys |
-| Null list, null entry, or null/empty/blank `journeyId` or `quoteVersionId` | `IllegalArgumentException`; no partial result |
-| `home-secure-v1` and ` home-secure-v1` | Distinct exact values; no trimming |
-| `("journey-A|journey-B", "home-secure-v1")` and `("journey-A", "journey-B|home-secure-v1")` | Distinct composite pairs even when values contain delimiters |
-
-The runnable Spring Boot app starts with `./mvnw spring-boot:run`. The supplied
-API is `POST /api/quote-selections`, with JSON
-`{"selections":[{"journeyId":"journey-B","quoteVersionId":"home-secure-v1"}]}`.
-After the learner TODO is implemented, valid input returns HTTP 200 and a JSON
-array of exact composite keys. Missing request body, malformed JSON, or invalid
-selections return HTTP 400. Before implementation, valid selection requests
-reach the explicit `UnsupportedOperationException` TODO and return HTTP 500;
-that is the expected red learner state. The API adapter is instructor-owned;
-the domain invariant is learner-owned.
-
-## Run commands
-
-From the repository root, instructor infrastructure is separate and should
-pass before touching the learner TODO:
-
-```sh
-./mvnw -Dtest=QuoteSelectionInfrastructureTest test
-```
-
-The learner acceptance suite is intentionally excluded by default. Before the
-TODO is implemented, this should fail with the explicit
-`Day 1 learner TODO: implement uniqueSelections` exception:
-
-```sh
-./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test
-```
-
-The regular documented project command remains:
-
-```sh
-./mvnw test
-```
-
-## Course/concept allocation — 25 minutes
-
-Watch the listed course sequence only (22:21 at 1×); use the remaining time for a pause or brief recall. If the sequence overruns because of pauses, stop and carry the next lesson forward. Reproduction and the tiny adaptation belong to the separate 85-minute build/test allocation. Keep quote-selection implementation partial if needed; this bridge does not satisfy the original acceptance tests. No AWS account, infrastructure, or cloud deployment is part of Day 1.
-
-```text
-HTTP request (path + JSON) → Spring maps it to a controller Java method
-→ method returns a Java value → Spring serializes it as JSON
-→ HTTP response (status + JSON)
-```
-
-## Evidence
-
-Use the 10-minute evidence allocation to record exact commands, exit codes,
-test counts, and any first TODO stack trace in the learner's own notes. Do not
-mark the learner task complete from infrastructure checks alone.
+**AWS certification:** No AWS course, account, infrastructure, or cloud task is assigned on Day 1. The assigned concept is local backend API learning.

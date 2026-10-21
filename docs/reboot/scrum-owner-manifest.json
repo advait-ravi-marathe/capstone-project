@@ -74,21 +74,29 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-01.md",
-        "active_guide_path": "docs/day-1.md",
+        "active_guide_path": "docs/reboot/day-01-api-bridge.md",
         "acceptance_reference": "docs/reboot/contracts/day-01.md",
-        "concept": "Beginner API flow: HTTP request → controller method → Java bean → JSON; defer composite-identity implementation until the API prerequisite is understood.",
-        "concept_reference": "docs/day-1.md",
+        "concept": "Beginner HTTP API flow observed in an isolated loopback fixture; separate practice variation, not quote-selection completion.",
+        "concept_reference": "docs/reboot/day-01-api-bridge.md",
         "evidence_reference": "docs/reboot/contracts/day-01.md",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
         "integration_status": "blocked",
         "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day01ApiPracticeAcceptanceTest test",
           "./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test"
         ],
         "infrastructure_commands": [
-          "./mvnw -Dtest=QuoteSelectionInfrastructureTest test"
+          "./mvnw -Dtest=Day01ApiBridgeInfrastructureTest test",
+          "./mvnw test-compile spring-boot:test-run -Dspring-boot.run.main-class=assignments.learning.day01.Day01ApiBridgeApplication -Dspring-boot.run.arguments=\"--server.address=127.0.0.1 --server.port=8081 --management.endpoints.enabled-by-default=false\""
         ],
         "related_paths": [
+          "docs/reboot/day-01-api-bridge.md",
+          "src/test/java/assignments/learning/day01/Day01ApiBridgeApplication.java",
+          "src/test/java/assignments/learning/day01/Day01GreetingController.java",
+          "src/test/java/assignments/learning/day01/Day01ApiPractice.java",
+          "src/test/java/assignments/learning/day01/Day01ApiBridgeInfrastructureTest.java",
+          "src/test/java/assignments/learning/day01/Day01ApiPracticeAcceptanceTest.java",
           "src/main/java/assignments/insurance/QuoteSelectionPolicy.java",
           "src/test/java/assignments/insurance/QuoteSelectionAcceptanceTest.java",
           "src/test/java/assignments/insurance/QuoteSelectionApiAcceptanceTest.java"
@@ -99,7 +107,7 @@
         "asserted_response_fields": [],
         "safety_preconditions": [],
         "evidence_output_path": "evidence/reboot/day-01.json",
-        "prerequisite_note": "The learner is new to API implementation. First complete the guided Hello World endpoint/bean bridge, then make one tiny adaptation; begin the quote-selection acceptance task only if that prerequisite is understood. Acceptance data is inline."
+        "prerequisite_note": "Use the guided reference and understand the observed request/method/return/response first. The separate practice test does not complete the existing quote-selection contract; the default main app reaches Day 2 validation TODO first. Do not implement Day 2 or production wiring to unblock the bridge."
       },
       "java_dsa": {
         "budget_minutes": 60,
@@ -137,44 +145,48 @@
         ]
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course bridge (inside the existing 25-minute concept/course allocation):** [in28Minutes Official, *Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate.”** Follow the verified title sequence **“Step 00 - Creating a REST API with Spring Boot - An Overview,” “Step 01 - Initializing a REST API Project with Spring Boot,” “Step 02 - Creating a Hello World REST API with Spring Boot,”** then **“Step 03 - Enhancing the Hello World REST API to return a Bean”** (22:21 total). The 22:21 viewing sequence uses the full 25-minute course allocation; count pause/replay time and carry unfinished lessons forward. In the separate 85-minute build/test allocation, reproduce the lesson’s Hello World endpoint and returned bean, then make one tiny request/response change. Use 10 minutes of evidence time for the simple request → Java method → JSON explanation. This beginner bridge does not replace the fixed quote-selection acceptance contract below; its composite identity/order implementation remains deferred and incomplete until the API prerequisite is understood. No AWS certification task is assigned; the day’s 25-minute concept is local API learning. Confirmed AWS courses are Cloud Practitioner CLF-C02 and Solutions Architect Associate, not Developer Associate. See the [Days 1–30 course/lesson map](docs/reboot/course-learning-map.md). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
-      "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": "docs/day-1.md#first-api-lesson--follow-along-before-adapting",
+      "course_learning_block": "**Day 1 API bridge (existing 25/85/10-minute budget):** [in28Minutes Official, *Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate.”** Watch essential **“Step 02 - Creating a Hello World REST API with Spring Boot” (6:21)** then **“Step 03 - Enhancing the Hello World REST API to return a Bean” (4:30)** (10:51 total). If request/API terms are unfamiliar, add **“Step 00 - Creating a REST API with Spring Boot - An Overview” (4:04)**. **“Step 01 - Initializing a REST API Project with Spring Boot” (7:26)** is optional setup reference because the test-runtime fixture handles setup. Catalog titles were verified; videos were not watched. In 25 minutes, study the course and [runnable worked guide](docs/reboot/day-01-api-bridge.md); carry unfinished viewing forward. Use 85 minutes for the loopback reference and the separate small practice endpoint, not quote-selection implementation until the API bridge is understood. Use 10 minutes for exact observed response and request→method→Java value→HTTP explanation. This guide does not complete the original Day 1 quote-selection contract. The repository is Java 21/Spring Boot 4.1.1; do not downgrade or copy old setup instructions.",
+      "course_learning_source_status": "verified_titles_video_not_watched",
+      "course_learning_supplement_path": "docs/reboot/day-01-api-bridge.md",
       "course_learning_access": [
         "confirmed_owned"
       ],
       "course_learning_lessons": [
         {
-          "title": "Step 00 - Creating a REST API with Spring Boot - An Overview",
-          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
-          "duration": "4:04",
-          "duration_seconds": 244,
-          "source_item_id": "35018848"
-        },
-        {
-          "title": "Step 01 - Initializing a REST API Project with Spring Boot",
-          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
-          "duration": "7:26",
-          "duration_seconds": 446,
-          "source_item_id": "35018844"
-        },
-        {
           "title": "Step 02 - Creating a Hello World REST API with Spring Boot",
           "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
           "duration": "6:21",
           "duration_seconds": 381,
-          "source_item_id": "35018836"
+          "source_item_id": "35018836",
+          "role": "essential"
         },
         {
           "title": "Step 03 - Enhancing the Hello World REST API to return a Bean",
           "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
           "duration": "4:30",
           "duration_seconds": 270,
-          "source_item_id": "35018834"
+          "source_item_id": "35018834",
+          "role": "essential"
+        },
+        {
+          "title": "Step 00 - Creating a REST API with Spring Boot - An Overview",
+          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+          "duration": "4:04",
+          "duration_seconds": 244,
+          "source_item_id": "35018848",
+          "role": "optional_if_API_terms_are_new"
+        },
+        {
+          "title": "Step 01 - Initializing a REST API Project with Spring Boot",
+          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+          "duration": "7:26",
+          "duration_seconds": 446,
+          "source_item_id": "35018844",
+          "role": "optional_setup_reference_fixture_handles_setup"
         }
       ],
       "course_learning_total_viewing_seconds": 1341,
-      "course_prerequisite_note": "The learner is new to API implementation. First complete the guided Hello World endpoint/bean bridge, then make one tiny adaptation; begin the quote-selection acceptance task only if that prerequisite is understood. Acceptance data is inline."
+      "course_prerequisite_note": "Use the guided reference and understand the observed request/method/return/response first. The separate practice test does not complete the existing quote-selection contract; the default main app reaches Day 2 validation TODO first. Do not implement Day 2 or production wiring to unblock the bridge."
     },
     {
       "id": "CS-DAY02",
