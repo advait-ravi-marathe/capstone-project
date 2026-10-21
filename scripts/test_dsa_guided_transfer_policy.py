@@ -161,6 +161,17 @@ class GuidedTransferPolicyTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "transfer activity"):
             queue.build_queue([transfer_as_anchor], "2026-10-20")
 
+    def test_qualified_extension_first_attempt_cannot_create_anchor_clock_or_seen_credit(self):
+        extension = {"schema_version": 2, "event_id": "extension-as-anchor", "date": "2026-10-20",
+                     "timezone": "Asia/Kolkata", "anchor_id": "lc:121", "anchor_problem_id": 121,
+                     "kind": "first_attempt", "activity": "qualified_extension", "target_problem_id": 1014,
+                     "result": "passed", "assistance": ["none"]}
+        with self.assertRaisesRegex(ValueError, "qualified extension activity, or repair activity"):
+            queue.build_queue([extension], "2026-10-20", 4)
+        result = queue.build_queue([], "2026-10-20", 4)
+        self.assertEqual("guided_anchor", result["selected_exercises"][0]["activity"])
+        self.assertEqual(121, result["selected_exercises"][0]["problem_id"])
+
     def test_transfer_credit_requires_mapped_full_relation_and_unaided_evidence(self):
         first = self.anchor_attempt(121, 1, "2026-10-22")
         valid = self.transfer_attempt(121, 3, "2026-10-25", 2016, assistance=["none"])

@@ -176,8 +176,8 @@ def _validate_event(event, anchors):
                                                        not event["repairs_event_id"].strip()):
             raise ValueError("repair attempt requires repairs_event_id")
     if kind in {"first_attempt", "anchor_attempt"} and event.get("activity") in {
-            "independent_transfer", "transfer_retention", "repair"}:
-        raise ValueError("a transfer activity cannot be recorded as a canonical anchor attempt")
+            "independent_transfer", "qualified_extension", "transfer_retention", "repair"}:
+        raise ValueError("a transfer activity, qualified extension activity, or repair activity cannot be recorded as a canonical anchor attempt")
     if kind == "anchor_attempt" and event.get("activity") not in (None, "guided_anchor"):
         raise ValueError("anchor_attempt must describe the canonical guided first attempt")
     return anchor
@@ -351,7 +351,8 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
         # an observed outcome remain visible but cannot start one.
         firsts = [e for e in ae if e.get("kind") in {"first_attempt", "anchor_attempt"}
                   and e.get("result") in {"attempted", "passed", "failed", "incomplete"}
-                  and e.get("activity") not in {"independent_transfer", "transfer_retention", "repair"}]
+                  and e.get("activity") not in {"independent_transfer", "qualified_extension",
+                                                  "transfer_retention", "repair"}]
         first_date = min((dt.date.fromisoformat(e["date"]) for e in firsts), default=None)
         reviews = []
         if first_date:
@@ -454,7 +455,8 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None, con
         seen = {a["anchor_id"] for a in anchors if grouped[a["anchor_id"]] and
                 any(e.get("kind") in {"first_attempt", "anchor_attempt"} and
                     e.get("result") in {"attempted", "passed", "failed", "incomplete"} and
-                    e.get("activity") not in {"independent_transfer", "transfer_retention", "repair"}
+                    e.get("activity") not in {"independent_transfer", "qualified_extension",
+                                               "transfer_retention", "repair"}
                     for e in grouped[a["anchor_id"]])}
         planned = [a for a in anchors if a["anchor_id"] not in seen][:1]
     new_guidance_allowed = roadmap_day is not None and roadmap_day <= 150 and roadmap_day not in {133, 140, 147, 154}
