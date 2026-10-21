@@ -1,0 +1,43 @@
+{
+  "base_sha": "db2caf3adabf11e6d619ab9a7f7e1f5aa40f2a24",
+  "branch": "learning/coverstory-days-71-84",
+  "scope": "Days 71-84 contracts, instructor harnesses and deliberate learner seams; no learner solution implemented",
+  "verification": [
+    {
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plocal-app -DskipTests package",
+      "result": "PASS; packaged Spring Boot JAR; project compiled with Java 21."
+    },
+    {
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 test",
+      "result": "39 tests: 38 pass; LocalPackagedRuntimeInfrastructureTest errors because Day72 learner TODO PreviewCapacityPolicy.validate() intentionally blocks local-app startup. This is the expected saved-learner state; no completion inferred."
+    },
+    {
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 '-Dtest=!LocalPackagedRuntimeInfrastructureTest' test",
+      "result": "PASS; 38 instructor tests, 0 failures/errors. Excludes only the packaged local-app test that cannot boot until Day72 learner TODO is implemented."
+    },
+    {
+      "command": "npm --prefix frontend test && npm --prefix frontend run build && npm --prefix frontend run build:local",
+      "result": "PASS; frontend instructor test 1/1, production build and isolated local build."
+    },
+    {
+      "command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
+      "result": "PASS; 19 tests. DSA attempt log remains empty; no attempts or reviews inferred."
+    },
+    {
+      "command": "git diff --check; python3 -m json.tool docs/reboot/continuation-71-84/manifest.json; python3 -m json.tool docs/reboot/continuation-71-84/scrum-owner-manifest.json; python3 -m json.tool evidence/continuation-71-84/day-83.json; python3 -m json.tool evidence/continuation-71-84/verification.json",
+      "result": "PASS before commit."
+    },
+    {
+      "command": "env JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-user MAVEN_OPTS='-Dmaven.repo.local=/tmp/capstone-m2' JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/tmp/capstone-jdk21-cacerts -Djavax.net.ssl.trustStorePassword=changeit' CHROMIUM_BIN=/usr/bin/chromium ./mvnw -s /tmp/capstone-maven-settings.xml -Dmaven.repo.local=/tmp/capstone-m2 -Plearner-tests -Plocal-app -Dtest=Day83PackagedLockBrowserAcceptanceTest test",
+      "result": "EXPECTED TODO BLOCK: selector starts the packaged app but fails before Chromium at Day72 PreviewCapacityPolicy.validate(); temporary witnesses are not in the published tree."
+    }
+  ],
+  "important_limits": [
+    "Day83 fixed packaged-JAR/Chromium/real-PostgreSQL-lock acceptance harness is installed and passed 1/1 only with temporary local conforming witnesses. Saved learner TODOs were restored and checksum-verified; the harness does not establish learner completion.",
+    "With learner TODOs restored, the ordinary Maven suite has 38 passing tests and one expected local packaged-runtime startup error at Day72 PreviewCapacityPolicy.validate(). The 38-test instructor suite passes when only LocalPackagedRuntimeInfrastructureTest is excluded.",
+    "The two-permit gate does not reserve Hikari capacity for other routes.",
+    "Maven emitted HTTP 403 warnings for unrelated remote metadata repositories; required dependencies resolved and the package/test commands ran.",
+    "Dependency review is targeted, not full Maven SCA and not an all-advisories-resolved claim. The prior npm audit reported 0 vulnerabilities; not repeated in this continuation.",
+    "The checked-in GitHub Actions workflow push filter does not include learning/coverstory-days-71-84, so this branch has no automatic push CI run; no CI pass is claimed."
+  ]
+}

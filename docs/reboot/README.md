@@ -154,3 +154,21 @@ objectives](https://docs.aws.amazon.com/aws-certification/latest/developer-assoc
 and [PostgreSQL 14 EXPLAIN](https://www.postgresql.org/docs/14/using-explain.html).
 Match examples to the repository's installed versions when a future stack is
 introduced.
+
+## Later isolated continuation
+
+[Days 45–56](continuation-45-56/README.md) continue the synthetic HomeSecure
+policy lifecycle with a read-only, non-binding renewal preview. Its canonical
+manifest and Scrum owner export are additive planning artifacts; neither edits
+the board or claims learner completion.
+
+[Days 71–84](continuation-71-84/README.md) continue the same read-only renewal
+preview with a bounded synchronous capacity gate and recovery evidence. The
+manifest and Story export are documentation only; this work does not update
+the Scrum board.
+
+## Continued roadmap
+
+The isolated [Days 99–112 contracts](continuation-99-112/README.md) add event-log-backed durable-work materialization and a manual one-shot local command. These are contracts and learner TODO scaffolding; they do not indicate completion.
+
+[Days 113–126](continuation-113-126/README.md) add explicit local recovery inspection, quarantine, release, and one-key retry. [Days 127–140](continuation-127-140/README.md) extend the local work with a real PostgreSQL 18.6 logical archive restore into a fresh disposable database, full-state verification, and a loopback-only cutover rehearsal. The AWS course block is an offline planning/permission gate only; it creates no AWS resources or access grants.

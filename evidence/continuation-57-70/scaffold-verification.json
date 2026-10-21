@@ -1,0 +1,70 @@
+{
+  "branch": "learning/coverstory-days-57-70",
+  "base_sha": "6649f9adf368a5ac11c85458cbb0abb94f6a4eb0",
+  "status": "verified_scaffold_with_expected_learner_blockers",
+  "published_sha": null,
+  "checks": [
+    {
+      "command": "scripts/package-local-demo.sh",
+      "result": "passed; both frontend builds succeeded, executable local-app JAR packaged, instructor Maven suite 35/35 passed. Runtime smoke applied V001\u2013V003 to disposable PostgreSQL 18.6 and verified root/health 200, anonymous protected requests 401, selected-session missing-CSRF request 403 and excluded test routes 404."
+    },
+    {
+      "command": "npm --prefix frontend run test:local",
+      "result": "expected learner TODO red: three tests fail at missing Day 66 UI controls. No feature success is inferred from skipped API calls."
+    },
+    {
+      "command": "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly+day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce+day69PreviewIsStableAcrossPackagedRestartAndLogout test",
+      "result": "expected learner red: 3 tests fail only on absent owner/preview/issue/readback/replay/logout controls. Executed snapshot assertions compare ordered full policy rows, lifecycle events/versions and idempotency records; absent UI means no positive API witness is claimed."
+    },
+    {
+      "command": "node --check frontend/e2e/local-coverstory-browser.mjs",
+      "result": "passed; API response entries are recorded synchronously, response bodies settle asynchronously, each UI action awaits its matching response, and logout reload waits for GET /api/session."
+    },
+    {
+      "command": "npm audit --audit-level=low",
+      "result": "passed; 0 frontend vulnerabilities reported by npm registry audit."
+    },
+    {
+      "command": "python3 -m json.tool docs/reboot/continuation-57-70/manifest.json",
+      "result": "passed"
+    },
+    {
+      "command": "python3 -m json.tool docs/reboot/continuation-57-70/scrum-owner-manifest.json",
+      "result": "passed"
+    },
+    {
+      "command": "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test",
+      "result": "passed 3/3; validates all 14 contracts, manifest fields/paths, scaffold statuses and Day70 structure."
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "git ls-remote origin refs/heads/learning/coverstory-days-57-70",
+      "result": "before this patch, remote SHA e9e5102b858baf16060b14dee426d7a3fe1e0b22 was confirmed; this patch is pending push and exact-head CI."
+    }
+  ],
+  "runtime": {
+    "packaged_demo": "scripts/package-local-demo.sh built the executable Spring Boot JAR and ran it against disposable PostgreSQL 18.6. V001\u2013V003 were applied. GET / and actuator health returned 200; anonymous protected endpoints returned 401; after CSRF-protected synthetic owner selection, missing-CSRF protected POST returned 403 and excluded /test and /__e2e routes returned 404.",
+    "browser_evidence": "Day 68/69 selectors launch Chromium against the built executable JAR. Current expected red is missing learner UI controls. Snapshots serialize complete ordered rows from training_policy_lifecycle, training_policy_lifecycle_event (including version/history), and training_policy_idempotency. Day 69 starts the packaged application before the initial snapshot, allowing Flyway to create/seed a fresh database. Snapshot equality on actions that actually ran is harness evidence, not feature acceptance.",
+    "temporary_build_environment": "Oracle JDK 21 at /tmp/oracle-jdk21; Maven proxy settings /tmp/capstone-maven-settings.xml; trusted proxy store /tmp/capstone-jdk21-cacerts; local repository /tmp/capstone-m2; Chromium /usr/bin/chromium.",
+    "hosted_ci_predecessor": "GitHub Actions run #18 (39416158773) succeeded for predecessor SHA e9e5102b858baf16060b14dee426d7a3fe1e0b22. This snapshot/response/docs patch is not yet pushed or hosted-CI verified."
+  },
+  "unresolved": [
+    "Learner-owned readiness/recovery, authenticated owner-read resolution, and normal local React UI remain incomplete; this patch does not provide those solutions.",
+    "Day68/69 browser selectors remain expected red at missing Day 66 UI controls. Missing actions and HTTP 500 are failures; no packaged feature completion is claimed.",
+    "Maven dependency security/advisory review remains outstanding; no all-clear claim.",
+    "This patch still requires publication and exact-head hosted CI confirmation."
+  ],
+  "resolved_since_checkpoint": [
+    "Verified predecessor branch SHA e9e5102b858baf16060b14dee426d7a3fe1e0b22 and successful hosted Actions run #18.",
+    "The separate /workspace/capstone-project remains at 3a9db48b9d495d6165373c8e473ac63418275f04 with 104 pre-existing dirty entries; it was not modified.",
+    "Day 69 starts the executable JAR before its first lifecycle snapshot so Flyway applies migrations before any schema-dependent query.",
+    "Day68/69 assertions compare full ordered policy rows, lifecycle event/version history, and idempotency rows rather than counts alone.",
+    "Browser response entries are synchronous; response body capture is awaited per matching UI action, and logout reload awaits its session response.",
+    "Day58/59/61/64/65/67 scaffold prompts accurately ask to trace/inspect/verify supplied setup; Day67 title no longer repeats its day prefix.",
+    "Architecture accurately states that current Days68/69 first stop at missing Day66 UI, with Day48/49/62 TODOs possible after UI work."
+  ],
+  "verified_predecessor_sha": "e9e5102b858baf16060b14dee426d7a3fe1e0b22"
+}

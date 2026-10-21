@@ -1,0 +1,16 @@
+{
+  "day": 110,
+  "date": "2027-02-06",
+  "learner_status": "not_attempted",
+  "contract_status": "defined",
+  "acceptance_commands": [
+    "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
+    "./mvnw -Plocal-app -DskipTests package",
+    "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+  ],
+  "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
+  "witness_status": "not_run",
+  "learner_attempts": [],
+  "notes": "Command implementation and runner plumbing are supplied. Instructor tests cover invalid 0/-1/21/non-number, empty success, and partial failure exit; learner explain-back has no completion evidence.",
+  "verification_status": "instructor_command_tests_installed_learner_explainback_pending"
+}

@@ -6,14 +6,47 @@ lifecycle with a small quote-selection domain rule. All products and quote IDs
 are fixtures; no real insurer, customer, payment, or policy system is connected.
 The learner implementation stays in one explicit TODO method.
 
-## Run the Day 1 checks
+## Run instructor infrastructure checks
 
-With a full JDK 21 (both `java` and `javac`) and network access to Maven
-Central on first use:
+The default Maven suite includes untagged instructor browser/transport checks.
+They exercise the real Chromium-to-Spring-to-PostgreSQL path, so install the
+locked frontend dependencies and build both app shells before running Maven.
+With a full JDK 21 (`java` and `javac`) and network access on first use:
 
 ```sh
+cd frontend
+npm ci
+npm run build
+npm run build:local
+npx playwright install chromium
+cd ..
 ./mvnw test
 ```
+
+If the Playwright browser CDN is unavailable and a compatible system Chromium
+is already installed, skip only the browser download and point the harness at
+that executable. For example, on Ubuntu:
+
+```sh
+cd frontend
+npm ci
+npm run build
+npm run build:local
+cd ..
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw test
+```
+
+The browser harness still runs in this fallback. A missing Playwright package,
+browser executable, or built frontend is an infrastructure setup failure, not
+an expected learner TODO failure. The CI workflow installs the locked browser
+and runs these same instructor checks.
+
+On subsequent runs, `npm ci` and the two builds can be omitted unless the
+lockfile or frontend sources changed.
+
+## Run the Day 1 checks
+
+After the instructor prerequisites above are installed, focused commands are:
 
 The official Maven Wrapper downloads Maven 3.10.0 and verifies its SHA-256
 before use. Start with the focused Day 1 infrastructure smoke check:
@@ -79,6 +112,11 @@ The dated [30-day CoverStory contract index](docs/reboot/README.md) contains
 individual contract guides and a chronological manifest with sprint, concept,
 source link, DSA anchor/reviews, and scaffold/runtime evidence fields. Learner
 TODOs remain unimplemented; scaffold and runtime status are separate.
+
+The [Days 31–44 continuation](docs/reboot/continuation-31-44/README.md) adds a
+synthetic HomeSecure policy servicing lifecycle. It continues across two native
+sprints (Days 31–42 fill Sprint 3; Days 43–44 begin Sprint 4) and is a repository
+proposal only; no project board was updated.
 
 ## Legacy exercises retained
 
@@ -192,3 +230,19 @@ allocation; no exam purchases are included. Project setup and instructor-
 provided fixtures, boilerplate, and test harnesses are outside the learner
 budget. Repository implementation belongs to the learner; the Scrum owner
 manages the roadmap only.
+
+## CoverStory local application continuation (Days 57–70)
+
+The isolated branch `learning/coverstory-days-57-70` contains the dated
+[Day 57–70 contracts and manifest](docs/reboot/continuation-57-70/manifest.json).
+This is a loopback-only synthetic runtime plan for reusing existing policy
+issue/readback and renewal-preview rules. It adds a dedicated frontend entry
+shell and explicit learner seams. Several day-specific fixed acceptance
+selectors and the packaged PostgreSQL runtime are not installed yet; the
+manifest marks those scaffold entries `not_installed` and integration remains
+blocked. This branch upgrades its disposable embedded PostgreSQL test target
+to 18.6 after checking official support and platform artifact availability;
+historical contracts are retained, and no existing user database is migrated.
+No board update is included.
+
+The isolated [Days 99–112 continuation](docs/reboot/continuation-99-112/README.md) adds restart-safe local delivery contracts and fixed learner acceptance. It is not completion evidence and has not been added to the project board.
