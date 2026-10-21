@@ -5,14 +5,14 @@
   "start_date": "2027-01-26",
   "end_date": "2027-02-08",
   "sprint": "Sprint 8",
-  "daily_budget_minutes": 180,
+  "daily_budget_minutes": null,
   "engineering_budget_minutes": 120,
   "engineering_allocation_minutes": {
     "implementation_and_testing": 85,
     "concept_or_course": 25,
     "evidence": 10
   },
-  "java_dsa_budget_minutes": 60,
+  "java_dsa_budget_minutes": null,
   "outcome": "Restart-safe local delivery of committed ISSUED events via event-log-backed durable-work materialization and explicitly invoked bounded command.",
   "constraints": [
     "Day 35 source issuance transaction unchanged.",
@@ -109,8 +109,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -119,7 +119,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-26 --roadmap-day 99",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 99",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -130,18 +130,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-26 --roadmap-day 99",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 99",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 100,
@@ -202,8 +222,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -212,7 +232,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-27 --roadmap-day 100",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 100",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -223,18 +243,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-27 --roadmap-day 100",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 100",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 101,
@@ -296,8 +336,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -306,7 +346,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-28 --roadmap-day 101",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 101",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -317,18 +357,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-28 --roadmap-day 101",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 101",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 102,
@@ -409,8 +469,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -419,7 +479,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-29 --roadmap-day 102",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 102",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -430,18 +490,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-29 --roadmap-day 102",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 102",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 103,
@@ -519,8 +599,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -529,7 +609,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-30 --roadmap-day 103",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 103",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -540,18 +620,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-30 --roadmap-day 103",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 103",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 104,
@@ -612,8 +712,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -622,7 +722,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-31 --roadmap-day 104",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 104",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -633,18 +733,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-01-31 --roadmap-day 104",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 104",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 105,
@@ -706,8 +826,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -716,7 +836,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-01 --roadmap-day 105",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 105",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -727,18 +847,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-01 --roadmap-day 105",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 105",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 106,
@@ -819,8 +959,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -829,7 +969,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-02 --roadmap-day 106",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 106",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -840,18 +980,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-02 --roadmap-day 106",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 106",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 107,
@@ -912,8 +1072,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -922,7 +1082,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-03 --roadmap-day 107",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 107",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -933,18 +1093,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-03 --roadmap-day 107",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 107",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 108,
@@ -1005,8 +1185,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -1015,7 +1195,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-04 --roadmap-day 108",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 108",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -1026,18 +1206,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-04 --roadmap-day 108",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 108",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 109,
@@ -1098,8 +1298,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -1108,7 +1308,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-05 --roadmap-day 109",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 109",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -1119,18 +1319,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-05 --roadmap-day 109",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 109",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 110,
@@ -1210,8 +1430,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -1220,7 +1440,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-06 --roadmap-day 110",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 110",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -1231,18 +1451,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-06 --roadmap-day 110",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 110",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 111,
@@ -1310,8 +1550,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -1320,7 +1560,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-07 --roadmap-day 111",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 111",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -1331,18 +1571,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-07 --roadmap-day 111",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 111",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     },
     {
       "day": 112,
@@ -1408,8 +1668,8 @@
         "scaffold_status": "instructor_scaffold_complete"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+        "budget_minutes": null,
+        "mode": "dynamic_actual_attempt_queue",
         "problem_id": null,
         "planned_first_attempt_date": null,
         "actual_first_attempt_date": null,
@@ -1418,7 +1678,7 @@
           7,
           21
         ],
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-08 --roadmap-day 112",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 112",
         "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "status": "not_attempted",
         "daily_task": "Recorded due reviews first; remaining time for cold retrieval and error-log repair. No new mandatory problem this batch.",
@@ -1429,18 +1689,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-02-08 --roadmap-day 112",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 112",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_review_queue_first; no attempt/review inferred",
+          "problem_id": null,
+          "planned_first_attempt_date": null
+        },
+        "mandatory_new_problem": false,
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "allocation_minutes": {}
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
       "dsa_guided_sequence_problem_id": null,
       "dsa_attempt_status_remains_actual_evidence_only": true,
       "dsa_current_guided_sequence_problem_id": null,
-      "dsa_current_guidance": "select actual-attempt queue; historical daily map is not a completion/assignment"
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites",
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false
     }
   ],
   "dsa_workload_policy": {
@@ -1461,19 +1741,23 @@
       1,
       383
     ],
-    "new_guided_cutoff_day": 150
+    "new_guided_cutoff_day": 150,
+    "total_range": [
+      180,
+      210
+    ]
   },
   "daily_budget_minutes_min": 180,
   "daily_budget_minutes_max": 210,
   "daily_budget_minutes_by_dsa_tier": {
-    "1_or_2": 180,
-    "3": 195,
-    "4": 210
+    "1_or_2_substantive_exercises": 180,
+    "3_substantive_exercises": 195,
+    "4_substantive_exercises": 210
   },
   "java_dsa_budget_minutes_by_exercise_count": {
-    "1_or_2_substantive_exercises": 60,
-    "3_substantive_exercises": 75,
-    "4_substantive_exercises": 90
+    "1_or_2": 60,
+    "3": 75,
+    "4": 90
   },
   "daily_budget_minutes_is_minimum_tier": true
 }

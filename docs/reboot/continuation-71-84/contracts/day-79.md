@@ -1,4 +1,4 @@
-# Day 79 — 2027-01-06: Wire one singleton gate around the existing route; DSA LC 230 Kth Smallest Element in a BST
+# Day 79 — 2027-01-06: Wire one singleton gate around the existing route; DSA actual-attempt queue
 
 ## Contract
 
@@ -52,4 +52,4 @@ Record exact commands, exit status, observed values, learner-owned paths and blo
 
 Guided learning may use LeetCode Premium/editorial explanations. Before opening an editorial, attempt independently; if assistance is used, label the event guided/hinted/editorial-assisted even if accepted. A transfer is independent only after an unaided attempt, with the intended invariant explained; platform acceptance alone is insufficient. D, D+3, D+7, and D+21 are based on the earliest actual first-attempt local date, including guided attempts; never use planned dates or reset the clock. A transfer target does not start another anchor cycle.
 
-Run `python3 scripts/dsa-review-queue.py --on-date 2027-01-06 --roadmap-day 79` first. Record actual activity, assistance, outcome, and evidence in the append-only log; never infer completion from this contract. See [../../dsa/guided-transfer-policy.md](../../dsa/guided-transfer-policy.md) and [the DSA error log](../../dsa-error-log-template.md).
+Run `python3 scripts/dsa-review-queue.py --on-date "$(TZ=Asia/Kolkata date +%F)" --roadmap-day 79` first. The date command uses the actual Asia/Kolkata local study date; dates shown elsewhere are forecasts only. Record actual activity, assistance, outcome, and evidence in the append-only log; never infer completion from this contract. See [../../dsa/guided-transfer-policy.md](../../dsa/guided-transfer-policy.md) and [the DSA error log](../../dsa-error-log-template.md).

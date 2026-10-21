@@ -65,37 +65,21 @@ class RenewalPreviewManifestInfrastructureTest {
             }
 
             JsonNode dsa = day.get("java_dsa");
-            assertEquals(60, dsa.get("budget_minutes").asInt());
+            assertTrue(dsa.get("budget_minutes").isNull());
+            assertEquals(60, dsa.get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
+            assertEquals(75, dsa.get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
+            assertEquals(90, dsa.get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
             assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString())));
             assertTrue(Files.isRegularFile(Path.of(dsa.get("revision_log_path").asString())));
-            assertEquals("python3 scripts/dsa-review-queue.py --on-date " + day.get("date").asString(),
+            assertEquals("python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day " + (45 + i),
                     dsa.get("review_queue_command").asString());
             int dayNumber = day.get("day").asInt();
-            if (dayNumber == 45 || dayNumber == 47 || dayNumber == 53) {
-                assertEquals("new_pattern_anchor", dsa.get("mode").asString());
-                assertTrue(dsa.get("actual_first_attempt_date").isNull());
-                assertEquals(3, dsa.get("review_due_dates_if_attempted_on_plan").size());
-                assertTrue(card.get("title").asString().contains("LC " + dsa.get("problem_id").asInt()));
-                assertTrue(dsa.get("plan_membership").asString().contains("not independently verified"));
-            } else if (dayNumber == 49 || dayNumber == 51 || dayNumber == 55) {
-                assertEquals("review_and_consolidation", dsa.get("mode").asString());
-                assertFalse(dsa.get("mandatory_new_problem").asBoolean());
-                assertEquals(1, dsa.get("review_anchors").size());
-                JsonNode revisit = dsa.get("review_anchors").get(0);
-                int expectedAnchor = dayNumber == 49 ? 7 : dayNumber == 51 ? 21 : 23;
-                assertEquals(expectedAnchor, revisit.get("anchor_day").asInt());
-                assertTrue(revisit.get("actual_first_attempt_date").isNull());
-                assertTrue(card.get("title").asString().contains("revisit"));
-            } else {
-                assertEquals("review_and_consolidation", dsa.get("mode").asString());
-                assertFalse(day.get("mandatory_new_problem").asBoolean());
-                for (JsonNode review : dsa.get("review_anchors")) {
-                    LocalDate anchor = LocalDate.parse(review.get("planned_anchor_date").asString());
-                    assertEquals(anchor.plusDays(review.get("review_interval_days").asInt()).toString(),
-                            review.get("planned_due_date").asString());
-                    assertEquals("pending_actual_attempt", review.get("status").asString());
-                }
-            }
+            assertEquals("dynamic_actual_attempt_queue", dsa.get("mode").asString());
+            assertTrue(dsa.get("problem_id").isNull());
+            assertTrue(dsa.get("review_anchors").isEmpty());
+            assertTrue(dsa.has("historical_planned_assignment"));
+            assertFalse(day.get("mandatory_new_problem").asBoolean());
+            assertTrue(card.get("title").asString().endsWith("DSA actual-attempt queue"));
         }
     }
 
@@ -105,7 +89,7 @@ class RenewalPreviewManifestInfrastructureTest {
         assertTrue(scope.contains("read-only"));
         assertTrue(scope.contains("no renewal acceptance"));
         assertTrue(scope.contains("270-day horizon remains a planning frame"));
-        assertTrue(Files.readString(Path.of("scripts/dsa-review-queue.py")).contains("continuation-45-56/manifest.json"));
+        assertTrue(Files.readString(Path.of("scripts/dsa-review-queue.py")).contains("canonical-anchors.json"));
         assertTrue(Files.isRegularFile(Path.of("scripts/test_dsa_review_queue_45_56.py")));
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java")));
         String dsaQueue = Files.readString(Path.of("scripts/dsa-review-queue.py"));

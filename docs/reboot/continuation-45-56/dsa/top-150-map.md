@@ -21,10 +21,9 @@ The original dated table below is retained as historical plan metadata. Its odd/
 
 Problems: [LC 128 Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/); [LC 15 3Sum](https://leetcode.com/problems/3sum/); [LC 49 Group Anagrams](https://leetcode.com/problems/group-anagrams/); [LC 20 Valid Parentheses](https://leetcode.com/problems/valid-parentheses/); [LC 150 Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/); [LC 155 Min Stack](https://leetcode.com/problems/min-stack/). Membership in the public Top Interview 150 plan has not been independently verified for these selections. Each linked URL is the official problem statement. LC 49, LC 20 and LC 155 are planned revisits of canonical Days 7, 21 and 23; the actual-attempt log is currently empty. If the first actual attempt happens on a revisit date, record it against the original anchor day. Review clocks start on the actual first-attempt date and never reset; use the shared queue rather than planned-date forecasts.
 
-D+3/D+7/D+21 are conditional forecasts only. Append an actual first-attempt event to the shared [actual-attempt log](../../continuation-31-44/dsa/actual-attempt-log.json) only after doing the work. The common queue reads the Days 1–30, 31–44 and 45–56 manifests so carryover can be recalculated from real dates.
+D+3/D+7/D+21 are conditional forecasts only. Append an actual first-attempt event to the shared [actual-attempt log](../../continuation-31-44/dsa/actual-attempt-log.json) only after doing the work. The queue uses the canonical registry and actual-event log to recalculate carryover from real dates; the historical table is not a current assignment calendar.
 
 - Queue: `python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD`
 - Tests: `python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py`
-- New anchors use 25 minutes pattern learning, 20 independent solve, 15 retrieval/error log.
-- Consolidation days use 25 minutes pattern recall, 20 cold review(s), 15 error-log repair.
-- A failed review displaces new work inside the selected DSA tier.
+- The dated roles and old 25/20/15 allocations in the table are historical schedule metadata only. The shared queue determines current guided or transfer work from actual attempts, exposure, access, and prerequisites.
+- Failed or overdue retrieval displaces new guidance within the selected 60/75/90-minute tier; excess keeps its original due date.

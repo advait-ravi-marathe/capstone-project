@@ -84,8 +84,8 @@ class DsaReviewQueueTest(unittest.TestCase):
 
     def test_original_anchor_review_evidence_survives_later_planned_revisit(self):
         result = queue_module.build_queue([
-            {"anchor_day": 7, "problem_id": 49, "kind": "first_attempt", "date": "2026-10-26", "result": "attempted"},
-            {"anchor_day": 7, "problem_id": 49, "kind": "review", "interval_days": 3, "date": "2026-10-29", "result": "passed"},
+            {"anchor_day": 7, "problem_id": 49, "kind": "first_attempt", "date": "2026-09-20", "result": "attempted"},
+            {"anchor_day": 7, "problem_id": 49, "kind": "review", "interval_days": 3, "date": "2026-09-23", "result": "passed"},
         ], "2026-12-07")
         matches = [a for a in result["anchors"] if a["problem_id"] == 49]
         self.assertEqual(1, len(matches))

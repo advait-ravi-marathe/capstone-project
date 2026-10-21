@@ -32,8 +32,14 @@ class Day71To84InfrastructureTest {
             assertEquals(71 + i, day.get("day").asInt());
             assertEquals(start.plusDays(i).toString(), day.get("date").asString());
             assertEquals("not_attempted", day.get("learner_status").asString());
-            assertEquals(180, day.get("engineering").get("budget_minutes").asInt()
-                    + day.get("java_dsa").get("budget_minutes").asInt());
+            assertEquals(120, day.get("engineering").get("budget_minutes").asInt());
+            assertTrue(day.get("java_dsa").get("budget_minutes").isNull());
+            assertEquals(60, day.get("java_dsa").get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
+            assertEquals(75, day.get("java_dsa").get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
+            assertEquals(90, day.get("java_dsa").get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
+            assertEquals(180, manifest.get("daily_budget_minutes").get("total_by_dsa_tier_minutes").get("1_or_2").asInt());
+            assertEquals(195, manifest.get("daily_budget_minutes").get("total_by_dsa_tier_minutes").get("3").asInt());
+            assertEquals(210, manifest.get("daily_budget_minutes").get("total_by_dsa_tier_minutes").get("4").asInt());
             assertEquals(85, day.get("engineering").get("allocation_minutes").get("implementation_and_testing").asInt());
             assertEquals(25, day.get("engineering").get("allocation_minutes").get("concept_or_course").asInt());
             assertEquals(10, day.get("engineering").get("allocation_minutes").get("evidence").asInt());
@@ -53,7 +59,9 @@ class Day71To84InfrastructureTest {
                         .startsWith("installed_"));
             }
             assertEquals(day.get("date").asString(), card.get("date").asString());
-            assertEquals(180, card.get("budget_minutes").asInt());
+            assertTrue(card.get("budget_minutes").isNull());
+            assertEquals(180, card.get("budget_minutes_min").asInt());
+            assertEquals(210, card.get("budget_minutes_max").asInt());
             JsonNode source = day.get("engineering").get("concept_course").get("resources").get(0);
             assertEquals("https", URI.create(source.get("url").asString()).getScheme());
         }
@@ -65,15 +73,9 @@ class Day71To84InfrastructureTest {
         assertEquals(4, manifest.get("capacity_decision").get("existing_hikari_maximum_pool_size").asInt());
         assertEquals(1000, manifest.get("capacity_decision").get("connection_timeout_millis").asInt());
         Set<Integer> ids = new HashSet<>();
-        for (String file : new String[]{"manifest.json", "continuation-31-44/manifest.json",
-                "continuation-45-56/manifest.json", "continuation-57-70/manifest.json"}) {
-            Path path = file.equals("manifest.json") ? BASE.resolve(file) : Path.of("docs/reboot").resolve(file);
-            for (JsonNode day : new ObjectMapper().readTree(Files.readString(path)).get("days")) {
-                JsonNode dsa = day.get("java_dsa");
-                if (dsa != null && "new_pattern_anchor".equals(dsa.path("mode").asString()))
-                    assertTrue(ids.add(dsa.get("problem_id").asInt()), "duplicate DSA anchor " + dsa.get("problem_id"));
-            }
-        }
+        for (JsonNode anchor : new ObjectMapper().readTree(Files.readString(
+                Path.of("docs/reboot/dsa/canonical-anchors.json"))).get("anchors"))
+            assertTrue(ids.add(anchor.get("problem_id").asInt()), "duplicate canonical anchor " + anchor.get("problem_id"));
         assertTrue(ids.contains(112));
         assertTrue(ids.contains(230));
         assertTrue(Files.readString(Path.of("src/main/resources/application-local.properties"))

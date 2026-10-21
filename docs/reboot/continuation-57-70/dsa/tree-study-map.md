@@ -2,11 +2,7 @@
 
 # Java DSA continuation map — Days 57–70
 
-The daily 60/75/90-minute DSA tier begins with the shared queue. New tree-pattern
-anchors are scheduled only on Days 59, 61, 65 and 67. Days 57–58, 60, 62–64,
-66 and 68–70 consolidate actual due reviews or use cold retrieval; none adds a
-mandatory problem. The shared actual-attempt log is currently empty. Planned
-dates are not attempt, review, completion or mastery evidence.
+The dated assignments below are historical plan metadata, not current scheduled work. Use the shared actual-attempt queue to select current review and guided work, subject to the Day 150 cutoff and actual access/prerequisite checks. The shared attempt log is currently empty; that does not prove there was no private practice. Planned dates are forecasts, not attempt, review, completion, or mastery evidence.
 
 | Day | Date | Assignment | Role |
 |---:|---|---|---|
@@ -25,15 +21,8 @@ dates are not attempt, review, completion or mastery evidence.
 | 69 | 2026-12-27 | Queue review or cold recall; no new assignment | review_and_consolidation |
 | 70 | 2026-12-28 | Mastery/design mock: cold recall only, no new assignment | review_and_consolidation |
 
-These assignments continue the Top Interview 150 tree-pattern study, but
-membership in the public plan is not independently verified here. Each link is
-the official problem statement. The actual-attempt log and queue are
-[shared across Days 1–70](../../continuation-31-44/dsa/actual-attempt-log.json);
-review dates derive only from actual first attempts, including reviews that
-carry forward from earlier days. A failed review replaces planned new work
-inside the selected DSA tier.
+The table preserves the earlier tree-study forecast only. These links are official problem statements; membership in Top Interview 150 is not independently verified. Current DSA scheduling comes from the [shared policy](../../dsa/guided-transfer-policy.md) and actual-attempt queue. Do not treat a historical row or empty log as evidence of an attempt or completion.
 
-- New anchor allocation: 25 minutes pattern learning, 20 minutes independent solve, 15 minutes active retrieval/error log.
-- Consolidation allocation: 25 minutes pattern recall, 20 minutes due cold review(s), 15 minutes error-log repair.
-- Queue: `python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD`
-- Tests: `python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py`
+- Queue for the actual Asia/Kolkata study date: `python3 scripts/dsa-review-queue.py --on-date "$(TZ=Asia/Kolkata date +%F)" --roadmap-day N`
+- Failed/overdue retrieval displaces new guidance within the selected 60/75/90-minute tier; excess due work keeps its original date.
+- Tests: `python3 -m unittest scripts/test_dsa_review_queue.py`

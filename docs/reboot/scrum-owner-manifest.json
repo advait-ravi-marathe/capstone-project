@@ -48,21 +48,19 @@
   ],
   "story_count": 30,
   "daily_budgets_minutes": {
-    "total": 180,
-    "engineering": 120,
-    "java_dsa": 60,
-    "java_dsa_by_exercise_count": {
-      "1_or_2_substantive_exercises": 60,
-      "3_substantive_exercises": 75,
-      "4_substantive_exercises": 90
-    },
     "total_by_dsa_tier": {
       "1_or_2": 180,
       "3": 195,
       "4": 210
     },
     "total_min": 180,
-    "total_max": 210
+    "total_max": 210,
+    "engineering": 120,
+    "java_dsa_by_exercise_count": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    }
   },
   "cards": [
     {
@@ -70,10 +68,10 @@
       "sequence": 1,
       "day_number": 1,
       "date": "2026-10-20",
-      "title": "Day01: Quote selection + running-state array (LC 121)",
+      "title": "Day01: Quote selection — guided DSA: LC 121",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -113,13 +111,9 @@
         "evidence_output_path": "evidence/reboot/day-01.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "guided_first_encounter",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "guided_first_sequence",
         "concept": "running-state array",
         "problem_id": 121,
         "problem": "121 Best Time to Buy and Sell Stock",
@@ -153,10 +147,23 @@
         "historical_planned_problem_id": 121,
         "current_guided_encounter_problem_id": 121,
         "current_policy_role": "guided_first_sequence",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-20 --roadmap-day 1",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-20 --roadmap-day 1"
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 1",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 1",
+        "historical_planned_assignment": {
+          "mode": "guided_first_encounter",
+          "concept": "running-state array",
+          "problem_id": 121,
+          "problem": "121 Best Time to Buy and Sell Stock",
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": true,
+        "engineering_minutes_remain": 120,
+        "problem_name": "121 Best Time to Buy and Sell Stock",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -172,10 +179,10 @@
       "sequence": 2,
       "day_number": 2,
       "date": "2026-10-21",
-      "title": "Day02: Validate request + DSA consolidation (no due anchors)",
+      "title": "Day02: Validate request — guided DSA: LC 1",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -209,14 +216,10 @@
         "evidence_output_path": "evidence/reboot/day-02.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "guided_first_encounter",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "guided_first_sequence",
+        "concept": "hash lookup",
         "problem_id": 1,
         "problem": "1 Two Sum",
         "planned_attempt_date": null,
@@ -227,9 +230,10 @@
         "evidence_output": "evidence/reboot/day-02-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "https://leetcode.com/problems/two-sum/description/",
           "docs/reboot/dsa-error-log-template.md"
         ],
-        "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
+        "fallback_if_no_due_anchor": "Day 2 is a guided LC 1 encounter. Failed or overdue retrieval can displace new guidance; a merely due-today review does not.",
         "acceptance_commands": [],
         "related_paths": [],
         "budget_minutes_by_exercise_count": {
@@ -244,10 +248,24 @@
         "current_guided_encounter_problem_id": 1,
         "current_policy_role": "guided_first_sequence",
         "problem_url": "https://leetcode.com/problems/two-sum/",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-21 --roadmap-day 2",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-21 --roadmap-day 2"
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 2",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 2",
+        "historical_planned_assignment": {
+          "mode": "guided_first_encounter",
+          "concept": "consolidation and active retrieval",
+          "problem_id": 1,
+          "problem": "1 Two Sum",
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": true,
+        "engineering_minutes_remain": 120,
+        "problem_name": "1 Two Sum",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -263,10 +281,10 @@
       "sequence": 3,
       "day_number": 3,
       "date": "2026-10-22",
-      "title": "Day03: Error mapping + hash lookup (LC 1)",
+      "title": "Day03: Error mapping — guided DSA: LC 383",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -302,14 +320,10 @@
         "evidence_output_path": "evidence/reboot/day-03.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "guided_first_encounter",
-        "concept": "hash lookup",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "guided_first_sequence",
+        "concept": "frequency counting",
         "problem_id": 383,
         "problem": "383 Ransom Note",
         "planned_attempt_date": null,
@@ -321,7 +335,7 @@
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/ransom-note/",
         "resource_references": [
-          "https://leetcode.com/problems/two-sum/description/",
+          "https://leetcode.com/problems/ransom-note/description/",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -337,10 +351,27 @@
         "historical_planned_problem_id": 1,
         "current_guided_encounter_problem_id": 383,
         "current_policy_role": "guided_first_sequence",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-22 --roadmap-day 3",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-22 --roadmap-day 3"
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 3",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 3",
+        "historical_planned_assignment": {
+          "mode": "guided_first_encounter",
+          "concept": "hash lookup",
+          "problem_id": 383,
+          "problem": "383 Ransom Note",
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": true,
+        "engineering_minutes_remain": 120,
+        "problem_name": "383 Ransom Note",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "historical_resource_references": [
+          "https://leetcode.com/problems/two-sum/description/",
+          "docs/reboot/dsa-error-log-template.md"
+        ]
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -356,10 +387,10 @@
       "sequence": 4,
       "day_number": 4,
       "date": "2026-10-23",
-      "title": "Day04: Product catalog + reviews LC 121 D+3",
+      "title": "Day04: Product catalog — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -395,34 +426,21 @@
         "evidence_output_path": "evidence/reboot/day-04.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 1,
-            "problem_id": 121,
-            "review_interval_days": 3,
-            "due_date": "2026-10-23",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
-            "problem": "121 Best Time to Buy and Sell Stock"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-04-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -438,11 +456,36 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-23 --roadmap-day 4",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-23 --roadmap-day 4"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 4",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 4",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 1,
+              "problem_id": 121,
+              "review_interval_days": 3,
+              "due_date": "2026-10-23",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+              "problem": "121 Best Time to Buy and Sell Stock"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -458,10 +501,10 @@
       "sequence": 5,
       "day_number": 5,
       "date": "2026-10-24",
-      "title": "Day05: Eligibility + frequency counting (LC 383)",
+      "title": "Day05: Eligibility — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -497,14 +540,10 @@
         "evidence_output_path": "evidence/reboot/day-05.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "frequency counting",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -514,9 +553,9 @@
         "evidence_output": "evidence/reboot/day-05-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/ransom-note/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -531,11 +570,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 383,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-24 --roadmap-day 5",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-24 --roadmap-day 5"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 5",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 5",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "frequency counting",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -551,10 +603,10 @@
       "sequence": 6,
       "day_number": 6,
       "date": "2026-10-25",
-      "title": "Day06: Premium calculation + reviews LC 1 D+3",
+      "title": "Day06: Premium calculation — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -590,34 +642,21 @@
         "evidence_output_path": "evidence/reboot/day-06.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 3,
-            "problem_id": 1,
-            "review_interval_days": 3,
-            "due_date": "2026-10-25",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/two-sum/description/",
-            "problem": "1 Two Sum"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-06-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -633,11 +672,36 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-25 --roadmap-day 6",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-25 --roadmap-day 6"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 6",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 6",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 3,
+              "problem_id": 1,
+              "review_interval_days": 3,
+              "due_date": "2026-10-25",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/two-sum/description/",
+              "problem": "1 Two Sum"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -653,10 +717,10 @@
       "sequence": 7,
       "day_number": 7,
       "date": "2026-10-26",
-      "title": "Day07: Quote version + grouping key (LC 49)",
+      "title": "Day07: Quote version — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -692,14 +756,10 @@
         "evidence_output_path": "evidence/reboot/day-07.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "grouping key",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -709,9 +769,9 @@
         "evidence_output": "evidence/reboot/day-07-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/group-anagrams/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -726,11 +786,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 49,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-26 --roadmap-day 7",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-26 --roadmap-day 7"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 7",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 7",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "grouping key",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -746,10 +819,10 @@
       "sequence": 8,
       "day_number": 8,
       "date": "2026-10-27",
-      "title": "Day08: PostgreSQL schema + reviews LC 121 D+7, LC 383 D+3",
+      "title": "Day08: PostgreSQL schema — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -785,43 +858,21 @@
         "evidence_output_path": "evidence/reboot/day-08.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 1,
-            "problem_id": 121,
-            "review_interval_days": 7,
-            "due_date": "2026-10-27",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
-            "problem": "121 Best Time to Buy and Sell Stock"
-          },
-          {
-            "anchor_day": 5,
-            "problem_id": 383,
-            "review_interval_days": 3,
-            "due_date": "2026-10-27",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/ransom-note/description/",
-            "problem": "383 Ransom Note"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-08-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -837,11 +888,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-27 --roadmap-day 8",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-27 --roadmap-day 8"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 8",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 8",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 1,
+              "problem_id": 121,
+              "review_interval_days": 7,
+              "due_date": "2026-10-27",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+              "problem": "121 Best Time to Buy and Sell Stock"
+            },
+            {
+              "anchor_day": 5,
+              "problem_id": 383,
+              "review_interval_days": 3,
+              "due_date": "2026-10-27",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+              "problem": "383 Ransom Note"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -857,10 +942,10 @@
       "sequence": 9,
       "day_number": 9,
       "date": "2026-10-28",
-      "title": "Day09: Quote persistence + prefix/suffix products (LC 238)",
+      "title": "Day09: Quote persistence — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -894,14 +979,10 @@
         "evidence_output_path": "evidence/reboot/day-09.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "prefix/suffix products",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -911,9 +992,9 @@
         "evidence_output": "evidence/reboot/day-09-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/product-of-array-except-self/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -928,11 +1009,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 238,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-28 --roadmap-day 9",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-28 --roadmap-day 9"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 9",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 9",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "prefix/suffix products",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -948,10 +1042,10 @@
       "sequence": 10,
       "day_number": 10,
       "date": "2026-10-29",
-      "title": "Day10: Atomic selection + reviews LC 1 D+7, LC 49 D+3",
+      "title": "Day10: Atomic selection — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -985,43 +1079,21 @@
         "evidence_output_path": "evidence/reboot/day-10.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 3,
-            "problem_id": 1,
-            "review_interval_days": 7,
-            "due_date": "2026-10-29",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/two-sum/description/",
-            "problem": "1 Two Sum"
-          },
-          {
-            "anchor_day": 7,
-            "problem_id": 49,
-            "review_interval_days": 3,
-            "due_date": "2026-10-29",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
-            "problem": "49 Group Anagrams"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-10-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -1037,11 +1109,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-29 --roadmap-day 10",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-29 --roadmap-day 10"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 10",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 10",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 3,
+              "problem_id": 1,
+              "review_interval_days": 7,
+              "due_date": "2026-10-29",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/two-sum/description/",
+              "problem": "1 Two Sum"
+            },
+            {
+              "anchor_day": 7,
+              "problem_id": 49,
+              "review_interval_days": 3,
+              "due_date": "2026-10-29",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+              "problem": "49 Group Anagrams"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1057,10 +1163,10 @@
       "sequence": 11,
       "day_number": 11,
       "date": "2026-10-30",
-      "title": "Day11: Stale quotes + inward pointers (LC 125)",
+      "title": "Day11: Stale quotes — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1094,14 +1200,10 @@
         "evidence_output_path": "evidence/reboot/day-11.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "inward pointers",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -1111,9 +1213,9 @@
         "evidence_output": "evidence/reboot/day-11-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/valid-palindrome/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -1128,11 +1230,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 125,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-30 --roadmap-day 11",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-30 --roadmap-day 11"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 11",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 11",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "inward pointers",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1148,10 +1263,10 @@
       "sequence": 12,
       "day_number": 12,
       "date": "2026-10-31",
-      "title": "Day12: Owner access + reviews LC 383 D+7, LC 238 D+3",
+      "title": "Day12: Owner access — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1185,43 +1300,21 @@
         "evidence_output_path": "evidence/reboot/day-12.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 5,
-            "problem_id": 383,
-            "review_interval_days": 7,
-            "due_date": "2026-10-31",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/ransom-note/description/",
-            "problem": "383 Ransom Note"
-          },
-          {
-            "anchor_day": 9,
-            "problem_id": 238,
-            "review_interval_days": 3,
-            "due_date": "2026-10-31",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
-            "problem": "238 Product of Array Except Self"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-12-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -1237,11 +1330,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-31 --roadmap-day 12",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-10-31 --roadmap-day 12"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 12",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 12",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 5,
+              "problem_id": 383,
+              "review_interval_days": 7,
+              "due_date": "2026-10-31",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+              "problem": "383 Ransom Note"
+            },
+            {
+              "anchor_day": 9,
+              "problem_id": 238,
+              "review_interval_days": 3,
+              "due_date": "2026-10-31",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+              "problem": "238 Product of Array Except Self"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1257,10 +1384,10 @@
       "sequence": 13,
       "day_number": 13,
       "date": "2026-11-01",
-      "title": "Day13: CI + sorted two pointers (LC 167)",
+      "title": "Day13: CI — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1296,14 +1423,10 @@
         "evidence_output_path": "evidence/reboot/day-13.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "sorted two pointers",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -1313,9 +1436,9 @@
         "evidence_output": "evidence/reboot/day-13-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -1330,11 +1453,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 167,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-01 --roadmap-day 13",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-01 --roadmap-day 13"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 13",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 13",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "sorted two pointers",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1350,10 +1486,10 @@
       "sequence": 14,
       "day_number": 14,
       "date": "2026-11-02",
-      "title": "Day14: Backend slice + reviews LC 49 D+7, LC 125 D+3",
+      "title": "Day14: Backend slice — DSA actual-attempt queue",
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1389,43 +1525,21 @@
         "evidence_output_path": "evidence/reboot/day-14.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 7,
-            "problem_id": 49,
-            "review_interval_days": 7,
-            "due_date": "2026-11-02",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
-            "problem": "49 Group Anagrams"
-          },
-          {
-            "anchor_day": 11,
-            "problem_id": 125,
-            "review_interval_days": 3,
-            "due_date": "2026-11-02",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
-            "problem": "125 Valid Palindrome"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-14-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -1441,11 +1555,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-02 --roadmap-day 14",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-02 --roadmap-day 14"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 14",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 14",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 7,
+              "problem_id": 49,
+              "review_interval_days": 7,
+              "due_date": "2026-11-02",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+              "problem": "49 Group Anagrams"
+            },
+            {
+              "anchor_day": 11,
+              "problem_id": 125,
+              "review_interval_days": 3,
+              "due_date": "2026-11-02",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
+              "problem": "125 Valid Palindrome"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1461,10 +1609,10 @@
       "sequence": 15,
       "day_number": 15,
       "date": "2026-11-03",
-      "title": "Day15: Journey summary + pointer-elimination proof (LC 11)",
+      "title": "Day15: Journey summary — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1498,14 +1646,10 @@
         "evidence_output_path": "evidence/reboot/day-15.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "pointer-elimination proof",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -1515,9 +1659,9 @@
         "evidence_output": "evidence/reboot/day-15-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/container-with-most-water/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -1532,11 +1676,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 11,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-03 --roadmap-day 15",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-03 --roadmap-day 15"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 15",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 15",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "pointer-elimination proof",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1552,10 +1709,10 @@
       "sequence": 16,
       "day_number": 16,
       "date": "2026-11-04",
-      "title": "Day16: History reads + reviews LC 238 D+7, LC 167 D+3",
+      "title": "Day16: History reads — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1589,43 +1746,21 @@
         "evidence_output_path": "evidence/reboot/day-16.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 9,
-            "problem_id": 238,
-            "review_interval_days": 7,
-            "due_date": "2026-11-04",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
-            "problem": "238 Product of Array Except Self"
-          },
-          {
-            "anchor_day": 13,
-            "problem_id": 167,
-            "review_interval_days": 3,
-            "due_date": "2026-11-04",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
-            "problem": "167 Two Sum II - Input Array Is Sorted"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-16-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -1641,11 +1776,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-04 --roadmap-day 16",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-04 --roadmap-day 16"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 16",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 16",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 9,
+              "problem_id": 238,
+              "review_interval_days": 7,
+              "due_date": "2026-11-04",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+              "problem": "238 Product of Array Except Self"
+            },
+            {
+              "anchor_day": 13,
+              "problem_id": 167,
+              "review_interval_days": 3,
+              "due_date": "2026-11-04",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+              "problem": "167 Two Sum II - Input Array Is Sorted"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1661,10 +1830,10 @@
       "sequence": 17,
       "day_number": 17,
       "date": "2026-11-05",
-      "title": "Day17: Product UI + variable sliding window (LC 3)",
+      "title": "Day17: Product UI — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1700,14 +1869,10 @@
         "evidence_output_path": "evidence/reboot/day-17.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "variable sliding window",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -1717,9 +1882,9 @@
         "evidence_output": "evidence/reboot/day-17-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -1734,11 +1899,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 3,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-05 --roadmap-day 17",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-05 --roadmap-day 17"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 17",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 17",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "variable sliding window",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1754,10 +1932,10 @@
       "sequence": 18,
       "day_number": 18,
       "date": "2026-11-06",
-      "title": "Day18: Quote input + reviews LC 125 D+7, LC 11 D+3",
+      "title": "Day18: Quote input — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1791,43 +1969,21 @@
         "evidence_output_path": "evidence/reboot/day-18.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 11,
-            "problem_id": 125,
-            "review_interval_days": 7,
-            "due_date": "2026-11-06",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
-            "problem": "125 Valid Palindrome"
-          },
-          {
-            "anchor_day": 15,
-            "problem_id": 11,
-            "review_interval_days": 3,
-            "due_date": "2026-11-06",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
-            "problem": "11 Container With Most Water"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-18-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -1843,11 +1999,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-06 --roadmap-day 18",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-06 --roadmap-day 18"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 18",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 18",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 11,
+              "problem_id": 125,
+              "review_interval_days": 7,
+              "due_date": "2026-11-06",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
+              "problem": "125 Valid Palindrome"
+            },
+            {
+              "anchor_day": 15,
+              "problem_id": 11,
+              "review_interval_days": 3,
+              "due_date": "2026-11-06",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
+              "problem": "11 Container With Most Water"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1863,10 +2053,10 @@
       "sequence": 19,
       "day_number": 19,
       "date": "2026-11-07",
-      "title": "Day19: Quote snapshot + shrinking valid window (LC 209)",
+      "title": "Day19: Quote snapshot — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1900,14 +2090,10 @@
         "evidence_output_path": "evidence/reboot/day-19.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "shrinking valid window",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -1917,9 +2103,9 @@
         "evidence_output": "evidence/reboot/day-19-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -1934,11 +2120,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 209,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-07 --roadmap-day 19",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-07 --roadmap-day 19"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 19",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 19",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "shrinking valid window",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1954,10 +2153,10 @@
       "sequence": 20,
       "day_number": 20,
       "date": "2026-11-08",
-      "title": "Day20: Selection UI + reviews LC 167 D+7, LC 3 D+3",
+      "title": "Day20: Selection UI — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -1991,43 +2190,21 @@
         "evidence_output_path": "evidence/reboot/day-20.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 13,
-            "problem_id": 167,
-            "review_interval_days": 7,
-            "due_date": "2026-11-08",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
-            "problem": "167 Two Sum II - Input Array Is Sorted"
-          },
-          {
-            "anchor_day": 17,
-            "problem_id": 3,
-            "review_interval_days": 3,
-            "due_date": "2026-11-08",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
-            "problem": "3 Longest Substring Without Repeating Characters"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-20-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -2043,11 +2220,45 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-08 --roadmap-day 20",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-08 --roadmap-day 20"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 20",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 20",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 13,
+              "problem_id": 167,
+              "review_interval_days": 7,
+              "due_date": "2026-11-08",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+              "problem": "167 Two Sum II - Input Array Is Sorted"
+            },
+            {
+              "anchor_day": 17,
+              "problem_id": 3,
+              "review_interval_days": 3,
+              "due_date": "2026-11-08",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+              "problem": "3 Longest Substring Without Repeating Characters"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2063,10 +2274,10 @@
       "sequence": 21,
       "day_number": 21,
       "date": "2026-11-09",
-      "title": "Day21: CSRF writes + stack (LC 20)",
+      "title": "Day21: CSRF writes — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2102,14 +2313,10 @@
         "evidence_output_path": "evidence/reboot/day-21.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "stack",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -2119,9 +2326,9 @@
         "evidence_output": "evidence/reboot/day-21-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/valid-parentheses/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -2136,11 +2343,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 20,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-09 --roadmap-day 21",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-09 --roadmap-day 21"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 21",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 21",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "stack",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2156,10 +2376,10 @@
       "sequence": 22,
       "day_number": 22,
       "date": "2026-11-10",
-      "title": "Day22: Request correlation + reviews LC 121 D+21, LC 11 D+7, LC 209 D+3",
+      "title": "Day22: Request correlation — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2193,52 +2413,21 @@
         "evidence_output_path": "evidence/reboot/day-22.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 1,
-            "problem_id": 121,
-            "review_interval_days": 21,
-            "due_date": "2026-11-10",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
-            "problem": "121 Best Time to Buy and Sell Stock"
-          },
-          {
-            "anchor_day": 15,
-            "problem_id": 11,
-            "review_interval_days": 7,
-            "due_date": "2026-11-10",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
-            "problem": "11 Container With Most Water"
-          },
-          {
-            "anchor_day": 19,
-            "problem_id": 209,
-            "review_interval_days": 3,
-            "due_date": "2026-11-10",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
-            "problem": "209 Minimum Size Subarray Sum"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-22-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -2254,11 +2443,54 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-10 --roadmap-day 22",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-10 --roadmap-day 22"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 22",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 22",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 1,
+              "problem_id": 121,
+              "review_interval_days": 21,
+              "due_date": "2026-11-10",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+              "problem": "121 Best Time to Buy and Sell Stock"
+            },
+            {
+              "anchor_day": 15,
+              "problem_id": 11,
+              "review_interval_days": 7,
+              "due_date": "2026-11-10",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
+              "problem": "11 Container With Most Water"
+            },
+            {
+              "anchor_day": 19,
+              "problem_id": 209,
+              "review_interval_days": 3,
+              "due_date": "2026-11-10",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+              "problem": "209 Minimum Size Subarray Sum"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2274,10 +2506,10 @@
       "sequence": 23,
       "day_number": 23,
       "date": "2026-11-11",
-      "title": "Day23: Health endpoint + augmented stack (LC 155)",
+      "title": "Day23: Health endpoint — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2317,14 +2549,10 @@
         "evidence_output_path": "evidence/reboot/day-23.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "augmented stack",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -2334,9 +2562,9 @@
         "evidence_output": "evidence/reboot/day-23-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/min-stack/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/min-stack/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -2351,11 +2579,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 155,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-11 --roadmap-day 23",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-11 --roadmap-day 23"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 23",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 23",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "augmented stack",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2371,10 +2612,10 @@
       "sequence": 24,
       "day_number": 24,
       "date": "2026-11-12",
-      "title": "Day24: Query plan + reviews LC 1 D+21, LC 3 D+7, LC 20 D+3",
+      "title": "Day24: Query plan — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2408,52 +2649,21 @@
         "evidence_output_path": "evidence/reboot/day-24.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 3,
-            "problem_id": 1,
-            "review_interval_days": 21,
-            "due_date": "2026-11-12",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/two-sum/description/",
-            "problem": "1 Two Sum"
-          },
-          {
-            "anchor_day": 17,
-            "problem_id": 3,
-            "review_interval_days": 7,
-            "due_date": "2026-11-12",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
-            "problem": "3 Longest Substring Without Repeating Characters"
-          },
-          {
-            "anchor_day": 21,
-            "problem_id": 20,
-            "review_interval_days": 3,
-            "due_date": "2026-11-12",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
-            "problem": "20 Valid Parentheses"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-24-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -2469,11 +2679,54 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-12 --roadmap-day 24",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-12 --roadmap-day 24"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 24",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 24",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 3,
+              "problem_id": 1,
+              "review_interval_days": 21,
+              "due_date": "2026-11-12",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/two-sum/description/",
+              "problem": "1 Two Sum"
+            },
+            {
+              "anchor_day": 17,
+              "problem_id": 3,
+              "review_interval_days": 7,
+              "due_date": "2026-11-12",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
+              "problem": "3 Longest Substring Without Repeating Characters"
+            },
+            {
+              "anchor_day": 21,
+              "problem_id": 20,
+              "review_interval_days": 3,
+              "due_date": "2026-11-12",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
+              "problem": "20 Valid Parentheses"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2489,10 +2742,10 @@
       "sequence": 25,
       "day_number": 25,
       "date": "2026-11-13",
-      "title": "Day25: Concurrent selection + binary-search bridge (outside Top Interview 150) (LC 704)",
+      "title": "Day25: Concurrent selection — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2526,14 +2779,10 @@
         "evidence_output_path": "evidence/reboot/day-25.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "binary-search bridge (outside Top Interview 150)",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -2543,9 +2792,9 @@
         "evidence_output": "evidence/reboot/day-25-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/binary-search/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/binary-search/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -2560,11 +2809,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 704,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-13 --roadmap-day 25",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-13 --roadmap-day 25"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 25",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 25",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "binary-search bridge (outside Top Interview 150)",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2580,10 +2842,10 @@
       "sequence": 26,
       "day_number": 26,
       "date": "2026-11-14",
-      "title": "Day26: Audit + reviews LC 383 D+21, LC 209 D+7, LC 155 D+3",
+      "title": "Day26: Audit — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2617,52 +2879,21 @@
         "evidence_output_path": "evidence/reboot/day-26.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 5,
-            "problem_id": 383,
-            "review_interval_days": 21,
-            "due_date": "2026-11-14",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/ransom-note/description/",
-            "problem": "383 Ransom Note"
-          },
-          {
-            "anchor_day": 19,
-            "problem_id": 209,
-            "review_interval_days": 7,
-            "due_date": "2026-11-14",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
-            "problem": "209 Minimum Size Subarray Sum"
-          },
-          {
-            "anchor_day": 23,
-            "problem_id": 155,
-            "review_interval_days": 3,
-            "due_date": "2026-11-14",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/min-stack/description/",
-            "problem": "155 Min Stack"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-26-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -2678,11 +2909,54 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-14 --roadmap-day 26",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-14 --roadmap-day 26"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 26",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 26",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 5,
+              "problem_id": 383,
+              "review_interval_days": 21,
+              "due_date": "2026-11-14",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/ransom-note/description/",
+              "problem": "383 Ransom Note"
+            },
+            {
+              "anchor_day": 19,
+              "problem_id": 209,
+              "review_interval_days": 7,
+              "due_date": "2026-11-14",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
+              "problem": "209 Minimum Size Subarray Sum"
+            },
+            {
+              "anchor_day": 23,
+              "problem_id": 155,
+              "review_interval_days": 3,
+              "due_date": "2026-11-14",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/min-stack/description/",
+              "problem": "155 Min Stack"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2698,10 +2972,10 @@
       "sequence": 27,
       "day_number": 27,
       "date": "2026-11-15",
-      "title": "Day27: Regression fix + boundary search (LC 35)",
+      "title": "Day27: Regression fix — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2735,14 +3009,10 @@
         "evidence_output_path": "evidence/reboot/day-27.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "boundary search",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -2752,9 +3022,9 @@
         "evidence_output": "evidence/reboot/day-27-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/search-insert-position/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -2769,11 +3039,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 35,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-15 --roadmap-day 27",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-15 --roadmap-day 27"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 27",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 27",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "boundary search",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2789,10 +3072,10 @@
       "sequence": 28,
       "day_number": 28,
       "date": "2026-11-16",
-      "title": "Day28: Browser-to-database gate + reviews LC 49 D+21, LC 20 D+7, LC 704 D+3",
+      "title": "Day28: Browser-to-database gate — DSA actual-attempt queue",
       "sprint": "Sprint 2 (3–16 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2832,52 +3115,21 @@
         "evidence_output_path": "evidence/reboot/day-28.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 7,
-            "problem_id": 49,
-            "review_interval_days": 21,
-            "due_date": "2026-11-16",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
-            "problem": "49 Group Anagrams"
-          },
-          {
-            "anchor_day": 21,
-            "problem_id": 20,
-            "review_interval_days": 7,
-            "due_date": "2026-11-16",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
-            "problem": "20 Valid Parentheses"
-          },
-          {
-            "anchor_day": 25,
-            "problem_id": 704,
-            "review_interval_days": 3,
-            "due_date": "2026-11-16",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/binary-search/description/",
-            "problem": "704 Binary Search"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-28-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -2893,11 +3145,54 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-16 --roadmap-day 28",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-16 --roadmap-day 28"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 28",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 28",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 7,
+              "problem_id": 49,
+              "review_interval_days": 21,
+              "due_date": "2026-11-16",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
+              "problem": "49 Group Anagrams"
+            },
+            {
+              "anchor_day": 21,
+              "problem_id": 20,
+              "review_interval_days": 7,
+              "due_date": "2026-11-16",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
+              "problem": "20 Valid Parentheses"
+            },
+            {
+              "anchor_day": 25,
+              "problem_id": 704,
+              "review_interval_days": 3,
+              "due_date": "2026-11-16",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/binary-search/description/",
+              "problem": "704 Binary Search"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -2913,10 +3208,10 @@
       "sequence": 29,
       "day_number": 29,
       "date": "2026-11-17",
-      "title": "Day29: Reproducibility + rotated-array search (LC 153)",
+      "title": "Day29: Reproducibility — DSA actual-attempt queue",
       "sprint": "Sprint 3 (17–30 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -2954,14 +3249,10 @@
         "evidence_output_path": "evidence/reboot/day-29.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "rotated-array search",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
@@ -2971,9 +3262,9 @@
         "evidence_output": "evidence/reboot/day-29-dsa.json",
         "planned_review_forecast_dates": [],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
-        "problem_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
+        "problem_url": null,
         "resource_references": [
-          "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/",
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "acceptance_commands": [],
@@ -2988,11 +3279,24 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": 153,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-17 --roadmap-day 29",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-17 --roadmap-day 29"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 29",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 29",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "rotated-array search",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [],
+          "planned_review_forecast_dates": []
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -3008,10 +3312,10 @@
       "sequence": 30,
       "day_number": 30,
       "date": "2026-11-18",
-      "title": "Day30: Slice review + reviews LC 238 D+21, LC 155 D+7, LC 35 D+3",
+      "title": "Day30: Slice review — DSA actual-attempt queue",
       "sprint": "Sprint 3 (17–30 Nov 2026)",
       "status": "not_attempted",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "allocation_minutes": {
         "engineering": 120,
         "java_dsa": 60
@@ -3045,52 +3349,21 @@
         "evidence_output_path": "evidence/reboot/day-30.json"
       },
       "java_dsa": {
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "mode": "actual_attempt_queue_dynamic",
-        "concept": "consolidation and active retrieval",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "mode": "dynamic_actual_attempt_queue",
+        "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
         "planned_attempt_date": null,
-        "review_anchors": [
-          {
-            "anchor_day": 9,
-            "problem_id": 238,
-            "review_interval_days": 21,
-            "due_date": "2026-11-18",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
-            "problem": "238 Product of Array Except Self"
-          },
-          {
-            "anchor_day": 23,
-            "problem_id": 155,
-            "review_interval_days": 7,
-            "due_date": "2026-11-18",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/min-stack/description/",
-            "problem": "155 Min Stack"
-          },
-          {
-            "anchor_day": 27,
-            "problem_id": 35,
-            "review_interval_days": 3,
-            "due_date": "2026-11-18",
-            "status": "pending_if_actual_attempt_on_plan",
-            "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
-            "problem": "35 Search Insert Position"
-          }
-        ],
+        "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-30-dsa.json",
         "planned_review_forecast_dates": [],
         "resource_references": [
+          "docs/reboot/dsa/guided-transfer-policy.md",
           "docs/reboot/dsa-error-log-template.md"
         ],
         "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem.",
@@ -3106,11 +3379,54 @@
         "attempts_inferred": false,
         "historical_planned_problem_id": null,
         "current_guided_encounter_problem_id": null,
-        "current_policy_role": "actual_attempt_queue_dynamic",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-18 --roadmap-day 30",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-11-18 --roadmap-day 30"
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 30",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 30",
+        "historical_planned_assignment": {
+          "mode": "actual_attempt_queue_dynamic",
+          "concept": "consolidation and active retrieval",
+          "problem_id": null,
+          "problem": null,
+          "planned_attempt_date": null,
+          "review_anchors": [
+            {
+              "anchor_day": 9,
+              "problem_id": 238,
+              "review_interval_days": 21,
+              "due_date": "2026-11-18",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
+              "problem": "238 Product of Array Except Self"
+            },
+            {
+              "anchor_day": 23,
+              "problem_id": 155,
+              "review_interval_days": 7,
+              "due_date": "2026-11-18",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/min-stack/description/",
+              "problem": "155 Min Stack"
+            },
+            {
+              "anchor_day": 27,
+              "problem_id": 35,
+              "review_interval_days": 3,
+              "due_date": "2026-11-18",
+              "status": "pending_if_actual_attempt_on_plan",
+              "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
+              "problem": "35 Search Insert Position"
+            }
+          ],
+          "planned_review_forecast_dates": [],
+          "fallback_if_no_due_anchor": "Cold-recall the weakest earlier anchor; do not add a new mandatory problem."
+        },
+        "mandatory_new_problem": false,
+        "engineering_minutes_remain": 120,
+        "problem_name": null,
+        "planned_date_role": "historical_forecast_only; never use to project actual due work",
+        "problem_url": null
       },
-      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
+      "scope": "Complete the linked engineering and Java DSA blocks separately within the 180/195/210-minute daily total based on the DSA tier (60/75/90 minutes) plus 120 minutes of engineering. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -3141,6 +3457,17 @@
       "2": 1,
       "3": 383
     },
-    "new_guided_cutoff_roadmap_day": 150
+    "new_guided_cutoff_roadmap_day": 150,
+    "minutes_by_exercise_count": {
+      "1_or_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "totals": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "new_guided_cutoff_day": 150
   }
 }

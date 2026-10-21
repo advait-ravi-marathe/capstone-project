@@ -52,7 +52,7 @@ class ContinuationManifestInfrastructureTest {
                 assertFalse(resource.get("section").asString().isBlank());
             }
             JsonNode dsa = card.get("java_dsa");
-            if (!dsa.get("problem_id").isNull()) {
+            if (dsa.get("mode").asString().equals("guided_first_sequence") && !dsa.get("problem_id").isNull()) {
                 assertTrue(dsa.get("problem_url").asString().startsWith("https://leetcode.com/problems/"));
                 assertTrue(dsa.get("problem_url").asString().endsWith("/"));
                 if (Set.of(206, 143).contains(dsa.get("problem_id").asInt())) {
@@ -62,7 +62,7 @@ class ContinuationManifestInfrastructureTest {
             }
         }
         JsonNode revisionPolicy = manifest.get("dsa_revision_policy");
-        assertEquals("actual_first_attempt_date from docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
+        assertEquals("earliest actual first-attempt date, including guided actual attempts",
                 revisionPolicy.get("due_date_anchor").asString());
         assertEquals("fresh similar-pattern transfer before editorial; assistance is not independent credit",
                 revisionPolicy.get("retrieval_method").asString());
@@ -126,26 +126,17 @@ class ContinuationManifestInfrastructureTest {
             assertEquals(180, card.get("budget_minutes_min").asInt());
             assertEquals(210, card.get("budget_minutes_max").asInt());
             assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString())));
-            assertEquals("python3 scripts/dsa-review-queue.py --on-date " + day.get("date").asString() + " --roadmap-day " + day.get("day").asInt(),
+            assertEquals("python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day " + day.get("day").asInt(),
                     dsa.get("review_queue_command").asString());
             assertTrue(dsa.get("review_queue_test_command").asString().contains("test_dsa_guided_transfer_policy.py"));
-            if (dsa.get("mode").asString().equals("new_pattern_anchor")) {
-                assertFalse(day.get("mandatory_new_problem").asBoolean());
-                assertTrue(day.get("historical_mandatory_new_problem").asBoolean());
-                assertTrue(dsa.get("actual_first_attempt_date").isNull());
-                assertEquals(3, dsa.get("review_due_dates_if_attempted_on_plan").size());
-                assertTrue(card.get("title").asString().contains("LC " + dsa.get("problem_id").asInt()));
-            } else {
-                assertFalse(day.get("mandatory_new_problem").asBoolean());
-                for (JsonNode review : dsa.get("review_anchors")) {
-                    LocalDate anchor = LocalDate.parse(review.get("planned_anchor_date").asString());
-                    assertEquals(anchor.plusDays(review.get("review_interval_days").asInt()).toString(),
-                            review.get("planned_due_date").asString());
-                    assertEquals("pending_actual_attempt", review.get("status").asString());
-                    assertTrue(card.get("title").asString().contains("LC " + review.get("problem_id").asInt()
-                            + " D+" + review.get("review_interval_days").asInt()));
-                }
-            }
+            assertFalse(day.get("mandatory_new_problem").asBoolean());
+            assertEquals("dynamic_actual_attempt_queue", dsa.get("mode").asString());
+            assertTrue(dsa.get("problem_id").isNull());
+            assertTrue(dsa.get("review_anchors").isEmpty());
+            assertTrue(dsa.has("historical_planned_assignment"));
+            assertTrue(card.get("title").asString().endsWith("DSA actual-attempt queue"));
+            assertEquals("python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day " + (31 + i),
+                    dsa.get("review_queue_command").asString());
         }
     }
 

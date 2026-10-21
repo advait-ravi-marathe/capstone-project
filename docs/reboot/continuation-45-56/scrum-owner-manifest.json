@@ -33,9 +33,9 @@
       "sequence": 1,
       "day_number": 45,
       "date": "2026-12-03",
-      "title": "Day45: Define annual policy term boundaries — LC 128 Longest Consecutive Sequence",
+      "title": "Day45: Define annual policy term boundaries — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -111,11 +111,11 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-45.md"
       },
       "java_dsa": {
-        "mode": "new_pattern_anchor",
-        "mandatory_new_problem": true,
-        "problem_id": 128,
-        "problem_name": "Longest Consecutive Sequence",
-        "concept": "hash-set sequence starts",
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
         "planned_first_attempt_date": "2026-12-03",
@@ -127,15 +127,11 @@
         ],
         "actual_review_dates": [],
         "review_status": "pending",
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-03 --roadmap-day 45",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 45",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
-        "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+        "problem_url": null,
         "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -145,9 +141,32 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-03 --roadmap-day 45",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 45",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 128,
+          "problem_name": "Longest Consecutive Sequence",
+          "concept": "hash-set sequence starts",
+          "planned_first_attempt_date": "2026-12-03",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-12-06",
+            "2026-12-10",
+            "2026-12-24"
+          ],
+          "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**; exact section title: **Reference Types in Java Programming** (4:15).\n- Fit: partial foundation. The lesson introduces date value types. Worked supplement: term [start, anniversary), use LocalDate.plusYears(1), and check February 29 and month-end adjustment; never approximate a year as 365 days.\n- Focused worked references: [Java 21 LocalDate API — plusYears(long) and date arithmetic](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Video viewing: 4:15 at 1×; the remaining 20:45 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -159,15 +178,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 2,
       "day_number": 46,
       "date": "2026-12-04",
-      "title": "Day46: Enforce renewal window and lifecycle eligibility — LC 2 D+3",
+      "title": "Day46: Enforce renewal window and lifecycle eligibility — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -243,28 +265,14 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-46.md"
       },
       "java_dsa": {
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 2,
-            "anchor_day": 43,
-            "planned_anchor_date": "2026-12-01",
-            "review_interval_days": 3,
-            "planned_due_date": "2026-12-04",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/add-two-numbers/"
-          }
-        ],
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
         "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier.",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-04 --roadmap-day 46",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 46",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -274,9 +282,36 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-04 --roadmap-day 46",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 46",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 2,
+              "anchor_day": 43,
+              "planned_anchor_date": "2026-12-01",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-12-04",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/add-two-numbers/"
+            }
+          ],
+          "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**; exact section title: **Reference Types in Java Programming** (4:15).\n- Fit: partial foundation. This is date-type context, not a renewal eligibility lesson. Work a fixed Clock table at the exact opening/closing instants and one lifecycle state that must reject preview; the 25-minute study cap includes this example.\n- Focused worked references: [Java 21 Clock API — fixed clocks for deterministic boundary tests](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html).\n- Video viewing: 4:15 at 1×; the remaining 20:45 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -288,15 +323,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 3,
       "day_number": 47,
       "date": "2026-12-05",
-      "title": "Day47: Freeze the renewal reference snapshot — LC 15 3Sum",
+      "title": "Day47: Freeze the renewal reference snapshot — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -380,11 +418,11 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-47.md"
       },
       "java_dsa": {
-        "mode": "new_pattern_anchor",
-        "mandatory_new_problem": true,
-        "problem_id": 15,
-        "problem_name": "3Sum",
-        "concept": "sort, then move two pointers",
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
         "planned_first_attempt_date": "2026-12-05",
@@ -396,15 +434,11 @@
         ],
         "actual_review_dates": [],
         "review_status": "pending",
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-05 --roadmap-day 47",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 47",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
-        "problem_url": "https://leetcode.com/problems/3sum/",
+        "problem_url": null,
         "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -414,9 +448,32 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-05 --roadmap-day 47",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 47",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 15,
+          "problem_name": "3Sum",
+          "concept": "sort, then move two pointers",
+          "planned_first_attempt_date": "2026-12-05",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-12-08",
+            "2026-12-12",
+            "2026-12-26"
+          ],
+          "problem_url": "https://leetcode.com/problems/3sum/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 15 - Exploring Java New Features - Records**; exact section title: **Java New Features - Java 10 to Java 24** (9:04).\n- Exact lesson title: **3 Questions - Best practices with Records**; exact section title: **Core Java in Depth - Java Review (Interview) Guide** (9:58).\n- Fit: partial foundation. Record guidance is only a foundation because record components can reference mutable objects. Work a preview snapshot containing immutable value types and prove later source changes do not alter it; preview never reprices or commits a renewal.\n- Focused worked references: [Java 21 Record API — record components and shallow immutability](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html).\n- Video viewing: 19:02 at 1×; the remaining 5:58 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -428,15 +485,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 4,
       "day_number": 48,
       "date": "2026-12-06",
-      "title": "Day48: Add owner-scoped PostgreSQL renewal projection — LC 128 D+3",
+      "title": "Day48: Add owner-scoped PostgreSQL renewal projection — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -520,28 +580,14 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-48.md"
       },
       "java_dsa": {
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 128,
-            "anchor_day": 45,
-            "planned_anchor_date": "2026-12-03",
-            "review_interval_days": 3,
-            "planned_due_date": "2026-12-06",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
-          }
-        ],
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
         "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier.",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-06 --roadmap-day 48",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 48",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -551,9 +597,36 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-06 --roadmap-day 48",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 48",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 128,
+              "anchor_day": 45,
+              "planned_anchor_date": "2026-12-03",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-12-06",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+            }
+          ],
+          "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 04 - Getting Started with Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (3:58).\n- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).\n- Fit: partial foundation. The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.\n- Focused worked references: [Spring JdbcTemplate reference — query with parameters and a RowMapper](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html).\n- Video viewing: 9:34 at 1×; the remaining 15:26 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -565,15 +638,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 5,
       "day_number": 49,
       "date": "2026-12-07",
-      "title": "Day49: Derive preview identity from the principal — LC 49 Group Anagrams revisit (original Day7 anchor; no attempt recorded)",
+      "title": "Day49: Derive preview identity from the principal — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -649,34 +725,19 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-49.md"
       },
       "java_dsa": {
-        "problem_id": 49,
-        "problem_name": "Group Anagrams",
-        "concept": "canonical keys and hash grouping",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-07 --roadmap-day 49",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 49",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
-        "problem_url": "https://leetcode.com/problems/group-anagrams/",
+        "problem_url": null,
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 49,
-            "anchor_day": 7,
-            "planned_anchor_date": "2026-10-26",
-            "actual_first_attempt_date": null,
-            "planned_revisit_date": "2026-12-07",
-            "status": "planned_revisit_not_attempted",
-            "problem_url": "https://leetcode.com/problems/group-anagrams/",
-            "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
-          }
-        ],
+        "review_anchors": [],
         "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock.",
         "budget_minutes_by_exercise_count": {
           "1_or_2_substantive_exercises": 60,
@@ -685,9 +746,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-07 --roadmap-day 49",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 49",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "problem_id": 49,
+          "problem_name": "Group Anagrams",
+          "concept": "canonical keys and hash grouping",
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 49,
+              "anchor_day": 7,
+              "planned_anchor_date": "2026-10-26",
+              "actual_first_attempt_date": null,
+              "planned_revisit_date": "2026-12-07",
+              "status": "planned_revisit_not_attempted",
+              "problem_url": "https://leetcode.com/problems/group-anagrams/",
+              "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
+            }
+          ],
+          "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock.",
+          "problem_url": "https://leetcode.com/problems/group-anagrams/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).\n- Fit: partial foundation. Authentication is only the identity source. Work the controller flow: authenticated Principal → internal owner ID → service; no owner ID is accepted from query/body. Prove anonymous requests do not call the read store.\n- Focused worked references: [Spring MVC controller method arguments — Principal and request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Video viewing: 4:17 at 1×; the remaining 20:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -699,15 +789,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 6,
       "day_number": 50,
       "date": "2026-12-08",
-      "title": "Day50: Map unavailable previews to stable HTTP errors — LC 2 D+7; LC 15 D+3",
+      "title": "Day50: Map unavailable previews to stable HTTP errors — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -791,37 +884,14 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-50.md"
       },
       "java_dsa": {
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 2,
-            "anchor_day": 43,
-            "planned_anchor_date": "2026-12-01",
-            "review_interval_days": 7,
-            "planned_due_date": "2026-12-08",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/add-two-numbers/"
-          },
-          {
-            "problem_id": 15,
-            "anchor_day": 47,
-            "planned_anchor_date": "2026-12-05",
-            "review_interval_days": 3,
-            "planned_due_date": "2026-12-08",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/3sum/"
-          }
-        ],
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
         "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier.",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-08 --roadmap-day 50",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 50",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -831,9 +901,45 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-08 --roadmap-day 50",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 50",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 2,
+              "anchor_day": 43,
+              "planned_anchor_date": "2026-12-01",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-12-08",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/add-two-numbers/"
+            },
+            {
+              "problem_id": 15,
+              "anchor_day": 47,
+              "planned_anchor_date": "2026-12-05",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-12-08",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/3sum/"
+            }
+          ],
+          "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49).\n- Exact lesson title: **Step 12 - Implementing Generic Exception Handling for all Resources**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:29).\n- Fit: partial foundation. The course examples are not this application’s error contract. Work a fixed mapping table for unavailable/foreign=404, infrastructure failure=sanitized 503, and unexpected failure=generic 500; never expose exception text.\n- Focused worked references: [Spring MVC controller return types — ResponseEntity and response status/body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 19:18 at 1×; the remaining 5:42 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -845,15 +951,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 7,
       "day_number": 51,
       "date": "2026-12-09",
-      "title": "Day51: Expose a minimal non-binding preview response — LC 20 Valid Parentheses revisit (original Day21 anchor; no attempt recorded)",
+      "title": "Day51: Expose a minimal non-binding preview response — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -934,34 +1043,19 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-51.md"
       },
       "java_dsa": {
-        "problem_id": 20,
-        "problem_name": "Valid Parentheses",
-        "concept": "stack invariants and matching delimiters",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-09 --roadmap-day 51",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 51",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
-        "problem_url": "https://leetcode.com/problems/valid-parentheses/",
+        "problem_url": null,
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 20,
-            "anchor_day": 21,
-            "planned_anchor_date": "2026-11-09",
-            "actual_first_attempt_date": null,
-            "planned_revisit_date": "2026-12-09",
-            "status": "planned_revisit_not_attempted",
-            "problem_url": "https://leetcode.com/problems/valid-parentheses/",
-            "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
-          }
-        ],
+        "review_anchors": [],
         "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock.",
         "budget_minutes_by_exercise_count": {
           "1_or_2_substantive_exercises": 60,
@@ -970,9 +1064,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-09 --roadmap-day 51",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 51",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "problem_id": 20,
+          "problem_name": "Valid Parentheses",
+          "concept": "stack invariants and matching delimiters",
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 20,
+              "anchor_day": 21,
+              "planned_anchor_date": "2026-11-09",
+              "actual_first_attempt_date": null,
+              "planned_revisit_date": "2026-12-09",
+              "status": "planned_revisit_not_attempted",
+              "problem_url": "https://leetcode.com/problems/valid-parentheses/",
+              "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
+            }
+          ],
+          "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock.",
+          "problem_url": "https://leetcode.com/problems/valid-parentheses/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 03 - Enhancing the Hello World REST API to return a Bean**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30).\n- Fit: partial foundation. A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.\n- Focused worked references: [Spring MVC controller return types — returning a response body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 4:30 at 1×; the remaining 20:30 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -984,15 +1107,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 8,
       "day_number": 52,
       "date": "2026-12-10",
-      "title": "Day52: Render the renewal reference view in React — LC 128 conditional D+7",
+      "title": "Day52: Render the renewal reference view in React — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1068,28 +1194,14 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-52.md"
       },
       "java_dsa": {
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 128,
-            "anchor_day": 45,
-            "planned_anchor_date": "2026-12-03",
-            "review_interval_days": 7,
-            "planned_due_date": "2026-12-10",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
-          }
-        ],
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
         "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier.",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-10 --roadmap-day 52",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 52",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -1099,9 +1211,36 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-10 --roadmap-day 52",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 52",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 128,
+              "anchor_day": 45,
+              "planned_anchor_date": "2026-12-03",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-12-10",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+            }
+          ],
+          "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).\n- Fit: partial foundation. The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.\n- Focused worked references: [React choosing state structure — avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).\n- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -1113,15 +1252,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 9,
       "day_number": 53,
       "date": "2026-12-11",
-      "title": "Day53: Add accessible loading and unavailable states — LC 150 Evaluate Reverse Polish Notation",
+      "title": "Day53: Add accessible loading and unavailable states — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1215,11 +1357,11 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-53.md"
       },
       "java_dsa": {
-        "mode": "new_pattern_anchor",
-        "mandatory_new_problem": true,
-        "problem_id": 150,
-        "problem_name": "Evaluate Reverse Polish Notation",
-        "concept": "stack evaluation",
+        "mode": "dynamic_actual_attempt_queue",
+        "mandatory_new_problem": false,
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
         "planned_first_attempt_date": "2026-12-11",
@@ -1231,15 +1373,11 @@
         ],
         "actual_review_dates": [],
         "review_status": "pending",
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-11 --roadmap-day 53",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 53",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
-        "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+        "problem_url": null,
         "plan_membership": "Membership in the public LeetCode Top Interview 150 plan was not independently verified; linked page is the official problem statement.",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -1249,9 +1387,32 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-11 --roadmap-day 53",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 53",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "new_pattern_anchor",
+          "mandatory_new_problem": true,
+          "problem_id": 150,
+          "problem_name": "Evaluate Reverse Polish Notation",
+          "concept": "stack evaluation",
+          "planned_first_attempt_date": "2026-12-11",
+          "review_due_dates_if_attempted_on_plan": [
+            "2026-12-14",
+            "2026-12-18",
+            "2027-01-01"
+          ],
+          "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "review_anchors": [],
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Handling Loading States**; exact section title: **Sending Http Requests (e.g. Connecting to a Database)** (5:27).\n- Exact lesson title: **Handling HTTP Loading & Error States**; exact section title: **Practice Project: Building a Food Order App** (3:12).\n- Fit: partial foundation. The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.\n- Focused worked references: [WAI-ARIA status role — status messages](https://www.w3.org/TR/wai-aria-1.2/#status); [WAI-ARIA alert role — important dynamic messages](https://www.w3.org/TR/wai-aria-1.2/#alert).\n- Video viewing: 8:39 at 1×; the remaining 16:21 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -1263,15 +1424,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 10,
       "day_number": 54,
       "date": "2026-12-12",
-      "title": "Day54: Verify the owner-scoped preview against PostgreSQL — LC 15 conditional D+7",
+      "title": "Day54: Verify the owner-scoped preview against PostgreSQL — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1347,28 +1511,14 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-54.md"
       },
       "java_dsa": {
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 15,
-            "anchor_day": 47,
-            "planned_anchor_date": "2026-12-05",
-            "review_interval_days": 7,
-            "planned_due_date": "2026-12-12",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/3sum/"
-          }
-        ],
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
         "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier.",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-12 --roadmap-day 54",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 54",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -1378,9 +1528,36 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-12 --roadmap-day 54",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 54",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 15,
+              "anchor_day": 47,
+              "planned_anchor_date": "2026-12-05",
+              "review_interval_days": 7,
+              "planned_due_date": "2026-12-12",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/3sum/"
+            }
+          ],
+          "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 15 - Writing an Integration Test using @SpringBootTest**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51).\n- Fit: partial foundation. The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.\n- Focused worked references: [Spring Boot application testing — testing with a running server and application context](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html).\n- Video viewing: 8:51 at 1×; the remaining 16:09 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -1392,15 +1569,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 11,
       "day_number": 55,
       "date": "2026-12-13",
-      "title": "Day55: Connect the React preview to Spring and PostgreSQL — LC 155 Min Stack revisit (original Day23 anchor; no attempt recorded)",
+      "title": "Day55: Connect the React preview to Spring and PostgreSQL — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1494,34 +1674,19 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-55.md"
       },
       "java_dsa": {
-        "problem_id": 155,
-        "problem_name": "Min Stack",
-        "concept": "stack plus cached minimum invariant",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-13 --roadmap-day 55",
+        "budget_minutes": null,
+        "allocation_minutes": {},
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 55",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
-        "problem_url": "https://leetcode.com/problems/min-stack/",
+        "problem_url": null,
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 155,
-            "anchor_day": 23,
-            "planned_anchor_date": "2026-11-11",
-            "actual_first_attempt_date": null,
-            "planned_revisit_date": "2026-12-13",
-            "status": "planned_revisit_not_attempted",
-            "problem_url": "https://leetcode.com/problems/min-stack/",
-            "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
-          }
-        ],
+        "review_anchors": [],
         "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock.",
         "budget_minutes_by_exercise_count": {
           "1_or_2_substantive_exercises": 60,
@@ -1530,9 +1695,38 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-13 --roadmap-day 55",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 55",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "problem_id": 155,
+          "problem_name": "Min Stack",
+          "concept": "stack plus cached minimum invariant",
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 155,
+              "anchor_day": 23,
+              "planned_anchor_date": "2026-11-11",
+              "actual_first_attempt_date": null,
+              "planned_revisit_date": "2026-12-13",
+              "status": "planned_revisit_not_attempted",
+              "problem_url": "https://leetcode.com/problems/min-stack/",
+              "instruction": "Preserve the original canonical anchor. If this is the first actual attempt, record it against that original anchor day; review intervals start from the actual first-attempt date. If an actual attempt already exists, do not reset its clock."
+            }
+          ],
+          "note": "Consolidation/revisit of an existing canonical problem, not a new assignment or proof of attempt. Actual-attempt log is empty; use shared queue. Do not reset any review clock.",
+          "problem_url": "https://leetcode.com/problems/min-stack/"
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Dynamic Query Functions & Query Keys**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (13:05).\n- Exact lesson title: **The Query Configuration Object & Aborting Requests**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (5:27).\n- Fit: partial foundation. TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.\n- Focused worked references: [TanStack Query query keys — query-key identity and variables](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys); [Fetch API — credentials and HTTP error handling](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).\n- Video viewing: 18:32 at 1×; the remaining 6:28 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -1544,15 +1738,18 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     },
     {
       "sequence": 12,
       "day_number": 56,
       "date": "2026-12-14",
-      "title": "Day56: Prove preview stability across restart without writes — LC 150 conditional D+3",
+      "title": "Day56: Prove preview stability across restart without writes — DSA actual-attempt queue",
       "sprint": "Sprint 4",
-      "budget_minutes": 180,
+      "budget_minutes": null,
       "engineering": {
         "budget_minutes": 120,
         "allocation_minutes": {
@@ -1616,28 +1813,14 @@
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-56.md"
       },
       "java_dsa": {
-        "mode": "review_and_consolidation",
+        "mode": "dynamic_actual_attempt_queue",
         "mandatory_new_problem": false,
-        "review_anchors": [
-          {
-            "problem_id": 150,
-            "anchor_day": 53,
-            "planned_anchor_date": "2026-12-11",
-            "review_interval_days": 3,
-            "planned_due_date": "2026-12-14",
-            "status": "pending_actual_attempt",
-            "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
-          }
-        ],
-        "budget_minutes": 60,
-        "allocation_minutes": {
-          "pattern_learning": 25,
-          "independent_solve_or_cold_review": 20,
-          "active_retrieval_and_error_log": 15
-        },
+        "review_anchors": [],
+        "budget_minutes": null,
+        "allocation_minutes": {},
         "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier.",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-14 --roadmap-day 56",
+        "review_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 56",
         "review_queue_test_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py scripts/test_dsa_guided_transfer_policy.py",
         "revision_log_path": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
         "budget_minutes_by_exercise_count": {
@@ -1647,9 +1830,36 @@
         },
         "engineering_minutes_remain": 120,
         "assistance_policy": "LeetCode Premium/editorial is for guided learning; assistance never earns independent-transfer credit.",
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2026-12-14 --roadmap-day 56",
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 56",
         "guided_first_sequence_problem_id": null,
-        "attempts_inferred": false
+        "attempts_inferred": false,
+        "historical_planned_assignment": {
+          "mode": "review_and_consolidation",
+          "mandatory_new_problem": false,
+          "review_anchors": [
+            {
+              "problem_id": 150,
+              "anchor_day": 53,
+              "planned_anchor_date": "2026-12-11",
+              "review_interval_days": 3,
+              "planned_due_date": "2026-12-14",
+              "status": "pending_actual_attempt",
+              "problem_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+            }
+          ],
+          "note": "No mandatory new problem. Forecast reviews are conditional on actual first-attempt dates; the shared queue and actual-attempt log are authoritative. A failed review displaces new work within the 60/75/90-minute DSA tier."
+        },
+        "allocation_minutes_by_tier": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "current_guided_encounter_problem_id": null,
+        "current_policy_role": "dynamic_actual_attempt_queue",
+        "problem_id": null,
+        "problem_name": null,
+        "concept": "selected from actual due queue and verified learner readiness",
+        "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: integration review no new lecture. No exact course lesson verifies persistence across packaged restart or database no-write behavior. Use the supplied disposable packaged-browser harness; compare stable preview JSON and complete PostgreSQL snapshots before and after restart. Course viewing is unnecessary.\n- Focused worked references: [Spring Boot application testing — real application and server testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [PostgreSQL transaction isolation — read-only observations and statement snapshots](https://www.postgresql.org/docs/14/transaction-iso.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -1661,14 +1871,17 @@
         "4": 210
       },
       "dsa_guidance_reference": "docs/reboot/dsa/guided-transfer-policy.md",
-      "budget_minutes_is_minimum_tier": true
+      "budget_minutes_is_minimum_tier": true,
+      "dsa_role": "dynamic_actual_attempt_queue",
+      "mandatory_new_problem": false,
+      "dsa_current_guidance": "select from actual-attempt due queue and verified access/prerequisites"
     }
   ],
   "dsa_revision_queue": {
     "actual_attempt_log": "docs/reboot/continuation-31-44/dsa/actual-attempt-log.json",
     "command": "python3 scripts/dsa-review-queue.py --on-date YYYY-MM-DD",
     "actual_dates_claimed": false,
-    "failed_review_rule": "A failed review displaces new work within the same 60-minute DSA block; no extra minutes."
+    "failed_review_rule": "Failed/overdue retrieval displaces new guidance; excess due tasks carry with their original dates."
   },
   "dsa_workload_policy": {
     "source": "docs/reboot/dsa/guided-transfer-policy.md",
@@ -1688,6 +1901,33 @@
       "2": 1,
       "3": 383
     },
-    "new_guided_cutoff_roadmap_day": 150
+    "new_guided_cutoff_roadmap_day": 150,
+    "minutes_by_exercise_count": {
+      "1_or_2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "totals": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "new_guided_cutoff_day": 150,
+    "failed_review_rule": "Failed/overdue retrieval displaces new guidance; excess due tasks carry with their original dates."
+  },
+  "daily_budgets_minutes": {
+    "total_by_dsa_tier": {
+      "1_or_2": 180,
+      "3": 195,
+      "4": 210
+    },
+    "total_min": 180,
+    "total_max": 210,
+    "engineering": 120,
+    "java_dsa_by_exercise_count": {
+      "1_or_2_substantive_exercises": 60,
+      "3_substantive_exercises": 75,
+      "4_substantive_exercises": 90
+    }
   }
 }

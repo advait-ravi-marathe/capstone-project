@@ -15,7 +15,13 @@
     "second_deferred": "StreamForge"
   },
   "daily_budget_minutes": {
-    "java_dsa": 60,
+    "java_dsa": {
+      "by_substantive_exercise_count": {
+        "1_or_2": 60,
+        "3": 75,
+        "4": 90
+      }
+    },
     "engineering": 120,
     "engineering_build_test": 85,
     "concept_course": 25,
@@ -34,7 +40,18 @@
       "1_or_2_substantive_exercises": 60,
       "3_substantive_exercises": 75,
       "4_substantive_exercises": 90
-    }
+    },
+    "total": {
+      "by_dsa_tier": {
+        "1_or_2": 180,
+        "3": 195,
+        "4": 210
+      }
+    },
+    "daily_total_range_minutes": [
+      180,
+      210
+    ]
   },
   "source_proposal": "Parent-reviewed proposal received 2026-10-20; this manifest tracks planned work, not completion.",
   "days": [
@@ -65,7 +82,7 @@
         "review_status": "pending"
       },
       "dsa_pattern": "running-state array",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_role": "guided_first_sequence",
       "mandatory_new_problem": true,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -143,7 +160,12 @@
       "dsa_schedule_semantics": "current encounter plan",
       "dsa_guided_encounter_assistance": "guided/editorial-assisted, not independent credit",
       "dsa_guided_encounter_date_forecast": "2026-10-20",
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 121,
+      "historical_dsa_problem": "121 Best Time to Buy and Sell Stock",
+      "historical_dsa_concept": "running-state array",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 2,
@@ -154,21 +176,21 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": null,
+      "dsa_problem": "1 Two Sum",
       "prerequisite_note": "Day 1 for integration; mocked selection service for isolation.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": null,
+      "dsa_problem_id": 1,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": null,
         "planned_review_items_due": [],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
-      "mandatory_new_problem": false,
+      "dsa_pattern": "hash lookup",
+      "dsa_role": "guided_first_sequence",
+      "mandatory_new_problem": true,
       "understanding_check": {
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
@@ -207,7 +229,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "hash lookup",
       "board_summary": {
         "engineering": "Validate selection request at HTTP boundary",
         "concept_25m": "HTTP request contracts and boundary vs domain validation",
@@ -241,7 +263,12 @@
       "dsa_schedule_semantics": "current encounter plan",
       "dsa_guided_encounter_assistance": "guided/editorial-assisted, not independent credit",
       "dsa_guided_encounter_date_forecast": "2026-10-21",
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 3,
@@ -252,12 +279,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "1 Two Sum",
+      "dsa_problem": "383 Ransom Note",
       "prerequisite_note": "Day 2; mocked service throws fixed fixture exceptions.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 1,
+      "dsa_problem_id": 383,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-10-22",
@@ -268,8 +295,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "hash lookup",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "frequency counting",
+      "dsa_role": "guided_first_sequence",
       "mandatory_new_problem": true,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -313,7 +340,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "hash lookup",
+      "dsa_concept": "frequency counting",
       "board_summary": {
         "engineering": "Map failures consistently",
         "concept_25m": "HTTP status semantics and failure boundaries",
@@ -347,7 +374,12 @@
       "dsa_schedule_semantics": "current encounter plan",
       "dsa_guided_encounter_assistance": "guided/editorial-assisted, not independent credit",
       "dsa_guided_encounter_date_forecast": "2026-10-22",
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 1,
+      "historical_dsa_problem": "1 Two Sum",
+      "historical_dsa_concept": "hash lookup",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 4,
@@ -378,8 +410,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -435,7 +467,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Read one synthetic product",
         "concept_25m": "Java records, immutable collections, API vs domain models",
@@ -471,7 +503,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 5,
@@ -482,12 +519,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "383 Ransom Note",
+      "dsa_problem": null,
       "prerequisite_note": "Day 4; catalog bounds fixture, no live controller.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 383,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-10-24",
@@ -498,8 +535,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "frequency counting",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -543,7 +580,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "frequency counting",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Decide HomeSecure eligibility",
         "concept_25m": "Pure functions, invariants and decision tables",
@@ -577,7 +614,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 383,
+      "historical_dsa_problem": "383 Ransom Note",
+      "historical_dsa_concept": "frequency counting",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 6,
@@ -608,8 +650,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -665,7 +707,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Calculate synthetic premium",
         "concept_25m": "Value types, BigDecimal precision and rounding",
@@ -701,7 +743,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 7,
@@ -712,12 +759,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "49 Group Anagrams",
+      "dsa_problem": null,
       "prerequisite_note": "Days 5–6; canned eligibility/premium; fixed Clock.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 49,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-10-26",
@@ -728,8 +775,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "grouping key",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -773,7 +820,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "grouping key",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Create and expire quote version",
         "concept_25m": "Wall time vs elapsed time; deterministic tests",
@@ -807,7 +854,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 49,
+      "historical_dsa_problem": "49 Group Anagrams",
+      "historical_dsa_concept": "grouping key",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 8,
@@ -845,8 +897,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -916,7 +968,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Define PostgreSQL quote schema",
         "concept_25m": "Relational keys, normalization and integrity",
@@ -953,7 +1005,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 9,
@@ -964,12 +1021,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "238 Product of Array Except Self",
+      "dsa_problem": null,
       "prerequisite_note": "Day 8; seeded rows, no quote-creation service.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 238,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-10-28",
@@ -980,8 +1037,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "prefix/suffix products",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1025,7 +1082,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "prefix/suffix products",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Persist/read immutable quote snapshots",
         "concept_25m": "SQL queries, repository boundaries and ORM mapping",
@@ -1059,7 +1116,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 238,
+      "historical_dsa_problem": "238 Product of Array Except Self",
+      "historical_dsa_concept": "prefix/suffix products",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 10,
@@ -1097,8 +1159,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1168,7 +1230,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Persist selection batch atomically",
         "concept_25m": "Transactions, atomicity and rollback",
@@ -1205,7 +1267,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 11,
@@ -1216,12 +1283,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "125 Valid Palindrome",
+      "dsa_problem": null,
       "prerequisite_note": "Days 7 and 9–10; fixed current-version metadata and Clock.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 125,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-10-30",
@@ -1232,8 +1299,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "inward pointers",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1277,7 +1344,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "inward pointers",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Reject stale quote selection",
         "concept_25m": "Optimistic concurrency vs stale reads",
@@ -1311,7 +1378,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 125,
+      "historical_dsa_problem": "125 Valid Palindrome",
+      "historical_dsa_concept": "inward pointers",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 12,
@@ -1349,8 +1421,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1420,7 +1492,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Enforce owner-scoped access",
         "concept_25m": "Authentication vs authorization and object access control",
@@ -1457,7 +1529,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 13,
@@ -1468,12 +1545,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "167 Two Sum II - Input Array Is Sorted",
+      "dsa_problem": null,
       "prerequisite_note": "Days 1–12 status manifest and fixture smoke.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 167,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-01",
@@ -1484,8 +1561,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "sorted two pointers",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1529,7 +1606,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "sorted two pointers",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Add honest repeatable CI",
         "concept_25m": "Test pyramid, reproducibility and CI failure signals",
@@ -1563,7 +1640,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 167,
+      "historical_dsa_problem": "167 Two Sum II - Input Array Is Sorted",
+      "historical_dsa_concept": "sorted two pointers",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 14,
@@ -1601,8 +1683,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1672,7 +1754,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Milestone 1 backend vertical slice",
         "concept_25m": "Trace request lifecycle, data ownership and transaction boundary",
@@ -1709,7 +1791,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 15,
@@ -1720,12 +1807,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "11 Container With Most Water",
+      "dsa_problem": null,
       "prerequisite_note": "Days 9 and 12; seeded read model.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 11,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-03",
@@ -1736,8 +1823,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "pointer-elimination proof",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1781,7 +1868,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "pointer-elimination proof",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Read journey summary",
         "concept_25m": "SQL joins, projections and null/empty semantics",
@@ -1815,7 +1902,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 11,
+      "historical_dsa_problem": "11 Container With Most Water",
+      "historical_dsa_concept": "pointer-elimination proof",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 16,
@@ -1853,8 +1945,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -1924,7 +2016,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Bound quote-history reads",
         "concept_25m": "Sorting, pagination cost and query complexity",
@@ -1961,7 +2053,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 17,
@@ -1972,12 +2069,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "3 Longest Substring Without Repeating Characters",
+      "dsa_problem": null,
       "prerequisite_note": "Day 4 contract; canned fetch adapter.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 3,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-05",
@@ -1988,8 +2085,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "variable sliding window",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2033,7 +2130,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "variable sliding window",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Render product choices in React/TypeScript",
         "concept_25m": "Typed props and discriminated UI state",
@@ -2067,7 +2164,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 3,
+      "historical_dsa_problem": "3 Longest Substring Without Repeating Characters",
+      "historical_dsa_concept": "variable sliding window",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 18,
@@ -2105,8 +2207,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2176,7 +2278,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Capture quote input",
         "concept_25m": "Controlled inputs, derived state and client/server validation",
@@ -2213,7 +2315,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 19,
@@ -2224,12 +2331,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "209 Minimum Size Subarray Sum",
+      "dsa_problem": null,
       "prerequisite_note": "Day 7 response contract; controlled deferred promises.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 209,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-07",
@@ -2240,8 +2347,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "shrinking valid window",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2285,7 +2392,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "shrinking valid window",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Display quote snapshot",
         "concept_25m": "Async UI, race conditions and state ownership",
@@ -2319,7 +2426,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 209,
+      "historical_dsa_problem": "209 Minimum Size Subarray Sum",
+      "historical_dsa_concept": "shrinking valid window",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 20,
@@ -2357,8 +2469,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2428,7 +2540,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Connect selection action UI",
         "concept_25m": "HTTP side effects, retry decisions and truthful UI state",
@@ -2465,7 +2577,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 21,
@@ -2476,12 +2593,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "20 Valid Parentheses",
+      "dsa_problem": null,
       "prerequisite_note": "Days 12 and 18–20; session/CSRF test helpers.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 20,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-09",
@@ -2492,8 +2609,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "stack",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2537,7 +2654,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "stack",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Protect cookie-authenticated writes",
         "concept_25m": "Cookies, CSRF vs CORS and browser trust boundaries",
@@ -2571,7 +2688,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 20,
+      "historical_dsa_problem": "20 Valid Parentheses",
+      "historical_dsa_concept": "stack",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 22,
@@ -2616,8 +2738,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2701,7 +2823,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Add safe request correlation",
         "concept_25m": "Observability vs privacy; logs vs metrics",
@@ -2739,7 +2861,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 23,
@@ -2750,12 +2877,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "155 Min Stack",
+      "dsa_problem": null,
       "prerequisite_note": "Days 8 and 12; disposable DB lifecycle fixture.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 155,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-11",
@@ -2766,8 +2893,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "augmented stack",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2811,7 +2938,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "augmented stack",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Expose minimal operational health",
         "concept_25m": "Liveness/readiness and failure detection",
@@ -2845,7 +2972,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 155,
+      "historical_dsa_problem": "155 Min Stack",
+      "historical_dsa_concept": "augmented stack",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 24,
@@ -2890,8 +3022,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -2975,7 +3107,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Explain and improve one real query",
         "concept_25m": "B-tree indexes, selectivity, EXPLAIN vs EXPLAIN ANALYZE",
@@ -3013,7 +3145,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 25,
@@ -3024,12 +3161,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "704 Binary Search",
+      "dsa_problem": null,
       "prerequisite_note": "Days 8 and 10–12; canned authorized/current quote.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 704,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-13",
@@ -3040,8 +3177,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "binary-search bridge (outside Top Interview 150)",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -3085,7 +3222,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "binary-search bridge (outside Top Interview 150)",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Handle concurrent repeated selection",
         "concept_25m": "Race conditions, database uniqueness and idempotency",
@@ -3119,7 +3256,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 704,
+      "historical_dsa_problem": "704 Binary Search",
+      "historical_dsa_concept": "binary-search bridge (outside Top Interview 150)",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 26,
@@ -3164,8 +3306,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -3249,7 +3391,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Record minimal selection audit",
         "concept_25m": "Atomic audit and data minimization",
@@ -3287,7 +3429,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 27,
@@ -3298,12 +3445,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "35 Search Insert Position",
+      "dsa_problem": null,
       "prerequisite_note": "Relevant failed day; saved fixture reproducer.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 35,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-15",
@@ -3314,8 +3461,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "boundary search",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -3359,7 +3506,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "expected_todo_red",
-      "dsa_concept": "boundary search",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Fix one evidence-backed regression",
         "concept_25m": "Debugging hypothesis, regression prevention and scope control",
@@ -3393,7 +3540,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 35,
+      "historical_dsa_problem": "35 Search Insert Position",
+      "historical_dsa_concept": "boundary search",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 28,
@@ -3438,8 +3590,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -3523,7 +3675,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "pending",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Milestone 2 browser-to-database acceptance",
         "concept_25m": "One request end to end, security and consistency boundaries",
@@ -3561,7 +3713,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 29,
@@ -3572,12 +3729,12 @@
       "scaffold_status": "installed",
       "learner_status": "not_attempted",
       "integration_status": "blocked",
-      "dsa_problem": "153 Find Minimum in Rotated Sorted Array",
+      "dsa_problem": null,
       "prerequisite_note": "Days 13 and 28; fresh disposable test-only environment. Reset refuses targets without a *_test database name and explicit --confirm-disposable; never use on development, shared, staging, or production data.",
       "learner_evidence_file": null,
       "dsa_status": "not_attempted",
       "dsa_evidence_file": null,
-      "dsa_problem_id": 153,
+      "dsa_problem_id": null,
       "dsa_review_schedule": {
         "first_attempt_date": null,
         "planned_first_attempt_date": "2026-11-17",
@@ -3588,8 +3745,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "rotated-array search",
-      "dsa_role": "new_pattern_anchor",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -3633,7 +3790,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "rotated-array search",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Make the slice reproducible",
         "concept_25m": "Configuration, environment parity and safe operations",
@@ -3667,7 +3824,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": 153,
+      "historical_dsa_problem": "153 Find Minimum in Rotated Sorted Array",
+      "historical_dsa_concept": "rotated-array search",
+      "historical_dsa_role": "new_pattern_anchor",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     },
     {
       "day": 30,
@@ -3712,8 +3874,8 @@
         ],
         "review_status": "pending"
       },
-      "dsa_pattern": "consolidation and active retrieval",
-      "dsa_role": "consolidation_no_new_problem",
+      "dsa_pattern": "selected from actual due queue; historical pattern is forecast only",
+      "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
       "understanding_check": {
         "timebox_minutes": 10,
@@ -3797,7 +3959,7 @@
         "plan_semantics": "historical/forecast metadata only; actual-attempt queue is authoritative"
       },
       "runtime_harness_status": "verified",
-      "dsa_concept": "consolidation and active retrieval",
+      "dsa_concept": "actual-attempt review queue; dynamic selection",
       "board_summary": {
         "engineering": "Defend and assess the slice",
         "concept_25m": "SDE II trade-off discussion and technical communication",
@@ -3835,7 +3997,12 @@
       "dsa_guided_encounter_problem_id": null,
       "dsa_schedule_semantics": "historical anchor/review metadata; live work selected from actual-attempt queue",
       "dsa_guided_encounter_date_forecast": null,
-      "dsa_plan_attempts_are_not_evidence": true
+      "dsa_plan_attempts_are_not_evidence": true,
+      "historical_dsa_problem_id": null,
+      "historical_dsa_problem": null,
+      "historical_dsa_concept": "consolidation and active retrieval",
+      "historical_dsa_role": "consolidation_no_new_problem",
+      "dsa_current_policy": "guided encounter on Days 1–3 only; afterward the read-only queue selects from actual attempts and eligibility"
     }
   ],
   "dsa_roadmap": {
@@ -3909,6 +4076,10 @@
       1,
       383
     ],
-    "new_guided_cutoff_day": 150
+    "new_guided_cutoff_day": 150,
+    "total_range": [
+      180,
+      210
+    ]
   }
 }

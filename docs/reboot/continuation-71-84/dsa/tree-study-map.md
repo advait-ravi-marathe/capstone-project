@@ -2,10 +2,7 @@
 
 # Java DSA continuation map — Days 71–84
 
-The DSA block is 60/75/90 minutes according to scheduled substantive exercises: 25 minutes pattern learning,
-20 minutes independent solving or actual due cold review, and 15 minutes
-active retrieval/error logging. Run the shared queue first. The attempt log is
-currently empty; planned dates below never count as attempts or reviews.
+The dated rows below are historical schedule metadata, not current assignments. Run the shared queue using the actual local study date. Allocate 60/75/90 DSA minutes by substantive exercise count; engineering remains 120 minutes. Planned dates never count as attempts or reviews.
 
 | Day | Date | Assignment | Role |
 |---:|---|---|---|

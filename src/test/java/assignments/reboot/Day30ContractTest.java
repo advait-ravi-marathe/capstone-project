@@ -87,30 +87,39 @@ class Day30ContractTest {
             assertEquals(day, story.get("sequence").asInt());
             assertEquals(day, story.get("day_number").asInt());
             assertTrue(story.get("title").asString().startsWith("Day%02d:".formatted(day)));
-            assertEquals(180, story.get("budget_minutes").asInt());
+            assertTrue(story.get("budget_minutes").isNull());
+            assertEquals(180, story.get("budget_minutes_min").asInt());
+            assertEquals(210, story.get("budget_minutes_max").asInt());
             assertEquals(120, engineering.get("budget_minutes").asInt());
-            assertEquals(60, dsa.get("budget_minutes").asInt());
+            assertTrue(dsa.get("budget_minutes").isNull());
+            assertEquals(60, dsa.get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
+            assertEquals(75, dsa.get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
+            assertEquals(90, dsa.get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
             assertEquals(85, engineering.get("allocation_minutes").get("implementation_and_testing").asInt());
             assertEquals(25, engineering.get("allocation_minutes").get("concept_or_course").asInt());
             assertEquals(10, engineering.get("allocation_minutes").get("evidence").asInt());
-            assertEquals(25, dsa.get("allocation_minutes").get("pattern_learning").asInt());
-            assertEquals(20, dsa.get("allocation_minutes").get("independent_solve_or_cold_review").asInt());
-            assertEquals(15, dsa.get("allocation_minutes").get("active_retrieval_and_error_log").asInt());
+            assertTrue(dsa.get("allocation_minutes").isEmpty());
             assertTrue(Files.isRegularFile(Path.of(engineering.get("contract_path").asString())));
             assertTrue(Files.isRegularFile(Path.of(engineering.get("acceptance_reference").asString())));
             assertTrue(Files.isRegularFile(Path.of(engineering.get("evidence_reference").asString())));
             assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString().split("#", 2)[0])));
             String title = story.get("title").asString();
-            if (dsa.get("mode").asString().equals("new_pattern_anchor")) {
-                assertTrue(title.contains(dsa.get("concept").asString()));
-                assertEquals(1, count(title, "LC "));
-                assertTrue(title.contains("LC " + dsa.get("problem_id").asInt()));
-                assertEquals("new_pattern_anchor", manifestDay(day).get("dsa_role").asString());
+            if (day <= 3) {
+                int expectedProblem = new int[]{121, 1, 383}[day - 1];
+                assertEquals("guided_first_sequence", dsa.get("mode").asString());
+                assertEquals(expectedProblem, dsa.get("current_guided_encounter_problem_id").asInt());
+                assertTrue(title.contains("guided DSA: LC " + expectedProblem));
+                assertEquals("guided_first_sequence", manifestDay(day).get("dsa_role").asString());
+                if (day == 3) {
+                    assertEquals("383 Ransom Note", dsa.get("problem").asString());
+                    assertTrue(dsa.get("problem_url").asString().endsWith("/ransom-note/"));
+                    assertTrue(dsa.get("resource_references").get(0).asString().contains("/ransom-note/"));
+                }
             } else {
-                assertEquals(dsa.get("review_anchors").size(), count(title, "LC "));
-                for (JsonNode review : dsa.get("review_anchors"))
-                    assertTrue(title.contains("LC " + review.get("problem_id").asInt() + " D+" + review.get("review_interval_days").asInt()));
-                if (dsa.get("review_anchors").isEmpty()) assertTrue(title.contains("no due anchors"));
+                assertEquals("dynamic_actual_attempt_queue", dsa.get("mode").asString());
+                assertTrue(dsa.get("current_guided_encounter_problem_id").isNull());
+                assertTrue(title.endsWith("DSA actual-attempt queue"));
+                assertEquals("dynamic_actual_attempt_queue", manifestDay(day).get("dsa_role").asString());
             }
         }
     }

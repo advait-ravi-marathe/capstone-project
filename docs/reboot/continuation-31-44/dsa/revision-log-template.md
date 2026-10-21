@@ -11,7 +11,7 @@ history):
 
 ```json
 {"schema_version":2,"event_id":"unique-local-id","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"anchor_attempt","activity":"guided_anchor","target_problem_id":121,"assistance":["editorial"],"result":"attempted","minutes":25}
-{"schema_version":2,"event_id":"unique-local-id-2","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"retrieval_attempt","activity":"independent_transfer","review_interval_days":3,"review_slot_id":"lc:121:d+3","target_problem_id":2016,"assistance":[],"result":"passed","minutes":20,"invariant_explanation":"Write your own evidence here."}
+{"schema_version":2,"event_id":"unique-local-id-2","date":"YYYY-MM-DD","timezone":"Asia/Kolkata","anchor_id":"lc:121","kind":"retrieval_attempt","activity":"independent_transfer","review_interval_days":3,"review_slot_id":"lc:121+3","target_problem_id":2016,"attempt_id":"physical-attempt-1","evidence_reference":"local-evidence-1","assistance":["none"],"result":"passed","minutes":20,"invariant_explanation":"Write your own evidence here."}
 ```
 
 Use `kind` values `anchor_attempt`, `retrieval_attempt`, `exposure`, or

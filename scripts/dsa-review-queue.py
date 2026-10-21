@@ -13,6 +13,7 @@ INTERVALS = (3, 7, 21)
 ACTUAL_KINDS = {"first_attempt", "anchor_attempt", "retrieval_attempt"}
 REVIEW_KINDS = {"review", "retrieval_attempt"}
 ASSISTANCE = {"none", "editorial", "hint", "walkthrough", "other_assistance", "unknown"}
+POLICY_EFFECTIVE_DATE = dt.date(2026, 10, 22)
 
 
 def load_registry():
@@ -42,6 +43,10 @@ def accepted_anchor_pairs():
         manifest = json.loads(path.read_text())
         for day in manifest.get("days", []):
             dsa = day.get("java_dsa", {})
+            historical_role = day.get("historical_dsa_role")
+            historical_pid = day.get("historical_dsa_problem_id")
+            if historical_role == "new_pattern_anchor" and historical_pid is not None:
+                pairs.add((day["day"], historical_pid))
             if day.get("dsa_role") == "new_pattern_anchor":
                 problem_id = day.get("dsa_problem_id", dsa.get("problem_id"))
                 if problem_id is not None:
@@ -52,19 +57,47 @@ def accepted_anchor_pairs():
             for revisit in dsa.get("review_anchors", []):
                 if revisit.get("planned_revisit_date"):
                     pairs.add((day["day"], revisit["problem_id"]))
+            historical = dsa.get("historical_planned_assignment", {})
+            old_pid = historical.get("problem_id")
+            if historical.get("mode") == "new_pattern_anchor" and old_pid is not None:
+                pairs.add((day["day"], old_pid))
+            for revisit in historical.get("review_anchors", []):
+                if revisit.get("planned_revisit_date"):
+                    pairs.add((day["day"], revisit["problem_id"]))
     return pairs
 
 
 def _event_anchor(event, anchors):
     pid = event.get("anchor_problem_id", event.get("problem_id"))
     aid = event.get("anchor_id")
-    matches = [a for a in anchors if (aid and a["anchor_id"] == aid) or
-               (pid is not None and int(pid) == a["problem_id"] and
-                (event.get("anchor_day") is None or
-                 (int(event["anchor_day"]), int(pid)) in accepted_anchor_pairs()))]
-    if len(matches) != 1:
+    day = event.get("anchor_day")
+    by_id = {a["anchor_id"]: a for a in anchors}
+    by_pid = {a["problem_id"]: a for a in anchors}
+    if aid is not None and aid not in by_id:
+        raise ValueError(f"attempt log references unknown canonical anchor_id: {aid}")
+    if pid is not None:
+        try:
+            pid = int(pid)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"invalid anchor problem id: {pid}") from exc
+        if pid not in by_pid:
+            raise ValueError(f"attempt log references unknown canonical problem id: {pid}")
+    if aid is not None and pid is not None and by_id[aid]["problem_id"] != pid:
+        raise ValueError(f"anchor_id and problem id identify different canonical anchors: {event}")
+    anchor = by_id.get(aid) if aid is not None else by_pid.get(pid)
+    if anchor is None:
         raise ValueError(f"attempt log references unknown anchor or ambiguous canonical anchor: {event}")
-    return matches[0]
+    if day is not None:
+        try:
+            day = int(day)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"invalid historical anchor day alias: {day}") from exc
+        aliases = anchor.get("historical_day_aliases", [anchor["original_anchor_day"]])
+        if day not in aliases:
+            raise ValueError(f"unknown anchor day alias for canonical anchor {anchor['anchor_id']}: {day}")
+        if (day, anchor["problem_id"]) not in accepted_anchor_pairs():
+            raise ValueError(f"anchor day/problem pair is not a recorded source alias: {day}/{anchor['problem_id']}")
+    return anchor
 
 
 def _validate_event(event, anchors):
@@ -76,6 +109,11 @@ def _validate_event(event, anchors):
     schema = event.get("schema_version")
     if schema not in (None, 1, 2):
         raise ValueError(f"unsupported DSA event schema_version: {schema}")
+    kind = event.get("kind")
+    if kind not in ACTUAL_KINDS | REVIEW_KINDS | {"exposure", "correction"}:
+        raise ValueError(f"unknown DSA event kind: {kind}")
+    if kind == "correction" and schema != 2:
+        raise ValueError("correction events require version 2 corrected_fields")
     if schema == 2:
         if not event.get("event_id") or not event.get("timezone"):
             raise ValueError("version 2 events require event_id and IANA timezone")
@@ -84,31 +122,64 @@ def _validate_event(event, anchors):
         except ZoneInfoNotFoundError as exc:
             raise ValueError(f"unknown IANA timezone: {event['timezone']}") from exc
     anchor = _event_anchor(event, anchors)
-    kind = event.get("kind")
-    if kind not in ACTUAL_KINDS | REVIEW_KINDS | {"exposure", "correction"}:
-        raise ValueError(f"unknown DSA event kind: {kind}")
-    if kind == "correction" and not event.get("corrects_event_id"):
-        raise ValueError("correction events must reference the event they correct")
     assistance = event.get("assistance")
     if assistance is not None:
         values = assistance if isinstance(assistance, list) else [assistance]
         if any(v not in ASSISTANCE for v in values):
             raise ValueError(f"unknown assistance classification: {assistance}")
-    if schema == 2:
+    if schema == 2 and kind == "correction":
+        fields = event.get("corrected_fields")
+        allowed = {"result", "assistance", "invariant_explanation"}
+        if not event.get("corrects_event_id") or not isinstance(fields, dict) or not fields:
+            raise ValueError("version 2 correction requires a referenced event and corrected_fields")
+        if not set(fields).issubset(allowed):
+            raise ValueError("correction contains unsupported fields")
+        if "result" in fields and fields["result"] not in {"attempted", "passed", "failed", "incomplete"}:
+            raise ValueError("correction contains an invalid result")
+        if "assistance" in fields:
+            values = fields["assistance"] if isinstance(fields["assistance"], list) else [fields["assistance"]]
+            if any(v not in ASSISTANCE for v in values):
+                raise ValueError("correction contains invalid assistance")
+    elif schema == 2 and kind in ACTUAL_KINDS | REVIEW_KINDS:
         if event.get("activity") not in {"guided_anchor", "independent_transfer", "original_recall", "transfer_retention", "repair"}:
-            raise ValueError("version 2 events require a recognized activity")
+            raise ValueError("version 2 attempt events require a recognized activity")
         if event.get("result") not in {"attempted", "passed", "failed", "incomplete"}:
-            raise ValueError("version 2 events require an observed result")
+            raise ValueError("version 2 attempt events require an observed result")
+        if "assistance" not in event or assistance is None:
+            raise ValueError("version 2 attempt events require an explicit assistance classification")
+    elif schema == 2 and kind == "exposure":
+        if event.get("target_problem_id") is None:
+            raise ValueError("version 2 exposure events require target_problem_id")
+    if kind == "retrieval_attempt" and schema == 2:
+        interval = event.get("review_interval_days")
+        try:
+            interval = int(interval)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("version 2 retrieval_attempt requires review_interval_days") from exc
+        if interval not in INTERVALS:
+            raise ValueError("retrieval_attempt has an unsupported review interval")
+        if event.get("activity") not in {"independent_transfer", "transfer_retention", "original_recall", "repair"}:
+            raise ValueError("retrieval_attempt has an invalid review activity")
+        if event.get("target_problem_id") is None:
+            raise ValueError("retrieval_attempt requires a target_problem_id")
+        if not event.get("attempt_id") or not event.get("evidence_reference"):
+            raise ValueError("retrieval_attempt requires attempt_id and evidence_reference")
+        expected_slot = f"{anchor['anchor_id']}+{interval}"
+        if event.get("review_slot_id") != expected_slot:
+            raise ValueError(f"review_slot_id must be {expected_slot}")
+    if kind in {"first_attempt", "anchor_attempt"} and event.get("activity") in {
+            "independent_transfer", "transfer_retention", "repair"}:
+        raise ValueError("a transfer activity cannot be recorded as a canonical anchor attempt")
+    if kind == "anchor_attempt" and event.get("activity") not in (None, "guided_anchor"):
+        raise ValueError("anchor_attempt must describe the canonical guided first attempt")
     return anchor
 
 
 def _effective_events(events, on_date, anchors):
     normalized = []
     ids = {}
-    for event in events:
+    for index, event in enumerate(events):
         anchor = _validate_event(event, anchors)
-        if event["date"] > on_date.isoformat():
-            continue
         eid = event.get("event_id")
         if eid:
             signature = json.dumps(event, sort_keys=True, separators=(",", ":"))
@@ -117,12 +188,113 @@ def _effective_events(events, on_date, anchors):
             if eid in ids:
                 continue
             ids[eid] = signature
-        normalized.append((anchor, event))
-    return normalized
+        normalized.append((anchor, dict(event), index))
+
+    corrections = {}
+    for anchor, event, index in normalized:
+        if event.get("kind") != "correction":
+            continue
+        target_id = event["corrects_event_id"]
+        target = next(((a, e, i) for a, e, i in normalized if e.get("event_id") == target_id), None)
+        if target is None:
+            raise ValueError(f"correction references unknown event_id: {target_id}")
+        target_anchor, target_event, target_index = target
+        if target_index >= index or target_event.get("kind") == "correction":
+            raise ValueError("correction must reference an earlier non-correction event")
+        if target_event["date"] > event["date"]:
+            raise ValueError("correction date cannot precede the referenced event")
+        if target_anchor["anchor_id"] != anchor["anchor_id"]:
+            raise ValueError("correction and referenced event must use the same canonical anchor")
+        if target_id in corrections:
+            raise ValueError(f"event has multiple corrections: {target_id}")
+        corrections[target_id] = event
+
+    attempt_slots = {}
+    evidence_slots = {}
+    for _, event, _ in normalized:
+        if event.get("kind") != "retrieval_attempt" or event.get("schema_version") != 2:
+            continue
+        attempt_id, evidence, slot = event["attempt_id"], event["evidence_reference"], event["review_slot_id"]
+        if attempt_id in attempt_slots:
+            raise ValueError(f"attempt_id can belong to only one retrieval event and review slot: {attempt_id}")
+        if evidence in evidence_slots and evidence_slots[evidence] != slot:
+            raise ValueError(f"one evidence reference cannot close multiple review slots: {evidence}")
+        if evidence in evidence_slots:
+            raise ValueError(f"evidence reference is reused for multiple physical attempts: {evidence}")
+        attempt_slots[attempt_id] = slot
+        evidence_slots[evidence] = slot
+
+    projected = []
+    for anchor, event, index in normalized:
+        eid = event.get("event_id")
+        correction = corrections.get(eid)
+        if correction is not None and correction["date"] <= on_date.isoformat():
+            event.update(correction["corrected_fields"])
+        if event.get("date", "9999-99-99") <= on_date.isoformat() and event.get("kind") != "correction":
+            event["_ledger_index"] = index
+            projected.append((anchor, event, index))
+    return projected
 
 
 def _tiers(count):
     return 60 if count <= 2 else 75 if count == 3 else 90
+
+
+def _candidate_index(catalog):
+    result = {}
+    for entry in catalog.values():
+        for candidate in entry.get("candidates", []):
+            family = candidate.get("duplicate_family")
+            family_ids = {candidate["id"]}
+            if family:
+                try:
+                    family_ids.update(int(part) for part in family.split("="))
+                except ValueError:
+                    pass
+            result[candidate["id"]] = {**candidate, "family_ids": family_ids}
+    return result
+
+
+def _unaided(assistance):
+    return assistance == "none" or (isinstance(assistance, list) and
+                                     bool(assistance) and all(value == "none" for value in assistance))
+
+
+def _full_transfer_relation(relation):
+    return relation in {"direct", "near", "near_with_new_signature", "near_with_objective_reversal"}
+
+
+def _eligible_transfer(event, anchor, candidates, prior_events):
+    target = event.get("target_problem_id")
+    if target is None:
+        return False, "missing target problem id"
+    try:
+        target = int(target)
+    except (TypeError, ValueError):
+        return False, "invalid target problem id"
+    candidate = candidates.get(target)
+    if candidate is None or target not in {c["id"] for c in load_catalog()[anchor["problem_id"]].get("candidates", [])}:
+        return False, "target is not mapped to this canonical anchor"
+    family = candidate["family_ids"]
+    for earlier_anchor, earlier_event, earlier_index in prior_events:
+        if earlier_event.get("target_problem_id") is None:
+            continue
+        try:
+            earlier_target = int(earlier_event["target_problem_id"])
+        except (TypeError, ValueError):
+            continue
+        previous = candidates.get(earlier_target)
+        earlier_date = earlier_event.get("date", "9999-99-99")
+        if earlier_date < event["date"] or (earlier_date == event["date"] and earlier_index < event.get("_ledger_index", -1)):
+            if earlier_target in family or (previous and previous["family_ids"] & family):
+                return False, "target or duplicate-equivalent family was previously exposed"
+    if not _full_transfer_relation(candidate.get("relation")):
+        return False, "catalog relation is not eligible for full same-invariant transfer credit"
+    if not _unaided(event.get("assistance")):
+        return False, "attempt was assisted or assistance is unknown"
+    if not isinstance(event.get("invariant_explanation"), str) or not event["invariant_explanation"].strip():
+        return False, "invariant explanation is missing"
+    return True, "eligible"
 
 
 def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
@@ -130,10 +302,11 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
     as_of = dt.date.fromisoformat(on_date)
     anchors = load_registry()
     catalog = load_catalog()
+    candidate_by_id = _candidate_index(catalog)
     effective = _effective_events(events, as_of, anchors)
     grouped = {a["anchor_id"]: [] for a in anchors}
     exposures = set()
-    for anchor, event in effective:
+    for anchor, event, _ in effective:
         grouped[anchor["anchor_id"]].append(event)
         target = event.get("target_problem_id")
         if target is not None:
@@ -143,12 +316,12 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
     due_tasks = []
     for anchor in anchors:
         ae = grouped[anchor["anchor_id"]]
-        firsts = [e for e in ae if e.get("kind") in ACTUAL_KINDS and
-                  e.get("activity") != "independent_transfer"]
-        # Legacy first_attempt records are retained as actual attempts. For v2,
-        # retrieval/transfer events never start a canonical anchor clock.
-        firsts = [e for e in firsts if not (e.get("kind") == "retrieval_attempt" and
-                  e.get("activity") in {"independent_transfer", "transfer_retention"})]
+        # Only an observed first/anchor attempt starts the canonical clock.
+        # Retrievals never create or reset a clock, and legacy records without
+        # an observed outcome remain visible but cannot start one.
+        firsts = [e for e in ae if e.get("kind") in {"first_attempt", "anchor_attempt"}
+                  and e.get("result") in {"attempted", "passed", "failed", "incomplete"}
+                  and e.get("activity") not in {"independent_transfer", "transfer_retention", "repair"}]
         first_date = min((dt.date.fromisoformat(e["date"]) for e in firsts), default=None)
         reviews = []
         if first_date:
@@ -161,17 +334,43 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
                 # a later scheduled checkpoint.
                 recorded_as_of = [e for e in attempts if e["date"] <= as_of.isoformat()]
                 observed = [e for e in recorded_as_of if dt.date.fromisoformat(e["date"]) >= due]
-                independent_passes = [e for e in observed if e.get("result") == "passed" and
-                                      e.get("activity") == "independent_transfer" and
-                                      e.get("assistance") in (None, "none", []) and
-                                      isinstance(e.get("invariant_explanation"), str) and
-                                      bool(e.get("invariant_explanation").strip())]
-                historical_pass = any(e.get("result") == "passed" for e in recorded_as_of if e.get("schema_version") != 2)
-                failed = any(e.get("result") == "failed" for e in observed)
+                for event in observed:
+                    event["_ledger_index"] = event.get("_ledger_index", -1)
+                attempt_rows = [(e, idx) for e in observed for idx in [e.get("_ledger_index", -1)]]
+                independent_passes = []
+                invalid_pass_reasons = []
+                prior_rows = [(a, e, idx) for a, e, idx in effective]
+                for event, event_index in attempt_rows:
+                    if (event.get("result") != "passed" or event.get("activity") != "independent_transfer"
+                            or event.get("kind") != "retrieval_attempt" or event.get("schema_version") != 2):
+                        continue
+                    ok, reason = _eligible_transfer(event, anchor, candidate_by_id,
+                                                    [row for row in prior_rows if row[2] != event_index])
+                    if ok:
+                        independent_passes.append(event)
+                    else:
+                        invalid_pass_reasons.append(reason)
+                historical_pass_any = any(e.get("result") == "passed"
+                                          and dt.date.fromisoformat(e["date"]) < POLICY_EFFECTIVE_DATE
+                                          for e in recorded_as_of if e.get("schema_version") != 2)
+                historical_pass_due = any(e.get("result") == "passed" and
+                                          dt.date.fromisoformat(e["date"]) >= due
+                                          and dt.date.fromisoformat(e["date"]) < POLICY_EFFECTIVE_DATE
+                                          for e in recorded_as_of if e.get("schema_version") != 2)
+                failed_events = [e for e in observed if e.get("result") == "failed"]
+                repair_passes = [e for e in observed if e.get("result") == "passed" and
+                                 e.get("activity") == "repair" and _unaided(e.get("assistance"))]
+                event_order = lambda e: (e.get("date", ""), e.get("_ledger_index", -1))
+                last_failure = max((event_order(e) for e in failed_events), default=("", -1))
+                last_independent_pass = max((event_order(e) for e in independent_passes), default=("", -1))
+                last_repair_pass = max((event_order(e) for e in repair_passes), default=("", -1))
+                failed = last_failure[1] >= 0 and last_failure > max(last_independent_pass, last_repair_pass)
                 assisted_pass = any(e.get("result") == "passed" and e not in independent_passes for e in observed)
+                resolved_failure = last_failure[1] >= 0 and max(last_independent_pass, last_repair_pass) > last_failure
+                current_independent_pass = bool(independent_passes) and last_independent_pass > last_failure
                 state = "failed_repair_pending" if failed else (
-                    "passed_independent_transfer" if independent_passes else
-                    "historical_passed_unclassified" if historical_pass else
+                    "passed_independent_transfer" if current_independent_pass else
+                    "historical_passed_unclassified" if historical_pass_due else
                     "scheduled" if as_of < due else "due" if as_of == due else "overdue")
                 if state in {"due", "overdue", "failed_repair_pending"}:
                     due_tasks.append({"anchor_id": anchor["anchor_id"], "problem_id": anchor["problem_id"],
@@ -181,9 +380,11 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
                                 "due_date_from_earliest_actual_first_attempt": due.isoformat(),
                                 "due_date_from_actual_attempt": due.isoformat(),
                                 "status": state,
-                                "independent_transfer_evidence": bool(independent_passes),
-                                "historical_result_retained_unclassified": historical_pass,
+                                "independent_transfer_evidence": current_independent_pass,
+                                "historical_result_retained_unclassified": historical_pass_any,
                                 "assisted_observation_does_not_close_slot": assisted_pass,
+                                "invalid_transfer_observation_reasons": sorted(set(invalid_pass_reasons)),
+                                "failed_attempt_resolved_by_later_repair_or_transfer": resolved_failure,
                                 "retrieval_method": "independent transfer attempt before editorial; brief original recall does not close this slot",
                                 "failed_review_action": "replace new work within the selected DSA tier; preserve original due date" if state == "failed_repair_pending" else None,
                                 "activity": "independent_transfer_required",
@@ -196,47 +397,39 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
                      "status": "review_queue_active" if first_date else "awaiting_actual_attempt",
                      "reviews": reviews})
 
-    # Existing reviews and repairs always take priority. The prescribed first
-    # three guided anchors lead the revised sequence; later suggestions follow
-    # the source registry order only when no review is due. Never infer that a
-    # planned or suggested encounter was attempted or completed.
+    # Preserve actual prerequisite order. The first three are fixed planned
+    # encounters, but a later day never treats a missed plan as an attempt.
     priority = {"failed_repair_pending": 0, "overdue": 1, "due": 2}
     due_tasks.sort(key=lambda x: (priority[x["status"]], x["original_due_date"], x["anchor_id"], x["interval_days"]))
     selected = []
     deferred = []
+    hard_blocker = any(task["status"] in {"failed_repair_pending", "overdue"} for task in due_tasks)
 
     planned = []
     if roadmap_day in (1, 2, 3):
         chosen = {1: 121, 2: 1, 3: 383}[roadmap_day]
         planned = [next(a for a in anchors if a["problem_id"] == chosen)]
-    elif roadmap_day is not None and roadmap_day <= 150 and roadmap_day not in {133, 140, 147, 154} and not due_tasks:
-        # The source inventory's original prerequisite order remains the limit;
-        # do not fabricate a new Day-to-anchor assignment.
+    elif roadmap_day is not None and roadmap_day <= 150 and roadmap_day not in {133, 140, 147, 154}:
         seen = {a["anchor_id"] for a in anchors if grouped[a["anchor_id"]] and
-                any(e.get("kind") in ACTUAL_KINDS for e in grouped[a["anchor_id"]])}
-        # The first three are already the fixed planned sequence on earlier
-        # roadmap days. This is planning state only, never an attempt claim.
-        if roadmap_day >= 4:
-            seen.update({"lc:121", "lc:1", "lc:383"})
+                any(e.get("kind") in {"first_attempt", "anchor_attempt"} and
+                    e.get("result") in {"attempted", "passed", "failed", "incomplete"} and
+                    e.get("activity") not in {"independent_transfer", "transfer_retention", "repair"}
+                    for e in grouped[a["anchor_id"]])}
         planned = [a for a in anchors if a["anchor_id"] not in seen][:1]
     new_guidance_allowed = roadmap_day is not None and roadmap_day <= 150 and roadmap_day not in {133, 140, 147, 154}
-    if new_guidance_allowed and not due_tasks:
-        for a in planned:
-            if len(selected) < 4:
-                selected.append({"anchor_id": a["anchor_id"], "problem_id": a["problem_id"],
-                                 "slot_id": f"guided:{a['anchor_id']}", "status": "planned_guided_encounter",
-                                 "activity": "guided_anchor", "assistance": "editorial_allowed_not_independent_credit"})
-    elif planned:
-        deferred.append({"problem_id": planned[0]["problem_id"], "status": "guided_introduction_deferred",
-                         "deferred_reason": "due retrieval is processed first; recovery/cutoff days do not introduce guidance"})
 
-    # A candidate is counted as a scheduled exercise only when the learner has
-    # checked prior exposure/access/prerequisites and explicitly supplies the
-    # target for that specific due slot. The queue itself cannot inspect a
-    # Premium account or establish global freshness.
-    used_targets = set()
-    used_anchors = set()
+    # A candidate is scheduled only after learner confirmation of history,
+    # access, and prerequisites. Fill available capacity in due-task order;
+    # blocked gaps do not deadlock other eligible anchors.
     by_anchor_id = {a["anchor_id"]: a for a in anchors}
+    confirmed = {}
+    used_targets = set()
+    seen_families = set()
+    for exposure in exposures:
+        indexed = candidate_by_id.get(exposure)
+        seen_families.add(exposure)
+        if indexed:
+            seen_families.update(indexed["family_ids"])
     for raw in confirmed_transfers or []:
         try:
             slot_id, target_text = raw.split("=", 1)
@@ -253,29 +446,60 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
         candidate = next((c for c in candidates if c["id"] == target), None)
         if candidate is None:
             raise ValueError(f"candidate {target} is not in the verified catalog for {aid}")
-        if target in exposures or target in used_targets:
-            raise ValueError(f"candidate {target} is already exposed or duplicated in this session")
-        if aid in used_anchors:
-            raise ValueError(f"only one repair/transfer exercise per anchor may be scheduled in a session: {aid}")
+        if not _full_transfer_relation(candidate.get("relation")):
+            raise ValueError(f"candidate {target} is not a full same-invariant transfer for {aid}")
+        family = candidate_by_id[target]["family_ids"]
+        if family & (seen_families | used_targets):
+            raise ValueError(f"candidate {target} or an equivalent problem was already exposed or selected")
+        if slot_id in confirmed:
+            raise ValueError(f"transfer slot was confirmed more than once: {slot_id}")
+        confirmed[slot_id] = candidate
+        used_targets.update(family)
+
+    selected_anchors = set()
+    for task in due_tasks:
+        candidate = confirmed.get(task["slot_id"])
+        if candidate is None:
+            continue
+        aid = task["anchor_id"]
+        if aid in selected_anchors:
+            deferred.append({**task, "deferred_reason": "one retrieval exercise per anchor per session; preserve original due date"})
+            continue
         if len(selected) >= 4:
-            raise ValueError("at most four substantive exercises may be scheduled per day")
-        if len(selected) < len(due_tasks) and task is not due_tasks[len(selected)]:
-            raise ValueError("schedule the oldest due task first; do not skip an earlier review obligation")
-        used_anchors.add(aid)
-        used_targets.add(target)
-        task["target_problem_id"] = target
+            deferred.append({**task, "deferred_reason": "four-exercise daily cap; preserve original due date"})
+            continue
+        task["target_problem_id"] = candidate["id"]
         task["target_title"] = candidate["title"]
         task["candidate_relation"] = candidate["relation"]
         task["freshness_and_prerequisites"] = "learner_asserted_checked; not independently verified by this tool"
         task["invariant_coach_note"] = candidate["invariant"]
         task["new_prerequisites"] = candidate["new_prerequisites"]
-        task["status"] = task["status"]
         selected.append({**task, "activity": "independent_transfer_attempt", "assistance_required": "none until attempt concludes"})
-    if len(selected) > 4:
-        raise ValueError("at most four substantive exercises may be scheduled per day")
+        selected_anchors.add(aid)
+
     selected_slots = {x.get("slot_id") for x in selected}
-    deferred += [{**t, "deferred_reason": "candidate freshness/access/prerequisites require learner check; slot remains due"}
-                 for t in due_tasks if t["slot_id"] not in selected_slots]
+    for task in due_tasks:
+        if task["slot_id"] in selected_slots or any(d.get("slot_id") == task["slot_id"] for d in deferred):
+            continue
+        entry = catalog.get(task["problem_id"], {})
+        reason = "validated_transfer_needed: " + "; ".join(entry.get("gaps", [])) if not entry.get("candidates") else \
+                 "candidate freshness/access/prerequisites require learner check; slot remains due"
+        deferred.append({**task, "deferred_reason": reason})
+
+    # Due-today retrieval may share the session with guided work. A failed or
+    # overdue review displaces new guidance; future due work remains visible.
+    if new_guidance_allowed and planned and not hard_blocker:
+        for anchor in planned:
+            if anchor["anchor_id"] in selected_anchors:
+                continue
+            if len(selected) < 4:
+                selected.append({"anchor_id": anchor["anchor_id"], "problem_id": anchor["problem_id"],
+                                 "slot_id": f"guided:{anchor['anchor_id']}", "status": "planned_guided_encounter",
+                                 "activity": "guided_anchor", "assistance": "editorial_allowed_not_independent_credit"})
+            break
+    elif planned:
+        deferred.append({"problem_id": planned[0]["problem_id"], "status": "guided_introduction_deferred",
+                         "deferred_reason": "failed/overdue retrieval takes priority, or this is a recovery/cutoff day"})
 
     # Candidate IDs are suggestions only after external history/access and
     # prerequisite verification. Unknown freshness can never be called fresh.
@@ -284,8 +508,8 @@ def build_queue(events, on_date, roadmap_day=None, confirmed_transfers=None):
         candidates = []
         for c in entry.get("candidates", []):
             candidates.append({"problem_id": c["id"], "title": c["title"], "url": c["url"],
-                               "relation": c["relation"], "freshness": "previously_exposed" if c["id"] in exposures else "unknown_requires_history_check",
-                               "assignment_status": "blocked_until_history_access_and_prerequisites_verified",
+                               "relation": c["relation"], "freshness": "previously_exposed" if candidate_by_id[c["id"]]["family_ids"] & seen_families else "unknown_requires_history_check",
+                               "assignment_status": "blocked_relation_not_full_transfer" if not _full_transfer_relation(c["relation"]) else "blocked_until_history_access_and_prerequisites_verified",
                                "invariant_coach_note": c["invariant"], "new_prerequisites": c["new_prerequisites"]})
         row["transfer_candidates"] = candidates
         row["catalog_gap"] = entry.get("gaps", [])

@@ -4,7 +4,7 @@
 
 **Engineering scope:** TimedPolicyRenewalReadStore transaction outcome
 **Status:** Instructor fixture/selector installed; learner implementation remains unattempted.
-**Daily capacity:** 180 minutes: 60 minutes Java DSA separately, plus 120 minutes engineering (85 implementation/testing, 25 concept/course, 10 evidence). No extra mandatory setup work.
+**Daily capacity:** 180/195/210 minutes depending on 1–2/3/4 substantive DSA exercises; engineering remains 120 minutes (25 study, 85 practice/testing, 10 evidence). No extra mandatory setup work.
 
 ### Expected behavior
 
@@ -44,18 +44,6 @@ Video viewing: 4:58; allow at most 16:01 for the worked example and focused read
 
 **Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
 
-### Separate Java DSA block — 60 minutes
-
-Run the actual-attempt review queue first. D+3, D+7 and D+21 clocks start only from an actual independent first attempt; planned dates never start review clocks. Failed/overdue reviews replace new work. The shared attempt log is empty, so no due review is forecast. LC236 is deferred because prerequisite retrieval has no recorded evidence.
-
-- 25 minutes pattern recall or new learning only if due queue permits
-- 20 minutes independent solving or due cold review
-- 15 minutes active retrieval and error log
-
-**Queue:** `python3 scripts/dsa-review-queue.py --on-date 2027-01-17`
-**Queue tests:** `python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py`
-**Shared actual-attempt log:** `docs/reboot/continuation-31-44/dsa/actual-attempt-log.json`
-
 ### Evidence block — 10 minutes
 
 Record exact commands, exit status, observed values, cleanup result, learner-owned paths and blockers in `evidence/continuation-85-98/day-90.json`. Keep actual attempt dates blank until evidenced and separate temporary-witness validation from learner completion.
@@ -68,4 +56,4 @@ Record exact commands, exit status, observed values, cleanup result, learner-own
 
 Guided learning may use LeetCode Premium/editorial explanations. Before opening an editorial, attempt independently; if assistance is used, label the event guided/hinted/editorial-assisted even if accepted. A transfer is independent only after an unaided attempt, with the intended invariant explained; platform acceptance alone is insufficient. D, D+3, D+7, and D+21 are based on the earliest actual first-attempt local date, including guided attempts; never use planned dates or reset the clock. A transfer target does not start another anchor cycle.
 
-Run `python3 scripts/dsa-review-queue.py --on-date 2027-01-17 --roadmap-day 90` first. Record actual activity, assistance, outcome, and evidence in the append-only log; never infer completion from this contract. See [../../dsa/guided-transfer-policy.md](../../dsa/guided-transfer-policy.md) and [the DSA error log](../../dsa-error-log-template.md).
+Run `python3 scripts/dsa-review-queue.py --on-date "$(TZ=Asia/Kolkata date +%F)" --roadmap-day 90` first. The date command uses the actual Asia/Kolkata local study date; dates shown elsewhere are forecasts only. Record actual activity, assistance, outcome, and evidence in the append-only log; never infer completion from this contract. See [../../dsa/guided-transfer-policy.md](../../dsa/guided-transfer-policy.md) and [the DSA error log](../../dsa-error-log-template.md).
