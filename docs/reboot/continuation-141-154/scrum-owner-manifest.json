@@ -50,7 +50,19 @@
         "video_seconds": 216,
         "worked_reference_seconds": 984,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Maven build lifecycle: package and verify",
+            "url": "https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html",
+            "sections": [
+              "default lifecycle",
+              "package",
+              "verify"
+            ],
+            "use": "How separate artifact builds and verification goals relate."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -118,7 +130,7 @@
         "scope": "Map one existing RecoveryReadResult and classifier decision into an allowlisted version-1 DTO; history is supplementary and capped at 20.",
         "learner_seam": "InspectionReportMapper.map",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day142ProjectsObservedWorkAndSupplementaryHistory test"
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day142ProjectsObservedWorkAndSupplementaryHistory+day142CapsOrderedHistoryAtTwentyAndPreservesReceiptEvidence test"
         ],
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java",
         "concept_course": {
@@ -136,7 +148,28 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Spring Boot JSON support",
+            "url": "https://docs.spring.io/spring-boot/reference/features/json.html",
+            "sections": [
+              "JSON mapper auto-configuration"
+            ],
+            "use": "Use the project-managed mapper for the report projection."
+          },
+          {
+            "title": "RFC 8259",
+            "url": "https://www.rfc-editor.org/rfc/rfc8259",
+            "sections": [
+              "4 Objects",
+              "6 Numbers",
+              "7 Strings",
+              "9 Parsers"
+            ],
+            "use": "Field types, integer precision, escaped strings, and parser behavior."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -222,7 +255,28 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Spring Boot JSON support",
+            "url": "https://docs.spring.io/spring-boot/reference/features/json.html",
+            "sections": [
+              "JSON mapper auto-configuration"
+            ],
+            "use": "Use the Boot-managed Jackson 3 mapper."
+          },
+          {
+            "title": "RFC 8259",
+            "url": "https://www.rfc-editor.org/rfc/rfc8259",
+            "sections": [
+              "4 Objects",
+              "6 Numbers",
+              "7 Strings",
+              "9 Parsers"
+            ],
+            "use": "Object structure, numeric values, escaping, and parsing."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -290,7 +344,7 @@
         "scope": "Validate exactly one bounded frame, strict duplicate keys, required fields/types/enums, requested identity and classifier consistency.",
         "learner_seam": "InspectionReportCodec.decodeSingleFrame",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144RejectsAmbiguousDuplicateOrUnboundReportFrames test"
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144RejectsAmbiguousDuplicateOrUnboundReportFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
         ],
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java",
         "concept_course": {
@@ -308,7 +362,28 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Spring Boot JSON support",
+            "url": "https://docs.spring.io/spring-boot/reference/features/json.html",
+            "sections": [
+              "JSON mapper auto-configuration"
+            ],
+            "use": "Use the Boot-managed mapper for structural decoding."
+          },
+          {
+            "title": "RFC 8259",
+            "url": "https://www.rfc-editor.org/rfc/rfc8259",
+            "sections": [
+              "4 Objects",
+              "6 Numbers",
+              "7 Strings",
+              "9 Parsers"
+            ],
+            "use": "Object member semantics, number representation, escaped strings, parser interoperability."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -376,7 +451,7 @@
         "scope": "Validate one explicit mode and exact key before Spring context/database initialization; reject every mutation/delivery combination.",
         "learner_seam": "ReleaseInspectionRequestPolicy.parse",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=ReleaseInspectionCommandAcceptanceTest#day145RejectsMixedOrMalformedModesBeforeAnyDatabaseContext test"
+          "./mvnw -Plearner-tests -Dtest=ReleaseInspectionCommandAcceptanceTest#day145RejectsMixedOrMalformedModesBeforeAnyDatabaseContext+day145AcceptsOnlyOneExplicitExactKeyRequest test"
         ],
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ReleaseInspectionCommandAcceptanceTest.java",
         "concept_course": {
@@ -394,7 +469,17 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Spring Boot application arguments",
+            "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html",
+            "sections": [
+              "ApplicationArguments"
+            ],
+            "use": "Validate explicit mode and key arguments before creating the context."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -462,7 +547,7 @@
         "scope": "Use existing inspect service and classifier exactly once; disable Flyway and SQL init in the new non-web context; verify existing V001–V005 without mutation.",
         "learner_seam": "ReadOnlyReleaseInspectionCommand",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day146RefusesAbsentSchemaWithoutStartingMigration -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
         "concept_course": {
@@ -480,7 +565,18 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Spring Boot application arguments and runners",
+            "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html",
+            "sections": [
+              "ApplicationRunner",
+              "ApplicationArguments"
+            ],
+            "use": "Understand when a validated one-shot command runs in the non-web context."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -548,7 +644,7 @@
         "scope": "Repair and rerun only Days141–146; explain observation versus supplementary history and why output still needs an independent DB oracle.",
         "learner_seam": "prior-only Days141–146 selectors",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=ReleasePairAcceptanceTest,InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest#day146RefusesAbsentSchemaWithoutStartingMigration -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleasePairAcceptanceTest,InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
         "concept_course": {
@@ -566,7 +662,8 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": []
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -636,7 +733,7 @@
         "scope": "Build and freeze A before B-only code; bind actual digests/provenance and run both legacy modes plus B report mode against one fixture.",
         "learner_seam": "TwoArtifactCompatibilityAcceptanceTest",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
         "concept_course": {
@@ -660,7 +757,19 @@
         "video_seconds": 532,
         "worked_reference_seconds": 668,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Maven build lifecycle",
+            "url": "https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html",
+            "sections": [
+              "default lifecycle",
+              "package",
+              "verify"
+            ],
+            "use": "Build A and B separately and run their verification steps."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -728,7 +837,7 @@
         "scope": "Exercise B quarantine, A inspect/release, B retry, then A inspect/replay on the same unchanged-schema database.",
         "learner_seam": "TwoArtifactCompatibilityAcceptanceTest",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day149RunsCrossVersionRetainedStateMatrix -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
         "concept_course": {
@@ -746,7 +855,18 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "AWS rollback safety",
+            "url": "https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/",
+            "sections": [
+              "testing rollback safety",
+              "version transitions"
+            ],
+            "use": "Use the version-transition reasoning for this local-only A/B matrix; no AWS action is part of this exercise."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -832,7 +952,18 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "AWS rollback safety",
+            "url": "https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/",
+            "sections": [
+              "testing rollback safety",
+              "version transitions"
+            ],
+            "use": "Bind fallback to the tested pair and retained state. This is local-only evidence, not AWS readiness."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -924,7 +1055,17 @@
         "video_seconds": 481,
         "worked_reference_seconds": 719,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "JUnit 6.1.3 User Guide",
+            "url": "https://docs.junit.org/6.1.3/overview.html",
+            "sections": [
+              "Assertions"
+            ],
+            "use": "Choose explicit assertions for misleading and incomplete evidence."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -1010,7 +1151,21 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "Java 21 Process API",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html",
+            "sections": [
+              "waitFor",
+              "destroy",
+              "destroyForcibly",
+              "descendants",
+              "onExit"
+            ],
+            "use": "Bound process waiting and terminate only the owned process tree."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -1078,7 +1233,7 @@
         "scope": "Run the full actual artifact matrix and independent snapshots on one owned PostgreSQL fixture; state local proof limits.",
         "learner_seam": "LocalVersionedReleaseAcceptanceTest",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day153RunsCompleteObservedPairMatrixAndFallbackDecision -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
         "concept_course": {
@@ -1096,7 +1251,18 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": [
+          {
+            "title": "AWS rollback safety",
+            "url": "https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/",
+            "sections": [
+              "testing rollback safety",
+              "version transitions"
+            ],
+            "use": "Defend the limits of this local compatibility result; cloud and schema evolution remain untested."
+          }
+        ]
       },
       "java_dsa": {
         "budget_minutes": null,
@@ -1182,7 +1348,8 @@
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
-        "study_total_seconds": 1500
+        "study_total_seconds": 1500,
+        "official_references": []
       },
       "java_dsa": {
         "budget_minutes": null,

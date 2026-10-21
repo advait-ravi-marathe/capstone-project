@@ -56,7 +56,8 @@ class Day141To154InfrastructureTest {
                 if(selector>=0) for(String item:cmd.substring(selector+7).split("\\s+",2)[0].split(",")) {
                     String[] pair=item.split("#",2); Path test=findTestPath(pair[0]);
                     assertTrue(Files.isRegularFile(test),"selector class exists: "+pair[0]);
-                    if(pair.length==2) assertTrue(Files.readString(test).contains("void "+pair[1]+"("),"selector method exists: "+pair[0]+"#"+pair[1]);
+                    if(pair.length==2) for(String method:pair[1].split("\\+"))
+                        assertTrue(Files.readString(test).contains("void "+method+"("),"selector method exists: "+pair[0]+"#"+method);
                 }
             }
         }
