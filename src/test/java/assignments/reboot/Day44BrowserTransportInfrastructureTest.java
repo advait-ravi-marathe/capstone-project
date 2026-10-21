@@ -124,6 +124,7 @@ class Day44BrowserTransportInfrastructureTest {
         Path beforeRestartRun = runDir.resolve("uat-svc-03-before-restart.json");
         tools.jackson.databind.JsonNode beforeRestart = null;
         DatabaseWire beforeRestartDatabase = null;
+        DatabaseWire beforeCancellationDatabase = null;
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             postgresDataSource = postgres.getPostgresDatabase(); initializeLifecycleSchema(postgresDataSource);
             try (Connection c=postgresDataSource.getConnection(); Statement s=c.createStatement()) {
@@ -141,6 +142,8 @@ class Day44BrowserTransportInfrastructureTest {
                 lastObservedDatabase = afterIssueAndEndorsement;
                 assertDatabase(afterIssueAndEndorsement, 1, 1, 2, "ISSUED", 2, "125.00", null,
                         List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
+                assertEquals(mapper.valueToTree(afterIssueAndEndorsement.receiptRows()), issueObservation.get("afterIssue").get("receiptRows"));
+                assertEquals(issueObservation.get("afterIssue").get("receiptRows"), issueObservation.get("afterReplay").get("receiptRows"));
                 finishObservation(records.get(activeScenario), mapper, started01, "passed", null, 0, issueObservation,
                         afterIssueAndEndorsement, List.of(issueRun));
                 activeScenario = null;
@@ -165,18 +168,24 @@ class Day44BrowserTransportInfrastructureTest {
 
                 activeScenario = "UAT-SVC-03";
                 started03 = java.time.Instant.now().toString();
+                beforeCancellationDatabase = readDatabaseWire(postgresDataSource);
+                lastObservedDatabase = beforeCancellationDatabase;
                 activeBrowserResult = beforeRestartRun;
                 runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing-cancel",beforeRestartRun);
                 beforeRestart = mapper.readTree(Files.readString(beforeRestartRun));
                 assertCancelledSummaryObservation(beforeRestart);
                 beforeRestartDatabase = readDatabaseWire(postgresDataSource);
+                assertEquals(beforeCancellationDatabase.receiptRows(), beforeRestartDatabase.receiptRows(), "cancellation must preserve complete receipt rows");
                 lastObservedDatabase = beforeRestartDatabase;
                 assertDatabase(beforeRestartDatabase, 1, 1, 4, "CANCELLED", 4, "125.00", "2026-12-10",
                         List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
                 records.get(activeScenario).put("actualStartedAt", started03);
                 records.get(activeScenario).set("observedHttp", beforeRestart.get("http").deepCopy());
                 records.get(activeScenario).set("observedUI", mapper.createObjectNode().set("beforeRestart", beforeRestart.get("summary").deepCopy()));
-                records.get(activeScenario).set("independentlyObservedDatabase", mapper.createObjectNode().set("beforeRestart", mapper.valueToTree(beforeRestartDatabase)));
+                var cancellationDatabaseObservation = mapper.createObjectNode();
+                cancellationDatabaseObservation.set("beforeCancellation", mapper.valueToTree(beforeRestart.get("beforeLifecycleStep")));
+                cancellationDatabaseObservation.set("afterCancellation", mapper.valueToTree(beforeRestartDatabase));
+                records.get(activeScenario).set("independentlyObservedDatabase", cancellationDatabaseObservation);
                 records.get(activeScenario).putArray("screenshotPaths").add(beforeRestartRun.resolveSibling(beforeRestartRun.getFileName().toString().replace(".json", ".png")).toString());
                 records.get(activeScenario).putArray("logPaths").add(browserLog(beforeRestartRun).toString());
                 records.get(activeScenario).putArray("restartPhases").add("before restart: running Spring context and first Chromium process; persisted CANCELLED summary captured");
@@ -197,6 +206,7 @@ class Day44BrowserTransportInfrastructureTest {
                         List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
                 assertEquals(beforeRestartDatabase, afterRestartDatabase,
                         "restart must preserve independently observed complete database state");
+                assertEquals(beforeCancellationDatabase.receiptRows(), afterRestartDatabase.receiptRows(), "restart must preserve complete original receipt rows");
                 var combined = mapper.createObjectNode();
                 combined.set("beforeRestart", mapper.readTree(Files.readString(beforeRestartRun)));
                 combined.set("afterRestart", afterRestart);
@@ -220,8 +230,13 @@ class Day44BrowserTransportInfrastructureTest {
             if (activeScenario != null) {
                 var current = records.get(activeScenario);
                 current.put("result", "failed"); current.put("blocker", blocker); current.put("actualFinishedAt", java.time.Instant.now().toString());
-                int exitCode = failure instanceof BrowserRunFailure browserFailure ? browserFailure.exitCode() : 1;
-                current.put("exitCode", exitCode);
+                if (failure instanceof BrowserRunFailure browserFailure) {
+                    if (browserFailure.exitCode() == null) current.putNull("exitCode");
+                    else current.put("exitCode", browserFailure.exitCode());
+                    current.put("timedOut", browserFailure.timedOut());
+                    if (browserFailure.databaseSnapshot() != null)
+                        current.set("independentlyObservedDatabaseAtBrowserFailure", mapper.valueToTree(browserFailure.databaseSnapshot()));
+                } else current.putNull("exitCode");
                 if (activeBrowserResult != null && Files.exists(activeBrowserResult)) {
                     var partial = mapper.readTree(Files.readString(activeBrowserResult));
                     copyPartialActual(current, mapper, partial);
@@ -263,6 +278,30 @@ class Day44BrowserTransportInfrastructureTest {
                 appendExistingArtifacts(entry.getValue(), runDir);
                 Path output = runDir.resolve(entry.getKey()+".json");
                 Files.writeString(output, mapper.writerWithDefaultPrettyPrinter().writeValueAsString(entry.getValue()));
+            }
+        }
+    }
+
+    @Test void browserTimeoutCapturesLiveDatabaseAndObservedExit() throws Exception {
+        browserFailureDatabaseSnapshot = null;
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            postgresDataSource = postgres.getPostgresDatabase();
+            initializeLifecycleSchema(postgresDataSource);
+            try (Connection c = postgresDataSource.getConnection(); Statement s = c.createStatement()) {
+                s.execute("CREATE TABLE harness_readback (witness_id TEXT PRIMARY KEY, value TEXT NOT NULL)");
+                s.execute("INSERT INTO training_policy_lifecycle(policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,annual_premium_rupees,currency,effective_date,status,version,cancellation_effective_date) VALUES ('timeout-policy','owner-a','journey-a','quote-a','home-secure-v1','training-rate-v1',125.00,'INR','2026-12-01','ISSUED',1,NULL)");
+            }
+            try (ConfigurableApplicationContext app = startServer(LearnerHarnessConfiguration.class)) {
+                Path result = Path.of("target/day44-harness/timeout-witness.json").toAbsolutePath();
+                BrowserRunFailure timeout = assertThrows(BrowserRunFailure.class, () -> runBrowser(
+                        "http://127.0.0.1:" + port(app) + "/__e2e/day44-lifecycle", "timeout-witness", result, 1500));
+                assertTrue(timeout.timedOut(), "the controlled child must be classified as timed out");
+                assertNotNull(timeout.exitCode(), "destroyed child must expose its observed process exit code");
+                assertNotNull(timeout.databaseSnapshot(), "database must be observed before server/PostgreSQL teardown");
+                assertEquals(1, timeout.databaseSnapshot().policies());
+                assertEquals(0, timeout.databaseSnapshot().receipts());
+                assertEquals(0, timeout.databaseSnapshot().events());
+                assertEquals("timeout-policy", timeout.databaseSnapshot().policyRows().getFirst().policyId());
             }
         }
     }
@@ -314,7 +353,7 @@ class Day44BrowserTransportInfrastructureTest {
             tools.jackson.databind.JsonNode partial) {
         for (String source : List.of("http", "observedNetworkFailures")) if (partial.has(source)) record.set(source.equals("http") ? "observedHttp" : "observedNetworkFailure", partial.get(source).deepCopy());
         var ui = mapper.createObjectNode();
-        for (String field : List.of("panelText", "error", "phase", "actualArgv", "actualCwd", "failedPanelText", "summary", "recovered", "successfulReads", "history", "issueBody", "replayBody"))
+        for (String field : List.of("panelText", "error", "phase", "actualArgv", "actualCwd", "failedPanelText", "intermediateObservations", "summary", "recovered", "successfulReads", "history", "issueBody", "replayBody"))
             if (partial.has(field)) ui.set(field, partial.get(field).deepCopy());
         record.set("observedUI", ui);
         var database=mapper.createObjectNode();
@@ -333,7 +372,7 @@ class Day44BrowserTransportInfrastructureTest {
         record.put("expectedVersion",1);record.put("criteriaVersion","fde-coursework-v2");record.put("expectedHash",expectedHash);
         record.put("recordType","instructor-validation-only");record.put("workingTreeDirty",workingTreeDirty);record.put("workingTreePatchSha256",workingTreePatchSha);
         record.put("sourceSha",sourceSha);record.put("actualStartedAt",java.time.Instant.now().toString());record.putNull("actualFinishedAt");
-        record.put("canonicalCommand",command);record.put("command",command);record.put("cwd",cwd);record.putNull("exitCode");record.putNull("actualArgv");record.putNull("actualCwd");record.putArray("observedHttp");
+        record.put("canonicalCommand",command);record.put("command",command);record.put("cwd",cwd);record.putNull("exitCode");record.putNull("timedOut");record.putNull("actualArgv");record.putNull("actualCwd");record.putArray("observedHttp");
         record.putNull("observedNetworkFailure");record.putNull("observedUI");record.putArray("screenshotPaths");record.putArray("logPaths");
         record.putNull("independentlyObservedDatabase");record.putArray("restartPhases");record.putNull("blocker");record.putNull("reviewerNote");
         return record;
@@ -476,7 +515,7 @@ class Day44BrowserTransportInfrastructureTest {
         if(cancellation==null)assertTrue(policy.get("cancellationEffectiveDate").isNull());else assertEquals(cancellation,policy.get("cancellationEffectiveDate").asString());
         var receipt=db.get("receiptRows").get(0);
         assertEquals("owner-a",receipt.get("ownerId").asString());assertEquals("issue-e2e",receipt.get("clientRequestId").asString());
-        assertFalse(receipt.get("requestFingerprint").asString().isBlank(),"receipt fingerprint must be present");assertEquals("policy-a",receipt.get("policyId").asString());
+        assertEquals("journey-a|quote-a|2026-12-01",receipt.get("requestFingerprint").asString(),"receipt fingerprint must preserve the exact issue intent");assertEquals("policy-a",receipt.get("policyId").asString());
         var eventsActual=db.get("eventRows");
         assertEvent(eventsActual.get(0),1,"ISSUED","2026-12-01",null,null);
         if(events>=2)assertEvent(eventsActual.get(1),2,"ENDORSED","2026-12-02","REBUILD_AMOUNT","200000.00");
@@ -573,7 +612,9 @@ class Day44BrowserTransportInfrastructureTest {
         return ((WebServerApplicationContext) context).getWebServer().getPort();
     }
 
-    private static void runBrowser(String url, String phase, Path result) throws Exception {
+    private static void runBrowser(String url, String phase, Path result) throws Exception { runBrowser(url, phase, result, 45_000); }
+
+    private static void runBrowser(String url, String phase, Path result, long timeoutMillis) throws Exception {
         Files.createDirectories(result.toAbsolutePath().getParent());
         Path log=browserLog(result);Files.createDirectories(log.toAbsolutePath().getParent());
         ProcessBuilder process = new ProcessBuilder("node", "e2e/day44-browser.mjs", url, phase, result.toString())
@@ -582,24 +623,35 @@ class Day44BrowserTransportInfrastructureTest {
         String chromium = System.getenv("CHROMIUM_BIN");
         if (chromium != null && !chromium.isBlank()) process.environment().put("CHROMIUM_BIN", chromium);
         Process runner = process.start();
-        if (!runner.waitFor(45, TimeUnit.SECONDS)) {
-            runner.destroyForcibly(); runner.waitFor();
-            throw new IllegalStateException("Playwright timed out: " + Files.readString(log));
+        if (!runner.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)) {
+            runner.destroyForcibly();
+            boolean exited = runner.waitFor(5, TimeUnit.SECONDS);
+            Integer exitCode = exited ? runner.exitValue() : null;
+            DatabaseWire dbSnapshot = null;
+            if (postgresDataSource != null) try { dbSnapshot = readDatabaseWire(postgresDataSource); browserFailureDatabaseSnapshot = dbSnapshot; }
+            catch (Exception ignored) { browserFailureDatabaseSnapshot = null; }
+            throw new BrowserRunFailure(exitCode, true, result, log, Files.readString(log), dbSnapshot);
         }
         if (runner.exitValue() != 0) {
             if (postgresDataSource != null) try { browserFailureDatabaseSnapshot = readDatabaseWire(postgresDataSource); }
             catch (Exception ignored) { browserFailureDatabaseSnapshot = null; }
-            throw new BrowserRunFailure(runner.exitValue(), result, log, Files.readString(log));
+            throw new BrowserRunFailure(runner.exitValue(), false, result, log, Files.readString(log), browserFailureDatabaseSnapshot);
         }
     }
 
     static final class BrowserRunFailure extends RuntimeException {
-        private final int exitCode;
-        BrowserRunFailure(int exitCode,Path resultPath,Path logPath,String output) {
-            super("Playwright exited "+exitCode+"; result="+resultPath+"; log="+logPath+"\n"+output);
+        private final Integer exitCode;
+        private final boolean timedOut;
+        private final DatabaseWire databaseSnapshot;
+        BrowserRunFailure(Integer exitCode, boolean timedOut, Path resultPath,Path logPath,String output,DatabaseWire databaseSnapshot) {
+            super((timedOut ? "Playwright timed out" : "Playwright exited "+exitCode)+"; result="+resultPath+"; log="+logPath+"\n"+output);
             this.exitCode=exitCode;
+            this.timedOut=timedOut;
+            this.databaseSnapshot=databaseSnapshot;
         }
-        int exitCode(){return exitCode;}
+        Integer exitCode(){return exitCode;}
+        boolean timedOut(){return timedOut;}
+        DatabaseWire databaseSnapshot(){return databaseSnapshot;}
     }
 
     @Configuration(proxyBeanMethods = false)

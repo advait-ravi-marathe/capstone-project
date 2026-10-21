@@ -17,6 +17,9 @@ const observedNetworkFailures = [];
 const responseTasks = [];
 let activePage = null;
 let failureScreenshot = null;
+let unavailableScreenshot = null;
+let failedPanelText = null;
+const intermediateObservations = {};
 
 function beginActualCapture(page) {
   activePage = page;
@@ -61,7 +64,7 @@ function assertFullDatabase(db, {status, version, cancellationEffectiveDate, end
   assert(policy.productVersion==='home-secure-v1' && policy.rateVersion==='training-rate-v1' && policy.annualPremiumRupees==='125.00' && policy.currency==='INR', 'captured policy facts differ');
   assert(policy.effectiveDate==='2026-12-01' && policy.status===status && policy.version===version && policy.cancellationEffectiveDate===cancellationEffectiveDate, 'policy lifecycle row differs');
   const receipt = db.receiptRows[0];
-  assert(receipt.ownerId==='owner-a' && receipt.clientRequestId==='issue-e2e' && receipt.policyId==='policy-a' && typeof receipt.requestFingerprint==='string' && receipt.requestFingerprint.length>0, 'full idempotency receipt differs');
+  assert(stable(receipt) === stable({ownerId:'owner-a',clientRequestId:'issue-e2e',requestFingerprint:'journey-a|quote-a|2026-12-01',policyId:'policy-a'}), 'complete idempotency receipt differs');
   assert(db.eventRows[0].version===1 && db.eventRows[0].eventType==='ISSUED' && db.eventRows[0].effectiveDate==='2026-12-01' && db.eventRows[0].changeCode===null && db.eventRows[0].trainingRebuildAmountRupees===null, 'issued event row differs');
   if (endorsement) {
     assert(db.eventRows[1].version===2 && db.eventRows[1].eventType==='ENDORSED' && db.eventRows[1].effectiveDate==='2026-12-02'
@@ -133,6 +136,7 @@ try {
     const replayCheckpoint = checkpoints.afterReplay;
     assert(stable(checkpoints.issueBody) === stable(checkpoints.replayBody), 'issue and replay response bodies differ');
     assert(stable(checkpoints.afterIssue) === stable(checkpoints.afterReplay), 'complete persisted rows changed during replay');
+    assert(stable(checkpoints.afterIssue.receiptRows) === stable(checkpoints.afterReplay.receiptRows), 'receipt rows changed during replay');
     assertFullDatabase(checkpoints.afterIssue,{status:'ISSUED',version:1,cancellationEffectiveDate:null,endorsement:false});
     const finalDatabase = await readDiagnostics(page);
     const issue = captured.find(item => item.path.endsWith('/issue'));
@@ -147,6 +151,7 @@ try {
     assertCounts(replayCheckpoint, {policies:1,receipts:1,events:1}, 'after replay and before endorsement');
     assertFullDatabase(replayCheckpoint,{status:'ISSUED',version:1,cancellationEffectiveDate:null,endorsement:false});
     assertCounts(finalDatabase, {policies:1,receipts:1,events:2}, 'after endorsement');
+    assert(stable(checkpoints.afterIssue.receiptRows) === stable(finalDatabase.receiptRows), 'issue receipt changed during endorsement');
     assertFullDatabase(finalDatabase,{status:'ISSUED',version:2,cancellationEffectiveDate:null,endorsement:true});
     assert(finalDatabase.annualPremiumRupees === '125.00', 'endorsement amount must not overwrite annual premium');
     const summary = assertSummary(summaryResponse?.body, {status:'ISSUED',version:2,cancellationEffectiveDate:null,history:[{version:2,effectiveDate:'2026-12-02',changeCode:'REBUILD_AMOUNT'}]});
@@ -170,21 +175,26 @@ try {
     await page.getByRole('button', { name: 'Read servicing summary' }).click();
     await panel.getByText('policy-a', { exact: true }).waitFor();
     const before = await readDiagnostics(page);
+    intermediateObservations.beforeReadFailure = before;
     const path = '**/test/day44/lifecycle/servicing/policy-a';
     await page.route(path, route => route.abort('failed'));
     await page.getByRole('button', { name: 'Read servicing summary' }).click();
     await panel.getByRole('alert').filter({hasText:'Policy unavailable'}).waitFor();
     for (const old of ['policy-a','home-secure-v1','125.00 INR','ISSUED','Version 2','REBUILD_AMOUNT','2026-12-02'])
       assert(await panel.getByText(old,{exact:true}).count() === 0, `stale value remained after failed read: ${old}`);
-    const failureScreenshot = resultPath.replace('.json','-failure.png');
-    await page.screenshot({path:failureScreenshot});
-    const failedPanelText = await panel.innerText();
+    unavailableScreenshot = resultPath.replace('.json','-unavailable.png');
+    await page.screenshot({path:unavailableScreenshot});
+    failedPanelText = await panel.innerText();
+    intermediateObservations.failedPanelText = failedPanelText;
+    intermediateObservations.abortedRequestStatus = null;
     await page.unroute(path);
     await page.getByRole('button', { name: 'Read servicing summary' }).click();
     await panel.getByText('policy-a', { exact: true }).waitFor();
     assert(await panel.getByRole('alert').count() === 0, 'stale alert remained after recovery');
     const after = await readDiagnostics(page);
+    intermediateObservations.afterReadRecovery = after;
     assert(stable(before) === stable(after), 'database state changed during failed read/recovery');
+    assert(stable(before.receiptRows) === stable(after.receiptRows), 'receipt rows changed during failed read/recovery');
     assert(failures.length === 1, `expected one aborted GET, got ${failures.length}`);
     const captured = await responses();
     const summaries = captured.filter(item=>item.path.endsWith('/servicing/policy-a'));
@@ -195,12 +205,14 @@ try {
     assert(await panel.getByRole('listitem').filter({hasText:'REBUILD_AMOUNT'}).filter({hasText:'2026-12-02'}).count()===1,'recovered endorsement history is incomplete');
     const recoveredText=await panel.innerText();
     for (const value of ['home-secure-v1','125.00 INR','ISSUED','Version 2','REBUILD_AMOUNT','2026-12-02']) assert(recoveredText.includes(value),`recovered panel missing ${value}`);
-    const result = {phase,browserOpened:true,abortedRequestStatus:null,observedNetworkFailure:failures[0],successfulReads:summaries.map(x=>({status:x.status,body:x.body})),before,after,recovered,failedPanelText,panelText:recoveredText,screenshots:[failureScreenshot,resultPath.replace('.json','.png')]};
+    const result = {phase,browserOpened:true,abortedRequestStatus:null,observedNetworkFailure:failures[0],successfulReads:summaries.map(x=>({status:x.status,body:x.body})),before,after,recovered,failedPanelText,panelText:recoveredText,screenshots:[unavailableScreenshot,resultPath.replace('.json','.png')]};
     await page.screenshot({path:resultPath.replace('.json','.png')});
     await writeResult(resultPath,result);
   } else if (phase === 'servicing-cancel' || phase === 'servicing-read') {
     const responses = watchLifecycleResponses(page);
     const panel = page.getByRole('region', { name: 'Policy servicing' });
+    const beforeLifecycleStep = await readDiagnostics(page);
+    intermediateObservations.beforeLifecycleStep = beforeLifecycleStep;
     if (phase === 'servicing-cancel') {
       await page.getByRole('button', { name: 'Apply cancellation' }).click();
       await panel.getByText('CANCELLED', { exact: true }).waitFor();
@@ -218,11 +230,13 @@ try {
     const history = await historyResponse.json();
     assert(history.status==='CANCELLED' && history.version===4 && history.eventCount===4, `wrong persisted history result: ${JSON.stringify(history)}`);
     const database = await readDiagnostics(page);
+    intermediateObservations.afterLifecycleStep = database;
     assertFullDatabase(database,{status:'CANCELLED',version:4,cancellationEffectiveDate:'2026-12-10',endorsement:true});
     assertCounts(database,{policies:1,receipts:1,events:4},'cancelled lifecycle');
+    assert(stable(beforeLifecycleStep.receiptRows) === stable(database.receiptRows), 'receipt rows changed during cancellation/read');
     assert(database.annualPremiumRupees==='125.00' && database.cancellationEffectiveDate==='2026-12-10','cancelled database summary differs from frozen expectation');
     assert(!/owner-a|journey-a|quote-a|training-rate-v1/.test(await panel.innerText()),'private source identifiers appeared after cancellation');
-    const result = {phase,browserOpened:true,http:capturedBeforeHistory.map(x=>({path:x.path,status:x.status,body:x.path.endsWith('/servicing/policy-a')?x.body:compactSnapshot(x.body)})),history,database,summary,panelText:await panel.innerText(),freshBrowser:phase==='servicing-read'};
+    const result = {phase,browserOpened:true,http:capturedBeforeHistory.map(x=>({path:x.path,status:x.status,body:x.path.endsWith('/servicing/policy-a')?x.body:compactSnapshot(x.body)})),history,beforeLifecycleStep,database,summary,panelText:await panel.innerText(),freshBrowser:phase==='servicing-read'};
     await page.screenshot({path:resultPath.replace('.json','.png')});
     await writeResult(resultPath,result);
   } else if (phase === 'flow') {
@@ -236,6 +250,9 @@ try {
     await page.getByTestId('lifecycle-flow').filter({ hasText: '/test/day44/lifecycle/history:' }).waitFor();
     const result = { browserOpened: true, phase, lifecycleReadback: await page.getByTestId('lifecycle-flow').textContent() };
     await writeResult(resultPath,result);
+  } else if (phase === 'timeout-witness') {
+    await new Promise(resolve => setTimeout(resolve, 15000));
+    await writeResult(resultPath,{browserOpened:true,phase,unexpectedlyCompleted:true});
   } else if (phase === 'write') {
     await page.getByRole('button', { name: 'Write synthetic witness' }).click();
     await page.getByRole('status').filter({ hasText: 'saved' }).waitFor();
@@ -260,10 +277,13 @@ try {
     } catch {}
     try { await activePage.screenshot({path:screenshot,fullPage:true}); failureScreenshot=screenshot; } catch {}
   }
+  try { await Promise.allSettled(responseTasks); } catch {}
   const partial = {
     phase, partial: true, actualArgv: process.argv, actualCwd: process.cwd(),
     http: observedResponses, observedNetworkFailures, panelText,
-    error: String(error?.stack || error), screenshots: failureScreenshot ? [failureScreenshot] : [],
+    failedPanelText: failedPanelText ?? panelText,
+    intermediateObservations,
+    error: String(error?.stack || error), screenshots: [unavailableScreenshot, failureScreenshot].filter(Boolean),
   };
   try { await import('node:fs/promises').then(({writeFile})=>writeFile(resultPath,JSON.stringify(partial,null,2))); } catch {}
   console.error(partial.error);
