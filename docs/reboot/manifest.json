@@ -382,8 +382,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Who owns the source list? Why does a record alone not prevent caller mutation? Name one copying cost or mutable-element limitation."
         ],
         "assessment_axes": [
           "behavior",
@@ -428,9 +427,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Read one synthetic product",
-        "concept_25m": "Java records, immutable collections, API vs domain models",
-        "concept_link": "docs/reboot/contracts/day-04.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-04.md",
+        "concept_25m": "Collection ownership and shallow immutability",
+        "concept_link": "docs/reboot/teaching/day-04-immutable-values.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-04-immutable-values.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -497,8 +496,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "For a row with multiple invalid fields, which rule applies first and why? Why can this toy policy run without Spring or a database?"
         ],
         "assessment_axes": [
           "behavior",
@@ -508,7 +506,7 @@
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "engineering_concept": "Pure rule evaluation and decision precedence",
-      "concept_reference": "docs/reboot/teaching/day-05-decision-table.md#worked-example",
+      "concept_reference": "docs/reboot/teaching/day-05-decision-table.md#worked-rule-and-table",
       "guide_deep_link": "docs/reboot/teaching/day-05-decision-table.md",
       "dsa_board_summary": {
         "pattern": "frequency counting",
@@ -531,9 +529,9 @@
       "dsa_concept": "frequency counting",
       "board_summary": {
         "engineering": "Decide HomeSecure eligibility",
-        "concept_25m": "Pure functions, invariants and decision tables",
-        "concept_link": "docs/reboot/contracts/day-05.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-05.md",
+        "concept_25m": "Pure rule evaluation and decision precedence",
+        "concept_link": "docs/reboot/teaching/day-05-decision-table.md#worked-rule-and-table",
+        "repo_guide": "docs/reboot/teaching/day-05-decision-table.md",
         "dsa_60m": "383 Ransom Note",
         "dsa_pattern": "frequency counting",
         "dsa_reviews": []
@@ -602,8 +600,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "What changes if rounding occurs before addition? Why does zero have different meaning at the calculator and eligibility seams?"
         ],
         "assessment_axes": [
           "behavior",
@@ -613,7 +610,7 @@
       },
       "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
       "engineering_concept": "Exact decimal arithmetic and rounding boundaries",
-      "concept_reference": "docs/reboot/teaching/day-06-decimal-rounding.md#worked-example",
+      "concept_reference": "docs/reboot/teaching/day-06-decimal-rounding.md#worked-arithmetic",
       "guide_deep_link": "docs/reboot/teaching/day-06-decimal-rounding.md",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
@@ -648,9 +645,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Calculate synthetic premium",
-        "concept_25m": "Value types, BigDecimal precision and rounding",
-        "concept_link": "docs/reboot/contracts/day-06.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-06.md",
+        "concept_25m": "Exact decimal arithmetic and rounding boundaries",
+        "concept_link": "docs/reboot/teaching/day-06-decimal-rounding.md#worked-arithmetic",
+        "repo_guide": "docs/reboot/teaching/day-06-decimal-rounding.md",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -717,8 +714,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Why inject time rather than wait? Which captured value stays fixed when the catalog changes?"
         ],
         "assessment_axes": [
           "behavior",
@@ -751,9 +747,9 @@
       "dsa_concept": "grouping key",
       "board_summary": {
         "engineering": "Create and expire quote version",
-        "concept_25m": "Wall time vs elapsed time; deterministic tests",
-        "concept_link": "docs/reboot/contracts/day-07.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-07.md",
+        "concept_25m": "Fixed business time and strict expiry",
+        "concept_link": "docs/reboot/teaching/day-07-deterministic-time.md#worked-example",
+        "repo_guide": "docs/reboot/teaching/day-07-deterministic-time.md",
         "dsa_60m": "49 Group Anagrams",
         "dsa_pattern": "grouping key",
         "dsa_reviews": []
