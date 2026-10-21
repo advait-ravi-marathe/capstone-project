@@ -22,7 +22,7 @@ from .models import CatalogItem, ViewingEvent
 _CATALOG_FIELDS = {"media_id", "title", "genre", "duration_s",
                    "available_from_utc", "available_to_utc"}
 _EVENT_FIELDS = {"event_id", "viewer_id", "media_id", "occurred_at_utc", "watch_seconds"}
-_UTC_PATTERN = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\Z")
+_UTC_PATTERN = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z\Z")
 _SHA256_PATTERN = re.compile(r"[0-9a-f]{64}\Z")
 
 

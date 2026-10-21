@@ -106,6 +106,22 @@ class EvaluationAdapterTest(unittest.TestCase):
                 prepare_evaluation_input("basic")
         prepare.assert_called_once_with("basic")
 
+    def test_manifest_utc_rejects_non_ascii_digits(self):
+        from ai.streamforge.evaluation_adapter import read_fixture_manifest
+        from ai.streamforge.fixture_io import read_fixture_file
+        from ai.streamforge.fixture_registry import fixture_directory
+
+        directory = fixture_directory("basic")
+        original = read_fixture_file(directory, "manifest.json")
+        malformed = original.replace(b"2027-01-01", "２０２７-01-01".encode("utf-8"), 1)
+
+        def fixture_read(root, name):
+            return malformed if name == "manifest.json" else read_fixture_file(root, name)
+
+        with patch("ai.streamforge.evaluation_adapter.read_fixture_file", side_effect=fixture_read):
+            with self.assertRaisesRegex(ValueError, "canonical UTC"):
+                read_fixture_manifest("basic")
+
 
 if __name__ == "__main__":
     unittest.main()

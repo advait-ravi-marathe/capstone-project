@@ -9,6 +9,7 @@ from __future__ import annotations
 import unittest
 import hashlib
 import json
+import copy
 from datetime import datetime, timezone
 from fractions import Fraction
 
@@ -337,9 +338,15 @@ class Day178Test(BaselineFixtureMixin, unittest.TestCase):
         state, ranking, comparison = self._comparison(candidates, self.holdout)
         protocol = fixed_protocol("2027-01-20T00:00:00Z")
         lineage = self._lineage()
+        # Freeze both the expected output and every mutable input before the
+        # learner seam runs. A mutating implementation cannot redefine its own
+        # oracle by editing the shared lineage object.
+        expected = self._expected_report(copy.deepcopy(lineage))
+        inputs_before = copy.deepcopy((lineage, protocol, candidates, state, ranking, comparison))
         report = seams.assemble_evaluation_report(lineage, protocol, candidates, state, ranking, comparison)
+        self.assertEqual(inputs_before, (lineage, protocol, candidates, state, ranking, comparison),
+                         "report assembly must not mutate any supplied input")
         self.assertEqual(self.EXPECTED_PROTOCOL, protocol)
-        expected = self._expected_report(lineage)
         self.assertEqual(expected, report, "entire report must include metrics, counts, lineage and limits")
         self.assertEqual({"schema_version", "protocol", "prediction", "baselines", "preparation", "limits"},
                          set(report))

@@ -79,6 +79,12 @@ class EvaluationInfrastructureTest(unittest.TestCase):
             validate_evaluation(BaselineEvaluation(ranked, Fraction(1, 3), Fraction(1, 2), 2, 1, 0,
                                                     2, 0, 1, 0, 3, 3, "available"), candidates)
         with self.assertRaises(ValueError):
+            validate_evaluation(BaselineEvaluation(ranked, None, None, 2, 1, 1,
+                                                    2, 0, 1, 0, 3, 3, "available"), candidates)
+        # Null scores remain valid for genuinely non-evaluable cohorts.
+        validate_evaluation(BaselineEvaluation(ranked, None, None, 1, 0, 1,
+                                                0, 0, 1, 0, 3, 3, "no_positive_holdout"), candidates)
+        with self.assertRaises(ValueError):
             validate_comparison(BaselineComparison(good, reference, Fraction(0), Fraction(1, 2), "available"),
                                 candidates)
 

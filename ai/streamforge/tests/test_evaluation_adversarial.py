@@ -56,6 +56,16 @@ class Day180Test(BaselineFixtureMixin, unittest.TestCase):
         self.assertNotEqual(("a", "b", "c"), ranked.recommendation_ids)
         self.assertEqual({"a": 0, "b": 2, "c": 1, "d": 3}, dict(state.support_by_media))
 
+    def test_same_candidates_with_changed_support_rejects_canned_ranking(self):
+        candidates = seams.cutoff_candidates(self.catalog, self.cutoff)
+        changed_pairs = frozenset({("v1", "a"), ("v2", "a"), ("v3", "a"), ("v4", "b")})
+        changed = seams.training_popularity(changed_pairs, candidates)
+        self.assertEqual(("a", "b", "c", "d"), candidates)
+        self.assertEqual({"a": 3, "b": 1, "c": 0, "d": 0}, dict(changed.support_by_media))
+        changed_ranked = seams.rank_popularity(changed)
+        self.assertEqual(("a", "b", "c"), changed_ranked.recommendation_ids)
+        self.assertNotEqual(("d", "b", "c"), changed_ranked.recommendation_ids)
+
 
 if __name__ == "__main__":
     unittest.main()

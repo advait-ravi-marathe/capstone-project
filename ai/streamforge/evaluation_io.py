@@ -110,6 +110,9 @@ def validate_evaluation(value: BaselineEvaluation, candidate_ids: Sequence[str])
     if value.status in {"no_holdout", "no_positive_holdout"} and \
             (value.precision_at_3 is not None or value.recall_at_3 is not None):
         raise ValueError("empty evaluation cohorts must use null metrics")
+    if value.status == "available" and \
+            (value.precision_at_3 is None or value.recall_at_3 is None):
+        raise ValueError("available evaluation metrics must both be defined")
 
 
 def validate_comparison(value: BaselineComparison, candidate_ids: Sequence[str]) -> None:

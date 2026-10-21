@@ -298,6 +298,47 @@ class Day181Test(EvaluationCliFixture):
         self.assertEqual(first["baselines"], changed["baselines"])
         self.assertNotEqual(first["preparation"]["source_sha256"], changed["preparation"]["source_sha256"])
 
+    def test_changed_training_support_with_same_candidates_changes_prediction_and_metrics(self):
+        _, first = self._successful_report()
+        rows = self._read_rows("events.csv", EVENT_HEADER)
+        # Move v1's existing positive from m1 to m3. All four candidates stay
+        # eligible, while independent distinct-viewer supports become
+        # m4=3,m2=1,m3=1,m1=0, so the global order must change.
+        next(row for row in rows if row["event_id"] == "t5")["media_id"] = "m3"
+        self._rewrite_events(rows)
+        _, changed = self._successful_report()
+
+        expected_prediction_payload = {
+            "protocol_id": "streamforge-cutoff-popularity-v1",
+            "cutoff_utc": "2027-01-20T00:00:00Z",
+            "k": 3,
+            "candidate_ids": ["m1", "m2", "m3", "m4"],
+            "support_by_media": {"m1": 0, "m2": 1, "m3": 1, "m4": 3},
+            "recommendation_ids": ["m4", "m2", "m3"],
+            "fallback_status": "popularity_ranked",
+        }
+        expected_fingerprint = hashlib.sha256(json.dumps(
+            expected_prediction_payload, ensure_ascii=False, allow_nan=False,
+            sort_keys=True, separators=(",", ":")).encode("utf-8") + b"\n").hexdigest()
+        self.assertEqual({**expected_prediction_payload, "fingerprint": expected_fingerprint},
+                         changed["prediction"])
+        self.assertNotEqual(first["prediction"]["fingerprint"], changed["prediction"]["fingerprint"])
+
+        popularity = changed["baselines"]["popularity"]
+        reference = changed["baselines"]["id_order_reference"]
+        self.assertEqual(("1/3", "3/4"),
+                         (popularity["precision_at_3"], popularity["recall_at_3"]))
+        self.assertEqual(("1/6", "1/2"),
+                         (reference["precision_at_3"], reference["recall_at_3"]))
+        self.assertEqual({"precision_at_3": "1/6", "recall_at_3": "1/4"},
+                         changed["baselines"]["signed_deltas"])
+        self.assertEqual({"m2": 1, "m3": 1, "m4": 4},
+                         changed["preparation"]["training"]["media_event_counts"])
+        self.assertEqual({"m2": 10, "m3": 10, "m4": 40},
+                         changed["preparation"]["training"]["media_watch_seconds"])
+        self.assertNotEqual(first["preparation"]["training"]["content_sha256"],
+                            changed["preparation"]["training"]["content_sha256"])
+
     def test_holdout_mutation_changes_exact_metrics_not_any_prediction_field(self):
         _, first = self._successful_report()
         rows = self._read_rows("events.csv", EVENT_HEADER)
