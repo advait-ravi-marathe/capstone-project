@@ -91,16 +91,25 @@ class Day188Test(unittest.TestCase):
 
 class Day190Test(unittest.TestCase):
     def test_owned_state_excludes_query_and_raw_hash_inputs(self):
+        import hashlib, json
         protocol={"id":"streamforge-cutoff-genre-profile-v1","k":3,"genres":["animation","comedy","documentary","drama","science-fiction"],"window_start_utc":"2027-01-01T00:00:00Z","cutoff_utc":"2027-01-20T00:00:00Z","window_end_utc":"2027-02-01T00:00:00Z","training_signal":"distinct_positive_train_viewer_media","normalization":"l1_exact_fraction","similarity":"dot_product","tie_break":"media_id_ascending","fallback_rule":"cold_or_zero_profile_to_current_global","availability_rule":"from_lte_cutoff_lt_to","evaluation_role":"development_comparison_on_previously_inspected_synthetic_holdout","max_scored_pairs":2500}
         f={"a":(0,0,0,1,0)}; counts=ProfileCounts((("v",(0,0,0,1,0),1),)); weights=ProfileWeights((("v",(F(0),F(0),F(0),F(1),F(0)),1),))
         gs=PopularityState({"a":1},False)
-        state=c.assemble_predictor_state(protocol,f,counts,weights,("v",),("a",),gs,("a",))
-        self.assertEqual(state.candidate_ids,("a",)); self.assertEqual(state.profiles[0][0],"v")
-        self.assertTrue(state.fingerprint)
-        protocol["extra"]="mutated"; protocol["genres"].append("mutated"); f["a"]=(1,0,0,0,0)
-        self.assertEqual(dict(state.protocol).get("extra"),None)
-        self.assertEqual(dict(state.protocol)["genres"],("animation","comedy","documentary","drama","science-fiction"))
-        self.assertEqual(dict(state.candidate_features)["a"],(0,0,0,1,0))
+        viewers=("v",); candidates=("a",); rank=("a",)
+        before=(copy.deepcopy(protocol),copy.deepcopy(f),copy.deepcopy(counts),copy.deepcopy(weights),copy.deepcopy(viewers),copy.deepcopy(candidates),copy.deepcopy(gs),copy.deepcopy(rank))
+        frozen_protocol=copy.deepcopy(protocol);frozen_protocol["genres"]=tuple(frozen_protocol["genres"])
+        payload={"protocol":copy.deepcopy(protocol),"candidate_ids":["a"],"candidate_features":{"a":[0,0,0,1,0]},
+                 "training_viewer_ids":["v"],"profiles":{"v":{"genre_counts":[0,0,0,1,0],"weights":["0/1","0/1","0/1","1/1","0/1"],"positive_train_pairs":1}},
+                 "global_popularity":{"support":{"a":1},"full_order":["a"],"recommendation_ids":["a"],"fallback_status":"popularity_ranked"}}
+        canonical=json.dumps(payload,ensure_ascii=False,allow_nan=False,sort_keys=True,separators=(",",":")).encode("utf-8")+b"\n"
+        fingerprint=hashlib.sha256(canonical).hexdigest()
+        expected=PredictorState(tuple(sorted(frozen_protocol.items())),("a",),(("a",(0,0,0,1,0)),),("v",),
+            (("v",(0,0,0,1,0),(F(0),F(0),F(0),F(1),F(0)),1),),(('a',1),),("a",),("a",),"popularity_ranked",fingerprint)
+        state=c.assemble_predictor_state(protocol,f,counts,weights,viewers,candidates,gs,rank)
+        self.assertEqual(before,(protocol,f,counts,weights,viewers,candidates,gs,rank),"state assembly must preserve all caller inputs")
+        self.assertEqual(expected,state,"compare every state field and independently computed digest")
+        protocol["extra"]="mutated";protocol["genres"].append("mutated");f["a"]=(1,0,0,0,0);gs.support_by_media["a"]=77
+        self.assertEqual(expected,state,"assembled state must own all nested values")
 
 class Day191Test(unittest.TestCase):
     def test_macro_metrics_keep_unreachable_targets_and_zero_only_users(self):
@@ -136,28 +145,53 @@ class Day191Test(unittest.TestCase):
 
 class Day192Test(unittest.TestCase):
     def test_compare_same_cohort_with_signed_profile_minus_global_delta(self):
+        from dataclasses import replace
         from ai.streamforge.content_models import QueryPrediction, ViewerMetric
-        query=QueryPrediction("viewer",True,1,"genre_profile",(("a",F(1)),("b",F(0)),("c",F(0))),("a","b","c"),("a","b","c"))
-        metric=ViewerMetric("viewer",("a","x"),1,2,1,F(1,3),F(1,2))
-        profile=ProfileEvaluation(("a","b","c"),(query,),(metric,),F(1,3),F(1,2),
-            (("all_holdout_viewers",1),("evaluated_viewers",1),("zero_positive_viewers",0),("positive_viewer_media_pairs",2),("candidate_unreachable_positive_pairs",1),("training_viewer_count",1),("cold_start_evaluated_viewers",0),("known_zero_profile_evaluated_viewers",0),("positive_profile_evaluated_viewers",1),("candidate_count",3),("returned_ids_total",3)),
-            (("genre_profile",1),("global_cold_start",0),("global_no_positive_profile",0),("no_candidates",0)),"available")
-        from ai.streamforge.content_io import validate_profile_evaluation
-        validate_profile_evaluation(profile)
-        ranked=RankedList(("a","b","c"),("a","b","c"),"popularity_ranked")
-        global_eval=BaselineEvaluation(ranked,F(0),F(0),1,1,0,2,1,1,0,3,3,"available")
         from ai.streamforge.evaluation_io import validate_evaluation
-        validate_evaluation(global_eval,("a","b","c"))
+        from ai.streamforge.content_io import validate_profile_evaluation
+        candidates=("a","b","c","d")
+        query=QueryPrediction("viewer",True,1,"genre_profile",tuple((m,F(1) if m=="a" else F(0)) for m in candidates),candidates,("a","b","c"))
+        metric=ViewerMetric("viewer",("a","x"),1,2,1,F(1,3),F(1,2))
+        counts=(("all_holdout_viewers",1),("evaluated_viewers",1),("zero_positive_viewers",0),("positive_viewer_media_pairs",2),("candidate_unreachable_positive_pairs",1),("training_viewer_count",1),("cold_start_evaluated_viewers",0),("known_zero_profile_evaluated_viewers",0),("positive_profile_evaluated_viewers",1),("candidate_count",4),("returned_ids_total",3))
+        modes=(("genre_profile",1),("global_cold_start",0),("global_no_positive_profile",0),("no_candidates",0))
+        profile=ProfileEvaluation(candidates,(query,),(metric,),F(1,3),F(1,2),counts,modes,"available")
+        validate_profile_evaluation(profile)
+        # Same targets {a,x}; popularity returns b,c,d, so its true hit count is zero.
+        ranked=RankedList(("b","c","d","a"),("b","c","d"),"popularity_ranked")
+        global_eval=BaselineEvaluation(ranked,F(0),F(0),1,1,0,2,1,1,0,4,3,"available")
+        validate_evaluation(global_eval,candidates)
         compared=c.compare_against_global(profile,global_eval)
         self.assertEqual((F(1,3),F(1,2)),(compared.precision_delta,compared.recall_delta))
-        bad=BaselineEvaluation(ranked,F(1,3),F(1,4),2,1,1,2,0,1,0,3,3,"available")
-        with self.assertRaises((ValueError,TypeError)): c.compare_against_global(profile,bad)
-        wrong_candidates=BaselineEvaluation(RankedList(("a","b","x"),("a","b","x"),"popularity_ranked"),F(0),F(0),1,1,0,2,1,1,0,3,3,"available")
-        with self.assertRaises((ValueError,TypeError)):c.compare_against_global(profile,wrong_candidates)
-        wrong_visible_count=BaselineEvaluation(ranked,F(0),F(0),2,2,0,2,1,1,0,3,3,"available")
-        with self.assertRaises((ValueError,TypeError)):c.compare_against_global(profile,wrong_visible_count)
-        wrong_status=BaselineEvaluation(ranked,None,None,1,0,1,0,0,1,0,3,3,"no_positive_holdout")
-        with self.assertRaises((ValueError,TypeError)):c.compare_against_global(profile,wrong_status)
+
+        # Observable single-field mismatches with otherwise valid baseline records.
+        bad_rows=(
+            replace(global_eval,positive_viewer_media_pairs=3,recall_at_3=F(1,3)),
+            replace(global_eval,candidate_unreachable_positive_pairs=0),
+            replace(global_eval,training_viewer_count=2),
+            replace(global_eval,cold_start_evaluated_viewers=1),
+        )
+        for bad in bad_rows:
+            with self.subTest(bad=bad):
+                validate_evaluation(bad,candidates)
+                with self.assertRaises((ValueError,TypeError)):
+                    c.compare_against_global(profile,bad)
+
+        # Evaluated and zero-positive counts are mathematically coupled to the
+        # fixed all-viewer total, so exercise their valid alternate cohort together.
+        empty_cohort=replace(global_eval,evaluated_viewers=0,zero_positive_viewers=1,
+            positive_viewer_media_pairs=0,candidate_unreachable_positive_pairs=0,
+            cold_start_evaluated_viewers=0,precision_at_3=None,recall_at_3=None,status="no_positive_holdout")
+        validate_evaluation(empty_cohort,candidates)
+        with self.assertRaises((ValueError,TypeError)):
+            c.compare_against_global(profile,empty_cohort)
+
+        wrong_candidates=replace(global_eval,ranked_list=RankedList(("a","b","x"),("a","b","x"),"popularity_ranked"),candidate_count=3,returned_count=3)
+        with self.assertRaises((ValueError,TypeError)):
+            c.compare_against_global(profile,wrong_candidates)
+        wrong_status=replace(empty_cohort,all_holdout_viewers=0,zero_positive_viewers=0,status="no_holdout")
+        validate_evaluation(wrong_status,candidates)
+        with self.assertRaises((ValueError,TypeError)):
+            c.compare_against_global(profile,wrong_status)
 
     def test_non_evaluable_comparison_preserves_undefined_deltas(self):
         from ai.streamforge.evaluation_models import BaselineEvaluation, RankedList
@@ -197,8 +231,12 @@ class Day193Test(unittest.TestCase):
         self.assertEqual(state_before,state);self.assertEqual(empty_before,empty);self.assertEqual(comparison_before,comparison)
         self.assertEqual(expected,report)
         self.assertEqual({"schema_version","protocol","predictor","queries","evaluations","preparation","limits"},set(report))
+        report["protocol"]["k"]=99;report["protocol"]["genres"][0]="mutated"
+        self.assertEqual(protocol_before,protocol,"returned protocol must not alias caller protocol")
+        self.assertEqual(state_before,state,"returned protocol mutation must not alias predictor state")
         report["preparation"]["training"]["content_sha256"]="mutated"
         self.assertEqual(before,lineage)
+        self.assertEqual(empty_before,empty);self.assertEqual(comparison_before,comparison)
 
     def test_nonempty_report_matches_independent_full_literal_before_call(self):
         from ai.streamforge.tests.test_content_cli import Day194Test, _expected_complete_report
@@ -246,7 +284,8 @@ class Day193Test(unittest.TestCase):
             self.assertEqual(before,(protocol,state,profile_eval,comparison,lineage))
             report["preparation"]["training"]["event_count"]=-1
             self.assertEqual(before[-1],lineage)
-            self.assertEqual(before[1],state);self.assertEqual(before[0],protocol)
+            report["protocol"]["k"]=99;report["protocol"]["genres"][0]="mutated"
+            self.assertEqual(before,(protocol,state,profile_eval,comparison,lineage),"mutating returned report must not mutate any caller input")
         finally:
             harness.tearDown()
 
