@@ -64,24 +64,28 @@ class Day141To154InfrastructureTest {
     }
 
     @Test void unchangedSchemaAndLegacyCommandRemainBoundToBase() throws Exception {
+        String[] migrationHashes={
+                "cfb4aa4204ab90c3d5965347824c5c26399345cc06e8582686af17a9baefa805",
+                "af921dbef43a3c773524876131a840a5f39135030ec5721465a5cf0f9ba31cf2",
+                "0e32121d204842d9ecf1f7e63ccf0c30eb7c23337f1949d9ed718ebb56a12786",
+                "1b0d1375928c4239f57742490a541ac6852f913c7841f26e27fd3151feb8b882",
+                "30cc98cc015e48ac04a8e8e607cb075ecd8f397462f36d548121904ff40bb9b3"};
         for(int i=1;i<=5;i++) {
             String name=String.format("V%03d__",i);
             try(var paths=Files.list(Path.of("src/main/resources/db/migration"))) {
                 Path current=paths.filter(p->p.getFileName().toString().startsWith(name)).findFirst().orElseThrow();
                 String relative=Path.of("src/main/resources/db/migration").resolve(current.getFileName()).toString();
-                Process p=new ProcessBuilder("git","show","105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3:"+relative).start();
-                byte[] old=p.getInputStream().readAllBytes(); assertEquals(0,p.waitFor());
-                assertArrayEquals(old,Files.readAllBytes(current),"existing migration is immutable: "+relative);
+                assertEquals(migrationHashes[i-1],sha256(Files.readAllBytes(current)),"existing migration is immutable: "+relative);
             }
         }
-        String oldCommand=gitShow("src/main/java/assignments/delivery/recovery/LocalManualRecoveryCommand.java");
-        assertArrayEquals(oldCommand.getBytes(java.nio.charset.StandardCharsets.UTF_8),Files.readAllBytes(Path.of("src/main/java/assignments/delivery/recovery/LocalManualRecoveryCommand.java")));
+        assertEquals("f68ac9a522a18a38fc888e4d2dac937738936bb0c8faba5ee77f5d4edf0a759a",
+                sha256(Files.readAllBytes(Path.of("src/main/java/assignments/delivery/recovery/LocalManualRecoveryCommand.java"))));
         try(var paths=Files.list(Path.of("src/main/resources/db/migration"))) { assertFalse(paths.anyMatch(p->p.getFileName().toString().startsWith("V006"))); }
     }
 
-    private static String gitShow(String path) throws Exception {
-        Process p=new ProcessBuilder("git","show","105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3:"+path).start();
-        byte[] bytes=p.getInputStream().readAllBytes(); assertEquals(0,p.waitFor()); return new String(bytes,java.nio.charset.StandardCharsets.UTF_8);
+    private static String sha256(byte[] value) throws Exception {
+        byte[] digest=java.security.MessageDigest.getInstance("SHA-256").digest(value);
+        return java.util.HexFormat.of().formatHex(digest);
     }
     private static Path findTestPath(String className) throws Exception {
         try(var walk=Files.walk(Path.of("src/test/java"))) {
