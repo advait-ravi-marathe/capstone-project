@@ -1,0 +1,53 @@
+{
+  "status": "starter_scaffold_verified_learner_work_remains_todo",
+  "source_base": "fa45d70868e93da79bb2ff84a8c4a4ca77510924",
+  "branch": "learning/streamforge-days-183-196",
+  "runtime": "Python 3.12 (environment Python; parent handoff records prior runtime 3.12.14)",
+  "handoff": {
+    "human_plan_received": true,
+    "normative_plan_json_parsed": true,
+    "verified_guidance_json_parsed": true,
+    "all_14_daily_contracts_exported": true,
+    "selector_resolution": "scripts.test_streamforge_183_196_manifest validates every exported selector with unittest.TestLoader; rejects failed/empty selectors and future dependencies."
+  },
+  "current_source_checks": [
+    {"command": "python3 -m unittest ai.streamforge.tests.test_content_infrastructure scripts.test_streamforge_183_196_manifest ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest", "result": "PASS 8 tests"},
+    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "PASS 85 tests"},
+    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter", "result": "PASS 19 tests"},
+    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "PASS 2 tests"},
+    {"command": "python3 -m unittest scripts.test_dsa_review_queue scripts.test_dsa_review_queue_45_56 scripts.test_dsa_review_queue_57_70 scripts.test_dsa_review_queue_71_84 scripts.test_dsa_guided_transfer_policy", "result": "PASS 50 tests"},
+    {"command": "python3 -m py_compile ai/streamforge/content_models.py ai/streamforge/content_io.py ai/streamforge/content_contracts.py ai/streamforge/content_evaluate.py ai/streamforge/tests/test_content_contracts.py ai/streamforge/tests/test_content_adversarial.py ai/streamforge/tests/test_content_cli.py ai/streamforge/tests/test_content_infrastructure.py scripts/test_streamforge_183_196_manifest.py && git diff --check", "result": "PASS"}
+  ],
+  "learner_todo_red": {
+    "pure_selectors": "Days 183-193 and Day195 pure selector are intentionally unimplemented and raise their named learner TODOs. A direct aggregate run produced 12 expected NotImplementedError failures among 14 tests; it was not reported as a pass.",
+    "day194_cli": "python3 -m ai.streamforge.content_evaluate --fixture basic exited 2, wrote 0 stdout bytes, and reported Day 194 learner TODO: implement evaluate_content_fixture on stderr.",
+    "day195_cli": "Depends on real Day194 composition and the existing earlier preparation TODO; not claimed green."
+  },
+  "temporary_witnesses": {
+    "positive_control": "Temporary in-memory pure-function conformance implementation passed 14 selected tests (Days 183-188, 190-193 and Day195 pure). It was not retained and is not learner completion.",
+    "intended_mutants": [
+      {"mutant": "ordinal one-hot scoring", "result": "failed intended feature/ranking assertion after positive setup"},
+      {"mutant": "raw event counting", "result": "failed distinct-positive-media count assertion"},
+      {"mutant": "unnormalized profile", "result": "failed exact Fraction normalization assertion"},
+      {"mutant": "canned global ranking", "result": "failed changed-training/same-candidate ranking assertion"},
+      {"mutant": "nested mutable state alias", "result": "failed pre-call snapshot / immutability assertion"},
+      {"mutant": "incomplete canned report", "result": "failed complete independent report equality"},
+      {"mutant": "constant ranking after training change", "result": "failed intended Day195 sensitivity assertion"},
+      {"mutant": "work-bound truncation", "result": "failed 2500/2501 resource guard assertion"},
+      {"mutant": "available status with null metrics", "result": "failed typed result validation assertion"},
+      {"mutant": "canned CLI output", "result": "actual Day194 subprocess rejected {} against full report oracle; setup/process completed and no learner solution was retained"}
+    ],
+    "limitation": "Actual CLI positive conformance could not be demonstrated because Day194 composition and prior prepare_dataset remain learner TODOs. Actual CLI invalid/no-success-output path and canned-output rejection are scaffold checks; do not treat them as a positive end-to-end implementation pass.",
+    "restoration": "All committed learner seam implementations remain explicit TODOs. Temporary in-memory witnesses and CLI mutant files were restored/removed. No solved overlay is included in this branch."
+  },
+  "scope": {
+    "prior_learner_files": "unchanged",
+    "actual_attempt_log_and_canonical_inventory": "not modified",
+    "main": "unchanged",
+    "board": "unchanged",
+    "pull_request": "not created",
+    "cloud_credentials_resources_purchase_external_data": "none",
+    "aws_execution": "still unverified"
+  },
+  "hosted_ci": "Pending exact final branch commit; this file will be corroborated by the final reported exact-SHA run."
+}
