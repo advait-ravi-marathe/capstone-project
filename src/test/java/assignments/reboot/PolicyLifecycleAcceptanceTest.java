@@ -221,9 +221,21 @@ class PolicyLifecycleAcceptanceTest {
     }
 
     @Test void day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds() {
-        var view = service.toServicingView(issued());
-        assertEquals("policy-a", view.policyId());
-        assertEquals("INR", view.currency());
+        var first = issued();
+        var view = service.toServicingView(first);
+        assertEquals(first.policyId(), view.policyId());
+        assertEquals(first.productVersion(), view.productVersion());
+        assertEquals(first.annualPremiumRupees(), view.annualPremiumRupees());
+        assertEquals(first.currency(), view.currency());
+        assertEquals(first.status(), view.status());
+        assertEquals(first.version(), view.version());
+        assertEquals(first.endorsements(), view.history());
+        assertEquals(first.cancellationEffectiveDate(), view.cancellationEffectiveDate());
+        var second = withHistory(List.of(new PolicyEndorsement(2, LocalDate.parse("2026-12-03"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))));
+        var secondView = service.toServicingView(second);
+        assertEquals(second.productVersion(), secondView.productVersion());
+        assertEquals(second.annualPremiumRupees(), secondView.annualPremiumRupees());
+        assertEquals(second.endorsements(), secondView.history());
         assertNull(findField(view.getClass(), "ownerId"));
         assertNull(findField(view.getClass(), "journeyId"));
         assertNull(findField(view.getClass(), "quoteVersionId"));
@@ -244,6 +256,28 @@ class PolicyLifecycleAcceptanceTest {
             assertEquals(4, count(dataSource, "training_policy_lifecycle_event"));
             assertEquals(4, scalarLong(dataSource, "SELECT version FROM training_policy_lifecycle WHERE policy_id='policy-a'"));
             service.verifyLifecycleReadback(dataSource, "policy-a");
+        }
+    }
+
+    @Test void day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var ds=postgres.getPostgresDatabase(); initializeLifecycleSchema(ds);
+            assertThrows(IllegalStateException.class,()->service.verifyLifecycleReadback(ds,"missing-policy"));
+        }
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var ds=postgres.getPostgresDatabase(); initializeLifecycleSchema(ds); seedPolicy(ds);
+            assertThrows(IllegalStateException.class,()->service.verifyLifecycleReadback(ds,"policy-a"),"missing history is rejected");
+        }
+        for(String corruption:List.of("version","status")) {
+            try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+                var ds=postgres.getPostgresDatabase(); initializeLifecycleSchema(ds); seedPolicy(ds);
+                try(Connection c=ds.getConnection();Statement s=c.createStatement()) {
+                    s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
+                    if(corruption.equals("version")) s.executeUpdate("UPDATE training_policy_lifecycle SET version=2 WHERE policy_id='policy-a'");
+                    else s.executeUpdate("UPDATE training_policy_lifecycle SET status='CANCELLED' WHERE policy_id='policy-a'");
+                }
+                assertThrows(IllegalStateException.class,()->service.verifyLifecycleReadback(ds,"policy-a"),corruption+" mismatch is rejected");
+            }
         }
     }
 

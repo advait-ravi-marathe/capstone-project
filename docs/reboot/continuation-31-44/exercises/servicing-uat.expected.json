@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "criteria_version": "fde-coursework-v2",
+  "scenario_kind": "synthetic-local-only",
+  "cases": [
+    {
+      "scenarioId": "UAT-SVC-01",
+      "inputs": ["existing browser issue route", "same-instance replay", "REBUILD_AMOUNT endorsement"],
+      "steps": ["run browser flow", "GET persisted owner-scoped summary", "inspect PostgreSQL rows"],
+      "expectedUI": ["policy-a", "home-secure-v1", "125.00 INR", "ISSUED", "Version 2", "REBUILD_AMOUNT"],
+      "expectedPersistedState": {"policies": 1, "receipts": 1, "events": 2},
+      "failureInjection": null,
+      "recoveryStep": null
+    },
+    {
+      "scenarioId": "UAT-SVC-02",
+      "inputs": ["existing successful summary", "one deliberately aborted summary GET"],
+      "steps": ["observe summary", "abort exactly one GET", "confirm stale values clear", "remove interception", "retry the same GET"],
+      "expectedUI": ["unavailable alert", "old policy/premium/history absent", "recovered persisted values", "alert absent"],
+      "expectedHttp": null,
+      "expectedPersistedState": {"policyVersionUnchanged": true, "rowCountsUnchanged": true},
+      "failureInjection": "network abort; no HTTP status",
+      "recoveryStep": "real GET after removing interception"
+    },
+    {
+      "scenarioId": "UAT-SVC-03",
+      "inputs": ["existing endorsement", "same disposable PostgreSQL across Spring restart"],
+      "steps": ["apply existing cancellation route", "GET actual summary", "stop Spring", "start fresh Spring and browser", "GET summary/history only"],
+      "expectedUI": ["CANCELLED", "Version 4", "125.00 INR", "2026-12-10", "persisted endorsement"],
+      "expectedPersistedState": {"policies": 1, "receipts": 1, "events": 4},
+      "failureInjection": null,
+      "recoveryStep": null,
+      "limitation": "Spring-process restart persistence only; not a PostgreSQL crash/restart test"
+    }
+  ]
+}

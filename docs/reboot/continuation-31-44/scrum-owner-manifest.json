@@ -2897,10 +2897,11 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-43.md",
         "acceptance_reference": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
         "evidence_reference": "evidence/continuation-31-44/day-43.json",
-        "seam": "PolicyServicingPanel",
+        "seam": "toServicingView + PolicyServicingPanel",
         "acceptance_test_path": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
         "acceptance_commands": [
-          "cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx"
+          "cd frontend && npm run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -2908,12 +2909,13 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "video_or_React_fallback": 483,
+            "focused_source_and_prerequisite": 237,
+            "worked_component_trace_test": 540,
+            "transfer_prediction": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "All required/optional replacement material, reading, worked example and pauses fit inside this single 25-minute study block; use official/worked fallback in the same seconds when course access is unavailable. No purchase or extra time.",
           "courses": [
             {
               "course_id": "1362070",
@@ -2926,35 +2928,65 @@
           "lessons": [
             {
               "title": "Rendering Content Conditionally",
-              "section_title": "React Essentials - Components, JSX, Props, State & More",
+              "section_title": "React Essentials - Components, JSX, Props, State &amp; More",
               "duration_seconds": 483,
               "duration": "8:03",
-              "source_item_id": "39649252"
+              "source_item_id": "39649252",
+              "course_id": "1362070"
             }
           ],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "React conditional rendering",
-              "section": "Loading, empty, auth, not-found, and success states",
-              "url": "https://react.dev/learn/conditional-rendering"
+              "title": "React: Conditional Rendering",
+              "section": "Conditionally returning JSX",
+              "url": "https://react.dev/learn/conditional-rendering#conditionally-returning-jsx"
             },
             {
-              "title": "React choosing state structure",
-              "section": "Avoid contradictory UI state",
-              "url": "https://react.dev/learn/choosing-the-state-structure"
+              "title": "React: Choosing the State Structure",
+              "section": "Avoid contradictions in state",
+              "url": "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
+            },
+            {
+              "title": "Testing Library: ByRole",
+              "section": "API",
+              "url": "https://testing-library.com/docs/queries/byrole/"
             }
           ],
           "video_seconds": 483,
           "remaining_study_seconds": 1017,
           "fit": "partial_foundation",
-          "scope_note": "Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.",
+          "scope_note": "Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-43-response-state-ui.md",
+          "worked_example_section": "Day 43 in fde31-44-v2-worked-examples.md",
+          "prerequisites": [
+            "Day36 read + Day42 state; main JSX/props/Promise/state teaching",
+            "No Day44 invocation"
+          ],
+          "study_segments": [
+            {
+              "activity": "video_or_React_fallback",
+              "seconds": 483
+            },
+            {
+              "activity": "focused_source_and_prerequisite",
+              "seconds": 237
+            },
+            {
+              "activity": "worked_component_trace_test",
+              "seconds": 540
+            },
+            {
+              "activity": "transfer_prediction",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -3013,8 +3045,88 @@
         "review_anchors": [],
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).\n- Fit: partial foundation. Use mutually exclusive loading, empty, auth, not-found and success states in PolicyServicingPanel. The lesson gives conditional-rendering basics, not the project response union or lifecycle labels.\n- Focused worked references: [React conditional rendering — Loading, empty, auth, not-found, and success states](https://react.dev/learn/conditional-rendering); [React choosing state structure — Avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).\n- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "understanding_prompt": "What roles and exact server values render for empty, stale nonready, and recovered state, and which fields are excluded?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "video_or_React_fallback": 483,
+          "focused_source_and_prerequisite": 237,
+          "worked_component_trace_test": 540,
+          "transfer_prediction": 240
+        },
+        "allocation_note": "All required/optional replacement material, reading, worked example and pauses fit inside this single 25-minute study block; use official/worked fallback in the same seconds when course access is unavailable. No purchase or extra time.",
+        "courses": [
+          {
+            "course_id": "1362070",
+            "title": "React - The Complete Guide (incl. Next.js, Redux)",
+            "instructor": "Academind / Maximilian Schwarzmüller",
+            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "lessons": [
+          {
+            "title": "Rendering Content Conditionally",
+            "section_title": "React Essentials - Components, JSX, Props, State &amp; More",
+            "duration_seconds": 483,
+            "duration": "8:03",
+            "source_item_id": "39649252",
+            "course_id": "1362070"
+          }
+        ],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "React: Conditional Rendering",
+            "section": "Conditionally returning JSX",
+            "url": "https://react.dev/learn/conditional-rendering#conditionally-returning-jsx"
+          },
+          {
+            "title": "React: Choosing the State Structure",
+            "section": "Avoid contradictions in state",
+            "url": "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
+          },
+          {
+            "title": "Testing Library: ByRole",
+            "section": "API",
+            "url": "https://testing-library.com/docs/queries/byrole/"
+          }
+        ],
+        "video_seconds": 483,
+        "remaining_study_seconds": 1017,
+        "fit": "partial_foundation",
+        "scope_note": "Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-43-response-state-ui.md",
+        "worked_example_section": "Day 43 in fde31-44-v2-worked-examples.md",
+        "prerequisites": [
+          "Day36 read + Day42 state; main JSX/props/Promise/state teaching",
+          "No Day44 invocation"
+        ],
+        "study_segments": [
+          {
+            "activity": "video_or_React_fallback",
+            "seconds": 483
+          },
+          {
+            "activity": "focused_source_and_prerequisite",
+            "seconds": 237
+          },
+          {
+            "activity": "worked_component_trace_test",
+            "seconds": 540
+          },
+          {
+            "activity": "transfer_prediction",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.",
+        "criteria_version": "fde-coursework-v2"
+      },
       "course_learning_status": "verified_titles_video_not_watched",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
@@ -3046,11 +3158,13 @@
         "contract_path": "docs/reboot/continuation-31-44/contracts/day-44.md",
         "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "evidence_reference": "evidence/continuation-31-44/day-44.json",
-        "seam": "PolicyLifecycleService.verifyLifecycleReadback",
+        "seam": "verifyLifecycleReadback + existing learner browser composition",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
-          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test"
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/reboot/Day44BrowserTransportInfrastructureTest.java",
         "infrastructure_commands": [
@@ -3059,37 +3173,68 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+          "allocation_seconds": {
+            "focused_UAT_sections": 240,
+            "worked_observation_and_harness_trace": 1020,
+            "prerequisite_gate": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "allocation_note": "All required/optional replacement material, reading, worked example and pauses fit inside this single 25-minute study block; use official/worked fallback in the same seconds when course access is unavailable. No purchase or extra time.",
           "courses": [],
           "lessons": [],
+          "optional_replacement_only_lessons": [],
           "resources": [
             {
-              "title": "Spring Boot application testing",
-              "section": "Real server and RANDOM_PORT testing",
+              "title": "ISTQB Certified Tester Acceptance Testing syllabus v1.0 2019",
+              "section": "5.2.1 Defect Analysis; 5.2.2 Reporting",
+              "url": "https://istqb.org/wp-content/uploads/2024/11/ISTQB-CT-AcT_Syllabus_v1.0_2019.pdf"
+            },
+            {
+              "title": "Spring Boot: Testing Spring Boot Applications",
+              "section": "MOCK and RANDOM_PORT behavior in opening section",
               "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
             },
             {
               "title": "Chrome Headless mode",
-              "section": "Run Chromium browser automation in headless mode",
-              "url": "https://developer.chrome.com/docs/automation-and-testing/headless"
+              "section": "Use Headless mode",
+              "url": "https://developer.chrome.com/docs/automation-and-testing/headless#use-headless-mode"
+            },
+            {
+              "title": "Playwright: Network",
+              "section": "Network mocking",
+              "url": "https://playwright.dev/docs/network#network-mocking"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "integration_review_no_new_lecture",
-          "scope_note": "No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.",
+          "fit": "authored_bridge",
+          "scope_note": "Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-          "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "guide_path": "docs/reboot/continuation-31-44/worked/day-44-observed-uat-handover.md",
+          "worked_example_section": "Day 44 in fde31-44-v2-worked-examples.md",
+          "prerequisites": [
+            "All actual Day31–43 learner gates and built frontend",
+            "JDK21, Node, available Chromium, disposable PostgreSQL",
+            "Stop at first unresolved prerequisite, do not substitute infrastructure smoke"
+          ],
+          "study_segments": [
+            {
+              "activity": "focused_UAT_sections",
+              "seconds": 240
+            },
+            {
+              "activity": "worked_observation_and_harness_trace",
+              "seconds": 1020
+            },
+            {
+              "activity": "prerequisite_gate",
+              "seconds": 240
+            }
+          ],
+          "acceptance_proof": "Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.",
+          "criteria_version": "fde-coursework-v2"
         }
       },
       "java_dsa": {
@@ -3149,9 +3294,73 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "planned_date_role": "historical_forecast_only; never use to project actual due work"
       },
-      "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: integration review no new lecture. No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.\n- Focused worked references: [Spring Boot application testing — Real server and RANDOM_PORT testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Chrome Headless mode — Run Chromium browser automation in headless mode](https://developer.chrome.com/docs/automation-and-testing/headless).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
-      "course_learning_status": "no_new_lesson_integration_review",
+      "understanding_prompt": "What was actually observed at each UI/API/database/restart boundary, and what first blocker or limitation remains?",
+      "course_learning_block": {
+        "minutes": 25,
+        "allocation_seconds": {
+          "focused_UAT_sections": 240,
+          "worked_observation_and_harness_trace": 1020,
+          "prerequisite_gate": 240
+        },
+        "allocation_note": "All required/optional replacement material, reading, worked example and pauses fit inside this single 25-minute study block; use official/worked fallback in the same seconds when course access is unavailable. No purchase or extra time.",
+        "courses": [],
+        "lessons": [],
+        "optional_replacement_only_lessons": [],
+        "resources": [
+          {
+            "title": "ISTQB Certified Tester Acceptance Testing syllabus v1.0 2019",
+            "section": "5.2.1 Defect Analysis; 5.2.2 Reporting",
+            "url": "https://istqb.org/wp-content/uploads/2024/11/ISTQB-CT-AcT_Syllabus_v1.0_2019.pdf"
+          },
+          {
+            "title": "Spring Boot: Testing Spring Boot Applications",
+            "section": "MOCK and RANDOM_PORT behavior in opening section",
+            "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+          },
+          {
+            "title": "Chrome Headless mode",
+            "section": "Use Headless mode",
+            "url": "https://developer.chrome.com/docs/automation-and-testing/headless#use-headless-mode"
+          },
+          {
+            "title": "Playwright: Network",
+            "section": "Network mocking",
+            "url": "https://playwright.dev/docs/network#network-mocking"
+          }
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "authored_bridge",
+        "scope_note": "Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.",
+        "supplement_required": true,
+        "daily_study_cap_minutes": 25,
+        "viewing_is_not_completion": true,
+        "videos_watched": false,
+        "guide_path": "docs/reboot/continuation-31-44/worked/day-44-observed-uat-handover.md",
+        "worked_example_section": "Day 44 in fde31-44-v2-worked-examples.md",
+        "prerequisites": [
+          "All actual Day31–43 learner gates and built frontend",
+          "JDK21, Node, available Chromium, disposable PostgreSQL",
+          "Stop at first unresolved prerequisite, do not substitute infrastructure smoke"
+        ],
+        "study_segments": [
+          {
+            "activity": "focused_UAT_sections",
+            "seconds": 240
+          },
+          {
+            "activity": "worked_observation_and_harness_trace",
+            "seconds": 1020
+          },
+          {
+            "activity": "prerequisite_gate",
+            "seconds": 240
+          }
+        ],
+        "acceptance_proof": "Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.",
+        "criteria_version": "fde-coursework-v2"
+      },
+      "course_learning_status": "official_worked_bridge_video_not_required",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {

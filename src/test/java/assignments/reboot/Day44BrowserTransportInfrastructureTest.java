@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -93,12 +94,39 @@ class Day44BrowserTransportInfrastructureTest {
         }
     }
 
+    @Test @Tag("learnerAcceptance")
+    void realBrowserObservesServicingFailureRecoveryAndRestart() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            postgresDataSource = postgres.getPostgresDatabase(); initializeLifecycleSchema(postgresDataSource);
+            try (Connection c=postgresDataSource.getConnection(); Statement s=c.createStatement()) {
+                s.execute("CREATE TABLE harness_readback (witness_id TEXT PRIMARY KEY, value TEXT NOT NULL)");
+            }
+            Path base=Path.of("target/day44-harness").toAbsolutePath(); Files.createDirectories(base);
+            try (ConfigurableApplicationContext app=startServer(LearnerHarnessConfiguration.class)) {
+                runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing",base.resolve("servicing-observed.json"));
+                runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing-failure",base.resolve("servicing-failure-observed.json"));
+                runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing-cancel",base.resolve("servicing-cancel-observed.json"));
+                assertEquals(1,count(postgresDataSource,"training_policy_lifecycle"));
+                assertEquals(1,count(postgresDataSource,"training_policy_idempotency"));
+                assertEquals(4,count(postgresDataSource,"training_policy_lifecycle_event"));
+            }
+            try (ConfigurableApplicationContext restarted=startServer(LearnerHarnessConfiguration.class)) {
+                runBrowser("http://127.0.0.1:"+port(restarted)+"/__e2e/day44-lifecycle","servicing-read",base.resolve("servicing-restart-observed.json"));
+            }
+            assertEquals(1,count(postgresDataSource,"training_policy_lifecycle"));
+            assertEquals(1,count(postgresDataSource,"training_policy_idempotency"));
+            assertEquals(4,count(postgresDataSource,"training_policy_lifecycle_event"));
+        }
+    }
+
     private static ConfigurableApplicationContext startServer(Class<?> harnessConfiguration) {
         return new SpringApplicationBuilder(assignments.insurance.InsuranceDayOneApplication.class, harnessConfiguration)
                 .web(WebApplicationType.SERVLET)
                 .properties("server.port=0", "spring.main.banner-mode=off", "logging.level.root=ERROR")
                 .run();
     }
+
+    private static long count(DataSource ds,String table)throws Exception { try(Connection c=ds.getConnection();Statement s=c.createStatement();var r=s.executeQuery("SELECT count(*) FROM "+table)){r.next();return r.getLong(1);} }
 
     private static void initializeLifecycleSchema(DataSource dataSource) throws Exception {
         for (String sql : Files.readString(Path.of("src/test/resources/fixtures/continuation-31-44/policy-lifecycle.sql")).split(";"))
@@ -196,6 +224,16 @@ class Day44BrowserTransportInfrastructureTest {
             }
         }
 
+        @GetMapping("/test/day44/lifecycle/servicing/{policyId}")
+        ServicingWire servicing(@PathVariable("policyId") String policyId) throws Exception {
+            Optional<PolicySnapshot> found = service.readForOwner(new JdbcLifecycleReadStore(dataSource), "owner-a", policyId);
+            if (found.isEmpty()) throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND);
+            PolicyServicingView view=service.toServicingView(found.get());
+            return new ServicingWire(view.policyId(),view.productVersion(),view.annualPremiumRupees().toPlainString(),view.currency(),view.status(),view.version(),
+                    view.history().stream().map(e->new HistoryWire(e.version(),e.effectiveDate().toString(),e.changeCode())).toList(),
+                    view.cancellationEffectiveDate()==null?null:view.cancellationEffectiveDate().toString());
+        }
+
         @PostMapping("/test/day44/lifecycle/issue")
         PolicySnapshot issue() {
             var request = request();
@@ -239,6 +277,22 @@ class Day44BrowserTransportInfrastructureTest {
             var p=issued(); return new PolicySnapshot(p.policyId(),p.ownerId(),p.journeyId(),p.quoteVersionId(),p.productVersion(),p.rateVersion(),p.annualPremiumRupees(),p.currency(),p.effectiveDate(),p.status(),2,List.of(new PolicyEndorsement(2,LocalDate.parse("2026-12-02"),"REBUILD_AMOUNT",new BigDecimal("200000.00"))),null);
         }
     }
+    record HistoryWire(long version,String effectiveDate,String changeCode) {}
+    record ServicingWire(String policyId,String productVersion,String annualPremiumRupees,String currency,PolicyStatus status,long version,List<HistoryWire> history,String cancellationEffectiveDate) {}
+    static final class JdbcLifecycleReadStore implements PolicyReadStore {
+        private final DataSource ds; JdbcLifecycleReadStore(DataSource ds){this.ds=ds;}
+        public Optional<PolicySnapshot> findByPolicyIdAndOwnerId(String policyId,String ownerId) {
+            try(Connection c=ds.getConnection();var q=c.prepareStatement("SELECT policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,annual_premium_rupees,currency,effective_date,status,version,cancellation_effective_date FROM training_policy_lifecycle WHERE policy_id=? AND owner_id=?")) {
+                q.setString(1,policyId);q.setString(2,ownerId);try(var r=q.executeQuery()){if(!r.next())return Optional.empty();
+                    var history=new java.util.ArrayList<PolicyEndorsement>();
+                    try(var e=c.prepareStatement("SELECT version,effective_date,change_code,training_rebuild_amount_rupees FROM training_policy_lifecycle_event WHERE policy_id=? AND event_type='ENDORSED' ORDER BY effective_date ASC,version ASC")){e.setString(1,policyId);try(var x=e.executeQuery()){while(x.next())history.add(new PolicyEndorsement(x.getLong(1),x.getDate(2).toLocalDate(),x.getString(3),x.getBigDecimal(4)));}}
+                    var cancellation=r.getDate(12)==null?null:r.getDate(12).toLocalDate();
+                    return Optional.of(new PolicySnapshot(r.getString(1),r.getString(2),r.getString(3),r.getString(4),r.getString(5),r.getString(6),r.getBigDecimal(7),r.getString(8).trim(),r.getDate(9).toLocalDate(),PolicyStatus.valueOf(r.getString(10)),r.getLong(11),history,cancellation));
+                }
+            } catch(Exception e){throw new IllegalStateException("synthetic read failed",e);}
+        }
+    }
+
     record Witness(String witnessId, String value) { }
     record LifecycleReadback(String status, long version, long eventCount) { }
 }

@@ -121,8 +121,7 @@ class ContinuationManifestInfrastructureTest {
             assertEquals(75, dsa.get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
             assertEquals(90, dsa.get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
             JsonNode card = cards.get("cards").get(i);
-            if (concept.has("study_segments"))
-                assertEquals(concept, card.get("course_learning_block"), "revised canonical and owner course blocks match");
+            assertEquals(concept, card.get("course_learning_block"), "canonical and owner course blocks match");
             assertEquals(31 + i, card.get("day_number").asInt());
             assertEquals(180, card.get("budget_minutes_min").asInt());
             assertEquals(210, card.get("budget_minutes_max").asInt());

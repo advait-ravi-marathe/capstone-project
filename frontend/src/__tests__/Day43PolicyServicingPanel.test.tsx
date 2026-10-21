@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import { PolicyServicingPanel } from '../components/PolicyServicingPanel';
 
 const summary = {
@@ -8,6 +8,8 @@ const summary = {
   history: [{ version: 2, effectiveDate: '2026-12-03', changeCode: 'REBUILD_AMOUNT' }],
   cancellationEffectiveDate: '2026-12-15',
 };
+
+afterEach(cleanup);
 
 describe('Day 43 policy servicing panel', () => {
   it('renders snapshot, status, versioned history, and cancellation date without private identifiers', () => {
@@ -27,4 +29,36 @@ describe('Day 43 policy servicing panel', () => {
     render(<PolicyServicingPanel state={state} />);
     expect(screen.getByRole(state === 'loading' ? 'status' : 'alert').textContent).toContain(message);
   });
+  it('shows an explicit empty state when ready has no selected policy', () => {
+    render(<PolicyServicingPanel state="ready" />);
+    const panel = screen.getByRole('region', { name: 'Policy servicing' });
+    expect(within(panel).getByRole('status').textContent).toContain('No policy selected');
+    expect(within(panel).queryByText('125.00 INR')).toBeNull();
+  });
+
+  it.each(['loading', 'unauthenticated', 'unavailable'] as const)('clears stale summary on rerender to %s', (state) => {
+    const { rerender } = render(<PolicyServicingPanel state="ready" summary={summary} />);
+    const panel = screen.getByRole('region', { name: 'Policy servicing' });
+    expect(within(panel).getByText('policy-demo-1')).toBeTruthy();
+    rerender(<PolicyServicingPanel state={state} summary={summary} />);
+    expect(within(panel).getByRole(state === 'loading' ? 'status' : 'alert')).toBeTruthy();
+    expect(within(panel).queryByText('policy-demo-1')).toBeNull();
+    expect(within(panel).queryByText('125.00 INR')).toBeNull();
+    expect(within(panel).queryByText('REBUILD_AMOUNT')).toBeNull();
+  });
+
+  it('renders fresh server values after unavailable without retaining old values', () => {
+    const { rerender } = render(<PolicyServicingPanel state="ready" summary={summary} />);
+    const panel = screen.getByRole('region', { name: 'Policy servicing' });
+    rerender(<PolicyServicingPanel state="unavailable" summary={summary} />);
+    const fresh = { ...summary, policyId: 'policy-demo-2', productVersion: 'home-secure-v9', annualPremiumRupees: '987.65', status: 'ISSUED' as const, version: 8, history: [] };
+    rerender(<PolicyServicingPanel state="ready" summary={fresh} />);
+    expect(within(panel).getByText('policy-demo-2')).toBeTruthy();
+    expect(within(panel).getByText('home-secure-v9')).toBeTruthy();
+    expect(within(panel).getByText('987.65 INR')).toBeTruthy();
+    expect(within(panel).getByText('Version 8')).toBeTruthy();
+    expect(within(panel).queryByText('policy-demo-1')).toBeNull();
+    expect(within(panel).queryByRole('alert')).toBeNull();
+  });
+
 });
