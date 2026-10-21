@@ -34,16 +34,22 @@ class PolicyRenewalRepositoryAcceptanceTest {
             var store = new JdbcPolicyRenewalReadStore(dataSource);
             var before = allRows(dataSource);
             var found = store.findByPolicyIdAndOwnerId("renewal-demo", "owner-a");
+            assertEquals(before, allRows(dataSource), "own lookup preserves all rows immediately");
             assertEquals(new PolicyRenewalFacts("renewal-demo", LocalDate.parse("2026-12-01"), PolicyStatus.ISSUED,
                     3, "home-secure-v1", "home-secure-rate-v1", new BigDecimal("125.00"), "INR"), found.orElseThrow());
             assertTrue(store.findByPolicyIdAndOwnerId("renewal-demo", "owner-b").isEmpty(), "foreign policy is concealed");
+            assertEquals(before, allRows(dataSource), "foreign lookup preserves all rows immediately");
             assertTrue(store.findByPolicyIdAndOwnerId("missing", "owner-a").isEmpty());
+            assertEquals(before, allRows(dataSource), "missing lookup preserves all rows immediately");
             assertTrue(store.findByPolicyIdAndOwnerId("renewal-other", "owner-a").isEmpty());
+            assertEquals(before, allRows(dataSource), "second foreign lookup preserves all rows immediately");
             assertEquals(new PolicyRenewalFacts("renewal-other", LocalDate.parse("2027-04-17"), PolicyStatus.ISSUED,
                     9, "home-secure-v2", "home-secure-rate-v2", new BigDecimal("987.40"), "INR"),
                     store.findByPolicyIdAndOwnerId("renewal-other", "owner-b").orElseThrow());
+            assertEquals(before, allRows(dataSource), "second-owner lookup preserves all rows immediately");
             assertTrue(store.findByPolicyIdAndOwnerId("renewal-demo' OR '1'='1", "owner-a").isEmpty(),
                     "malicious-looking identifiers remain parameter data");
+            assertEquals(before, allRows(dataSource), "SQL-looking value preserves all rows immediately");
             assertEquals(before, allRows(dataSource), "the complete policy, event and receipt rows remain unchanged");
             try (Connection c = dataSource.getConnection(); Statement s = c.createStatement();
                  var rows = s.executeQuery("SELECT count(*) FROM training_policy_lifecycle")) {

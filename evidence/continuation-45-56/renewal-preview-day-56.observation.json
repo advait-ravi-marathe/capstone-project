@@ -1,0 +1,20 @@
+{
+  "runId": null,
+  "scenarioId": "RENEWAL-READ-RESTART-SYNTHETIC-01",
+  "expectedVersion": 1,
+  "expectedSha256": "c13d698179a6ab10b5f76a363076b77eb84bca1e174ad3c9907d3f8ee89ca3e5",
+  "sourceSha": null,
+  "actualStartedAt": null,
+  "actualFinishedAt": null,
+  "command": "npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test",
+  "cwd": ".",
+  "exitCode": null,
+  "observedHttp": [],
+  "networkFailure": null,
+  "observedUi": {},
+  "databaseSnapshots": {},
+  "restartPhases": [],
+  "result": "not_run",
+  "blocker": null,
+  "reviewerNote": "Template only. No actual command, browser observation, database snapshot, or learner completion is claimed."
+}

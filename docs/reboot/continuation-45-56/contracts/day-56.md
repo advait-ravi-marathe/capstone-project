@@ -8,7 +8,7 @@
 
 ### Expected behavior
 
-Capture complete ordered database rows before first GET, after first GET, after Spring restart, and after second GET with same PostgreSQL and no reseeding. Both statuses are200, semantic responses match exactly, and UI shows all fields on each run. This is process-restart observation, not packaged-JAR or PostgreSQL crash durability.
+Capture complete ordered database rows before the first GET, immediately after that GET while the first server context is alive, after closing it, after starting a second Spring server context in the same test JVM but before its GET, immediately after the second GET while the context is alive, and after close. Both statuses are200, semantic responses match exactly, and UI shows all fields on each run. A fresh browser process performs each read; the same PostgreSQL instance remains open and is not reseeded. This does not prove packaged-JAR execution or PostgreSQL crash durability.
 
 ### Readiness before the task
 
@@ -17,7 +17,7 @@ Capture complete ordered database rows before first GET, after first GET, after 
 
 ### Acceptance and expected TODO state
 
-The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-56.json` only after a real learner attempt.
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/renewal-preview-day-56.observation.json` only after a real learner attempt.
 
 **Acceptance commands:**
 - `./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test`
@@ -29,7 +29,7 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 
 **85-minute practice allocation:**
 - 15 minutes: run readiness/recovery gate.
-- 40 minutes: run the two-process read.
+- 40 minutes: run the two Spring server contexts in one test JVM, each read by a fresh browser process.
 - 20 minutes: compare complete response and database snapshots.
 - 10 minutes: prepare the bounded handover.
 
@@ -60,3 +60,6 @@ This is a synthetic, read-only reference preview. It does not renew, accept, bin
 Guided learning may use LeetCode Premium/editorial explanations. Before opening an editorial, attempt independently; if assistance is used, label the event guided/hinted/editorial-assisted even if accepted. A transfer is independent only after an unaided attempt, with the intended invariant explained; platform acceptance alone is insufficient. D, D+3, D+7, and D+21 are based on the earliest actual first-attempt local date, including guided attempts; never use planned dates or reset the clock. A transfer target does not start another anchor cycle.
 
 Run `python3 scripts/dsa-review-queue.py --on-date "$(TZ=Asia/Kolkata date +%F)" --roadmap-day 56` first. The date command uses the actual Asia/Kolkata local study date; dates shown elsewhere are forecasts only. Record actual activity, assistance, outcome, and evidence in the append-only log; never infer completion from this contract. See [../../dsa/guided-transfer-policy.md](../../dsa/guided-transfer-policy.md) and [the DSA error log](../../dsa-error-log-template.md).
+
+
+**Frozen teaching artifacts:** [synthetic expected observation](../worked/day-56-observation.expected.json) and [empty actual observation record](../../../../evidence/continuation-45-56/renewal-preview-day-56.observation.json). The actual record is `not_run` with null actuals; it is not learner progress evidence.

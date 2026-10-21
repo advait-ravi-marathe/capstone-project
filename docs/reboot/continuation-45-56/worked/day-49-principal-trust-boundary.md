@@ -8,4 +8,4 @@ Transfer: implement only `authenticatedOwner` and strengthen the actual route ac
 
 Study25: 4:17 authentication lesson,3:00 focused Principal/PathVariable entries,13:43 worked request/store trace,4:00 prediction. Practice85: 10 trust-boundary sketch,55 `authenticatedOwner`,20 tests. Evidence10. Official: [Spring MVC method arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).
 
-Commands: `./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead test`; `./mvnw -Dtest=RenewalTeachingReferenceTest#principalWinsAndAnonymousDoesNotRead test`.
+Commands: `./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead+day49MockMvcPassesPrincipalRatherThanForgedQueryOrHeaderToTheReadStore test`; `./mvnw -Dtest=RenewalTeachingReferenceTest#principalWinsAndAnonymousDoesNotRead test`.

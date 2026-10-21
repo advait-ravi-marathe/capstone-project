@@ -65,6 +65,7 @@ class RenewalPreviewTransportInfrastructureTest {
             try (ConfigurableApplicationContext context = startServer(TransportApplication.class, TransportConfiguration.class)) {
                 first = runBrowser(port(context), firstResult, "smoke", "renewal-demo");
             }
+            assertSuccessfulSmoke(first);
             assertEquals(200, first.status());
             assertTrue(first.body().contains("renewal-demo"));
             assertTrue(first.body().contains("not a renewal offer"));
@@ -74,6 +75,8 @@ class RenewalPreviewTransportInfrastructureTest {
             try (ConfigurableApplicationContext restarted = startServer(TransportApplication.class, TransportConfiguration.class)) {
                 second = runBrowser(port(restarted), secondResult, "smoke", "renewal-demo");
             }
+            assertSuccessfulSmoke(second);
+            assertEquals(200, second.status(), "second smoke response must independently be HTTP 200");
             assertEquals(first.body(), second.body(), "readback remains the same after a new Spring server instance");
             assertEquals(1, witnessCount(), "browser GETs do not mutate the fixture");
         } finally {
@@ -116,15 +119,21 @@ class RenewalPreviewTransportInfrastructureTest {
             BrowserResult first;
             try (ConfigurableApplicationContext app = startServer(LearnerApplication.class, LearnerConfiguration.class)) {
                 first = runBrowser(port(app), OUTPUT.resolve("learner-day56-first.json"), "learner", "renewal-demo");
+                assertBrowserResponse(first, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
+                assertEquals(before, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                        "full database rows match baseline immediately after first GET while server is alive");
             }
-            assertBrowserResponse(first, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
             assertEquals(before, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
                     "full database rows match the baseline after the first read");
             BrowserResult second;
             try (ConfigurableApplicationContext app = startServer(LearnerApplication.class, LearnerConfiguration.class)) {
+                assertEquals(before, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                        "starting the second Spring server context does not change database rows");
                 second = runBrowser(port(app), OUTPUT.resolve("learner-day56-restart.json"), "learner", "renewal-demo");
+                assertBrowserResponse(second, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
+                assertEquals(before, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                        "full database rows match baseline immediately after second GET while server is alive");
             }
-            assertBrowserResponse(second, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
             assertEquals(200, first.status()); assertEquals(200, second.status(), "second response independently remains HTTP 200");
             assertEquals(new tools.jackson.databind.ObjectMapper().readTree(first.body()),
                     new tools.jackson.databind.ObjectMapper().readTree(second.body()), "semantic wire fields match after restart");
@@ -147,6 +156,8 @@ class RenewalPreviewTransportInfrastructureTest {
     private static BrowserResult runBrowser(int port, Path output, String mode, String policyId) throws Exception {
         Files.createDirectories(output.toAbsolutePath().getParent());
         Path log = output.resolveSibling(output.getFileName() + ".log");
+        Files.deleteIfExists(output);
+        Files.deleteIfExists(log);
         var process = new ProcessBuilder("node", "e2e/day45-renewal-preview-browser.mjs",
                 "http://127.0.0.1:" + port + "/__e2e/day45-renewal-preview?policyId=" + policyId,
                 output.toString(), mode)
@@ -158,8 +169,9 @@ class RenewalPreviewTransportInfrastructureTest {
             runner.destroyForcibly(); runner.waitFor();
             throw new IllegalStateException("Playwright timed out: " + Files.readString(log));
         }
+        if (!Files.exists(output)) throw new IllegalStateException("browser runner produced no fresh evidence; " + Files.readString(log));
         var json = new tools.jackson.databind.ObjectMapper().readTree(Files.readString(output));
-        return new BrowserResult(json.get("browserOpened").asBoolean(), json.get("status").asInt(),
+        return new BrowserResult(json.get("browserOpened").asBoolean(), json.get("status").isNumber() ? json.get("status").asInt() : null,
                 json.get("body").isTextual() ? json.get("body").asString() : json.get("body").toString(),
                 json.get("visibleText").asString(), json.get("apiRequests").toString(), runner.exitValue(),
                 json.hasNonNull("failure") ? json.get("failure").asString() : null);
@@ -215,6 +227,8 @@ class RenewalPreviewTransportInfrastructureTest {
         assertEquals(java.util.Set.of("policyId", "sourcePolicyVersion", "productVersion", "rateVersion",
                 "currentAnnualPremiumRupees", "currency", "nextTermEffectiveDate", "notice"), jsonFieldNames(json));
         assertEquals(id, json.get("policyId").asString()); assertEquals(version, json.get("sourcePolicyVersion").asInt());
+        assertTrue(json.get("sourcePolicyVersion").isIntegralNumber(), "wire version must be an integral JSON number");
+        assertEquals((long) version, json.get("sourcePolicyVersion").asLong());
         assertEquals(product, json.get("productVersion").asString()); assertEquals(rate, json.get("rateVersion").asString());
         assertTrue(json.get("currentAnnualPremiumRupees").isNumber());
         assertEquals(0, new BigDecimal(premium).compareTo(json.get("currentAnnualPremiumRupees").decimalValue()),
@@ -232,7 +246,14 @@ class RenewalPreviewTransportInfrastructureTest {
         var result = new java.util.HashSet<String>(); result.addAll(node.propertyNames()); return result;
     }
 
-    record BrowserResult(boolean browserOpened, int status, String body, String visibleText,
+    private static void assertSuccessfulSmoke(BrowserResult result) {
+        assertTrue(result.browserOpened(), "smoke browser opened");
+        assertEquals(0, result.exitCode(), "smoke runner exited successfully");
+        assertNull(result.failure(), "smoke runner reported no failure");
+        assertEquals(200, result.status(), "smoke HTTP status is successful");
+    }
+
+    record BrowserResult(boolean browserOpened, Integer status, String body, String visibleText,
                          String apiRequests, int exitCode, String failure) { }
 
     @SpringBootConfiguration @EnableAutoConfiguration

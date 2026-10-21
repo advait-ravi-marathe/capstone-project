@@ -101,11 +101,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 255,
-            "worked_example_and_transfer": 1005,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "verified_lesson_or_date_fallback",
@@ -172,8 +167,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 255,
+            "worked_example_and_transfer": 1005,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**, section **Reference Types in Java Programming** (4:15); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: verified lesson or date fallback 4:15; discovery acceptance focus 5:00; worked membership example 11:45; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Discovery example, then an annual date](docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html); [Official source: GOV.UK: Plan user research for your service — Agree research questions](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service); [Official source: GOV.UK: Writing user stories — Acceptance criteria](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories).\n- Learner transfer: Define annual policy term boundaries.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -343,11 +344,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 240,
-            "worked_example_and_transfer": 1020,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "Clock_LocalDate_focus",
@@ -405,8 +401,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 240,
+            "worked_example_and_transfer": 1020,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime** (4:15). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Clock LocalDate focus 4:00; worked state date matrix 17:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A state-and-date decision table](docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Clock — fixed(Instant, ZoneId)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html); [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Learner transfer: Enforce renewal window and lifecycle eligibility.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -558,11 +560,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 300,
-            "worked_example_and_transfer": 960,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "Record_ADR_focus",
@@ -628,8 +625,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 300,
+            "worked_example_and_transfer": 960,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 15 - Exploring Java New Features - Records** (9:04); **3 Questions - Best practices with Records** (9:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Record ADR focus 5:00; worked projection decision 16:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Copy current facts without making a new offer](docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Record — Class Record](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html); [Official source: AWS Prescriptive Guidance: Appendix: Example ADR — Context; Decision; Consequences; Compliance](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).\n- Learner transfer: Freeze the renewal reference snapshot.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -798,11 +801,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 336,
-            "worked_example_and_transfer": 864,
-            "prediction_and_readiness": 300
-          },
           "study_segments": [
             {
               "activity": "query_lesson_foundation",
@@ -869,8 +867,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 336,
+            "worked_example_and_transfer": 864,
+            "prediction_and_readiness": 300
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 04 - Getting Started with Spring JDBC** (3:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: query lesson foundation 5:36; worked raw JDBC resources and state 14:24; prediction 5:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Bind both keys and compare complete rows](docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: PreparedStatement — setString(int, String); executeQuery()](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html); [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1).\n- Learner transfer: Add owner-scoped PostgreSQL renewal projection.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1023,7 +1027,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead test"
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead+day49MockMvcPassesPrincipalRatherThanForgedQueryOrHeaderToTheReadStore test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1031,11 +1035,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 257,
-            "worked_example_and_transfer": 1003,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "authentication_lesson",
@@ -1092,8 +1091,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 257,
+            "worked_example_and_transfer": 1003,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: authentication lesson 4:17; MVC Principal focus 3:00; worked request scope trace 13:43; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A caller cannot choose their own owner identity](docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Method Arguments — java.security.Principal table entry; @PathVariable table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Learner transfer: Derive preview identity from the principal.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "problem_id": null,
@@ -1242,7 +1247,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes test"
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes+day50FoundIneligibleGetMaps409WithoutCallingAvailablePreviewBuilder test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1250,11 +1255,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 469,
-            "worked_example_and_transfer": 791,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "404_foundation_lesson",
@@ -1320,8 +1320,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 469,
+            "worked_example_and_transfer": 791,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 12 - Implementing Generic Exception Handling for all Resources** (11:29). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: 404 foundation lesson 7:49; ResponseEntity focus 3:00; worked 401 404 409 table 10:11; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Map known unavailable outcomes safely](docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Map unavailable previews to stable HTTP errors.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1491,11 +1497,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 270,
-            "worked_example_and_transfer": 990,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "bean_response_foundation",
@@ -1553,8 +1554,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 270,
+            "worked_example_and_transfer": 990,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 03 - Enhancing the Hello World REST API to return a Bean**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: bean response foundation 4:30; worked exact JSON contract 16:30; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Inspect the actual JSON projection](docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring: Building a RESTful Web Service — Create a Resource Representation Class; Create a Resource Controller](https://spring.io/guides/gs/rest-service/); [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Expose a minimal non-binding preview response.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "problem_id": null,
@@ -1704,7 +1711,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
         "acceptance_commands": [
-          "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only"
+          "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1712,11 +1719,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 483,
-            "worked_example_and_transfer": 777,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "conditional_rendering_foundation",
@@ -1774,8 +1776,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 483,
+            "worked_example_and_transfer": 777,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Rendering Content Conditionally**, section **React Essentials - Components, JSX, Props, State & More** (8:03); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: conditional rendering foundation 8:03; worked reference panel 12:57; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Render a supplied reference value](docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md); this is not an official-source quotation.\n- Focused official sources: [Official source: React: Conditional Rendering — Conditionally returning JSX](https://react.dev/learn/conditional-rendering#conditionally-returning-jsx); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Render the renewal reference view in React.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1927,11 +1935,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 327,
-            "worked_example_and_transfer": 933,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "loading_foundation",
@@ -2007,8 +2010,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 327,
+            "worked_example_and_transfer": 933,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Handling Loading States**, section **Sending Http Requests (e.g. Connecting to a Database)** (5:27); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Handling HTTP Loading & Error States** (3:12). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: loading foundation 5:27; ARIA status alert focus 3:00; worked transition refresh 12:33; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Keep states exclusive and refresh explicit](docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md); this is not an official-source quotation.\n- Focused official sources: [Official source: W3C WCAG technique ARIA22: Using role=status to present status messages — Description; Examples](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22); [Official source: W3C APG: Alert Pattern — About This Pattern; Keyboard Interaction](https://www.w3.org/WAI/ARIA/apg/patterns/alert/); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Add accessible loading and unavailable states.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -2187,11 +2196,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 531,
-            "worked_example_and_transfer": 729,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "integration_foundation_or_official_fallback",
@@ -2249,8 +2253,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 531,
+            "worked_example_and_transfer": 729,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: integration foundation or official fallback 8:51; worked full database observation 12:09; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Compare full database state around the read](docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Boot: Testing Spring Boot Applications — MOCK versus RANDOM_PORT behavior in opening section](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html).\n- Learner transfer: Verify the owner-scoped preview against PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -2402,11 +2412,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 360,
-            "worked_example_and_transfer": 900,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "plain_fetch_Playwright_focus",
@@ -2447,8 +2452,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 360,
+            "worked_example_and_transfer": 900,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: plain fetch Playwright focus 6:00; worked request response demo 15:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Observe a real browser read](docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md); this is not an official-source quotation.\n- Focused official sources: [Official source: MDN Web Docs: Using the Fetch API — Checking response status; Reading the response body](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch); [Official source: Playwright: Response — status; json](https://playwright.dev/docs/api/class-response).\n- Learner transfer: Connect the React preview to Spring and PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "problem_id": null,
@@ -2589,11 +2600,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_sources": 240,
-            "worked_example_and_transfer": 1020,
-            "prediction_and_readiness": 240
-          },
           "study_segments": [
             {
               "activity": "safe_GET_readonly_focus",
@@ -2639,8 +2645,14 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "daily_study_cap_minutes": 25,
-          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
-        }
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope.",
+          "allocation_seconds": {
+            "focused_sources": 240,
+            "worked_example_and_transfer": 1020,
+            "prediction_and_readiness": 240
+          }
+        },
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: safe GET readonly focus 4:00; worked restart handover 17:00; readiness 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Read after restart without changing stored rows](docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md); this is not an official-source quotation.\n- Focused official sources: [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html); [Official source: AWS Well-Architected: Use runbooks to perform procedures — Implementation guidance; Implementation steps](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html).\n- Learner transfer: Prove preview stability across restart without writes.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",

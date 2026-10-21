@@ -35,23 +35,23 @@ class PolicyRenewalPostgresAcceptanceTest {
                     Clock.fixed(Instant.parse("2027-11-15T12:00:00Z"), ZoneOffset.UTC));
             MockMvc mvc = MockMvcBuilders.standaloneSetup(controller).build();
 
-            mvc.perform(get("/api/policies/renewal-demo/renewal-preview").principal(() -> "owner-a"))
+            var own = mvc.perform(get("/api/policies/renewal-demo/renewal-preview").principal(() -> "owner-a"))
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.policyId").value("renewal-demo"))
-                    .andExpect(jsonPath("$.nextTermEffectiveDate").value("2027-12-01"))
-                    .andExpect(jsonPath("$.currentAnnualPremiumRupees").value(125.0));
+                    .andReturn().getResponse().getContentAsString();
+            assertApprovedPreview(own, "renewal-demo", 3, "home-secure-v1", "home-secure-rate-v1", "125.00", "INR", "2027-12-01");
             assertEquals(before, allRows(dataSource), "own GET leaves complete policy/event/receipt rows unchanged");
-            var foreign = mvc.perform(get("/api/policies/renewal-demo/renewal-preview").principal(() -> "owner-b"))
+            var foreignResult = mvc.perform(get("/api/policies/renewal-demo/renewal-preview").principal(() -> "owner-b"))
                     .andExpect(status().isNotFound()).andExpect(jsonPath("$.code").value("POLICY_NOT_FOUND"))
                     .andReturn().getResponse().getContentAsString();
             assertEquals(before, allRows(dataSource), "foreign GET leaves complete rows unchanged");
             var absent = mvc.perform(get("/api/policies/missing/renewal-preview").principal(() -> "owner-a"))
                     .andExpect(status().isNotFound()).andReturn().getResponse().getContentAsString();
-            assertEquals(foreign, absent, "foreign and absent cases are indistinguishable");
+            assertEquals(foreignResult, absent, "foreign and absent cases are indistinguishable");
             assertEquals(before, allRows(dataSource), "absent GET leaves complete rows unchanged");
             mvc.perform(get("/api/policies/renewal-demo/renewal-preview"))
-                    .andExpect(status().isUnauthorized()).andExpect(jsonPath("$.code").value("UNAUTHENTICATED"));
+                    .andExpect(status().isUnauthorized()).andExpect(content().json("{\"code\":\"UNAUTHENTICATED\"}", true));
             assertEquals(before, allRows(dataSource), "anonymous request performs no write");
+            assertEquals("{\"code\":\"POLICY_NOT_FOUND\"}", foreignResult);
         }
     }
 
@@ -79,5 +79,34 @@ class PolicyRenewalPostgresAcceptanceTest {
             assertTrue(rows.next());
             return rows.getString(1);
         }
+    }
+
+    private static void assertApprovedPreview(String content, String id, int version, String product, String rate,
+                                              String premium, String currency, String date) throws Exception {
+        var json = new tools.jackson.databind.ObjectMapper().readTree(content);
+        assertEquals(java.util.Set.of("policyId", "sourcePolicyVersion", "productVersion", "rateVersion",
+                "currentAnnualPremiumRupees", "currency", "nextTermEffectiveDate", "notice"), jsonFieldNames(json));
+        assertTrue(json.get("policyId").isTextual());
+        assertEquals(id, json.get("policyId").asString());
+        assertTrue(json.get("sourcePolicyVersion").isIntegralNumber());
+        assertEquals((long) version, json.get("sourcePolicyVersion").asLong());
+        assertTrue(json.get("productVersion").isTextual());
+        assertEquals(product, json.get("productVersion").asString());
+        assertTrue(json.get("rateVersion").isTextual());
+        assertEquals(rate, json.get("rateVersion").asString());
+        assertTrue(json.get("currentAnnualPremiumRupees").isNumber());
+        assertEquals(0, new BigDecimal(premium).compareTo(json.get("currentAnnualPremiumRupees").decimalValue()));
+        assertTrue(json.get("currency").isTextual());
+        assertEquals(currency, json.get("currency").asString());
+        assertTrue(json.get("nextTermEffectiveDate").isTextual());
+        assertEquals(date, json.get("nextTermEffectiveDate").asString());
+        assertTrue(json.get("notice").isTextual());
+        assertEquals("Reference only; not a renewal offer or coverage commitment.", json.get("notice").asString());
+        assertFalse(content.contains("journey-hidden"));
+        assertFalse(content.contains("quote-hidden"));
+    }
+
+    private static java.util.Set<String> jsonFieldNames(tools.jackson.databind.JsonNode json) {
+        var fields = new java.util.HashSet<String>(); fields.addAll(json.propertyNames()); return fields;
     }
 }

@@ -39,6 +39,10 @@ describe('Days 52–53 renewal preview panel', () => {
     expect(screen.getByText('home-secure-v9')).toBeTruthy();
     expect(screen.getByText('home-secure-rate-v4')).toBeTruthy();
     expect(screen.getByText(changedPreview.notice)).toBeTruthy();
+    expect(screen.queryByText('Current annual premium (reference only): 125.00 INR')).toBeNull();
+    expect(screen.queryByText('Next term begins 2027-12-01')).toBeNull();
+    expect(screen.queryByText('Version 3')).toBeNull();
+    expect(screen.queryByText(preview.notice)).toBeNull();
     rerender(<PolicyRenewalPreviewPanel state="ready" />);
     expect(screen.queryByText(/Current annual premium/)).toBeNull();
     expect(screen.queryByText(/Next term begins/)).toBeNull();
@@ -59,6 +63,17 @@ describe('Days 52–53 renewal preview panel', () => {
     expect(screen.queryByRole('button', { name: /accept|renew now|purchase|bind/i })).toBeNull();
     expect(screen.queryByText(/Current annual premium|Next term begins|Version 3|not a renewal offer/)).toBeNull();
     expect(screen.queryByRole(role === 'status' ? 'alert' : 'status')).toBeNull();
+    rerender(<PolicyRenewalPreviewPanel state="ready" preview={changedPreview} />);
+    expect(screen.getByText('Current annual premium (reference only): 987.40 INR')).toBeTruthy();
+    expect(screen.getByText('Next term begins 2028-04-17')).toBeTruthy();
+    expect(screen.getByText('Version 9')).toBeTruthy();
+    expect(screen.getByText(changedPreview.notice)).toBeTruthy();
+    expect(screen.queryByText('Current annual premium (reference only): 125.00 INR')).toBeNull();
+    expect(screen.queryByText('Next term begins 2027-12-01')).toBeNull();
+    expect(screen.queryByText('Version 3')).toBeNull();
+    expect(screen.queryByText(preview.notice)).toBeNull();
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.queryByRole('status')).toBeNull();
   });
 
   it('uses the refresh callback only to request another read', () => {

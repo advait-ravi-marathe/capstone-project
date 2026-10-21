@@ -84,6 +84,24 @@ class PolicyRenewalControllerAcceptanceTest {
         assertEquals("{\"code\":\"POLICY_NOT_FOUND\"}", missing);
     }
 
+    @Test void day50FoundIneligibleGetMaps409WithoutCallingAvailablePreviewBuilder() throws Exception {
+        AtomicInteger builds = new AtomicInteger();
+        var fixedEligibility = new PolicyRenewalPreviewPolicy() {
+            @Override public PolicyRenewalEligibility eligibility(PolicyRenewalFacts facts, LocalDate today) {
+                return PolicyRenewalEligibility.TOO_EARLY;
+            }
+            @Override public PolicyRenewalPreview buildPreview(PolicyRenewalFacts facts) {
+                builds.incrementAndGet();
+                throw new AssertionError("unavailable route must not build or expose a preview");
+            }
+        };
+        MockMvc mvc = mvc((policyId, ownerId) -> Optional.of(ISSUED), fixedEligibility);
+        mvc.perform(get("/api/policies/policy-demo-1/renewal-preview").principal(principal("owner-a")))
+                .andExpect(status().isConflict())
+                .andExpect(content().json("{\"code\":\"RENEWAL_PREVIEW_UNAVAILABLE\",\"message\":\"Renewal preview is outside the eligible window or policy state.\"}", true));
+        assertEquals(0, builds.get(), "the preview builder and available projection are not reached");
+    }
+
     @Test void day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields() {
         var preview = new PolicyRenewalPreview("policy-demo-1", 3, "home-secure-v1", "home-secure-rate-v1",
                 new BigDecimal("125.00"), "INR", LocalDate.parse("2027-12-01"),
@@ -100,30 +118,42 @@ class PolicyRenewalControllerAcceptanceTest {
     }
 
     @Test void day51SerializedPreviewHasExactlyApprovedFieldsAndNumericPremium() throws Exception {
-        var preview = new PolicyRenewalPreview("policy-demo-9", 9, "home-secure-v9", "home-secure-rate-v4",
-                new BigDecimal("987.40"), "INR", LocalDate.parse("2028-04-17"),
-                "Reference only; not a renewal offer or coverage commitment.");
-        MockMvc mvc = MockMvcBuilders.standaloneSetup(new PreviewSerializationController(
-                controller((policyId, ownerId) -> Optional.of(ISSUED)), preview)).build();
-        var content = mvc.perform(get("/teaching/renewal-preview"))
-                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-        var json = new tools.jackson.databind.ObjectMapper().readTree(content);
-        assertEquals(java.util.Set.of("policyId", "sourcePolicyVersion", "productVersion", "rateVersion",
-                        "currentAnnualPremiumRupees", "currency", "nextTermEffectiveDate", "notice"),
-                iterableFields(json));
-        assertEquals("policy-demo-9", json.get("policyId").asString());
-        assertEquals(9, json.get("sourcePolicyVersion").asInt());
-        assertEquals("home-secure-v9", json.get("productVersion").asString());
-        assertEquals("home-secure-rate-v4", json.get("rateVersion").asString());
-        assertTrue(json.get("currentAnnualPremiumRupees").isNumber());
-        assertEquals(0, new BigDecimal("987.40").compareTo(json.get("currentAnnualPremiumRupees").decimalValue()),
-                "wire JSON is numeric; presentation adds two display decimals separately");
-        assertEquals("INR", json.get("currency").asString());
-        assertEquals("2028-04-17", json.get("nextTermEffectiveDate").asString());
-        assertEquals("Reference only; not a renewal offer or coverage commitment.", json.get("notice").asString());
-        assertFalse(content.contains("journey-hidden"));
-        assertFalse(content.contains("quote-hidden"));
-        assertFalse(content.contains("owner-a"));
+        var fixtures = java.util.List.of(
+                new PolicyRenewalPreview("policy-demo-1", 3, "home-secure-v1", "home-secure-rate-v1",
+                        new BigDecimal("125.00"), "INR", LocalDate.parse("2027-12-01"),
+                        "Reference only; not a renewal offer or coverage commitment."),
+                new PolicyRenewalPreview("policy-demo-9", 9, "home-secure-v9", "home-secure-rate-v4",
+                        new BigDecimal("987.40"), "INR", LocalDate.parse("2028-04-17"),
+                        "Reference only; not a renewal offer or coverage commitment."));
+        for (var preview : fixtures) {
+            MockMvc mvc = MockMvcBuilders.standaloneSetup(new PreviewSerializationController(
+                    controller((policyId, ownerId) -> Optional.of(ISSUED)), preview)).build();
+            var content = mvc.perform(get("/teaching/renewal-preview"))
+                    .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+            var json = new tools.jackson.databind.ObjectMapper().readTree(content);
+            assertEquals(java.util.Set.of("policyId", "sourcePolicyVersion", "productVersion", "rateVersion",
+                            "currentAnnualPremiumRupees", "currency", "nextTermEffectiveDate", "notice"), iterableFields(json));
+            assertTrue(json.get("policyId").isTextual());
+            assertEquals(preview.policyId(), json.get("policyId").asString());
+            assertTrue(json.get("sourcePolicyVersion").isIntegralNumber(), "version must be an integral JSON number");
+            assertEquals(preview.sourcePolicyVersion(), json.get("sourcePolicyVersion").asLong());
+            assertTrue(json.get("productVersion").isTextual());
+            assertEquals(preview.productVersion(), json.get("productVersion").asString());
+            assertTrue(json.get("rateVersion").isTextual());
+            assertEquals(preview.rateVersion(), json.get("rateVersion").asString());
+            assertTrue(json.get("currentAnnualPremiumRupees").isNumber());
+            assertEquals(0, preview.currentAnnualPremiumRupees().compareTo(json.get("currentAnnualPremiumRupees").decimalValue()),
+                    "wire JSON is numeric; presentation adds two display decimals separately");
+            assertTrue(json.get("currency").isTextual());
+            assertEquals(preview.currency(), json.get("currency").asString());
+            assertTrue(json.get("nextTermEffectiveDate").isTextual());
+            assertEquals(preview.nextTermEffectiveDate().toString(), json.get("nextTermEffectiveDate").asString());
+            assertTrue(json.get("notice").isTextual());
+            assertEquals(preview.notice(), json.get("notice").asString());
+            assertFalse(content.contains("journey-hidden"));
+            assertFalse(content.contains("quote-hidden"));
+            assertFalse(content.contains("owner-a"));
+        }
     }
 
     private static java.util.Set<String> iterableFields(tools.jackson.databind.JsonNode json) {
@@ -144,6 +174,10 @@ class PolicyRenewalControllerAcceptanceTest {
 
     private static MockMvc mvc(PolicyRenewalReadStore store) {
         return MockMvcBuilders.standaloneSetup(controller(store)).build();
+    }
+
+    private static MockMvc mvc(PolicyRenewalReadStore store, PolicyRenewalPreviewPolicy policy) {
+        return MockMvcBuilders.standaloneSetup(controller(store, policy)).build();
     }
 
     private static PolicyRenewalPreviewController controller(PolicyRenewalReadStore store) {

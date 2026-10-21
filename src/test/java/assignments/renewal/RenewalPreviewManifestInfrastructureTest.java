@@ -64,6 +64,12 @@ class RenewalPreviewManifestInfrastructureTest {
             assertTrue(eng.get("infrastructure_commands").isArray() && !eng.get("infrastructure_commands").isEmpty());
             JsonNode course = eng.get("concept_course");
             assertEquals(25, course.get("minutes").asInt());
+            assertFalse(course.has("allocation_minutes"), "nested course allocation values are seconds, never minutes");
+            JsonNode allocationSeconds = course.get("allocation_seconds");
+            assertNotNull(allocationSeconds, "the rendered study breakdown must name its unit");
+            int allocatedStudySeconds = 0;
+            for (String name : allocationSeconds.propertyNames()) allocatedStudySeconds += allocationSeconds.get(name).asInt();
+            assertEquals(1500, allocatedStudySeconds);
             int studySeconds = 0;
             for (JsonNode segment : course.get("study_segments")) studySeconds += segment.get("seconds").asInt();
             assertEquals(1500, studySeconds, "Day " + (45 + i) + " study segments stay inside 25 minutes");
@@ -81,6 +87,13 @@ class RenewalPreviewManifestInfrastructureTest {
             assertEquals(85, practiceMinutes);
             assertEquals(10, curriculumDay.get("evidence_minutes").asInt());
             assertEquals(course, card.get("engineering").get("concept_course"));
+            String renderedCourseBlock = renderCourseLearningBlock(course, eng.get("scope").asString());
+            assertEquals(renderedCourseBlock, eng.get("course_learning_block").asString(),
+                    "canonical learning block is rendered from current metadata");
+            assertEquals(renderedCourseBlock, card.get("course_learning_block").asString(),
+                    "owner export must carry the same rendered block");
+            for (String stale : new String[]{"TanStack", "CSRF", "503/500", "packaged browser", "exclude the current annual premium"})
+                assertFalse(renderedCourseBlock.toLowerCase().contains(stale.toLowerCase()), "stale course text: " + stale);
             assertEquals(course.get("study_segments"), entryCourseLearning(day).get("study_segments"));
             for (JsonNode resource : course.get("resources")) {
                 assertEquals("https", URI.create(resource.get("url").asString()).getScheme());
@@ -108,6 +121,47 @@ class RenewalPreviewManifestInfrastructureTest {
     }
 
     private static JsonNode entryCourseLearning(JsonNode day) { return day.get("course_learning"); }
+
+    private static String renderCourseLearningBlock(JsonNode course, String scope) {
+        var lines = new java.util.ArrayList<String>();
+        lines.add("**Learning route — exactly 25 minutes total.**");
+        for (JsonNode lesson : course.path("lessons")) {
+            String access = "unconfirmed";
+            for (JsonNode entry : course.path("courses"))
+                if (entry.get("course_id").asString().equals(lesson.get("course_id").asString()))
+                    access = entry.get("access_status").asString();
+            lines.add("- Required course reference: **" + lesson.get("title").asString() + "**, section **" +
+                    lesson.get("section_title").asString() + "** (" + lesson.get("duration").asString() +
+                    "); access: `" + access + "`. Viewing is not inferred.");
+        }
+        if (course.path("optional_reference_lessons").size() > 0) {
+            var references = new java.util.ArrayList<String>();
+            for (JsonNode lesson : course.path("optional_reference_lessons"))
+                references.add("**" + lesson.get("title").asString() + "** (" + lesson.get("duration").asString() + ")");
+            lines.add("- Optional prerequisite recovery only: " + String.join("; ", references) +
+                    ". It replaces focused review if useful and adds no time or new-mastery claim.");
+        }
+        var segments = new java.util.ArrayList<String>();
+        for (JsonNode segment : course.path("study_segments"))
+            segments.add(segment.get("activity").asString().replace('_', ' ') + " " +
+                    clock(segment.get("seconds").asInt()));
+        lines.add("- Fixed study segments: " + String.join("; ", segments) +
+                ". Stop at 25:00; carry unfinished work forward without extending the day.");
+        String section = course.get("worked_example_section").asString();
+        lines.add("- Full project-authored worked example before transfer: [" +
+                section.substring(section.indexOf(" — ") + 3) + "](" + course.get("worked_example_path").asString() +
+                "); this is not an official-source quotation.");
+        var resources = new java.util.ArrayList<String>();
+        for (JsonNode resource : course.path("resources"))
+            resources.add("[" + resource.get("title").asString() + " — " + resource.get("section").asString() +
+                    "](" + resource.get("url").asString() + ")");
+        lines.add("- Focused official sources: " + String.join("; ", resources) + ".");
+        lines.add("- Learner transfer: " + scope + ".");
+        lines.add("- Course entries are source references only; no video viewing, access, or learner completion is claimed.");
+        return String.join("\n", lines);
+    }
+
+    private static String clock(int seconds) { return (seconds / 60) + ":%02d".formatted(seconds % 60); }
 
     @Test void scopeStaysReadOnlyAndSharedQueueIncludesNewAnchors() throws Exception {
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));

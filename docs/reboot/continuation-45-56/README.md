@@ -6,7 +6,8 @@ This isolated additive branch continues the 31–44 policy lifecycle slice from 
 - [Scrum owner export](scrum-owner-manifest.json): one consolidated Story per date, for review only; not synchronized to a board.
 - [Daily contracts](contracts/).
 - [Days 45–56 authoritative allocation](fde45-56-v2-curriculum.json) and [verified source catalogue](fde45-56-v2-guidance.json).
-- [Worked teaching guides](worked/) with the complete independent examples before each learner transfer.
+- [Worked teaching guides](worked/) with the complete independent examples before each learner transfer, including the Day55 [trace-only browser helper](../../../frontend/e2e/teaching/observe-parcel-read-reference.mjs) and Day56 [synthetic expected sheet](worked/day-56-observation.expected.json).
+- [Day56 renewal observation record](../../../evidence/continuation-45-56/renewal-preview-day-56.observation.json) is a separate `not_run` template; existing daily evidence remains unchanged.
 - [DSA map](dsa/top-150-map.md); actual DSA history stays in the shared [attempt log](../continuation-31-44/dsa/actual-attempt-log.json).
 - [Prior verification receipt](../../../evidence/continuation-45-56/verification.json) documents the earlier Days45–56 scaffold at its recorded SHA; it is historical and does not report results for this revision.
 

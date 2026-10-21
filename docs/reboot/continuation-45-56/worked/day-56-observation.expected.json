@@ -1,0 +1,36 @@
+{
+  "scenarioId": "RENEWAL-READ-RESTART-SYNTHETIC-01",
+  "version": 1,
+  "synthetic": true,
+  "scope": "Two Spring server contexts in one test JVM, each observed by a fresh browser process, sharing one disposable PostgreSQL instance; no reseeding.",
+  "steps": [
+    "Capture the complete ordered policy, event, and idempotency rows.",
+    "Read policy renewal-demo through the first Spring server context; require HTTP 200 and the exact eight-field response.",
+    "Compare complete database rows while the first context is still alive, then stop that context.",
+    "Start a second Spring server context against the same PostgreSQL instance; compare rows before reading.",
+    "Read through a fresh browser process; require HTTP 200, semantic response equality, all matching panel fields, and no mutation request.",
+    "Compare complete database rows while the second context is still alive, then stop that context and compare once more."
+  ],
+  "expectedHttp": {
+    "statusEachRead": 200,
+    "method": "GET",
+    "path": "/api/policies/renewal-demo/renewal-preview",
+    "semanticResponsesEqual": true
+  },
+  "expectedUi": {
+    "policyId": "renewal-demo",
+    "sourcePolicyVersion": 3,
+    "productVersion": "home-secure-v1",
+    "rateVersion": "home-secure-rate-v1",
+    "currentAnnualPremiumRupees": "125.00 INR",
+    "nextTermEffectiveDate": "2027-12-01",
+    "notice": "Reference only; not a renewal offer or coverage commitment.",
+    "forbiddenMutationControls": 0
+  },
+  "expectedPersistedState": {
+    "policyTable": "all complete ordered rows identical at every stated checkpoint",
+    "eventTable": "all complete ordered rows identical at every stated checkpoint",
+    "idempotencyTable": "all complete ordered rows identical at every stated checkpoint"
+  },
+  "limitation": "Synthetic local rehearsal only; does not establish PostgreSQL crash durability, packaged-JAR execution, production authentication, renewal pricing, or customer acceptance."
+}

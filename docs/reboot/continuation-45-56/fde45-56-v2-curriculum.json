@@ -264,7 +264,7 @@
       "evidence_minutes": 10,
       "acceptance_proof": "Anonymous/blank principal401 and zero reads; forged query/header cannot change captured owner; empty store stops at404 without future Day50/51.",
       "preserved_acceptance_commands": [
-        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead test"
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead+day49MockMvcPassesPrincipalRatherThanForgedQueryOrHeaderToTheReadStore test"
       ],
       "infrastructure_commands": [
         "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
@@ -317,9 +317,9 @@
         25
       ],
       "evidence_minutes": 10,
-      "acceptance_proof": "All three nonready enums fixed409; real GET missing/foreign same404; no available/buildPreview on rejection; no503/500 work.",
+      "acceptance_proof": "All three nonready enums fixed409; actual GET missing/foreign returns the same404; found-ineligible GET returns the exact409 while buildPreview stays untouched; no503/500 work.",
       "preserved_acceptance_commands": [
-        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes test"
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes+day50FoundIneligibleGetMaps409WithoutCallingAvailablePreviewBuilder test"
       ],
       "infrastructure_commands": [
         "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
@@ -419,7 +419,7 @@
       "evidence_minutes": 10,
       "acceptance_proof": "Complete original/changed preview content and notice; no bind/renew/accept/purchase action; no callback during render; no input mutation.",
       "preserved_acceptance_commands": [
-        "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only"
+        "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx"
       ],
       "infrastructure_commands": [
         "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
@@ -622,7 +622,7 @@
         10
       ],
       "evidence_minutes": 10,
-      "acceptance_proof": "First and second200; exact semantic response equality; correct panel each time; complete DB baseline after each phase; fresh Spring/browser with SAME PG/no reseed.",
+      "acceptance_proof": "Two Spring server contexts in one test JVM; fresh browser per read; same PostgreSQL without reseeding; both200, exact semantic response and full database rows at every live and post-close checkpoint.",
       "preserved_acceptance_commands": [
         "./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test"
       ],
