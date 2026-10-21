@@ -6,6 +6,9 @@
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
+
 ### Expected behavior
 
 Read a seeded synthetic policy for its owner using the supplied store seam. A foreign owner and an absent policy both produce `Optional.empty()` from the same owner-constrained lookup. The acceptance contains one positive owner read plus separate foreign and absent cases.
@@ -26,18 +29,20 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).
-- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).
-- Fit: partial foundation. Write one parameterized owner-constrained SELECT. Missing and foreign-owned rows return the same absence result.
-- Focused worked references: [Spring Security method authorization — How Method Security Works (conceptual model only; annotations are not assumed enabled)](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html).
-- Video viewing: 15:23 at 1×; the remaining 9:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-36-owner-scope.md](../../continuation-31-44/worked/day-36-owner-scope.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: Step 07 - Querying Data using Spring JDBC (5:36). Replacement-only optional lessons: Step 22 - Exploring Spring Security Authorization. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** Owner-scoped policy read — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) — Enforce Least Privileges; Validate the Permissions on Every Request.
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** verified video foundation 5:36; focused authorization 3:00; worked example 12:24; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 10 / 60 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.
 
 ## Evidence allocation (10 minutes)
 

@@ -6,9 +6,12 @@
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
+
 ### Expected behavior
 
-A seeded `PolicyCancellationReceiptStore` drives the replay cases. Same key/date/reason returns the stored original; the same key with a changed date throws `IdempotencyConflictException`; a past date throws `IllegalArgumentException`. Unknown reasons and mismatched expected versions are rejected.
+A seeded `PolicyCancellationReceiptStore` drives the replay cases. Same key/date/reason returns the stored original; the same key with a changed date throws `IdempotencyConflictException`; a date equal to the injected current date is accepted as non-past, while a past date throws `IllegalArgumentException`. Unknown reasons and mismatched expected versions are rejected. The historic selector name “Future” is retained for command compatibility; it does not define a strict-future rule.
 
 ## Acceptance and expected red state
 
@@ -26,17 +29,21 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif**; exact section title: **Reference Types in Java Programming** (5:20).
-- Fit: partial foundation. Date comparison is only a foundation. Use an injected Clock, reject past dates, replay the same key/date/reason, and conflict on changed intent.
-- Focused worked references: [Java 21 LocalDate API — now(Clock), isBefore, isAfter, isEqual](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).
-- Video viewing: 5:20 at 1×; the remaining 19:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-40-cancellation-intent.md](../../continuation-31-44/worked/day-40-cancellation-intent.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif (5:20). Replacement-only optional lessons: none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** Schedule cancellation — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [Java SE 21: LocalDate](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html) — now(Clock); isBefore(ChronoLocalDate); isAfter(ChronoLocalDate).
+- [AWS Builders’ Library: Making retries safe with idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) — Retries and semantic equivalence; Same client request ID, different intent.
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** video or date fallback 5:20; worked example 15:40; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 10 / 60 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Stored original replay despite old expectedVersion; changed date/reason conflict; independent version/reason/date negatives; same-day non-past semantics preserved.
 
 ## Evidence allocation (10 minutes)
 

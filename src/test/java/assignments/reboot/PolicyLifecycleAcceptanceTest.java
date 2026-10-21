@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -47,9 +48,36 @@ class PolicyLifecycleAcceptanceTest {
 
     @Test void day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts() {
         var request = issueRequest();
-        var created = issued();
-        assertEquals(created, service.issue(request, "owner-a"));
-        assertEquals(409, service.issueHttpStatus(new PolicyIssueRequest("journey-a", "quote-other", "req-a", request.effectiveDate()), Optional.of(created)));
+        var created = service.issue(request, "owner-a");
+        assertEquals(issued(), created);
+        assertEquals(created, service.issue(request, "owner-a"), "identical retry returns complete original snapshot");
+        for (var changed : List.of(
+                new PolicyIssueRequest("journey-a", "quote-other", "req-a", request.effectiveDate()),
+                new PolicyIssueRequest("journey-other", "quote-a", "req-a", request.effectiveDate()),
+                new PolicyIssueRequest("journey-a", "quote-a", "req-a", request.effectiveDate().plusDays(1)))) {
+            assertThrows(IdempotencyConflictException.class, () -> service.issue(changed, "owner-a"));
+            assertEquals(created, service.issue(request, "owner-a"), "conflict must not replace original receipt");
+        }
+        assertNotEquals(created, service.issue(new PolicyIssueRequest("journey-a", "quote-a", "req-b", request.effectiveDate().plusDays(2)), "owner-a"));
+        var ownerB = service.issue(request, "owner-b");
+        assertEquals("owner-b", ownerB.ownerId());
+        assertNotEquals(created, ownerB);
+        assertEquals(created, service.issue(request, "owner-a"), "owner scope remains independent");
+
+        AtomicInteger constructions = new AtomicInteger();
+        PolicyIssueSnapshotFactory candidates = (command, owner) -> {
+            int n=constructions.incrementAndGet();
+            return new PolicySnapshot("candidate-"+n,owner,command.journeyId(),command.quoteVersionId(),"home-secure-v1","fixture-rate-v1",
+                    new BigDecimal("125.00"),"INR",command.effectiveDate(),PolicyStatus.ISSUED,1,List.of(),null);
+        };
+        var observed = new PolicyLifecycleService(CLOCK,candidates);
+        var first=observed.issue(request,"owner-a"); assertEquals("candidate-1",first.policyId());
+        assertEquals(first,observed.issue(request,"owner-a")); assertEquals(1,constructions.get());
+        assertThrows(IdempotencyConflictException.class,()->observed.issue(new PolicyIssueRequest("journey-a","quote-b","req-a",request.effectiveDate()),"owner-a"));
+        assertEquals(first,observed.issue(request,"owner-a")); assertEquals(1,constructions.get());
+        var otherOwner=observed.issue(request,"owner-b"); assertEquals("candidate-2",otherOwner.policyId()); assertEquals("owner-b",otherOwner.ownerId());
+        var otherIntent=observed.issue(new PolicyIssueRequest("journey-a","quote-a","req-b",request.effectiveDate().plusDays(1)),"owner-a");
+        assertNotEquals(first,otherIntent); assertEquals(3,constructions.get());
     }
 
     @Test void day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges() {
@@ -63,17 +91,22 @@ class PolicyLifecycleAcceptanceTest {
         var request = issueRequest();
         assertEquals(201, service.issueHttpStatus(request, Optional.empty()));
         assertEquals(200, service.issueHttpStatus(request, Optional.of(issued())));
+        assertEquals(409, service.issueHttpStatus(new PolicyIssueRequest("journey-a", "quote-other", "req-a", request.effectiveDate()), Optional.of(issued())));
+        assertEquals(409, service.issueHttpStatus(new PolicyIssueRequest("journey-other", "quote-a", "req-a", request.effectiveDate()), Optional.of(issued())));
+        assertEquals(409, service.issueHttpStatus(new PolicyIssueRequest("journey-a", "quote-a", "req-a", request.effectiveDate().plusDays(1)), Optional.of(issued())));
+        assertThrows(IllegalArgumentException.class, () -> service.issueHttpStatus(new PolicyIssueRequest("journey-a", "quote-a", " ", request.effectiveDate()), Optional.empty()));
     }
 
     @Test void day35AtomicPostgresWriteHasOnePolicyAndOneReceipt() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var dataSource = postgres.getPostgresDatabase();
             initializeLifecycleSchema(dataSource);
-            assertAll("successful issue persists its policy, receipt, and event atomically",
-                    () -> assertNotNull(service.persistIssueAtomically(dataSource, issueRequest(), "owner-a")),
-                    () -> assertEquals(1, count(dataSource, "training_policy_lifecycle")),
-                    () -> assertEquals(1, count(dataSource, "training_policy_idempotency")),
-                    () -> assertEquals(1, count(dataSource, "training_policy_lifecycle_event")));
+            var committed = service.persistIssueAtomically(dataSource, issueRequest(), "owner-a");
+            assertNotNull(committed);
+            assertEquals(committed, service.issue(issueRequest(), "owner-a"), "same service instance must publish replay only after commit");
+            assertEquals(1, count(dataSource, "training_policy_lifecycle"));
+            assertEquals(1, count(dataSource, "training_policy_idempotency"));
+            assertEquals(1, count(dataSource, "training_policy_lifecycle_event"));
         }
     }
 
@@ -159,6 +192,8 @@ class PolicyLifecycleAcceptanceTest {
                 () -> assertEquals(scheduled, service.scheduleCancellation(scheduled, request, replayReceipt), "same request replay returns original scheduled snapshot"),
                 () -> assertThrows(IdempotencyConflictException.class, () -> service.scheduleCancellation(scheduled,
                         new PolicyCancellationRequest(2, "cancel-a", LocalDate.parse("2026-12-11"), "CUSTOMER_REQUEST"), replayReceipt)),
+                () -> assertEquals(PolicyStatus.CANCEL_SCHEDULED, service.scheduleCancellation(issued(),
+                        new PolicyCancellationRequest(1, "cancel-today", LocalDate.parse("2026-11-19"), "CUSTOMER_REQUEST"), empty).status(), "same day is non-past under injected Clock"),
                 () -> assertThrows(IllegalArgumentException.class, () -> service.scheduleCancellation(issued(),
                         new PolicyCancellationRequest(1, "cancel-past", LocalDate.parse("2026-11-18"), "CUSTOMER_REQUEST"), empty)));
     }

@@ -6,6 +6,9 @@
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
+
 ### Expected behavior
 
 Validate expected policy version, effective date, and allowlisted training change fields; reject unknown fields, no-op changes, past dates, and expected versions 0 or 2 when current version is 1.
@@ -26,17 +29,20 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 14 - Implementing Validations for REST API**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:47).
-- Fit: partial foundation. Worked command matrix: expected version, effective date, allowed reason, and no-op request. Bean validation alone does not enforce lifecycle/version rules.
-- Focused worked references: [Spring MVC validation — Validation for @RequestMapping handler methods](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html).
-- Video viewing: 11:47 at 1×; the remaining 13:13 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-37-independent-acceptance.md](../../continuation-31-44/worked/day-37-independent-acceptance.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: Step 14 - Implementing Validations for REST API (11:47). Replacement-only optional lessons: none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** Endorsement command validation — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [Spring Framework: Method Arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html) — java.security.Principal table entry; @RequestBody table entry.
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** verified video 11:47; worked example 9:13; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 10 / 55 / 20 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Independent reason/date/version/no-op cases with otherwise valid baseline.
 
 ## Evidence allocation (10 minutes)
 

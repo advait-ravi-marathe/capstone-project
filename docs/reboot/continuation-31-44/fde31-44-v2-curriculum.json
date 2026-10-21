@@ -1,0 +1,615 @@
+{
+  "status": "READ_ONLY_PLAN_NOT_APPLIED",
+  "prepared_at": "2026-10-21",
+  "continuation_source": "1b756ef3dde7730c6b2ca8df68fc714aeb4e006b",
+  "prerequisite_main_source": "80cb3cdb1305bf6ed75ccde33e69267a5c333786",
+  "scope": "Prospective teaching and acceptance revisions to existing Days31–44; no new stories, no learner completion, no first30/DSA/history rewrite.",
+  "precedence": "This JSON owns time allocation and required/optional lesson status when specialized handoffs differ. Main plan owns one shared exercise/evidence model and same-day non-past cancellation reconciliation.",
+  "catalog_evidence": "Exact titles, sections, item IDs and durations carried from verified connected-catalog records dated2026-10-20 and inspected pinned continuation; videos not watched. Course access statements are carried source metadata, not new purchases or fresh playback verification.",
+  "access_rule": "Unconfirmed course playback is optional conditional access. Use the named official/worked alternative within the SAME allocated seconds; do not enroll, purchase or add hours. A verified title is foundation only, not proof the lesson teaches the entire project seam.",
+  "budget": {
+    "engineering_minutes": 120,
+    "study_seconds": 1500,
+    "practice_minutes": 85,
+    "evidence_minutes": 10,
+    "dsa": "Preserve existing actual-attempt workload tiers60/75/90 and D/D+3/D+7/D+21, no edits."
+  },
+  "days": [
+    {
+      "day": 31,
+      "date": "2026-11-19",
+      "existing_title": "Issue eligibility and quote linkage",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-31.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "validateIssue",
+      "required_lesson_item_ids": [
+        "35017628"
+      ],
+      "optional_replacement_only_item_ids": [
+        "35017626"
+      ],
+      "official_source_ids": [
+        "discovery",
+        "criteria",
+        "mvc_args"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-31-discovery-and-facts.md — Worked example",
+      "readiness": [
+        "Actual Day28–30 evidence, not delivered scaffold status",
+        "Main repaired request/validator/service, value/time and security guides"
+      ],
+      "study_segments": [
+        {
+          "activity": "verified_video",
+          "seconds": 257
+        },
+        {
+          "activity": "focused_discovery_acceptance",
+          "seconds": 300
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 703
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        15,
+        55,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Existing independent eligibility cases; actual problem assumptions and cases, not discovery quality from a schema.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 32,
+      "date": "2026-11-20",
+      "existing_title": "Idempotent policy issue",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-32.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "issue",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "idempotency"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-32-receipt-trace.md — Worked example",
+      "readiness": [
+        "Day31 request/fact distinction",
+        "Supplied snapshot factory fixture, no later learner TODO"
+      ],
+      "study_segments": [
+        {
+          "activity": "focused_official_source",
+          "seconds": 360
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 900
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Repeat actual issue calls; full original equality; three independent changed-intent conflicts; original unchanged after rejection; scoped owner/key; counted construction not repeated.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 33,
+      "date": "2026-11-21",
+      "existing_title": "Immutable issue snapshot",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-33.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "isImmutableIssueSnapshot",
+      "required_lesson_item_ids": [
+        "25694168"
+      ],
+      "optional_replacement_only_item_ids": [
+        "49557599"
+      ],
+      "official_source_ids": [
+        "record"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-33-captured-snapshot.md — Worked example",
+      "readiness": [
+        "Day32 receipt snapshot",
+        "Main immutable values guide"
+      ],
+      "study_segments": [
+        {
+          "activity": "video_or_official_fallback",
+          "seconds": 544
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 716
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        60,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "One-field changes; unchanged old input/list; explain snapshot comparison does not itself run catalog SQL.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 34,
+      "date": "2026-11-22",
+      "existing_title": "Issue endpoint and stable errors",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-34.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "issueHttpStatus + NEW issueResponse",
+      "required_lesson_item_ids": [
+        "35018814"
+      ],
+      "optional_replacement_only_item_ids": [
+        "35018810"
+      ],
+      "official_source_ids": [
+        "mvc_args",
+        "mvc_returns",
+        "mockmvc"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-34-request-to-response.md — Worked example",
+      "readiness": [
+        "Days31/32 actual domain selectors",
+        "Main request/DTO/error mapping bridge; supplied test-only MVC wiring"
+      ],
+      "study_segments": [
+        {
+          "activity": "verified_video",
+          "seconds": 684
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 576
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        30,
+        35,
+        10
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Actual standalone MockMvc JSON/principal/header/body assertions using learner domain service; 201/200/400/401/404/409 and sanitized unexpected failure separated.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test"
+      ],
+      "proposed_additional_commands": [
+        "./mvnw -Plearner-tests -Dtest=Day34IssueHttpMappingAcceptanceTest test"
+      ],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 35,
+      "date": "2026-11-23",
+      "existing_title": "Atomic PostgreSQL issuance",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-35.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "persistIssueAtomically",
+      "required_lesson_item_ids": [
+        "7907620"
+      ],
+      "optional_replacement_only_item_ids": [
+        "7907610"
+      ],
+      "official_source_ids": [
+        "adr",
+        "tx"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-35-atomic-write-decision.md — Worked example",
+      "readiness": [
+        "Day32 receipt logic",
+        "Main raw JDBC same-connection transaction bridge",
+        "Day34 HTTP mapping is not the durable implementation"
+      ],
+      "study_segments": [
+        {
+          "activity": "video_or_tx_fallback",
+          "seconds": 278
+        },
+        {
+          "activity": "focused_ADR",
+          "seconds": 240
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 742
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test",
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35ReceiptConflictRollsBackPolicyAndEvent test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 36,
+      "date": "2026-11-24",
+      "existing_title": "Owner-scoped policy read",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-36.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "readForOwner",
+      "required_lesson_item_ids": [
+        "35019858"
+      ],
+      "optional_replacement_only_item_ids": [
+        "35017626"
+      ],
+      "official_source_ids": [
+        "authz"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-36-owner-scope.md — Worked example",
+      "readiness": [
+        "Main JDBC/Optional and authorization distinctions",
+        "Supplied PolicyReadStore"
+      ],
+      "study_segments": [
+        {
+          "activity": "verified_video_foundation",
+          "seconds": 336
+        },
+        {
+          "activity": "focused_authorization",
+          "seconds": 180
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 744
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        60,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 37,
+      "date": "2026-11-25",
+      "existing_title": "Endorsement command validation",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-37.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "validateEndorsement",
+      "required_lesson_item_ids": [
+        "35018798"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "mvc_args"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-37-independent-acceptance.md — Worked example",
+      "readiness": [
+        "Issued snapshot and date/version facts",
+        "Main DTO validation bridge"
+      ],
+      "study_segments": [
+        {
+          "activity": "verified_video",
+          "seconds": 707
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 553
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Independent reason/date/version/no-op cases with otherwise valid baseline.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 38,
+      "date": "2026-11-26",
+      "existing_title": "Append immutable endorsement",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-38.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "endorse",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "constraints",
+        "record"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-38-append-history.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-38-append-history.md — Worked example",
+      "readiness": [
+        "Day37 validation and immutable values"
+      ],
+      "study_segments": [
+        {
+          "activity": "focused_official_source",
+          "seconds": 300
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 960
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        60,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Complete original and returned history; unchanged input; expected increment/order and changed fixture.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 39,
+      "date": "2026-11-27",
+      "existing_title": "Optimistic version conflict",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-39.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "endorseAtExpectedVersion",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "isolation",
+        "affected"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-39-two-writer-version.md — Worked example",
+      "readiness": [
+        "Days35/38 transactions and history",
+        "Main concurrency/rollback prerequisite"
+      ],
+      "study_segments": [
+        {
+          "activity": "focused_official_source",
+          "seconds": 360
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 900
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Synchronized real two-connection race, one winner/one version conflict, full persisted winner payload and no loser event.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 40,
+      "date": "2026-11-28",
+      "existing_title": "Schedule cancellation",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-40.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "scheduleCancellation",
+      "required_lesson_item_ids": [
+        "9565628"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "date",
+        "idempotency"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-40-cancellation-intent.md — Worked example",
+      "readiness": [
+        "Day32 receipt semantics",
+        "Date/Clock and current policy version"
+      ],
+      "study_segments": [
+        {
+          "activity": "video_or_date_fallback",
+          "seconds": 320
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 940
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        60,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Stored original replay despite old expectedVersion; changed date/reason conflict; independent version/reason/date negatives; same-day non-past semantics preserved.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 41,
+      "date": "2026-11-29",
+      "existing_title": "Apply due cancellation",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-41.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "applyDueCancellation (both overloads)",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "clock"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-41-clock-transition.md — Worked example",
+      "readiness": [
+        "Day40 scheduling receipt semantics"
+      ],
+      "study_segments": [
+        {
+          "activity": "focused_clock",
+          "seconds": 240
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 1020
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 42,
+      "date": "2026-11-30",
+      "existing_title": "Block post-cancellation writes",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-42.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "permitsServicingWrite",
+      "required_lesson_item_ids": [
+        "9565990"
+      ],
+      "optional_replacement_only_item_ids": [
+        "9565992"
+      ],
+      "official_source_ids": [
+        "runbook",
+        "enum"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-42-operational-handover.md — Worked example",
+      "readiness": [
+        "Day36 owner read and Days40–41 state transitions"
+      ],
+      "study_segments": [
+        {
+          "activity": "video_or_state_fallback",
+          "seconds": 448
+        },
+        {
+          "activity": "focused_runbook",
+          "seconds": 180
+        },
+        {
+          "activity": "worked_example",
+          "seconds": 632
+        },
+        {
+          "activity": "prerequisite_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        15,
+        55,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Cancelled blocks writes while owned read remains available; executable short handover with a failure branch.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
+      ],
+      "proposed_additional_commands": [],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    }
+  ],
+  "guidance_catalog_path": "fde31-44-v2-guidance.json"
+}

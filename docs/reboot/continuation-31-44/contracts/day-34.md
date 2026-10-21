@@ -2,9 +2,14 @@
 
 ## Contract
 
-**Learner-owned seam:** `POST /api/policies`
+**Learner-owned seam:** `PolicyLifecycleService.issueResponse` (typed response mapping)
+
+The MVC controller/Principal/quote-fixture adapter is test-only scaffolding; no production route or login is enabled by this day.
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
+
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
 
 ### Expected behavior
 
@@ -15,6 +20,9 @@ Expose issuance with 201 + Location on first creation, 200 on identical idempote
 Fixed acceptance tests are learner-owned behavior checks; they must assert the cases above and must not be weakened to make the starter green. Until the TODO is implemented, a valid operation is expected to fail at the named TODO. Invalid-input and non-mutation cases should be asserted independently where fixtures permit. Record the exact command, exit code, failing assertions/errors, and TODO reached in `evidence/continuation-31-44/day-34.json`. Instructor infrastructure checks are separate and must pass. No learner completion is inferred from a contract or from infrastructure tests.
 
 **Acceptance selector:** `src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes`
+**Additional MVC acceptance:** `src/test/java/assignments/reboot/Day34IssueHttpMappingAcceptanceTest.java`
+
+**Learner MVC command:** `./mvnw -Plearner-tests -Dtest=Day34IssueHttpMappingAcceptanceTest test`
 **Infrastructure selector:** `assignments.reboot.ContinuationManifestInfrastructureTest`
 
 **Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test`
@@ -26,18 +34,22 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:24).
-- Exact lesson title: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49).
-- Fit: partial foundation. Worked status table: first create=201, replay=200, invalid=400, concealed absent/foreign=404, version conflict=409. Keep the fixed idempotency semantics.
-- Focused worked references: [Spring MVC controller return types — ResponseEntity and response status/body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).
-- Video viewing: 19:13 at 1×; the remaining 5:47 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-34-request-to-response.md](../../continuation-31-44/worked/day-34-request-to-response.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location (11:24). Replacement-only optional lessons: Step 11 - Implementing Exception Handling - 404 Resource Not Found. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** Issue endpoint and stable errors — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [Spring Framework: Method Arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html) — java.security.Principal table entry; @RequestBody table entry.
+- [Spring Framework: Return Values](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html) — HttpEntity and ResponseEntity table entry.
+- [Spring Framework: MockMvc](https://docs.spring.io/spring-framework/reference/testing/mockmvc.html) — MockMvc.
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** verified video 11:24; worked example 9:36; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 10 / 30 / 35 / 10 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Actual standalone MockMvc JSON/principal/header/body assertions using learner domain service; 201/200/400/401/404/409 and sanitized unexpected failure separated.
 
 ## Evidence allocation (10 minutes)
 

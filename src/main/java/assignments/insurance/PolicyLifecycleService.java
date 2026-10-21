@@ -10,10 +10,19 @@ import java.util.Optional;
  */
 public final class PolicyLifecycleService {
     private final Clock clock;
+    private final PolicyIssueSnapshotFactory snapshotFactory;
 
     public PolicyLifecycleService(Clock clock) {
-        this.clock = clock;
+        this(clock, PolicyIssueSnapshotFactory.trainingFixtures());
     }
+
+    /** Construction dependency for deterministic coursework fixtures; receipt decisions remain learner-owned. */
+    public PolicyLifecycleService(Clock clock, PolicyIssueSnapshotFactory snapshotFactory) {
+        this.clock = clock;
+        this.snapshotFactory = java.util.Objects.requireNonNull(snapshotFactory);
+    }
+
+    PolicyIssueSnapshotFactory snapshotFactoryForTraining() { return snapshotFactory; }
 
     public boolean validateIssue(PolicyIssueRequest request, PolicyIssueFacts facts) {
         // LEARNER TODO Day 31: validate request against authenticated-owner and quote fixture facts.
@@ -28,6 +37,13 @@ public final class PolicyLifecycleService {
     public boolean isImmutableIssueSnapshot(PolicySnapshot before, PolicySnapshot after) {
         // LEARNER TODO Day 33: quote/product/rate/premium snapshot never gets repriced.
         throw todo(33);
+    }
+
+    /** Learner-owned Day34 mapping from the domain decision to stable transport data. */
+    public PolicyIssueResponse issueResponse(PolicyIssueRequest request, PolicyIssueFacts facts,
+                                             Optional<PolicySnapshot> existingReceiptPolicy) {
+        // LEARNER TODO Day 34: validate shape/access, then map create/replay/conflict to safe status/body/Location.
+        throw todo(34);
     }
 
     public int issueHttpStatus(PolicyIssueRequest request, Optional<PolicySnapshot> existing) {
