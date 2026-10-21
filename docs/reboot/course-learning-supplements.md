@@ -137,7 +137,7 @@ Use the [Day 19 worked guide](teaching/day-19-latest-refresh.md#worked-trace) an
 Use the [Day 20 worked guide](teaching/day-20-truthful-mutation.md#worked-trace) and executable React tests. The injected selection function returns `Promise<void>`; do not read a status from its resolved value or retry blindly.
 ## Day 21 — CSRF boundary
 
-Use the [complete Day 21 CSRF guide](teaching/day-21-csrf-boundaries.md): required owned-course Step 08 (11:08), then the token/session/authorization trace in the existing 25-minute block. Run the supporting check `./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test`; missing/invalid token returns 403 and a valid token reaches the synthetic handler. The documented `Day21ContractTest` selector has no source file, so full Day 21 acceptance remains blocked. This supporting harness is not production security evidence.
+Use the [complete Day 21 CSRF guide](teaching/day-21-csrf-boundaries.md): required owned-course Step 08 (11:08), then the server-issued cookie/session/header trace in the existing 25-minute block. Instructor HTTP check: `./mvnw -Dtest=Day21SecurityInfrastructureTest test`. Learner acceptance: `./mvnw -Plearner-tests -Dtest=Day21ContractTest test`; it calls the actual `JourneyAccessPolicy` and remains blocked at its Day 12 TODO. The instructor harness is not production security evidence.
 
 **Primary reference:** [Spring Security CSRF protection](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html)
 
@@ -149,7 +149,7 @@ Use the [complete Day 22 correlation guide](teaching/day-22-correlation.md) and 
 
 ## Day 23 — Liveness, readiness, and exposure
 
-Use the [complete Day 23 readiness guide](teaching/day-23-readiness.md) and run `./mvnw -Dtest=Day23ReadinessProjectionReferenceTest test` for indicator/projection separation. The real endpoint fixture is `./mvnw -Dtest=Day23ActuatorInfrastructureTest test`; it uses disposable PostgreSQL and observes `groups` alongside `status` on overall health, which does not meet the strict status-only contract. Do not claim the mismatch is fixed or the toy proves a live endpoint.
+Use the [complete Day 23 readiness guide](teaching/day-23-readiness.md). `./mvnw -Dtest=Day23ActuatorInfrastructureTest test` exercises a real Actuator server and disposable PostgreSQL probe with a test-only projection witness. It verifies exact status-only health/readiness bodies, UP/DOWN HTTP codes, and disabled `/env` and `/configprops`. The learner-tagged `Day23HealthProjectionContractTest` remains red at `HealthResponseProjection.publicOptions()` until implemented; `Day23ContractTest` separately covers the database readiness indicator TODO.
 
 **Primary reference:** [Spring Boot Actuator endpoints](https://docs.spring.io/spring-boot/reference/actuator/endpoints.html)
 

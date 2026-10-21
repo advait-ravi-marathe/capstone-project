@@ -2068,21 +2068,27 @@
         "contract_path": "docs/reboot/contracts/day-21.md",
         "active_guide_path": "docs/reboot/teaching/day-21-csrf-boundaries.md",
         "acceptance_reference": "docs/reboot/contracts/day-21.md",
-        "concept": "CSRF token, session identity, object ownership",
+        "concept": "Server-issued CSRF cookie/header, session identity, object ownership",
         "concept_reference": "docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace",
         "evidence_reference": "docs/reboot/contracts/day-21.md",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
         "integration_status": "blocked",
-        "acceptance_commands": [],
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day21ContractTest test"
+        ],
         "infrastructure_commands": [
-          "./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test"
+          "./mvnw -Dtest=Day21SecurityInfrastructureTest test"
         ],
         "related_paths": [
+          "src/test/java/assignments/reboot/Day21SecurityInfrastructureTest.java",
+          "src/test/java/assignments/reboot/Day21ContractTest.java",
           "docs/reboot/teaching/day-21-csrf-boundaries.md"
         ],
         "related_evidence_paths": [],
-        "learner_seams": [],
+        "learner_seams": [
+          "JourneyAccessPolicy.assertCanAccess (existing Day 12 TODO)"
+        ],
         "api_endpoints": [
           "POST /api/quote-selections"
         ],
@@ -2121,7 +2127,7 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
+      "course_learning_block": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08); REST-CSRF and CORS are optional, not stacked. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the real server-issued cookie/session/header flow. Instructor command `./mvnw -Dtest=Day21SecurityInfrastructureTest test`; learner acceptance `./mvnw -Plearner-tests -Dtest=Day21ContractTest test` reaches the real owner-policy TODO. No production authentication claim.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
       "course_learning_supplement_path": "docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace",
       "course_learning_access": [
@@ -2284,21 +2290,28 @@
         "runtime_harness_status": "verified",
         "integration_status": "blocked",
         "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=Day23HealthProjectionContractTest test",
           "./mvnw -Plearner-tests -Dtest=Day23ContractTest test"
         ],
         "infrastructure_commands": [
-          "./mvnw -Dtest=Day23ReadinessProjectionReferenceTest test"
+          "./mvnw -Dtest=Day23ActuatorInfrastructureTest test"
         ],
         "related_paths": [
+          "src/main/java/assignments/insurance/HealthResponseProjection.java",
+          "src/main/java/assignments/insurance/Day23HealthEndpointWebExtension.java",
+          "src/main/java/assignments/insurance/HealthResponseProjectionActuatorConfiguration.java",
           "src/test/java/assignments/reboot/Day23ActuatorInfrastructureTest.java",
+          "src/test/java/assignments/reboot/Day23HealthProjectionContractTest.java",
           "src/test/java/assignments/reboot/Day23ContractTest.java",
           "docs/reboot/teaching/day-23-readiness.md"
         ],
         "related_evidence_paths": [],
-        "learner_seams": [],
+        "learner_seams": [
+          "HealthResponseProjection.publicOptions (new explicit TODO)",
+          "DatabaseReadinessIndicator.health (existing TODO)"
+        ],
         "api_endpoints": [],
         "asserted_response_fields": [
-          "groups",
           "status"
         ],
         "safety_preconditions": [],
@@ -2335,7 +2348,7 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
+      "course_learning_block": "**Course lesson:** Required owned-course 4993276, “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33), is foundation only. The [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches status-only projection within the same 25-minute block. Instructor HTTP command uses actual disposable PostgreSQL and a temporary projection witness; tagged acceptance tests keep the projection and readiness TODOs learner-owned.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
       "course_learning_supplement_path": "docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection",
       "course_learning_access": [
@@ -2451,7 +2464,7 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** Conditional, access-unconfirmed reference to course 1341538: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), total 3:40. If unavailable, replace that time with the named PostgreSQL reading; do not purchase/enroll. The [Day 24 guide](docs/reboot/teaching/day-24-explain.md#observed-postgresql-run) contains the runnable plan/output example. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
+      "course_learning_block": "**Course lesson:** Conditional, access-unconfirmed reference to course 1341538: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), total 3:40. If unavailable, replace that time with the named PostgreSQL reading; do not purchase/enroll. The [Day 24 guide](docs/reboot/teaching/day-24-explain.md#observed-postgresql-run) contains the runnable plan/output example. Use official PostgreSQL EXPLAIN plus Indexes and ORDER BY sections; first teach the station_id equality prefix, then the measured_at DESC / reading_id ASC mixed order. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
       "course_learning_supplement_path": "docs/reboot/teaching/day-24-explain.md#observed-postgresql-run",
       "course_learning_access": [
@@ -2551,7 +2564,7 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course/concept bridge:** No exact verified lecture covers this race. Read the named PostgreSQL transactions, Read Committed, and `INSERT ... ON CONFLICT` sections, then run the [Day 25 guide](docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace) within the existing 25-minute block. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
+      "course_learning_block": "**Course/concept bridge:** No exact verified lecture covers this race. Read PostgreSQL Transactions, Read Committed, and INSERT ON CONFLICT sections, then run the [Day 25 guide](docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace) within the existing 25-minute block. Read PostgreSQL Transactions, Read Committed, and INSERT ON CONFLICT sections; the guide applies them to raw JDBC transaction recovery. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
       "course_learning_supplement_path": "docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace",
       "course_learning_access": [],
@@ -2657,7 +2670,7 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course/concept bridge:** No exact verified audit lecture. Read the named PostgreSQL transactions and `INSERT ... RETURNING` sections, then run the [Day 26 guide](docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure) within the existing 25-minute block. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
+      "course_learning_block": "**Course/concept bridge:** No exact verified audit lecture. Read the named PostgreSQL transactions and `INSERT ... RETURNING` sections, then run the [Day 26 guide](docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure) within the existing 25-minute block. Read PostgreSQL Transactions and INSERT RETURNING sections; a general Spring transaction lesson does not teach this raw JDBC boundary. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
       "course_learning_supplement_path": "docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure",
       "course_learning_access": [],

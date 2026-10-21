@@ -2,6 +2,8 @@
 
 No exact course lesson is assigned. The existing 25-minute study block is 5:00 focused PostgreSQL reading, 13:00 worked trace, 4:00 prediction, and 3:00 pause buffer.
 
+Read only the relevant primary-source sections: [PostgreSQL transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html) (BEGIN/COMMIT/ROLLBACK and failed-transaction recovery), [Read Committed](https://www.postgresql.org/docs/18/transaction-iso.html) (each new statement obtains a fresh committed snapshot), and [INSERT](https://www.postgresql.org/docs/18/sql-insert.html) (`ON CONFLICT` as an alternative). These readings support the raw-JDBC transaction trace below; they do not require switching to Spring-managed transactions or copying the alternative into the learner method.
+
 ## Two-transaction trace
 
 The independent real-PostgreSQL teaching test is:

@@ -1,6 +1,6 @@
 # Day 21 — 2026-11-09: Protect cookie-authenticated writes
 
-**State:** A test-only form-login/CSRF harness exists in `Day12SecurityHarnessTest`; it does not configure production authentication. The full Day21ContractTest source is absent, so full Day21 acceptance is blocked.
+**State:** A test-only form-login/CSRF HTTP harness and `Day21ContractTest` are present; they do not configure production authentication. The instructor harness verifies server-issued cookie/header behavior. Learner acceptance calls the real `JourneyAccessPolicy` and remains blocked by its existing Day 12 TODO.
 
 **Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](../teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
@@ -18,13 +18,13 @@ Anonymous/session, missing/invalid/valid CSRF token.
 
 ## Prerequisite and isolation
 
-Days 12 and 18–20; session/CSRF test helpers. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
+Days 12 and 18–20; session/CSRF test helpers. The owner acceptance invokes the existing `JourneyAccessPolicy`; it does not replace that learner-owned rule with a canned result. Keep the security harness test-only. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Worked prompt:** Which boundary checks the CSRF token, establishes identity, and authorizes this object? Distinguish the supporting Day12 harness from the missing full Day21 acceptance.
+**Worked prompt:** Which boundary checks the CSRF token, establishes identity, and authorizes this object? Distinguish the passing instructor CSRF test from the owner acceptance blocked by the Day 12 policy TODO.
 
 ## Concept (25 minutes)
 
-Cookie session, CSRF header, identity, and object authorization are separate checks. Full Day21 acceptance is blocked because the documented test source is missing.
+Cookie session, CSRF header, identity, and object authorization are separate checks. The acceptance test exists, but its real owner-policy prerequisite remains unfinished.
 
 ## Evidence (10 minutes)
 
@@ -32,9 +32,11 @@ Security integration matrix. Record dated attempt state (`not attempted`, `attem
 
 ## Planned isolated command
 
-`./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test` (supporting test only; the documented `Day21ContractTest` has no source and full acceptance is blocked)
+Instructor HTTP boundary: `./mvnw -Dtest=Day21SecurityInfrastructureTest test`
 
-The supporting test uses a test-only form-login session. Missing/invalid CSRF tokens return 403; a valid token passes the CSRF filter. It does not fulfill the missing Day21 contract, prove production authentication, or establish ownership.
+Learner acceptance: `./mvnw -Plearner-tests -Dtest=Day21ContractTest test` (expected to stop at the existing `JourneyAccessPolicy` TODO until that prerequisite is completed).
+
+The instructor test obtains and sends an actual server-issued CSRF cookie/header pair over loopback HTTP. Missing/invalid tokens return 403 before the handler; a valid token passes the CSRF filter. It does not prove production authentication or ownership.
 
 ## Separate Java DSA block (60 minutes)
 

@@ -592,7 +592,7 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation.",
+      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). REST-CSRF and CORS lessons are optional, not stacked. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the token/session trace.",
       "worked_guide_path": "docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
@@ -606,11 +606,11 @@
           "role": "essential"
         }
       ],
-      "total_viewing_seconds": 1342,
-      "scope_note": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08). The REST-CSRF (8:40) and CORS (2:34) videos are optional later references, not stacked into today. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the remaining study allocation.",
-      "daily_study_note": "25-minute total. The 11:08 CSRF lesson is required; REST-CSRF and CORS lectures are optional later references. The worked guide then separates cookie, token, identity, and ownership within the same 25-minute study block.",
-      "reference_test_path": "src/test/java/assignments/reboot/Day12SecurityHarnessTest.java",
-      "reference_command": "./mvnw -Dtest=Day12SecurityHarnessTest#realSpringSecurityEnforcesCsrfOnWrites test"
+      "total_viewing_seconds": 668,
+      "scope_note": "Required 11:08 CSRF lesson plus the real server-issued cookie/session/header trace. Instructor HTTP evidence is separate from the learner owner acceptance, which calls the actual JourneyAccessPolicy and remains blocked at its Day 12 TODO.",
+      "daily_study_note": "25-minute total. Required 11:08 CSRF lesson; REST-CSRF and CORS are optional later. Use the guide to trace the server-issued cookie, session, and header. Instructor security test and learner owner acceptance are separate.",
+      "reference_test_path": "src/test/java/assignments/reboot/Day21SecurityInfrastructureTest.java",
+      "reference_command": "./mvnw -Dtest=Day21SecurityInfrastructureTest test"
     },
     {
       "day": 22,
@@ -637,7 +637,7 @@
           "role": "essential"
         }
       ],
-      "total_viewing_seconds": 1007,
+      "total_viewing_seconds": 593,
       "scope_note": "**Course lesson:** Required owned-course 4993276, section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54) is optional later only. Use the [Day 22 guide](docs/reboot/teaching/day-22-correlation.md#worked-run) within the same study block.",
       "daily_study_note": "25-minute total. The 9:53 logging overview is required; Actuator monitoring is optional later. Use the complete reference filter trace in the remaining same-day study block.",
       "reference_test_path": "src/test/java/assignments/learning/Day22CorrelationReferenceTest.java",
@@ -654,7 +654,7 @@
           "access_status": "confirmed_owned"
         }
       ],
-      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch.",
+      "verified_lessons_line": "**Course lesson:** Required owned-course 4993276, “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches status-only projection. The live instructor test uses a real disposable PostgreSQL probe and a temporary projection witness.",
       "worked_guide_path": "docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection",
       "daily_study_cap_minutes": 25,
       "viewing_is_not_completion": true,
@@ -669,10 +669,14 @@
         }
       ],
       "total_viewing_seconds": 453,
-      "scope_note": "**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch.",
-      "daily_study_note": "25-minute total. The 7:33 Actuator lesson is foundation only. The worked guide separates indicator logic from response projection and documents the current groups/status endpoint mismatch.",
-      "reference_test_path": "src/test/java/assignments/learning/Day23ReadinessProjectionReferenceTest.java",
-      "reference_command": "./mvnw -Dtest=Day23ReadinessProjectionReferenceTest test"
+      "scope_note": "**Course lesson:** Required owned-course 4993276, “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches status-only projection. The live instructor test uses a real disposable PostgreSQL probe and a temporary projection witness.",
+      "daily_study_note": "25-minute total. The 7:33 Actuator lesson is foundation only. The worked guide separates actual DB readiness, public response projection, and endpoint exposure; instructor witness evidence is not learner completion.",
+      "reference_test_path": "src/test/java/assignments/reboot/Day23ActuatorInfrastructureTest.java",
+      "reference_command": "./mvnw -Dtest=Day23ActuatorInfrastructureTest test",
+      "learner_acceptance_test_paths": [
+        "src/test/java/assignments/reboot/Day23HealthProjectionContractTest.java",
+        "src/test/java/assignments/reboot/Day23ContractTest.java"
+      ]
     },
     {
       "day": 24,

@@ -2,6 +2,8 @@
 
 No exact audit lecture is assigned. The 25-minute block is 4:00 focused PostgreSQL reading, 13:00 worked toy, 4:00 prediction, and 4:00 pause buffer.
 
+Use the focused [PostgreSQL transaction tutorial](https://www.postgresql.org/docs/18/tutorial-transactions.html) for atomic commit/rollback and [INSERT](https://www.postgresql.org/docs/18/sql-insert.html) for `RETURNING`, which reports rows actually inserted or updated. These are the relevant JDBC/database semantics; a general Spring transaction lecture does not teach this raw-connection seam.
+
 ## First change, repeat, and failure
 
 ```sh

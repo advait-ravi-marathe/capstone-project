@@ -12,6 +12,7 @@ import org.springframework.boot.web.server.context.WebServerApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import tools.jackson.databind.ObjectMapper;
 
 import javax.sql.DataSource;
@@ -27,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /** Live Actuator endpoint test backed by real disposable PostgreSQL, not a canned health result. */
 class Day23ActuatorInfrastructureTest {
-    private static volatile DataSource healthDataSource;
+    static volatile DataSource healthDataSource;
 
     @Test
     void exposesMinimalHealthPathsAndReflectsRealDatabaseAvailability() throws Exception {
@@ -35,7 +36,7 @@ class Day23ActuatorInfrastructureTest {
         healthDataSource = postgres.getPostgresDatabase();
         boolean postgresStopped = false;
         try (ConfigurableApplicationContext context = new SpringApplicationBuilder(
-                InsuranceDayOneApplication.class, TestHealthConfiguration.class)
+                InsuranceDayOneApplication.class, TestDatabaseHealthConfiguration.class, ProjectionWitnessConfiguration.class)
                 .web(WebApplicationType.SERVLET)
                 .properties("server.port=0", "spring.main.banner-mode=off", "logging.level.root=ERROR",
                         "management.endpoints.web.exposure.include=health",
@@ -54,11 +55,10 @@ class Day23ActuatorInfrastructureTest {
             assertEquals(200, readiness.statusCode());
             assertEquals("UP", mapper.readTree(health.body()).get("status").asString());
             assertEquals("UP", mapper.readTree(readiness.body()).get("status").asString());
-            assertEquals(2, mapper.readTree(health.body()).size());
-            assertEquals(1, mapper.readTree(readiness.body()).size());
-            assertEquals(true, mapper.readTree(health.body()).has("groups"));
-            assertEquals(false, mapper.readTree(readiness.body()).has("groups"));
+            assertEquals(mapper.readTree("{\"status\":\"UP\"}"), mapper.readTree(health.body()));
+            assertEquals(mapper.readTree("{\"status\":\"UP\"}"), mapper.readTree(readiness.body()));
             assertEquals(404, env.statusCode());
+            assertEquals(404, get(client, port, "/actuator/configprops").statusCode());
             assertFalse(health.body().contains("databaseReadiness"));
 
             postgres.close();
@@ -66,7 +66,10 @@ class Day23ActuatorInfrastructureTest {
             HttpResponse<String> unavailable = get(client, port, "/actuator/health/readiness");
             assertEquals(503, unavailable.statusCode());
             assertEquals("DOWN", mapper.readTree(unavailable.body()).get("status").asString());
-            assertEquals(1, mapper.readTree(unavailable.body()).size());
+            assertEquals(mapper.readTree("{\"status\":\"DOWN\"}"), mapper.readTree(unavailable.body()));
+            HttpResponse<String> overallUnavailable = get(client, port, "/actuator/health");
+            assertEquals(503, overallUnavailable.statusCode());
+            assertEquals(mapper.readTree("{\"status\":\"DOWN\"}"), mapper.readTree(overallUnavailable.body()));
         } finally {
             if (!postgresStopped) postgres.close();
             healthDataSource = null;
@@ -79,7 +82,7 @@ class Day23ActuatorInfrastructureTest {
     }
 
     @Configuration(proxyBeanMethods = false)
-    static class TestHealthConfiguration {
+    static class TestDatabaseHealthConfiguration {
         @Bean DatabaseReadinessProbe databaseReadinessProbe() {
             return () -> {
                 try (var connection = healthDataSource.getConnection()) {
@@ -91,6 +94,19 @@ class Day23ActuatorInfrastructureTest {
         }
         @Bean HealthIndicator databaseReadiness(DatabaseReadinessProbe probe) {
             return () -> probe.isAvailable() ? Health.up().build() : Health.down().build();
+        }
+    }
+
+    @Configuration(proxyBeanMethods = false)
+    static class ProjectionWitnessConfiguration {
+        @Bean @Primary
+        assignments.insurance.HealthResponseProjection day23ProjectionWitness() {
+            return new assignments.insurance.HealthResponseProjection() {
+                @Override
+                public Options publicOptions() {
+                    return new Options(false, java.util.Set.of());
+                }
+            };
         }
     }
 }

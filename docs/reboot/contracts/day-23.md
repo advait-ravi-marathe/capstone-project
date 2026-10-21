@@ -1,12 +1,12 @@
 # Day 23 — 2026-11-11: Expose minimal operational health
 
-**State:** The Actuator starter and live endpoint test are installed with a test-only health contributor. Database-readiness policy remains an explicit TODO; no real database readiness integration is claimed. Spring Boot 4.1.1 adds a public `groups` field to health responses when readiness/liveness groups are enabled; the requested status-only body therefore remains a known contract gap requiring a custom response boundary.
+**State:** A narrow Actuator response-projection seam and live endpoint test are installed. The learner-owned status projection and database-readiness indicator remain explicit TODOs. Instructor HTTP checks use a real disposable PostgreSQL probe and a temporary projection witness; they are infrastructure evidence, not learner completion.
 
-**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](../teaching/day-23-readiness.md#indicator-versus-projection) teaches response projection and documents the current `groups` mismatch. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
+**Course lesson:** Required owned-course 4993276, section “Getting Started with Spring Boot”: “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33). It is foundation only; the [Day 23 guide](../teaching/day-23-readiness.md#indicator-versus-projection) teaches the status-only response projection. See the [Days 1–30 map](../course-learning-map.md); exact catalog title metadata is not a claim of playback.
 
 ## Learner seam
 
-Actuator config / health test. Keep the business rule in this focused subject. Do not implement later-day behavior early.
+`HealthResponseProjection.publicOptions()` controls component/group exposure while Boot preserves the health status and HTTP code. `DatabaseReadinessIndicator.health()` remains a separate learner-owned seam. Do not implement later-day behavior early.
 
 ## Acceptance invariants
 
@@ -18,13 +18,13 @@ Healthy, DB unavailable, unauthorized management detail, exact response allowlis
 
 ## Prerequisite and isolation
 
-Days 8 and 12; disposable DB lifecycle fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
+Days 8 and 12; disposable DB lifecycle fixture. The instructor HTTP test checks actual PostgreSQL availability and uses a test-only projection witness; the tagged projection acceptance and existing indicator contract exercise the real learner TODOs. Do not count the witness as learner evidence. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Worked prompt:** Separate readiness indicator truth, public projection, endpoint exposure, and real database availability. What is the observed `groups` limitation?
+**Worked prompt:** Separate readiness indicator truth, public projection, endpoint exposure, and real database availability. Why must the response preserve `status` and omit `groups`, components, and environment details?
 
 ## Concept (25 minutes)
 
-Readiness truth, health response projection, endpoint exposure, and evidence boundaries. The overall endpoint currently includes `groups` as well as `status`.
+Readiness truth, health response projection, endpoint exposure, and evidence boundaries. The projection acceptance requires exactly the public `status` field.
 
 ## Evidence (10 minutes)
 
@@ -34,7 +34,7 @@ Healthy/unavailable responses with exposure check. Record dated attempt state (`
 
 `./mvnw -Plearner-tests -Dtest=Day23ContractTest test`
 
-Run `Day23ActuatorInfrastructureTest` for the live Actuator path and exposure check with a canned contributor, then `Day23ContractTest` for the learner-owned DB readiness policy TODO. The surface test confirms Boot 4.1.1 emits `groups` alongside `status`; this does not meet the strict status-only contract. The surface check is not evidence of DB availability. Infrastructure checks are separate.
+Run `Day23ActuatorInfrastructureTest` for live Actuator HTTP with an actual disposable PostgreSQL probe and a test-only response-projection witness. It verifies exact status-only bodies, UP/DOWN status codes, and disabled environment/configuration endpoints. `Day23HealthProjectionContractTest` separately tests the learner-owned projection against the real HTTP surface and remains red at its named TODO. `Day23ContractTest` separately tests the learner-owned database readiness indicator and remains red at its existing TODO. Do not treat the instructor witness as learner completion.
 
 ## Separate Java DSA block (60 minutes)
 
