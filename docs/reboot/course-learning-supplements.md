@@ -8,6 +8,18 @@ Use the complete runnable lesson in [Day 1 API bridge](day-01-api-bridge.md). It
 
 **Primary references:** [Spring `@ResponseBody` and `@RestController`](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responsebody.html), [Spring MVC request mappings](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-requestmapping.html), and [Spring Boot Maven `test-run`](https://docs.spring.io/spring-boot/maven-plugin/run.html#run.test-run). These support the worked guide; the learner should run and observe the fixture rather than treat links as completion.
 
+## Day 2 — Request-body conversion and validation order
+
+Use [the complete request-boundary guide](teaching/day-02-request-boundary.md) after required Step 09, “Implementing POST Method to create User Resource” (8:36). The optional validation lecture is a later reference, not today’s required material. The guide includes a beginner constructor/test primer, an executable in-process reference with valid, blank, malformed, absent-body, and distinct-value cases, a recording collaborator, and the exact limits of MockMvc evidence. Transfer only after the example: the capstone empty selection list is valid and must not be rejected as a generic “empty request.”
+
+**Primary references:** [Spring `@RequestBody`](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html), [constructor injection](https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html), [MockMvc overview](https://docs.spring.io/spring-framework/reference/testing/mockmvc/overview.html), and [JUnit assertions](https://docs.junit.org/6.1.3/writing-tests/assertions.html).
+
+## Day 3 — Safe exception translation
+
+Use [the complete safe-errors guide](teaching/day-03-safe-errors.md) after required Step 12, “Implementing Generic Exception Handling for all Resources” (11:29). The Day 11 404 lecture is optional later, not stacked into today’s block. The guide shows a path-variable request, a known 409 failure, an unexpected 500 with fixed redacted body, and a separate new-ID variation. It preserves the capstone’s own error codes and messages and does not require the later 401/403 topic.
+
+**Primary reference:** Spring MVC [exception handling and `@ExceptionHandler`](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html), initial handler example and exception mapping.
+
 ## Day 4 — Immutable catalog values
 
 A Java `record Product(String code, String displayName)` is a compact value carrier. `List.copyOf(input)` prevents callers from changing the collection through an alias; it does not validate duplicate codes or blank fields. Inspect one supplied catalog fixture and identify which checks belong at construction versus request validation. Keep those invariants as explicit learner work.

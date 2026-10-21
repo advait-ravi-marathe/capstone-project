@@ -2,7 +2,7 @@
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”. Watch: “Step 11 - Implementing Exception Handling - 404 Resource Not Found” (7:49); “Step 12 - Implementing Generic Exception Handling for all Resources” (11:29). 19:18 viewing. The course example is a social-media API; adapt only its failure boundary to the synthetic quote case. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule.
+**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 12 - Implementing Generic Exception Handling for all Resources” (11:29; item 35018806). Study the [Day 3 safe-errors guide](../teaching/day-03-safe-errors.md) before implementation. “Step 11 - Implementing Exception Handling - 404 Resource Not Found” (7:49; item 35018810) is optional later reference, not stacked into today. Catalog metadata verified 2026-10-21; playback not verified. See the [Days 1–30 map](../course-learning-map.md).
 
 ## Learner seam
 
@@ -20,21 +20,19 @@ Fixture not-found, conflict and unexpected exception; verify safe fields and no 
 
 Day 2; mocked service throws fixed fixture exceptions. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Map one expected domain failure and one unexpected failure across the HTTP boundary. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Worked design question (after the guide):** Why does a client receive a stable error code while internal exception text stays out of the response? Do not create an ADR or architecture case study.
 
 ## Concept (25 minutes)
 
-HTTP status semantics and failure boundaries [B].
+Study the required generic exception-handling lesson and the Day 3 guide: controller failure, matching exception handler, `ResponseEntity` status/body, and a fixed safe response for unknown errors. Do not copy the toy strings into the capstone or require the later Day 12 authorization distinction.
 
 ## Evidence (10 minutes)
 
 Three negative response snapshots. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation. DSA notes include Java attempt, edge cases, complexity and independent-solve status.
 
-## Planned isolated command
+## Instructor reference and preserved learner command
 
-`./mvnw -Plearner-tests -Dtest=Day03ContractTest test`
-
-This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
+Run the independent worked example first: `./mvnw -Dtest=Day03SafeErrorsReferenceTest test`. Then use the existing learner selector: `./mvnw -Plearner-tests -Dtest=Day03ContractTest test`. This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
 ## Separate Java DSA block (60 minutes)
 
@@ -42,9 +40,9 @@ This focused test and its learner TODO seam are installed. The command was run w
 
 ## Interview transfer (inside the current evidence block)
 
-**Question:** When are 400, 404, 409 and 500 appropriate? Which details must never reach a client?
+**Question:** How does a specific expected failure differ from an unexpected exception at the response boundary?
 
-**Observable evidence:** Predict mapped responses; explain sanitized 500 and show one test per error class. Distinguish 401 from 403 without changing the contract’s non-disclosing 404 policy.
+**Observable evidence:** Explain the toy 409 and sanitized 500 outcomes, then identify the fixed capstone 404/409/500 codes and messages. Do not assess 401/403 today.
 
 **Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
 

@@ -209,10 +209,10 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-02.md",
-        "active_guide_path": "docs/reboot/contracts/day-02.md",
+        "active_guide_path": "docs/reboot/teaching/day-02-request-boundary.md",
         "acceptance_reference": "docs/reboot/contracts/day-02.md",
-        "concept": "HTTP request contracts and boundary vs domain validation",
-        "concept_reference": "docs/reboot/contracts/day-02.md#concept-25-minutes",
+        "concept": "Request-body conversion, validation order, and the controller-to-service boundary",
+        "concept_reference": "docs/reboot/teaching/day-02-request-boundary.md#study-first",
         "evidence_reference": "docs/reboot/contracts/day-02.md",
         "status": "not_attempted",
         "runtime_harness_status": "verified",
@@ -221,7 +221,10 @@
           "./mvnw -Plearner-tests -Dtest=Day02ContractTest,Day02ApiAcceptanceTest test"
         ],
         "infrastructure_commands": [],
-        "related_paths": [],
+        "related_paths": [
+          "docs/reboot/teaching/day-02-request-boundary.md",
+          "src/test/java/assignments/learning/Day02RequestBoundaryReferenceTest.java"
+        ],
         "related_evidence_paths": [],
         "learner_seams": [],
         "api_endpoints": [],
@@ -255,9 +258,9 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 14 - Implementing Validations for REST API” (11:47). Total 20:23. Use the POST and validation examples; Day 1 API prerequisite comes first. See the [Days 1–30 map](docs/reboot/course-learning-map.md). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+      "course_learning_block": "**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36; item 35018816). Read the [Day 2 worked request-boundary guide](docs/reboot/teaching/day-02-request-boundary.md) before implementation. “Step 14 - Implementing Validations for REST API” (11:47; item 35018798) is optional later, not stacked into today. Catalog metadata verified 2026-10-21; video playback not verified. AWS course: none assigned for this local task. See the [Days 1–30 map](docs/reboot/course-learning-map.md).",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": null,
+      "course_learning_supplement_path": "docs/reboot/teaching/day-02-request-boundary.md",
       "course_learning_access": [
         "confirmed_owned"
       ],
@@ -267,15 +270,9 @@
           "duration": "8:36",
           "duration_seconds": 516,
           "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
-        },
-        {
-          "title": "Step 14 - Implementing Validations for REST API",
-          "duration": "11:47",
-          "duration_seconds": 707,
-          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
         }
       ],
-      "course_learning_total_viewing_seconds": 1223
+      "course_learning_total_viewing_seconds": 516
     },
     {
       "id": "CS-DAY03",
@@ -298,10 +295,10 @@
           "evidence": 10
         },
         "contract_path": "docs/reboot/contracts/day-03.md",
-        "active_guide_path": "docs/reboot/contracts/day-03.md",
+        "active_guide_path": "docs/reboot/teaching/day-03-safe-errors.md",
         "acceptance_reference": "docs/reboot/contracts/day-03.md",
-        "concept": "HTTP status semantics and failure boundaries",
-        "concept_reference": "docs/reboot/contracts/day-03.md#concept-25-minutes",
+        "concept": "Specific and generic exception translation into safe HTTP responses",
+        "concept_reference": "docs/reboot/teaching/day-03-safe-errors.md#study-first",
         "evidence_reference": "docs/reboot/contracts/day-03.md",
         "status": "not_attempted",
         "runtime_harness_status": "expected_todo_red",
@@ -310,7 +307,10 @@
           "./mvnw -Plearner-tests -Dtest=Day03ContractTest test"
         ],
         "infrastructure_commands": [],
-        "related_paths": [],
+        "related_paths": [
+          "docs/reboot/teaching/day-03-safe-errors.md",
+          "src/test/java/assignments/learning/Day03SafeErrorsReferenceTest.java"
+        ],
         "related_evidence_paths": [
           "evidence/reboot/initial-contracts-2026-10-20.json"
         ],
@@ -351,19 +351,13 @@
         "related_paths": []
       },
       "scope": "Complete the linked engineering and Java DSA blocks separately within the 180-minute daily total. Planned attempts/reviews are forecasts only; log actual dates, outputs, and outcomes.",
-      "course_learning_block": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”. Watch: “Step 11 - Implementing Exception Handling - 404 Resource Not Found” (7:49); “Step 12 - Implementing Generic Exception Handling for all Resources” (11:29). 19:18 viewing. The course example is a social-media API; adapt only its failure boundary to the synthetic quote case. See the [Days 1–30 map](docs/reboot/course-learning-map.md) for course verification and the total-time rule. AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+      "course_learning_block": "**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 12 - Implementing Generic Exception Handling for all Resources” (11:29; item 35018806). Read the [Day 3 worked safe-errors guide](docs/reboot/teaching/day-03-safe-errors.md) before implementation. “Step 11 - Implementing Exception Handling - 404 Resource Not Found” (7:49; item 35018810) is optional later, not stacked into today. Catalog metadata verified 2026-10-21; video playback not verified. AWS course: none assigned for this local task. See the [Days 1–30 map](docs/reboot/course-learning-map.md).",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
-      "course_learning_supplement_path": null,
+      "course_learning_supplement_path": "docs/reboot/teaching/day-03-safe-errors.md",
       "course_learning_access": [
         "confirmed_owned"
       ],
       "course_learning_lessons": [
-        {
-          "title": "Step 11 - Implementing Exception Handling - 404 Resource Not Found",
-          "duration": "7:49",
-          "duration_seconds": 469,
-          "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
-        },
         {
           "title": "Step 12 - Implementing Generic Exception Handling for all Resources",
           "duration": "11:29",
@@ -371,7 +365,7 @@
           "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
         }
       ],
-      "course_learning_total_viewing_seconds": 1158
+      "course_learning_total_viewing_seconds": 689
     },
     {
       "id": "CS-DAY04",
