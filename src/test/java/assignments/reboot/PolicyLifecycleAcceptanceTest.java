@@ -120,6 +120,8 @@ class PolicyLifecycleAcceptanceTest {
         for(var changed:oneFieldChanges) assertFalse(service.isImmutableIssueSnapshot(original,changed),"each captured issue field is independently immutable: "+changed);
         var legitimatelyServiced=new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),PolicyStatus.ISSUED,2,List.of(new PolicyEndorsement(2,LocalDate.parse("2026-12-02"),"REBUILD_AMOUNT",new BigDecimal("200000.00"))),null);
         assertTrue(service.isImmutableIssueSnapshot(original,legitimatelyServiced),"servicing status/version/history may change without repricing issue facts");
+        var scheduled=new PolicySnapshot(original.policyId(),original.ownerId(),original.journeyId(),original.quoteVersionId(),original.productVersion(),original.rateVersion(),original.annualPremiumRupees(),original.currency(),original.effectiveDate(),PolicyStatus.CANCEL_SCHEDULED,3,legitimatelyServiced.endorsements(),LocalDate.parse("2026-12-10"));
+        assertTrue(service.isImmutableIssueSnapshot(original,scheduled),"a valid cancellation schedule changes servicing state/date, not captured issue facts");
     }
 
     @Test void day34MapsCreateReplayAndConflictingReplayToStableHttpCodes() {
@@ -201,7 +203,7 @@ class PolicyLifecycleAcceptanceTest {
     @Test void day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion() {
         assertAll("endorsement command invariants",
                 () -> assertTrue(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00")))),
-                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-18"), "UNKNOWN", new BigDecimal("200000.00")))),
+                () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "UNKNOWN", new BigDecimal("200000.00"))), "unknown reason is rejected with an otherwise valid date/version/amount"),
                 () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(0, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "stale expected version 0 must be rejected for current version 1"),
                 () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(2, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "future expected version must be rejected"),
                 () -> assertFalse(service.validateEndorsement(issued(), new PolicyEndorsementRequest(1, LocalDate.parse("2026-11-18"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), "past effective date is rejected independently of reason and version"),
@@ -209,15 +211,22 @@ class PolicyLifecycleAcceptanceTest {
     }
 
     @Test void day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder() {
-        var firstPrior = new PolicyEndorsement(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("150000.00"));
-        var secondPrior = new PolicyEndorsement(2, LocalDate.parse("2026-12-03"), "REBUILD_AMOUNT", new BigDecimal("200000.00"));
-        var originalHistory=List.of(firstPrior,secondPrior);
-        var policy = withHistory(originalHistory);
-        var changed = service.endorse(policy, new PolicyEndorsementRequest(2, LocalDate.parse("2026-12-04"), "REBUILD_AMOUNT", new BigDecimal("300000.00")));
-        assertEquals(3, changed.version());
-        assertEquals(List.of(firstPrior,secondPrior,new PolicyEndorsement(3,LocalDate.parse("2026-12-04"),"REBUILD_AMOUNT",new BigDecimal("300000.00"))),changed.endorsements());
-        assertEquals(2,policy.version(),"input value is unchanged");
-        assertEquals(originalHistory,policy.endorsements(),"input history remains unchanged");
+        var v2History=List.of(new PolicyEndorsement(2,LocalDate.parse("2026-12-02"),"REBUILD_AMOUNT",new BigDecimal("200000.00")));
+        var policyV2=withHistory(v2History);
+        var requestA=new PolicyEndorsementRequest(2,LocalDate.parse("2026-12-04"),"REBUILD_AMOUNT",new BigDecimal("300000.00"));
+        var expectedA=new PolicySnapshot("policy-a","owner-a","journey-a","quote-a","home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",LocalDate.parse("2026-12-01"),PolicyStatus.ISSUED,3,List.of(v2History.get(0),new PolicyEndorsement(3,requestA.effectiveDate(),requestA.changeCode(),requestA.trainingRebuildAmountRupees())),null);
+        var changedA=service.endorse(policyV2,requestA);
+        assertEquals(expectedA,changedA,"first appended snapshot is fully derived from the valid v2 input and submitted request");
+        assertEquals(2,policyV2.version(),"input value is unchanged");
+        assertEquals(v2History,policyV2.endorsements(),"input history remains unchanged");
+
+        var policyV2Different=withHistory(List.of(new PolicyEndorsement(2,LocalDate.parse("2026-12-03"),"REBUILD_AMOUNT",new BigDecimal("250000.00"))));
+        var originalDifferentHistory=policyV2Different.endorsements();
+        var requestB=new PolicyEndorsementRequest(2,LocalDate.parse("2026-12-05"),"REBUILD_AMOUNT",new BigDecimal("400000.00"));
+        var expectedB=new PolicySnapshot("policy-a","owner-a","journey-a","quote-a","home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",LocalDate.parse("2026-12-01"),PolicyStatus.ISSUED,3,List.of(originalDifferentHistory.get(0),new PolicyEndorsement(3,requestB.effectiveDate(),requestB.changeCode(),requestB.trainingRebuildAmountRupees())),null);
+        assertEquals(expectedB,service.endorse(policyV2Different,requestB),"a distinct valid request must produce its own full expected history");
+        assertEquals(2,policyV2Different.version());
+        assertEquals(originalDifferentHistory,policyV2Different.endorsements());
     }
 
     @Test void day39StaleConcurrentEndorsementDoesNotCreatePartialVersion() throws Exception {
@@ -229,8 +238,10 @@ class PolicyLifecycleAcceptanceTest {
             CountDownLatch ready = new CountDownLatch(2);
             CountDownLatch start = new CountDownLatch(1);
             try (ExecutorService pool = Executors.newFixedThreadPool(2)) {
-                var first = pool.submit(() -> raceEndorse(ready, start, dataSource, "2026-12-02", "200000.00"));
-                var second = pool.submit(() -> raceEndorse(ready, start, dataSource, "2026-12-03", "300000.00"));
+                var firstRequest=new PolicyEndorsementRequest(1,LocalDate.parse("2026-12-02"),"REBUILD_AMOUNT",new BigDecimal("200000.00"));
+                var secondRequest=new PolicyEndorsementRequest(1,LocalDate.parse("2026-12-03"),"REBUILD_AMOUNT",new BigDecimal("300000.00"));
+                var first = pool.submit(() -> raceEndorse(ready, start, dataSource, firstRequest));
+                var second = pool.submit(() -> raceEndorse(ready, start, dataSource, secondRequest));
                 assertTrue(ready.await(5, TimeUnit.SECONDS));
                 start.countDown();
                 Object firstResult = getRaceResult(first);
@@ -239,8 +250,11 @@ class PolicyLifecycleAcceptanceTest {
                 assertEquals(1, (firstResult instanceof VersionConflictException ? 1 : 0) + (secondResult instanceof VersionConflictException ? 1 : 0), "the loser gets a stale-version conflict");
                 assertEquals(2, scalarLong(dataSource, "SELECT version FROM training_policy_lifecycle WHERE policy_id='policy-a'"));
                 assertEquals(2, count(dataSource, "training_policy_lifecycle_event"), "only issued and winning endorsement events exist");
+                var winningRequest=firstResult instanceof PolicySnapshot?firstRequest:secondRequest;
+                PolicySnapshot expectedWinner=new PolicySnapshot("policy-a","owner-a","journey-a","quote-a","home-secure-v1","training-rate-v1",new BigDecimal("125.00"),"INR",LocalDate.parse("2026-12-01"),PolicyStatus.ISSUED,2,List.of(new PolicyEndorsement(2,winningRequest.effectiveDate(),winningRequest.changeCode(),winningRequest.trainingRebuildAmountRupees())),null);
                 PolicySnapshot winner=firstResult instanceof PolicySnapshot p?p:(PolicySnapshot)secondResult;
-                var winningChange=winner.endorsements().get(winner.endorsements().size()-1);
+                var winningChange=winningRequest;
+                assertEquals(expectedWinner,winner,"returned winner must match the exact submitted request that succeeded");
                 assertPersistedPolicy(dataSource,winner);
                 assertEvent(dataSource,"policy-a",2,"ENDORSED",winningChange.effectiveDate(),winningChange.changeCode(),winningChange.trainingRebuildAmountRupees());
             }
@@ -411,10 +425,9 @@ class PolicyLifecycleAcceptanceTest {
         }
     }
     private static PolicySnapshot raceEndorse(CountDownLatch ready, CountDownLatch start, javax.sql.DataSource dataSource,
-                                               String effectiveDate, String amount) throws Exception {
+                                               PolicyEndorsementRequest request) throws Exception {
         ready.countDown(); if (!start.await(5, TimeUnit.SECONDS)) throw new IllegalStateException("race start timed out");
-        return serviceStatic().endorseAtExpectedVersion(dataSource, issued(),
-                new PolicyEndorsementRequest(1, LocalDate.parse(effectiveDate), "REBUILD_AMOUNT", new BigDecimal(amount)));
+        return serviceStatic().endorseAtExpectedVersion(dataSource, issued(), request);
     }
     private static Object getRaceResult(Future<PolicySnapshot> future) throws Exception {
         try { return future.get(10, TimeUnit.SECONDS); }

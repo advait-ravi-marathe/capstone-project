@@ -2491,7 +2491,8 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test"
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java",
         "infrastructure_commands": [
