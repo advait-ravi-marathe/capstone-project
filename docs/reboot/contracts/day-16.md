@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL pagination fixture and learner query seam installed. The focused tests currently stop at the explicit pagination TODO.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 11 - Exploring features of Spring Data JPA” (5:11). Total 11:47. These are query context only; use the linked stable PostgreSQL pagination example and preserve JDBC. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-16--stable-pagination).
+**Coursework before implementation:** Required owned reference: in28Minutes course 4993276, “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36), query context only. Do not stack the Spring Data JPA lesson. Use the [Day 16 executable pagination guide](../teaching/day-16-stable-pagination.md#worked-trace) for the exact tie-break and page outputs. Study remains 25 minutes; this project stays JDBC.
 
 ## Learner seam
 
@@ -20,7 +20,7 @@ Timestamp ties, page size 0/over 20, empty/final page, adjacent pages have no du
 
 Days 9 and 12; seeded history. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Choose a data-flow or sequence view for bounded quote history and its ownership boundary. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Teach-first design question (within the current concept block):** Why does equal-time ordering need the unique ascending ID tie-breaker? What does OFFSET select, and why can a new row between requests repeat an item? Use the concrete guided example; no blank system-design worksheet is assigned.
 
 ## Concept (25 minutes)
 

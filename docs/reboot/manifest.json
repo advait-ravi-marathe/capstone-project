@@ -1681,8 +1681,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Why does S1 remain present with a null optional child? Why do missing and foreign-owned parents both yield absence? Explain why the projected response excludes private columns."
         ],
         "assessment_axes": [
           "behavior",
@@ -1691,9 +1690,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "SQL joins, projections and null/empty semantics",
-      "concept_reference": "docs/reboot/contracts/day-15.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-15.md",
+      "engineering_concept": "Parent/child joins, allowlisted projection, and null/empty semantics",
+      "concept_reference": "docs/reboot/teaching/day-15-join-projection.md#worked-trace",
+      "guide_deep_link": "docs/reboot/teaching/day-15-join-projection.md#worked-trace",
       "dsa_board_summary": {
         "pattern": "pointer-elimination proof",
         "problem": "11 Container With Most Water",
@@ -1715,14 +1714,14 @@
       "dsa_concept": "pointer-elimination proof",
       "board_summary": {
         "engineering": "Read journey summary",
-        "concept_25m": "SQL joins, projections and null/empty semantics",
-        "concept_link": "docs/reboot/contracts/day-15.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-15.md",
+        "concept_25m": "Parent/child joins, allowlisted projection, and null/empty semantics",
+        "concept_link": "docs/reboot/teaching/day-15-join-projection.md#worked-trace",
+        "repo_guide": "docs/reboot/teaching/day-15-join-projection.md#worked-trace",
         "dsa_60m": "11 Container With Most Water",
         "dsa_pattern": "pointer-elimination proof",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-15--join-and-projection",
+      "course_learning_supplement": "docs/reboot/teaching/day-15-join-projection.md#worked-trace",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1738,22 +1737,27 @@
             "title": "Step 07 - Querying Data using Spring JDBC",
             "duration": "5:36",
             "duration_seconds": 336,
-            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot"
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "source_item_id": "35019858",
+            "course_id": "4993276"
           },
           {
             "title": "Step 07 - Understanding Optional class in Java",
             "duration": "7:14",
             "duration_seconds": 434,
-            "section_title": "APPENDIX - Introduction to Functional Programming with Java"
+            "section_title": "APPENDIX - Introduction to Functional Programming with Java",
+            "source_item_id": "35017356",
+            "course_id": "4993276"
           }
         ],
         "total_viewing_seconds": 770,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-15--join-and-projection",
-        "ticket_block_markdown": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 07 - Querying Data using Spring JDBC” (5:36). Section “APPENDIX - Introduction to Functional Programming with Java”: “Step 07 - Understanding Optional class in Java” (7:14). Total 12:50. Use the linked PostgreSQL join/projection example; select only contract-approved response fields. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-15--join-and-projection). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-15-join-projection.md#worked-trace",
+        "ticket_block_markdown": "Required owned-course references: “Step 07 - Querying Data using Spring JDBC” (5:36) and “Step 07 - Understanding Optional class in Java” (7:14), 12:50 total. The lessons are JDBC/Optional foundations, not a complete join lesson. Follow the linked PostgreSQL and executable worked guide in the remaining 12:10; no optional lecture is stacked.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "ticket_block_markdown": "Required owned-course references: “Step 07 - Querying Data using Spring JDBC” (5:36) and “Step 07 - Understanding Optional class in Java” (7:14), 12:50 total. The lessons are JDBC/Optional foundations, not a complete join lesson. Follow the linked PostgreSQL and executable worked guide in the remaining 12:10; no optional lecture is stacked."
     },
     {
       "day": 16,
@@ -1798,8 +1802,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "Why does equal-time ordering need the unique ascending ID tie-breaker? What does OFFSET select, and why can a new row between requests repeat an item?"
         ],
         "assessment_axes": [
           "behavior",
@@ -1808,9 +1811,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "Sorting, pagination cost and query complexity",
-      "concept_reference": "docs/reboot/contracts/day-16.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-16.md",
+      "engineering_concept": "Stable ordering, bounded LIMIT/OFFSET pages, and changing-data limits",
+      "concept_reference": "docs/reboot/teaching/day-16-stable-pagination.md#worked-trace",
+      "guide_deep_link": "docs/reboot/teaching/day-16-stable-pagination.md#worked-trace",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -1858,9 +1861,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Bound quote-history reads",
-        "concept_25m": "Sorting, pagination cost and query complexity",
-        "concept_link": "docs/reboot/contracts/day-16.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-16.md",
+        "concept_25m": "Stable ordering, bounded LIMIT/OFFSET pages, and changing-data limits",
+        "concept_link": "docs/reboot/teaching/day-16-stable-pagination.md#worked-trace",
+        "repo_guide": "docs/reboot/teaching/day-16-stable-pagination.md#worked-trace",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -1868,7 +1871,7 @@
           "LC 167 (Day 13, D+3, planned 2026-11-04)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-16--stable-pagination",
+      "course_learning_supplement": "docs/reboot/teaching/day-16-stable-pagination.md#worked-trace",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1884,22 +1887,19 @@
             "title": "Step 33 - Exploring JPA and Hibernate Queries for REST API",
             "duration": "6:36",
             "duration_seconds": 396,
-            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
-          },
-          {
-            "title": "Step 11 - Exploring features of Spring Data JPA",
-            "duration": "5:11",
-            "duration_seconds": 311,
-            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot"
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "source_item_id": "35018738",
+            "course_id": "4993276"
           }
         ],
-        "total_viewing_seconds": 707,
+        "total_viewing_seconds": 396,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-16--stable-pagination",
-        "ticket_block_markdown": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 11 - Exploring features of Spring Data JPA” (5:11). Total 11:47. These are query context only; use the linked stable PostgreSQL pagination example and preserve JDBC. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-16--stable-pagination). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-16-stable-pagination.md#worked-trace",
+        "ticket_block_markdown": "Required: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36) as query context only. The Spring Data JPA lecture is optional later, not stacked. Read PostgreSQL LIMIT/OFFSET guidance and work the linked five-row JDBC trace in the remaining study time; keep total at 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "ticket_block_markdown": "Required: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36) as query context only. The Spring Data JPA lecture is optional later, not stacked. Read PostgreSQL LIMIT/OFFSET guidance and work the linked five-row JDBC trace in the remaining study time; keep total at 25 minutes."
     },
     {
       "day": 17,
@@ -1933,8 +1933,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "How does the state union narrow after each early return? Which accessible role/name identifies Hindi, and where is its code stored?"
         ],
         "assessment_axes": [
           "behavior",
@@ -1943,9 +1942,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "Typed props and discriminated UI state",
-      "concept_reference": "docs/reboot/contracts/day-17.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-17.md",
+      "engineering_concept": "Typed props, discriminated UI states, and accessible names",
+      "concept_reference": "docs/reboot/teaching/day-17-render-typed-state.md#worked-trace",
+      "guide_deep_link": "docs/reboot/teaching/day-17-render-typed-state.md#worked-trace",
       "dsa_board_summary": {
         "pattern": "variable sliding window",
         "problem": "3 Longest Substring Without Repeating Characters",
@@ -1967,14 +1966,14 @@
       "dsa_concept": "variable sliding window",
       "board_summary": {
         "engineering": "Render product choices in React/TypeScript",
-        "concept_25m": "Typed props and discriminated UI state",
-        "concept_link": "docs/reboot/contracts/day-17.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-17.md",
+        "concept_25m": "Typed props, discriminated UI states, and accessible names",
+        "concept_link": "docs/reboot/teaching/day-17-render-typed-state.md#worked-trace",
+        "repo_guide": "docs/reboot/teaching/day-17-render-typed-state.md#worked-trace",
         "dsa_60m": "3 Longest Substring Without Repeating Characters",
         "dsa_pattern": "variable sliding window",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-17--typed-props-and-ui-state",
+      "course_learning_supplement": "docs/reboot/teaching/day-17-render-typed-state.md#worked-trace",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -1990,22 +1989,19 @@
             "title": "Making Components Reusable with Props [Core Concept]",
             "duration": "9:06",
             "duration_seconds": 546,
-            "section_title": "React Essentials - Components, JSX, Props, State & More"
-          },
-          {
-            "title": "Working with Props & TypeScript",
-            "duration": "14:20",
-            "duration_seconds": 860,
-            "section_title": "React + TypeScript"
+            "section_title": "React Essentials - Components, JSX, Props, State & More",
+            "source_item_id": "39649022",
+            "course_id": "1362070"
           }
         ],
-        "total_viewing_seconds": 1406,
+        "total_viewing_seconds": 546,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-17--typed-props-and-ui-state",
-        "ticket_block_markdown": "**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/), Academind by Maximilian Schwarzmüller; course access is not confirmed. “React Essentials - Components, JSX, Props, State & More”: “Making Components Reusable with Props [Core Concept]” (9:06). “React + TypeScript”: “Working with Props & TypeScript” (14:20). Total 23:26. Use these for typed props only; use the linked project example for discriminated UI-state behavior. No purchase/enrollment is requested. See the [Days 1–30 course map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-17--typed-props-and-ui-state). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-17-render-typed-state.md#worked-trace",
+        "ticket_block_markdown": "Conditional reference if accessible: “Making Components Reusable with Props [Core Concept]” (9:06); course access is unconfirmed. “Working with Props & TypeScript” (14:20) is optional replacement-only, not cumulative. Use the linked full typed-state and accessible-control reference; no purchase/enrollment. Keep total study at 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "ticket_block_markdown": "Conditional reference if accessible: “Making Components Reusable with Props [Core Concept]” (9:06); course access is unconfirmed. “Working with Props & TypeScript” (14:20) is optional replacement-only, not cumulative. Use the linked full typed-state and accessible-control reference; no purchase/enrollment. Keep total study at 25 minutes."
     },
     {
       "day": 18,
@@ -2050,8 +2046,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "What is the call count while the first save is pending? Why must pending release after both fulfillment and rejection, while the input remains available?"
         ],
         "assessment_axes": [
           "behavior",
@@ -2060,9 +2055,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "Controlled inputs, derived state and client/server validation",
-      "concept_reference": "docs/reboot/contracts/day-18.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-18.md",
+      "engineering_concept": "Controlled form state, pending ownership, and Promise<void> settlement",
+      "concept_reference": "docs/reboot/teaching/day-18-await-form-promise.md#worked-trace",
+      "guide_deep_link": "docs/reboot/teaching/day-18-await-form-promise.md#worked-trace",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -2110,9 +2105,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Capture quote input",
-        "concept_25m": "Controlled inputs, derived state and client/server validation",
-        "concept_link": "docs/reboot/contracts/day-18.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-18.md",
+        "concept_25m": "Controlled form state, pending ownership, and Promise<void> settlement",
+        "concept_link": "docs/reboot/teaching/day-18-await-form-promise.md#worked-trace",
+        "repo_guide": "docs/reboot/teaching/day-18-await-form-promise.md#worked-trace",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -2120,7 +2115,7 @@
           "LC 11 (Day 15, D+3, planned 2026-11-06)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-18--input-and-server-errors",
+      "course_learning_supplement": "docs/reboot/teaching/day-18-await-form-promise.md#worked-trace",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -2133,25 +2128,22 @@
         ],
         "lessons": [
           {
-            "title": "User Input & Two-Way-Binding",
-            "duration": "7:42",
-            "duration_seconds": 462,
-            "section_title": "React Essentials - Deep Dive"
-          },
-          {
             "title": "Managing & Getting User Input via State & Generic Handlers",
             "duration": "11:12",
             "duration_seconds": 672,
-            "section_title": "Working with Forms & User Input"
+            "section_title": "Working with Forms & User Input",
+            "source_item_id": "39837956",
+            "course_id": "1362070"
           }
         ],
-        "total_viewing_seconds": 1134,
+        "total_viewing_seconds": 672,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-18--input-and-server-errors",
-        "ticket_block_markdown": "**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/); access is not confirmed. “React Essentials - Deep Dive”: “User Input & Two-Way-Binding” (7:42). “Working with Forms & User Input”: “Managing & Getting User Input via State & Generic Handlers” (11:12). Total 18:54. These teach controlled input patterns; use the linked example for client/server error reconciliation. No purchase/enrollment is requested. See the [Days 1–30 course map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-18--input-and-server-errors). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-18-await-form-promise.md#worked-trace",
+        "ticket_block_markdown": "Conditional reference if accessible: “Managing & Getting User Input via State & Generic Handlers” (11:12). “User Input & Two-Way-Binding” (7:42) is optional replacement-only. Access is unconfirmed; use the linked controlled-input/Promise worked guide if unavailable. No purchase/enrollment; total 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "ticket_block_markdown": "Conditional reference if accessible: “Managing & Getting User Input via State & Generic Handlers” (11:12). “User Input & Two-Way-Binding” (7:42) is optional replacement-only. Access is unconfirmed; use the linked controlled-input/Promise worked guide if unavailable. No purchase/enrollment; total 25 minutes."
     },
     {
       "day": 19,
@@ -2185,8 +2177,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "If A starts before B but finishes after B, which may update data, error, and loading? Why is an obsolete finally block still a state write?"
         ],
         "assessment_axes": [
           "behavior",
@@ -2195,9 +2186,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "TanStack Query keys, query configuration, cancellation, and latest-request-wins UI state; fixed component acceptance remains promise-based.",
-      "concept_reference": "docs/reboot/contracts/day-19.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-19.md",
+      "engineering_concept": "Event-triggered request identity and latest-request-wins state",
+      "concept_reference": "docs/reboot/teaching/day-19-latest-refresh.md#worked-trace",
+      "guide_deep_link": "docs/reboot/teaching/day-19-latest-refresh.md#worked-trace",
       "dsa_board_summary": {
         "pattern": "shrinking valid window",
         "problem": "209 Minimum Size Subarray Sum",
@@ -2219,14 +2210,14 @@
       "dsa_concept": "shrinking valid window",
       "board_summary": {
         "engineering": "Display quote snapshot",
-        "concept_25m": "TanStack Query module: query keys and aborting requests (18:32), plus remaining-time contract mapping.",
-        "concept_link": "docs/reboot/contracts/day-19.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-19.md",
+        "concept_25m": "Event-triggered request identity and latest-request-wins state",
+        "concept_link": "docs/reboot/teaching/day-19-latest-refresh.md#worked-trace",
+        "repo_guide": "docs/reboot/teaching/day-19-latest-refresh.md#worked-trace",
         "dsa_60m": "209 Minimum Size Subarray Sum",
         "dsa_pattern": "shrinking valid window",
         "dsa_reviews": []
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-19--async-ownership-and-tanstack-query",
+      "course_learning_supplement": "docs/reboot/teaching/day-19-latest-refresh.md#worked-trace",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
@@ -2239,27 +2230,30 @@
         ],
         "lessons": [
           {
-            "title": "Dynamic Query Functions & Query Keys",
-            "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
-            "duration": "13:05",
-            "duration_seconds": 785,
-            "source_item_id": "39499434"
+            "title": "Using async / await",
+            "duration": "2:25",
+            "duration_seconds": 145,
+            "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+            "source_item_id": "39836950",
+            "course_id": "1362070"
           },
           {
-            "title": "The Query Configuration Object & Aborting Requests",
-            "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
+            "title": "Handling Loading States",
             "duration": "5:27",
             "duration_seconds": 327,
-            "source_item_id": "39499460"
+            "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+            "source_item_id": "39836954",
+            "course_id": "1362070"
           }
         ],
-        "total_viewing_seconds": 1112,
+        "total_viewing_seconds": 472,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-19--async-ownership-and-tanstack-query",
-        "ticket_block_markdown": "**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/), preferred instructor Academind by Maximilian Schwarzmüller; access is not confirmed. In section “React Query / Tanstack Query: Handling HTTP Requests With Ease,” watch “Dynamic Query Functions & Query Keys” (13:05) and “The Query Configuration Object & Aborting Requests” (5:27), 18:32 total. This bundle replaces the generic useEffect lesson bundle for Day 19; do not watch both. Use the remaining time in the 25-minute study block to connect query-key identity to the supplied latest-request-wins contract. The Day 19 acceptance harness still tests the fixed promise-based component seam; the lesson is a concept reference and does not add TanStack Query as a dependency. No purchase/enrollment is requested. See the [Days 1–30 course map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-19--async-ownership-and-tanstack-query). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-19-latest-refresh.md#worked-trace",
+        "ticket_block_markdown": "Conditional reference if accessible: “Using async / await” (2:25) and “Handling Loading States” (5:27), total 7:52. TanStack query-key/cancellation lessons are optional comparisons only; the component seam is a promise callback. Use the linked out-of-order/deferred-promise guide, with no new dependency. Total 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "ticket_block_markdown": "Conditional reference if accessible: “Using async / await” (2:25) and “Handling Loading States” (5:27), total 7:52. TanStack query-key/cancellation lessons are optional comparisons only; the component seam is a promise callback. Use the linked out-of-order/deferred-promise guide, with no new dependency. Total 25 minutes."
     },
     {
       "day": 20,
@@ -2304,8 +2298,7 @@
         "timebox_minutes": 10,
         "instruction": "Choose one or two prompts; record concise evidence. Do not complete a questionnaire.",
         "prompts": [
-          "Explain what this feature does, why its data structure/module/transaction choice fits, one alternative, and one failure case.",
-          "Without AI assistance, make or debug one small change related to this feature and explain the result."
+          "When does the UI show success for Promise<void>? What should 409, 401, 404, and an unknown transport failure communicate?"
         ],
         "assessment_axes": [
           "behavior",
@@ -2314,9 +2307,9 @@
         ]
       },
       "sprint": "Sprint 2 (3–16 Nov 2026)",
-      "engineering_concept": "HTTP side effects, retry decisions and truthful UI state",
-      "concept_reference": "docs/reboot/contracts/day-20.md#concept-25-minutes",
-      "guide_deep_link": "docs/reboot/contracts/day-20.md",
+      "engineering_concept": "Promise<void> mutation outcomes, pending guard, and safe retry limits",
+      "concept_reference": "docs/reboot/teaching/day-20-truthful-mutation.md#worked-trace",
+      "guide_deep_link": "docs/reboot/teaching/day-20-truthful-mutation.md#worked-trace",
       "dsa_board_summary": {
         "pattern": "consolidation and active retrieval",
         "problem": null,
@@ -2364,9 +2357,9 @@
       "dsa_concept": "consolidation and active retrieval",
       "board_summary": {
         "engineering": "Connect selection action UI",
-        "concept_25m": "HTTP side effects, retry decisions and truthful UI state",
-        "concept_link": "docs/reboot/contracts/day-20.md#concept-25-minutes",
-        "repo_guide": "docs/reboot/contracts/day-20.md",
+        "concept_25m": "Promise<void> mutation outcomes, pending guard, and safe retry limits",
+        "concept_link": "docs/reboot/teaching/day-20-truthful-mutation.md#worked-trace",
+        "repo_guide": "docs/reboot/teaching/day-20-truthful-mutation.md#worked-trace",
         "dsa_60m": null,
         "dsa_pattern": "consolidation and active retrieval",
         "dsa_reviews": [
@@ -2374,38 +2367,35 @@
           "LC 3 (Day 17, D+3, planned 2026-11-08)"
         ]
       },
-      "course_learning_supplement": "docs/reboot/course-learning-supplements.md#day-20--honest-mutation-states-and-retry",
+      "course_learning_supplement": "docs/reboot/teaching/day-20-truthful-mutation.md#worked-trace",
       "course_learning_status": "verified_titles_video_not_watched_partial_or_direct",
       "course_learning": {
         "courses": [
           {
-            "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
-            "instructor": "in28Minutes Official",
-            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
-            "access_status": "confirmed_owned"
+            "title": "React - The Complete Guide (incl. Next.js, Redux)",
+            "instructor": "Academind by Maximilian Schwarzmüller",
+            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
+            "access_status": "preferred_access_unconfirmed"
           }
         ],
         "lessons": [
           {
-            "title": "Step 09 - Implementing POST Method to create User Resource",
-            "duration": "8:36",
-            "duration_seconds": 516,
-            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
-          },
-          {
-            "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
-            "duration": "11:24",
-            "duration_seconds": 684,
-            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate"
+            "title": "Handling HTTP Errors",
+            "duration": "9:16",
+            "duration_seconds": 556,
+            "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+            "source_item_id": "39836956",
+            "course_id": "1362070"
           }
         ],
-        "total_viewing_seconds": 1200,
+        "total_viewing_seconds": 556,
         "daily_study_cap_minutes": 25,
-        "worked_guide_path": "docs/reboot/course-learning-supplements.md#day-20--honest-mutation-states-and-retry",
-        "ticket_block_markdown": "**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location” (11:24). Total 20:00 is the full course allocation. These cover backend POST/status semantics; use the linked small UI state/retry example without adding React viewing. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Worked guide: [course-learning-supplements.md](docs/reboot/course-learning-supplements.md#day-20--honest-mutation-states-and-retry). AWS course: none assigned for this local application task; no AWS cloud service or certification objective is required today.",
+        "worked_guide_path": "docs/reboot/teaching/day-20-truthful-mutation.md#worked-trace",
+        "ticket_block_markdown": "Conditional reference if accessible: “Handling HTTP Errors” (9:16), access unconfirmed. Backend POST/201 lessons do not teach this UI Promise<void> shape. Use the linked resolved/rejected Promise and status mapping guide if unavailable; no purchase/enrollment or additional React lesson. Total 25 minutes.",
         "catalog_titles_verified_videos_not_watched": true,
         "aws_course_assigned": false
-      }
+      },
+      "ticket_block_markdown": "Conditional reference if accessible: “Handling HTTP Errors” (9:16), access unconfirmed. Backend POST/201 lessons do not teach this UI Promise<void> shape. Use the linked resolved/rejected Promise and status mapping guide if unavailable; no purchase/enrollment or additional React lesson. Total 25 minutes."
     },
     {
       "day": 21,

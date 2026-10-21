@@ -2,7 +2,7 @@
 
 **State:** Real-PostgreSQL test fixture and learner query seam installed. The acceptance tests currently stop at the explicit query TODO; no learner implementation is included.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Getting Started with JPA and Hibernate with Spring and Spring Boot”: “Step 07 - Querying Data using Spring JDBC” (5:36). Section “APPENDIX - Introduction to Functional Programming with Java”: “Step 07 - Understanding Optional class in Java” (7:14). Total 12:50. Use the linked PostgreSQL join/projection example; select only contract-approved response fields. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-15--join-and-projection).
+**Coursework before implementation:** Required owned references are in28Minutes course 4993276: “Step 07 - Querying Data using Spring JDBC” (5:36) and “Step 07 - Understanding Optional class in Java” (7:14). They do not teach the full join, so first use the [Day 15 executable join/projection guide](../teaching/day-15-join-projection.md#worked-trace), which supplies the complete PostgreSQL toy and output. Study remains 25 minutes; no extra lecture.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Empty, populated, unknown, other-owned, and exact JSON field allowlist.
 
 Days 9 and 12; seeded read model. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Choose a module or sequence view for the journey summary read path. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Teach-first design question (within the current concept block):** Why does S1 remain present with a null optional child? Why do missing and foreign-owned parents both yield absence? Explain why the projected response excludes private columns. Use the concrete guided example; no blank system-design worksheet is assigned.
 
 ## Concept (25 minutes)
 
-SQL joins, projections, null/empty semantics [E,F].
+Use the [executable Day 15 guide](../teaching/day-15-join-projection.md#worked-trace) before implementation. Work through the separate shelf/spotlight/hold example and then transfer only ownership, optional-child, empty-list, and field-allowlist ideas to the existing journey contract. No new schema or capstone SQL is supplied.
 
 ## Evidence (10 minutes)
 

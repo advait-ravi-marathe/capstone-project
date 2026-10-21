@@ -2,7 +2,7 @@
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/). Section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36); “Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location” (11:24). Total 20:00 is the full course allocation. These cover backend POST/status semantics; use the linked small UI state/retry example without adding React viewing. See the [Days 1–30 map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-20--honest-mutation-states-and-retry).
+**Coursework before implementation:** If available, use course 1362070 “Handling HTTP Errors” (9:16); access is unconfirmed. Backend POST/201 lessons are not assigned for this Promise<void> UI contract. First use the [Day 20 truthful mutation guide](../teaching/day-20-truthful-mutation.md#worked-trace) for the exact injected function, pending guard, status-to-message map, and ambiguous transport failure. No purchase/enrollment; total study 25 minutes.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Success, conflict, auth, unavailable, network error, double click.
 
 Days 1, 3 and 11 response contracts; fake API. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Draw the selection click-to-response flow and mark stale-version handling. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Teach-first design question (within the current concept block):** When does the UI show success for Promise<void>? What should 409, 401, 404, and an unknown transport failure communicate? Use the concrete guided example; no blank system-design worksheet is assigned.
 
 ## Concept (25 minutes)
 
-HTTP side effects, retry decisions and truthful UI state.
+Use the [Day 20 mutation guide](../teaching/day-20-truthful-mutation.md#worked-trace) before implementation. It teaches the exact Promise<void> status boundary, pending guard, safe messages, and why a transport failure may leave outcome unknown.
 
 ## Evidence (10 minutes)
 

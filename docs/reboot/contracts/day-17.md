@@ -2,7 +2,7 @@
 
 **State:** Minimal React/TypeScript workspace, fixed component tests, and learner TODO are installed. The UI workspace builds, while all component behavior tests currently fail at the placeholder.
 
-**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/), Academind by Maximilian Schwarzmüller; course access is not confirmed. “React Essentials - Components, JSX, Props, State & More”: “Making Components Reusable with Props [Core Concept]” (9:06). “React + TypeScript”: “Working with Props & TypeScript” (14:20). Total 23:26. Use these for typed props only; use the linked project example for discriminated UI-state behavior. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-17--typed-props-and-ui-state).
+**Coursework before implementation:** If available, use course 1362070 “Making Components Reusable with Props [Core Concept]” (9:06); access is unconfirmed. “Working with Props & TypeScript” (14:20) is optional replacement-only. First use the [Day 17 rendered-state guide](../teaching/day-17-render-typed-state.md#worked-trace) for all four states, accessible role/name queries, and a distinct variation. No purchase/enrollment; total study 25 minutes.
 
 ## Learner seam
 
@@ -20,11 +20,11 @@ Loading, error, empty, product options, accessibility query, no real fetch.
 
 Day 4 contract; canned fetch adapter. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Sketch the UI state and API boundary needed for product choices; keep server policy authoritative. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Teach-first design question (within the current concept block):** How does the state union narrow after each early return? Which accessible role/name identifies Hindi, and where is its code stored? Use the concrete guided example; no blank system-design worksheet is assigned.
 
 ## Concept (25 minutes)
 
-Typed props and discriminated UI state [K,L].
+Use the [rendered Day 17 guide](../teaching/day-17-render-typed-state.md#worked-trace) before implementing the component. It demonstrates all four state branches and role/name queries without a fetch or production URL.
 
 ## Evidence (10 minutes)
 

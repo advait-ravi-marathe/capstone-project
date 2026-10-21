@@ -2,7 +2,7 @@
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 
-**Course lesson:** Conditional reference to [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/), preferred instructor Academind by Maximilian Schwarzmüller; access is not confirmed. In section “React Query / Tanstack Query: Handling HTTP Requests With Ease,” watch “Dynamic Query Functions & Query Keys” (13:05) and “The Query Configuration Object & Aborting Requests” (5:27), 18:32 total. This bundle replaces the generic useEffect lesson bundle for Day 19; do not watch both. Use the remaining time in the 25-minute study block to connect query-key identity to the supplied latest-request-wins contract. The Day 19 acceptance harness still tests the fixed promise-based component seam; the lesson is a concept reference and does not add TanStack Query as a dependency. No purchase/enrollment is requested. See the [Days 1–30 course map](../course-learning-map.md). Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-19--async-ownership-and-tanstack-query).
+**Coursework before implementation:** If available, use course 1362070 “Using async / await” (2:25) and “Handling Loading States” (5:27), 7:52 total; access is unconfirmed. TanStack query-key/cancellation videos are not assigned. First use the [Day 19 deferred-refresh guide](../teaching/day-19-latest-refresh.md#worked-trace) to trace stale success, stale error, and stale finally behavior. No new dependency; total study 25 minutes.
 
 ## Learner seam
 
@@ -20,7 +20,7 @@ Exact decimal text, error/loading, deferred promises resolved out of order.
 
 Day 7 response contract; controlled deferred promises. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**System-design prompt (within the 25-minute concept block):** Map a quote snapshot response to its display state, including loading/error outcomes. See the [system design practice guide](../system-design-practice.md) and use only the applicable blank template.
+**Teach-first design question (within the current concept block):** If A starts before B but finishes after B, which may update data, error, and loading? Why is an obsolete finally block still a state write? Use the concrete guided example; no blank system-design worksheet is assigned.
 
 ## Concept (25 minutes)
 

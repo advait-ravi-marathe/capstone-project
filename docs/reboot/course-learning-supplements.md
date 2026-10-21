@@ -117,60 +117,24 @@ In `Day14BackendSliceIT`, the first handoff uses the existing learner-owned `Pro
 
 **Readiness question:** Trace one observed positive path or identify its actual first failing boundary. Name a previously taught transaction or value-ownership guarantee. No extra architecture assignment or Day 15 dependency.
 
-## Day 15 — Join and projection
+## Day 15 — Join, ownership, and projection
 
-A SQL join combines related rows by their key; a projection selects only fields needed by the response. For the supplied journey/quote fixture, trace which rows match and which response columns are selected. Distinguish no matching rows (empty collection) from a missing required parent (not found) using the contract. Do not widen the query to return unrelated or sensitive columns.
-
-
-**Concrete example:** Illustrative read: `SELECT j.id, q.version_id FROM journey j JOIN quote q ON q.journey_id = j.id WHERE j.id = ?`. Select only response fields and use the fixture to distinguish an empty match from a missing parent.
-
-**Primary reference:** [PostgreSQL table expressions and joins](https://www.postgresql.org/docs/18/queries-table-expressions.html)
-
+Use the [Day 15 worked guide](teaching/day-15-join-projection.md#worked-trace) and executable PostgreSQL reference. It teaches parent/child cardinality, absent versus empty, and an allowlisted projection before the learner query task.
 ## Day 16 — Stable pagination
 
-A page needs a deterministic order. Ordering only by a non-unique timestamp can move equal-time rows between pages; add the contract's stable unique tie-breaker. `LIMIT`/`OFFSET` choose a slice after ordering. Use the supplied page examples to check first, middle, and empty pages; do not claim the JPA lecture teaches PostgreSQL plan costs.
+Use the [Day 16 worked guide](teaching/day-16-stable-pagination.md#worked-trace) and executable PostgreSQL reference. It uses the contract order `created_at DESC, quote_version_id ASC`; do not use the older illustrative `id DESC` order.
+## Day 17 — Accessible typed UI states
 
+Use the [Day 17 worked guide](teaching/day-17-render-typed-state.md#worked-trace) and rendered React tests. The toy renders loading/error/empty/ready props and labelled controls; it performs no fetch.
+## Day 18 — Await the form Promise
 
-**Concrete example:** Illustrative order: `ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?`. The unique tie-breaker makes equal timestamps deterministic; use the contract’s exact sort and page defaults.
+Use the [Day 18 worked guide](teaching/day-18-await-form-promise.md#worked-trace) and controlled-promise React tests. It teaches the `Promise<void>` boundary, duplicate-submit guard, and cleanup on both outcomes; it does not change the capstone validation contract.
+## Day 19 — Latest-request-wins refresh
 
-**Primary reference:** [PostgreSQL `LIMIT` and `OFFSET`](https://www.postgresql.org/docs/18/queries-limit.html)
+Use the [Day 19 worked guide](teaching/day-19-latest-refresh.md#worked-trace) and deferred-promise tests. The existing seam is an event callback; TanStack Query is not required, and cancellation is not claimed.
+## Day 20 — Truthful mutation outcomes
 
-## Day 17 — Typed props and UI state
-
-A typed prop documents what a child component may receive. A discriminated union can represent mutually exclusive UI states, for example `{status: 'loading'}` or `{status: 'ready', items: Item[]}`; it avoids combinations such as “loading and failed” unless explicitly allowed. The course lesson supports typed props, not this project's complete state model. Adapt the supplied state table without implementing extra screens.
-
-
-**Concrete example:** Illustrative state: `type LoadState = {status:"loading"} | {status:"ready"; items: Item[]} | {status:"error"; message: string}`. Render each case explicitly; this example does not implement the assigned component.
-
-**Primary reference:** [React TypeScript guide](https://react.dev/learn/typescript)
-
-## Day 18 — Input and server errors
-
-Keep the field value as the source of truth while editing. On submit, map a server validation response to the relevant field or form-level message; do not assume client checks replace server validation. The fixed contract states which errors are field-specific. Use one valid and one invalid example and preserve the entered value when showing an error.
-
-
-**Concrete example:** Example response mapping: `{field:"rebuildAmount", code:"OUT_OF_RANGE"}` becomes a message next to that field; keep the typed value so the learner can correct it. The server remains authoritative.
-
-**Primary reference:** [React input reference](https://react.dev/reference/react-dom/components/input)
-
-## Day 19 — Async ownership and TanStack Query
-
-The preferred course has a matching module, “React Query / Tanstack Query: Handling HTTP Requests With Ease”; Day 19 assigns “Dynamic Query Functions & Query Keys” and “The Query Configuration Object & Aborting Requests” (18:32 total). The fixed Day 19 acceptance contract uses controlled promises to prove latest-request-wins and does not currently install TanStack Query. Treat the course as the concept reference; do not add a runtime dependency to this scaffold solely to match a video. In the remaining study time, connect query-key identity, cache ownership, and abort signal to the fixed behavior. Preserve any later task that explicitly requires TanStack Query rather than silently replacing it with `useEffect`.
-
-
-**Concrete example:** Pattern: `useQuery({queryKey:["quote", journeyId], queryFn: ({signal}) => loadQuote(journeyId, signal)})`. Keep server data in the query cache; use the supplied mutation/invalidation behavior after a successful write. Do not add automatic write retries.
-
-**Primary reference:** [TanStack Query queries](https://tanstack.com/query/latest/docs/framework/react/guides/queries) and [query cancellation](https://tanstack.com/query/latest/docs/framework/react/guides/query-cancellation)
-
-## Day 20 — Honest mutation states and retry
-
-A write UI should distinguish pending, confirmed success, and failure. After an ambiguous network failure, the server may already have committed; retry only when the endpoint's documented idempotency behavior makes it safe. The backend POST lessons cover status semantics, not frontend retry safety. Use the fixed scenarios and do not add automatic retries.
-
-
-**Concrete example:** A minimal UI state mapping is pending → disable duplicate click, success → show server-confirmed result, error → show safe message and an explicit retry option only when the API contract permits retry. Never infer success from a click.
-
-**Primary reference:** [TanStack Query mutations](https://tanstack.com/query/latest/docs/framework/react/guides/mutations)
-
+Use the [Day 20 worked guide](teaching/day-20-truthful-mutation.md#worked-trace) and executable React tests. The injected selection function returns `Promise<void>`; do not read a status from its resolved value or retry blindly.
 ## Day 21 — CSRF boundary
 
 A browser automatically attaches a session cookie, which is why a state-changing request needs the contract's CSRF token/header. CORS controls which origins may read/use browser responses; it does not replace CSRF protection. Verify the existing cookie-session flow and keep the assigned CSRF protections enabled.
