@@ -1,69 +1,44 @@
 {
+  "status": "local_source_and_packaged_gates_passed_pending_independent_review",
   "batch": "CoverStory Days 141-154",
-  "branch": "learning/coverstory-days-141-154",
-  "base_sha": "105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3",
-  "tested_code_sha": "3d0dcaf77b41a439d58f2b92c7329e17b79d13a4",
-  "tested_code_ci": {
-    "workflow": "CoverStory starter checks",
-    "run_number": 69,
-    "run_id": 39521541958,
-    "url": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39521541958",
-    "conclusion": "success",
-    "all_steps": "success"
-  },
+  "branch": "learning/coverstory-days-141-154-source-repair",
+  "tested_source_sha": "b80603375f458cc85738f7ad6aae4328acb02c94",
+  "base_sha": "fe709e603dcc06d8ccb0da96c67c1915bd16d0a6",
   "local_validation": {
-    "default_command": "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 clean test",
-    "default_result": "58 tests, 0 failures, 0 errors, 0 skipped",
-    "manifest_command": "./mvnw -o -Dmaven.repo.local=/tmp/capstone-m2 -Dtest=Day141To154InfrastructureTest test",
-    "manifest_result": "2 tests passed; selector paths, exact course records, date/budget/export-contract alignment, and pinned migration/legacy-command hashes checked",
-    "dsa_command": "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py",
-    "dsa_result": "19 tests passed",
-    "process_harness": "./mvnw -Plearner-tests -Dtest=ReleaseVerifierProcessAcceptanceTest test",
-    "process_harness_result": "1 passed; timeout/output-overflow/nonzero-exit cleanup and unrelated sentinel checks",
-    "learner_todo_red": {
-      "command": "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest test",
-      "result": "1 expected failure at Day 141 learner TODO in ReleaseArtifactPairPolicy.validate; selector compiled and executed"
-    }
+    "default_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home MAVEN_OPTS=-Dmaven.repo.local=/tmp/capstone-m2 CHROMIUM_BIN=/usr/bin/chromium ./mvnw -o clean test",
+    "default_result": "59 tests, 0 failures, 0 errors, 0 skipped",
+    "python_command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "python_result": "64 tests passed; the canonical DSA suites separately passed 19/19",
+    "focused_protocol_command": "./mvnw -o -Plocal-app,learner-tests -Dtest=InspectionReportContractAcceptanceTest,ReleaseInspectionCommandRunnerTest,BinaryFallbackAcceptanceTest test",
+    "focused_protocol_result": "10/10 passed using checksum-recorded temporary conformance witnesses; all four modified learner source files were restored byte-for-byte",
+    "schema_startup_process_result": "10/10 passed: valid/malformed mode boundary, absent schema no-migration refusal, packaged DB failure without success frame, V001-V005 checksum/typmod guards, timeout/overflow/nonzero and early-root-exit cleanup, TERM-resistant owned-child cleanup, and unrelated sentinel preservation",
+    "manifest_and_docs_result": "Day141To154InfrastructureTest 2/2; JSON parsing and git diff --check passed; daily contracts, manifests and owner exports synchronized"
   },
-  "two_artifact_runtime_witness": {
-    "command": "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest with explicit baseline/candidate artifact and provenance properties",
-    "result": "3 tests passed on one PostgreSQL 18.6 fixture; full A-to-B-to-A retained-database matrix and absent-schema no-migration refusal exercised",
-    "baseline_jar_sha256": "1cfebdcc78216022dfad5dac2b8fefc3da943c2687d39e3aab809bb7817a30d1",
-    "candidate_jar_sha256": "4bc459bb32bd00e2445bc575da890e852e8f165ca8058c5dfb25c0a79807eb3e",
-    "baseline_source": "105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3 in isolated prior worktree with explicitly recorded temporary Days 99-126 conformance overlay",
-    "candidate_source": "105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3 plus Days 141-154 worktree and explicitly recorded temporary prerequisite/new-seam witness overlays",
-    "matrix": [
-      "A legacy inspection",
-      "B legacy inspection and B-only framed report against observed database evidence",
-      "B quarantine, A inspect/release, B retry, then A inspect/replay on the same retained database",
-      "source/event/idempotency/work/history/receipt state compared with allowed control and acknowledgement deltas",
-      "new inspection-only mode refused absent schema without Flyway migration, SQL initialization or seeding"
-    ],
-    "witness_status": "temporary witnesses only; not learner completion",
-    "witness_restoration": {
-      "prior_learner_sources": "restored and compared against saved source hashes",
-      "new_mapper_sha256": "b9af138ad692002ba19b8859977fd8b4fce69ac24b034ef2b0b029e74b374f79",
-      "new_codec_sha256": "913b64b28f6ecd6f6a3d8002f499f03979164937ad3380b8d0a087ae4832cdb7",
-      "new_request_policy_sha256": "f85dc618f2fdd8cfe346880c5187e30902f0479a780cb3799d50acf9eea4095a",
-      "temporary_artifacts": "A/B witness JARs removed after the run",
-      "restored_starter_package_sha256": "e89273d2bc566d5c38b13f7464a0ab56ea01dce0c9c714c59face6d8d5d6da66"
-    }
+  "two_artifact_runtime": {
+    "status": "passed_with_temporary_instructor_witnesses",
+    "command": "./mvnw -o -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly+day149RunsCrossVersionRetainedStateMatrix+day153RunsCompleteObservedPairMatrixAndFallbackDecision -Dcoverstory.release.baseline.jar=/tmp/repair-round2/run/baseline.jar -Dcoverstory.release.candidate.jar=/tmp/repair-round2/run/candidate.jar -Dcoverstory.release.pair.manifest=/tmp/repair-round2/run/artifact-pair-manifest.json test",
+    "result": "3/3 passed on isolated synthetic PostgreSQL 18.6 fixtures; all three observed same-database A-to-B-to-A execution, retained state, report-to-independent-database comparison, current schema/artifact/fixture fallback identity, and exact allowed history/receipt/control deltas",
+    "baseline_jar_sha256": "5d34d0ec46c24866f8a0ac5bc5df2ad7308fd745103408174f81f423c92e9a08",
+    "candidate_jar_sha256": "b33642409708684c589024eb1e23df0bb2d7d88a189c36c75af28b179a3b47b9",
+    "pair_manifest": "evidence/continuation-141-154/artifact-pair-manifest.json",
+    "pair_provenance": "A built from pinned 105bbc9 baseline with 8 recorded temporary overlays; B built from pinned ae4e5fa candidate plus 14 recorded temporary overlays, including the current ReleaseInspectionCommandRunner source. Every overlay path and SHA-256 is in the manifest. A and B have different digests and capability checks.",
+    "temporary_witnesses": "used only in isolated artifact worktrees and test-source overlay; no solved learner code was committed",
+    "restoration": {
+      "InspectionReportCodec.java": "913b64b28f6ecd6f6a3d8002f499f03979164937ad3380b8d0a087ae4832cdb7",
+      "InspectionReportMapper.java": "b9af138ad692002ba19b8859977fd8b4fce69ac24b034ef2b0b029e74b374f79",
+      "RecoveryDecisionPolicy.java": "3a4d0cfee9e5b672e9a36e60cbbe044e72312d12399676dd8e65f3a2502d44f7",
+      "ReleaseInspectionRequestPolicy.java": "f85dc618f2fdd8cfe346880c5187e30902f0479a780cb3799d50acf9eea4095a"
+    },
+    "cleanup": "temporary artifact JARs and witness sources are to be removed after recording this provenance; no artifacts are retained as a starter"
   },
-  "unchanged_baseline_files": {
-    "V001__homesecure_quotes.sql": "cfb4aa4204ab90c3d5965347824c5c26399345cc06e8582686af17a9baefa805",
-    "V002__local_policy_lifecycle.sql": "af921dbef43a3c773524876131a840a5f39135030ec5721465a5cf0f9ba31cf2",
-    "V003__seed_synthetic_local_policies.sql": "0e32121d204842d9ecf1f7e63ccf0c30eb7c23337f1949d9ed718ebb56a12786",
-    "V004__event_log_delivery_work.sql": "1b0d1375928c4239f57742490a541ac6852f913c7841f26e27fd3151feb8b882",
-    "V005__manual_issuance_recovery_controls.sql": "30cc98cc015e48ac04a8e8e607cb075ecd8f397462f36d548121904ff40bb9b3",
-    "LocalManualRecoveryCommand.java": "f68ac9a522a18a38fc888e4d2dac937738936bb0c8faba5ee77f5d4edf0a759a"
+  "preservation": {
+    "DSA_correction": "unchanged from accepted fe709e6; DSA queue, policy, actual-attempt history, and existing ticket links were not edited",
+    "actual_attempt_log": "unchanged",
+    "V001-V005": "unchanged; exact source hashes remain in the previous verification record and match current files",
+    "Day124_LocalManualRecoveryCommand": "unchanged; exact source hash matches previous verification record",
+    "main": "untouched",
+    "existing_tickets": "untouched",
+    "AWS_cloud_credentials_spending_deployment": "not performed"
   },
-  "scope_limits": {
-    "aws_execution": "not performed",
-    "cloud_access_credentials_spending_and_deployment": "not performed",
-    "new_browser_coverage": "none; existing browser regressions remain in the clean default suite",
-    "learner_completion": "not claimed",
-    "days_155_plus": "not started",
-    "board_changes": "not made"
-  },
-  "receipt_commit_ci": "metadata-only receipt commit CI must be checked separately; it does not alter the tested code snapshot"
+  "hosted_ci": "No workflow run is configured for this repair branch; no hosted pass is claimed. Independent source review remains a separate gate."
 }
