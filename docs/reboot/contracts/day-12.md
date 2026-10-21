@@ -1,8 +1,8 @@
 # Day 12 — 2026-10-31: Enforce owner-scoped access
 
-**State:** Installed: a real Spring Security test filter chain verifies HTTP Basic authentication and CSRF token rejection/acceptance. The production owner policy and production security configuration remain learner TODOs. The owner-policy HTTP acceptance test is tagged and expected red until the policy is implemented.
+**State:** Installed: a real Spring Security test filter chain verifies form-login session authentication and CSRF token rejection/acceptance. The production owner policy and production security configuration remain learner TODOs. The owner-policy HTTP acceptance test is tagged and expected red until the policy is implemented.
 
-**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Securing Spring Boot Applications with Spring Security”. Watch: “Step 21 - Understanding Spring Security Authentication” (4:17); “Step 22 - Exploring Spring Security Authorization” (9:47). 14:04 viewing. Use the distinction as background; use the linked object-owner guard example because general authorization does not teach object-level access control. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-12--object-ownership).
+**Course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/); section “Securing Spring Boot Applications with Spring Security”. Watch: “Step 21 - Understanding Spring Security Authentication” (4:17); “Step 22 - Exploring Spring Security Authorization” (9:47). 14:04 viewing. Use the distinction as background; use the linked object-owner guard example because general authorization does not teach object-level access control. See the [Days 1–30 map](../course-learning-map.md) for course verification and the total-time rule. Worked guide: [course-learning-supplements.md](../course-learning-supplements.md#day-12--object-ownership-beside-the-real-security-test-fixture).
 
 ## Learner seam
 
@@ -10,7 +10,7 @@ authorization policy / security config. Keep the business rule in this focused s
 
 ## Acceptance invariants
 
-Anonymous returns 401. An authenticated owner can read/select that owner’s journey; another owner gets the Day 3 non-disclosing 404 envelope. Client-supplied `ownerId` is ignored and never establishes identity. Use Spring’s supported test principal/session fixture; no custom JWT or cryptography.
+Target learner behavior, not a passing learner result: anonymous protected-harness requests return 401; an authenticated owner can read that owner’s journey; another owner gets the Day 3 non-disclosing 404 envelope. The 200/404 owner-read outcomes remain expected until the tagged learner-policy case passes. Client-supplied `ownerId` is ignored and never establishes identity. The instructor filter-chain check uses a form-login test session, not HTTP Basic. No production-security completion is claimed.
 
 ## Required edge cases
 
@@ -32,9 +32,9 @@ Owner/other/anonymous matrix. Record dated attempt state (`not attempted`, `atte
 
 ## Planned isolated command
 
-`./mvnw -Plearner-tests -Dtest=Day12ContractTest test`
+`./mvnw -Dtest=Day12SecurityHarnessTest test` checks the untagged form-login, authentication, CSRF and protected-route harness cases. `./mvnw -Plearner-tests -Dtest=Day12ContractTest,Day12SecurityHarnessTest test` includes the tagged owner-policy learner case, which remains expected red at its TODO.
 
-This selector runs the installed owner-policy cases with a fixed principal fixture. It currently fails at the explicit TODO. It does not prove HTTP 401/404 behavior or install Spring Security; those integration checks remain blocked. Infrastructure checks are separate.
+The untagged harness cases verify only the instructor test filter chain. Its anonymous 401 and protected-route behavior are expected outcomes of this isolated harness, not learner achievement or production security evidence. The tagged owner-scoped read remains blocked at the learner policy TODO until it is implemented and the tagged selector passes.
 
 ## Separate Java DSA block (60 minutes)
 

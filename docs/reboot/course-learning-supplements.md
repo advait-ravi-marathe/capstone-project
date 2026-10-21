@@ -70,25 +70,52 @@ Use the [complete freshness-order guide](teaching/day-11-freshness-order.md). Th
 
 ## Day 12 — Object ownership beside the real security test fixture
 
-Required course remains “Step 21 - Understanding Spring Security Authentication” (4:17; item 35017628) and “Step 22 - Exploring Spring Security Authorization” (9:47; item 35017626), total 14:04. Then spend 6:56 tracing the already installed test plus 4:00 readiness: 25 minutes total. The test configuration supplies two in-memory test users (`owner-a`, `owner-b`) and a real Spring Security filter chain. A trusted principal for `owner-a` reads its seeded `journey-a`; `owner-b` receives concealed 404. A forged `ownerId` request value does not replace `Principal`. Anonymous identity is rejected at the HTTP filter boundary; a unit policy call alone is not proof of HTTP authentication. A write without a CSRF token is 403; with the test token it reaches the test adapter. This harness does not install production security or create credentials/accounts.
+Required course remains “Step 21 - Understanding Spring Security Authentication” (4:17; item 35017628) and “Step 22 - Exploring Spring Security Authorization” (9:47; item 35017626), total 14:04. Use the remaining 6:56 to trace the actual harness and 4:00 for readiness; total 25 minutes. The instructor harness authenticates by POSTing the in-memory test username/password to `/login` with a CSRF token, then retains the resulting session. It uses form login and session cookies, not HTTP Basic. The filter chain, users, and controller exist only in the test context.
 
-**Readiness question:** Who vouches for identity, and why is a request-body owner value not proof? Use existing tests; do not add JWT, accounts, or security configuration changes.
+Run `./mvnw -Dtest=Day12SecurityHarnessTest test` for the untagged instructor checks: anonymous protected-harness identity returns 401, a valid session identifies `owner-a`, CSRF-less/invalid writes return 403, and the tokenized test write succeeds. The actual quote-selection route is checked only for CSRF behavior; do not infer production authentication from that test. The owner/other journey read is separately tagged learner acceptance; run `./mvnw -Plearner-tests -Dtest=Day12ContractTest,Day12SecurityHarnessTest test` to include the owner-policy TODO, which remains expected red. Its 200/404 outcomes are target acceptance behavior, not achieved production security. The harness is not production authentication and creates no accounts or credentials.
+
+**Readiness question:** Who vouches for identity in the form-login test session, and why is a request-body `ownerId` not proof? Distinguish the instructor filter-chain checks from the tagged learner owner-policy case.
 
 ## Day 13 — Trace real workflow logs and readiness evidence
 
-Conditional course reference: *Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps* (in28Minutes Official; access unconfirmed), “Getting Started with Continuous Integration, Deployment and Delivery” (4:50; item 18086493). If unavailable, use the official [GitHub Actions workflow-run logs](https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs) topic for the same 4:50. Spend 16:10 tracing the checked-in workflow and frozen evidence example, then 4:00 on readiness: 25 minutes total. No Azure/Jenkins setup.
+Conditional course reference: *Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps* (in28Minutes Official; access unconfirmed), “Getting Started with Continuous Integration, Deployment and Delivery” (4:50; item 18086493). If unavailable, use the official [GitHub Actions workflow-run logs](https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs) guide for the same 4:50. Trace the existing workflow and the example below for 16:10, then use 4:00 for readiness; total 25 minutes. Do not install Azure DevOps or Jenkins.
 
-The worked evidence record `[true,false,false,true,false,true]` means: compile observed, infrastructure failed, selected acceptance failed, clean command documented, failure propagation unproven, and calendar independent. The result is `ready=false`, with ordered blockers `infrastructure_tests`, `selected_acceptance_tests`, `failure_propagation`. An actual workflow step with nonzero exit stops the job; identify it in the run log separately from local reproduction. A green local test is not a remote Actions result, and a future date is not evidence. The existing practice variation changes only clean-command evidence to false and predicts its blocker.
+**Hypothetical log trace, not an observed run:** the workflow step named “Verify Java infrastructure and instructor harness” runs `./mvnw -B -ntp test`. If a test in that step fails, Maven exits 1; GitHub marks that named step failed and skips the later frontend-install step. The following excerpt is illustrative only:
 
-**Readiness question:** What could a green infrastructure build still fail to establish? Existing commands remain `./mvnw -Dtest=Day13WorkflowInfrastructureTest test` and `./mvnw -Plearner-tests -Dtest=Day13ContractTest test`; the latter is the learner policy task.
+```text
+Verify Java infrastructure and instructor harness
+$ ./mvnw -B -ntp test
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+Error: Process completed with exit code 1.
+```
+
+No failure or remote run is claimed here. To record real evidence, inspect that exact step in the actual run log and record its job URL, step name, exit result and timestamp. A local reproduction is separate evidence; a future date or passing infrastructure selector cannot establish remote Actions success. The learner-owned Day 13 policy is tested separately with `./mvnw -Plearner-tests -Dtest=Day13ContractTest test` and remains TODO-red until implemented.
+
+The existing evidence tuple `[true,false,false,true,false,true]` means compile observed, infrastructure failed, selected acceptance failed, clean command documented, failure propagation unproven, calendar independent. Its expected result is `ready=false` with blockers `infrastructure_tests`, `selected_acceptance_tests`, `failure_propagation`. The variation changes only clean-command evidence to false; predict its blocker before running the reference.
+
+**Readiness question:** What does a green infrastructure suite fail to prove about learner logic and remote CI? Name one actual step/output or say that no hosted run was observed.
 
 ## Day 14 — Trace and diagnose the real backend slice
 
-This is review/integration, not another course. If useful, revisit only unfamiliar parts of owned course 4993276: “Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06; item 35018830) or “Step 13 - Understanding Spring Boot vs Spring vs Spring MVC” (3:55; item 35019898), within the same 25 minutes. No new theory or rejected-abstraction essay is assigned.
+This is review/integration, not another course. If useful, revisit only unfamiliar parts of owned course 4993276: “Step 04 - What's happening in the background? Spring Boot Starters & Autoconfig” (9:06; item 35018830) or “Step 13 - Understanding Spring Boot vs Spring vs Spring MVC” (3:55; item 35019898), within the same 25 minutes. They are optional refreshers, not required new theory.
 
-Before the existing integration attempt, annotate the actual test with a small legend: call arrow, value handoff, database write, failure stop. The path is catalog → eligibility/premium → quote snapshot → repository → selection guard/persistence → direct PostgreSQL readback. If a learner component such as product lookup is still its named TODO, downstream success is unobserved: record the earliest failing boundary, rerun its focused selector after actual repair, then rerun `./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test`. This diagnosis is a worked hypothetical until you observe current output. The existing 85-minute practice remains 65 build/test + 20 mock; use the mock to explain an actual blocker, not to pretend the path passed.
+Before the existing acceptance command, read this annotated path. Arrows mean a method call or value handoff; `[DB]` marks a database operation; `STOP` means later stages are unobserved if that step fails:
 
-**Readiness question:** Trace one real positive or blocked path and name one prior-taught transaction boundary. No fake integration, added feature, or Day 15 dependency.
+```text
+fixture DDL + journey row [DB]
+  → catalog.findByCode("homesecure")
+  → eligibility check + premium calculation
+  → QuoteVersionService creates immutable quote snapshot
+  → QuoteRepositoryAdapter.insert [DB]
+  → JourneyAccessPolicy checks the test principal against owner
+  → QuoteFreshnessPolicy checks the fixed snapshot at current time
+  → SelectionService.persistBatch [DB]
+  → fresh repository read + direct SQL selection readback [DB]
+```
+
+In `Day14BackendSliceIT`, the first handoff uses the existing learner-owned `ProductCatalogService.findByCode` seam. If its explicit Day 4 TODO throws, mark `STOP` there: eligibility, premium, quote creation, persistence, owner check, freshness, selection and readback have not been observed. The table describes the test's intended wiring, not a successful learner run. Once the learner's actual implementation is ready, run `./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test` and record the first observed result. The existing practice budget remains 65 minutes build/test + 20 minutes mock; if blocked, use the mock to explain the observed stop and the next diagnostic, not to stage a pretend success.
+
+**Readiness question:** Trace one observed positive path or identify its actual first failing boundary. Name a previously taught transaction or value-ownership guarantee. No extra architecture assignment or Day 15 dependency.
 
 ## Day 15 — Join and projection
 

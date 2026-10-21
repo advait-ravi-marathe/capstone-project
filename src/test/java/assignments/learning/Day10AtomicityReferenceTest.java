@@ -59,6 +59,13 @@ class Day10AtomicityReferenceTest {
         assertEquals(List.of("existing", "first", "second"), readNames());
     }
 
+    @Test void duplicateInsideOneFreshBatchRollsBackEveryInsertInThatCall() throws Exception {
+        SQLException error = assertThrows(SQLException.class,
+                () -> storeNames(dataSource, List.of("first", "second", "first")));
+        assertEquals("23505", error.getSQLState());
+        assertEquals(List.of("existing"), readNames());
+    }
+
     static void storeNames(DataSource ds, List<String> names) throws SQLException {
         try (Connection c = ds.getConnection()) {
             c.setAutoCommit(false);
