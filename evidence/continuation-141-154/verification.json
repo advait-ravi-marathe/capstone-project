@@ -1,8 +1,8 @@
 {
-  "status": "narrow_source_fixes_validated_packaged_matrix_revalidation_pending",
+  "status": "source_and_runtime_cleared_pending_hosted_ci_not_configured",
   "batch": "CoverStory Days 141-154",
   "branch": "learning/coverstory-days-141-154-source-repair",
-  "tested_source_sha": "9f5721d2d3cd667f8dd0f74ad665ea715dda3f45",
+  "tested_source_sha": "5e982e528c0d94963a26020a07dd68d066c099de",
   "base_sha": "fe709e603dcc06d8ccb0da96c67c1915bd16d0a6",
   "local_validation": {
     "default_command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home MAVEN_OPTS=-Dmaven.repo.local=/tmp/capstone-m2 CHROMIUM_BIN=/usr/bin/chromium ./mvnw -o clean test",
@@ -24,7 +24,7 @@
   "two_artifact_runtime": {
     "status": "passed_with_temporary_instructor_witnesses",
     "command": "./mvnw -o -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly+day149RunsCrossVersionRetainedStateMatrix+day153RunsCompleteObservedPairMatrixAndFallbackDecision -Dcoverstory.release.baseline.jar=/tmp/repair-round2/run/baseline.jar -Dcoverstory.release.candidate.jar=/tmp/repair-round2/run/candidate.jar -Dcoverstory.release.pair.manifest=/tmp/repair-round2/run/artifact-pair-manifest.json test",
-    "result": "Previously recorded 3/3 run is retained as historical evidence with corrected selector descriptions: Day148 proves distinct artifacts and B report capability; Day149 exercises cross-version retained state; Day153 aggregates A-to-B-to-A and fallback. The new full-Flyway-row fingerprint and post-retry schema assertion have not been rerun against packaged artifacts because the temporary JARs and conformance overlays were cleaned up; no current claim for those added assertions.",
+    "result": "Independent validation: at f1a9058, the complete matrix selectors passed 10/10 and protocol selectors passed 8/8. At exact final source tree 5e982e528c0d94963a26020a07dd68d066c099de, rebuilt distinct A/B artifacts and the updated Day 149 selector passed 1/1. Day148 proves artifact distinction/report capability, Day149 proves cross-version retained-state behavior including full schema/Flyway state after B retry, and Day153 is the aggregate A-to-B-to-A fallback matrix.",
     "baseline_jar_sha256": "5d34d0ec46c24866f8a0ac5bc5df2ad7308fd745103408174f81f423c92e9a08",
     "candidate_jar_sha256": "b33642409708684c589024eb1e23df0bb2d7d88a189c36c75af28b179a3b47b9",
     "pair_manifest": "evidence/continuation-141-154/artifact-pair-manifest.json",
@@ -36,7 +36,7 @@
       "RecoveryDecisionPolicy.java": "3a4d0cfee9e5b672e9a36e60cbbe044e72312d12399676dd8e65f3a2502d44f7",
       "ReleaseInspectionRequestPolicy.java": "f85dc618f2fdd8cfe346880c5187e30902f0479a780cb3799d50acf9eea4095a"
     },
-    "cleanup": "Verified temporary pair directory/JARs and conformance witness source files are absent. Original learner TODO sources match the recorded restoration hashes. No solved binary is retained."
+    "cleanup": "Independent validator confirmed all temporary witnesses restored byte-for-byte and pair JARs, temporary worktrees, and build output removed."
   },
   "preservation": {
     "DSA_correction": "unchanged from accepted fe709e6; DSA queue, policy, actual-attempt history, and existing ticket links were not edited",
@@ -47,5 +47,15 @@
     "existing_tickets": "untouched",
     "AWS_cloud_credentials_spending_deployment": "not performed"
   },
-  "hosted_ci": "No workflow run is configured for this repair branch; no hosted pass is claimed. Independent source review remains a separate gate."
+  "hosted_ci": "No workflow run is configured for this repair branch; no hosted pass is claimed.",
+  "source_change_since_f1a9058": "One Day 149 assertion comparing schemaBefore with schemaFingerprint(url) immediately after B retry and before A replay; see source commit 9f5721d2d3cd667f8dd0f74ad665ea715dda3f45.",
+  "independent_validation": {
+    "validated_source_sha": "5e982e528c0d94963a26020a07dd68d066c099de",
+    "f1a9058_matrix": "10/10 full matrix selectors passed",
+    "f1a9058_protocol": "8/8 protocol selectors passed",
+    "day143": "Encoder selector passed 1/1 while the Day 144 decoder remained at its intended TODO; no forward dependency.",
+    "exact_source_day149": "Distinct A/B artifacts were rebuilt against the exact final source tree and the updated Day 149 selector passed 1/1, including the post-retry complete schema/Flyway assertion.",
+    "final_code_delta": "The code delta from f1a9058 is only the Day 149 assertion; the later commit only updates this receipt.",
+    "restoration_and_cleanup": "Temporary witnesses restored byte-for-byte and verified; pair JARs, temporary worktrees, and build output removed."
+  }
 }
