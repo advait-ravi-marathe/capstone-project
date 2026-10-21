@@ -2,7 +2,7 @@ name: CoverStory starter checks
 
 on:
   push:
-    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126, learning/coverstory-days-127-140, learning/coverstory-days-141-154]
+    branches: [main, learning/coverstory-day-02-30, learning/coverstory-beyond-30, learning/coverstory-days-31-44, learning/coverstory-days-45-56, learning/coverstory-days-57-70, learning/coverstory-days-71-84, docs/coverstory-days-31-84-course-guidance, learning/coverstory-days-85-98, learning/coverstory-days-99-112, learning/coverstory-days-113-126, learning/coverstory-days-127-140, learning/coverstory-days-141-154, learning/streamforge-days-155-168]
   pull_request:
     branches: [main]
 
@@ -47,6 +47,10 @@ jobs:
         run: ./mvnw -B -ntp test
       - name: Verify continuation manifest
         run: python3 -m unittest scripts/test_continuation_113_126_manifest.py scripts/test_continuation_127_140_manifest.py
+      - name: Verify DSA and StreamForge roadmap manifests
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - name: Verify StreamForge local fixture infrastructure
+        run: python3 -m unittest ai.streamforge.tests.test_infrastructure
       - name: Frontend instructor tests
         working-directory: frontend
         run: npm test

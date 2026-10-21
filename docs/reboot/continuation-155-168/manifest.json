@@ -1,0 +1,1010 @@
+{
+  "title": "StreamForge Days 155\u2013168 synthetic temporal-data foundation; repository draft only",
+  "base_commit": "5dc558eeda441177dc4aac87725d0a18417c5abd",
+  "sprint": "Sprint 12",
+  "start_date": "2027-03-23",
+  "end_date": "2027-04-05",
+  "publication_status": "draft_not_board_published",
+  "board_writes": false,
+  "dsa_budget_minutes": null,
+  "engineering_allocation_minutes": {
+    "implementation_and_testing": 85,
+    "concept_or_course": 25,
+    "evidence": 10
+  },
+  "engineering_minutes_per_day": 120,
+  "daily_total_minutes_by_dsa_tier": {
+    "1_or_2_exercises": 180,
+    "3_exercises": 195,
+    "4_exercises": 210
+  },
+  "outcome": "Offline validation of an original synthetic catalog and viewing-event fixture, a fixed UTC temporal partition, train-only summaries, separate holdout diagnostics, and deterministic local JSON.",
+  "constraints": [
+    "Local offline synthetic fixtures only; no real media, user history or external dataset.",
+    "No recommendation/model/service, cloud resource, credential, spending or deployment.",
+    "Do not change CAP44 ranking TODO or prior learner seams.",
+    "Recovery days 161 and 168 run only prior selectors.",
+    "DSA is actual-attempt review/transfer/repair only; no new guided anchors after Day150."
+  ],
+  "python_runtime_observed": "Python 3.12.14",
+  "third_party_python_dependencies": [],
+  "fixture": {
+    "name": "basic",
+    "catalog_rows": 30,
+    "event_rows": 200,
+    "source_kind": "synthetic_hand_authored",
+    "media_source": "invented_text_only",
+    "viewer_source": "invented_identifiers",
+    "max_input_bytes": 262144,
+    "max_rows": 500,
+    "max_field_chars": 4096,
+    "window_start_utc": "2027-01-01T00:00:00Z",
+    "cutoff_utc": "2027-01-20T00:00:00Z",
+    "window_end_utc": "2027-02-01T00:00:00Z"
+  },
+  "course_guidance": {
+    "preferred_course": {
+      "course_id": "4993276",
+      "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+      "instructor": "in28Minutes Official",
+      "access": "prior ownership context; playback not verified"
+    },
+    "exact_python_lessons_verified": false,
+    "python_course_added": false,
+    "video_seconds": 0,
+    "worked_supplements_within_study_block": true
+  },
+  "official_references": [
+    {
+      "title": "Python 3.12 tutorial: More Control Flow Tools",
+      "url": "https://docs.python.org/3.12/tutorial/controlflow.html",
+      "used_for": "function definitions, if statements, loops and exception flow"
+    },
+    {
+      "title": "Python 3.12 tutorial: Data Structures",
+      "url": "https://docs.python.org/3.12/tutorial/datastructures.html",
+      "used_for": "lists, sets and dictionaries; only narrow sections are assigned"
+    },
+    {
+      "title": "Python 3.12 csv module",
+      "url": "https://docs.python.org/3.12/library/csv.html",
+      "used_for": "CSV reader behavior; explicit header/row validation"
+    },
+    {
+      "title": "Python 3.12 datetime module",
+      "url": "https://docs.python.org/3.12/library/datetime.html",
+      "used_for": "aware datetime and UTC parsing"
+    },
+    {
+      "title": "Python 3.12 unittest basic example",
+      "url": "https://docs.python.org/3.12/library/unittest.html#basic-example",
+      "used_for": "assertions, exception checks and test selection"
+    },
+    {
+      "title": "Python 3.12 json basic usage",
+      "url": "https://docs.python.org/3.12/library/json.html#basic-usage",
+      "used_for": "canonical JSON serialization and finite values"
+    },
+    {
+      "title": "Python 3.12 Sorting Techniques: key functions",
+      "url": "https://docs.python.org/3.12/howto/sorting.html#key-functions",
+      "used_for": "explicit stable ordering"
+    },
+    {
+      "title": "scikit-learn Common pitfalls: data leakage",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage",
+      "used_for": "conceptual reading only; no scikit-learn dependency"
+    }
+  ],
+  "days": [
+    {
+      "day": 155,
+      "date": "2027-03-23",
+      "title": "Admit a synthetic StreamForge fixture",
+      "contract_file": "contracts/day-155.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Known hand-authored synthetic manifest passes; unknown schema, missing keys, external-media declaration or real-viewer declaration fails. Input mapping remains unchanged.",
+        "learner_seam": "admit_fixture_manifest",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/controlflow.html",
+          "https://docs.python.org/3.12/library/unittest.html#basic-example"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 155",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 156,
+      "date": "2027-03-24",
+      "title": "Read bounded CSV records without silent columns",
+      "contract_file": "contracts/day-156.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Quoted commas/newlines survive. Duplicate/missing/extra headers, short/long rows, malformed CSV and input overflow fail; no split-on-comma parser.",
+        "learner_seam": "read_csv_table",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day156Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/csv.html",
+          "https://docs.python.org/3.12/library/unittest.html#basic-example"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 156",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 157,
+      "date": "2027-03-25",
+      "title": "Parse one exact UTC instant format",
+      "contract_file": "contracts/day-157.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Leap-day instant passes; invalid date, absent Z, offset, naive, fractional and impossible calendar forms fail.",
+        "learner_seam": "parse_utc_instant",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day157Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/datetime.html"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 157",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 158,
+      "date": "2027-03-26",
+      "title": "Validate catalog reference rows",
+      "contract_file": "contracts/day-158.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Duration is integer 1..7200; availability start < end; duplicate IDs fail even for identical rows; identity is not trimmed and genre is allowlisted.",
+        "learner_seam": "validate_catalog",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day158Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/datastructures.html",
+          "https://docs.python.org/3.12/library/datetime.html"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 158",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 159,
+      "date": "2027-03-27",
+      "title": "Resolve events against catalog constraints",
+      "contract_file": "contracts/day-159.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Unknown media, malformed/negative/excess watch seconds and event at excluded availability end fail. Zero seconds is valid but not a positive-preference label.",
+        "learner_seam": "validate_events",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/datastructures.html",
+          "https://docs.python.org/3.12/library/datetime.html"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 159",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 160,
+      "date": "2027-03-28",
+      "title": "Remove exact event replays without hiding conflict",
+      "contract_file": "contracts/day-160.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Same ID/equal typed payload collapses once; same ID/different payload rejects all preparation; distinct IDs remain distinct.",
+        "learner_seam": "deduplicate_events",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day160Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/datastructures.html",
+          "https://docs.python.org/3.12/library/unittest.html#basic-example"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 160",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 161,
+      "date": "2027-03-29",
+      "title": "Recover the parser and data-contract boundary",
+      "contract_file": "contracts/day-161.md",
+      "status": "draft_not_board_published",
+      "recovery_day": true,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Prior gates pass or exact blockers recorded; reproduce one invalid-input failure and explain why no partial dataset exists.",
+        "learner_seam": "prior_only_155_160",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/unittest.html#basic-example"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 161",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 162,
+      "date": "2027-03-30",
+      "title": "Partition by a fixed temporal cutoff",
+      "contract_file": "contracts/day-162.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Train [start,cutoff), holdout [cutoff,end), end excluded; every unique event assigned once, ordered by (UTC time,event ID); empty sets explicit.",
+        "learner_seam": "partition_events",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day162Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/datetime.html",
+          "https://docs.python.org/3.12/howto/sorting.html#key-functions",
+          "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 162",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 163,
+      "date": "2027-03-31",
+      "title": "Describe holdout cold-start coverage honestly",
+      "contract_file": "contracts/day-163.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Four mutually exclusive categories sum to holdout count; catalog presence is reference only; empty holdout has zero counts and no_holdout status.",
+        "learner_seam": "holdout_coverage",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/datastructures.html",
+          "https://docs.python.org/3.12/library/unittest.html#basic-example"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 163",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 164,
+      "date": "2027-04-01",
+      "title": "Aggregate only the training partition",
+      "contract_file": "contracts/day-164.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Mutating valid holdout does not change train summary; empty train is zero-valued and insufficient_training_data.",
+        "learner_seam": "summarize_training",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day164Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/datastructures.html",
+          "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 164",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 165,
+      "date": "2027-04-02",
+      "title": "Assemble reproducible semantic data and provenance",
+      "contract_file": "contracts/day-165.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Same source/config yields identical bytes; input permutation preserves semantic rows/train hash while source hash can change; holdout mutation changes provenance but not train content hash.",
+        "learner_seam": "assemble_bundle",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day165Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/json.html#basic-usage",
+          "https://docs.python.org/3.12/howto/sorting.html#key-functions"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 165",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 166,
+      "date": "2027-04-03",
+      "title": "Compose preparation behind the local CLI",
+      "contract_file": "contracts/day-166.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Valid fixture emits one JSON document only after full validation. Invalid fixture exits nonzero without success JSON; diagnostics go to stderr and files stay unchanged.",
+        "learner_seam": "prepare_dataset",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day166Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/tutorial/controlflow.html",
+          "https://docs.python.org/3.12/library/unittest.html#basic-example"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 166",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 167,
+      "date": "2027-04-04",
+      "title": "Prove reproducibility and leakage boundaries offline",
+      "contract_file": "contracts/day-167.md",
+      "status": "draft_not_board_published",
+      "recovery_day": false,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Fresh processes yield deterministic bytes; golden rows/counts are independent of learner helpers; network API guard rejects attempted access; no outputs on errors.",
+        "learner_seam": "prior_integration_assertions",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_cli.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/unittest.html#basic-example",
+          "https://docs.python.org/3.12/library/json.html#basic-usage"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 167",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    },
+    {
+      "day": 168,
+      "date": "2027-04-05",
+      "title": "Recover and defend the data-foundation boundary",
+      "contract_file": "contracts/day-168.md",
+      "status": "draft_not_board_published",
+      "recovery_day": true,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        },
+        "scope": "Learner evidence or explicit carry-forward blockers; AWS execution and any CoverStory readiness gate stay deferred.",
+        "learner_seam": "prior_only_155_167",
+        "acceptance_commands": [
+          "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test ai.streamforge.tests.test_day_contracts.Day162Test ai.streamforge.tests.test_day_contracts.Day163Test ai.streamforge.tests.test_day_contracts.Day164Test ai.streamforge.tests.test_day_contracts.Day165Test ai.streamforge.tests.test_day_contracts.Day166Test ai.streamforge.tests.test_cli.Day167Test"
+        ],
+        "acceptance_test_path": "ai/streamforge/tests/test_day_contracts.py",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "prior ownership context; playback not verified",
+          "exact_python_lesson_verified": false,
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": null,
+          "section": null,
+          "section_id": null,
+          "item": null,
+          "seconds": 0,
+          "reason": "No exact Python lesson was verified; official documentation and worked supplements are assigned."
+        },
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500,
+        "official_references": [
+          "https://docs.python.org/3.12/library/unittest.html#basic-example",
+          "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
+        ],
+        "publication_status": "draft_not_board_published"
+      },
+      "java_dsa": {
+        "budget_minutes": null,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 168",
+        "actual_attempts_only": true,
+        "new_anchor_required": false,
+        "budget_minutes_by_exercise_count": {
+          "1_or_2_substantive_exercises": 60,
+          "3_substantive_exercises": 75,
+          "4_substantive_exercises": 90
+        },
+        "engineering_minutes_remain": 120,
+        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
+        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
+        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
+        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
+      }
+    }
+  ]
+}

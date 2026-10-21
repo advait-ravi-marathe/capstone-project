@@ -1,0 +1,238 @@
+{
+  "title": "StreamForge Days 155\u2013168 synthetic temporal-data foundation",
+  "status": "starter_implementation_draft_no_board_writes",
+  "base_commit": "5dc558eeda441177dc4aac87725d0a18417c5abd",
+  "branch": "learning/streamforge-days-155-168",
+  "sprint": "Sprint 12",
+  "start_date": "2027-03-23",
+  "end_date": "2027-04-05",
+  "recovery_days": [
+    161,
+    168
+  ],
+  "python_runtime": "Python 3.12.14",
+  "engineering_daily_minutes": 120,
+  "engineering_allocation_minutes": {
+    "study": 25,
+    "practice_and_test": 85,
+    "evidence": 10
+  },
+  "dsa_policy": {
+    "new_guided_anchors_after_day_150": false,
+    "minutes_by_substantive_exercise_count": {
+      "1-2": 60,
+      "3": 75,
+      "4": 90
+    },
+    "actual_attempt_queue_only": true
+  },
+  "scope": "Offline validation of an original synthetic catalog and viewing-event fixture, a fixed UTC temporal partition, train-only summaries, separate holdout diagnostics, and deterministic local JSON.",
+  "exclusions": [
+    "recommender",
+    "ML model",
+    "new service",
+    "external media ingestion",
+    "AWS/cloud resources or credentials",
+    "spending/deployment",
+    "real user data",
+    "changes to CAP44 learner TODO"
+  ],
+  "fixture": {
+    "name": "basic",
+    "catalog_rows": 30,
+    "event_rows": 200,
+    "source_kind": "synthetic_hand_authored",
+    "media_source": "invented_text_only",
+    "viewer_source": "invented_identifiers",
+    "max_input_bytes": 262144,
+    "max_rows": 500,
+    "max_field_chars": 4096,
+    "window_start_utc": "2027-01-01T00:00:00Z",
+    "cutoff_utc": "2027-01-20T00:00:00Z",
+    "window_end_utc": "2027-02-01T00:00:00Z"
+  },
+  "daily_contracts": [
+    {
+      "day": 155,
+      "date": "2027-03-23",
+      "title": "Admit a synthetic StreamForge fixture",
+      "learner_seam": "admit_fixture_manifest",
+      "practice": "Use supplied mappings to accept only the fixed synthetic fixture schema/source declaration. No I/O or timestamp parsing.",
+      "acceptance": "Known hand-authored synthetic manifest passes; unknown schema, missing keys, external-media declaration or real-viewer declaration fails. Input mapping remains unchanged.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+    },
+    {
+      "day": 156,
+      "date": "2027-03-24",
+      "title": "Read bounded CSV records without silent columns",
+      "learner_seam": "read_csv_table",
+      "practice": "Use Python csv with supplied bytes/row bounds; enforce exact headers and widths while preserving strings for later parsing.",
+      "acceptance": "Quoted commas/newlines survive. Duplicate/missing/extra headers, short/long rows, malformed CSV and input overflow fail; no split-on-comma parser.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day156Test"
+    },
+    {
+      "day": 157,
+      "date": "2027-03-25",
+      "title": "Parse one exact UTC instant format",
+      "learner_seam": "parse_utc_instant",
+      "practice": "Return timezone-aware UTC only for canonical YYYY-MM-DDTHH:MM:SSZ strings.",
+      "acceptance": "Leap-day instant passes; invalid date, absent Z, offset, naive, fractional and impossible calendar forms fail.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day157Test"
+    },
+    {
+      "day": 158,
+      "date": "2027-03-26",
+      "title": "Validate catalog reference rows",
+      "learner_seam": "validate_catalog",
+      "practice": "Convert CSV mappings to CatalogItem values; enforce IDs, genre, integer duration and paired finite availability.",
+      "acceptance": "Duration is integer 1..7200; availability start < end; duplicate IDs fail even for identical rows; identity is not trimmed and genre is allowlisted.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day158Test"
+    },
+    {
+      "day": 159,
+      "date": "2027-03-27",
+      "title": "Resolve events against catalog constraints",
+      "learner_seam": "validate_events",
+      "practice": "Validate IDs, synthetic viewer IDs, timestamp and integer watch seconds, then exact-media lookup and availability.",
+      "acceptance": "Unknown media, malformed/negative/excess watch seconds and event at excluded availability end fail. Zero seconds is valid but not a positive-preference label.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+    },
+    {
+      "day": 160,
+      "date": "2027-03-28",
+      "title": "Remove exact event replays without hiding conflict",
+      "learner_seam": "deduplicate_events",
+      "practice": "Index fully validated typed records by event ID before splitting; collapse identical normalized records, reject conflicts.",
+      "acceptance": "Same ID/equal typed payload collapses once; same ID/different payload rejects all preparation; distinct IDs remain distinct.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day160Test"
+    },
+    {
+      "day": 161,
+      "date": "2027-03-29",
+      "title": "Recover the parser and data-contract boundary",
+      "learner_seam": "prior_only_155_160",
+      "practice": "Repair one earlier seam and rerun only Days 155\u2013160. No new function, split, course or future selector.",
+      "acceptance": "Prior gates pass or exact blockers recorded; reproduce one invalid-input failure and explain why no partial dataset exists.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test"
+    },
+    {
+      "day": 162,
+      "date": "2027-03-30",
+      "title": "Partition by a fixed temporal cutoff",
+      "learner_seam": "partition_events",
+      "practice": "Check start < cutoff < end; partition unique events into train, holdout and outside-window.",
+      "acceptance": "Train [start,cutoff), holdout [cutoff,end), end excluded; every unique event assigned once, ordered by (UTC time,event ID); empty sets explicit.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day162Test"
+    },
+    {
+      "day": 163,
+      "date": "2027-03-31",
+      "title": "Describe holdout cold-start coverage honestly",
+      "learner_seam": "holdout_coverage",
+      "practice": "Classify each holdout event by whether its viewer and item appear in training interactions.",
+      "acceptance": "Four mutually exclusive categories sum to holdout count; catalog presence is reference only; empty holdout has zero counts and no_holdout status.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+    },
+    {
+      "day": 164,
+      "date": "2027-04-01",
+      "title": "Aggregate only the training partition",
+      "learner_seam": "summarize_training",
+      "practice": "Compute train event count, unique viewer count, per-media counts and watch seconds. No ranking or learned score.",
+      "acceptance": "Mutating valid holdout does not change train summary; empty train is zero-valued and insufficient_training_data.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day164Test"
+    },
+    {
+      "day": 165,
+      "date": "2027-04-02",
+      "title": "Assemble reproducible semantic data and provenance",
+      "learner_seam": "assemble_bundle",
+      "practice": "Compose typed values into the supplied versioned bundle, using canonical serialization/hash helpers. Keep reference catalog, train, holdout and diagnostics separate.",
+      "acceptance": "Same source/config yields identical bytes; input permutation preserves semantic rows/train hash while source hash can change; holdout mutation changes provenance but not train content hash.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day165Test"
+    },
+    {
+      "day": 166,
+      "date": "2027-04-03",
+      "title": "Compose preparation behind the local CLI",
+      "learner_seam": "prepare_dataset",
+      "practice": "Wire validated functions in order using fixed fixture registry, bounded reads and instructor stdout/error framing. No network/storage/database adapters.",
+      "acceptance": "Valid fixture emits one JSON document only after full validation. Invalid fixture exits nonzero without success JSON; diagnostics go to stderr and files stay unchanged.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day166Test"
+    },
+    {
+      "day": 167,
+      "date": "2027-04-04",
+      "title": "Prove reproducibility and leakage boundaries offline",
+      "learner_seam": "prior_integration_assertions",
+      "practice": "Complete independent subprocess assertions for clean/repeated run, shuffled semantics, holdout mutation and invalid input.",
+      "acceptance": "Fresh processes yield deterministic bytes; golden rows/counts are independent of learner helpers; network API guard rejects attempted access; no outputs on errors.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+    },
+    {
+      "day": 168,
+      "date": "2027-04-05",
+      "title": "Recover and defend the data-foundation boundary",
+      "learner_seam": "prior_only_155_167",
+      "practice": "Cold-reproduce one earlier bad-data case, repair prior work and explain limited guarantees. No new feature.",
+      "acceptance": "Learner evidence or explicit carry-forward blockers; AWS execution and any CoverStory readiness gate stay deferred.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test ai.streamforge.tests.test_day_contracts.Day162Test ai.streamforge.tests.test_day_contracts.Day163Test ai.streamforge.tests.test_day_contracts.Day164Test ai.streamforge.tests.test_day_contracts.Day165Test ai.streamforge.tests.test_day_contracts.Day166Test ai.streamforge.tests.test_cli.Day167Test"
+    }
+  ],
+  "official_reading_sources": [
+    {
+      "title": "Python 3.12 tutorial: More Control Flow Tools",
+      "url": "https://docs.python.org/3.12/tutorial/controlflow.html",
+      "used_for": "function definitions, if statements, loops and exception flow"
+    },
+    {
+      "title": "Python 3.12 tutorial: Data Structures",
+      "url": "https://docs.python.org/3.12/tutorial/datastructures.html",
+      "used_for": "lists, sets and dictionaries; only narrow sections are assigned"
+    },
+    {
+      "title": "Python 3.12 csv module",
+      "url": "https://docs.python.org/3.12/library/csv.html",
+      "used_for": "CSV reader behavior; explicit header/row validation"
+    },
+    {
+      "title": "Python 3.12 datetime module",
+      "url": "https://docs.python.org/3.12/library/datetime.html",
+      "used_for": "aware datetime and UTC parsing"
+    },
+    {
+      "title": "Python 3.12 unittest basic example",
+      "url": "https://docs.python.org/3.12/library/unittest.html#basic-example",
+      "used_for": "assertions, exception checks and test selection"
+    },
+    {
+      "title": "Python 3.12 json basic usage",
+      "url": "https://docs.python.org/3.12/library/json.html#basic-usage",
+      "used_for": "canonical JSON serialization and finite values"
+    },
+    {
+      "title": "Python 3.12 Sorting Techniques: key functions",
+      "url": "https://docs.python.org/3.12/howto/sorting.html#key-functions",
+      "used_for": "explicit stable ordering"
+    },
+    {
+      "title": "scikit-learn Common pitfalls: data leakage",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage",
+      "used_for": "conceptual reading only; no scikit-learn dependency"
+    }
+  ],
+  "course_guidance": {
+    "preferred_course": {
+      "course_id": "4993276",
+      "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+      "instructor": "in28Minutes Official",
+      "access": "prior ownership context; playback not verified"
+    },
+    "exact_python_lessons_verified": false,
+    "python_course_added": false,
+    "video_seconds": 0,
+    "worked_supplements_within_study_block": true
+  },
+  "board_status": "No board writes or new tickets; this branch contains draft repository contracts only.",
+  "daily_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_infrastructure"
+}

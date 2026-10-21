@@ -19,6 +19,10 @@ class DsaGuidanceAcrossDaysManifestTest(unittest.TestCase):
             data = json.loads(path.read_text())
             cls.manifests.append((path, data))
             for day in data.get("days", []):
+                # This suite certifies the immutable Days 1–154 DSA correction;
+                # later roadmap batches have their own scope-specific manifest tests.
+                if day["day"] > 154:
+                    continue
                 cls.days[day["day"]] = (path, day)
 
     def test_all_154_days_have_guidance_and_unchanged_engineering_export(self):

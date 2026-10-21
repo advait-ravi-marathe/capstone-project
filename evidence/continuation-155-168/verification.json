@@ -1,0 +1,25 @@
+{
+  "status": "INSTRUCTOR_SCAFFOLD_VERIFIED_LEARNER_SEAMS_REMAIN_TODO",
+  "source_base": "5dc558eeda441177dc4aac87725d0a18417c5abd",
+  "branch": "learning/streamforge-days-155-168",
+  "python_version": "3.12.14",
+  "checks": [
+    {"command": "./mvnw -o clean test", "result": "passed", "tests": 59, "failures": 0, "errors": 0, "notes": "Java 21.0.12.1; CHROMIUM_BIN=/usr/bin/chromium; local-only embedded PostgreSQL 18.6"},
+    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "passed", "tests": 70},
+    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "passed", "tests": 2},
+    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure scripts.test_streamforge_155_168_manifest", "result": "passed", "tests": 12},
+    {"command": "python3 -m unittest ai.streamforge.tests.test_day_contracts ai.streamforge.tests.test_cli", "result": "temporary_conformance_overlay_passed", "tests": 18, "temporary_overlay_sha256": "77750233dc540e09484157097ef00d2eb78928f718821f8139e4f25e59f7a1ad", "restored_contracts_sha256": "3d50072b50e7c0d1ccc7a896023da4a9c342d1514545263a2cf96b26efef32c8", "note": "Temporary instructor witness only; not learner completion or committed implementation."},
+    {"command": "python3 -m ai.streamforge.prepare --fixture basic", "result": "expected_todo_failure", "exit_code": 2, "stdout_bytes": 0, "stderr": "Day 166 learner TODO: implement prepare_dataset"}
+  ],
+  "scope": {
+    "offline_synthetic_fixtures_only": true,
+    "cloud_or_media_ingestion": false,
+    "recommendation_or_model": false,
+    "board_writes": false,
+    "pull_request": false,
+    "main_modified": false,
+    "dsa_attempt_history_changed": false,
+    "days_155_plus_beyond_168_created": false
+  },
+  "hosted_ci": "Not yet observed for the final pushed SHA."
+}
