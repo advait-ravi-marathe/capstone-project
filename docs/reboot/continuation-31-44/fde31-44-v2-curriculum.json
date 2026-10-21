@@ -611,6 +611,116 @@
       ],
       "proposed_additional_commands": [],
       "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 43,
+      "date": "2026-12-01",
+      "existing_title": "React servicing summary",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-43.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "toServicingView + PolicyServicingPanel",
+      "required_lesson_item_ids": [
+        "39649252"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "react_conditional",
+        "react_state",
+        "role"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-43-response-state-ui.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-43-response-state-ui.md — Worked example",
+      "readiness": [
+        "Day36 read + Day42 state; main JSX/props/Promise/state teaching",
+        "No Day44 invocation"
+      ],
+      "study_segments": [
+        {
+          "activity": "video_or_React_fallback",
+          "seconds": 483
+        },
+        {
+          "activity": "focused_source_and_prerequisite",
+          "seconds": 237
+        },
+        {
+          "activity": "worked_component_trace_test",
+          "seconds": 540
+        },
+        {
+          "activity": "transfer_prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        40,
+        25,
+        10
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.",
+      "preserved_acceptance_commands": [
+        "npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx"
+      ],
+      "proposed_additional_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test"
+      ],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+    },
+    {
+      "day": 44,
+      "date": "2026-12-02",
+      "existing_title": "Lifecycle integration acceptance contract",
+      "contract_path": "docs/reboot/continuation-31-44/contracts/day-44.md",
+      "prospective_criteria_version": "fde-coursework-v2",
+      "actual_learner_seam": "verifyLifecycleReadback + existing learner browser composition",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "uat",
+        "spring_test",
+        "chrome",
+        "network"
+      ],
+      "guide_path": "docs/reboot/continuation-31-44/worked/day-44-observed-uat-handover.md",
+      "worked_example_section": "docs/reboot/continuation-31-44/worked/day-44-observed-uat-handover.md — Worked example",
+      "readiness": [
+        "All actual Day31–43 learner gates and built frontend",
+        "JDK21, Node, available Chromium, disposable PostgreSQL",
+        "Stop at first unresolved prerequisite, do not substitute infrastructure smoke"
+      ],
+      "study_segments": [
+        {
+          "activity": "focused_UAT_sections",
+          "seconds": 240
+        },
+        {
+          "activity": "worked_observation_and_harness_trace",
+          "seconds": 1020
+        },
+        {
+          "activity": "prerequisite_gate",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        35,
+        25,
+        15
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+        "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test"
+      ],
+      "proposed_additional_commands": [
+        "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test",
+        "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test"
+      ],
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
     }
   ],
   "guidance_catalog_path": "fde31-44-v2-guidance.json"

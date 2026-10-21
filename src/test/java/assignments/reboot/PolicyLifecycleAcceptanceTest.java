@@ -333,12 +333,25 @@ class PolicyLifecycleAcceptanceTest {
     }
 
     @Test void day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds() {
-        var view = service.toServicingView(issued());
-        assertEquals("policy-a", view.policyId());
-        assertEquals("INR", view.currency());
-        assertNull(findField(view.getClass(), "ownerId"));
-        assertNull(findField(view.getClass(), "journeyId"));
-        assertNull(findField(view.getClass(), "quoteVersionId"));
+        var first = new PolicySnapshot("policy-a", "owner-a", "journey-a", "quote-a", "home-secure-v1", "training-rate-v1",
+                new BigDecimal("125.00"), "INR", LocalDate.parse("2026-12-01"), PolicyStatus.ISSUED, 2,
+                List.of(new PolicyEndorsement(2, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00"))), null);
+        var firstView = service.toServicingView(first);
+        assertProjectionEquals(first, firstView);
+
+        var second = new PolicySnapshot("policy-b", "owner-b", "journey-b", "quote-b", "home-secure-v9", "training-rate-v9",
+                new BigDecimal("987.65"), "USD", LocalDate.parse("2026-12-03"), PolicyStatus.CANCEL_SCHEDULED, 8,
+                List.of(new PolicyEndorsement(6, LocalDate.parse("2026-12-04"), "REBUILD_AMOUNT", new BigDecimal("310000.00")),
+                        new PolicyEndorsement(7, LocalDate.parse("2026-12-05"), "REBUILD_AMOUNT", new BigDecimal("410000.00"))),
+                LocalDate.parse("2026-12-20"));
+        var secondView = service.toServicingView(second);
+        assertProjectionEquals(second, secondView);
+        assertNull(findField(firstView.getClass(), "ownerId"));
+        assertNull(findField(firstView.getClass(), "journeyId"));
+        assertNull(findField(firstView.getClass(), "quoteVersionId"));
+        assertNull(findField(secondView.getClass(), "ownerId"));
+        assertNull(findField(secondView.getClass(), "journeyId"));
+        assertNull(findField(secondView.getClass(), "quoteVersionId"));
     }
 
     @Test void day44LifecycleIntegrationSeamMustVerifyReadback() throws Exception {
@@ -359,6 +372,34 @@ class PolicyLifecycleAcceptanceTest {
         }
     }
 
+    @Test void day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var ds=postgres.getPostgresDatabase(); initializeLifecycleSchema(ds);
+            assertThrows(IllegalStateException.class,()->service.verifyLifecycleReadback(ds,"missing-policy"));
+        }
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var ds=postgres.getPostgresDatabase(); initializeLifecycleSchema(ds); seedPolicy(ds);
+            assertThrows(IllegalStateException.class,()->service.verifyLifecycleReadback(ds,"policy-a"),"missing history is rejected");
+        }
+        for(String corruption:List.of("intermediate","version","status")) {
+            try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+                var ds=postgres.getPostgresDatabase(); initializeLifecycleSchema(ds); seedPolicy(ds);
+                try(Connection c=ds.getConnection();Statement s=c.createStatement()) {
+                    s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',1,'ISSUED',DATE '2026-12-01',NULL,NULL)");
+                    if(corruption.equals("intermediate")) {
+                        s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',2,'ENDORSED',DATE '2026-12-03','REBUILD_AMOUNT',200000.00)");
+                        s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',3,'CANCEL_SCHEDULED',DATE '2026-12-10','CUSTOMER_REQUEST',NULL)");
+                        s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('policy-a',4,'CANCELLED',DATE '2026-12-10',NULL,NULL)");
+                        s.executeUpdate("UPDATE training_policy_lifecycle SET status='CANCELLED',version=4,cancellation_effective_date=DATE '2026-12-10' WHERE policy_id='policy-a'");
+                        s.executeUpdate("DELETE FROM training_policy_lifecycle_event WHERE policy_id='policy-a' AND version=2");
+                    } else if(corruption.equals("version")) s.executeUpdate("UPDATE training_policy_lifecycle SET version=2 WHERE policy_id='policy-a'");
+                    else s.executeUpdate("UPDATE training_policy_lifecycle SET status='CANCELLED' WHERE policy_id='policy-a'");
+                }
+                assertThrows(IllegalStateException.class,()->service.verifyLifecycleReadback(ds,"policy-a"),corruption+" mismatch is rejected");
+            }
+        }
+    }
+
     private static PolicyIssueRequest issueRequest() {
         return new PolicyIssueRequest("journey-a", "quote-a", "req-a", LocalDate.parse("2026-12-01"));
     }
@@ -372,6 +413,16 @@ class PolicyLifecycleAcceptanceTest {
     }
     private static PolicySnapshot withStatus(PolicyStatus status) {
         var p=issued(); return new PolicySnapshot(p.policyId(),p.ownerId(),p.journeyId(),p.quoteVersionId(),p.productVersion(),p.rateVersion(),p.annualPremiumRupees(),p.currency(),p.effectiveDate(),status,3,List.of(),null);
+    }
+    private static void assertProjectionEquals(PolicySnapshot source, PolicyServicingView projected) {
+        assertEquals(source.policyId(), projected.policyId());
+        assertEquals(source.productVersion(), projected.productVersion());
+        assertEquals(source.annualPremiumRupees(), projected.annualPremiumRupees());
+        assertEquals(source.currency(), projected.currency());
+        assertEquals(source.status(), projected.status());
+        assertEquals(source.version(), projected.version());
+        assertEquals(source.endorsements(), projected.history());
+        assertEquals(source.cancellationEffectiveDate(), projected.cancellationEffectiveDate());
     }
     private static java.lang.reflect.Field findField(Class<?> type, String name) {
         try { return type.getDeclaredField(name); } catch (NoSuchFieldException expected) { return null; }

@@ -6,18 +6,23 @@
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes total depending on 1–2/3/4 substantive DSA exercises + 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). The evidence and teach-back fit inside these allocations; no setup task is added.
 
+
+**Prospective criteria version:** `fde-coursework-v2`; existing learner status and historical attempts remain unchanged.
+
 ### Expected behavior
 
-The completed learner slice must prove issue, replay, endorsement, history, scheduled cancellation and readback through the React browser, Spring API and disposable PostgreSQL, including restart persistence. A fixed learner acceptance now drives issue, replay, endorsement, history, and cancellation requests from a real Chromium page through a Spring Boot server to an isolated PostgreSQL instance; it is expected red at learner TODOs. A separate instructor transport smoke writes and reads a synthetic harness row through the browser and Spring API, restarts the Spring server while keeping PostgreSQL alive, then confirms persisted readback. That smoke validates the reproducible runtime harness only; it does not claim lifecycle behavior is implemented.
+The completed learner slice must prove issue, replay, endorsement, history, scheduled cancellation and readback through the React browser, Spring API and disposable PostgreSQL, including persisted servicing summary fields, a controlled summary-read failure/recovery, and restart persistence. A tagged learner acceptance drives the actual panel against an owner-scoped JDBC read and real summary endpoint in the test harness; it remains red at learner TODOs. A separate expected-vs-actual UAT record is generated only from observed runs. A separate instructor transport smoke writes and reads a synthetic harness row through the browser and Spring API, restarts the Spring server while keeping PostgreSQL alive, then confirms persisted readback. That smoke validates the reproducible runtime harness only; it does not claim lifecycle behavior is implemented.
 
 ## Acceptance and expected red state
 
 Fixed acceptance tests are learner-owned behavior checks; they must assert the cases above and must not be weakened to make the starter green. Until the TODO is implemented, a valid operation is expected to fail at the named TODO. Invalid-input and non-mutation cases should be asserted independently where fixtures permit. Record the exact command, exit code, failing assertions/errors, and TODO reached in `evidence/continuation-31-44/day-44.json`. Instructor infrastructure checks are separate and must pass. No learner completion is inferred from a contract or from infrastructure tests.
 
 **Acceptance selector:** `src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java#day44LifecycleIntegrationSeamMustVerifyReadback`
-**Infrastructure selector:** `assignments.reboot.Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart` plus `assignments.reboot.ContinuationManifestInfrastructureTest`
+**Infrastructure selectors:** `assignments.reboot.Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart` plus `assignments.reboot.ContinuationManifestInfrastructureTest`
+**Extended learner selector:** `Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart`
+**Corrupt-readback selector:** `PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch`
 
-**Learner acceptance commands:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test` and `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test`
+**Learner acceptance commands:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test`, `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test`, `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test` and `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test`.
 **Instructor infrastructure commands:** `npm --prefix frontend run build` then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart,ContinuationManifestInfrastructureTest test`. CI installs Chromium through Playwright and uses its managed executable.
 
 ## Build / test allocation (85 minutes)
@@ -26,16 +31,23 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- No exact matching course lesson was verified for this task; no unrelated video is assigned.
-- Fit: integration review no new lecture. No new lecture. Use the supplied browser → Spring → disposable PostgreSQL/restart walkthrough. Component tests do not prove real browser/database/restart behavior; distinguish instructor transport smoke from learner lifecycle acceptance.
-- Focused worked references: [Spring Boot application testing — Real server and RANDOM_PORT testing](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Chrome Headless mode — Run Chromium browser automation in headless mode](https://developer.chrome.com/docs/automation-and-testing/headless).
-- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+**Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-44-observed-uat-handover.md](../../continuation-31-44/worked/day-44-observed-uat-handover.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
+Required course foundation: none; use the bounded authored/official bridge. Replacement-only optional lessons: none. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
 
-**Design sketch:** Lifecycle integration acceptance contract — sketch the invariant, enforcing layer, and failure response.
+Focused sources:
+- [ISTQB Certified Tester Acceptance Testing syllabus v1.0 2019](https://istqb.org/wp-content/uploads/2024/11/ISTQB-CT-AcT_Syllabus_v1.0_2019.pdf) — 5.2.1 Defect Analysis; 5.2.2 Reporting.
+- [Spring Boot: Testing Spring Boot Applications](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html) — MOCK and RANDOM_PORT behavior in opening section.
+- [Chrome Headless mode](https://developer.chrome.com/docs/automation-and-testing/headless#use-headless-mode) — Use Headless mode.
+- [Playwright: Network](https://playwright.dev/docs/network#network-mocking) — Network mocking.
 
-**Teach-back:** Explain one invariant, where it is enforced, and what test/response demonstrates it.
+**Study allocation (exactly 25:00 / 1,500 seconds):** focused UAT sections 4:00; worked observation and harness trace 17:00; prerequisite gate 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+
+**Practice allocation (85 minutes):** 10 / 35 / 25 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+
+Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
+
+**Design/API prompt:** Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.
 
 ## Evidence allocation (10 minutes)
 
