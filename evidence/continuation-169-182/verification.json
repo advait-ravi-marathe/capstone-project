@@ -1,0 +1,48 @@
+{
+  "status": "LOCAL_VERIFICATION_COMPLETE_HOSTED_CI_FAILED_MAVEN_PACKAGING",
+  "branch": "learning/streamforge-days-169-182",
+  "base_commit": "bb4cc3e5df7336c74a3f086b24510d325ea871e1",
+  "tested_commit": "cc6455433773b5f16f04f9b8e35251d0ce72d364",
+  "runtime": {
+    "python": "3.12.14",
+    "maven": "Maven wrapper; local resolution blocked by DNS"
+  },
+  "local_checks": [
+    {"command": "python3 -m unittest ai.streamforge.tests.test_evaluation_infrastructure scripts.test_streamforge_169_182_manifest scripts.test_dsa_post171_budget", "result": "PASS", "tests": 14},
+    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "PASS", "tests": 81},
+    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure", "result": "PASS", "tests": 8},
+    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "PASS", "tests": 2},
+    {"command": "python3 -m unittest scripts.test_dsa_review_queue scripts.test_dsa_review_queue_45_56 scripts.test_dsa_review_queue_57_70 scripts.test_dsa_review_queue_71_84 scripts.test_dsa_guided_transfer_policy", "result": "PASS", "tests": 50}
+  ],
+  "temporary_witnesses": {
+    "positive_pure_contracts": {"result": "PASS", "tests": 14, "note": "Temporary in-memory conformance implementations; no learner source retained."},
+    "positive_cli": {"result": "PASS", "tests": 5, "note": "Isolated temporary package copy with prerequisite and evaluator witnesses; removed after run."},
+    "deliberately_wrong_pure_implementations": {"result": "Each failed its intended assertion", "count": 8, "defects": ["event count instead of distinct pairs", "wrong cutoff", "insertion-order ties", "drop unreachable targets", "wrong precision denominator", "wrong macro aggregation", "favorable-only baseline comparison", "holdout/source leakage into prediction fingerprint"]},
+    "deliberately_wrong_cli_implementations": {"result": "Each failed its intended assertion", "count": 5, "defects": ["cutoff equality", "split before duplicate conflict detection", "holdout leakage", "constant ranker", "canned report"]}
+  },
+  "restoration": {
+    "prior_learner_contracts_and_preparation": "Byte-for-byte unchanged from base; prior TODOs remain.",
+    "attempt_log_git_blob": "52387b4afc37188fe4f31f9d18d129d4b11e32b0",
+    "temporary_overlay_status": "Removed; no conformance solution retained.",
+    "learner_acceptance_expected_result": "TODO-red: Day169 learner seam and Day179 evaluate_fixture remain unimplemented. The invalid-duplicate CLI case reaches the Day179 TODO before duplicate semantics, pending learner implementation."
+  },
+  "hosted_ci": {
+    "run": "https://github.com/advait-ravi-marathe/capstone-project/actions/runs/39550408054",
+    "head_commit": "cc6455433773b5f16f04f9b8e35251d0ce72d364",
+    "result": "FAILED",
+    "failed_step": "Package isolated Spring Boot app",
+    "duration": "45 seconds",
+    "detail": "Public run page reports exit code 1 but does not expose the step log. Local reproduction of the same Maven package command fails before project build because repo.maven.apache.org cannot resolve; required Spring Boot and embedded PostgreSQL BOMs cannot be downloaded. The exact hosted failure cause is therefore not independently confirmed."
+  },
+  "other_environment_limits": [
+    "Local Maven Central DNS failure prevented Java package/test validation.",
+    "Frontend vitest and tsc binaries are absent; npm install was not run."
+  ],
+  "scope": {
+    "learner_completion_claimed": false,
+    "main_modified": false,
+    "pull_request_created": false,
+    "board_modified": false,
+    "cloud_resources_or_paid_services_used": false
+  }
+}
