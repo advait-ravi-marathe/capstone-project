@@ -50,7 +50,7 @@ jobs:
       - name: Verify DSA and StreamForge roadmap manifests
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Verify StreamForge local fixture infrastructure
-        run: python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure
+        run: python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter
       - name: Frontend instructor tests
         working-directory: frontend
         run: npm test

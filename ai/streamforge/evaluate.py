@@ -6,6 +6,7 @@ import sys
 from typing import Any
 
 from .errors import DatasetContractError
+from .evaluation_adapter import read_fixture_manifest
 from .fixture_io import canonical_json_bytes
 from .fixture_registry import FIXTURES
 
@@ -20,6 +21,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fixture", required=True, choices=sorted(FIXTURES))
     args = parser.parse_args(argv)
     try:
+        # Duplicate keys (including nested keys) are rejected before any
+        # learner composition or prior preparation can emit success output.
+        read_fixture_manifest(args.fixture)
         report = evaluate_fixture(args.fixture)
         output = canonical_json_bytes(report)
     except (DatasetContractError, ValueError, OSError, NotImplementedError) as exc:

@@ -20,10 +20,23 @@ class Day180Test(BaselineFixtureMixin, unittest.TestCase):
         self.assertNotEqual(4, state.support_by_media["d"])
         self.assertNotEqual(3, state.support_by_media["b"])
         self.assertNotIn("x", state.support_by_media)
-        changed_holdout = self.holdout + (event("holdout-only", "new", "a", 9,
+        changed_holdout = self.holdout + (event("holdout-only", "holdout-only", "a", 9,
                                                 "2027-01-24T00:00:00Z"),)
-        self.assertEqual(state, seams.training_popularity(pairs, candidates))
-        self.assertEqual(8, changed_holdout[-1].watch_seconds - 1)
+        before_targets = seams.holdout_targets(self.holdout)
+        after_targets = seams.holdout_targets(changed_holdout)
+        before_ranked = seams.rank_popularity(state)
+        after_state = seams.training_popularity(pairs, candidates)
+        after_ranked = seams.rank_popularity(after_state)
+        before = seams.evaluate_baseline(before_ranked, candidates, before_targets,
+                                         frozenset(e.viewer_id for e in self.training))
+        after = seams.evaluate_baseline(after_ranked, candidates, after_targets,
+                                        frozenset(e.viewer_id for e in self.training))
+        self.assertEqual(state, after_state)
+        self.assertEqual(before_ranked, after_ranked)
+        self.assertEqual((Fraction(4, 9), Fraction(5, 6)),
+                         (before.precision_at_3, before.recall_at_3))
+        self.assertEqual((Fraction(1, 3), Fraction(5, 8)),
+                         (after.precision_at_3, after.recall_at_3))
 
     def test_tie_order_unreachable_targets_and_fixed_precision_denominator(self):
         tied = seams.rank_popularity(PopularityState({"z": 1, "a": 1, "m": 1}, False))

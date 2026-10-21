@@ -1,4 +1,5 @@
 import json
+import shlex
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
@@ -80,6 +81,27 @@ class StreamForge169182ManifestTest(unittest.TestCase):
                                   for day in self.manifest["days"]))
         for key in self.manifest["source_references"]:
             self.assertTrue(self.manifest["source_references"][key]["url"].startswith("https://"))
+
+    def test_every_exported_day_selector_resolves_to_real_tests(self):
+        loader = unittest.defaultTestLoader
+        for day in self.manifest["days"]:
+            with self.subTest(day=day["day"]):
+                words = shlex.split(day["engineering"]["proposed_acceptance_command"])
+                self.assertGreaterEqual(len(words), 4)
+                self.assertEqual(["python3", "-m", "unittest"], words[:3])
+                names = words[3:]
+                suite = unittest.TestSuite(loader.loadTestsFromName(name) for name in names)
+                flattened = []
+                def visit(node):
+                    if isinstance(node, unittest.TestSuite):
+                        for child in node:
+                            visit(child)
+                    else:
+                        flattened.append(node)
+                visit(suite)
+                self.assertTrue(flattened, "selector must resolve to at least one test")
+                self.assertFalse(any(isinstance(test, unittest.loader._FailedTest)
+                                     for test in flattened), repr(flattened))
 
 
 if __name__ == "__main__":

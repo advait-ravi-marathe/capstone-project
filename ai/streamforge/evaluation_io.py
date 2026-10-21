@@ -153,3 +153,56 @@ def prediction_fingerprint(protocol: Mapping[str, Any], candidate_ids: Sequence[
         "fallback_status": ranked.fallback_status,
     }
     return hashlib.sha256(canonical_json_bytes(payload)).hexdigest()
+
+
+def fraction_json(value: Fraction | None) -> str | None:
+    """Serialize exact ratios without floating point or ambiguous decimal rounding."""
+    validate_fraction_or_none(value, "metric")
+    if value is None:
+        return None
+    return f"{value.numerator}/{value.denominator}"
+
+
+def evaluation_json(value: BaselineEvaluation, candidate_ids: Sequence[str]) -> dict[str, Any]:
+    """Return the full public evaluation projection after validating its boundary."""
+    validate_evaluation(value, candidate_ids)
+    return {
+        "recommendation_ids": list(value.ranked_list.recommendation_ids),
+        "status": value.status,
+        "precision_at_3": fraction_json(value.precision_at_3),
+        "recall_at_3": fraction_json(value.recall_at_3),
+        "counts": {
+            "all_holdout_viewers": value.all_holdout_viewers,
+            "evaluated_viewers": value.evaluated_viewers,
+            "zero_positive_viewers": value.zero_positive_viewers,
+            "positive_viewer_media_pairs": value.positive_viewer_media_pairs,
+            "candidate_unreachable_positive_pairs": value.candidate_unreachable_positive_pairs,
+            "training_viewer_count": value.training_viewer_count,
+            "cold_start_evaluated_viewers": value.cold_start_evaluated_viewers,
+            "candidate_count": value.candidate_count,
+            "returned_count": value.returned_count,
+        },
+    }
+
+
+def comparison_json(value: BaselineComparison, candidate_ids: Sequence[str]) -> dict[str, Any]:
+    """Return both baseline results and signed popularity-minus-reference deltas."""
+    validate_comparison(value, candidate_ids)
+    return {
+        "popularity": evaluation_json(value.popularity, candidate_ids),
+        "id_order_reference": evaluation_json(value.reference, candidate_ids),
+        "signed_deltas": {
+            "precision_at_3": fraction_json(value.precision_delta),
+            "recall_at_3": fraction_json(value.recall_delta),
+        },
+        "status": value.status,
+    }
+
+
+REPORT_LIMITS = (
+    "Synthetic observed-positive overlap only; no reliable negative labels or impressions.",
+    "The catalog schedule is assumed known at cutoff; no historical catalog snapshot is demonstrated.",
+    "One static global list is used over the holdout horizon; no per-event availability reranking.",
+    "Metrics do not establish preference, unbiased real-user quality, causal lift, fairness, or business success.",
+    "Content hashes identify bytes and do not establish rights, authenticity, or quality.",
+)
