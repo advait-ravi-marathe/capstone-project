@@ -4,6 +4,7 @@ import assignments.insurance.*;
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.server.context.WebServerApplicationContext;
@@ -39,7 +40,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Infrastructure-only Chromium -> Spring MVC -> disposable PostgreSQL -> server restart smoke. */
 class Day44BrowserTransportInfrastructureTest {
     private static volatile DataSource postgresDataSource;
-    private static final Clock lifecycleClock = Clock.fixed(Instant.parse("2026-12-10T12:00:00Z"), ZoneOffset.UTC);
+    private static volatile DatabaseWire browserFailureDatabaseSnapshot;
+    private static final HarnessClock lifecycleClock = new HarnessClock(Instant.parse("2026-12-01T12:00:00Z"));
+
+    @BeforeEach void resetLifecycleClock() { lifecycleClock.set(Instant.parse("2026-12-01T12:00:00Z")); }
 
     @Test void realBrowserRoundTripSurvivesSpringServerRestart() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
@@ -98,6 +102,9 @@ class Day44BrowserTransportInfrastructureTest {
     @Test @Tag("learnerAcceptance")
     void realBrowserObservesServicingFailureRecoveryAndRestart() throws Throwable {
         var mapper = new tools.jackson.databind.ObjectMapper();
+        browserFailureDatabaseSnapshot = null;
+        var frozenExpectations = mapper.readTree(Files.readString(Path.of("docs/reboot/continuation-31-44/exercises/servicing-uat.expected.json")));
+        assertFrozenExpectedCriteria(frozenExpectations);
         String runId = java.util.UUID.randomUUID().toString();
         Path runDir = Path.of("target/day44-harness/attempts", runId).toAbsolutePath();
         Files.createDirectories(runDir);
@@ -111,6 +118,8 @@ class Day44BrowserTransportInfrastructureTest {
         for (String id : List.of("UAT-SVC-01", "UAT-SVC-02", "UAT-SVC-03"))
             records.put(id, newObservation(mapper, runId, id, sourceSha, workingTreePatchSha, workingTreeDirty, expectedHash, command, cwd));
         String activeScenario = null;
+        Path activeBrowserResult = null;
+        DatabaseWire lastObservedDatabase = null;
         String started03 = null;
         Path beforeRestartRun = runDir.resolve("uat-svc-03-before-restart.json");
         tools.jackson.databind.JsonNode beforeRestart = null;
@@ -124,35 +133,44 @@ class Day44BrowserTransportInfrastructureTest {
                 activeScenario = "UAT-SVC-01";
                 var started01 = java.time.Instant.now().toString();
                 Path issueRun = runDir.resolve("uat-svc-01-issued.json");
+                activeBrowserResult = issueRun;
                 runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing",issueRun);
                 var issueObservation = mapper.readTree(Files.readString(issueRun));
                 assertIssueReplayAndEndorsementObservation(issueObservation);
                 DatabaseWire afterIssueAndEndorsement = readDatabaseWire(postgresDataSource);
+                lastObservedDatabase = afterIssueAndEndorsement;
                 assertDatabase(afterIssueAndEndorsement, 1, 1, 2, "ISSUED", 2, "125.00", null,
                         List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
                 finishObservation(records.get(activeScenario), mapper, started01, "passed", null, 0, issueObservation,
                         afterIssueAndEndorsement, List.of(issueRun));
                 activeScenario = null;
+                activeBrowserResult = null;
 
                 activeScenario = "UAT-SVC-02";
                 var started02 = java.time.Instant.now().toString();
                 DatabaseWire beforeReadFailure = readDatabaseWire(postgresDataSource);
+                lastObservedDatabase = beforeReadFailure;
                 Path failureRun = runDir.resolve("uat-svc-02-failure-recovery.json");
+                activeBrowserResult = failureRun;
                 runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing-failure",failureRun);
                 var failureObservation = mapper.readTree(Files.readString(failureRun));
                 assertFailureRecoveryObservation(failureObservation);
                 DatabaseWire afterReadRecovery = readDatabaseWire(postgresDataSource);
+                lastObservedDatabase = afterReadRecovery;
                 assertEquals(beforeReadFailure, afterReadRecovery, "failed and recovered reads must not mutate persisted state");
                 finishObservation(records.get(activeScenario), mapper, started02, "passed", null, 0, failureObservation,
                         Map.of("before", beforeReadFailure, "after", afterReadRecovery), List.of(failureRun));
                 activeScenario = null;
+                activeBrowserResult = null;
 
                 activeScenario = "UAT-SVC-03";
                 started03 = java.time.Instant.now().toString();
+                activeBrowserResult = beforeRestartRun;
                 runBrowser("http://127.0.0.1:"+port(app)+"/__e2e/day44-lifecycle","servicing-cancel",beforeRestartRun);
                 beforeRestart = mapper.readTree(Files.readString(beforeRestartRun));
                 assertCancelledSummaryObservation(beforeRestart);
                 beforeRestartDatabase = readDatabaseWire(postgresDataSource);
+                lastObservedDatabase = beforeRestartDatabase;
                 assertDatabase(beforeRestartDatabase, 1, 1, 4, "CANCELLED", 4, "125.00", "2026-12-10",
                         List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
                 records.get(activeScenario).put("actualStartedAt", started03);
@@ -166,6 +184,7 @@ class Day44BrowserTransportInfrastructureTest {
             try (ConfigurableApplicationContext restarted=startServer(LearnerHarnessConfiguration.class)) {
                 activeScenario = "UAT-SVC-03";
                 Path afterRestartRun = runDir.resolve("uat-svc-03-after-restart.json");
+                activeBrowserResult = afterRestartRun;
                 runBrowser("http://127.0.0.1:"+port(restarted)+"/__e2e/day44-lifecycle","servicing-read",afterRestartRun);
                 var afterRestart = mapper.readTree(Files.readString(afterRestartRun));
                 assertCancelledSummaryObservation(afterRestart);
@@ -173,6 +192,7 @@ class Day44BrowserTransportInfrastructureTest {
                         "fresh Spring and browser must return every same servicing field");
                 assertEquals("CANCELLED:v4:events4", historyString(afterRestart.get("history")));
                 DatabaseWire afterRestartDatabase = readDatabaseWire(postgresDataSource);
+                lastObservedDatabase = afterRestartDatabase;
                 assertDatabase(afterRestartDatabase, 1, 1, 4, "CANCELLED", 4, "125.00", "2026-12-10",
                         List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
                 assertEquals(beforeRestartDatabase, afterRestartDatabase,
@@ -186,16 +206,53 @@ class Day44BrowserTransportInfrastructureTest {
                 combined.set("http",combinedHttp);
                 combined.set("summary", mapper.createObjectNode().set("beforeRestart", beforeRestart.get("summary").deepCopy()).set("afterRestart", afterRestart.get("summary").deepCopy()));
                 combined.set("history", afterRestart.get("history").deepCopy());
+                combined.set("browserInvocations", mapper.createArrayNode()
+                        .add(browserInvocation("before-restart", beforeRestart))
+                        .add(browserInvocation("after-restart", afterRestart)));
                 finishObservation(records.get(activeScenario), mapper, started03, "passed", null, 0,
                         combined, Map.of("beforeRestart", beforeRestartDatabase, "afterRestart", afterRestartDatabase), List.of(beforeRestartRun, afterRestartRun));
                 records.get(activeScenario).putArray("restartPhases").add("fresh Spring context; fresh Playwright browser process; same disposable PostgreSQL; no reseed or writes");
                 activeScenario = null;
+                activeBrowserResult = null;
             }
         } catch (Throwable failure) {
             String blocker = failure.getClass().getSimpleName()+": "+String.valueOf(failure.getMessage());
             if (activeScenario != null) {
                 var current = records.get(activeScenario);
                 current.put("result", "failed"); current.put("blocker", blocker); current.put("actualFinishedAt", java.time.Instant.now().toString());
+                int exitCode = failure instanceof BrowserRunFailure browserFailure ? browserFailure.exitCode() : 1;
+                current.put("exitCode", exitCode);
+                if (activeBrowserResult != null && Files.exists(activeBrowserResult)) {
+                    var partial = mapper.readTree(Files.readString(activeBrowserResult));
+                    copyPartialActual(current, mapper, partial);
+                    if (activeScenario.equals("UAT-SVC-03") && beforeRestart != null)
+                        current.set("observedUI", mapper.createObjectNode().set("beforeRestart", beforeRestart.get("summary").deepCopy()).set("partialAfterRestart", partial.get("panelText") == null ? mapper.nullNode() : partial.get("panelText").deepCopy()));
+                }
+                if (current.get("independentlyObservedDatabase").isNull() && lastObservedDatabase != null)
+                    current.set("independentlyObservedDatabase", mapper.valueToTree(lastObservedDatabase));
+                if (current.get("independentlyObservedDatabase").isNull() && postgresDataSource != null) {
+                    try {
+                        current.set("independentlyObservedDatabase", mapper.valueToTree(readDatabaseWire(postgresDataSource)));
+                    } catch (Exception captureFailure) {
+                        current.put("databaseCaptureFailure", captureFailure.getClass().getSimpleName()+": "+String.valueOf(captureFailure.getMessage()));
+                    }
+                }
+                var failureDatabase = mapper.createObjectNode();
+                if (current.get("independentlyObservedDatabase") != null && current.get("independentlyObservedDatabase").isObject())
+                    failureDatabase.setAll((tools.jackson.databind.node.ObjectNode) current.get("independentlyObservedDatabase"));
+                if (activeScenario.equals("UAT-SVC-03") && beforeRestartDatabase != null)
+                    failureDatabase.set("beforeRestart", mapper.valueToTree(beforeRestartDatabase));
+                if (postgresDataSource != null) {
+                    try {
+                        current.set("independentlyObservedDatabaseAtFailure", mapper.valueToTree(readDatabaseWire(postgresDataSource)));
+                    } catch (Exception captureFailure) {
+                        current.put("databaseCaptureFailure", captureFailure.getClass().getSimpleName()+": "+String.valueOf(captureFailure.getMessage()));
+                    }
+                }
+                if (browserFailureDatabaseSnapshot != null)
+                    current.set("independentlyObservedDatabaseAtBrowserFailure", mapper.valueToTree(browserFailureDatabaseSnapshot));
+                if (!failureDatabase.isEmpty()) current.set("independentlyObservedDatabase", failureDatabase);
+                current.putArray("logPaths").add(activeBrowserResult == null ? "" : browserLog(activeBrowserResult).toString());
             }
             for (var entry : records.entrySet()) if ("not_run".equals(entry.getValue().get("result").asString())) {
                 entry.getValue().put("result", "blocked"); entry.getValue().put("blocker", blocker); entry.getValue().put("actualFinishedAt", java.time.Instant.now().toString());
@@ -210,6 +267,65 @@ class Day44BrowserTransportInfrastructureTest {
         }
     }
 
+    private static void assertFrozenExpectedCriteria(tools.jackson.databind.JsonNode expected) {
+        String canonical = """
+                {
+                  "schema_version": 1,
+                  "criteria_version": "fde-coursework-v2",
+                  "scenario_kind": "synthetic-local-only",
+                  "cases": [
+                    {
+                      "scenarioId": "UAT-SVC-01",
+                      "inputs": ["existing browser issue route", "same-instance replay", "REBUILD_AMOUNT endorsement"],
+                      "steps": ["run browser flow", "GET persisted owner-scoped summary", "inspect PostgreSQL rows"],
+                      "expectedUI": ["policy-a", "home-secure-v1", "125.00 INR", "ISSUED", "Version 2", "REBUILD_AMOUNT"],
+                      "expectedPersistedState": {"policies": 1, "receipts": 1, "events": 2},
+                      "failureInjection": null,
+                      "recoveryStep": null
+                    },
+                    {
+                      "scenarioId": "UAT-SVC-02",
+                      "inputs": ["existing successful summary", "one deliberately aborted summary GET"],
+                      "steps": ["observe summary", "abort exactly one GET", "confirm stale values clear", "remove interception", "retry the same GET"],
+                      "expectedUI": ["unavailable alert", "old policy/premium/history absent", "recovered persisted values", "alert absent"],
+                      "expectedHttp": null,
+                      "expectedPersistedState": {"policyVersionUnchanged": true, "rowCountsUnchanged": true},
+                      "failureInjection": "network abort; no HTTP status",
+                      "recoveryStep": "real GET after removing interception"
+                    },
+                    {
+                      "scenarioId": "UAT-SVC-03",
+                      "inputs": ["existing endorsement", "same disposable PostgreSQL across Spring restart"],
+                      "steps": ["apply existing cancellation route", "GET actual summary", "stop Spring", "start fresh Spring and browser", "GET summary/history only"],
+                      "expectedUI": ["CANCELLED", "Version 4", "125.00 INR", "2026-12-10", "persisted endorsement"],
+                      "expectedPersistedState": {"policies": 1, "receipts": 1, "events": 4},
+                      "failureInjection": null,
+                      "recoveryStep": null,
+                      "limitation": "Spring-process restart persistence only; not a PostgreSQL crash/restart test"
+                    }
+                  ]
+                }
+                """;
+        assertEquals(new tools.jackson.databind.ObjectMapper().readTree(canonical), expected,
+                "frozen UAT criteria changed; update the browser/database assertions in the same reviewed change");
+    }
+
+    private static void copyPartialActual(tools.jackson.databind.node.ObjectNode record, tools.jackson.databind.ObjectMapper mapper,
+            tools.jackson.databind.JsonNode partial) {
+        for (String source : List.of("http", "observedNetworkFailures")) if (partial.has(source)) record.set(source.equals("http") ? "observedHttp" : "observedNetworkFailure", partial.get(source).deepCopy());
+        var ui = mapper.createObjectNode();
+        for (String field : List.of("panelText", "error", "phase", "actualArgv", "actualCwd", "failedPanelText", "summary", "recovered", "successfulReads", "history", "issueBody", "replayBody"))
+            if (partial.has(field)) ui.set(field, partial.get(field).deepCopy());
+        record.set("observedUI", ui);
+        var database=mapper.createObjectNode();
+        for(String field:List.of("afterIssue","afterReplay","replayCheckpoint","afterEndorsement","before","after","database"))
+            if(partial.has(field))database.set(field,partial.get(field).deepCopy());
+        if(!database.isEmpty())record.set("independentlyObservedDatabase",database);
+        if (partial.has("screenshots")) for (var screenshot : partial.get("screenshots")) record.withArray("screenshotPaths").add(screenshot.asString());
+        if (partial.has("actualArgv")) record.set("actualArgv", partial.get("actualArgv").deepCopy());
+        if (partial.has("actualCwd")) record.set("actualCwd", partial.get("actualCwd").deepCopy());
+    }
+
     private static tools.jackson.databind.node.ObjectNode newObservation(tools.jackson.databind.ObjectMapper mapper, String runId,
             String scenarioId, String sourceSha, String workingTreePatchSha, boolean workingTreeDirty, String expectedHash, String command, String cwd) {
         var record=mapper.createObjectNode();
@@ -217,7 +333,7 @@ class Day44BrowserTransportInfrastructureTest {
         record.put("expectedVersion",1);record.put("criteriaVersion","fde-coursework-v2");record.put("expectedHash",expectedHash);
         record.put("recordType","instructor-validation-only");record.put("workingTreeDirty",workingTreeDirty);record.put("workingTreePatchSha256",workingTreePatchSha);
         record.put("sourceSha",sourceSha);record.put("actualStartedAt",java.time.Instant.now().toString());record.putNull("actualFinishedAt");
-        record.put("command",command);record.put("cwd",cwd);record.putNull("exitCode");record.putArray("observedHttp");
+        record.put("canonicalCommand",command);record.put("command",command);record.put("cwd",cwd);record.putNull("exitCode");record.putNull("actualArgv");record.putNull("actualCwd");record.putArray("observedHttp");
         record.putNull("observedNetworkFailure");record.putNull("observedUI");record.putArray("screenshotPaths");record.putArray("logPaths");
         record.putNull("independentlyObservedDatabase");record.putArray("restartPhases");record.putNull("blocker");record.putNull("reviewerNote");
         return record;
@@ -232,6 +348,9 @@ class Day44BrowserTransportInfrastructureTest {
         var http=actual.get("http");
         if(http==null)http=actual.get("successfulReads");
         if(http==null)record.putArray("observedHttp");else record.set("observedHttp",http.deepCopy());
+        if(actual.has("actualArgv"))record.set("actualArgv",actual.get("actualArgv").deepCopy());
+        if(actual.has("actualCwd"))record.set("actualCwd",actual.get("actualCwd").deepCopy());
+        if(actual.has("browserInvocations"))record.set("browserInvocations",actual.get("browserInvocations").deepCopy());
         var network=actual.get("observedNetworkFailure");
         if(network==null)record.putNull("observedNetworkFailure");else record.set("observedNetworkFailure",network.deepCopy());
         var ui=mapper.createObjectNode();
@@ -247,6 +366,14 @@ class Day44BrowserTransportInfrastructureTest {
             if(Files.exists(screenshot))record.withArray("screenshotPaths").add(screenshot.toString());
             Path log=browserLog(run);if(Files.exists(log))record.withArray("logPaths").add(log.toString());
         }
+    }
+
+    private static tools.jackson.databind.node.ObjectNode browserInvocation(String phase, tools.jackson.databind.JsonNode actual) {
+        var invocation = new tools.jackson.databind.ObjectMapper().createObjectNode();
+        invocation.put("phase", phase);
+        if (actual.has("actualArgv")) invocation.set("actualArgv", actual.get("actualArgv").deepCopy());
+        if (actual.has("actualCwd")) invocation.set("actualCwd", actual.get("actualCwd").deepCopy());
+        return invocation;
     }
 
     private static void appendExistingArtifacts(tools.jackson.databind.node.ObjectNode record, Path runDir) throws Exception {
@@ -270,6 +397,8 @@ class Day44BrowserTransportInfrastructureTest {
         var http=observation.get("http");
         var issue=findHttp(http,"/issue");var replay=findHttp(http,"/replay");var endorsement=findHttp(http,"/endorsement");var summary=findHttp(http,"/servicing/policy-a");
         assertEquals(200,issue.get("status").asInt());assertEquals(200,replay.get("status").asInt());assertEquals(issue.get("body"),replay.get("body"),"replay response must be the exact original snapshot");
+        assertEquals(observation.get("issueBody"), observation.get("replayBody"), "captured command bodies must prove replay identity");
+        assertEquals(observation.get("afterIssue"), observation.get("afterReplay"), "full policy/receipt/event rows must remain identical on replay");
         var body=issue.get("body");
         assertEquals("policy-a",body.get("policyId").asString());assertEquals("owner-a",body.get("ownerId").asString());
         assertEquals("journey-a",body.get("journeyId").asString());assertEquals("quote-a",body.get("quoteVersionId").asString());
@@ -277,7 +406,8 @@ class Day44BrowserTransportInfrastructureTest {
         assertEquals("125",body.get("annualPremiumRupees").asString());assertEquals("2026-12-01",body.get("effectiveDate").asString());
         assertEquals("ISSUED",body.get("status").asString());assertEquals(1,body.get("version").asInt());
         assertEquals(200,endorsement.get("status").asInt());
-        assertDatabaseJson(observation.get("replayCheckpoint"),1,1,1,"ISSUED",1,"125.00",null,List.of());
+        assertDatabaseJson(observation.get("afterIssue"),1,1,1,"ISSUED",1,"125.00",null,List.of());
+        assertDatabaseJson(observation.get("afterReplay"),1,1,1,"ISSUED",1,"125.00",null,List.of());
         assertDatabaseJson(observation.get("afterEndorsement"),1,1,2,"ISSUED",2,"125.00",null,List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
         assertSummaryJson(summary.get("body"),"ISSUED",2,null,List.of(new HistoryWire(2,"2026-12-02","REBUILD_AMOUNT")));
         String panel=observation.get("panelText").asString();
@@ -330,10 +460,28 @@ class Day44BrowserTransportInfrastructureTest {
 
     private static void assertDatabaseJson(tools.jackson.databind.JsonNode db,long policies,long receipts,long events,String status,long version,String premium,String cancellation,List<HistoryWire> history) {
         assertEquals(policies,db.get("policies").asLong());assertEquals(receipts,db.get("receipts").asLong());assertEquals(events,db.get("events").asLong());
+        assertEquals(policies, db.get("policyRows").size(), "all policy rows must be captured");
+        assertEquals(receipts, db.get("receiptRows").size(), "all receipt rows must be captured");
+        assertEquals(events, db.get("eventRows").size(), "all event rows must be captured");
         if(status==null){assertTrue(db.get("version").isNull());return;}
         assertEquals("home-secure-v1",db.get("productVersion").asString());assertEquals(premium,db.get("annualPremiumRupees").asString());assertEquals("INR",db.get("currency").asString());
         assertEquals(status,db.get("status").asString());assertEquals(version,db.get("version").asLong());
         if(cancellation==null)assertTrue(db.get("cancellationEffectiveDate").isNull());else assertEquals(cancellation,db.get("cancellationEffectiveDate").asString());
+        var policy=db.get("policyRows").get(0);
+        assertEquals("policy-a",policy.get("policyId").asString());assertEquals("owner-a",policy.get("ownerId").asString());
+        assertEquals("journey-a",policy.get("journeyId").asString());assertEquals("quote-a",policy.get("quoteVersionId").asString());
+        assertEquals("home-secure-v1",policy.get("productVersion").asString());assertEquals("training-rate-v1",policy.get("rateVersion").asString());
+        assertEquals(premium,policy.get("annualPremiumRupees").asString());assertEquals("INR",policy.get("currency").asString());
+        assertEquals("2026-12-01",policy.get("effectiveDate").asString());assertEquals(status,policy.get("status").asString());assertEquals(version,policy.get("version").asLong());
+        if(cancellation==null)assertTrue(policy.get("cancellationEffectiveDate").isNull());else assertEquals(cancellation,policy.get("cancellationEffectiveDate").asString());
+        var receipt=db.get("receiptRows").get(0);
+        assertEquals("owner-a",receipt.get("ownerId").asString());assertEquals("issue-e2e",receipt.get("clientRequestId").asString());
+        assertFalse(receipt.get("requestFingerprint").asString().isBlank(),"receipt fingerprint must be present");assertEquals("policy-a",receipt.get("policyId").asString());
+        var eventsActual=db.get("eventRows");
+        assertEvent(eventsActual.get(0),1,"ISSUED","2026-12-01",null,null);
+        if(events>=2)assertEvent(eventsActual.get(1),2,"ENDORSED","2026-12-02","REBUILD_AMOUNT","200000.00");
+        if(events>=3)assertEvent(eventsActual.get(2),3,"CANCEL_SCHEDULED","2026-12-10","CUSTOMER_REQUEST",null);
+        if(events>=4)assertEvent(eventsActual.get(3),4,"CANCELLED","2026-12-10",null,null);
         assertEquals(history.size(),db.get("endorsementHistory").size());
         for(int i=0;i<history.size();i++) {
             var actual=db.get("endorsementHistory").get(i);var expected=history.get(i);
@@ -341,10 +489,15 @@ class Day44BrowserTransportInfrastructureTest {
         }
     }
 
+    private static void assertEvent(tools.jackson.databind.JsonNode event,long version,String type,String date,String changeCode,String rebuildAmount) {
+        assertEquals("policy-a",event.get("policyId").asString());assertEquals(version,event.get("version").asLong());
+        assertEquals(type,event.get("eventType").asString());assertEquals(date,event.get("effectiveDate").asString());
+        if(changeCode==null)assertTrue(event.get("changeCode").isNull());else assertEquals(changeCode,event.get("changeCode").asString());
+        if(rebuildAmount==null)assertTrue(event.get("trainingRebuildAmountRupees").isNull());else assertEquals(rebuildAmount,event.get("trainingRebuildAmountRupees").asString());
+    }
+
     private static void assertDatabase(DatabaseWire db,long policies,long receipts,long events,String status,long version,String premium,String cancellation,List<HistoryWire> history) {
-        assertEquals(policies,db.policies());assertEquals(receipts,db.receipts());assertEquals(events,db.events());
-        assertEquals("home-secure-v1",db.productVersion());assertEquals(premium,db.annualPremiumRupees());assertEquals("INR",db.currency());
-        assertEquals(status,db.status());assertEquals(version,db.version());assertEquals(cancellation,db.cancellationEffectiveDate());assertEquals(history,db.endorsementHistory());
+        assertDatabaseJson(new tools.jackson.databind.ObjectMapper().valueToTree(db),policies,receipts,events,status,version,premium,cancellation,history);
     }
 
     private static String historyString(tools.jackson.databind.JsonNode history) {
@@ -352,16 +505,28 @@ class Day44BrowserTransportInfrastructureTest {
     }
 
     private static DatabaseWire readDatabaseWire(DataSource ds) throws Exception {
-        long policies=count(ds,"training_policy_lifecycle"),receipts=count(ds,"training_policy_idempotency"),events=count(ds,"training_policy_lifecycle_event");
-        try(Connection c=ds.getConnection();var q=c.prepareStatement("SELECT product_version,annual_premium_rupees,currency,status,version,cancellation_effective_date FROM training_policy_lifecycle WHERE policy_id='policy-a' AND owner_id='owner-a'");var r=q.executeQuery()) {
-            if(!r.next())return new DatabaseWire(policies,receipts,events,null,null,null,null,null,null,List.of());
-            var history=new java.util.ArrayList<HistoryWire>();
-            try(var e=c.prepareStatement("SELECT version,effective_date,change_code FROM training_policy_lifecycle_event WHERE policy_id='policy-a' AND event_type='ENDORSED' ORDER BY effective_date ASC,version ASC");var x=e.executeQuery()) {
-                while(x.next())history.add(new HistoryWire(x.getLong(1),x.getDate(2).toLocalDate().toString(),x.getString(3)));
+        var policyRows=new java.util.ArrayList<PolicyRow>();
+        var receiptRows=new java.util.ArrayList<ReceiptRow>();
+        var eventRows=new java.util.ArrayList<EventRow>();
+        try(Connection c=ds.getConnection();var q=c.createStatement();var r=q.executeQuery("SELECT policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,annual_premium_rupees,currency,effective_date,status,version,cancellation_effective_date FROM training_policy_lifecycle ORDER BY policy_id")) {
+            while(r.next()) {
+                var cancellation=r.getDate(12);
+                policyRows.add(new PolicyRow(r.getString(1),r.getString(2),r.getString(3),r.getString(4),r.getString(5),r.getString(6),r.getBigDecimal(7).toPlainString(),r.getString(8).trim(),r.getDate(9).toLocalDate().toString(),r.getString(10),r.getLong(11),cancellation==null?null:cancellation.toLocalDate().toString()));
             }
-            var cancellation=r.getDate(6);
-            return new DatabaseWire(policies,receipts,events,r.getString(1),r.getBigDecimal(2).toPlainString(),r.getString(3).trim(),r.getString(4),r.getLong(5),cancellation==null?null:cancellation.toLocalDate().toString(),List.copyOf(history));
         }
+        try(Connection c=ds.getConnection();var q=c.createStatement();var r=q.executeQuery("SELECT owner_id,client_request_id,request_fingerprint,policy_id FROM training_policy_idempotency ORDER BY owner_id,client_request_id")) {
+            while(r.next())receiptRows.add(new ReceiptRow(r.getString(1),r.getString(2),r.getString(3),r.getString(4)));
+        }
+        try(Connection c=ds.getConnection();var q=c.createStatement();var r=q.executeQuery("SELECT policy_id,version,event_type,effective_date,change_code,training_rebuild_amount_rupees FROM training_policy_lifecycle_event ORDER BY policy_id,version")) {
+            while(r.next()) {
+                var amount=r.getBigDecimal(6);
+                eventRows.add(new EventRow(r.getString(1),r.getLong(2),r.getString(3),r.getDate(4).toLocalDate().toString(),r.getString(5),amount==null?null:amount.toPlainString()));
+            }
+        }
+        PolicyRow policy=policyRows.stream().filter(p->p.policyId().equals("policy-a")&&p.ownerId().equals("owner-a")).findFirst().orElse(null);
+        var endorsementHistory=eventRows.stream().filter(e->e.policyId().equals("policy-a")&&e.eventType().equals("ENDORSED"))
+                .map(e->new HistoryWire(e.version(),e.effectiveDate(),e.changeCode())).toList();
+        return new DatabaseWire(policyRows.size(),receiptRows.size(),eventRows.size(),policy==null?null:policy.productVersion(),policy==null?null:policy.annualPremiumRupees(),policy==null?null:policy.currency(),policy==null?null:policy.status(),policy==null?null:policy.version(),policy==null?null:policy.cancellationEffectiveDate(),endorsementHistory,List.copyOf(policyRows),List.copyOf(receiptRows),List.copyOf(eventRows));
     }
 
     private static String gitValue(String... args) throws Exception {
@@ -421,7 +586,20 @@ class Day44BrowserTransportInfrastructureTest {
             runner.destroyForcibly(); runner.waitFor();
             throw new IllegalStateException("Playwright timed out: " + Files.readString(log));
         }
-        assertEquals(0, runner.exitValue(), Files.readString(log));
+        if (runner.exitValue() != 0) {
+            if (postgresDataSource != null) try { browserFailureDatabaseSnapshot = readDatabaseWire(postgresDataSource); }
+            catch (Exception ignored) { browserFailureDatabaseSnapshot = null; }
+            throw new BrowserRunFailure(runner.exitValue(), result, log, Files.readString(log));
+        }
+    }
+
+    static final class BrowserRunFailure extends RuntimeException {
+        private final int exitCode;
+        BrowserRunFailure(int exitCode,Path resultPath,Path logPath,String output) {
+            super("Playwright exited "+exitCode+"; result="+resultPath+"; log="+logPath+"\n"+output);
+            this.exitCode=exitCode;
+        }
+        int exitCode(){return exitCode;}
     }
 
     @Configuration(proxyBeanMethods = false)
@@ -507,22 +685,7 @@ class Day44BrowserTransportInfrastructureTest {
         }
 
         @GetMapping("/test/day44/lifecycle/diagnostics")
-        DatabaseWire diagnostics() throws Exception {
-            long policies=count(dataSource,"training_policy_lifecycle");
-            long receipts=count(dataSource,"training_policy_idempotency");
-            long events=count(dataSource,"training_policy_lifecycle_event");
-            try(Connection c=dataSource.getConnection();var q=c.prepareStatement("SELECT product_version,annual_premium_rupees,currency,status,version,cancellation_effective_date FROM training_policy_lifecycle WHERE policy_id=? AND owner_id=?")) {
-                q.setString(1,"policy-a");q.setString(2,"owner-a");try(var r=q.executeQuery()) {
-                    if(!r.next())return new DatabaseWire(policies,receipts,events,null,null,null,null,null,null,List.of());
-                    var history=new java.util.ArrayList<HistoryWire>();
-                    try(var e=c.prepareStatement("SELECT version,effective_date,change_code FROM training_policy_lifecycle_event WHERE policy_id=? AND event_type='ENDORSED' ORDER BY effective_date ASC,version ASC")) {
-                        e.setString(1,"policy-a");try(var x=e.executeQuery()){while(x.next())history.add(new HistoryWire(x.getLong(1),x.getDate(2).toLocalDate().toString(),x.getString(3)));}
-                    }
-                    var cancellation=r.getDate(6);
-                    return new DatabaseWire(policies,receipts,events,r.getString(1),r.getBigDecimal(2).toPlainString(),r.getString(3).trim(),r.getString(4),r.getLong(5),cancellation==null?null:cancellation.toLocalDate().toString(),List.copyOf(history));
-                }
-            }
-        }
+        DatabaseWire diagnostics() throws Exception { return readDatabaseWire(dataSource); }
 
         @PostMapping("/test/day44/lifecycle/issue")
         PolicySnapshot issue() {
@@ -537,8 +700,10 @@ class Day44BrowserTransportInfrastructureTest {
 
         @PostMapping("/test/day44/lifecycle/endorsement")
         PolicySnapshot endorse() {
-            return service.endorseAtExpectedVersion(dataSource, issued(),
-                    new PolicyEndorsementRequest(1, LocalDate.parse("2026-12-02"), "REBUILD_AMOUNT", new BigDecimal("200000.00")));
+            var policy=issued();
+            var request=new PolicyEndorsementRequest(1,LocalDate.parse("2026-12-02"),"REBUILD_AMOUNT",new BigDecimal("200000.00"));
+            if(!service.validateEndorsement(policy,request))throw new IllegalArgumentException("fixed training endorsement failed validation");
+            return service.endorseAtExpectedVersion(dataSource,policy,request);
         }
 
         @GetMapping("/test/day44/lifecycle/history")
@@ -552,6 +717,7 @@ class Day44BrowserTransportInfrastructureTest {
 
         @PostMapping("/test/day44/lifecycle/cancellation")
         PolicySnapshot cancellation() {
+            lifecycleClock.set(Instant.parse("2026-12-10T12:00:00Z"));
             var request = new PolicyCancellationRequest(2, "cancel-e2e", LocalDate.parse("2026-12-10"), "CUSTOMER_REQUEST");
             PolicyCancellationReceiptStore empty = (owner, key) -> Optional.empty();
             var scheduled = service.scheduleCancellation(issuedAtVersionTwo(), request, empty);
@@ -569,7 +735,18 @@ class Day44BrowserTransportInfrastructureTest {
     }
     record HistoryWire(long version,String effectiveDate,String changeCode) {}
     record ServicingWire(String policyId,String productVersion,String annualPremiumRupees,String currency,PolicyStatus status,long version,List<HistoryWire> history,String cancellationEffectiveDate) {}
-    record DatabaseWire(long policies,long receipts,long events,String productVersion,String annualPremiumRupees,String currency,String status,Long version,String cancellationEffectiveDate,List<HistoryWire> endorsementHistory) {}
+    record PolicyRow(String policyId,String ownerId,String journeyId,String quoteVersionId,String productVersion,String rateVersion,String annualPremiumRupees,String currency,String effectiveDate,String status,long version,String cancellationEffectiveDate) {}
+    record ReceiptRow(String ownerId,String clientRequestId,String requestFingerprint,String policyId) {}
+    record EventRow(String policyId,long version,String eventType,String effectiveDate,String changeCode,String trainingRebuildAmountRupees) {}
+    record DatabaseWire(long policies,long receipts,long events,String productVersion,String annualPremiumRupees,String currency,String status,Long version,String cancellationEffectiveDate,List<HistoryWire> endorsementHistory,List<PolicyRow> policyRows,List<ReceiptRow> receiptRows,List<EventRow> eventRows) {}
+    static final class HarnessClock extends Clock {
+        private final java.util.concurrent.atomic.AtomicReference<Instant> instant;
+        HarnessClock(Instant initial) { instant=new java.util.concurrent.atomic.AtomicReference<>(initial); }
+        void set(Instant value) { instant.set(value); }
+        @Override public Instant instant() { return instant.get(); }
+        @Override public java.time.ZoneId getZone() { return ZoneOffset.UTC; }
+        @Override public Clock withZone(java.time.ZoneId zone) { if(!ZoneOffset.UTC.equals(zone))throw new IllegalArgumentException("UTC fixture only");return this; }
+    }
     static final class JdbcLifecycleReadStore implements PolicyReadStore {
         private final DataSource ds; JdbcLifecycleReadStore(DataSource ds){this.ds=ds;}
         public Optional<PolicySnapshot> findByPolicyIdAndOwnerId(String policyId,String ownerId) {

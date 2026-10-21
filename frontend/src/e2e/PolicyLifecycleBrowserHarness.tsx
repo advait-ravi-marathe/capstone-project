@@ -78,13 +78,19 @@ export function PolicyLifecycleBrowserHarness() {
   }
 
   async function runIssueAndEndorsement() {
-    for (const path of ['/test/day44/lifecycle/issue', '/test/day44/lifecycle/replay']) {
-      const response = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-      if (!response.ok) throw new Error(`${path} returned ${response.status}`);
-    }
-    const checkpoint = await fetch('/test/day44/lifecycle/diagnostics');
-    if (!checkpoint.ok) throw new Error(`diagnostics returned ${checkpoint.status}`);
-    setServicingCheckpoint(await checkpoint.json());
+    const issue = await fetch('/test/day44/lifecycle/issue', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    if (!issue.ok) throw new Error(`/test/day44/lifecycle/issue returned ${issue.status}`);
+    const issueBody = await issue.json();
+    const afterIssue = await fetch('/test/day44/lifecycle/diagnostics');
+    if (!afterIssue.ok) throw new Error(`issue diagnostics returned ${afterIssue.status}`);
+    const issueDatabase = await afterIssue.json();
+    const replay = await fetch('/test/day44/lifecycle/replay', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    if (!replay.ok) throw new Error(`/test/day44/lifecycle/replay returned ${replay.status}`);
+    const replayBody = await replay.json();
+    const afterReplay = await fetch('/test/day44/lifecycle/diagnostics');
+    if (!afterReplay.ok) throw new Error(`replay diagnostics returned ${afterReplay.status}`);
+    const replayDatabase = await afterReplay.json();
+    setServicingCheckpoint({ issueBody, replayBody, afterIssue: issueDatabase, afterReplay: replayDatabase });
     const endorsement = await fetch('/test/day44/lifecycle/endorsement', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     if (!endorsement.ok) throw new Error(`/test/day44/lifecycle/endorsement returned ${endorsement.status}`);
     await readServicingSummary();

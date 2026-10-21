@@ -12,6 +12,35 @@ const canonical = value => Array.isArray(value) ? value.map(canonical) : value &
   ? Object.fromEntries(Object.keys(value).sort().map(key => [key, canonical(value[key])])) : value;
 const stable = value => JSON.stringify(canonical(value));
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const observedResponses = [];
+const observedNetworkFailures = [];
+const responseTasks = [];
+let activePage = null;
+let failureScreenshot = null;
+
+function beginActualCapture(page) {
+  activePage = page;
+  page.on('response', response => {
+    const parsed = new URL(response.url());
+    if (!parsed.pathname.startsWith('/test/day44/lifecycle/')) return;
+    responseTasks.push((async () => {
+      let body = null;
+      try { body = await response.json(); } catch { body = null; }
+      observedResponses.push({path:parsed.pathname,status:response.status(),body});
+    })());
+  });
+  page.on('requestfailed', request => {
+    const parsed = new URL(request.url());
+    if (parsed.pathname.startsWith('/test/day44/lifecycle/'))
+      observedNetworkFailures.push({path:parsed.pathname,failure:request.failure()?.errorText ?? 'unknown'});
+  });
+}
+
+async function writeResult(path, result) {
+  await import('node:fs/promises').then(({writeFile}) => writeFile(path, JSON.stringify({
+    ...result, actualArgv:process.argv, actualCwd:process.cwd(),
+  }, null, 2)));
+}
 
 async function readDiagnostics(page) {
   const response = await page.request.get(api('/test/day44/lifecycle/diagnostics'));
@@ -22,6 +51,24 @@ async function readDiagnostics(page) {
 function assertCounts(actual, expected, label) {
   assert(actual.policies === expected.policies && actual.receipts === expected.receipts && actual.events === expected.events,
     `${label} expected ${JSON.stringify(expected)} got ${JSON.stringify({policies:actual.policies,receipts:actual.receipts,events:actual.events})}`);
+}
+
+function assertFullDatabase(db, {status, version, cancellationEffectiveDate, endorsement}) {
+  assert(db.policyRows.length === 1 && db.receiptRows.length === 1 && db.eventRows.length === db.events,
+    `full row sets do not match counts: ${JSON.stringify(db)}`);
+  const policy = db.policyRows[0];
+  assert(policy.policyId==='policy-a' && policy.ownerId==='owner-a' && policy.journeyId==='journey-a' && policy.quoteVersionId==='quote-a', 'policy identity columns differ');
+  assert(policy.productVersion==='home-secure-v1' && policy.rateVersion==='training-rate-v1' && policy.annualPremiumRupees==='125.00' && policy.currency==='INR', 'captured policy facts differ');
+  assert(policy.effectiveDate==='2026-12-01' && policy.status===status && policy.version===version && policy.cancellationEffectiveDate===cancellationEffectiveDate, 'policy lifecycle row differs');
+  const receipt = db.receiptRows[0];
+  assert(receipt.ownerId==='owner-a' && receipt.clientRequestId==='issue-e2e' && receipt.policyId==='policy-a' && typeof receipt.requestFingerprint==='string' && receipt.requestFingerprint.length>0, 'full idempotency receipt differs');
+  assert(db.eventRows[0].version===1 && db.eventRows[0].eventType==='ISSUED' && db.eventRows[0].effectiveDate==='2026-12-01' && db.eventRows[0].changeCode===null && db.eventRows[0].trainingRebuildAmountRupees===null, 'issued event row differs');
+  if (endorsement) {
+    assert(db.eventRows[1].version===2 && db.eventRows[1].eventType==='ENDORSED' && db.eventRows[1].effectiveDate==='2026-12-02'
+      && db.eventRows[1].changeCode==='REBUILD_AMOUNT' && db.eventRows[1].trainingRebuildAmountRupees==='200000.00', 'complete endorsement event payload differs');
+  }
+  if (version>=3) assert(db.eventRows[2].version===3 && db.eventRows[2].eventType==='CANCEL_SCHEDULED' && db.eventRows[2].effectiveDate==='2026-12-10' && db.eventRows[2].changeCode==='CUSTOMER_REQUEST' && db.eventRows[2].trainingRebuildAmountRupees===null, 'scheduled event row differs');
+  if (version>=4) assert(db.eventRows[3].version===4 && db.eventRows[3].eventType==='CANCELLED' && db.eventRows[3].effectiveDate==='2026-12-10' && db.eventRows[3].changeCode===null && db.eventRows[3].trainingRebuildAmountRupees===null, 'cancelled event row differs');
 }
 
 function assertSummary(summary, {status, version, cancellationEffectiveDate, history}) {
@@ -67,6 +114,7 @@ function compactSnapshot(snapshot) {
 
 try {
   const page = await browser.newPage();
+  beginActualCapture(page);
   page.setDefaultTimeout(5000);
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 8000 });
   if (phase === 'servicing') {
@@ -81,7 +129,11 @@ try {
     const panel = page.getByRole('region', { name: 'Policy servicing' });
     assert(await panel.getByText('policy-a', { exact: true }).count() === 1,
       `servicing panel did not show policy-a; panel=${await panel.innerText()} HTTP=${JSON.stringify(captured.map(x=>({path:x.path,status:x.status,body:x.body})))}`);
-    const replayCheckpoint = JSON.parse(await page.getByTestId('servicing-checkpoint').textContent());
+    const checkpoints = JSON.parse(await page.getByTestId('servicing-checkpoint').textContent());
+    const replayCheckpoint = checkpoints.afterReplay;
+    assert(stable(checkpoints.issueBody) === stable(checkpoints.replayBody), 'issue and replay response bodies differ');
+    assert(stable(checkpoints.afterIssue) === stable(checkpoints.afterReplay), 'complete persisted rows changed during replay');
+    assertFullDatabase(checkpoints.afterIssue,{status:'ISSUED',version:1,cancellationEffectiveDate:null,endorsement:false});
     const finalDatabase = await readDiagnostics(page);
     const issue = captured.find(item => item.path.endsWith('/issue'));
     const replay = captured.find(item => item.path.endsWith('/replay'));
@@ -93,7 +145,9 @@ try {
     const expectedIssued = {policyId:'policy-a',ownerId:'owner-a',journeyId:'journey-a',quoteVersionId:'quote-a',productVersion:'home-secure-v1',rateVersion:'training-rate-v1',annualPremiumRupees:'125',currency:'INR',effectiveDate:'2026-12-01',status:'ISSUED',version:1,endorsements:[],cancellationEffectiveDate:null};
     assert(stable(compactSnapshot(issue.body)) === stable(expectedIssued), 'issue response differs from the complete expected synthetic snapshot');
     assertCounts(replayCheckpoint, {policies:1,receipts:1,events:1}, 'after replay and before endorsement');
+    assertFullDatabase(replayCheckpoint,{status:'ISSUED',version:1,cancellationEffectiveDate:null,endorsement:false});
     assertCounts(finalDatabase, {policies:1,receipts:1,events:2}, 'after endorsement');
+    assertFullDatabase(finalDatabase,{status:'ISSUED',version:2,cancellationEffectiveDate:null,endorsement:true});
     assert(finalDatabase.annualPremiumRupees === '125.00', 'endorsement amount must not overwrite annual premium');
     const summary = assertSummary(summaryResponse?.body, {status:'ISSUED',version:2,cancellationEffectiveDate:null,history:[{version:2,effectiveDate:'2026-12-02',changeCode:'REBUILD_AMOUNT'}]});
     await panel.getByText('125.00 INR', { exact: true }).waitFor();
@@ -103,9 +157,9 @@ try {
       `history item absent; panel=${await panel.innerText()} summary=${JSON.stringify(summary)}`);
     const panelText = await panel.innerText();
     assert(!/owner-a|journey-a|quote-a|training-rate-v1/.test(panelText), 'private source identifiers appeared in the panel');
-    const result = {phase,browserOpened:true,http:captured.map(x=>({path:x.path,status:x.status,body:x.path.endsWith('/servicing/policy-a')?x.body:compactSnapshot(x.body)})),replayCheckpoint,afterEndorsement:finalDatabase,summary,panelText};
+    const result = {phase,browserOpened:true,http:captured.map(x=>({path:x.path,status:x.status,body:x.path.endsWith('/servicing/policy-a')?x.body:compactSnapshot(x.body)})),issueBody:checkpoints.issueBody,replayBody:checkpoints.replayBody,afterIssue:checkpoints.afterIssue,afterReplay:checkpoints.afterReplay,replayCheckpoint,afterEndorsement:finalDatabase,summary,panelText};
     await page.screenshot({path:resultPath.replace('.json','.png')});
-    await import('node:fs/promises').then(({writeFile})=>writeFile(resultPath,JSON.stringify(result,null,2)));
+    await writeResult(resultPath,result);
   } else if (phase === 'servicing-failure') {
     const responses = watchLifecycleResponses(page);
     const failures = [];
@@ -136,11 +190,14 @@ try {
     const summaries = captured.filter(item=>item.path.endsWith('/servicing/policy-a'));
     assert(summaries.length === 2 && summaries.every(item=>item.status===200), `successful reads should bracket one abort: ${JSON.stringify(summaries.map(x=>x.status))}`);
     const recovered = assertSummary(summaries[1].body, {status:'ISSUED',version:2,cancellationEffectiveDate:null,history:[{version:2,effectiveDate:'2026-12-02',changeCode:'REBUILD_AMOUNT'}]});
+    assertFullDatabase(after,{status:'ISSUED',version:2,cancellationEffectiveDate:null,endorsement:true});
     for (const value of ['125.00 INR','ISSUED','Version 2']) await panel.getByText(value,{exact:true}).waitFor();
     assert(await panel.getByRole('listitem').filter({hasText:'REBUILD_AMOUNT'}).filter({hasText:'2026-12-02'}).count()===1,'recovered endorsement history is incomplete');
-    const result = {phase,browserOpened:true,abortedRequestStatus:null,observedNetworkFailure:failures[0],successfulReads:summaries.map(x=>({status:x.status,body:x.body})),before,after,recovered,failedPanelText,panelText:await panel.innerText(),screenshots:[failureScreenshot,resultPath.replace('.json','.png')]};
+    const recoveredText=await panel.innerText();
+    for (const value of ['home-secure-v1','125.00 INR','ISSUED','Version 2','REBUILD_AMOUNT','2026-12-02']) assert(recoveredText.includes(value),`recovered panel missing ${value}`);
+    const result = {phase,browserOpened:true,abortedRequestStatus:null,observedNetworkFailure:failures[0],successfulReads:summaries.map(x=>({status:x.status,body:x.body})),before,after,recovered,failedPanelText,panelText:recoveredText,screenshots:[failureScreenshot,resultPath.replace('.json','.png')]};
     await page.screenshot({path:resultPath.replace('.json','.png')});
-    await import('node:fs/promises').then(({writeFile})=>writeFile(resultPath,JSON.stringify(result,null,2)));
+    await writeResult(resultPath,result);
   } else if (phase === 'servicing-cancel' || phase === 'servicing-read') {
     const responses = watchLifecycleResponses(page);
     const panel = page.getByRole('region', { name: 'Policy servicing' });
@@ -161,23 +218,24 @@ try {
     const history = await historyResponse.json();
     assert(history.status==='CANCELLED' && history.version===4 && history.eventCount===4, `wrong persisted history result: ${JSON.stringify(history)}`);
     const database = await readDiagnostics(page);
+    assertFullDatabase(database,{status:'CANCELLED',version:4,cancellationEffectiveDate:'2026-12-10',endorsement:true});
     assertCounts(database,{policies:1,receipts:1,events:4},'cancelled lifecycle');
     assert(database.annualPremiumRupees==='125.00' && database.cancellationEffectiveDate==='2026-12-10','cancelled database summary differs from frozen expectation');
     assert(!/owner-a|journey-a|quote-a|training-rate-v1/.test(await panel.innerText()),'private source identifiers appeared after cancellation');
     const result = {phase,browserOpened:true,http:capturedBeforeHistory.map(x=>({path:x.path,status:x.status,body:x.path.endsWith('/servicing/policy-a')?x.body:compactSnapshot(x.body)})),history,database,summary,panelText:await panel.innerText(),freshBrowser:phase==='servicing-read'};
     await page.screenshot({path:resultPath.replace('.json','.png')});
-    await import('node:fs/promises').then(({writeFile})=>writeFile(resultPath,JSON.stringify(result,null,2)));
+    await writeResult(resultPath,result);
   } else if (phase === 'flow') {
     await page.getByRole('button', { name: 'Run lifecycle API acceptance flow' }).click();
     await page.getByTestId('lifecycle-flow').filter({ hasText: '/test/day44/lifecycle/history:' }).waitFor();
     const flow = await page.getByTestId('lifecycle-flow').textContent();
     const result = { browserOpened: true, phase, flow };
-    await import('node:fs/promises').then(({ writeFile }) => writeFile(resultPath, JSON.stringify(result, null, 2)));
+    await writeResult(resultPath,result);
   } else if (phase === 'lifecycle-read') {
     await page.getByRole('button', { name: 'Read policy after restart' }).click();
     await page.getByTestId('lifecycle-flow').filter({ hasText: '/test/day44/lifecycle/history:' }).waitFor();
     const result = { browserOpened: true, phase, lifecycleReadback: await page.getByTestId('lifecycle-flow').textContent() };
-    await import('node:fs/promises').then(({ writeFile }) => writeFile(resultPath, JSON.stringify(result, null, 2)));
+    await writeResult(resultPath,result);
   } else if (phase === 'write') {
     await page.getByRole('button', { name: 'Write synthetic witness' }).click();
     await page.getByRole('status').filter({ hasText: 'saved' }).waitFor();
@@ -189,8 +247,27 @@ try {
   if (phase === 'write' || phase === 'read') {
     await page.getByTestId('readback').filter({ hasText: 'lifecycle-smoke-v1:persisted-after-server-restart' }).waitFor();
     const result = { browserOpened: true, phase, readback: await page.getByTestId('readback').textContent() };
-    await import('node:fs/promises').then(({ writeFile }) => writeFile(resultPath, JSON.stringify(result, null, 2)));
+    await writeResult(resultPath,result);
   }
+} catch (error) {
+  const screenshot = resultPath.replace('.json', '-failure.png');
+  try { await Promise.allSettled(responseTasks); } catch {}
+  let panelText = null;
+  if (activePage) {
+    try {
+      const panel = activePage.getByRole('region', {name:'Policy servicing'});
+      if (await panel.count()) panelText = await panel.innerText();
+    } catch {}
+    try { await activePage.screenshot({path:screenshot,fullPage:true}); failureScreenshot=screenshot; } catch {}
+  }
+  const partial = {
+    phase, partial: true, actualArgv: process.argv, actualCwd: process.cwd(),
+    http: observedResponses, observedNetworkFailures, panelText,
+    error: String(error?.stack || error), screenshots: failureScreenshot ? [failureScreenshot] : [],
+  };
+  try { await import('node:fs/promises').then(({writeFile})=>writeFile(resultPath,JSON.stringify(partial,null,2))); } catch {}
+  console.error(partial.error);
+  process.exitCode=1;
 } finally {
   await browser.close();
 }

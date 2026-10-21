@@ -36,6 +36,17 @@ describe('Day 43 policy servicing panel', () => {
     expect(within(panel).queryByText('125.00 INR')).toBeNull();
   });
 
+  it('clears every prior value when ready changes to ready with no selected policy', () => {
+    const { rerender } = render(<PolicyServicingPanel state="ready" summary={summary} />);
+    const panel = screen.getByRole('region', { name: 'Policy servicing' });
+    rerender(<PolicyServicingPanel state="ready" />);
+    expect(within(panel).getByRole('status').textContent).toContain('No policy selected');
+    for (const oldValue of ['policy-demo-1', 'home-secure-v1', '125.00 INR', 'CANCEL_SCHEDULED', 'Version 3', '2026-12-15', 'REBUILD_AMOUNT']) {
+      expect(within(panel).queryByText(oldValue, { exact: true })).toBeNull();
+    }
+    expect(within(panel).queryByRole('list', { name: 'Endorsement history' })).toBeNull();
+  });
+
   it.each(['loading', 'unauthenticated', 'unavailable'] as const)('clears stale summary on rerender to %s', (state) => {
     const { rerender } = render(<PolicyServicingPanel state="ready" summary={summary} />);
     const panel = screen.getByRole('region', { name: 'Policy servicing' });
@@ -62,11 +73,14 @@ describe('Day 43 policy servicing panel', () => {
     rerender(<PolicyServicingPanel state="ready" summary={fresh} />);
     expect(within(panel).getByText('policy-demo-2')).toBeTruthy();
     expect(within(panel).getByText('home-secure-v9')).toBeTruthy();
+    expect(within(panel).getByText('home-secure-v9')).toBeTruthy();
     expect(within(panel).getByText('987.65 INR')).toBeTruthy();
     expect(within(panel).getByText('Version 8')).toBeTruthy();
     expect(within(panel).getByText('ISSUED')).toBeTruthy();
     expect(within(panel).queryByText('CANCEL_SCHEDULED')).toBeNull();
     expect(within(panel).queryByText('policy-demo-1')).toBeNull();
+    expect(within(panel).queryByText('home-secure-v1')).toBeNull();
+    expect(within(panel).queryByText('125.00 INR')).toBeNull();
     expect(within(panel).queryByText('REBUILD_AMOUNT')).toBeNull();
     expect(within(panel).queryByText('2026-12-15')).toBeNull();
     expect(within(panel).queryByRole('alert')).toBeNull();
