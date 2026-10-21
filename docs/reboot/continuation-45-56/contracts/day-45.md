@@ -4,42 +4,51 @@
 
 **Learner-owned seam:** `PolicyRenewalPreviewPolicy.termFor`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-For an effective date E, return a synthetic annual term `[E, E + 1 year)` and open the preview window exactly 30 calendar days before the exclusive end. Use LocalDate month-end adjustment: 2024-02-29 ends 2025-02-28 and opens 2025-01-29.
+For effective date E, return the annual term [E,E+1 year) using LocalDate.plusYears(1), with the renewal window opening exactly30 calendar days before the exclusive end. Preserve the ordinary and February29 cases and include 2023-03-01 → 2024-03-01 → 2024-01-31; plusDays(365) is incorrect.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-45.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+- Actual Day44 learner readiness; no inference from instructor witness
+- Existing value/date guides
 
-**Acceptance test:** `src/test/java/assignments/insurance/PolicyRenewalAcceptanceTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow test`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-45.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow test`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**; exact section title: **Reference Types in Java Programming** (4:15).
-- Fit: partial foundation. The lesson introduces date value types. Worked supplement: term [start, anniversary), use LocalDate.plusYears(1), and check February 29 and month-end adjustment; never approximate a year as 365 days.
-- Focused worked references: [Java 21 LocalDate API — plusYears(long) and date arithmetic](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).
-- Video viewing: 4:15 at 1×; the remaining 20:45 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: record goal, question, assumption and three date cases.
+- 55 minutes: implement termFor.
+- 20 minutes: run original, leap and crossing-leap tests.
 
-**Design sketch:** Define annual policy term boundaries: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- Required source: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**, section **Reference Types in Java Programming** (4:15), access `unconfirmed_reference_only`. No viewing is inferred.
+- Worked guide: [Discovery example, then an annual date](../worked/day-45-discovery-anniversary.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-45.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [Java SE 21: LocalDate](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html) — plusYears(long); minusDays(long); isBefore(ChronoLocalDate).
+- [GOV.UK: Plan user research for your service](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service) — Agree research questions.
+- [GOV.UK: Writing user stories](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories) — Acceptance criteria.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

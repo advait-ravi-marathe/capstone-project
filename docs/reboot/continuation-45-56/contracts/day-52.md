@@ -4,42 +4,49 @@
 
 **Learner-owned seam:** `PolicyRenewalPreviewPanel`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-Render the read-only preview snapshot with current premium formatted to two decimals and currency, next-term date, source version and reference-only notice. Do not offer accept, renew, purchase or bind actions.
+Display all approved reference fields with the existing string premium prop, exact date/version/notice, and no renew/accept/purchase/bind action. A changed fixture replaces all old values; ready without a preview is a safe unavailable state. Rendering does not mutate or call back.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-52.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+- Day51 response meaning and prior React props/conditional rendering
 
-**Acceptance test:** `frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx`
-**Acceptance command:** `cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-52.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Rendering Content Conditionally**; exact section title: **React Essentials - Components, JSX, Props, State & More** (8:03).
-- Fit: partial foundation. The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.
-- Focused worked references: [React choosing state structure — avoid contradictory UI state](https://react.dev/learn/choosing-the-state-structure).
-- Video viewing: 8:03 at 1×; the remaining 16:57 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: compare the supplied ParcelWeight panel.
+- 55 minutes: implement the renewal panel.
+- 20 minutes: test changed data and forbidden actions.
 
-**Design sketch:** Render the renewal reference view in React: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- Required source: **Rendering Content Conditionally**, section **React Essentials - Components, JSX, Props, State & More** (8:03), access `unconfirmed_reference_only`. No viewing is inferred.
+- Worked guide: [Render a supplied reference value](../worked/day-52-reference-only-panel.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-52.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [React: Conditional Rendering](https://react.dev/learn/conditional-rendering#conditionally-returning-jsx) — Conditionally returning JSX.
+- [React: Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state) — Avoid contradictions in state.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

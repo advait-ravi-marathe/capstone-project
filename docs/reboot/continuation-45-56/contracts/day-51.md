@@ -4,42 +4,51 @@
 
 **Learner-owned seam:** `PolicyRenewalPreviewController.available`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-For available preview return HTTP 200 with exactly the public PolicyRenewalPreview projection. ResponseEntity controls the full HTTP response (including status, headers and body); the DTO and its contract tests define which fields are exposed. Do not expose owner, journey, quote-version IDs or mutation/acceptance fields.
+Keep the existing PolicyRenewalPreview DTO and object equality. Actual standalone MVC JSON has exactly eight approved keys and exact values/types, including numeric BigDecimal current premium. No private IDs, action links, acceptance fields or new price.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-51.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+- Days45–50 ready
+- Existing preview DTO; serialization observed before normalizer freeze
 
-**Acceptance test:** `src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-51.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test`
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51SerializedPreviewHasExactlyApprovedFieldsAndNumericPremium test`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 03 - Enhancing the Hello World REST API to return a Bean**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30).
-- Fit: partial foundation. A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.
-- Focused worked references: [Spring MVC controller return types — returning a response body](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).
-- Video viewing: 4:30 at 1×; the remaining 20:30 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: select allowed public fields.
+- 50 minutes: implement available.
+- 25 minutes: inspect serialized MVC JSON for exact keys, values and types.
 
-**Design sketch:** Expose a minimal non-binding preview response: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- Required source: **Step 03 - Enhancing the Hello World REST API to return a Bean**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30), access `confirmed_owned`. No viewing is inferred.
+- Worked guide: [Inspect the actual JSON projection](../worked/day-51-serialized-public-projection.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-51.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [Spring: Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/) — Create a Resource Representation Class; Create a Resource Controller.
+- [Spring Framework: Return Values](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html) — HttpEntity<B>, ResponseEntity<B> table entry.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

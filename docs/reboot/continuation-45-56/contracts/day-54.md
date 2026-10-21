@@ -4,42 +4,50 @@
 
 **Learner-owned seam:** `GET /api/policies/{policyId}/renewal-preview`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-A MockMvc Spring MVC request backed by embedded PostgreSQL returns 200 and the next-term date for the owner; another owner receives concealed 404. Both requests leave policy row count unchanged.
+Use the actual JDBC store, embedded PostgreSQL and standalone MockMvc. Own is200; foreign and absent are indistinguishable404; anonymous is401. Compare exact public response and complete ordered snapshots of all three existing tables after each request.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-54.json`. A MockMvc contract is an in-process application test, not a real HTTP server/browser check. Days 55–56 own the later real-server/browser integration gate. A contract or infrastructure smoke does not claim product behavior is implemented.
+- Actual Days45–51 semantic gates
+- Disposable PostgreSQL instructor fixture
 
-**Acceptance test:** `src/test/java/assignments/renewal/PolicyRenewalPostgresAcceptanceTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-54.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 15 - Writing an Integration Test using @SpringBootTest**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51).
-- Fit: partial foundation. The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.
-- Focused worked references: [Spring Boot application testing — testing with a running server and application context](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html).
-- Video viewing: 8:51 at 1×; the remaining 16:09 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: check database and fixture prerequisites.
+- 50 minutes: run owner-scoped HTTP reads.
+- 25 minutes: diagnose complete row differences.
 
-**Design sketch:** Verify the owner-scoped preview against PostgreSQL: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- Required source: **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51), access `unconfirmed_reference_only`. No viewing is inferred.
+- Worked guide: [Compare full database state around the read](../worked/day-54-complete-database-observation.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-54.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [Spring Boot: Testing Spring Boot Applications](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html) — MOCK versus RANDOM_PORT behavior in opening section.
+- [PostgreSQL 18: SET TRANSACTION](https://www.postgresql.org/docs/18/sql-set-transaction.html) — Description: transaction access mode READ ONLY.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

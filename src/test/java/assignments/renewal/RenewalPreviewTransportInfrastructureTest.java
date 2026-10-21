@@ -30,6 +30,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -38,6 +39,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.Map;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,7 +63,7 @@ class RenewalPreviewTransportInfrastructureTest {
             BrowserResult first;
             Path firstResult = OUTPUT.resolve("transport-first.json");
             try (ConfigurableApplicationContext context = startServer(TransportApplication.class, TransportConfiguration.class)) {
-                first = runBrowser(port(context), firstResult);
+                first = runBrowser(port(context), firstResult, "smoke", "renewal-demo");
             }
             assertEquals(200, first.status());
             assertTrue(first.body().contains("renewal-demo"));
@@ -70,7 +72,7 @@ class RenewalPreviewTransportInfrastructureTest {
             BrowserResult second;
             Path secondResult = OUTPUT.resolve("transport-restart.json");
             try (ConfigurableApplicationContext restarted = startServer(TransportApplication.class, TransportConfiguration.class)) {
-                second = runBrowser(port(restarted), secondResult);
+                second = runBrowser(port(restarted), secondResult, "smoke", "renewal-demo");
             }
             assertEquals(first.body(), second.body(), "readback remains the same after a new Spring server instance");
             assertEquals(1, witnessCount(), "browser GETs do not mutate the fixture");
@@ -85,15 +87,20 @@ class RenewalPreviewTransportInfrastructureTest {
             postgresDataSource = postgres.getPostgresDatabase();
             initializePolicySchema();
             seedPolicy();
-            Path result = OUTPUT.resolve("learner-day55.json");
-            BrowserResult response;
+            var beforeFirst = PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource);
+            BrowserResult first;
             try (ConfigurableApplicationContext app = startServer(LearnerApplication.class, LearnerConfiguration.class)) {
-                response = runBrowser(port(app), result);
+                first = runBrowser(port(app), OUTPUT.resolve("learner-day55-original.json"), "learner", "renewal-demo");
+                assertBrowserResponse(first, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
+                assertEquals(beforeFirst, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                        "the original browser GET preserves every lifecycle row");
+                insertChangedPolicy();
+                var beforeChanged = PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource);
+                BrowserResult changed = runBrowser(port(app), OUTPUT.resolve("learner-day55-changed.json"), "learner", "renewal-demo-v2");
+                assertBrowserResponse(changed, "renewal-demo-v2", "home-secure-v9", "home-secure-rate-v4", "987.40", 9, "2027-12-10");
+                assertEquals(beforeChanged, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                        "the changed browser GET preserves every lifecycle row");
             }
-            assertTrue(response.browserOpened());
-            assertEquals(200, response.status());
-            assertTrue(response.body().contains("nextTermEffectiveDate"));
-            assertTrue(response.visibleText().contains("Current annual premium (reference only): 125.00 INR"));
         } finally {
             postgresDataSource = null;
         }
@@ -105,18 +112,24 @@ class RenewalPreviewTransportInfrastructureTest {
             postgresDataSource = postgres.getPostgresDatabase();
             initializePolicySchema();
             seedPolicy();
-            long before = policyCount();
+            var before = PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource);
             BrowserResult first;
             try (ConfigurableApplicationContext app = startServer(LearnerApplication.class, LearnerConfiguration.class)) {
-                first = runBrowser(port(app), OUTPUT.resolve("learner-day56-first.json"));
+                first = runBrowser(port(app), OUTPUT.resolve("learner-day56-first.json"), "learner", "renewal-demo");
             }
+            assertBrowserResponse(first, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
+            assertEquals(before, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                    "full database rows match the baseline after the first read");
             BrowserResult second;
             try (ConfigurableApplicationContext app = startServer(LearnerApplication.class, LearnerConfiguration.class)) {
-                second = runBrowser(port(app), OUTPUT.resolve("learner-day56-restart.json"));
+                second = runBrowser(port(app), OUTPUT.resolve("learner-day56-restart.json"), "learner", "renewal-demo");
             }
-            assertEquals(200, first.status());
-            assertEquals(first.body(), second.body());
-            assertEquals(before, policyCount(), "preview stays read-only across repeated browser requests and restart");
+            assertBrowserResponse(second, "renewal-demo", "home-secure-v1", "home-secure-rate-v1", "125.00", 3, "2027-12-01");
+            assertEquals(200, first.status()); assertEquals(200, second.status(), "second response independently remains HTTP 200");
+            assertEquals(new tools.jackson.databind.ObjectMapper().readTree(first.body()),
+                    new tools.jackson.databind.ObjectMapper().readTree(second.body()), "semantic wire fields match after restart");
+            assertEquals(before, PolicyRenewalPostgresAcceptanceTest.allRows(postgresDataSource),
+                    "all policy, event and idempotency rows match the baseline after restart and second read");
         } finally {
             postgresDataSource = null;
         }
@@ -131,11 +144,12 @@ class RenewalPreviewTransportInfrastructureTest {
         return ((WebServerApplicationContext) context).getWebServer().getPort();
     }
 
-    private static BrowserResult runBrowser(int port, Path output) throws Exception {
+    private static BrowserResult runBrowser(int port, Path output, String mode, String policyId) throws Exception {
         Files.createDirectories(output.toAbsolutePath().getParent());
         Path log = output.resolveSibling(output.getFileName() + ".log");
         var process = new ProcessBuilder("node", "e2e/day45-renewal-preview-browser.mjs",
-                "http://127.0.0.1:" + port + "/__e2e/day45-renewal-preview", output.toString())
+                "http://127.0.0.1:" + port + "/__e2e/day45-renewal-preview?policyId=" + policyId,
+                output.toString(), mode)
                 .directory(Path.of("frontend").toFile()).redirectErrorStream(true).redirectOutput(log.toFile());
         String chromium = System.getenv("CHROMIUM_BIN");
         if (chromium != null && !chromium.isBlank()) process.environment().put("CHROMIUM_BIN", chromium);
@@ -144,10 +158,11 @@ class RenewalPreviewTransportInfrastructureTest {
             runner.destroyForcibly(); runner.waitFor();
             throw new IllegalStateException("Playwright timed out: " + Files.readString(log));
         }
-        assertEquals(0, runner.exitValue(), Files.readString(log));
         var json = new tools.jackson.databind.ObjectMapper().readTree(Files.readString(output));
         return new BrowserResult(json.get("browserOpened").asBoolean(), json.get("status").asInt(),
-                json.get("body").asString(), json.get("visibleText").asString());
+                json.get("body").isTextual() ? json.get("body").asString() : json.get("body").toString(),
+                json.get("visibleText").asString(), json.get("apiRequests").toString(), runner.exitValue(),
+                json.hasNonNull("failure") ? json.get("failure").asString() : null);
     }
 
     private static void createWitnessTable() throws Exception {
@@ -178,16 +193,47 @@ class RenewalPreviewTransportInfrastructureTest {
     private static void seedPolicy() throws Exception {
         try (Connection c = postgresDataSource.getConnection(); Statement s = c.createStatement()) {
             s.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('renewal-demo','owner-a','journey-hidden','quote-hidden','home-secure-v1','home-secure-rate-v1',125.00,'INR',DATE '2026-12-01','ISSUED',3,NULL)");
+            s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('renewal-demo',3,'ISSUED',DATE '2026-12-01',NULL,NULL)");
+            s.executeUpdate("INSERT INTO training_policy_idempotency VALUES ('owner-a','renewal-demo-request','opaque-original','renewal-demo')");
         }
     }
 
-    private static long policyCount() throws Exception {
-        try (Connection c = postgresDataSource.getConnection(); Statement s = c.createStatement(); var rows = s.executeQuery("SELECT count(*) FROM training_policy_lifecycle")) {
-            assertTrue(rows.next()); return rows.getLong(1);
+    private static void insertChangedPolicy() throws Exception {
+        try (Connection c = postgresDataSource.getConnection(); Statement s = c.createStatement()) {
+            s.executeUpdate("INSERT INTO training_policy_lifecycle VALUES ('renewal-demo-v2','owner-a','journey-v2','quote-v2','home-secure-v9','home-secure-rate-v4',987.40,'INR',DATE '2026-12-10','ISSUED',9,NULL)");
+            s.executeUpdate("INSERT INTO training_policy_lifecycle_event VALUES ('renewal-demo-v2',9,'ISSUED',DATE '2026-12-10',NULL,NULL)");
+            s.executeUpdate("INSERT INTO training_policy_idempotency VALUES ('owner-a','renewal-demo-v2-request','opaque-second','renewal-demo-v2')");
         }
     }
 
-    record BrowserResult(boolean browserOpened, int status, String body, String visibleText) { }
+    private static void assertBrowserResponse(BrowserResult response, String id, String product, String rate,
+                                              String premium, int version, String nextDate) throws Exception {
+        assertTrue(response.browserOpened(), "browser opened; " + response.failure());
+        assertEquals(0, response.exitCode(), "browser assertions pass; " + response.failure());
+        assertEquals(200, response.status());
+        var json = new tools.jackson.databind.ObjectMapper().readTree(response.body());
+        assertEquals(java.util.Set.of("policyId", "sourcePolicyVersion", "productVersion", "rateVersion",
+                "currentAnnualPremiumRupees", "currency", "nextTermEffectiveDate", "notice"), jsonFieldNames(json));
+        assertEquals(id, json.get("policyId").asString()); assertEquals(version, json.get("sourcePolicyVersion").asInt());
+        assertEquals(product, json.get("productVersion").asString()); assertEquals(rate, json.get("rateVersion").asString());
+        assertTrue(json.get("currentAnnualPremiumRupees").isNumber());
+        assertEquals(0, new BigDecimal(premium).compareTo(json.get("currentAnnualPremiumRupees").decimalValue()),
+                "wire JSON preserves numeric value; display scale is applied by the client adapter");
+        assertEquals("INR", json.get("currency").asString()); assertEquals(nextDate, json.get("nextTermEffectiveDate").asString());
+        assertEquals("Reference only; not a renewal offer or coverage commitment.", json.get("notice").asString());
+        assertTrue(response.visibleText().contains(id)); assertTrue(response.visibleText().contains(product));
+        assertTrue(response.visibleText().contains(rate)); assertTrue(response.visibleText().contains(premium + " INR"));
+        assertTrue(response.visibleText().contains(nextDate)); assertTrue(response.visibleText().contains("Version " + version));
+        assertTrue(response.visibleText().contains("Reference only; not a renewal offer or coverage commitment."));
+        assertEquals("[{\"method\":\"GET\",\"path\":\"/api/policies/" + id + "/renewal-preview\"}]", response.apiRequests());
+    }
+
+    private static java.util.Set<String> jsonFieldNames(tools.jackson.databind.JsonNode node) {
+        var result = new java.util.HashSet<String>(); result.addAll(node.propertyNames()); return result;
+    }
+
+    record BrowserResult(boolean browserOpened, int status, String body, String visibleText,
+                         String apiRequests, int exitCode, String failure) { }
 
     @SpringBootConfiguration @EnableAutoConfiguration
     static class TransportApplication { }

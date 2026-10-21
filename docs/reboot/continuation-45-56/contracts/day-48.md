@@ -4,43 +4,50 @@
 
 **Learner-owned seam:** `JdbcPolicyRenewalReadStore.findByPolicyIdAndOwnerId`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-Use a parameterized SELECT constrained by both policy_id and owner_id. Return only policy ID, effective date, status, policy version, product/rate versions, current annual premium and currency. Missing/foreign rows return Optional.empty; query must not write.
+Use PreparedStatement and both policyId and trusted ownerId predicates. Return exact projection or Optional.empty. Own, foreign, absent, second-owner and SQL-looking literal inputs are covered. Complete ordered policy/event/idempotency snapshots remain identical across every read.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-48.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+- Main Day9 raw JDBC/Optional and Day36 owner scope
+- Existing lifecycle SQL fixture; no new schema
 
-**Acceptance test:** `src/test/java/assignments/insurance/PolicyRenewalRepositoryAcceptanceTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=PolicyRenewalRepositoryAcceptanceTest#day48ReadIsOwnerScopedAndReturnsOnlyRenewalInputsWithoutWrites test`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-48.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalRepositoryAcceptanceTest#day48ReadIsOwnerScopedAndReturnsOnlyRenewalInputsWithoutWrites test`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 04 - Getting Started with Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (3:58).
-- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).
-- Fit: partial foundation. The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.
-- Focused worked references: [Spring JdbcTemplate reference — query with parameters and a RowMapper](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html).
-- Video viewing: 9:34 at 1×; the remaining 15:26 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: trace bound parameters and resources.
+- 50 minutes: implement the existing JDBC read.
+- 25 minutes: verify scoped rows and compare full table snapshots.
 
-**Design sketch:** Add owner-scoped PostgreSQL renewal projection: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- Required source: **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36), access `confirmed_owned`. No viewing is inferred.
+- Worked guide: [Bind both keys and compare complete rows](../worked/day-48-scoped-jdbc-observation.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-48.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [Java SE 21: PreparedStatement](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html) — setString(int, String); executeQuery().
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1) — 9.2.1 Safe Methods; 9.3.1 GET.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required. Optional lesson references are deferred recovery only and do not add time.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

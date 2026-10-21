@@ -15,11 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Instructor integrity checks for the additive 12-day contract batch. */
 class RenewalPreviewManifestInfrastructureTest {
     private static final Path BASE = Path.of("docs/reboot/continuation-45-56");
+    private static final Path CURRICULUM = BASE.resolve("fde45-56-v2-curriculum.json");
 
     @Test void twelveDatesAreCompleteBudgetedAndStillMarkedLearnerOwned() throws Exception {
         var mapper = new ObjectMapper();
         JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
         JsonNode scrum = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        JsonNode curriculum = mapper.readTree(Files.readString(CURRICULUM));
+        assertEquals("AUTHORITATIVE_SPRINT4_DAYS45_56_COURSEWORK_V2", curriculum.get("status").asString());
+        assertEquals(12, curriculum.get("days").size());
         assertEquals("350aa931c15f7a4e4c54a8b572bc4b9c5596902c", manifest.get("base_sha").asString());
         assertEquals(12, manifest.get("days").size());
         assertEquals(12, scrum.get("story_count").asInt());
@@ -43,6 +47,7 @@ class RenewalPreviewManifestInfrastructureTest {
             assertTrue(Files.isRegularFile(Path.of("evidence/continuation-45-56/day-%02d.json".formatted(45 + i))));
 
             JsonNode eng = day.get("engineering");
+            JsonNode curriculumDay = curriculum.get("days").get(i);
             assertEquals(120, eng.get("budget_minutes").asInt());
             assertEquals(85, eng.get("allocation_minutes").get("implementation_and_testing").asInt());
             assertEquals(25, eng.get("allocation_minutes").get("concept_or_course").asInt());
@@ -51,13 +56,32 @@ class RenewalPreviewManifestInfrastructureTest {
                 assertTrue(Files.isRegularFile(Path.of(eng.get(field).asString())), "missing " + field + " for Day " + (45 + i));
             assertEquals(card.get("engineering").get("acceptance_test_path").asString(),
                     card.get("engineering").get("acceptance_reference").asString());
+            assertEquals(eng.get("acceptance_commands"), card.get("engineering").get("acceptance_commands"));
+            assertEquals(eng.get("infrastructure_commands"), card.get("engineering").get("infrastructure_commands"));
+            assertEquals(curriculumDay.get("preserved_acceptance_commands"), eng.get("acceptance_commands"));
+            assertEquals(curriculumDay.get("infrastructure_commands"), eng.get("infrastructure_commands"));
             assertTrue(eng.get("acceptance_commands").isArray() && !eng.get("acceptance_commands").isEmpty());
             assertTrue(eng.get("infrastructure_commands").isArray() && !eng.get("infrastructure_commands").isEmpty());
             JsonNode course = eng.get("concept_course");
             assertEquals(25, course.get("minutes").asInt());
-            assertEquals(10, course.get("allocation_minutes").get("focused_reading").asInt());
-            assertEquals(10, course.get("allocation_minutes").get("design_sketch").asInt());
-            assertEquals(5, course.get("allocation_minutes").get("teachback").asInt());
+            int studySeconds = 0;
+            for (JsonNode segment : course.get("study_segments")) studySeconds += segment.get("seconds").asInt();
+            assertEquals(1500, studySeconds, "Day " + (45 + i) + " study segments stay inside 25 minutes");
+            assertEquals(1500, course.get("study_total_seconds").asInt());
+            int curriculumSeconds = 0;
+            for (JsonNode segment : curriculumDay.get("study_segments")) curriculumSeconds += segment.get("seconds").asInt();
+            assertEquals(1500, curriculumSeconds);
+            assertEquals(course.get("study_segments"), curriculumDay.get("study_segments"));
+            assertEquals(course.get("worked_example_path"), curriculumDay.get("guide_path"));
+            assertTrue(Files.isRegularFile(Path.of(course.get("worked_example_path").asString())));
+            String guide = Files.readString(Path.of(course.get("worked_example_path").asString()));
+            assertTrue(guide.contains(course.get("worked_example_section").asString()), "guide anchor must exist");
+            int practiceMinutes = 0;
+            for (JsonNode segment : curriculumDay.get("practice_segment_minutes")) practiceMinutes += segment.asInt();
+            assertEquals(85, practiceMinutes);
+            assertEquals(10, curriculumDay.get("evidence_minutes").asInt());
+            assertEquals(course, card.get("engineering").get("concept_course"));
+            assertEquals(course.get("study_segments"), entryCourseLearning(day).get("study_segments"));
             for (JsonNode resource : course.get("resources")) {
                 assertEquals("https", URI.create(resource.get("url").asString()).getScheme());
                 assertFalse(resource.get("title").asString().isBlank());
@@ -83,6 +107,8 @@ class RenewalPreviewManifestInfrastructureTest {
         }
     }
 
+    private static JsonNode entryCourseLearning(JsonNode day) { return day.get("course_learning"); }
+
     @Test void scopeStaysReadOnlyAndSharedQueueIncludesNewAnchors() throws Exception {
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
         String scope = manifest.get("scope").asString().toLowerCase();
@@ -94,6 +120,7 @@ class RenewalPreviewManifestInfrastructureTest {
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java")));
         String dsaQueue = Files.readString(Path.of("scripts/dsa-review-queue.py"));
         assertTrue(dsaQueue.contains("canonical"));
-        assertTrue(Files.readString(Path.of("docs/reboot/continuation-31-44/dsa/actual-attempt-log.json")).contains("\"events\": []"));
+        JsonNode attemptLog = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/continuation-31-44/dsa/actual-attempt-log.json")));
+        assertTrue(attemptLog.get("events").isArray(), "preserve existing actual-attempt history, whether empty or populated");
     }
 }

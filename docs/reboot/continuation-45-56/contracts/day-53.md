@@ -4,43 +4,50 @@
 
 **Learner-owned seam:** `PolicyRenewalPreviewPanel`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-Loading is exposed as an accessible status; unauthenticated and unavailable states are accessible alerts with the contract messages. Refresh invokes only the supplied read callback.
+Loading is role=status; unauthenticated/unavailable are role=alert. Non-ready state clears stale details. Changed ready data clears old alert. Refresh exists only when supplied and runs once on click, never during render/rerender.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-53.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+- Day52 ready display and earlier state/Promise teaching
 
-**Acceptance test:** `frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx`
-**Acceptance command:** `cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t "explicit|refresh"`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-53.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t "explicit|refresh"`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Handling Loading States**; exact section title: **Sending Http Requests (e.g. Connecting to a Database)** (5:27).
-- Exact lesson title: **Handling HTTP Loading & Error States**; exact section title: **Practice Project: Building a Food Order App** (3:12).
-- Fit: partial foundation. The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.
-- Focused worked references: [WAI-ARIA status role — status messages](https://www.w3.org/TR/wai-aria-1.2/#status); [WAI-ARIA alert role — important dynamic messages](https://www.w3.org/TR/wai-aria-1.2/#alert).
-- Video viewing: 8:39 at 1×; the remaining 16:21 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: predict state transitions.
+- 50 minutes: implement accessible states and explicit refresh.
+- 25 minutes: test stale clearing and callback count.
 
-**Design sketch:** Add accessible loading and unavailable states: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- Required source: **Handling Loading States**, section **Sending Http Requests (e.g. Connecting to a Database)** (5:27), access `unconfirmed_reference_only`. No viewing is inferred.
+- Worked guide: [Keep states exclusive and refresh explicit](../worked/day-53-accessible-read-refresh.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-53.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [W3C WCAG technique ARIA22: Using role=status to present status messages](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22) — Description; Examples.
+- [W3C APG: Alert Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) — About This Pattern; Keyboard Interaction.
+- [React: Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state) — Avoid contradictions in state.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required. Optional lesson references are deferred recovery only and do not add time.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

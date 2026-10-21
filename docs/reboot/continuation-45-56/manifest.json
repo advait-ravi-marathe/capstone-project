@@ -102,11 +102,29 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 255,
+            "worked_example_and_transfer": 1005,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "verified_lesson_or_date_fallback",
+              "seconds": 255
+            },
+            {
+              "activity": "discovery_acceptance_focus",
+              "seconds": 300
+            },
+            {
+              "activity": "worked_membership_example",
+              "seconds": 705
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "1535678",
@@ -126,29 +144,35 @@
               "course_id": "1535678"
             }
           ],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official reference: Define annual policy term boundaries",
-              "section": "plusYears(long): month-end adjustment and date arithmetic",
+              "title": "Official source: Java SE 21: LocalDate",
+              "section": "plusYears(long); minusDays(long); isBefore(ChronoLocalDate)",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
             },
             {
-              "title": "Java 21 LocalDate API",
-              "section": "plusYears(long) and date arithmetic",
-              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+              "title": "Official source: GOV.UK: Plan user research for your service",
+              "section": "Agree research questions",
+              "url": "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service"
+            },
+            {
+              "title": "Official source: GOV.UK: Writing user stories",
+              "section": "Acceptance criteria",
+              "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
             }
           ],
           "video_seconds": 255,
           "remaining_study_seconds": 1245,
           "fit": "partial_foundation",
-          "scope_note": "The lesson introduces date value types. Worked supplement: term [start, anniversary), use LocalDate.plusYears(1), and check February 29 and month-end adjustment; never approximate a year as 365 days.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md",
+          "worked_example_section": "# Day 45 — Discovery example, then an annual date",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -213,9 +237,24 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "verified_lesson_or_date_fallback",
+            "seconds": 255
+          },
+          {
+            "activity": "discovery_acceptance_focus",
+            "seconds": 300
+          },
+          {
+            "activity": "worked_membership_example",
+            "seconds": 705
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "1535678",
@@ -235,23 +274,33 @@
             "course_id": "1535678"
           }
         ],
-        "video_seconds": 255,
-        "remaining_study_seconds": 1245,
-        "fit": "partial_foundation",
-        "scope_note": "The lesson introduces date value types. Worked supplement: term [start, anniversary), use LocalDate.plusYears(1), and check February 29 and month-end adjustment; never approximate a year as 365 days.",
-        "supplement_required": true,
+        "optional_reference_lessons": [],
         "resources": [
           {
-            "title": "Official reference: Define annual policy term boundaries",
-            "section": "plusYears(long): month-end adjustment and date arithmetic",
+            "title": "Official source: Java SE 21: LocalDate",
+            "section": "plusYears(long); minusDays(long); isBefore(ChronoLocalDate)",
             "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
           },
           {
-            "title": "Java 21 LocalDate API",
-            "section": "plusYears(long) and date arithmetic",
-            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
+            "title": "Official source: GOV.UK: Plan user research for your service",
+            "section": "Agree research questions",
+            "url": "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service"
+          },
+          {
+            "title": "Official source: GOV.UK: Writing user stories",
+            "section": "Acceptance criteria",
+            "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
           }
-        ]
+        ],
+        "video_seconds": 255,
+        "remaining_study_seconds": 1245,
+        "fit": "partial_foundation",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md",
+        "worked_example_section": "# Day 45 — Discovery example, then an annual date",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -295,11 +344,25 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 240,
+            "worked_example_and_transfer": 1020,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "Clock_LocalDate_focus",
+              "seconds": 240
+            },
+            {
+              "activity": "worked_state_date_matrix",
+              "seconds": 1020
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "1535678",
@@ -309,7 +372,8 @@
               "access_status": "unconfirmed_reference_only"
             }
           ],
-          "lessons": [
+          "lessons": [],
+          "optional_reference_lessons": [
             {
               "title": "Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime",
               "section_title": "Reference Types in Java Programming",
@@ -321,27 +385,27 @@
           ],
           "resources": [
             {
-              "title": "Official reference: Enforce renewal window and lifecycle eligibility",
-              "section": "fixed Clock and deterministic boundary tests",
+              "title": "Official source: Java SE 21: Clock",
+              "section": "fixed(Instant, ZoneId)",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
             },
             {
-              "title": "Java 21 Clock API",
-              "section": "fixed clocks for deterministic boundary tests",
-              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+              "title": "Official source: Java SE 21: LocalDate",
+              "section": "plusYears(long); minusDays(long); isBefore(ChronoLocalDate)",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
             }
           ],
-          "video_seconds": 255,
-          "remaining_study_seconds": 1245,
-          "fit": "partial_foundation",
-          "scope_note": "This is date-type context, not a renewal eligibility lesson. Work a fixed Clock table at the exact opening/closing instants and one lifecycle state that must reject preview; the 25-minute study cap includes this example.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "worked_example_and_official_source",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md",
+          "worked_example_section": "# Day 46 — A state-and-date decision table",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -395,11 +459,22 @@
       },
       "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
-      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning_status": "worked_sources_assigned_video_not_required",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "Clock_LocalDate_focus",
+            "seconds": 240
+          },
+          {
+            "activity": "worked_state_date_matrix",
+            "seconds": 1020
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "1535678",
@@ -409,7 +484,8 @@
             "access_status": "unconfirmed_reference_only"
           }
         ],
-        "lessons": [
+        "lessons": [],
+        "optional_reference_lessons": [
           {
             "title": "Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime",
             "section_title": "Reference Types in Java Programming",
@@ -419,23 +495,27 @@
             "course_id": "1535678"
           }
         ],
-        "video_seconds": 255,
-        "remaining_study_seconds": 1245,
-        "fit": "partial_foundation",
-        "scope_note": "This is date-type context, not a renewal eligibility lesson. Work a fixed Clock table at the exact opening/closing instants and one lifecycle state that must reject preview; the 25-minute study cap includes this example.",
-        "supplement_required": true,
         "resources": [
           {
-            "title": "Official reference: Enforce renewal window and lifecycle eligibility",
-            "section": "fixed Clock and deterministic boundary tests",
+            "title": "Official source: Java SE 21: Clock",
+            "section": "fixed(Instant, ZoneId)",
             "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
           },
           {
-            "title": "Java 21 Clock API",
-            "section": "fixed clocks for deterministic boundary tests",
-            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+            "title": "Official source: Java SE 21: LocalDate",
+            "section": "plusYears(long); minusDays(long); isBefore(ChronoLocalDate)",
+            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
           }
-        ]
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "worked_example_and_official_source",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md",
+        "worked_example_section": "# Day 46 — A state-and-date decision table",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -479,11 +559,25 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 300,
+            "worked_example_and_transfer": 960,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "Record_ADR_focus",
+              "seconds": 300
+            },
+            {
+              "activity": "worked_projection_decision",
+              "seconds": 960
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "1535678",
@@ -493,7 +587,8 @@
               "access_status": "unconfirmed_reference_only"
             }
           ],
-          "lessons": [
+          "lessons": [],
+          "optional_reference_lessons": [
             {
               "title": "Step 15 - Exploring Java New Features - Records",
               "section_title": "Java New Features - Java 10 to Java 24",
@@ -513,27 +608,27 @@
           ],
           "resources": [
             {
-              "title": "Official reference: Freeze the renewal reference snapshot",
-              "section": "record components are final references (shallow immutability); choose immutable component value types",
+              "title": "Official source: Java SE 21: Record",
+              "section": "Class Record",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
             },
             {
-              "title": "Java 21 Record API",
-              "section": "record components and shallow immutability",
-              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+              "title": "Official source: AWS Prescriptive Guidance: Appendix: Example ADR",
+              "section": "Context; Decision; Consequences; Compliance",
+              "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html"
             }
           ],
-          "video_seconds": 1142,
-          "remaining_study_seconds": 358,
-          "fit": "partial_foundation",
-          "scope_note": "Record guidance is only a foundation because record components can reference mutable objects. Work a preview snapshot containing immutable value types and prove later source changes do not alter it; preview never reprices or commits a renewal.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "worked_example_and_official_source",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md",
+          "worked_example_section": "# Day 47 — Copy current facts without making a new offer",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -596,11 +691,22 @@
       },
       "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
-      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning_status": "worked_sources_assigned_video_not_required",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "Record_ADR_focus",
+            "seconds": 300
+          },
+          {
+            "activity": "worked_projection_decision",
+            "seconds": 960
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "1535678",
@@ -610,7 +716,8 @@
             "access_status": "unconfirmed_reference_only"
           }
         ],
-        "lessons": [
+        "lessons": [],
+        "optional_reference_lessons": [
           {
             "title": "Step 15 - Exploring Java New Features - Records",
             "section_title": "Java New Features - Java 10 to Java 24",
@@ -628,23 +735,27 @@
             "course_id": "1535678"
           }
         ],
-        "video_seconds": 1142,
-        "remaining_study_seconds": 358,
-        "fit": "partial_foundation",
-        "scope_note": "Record guidance is only a foundation because record components can reference mutable objects. Work a preview snapshot containing immutable value types and prove later source changes do not alter it; preview never reprices or commits a renewal.",
-        "supplement_required": true,
         "resources": [
           {
-            "title": "Official reference: Freeze the renewal reference snapshot",
-            "section": "record components are final references (shallow immutability); choose immutable component value types",
+            "title": "Official source: Java SE 21: Record",
+            "section": "Class Record",
             "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
           },
           {
-            "title": "Java 21 Record API",
-            "section": "record components and shallow immutability",
-            "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+            "title": "Official source: AWS Prescriptive Guidance: Appendix: Example ADR",
+            "section": "Context; Decision; Consequences; Compliance",
+            "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html"
           }
-        ]
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "worked_example_and_official_source",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md",
+        "worked_example_section": "# Day 47 — Copy current facts without making a new offer",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -688,11 +799,25 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 336,
+            "worked_example_and_transfer": 864,
+            "prediction_and_readiness": 300
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "query_lesson_foundation",
+              "seconds": 336
+            },
+            {
+              "activity": "worked_raw_JDBC_resources_and_state",
+              "seconds": 864
+            },
+            {
+              "activity": "prediction",
+              "seconds": 300
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "4993276",
@@ -704,14 +829,6 @@
           ],
           "lessons": [
             {
-              "title": "Step 04 - Getting Started with Spring JDBC",
-              "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
-              "duration_seconds": 238,
-              "duration": "3:58",
-              "source_item_id": "35019874",
-              "course_id": "4993276"
-            },
-            {
               "title": "Step 07 - Querying Data using Spring JDBC",
               "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
               "duration_seconds": 336,
@@ -720,29 +837,39 @@
               "course_id": "4993276"
             }
           ],
+          "optional_reference_lessons": [
+            {
+              "title": "Step 04 - Getting Started with Spring JDBC",
+              "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+              "duration_seconds": 238,
+              "duration": "3:58",
+              "source_item_id": "35019874",
+              "course_id": "4993276"
+            }
+          ],
           "resources": [
             {
-              "title": "Official reference: Add owner-scoped PostgreSQL renewal projection",
-              "section": "parameter binding and scoped query execution",
+              "title": "Official source: Java SE 21: PreparedStatement",
+              "section": "setString(int, String); executeQuery()",
               "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html"
             },
             {
-              "title": "Spring JdbcTemplate reference",
-              "section": "query with parameters and a RowMapper",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+              "title": "Official source: RFC 9110: HTTP Semantics",
+              "section": "9.2.1 Safe Methods; 9.3.1 GET",
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1"
             }
           ],
-          "video_seconds": 574,
-          "remaining_study_seconds": 926,
+          "video_seconds": 336,
+          "remaining_study_seconds": 1164,
           "fit": "partial_foundation",
-          "scope_note": "The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md",
+          "worked_example_section": "# Day 48 — Bind both keys and compare complete rows",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -798,9 +925,20 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "query_lesson_foundation",
+            "seconds": 336
+          },
+          {
+            "activity": "worked_raw_JDBC_resources_and_state",
+            "seconds": 864
+          },
+          {
+            "activity": "prediction",
+            "seconds": 300
+          }
+        ],
         "courses": [
           {
             "course_id": "4993276",
@@ -812,14 +950,6 @@
         ],
         "lessons": [
           {
-            "title": "Step 04 - Getting Started with Spring JDBC",
-            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
-            "duration_seconds": 238,
-            "duration": "3:58",
-            "source_item_id": "35019874",
-            "course_id": "4993276"
-          },
-          {
             "title": "Step 07 - Querying Data using Spring JDBC",
             "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
             "duration_seconds": 336,
@@ -828,23 +958,37 @@
             "course_id": "4993276"
           }
         ],
-        "video_seconds": 574,
-        "remaining_study_seconds": 926,
-        "fit": "partial_foundation",
-        "scope_note": "The lessons introduce Spring JDBC, not the repository ownership invariant. Worked supplement: one parameterized SELECT with both policy ID and owner ID in the predicate; project stays on PostgreSQL/JDBC, not the video H2/JPA setup.",
-        "supplement_required": true,
+        "optional_reference_lessons": [
+          {
+            "title": "Step 04 - Getting Started with Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 238,
+            "duration": "3:58",
+            "source_item_id": "35019874",
+            "course_id": "4993276"
+          }
+        ],
         "resources": [
           {
-            "title": "Official reference: Add owner-scoped PostgreSQL renewal projection",
-            "section": "parameter binding and scoped query execution",
+            "title": "Official source: Java SE 21: PreparedStatement",
+            "section": "setString(int, String); executeQuery()",
             "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html"
           },
           {
-            "title": "Spring JdbcTemplate reference",
-            "section": "query with parameters and a RowMapper",
-            "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+            "title": "Official source: RFC 9110: HTTP Semantics",
+            "section": "9.2.1 Safe Methods; 9.3.1 GET",
+            "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1"
           }
-        ]
+        ],
+        "video_seconds": 336,
+        "remaining_study_seconds": 1164,
+        "fit": "partial_foundation",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md",
+        "worked_example_section": "# Day 48 — Bind both keys and compare complete rows",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -888,11 +1032,29 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 257,
+            "worked_example_and_transfer": 1003,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "authentication_lesson",
+              "seconds": 257
+            },
+            {
+              "activity": "MVC_Principal_focus",
+              "seconds": 180
+            },
+            {
+              "activity": "worked_request_scope_trace",
+              "seconds": 823
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "4993276",
@@ -912,29 +1074,25 @@
               "course_id": "4993276"
             }
           ],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official reference: Derive preview identity from the principal",
-              "section": "Principal and path-bound controller arguments",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
-            },
-            {
-              "title": "Spring MVC controller method arguments",
-              "section": "Principal and request-bound arguments",
+              "title": "Official source: Spring Framework: Method Arguments",
+              "section": "java.security.Principal table entry; @PathVariable table entry",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
             }
           ],
           "video_seconds": 257,
           "remaining_study_seconds": 1243,
           "fit": "partial_foundation",
-          "scope_note": "Authentication is only the identity source. Work the controller flow: authenticated Principal → internal owner ID → service; no owner ID is accepted from query/body. Prove anonymous requests do not call the read store.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md",
+          "worked_example_section": "# Day 49 — A caller cannot choose their own owner identity",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -996,9 +1154,24 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "authentication_lesson",
+            "seconds": 257
+          },
+          {
+            "activity": "MVC_Principal_focus",
+            "seconds": 180
+          },
+          {
+            "activity": "worked_request_scope_trace",
+            "seconds": 823
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "4993276",
@@ -1018,23 +1191,23 @@
             "course_id": "4993276"
           }
         ],
+        "optional_reference_lessons": [],
+        "resources": [
+          {
+            "title": "Official source: Spring Framework: Method Arguments",
+            "section": "java.security.Principal table entry; @PathVariable table entry",
+            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+          }
+        ],
         "video_seconds": 257,
         "remaining_study_seconds": 1243,
         "fit": "partial_foundation",
-        "scope_note": "Authentication is only the identity source. Work the controller flow: authenticated Principal → internal owner ID → service; no owner ID is accepted from query/body. Prove anonymous requests do not call the read store.",
         "supplement_required": true,
-        "resources": [
-          {
-            "title": "Official reference: Derive preview identity from the principal",
-            "section": "Principal and path-bound controller arguments",
-            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
-          },
-          {
-            "title": "Spring MVC controller method arguments",
-            "section": "Principal and request-bound arguments",
-            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
-          }
-        ]
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md",
+        "worked_example_section": "# Day 49 — A caller cannot choose their own owner identity",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -1078,11 +1251,29 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 469,
+            "worked_example_and_transfer": 791,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "404_foundation_lesson",
+              "seconds": 469
+            },
+            {
+              "activity": "ResponseEntity_focus",
+              "seconds": 180
+            },
+            {
+              "activity": "worked_401_404_409_table",
+              "seconds": 611
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "4993276",
@@ -1100,7 +1291,9 @@
               "duration": "7:49",
               "source_item_id": "35018810",
               "course_id": "4993276"
-            },
+            }
+          ],
+          "optional_reference_lessons": [
             {
               "title": "Step 12 - Implementing Generic Exception Handling for all Resources",
               "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
@@ -1112,27 +1305,22 @@
           ],
           "resources": [
             {
-              "title": "Official reference: Map unavailable previews to stable HTTP errors",
-              "section": "ResponseEntity status, headers and body",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
-            },
-            {
-              "title": "Spring MVC controller return types",
-              "section": "ResponseEntity and response status/body",
+              "title": "Official source: Spring Framework: Return Values",
+              "section": "HttpEntity<B>, ResponseEntity<B> table entry",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
             }
           ],
-          "video_seconds": 1158,
-          "remaining_study_seconds": 342,
+          "video_seconds": 469,
+          "remaining_study_seconds": 1031,
           "fit": "partial_foundation",
-          "scope_note": "The course examples are not this application’s error contract. Work a fixed mapping table for unavailable/foreign=404, infrastructure failure=sanitized 503, and unexpected failure=generic 500; never expose exception text.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md",
+          "worked_example_section": "# Day 50 — Map known unavailable outcomes safely",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -1197,9 +1385,24 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "404_foundation_lesson",
+            "seconds": 469
+          },
+          {
+            "activity": "ResponseEntity_focus",
+            "seconds": 180
+          },
+          {
+            "activity": "worked_401_404_409_table",
+            "seconds": 611
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "4993276",
@@ -1217,7 +1420,9 @@
             "duration": "7:49",
             "source_item_id": "35018810",
             "course_id": "4993276"
-          },
+          }
+        ],
+        "optional_reference_lessons": [
           {
             "title": "Step 12 - Implementing Generic Exception Handling for all Resources",
             "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
@@ -1227,23 +1432,22 @@
             "course_id": "4993276"
           }
         ],
-        "video_seconds": 1158,
-        "remaining_study_seconds": 342,
-        "fit": "partial_foundation",
-        "scope_note": "The course examples are not this application’s error contract. Work a fixed mapping table for unavailable/foreign=404, infrastructure failure=sanitized 503, and unexpected failure=generic 500; never expose exception text.",
-        "supplement_required": true,
         "resources": [
           {
-            "title": "Official reference: Map unavailable previews to stable HTTP errors",
-            "section": "ResponseEntity status, headers and body",
-            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
-          },
-          {
-            "title": "Spring MVC controller return types",
-            "section": "ResponseEntity and response status/body",
+            "title": "Official source: Spring Framework: Return Values",
+            "section": "HttpEntity<B>, ResponseEntity<B> table entry",
             "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
           }
-        ]
+        ],
+        "video_seconds": 469,
+        "remaining_study_seconds": 1031,
+        "fit": "partial_foundation",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md",
+        "worked_example_section": "# Day 50 — Map known unavailable outcomes safely",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -1278,7 +1482,8 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/renewal/PolicyRenewalControllerAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test"
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test",
+          "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51SerializedPreviewHasExactlyApprovedFieldsAndNumericPremium test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1287,11 +1492,25 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 270,
+            "worked_example_and_transfer": 990,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "bean_response_foundation",
+              "seconds": 270
+            },
+            {
+              "activity": "worked_exact_JSON_contract",
+              "seconds": 990
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "4993276",
@@ -1311,34 +1530,30 @@
               "course_id": "4993276"
             }
           ],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official Spring reference: response DTO design",
+              "title": "Official source: Spring: Building a RESTful Web Service",
               "section": "Create a Resource Representation Class; Create a Resource Controller",
               "url": "https://spring.io/guides/gs/rest-service/"
             },
             {
-              "title": "Official Spring Framework reference: ResponseEntity",
-              "section": "ResponseEntity specifies the full response including status, headers and body; it does not filter DTO fields",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
-            },
-            {
-              "title": "Spring MVC controller return types",
-              "section": "returning a response body",
+              "title": "Official source: Spring Framework: Return Values",
+              "section": "HttpEntity<B>, ResponseEntity<B> table entry",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
             }
           ],
           "video_seconds": 270,
           "remaining_study_seconds": 1230,
           "fit": "partial_foundation",
-          "scope_note": "A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md",
+          "worked_example_section": "# Day 51 — Inspect the actual JSON projection",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -1400,9 +1615,20 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "bean_response_foundation",
+            "seconds": 270
+          },
+          {
+            "activity": "worked_exact_JSON_contract",
+            "seconds": 990
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "4993276",
@@ -1422,28 +1648,28 @@
             "course_id": "4993276"
           }
         ],
-        "video_seconds": 270,
-        "remaining_study_seconds": 1230,
-        "fit": "partial_foundation",
-        "scope_note": "A bean response is only a serialization foundation. Work a small non-binding PreviewResponse DTO containing the fixed reference fields; explicitly exclude acceptance, premium, mutation, or promise semantics.",
-        "supplement_required": true,
+        "optional_reference_lessons": [],
         "resources": [
           {
-            "title": "Official Spring reference: response DTO design",
+            "title": "Official source: Spring: Building a RESTful Web Service",
             "section": "Create a Resource Representation Class; Create a Resource Controller",
             "url": "https://spring.io/guides/gs/rest-service/"
           },
           {
-            "title": "Official Spring Framework reference: ResponseEntity",
-            "section": "ResponseEntity specifies the full response including status, headers and body; it does not filter DTO fields",
-            "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
-          },
-          {
-            "title": "Spring MVC controller return types",
-            "section": "returning a response body",
+            "title": "Official source: Spring Framework: Return Values",
+            "section": "HttpEntity<B>, ResponseEntity<B> table entry",
             "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
           }
-        ]
+        ],
+        "video_seconds": 270,
+        "remaining_study_seconds": 1230,
+        "fit": "partial_foundation",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md",
+        "worked_example_section": "# Day 51 — Inspect the actual JSON projection",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -1478,7 +1704,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
         "acceptance_commands": [
-          "cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only"
+          "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1487,11 +1713,25 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 483,
+            "worked_example_and_transfer": 777,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "conditional_rendering_foundation",
+              "seconds": 483
+            },
+            {
+              "activity": "worked_reference_panel",
+              "seconds": 777
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "1362070",
@@ -1511,29 +1751,30 @@
               "course_id": "1362070"
             }
           ],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official reference: Render the renewal reference view in React",
-              "section": "conditional rendering without a renewal action",
-              "url": "https://react.dev/learn/conditional-rendering"
+              "title": "Official source: React: Conditional Rendering",
+              "section": "Conditionally returning JSX",
+              "url": "https://react.dev/learn/conditional-rendering#conditionally-returning-jsx"
             },
             {
-              "title": "React choosing state structure",
-              "section": "avoid contradictory UI state",
-              "url": "https://react.dev/learn/choosing-the-state-structure"
+              "title": "Official source: React: Choosing the State Structure",
+              "section": "Avoid contradictions in state",
+              "url": "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
             }
           ],
           "video_seconds": 483,
           "remaining_study_seconds": 1017,
           "fit": "partial_foundation",
-          "scope_note": "The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md",
+          "worked_example_section": "# Day 52 — Render a supplied reference value",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -1589,9 +1830,20 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "conditional_rendering_foundation",
+            "seconds": 483
+          },
+          {
+            "activity": "worked_reference_panel",
+            "seconds": 777
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "1362070",
@@ -1611,23 +1863,28 @@
             "course_id": "1362070"
           }
         ],
+        "optional_reference_lessons": [],
+        "resources": [
+          {
+            "title": "Official source: React: Conditional Rendering",
+            "section": "Conditionally returning JSX",
+            "url": "https://react.dev/learn/conditional-rendering#conditionally-returning-jsx"
+          },
+          {
+            "title": "Official source: React: Choosing the State Structure",
+            "section": "Avoid contradictions in state",
+            "url": "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
+          }
+        ],
         "video_seconds": 483,
         "remaining_study_seconds": 1017,
         "fit": "partial_foundation",
-        "scope_note": "The lesson introduces conditional rendering, not a complete renewal flow. Work an immutable reference view with mutually exclusive loading, unavailable and ready states; no editable price or renewal button.",
         "supplement_required": true,
-        "resources": [
-          {
-            "title": "Official reference: Render the renewal reference view in React",
-            "section": "conditional rendering without a renewal action",
-            "url": "https://react.dev/learn/conditional-rendering"
-          },
-          {
-            "title": "React choosing state structure",
-            "section": "avoid contradictory UI state",
-            "url": "https://react.dev/learn/choosing-the-state-structure"
-          }
-        ]
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md",
+        "worked_example_section": "# Day 52 — Render a supplied reference value",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -1662,7 +1919,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx",
         "acceptance_commands": [
-          "cd frontend && npm run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"explicit|refresh\""
+          "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"explicit|refresh\""
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1671,11 +1928,29 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 327,
+            "worked_example_and_transfer": 933,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "loading_foundation",
+              "seconds": 327
+            },
+            {
+              "activity": "ARIA_status_alert_focus",
+              "seconds": 180
+            },
+            {
+              "activity": "worked_transition_refresh",
+              "seconds": 753
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "1362070",
@@ -1693,7 +1968,9 @@
               "duration": "5:27",
               "source_item_id": "39836954",
               "course_id": "1362070"
-            },
+            }
+          ],
+          "optional_reference_lessons": [
             {
               "title": "Handling HTTP Loading & Error States",
               "section_title": "Practice Project: Building a Food Order App",
@@ -1705,37 +1982,32 @@
           ],
           "resources": [
             {
-              "title": "Official reference: Add accessible loading and unavailable states",
-              "section": "alert and status roles for asynchronous feedback",
-              "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
-            },
-            {
-              "title": "W3C WAI technique ARIA22: role=status",
-              "section": "The status role exposes a status message with polite live-region semantics",
+              "title": "Official source: W3C WCAG technique ARIA22: Using role=status to present status messages",
+              "section": "Description; Examples",
               "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22"
             },
             {
-              "title": "WAI-ARIA status role",
-              "section": "status messages",
-              "url": "https://www.w3.org/TR/wai-aria-1.2/#status"
+              "title": "Official source: W3C APG: Alert Pattern",
+              "section": "About This Pattern; Keyboard Interaction",
+              "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
             },
             {
-              "title": "WAI-ARIA alert role",
-              "section": "important dynamic messages",
-              "url": "https://www.w3.org/TR/wai-aria-1.2/#alert"
+              "title": "Official source: React: Choosing the State Structure",
+              "section": "Avoid contradictions in state",
+              "url": "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
             }
           ],
-          "video_seconds": 519,
-          "remaining_study_seconds": 981,
+          "video_seconds": 327,
+          "remaining_study_seconds": 1173,
           "fit": "partial_foundation",
-          "scope_note": "The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md",
+          "worked_example_section": "# Day 53 — Keep states exclusive and refresh explicit",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -1800,9 +2072,24 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "loading_foundation",
+            "seconds": 327
+          },
+          {
+            "activity": "ARIA_status_alert_focus",
+            "seconds": 180
+          },
+          {
+            "activity": "worked_transition_refresh",
+            "seconds": 753
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "1362070",
@@ -1820,7 +2107,9 @@
             "duration": "5:27",
             "source_item_id": "39836954",
             "course_id": "1362070"
-          },
+          }
+        ],
+        "optional_reference_lessons": [
           {
             "title": "Handling HTTP Loading & Error States",
             "section_title": "Practice Project: Building a Food Order App",
@@ -1830,33 +2119,32 @@
             "course_id": "1362070"
           }
         ],
-        "video_seconds": 519,
-        "remaining_study_seconds": 981,
-        "fit": "partial_foundation",
-        "scope_note": "The course examples do not establish this app’s accessible contract. Work one aria-live status for loading and one role=alert unavailable message; preserve a retry action only when the API operation is safe and explicit.",
-        "supplement_required": true,
         "resources": [
           {
-            "title": "Official reference: Add accessible loading and unavailable states",
-            "section": "alert and status roles for asynchronous feedback",
-            "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
-          },
-          {
-            "title": "W3C WAI technique ARIA22: role=status",
-            "section": "The status role exposes a status message with polite live-region semantics",
+            "title": "Official source: W3C WCAG technique ARIA22: Using role=status to present status messages",
+            "section": "Description; Examples",
             "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22"
           },
           {
-            "title": "WAI-ARIA status role",
-            "section": "status messages",
-            "url": "https://www.w3.org/TR/wai-aria-1.2/#status"
+            "title": "Official source: W3C APG: Alert Pattern",
+            "section": "About This Pattern; Keyboard Interaction",
+            "url": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
           },
           {
-            "title": "WAI-ARIA alert role",
-            "section": "important dynamic messages",
-            "url": "https://www.w3.org/TR/wai-aria-1.2/#alert"
+            "title": "Official source: React: Choosing the State Structure",
+            "section": "Avoid contradictions in state",
+            "url": "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
           }
-        ]
+        ],
+        "video_seconds": 327,
+        "remaining_study_seconds": 1173,
+        "fit": "partial_foundation",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md",
+        "worked_example_section": "# Day 53 — Keep states exclusive and refresh explicit",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -1900,11 +2188,25 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 531,
+            "worked_example_and_transfer": 729,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "integration_foundation_or_official_fallback",
+              "seconds": 531
+            },
+            {
+              "activity": "worked_full_database_observation",
+              "seconds": 729
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [
             {
               "course_id": "1635492",
@@ -1924,29 +2226,30 @@
               "course_id": "1635492"
             }
           ],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official reference: Verify the owner-scoped preview against PostgreSQL",
-              "section": "@SpringBootTest webEnvironment MOCK versus RANDOM_PORT: mock application context versus a real embedded server",
+              "title": "Official source: Spring Boot: Testing Spring Boot Applications",
+              "section": "MOCK versus RANDOM_PORT behavior in opening section",
               "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
             },
             {
-              "title": "Spring Boot application testing",
-              "section": "testing with a running server and application context",
-              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+              "title": "Official source: PostgreSQL 18: SET TRANSACTION",
+              "section": "Description: transaction access mode READ ONLY",
+              "url": "https://www.postgresql.org/docs/18/sql-set-transaction.html"
             }
           ],
           "video_seconds": 531,
           "remaining_study_seconds": 969,
           "fit": "partial_foundation",
-          "scope_note": "The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md",
+          "worked_example_section": "# Day 54 — Compare full database state around the read",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -2002,9 +2305,20 @@
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "integration_foundation_or_official_fallback",
+            "seconds": 531
+          },
+          {
+            "activity": "worked_full_database_observation",
+            "seconds": 729
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
+          }
+        ],
         "courses": [
           {
             "course_id": "1635492",
@@ -2024,23 +2338,28 @@
             "course_id": "1635492"
           }
         ],
-        "video_seconds": 531,
-        "remaining_study_seconds": 969,
-        "fit": "partial_foundation",
-        "scope_note": "The lesson title supports Spring integration-test context only. The instructor harness supplies PostgreSQL; walk one real owner-scoped read plus before/after database snapshots and prove no write. Do not swap in the course H2/JPA stack.",
-        "supplement_required": true,
+        "optional_reference_lessons": [],
         "resources": [
           {
-            "title": "Official reference: Verify the owner-scoped preview against PostgreSQL",
-            "section": "@SpringBootTest webEnvironment MOCK versus RANDOM_PORT: mock application context versus a real embedded server",
+            "title": "Official source: Spring Boot: Testing Spring Boot Applications",
+            "section": "MOCK versus RANDOM_PORT behavior in opening section",
             "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
           },
           {
-            "title": "Spring Boot application testing",
-            "section": "testing with a running server and application context",
-            "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            "title": "Official source: PostgreSQL 18: SET TRANSACTION",
+            "section": "Description: transaction access mode READ ONLY",
+            "url": "https://www.postgresql.org/docs/18/sql-set-transaction.html"
           }
-        ]
+        ],
+        "video_seconds": 531,
+        "remaining_study_seconds": 969,
+        "fit": "partial_foundation",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md",
+        "worked_example_section": "# Day 54 — Compare full database state around the read",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -2084,71 +2403,51 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 360,
+            "worked_example_and_transfer": 900,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
-          "courses": [
+          "study_segments": [
             {
-              "course_id": "1362070",
-              "title": "React - The Complete Guide (incl. Next.js, Redux)",
-              "instructor": "Academind / Maximilian Schwarzmüller",
-              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
-              "access_status": "unconfirmed_reference_only"
-            }
-          ],
-          "lessons": [
-            {
-              "title": "Dynamic Query Functions & Query Keys",
-              "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
-              "duration_seconds": 785,
-              "duration": "13:05",
-              "source_item_id": "39499434",
-              "course_id": "1362070"
+              "activity": "plain_fetch_Playwright_focus",
+              "seconds": 360
             },
             {
-              "title": "The Query Configuration Object & Aborting Requests",
-              "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
-              "duration_seconds": 327,
-              "duration": "5:27",
-              "source_item_id": "39499460",
-              "course_id": "1362070"
+              "activity": "worked_request_response_demo",
+              "seconds": 900
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
             }
           ],
+          "study_total_seconds": 1500,
+          "courses": [],
+          "lessons": [],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official reference: Connect the React preview to Spring and PostgreSQL",
-              "section": "page navigation, role locators and response inspection",
-              "url": "https://playwright.dev/docs/api/class-page"
-            },
-            {
-              "title": "Playwright Response API",
-              "section": "HTTP response status() and json() for inspecting the matched response",
-              "url": "https://playwright.dev/docs/api/class-response"
-            },
-            {
-              "title": "TanStack Query query keys",
-              "section": "query-key identity and variables",
-              "url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
-            },
-            {
-              "title": "Fetch API",
-              "section": "credentials and HTTP error handling",
+              "title": "Official source: MDN Web Docs: Using the Fetch API",
+              "section": "Checking response status; Reading the response body",
               "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+            },
+            {
+              "title": "Official source: Playwright: Response",
+              "section": "status; json",
+              "url": "https://playwright.dev/docs/api/class-response"
             }
           ],
-          "video_seconds": 1112,
-          "remaining_study_seconds": 388,
-          "fit": "partial_foundation",
-          "scope_note": "TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "worked_example_and_official_source",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md",
+          "worked_example_section": "# Day 55 — Observe a real browser read",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -2208,65 +2507,46 @@
       },
       "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
-      "course_learning_status": "verified_titles_video_not_watched",
+      "course_learning_status": "worked_sources_assigned_video_not_required",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
-        "courses": [
+        "study_segments": [
           {
-            "course_id": "1362070",
-            "title": "React - The Complete Guide (incl. Next.js, Redux)",
-            "instructor": "Academind / Maximilian Schwarzmüller",
-            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
-            "access_status": "unconfirmed_reference_only"
-          }
-        ],
-        "lessons": [
-          {
-            "title": "Dynamic Query Functions & Query Keys",
-            "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
-            "duration_seconds": 785,
-            "duration": "13:05",
-            "source_item_id": "39499434",
-            "course_id": "1362070"
+            "activity": "plain_fetch_Playwright_focus",
+            "seconds": 360
           },
           {
-            "title": "The Query Configuration Object & Aborting Requests",
-            "section_title": "React Query / Tanstack Query: Handling HTTP Requests With Ease",
-            "duration_seconds": 327,
-            "duration": "5:27",
-            "source_item_id": "39499460",
-            "course_id": "1362070"
+            "activity": "worked_request_response_demo",
+            "seconds": 900
+          },
+          {
+            "activity": "prediction",
+            "seconds": 240
           }
         ],
-        "video_seconds": 1112,
-        "remaining_study_seconds": 388,
-        "fit": "partial_foundation",
-        "scope_note": "TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.",
-        "supplement_required": true,
+        "courses": [],
+        "lessons": [],
+        "optional_reference_lessons": [],
         "resources": [
           {
-            "title": "Official reference: Connect the React preview to Spring and PostgreSQL",
-            "section": "page navigation, role locators and response inspection",
-            "url": "https://playwright.dev/docs/api/class-page"
-          },
-          {
-            "title": "Playwright Response API",
-            "section": "HTTP response status() and json() for inspecting the matched response",
-            "url": "https://playwright.dev/docs/api/class-response"
-          },
-          {
-            "title": "TanStack Query query keys",
-            "section": "query-key identity and variables",
-            "url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
-          },
-          {
-            "title": "Fetch API",
-            "section": "credentials and HTTP error handling",
+            "title": "Official source: MDN Web Docs: Using the Fetch API",
+            "section": "Checking response status; Reading the response body",
             "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+          },
+          {
+            "title": "Official source: Playwright: Response",
+            "section": "status; json",
+            "url": "https://playwright.dev/docs/api/class-response"
           }
-        ]
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "worked_example_and_official_source",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md",
+        "worked_example_section": "# Day 55 — Observe a real browser read",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,
@@ -2310,41 +2590,56 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "focused_sources": 240,
+            "worked_example_and_transfer": 1020,
+            "prediction_and_readiness": 240
           },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
+          "study_segments": [
+            {
+              "activity": "safe_GET_readonly_focus",
+              "seconds": 240
+            },
+            {
+              "activity": "worked_restart_handover",
+              "seconds": 1020
+            },
+            {
+              "activity": "readiness",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
           "courses": [],
           "lessons": [],
+          "optional_reference_lessons": [],
           "resources": [
             {
-              "title": "Official reference: Prove preview stability across restart without writes",
-              "section": "read-only transaction semantics and verification",
-              "url": "https://www.postgresql.org/docs/14/sql-set-transaction.html"
+              "title": "Official source: RFC 9110: HTTP Semantics",
+              "section": "9.2.1 Safe Methods; 9.3.1 GET",
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1"
             },
             {
-              "title": "Spring Boot application testing",
-              "section": "real application and server testing",
-              "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+              "title": "Official source: PostgreSQL 18: SET TRANSACTION",
+              "section": "Description: transaction access mode READ ONLY",
+              "url": "https://www.postgresql.org/docs/18/sql-set-transaction.html"
             },
             {
-              "title": "PostgreSQL transaction isolation",
-              "section": "read-only observations and statement snapshots",
-              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+              "title": "Official source: AWS Well-Architected: Use runbooks to perform procedures",
+              "section": "Implementation guidance; Implementation steps",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "integration_review_no_new_lecture",
-          "scope_note": "No exact course lesson verifies persistence across packaged restart or database no-write behavior. Use the supplied disposable packaged-browser harness; compare stable preview JSON and complete PostgreSQL snapshots before and after restart. Course viewing is unnecessary.",
+          "fit": "worked_example_and_official_source",
           "supplement_required": true,
-          "daily_study_cap_minutes": 25,
-          "viewing_is_not_completion": true,
-          "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
+          "worked_example_path": "docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md",
+          "worked_example_section": "# Day 56 — Read after restart without changing stored rows",
+          "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "daily_study_cap_minutes": 25,
+          "allocation_rule": "All videos, pauses, official reading, worked example and teach-back share exactly 25 minutes. Optional reference lessons are deferred and do not add study time; stop at the cap and reduce practice scope."
         }
       },
       "java_dsa": {
@@ -2398,35 +2693,51 @@
       },
       "dsa_role": "dynamic_actual_attempt_queue",
       "mandatory_new_problem": false,
-      "course_learning_status": "no_new_lesson_integration_review",
+      "course_learning_status": "worked_sources_assigned_video_not_required",
       "course_learning": {
-        "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
-        "catalog_verified_at": "2026-10-20",
-        "videos_watched": false,
+        "study_segments": [
+          {
+            "activity": "safe_GET_readonly_focus",
+            "seconds": 240
+          },
+          {
+            "activity": "worked_restart_handover",
+            "seconds": 1020
+          },
+          {
+            "activity": "readiness",
+            "seconds": 240
+          }
+        ],
         "courses": [],
         "lessons": [],
-        "video_seconds": 0,
-        "remaining_study_seconds": 1500,
-        "fit": "integration_review_no_new_lecture",
-        "scope_note": "No exact course lesson verifies persistence across packaged restart or database no-write behavior. Use the supplied disposable packaged-browser harness; compare stable preview JSON and complete PostgreSQL snapshots before and after restart. Course viewing is unnecessary.",
-        "supplement_required": true,
+        "optional_reference_lessons": [],
         "resources": [
           {
-            "title": "Official reference: Prove preview stability across restart without writes",
-            "section": "read-only transaction semantics and verification",
-            "url": "https://www.postgresql.org/docs/14/sql-set-transaction.html"
+            "title": "Official source: RFC 9110: HTTP Semantics",
+            "section": "9.2.1 Safe Methods; 9.3.1 GET",
+            "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1"
           },
           {
-            "title": "Spring Boot application testing",
-            "section": "real application and server testing",
-            "url": "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html"
+            "title": "Official source: PostgreSQL 18: SET TRANSACTION",
+            "section": "Description: transaction access mode READ ONLY",
+            "url": "https://www.postgresql.org/docs/18/sql-set-transaction.html"
           },
           {
-            "title": "PostgreSQL transaction isolation",
-            "section": "read-only observations and statement snapshots",
-            "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+            "title": "Official source: AWS Well-Architected: Use runbooks to perform procedures",
+            "section": "Implementation guidance; Implementation steps",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html"
           }
-        ]
+        ],
+        "video_seconds": 0,
+        "remaining_study_seconds": 1500,
+        "fit": "worked_example_and_official_source",
+        "supplement_required": true,
+        "worked_example_path": "docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md",
+        "worked_example_section": "# Day 56 — Read after restart without changing stored rows",
+        "source_sha": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+        "catalog_verified_at": "2026-10-20",
+        "videos_watched": false
       },
       "dsa_guidance_policy": "docs/reboot/dsa/guided-transfer-policy.md",
       "dsa_current_guided_sequence_day": null,

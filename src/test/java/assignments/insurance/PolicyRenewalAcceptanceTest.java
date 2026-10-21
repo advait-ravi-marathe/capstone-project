@@ -26,6 +26,11 @@ class PolicyRenewalAcceptanceTest {
         var leapDay = POLICY.termFor(LocalDate.parse("2024-02-29"));
         assertEquals(LocalDate.parse("2025-02-28"), leapDay.nextTermStart());
         assertEquals(LocalDate.parse("2025-01-29"), leapDay.renewalWindowOpensOn());
+
+        var leapCrossing = POLICY.termFor(LocalDate.parse("2023-03-01"));
+        assertEquals(new PolicyRenewalTerm(LocalDate.parse("2023-03-01"), LocalDate.parse("2024-03-01"),
+                LocalDate.parse("2024-01-31")), leapCrossing,
+                "an annual term crossing leap day is not the same as adding 365 days");
     }
 
     @Test void day46RenewalWindowHasFixedOpenCloseAndLifecycleBoundaries() {
@@ -39,9 +44,21 @@ class PolicyRenewalAcceptanceTest {
         assertEquals(PolicyRenewalEligibility.TERM_ENDED,
                 POLICY.eligibility(facts, LocalDate.parse("2027-12-01")));
         assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
-                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCELLED), LocalDate.parse("2027-11-15")));
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCELLED), LocalDate.parse("2027-10-31")));
         assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
-                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCEL_SCHEDULED), LocalDate.parse("2027-11-15")));
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCELLED), LocalDate.parse("2027-11-01")));
+        assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCELLED), LocalDate.parse("2027-11-30")));
+        assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCELLED), LocalDate.parse("2027-12-01")));
+        assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCEL_SCHEDULED), LocalDate.parse("2027-10-31")));
+        assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCEL_SCHEDULED), LocalDate.parse("2027-11-01")));
+        assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCEL_SCHEDULED), LocalDate.parse("2027-11-30")));
+        assertEquals(PolicyRenewalEligibility.NOT_RENEWABLE,
+                POLICY.eligibility(withStatus(facts, PolicyStatus.CANCEL_SCHEDULED), LocalDate.parse("2027-12-01")));
     }
 
     @Test void day47PreviewCopiesCurrentSnapshotAndMakesNoRenewalPriceOrCommitment() {
@@ -55,6 +72,16 @@ class PolicyRenewalAcceptanceTest {
                 () -> assertEquals("INR", preview.currency()),
                 () -> assertEquals(LocalDate.parse("2027-12-01"), preview.nextTermEffectiveDate()),
                 () -> assertTrue(preview.notice().toLowerCase().contains("not a renewal offer")));
+
+        var changedSource = new PolicyRenewalFacts("policy-demo-9", LocalDate.parse("2027-04-17"),
+                PolicyStatus.ISSUED, 9, "home-secure-v9", "home-secure-rate-v4", new BigDecimal("987.40"), "INR");
+        var changedPreview = POLICY.buildPreview(changedSource);
+        assertEquals(new PolicyRenewalPreview("policy-demo-9", 9, "home-secure-v9", "home-secure-rate-v4",
+                new BigDecimal("987.40"), "INR", LocalDate.parse("2028-04-17"),
+                "Reference only; not a renewal offer or coverage commitment."), changedPreview);
+        assertEquals(new PolicyRenewalFacts("policy-demo-9", LocalDate.parse("2027-04-17"), PolicyStatus.ISSUED,
+                9, "home-secure-v9", "home-secure-rate-v4", new BigDecimal("987.40"), "INR"), changedSource,
+                "preview construction must not mutate its source facts");
     }
 
     private static PolicyRenewalFacts issuedFacts(LocalDate effectiveDate) {

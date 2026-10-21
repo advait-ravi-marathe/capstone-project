@@ -4,43 +4,51 @@
 
 **Learner-owned seam:** `browser → React → GET renewal preview`
 **Status:** Contract defined; learner implementation not attempted.
-**Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
+**Time:** 180/195/210 minutes by DSA tier; engineering remains120 minutes:25 study,85 practice/testing,10 evidence.
 
 ### Expected behavior
 
-A real browser loads the React preview through Spring and PostgreSQL for the authenticated synthetic owner. The rendered page shows premium/date/version/notice; response contains only approved snapshot fields and no renewal mutation.
+Use the existing real browser and Spring/PostgreSQL harness. Assert actual GET path/status/eight-field JSON and matching panel values for two distinct valid rows; assert no mutation request. The principal filter is a synthetic test collaborator, not login/session/CSRF proof.
 
-## Acceptance and expected TODO state
+### Readiness before the task
 
-Fixed acceptance tests verify observable rules and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Before the named TODOs are completed, the selected learner test is expected to fail at that exact seam. Instructor infrastructure checks are separate and should pass. Record the exact command, exit code, assertions/errors and TODO reached in `evidence/continuation-45-56/day-55.json`. A contract, mock-only check, or infrastructure smoke does not claim product behavior is implemented.
+- Actual Days45–54 including UI
+- Built frontend, JDK21/Node/Chromium; no external service
 
-**Acceptance test:** `src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres test`
-**Instructor infrastructure test:** `src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java`
-**Infrastructure command:** `npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test`
+### Acceptance and expected TODO state
 
-## Implementation/testing allocation (85 minutes)
+The fixed selectors remain learner-owned. Before the named TODO is completed, the semantic test is expected to stop at that exact seam. Instructor references and transport smoke are separate evidence, not learner completion. Do not implement behavior in starter code or weaken assertions. Record the actual command, result and first blocker in `evidence/continuation-45-56/day-55.json` only after a real learner attempt.
 
-Implement only this day's seam, run its fixed selector, and keep prior learner ownership intact. Use the synthetic fixture and fixed Clock; use isolated embedded PostgreSQL only where specified. No real customer data, payments, external services, migrations to a live database, or cloud setup.
+**Acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres test`
 
-## Concept/course allocation (25 minutes)
+**Instructor infrastructure/reference commands:**
+- `npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test`
 
-**Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Dynamic Query Functions & Query Keys**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (13:05).
-- Exact lesson title: **The Query Configuration Object & Aborting Requests**; exact section title: **React Query / Tanstack Query: Handling HTTP Requests With Ease** (5:27).
-- Fit: partial foundation. TanStack Query lessons cover key/configuration and aborting requests; they do not prove this server’s cookie/CSRF or no-write contract. Work a stable owner-scoped preview key, explicit credentials/CSRF handling, and a no-mutation query; inspect only the project’s existing client setup.
-- Focused worked references: [TanStack Query query keys — query-key identity and variables](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys); [Fetch API — credentials and HTTP error handling](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
-- Video viewing: 18:32 at 1×; the remaining 6:28 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+## Practice and evidence
 
+**85-minute practice allocation:**
+- 10 minutes: build and verify prior gates.
+- 45 minutes: run the real-browser integration.
+- 20 minutes: record the three actual acceptance observations.
+- 10 minutes: explain transport versus UI versus database evidence.
 
-**Design sketch:** Connect the React preview to Spring and PostgreSQL: sketch the protected invariant and the layer that owns it.
+**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 
-**Teach-back:** State one invariant, its enforcing layer, and the observable response that proves it.
+## Study block — exactly 25 minutes
 
-## Evidence allocation (10 minutes)
+- No course video is required for this day; use the supplied focused official references and project-authored worked example.
+- Worked guide: [Observe a real browser read](../worked/day-55-observed-preview-demo.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
 
-Record actual command/output, one design or teach-back note, and the learner's own changed paths in `evidence/continuation-45-56/day-55.json`. Record first-attempt and review dates only after the work is done.
+**Focused official sources:**
+- [MDN Web Docs: Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) — Checking response status; Reading the response body.
+- [Playwright: Response](https://playwright.dev/docs/api/class-response) — status; json.
+
+Optional references are deferred and replacement-only; no purchase/enrollment or extra minutes are required.
+
+## Safety and scope
+
+This is a synthetic, read-only reference preview. It does not renew, accept, bind, price a new offer, collect payment or promise coverage. The browser harness uses a test-injected principal; that fixture is not production authentication. Real PostgreSQL/browser checks are restricted to disposable local test infrastructure.
 
 ## DSA study (workload-tiered; actual attempts only)
 

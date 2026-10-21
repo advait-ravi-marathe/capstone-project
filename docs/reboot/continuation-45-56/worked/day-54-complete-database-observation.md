@@ -1,0 +1,7 @@
+# Day 54 — Compare full database state around the read
+
+The independent Node snapshot reference is at [`scripts/teaching/parcel_snapshot_reference.mjs`](../../../../scripts/teaching/parcel_snapshot_reference.mjs). Run `node scripts/teaching/parcel_snapshot_reference.mjs`. It records complete ordered parcel/event/receipt values, repeats a read, then demonstrates four count-preserving changes (revision, weight, event, receipt fingerprint) that differ from the baseline despite unchanged row count. It is a counterexample, not a database integration result.
+
+Transfer: use the actual embedded PostgreSQL and standalone MockMvc test to request as owner, foreign owner, absent policy and anonymous principal. Compare complete ordered rows from all three existing lifecycle tables after each call. Include existing event and request-receipt rows; preserve original valid fixture values. MockMvc is not a running live server, and row-count equality alone is not enough.
+
+Study25: 8:51 integration lesson or official replacement,12:09 complete snapshot trace,4:00 prediction. Practice85: 10 readiness gate,50 endpoint checks,25 diagnosis. Evidence10. Official: [Spring Boot testing: MOCK vs RANDOM_PORT](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html), [PostgreSQL read-only transactions](https://www.postgresql.org/docs/18/sql-set-transaction.html). The independent file command is above.

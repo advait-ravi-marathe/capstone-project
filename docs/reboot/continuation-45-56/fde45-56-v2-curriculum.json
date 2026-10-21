@@ -1,0 +1,635 @@
+{
+  "status": "AUTHORITATIVE_SPRINT4_DAYS45_56_COURSEWORK_V2",
+  "prepared_at": "2026-10-21",
+  "source_main": "196b08d592edc1a7686cd94a4e963fa60b95f256",
+  "scope": "Existing native Sprint4 remaining Days45–56 only. Preserve Days43–44, first30/Sprint3, later57–196, all DSA/history/dates/status/story identity and learner TODOs.",
+  "budget": {
+    "engineering_minutes": 120,
+    "study_seconds": 1500,
+    "practice_minutes": 85,
+    "evidence_minutes": 10,
+    "DSA": "Preserve workload-tiered60/75/90 actual-attempt policy unchanged."
+  },
+  "days": [
+    {
+      "day": 45,
+      "date": "2026-12-03",
+      "sprint": "Sprint4",
+      "existing_title": "Define annual policy term boundaries",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-45.md",
+      "learner_seam": "PolicyRenewalPreviewPolicy.termFor",
+      "required_lesson_item_ids": [
+        "9565624"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "date",
+        "discovery",
+        "criteria"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md",
+      "worked_example_section": "# Day 45 — Discovery example, then an annual date",
+      "readiness": [
+        "Actual Day44 learner readiness; no inference from instructor witness",
+        "Existing value/date guides"
+      ],
+      "study_segments": [
+        {
+          "activity": "verified_lesson_or_date_fallback",
+          "seconds": 255
+        },
+        {
+          "activity": "discovery_acceptance_focus",
+          "seconds": 300
+        },
+        {
+          "activity": "worked_membership_example",
+          "seconds": 705
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Preserve original tuples; add2023-03-01→2024-03-01→2024-01-31 so plusDays365 fails.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 46,
+      "date": "2026-12-04",
+      "sprint": "Sprint4",
+      "existing_title": "Enforce renewal window and lifecycle eligibility",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-46.md",
+      "learner_seam": "PolicyRenewalPreviewPolicy.eligibility",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [
+        "9565624"
+      ],
+      "official_source_ids": [
+        "clock",
+        "date"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md",
+      "worked_example_section": "# Day 46 — A state-and-date decision table",
+      "readiness": [
+        "Day45 term values"
+      ],
+      "study_segments": [
+        {
+          "activity": "Clock_LocalDate_focus",
+          "seconds": 240
+        },
+        {
+          "activity": "worked_state_date_matrix",
+          "seconds": 1020
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Opening included/end excluded; nonrenewable statuses reject at every time boundary, not only middle of window.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day46RenewalWindowHasFixedOpenCloseAndLifecycleBoundaries test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 47,
+      "date": "2026-12-05",
+      "sprint": "Sprint4",
+      "existing_title": "Freeze the renewal reference snapshot",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-47.md",
+      "learner_seam": "PolicyRenewalPreviewPolicy.buildPreview",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [
+        "25694168",
+        "49557599"
+      ],
+      "official_source_ids": [
+        "record",
+        "adr"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md",
+      "worked_example_section": "# Day 47 — Copy current facts without making a new offer",
+      "readiness": [
+        "Day45 next-term boundary",
+        "Day33 immutable-value teaching, not a new pricing formula"
+      ],
+      "study_segments": [
+        {
+          "activity": "Record_ADR_focus",
+          "seconds": 300
+        },
+        {
+          "activity": "worked_projection_decision",
+          "seconds": 960
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Full unchanged copy with second distinct fixture; derive only date; notice says not a renewal offer; no repricing.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day47PreviewCopiesCurrentSnapshotAndMakesNoRenewalPriceOrCommitment test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 48,
+      "date": "2026-12-06",
+      "sprint": "Sprint4",
+      "existing_title": "Add owner-scoped PostgreSQL renewal projection",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-48.md",
+      "learner_seam": "JdbcPolicyRenewalReadStore.findByPolicyIdAndOwnerId",
+      "required_lesson_item_ids": [
+        "35019858"
+      ],
+      "optional_replacement_only_item_ids": [
+        "35019874"
+      ],
+      "official_source_ids": [
+        "jdbc",
+        "safe_get"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md",
+      "worked_example_section": "# Day 48 — Bind both keys and compare complete rows",
+      "readiness": [
+        "Main Day9 raw JDBC/Optional and Day36 owner scope",
+        "Existing lifecycle SQL fixture; no new schema"
+      ],
+      "study_segments": [
+        {
+          "activity": "query_lesson_foundation",
+          "seconds": 336
+        },
+        {
+          "activity": "worked_raw_JDBC_resources_and_state",
+          "seconds": 864
+        },
+        {
+          "activity": "prediction",
+          "seconds": 300
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        50,
+        25
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Both bound predicates; own/foreign/missing/malicious-looking input; exact returned values; complete ordered policy/event/receipt rows unchanged after each read.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalRepositoryAcceptanceTest#day48ReadIsOwnerScopedAndReturnsOnlyRenewalInputsWithoutWrites test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 49,
+      "date": "2026-12-07",
+      "sprint": "Sprint4",
+      "existing_title": "Derive preview identity from the principal",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-49.md",
+      "learner_seam": "PolicyRenewalPreviewController.authenticatedOwner",
+      "required_lesson_item_ids": [
+        "35017628"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "mvc_args"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md",
+      "worked_example_section": "# Day 49 — A caller cannot choose their own owner identity",
+      "readiness": [
+        "Main Day2–3 MVC, Day31/34 identity distinction",
+        "Supplied empty/recording store avoids future methods"
+      ],
+      "study_segments": [
+        {
+          "activity": "authentication_lesson",
+          "seconds": 257
+        },
+        {
+          "activity": "MVC_Principal_focus",
+          "seconds": 180
+        },
+        {
+          "activity": "worked_request_scope_trace",
+          "seconds": 823
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Anonymous/blank principal401 and zero reads; forged query/header cannot change captured owner; empty store stops at404 without future Day50/51.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 50,
+      "date": "2026-12-08",
+      "sprint": "Sprint4",
+      "existing_title": "Map unavailable previews to stable HTTP errors",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-50.md",
+      "learner_seam": "PolicyRenewalPreviewController.unavailable",
+      "required_lesson_item_ids": [
+        "35018810"
+      ],
+      "optional_replacement_only_item_ids": [
+        "35018806"
+      ],
+      "official_source_ids": [
+        "mvc_return"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md",
+      "worked_example_section": "# Day 50 — Map known unavailable outcomes safely",
+      "readiness": [
+        "Days45–49 actual policy and identity seams",
+        "Day51 stays TODO in chronology proof"
+      ],
+      "study_segments": [
+        {
+          "activity": "404_foundation_lesson",
+          "seconds": 469
+        },
+        {
+          "activity": "ResponseEntity_focus",
+          "seconds": 180
+        },
+        {
+          "activity": "worked_401_404_409_table",
+          "seconds": 611
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        50,
+        25
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "All three nonready enums fixed409; real GET missing/foreign same404; no available/buildPreview on rejection; no503/500 work.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 51,
+      "date": "2026-12-09",
+      "sprint": "Sprint4",
+      "existing_title": "Expose a minimal non-binding preview response",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-51.md",
+      "learner_seam": "PolicyRenewalPreviewController.available",
+      "required_lesson_item_ids": [
+        "35018834"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "spring_resource",
+        "mvc_return"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md",
+      "worked_example_section": "# Day 51 — Inspect the actual JSON projection",
+      "readiness": [
+        "Days45–50 ready",
+        "Existing preview DTO; serialization observed before normalizer freeze"
+      ],
+      "study_segments": [
+        {
+          "activity": "bean_response_foundation",
+          "seconds": 270
+        },
+        {
+          "activity": "worked_exact_JSON_contract",
+          "seconds": 990
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        50,
+        25
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Existing object equality retained plus real MVC JSON exact8keys/all values/types; numeric current premium stays reference-only; no private/mutation fields.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test",
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51SerializedPreviewHasExactlyApprovedFieldsAndNumericPremium test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 52,
+      "date": "2026-12-10",
+      "sprint": "Sprint4",
+      "existing_title": "Render the renewal reference view in React",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-52.md",
+      "learner_seam": "PolicyRenewalPreviewPanel",
+      "required_lesson_item_ids": [
+        "39649252"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "react",
+        "state"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md",
+      "worked_example_section": "# Day 52 — Render a supplied reference value",
+      "readiness": [
+        "Day51 response meaning and prior React props/conditional rendering"
+      ],
+      "study_segments": [
+        {
+          "activity": "conditional_rendering_foundation",
+          "seconds": 483
+        },
+        {
+          "activity": "worked_reference_panel",
+          "seconds": 777
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        55,
+        20
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Complete original/changed preview content and notice; no bind/renew/accept/purchase action; no callback during render; no input mutation.",
+      "preserved_acceptance_commands": [
+        "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t reference-only"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 53,
+      "date": "2026-12-11",
+      "sprint": "Sprint4",
+      "existing_title": "Add accessible loading and unavailable states",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-53.md",
+      "learner_seam": "PolicyRenewalPreviewPanel",
+      "required_lesson_item_ids": [
+        "39836954"
+      ],
+      "optional_replacement_only_item_ids": [
+        "8244672"
+      ],
+      "official_source_ids": [
+        "status",
+        "alert",
+        "state"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md",
+      "worked_example_section": "# Day 53 — Keep states exclusive and refresh explicit",
+      "readiness": [
+        "Day52 ready display and earlier state/Promise teaching"
+      ],
+      "study_segments": [
+        {
+          "activity": "loading_foundation",
+          "seconds": 327
+        },
+        {
+          "activity": "ARIA_status_alert_focus",
+          "seconds": 180
+        },
+        {
+          "activity": "worked_transition_refresh",
+          "seconds": 753
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        50,
+        25
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Nonready overrides stale summary; status/alert semantics; changed-ready recovery clears old alert/data; explicit refresh callback only once per activation.",
+      "preserved_acceptance_commands": [
+        "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"explicit|refresh\""
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 54,
+      "date": "2026-12-12",
+      "sprint": "Sprint4",
+      "existing_title": "Verify the owner-scoped preview against PostgreSQL",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-54.md",
+      "learner_seam": "GET /api/policies/{policyId}/renewal-preview",
+      "required_lesson_item_ids": [
+        "9968368"
+      ],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "spring_test",
+        "pg_readonly"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md",
+      "worked_example_section": "# Day 54 — Compare full database state around the read",
+      "readiness": [
+        "Actual Days45–51 semantic gates",
+        "Disposable PostgreSQL instructor fixture"
+      ],
+      "study_segments": [
+        {
+          "activity": "integration_foundation_or_official_fallback",
+          "seconds": 531
+        },
+        {
+          "activity": "worked_full_database_observation",
+          "seconds": 729
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        50,
+        25
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Real embeddedPG plus standalone MockMvc; own200/foreign404/absent404/anonymous401; full JSON and full baseline DB equality after each call.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test"
+      ],
+      "infrastructure_commands": [
+        "./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 55,
+      "date": "2026-12-13",
+      "sprint": "Sprint4",
+      "existing_title": "Connect the React preview to Spring and PostgreSQL",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-55.md",
+      "learner_seam": "browser → React → GET renewal preview",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "fetch",
+        "playwright"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md",
+      "worked_example_section": "# Day 55 — Observe a real browser read",
+      "readiness": [
+        "Actual Days45–54 including UI",
+        "Built frontend, JDK21/Node/Chromium; no external service"
+      ],
+      "study_segments": [
+        {
+          "activity": "plain_fetch_Playwright_focus",
+          "seconds": 360
+        },
+        {
+          "activity": "worked_request_response_demo",
+          "seconds": 900
+        },
+        {
+          "activity": "prediction",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        10,
+        45,
+        20,
+        10
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "Real browser GET through existing fixed-principal Spring/PG; full JSON/panel parity and no mutation requests; exact original and changed fixture results.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres test"
+      ],
+      "infrastructure_commands": [
+        "npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    },
+    {
+      "day": 56,
+      "date": "2026-12-14",
+      "sprint": "Sprint4",
+      "existing_title": "Prove preview stability across restart without writes",
+      "contract_path": "docs/reboot/continuation-45-56/contracts/day-56.md",
+      "learner_seam": "read-only preview integration",
+      "required_lesson_item_ids": [],
+      "optional_replacement_only_item_ids": [],
+      "official_source_ids": [
+        "safe_get",
+        "pg_readonly",
+        "runbook"
+      ],
+      "guide_path": "docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md",
+      "worked_example_section": "# Day 56 — Read after restart without changing stored rows",
+      "readiness": [
+        "Actual Day55 gate and complete DB snapshot helper",
+        "Existing fixed-clock/same-database restart harness"
+      ],
+      "study_segments": [
+        {
+          "activity": "safe_GET_readonly_focus",
+          "seconds": 240
+        },
+        {
+          "activity": "worked_restart_handover",
+          "seconds": 1020
+        },
+        {
+          "activity": "readiness",
+          "seconds": 240
+        }
+      ],
+      "practice_segment_minutes": [
+        15,
+        40,
+        20,
+        10
+      ],
+      "evidence_minutes": 10,
+      "acceptance_proof": "First and second200; exact semantic response equality; correct panel each time; complete DB baseline after each phase; fresh Spring/browser with SAME PG/no reseed.",
+      "preserved_acceptance_commands": [
+        "./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test"
+      ],
+      "infrastructure_commands": [
+        "npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test"
+      ],
+      "command_status": "Source-inspected selectors were strengthened; implementation/reference commands are run and recorded on this branch; learner seams remain learner-owned."
+    }
+  ]
+}
