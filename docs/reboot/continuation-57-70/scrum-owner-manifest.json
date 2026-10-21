@@ -980,7 +980,7 @@
           "evidence": 10
         },
         "scope": "Derive policy ownership from the authenticated principal",
-        "learner_seam": "LocalPolicyOwnerResolver.ownerId(Authentication)",
+        "learner_seam": "LocalPolicyOwnerResolver.ownerId(Authentication) and ownerId(Authentication, String)",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-62.md",
         "evidence_reference": "evidence/continuation-57-70/day-62.json",
         "status": "not_attempted",

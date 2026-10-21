@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocalCoverStoryApp } from '../local/LocalCoverStoryApp';
 
@@ -175,7 +175,7 @@ describe('Day 66 local CoverStory route', () => {
     await userEvent.click(await screen.findByRole('button', { name: 'Use owner-a' }));
     const issue = screen.getByRole('button', { name: 'Issue selected quote' });
     const pending = userEvent.click(issue);
-    expect(await screen.findByRole('button', { name: 'Issue selected quote' })).toBeDisabled();
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Issue selected quote' })).toBeDisabled());
     await pending;
     finishIssue(new Response('<html>server error</html>', { status: 500 }));
     expect(await screen.findByRole('alert')).toBeTruthy();

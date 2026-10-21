@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Learner-owned seam:** `LocalPolicyOwnerResolver.ownerId(Authentication)`
+**Learner-owned seams:** `LocalPolicyOwnerResolver.ownerId(Authentication)` and `LocalPolicyOwnerResolver.ownerId(Authentication, String)`
 **Status:** Contract defined; learner implementation not attempted.
 **Time:** 180/195/210 minutes by DSA tier (60/75/90 DSA + unchanged 120 engineering) (85 implementation/testing, 25 concept/course, 10 evidence). No mandatory setup work.
 

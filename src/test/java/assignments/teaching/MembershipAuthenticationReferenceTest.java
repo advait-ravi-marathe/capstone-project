@@ -19,7 +19,7 @@ class MembershipAuthenticationReferenceTest {
         if (authentication == null || !authentication.isAuthenticated()
                 || authentication instanceof AnonymousAuthenticationToken) return Optional.empty();
         String name = authentication.getName();
-        return MEMBERS.contains(name) ? Optional.of(name) : Optional.empty();
+        return name != null && MEMBERS.contains(name) ? Optional.of(name) : Optional.empty();
     }
 
     static Optional<String> memberId(Authentication authentication, String ignoredRequestMemberId) {
@@ -41,7 +41,10 @@ class MembershipAuthenticationReferenceTest {
         Authentication unauthenticated = UsernamePasswordAuthenticationToken.unauthenticated("reader-a", "");
         Authentication unknown = UsernamePasswordAuthenticationToken.authenticated("reader-c", "", AuthorityUtils.NO_AUTHORITIES);
         Authentication blank = UsernamePasswordAuthenticationToken.authenticated(" ", "", AuthorityUtils.NO_AUTHORITIES);
-        for (Authentication rejected : new Authentication[]{null, anonymous, unauthenticated, unknown, blank}) {
+        Authentication nullName = org.mockito.Mockito.mock(Authentication.class);
+        org.mockito.Mockito.when(nullName.isAuthenticated()).thenReturn(true);
+        org.mockito.Mockito.when(nullName.getName()).thenReturn(null);
+        for (Authentication rejected : new Authentication[]{null, anonymous, unauthenticated, unknown, blank, nullName}) {
             assertTrue(memberId(rejected).isEmpty());
             assertTrue(memberId(rejected, "reader-a").isEmpty());
             assertTrue(memberId(rejected, "reader-b").isEmpty());

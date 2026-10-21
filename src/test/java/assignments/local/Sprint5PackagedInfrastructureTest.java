@@ -53,6 +53,7 @@ class Sprint5PackagedInfrastructureTest {
         Path receipt = Path.of("target/sprint5-demo/package-evidence.json");
         assertTrue(Files.isRegularFile(jar), "Run scripts/package-sprint5-demo.sh first");
         var evidence = new ObjectMapper().readTree(Files.readString(receipt));
+        Sprint5PackagedRuntimeProcess.verifyArtifactReceipt(jar, receipt);
         assertEquals(sha256(jar), evidence.path("artifactSha256").asString());
         try (JarFile archive = new JarFile(jar.toFile())) {
             assertEquals("assignments.sprint5.Sprint5LocalApplication",
@@ -70,8 +71,10 @@ class Sprint5PackagedInfrastructureTest {
     void stageEntryRejectsWildcardBindBeforeStartingTheServer() throws Exception {
         Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT-sprint5.jar").toAbsolutePath();
         Path output = Path.of("target/sprint5-demo/non-loopback-guard.log").toAbsolutePath();
+        Path receipt = Path.of("target/sprint5-demo/package-evidence.json");
         Files.deleteIfExists(output);
         assertTrue(Files.isRegularFile(jar), "Run scripts/package-sprint5-demo.sh first");
+        Sprint5PackagedRuntimeProcess.verifyArtifactReceipt(jar, receipt);
         String javaExecutable = Path.of(System.getProperty("java.home"), "bin", "java").toString();
         Process process = new ProcessBuilder(javaExecutable, "-jar", jar.toString(), "--server.address=0.0.0.0",
                 "--server.port=0").redirectErrorStream(true).redirectOutput(output.toFile()).start();

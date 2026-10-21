@@ -143,6 +143,8 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertEquals(1, newEvent.path("version").asInt());
                         assertEquals("ISSUED", newEvent.path("event_type").asString());
                         assertEquals(ISSUE_TEST_EFFECTIVE_DATE, newEvent.path("effective_date").asString());
+                        assertTrue(newEvent.path("change_code").isNull());
+                        assertTrue(newEvent.path("training_rebuild_amount_rupees").isNull());
                         JsonNode receipts = new ObjectMapper().readTree(afterRows.idempotency());
                         JsonNode receipt = findRow(receipts, "client_request_id", request.path("clientRequestId").asString());
                         assertNotNull(receipt);
@@ -162,6 +164,7 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertTrue(visible.contains("INR"));
                         assertTrue(visible.contains(ISSUE_TEST_EFFECTIVE_DATE));
                         assertTrue(visible.contains("ISSUED"));
+                        assertTrue(visible.contains("Version 1"));
                     },
             () -> assertTrue(preservesEveryRow(beforeRows.policies(), afterRows.policies()),
                             "issue/readback/replay must not update any preexisting policy values or versions"),
@@ -191,14 +194,19 @@ class LocalPackagedBrowserAcceptanceTest {
             PolicyDatabaseSnapshot afterRestartPreview;
             long firstServerPid;
             long restartedServerPid;
+            BrowserSnapshotRun logoutObservation;
+            java.util.List<PolicyDatabaseSnapshot> logoutSnapshots;
             try {
                 try (Sprint5PackagedRuntimeProcess app = Sprint5PackagedRuntimeProcess.start(postgres, PREVIEW_TEST_CLOCK)) {
                     firstServerPid = app.pid();
                     // Start the packaged app first so Flyway creates and seeds the database before queries run.
                     beforeLogoutJourney = policySnapshot(dataSource);
-                    logoutJourney = runBrowser(app.port(), "day69", OUTPUT.resolve("day69-logout.json"),
-                            null, loggedOutCookieFile);
-                    afterLogoutJourney = policySnapshot(dataSource);
+                    logoutObservation = runBrowserWithSnapshots(app.port(), "day69", OUTPUT.resolve("day69-logout.json"),
+                            null, loggedOutCookieFile, dataSource, java.util.List.of("after-preview-owner-a",
+                                    "after-owner-switch", "after-foreign-read", "before-logout", "after-logout"));
+                    logoutJourney = logoutObservation.result();
+                    logoutSnapshots = logoutObservation.snapshots();
+                    afterLogoutJourney = logoutSnapshots.get(logoutSnapshots.size() - 1);
                     beforeActiveSession = policySnapshot(dataSource);
                     first = runBrowser(app.port(), "day69-restart-seed", OUTPUT.resolve("day69-before-restart.json"),
                             null, sessionCookieFile);
@@ -241,6 +249,9 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertTrue(logoutJourney.path("ownerSessionRotated").asBoolean(),
                                 "switching synthetic owners rotates the session ID");
                         assertEquals(404, logoutJourney.path("previewAsOwnerB").path("status").asInt(), "foreign owner remains concealed");
+                        assertTrue(logoutJourney.path("controls").path("restoreOwnerAForLogout").asBoolean());
+                        assertTrue(logoutJourney.path("controls").path("viewPreviewBeforeLogout").asBoolean());
+                        assertPreviewVisible(logoutJourney.path("visibleBeforeLogout").asString());
                         assertFalse(logoutJourney.path("visibleAfterOwnerB").asString()
                                 .contains("Reference only; not a renewal offer or coverage commitment."),
                                 "owner-b view must remove owner-a preview text");
@@ -248,6 +259,8 @@ class LocalPackagedBrowserAcceptanceTest {
                                 "owner-b view must remove every owner-a preview value");
                         assertEquals(204, responseStatus(logoutJourney.path("apiResponses"), "POST", "/api/session/logout"));
                         assertEquals(401, logoutJourney.path("sessionAfterLogout").path("status").asInt());
+                        assertTrue(logoutJourney.path("savedLogoutCookieRejectedBeforeStop").asBoolean());
+                        assertEquals(401, logoutJourney.path("savedLogoutCookieStatusWhileServerAlive").asInt());
                         assertOwnerAPreviewAbsent(logoutJourney.path("visibleImmediatelyAfterLogout").asString(),
                                 "logout must clear owner-a values before any page reload");
                         assertFalse(logoutJourney.path("visibleAfterLogout").asString()
@@ -259,6 +272,9 @@ class LocalPackagedBrowserAcceptanceTest {
                         assertTrue(first.path("sessionCookieActiveBeforeRestart").asBoolean(),
                                 "restart cookie must be demonstrably active before process stop");
                         assertEquals(200, first.path("sessionBeforeRestart").path("status").asInt());
+                        assertTrue(first.path("savedCookieActiveBeforeStop").asBoolean(),
+                                "the exact cookie bytes written for restart must be checked against the live first server");
+                        assertEquals(200, first.path("savedCookieStatusBeforeStop").asInt());
                         assertEquals(200, first.path("previewBeforeRestart").path("status").asInt(),
                                 "restart sample preview must succeed before stopping the first process");
                         assertPreviewProjection(new ObjectMapper().readTree(
@@ -273,8 +289,13 @@ class LocalPackagedBrowserAcceptanceTest {
                                 restarted.path("previewAfterRestart").path("body").asString(), "complete expected preview remains stable across restart");
                         assertPreviewVisible(restarted.path("visibleAfterRestart").asString());
                     },
-                    () -> assertEquals(beforeLogoutJourney, afterLogoutJourney,
-                            "preview, owner switch and logout must not change policy values, versions, history, or idempotency records"),
+                    () -> {
+                        assertEquals(5, logoutSnapshots.size());
+                        for (int index = 0; index < logoutSnapshots.size(); index++) {
+                            assertEquals(beforeLogoutJourney, logoutSnapshots.get(index),
+                                    "preview, owner switch, foreign read and logout each preserve complete persisted state at boundary " + index);
+                        }
+                    },
                     () -> assertEquals(beforeActiveSession, afterActiveSession,
                             "the active restart sample and preview must not change persisted rows"),
                     () -> assertEquals(afterActiveSession, beforeRestartPreview,
@@ -314,6 +335,66 @@ class LocalPackagedBrowserAcceptanceTest {
     }
 
     private record BrowserSnapshotRun(JsonNode result, java.util.List<PolicyDatabaseSnapshot> snapshots) { }
+
+    private static BrowserSnapshotRun runBrowserWithSnapshots(int port, String scenario, Path output,
+                                                               Path sessionCookieInput, Path sessionCookieOutput,
+                                                               DataSource dataSource, java.util.List<String> names)
+            throws Exception {
+        Files.createDirectories(output.getParent());
+        Path log = output.resolveSibling(output.getFileName() + ".log");
+        Path barriers = Files.createTempDirectory(output.getParent(), "day69-db-barriers-");
+        Files.deleteIfExists(output);
+        Files.deleteIfExists(log);
+        var command = java.util.List.of("node", "e2e/local-coverstory-browser.mjs",
+                "http://127.0.0.1:" + port, output.toString(), scenario);
+        ProcessBuilder builder = new ProcessBuilder(command).directory(Path.of("frontend").toFile())
+                .redirectErrorStream(true).redirectOutput(log.toFile());
+        String chromium = System.getenv("CHROMIUM_BIN");
+        if (chromium != null && !chromium.isBlank()) builder.environment().put("CHROMIUM_BIN", chromium);
+        if (sessionCookieInput != null) builder.environment().put("COVERSTORY_SESSION_COOKIE_INPUT", sessionCookieInput.toString());
+        if (sessionCookieOutput != null) builder.environment().put("COVERSTORY_SESSION_COOKIE_OUTPUT", sessionCookieOutput.toString());
+        builder.environment().put("COVERSTORY_MILESTONE_DIR", barriers.toString());
+        Process runner = null;
+        var snapshots = new java.util.ArrayList<PolicyDatabaseSnapshot>();
+        try {
+            runner = builder.start();
+            for (String name : names) {
+                Path reached = barriers.resolve(name + ".reached");
+                long deadline = System.nanoTime() + java.time.Duration.ofSeconds(50).toNanos();
+                while (!Files.exists(reached) && runner.isAlive() && System.nanoTime() < deadline) Thread.sleep(25);
+                if (!Files.exists(reached)) {
+                    String reason = "Browser did not reach database observation barrier " + name;
+                    writeBrowserFailure(output, log, reason, names.subList(0, snapshots.size()));
+                    throw new IllegalStateException(reason + ": " + Files.readString(log));
+                }
+                snapshots.add(policySnapshot(dataSource));
+                Files.writeString(barriers.resolve(name + ".continue"), "observed");
+            }
+            if (!runner.waitFor(45, TimeUnit.SECONDS)) {
+                String reason = "Packaged-JAR browser flow timed out";
+                writeBrowserFailure(output, log, reason, names);
+                throw new IllegalStateException(reason + ": " + Files.readString(log));
+            }
+            if (runner.exitValue() != 0) {
+                String reason = "Packaged-JAR browser flow exited " + runner.exitValue();
+                writeBrowserFailure(output, log, reason, names);
+                throw new IllegalStateException(reason + ": " + Files.readString(log));
+            }
+            return new BrowserSnapshotRun(new ObjectMapper().readTree(Files.readString(output)),
+                    java.util.List.copyOf(snapshots));
+        } finally {
+            if (runner != null && runner.isAlive()) {
+                for (String name : names) Files.writeString(barriers.resolve(name + ".continue"), "cleanup");
+                if (!runner.waitFor(5, TimeUnit.SECONDS)) {
+                    runner.destroyForcibly();
+                    runner.waitFor();
+                }
+            }
+            try (var paths = Files.walk(barriers)) {
+                for (Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) Files.deleteIfExists(path);
+            }
+        }
+    }
 
     private static BrowserSnapshotRun runIssueBrowserWithSnapshots(int port, Path output, DataSource dataSource)
             throws Exception {
@@ -380,7 +461,8 @@ class LocalPackagedBrowserAcceptanceTest {
         failure.put("failure", reason);
         failure.put("diagnosticLog", Files.exists(log) ? Files.readString(log) : "");
         failure.set("reachedMilestones", new ObjectMapper().valueToTree(reached));
-        Files.writeString(output, new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(failure));
+        Path diagnostic = output.resolveSibling(output.getFileName() + ".java-diagnostic.json");
+        Files.writeString(diagnostic, new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(failure));
     }
 
     private static Path privateSessionCookieFile() throws Exception {

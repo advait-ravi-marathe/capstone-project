@@ -126,10 +126,17 @@ class LocalSecurityAcceptanceTest {
                 "unknown", "", AuthorityUtils.NO_AUTHORITIES)).isEmpty());
         assertTrue(ownerResolver.ownerId(UsernamePasswordAuthenticationToken.authenticated(
                 " ", "", AuthorityUtils.NO_AUTHORITIES)).isEmpty());
+        var nullName = org.mockito.Mockito.mock(org.springframework.security.core.Authentication.class);
+        org.mockito.Mockito.when(nullName.isAuthenticated()).thenReturn(true);
+        org.mockito.Mockito.when(nullName.getName()).thenReturn(null);
+        assertTrue(ownerResolver.ownerId(nullName).isEmpty());
+        assertTrue(ownerResolver.ownerId(nullName, "owner-a").isEmpty());
+        assertTrue(ownerResolver.ownerId(nullName, "owner-b").isEmpty());
         for (var rejected : java.util.List.of(
                 UsernamePasswordAuthenticationToken.unauthenticated("owner-a", ""), anonymous,
                 UsernamePasswordAuthenticationToken.authenticated("unknown", "", AuthorityUtils.NO_AUTHORITIES),
-                UsernamePasswordAuthenticationToken.authenticated(" ", "", AuthorityUtils.NO_AUTHORITIES))) {
+                UsernamePasswordAuthenticationToken.authenticated(" ", "", AuthorityUtils.NO_AUTHORITIES),
+                nullName)) {
             assertTrue(ownerResolver.ownerId(rejected, "owner-a").isEmpty(),
                     "untrusted requested owner cannot make an invalid principal valid");
             assertTrue(ownerResolver.ownerId(rejected, "owner-b").isEmpty());
