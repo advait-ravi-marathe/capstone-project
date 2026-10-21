@@ -9,9 +9,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ai.streamforge.fixture_io import canonical_json_bytes, read_fixture_file
+from ai.streamforge.fixture_io import canonical_json_bytes, read_fixture_file, strict_json_loads
 from ai.streamforge.fixture_registry import FIXTURES, fixture_directory
-from ai.streamforge.limits import MAX_FIELD_CHARS, MAX_INPUT_BYTES, MAX_ROWS_PER_INPUT
+from ai.streamforge.limits import MAX_FIELD_BYTES, MAX_INPUT_BYTES, MAX_ROWS_PER_INPUT
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,7 +36,7 @@ class StreamForgeInfrastructureTest(unittest.TestCase):
         self.assertEqual(200, len(event_rows))
         self.assertEqual(30, len({row["media_id"] for row in catalog_rows}))
         self.assertEqual(200, len({row["event_id"] for row in event_rows}))
-        self.assertTrue(all(len(value) <= MAX_FIELD_CHARS for row in catalog_rows + event_rows for value in row.values()))
+        self.assertTrue(all(len(value.encode("utf-8")) <= MAX_FIELD_BYTES for row in catalog_rows + event_rows for value in row.values()))
         self.assertLessEqual(len(catalog_rows), MAX_ROWS_PER_INPUT)
         self.assertLessEqual(len(event_rows), MAX_ROWS_PER_INPUT)
         self.assertFalse(any(any(token in value.lower() for token in ("http://", "https://", ".mp4", ".mp3"))
@@ -57,6 +57,13 @@ class StreamForgeInfrastructureTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             canonical_json_bytes({"unsafe": float("nan")})
 
+    def test_strict_json_rejects_duplicate_members_at_any_depth(self):
+        self.assertEqual({"ok": {"count": 1}}, strict_json_loads('{"ok":{"count":1}}'))
+        for text in ('{"schema_version":1,"schema_version":2}',
+                     '{"outer":{"name":"a","name":"b"}}'):
+            with self.subTest(text=text), self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                strict_json_loads(text)
+
     def test_cli_scope_is_registered_fixture_only_and_todo_error_has_no_success_document(self):
         bad = subprocess.run([sys.executable, "-m", "ai.streamforge.prepare", "--fixture", "unknown"],
                              cwd=Path(__file__).resolve().parents[3], capture_output=True, check=False, timeout=10)
@@ -67,6 +74,13 @@ class StreamForgeInfrastructureTest(unittest.TestCase):
         self.assertNotEqual(0, valid.returncode, "starter must remain red until the learner implements Day 166")
         self.assertEqual(b"", valid.stdout, "no incomplete success JSON may be emitted")
         self.assertIn(b"Day 166 learner TODO", valid.stderr)
+
+    def test_day155_python_readiness_bridge_is_runnable(self):
+        bridge = subprocess.run([sys.executable, "-m", "ai.streamforge.readiness_bridge"],
+                                cwd=Path(__file__).resolve().parents[3], capture_output=True,
+                                check=False, timeout=5)
+        self.assertEqual(0, bridge.returncode, bridge.stderr.decode("utf-8", "replace"))
+        self.assertEqual(b"Python readiness bridge passed\n", bridge.stdout)
 
     def test_each_planned_learner_day_has_a_named_acceptance_class(self):
         source = (ROOT / "tests" / "test_day_contracts.py").read_text(encoding="utf-8")

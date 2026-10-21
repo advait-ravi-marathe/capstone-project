@@ -25,3 +25,18 @@ def canonical_json_bytes(document: object) -> bytes:
 
     return (json.dumps(document, ensure_ascii=False, allow_nan=False,
                         sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
+
+
+def strict_json_loads(text: str) -> object:
+    """Parse JSON while rejecting duplicate member names at every object depth."""
+    import json
+
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON object key: {key}")
+            result[key] = value
+        return result
+
+    return json.loads(text, object_pairs_hook=unique_object)

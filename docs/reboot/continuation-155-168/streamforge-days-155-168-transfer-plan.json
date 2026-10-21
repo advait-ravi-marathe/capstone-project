@@ -1,5 +1,5 @@
 {
-  "title": "StreamForge Days 155\u2013168 synthetic temporal-data foundation",
+  "title": "StreamForge Days 155–168 synthetic temporal-data foundation",
   "status": "starter_implementation_draft_no_board_writes",
   "base_commit": "5dc558eeda441177dc4aac87725d0a18417c5abd",
   "branch": "learning/streamforge-days-155-168",
@@ -46,10 +46,10 @@
     "viewer_source": "invented_identifiers",
     "max_input_bytes": 262144,
     "max_rows": 500,
-    "max_field_chars": 4096,
     "window_start_utc": "2027-01-01T00:00:00Z",
     "cutoff_utc": "2027-01-20T00:00:00Z",
-    "window_end_utc": "2027-02-01T00:00:00Z"
+    "window_end_utc": "2027-02-01T00:00:00Z",
+    "max_field_bytes": 4096
   },
   "daily_contracts": [
     {
@@ -57,9 +57,14 @@
       "date": "2027-03-23",
       "title": "Admit a synthetic StreamForge fixture",
       "learner_seam": "admit_fixture_manifest",
-      "practice": "Use supplied mappings to accept only the fixed synthetic fixture schema/source declaration. No I/O or timestamp parsing.",
-      "acceptance": "Known hand-authored synthetic manifest passes; unknown schema, missing keys, external-media declaration or real-viewer declaration fails. Input mapping remains unchanged.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+      "practice": "admit_fixture_manifest preserves raw UTC strings; first parse timestamps on Day 157. Within the existing 25-minute study block, run the Python readiness bridge and carry basics forward if it fails.",
+      "acceptance": "Known synthetic declaration passes; scope, schema, or required-field errors fail without mutation. No timestamp parsing happens before Day 157.",
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test",
+      "official_references": [
+        "https://docs.python.org/3.12/tutorial/controlflow.html",
+        "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
+        "https://docs.python.org/3.12/library/unittest.html#basic-example"
+      ]
     },
     {
       "day": 156,
@@ -111,7 +116,7 @@
       "date": "2027-03-29",
       "title": "Recover the parser and data-contract boundary",
       "learner_seam": "prior_only_155_160",
-      "practice": "Repair one earlier seam and rerun only Days 155\u2013160. No new function, split, course or future selector.",
+      "practice": "Repair one earlier seam and rerun only Days 155–160. No new function, split, course or future selector.",
       "acceptance": "Prior gates pass or exact blockers recorded; reproduce one invalid-input failure and explain why no partial dataset exists.",
       "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test"
     },
@@ -164,9 +169,9 @@
       "day": 167,
       "date": "2027-04-04",
       "title": "Prove reproducibility and leakage boundaries offline",
-      "learner_seam": "prior_integration_assertions",
-      "practice": "Complete independent subprocess assertions for clean/repeated run, shuffled semantics, holdout mutation and invalid input.",
-      "acceptance": "Fresh processes yield deterministic bytes; golden rows/counts are independent of learner helpers; network API guard rejects attempted access; no outputs on errors.",
+      "learner_seam": "prior-only-integration-verification",
+      "practice": "There is no new semantic function on Day 167. Implement prior seams until the instructor-owned subprocess oracle passes independent golden assertions for cutoff membership, train summary/hash, provenance, holdout mutation, and failures.",
+      "acceptance": "Fresh-process CLI output matches the hand-calculated fixture exactly; deliberate wrong cutoff, holdout leakage, split-before-conflict, and constant/canned outputs fail named assertions.",
       "selector": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
     },
     {

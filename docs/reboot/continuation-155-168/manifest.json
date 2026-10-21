@@ -1,5 +1,5 @@
 {
-  "title": "StreamForge Days 155\u2013168 synthetic temporal-data foundation; repository draft only",
+  "title": "StreamForge Days 155–168 synthetic temporal-data foundation; repository draft only",
   "base_commit": "5dc558eeda441177dc4aac87725d0a18417c5abd",
   "sprint": "Sprint 12",
   "start_date": "2027-03-23",
@@ -37,10 +37,10 @@
     "viewer_source": "invented_identifiers",
     "max_input_bytes": 262144,
     "max_rows": 500,
-    "max_field_chars": 4096,
     "window_start_utc": "2027-01-01T00:00:00Z",
     "cutoff_utc": "2027-01-20T00:00:00Z",
-    "window_end_utc": "2027-02-01T00:00:00Z"
+    "window_end_utc": "2027-02-01T00:00:00Z",
+    "max_field_bytes": 4096
   },
   "course_guidance": {
     "preferred_course": {
@@ -94,6 +94,11 @@
       "title": "scikit-learn Common pitfalls: data leakage",
       "url": "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage",
       "used_for": "conceptual reading only; no scikit-learn dependency"
+    },
+    {
+      "title": "Python tutorial: Errors and Exceptions — Handling Exceptions",
+      "url": "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
+      "used_for": "catching and reporting invalid fixture declarations"
     }
   ],
   "days": [
@@ -111,7 +116,7 @@
           "implementation_and_testing": 85,
           "evidence": 10
         },
-        "scope": "Known hand-authored synthetic manifest passes; unknown schema, missing keys, external-media declaration or real-viewer declaration fails. Input mapping remains unchanged.",
+        "scope": "Admit a fixed synthetic manifest without parsing UTC strings; run the Python readiness bridge within the existing 25-minute study block and use carry-forward repair if it fails.",
         "learner_seam": "admit_fixture_manifest",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
@@ -141,6 +146,7 @@
         "study_total_seconds": 1500,
         "official_references": [
           "https://docs.python.org/3.12/tutorial/controlflow.html",
+          "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
         "publication_status": "draft_not_board_published"
@@ -890,8 +896,8 @@
           "implementation_and_testing": 85,
           "evidence": 10
         },
-        "scope": "Fresh processes yield deterministic bytes; golden rows/counts are independent of learner helpers; network API guard rejects attempted access; no outputs on errors.",
-        "learner_seam": "prior_integration_assertions",
+        "scope": "No new semantic function is introduced on Day 167. Complete prior seams until the instructor-owned CLI oracle passes its independent golden, provenance, cutoff, no-leakage, and invalid-input assertions.",
+        "learner_seam": "prior-only-integration-verification",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
         ],

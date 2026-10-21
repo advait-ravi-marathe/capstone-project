@@ -66,6 +66,27 @@ class StreamForge155168ManifestTest(unittest.TestCase):
                             for url in [x["url"] for x in catalog["official_sources"]]))
         self.assertEqual("Python 3.12.14", self.manifest["python_runtime_observed"])
         self.assertEqual([], self.manifest["third_party_python_dependencies"])
+        self.assertIn("https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
+                      [row["url"] for row in catalog["official_sources"]])
+
+    def test_day155_preserves_timestamp_strings_and_day167_is_prior_only(self):
+        day155 = next(row for row in self.manifest["days"] if row["day"] == 155)
+        day167 = next(row for row in self.manifest["days"] if row["day"] == 167)
+        self.assertIn("without parsing UTC strings", day155["engineering"]["scope"])
+        self.assertEqual("prior-only-integration-verification", day167["engineering"]["learner_seam"])
+        contract155 = (BATCH / day155["contract_file"]).read_text(encoding="utf-8")
+        contract167 = (BATCH / day167["contract_file"]).read_text(encoding="utf-8")
+        self.assertIn("Handling Exceptions", contract155)
+        self.assertIn("readiness bridge", contract155)
+        self.assertIn("no new learner function", contract167)
+
+    def test_four_kib_field_limit_is_utf8_bytes_not_characters(self):
+        self.assertEqual(4096, self.manifest["fixture"]["max_field_bytes"])
+        self.assertNotIn("max_field_chars", self.manifest["fixture"])
+        self.assertEqual((BATCH / "README.md").read_bytes(),
+                         (BATCH / "streamforge-days-155-168-transfer-plan.md").read_bytes())
+        self.assertEqual((BATCH / "transfer-plan.json").read_bytes(),
+                         (BATCH / "streamforge-days-155-168-transfer-plan.json").read_bytes())
 
     def test_fixture_is_small_synthetic_and_has_temporal_boundary_examples(self):
         fixture = ROOT / "ai/streamforge/fixtures/basic"

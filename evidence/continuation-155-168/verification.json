@@ -4,12 +4,50 @@
   "branch": "learning/streamforge-days-155-168",
   "python_version": "3.12.14",
   "checks": [
-    {"command": "./mvnw -o clean test", "result": "passed", "tests": 59, "failures": 0, "errors": 0, "notes": "Java 21.0.12.1; CHROMIUM_BIN=/usr/bin/chromium; local-only embedded PostgreSQL 18.6"},
-    {"command": "python3 -m unittest discover -s scripts -p 'test_*.py'", "result": "passed", "tests": 70},
-    {"command": "python3 -m unittest discover -s ai/tests -p test_infrastructure.py", "result": "passed", "tests": 2},
-    {"command": "python3 -m unittest ai.streamforge.tests.test_infrastructure scripts.test_streamforge_155_168_manifest", "result": "passed", "tests": 12},
-    {"command": "python3 -m unittest ai.streamforge.tests.test_day_contracts ai.streamforge.tests.test_cli", "result": "temporary_conformance_overlay_passed", "tests": 18, "temporary_overlay_sha256": "77750233dc540e09484157097ef00d2eb78928f718821f8139e4f25e59f7a1ad", "restored_contracts_sha256": "3d50072b50e7c0d1ccc7a896023da4a9c342d1514545263a2cf96b26efef32c8", "note": "Temporary instructor witness only; not learner completion or committed implementation."},
-    {"command": "python3 -m ai.streamforge.prepare --fixture basic", "result": "expected_todo_failure", "exit_code": 2, "stdout_bytes": 0, "stderr": "Day 166 learner TODO: implement prepare_dataset"}
+    {
+      "command": "JAVA_HOME=/tmp/oracle-jdk21 PATH=/tmp/oracle-jdk21/bin:$PATH MAVEN_USER_HOME=/tmp/capstone-maven-home MAVEN_OPTS=-Dmaven.repo.local=/tmp/capstone-m2 CHROMIUM_BIN=/usr/bin/chromium ./mvnw -o clean test",
+      "result": "passed",
+      "tests": 59,
+      "failures": 0,
+      "errors": 0,
+      "notes": "Java 21.0.12.1; local-only embedded PostgreSQL 18.6"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+      "result": "passed",
+      "tests": 72
+    },
+    {
+      "command": "python3 -m unittest discover -s ai/tests -p 'test_infrastructure.py'",
+      "result": "passed",
+      "tests": 2
+    },
+    {
+      "command": "python3 -m unittest ai.streamforge.tests.test_infrastructure scripts.test_streamforge_155_168_manifest",
+      "result": "passed",
+      "tests": 16
+    },
+    {
+      "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts ai.streamforge.tests.test_cli",
+      "result": "temporary_conformance_overlay_passed",
+      "tests": 24,
+      "temporary_overlay_sha256": "0d0be6edffc0f480f10cde23ade2b94085cb8f9cd85676666a6a8652d5310366",
+      "restored_contracts_sha256": "1856694d39104d96074609692b9d0b1627be010163b6147bb1844eea9c164233",
+      "notes": "Temporary instructor witness only. Includes independently calculated CLI golden output, copied-input preservation, nested duplicate-JSON-key rejection, invalid-input/no-output, cutoff/leakage, holdout mutation, constant-hash and canned-output adversarial checks. Learner seams remain TODO."
+    },
+    {
+      "command": "python3 -m ai.streamforge.prepare --fixture basic",
+      "result": "expected_todo_failure",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "stderr": "Day 166 learner TODO: implement prepare_dataset"
+    },
+    {
+      "command": "cd frontend && npm test",
+      "result": "passed",
+      "vitest_tests": 1,
+      "node_tests": 1
+    }
   ],
   "scope": {
     "offline_synthetic_fixtures_only": true,
@@ -19,7 +57,10 @@
     "pull_request": false,
     "main_modified": false,
     "dsa_attempt_history_changed": false,
-    "days_155_plus_beyond_168_created": false
+    "days_155_plus_beyond_168_created": false,
+    "temporary_witnesses_restored_byte_for_byte": true,
+    "temporary_witness_sha256": "0d0be6edffc0f480f10cde23ade2b94085cb8f9cd85676666a6a8652d5310366",
+    "learner_contracts_restored_sha256": "1856694d39104d96074609692b9d0b1627be010163b6147bb1844eea9c164233"
   },
-  "hosted_ci": "Not yet observed for the final pushed SHA."
+  "hosted_ci": "Not yet observed for the repaired final SHA; previous CI run #71 covers b713ac1 only."
 }

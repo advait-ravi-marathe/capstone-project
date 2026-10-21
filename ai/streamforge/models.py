@@ -13,9 +13,11 @@ class FixtureAdmission:
     source_kind: str
     catalog_file: str
     events_file: str
-    window_start_utc: datetime
-    cutoff_utc: datetime
-    window_end_utc: datetime
+    # Retain these source strings during Day 155 admission. Day 157 teaches
+    # timestamp parsing; Day 162 converts them before partitioning.
+    window_start_utc: str
+    cutoff_utc: str
+    window_end_utc: str
 
 
 @dataclass(frozen=True)
