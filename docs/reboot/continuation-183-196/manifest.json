@@ -56,7 +56,23 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "encode_genre(genre) -> tuple[int, ...]",
+      "study_refs": [
+        "FEATURE_VECTOR"
+      ],
+      "study_guidance": [
+        {
+          "key": "FEATURE_VECTOR",
+          "title": "Categorical data: Vocabulary and one-hot encoding",
+          "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+          "sections": [
+            "Dimension/vocabulary introduction",
+            "Index numbers",
+            "One-hot encoding"
+          ]
+        }
+      ]
     },
     {
       "day": 184,
@@ -79,7 +95,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "catalog_features(catalog) -> immutable feature map",
+      "study_refs": [
+        "FEATURE_VECTOR",
+        "CONTENT_PROFILE"
+      ],
+      "study_guidance": [
+        {
+          "key": "FEATURE_VECTOR",
+          "title": "Categorical data: Vocabulary and one-hot encoding",
+          "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+          "sections": [
+            "Dimension/vocabulary introduction",
+            "Index numbers",
+            "One-hot encoding"
+          ]
+        },
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        }
+      ]
     },
     {
       "day": 185,
@@ -103,7 +145,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "profile_counts(train_pairs, features, training_viewer_ids) -> immutable count state",
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "TRAIN_ONLY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        }
+      ]
     },
     {
       "day": 186,
@@ -126,7 +194,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "normalize_profiles(count_state) -> immutable profile map",
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "SIMILARITY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "SIMILARITY",
+          "title": "Candidate generation overview",
+          "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+          "sections": [
+            "Similarity measures",
+            "Cosine",
+            "Dot product"
+          ]
+        }
+      ]
     },
     {
       "day": 187,
@@ -150,7 +244,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "score_candidates(weights, candidate_features) -> immutable score map",
+      "study_refs": [
+        "CONTENT_PROFILE",
+        "SIMILARITY"
+      ],
+      "study_guidance": [
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        },
+        {
+          "key": "SIMILARITY",
+          "title": "Candidate generation overview",
+          "url": "https://developers.google.com/machine-learning/recommendation/overview/candidate-generation",
+          "sections": [
+            "Similarity measures",
+            "Cosine",
+            "Dot product"
+          ]
+        }
+      ]
     },
     {
       "day": 188,
@@ -174,7 +294,32 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "rank_for_viewer(viewer_id, profiles, counts, candidates, features, global_rank) -> QueryPrediction",
+      "study_refs": [
+        "LIMITATIONS",
+        "CONTENT_PROFILE"
+      ],
+      "study_guidance": [
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        },
+        {
+          "key": "CONTENT_PROFILE",
+          "title": "Content-based filtering",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics",
+          "sections": [
+            "Feature-matrix/user-profile example",
+            "Dot product similarity"
+          ]
+        }
+      ]
     },
     {
       "day": 189,
@@ -202,7 +347,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "prior_only_183_188",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ]
     },
     {
       "day": 190,
@@ -228,7 +399,34 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "assemble_predictor_state(protocol, features, counts, profiles, training_viewers, candidates, global_state, global_rank) -> PredictorState",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
     },
     {
       "day": 191,
@@ -253,7 +451,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "evaluate_profiles(state, targets) -> ProfileEvaluation",
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ]
     },
     {
       "day": 192,
@@ -277,7 +501,34 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "compare_against_global(profile_evaluation, global_evaluation) -> ProfileComparison",
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "TRAIN_ONLY"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        }
+      ]
     },
     {
       "day": 193,
@@ -302,7 +553,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "assemble_profile_report(protocol, state, profile_evaluation, comparison, lineage) -> dict",
+      "study_refs": [
+        "HOLDOUT_REUSE",
+        "LIMITATIONS"
+      ],
+      "study_guidance": [
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        },
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        }
+      ]
     },
     {
       "day": 194,
@@ -335,7 +612,34 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "evaluate_content_fixture(fixture_name) -> dict",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
     },
     {
       "day": 195,
@@ -359,8 +663,7 @@
         191,
         192,
         193,
-        194,
-        195
+        194
       ],
       "recovery_day": false,
       "budget": {
@@ -371,7 +674,34 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "supplied_adversarial_and_fresh_process_assertions",
+      "study_refs": [
+        "TRAIN_ONLY",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "TRAIN_ONLY",
+          "title": "Common pitfalls and recommended practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "sections": [
+            "Inconsistent preprocessing",
+            "Data leakage",
+            "How to avoid data leakage"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
     },
     {
       "day": 196,
@@ -406,7 +736,33 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210
       },
-      "learner_status": "unobserved_not_implied_by_scaffold"
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "signature": "prior_only_183_195",
+      "study_refs": [
+        "LIMITATIONS",
+        "HOLDOUT_REUSE"
+      ],
+      "study_guidance": [
+        {
+          "key": "LIMITATIONS",
+          "title": "Content-based filtering advantages & disadvantages",
+          "url": "https://developers.google.com/machine-learning/recommendation/content-based/summary",
+          "sections": [
+            "Advantages",
+            "Disadvantages"
+          ]
+        },
+        {
+          "key": "HOLDOUT_REUSE",
+          "title": "Datasets: Dividing the original dataset",
+          "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+          "sections": [
+            "Training, validation, and test sets",
+            "Repeated evaluation",
+            "Validation/test reuse"
+          ]
+        }
+      ]
     }
   ]
 }

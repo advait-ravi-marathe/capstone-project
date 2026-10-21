@@ -93,6 +93,77 @@ def _expected_holdout_edit_report(input_bytes):
     prep["holdout_diagnostics"]["viewer_seen_item_unseen"]=2
     return expected
 
+def _refresh_query_hashes(expected):
+    for query in expected["queries"]:
+        query["state_fingerprint"]=expected["predictor"]["fingerprint"]
+        projection={k:v for k,v in query.items() if k!="fingerprint"}
+        query["fingerprint"]=_sha(projection)
+
+def _expected_new_viewer_report(input_bytes):
+    expected=copy.deepcopy(_expected_complete_report(input_bytes));p=expected["predictor"];ev=expected["evaluations"]
+    state_fp=p["fingerprint"]
+    projection={"viewer_id":"newer","training_seen":False,"positive_train_pairs":0,"mode":"global_cold_start",
+                "scores_by_media":{mid:"0/1" for mid in p["candidate_ids"]},"full_order":p["global_popularity"]["full_order"],
+                "recommendation_ids":p["global_popularity"]["recommendation_ids"]}
+    query=dict(projection,state_fingerprint=state_fp);query["fingerprint"]=_sha(query)
+    expected["queries"].append(query);expected["queries"].sort(key=lambda q:q["viewer_id"])
+    profile=ev["profile"]
+    profile["per_viewer_metrics"].append({"viewer_id":"newer","positive_target_ids":["a"],"hit_count":1,"positive_target_count":1,
+                                          "candidate_unreachable_positive_pairs":0,"precision_at_3":"1/3","recall_at_3":"1/1","status":"available"})
+    profile["per_viewer_metrics"].sort(key=lambda row:row["viewer_id"])
+    profile["counts"].update({"all_holdout_viewers":6,"evaluated_viewers":5,"positive_viewer_media_pairs":7,
+                              "cold_start_evaluated_viewers":2,"returned_ids_total":15})
+    profile["selection_mode_counts"]["global_cold_start"]=2
+    profile.update({"precision_at_3":"4/15","recall_at_3":"3/5"})
+    ev["global_popularity"]["counts"].update({"all_holdout_viewers":6,"evaluated_viewers":5,"positive_viewer_media_pairs":7,"cold_start_evaluated_viewers":2})
+    ev["global_popularity"].update({"precision_at_3":"4/15","recall_at_3":"3/5"})
+    ev["signed_deltas"]={"precision_at_3":"0/1","recall_at_3":"0/1"}
+    prep=expected["preparation"];prep["partition_counts"]["holdout"]=9
+    prep["holdout_diagnostics"]["viewer_unseen_item_seen"]=3
+    return expected
+
+def _expected_magnitude_edit_report(input_bytes):
+    expected=copy.deepcopy(_expected_complete_report(input_bytes));prep=expected["preparation"]
+    train=[{"event_id":r["event_id"],"viewer_id":r["viewer_id"],"media_id":r["media_id"],"occurred_at_utc":r["occurred_at_utc"],"watch_seconds":int(r["watch_seconds"])}
+           for r in csv.DictReader(io.StringIO(input_bytes["events.csv"].decode())) if r["event_id"].startswith("t")]
+    summary=prep["training"];summary["media_watch_seconds"]["a"]=31
+    payload={"schema_version":1,"window_start_utc":expected["protocol"]["window_start_utc"],"cutoff_utc":expected["protocol"]["cutoff_utc"],"train":train,
+             "training":{k:summary[k] for k in ("status","event_count","distinct_viewer_count","media_event_counts","media_watch_seconds")}}
+    summary["content_sha256"]=_sha(payload,trailing=False)
+    return expected
+
+def _expected_global_training_contrast_report(input_bytes):
+    expected=copy.deepcopy(_expected_complete_report(input_bytes));p=expected["predictor"];ev=expected["evaluations"]
+    p["profiles"]["v3"]={"genre_counts":[0,0,0,1,0],"weights":["0/1","0/1","0/1","1/1","0/1"],"positive_train_pairs":1}
+    p["profiles"]["v4"]={"genre_counts":[0,0,0,1,0],"weights":["0/1","0/1","0/1","1/1","0/1"],"positive_train_pairs":1}
+    p["global_popularity"]={"support":{"a":3,"b":1,"c":1,"d":1,"e":2,"f":0},"full_order":["a","e","b","c","d","f"],"recommendation_ids":["a","e","b"],"fallback_status":"popularity_ranked"}
+    p["fingerprint"]=_sha({k:v for k,v in p.items() if k!="fingerprint"})
+    for q in expected["queries"]:
+        if q["mode"] in {"global_cold_start","global_no_positive_profile"}:
+            q["full_order"]=["a","e","b","c","d","f"];q["recommendation_ids"]=["a","e","b"]
+    _refresh_query_hashes(expected)
+    profile=ev["profile"];z=next(r for r in profile["per_viewer_metrics"] if r["viewer_id"]=="z")
+    z.update({"hit_count":1,"precision_at_3":"1/3","recall_at_3":"1/1"})
+    profile.update({"precision_at_3":"1/3","recall_at_3":"3/4"})
+    ev["global_popularity"].update({"recommendation_ids":["a","e","b"],"precision_at_3":"1/4","recall_at_3":"5/8"})
+    ev["signed_deltas"]={"precision_at_3":"1/12","recall_at_3":"1/8"}
+    prep=expected["preparation"];rows=list(csv.DictReader(io.StringIO(input_bytes["events.csv"].decode())))
+    for row in rows:
+        if row["event_id"] in {"t08","t09"}:row["media_id"]="a"
+    train=[{"event_id":r["event_id"],"viewer_id":r["viewer_id"],"media_id":r["media_id"],"occurred_at_utc":r["occurred_at_utc"],"watch_seconds":int(r["watch_seconds"])} for r in rows if r["event_id"].startswith("t")]
+    summary=prep["training"];summary["media_event_counts"]={"a":4,"x":1,"c":1,"b":1,"d":1,"e":2,"f":1};summary["media_watch_seconds"]={"a":50,"x":10,"c":10,"b":10,"d":10,"e":20,"f":0}
+    train_projection={"schema_version":1,"window_start_utc":expected["protocol"]["window_start_utc"],"cutoff_utc":expected["protocol"]["cutoff_utc"],"train":train,
+                     "training":{k:summary[k] for k in ("status","event_count","distinct_viewer_count","media_event_counts","media_watch_seconds")}}
+    summary["content_sha256"]=_sha(train_projection,trailing=False)
+    train_viewers={r["viewer_id"] for r in train};train_media={r["media_id"] for r in train};diag={"viewer_item_seen_in_train":0,"viewer_seen_item_unseen":0,"viewer_unseen_item_seen":0,"viewer_item_unseen":0}
+    for row in rows:
+        if not row["event_id"].startswith("h"):continue
+        vs=row["viewer_id"] in train_viewers;ms=row["media_id"] in train_media
+        key="viewer_item_seen_in_train" if vs and ms else "viewer_seen_item_unseen" if vs else "viewer_unseen_item_seen" if ms else "viewer_item_unseen"
+        diag[key]+=1
+    prep["holdout_diagnostics"]={"status":"available",**diag}
+    return expected
+
 class ContentCliHarness(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix="streamforge-content-")
@@ -106,14 +177,43 @@ class ContentCliHarness(unittest.TestCase):
         self.trace=self.root/"prepare-calls.txt"
         guard=self.root/"traceguard";guard.mkdir()
         (guard/"sitecustomize.py").write_text(
-            "import os, sys\n"
+            "import os, sys, json, socket, urllib.request, http.client\n"
             "sys.path.insert(0, os.environ['CONTENT_COPY_ROOT'])\n"
+            "def _blocked(*args, **kwargs): raise RuntimeError('network API access blocked by test guard')\n"
+            "socket.create_connection = _blocked\n"
+            "socket.socket.connect = _blocked\n"
+            "urllib.request.urlopen = _blocked\n"
+            "http.client.HTTPConnection.connect = _blocked\n"
+            "def _record(kind, **data):\n"
+            "    with open(os.environ['CONTENT_TRACE'], 'a', encoding='utf-8') as out: out.write(json.dumps({'kind':kind,**data},sort_keys=True)+'\\n')\n"
             "import ai.streamforge.evaluation_adapter as adapter\n"
             "_original = adapter.prepare_dataset\n"
             "def _counted(name):\n"
-            "    with open(os.environ['CONTENT_TRACE'], 'a', encoding='utf-8') as out: out.write(name+'\\n')\n"
+            "    _record('prepare_dataset', fixture=name)\n"
             "    return _original(name)\n"
-            "adapter.prepare_dataset = _counted\n", encoding="utf-8")
+            "adapter.prepare_dataset = _counted\n"
+            "_typed = adapter.prepare_evaluation_input\n"
+            "def _typed_counted(name):\n"
+            "    result = _typed(name)\n"
+            "    _record('prepare_evaluation_input', fixture=name, train=len(result.train), holdout=len(result.holdout), catalog=len(result.catalog))\n"
+            "    if os.environ.get('CONTENT_ADAPTER_PROBE') == '1':\n"
+            "        from dataclasses import replace\n"
+            "        result = replace(result, lineage={**result.lineage, 'adapter_return_probe':'consumed'})\n"
+            "    return result\n"
+            "adapter.prepare_evaluation_input = _typed_counted\n"
+            "import ai.streamforge.baseline_contracts as baseline\n"
+            "_baseline_eval = baseline.evaluate_baseline\n"
+            "def _targets(t): return {'targets':{k:sorted(v) for k,v in sorted(t.targets_by_viewer.items())},'viewers':sorted(t.all_holdout_viewer_ids),'zero':t.zero_positive_viewer_count,'status':t.status}\n"
+            "def _baseline(*args, **kwargs):\n"
+            "    _record('evaluate_baseline', candidates=list(args[1]), ranked=list(args[0].recommendation_ids), targets=_targets(args[2]))\n"
+            "    return _baseline_eval(*args, **kwargs)\n"
+            "baseline.evaluate_baseline = _baseline\n"
+            "import ai.streamforge.content_contracts as content\n"
+            "_profile_eval = content.evaluate_profiles\n"
+            "def _profiles(*args, **kwargs):\n"
+            "    _record('evaluate_profiles', candidates=list(args[0].candidate_ids), targets=_targets(args[1]))\n"
+            "    return _profile_eval(*args, **kwargs)\n"
+            "content.evaluate_profiles = _profiles\n", encoding="utf-8")
         self.env["CONTENT_COPY_ROOT"]=str(self.root)
         self.env["CONTENT_TRACE"]=str(self.trace)
         self.env["PYTHONPATH"]=str(guard)+os.pathsep+str(self.root)
@@ -139,6 +239,7 @@ class ContentCliHarness(unittest.TestCase):
         return {p.name:p.read_bytes() for p in self.fixture.iterdir() if p.is_file()}
     def run_cli(self):
         before=self._input_bytes()
+        self.trace.write_text("",encoding="utf-8")
         proc=subprocess.run([sys.executable,"-m","ai.streamforge.content_evaluate","--fixture","basic"],cwd=self.root,env=self.env,capture_output=True,timeout=20)
         after=self._input_bytes()
         self.assertEqual(before,after,"copied registered inputs must be byte-identical")
@@ -152,7 +253,21 @@ class Day194Test(ContentCliHarness):
         self.assertEqual(0,proc.returncode,proc.stderr.decode("utf-8","replace"))
         report=json.loads(proc.stdout,parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
         self.assertEqual(expected,report)
-        self.assertEqual(1,len(self.trace.read_text(encoding="utf-8").splitlines()),"real prior preparation must run exactly once")
+        records=[json.loads(line) for line in self.trace.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(["prepare_dataset","prepare_evaluation_input","evaluate_profiles","evaluate_baseline"],[r["kind"] for r in records])
+        self.assertEqual(("basic",11,8,8),(records[1]["fixture"],records[1]["train"],records[1]["holdout"],records[1]["catalog"]))
+        self.assertEqual(records[2]["targets"],records[3]["targets"],"profile and global evaluation must receive identical HoldoutTargets")
+        self.assertEqual(records[2]["candidates"],records[3]["candidates"],"both methods must receive identical cutoff candidates")
+
+    def test_actual_cli_consumes_the_typed_adapter_return_value(self):
+        before=self._input_bytes();expected=_expected_complete_report(before)
+        self.env["CONTENT_ADAPTER_PROBE"]="1"
+        expected["preparation"]["adapter_return_probe"]="consumed"
+        proc=self.run_cli()
+        self.assertEqual(0,proc.returncode,proc.stderr.decode("utf-8","replace"))
+        self.assertEqual(expected,json.loads(proc.stdout))
+        records=[json.loads(line) for line in self.trace.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(1,sum(r["kind"]=="prepare_evaluation_input" for r in records))
 
 class ContentManifestPreflightTest(ContentCliHarness):
     def test_actual_cli_rejects_ambiguous_manifest_without_success_output(self):
@@ -163,6 +278,11 @@ class ContentManifestPreflightTest(ContentCliHarness):
         self.assertNotEqual(0,proc.returncode)
         self.assertEqual(b"",proc.stdout)
         self.assertTrue(proc.stderr)
+
+    def test_python_network_api_guard_blocks_an_attempt(self):
+        probe=subprocess.run([sys.executable,"-c","import urllib.request; urllib.request.urlopen('http://127.0.0.1:1')"],cwd=self.root,env=self.env,capture_output=True,timeout=5)
+        self.assertNotEqual(0,probe.returncode)
+        self.assertIn(b"network API access blocked by test guard",probe.stderr)
 
 class Day195Test(ContentCliHarness):
     def _report(self):
@@ -190,7 +310,9 @@ class Day195Test(ContentCliHarness):
     def test_positive_watch_magnitude_changes_provenance_not_prediction(self):
         base=self._report();rows=self._rows()
         next(row for row in rows if row["event_id"]=="t01")["watch_seconds"]="11";self._save_rows(rows)
+        expected=_expected_magnitude_edit_report(self._input_bytes())
         changed=self._report()
+        self.assertEqual(expected,changed)
         self.assertEqual(base["predictor"],changed["predictor"])
         self.assertEqual(base["queries"],changed["queries"])
         self.assertEqual(base["evaluations"],changed["evaluations"])
@@ -209,19 +331,43 @@ class Day195Test(ContentCliHarness):
         self.assertEqual("-1/8",changed["evaluations"]["signed_deltas"]["recall_at_3"])
         self.assertNotEqual(base["predictor"]["fingerprint"],changed["predictor"]["fingerprint"])
     def test_shuffled_raw_rows_keep_semantics_and_change_source_hash(self):
-        base=self._report();rows=self._rows();self._save_rows(list(reversed(rows)))
+        self._report();rows=self._rows();self._save_rows(list(reversed(rows)))
+        expected=_expected_complete_report(self._input_bytes())
         shuffled=self._report()
-        self.assertEqual(base["predictor"],shuffled["predictor"])
-        self.assertEqual(base["queries"],shuffled["queries"])
-        self.assertEqual(base["evaluations"],shuffled["evaluations"])
-        self.assertNotEqual(base["preparation"]["source_sha256"],shuffled["preparation"]["source_sha256"])
+        self.assertEqual(expected,shuffled)
     def test_duplicate_replay_collapses_without_semantic_change(self):
         base=self._report();rows=self._rows();rows.append(dict(next(row for row in rows if row["event_id"]=="t01")));self._save_rows(rows)
+        expected=_expected_complete_report(self._input_bytes());expected["preparation"]["duplicate_events_collapsed"]=1
         replay=self._report()
+        self.assertEqual(expected,replay)
         self.assertEqual(base["predictor"],replay["predictor"])
         self.assertEqual(base["queries"],replay["queries"])
         self.assertEqual(base["evaluations"],replay["evaluations"])
         self.assertEqual(1,replay["preparation"]["duplicate_events_collapsed"])
+
+    def test_new_holdout_viewer_changes_cohort_not_predictor_state(self):
+        base=self._report();rows=self._rows();rows.append({"event_id":"h09","viewer_id":"newer","media_id":"a","occurred_at_utc":"2027-01-22T00:00:00Z","watch_seconds":"10"});self._save_rows(rows)
+        expected=_expected_new_viewer_report(self._input_bytes())
+        changed=self._report()
+        self.assertEqual(expected,changed)
+        self.assertEqual(base["predictor"],changed["predictor"])
+        self.assertEqual(1,sum(q["viewer_id"]=="newer" for q in changed["queries"]))
+
+    def test_distinct_training_change_recomputes_global_order_and_full_report(self):
+        base=self._report();rows=self._rows()
+        for event_id in ("t08","t09"):next(row for row in rows if row["event_id"]==event_id)["media_id"]="a"
+        self._save_rows(rows);expected=_expected_global_training_contrast_report(self._input_bytes())
+        changed=self._report()
+        self.assertEqual(expected,changed)
+        self.assertEqual(["a","e","b","c","d","f"],changed["predictor"]["global_popularity"]["full_order"])
+        records=[json.loads(line) for line in self.trace.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(["a","e","b"],records[-1]["ranked"])
+        self.assertNotEqual(base["predictor"]["global_popularity"]["full_order"],changed["predictor"]["global_popularity"]["full_order"])
+
+    def test_identical_input_replays_have_identical_fresh_process_bytes(self):
+        first=self.run_cli();self.assertEqual(0,first.returncode,first.stderr.decode("utf-8","replace"))
+        second=self.run_cli();self.assertEqual(0,second.returncode,second.stderr.decode("utf-8","replace"))
+        self.assertEqual(first.stdout,second.stdout)
     def test_invalid_holdout_and_cross_cutoff_conflict_fail_before_json(self):
         rows=self._rows();next(row for row in rows if row["event_id"]=="h03")["occurred_at_utc"]="2027-01-20T12:00:00Z";self._save_rows(rows)
         invalid=self.run_cli();self.assertNotEqual(0,invalid.returncode);self.assertEqual(b"",invalid.stdout)

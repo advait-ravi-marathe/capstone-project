@@ -8,6 +8,9 @@ class StreamForge183196ManifestTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.manifest=json.loads((BATCH/"manifest.json").read_text(encoding="utf-8"))
+        cls.plan=json.loads((BATCH/"streamforge-days-183-196-transfer-plan.json").read_text(encoding="utf-8"))
+        cls.owner=json.loads((BATCH/"scrum-owner-manifest.json").read_text(encoding="utf-8"))
+        cls.guidance=json.loads((BATCH/"verified-content-features-183-196-guidance.json").read_text(encoding="utf-8"))
     def test_batch_dates_budget_and_daily_chronology(self):
         m=self.manifest; self.assertEqual("learning/streamforge-days-183-196",m["branch"])
         self.assertEqual("fa45d70868e93da79bb2ff84a8c4a4ca77510924",m["base_commit"])
@@ -20,11 +23,35 @@ class StreamForge183196ManifestTest(unittest.TestCase):
         self.assertIsNone(m["days"][12]["module"])
         self.assertIsNone(m["days"][13]["module"])
         self.assertEqual([189,196],[d["day"] for d in m["days"] if d["recovery_day"]])
+        plan_days={d["day"]:d for d in self.plan["days"]}
+        owner_days={d["day_number"]:d for d in self.owner["cards"]}
+        refmap={r["key"]:r for r in self.guidance["primaryReferences"]}
+        self.assertEqual(14,self.owner["story_count"])
+        self.assertFalse(self.owner["board_writes"])
         for d in m["days"]:
             b=d["budget"]; self.assertEqual(165,b["engineering_minutes"])
-            self.assertEqual(35+115+15,b["engineering_minutes"])
+            self.assertEqual(165,b["study"]+b["practice_and_tests"]+b["evidence"])
+            self.assertEqual(210,b["engineering_minutes"]+b["shared_interview_or_remaining_reviews_minutes"])
             self.assertEqual(210,b["total"])
-            self.assertFalse(set(d["depends_on_days"]) & set(range(d["day"]+1,197)))
+            self.assertTrue(all(dep < d["day"] for dep in d["depends_on_days"]))
+            source=plan_days[d["day"]];owner=owner_days[d["day"]]
+            self.assertEqual((source["date"],source["title"],source["signature"],source["selectors"],source["depends_on_days"],source["recovery_day"]),
+                             (d["date"],d["title"],d["signature"],d["selectors"],d["depends_on_days"],d["recovery_day"]))
+            self.assertEqual((d["date"],d["title"],d["learner_seam"],d["module"],d["signature"],d["selectors"],d["study_refs"],d["study_guidance"],d["depends_on_days"],d["recovery_day"]),
+                             (owner["date"],owner["title"],owner["learner_seam"],owner["module"],owner["signature"],owner["selectors"],owner["study_refs"],owner["study_guidance"],owner["prerequisite_days"],owner["recovery_day"]))
+            self.assertEqual(165,owner["engineering"]["minutes"])
+            self.assertEqual(165,sum(owner["engineering"]["allocation"].values()))
+            self.assertEqual(45,owner["interview_or_remaining_reviews"]["budget_minutes"])
+            self.assertEqual({"one_timeboxed_substantive_exercise":30,"recall_or_explain_back":10,"evidence_and_next_due":5},owner["interview_or_remaining_reviews"]["allocation_minutes"])
+            self.assertEqual(45,sum(owner["interview_or_remaining_reviews"]["allocation_minutes"].values()))
+            self.assertEqual(210,owner["budget_minutes"])
+            self.assertFalse(owner["interview_or_remaining_reviews"]["new_guided_anchors_allowed"])
+            self.assertIn("Failed repair, oldest overdue",owner["interview_or_remaining_reviews"]["priority"])
+            self.assertIn("actual first attempt",owner["interview_or_remaining_reviews"]["actual_attempt_clock"])
+            self.assertIn(f"--roadmap-day {d['day']}",owner["interview_or_remaining_reviews"]["queue_command"])
+            self.assertTrue(owner["study_guidance"])
+            for item in d["study_guidance"]:
+                self.assertEqual((refmap[item["key"]]["title"],refmap[item["key"]]["url"],refmap[item["key"]]["sections"]),(item["title"],item["url"],item["sections"]))
     def test_each_exported_selector_resolves_to_nonempty_test(self):
         loader=unittest.defaultTestLoader
         for day in self.manifest["days"]:
@@ -48,3 +75,4 @@ class StreamForge183196ManifestTest(unittest.TestCase):
             self.assertIn("Input → steps → expected output",text)
             self.assertIn("165 minutes engineering",text)
             self.assertNotIn("165minutes",text)
+            self.assertNotIn(f"{d['day']}, {d['day']}",text)
