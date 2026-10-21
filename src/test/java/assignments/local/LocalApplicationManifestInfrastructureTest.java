@@ -46,6 +46,21 @@ class LocalApplicationManifestInfrastructureTest {
             assertEquals(90, dsaTiers.get("4_substantive_exercises").asInt());
             assertEquals(120, day.get("java_dsa").get("engineering_minutes_remain").asInt());
             assertTrue(Files.isRegularFile(Path.of(day.get("java_dsa").get("guide_path").asString())));
+            JsonNode concept = engineering.get("concept_course");
+            int studySeconds = 0;
+            for (JsonNode segment : concept.get("study_segments")) studySeconds += segment.get("seconds").asInt();
+            assertEquals(1500, studySeconds, "Study segments are seconds and remain inside the single 25-minute block");
+            assertEquals(1500, concept.get("study_total_seconds").asInt());
+            int practiceMinutes = 0;
+            for (JsonNode segment : engineering.get("practice_segment_minutes")) practiceMinutes += segment.asInt();
+            assertEquals(85, practiceMinutes);
+            assertEquals(10, engineering.get("evidence_minutes").asInt());
+            assertTrue(Files.isRegularFile(Path.of(engineering.get("worked_guide_path").asString())));
+            JsonNode ownerCard = scrum.get("cards").get(i);
+            assertEquals(day.get("engineering").get("course_learning_block").asString(),
+                    ownerCard.get("course_learning_block").asString(), "canonical/rendered course text must match");
+            assertEquals(day.get("engineering").get("concept_course"),
+                    ownerCard.get("engineering").get("concept_course"), "owner export must use canonical course fields");
         }
     }
 

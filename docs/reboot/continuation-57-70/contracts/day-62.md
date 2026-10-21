@@ -26,17 +26,26 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).
-- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).
-- Fit: partial foundation. Authentication identifies the principal; authorization checks access. Work the owner lookup path where policy ownership comes from that authenticated identity, never request input. Do not substitute AWS IAM or JWT examples.
-- Focused worked references: [Spring Security authentication architecture — authentication](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html).
-- Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17, item `35017628`).
+- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 22 - Exploring Spring Security Authorization**, section **Securing Spring Boot Applications with Spring Security** (9:47, item `35017626`).
 
-**Design sketch:** Derive policy ownership from the authenticated principal: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- two verified auth foundations: 844 seconds.
+- official Authentication focus: 120 seconds.
+- membership Authentication worked trace: 360 seconds.
+- prediction: 120 seconds.
+- pauses: 56 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication, SecurityContextHolder, SecurityContext
+
+**Worked guide:** [day-62.md](docs/reboot/continuation-57-70/worked/day-62.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test`
 
 ## Evidence allocation (10 minutes)
 

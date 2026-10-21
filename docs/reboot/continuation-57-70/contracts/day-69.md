@@ -26,17 +26,26 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).
-- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).
-- Fit: partial foundation. The lessons cover auth concepts, not session invalidation or restart persistence. Trace the supplied cookie-session logout and foreign-owner scenarios in the packaged browser harness; compare complete PostgreSQL snapshots and never treat JWT examples as equivalent.
-- Focused worked references: [Spring Security logout handling — logout architecture and URI customization](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html); [PostgreSQL transaction isolation — Read Committed statement snapshots](https://www.postgresql.org/docs/14/transaction-iso.html).
-- Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17, item `35017628`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.
+- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 22 - Exploring Spring Security Authorization**, section **Securing Spring Boot Applications with Spring Security** (9:47, item `35017626`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.
 
-**Design sketch:** Prove restart, logout, foreign-owner and no-write behavior: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- official logout and snapshot focus: 300 seconds.
+- complete two-journey causal restart example: 960 seconds.
+- prediction: 240 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [Spring Security: Handling Logouts](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html) — Understanding Logout's Architecture, Creating a Custom Logout Endpoint
+- [PostgreSQL18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED) — Read Committed Isolation Level
+
+**Worked guide:** [day-69.md](docs/reboot/continuation-57-70/worked/day-69.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `scripts/package-sprint5-demo.sh`
+- `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
 
 ## Evidence allocation (10 minutes)
 

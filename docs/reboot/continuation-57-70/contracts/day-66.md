@@ -26,16 +26,25 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Working with Props & TypeScript**; exact section title: **React + TypeScript** (14:20).
-- Fit: partial foundation. The lesson supports typed props, not this API client’s cookie/CSRF behavior. Work narrow TypeScript request/response types and explicit fetch credentials/CSRF handling; keep calls on the same-origin local route.
-- Focused worked references: [TypeScript everyday types — object types](https://www.typescriptlang.org/docs/handbook/2/objects.html); [Fetch API — credentials and response status](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
-- Video viewing: 14:20 at 1×; the remaining 10:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Optional replacement only: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — **Working with Props & TypeScript**, section **React + TypeScript** (14:20, item `25890212`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.
 
-**Design sketch:** Build and test the normal React route and typed local API client at `/`; show which API call carries the owner session, CSRF token and unchanged replay request.
+**Study sequence (seconds; total 1500):**
+- official actual HTTP/type/state boundaries: 360 seconds.
+- complete toy request/state/frozen-intent example: 900 seconds.
+- prediction: 240 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) — Including credentials, Handling the response
+- [TypeScript: Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) — Discriminated unions, type predicates
+- [React: useEffect](https://react.dev/reference/react/useEffect#fetching-data-with-effects) — Fetching data with Effects
+
+**Worked guide:** [day-66.md](docs/reboot/continuation-57-70/worked/day-66.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `npm --prefix frontend run test:sprint5`
 
 ## Evidence allocation (10 minutes)
 

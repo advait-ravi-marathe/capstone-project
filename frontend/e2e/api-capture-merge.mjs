@@ -18,6 +18,7 @@ export function createApiCaptureMerger(apiResponses) {
       if (!response) continue;
 
       response.body = capture.body;
+      response.requestBody = capture.requestBody;
       mergedResponses.add(response);
       consumedIndices.add(index);
     }

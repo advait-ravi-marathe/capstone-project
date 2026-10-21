@@ -29,9 +29,10 @@
         },
         "scope": "Gate the local assembly on prior learner evidence",
         "learner_seam": "LocalReadinessGate.assess",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-57.md",
+        "evidence_reference": "evidence/continuation-57-70/day-57.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-57.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test"
@@ -42,12 +43,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "2813427",
@@ -69,33 +64,73 @@
           ],
           "resources": [
             {
-              "title": "GitHub Actions workflow syntax — job dependencies and conditional jobs",
-              "section": "needs dependencies and status-check conditions",
-              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+              "title": "GOV.UK: Writing user stories",
+              "section": "Acceptance criteria",
+              "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
             },
             {
-              "title": "GitHub Actions workflow syntax",
-              "section": "workflow and job structure",
-              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+              "title": "Java SE21: Map",
+              "section": "get(Object), containsKey(Object), Unmodifiable Maps",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html"
             }
           ],
-          "video_seconds": 290,
-          "remaining_study_seconds": 1210,
-          "fit": "partial_foundation",
-          "scope_note": "This short lesson is CI/CD vocabulary only. Use the supplied GitHub Actions workflow walkthrough for the actual local gate; do not set up Azure DevOps, deploy, or change infrastructure.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "official named evidence and criteria",
+              "seconds": 300
+            },
+            {
+              "activity": "worked kiosk gate",
+              "seconds": 960
+            },
+            {
+              "activity": "predict recovery vs ready",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [
+            "18086493"
+          ],
+          "official_source_ids": [
+            "criteria",
+            "map"
+          ],
+          "optional_video_seconds": 290,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-57.md",
+          "practice_segment_minutes": [
+            10,
+            50,
+            25
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-57.md",
-        "evidence_reference": "evidence/continuation-57-70/day-57.json",
         "acceptance_selector_status": "installed_expected_todo_red",
         "learner_task": "Implement fail-closed readiness: missing or failed prior evidence selects recovery inside the fixed 85-minute implementation/testing allocation.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          10,
+          50,
+          25
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-57.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-57.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -138,7 +173,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 57 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Getting Started with Continuous Integration, Deployment and Delivery**; exact section title: **Getting Started with Continuous Integration, Deployment and Delivery** (4:50).\n- Fit: partial foundation. This short lesson is CI/CD vocabulary only. Use the supplied GitHub Actions workflow walkthrough for the actual local gate; do not set up Azure DevOps, deploy, or change infrastructure.\n- Focused worked references: [GitHub Actions workflow syntax — workflow and job structure](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).\n- Video viewing: 4:50 at 1×; the remaining 20:10 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Optional replacement only: [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/) — **Getting Started with Continuous Integration, Deployment and Delivery**, section **Getting Started with Continuous Integration, Deployment and Delivery** (4:50, item `18086493`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- official named evidence and criteria: 300 seconds.\n- worked kiosk gate: 960 seconds.\n- predict recovery vs ready: 240 seconds.\n\n**Official references:**\n- [GOV.UK: Writing user stories](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories) — Acceptance criteria\n- [Java SE21: Map](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html) — get(Object), containsKey(Object), Unmodifiable Maps\n\n**Worked guide:** [day-57.md](docs/reboot/continuation-57-70/worked/day-57.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -168,21 +203,16 @@
         },
         "scope": "Trace and explain the prebuilt local application composition",
         "learner_seam": "LocalApplicationComposition.compose(Clock, DataSource) (trace and explain; scaffold is instructor-provided)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-58.md",
+        "evidence_reference": "evidence/continuation-57-70/day-58.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-58.md",
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -212,37 +242,94 @@
           ],
           "resources": [
             {
-              "title": "Spring Boot Configuration Classes",
+              "title": "Spring Framework: Dependency Injection",
+              "section": "Constructor-based Dependency Injection",
+              "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html"
+            },
+            {
+              "title": "Spring Boot: Configuration Classes",
               "section": "Importing Additional Configuration Classes",
               "url": "https://docs.spring.io/spring-boot/reference/using/configuration-classes.html"
             },
             {
-              "title": "Spring Boot externalized configuration",
-              "section": "profiles and configuration properties",
-              "url": "https://docs.spring.io/spring-boot/reference/features/external-config.html"
+              "title": "Spring Boot: Profiles",
+              "section": "Profiles, Adding Active Profiles",
+              "url": "https://docs.spring.io/spring-boot/reference/features/profiles.html"
             }
           ],
-          "video_seconds": 876,
-          "remaining_study_seconds": 624,
-          "fit": "partial_foundation",
-          "scope_note": "These lessons teach configuration foundations, not the supplied assembly script. Trace the existing profiles/config properties/beans/data source and distinguish a prebuilt local runtime from new infrastructure.",
+          "video_seconds": 425,
+          "remaining_study_seconds": 1075,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "verified Profiles foundation",
+              "seconds": 425
+            },
+            {
+              "activity": "explicit constructor/import section",
+              "seconds": 180
+            },
+            {
+              "activity": "complete two-assembly example and native trace",
+              "seconds": 655
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [
+            "35019912"
+          ],
+          "optional_replacement_only_item_ids": [
+            "35019910"
+          ],
+          "official_source_ids": [
+            "profiles",
+            "di",
+            "imports"
+          ],
+          "optional_video_seconds": 451,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-58.md",
+          "practice_segment_minutes": [
+            15,
+            35,
+            20,
+            15
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-58.md",
-        "evidence_reference": "evidence/continuation-57-70/day-58.json",
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "instructor_stage_or_learner_todo_expected",
         "learner_task": "Run the scaffold selector, trace LocalCoverStoryApplication → LocalRuntimeConfiguration → LocalApplicationComposition, and explain how Clock, DataSource and adapters reach the service. Add a short diagram/teach-back; do not reimplement instructor-provided setup.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
-        ]
+        ],
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          15,
+          35,
+          20,
+          15
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-58.md",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+        ],
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-58.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -285,7 +372,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 58 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**; exact section title: **Getting Started with Spring Boot** (7:05).\n- Exact lesson title: **Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties**; exact section title: **Getting Started with Spring Boot** (7:31).\n- Fit: partial foundation. These lessons teach configuration foundations, not the supplied assembly script. Trace the existing profiles/config properties/beans/data source and distinguish a prebuilt local runtime from new infrastructure.\n- Focused worked references: [Spring Boot externalized configuration — profiles and configuration properties](https://docs.spring.io/spring-boot/reference/features/external-config.html).\n- Video viewing: 14:36 at 1×; the remaining 10:24 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**, section **Getting Started with Spring Boot** (7:05, item `35019912`).\n- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties**, section **Getting Started with Spring Boot** (7:31, item `35019910`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- verified Profiles foundation: 425 seconds.\n- explicit constructor/import section: 180 seconds.\n- complete two-assembly example and native trace: 655 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [Spring Framework: Dependency Injection](https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html) — Constructor-based Dependency Injection\n- [Spring Boot: Configuration Classes](https://docs.spring.io/spring-boot/reference/using/configuration-classes.html) — Importing Additional Configuration Classes\n- [Spring Boot: Profiles](https://docs.spring.io/spring-boot/reference/features/profiles.html) — Profiles, Adding Active Profiles\n\n**Worked guide:** [day-58.md](docs/reboot/continuation-57-70/worked/day-58.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -315,56 +402,101 @@
         },
         "scope": "Verify and explain the versioned synthetic migration lifecycle",
         "learner_seam": "Flyway V001–V003 bootstrap and non-destructive repeat run (instructor-provided)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-59.md",
+        "evidence_reference": "evidence/continuation-57-70/day-59.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-59.md",
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
           "lessons": [],
           "resources": [
             {
-              "title": "Spring Boot SQL database initialization — Flyway migrations",
-              "section": "Execute Flyway Database Migrations on Startup",
-              "url": "https://docs.spring.io/spring-boot/how-to/data-initialization.html"
+              "title": "Redgate: Versioned migrations",
+              "section": "Versioned migrations, Naming",
+              "url": "https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations"
             },
             {
-              "title": "Flyway versioned migrations",
-              "section": "versioned migrations and schema history",
-              "url": "https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations"
+              "title": "Redgate: Flyway Target Setting",
+              "section": "Migrate, API",
+              "url": "https://documentation.red-gate.com/flyway/reference/configuration/flyway-namespace/flyway-target-setting"
+            },
+            {
+              "title": "Spring Boot: Database Initialization",
+              "section": "Execute Flyway Database Migrations on Startup",
+              "url": "https://docs.spring.io/spring-boot/how-to/data-initialization.html"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "no_exact_catalog_match",
-          "scope_note": "No exact verified Flyway/schema-migration lesson was found in the inspected selected courses. Walk the supplied ordered migration files and schema-history row; show first application, repeat startup doing no duplicate migration, and checksum/version behavior without editing learner code.",
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "official migration/history/target focus",
+              "seconds": 300
+            },
+            {
+              "activity": "complete two-migration and sentinel example",
+              "seconds": 960
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [],
+          "official_source_ids": [
+            "flyway",
+            "flyway_target",
+            "boot_db"
+          ],
+          "optional_video_seconds": 0,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-59.md",
+          "practice_segment_minutes": [
+            15,
+            35,
+            20,
+            15
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-59.md",
-        "evidence_reference": "evidence/continuation-57-70/day-59.json",
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed_instructor_test_verified",
         "learner_task": "Run the packaged migration verification; inspect V001–V003 and explain migration order, checksums, the second no-op migrate, and why the sentinel row survives. Record how a future schema change would be additive.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
-        ]
+        ],
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          15,
+          35,
+          20,
+          15
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-59.md",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-59.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -426,7 +558,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 59 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact verified Flyway/schema-migration lesson was found in the inspected selected courses. Walk the supplied ordered migration files and schema-history row; show first application, repeat startup doing no duplicate migration, and checksum/version behavior without editing learner code.\n- Focused worked references: [Flyway versioned migrations — versioned migrations and schema history](https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- No course video is required. Use the official references and complete worked example below.\n\n**Study sequence (seconds; total 1500):**\n- official migration/history/target focus: 300 seconds.\n- complete two-migration and sentinel example: 960 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [Redgate: Versioned migrations](https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations) — Versioned migrations, Naming\n- [Redgate: Flyway Target Setting](https://documentation.red-gate.com/flyway/reference/configuration/flyway-namespace/flyway-target-setting) — Migrate, API\n- [Spring Boot: Database Initialization](https://docs.spring.io/spring-boot/how-to/data-initialization.html) — Execute Flyway Database Migrations on Startup\n\n**Worked guide:** [day-59.md](docs/reboot/continuation-57-70/worked/day-59.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -456,12 +588,13 @@
         },
         "scope": "Wire owner-scoped policy reads and prove preview performs no writes",
         "learner_seam": "LocalRenewalRepositoryConfiguration",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-60.md",
+        "evidence_reference": "evidence/continuation-57-70/day-60.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-60.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -469,12 +602,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -496,43 +623,73 @@
           ],
           "resources": [
             {
-              "title": "Spring JDBC",
-              "section": "Using JdbcClient",
-              "url": "https://docs.spring.io/spring-boot/reference/data/sql.html"
+              "title": "Java SE21: PreparedStatement",
+              "section": "setString(int,String), executeQuery()",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html"
             },
             {
-              "title": "Spring transaction annotations",
-              "section": "@Transactional Settings",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html"
-            },
-            {
-              "title": "Spring JdbcTemplate reference",
-              "section": "query operations",
-              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
-            },
-            {
-              "title": "PostgreSQL transaction read-only setting",
-              "section": "default_transaction_read_only",
-              "url": "https://www.postgresql.org/docs/14/runtime-config-client.html"
+              "title": "Java SE21: ResultSet",
+              "section": "getDate(String), getBigDecimal(String)",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/ResultSet.html"
             }
           ],
-          "video_seconds": 336,
-          "remaining_study_seconds": 1164,
-          "fit": "partial_foundation",
-          "scope_note": "The query lesson is general. Work the existing owner-scoped read path and list which tables/rows must remain identical; preview invokes only SELECT and never commits renewal state.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "retrieve prior raw-JDBC teaching",
+              "seconds": 300
+            },
+            {
+              "activity": "complete nullable loan snapshot and direct-port example",
+              "seconds": 960
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [
+            "35019858"
+          ],
+          "official_source_ids": [
+            "jdbc",
+            "resultset"
+          ],
+          "optional_video_seconds": 336,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-60.md",
+          "practice_segment_minutes": [
+            10,
+            50,
+            25
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-60.md",
-        "evidence_reference": "evidence/continuation-57-70/day-60.json",
-        "acceptance_selector_status": "installed_expected_upstream_day48_todo_red",
+        "acceptance_selector_status": "instructor_stage_or_learner_todo_expected",
         "learner_task": "Implement owner-scoped policy readback and prove read requests do not change policy/event/idempotency row counts. Resolve the existing Day 48 read adapter TODO as a prerequisite.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          10,
+          50,
+          25
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-60.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-60.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -575,7 +732,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 60 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).\n- Fit: partial foundation. The query lesson is general. Work the existing owner-scoped read path and list which tables/rows must remain identical; preview invokes only SELECT and never commits renewal state.\n- Focused worked references: [Spring JdbcTemplate reference — query operations](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html); [PostgreSQL transaction read-only setting — default_transaction_read_only](https://www.postgresql.org/docs/14/runtime-config-client.html).\n- Video viewing: 5:36 at 1×; the remaining 19:24 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36, item `35019858`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- retrieve prior raw-JDBC teaching: 300 seconds.\n- complete nullable loan snapshot and direct-port example: 960 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [Java SE21: PreparedStatement](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html) — setString(int,String), executeQuery()\n- [Java SE21: ResultSet](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/ResultSet.html) — getDate(String), getBigDecimal(String)\n\n**Worked guide:** [day-60.md](docs/reboot/continuation-57-70/worked/day-60.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -605,21 +762,16 @@
         },
         "scope": "Trace and verify the instructor-provided local security chain",
         "learner_seam": "LocalSecurityConfiguration.securityFilterChain(HttpSecurity) (trace and explain; scaffold is instructor-provided)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-61.md",
+        "evidence_reference": "evidence/continuation-57-70/day-61.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-61.md",
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "1635492",
@@ -649,47 +801,95 @@
           ],
           "resources": [
             {
-              "title": "Spring Security MockMvc Setup",
-              "section": "Configuring MockMvc with Spring Security",
+              "title": "Spring Security: Setting Up MockMvc and Spring Security",
+              "section": "Setting Up MockMvc and Spring Security",
               "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html"
             },
             {
-              "title": "Running a Test as a User in Spring MVC Test",
-              "section": "RequestPostProcessor authentication",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html"
-            },
-            {
-              "title": "Testing with CSRF Protection",
-              "section": "CSRF header, invalid token and request post-processors",
+              "title": "Spring Security: Testing with CSRF Protection",
+              "section": "Testing with CSRF Protection",
               "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
             },
             {
-              "title": "Spring Security MockMvc testing",
-              "section": "testing with MockMvc",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html"
+              "title": "Spring Security: Servlet Authentication Architecture",
+              "section": "Authentication, SecurityContextHolder, SecurityContext",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
             }
           ],
-          "video_seconds": 1291,
-          "remaining_study_seconds": 209,
-          "fit": "partial_foundation",
-          "scope_note": "These titles support MockMvc and application context tests, but do not guarantee the repository’s Spring Security chain. Instructor fixture provides the chain; compare authenticated and anonymous requests, CSRF behavior, and zero service calls on denial.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "official filter/test setup",
+              "seconds": 300
+            },
+            {
+              "activity": "Gallery worked reference",
+              "seconds": 480
+            },
+            {
+              "activity": "native saved-session trace",
+              "seconds": 480
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [
+            "9968330",
+            "9968368"
+          ],
+          "official_source_ids": [
+            "security_test",
+            "csrf_test",
+            "auth",
+            "csrf",
+            "logout"
+          ],
+          "optional_video_seconds": 1291,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-61.md",
+          "practice_segment_minutes": [
+            10,
+            25,
+            35,
+            15
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-61.md",
-        "evidence_reference": "evidence/continuation-57-70/day-61.json",
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "instructor_stage_scaffold_test",
         "learner_task": "Run the security selector and trace anonymous access, fixed synthetic session selection, CSRF enforcement, and the loopback guard. Explain which filter/handler owns each observed response; this is inspection of supplied setup, not a security-chain TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
-        ]
+        ],
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          10,
+          25,
+          35,
+          15
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-61.md",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+        ],
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-61.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -751,7 +951,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 61 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 02 - Using Mock Mvc to test Hello World Controller**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (12:40).\n- Exact lesson title: **Step 15 - Writing an Integration Test using @SpringBootTest**; exact section title: **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51).\n- Fit: partial foundation. These titles support MockMvc and application context tests, but do not guarantee the repository’s Spring Security chain. Instructor fixture provides the chain; compare authenticated and anonymous requests, CSRF behavior, and zero service calls on denial.\n- Focused worked references: [Spring Security MockMvc testing — testing with MockMvc](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html).\n- Video viewing: 21:31 at 1×; the remaining 3:29 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Optional replacement only: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — **Step 02 - Using Mock Mvc to test Hello World Controller**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (12:40, item `9968330`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.\n- Optional replacement only: [Master Java Unit Testing with Spring Boot & Mockito](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/) — **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51, item `9968368`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- official filter/test setup: 300 seconds.\n- Gallery worked reference: 480 seconds.\n- native saved-session trace: 480 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [Spring Security: Setting Up MockMvc and Spring Security](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html) — Setting Up MockMvc and Spring Security\n- [Spring Security: Testing with CSRF Protection](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html) — Testing with CSRF Protection\n- [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication, SecurityContextHolder, SecurityContext\n\n**Worked guide:** [day-61.md](docs/reboot/continuation-57-70/worked/day-61.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -781,12 +981,13 @@
         },
         "scope": "Derive policy ownership from the authenticated principal",
         "learner_seam": "LocalPolicyOwnerResolver.ownerId(Authentication)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-62.md",
+        "evidence_reference": "evidence/continuation-57-70/day-62.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-62.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -794,12 +995,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -829,33 +1024,77 @@
           ],
           "resources": [
             {
-              "title": "Spring Security Authentication architecture",
-              "section": "Authentication, principal and authorities",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
-            },
-            {
-              "title": "Spring Security authentication architecture",
-              "section": "authentication",
+              "title": "Spring Security: Servlet Authentication Architecture",
+              "section": "Authentication, SecurityContextHolder, SecurityContext",
               "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
             }
           ],
           "video_seconds": 844,
           "remaining_study_seconds": 656,
-          "fit": "partial_foundation",
-          "scope_note": "Authentication identifies the principal; authorization checks access. Work the owner lookup path where policy ownership comes from that authenticated identity, never request input. Do not substitute AWS IAM or JWT examples.",
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "two verified auth foundations",
+              "seconds": 844
+            },
+            {
+              "activity": "official Authentication focus",
+              "seconds": 120
+            },
+            {
+              "activity": "membership Authentication worked trace",
+              "seconds": 360
+            },
+            {
+              "activity": "prediction",
+              "seconds": 120
+            },
+            {
+              "activity": "pauses",
+              "seconds": 56
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [
+            "35017628",
+            "35017626"
+          ],
+          "optional_replacement_only_item_ids": [],
+          "official_source_ids": [
+            "auth",
+            "security_test"
+          ],
+          "optional_video_seconds": 0,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-62.md",
+          "practice_segment_minutes": [
+            10,
+            50,
+            25
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-62.md",
-        "evidence_reference": "evidence/continuation-57-70/day-62.json",
         "acceptance_selector_status": "installed_expected_todo_red",
         "learner_task": "Implement authenticated owner resolution so request-supplied owner IDs cannot override the authenticated synthetic principal; preserve the fixed owner allowlist.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          10,
+          50,
+          25
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-62.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-62.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -898,7 +1137,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 62 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).\n- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).\n- Fit: partial foundation. Authentication identifies the principal; authorization checks access. Work the owner lookup path where policy ownership comes from that authenticated identity, never request input. Do not substitute AWS IAM or JWT examples.\n- Focused worked references: [Spring Security authentication architecture — authentication](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html).\n- Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17, item `35017628`).\n- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 22 - Exploring Spring Security Authorization**, section **Securing Spring Boot Applications with Spring Security** (9:47, item `35017626`).\n\n**Study sequence (seconds; total 1500):**\n- two verified auth foundations: 844 seconds.\n- official Authentication focus: 120 seconds.\n- membership Authentication worked trace: 360 seconds.\n- prediction: 120 seconds.\n- pauses: 56 seconds.\n\n**Official references:**\n- [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication, SecurityContextHolder, SecurityContext\n\n**Worked guide:** [day-62.md](docs/reboot/continuation-57-70/worked/day-62.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -928,9 +1167,10 @@
         },
         "scope": "Run the security trace and recovery checkpoint",
         "learner_seam": "Readiness evidence and request trace",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-63.md",
+        "evidence_reference": "evidence/continuation-57-70/day-63.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-63.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
@@ -941,53 +1181,72 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
           "lessons": [],
           "resources": [
             {
-              "title": "Spring Security MockMvc Setup",
-              "section": "Configuring MockMvc with Spring Security",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html"
-            },
-            {
-              "title": "Running a Test as a User in Spring MVC Test",
-              "section": "RequestPostProcessor authentication",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html"
-            },
-            {
-              "title": "Testing with CSRF Protection",
-              "section": "CSRF header, invalid token and request post-processors",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
-            },
-            {
-              "title": "Spring Security architecture",
-              "section": "servlet architecture",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/architecture.html"
+              "title": "Spring Security: Servlet Authentication Architecture",
+              "section": "Authentication",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "recovery_review_no_new_lecture",
-          "scope_note": "No new lecture or implementation feature. In the shared 25-minute study block, explain the existing security trace and recover only the first failing prerequisite; use the supplied instructor runtime and distinguish observed evidence from learner completion.",
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "retrieve taught security boundary",
+              "seconds": 480
+            },
+            {
+              "activity": "first-failure worked diagnosis",
+              "seconds": 420
+            },
+            {
+              "activity": "timed trace and debrief",
+              "seconds": 600
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [],
+          "official_source_ids": [
+            "auth",
+            "security_test"
+          ],
+          "optional_video_seconds": 0,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-63.md",
+          "practice_segment_minutes": [
+            15,
+            45,
+            15,
+            10
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-63.md",
-        "evidence_reference": "evidence/continuation-57-70/day-63.json",
         "acceptance_selector_status": "installed_expected_todo_red",
         "learner_task": "Implement the recovery/security checkpoint result within the existing 85-minute block; trace one rejected unauthenticated request from route through security and record the recovery decision.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          15,
+          45,
+          15,
+          10
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-63.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-63.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1030,7 +1289,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 63 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: recovery review no new lecture. No new lecture or implementation feature. In the shared 25-minute study block, explain the existing security trace and recover only the first failing prerequisite; use the supplied instructor runtime and distinguish observed evidence from learner completion.\n- Focused worked references: [Spring Security architecture — servlet architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- No course video is required. Use the official references and complete worked example below.\n\n**Study sequence (seconds; total 1500):**\n- retrieve taught security boundary: 480 seconds.\n- first-failure worked diagnosis: 420 seconds.\n- timed trace and debrief: 600 seconds.\n\n**Official references:**\n- [Spring Security: Servlet Authentication Architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html) — Authentication\n\n**Worked guide:** [day-63.md](docs/reboot/continuation-57-70/worked/day-63.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1060,21 +1319,16 @@
         },
         "scope": "Trace the instructor-provided local policy issue adapter boundary",
         "learner_seam": "LocalPolicyIssueController.issue(PolicyIssueRequest) (trace and explain; adapter is instructor-provided)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-64.md",
+        "evidence_reference": "evidence/continuation-57-70/day-64.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-64.md",
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -1104,47 +1358,87 @@
           ],
           "resources": [
             {
-              "title": "Spring MVC Handler Method Arguments",
-              "section": "@RequestBody and java.security.Principal argument resolution",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
-            },
-            {
-              "title": "Spring MVC @RequestBody",
-              "section": "Reading the request body through message conversion",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html"
-            },
-            {
-              "title": "Spring MVC controller method arguments",
-              "section": "request-bound arguments",
-              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
-            },
-            {
-              "title": "Spring MVC controller return types",
-              "section": "ResponseEntity",
+              "title": "Spring Framework: Return Values",
+              "section": "HttpEntity<B>, ResponseEntity<B> table entry",
               "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
             }
           ],
-          "video_seconds": 1200,
-          "remaining_study_seconds": 300,
-          "fit": "partial_foundation",
-          "scope_note": "Course examples are different domain behavior. Trace the supplied adapter boundary: authenticated principal → command → service → repository → status/JSON; identify where idempotency and validation belong without copying User API contracts.",
+          "video_seconds": 516,
+          "remaining_study_seconds": 984,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "verified POST foundation",
+              "seconds": 516
+            },
+            {
+              "activity": "ResponseEntity and argument focus",
+              "seconds": 180
+            },
+            {
+              "activity": "complete parcel adapter example",
+              "seconds": 480
+            },
+            {
+              "activity": "native prediction",
+              "seconds": 240
+            },
+            {
+              "activity": "pauses",
+              "seconds": 84
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [
+            "35018816"
+          ],
+          "optional_replacement_only_item_ids": [
+            "35018814"
+          ],
+          "official_source_ids": [
+            "mvc_return",
+            "auth"
+          ],
+          "optional_video_seconds": 684,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-64.md",
+          "practice_segment_minutes": [
+            10,
+            35,
+            25,
+            15
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-64.md",
-        "evidence_reference": "evidence/continuation-57-70/day-64.json",
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "instructor_stage_scaffold_test",
         "learner_task": "Run the adapter selector and trace POST /api/policies from HTTP mapping through owner resolution, idempotency status decision, lifecycle service, and response. Explain why atomicity/idempotency belongs in the domain service; this supplied adapter is not a learner TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
-        ]
+        ],
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          10,
+          35,
+          25,
+          15
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-64.md",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
+        ],
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-64.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1187,7 +1481,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 64 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 09 - Implementing POST Method to create User Resource**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (8:36).\n- Exact lesson title: **Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:24).\n- Fit: partial foundation. Course examples are different domain behavior. Trace the supplied adapter boundary: authenticated principal → command → service → repository → status/JSON; identify where idempotency and validation belong without copying User API contracts.\n- Focused worked references: [Spring MVC controller method arguments — request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html); [Spring MVC controller return types — ResponseEntity](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Video viewing: 20:00 at 1×; the remaining 5:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 09 - Implementing POST Method to create User Resource**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (8:36, item `35018816`).\n- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:24, item `35018814`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- verified POST foundation: 516 seconds.\n- ResponseEntity and argument focus: 180 seconds.\n- complete parcel adapter example: 480 seconds.\n- native prediction: 240 seconds.\n- pauses: 84 seconds.\n\n**Official references:**\n- [Spring Framework: Return Values](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html) — HttpEntity<B>, ResponseEntity<B> table entry\n\n**Worked guide:** [day-64.md](docs/reboot/continuation-57-70/worked/day-64.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1217,21 +1511,16 @@
         },
         "scope": "Reproduce and explain CSRF rejection in the local runtime",
         "learner_seam": "LocalSecurityConfiguration CSRF chain and LocalPolicyIssueController (verify/debug; setup is instructor-provided)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-65.md",
+        "evidence_reference": "evidence/continuation-57-70/day-65.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-65.md",
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -1261,37 +1550,93 @@
           ],
           "resources": [
             {
-              "title": "Spring Security CSRF protection",
-              "section": "CSRF protection and token repository",
+              "title": "Spring Security: Cross Site Request Forgery",
+              "section": "Understanding CSRF Protection's Components, Using the CookieCsrfTokenRepository",
               "url": "https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html"
             },
             {
-              "title": "Spring Security CSRF protection",
-              "section": "synchronizer token pattern and CSRF configuration",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html"
+              "title": "Spring Security: Testing with CSRF Protection",
+              "section": "Testing with CSRF Protection",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
             }
           ],
-          "video_seconds": 1188,
-          "remaining_study_seconds": 312,
-          "fit": "partial_foundation",
-          "scope_note": "CSRF is cookie-session trust protection. Reproduce the supplied rejected write without a token and the allowed write with the expected token; never use the course’s disable-CSRF lesson as implementation guidance.",
+          "video_seconds": 668,
+          "remaining_study_seconds": 832,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "verified CSRF foundation",
+              "seconds": 668
+            },
+            {
+              "activity": "official cookie/filter focus",
+              "seconds": 180
+            },
+            {
+              "activity": "complete counterexample and native trace",
+              "seconds": 360
+            },
+            {
+              "activity": "prediction",
+              "seconds": 180
+            },
+            {
+              "activity": "pauses",
+              "seconds": 112
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [
+            "35017674"
+          ],
+          "optional_replacement_only_item_ids": [
+            "35017670"
+          ],
+          "official_source_ids": [
+            "csrf",
+            "csrf_test",
+            "auth"
+          ],
+          "optional_video_seconds": 520,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-65.md",
+          "practice_segment_minutes": [
+            10,
+            45,
+            20,
+            10
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-65.md",
-        "evidence_reference": "evidence/continuation-57-70/day-65.json",
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "instructor_stage_scaffold_test",
         "learner_task": "Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
-        ]
+        ],
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          10,
+          45,
+          20,
+          10
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-65.md",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+        ],
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-65.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1353,7 +1698,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 65 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF**; exact section title: **Securing Spring Boot Applications with Spring Security** (11:08).\n- Exact lesson title: **Step 09 - Exploring Spring Security - CSRF for REST API**; exact section title: **Securing Spring Boot Applications with Spring Security** (8:40).\n- Fit: partial foundation. CSRF is cookie-session trust protection. Reproduce the supplied rejected write without a token and the allowed write with the expected token; never use the course’s disable-CSRF lesson as implementation guidance.\n- Focused worked references: [Spring Security CSRF protection — synchronizer token pattern and CSRF configuration](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html).\n- Video viewing: 19:48 at 1×; the remaining 5:12 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF**, section **Securing Spring Boot Applications with Spring Security** (11:08, item `35017674`).\n- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 09 - Exploring Spring Security - CSRF for REST API**, section **Securing Spring Boot Applications with Spring Security** (8:40, item `35017670`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- verified CSRF foundation: 668 seconds.\n- official cookie/filter focus: 180 seconds.\n- complete counterexample and native trace: 360 seconds.\n- prediction: 180 seconds.\n- pauses: 112 seconds.\n\n**Official references:**\n- [Spring Security: Cross Site Request Forgery](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html) — Understanding CSRF Protection's Components, Using the CookieCsrfTokenRepository\n- [Spring Security: Testing with CSRF Protection](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html) — Testing with CSRF Protection\n\n**Worked guide:** [day-65.md](docs/reboot/continuation-57-70/worked/day-65.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1383,12 +1728,13 @@
         },
         "scope": "Build the normal React application at / with typed session, preview, issue, readback and replay flows",
         "learner_seam": "LocalCoverStoryApp and typed same-origin local API client at /",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-66.md",
+        "evidence_reference": "evidence/continuation-57-70/day-66.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-66.md",
         "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "acceptance_commands": [
-          "npm --prefix frontend run test:local"
+          "npm --prefix frontend run test:sprint5"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1396,12 +1742,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "1362070",
@@ -1423,38 +1763,81 @@
           ],
           "resources": [
             {
-              "title": "MDN Fetch API — credentials, HTTP errors and response JSON",
-              "section": "including credentials; handling HTTP response status",
+              "title": "MDN: Using the Fetch API",
+              "section": "Including credentials, Handling the response",
               "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
             },
             {
-              "title": "TypeScript everyday types",
-              "section": "object types",
-              "url": "https://www.typescriptlang.org/docs/handbook/2/objects.html"
+              "title": "TypeScript: Narrowing",
+              "section": "Discriminated unions, type predicates",
+              "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html"
             },
             {
-              "title": "Fetch API",
-              "section": "credentials and response status",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+              "title": "React: useEffect",
+              "section": "Fetching data with Effects",
+              "url": "https://react.dev/reference/react/useEffect#fetching-data-with-effects"
             }
           ],
-          "video_seconds": 860,
-          "remaining_study_seconds": 640,
-          "fit": "partial_foundation",
-          "scope_note": "The lesson supports typed props, not this API client’s cookie/CSRF behavior. Work narrow TypeScript request/response types and explicit fetch credentials/CSRF handling; keep calls on the same-origin local route.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "official actual HTTP/type/state boundaries",
+              "seconds": 360
+            },
+            {
+              "activity": "complete toy request/state/frozen-intent example",
+              "seconds": 900
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [
+            "25890212"
+          ],
+          "official_source_ids": [
+            "fetch",
+            "narrow",
+            "react_cleanup"
+          ],
+          "optional_video_seconds": 860,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-66.md",
+          "practice_segment_minutes": [
+            15,
+            25,
+            30,
+            15
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-66.md",
-        "evidence_reference": "evidence/continuation-57-70/day-66.json",
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "learner_ui_expected_todo_red",
         "learner_task": "Implement the accessible normal React route at / with typed same-origin session, preview, issue, readback and replay flows; pass the fixed UI acceptance suite.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          15,
+          25,
+          30,
+          15
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-66.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-66.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1497,7 +1880,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 66 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Working with Props & TypeScript**; exact section title: **React + TypeScript** (14:20).\n- Fit: partial foundation. The lesson supports typed props, not this API client’s cookie/CSRF behavior. Work narrow TypeScript request/response types and explicit fetch credentials/CSRF handling; keep calls on the same-origin local route.\n- Focused worked references: [TypeScript everyday types — object types](https://www.typescriptlang.org/docs/handbook/2/objects.html); [Fetch API — credentials and response status](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).\n- Video viewing: 14:20 at 1×; the remaining 10:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Optional replacement only: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — **Working with Props & TypeScript**, section **React + TypeScript** (14:20, item `25890212`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- official actual HTTP/type/state boundaries: 360 seconds.\n- complete toy request/state/frozen-intent example: 900 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [MDN: Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) — Including credentials, Handling the response\n- [TypeScript: Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) — Discriminated unions, type predicates\n- [React: useEffect](https://react.dev/reference/react/useEffect#fetching-data-with-effects) — Fetching data with Effects\n\n**Worked guide:** [day-66.md](docs/reboot/continuation-57-70/worked/day-66.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1527,21 +1910,16 @@
         },
         "scope": "Inspect the disposable packaged runtime lifecycle",
         "learner_seam": "scripts/package-local-demo.sh and scripts/local-demo.sh (execute and inspect; scripts are instructor-provided)",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-67.md",
+        "evidence_reference": "evidence/continuation-57-70/day-67.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-67.md",
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test"
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -1563,32 +1941,87 @@
           ],
           "resources": [
             {
-              "title": "Spring Boot executable jar packaging",
-              "section": "repackage goal and executable archives",
+              "title": "Spring Boot: Packaging Executable Archives",
+              "section": "Packaging Executable Archives, mainClass, classifier",
               "url": "https://docs.spring.io/spring-boot/maven-plugin/packaging.html"
+            },
+            {
+              "title": "Spring Boot: Profiles",
+              "section": "Profiles, Adding Active Profiles",
+              "url": "https://docs.spring.io/spring-boot/reference/features/profiles.html"
             }
           ],
           "video_seconds": 425,
           "remaining_study_seconds": 1075,
-          "fit": "partial_foundation",
-          "scope_note": "Profiles are configuration context, not packaging instruction. Follow the supplied package/local-demo scripts and inspect the generated JAR; confirm the disposable process/database lifecycle without deploying or creating cloud resources.",
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "Profiles foundation or retrieval",
+              "seconds": 425
+            },
+            {
+              "activity": "official packaging focus",
+              "seconds": 300
+            },
+            {
+              "activity": "complete artifact/process evidence example",
+              "seconds": 480
+            },
+            {
+              "activity": "prediction and cleanup boundary",
+              "seconds": 295
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [
+            "35019912"
+          ],
+          "optional_replacement_only_item_ids": [],
+          "official_source_ids": [
+            "package",
+            "profiles"
+          ],
+          "optional_video_seconds": 0,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-67.md",
+          "practice_segment_minutes": [
+            15,
+            30,
+            25,
+            15
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-67.md",
-        "evidence_reference": "evidence/continuation-57-70/day-67.json",
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "instructor_archive_and_runtime_checks",
         "learner_task": "Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test"
-        ]
+        ],
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          15,
+          30,
+          25,
+          15
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-67.md",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local -DskipTests package",
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#stageArchiveHasExplicitEntryAndPackagedUi+stageJarServesOnlyTheBoundedRuntime test"
+        ],
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-67.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1650,7 +2083,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 67 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**; exact section title: **Getting Started with Spring Boot** (7:05).\n- Fit: partial foundation. Profiles are configuration context, not packaging instruction. Follow the supplied package/local-demo scripts and inspect the generated JAR; confirm the disposable process/database lifecycle without deploying or creating cloud resources.\n- Focused worked references: [Spring Boot executable jar packaging — repackage goal and executable archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html).\n- Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**, section **Getting Started with Spring Boot** (7:05, item `35019912`).\n\n**Study sequence (seconds; total 1500):**\n- Profiles foundation or retrieval: 425 seconds.\n- official packaging focus: 300 seconds.\n- complete artifact/process evidence example: 480 seconds.\n- prediction and cleanup boundary: 295 seconds.\n\n**Official references:**\n- [Spring Boot: Packaging Executable Archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html) — Packaging Executable Archives, mainClass, classifier\n- [Spring Boot: Profiles](https://docs.spring.io/spring-boot/reference/features/profiles.html) — Profiles, Adding Active Profiles\n\n**Worked guide:** [day-67.md](docs/reboot/continuation-57-70/worked/day-67.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1680,13 +2113,15 @@
         },
         "scope": "Exercise the packaged main app through browser and PostgreSQL",
         "learner_seam": "Executable JAR → real browser UI controls → policy API → PostgreSQL; issue/readback/replay/preview",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-68.md",
+        "evidence_reference": "evidence/continuation-57-70/day-68.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-68.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
+          "scripts/package-sprint5-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1694,12 +2129,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "1362070",
@@ -1721,44 +2150,82 @@
           ],
           "resources": [
             {
-              "title": "Playwright Page API",
-              "section": "goto, getByRole and click",
+              "title": "Playwright: Page",
+              "section": "waitForResponse, getByRole",
               "url": "https://playwright.dev/docs/api/class-page"
             },
             {
-              "title": "Playwright Response API",
-              "section": "status, json and text",
+              "title": "Playwright: Response",
+              "section": "json, status",
               "url": "https://playwright.dev/docs/api/class-response"
             },
             {
-              "title": "Playwright Page API",
-              "section": "navigation and user interactions",
-              "url": "https://playwright.dev/docs/api/class-page"
-            },
-            {
-              "title": "Playwright Response API",
-              "section": "status and JSON response",
-              "url": "https://playwright.dev/docs/api/class-response"
+              "title": "PostgreSQL18: Transaction Isolation",
+              "section": "Read Committed Isolation Level",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED"
             }
           ],
-          "video_seconds": 840,
-          "remaining_study_seconds": 660,
-          "fit": "partial_foundation",
-          "scope_note": "This is component-level test guidance, not real browser-to-JAR/PostgreSQL evidence. Use the supplied packaged browser selectors and explicit database snapshots; treat the test course as optional if unavailable, and stop at the 25-minute cap.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "official real-browser response focus",
+              "seconds": 360
+            },
+            {
+              "activity": "complete independent semantic oracle example",
+              "seconds": 900
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [
+            "25890068"
+          ],
+          "official_source_ids": [
+            "page",
+            "response",
+            "pg_snapshot"
+          ],
+          "optional_video_seconds": 840,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-68.md",
+          "practice_segment_minutes": [
+            15,
+            40,
+            20,
+            10
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-68.md",
-        "evidence_reference": "evidence/continuation-57-70/day-68.json",
-        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "acceptance_selector_status": "learner_acceptance_expected_red_until_prior_seams",
         "learner_task": "Use real UI controls against the packaged JAR for preview, issue, readback and same-key replay. Around every preview/readback flow, compare complete policy rows, lifecycle events/versions and idempotency records; for issuance, verify existing rows stay byte-stable and only one policy, event and idempotency record are added. Record actual blockers; HTTP 500 is failure, not acceptance.",
         "learner_evidence_mode": "explain_debug",
-        "acceptance_selector": "day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce"
+        "acceptance_selector": "day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          15,
+          40,
+          20,
+          10
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-68.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-68.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1801,7 +2268,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 68 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Testing User Interaction & State**; exact section title: **Testing React Apps (Unit Tests)** (14:00).\n- Fit: partial foundation. This is component-level test guidance, not real browser-to-JAR/PostgreSQL evidence. Use the supplied packaged browser selectors and explicit database snapshots; treat the test course as optional if unavailable, and stop at the 25-minute cap.\n- Focused worked references: [Playwright Page API — navigation and user interactions](https://playwright.dev/docs/api/class-page); [Playwright Response API — status and JSON response](https://playwright.dev/docs/api/class-response).\n- Video viewing: 14:00 at 1×; the remaining 11:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Optional replacement only: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — **Testing User Interaction & State**, section **Testing React Apps (Unit Tests)** (14:00, item `25890068`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- official real-browser response focus: 360 seconds.\n- complete independent semantic oracle example: 900 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [Playwright: Page](https://playwright.dev/docs/api/class-page) — waitForResponse, getByRole\n- [Playwright: Response](https://playwright.dev/docs/api/class-response) — json, status\n- [PostgreSQL18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED) — Read Committed Isolation Level\n\n**Worked guide:** [day-68.md](docs/reboot/continuation-57-70/worked/day-68.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1831,12 +2298,14 @@
         },
         "scope": "Prove restart, logout, foreign-owner and no-write behavior",
         "learner_seam": "Executable JAR → real browser UI controls → owner/session/preview/restart; no-write invariants",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-69.md",
+        "evidence_reference": "evidence/continuation-57-70/day-69.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-69.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
+          "scripts/package-sprint5-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1844,12 +2313,6 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
             {
               "course_id": "4993276",
@@ -1879,44 +2342,78 @@
           ],
           "resources": [
             {
-              "title": "Spring Security Handling Logouts",
-              "section": "Understanding Logout’s Architecture and Customizing Logout URIs",
+              "title": "Spring Security: Handling Logouts",
+              "section": "Understanding Logout's Architecture, Creating a Custom Logout Endpoint",
               "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
             },
             {
-              "title": "PostgreSQL Transaction Isolation",
-              "section": "Read Committed statement snapshots",
-              "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
-            },
-            {
-              "title": "Spring Security logout handling",
-              "section": "logout architecture and URI customization",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
-            },
-            {
-              "title": "PostgreSQL transaction isolation",
-              "section": "Read Committed statement snapshots",
-              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
+              "title": "PostgreSQL18: Transaction Isolation",
+              "section": "Read Committed Isolation Level",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED"
             }
           ],
-          "video_seconds": 844,
-          "remaining_study_seconds": 656,
-          "fit": "partial_foundation",
-          "scope_note": "The lessons cover auth concepts, not session invalidation or restart persistence. Trace the supplied cookie-session logout and foreign-owner scenarios in the packaged browser harness; compare complete PostgreSQL snapshots and never treat JWT examples as equivalent.",
+          "video_seconds": 0,
+          "remaining_study_seconds": 1500,
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "official logout and snapshot focus",
+              "seconds": 300
+            },
+            {
+              "activity": "complete two-journey causal restart example",
+              "seconds": 960
+            },
+            {
+              "activity": "prediction",
+              "seconds": 240
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [
+            "35017628",
+            "35017626"
+          ],
+          "official_source_ids": [
+            "logout",
+            "pg_snapshot",
+            "react_cleanup"
+          ],
+          "optional_video_seconds": 844,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-69.md",
+          "practice_segment_minutes": [
+            20,
+            40,
+            15,
+            10
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-69.md",
-        "evidence_reference": "evidence/continuation-57-70/day-69.json",
-        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "acceptance_selector_status": "learner_acceptance_expected_red_until_prior_seams",
         "learner_task": "Start the packaged app before taking the initial snapshot so Flyway has applied migrations; restart it against the same disposable database. Verify session invalidation, stable preview JSON, owner isolation, and unchanged complete policy rows, lifecycle events/versions and idempotency records around preview, owner switching and logout.",
         "learner_evidence_mode": "explain_debug",
-        "acceptance_selector": "day69PreviewIsStableAcrossPackagedRestartAndLogout"
+        "acceptance_selector": "day69PreviewIsStableAcrossPackagedRestartAndLogout",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          20,
+          40,
+          15,
+          10
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-69.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-69.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -1959,7 +2456,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 69 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).\n- Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).\n- Fit: partial foundation. The lessons cover auth concepts, not session invalidation or restart persistence. Trace the supplied cookie-session logout and foreign-owner scenarios in the packaged browser harness; compare complete PostgreSQL snapshots and never treat JWT examples as equivalent.\n- Focused worked references: [Spring Security logout handling — logout architecture and URI customization](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html); [PostgreSQL transaction isolation — Read Committed statement snapshots](https://www.postgresql.org/docs/14/transaction-iso.html).\n- Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17, item `35017628`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.\n- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 22 - Exploring Spring Security Authorization**, section **Securing Spring Boot Applications with Spring Security** (9:47, item `35017626`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.\n\n**Study sequence (seconds; total 1500):**\n- official logout and snapshot focus: 300 seconds.\n- complete two-journey causal restart example: 960 seconds.\n- prediction: 240 seconds.\n\n**Official references:**\n- [Spring Security: Handling Logouts](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html) — Understanding Logout's Architecture, Creating a Custom Logout Endpoint\n- [PostgreSQL18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED) — Read Committed Isolation Level\n\n**Worked guide:** [day-69.md](docs/reboot/continuation-57-70/worked/day-69.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {
@@ -1989,9 +2486,10 @@
         },
         "scope": "Complete the mastery, recovery and design mock",
         "learner_seam": "Evidence review and local application design explanation",
+        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-70.md",
+        "evidence_reference": "evidence/continuation-57-70/day-70.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
-        "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-70.md",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test"
@@ -2002,48 +2500,71 @@
         ],
         "concept_course": {
           "minutes": 25,
-          "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
-          },
-          "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
           "lessons": [],
           "resources": [
             {
-              "title": "C4 Software System",
-              "section": "software system",
-              "url": "https://c4model.com/abstractions/software-system"
-            },
-            {
-              "title": "C4 Container",
-              "section": "container",
+              "title": "C4 model: Container",
+              "section": "Container",
               "url": "https://c4model.com/abstractions/container"
-            },
-            {
-              "title": "C4 Component",
-              "section": "component",
-              "url": "https://c4model.com/abstractions/component"
             }
           ],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "assessment_review_no_new_lecture",
-          "scope_note": "No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.",
+          "fit": "foundation_only_or_no_exact_match",
+          "scope_note": "Provider lessons are a foundation only. The complete repository-specific worked reference is mandatory and linked below; lesson viewing is not completion evidence.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
           "source_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
-          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+          "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope.",
+          "study_segments": [
+            {
+              "activity": "review actual pass/fail/blocked evidence",
+              "seconds": 600
+            },
+            {
+              "activity": "complete limited handover example",
+              "seconds": 600
+            },
+            {
+              "activity": "explain one boundary",
+              "seconds": 300
+            }
+          ],
+          "study_total_seconds": 1500,
+          "required_lesson_item_ids": [],
+          "optional_replacement_only_item_ids": [],
+          "official_source_ids": [
+            "c4system",
+            "c4container",
+            "c4component"
+          ],
+          "optional_video_seconds": 0,
+          "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-70.md",
+          "practice_segment_minutes": [
+            55,
+            20,
+            10
+          ],
+          "practice_total_minutes": 85,
+          "evidence_minutes": 10,
+          "allocation_note": "All study segments share one 1500-second / 25-minute block. Optional replacement lessons replace an equal amount of this block; do not stack time."
         },
-        "contract_path": "docs/reboot/continuation-57-70/contracts/day-70.md",
-        "evidence_reference": "evidence/continuation-57-70/day-70.json",
         "acceptance_selector_status": "instructor_integrity_only",
         "learner_task": "Review the recorded pass/fail evidence, complete the C4/trust-boundary explanation and recovery/interview mock. Report unresolved upstream blockers without upgrading scaffold status to learner completion.",
-        "learner_evidence_mode": "explain_debug"
+        "learner_evidence_mode": "explain_debug",
+        "study_total_seconds": 1500,
+        "practice_segment_minutes": [
+          55,
+          20,
+          10
+        ],
+        "evidence_minutes": 10,
+        "worked_guide_path": "docs/reboot/continuation-57-70/worked/day-70.md",
+        "contract_path": "docs/reboot/continuation-57-70/contracts/day-70.md"
       },
       "java_dsa": {
         "mode": "dynamic_actual_attempt_queue",
@@ -2086,7 +2607,7 @@
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 70 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: assessment review no new lecture. No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.\n- Focused worked references: [C4 Software System — software system](https://c4model.com/abstractions/software-system); [C4 Container — container](https://c4model.com/abstractions/container); [C4 Component — component](https://c4model.com/abstractions/component).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n\n- No course video is required. Use the official references and complete worked example below.\n\n**Study sequence (seconds; total 1500):**\n- review actual pass/fail/blocked evidence: 600 seconds.\n- complete limited handover example: 600 seconds.\n- explain one boundary: 300 seconds.\n\n**Official references:**\n- [C4 model: Container](https://c4model.com/abstractions/container) — Container\n\n**Worked guide:** [day-70.md](docs/reboot/continuation-57-70/worked/day-70.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.\n\n**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.",
       "budget_minutes_min": 180,
       "budget_minutes_max": 210,
       "budget_minutes_by_dsa_tier": {

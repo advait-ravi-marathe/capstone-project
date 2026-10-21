@@ -32,17 +32,27 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF**; exact section title: **Securing Spring Boot Applications with Spring Security** (11:08).
-- Exact lesson title: **Step 09 - Exploring Spring Security - CSRF for REST API**; exact section title: **Securing Spring Boot Applications with Spring Security** (8:40).
-- Fit: partial foundation. CSRF is cookie-session trust protection. Reproduce the supplied rejected write without a token and the allowed write with the expected token; never use the course’s disable-CSRF lesson as implementation guidance.
-- Focused worked references: [Spring Security CSRF protection — synchronizer token pattern and CSRF configuration](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html).
-- Video viewing: 19:48 at 1×; the remaining 5:12 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF**, section **Securing Spring Boot Applications with Spring Security** (11:08, item `35017674`).
+- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 09 - Exploring Spring Security - CSRF for REST API**, section **Securing Spring Boot Applications with Spring Security** (8:40, item `35017670`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.
 
-**Design sketch:** Verify CSRF enforcement and rejected writes: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- verified CSRF foundation: 668 seconds.
+- official cookie/filter focus: 180 seconds.
+- complete counterexample and native trace: 360 seconds.
+- prediction: 180 seconds.
+- pauses: 112 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [Spring Security: Cross Site Request Forgery](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html) — Understanding CSRF Protection's Components, Using the CookieCsrfTokenRepository
+- [Spring Security: Testing with CSRF Protection](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html) — Testing with CSRF Protection
+
+**Worked guide:** [day-65.md](docs/reboot/continuation-57-70/worked/day-65.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
 
 ## Evidence allocation (10 minutes)
 

@@ -26,16 +26,24 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 07 - Querying Data using Spring JDBC**; exact section title: **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36).
-- Fit: partial foundation. The query lesson is general. Work the existing owner-scoped read path and list which tables/rows must remain identical; preview invokes only SELECT and never commits renewal state.
-- Focused worked references: [Spring JdbcTemplate reference — query operations](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html); [PostgreSQL transaction read-only setting — default_transaction_read_only](https://www.postgresql.org/docs/14/runtime-config-client.html).
-- Video viewing: 5:36 at 1×; the remaining 19:24 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36, item `35019858`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.
 
-**Design sketch:** Wire owner-scoped policy reads and prove preview performs no writes: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- retrieve prior raw-JDBC teaching: 300 seconds.
+- complete nullable loan snapshot and direct-port example: 960 seconds.
+- prediction: 240 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [Java SE21: PreparedStatement](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html) — setString(int,String), executeQuery()
+- [Java SE21: ResultSet](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/ResultSet.html) — getDate(String), getBigDecimal(String)
+
+**Worked guide:** [day-60.md](docs/reboot/continuation-57-70/worked/day-60.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test`
 
 ## Evidence allocation (10 minutes)
 

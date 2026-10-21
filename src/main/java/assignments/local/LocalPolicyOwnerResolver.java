@@ -19,5 +19,7 @@ public final class LocalPolicyOwnerResolver {
         throw new UnsupportedOperationException("Day 62 learner TODO: ignore forged owner identifier");
     }
 
-    static boolean isKnownSyntheticOwner(String ownerId) { return SYNTHETIC_OWNERS.contains(ownerId); }
+    static boolean isKnownSyntheticOwner(String ownerId) {
+        return ownerId != null && SYNTHETIC_OWNERS.contains(ownerId);
+    }
 }

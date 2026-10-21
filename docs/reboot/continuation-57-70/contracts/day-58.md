@@ -32,17 +32,27 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
-- Exact lesson title: **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**; exact section title: **Getting Started with Spring Boot** (7:05).
-- Exact lesson title: **Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties**; exact section title: **Getting Started with Spring Boot** (7:31).
-- Fit: partial foundation. These lessons teach configuration foundations, not the supplied assembly script. Trace the existing profiles/config properties/beans/data source and distinguish a prebuilt local runtime from new infrastructure.
-- Focused worked references: [Spring Boot externalized configuration — profiles and configuration properties](https://docs.spring.io/spring-boot/reference/features/external-config.html).
-- Video viewing: 14:36 at 1×; the remaining 10:24 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Required foundation: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access `confirmed_owned`. **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**, section **Getting Started with Spring Boot** (7:05, item `35019912`).
+- Optional replacement only: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — **Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties**, section **Getting Started with Spring Boot** (7:31, item `35019910`); access `confirmed_owned`. Do not purchase or enroll; replace equal study time if already accessible.
 
-**Design sketch:** Trace the dedicated local entry point and explicit composition: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- verified Profiles foundation: 425 seconds.
+- explicit constructor/import section: 180 seconds.
+- complete two-assembly example and native trace: 655 seconds.
+- prediction: 240 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [Spring Framework: Dependency Injection](https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html) — Constructor-based Dependency Injection
+- [Spring Boot: Configuration Classes](https://docs.spring.io/spring-boot/reference/using/configuration-classes.html) — Importing Additional Configuration Classes
+- [Spring Boot: Profiles](https://docs.spring.io/spring-boot/reference/features/profiles.html) — Profiles, Adding Active Profiles
+
+**Worked guide:** [day-58.md](docs/reboot/continuation-57-70/worked/day-58.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test`
 
 ## Evidence allocation (10 minutes)
 

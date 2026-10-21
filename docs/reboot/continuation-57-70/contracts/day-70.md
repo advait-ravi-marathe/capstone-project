@@ -26,15 +26,23 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- No exact matching course lesson was verified for this task; no unrelated video is assigned.
-- Fit: assessment review no new lecture. No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.
-- Focused worked references: [C4 Software System — software system](https://c4model.com/abstractions/software-system); [C4 Container — container](https://c4model.com/abstractions/container); [C4 Component — component](https://c4model.com/abstractions/component).
-- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- No course video is required. Use the official references and complete worked example below.
 
-**Design sketch:** Complete the mastery, recovery and design mock: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- review actual pass/fail/blocked evidence: 600 seconds.
+- complete limited handover example: 600 seconds.
+- explain one boundary: 300 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [C4 model: Container](https://c4model.com/abstractions/container) — Container
+
+**Worked guide:** [day-70.md](docs/reboot/continuation-57-70/worked/day-70.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test`
 
 ## Evidence allocation (10 minutes)
 

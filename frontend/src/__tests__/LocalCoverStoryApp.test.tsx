@@ -10,10 +10,9 @@ afterEach(() => {
 
 const response = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 const issued = {
-  policyId: 'policy-training-1', ownerId: 'owner-a', journeyId: 'homesecure-training-journey',
-  quoteVersionId: 'home-secure-training-v1', productVersion: 'home-secure-v1',
-  rateVersion: 'home-secure-training-rate-v1', annualPremiumRupees: '125.00', currency: 'INR',
-  effectiveDate: '2026-10-20', status: 'ISSUED', version: 1,
+  policyId: 'policy-a', ownerId: 'owner-a', journeyId: 'journey-a', quoteVersionId: 'quote-a',
+  productVersion: 'home-secure-v1', rateVersion: 'training-rate-v1', annualPremiumRupees: 125.00, currency: 'INR',
+  effectiveDate: '2026-12-20', status: 'ISSUED', version: 1, endorsements: [], cancellationEffectiveDate: null,
 };
 
 describe('Day 66 local CoverStory route', () => {
@@ -35,7 +34,7 @@ describe('Day 66 local CoverStory route', () => {
       if (url === '/api/session') return response({ ownerId: 'owner-a' });
       if (url.endsWith('/renewal-preview')) return response({
         policyId: 'policy-renewal-a', sourcePolicyVersion: 3, productVersion: 'home-secure-v1',
-        rateVersion: 'home-secure-rate-v1', currentAnnualPremiumRupees: '125.00', currency: 'INR',
+        rateVersion: 'home-secure-rate-v1', currentAnnualPremiumRupees: 125.00, currency: 'INR',
         nextTermEffectiveDate: '2027-01-15', notice: 'Reference only; not a renewal offer or coverage commitment.',
       });
       return response({ code: 'NOT_FOUND' }, 404);
@@ -65,7 +64,7 @@ describe('Day 66 local CoverStory route', () => {
         if (previewCalls === 1) return response({ code: 'PREVIEW_BUSY', message: 'Renewal preview is busy' }, 503);
         return response({
           policyId: 'policy-renewal-a', sourcePolicyVersion: 3, productVersion: 'home-secure-v1',
-          rateVersion: 'home-secure-rate-v1', currentAnnualPremiumRupees: '125.00', currency: 'INR',
+          rateVersion: 'home-secure-rate-v1', currentAnnualPremiumRupees: 125.00, currency: 'INR',
           nextTermEffectiveDate: '2027-01-15', notice: 'Reference only; not a renewal offer or coverage commitment.',
         });
       }
@@ -98,7 +97,7 @@ describe('Day 66 local CoverStory route', () => {
         issueCount += 1;
         return response(issued, issueCount === 1 ? 201 : 200);
       }
-      if (url === '/api/policies/policy-training-1') return response(issued);
+      if (url === '/api/policies/policy-a') return response(issued);
       return response({ code: 'NOT_FOUND' }, 404);
     });
     vi.stubGlobal('fetch', fetchMock);
@@ -108,7 +107,7 @@ describe('Day 66 local CoverStory route', () => {
     await userEvent.click(await screen.findByRole('button', { name: 'Issue selected quote' }));
     await userEvent.click(await screen.findByRole('button', { name: 'View issued policy' }));
     expect(await screen.findByRole('region', { name: 'Issued policy' })).toBeTruthy();
-    expect(screen.getByText(/policy-training-1/)).toBeTruthy();
+    expect(screen.getByText(/policy-a/)).toBeTruthy();
     await userEvent.click(screen.getByRole('button', { name: 'Replay issue request' }));
 
     expect(requestBodies).toHaveLength(2);
@@ -116,7 +115,7 @@ describe('Day 66 local CoverStory route', () => {
     expect(fetchMock).toHaveBeenCalledWith('/api/policies', expect.objectContaining({
       method: 'POST', credentials: 'same-origin', headers: expect.objectContaining({ 'X-XSRF-TOKEN': 'synthetic-csrf' }),
     }));
-    expect(fetchMock).toHaveBeenCalledWith('/api/policies/policy-training-1',
+    expect(fetchMock).toHaveBeenCalledWith('/api/policies/policy-a',
       expect.objectContaining({ method: 'GET', credentials: 'same-origin' }));
   });
 });

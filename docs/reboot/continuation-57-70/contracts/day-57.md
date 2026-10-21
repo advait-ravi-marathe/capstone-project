@@ -27,16 +27,24 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- Course: [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
-- Exact lesson title: **Getting Started with Continuous Integration, Deployment and Delivery**; exact section title: **Getting Started with Continuous Integration, Deployment and Delivery** (4:50).
-- Fit: partial foundation. This short lesson is CI/CD vocabulary only. Use the supplied GitHub Actions workflow walkthrough for the actual local gate; do not set up Azure DevOps, deploy, or change infrastructure.
-- Focused worked references: [GitHub Actions workflow syntax — workflow and job structure](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
-- Video viewing: 4:50 at 1×; the remaining 20:10 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- Optional replacement only: [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/) — **Getting Started with Continuous Integration, Deployment and Delivery**, section **Getting Started with Continuous Integration, Deployment and Delivery** (4:50, item `18086493`); access `unconfirmed_reference_only`. Do not purchase or enroll; replace equal study time if already accessible.
 
-**Design sketch:** Gate the local assembly on prior learner evidence: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- official named evidence and criteria: 300 seconds.
+- worked kiosk gate: 960 seconds.
+- predict recovery vs ready: 240 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [GOV.UK: Writing user stories](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories) — Acceptance criteria
+- [Java SE21: Map](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html) — get(Object), containsKey(Object), Unmodifiable Maps
+
+**Worked guide:** [day-57.md](docs/reboot/continuation-57-70/worked/day-57.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`
 
 ## Evidence allocation (10 minutes)
 

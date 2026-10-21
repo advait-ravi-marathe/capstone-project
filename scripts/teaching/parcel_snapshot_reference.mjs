@@ -22,15 +22,19 @@ const first = observe(database);
 assert.equal(snapshot(database), before);
 const restartedReader = { read: () => observe(database) };
 const second = restartedReader.read();
-assert.equal(first.status, 200); assert.equal(second.status, 200);
-assert.deepEqual(second.body, first.body); assert.equal(snapshot(database), before);
+assert.equal(first.status, 200);
+assert.equal(second.status, 200);
+assert.deepEqual(second.body, first.body);
+assert.equal(snapshot(database), before);
 for (const mutate of [
-  db => { db.parcels[0].revision += 1; }, db => { db.parcels[0].weight = '9.99'; },
+  db => { db.parcels[0].revision += 1; },
+  db => { db.parcels[0].weight = '9.99'; },
   db => { db.events.push({ ref: 'parcel-17', revision: 5, kind: 'READ' }); },
   db => { db.receipts[0].fingerprint = 'overwritten'; },
 ]) {
-  const wrong = structuredClone(original); mutate(wrong);
-  assert.equal(wrong.parcels.length, original.parcels.length);
-  assert.notEqual(snapshot(wrong), before);
+  const wrong = structuredClone(original);
+  mutate(wrong);
+  assert.equal(wrong.parcels.length, original.parcels.length, 'old row count misses this mutation');
+  assert.notEqual(snapshot(wrong), before, 'complete evidence detects it');
 }
-console.log('PASS: stable read; four count-preserving mutation counterexamples detected');
+console.log('PASS: stable read; four count-preserving mutations detected');

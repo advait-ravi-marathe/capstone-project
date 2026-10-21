@@ -32,15 +32,25 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 ## Concept/course allocation (25 minutes)
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
-- No exact matching course lesson was verified for this task; no unrelated video is assigned.
-- Fit: no exact catalog match. No exact verified Flyway/schema-migration lesson was found in the inspected selected courses. Walk the supplied ordered migration files and schema-history row; show first application, repeat startup doing no duplicate migration, and checksum/version behavior without editing learner code.
-- Focused worked references: [Flyway versioned migrations — versioned migrations and schema history](https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations).
-- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
+- No course video is required. Use the official references and complete worked example below.
 
-**Design sketch:** Inspect the additive versioned schema migration without resetting rows: show the key trust boundary or data invariant and which layer owns it.
+**Study sequence (seconds; total 1500):**
+- official migration/history/target focus: 300 seconds.
+- complete two-migration and sentinel example: 960 seconds.
+- prediction: 240 seconds.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Official references:**
+- [Redgate: Versioned migrations](https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations) — Versioned migrations, Naming
+- [Redgate: Flyway Target Setting](https://documentation.red-gate.com/flyway/reference/configuration/flyway-namespace/flyway-target-setting) — Migrate, API
+- [Spring Boot: Database Initialization](https://docs.spring.io/spring-boot/how-to/data-initialization.html) — Execute Flyway Database Migrations on Startup
+
+**Worked guide:** [day-59.md](docs/reboot/continuation-57-70/worked/day-59.md). Read the complete supplied reference before applying the distinct native variation. This is instructor teaching, not learner completion.
+
+**Time rule:** Optional lessons replace time inside these 1500 seconds; pauses do too. No overtime. Access and viewing are not inferred.
+
+**Runnable acceptance commands:**
+- `./mvnw -Plocal-app,learner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test`
 
 ## Evidence allocation (10 minutes)
 
