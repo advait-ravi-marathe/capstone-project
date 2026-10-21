@@ -1,0 +1,676 @@
+{
+  "title": "Days 141–154 chronological learning blocks and ticket-ready Scrum export; no board writes",
+  "story_count": 14,
+  "sprint_boundaries": [
+    {
+      "name": "Sprint 11",
+      "dates": "2027-03-09..2027-03-22",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ],
+  "cards": [
+    {
+      "day_number": 141,
+      "date": "2027-03-09",
+      "title": "Bind a real baseline and candidate artifact pair",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Require different actual JAR digests, source/build provenance and demonstrated capability IDs; labels alone do not establish a pair.",
+        "learner_seam": "ReleaseArtifactPairPolicy.validate",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest#day141RejectsSameBinaryAndLabelOnlyDifferences test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleasePairAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": "Step 10 Understanding Versioning Semantic Versioning",
+          "section": "Learning Maven with Spring and Spring Boot",
+          "section_id": "10823813",
+          "item": "54482075",
+          "seconds": 216
+        },
+        "video_seconds": 216,
+        "worked_reference_seconds": 984,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-09",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 142,
+      "date": "2027-03-10",
+      "title": "Project existing recovery evidence into a report",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Map one existing RecoveryReadResult and classifier decision into an allowlisted version-1 DTO; history is supplementary and capped at 20.",
+        "learner_seam": "InspectionReportMapper.map",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day142ProjectsObservedWorkAndSupplementaryHistory test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-10",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 143,
+      "date": "2027-03-11",
+      "title": "Encode one framed JSON report",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Encode one complete report with the Boot-managed Jackson 3 mapper and documented frame prefix only after serialization succeeds.",
+        "learner_seam": "InspectionReportCodec.encode",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day143EncodesExactlyOneEscapedVersionedRecord test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-11",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 144,
+      "date": "2027-03-12",
+      "title": "Decode bounded structurally valid evidence",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Validate exactly one bounded frame, strict duplicate keys, required fields/types/enums, requested identity and classifier consistency.",
+        "learner_seam": "InspectionReportCodec.decodeSingleFrame",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144RejectsAmbiguousDuplicateOrUnboundReportFrames test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-12",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 145,
+      "date": "2027-03-13",
+      "title": "Reject mixed or malformed inspection requests early",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Validate one explicit mode and exact key before Spring context/database initialization; reject every mutation/delivery combination.",
+        "learner_seam": "ReleaseInspectionRequestPolicy.parse",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseInspectionCommandAcceptanceTest#day145RejectsMixedOrMalformedModesBeforeAnyDatabaseContext test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/delivery/recovery/ReleaseInspectionCommandAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-13",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 146,
+      "date": "2027-03-14",
+      "title": "Run one real read-only inspection",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use existing inspect service and classifier exactly once; disable Flyway and SQL init in the new non-web context; verify existing V001–V005 without mutation.",
+        "learner_seam": "ReadOnlyReleaseInspectionCommand",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day146RefusesAbsentSchemaWithoutStartingMigration -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-14",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 147,
+      "date": "2027-03-15",
+      "title": "Recover the report and command boundary",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Repair and rerun only Days141–146; explain observation versus supplementary history and why output still needs an independent DB oracle.",
+        "learner_seam": "prior-only Days141–146 selectors",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleasePairAcceptanceTest,InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest#day146RefusesAbsentSchemaWithoutStartingMigration -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-15",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": true,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 148,
+      "date": "2027-03-16",
+      "title": "Run distinct packaged artifacts",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Build and freeze A before B-only code; bind actual digests/provenance and run both legacy modes plus B report mode against one fixture.",
+        "learner_seam": "TwoArtifactCompatibilityAcceptanceTest",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": "Step 08 Maven Core Concept 5 The Build Lifecycle",
+          "section": "Learning Maven with Spring and Spring Boot",
+          "section_id": "10823813",
+          "item": "54482093",
+          "seconds": 532
+        },
+        "video_seconds": 532,
+        "worked_reference_seconds": 668,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-16",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 149,
+      "date": "2027-03-17",
+      "title": "Prove retained state across A and B",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Exercise B quarantine, A inspect/release, B retry, then A inspect/replay on the same unchanged-schema database.",
+        "learner_seam": "TwoArtifactCompatibilityAcceptanceTest",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-17",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 150,
+      "date": "2027-03-18",
+      "title": "Gate fallback on measured pair evidence",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Require actual identities, same fixture/schema, legacy and report matrix, retained-state proof, and cleanup before running A again.",
+        "learner_seam": "BinaryFallbackPolicy.decide",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=BinaryFallbackAcceptanceTest#day150RequiresBoundRuntimeEvidenceBeforeAResumes test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/BinaryFallbackAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-18",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 151,
+      "date": "2027-03-19",
+      "title": "Reject deceptive candidate evidence",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Challenge field binding, classifier agreement, process result and actual database state with negative witnesses.",
+        "learner_seam": "BinaryFallbackAcceptanceTest",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/BinaryFallbackAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": {
+          "title": "Step 04 - Exploring other assert methods",
+          "section": "Exploring Unit Testing with JUnit",
+          "section_id": "10824279",
+          "item": "35017732",
+          "seconds": 481
+        },
+        "video_seconds": 481,
+        "worked_reference_seconds": 719,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-19",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 152,
+      "date": "2027-03-20",
+      "title": "Bound child-process output and cleanup",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Use bounded waits/output, kill and await owned children, preserve unrelated sentinel and distinguish diagnostics from one report frame.",
+        "learner_seam": "ReleaseVerifierProcessAcceptanceTest",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseVerifierProcessAcceptanceTest#day152RejectsTimeoutOverflowAndPlausibleNonzeroOutput test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/ReleaseVerifierProcessAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-20",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 153,
+      "date": "2027-03-21",
+      "title": "Complete the same-database A to B to A rehearsal",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Run the full actual artifact matrix and independent snapshots on one owned PostgreSQL fixture; state local proof limits.",
+        "learner_seam": "LocalVersionedReleaseAcceptanceTest",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-21",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": false,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    },
+    {
+      "day_number": 154,
+      "date": "2027-03-22",
+      "title": "Recover and defend the limited compatibility claim",
+      "sprint": "Sprint 11",
+      "budget_minutes": 180,
+      "engineering": {
+        "budget_minutes": 120,
+        "allocation_minutes": {
+          "implementation_and_testing": 85,
+          "concept_or_course": 25,
+          "evidence": 10
+        },
+        "scope": "Recovery only: reproduce one prior bad-candidate case, repair previous work, and explain what unchanged-schema local evidence does not prove.",
+        "learner_seam": "prior-only Days141–153 selectors",
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleasePairAcceptanceTest,InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest,BinaryFallbackAcceptanceTest,ReleaseVerifierProcessAcceptanceTest -Dcoverstory.release.baseline.jar=\"${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}\" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance=\"A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder\" -Dcoverstory.release.baseline.source=\"${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}\" -Dcoverstory.release.candidate.source=\"${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}\" -Dcoverstory.release.baseline.build=\"${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}\" -Dcoverstory.release.candidate.build=\"clean candidate package\" test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
+        "concept_course": {
+          "course_id": "4993276",
+          "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+          "instructor": "in28Minutes Official",
+          "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1",
+          "access_status": "owned_reference_course; playback access not rechecked",
+          "catalog_verified_at": "2026-10-20",
+          "catalog_source": "Udemy get_course_content connector",
+          "video_content_audited": false,
+          "lesson_deep_links_returned": false
+        },
+        "lesson": null,
+        "video_seconds": 0,
+        "worked_reference_seconds": 1200,
+        "teachback_seconds": 300,
+        "study_total_seconds": 1500
+      },
+      "java_dsa": {
+        "budget_minutes": 60,
+        "queue_command": "python3 scripts/dsa-review-queue.py --on-date 2027-03-22",
+        "actual_attempts_only": true,
+        "new_anchor_required": false
+      },
+      "recovery_day": true,
+      "learner_status": "not_attempted",
+      "evidence_status": "not_run"
+    }
+  ]
+}

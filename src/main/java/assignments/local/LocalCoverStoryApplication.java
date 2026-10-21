@@ -7,6 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = "assignments.local")
 public class LocalCoverStoryApplication {
     public static void main(String[] args) {
+        boolean releaseInspection = java.util.Arrays.stream(args).anyMatch(arg -> arg.startsWith("--coverstory.release."));
+        if (releaseInspection) {
+            assignments.delivery.recovery.ReleaseInspectionOnlyApplication.main(args);
+            return;
+        }
         boolean recoveryOnly = java.util.Arrays.stream(args).anyMatch(arg -> arg.startsWith("--coverstory.recovery.action="));
         SpringApplication application = new SpringApplication(recoveryOnly
                 ? assignments.delivery.recovery.RecoveryOnlyApplication.class : LocalCoverStoryApplication.class);
