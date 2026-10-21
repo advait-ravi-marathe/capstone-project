@@ -344,7 +344,7 @@
         "scope": "Validate exactly one bounded frame, strict duplicate keys, required fields/types/enums, requested identity and classifier consistency.",
         "learner_seam": "InspectionReportCodec.decodeSingleFrame",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144RejectsAmbiguousDuplicateOrUnboundReportFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144AcceptsAndRejectsDecoderBoundaryFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
         ],
         "acceptance_test_path": "src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java",
         "concept_course": {

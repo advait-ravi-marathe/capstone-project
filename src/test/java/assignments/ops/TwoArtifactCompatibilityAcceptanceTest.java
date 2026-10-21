@@ -325,6 +325,7 @@ class TwoArtifactCompatibilityAcceptanceTest {
             assertEquals(sourceBefore, sourceSnapshot(url), "source/lifecycle/idempotency data is retained");
             assertEquals(workBefore,workInvariantSnapshot(url)); assertEquals(targetImmutableBefore,targetImmutableWorkSnapshot(url));
             assertControlState(url,4,false,null,true);
+            assertEquals(schemaBeforeMatrix,schemaFingerprint(url),"B retry preserves the complete initial schema and migration history");
             assertReceiptAppend(receiptsBefore,receiptRows(url),POLICY,VERSION);
             assertTrue(released.contains("REVIEWED_FOR_RETRY"));
             assertEquals(1, scalar(url, "SELECT count(*) FROM training_issuance_work WHERE policy_id='policy-demo-1' AND acknowledged_at IS NOT NULL"));
@@ -562,8 +563,8 @@ class TwoArtifactCompatibilityAcceptanceTest {
         try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT schemaname,tablename,rulename,definition FROM pg_catalog.pg_rules WHERE schemaname='public' ORDER BY tablename,rulename")) {
             while(r.next()) identity.append("rule|").append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getString(4)).append('\n');
         }
-        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT version,description,script,checksum,success FROM flyway_schema_history ORDER BY installed_rank")) {
-            while(r.next()) identity.append(r.getString(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getString(4)).append('|').append(r.getBoolean(5)).append('\n');
+        try(Connection c=DriverManager.getConnection(url,"postgres",""); Statement s=c.createStatement(); ResultSet r=s.executeQuery("SELECT installed_rank,version,description,type,script,checksum,installed_by,installed_on,execution_time,success FROM flyway_schema_history ORDER BY installed_rank")) {
+            while(r.next()) identity.append("flyway|").append(r.getInt(1)).append('|').append(r.getString(2)).append('|').append(r.getString(3)).append('|').append(r.getString(4)).append('|').append(r.getString(5)).append('|').append(r.getString(6)).append('|').append(r.getString(7)).append('|').append(r.getTimestamp(8)).append('|').append(r.getInt(9)).append('|').append(r.getBoolean(10)).append('\n');
         }
         return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(identity.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)));
     }

@@ -67,14 +67,22 @@ class InspectionReportContractAcceptanceTest {
                 RecoveryObservation.notFound(key),
                 new RecoveryObservation(key, true, envelope, 0, null, null, null, ReceiptRelation.ABSENT),
                 new RecoveryObservation(key, true, envelope, 0, null, null, null, ReceiptRelation.MATCHING),
-                new RecoveryObservation(key, true, envelope, 0, null, null, null, ReceiptRelation.CONFLICTING));
+                new RecoveryObservation(key, true, envelope, 0, null, null, null, ReceiptRelation.CONFLICTING),
+                new RecoveryObservation(key, true, envelope, 1, Instant.parse("2026-10-02T00:00:00Z"), null, null, ReceiptRelation.ABSENT));
         for (var observation : states) {
             var report = mapper.map(new RecoveryReadResult(observation, List.of()));
             assertEquals(observation.key().policyId(), report.key().policyId());
             assertEquals(observation.key().sourceVersion(), report.key().sourceVersion());
             assertEquals(observation.workPresent(), report.workPresent());
-            assertEquals(observation.envelope() == null ? null : observation.envelope().eventType(),
-                    report.envelope() == null ? null : report.envelope().eventType());
+            if (observation.envelope() == null) {
+                assertNull(report.envelope());
+            } else {
+                assertEquals(observation.envelope().policyId(), report.envelope().policyId());
+                assertEquals(observation.envelope().sourceVersion(), report.envelope().sourceVersion());
+                assertEquals(observation.envelope().eventType(), report.envelope().eventType());
+                assertEquals(observation.envelope().effectiveDate(), report.envelope().effectiveDate());
+                assertEquals(observation.envelope().schemaVersion(), report.envelope().schemaVersion());
+            }
             assertEquals(observation.controlRevision(), report.controlRevision());
             assertEquals(observation.acknowledgedAt(), report.acknowledgedAt());
             assertEquals(observation.quarantinedAt(), report.quarantinedAt());
@@ -112,24 +120,22 @@ class InspectionReportContractAcceptanceTest {
         assertEquals(0, independentlyParsed.path("history").size());
         assertTrue(independentlyParsed.path("historySupplementary").asBoolean());
 
-        String base = frame.substring(InspectionReportCodec.PREFIX.length());
-        String optionalPrefix = ",\"futureOptional\":\"";
-        String optionalSuffix = "\"}";
-        int baseBytes = base.getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
-        int exactPayload = InspectionReportCodec.MAX_DOCUMENT_BYTES - baseBytes - optionalPrefix.length() - optionalSuffix.length() + 1;
-        String nearLimit = base.substring(0, base.length() - 1) + optionalPrefix + "x".repeat(exactPayload) + optionalSuffix;
-        assertEquals(InspectionReportCodec.MAX_DOCUMENT_BYTES, nearLimit.getBytes(java.nio.charset.StandardCharsets.UTF_8).length);
-        assertDoesNotThrow(() -> codec.decodeSingleFrame(InspectionReportCodec.PREFIX + nearLimit, report.key()));
-        String oversized = nearLimit.substring(0, nearLimit.length() - 2) + "xx" + optionalSuffix;
-        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(InspectionReportCodec.PREFIX + oversized, report.key()));
         var unencodable = report("x".repeat(InspectionReportCodec.MAX_DOCUMENT_BYTES + 1), 4, RecoveryRecommendation.ELIGIBLE_FOR_ONE_ATTEMPT);
         assertThrows(java.io.IOException.class, () -> codec.encode(unencodable), "oversized serialization must fail before any success frame is returned");
     }
 
-    @Test void day144RejectsAmbiguousDuplicateOrUnboundReportFrames() {
+    @Test void day144AcceptsAndRejectsDecoderBoundaryFrames() throws Exception {
         var requested = new InspectionReport.RequestedKey("policy-a", 1);
         String valid = InspectionReportCodec.PREFIX + "{\"schemaVersion\":1,\"key\":{\"policyId\":\"policy-a\",\"sourceVersion\":1},\"workPresent\":false,\"envelope\":null,\"controlRevision\":0,\"acknowledgedAt\":null,\"quarantinedAt\":null,\"quarantineReason\":null,\"receiptRelation\":\"ABSENT\",\"recommendation\":\"NOT_FOUND\",\"history\":[],\"historySupplementary\":true}";
-        assertEquals(RecoveryRecommendation.NOT_FOUND, assertDoesNotThrow(() -> codec.decodeSingleFrame(valid, requested)).recommendation());
+        assertEquals(RecoveryRecommendation.NOT_FOUND, codec.decodeSingleFrame(valid, requested).recommendation());
+        String validJson=valid.substring(InspectionReportCodec.PREFIX.length());
+        int baseBytes=validJson.getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+        String optionalPrefix=",\"futureOptional\":\"";
+        String optionalSuffix="\"}";
+        int fill=InspectionReportCodec.MAX_DOCUMENT_BYTES-baseBytes-optionalPrefix.length()-optionalSuffix.length()+1;
+        String nearLimit=validJson.substring(0,validJson.length()-1)+optionalPrefix+"x".repeat(fill)+optionalSuffix;
+        assertEquals(InspectionReportCodec.MAX_DOCUMENT_BYTES,nearLimit.getBytes(java.nio.charset.StandardCharsets.UTF_8).length);
+        assertEquals(RecoveryRecommendation.NOT_FOUND,codec.decodeSingleFrame(InspectionReportCodec.PREFIX+nearLimit,requested).recommendation());
         assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame("diagnostic only", requested));
         assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(valid + "\n" + valid, requested));
         assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(valid.replace("\"schemaVersion\":1", "\"schemaVersion\":1,\"schemaVersion\":1"), requested));
@@ -144,11 +150,11 @@ class InspectionReportContractAcceptanceTest {
         String deep = valid.substring(0, valid.length()-1) + ",\"futureOptional\":" + "[".repeat(20)+"0"+"]".repeat(20)+"}";
         assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(deep, requested));
         String missingField = valid.replace(",\"historySupplementary\":true", "");
-        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(InspectionReportCodec.PREFIX + missingField, requested));
+        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(missingField, requested));
         String nullRequiredEnum = valid.replace("\"recommendation\":\"NOT_FOUND\"", "\"recommendation\":null");
-        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(InspectionReportCodec.PREFIX + nullRequiredEnum, requested));
+        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(nullRequiredEnum, requested));
         String largeInteger = valid.replace("\"sourceVersion\":1", "\"sourceVersion\":9223372036854775808");
-        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(InspectionReportCodec.PREFIX + largeInteger, requested));
+        assertThrows(java.io.IOException.class, () -> codec.decodeSingleFrame(largeInteger, requested));
     }
 
     @Test void day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField() throws Exception {
