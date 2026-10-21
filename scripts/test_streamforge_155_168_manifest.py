@@ -13,6 +13,18 @@ BATCH = ROOT / "docs/reboot/continuation-155-168"
 
 
 class StreamForge155168ManifestTest(unittest.TestCase):
+    APPROVED_FDE_README_SUFFIX = (
+        b"FDE alignment: See [the North Star amendment]"
+        b"(../fde-north-star-amendment.md) and [reference-only alignment overlay]"
+        b"(../fde-alignment.json). Existing curriculum, prerequisites, budgets, "
+        b"DSA history and learner status remain unchanged; this adds purpose and "
+        b"evidence boundaries, not completion credit.\n"
+    )
+
+    @classmethod
+    def _has_exact_readme_extension(cls, actual: bytes, original: bytes) -> bool:
+        return actual == original + cls.APPROVED_FDE_README_SUFFIX
+
     @classmethod
     def setUpClass(cls):
         cls.manifest = json.loads((BATCH / "manifest.json").read_text(encoding="utf-8"))
@@ -94,8 +106,13 @@ class StreamForge155168ManifestTest(unittest.TestCase):
     def test_four_kib_field_limit_is_utf8_bytes_not_characters(self):
         self.assertEqual(4096, self.manifest["fixture"]["max_field_bytes"])
         self.assertNotIn("max_field_chars", self.manifest["fixture"])
-        self.assertEqual((BATCH / "README.md").read_bytes(),
-                         (BATCH / "streamforge-days-155-168-transfer-plan.md").read_bytes())
+        original_readme = (BATCH / "streamforge-days-155-168-transfer-plan.md").read_bytes()
+        updated_readme = (BATCH / "README.md").read_bytes()
+        self.assertTrue(self._has_exact_readme_extension(updated_readme, original_readme))
+        self.assertFalse(self._has_exact_readme_extension(
+            updated_readme, original_readme + b"\nmodified original content"))
+        self.assertFalse(self._has_exact_readme_extension(
+            updated_readme + b"unexpected suffix", original_readme))
         self.assertEqual((BATCH / "transfer-plan.json").read_bytes(),
                          (BATCH / "streamforge-days-155-168-transfer-plan.json").read_bytes())
 
