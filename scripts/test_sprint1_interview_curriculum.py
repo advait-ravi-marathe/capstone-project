@@ -98,11 +98,11 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             content = json.loads(path.read_text())
             for item in content.get("days", []):
                 days[int(item["day"])] = item["date"]
-        self.assertEqual(set(range(1, 197)), set(days) - set(range(197, 211)))
+        self.assertEqual(set(range(1, 197)), set(days) - set(range(197, 211)) - set(range(211, 225)))
         sprint = json.loads((ROOT / "docs/reboot/continuation-197-210/manifest.json").read_text())
         self.assertEqual(set(range(197, 211)), {int(item["day"]) for item in sprint["days"]})
         days.update({int(item["day"]): item["date"] for item in sprint["days"]})
-        self.assertEqual(set(range(1, 211)), set(days))
+        self.assertEqual(set(range(1, 225)), set(days))
         start = date(2026, 10, 24)
         for day, planned_date in days.items():
             self.assertEqual(start + timedelta(days=day - 1), date.fromisoformat(planned_date), day)

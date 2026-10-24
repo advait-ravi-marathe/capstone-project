@@ -10,11 +10,12 @@ class GeneratedContinuationTests(unittest.TestCase):
         after={p.name:p.read_bytes() for p in (OUT/"manifest.json",OUT/"days-211-224-transfer-plan.json",OUT/"scrum-owner-manifest.json")}
         self.assertEqual(before,after)
         m=json.loads(after["manifest.json"]); t=json.loads(after["days-211-224-transfer-plan.json"]); o=json.loads(after["scrum-owner-manifest.json"])
-        self.assertEqual(14,len(m["days"])); self.assertEqual(14,o["story_count"])
+        self.assertEqual(14,len(m["days"])); self.assertEqual(14,o["story_count"]); self.assertEqual(14,len(t["days"]))
         expected={"project_implementation_tests":1320,"ai_workflow_implementation_evaluation":240,"certification_labs_questions":50,"ai_concept_source_study":120,"certification_domain_study":90,"core_systems_security_cloud_study":280,"evidence":210}
         self.assertEqual(expected,m["engineering_allocation"])
         self.assertEqual(expected,t["budget"]["window_workstreams"])
-        self.assertEqual(expected,o["cards"][0]["engineering"]["allocation"] | {k:sum(c["engineering"]["allocation"][k] for c in o["cards"]) for k in expected})
+        self.assertEqual(expected,{k:sum(c["engineering"]["allocation"][k] for c in o["cards"]) for k in expected})
+        
         for day,card in zip(m["days"],o["cards"]):
             self.assertEqual(day["workstream_minutes"],card["engineering"]["allocation"])
             self.assertEqual(165,sum(day["workstream_minutes"].values()))
