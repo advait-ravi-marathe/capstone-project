@@ -1,5 +1,37 @@
+# Day 79 — 2027-01-10: Wire one singleton gate around the existing route
 
+## Contract
+
+**Learner-owned seam:** `LocalRuntimeConfiguration.policyRenewalReadStore`
+**Status:** Contract defined; learner work not attempted.
+
+### Expected behavior
+
+Create exactly one bounded singleton around the existing owner-scoped read-store bean. Preserve the exact delegate instance and existing SQL adapter, inject shared `PreviewAdmission` and `PreviewMetrics`, and validate the permit/pool/timeout policy during context startup. Do not instantiate one gate per request or replace the existing store.
+
+### Acceptance and expected TODO state
+
+The named selector verifies local properties, singleton identity, one decorator around `LocalApplicationComposition.Components.renewalReadStore()`, finite configuration, and fail-fast startup for invalid capacity. The expected learner TODO remains at the composition method.
+
+**Learner acceptance test:** `src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java`
+**Learner command:** `./mvnw -Plearner-tests -Dtest=PreviewRuntimeWiringAcceptanceTest test`
+**Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
+**Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
+
+## Practice allocation (85 minutes)
+
+Work within the existing synchronous Spring/JDBC path and Day 48 owner-scoped SQL. No broad component scan, duplicated query, request-scoped admission gate, asynchronous path, or new business route. Use the full existing practice block to wire and run the selector. Keep all three test observations: valid bounded configuration, singleton/delegate identity, and invalid configuration fails before serving requests. The selector can fail at the learner TODO; record the first failure without filling future TODOs.
+
+## Concept/course allocation (25 minutes)
+
+The saved catalog lists `Step 03 - Exploring Java Spring Framework Bean Scopes - Prototype and Singleton` (9:17) and `Step 04 - Comparing Prototype vs Singleton - Spring Framework Bean Scopes` (2:06), in28Minutes Official, Master Spring Boot 3 & Spring Framework 6 with Java (course 4993276; confirmed owned). They are partial foundations. The [Spring Framework bean scopes reference](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html) explains singleton sharing. Saved metadata does not claim the lessons were watched; no rewatch is required when readiness is demonstrated. All study fits in 25 minutes.
+
+**Assistant-provided architecture note:** [Day 79](../assistant-architecture-notes.md#day-79). It preserves the existing adapter and composes one singleton decorator around it. No capstone design proposal or retrospective justification is assigned.
+
+## Evidence allocation (10 minutes)
+
+Record exact command, context result, bean identity/delegate observations, changed paths, assistance, and first blocker in `evidence/continuation-71-84/day-79.json`. A passing wiring test is not a packaged route pass.
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+Daily DSA assignments, tests, reviews, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract has no DSA assignment.

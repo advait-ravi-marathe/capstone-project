@@ -28,8 +28,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -52,7 +52,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-71"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: evidence review no new lecture. No exact Hikari sizing/acquisition lecture was found. Work a two-admission/four-connection request timeline and mark which waits are finite.\n- Focused worked references: [HikariCP configuration knobs — maximumPoolSize and connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -74,8 +75,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -98,7 +99,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-72"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Hikari configuration validation lecture was found. Work a table requiring positive permits ≤ pool maximum and a finite 250–30000 ms acquisition timeout; keep acquisition timeout distinct from SQL/lock timeout.\n- Focused worked references: [HikariCP configuration knobs — connectionTimeout and maximumPoolSize](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -119,8 +121,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -160,6 +162,94 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
+        "interview_assignment": {
+          "day": 73,
+          "date": "2027-01-04",
+          "title": "Implement immediate two-permit preview admission",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "3 Questions - ThreadLocal vs Semaphore vs CountDownLatch",
+              "section_title": "Threads and Concurrency - Java Review (Interview) Guide",
+              "duration_seconds": 383,
+              "duration": "6:23",
+              "source_item_id": "49557431",
+              "course_id": "1535678"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Java Semaphore API",
+              "section": "tryAcquire",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q04",
+          "question_title": "Rate limiter: one client and one window",
+          "question_href": "../interview/question-bank.md#q04",
+          "pattern_refs": [
+            "../interview/pattern-library.md#rate-limiting",
+            "../interview/pattern-library.md#deterministic-time"
+          ],
+          "proposal_prompt": "Design one client’s fixed-window request budget, the boundary behavior at reset, and what happens when the process is restarted.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 40-minute engineering slice is limited to the named selector and seam below. The complete original acceptance remains the completion gate; partial work stays open under the deferred ID.",
+          "bounded_task": "Run the nonblocking admission acceptance selector to its first real learner boundary; inspect the two admitted leases and immediate third rejection. Do not change the domain gate or add a wait queue.",
+          "deferred_work_id": "S6-D73-MOCK-A",
+          "deferred_work": "Carry every unmet original assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; the interview mock and partial selector do not award completion.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=PreviewAdmissionAcceptanceTest test"
+          ],
+          "acceptance": "The selected acceptance assertions are authoritative for their boundary. Run until the first real TODO; record that result accurately. Do not substitute source-shape or toy reference evidence for learner completion.",
+          "evidence": "Record the question proposal only for this interview, exact selector/result or first blocker, assistance, and changed paths. No capstone proposal or architecture justification is required.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **3 Questions - ThreadLocal vs Semaphore vs CountDownLatch**; exact section title: **Threads and Concurrency - Java Review (Interview) Guide** (6:23).\n- Fit: partial foundation. The comparison is conceptual, not API training. Work two admitted callers and an immediately rejected third; only a lease owner releases its permit.\n- Focused worked references: [Java Semaphore API — tryAcquire](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).\n- Video viewing: 6:23 at 1×; the remaining 18:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -183,8 +273,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -224,7 +314,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-74"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 04 - Introduction to Atomic Classes - AtomicInteger**; exact section title: **More Concurrency with Concurrent Collections and Atomic Operations** (4:10).\n- Fit: partial foundation. AtomicInteger is only conceptual support. Show AtomicBoolean.compareAndSet guarding close so repeated or concurrent close invokes release exactly once.\n- Focused worked references: [Java AtomicBoolean API — compareAndSet](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/atomic/AtomicBoolean.html).\n- Video viewing: 4:10 at 1×; the remaining 20:50 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
@@ -246,8 +337,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -295,7 +386,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-75"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 05 - Basics of Handling Exceptions - Need for finally**; exact section title: **Introduction to Exception Handling in Java** (6:23).\n- Exact lesson title: **Step 11 - Throwing a Custom Exception - CurrenciesDoNotMatchException**; exact section title: **Introduction to Exception Handling in Java** (3:54).\n- Fit: partial foundation. Trace permit release on success, empty result and failure. Translate only CannotGetJdbcConnectionException; unrelated exceptions must retain their meaning, never be swallowed.\n- Focused worked references: [CannotGetJdbcConnectionException Javadoc — Class description and inheritance](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html).\n- Video viewing: 10:17 at 1×; the remaining 14:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
@@ -317,8 +409,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -366,6 +458,102 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
+        "interview_assignment": {
+          "day": 76,
+          "date": "2027-01-07",
+          "title": "Prove maximum concurrency and no permit leaks",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [
+            {
+              "course_id": "1535678",
+              "title": "Java Programming for Complete Beginners",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "3 Questions - ThreadLocal vs Semaphore vs CountDownLatch",
+              "section_title": "Threads and Concurrency - Java Review (Interview) Guide",
+              "duration_seconds": 383,
+              "duration": "6:23",
+              "source_item_id": "49557431",
+              "course_id": "1535678"
+            },
+            {
+              "title": "Step 11 - Executor Service - Returning a Future from Thread using Callable",
+              "section_title": "Introduction to Threads And Concurrency in Java",
+              "duration_seconds": 403,
+              "duration": "6:43",
+              "source_item_id": "9565858",
+              "course_id": "1535678"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Java CountDownLatch API",
+              "section": "await/countDown and happens-before",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q35",
+          "question_title": "Distributed rate limiting",
+          "question_href": "../interview/question-bank.md#q35",
+          "pattern_refs": [
+            "../interview/pattern-library.md#rate-limiting",
+            "../interview/pattern-library.md#data-store-choice"
+          ],
+          "proposal_prompt": "Design a distributed limiter across service instances: compare local counters, a shared store, and fail-open/fail-closed behavior under a store outage.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 40-minute engineering slice is limited to the named selector and seam below. The complete original acceptance remains the completion gate; partial work stays open under the deferred ID.",
+          "bounded_task": "Run the latch-controlled concurrency selector and inspect the actual maximum-entry and recovery assertions. Keep synchronization deterministic; do not replace the learner seam with sleeps.",
+          "deferred_work_id": "S6-D76-MOCK-B",
+          "deferred_work": "Carry every unmet original assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; the interview mock and partial selector do not award completion.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=PreviewAdmissionConcurrencyAcceptanceTest test"
+          ],
+          "acceptance": "The selected acceptance assertions are authoritative for their boundary. Run until the first real TODO; record that result accurately. Do not substitute source-shape or toy reference evidence for learner completion.",
+          "evidence": "Record the question proposal only for this interview, exact selector/result or first blocker, assistance, and changed paths. No capstone proposal or architecture justification is required.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **3 Questions - ThreadLocal vs Semaphore vs CountDownLatch**; exact section title: **Threads and Concurrency - Java Review (Interview) Guide** (6:23).\n- Exact lesson title: **Step 11 - Executor Service - Returning a Future from Thread using Callable**; exact section title: **Introduction to Threads And Concurrency in Java** (6:43).\n- Fit: partial foundation. Use latch barriers, join/get every Future, propagate worker failures, prove maximum two entries, recovery after failure and a complete second cycle. Avoid sleep-based race tests.\n- Focused worked references: [Java CountDownLatch API — await/countDown and happens-before](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html).\n- Video viewing: 13:06 at 1×; the remaining 11:54 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -388,8 +576,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -412,7 +600,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-77"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: recovery review no new lecture. No new feature or video. In the 25-minute study block, trace saturation → release → successful retry using deterministic test doubles; add no route or feature.\n- Focused worked references: [Java Semaphore API — permit release and reacquisition](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -434,8 +623,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -475,7 +664,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-78"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 12 - Implementing Generic Exception Handling for all Resources**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:29).\n- Fit: partial foundation. Map only busy/unavailable to a sanitized 503. Preserve other errors; never expose exception causes or internal messages.\n- Focused worked references: [RFC 9110 HTTP Semantics — Section 15.6.4, 503 Service Unavailable](https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable).\n- Video viewing: 11:29 at 1×; the remaining 13:31 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
@@ -496,8 +686,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -545,7 +735,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-79"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 03 - Exploring Java Spring Framework Bean Scopes - Prototype and Singleton**; exact section title: **Exploring Spring Framework Advanced Features** (9:17).\n- Exact lesson title: **Step 04 - Comparing Prototype vs Singleton - Spring Framework Bean Scopes**; exact section title: **Exploring Spring Framework Advanced Features** (2:06).\n- Fit: partial foundation. Trace one shared singleton gate around the existing adapter and a finite Hikari acquisition timeout. No duplicate SQL or request-scoped gate.\n- Focused worked references: [Spring Framework bean scopes — singleton scope](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html).\n- Video viewing: 11:23 at 1×; the remaining 13:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
@@ -570,8 +761,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -599,6 +790,82 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
+        "interview_assignment": {
+          "day": 80,
+          "date": "2027-01-11",
+          "title": "Record fixed-cardinality preview outcomes",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [],
+          "course_bridges": [],
+          "supporting_sources": [
+            {
+              "title": "Micrometer Timers",
+              "section": "short-duration latency and event count",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/timers.html"
+            },
+            {
+              "title": "Micrometer Naming",
+              "section": "Tag Values",
+              "url": "https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q33",
+          "question_title": "Analytics: event to metric",
+          "question_href": "../interview/question-bank.md#q33",
+          "pattern_refs": [
+            "../interview/pattern-library.md#measure-before-scaling",
+            "../interview/pattern-library.md#measure-before-scaling"
+          ],
+          "proposal_prompt": "Design a small operational metric from route outcomes and explain how labels stay bounded as traffic and customer IDs grow.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 40-minute engineering slice is limited to the named selector and seam below. The complete original acceptance remains the completion gate; partial work stays open under the deferred ID.",
+          "bounded_task": "Run the fixed-enum metric selector and verify its exact counter/timer counts and bounded tag set. Keep the metric names and allowed outcome tags from the contract.",
+          "deferred_work_id": "S6-D80-MOCK-C",
+          "deferred_work": "Carry every unmet original assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; the interview mock and partial selector do not award completion.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=PreviewMetricsAcceptanceTest test"
+          ],
+          "acceptance": "The selected acceptance assertions are authoritative for their boundary. Run until the first real TODO; record that result accurately. Do not substitute source-shape or toy reference evidence for learner completion.",
+          "evidence": "Record the question proposal only for this interview, exact selector/result or first blocker, assistance, and changed paths. No capstone proposal or architecture justification is required.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Micrometer timer/counter/cardinality lesson was found. Work fixed outcome tags, record timer/counter values on the actual route, and keep the meter count bounded; never tag with policy, owner or request IDs.\n- Focused worked references: [Micrometer Timers — short-duration latency and event count](https://docs.micrometer.io/micrometer/reference/concepts/timers.html); [Micrometer Naming — Tag Values](https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -625,8 +892,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -649,6 +916,77 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
+        "interview_assignment": {
+          "day": 81,
+          "date": "2027-01-12",
+          "title": "Show an accessible manual retry state",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [],
+          "course_bridges": [],
+          "supporting_sources": [
+            {
+              "title": "WAI-ARIA 1.2",
+              "section": "status role and alert role",
+              "url": "https://www.w3.org/TR/wai-aria-1.2/#status"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q08",
+          "question_title": "API gateway: safe error contract",
+          "question_href": "../interview/question-bank.md#q08",
+          "pattern_refs": [
+            "../interview/pattern-library.md#gateway-boundary",
+            "../interview/pattern-library.md#HTTP-boundary"
+          ],
+          "proposal_prompt": "Design a stable client error contract across a gateway/service boundary, including what safe details may be returned and which failures must remain opaque.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 40-minute engineering slice is limited to the named selector and seam below. The complete original acceptance remains the completion gate; partial work stays open under the deferred ID.",
+          "bounded_task": "Run the focused accessible recovery-state test; verify the status/alert, retained policy context, and that retry fires only after an explicit button action.",
+          "deferred_work_id": "S6-D81-MOCK-D",
+          "deferred_work": "Carry every unmet original assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; the interview mock and partial selector do not award completion.",
+          "acceptance_commands": [
+            "cd frontend && RUN_LEARNER_ACCEPTANCE=true npx vitest run src/components/RenewalPreviewBusyState.test.tsx"
+          ],
+          "acceptance": "The selected acceptance assertions are authoritative for their boundary. Run until the first real TODO; record that result accurately. Do not substitute source-shape or toy reference evidence for learner completion.",
+          "evidence": "Record the question proposal only for this interview, exact selector/result or first blocker, assistance, and changed paths. No capstone proposal or architecture justification is required.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no direct course match. No exact accessible manual-only retry lesson was verified. Sketch retained policy context and mutually exclusive UI state. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.\n- Focused worked references: [WAI-ARIA 1.2 — status role and alert role](https://www.w3.org/TR/wai-aria-1.2/#status).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
@@ -671,8 +1009,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -695,7 +1033,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-82"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Hikari exhaustion/recovery lab was found. Trace four held connections → finite acquisition failure → permit release and finally-close → recovered useful read; keep the test watchdog separate from correctness.\n- Focused worked references: [HikariCP configuration knobs — connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -717,8 +1056,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -751,7 +1090,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-83"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no direct course match. No new video. Use the supplied real PostgreSQL lock, packaged-browser busy UI and explicit-retry harness. React mocks do not prove browser/database behavior; preserve the fixed instructor/learner evidence distinction.\n- Focused worked references: [PostgreSQL explicit locking — ACCESS EXCLUSIVE lock](https://www.postgresql.org/docs/18/explicit-locking.html); [pg_locks system view — granted=false rows for waiting locks](https://www.postgresql.org/docs/18/view-pg-locks.html); [PostgreSQL monitoring statistics — pg_stat_activity wait_event_type and wait_event fields](https://www.postgresql.org/docs/18/monitoring-stats.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -776,8 +1116,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "retrieval_check": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -800,7 +1140,8 @@
           "catalog_verified_at": "2026-10-20",
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
-        }
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-84"
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: assessment review no new lecture. No feature or course. Explain capacity/acquisition/query-wait boundaries, safe error mapping and independent evidence axes using observed selector results; unresolved prerequisites become recovery work.\n- Focused worked references: [Java jcmd — thread dump diagnostics](https://docs.oracle.com/en/java/javase/21/docs/specs/man/jcmd.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -812,6 +1153,6 @@
     "engineering": 120
   },
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
   }
 }

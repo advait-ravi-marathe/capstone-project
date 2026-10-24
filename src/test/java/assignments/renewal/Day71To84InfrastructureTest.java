@@ -65,4 +65,72 @@ class Day71To84InfrastructureTest {
         assertTrue(Files.readString(Path.of("src/main/resources/application-local.properties"))
                 .contains("spring.datasource.hikari.connection-timeout=1000"));
     }
+
+    @Test void suppliedArchitectureAndInterviewAssignmentsAreCompleteAndSynchronized() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode stories = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        String questionBank = Files.readString(Path.of("docs/reboot/interview/question-bank.md"));
+        String notes = Files.readString(BASE.resolve("assistant-architecture-notes.md"));
+        Set<Integer> expectedMockDays = Set.of(73, 76, 80, 81);
+        Set<Integer> actualMockDays = new HashSet<>();
+        int firstWeekMocks = 0;
+        int secondWeekMocks = 0;
+
+        for (int i = 0; i < 14; i++) {
+            JsonNode day = manifest.path("days").get(i);
+            JsonNode card = stories.path("cards").get(i);
+            int number = 71 + i;
+            String notePath = day.path("engineering").path("assistant_architecture_note").asText();
+            assertEquals(notePath, card.path("engineering").path("assistant_architecture_note").asText());
+            assertTrue(notePath.endsWith("assistant-architecture-notes.md#day-" + number));
+            assertTrue(notes.contains("<a id=\"day-" + number + "\"></a>"));
+            JsonNode studyAllocation = day.path("engineering").path("concept_course").path("allocation_minutes");
+            assertEquals(3, studyAllocation.size(), "study categories must stay bounded to the agreed 25-minute block");
+            assertEquals(10, studyAllocation.path("assistant_architecture_note").asInt());
+            assertEquals(25, studyAllocation.path("focused_reading").asInt()
+                    + studyAllocation.path("assistant_architecture_note").asInt()
+                    + studyAllocation.path("retrieval_check").asInt());
+            assertFalse(studyAllocation.has("design_sketch"), "capstone proposal/sketch work is not assigned");
+            Path contractPath = Path.of(day.path("contract_file").asText());
+            String contract = Files.readString(contractPath);
+            assertTrue(contract.length() > 700, "day " + number + " must have a substantive contract");
+            assertTrue(contract.contains("Assistant-provided architecture note"), "day " + number);
+            assertFalse(contract.contains("**Design sketch:**"), "day " + number);
+            assertTrue(day.path("course_learning").path("videos_watched").asBoolean() == false,
+                    "course metadata is not evidence of viewing for day " + number);
+
+            JsonNode canonicalAssignment = day.path("engineering").path("interview_assignment");
+            JsonNode ownerAssignment = card.path("engineering").path("interview_assignment");
+            if (expectedMockDays.contains(number)) {
+                actualMockDays.add(number);
+                assertEquals(canonicalAssignment, ownerAssignment, "mock assignment sync for day " + number);
+                assertEquals("45_minute_mock", canonicalAssignment.path("mode").asText());
+                assertEquals(45, canonicalAssignment.path("duration_minutes").asInt());
+                assertEquals(85, canonicalAssignment.path("practice_total_minutes").asInt());
+                assertEquals(45, canonicalAssignment.path("mock_minutes").asInt());
+                assertEquals(40, canonicalAssignment.path("eai_slice_minutes").path("preconditions_and_prediction").asInt()
+                        + canonicalAssignment.path("eai_slice_minutes").path("implementation_or_observation").asInt()
+                        + canonicalAssignment.path("eai_slice_minutes").path("selector_and_blocker_record").asInt());
+                assertEquals("system_design_interview_question_only", canonicalAssignment.path("proposal_scope").asText());
+                assertEquals("assistant_supplied", canonicalAssignment.path("capstone_architecture").asText());
+                assertTrue(contract.contains("interview question only"));
+                assertTrue(contract.contains(canonicalAssignment.path("deferred_work_id").asText()));
+                assertTrue(Files.isRegularFile(Path.of(day.path("engineering").path("acceptance_test_path").asText())),
+                        "missing learner selector for day " + number);
+                assertTrue(questionBank.contains("<a id=\"" + canonicalAssignment.path("question_id").asText().toLowerCase() + "\"></a>"));
+                int phases = 0;
+                for (JsonNode phase : canonicalAssignment.path("mock_phases")) phases += phase.path("minutes").asInt();
+                assertEquals(45, phases);
+                if (number <= 77) firstWeekMocks++; else secondWeekMocks++;
+            } else {
+                assertTrue(canonicalAssignment.isMissingNode());
+                assertTrue(ownerAssignment.isMissingNode());
+            }
+        }
+        assertEquals(expectedMockDays, actualMockDays);
+        assertEquals(2, firstWeekMocks);
+        assertEquals(2, secondWeekMocks);
+        assertTrue(questionBank.contains("<a id=\"q36\"></a>"));
+    }
 }

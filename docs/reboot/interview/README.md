@@ -16,3 +16,8 @@ For the assigned system-design question sessions only, save the learner's propos
 ## Sprint 5 Days 57–70
 
 See the [Sprint 5 interview sessions and engineering tasks](sprint5-session-scope.md) and its synchronized [curriculum export](../continuation-57-70/fde57-70-v2-curriculum.json).
+
+## Sprint 6 Days 71–84
+
+See the [Sprint 6 interview schedule and daily acceptance map](sprint6-session-scope.md).
+Capstone architecture decisions are supplied in the [Days 71–84 notes](../continuation-71-84/assistant-architecture-notes.md); learner proposals remain limited to the assigned interview questions.

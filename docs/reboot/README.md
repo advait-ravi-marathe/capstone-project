@@ -184,4 +184,4 @@ The isolated [Days 99–112 contracts](continuation-99-112/README.md) add event-
 
 ## Separate DSA track
 
-DSA assignments, implementation, schedules, tests, and attempt history are maintained only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This repository contains no DSA assignment or tracker.
+DSA assignments, implementation, schedules, tests, and attempt history are maintained only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This repository contains no DSA assignment or tracker.
