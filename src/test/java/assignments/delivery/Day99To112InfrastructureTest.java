@@ -189,7 +189,7 @@ class Day99To112InfrastructureTest {
         assertTrue(restart.contains("destroyForcibly()") && restart.contains("DurableDeliveryChildMain.class.getName()")
                 && restart.contains("awaitSignal"), "fresh-JVM harness has an explicit boundary and confirms termination");
         String packaged = Files.readString(Path.of("src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java"));
-        assertTrue(packaged.contains("LocalPackagedRuntimeProcess.start(postgres, \"2028-01-25T12:00:00Z\")"),
+        assertTrue(packaged.contains("Sprint8PackagedRuntimeProcess.start(postgres, \"2028-01-25T12:00:00Z\")"),
                 "renewal preview uses a deterministic fixed clock inside the seeded policy's window");
         assertTrue(packaged.contains("/api/policies"));
         assertTrue(packaged.contains("--coverstory.delivery.run-once"));
@@ -252,7 +252,7 @@ class Day99To112InfrastructureTest {
                 && pom.contains("assignments.sprint8.Sprint8LocalApplication")
                 && pom.contains("<classifier>sprint8</classifier>"));
         assertTrue(script.contains("-Plocal-app,sprint8-local")
-                && script.contains("package-sprint8-demo.sh")
+                && script.contains("build_mode=\"incremental\"")
                 && script.contains("sourceContentSha256")
                 && script.contains("-DskipTests package"),
                 "the no-clean option repackages Sprint 8 without deleting the earlier classifier");
