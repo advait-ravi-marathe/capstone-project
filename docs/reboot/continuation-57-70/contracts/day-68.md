@@ -11,18 +11,24 @@ Playwright launches the built executable JAR, opens the canonical packaged route
 
 ## Acceptance and expected TODO state
 
-The fixed browser selectors now launch the packaged JAR and drive real UI controls. Preview and issue/readback/replay are separate checks. Around the read-only preview, compare the full ordered contents of `training_policy_lifecycle`, `training_policy_lifecycle_event` (including versions), and `training_policy_idempotency`; a row count alone cannot detect updates or altered history. They are expected to fail while the UI or upstream domain TODOs remain; no 500 is a pass. Day 69 owns the separate foreign-owner 404 expectation.
+**Acceptance harness:** prerequisite-gated packaged learner proof
 
-**Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
-**Acceptance selectors:** `day68PackagedUiPreviewIsReadOnly`; `day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce`
-**Learner acceptance commands:**
+Requires a freshly built Sprint5 classifier/receipt. Complete expected preview and issue projections, numeric amount type/value, exact declared effective date, request replay identity, rendered values, row/event/receipt semantics, and full DB snapshots at before-issue/after-issue/after-read/after-replay barriers. UI/domain TODOs remain learner gates.
+
+**Acceptance selector:** `day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce`
+**Acceptance source:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
+**Command:**
 
 ```sh
-CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test
-CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test
+scripts/package-sprint5-demo.sh
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test
 ```
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+
+Stop at the first actual prerequisite TODO and record the reached boundary. A valid positive path is not green merely because its negative controls passed.
+
+The package command must succeed immediately before the packaged selector. Artifact identity is checked by the stage receipt.
+
 ## Learner-first task proposal (5 minutes within the 85-minute practice block)
 
 Before opening the browser, write independent expected preview and issue projections from the approved fixture, statuses 201/200/200, same request identity, visible values, and the allowed database delta after each action.
@@ -31,7 +37,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The current issue selector compares database state around the entire issue/read/replay sequence, not at each action boundary; it mainly checks IDs, statuses, counts, and old-row preservation rather than a complete independent semantic projection and rendered values. Preview similarly uses a substring check. These gaps remain open until corresponding assertions and actual packaged evidence exist.
+Requires a freshly built Sprint5 classifier/receipt. Complete expected preview and issue projections, numeric amount type/value, exact declared effective date, request replay identity, rendered values, row/event/receipt semantics, and full DB snapshots at before-issue/after-issue/after-read/after-replay barriers. UI/domain TODOs remain learner gates. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

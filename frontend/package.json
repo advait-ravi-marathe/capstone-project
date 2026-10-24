@@ -10,7 +10,8 @@
     "test": "vitest run && node --test e2e/api-capture-merge.test.mjs",
     "test:local": "RUN_LEARNER_ACCEPTANCE=true vitest run src/__tests__/LocalCoverStoryApp.test.tsx",
     "test:watch": "vitest",
-    "test:learner": "RUN_LEARNER_ACCEPTANCE=true vitest run"
+    "test:learner": "RUN_LEARNER_ACCEPTANCE=true vitest run",
+    "test:sprint5": "RUN_LEARNER_ACCEPTANCE=true vitest run src/__tests__/LocalCoverStoryApp.test.tsx -t 'offers only fixed synthetic owners|uses the same-origin session and shows read-only preview as reference only|issues, reads back and replays with the same client request ID|returns explicit error states for malformed and rejected responses|locks a pending issue, does not retry a failed POST, and handles bodyless logout|clears preview on owner change and ignores the late prior-owner response'"
   },
   "dependencies": {
     "react": "19.3.1",

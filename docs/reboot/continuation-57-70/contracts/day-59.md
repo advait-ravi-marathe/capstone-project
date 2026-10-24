@@ -7,21 +7,27 @@
 
 ### Expected behavior
 
-Starting the packaged local app twice applies pending schema versions only; it preserves the synthetic policy row and history. No user database is migrated.
+A fresh disposable PostgreSQL database applies only V001–V003, then a second Flyway migrate is a no-op. An inserted sentinel and the exact successful version/checksum history remain unchanged. No user database is migrated.
 
 ## Acceptance and expected TODO state
 
-No Day 59 target-3 selector is installed in this checkout. The only existing class-level method runs the current five-migration chain; it is context only and cannot close the target-3 task.
+**Acceptance harness:** supplied Sprint5-scoped verification
 
-**Acceptance test:** `src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java`
-**Existing infrastructure selector:** `versionedBootstrapIncludesEventLogDeliveryAndIsRepeatableAndNonDestructive` (V001–V005; not target 3)
-**Context command:** `./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#versionedBootstrapIncludesEventLogDeliveryAndIsRepeatableAndNonDestructive test`
-**Open acceptance gap:** additive isolated target-3 selector with first run=3, repeat=0, unchanged history and sentinel. Do not call the context command a Day 59 pass.
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+A fresh embedded PostgreSQL database migrates V001–V003 exactly once (3), retains a sentinel and exact successful version/checksum history, then reports 0 migrations and unchanged rows/history. The separate V001–V005 test remains intact.
+
+**Acceptance selector:** `day59VersionedBootstrapIsRepeatableAndNonDestructive`
+**Acceptance source:** `src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java`
+**Command:**
+
+```sh
+./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test
+```
+
+**Deferred-work key:** `S5-D59-EXPLAIN` — Record the actual migration trace and explain target/version/history evidence; no learner migration implementation is assigned.
+
 ## Learner task — explain/debug acceptance
 
-Run the packaged migration verification; inspect V001–V003 and explain migration order, checksums, the second no-op migrate, and why the sentinel row survives. Record how a future schema change would be additive.
+Run the isolated target-3 selector; inspect V001–V003 and explain migration order, checksums, the second no-op migrate, and why the sentinel row survives. The five-migration V001–V005 test is a separate later-slice check.
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
@@ -29,11 +35,11 @@ Capture the requested trace and explanation in the day evidence file; use `learn
 
 Before opening migration guidance, predict first-run migration count, repeat-run count, and whether a reader-created sentinel and schema history should change. Identify which existing test is five migrations and why it cannot prove target 3.
 
-Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D59-TARGET3**.
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. The selector is instructor-provided scaffold evidence; explain the target-3 migration trace without claiming an unobserved run.
 
 ## Selector limits and open evidence
 
-- The existing selector applies V001–V005. It does not run the required fresh target-3 database experiment, assert three applied migrations then zero, or compare target-3 history and sentinel rows.
+A fresh embedded PostgreSQL database migrates V001–V003 exactly once (3), retains a sentinel and exact successful version/checksum history, then reports 0 migrations and unchanged rows/history. The separate V001–V005 test remains intact. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

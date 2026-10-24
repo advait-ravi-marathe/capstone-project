@@ -125,7 +125,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement fail-closed readiness: missing or failed prior evidence selects recovery inside the fixed 85-minute implementation/testing allocation.",
         "learner_evidence_mode": "implementation_acceptance",
         "interview_assignment": {
@@ -180,11 +180,9 @@
           "acceptance_commands": [
             "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test"
           ],
-          "acceptance": "The fixed acceptance selector is the direct gate. Flags summarize receipts; they do not prove that a person actually ran the prerequisite tests.",
+          "acceptance": "Acceptance covers empty and null maps, missing/false/null required flags in both directions, unrelated true flags, both required flags true, and unchanged input. The native learner seam remains intentionally TODO-red until implemented; flags do not authenticate real evidence.",
           "evidence": "Save the prediction, exact selector/result, first failing case, and changed paths.",
-          "open_acceptance_gaps": [
-            "The fixed selector checks false day-55 with day-56 true, missing day-55 with day-56 true, and both true only. It does not cover empty input, null required values, unrelated true keys, or both missing directions; those required cases remain open."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,
@@ -317,7 +315,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Run the scaffold selector, trace LocalCoverStoryApplication → LocalRuntimeConfiguration → LocalApplicationComposition, and explain how Clock, DataSource and adapters reach the service. Add a short diagram/teach-back; do not reimplement instructor-provided setup.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
@@ -416,14 +414,16 @@
           "deferred_work_id": "S5-D58-TRACE",
           "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
           "acceptance_commands": [
-            "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
           ],
-          "acceptance": "Run the named selector only as scaffold evidence; verify the supplied wiring and instance identity when the bounded context starts. The current LocalApplicationAcceptanceTest uses the application-wide later runtime and may stop at a future TODO; record that exact blocker. Passing a source-shape/infrastructure test alone is not learner trace evidence.",
+          "acceptance": "The selector boots the explicit Sprint5LocalApplication and original two-argument composition. It asserts supplied Clock/DataSource identity and absence of future runtime beans; it does not use LocalCoverStoryApplication or solve learner behavior.",
           "evidence": "Save the initial architecture proposal, four-arrow composition trace, exact command/result or blocker, and learner_changed_paths (use [] for read-only work).",
-          "open_acceptance_gaps": [
-            "The selected test boots the application-wide LocalCoverStoryApplication and may reach later runtime TODOs before establishing an isolated Sprint 5 context. No bounded stage context is installed in this checkout."
-          ]
-        }
+          "open_acceptance_gaps": []
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java"
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -538,7 +538,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "existing_five_migration_infrastructure_selector; target3_acceptance_not_installed",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Inspect the immutable V001–V003 target-3 lifecycle and compare it with the existing V001–V005 infrastructure selector. Preserve target-3 verification as open until an additive isolated test is installed; do not edit migrations or claim five-migration evidence proves target 3.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
@@ -575,20 +575,18 @@
           "practice_total_minutes": 85,
           "implementation_scope": "Inspect the immutable V001–V003 sequence and the real migration test. Explain the target-3 experiment required by the contract; do not edit migrations.",
           "scope_boundary": "No migration rewrite, reset, or claim that the existing V001–V005 selector proves the proposed target-3 gate.",
-          "deferred_work_id": "S5-D59-TARGET3",
-          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "deferred_work_id": "S5-D59-EXPLAIN",
+          "deferred_work": "Record the actual migration trace and explain target/version/history evidence; no learner migration implementation is assigned.",
           "acceptance_commands": [
-            "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#versionedBootstrapIncludesEventLogDeliveryAndIsRepeatableAndNonDestructive test"
+            "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
           ],
-          "acceptance": "Run the actual class/method below as infrastructure context only. It runs V001–V005 and is not the Day59 target-3 acceptance. Target-3 remains open until an additive isolated selector exists and passes.",
+          "acceptance": "Fresh embedded PostgreSQL target 3 applies V001–V003 (3 migrations), preserves a sentinel and exact history/checksum rows, then applies 0 on repeat. The separate existing five-migration test remains unchanged.",
           "evidence": "Save expected versus actual migration/history/sentinel results, exact command and its five-migration limit, and changed paths (usually []).",
-          "open_acceptance_gaps": [
-            "The existing selector applies V001–V005. It does not run the required fresh target-3 database experiment, assert three applied migrations then zero, or compare target-3 history and sentinel rows."
-          ]
+          "open_acceptance_gaps": []
         },
         "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#versionedBootstrapIncludesEventLogDeliveryAndIsRepeatableAndNonDestructive test"
+          "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
         ]
       },
       "mandatory_new_problem": false,
@@ -643,7 +641,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -710,7 +708,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_upstream_day48_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement owner-scoped policy readback and prove read requests do not change policy/event/idempotency row counts. Resolve the existing Day 48 read adapter TODO as a prerequisite.",
         "learner_evidence_mode": "implementation_acceptance",
         "interview_assignment": {
@@ -807,13 +805,11 @@
           "deferred_work_id": "S5-D60-READ",
           "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
           "acceptance_commands": [
-            "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
           ],
-          "acceptance": "Use the existing Day 60 selector; it currently tests renewalReadStore and the earlier Day 48 seam, so it does not alone prove the Day 60 policyReadStore method. Keep the Day 60 implementation open until a direct-call assertion for that method is available and passes. Do not report end-to-end acceptance from a green unrelated read.",
+          "acceptance": "The selector first calls the assigned JdbcPolicyReadStore directly. It checks the seeded issued row, distinct owner/amount/date fixtures including a non-null cancellation date, foreign and missing rows, SQL-looking literal IDs, and complete lifecycle/event/idempotency snapshots after each read. Its first direct assertion reaches the Day60 TODO.",
           "evidence": "Save the design proposal, SQL ownership predicate, exact command/result or first upstream TODO, tables compared, and changed paths.",
-          "open_acceptance_gaps": [
-            "The selected test calls renewalReadStore, not the Day 60 policyReadStore method. It compares policy count rather than complete policy/event/receipt rows and cannot close the direct Day 60 seam."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,
@@ -966,7 +962,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Run the security selector and trace anonymous access, fixed synthetic session selection, CSRF enforcement, and the loopback guard. Explain which filter/handler owns each observed response; this is inspection of supplied setup, not a security-chain TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
@@ -1041,14 +1037,16 @@
           "deferred_work_id": "S5-D61-TRACE",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
-            "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
           ],
-          "acceptance": "The named selector is a broad application test and can be blocked by later runtime TODOs. It currently covers only part of the required trace; report the tested and untested branches separately.",
+          "acceptance": "The bounded Sprint5 context exercises anonymous handler/API behavior, CSRF on session selection, static root, synthetic selection, saved session on a subsequent request, rotation, invalid token and invalid owner inputs. It excludes future LocalRuntimeConfiguration TODOs.",
           "evidence": "Save predictions, route/filter/handler trace, exact result or upstream blocker, and changed paths (use [] for inspection).",
-          "open_acceptance_gaps": [
-            "The selector checks anonymous preview denial, root availability, one synthetic session and one unknown owner. It does not prove saved-context reuse, owner-b, session rotation/logout, invalid-CSRF handler non-entry, or the complete route matrix. Its broad context may hit later TODOs."
-          ]
-        }
+          "open_acceptance_gaps": []
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java"
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1137,7 +1135,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1202,7 +1200,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement authenticated owner resolution so request-supplied owner IDs cannot override the authenticated synthetic principal; preserve the fixed owner allowlist.",
         "learner_evidence_mode": "implementation_acceptance",
         "interview_assignment": {
@@ -1263,13 +1261,11 @@
           "deferred_work_id": "S5-D62-OWNER",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
-            "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
           ],
-          "acceptance": "Run the named selector. It currently checks only authenticated owner-a and a forged owner-b; it does not cover both identities or the reject matrix, so a pass is partial evidence until the full contract cases are asserted.",
+          "acceptance": "Both resolver overloads are checked for owner-a and owner-b, forged requested owners, null/unauthenticated/anonymous/unknown/blank/null-name principals, and invalid principals with either requested owner. The learner TODO remains the direct failure boundary.",
           "evidence": "Save prediction, tested states/overloads, exact command/result, and changed paths.",
-          "open_acceptance_gaps": [
-            "The selector checks authenticated owner-a and a forged owner-b argument only. Owner-b, null/unauthenticated/anonymous/unknown/blank identities, and both overloads across the rejection matrix remain unproven."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,
@@ -1399,7 +1395,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement the recovery/security checkpoint result within the existing 85-minute block; trace one rejected unauthenticated request from route through security and record the recovery decision.",
         "learner_evidence_mode": "implementation_acceptance",
         "interview_assignment": {
@@ -1447,11 +1443,9 @@
           "acceptance_commands": [
             "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
           ],
-          "acceptance": "The existing selector covers the published fail-closed/budget cases; report actual evidence and time as they stand, never infer completion from a mock or forecast.",
+          "acceptance": "The selector checks missing/null/false/true security evidence, 0/60/85-minute preservation, invalid -1/86-minute rejection, and no new work in either branch. Missing/null evidence is fail-closed. The learner seam remains explicitly TODO-red until implemented.",
           "evidence": "Save the actual flag source, remaining minutes, selector result, blocker/recovery, and changed paths.",
-          "open_acceptance_gaps": [
-            "The selector covers only day-62-security=false with 85 minutes. Missing/null/true evidence, other values in 0..85, out-of-range rejection, and both no-new-work branches remain unproven by this method."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,
@@ -1587,7 +1581,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Run the adapter selector and trace POST /api/policies from HTTP mapping through owner resolution, idempotency status decision, lifecycle service, and response. Explain why atomicity/idempotency belongs in the domain service; this supplied adapter is not a learner TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
@@ -1662,14 +1656,16 @@
           "deferred_work_id": "S5-D64-ADAPTER",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
-            "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
           ],
-          "acceptance": "The selected method currently verifies only mocked create delegation and starts the broad app context. It is not MVC mapping, replay/conflict coverage, or atomicity evidence. Record these limits and preserve the selector result accurately.",
+          "acceptance": "The supplied adapter selector verifies 201 create with one persistence call, 200 replay with zero persistence, 409 rejection with zero persistence, and 401 with no receipt/service/storage calls. This is mocked delegation evidence, not database atomicity.",
           "evidence": "Save branch predictions, collaborator call counts actually observed, exact command/result, and changed paths (use [] for read-only tracing).",
-          "open_acceptance_gaps": [
-            "The selected test directly invokes the controller with mocks and covers create 201 delegation only. It does not exercise HTTP mapping, unauthenticated 401, replay 200, conflict 409, zero-persist branches, or database atomicity."
-          ]
-        }
+          "open_acceptance_gaps": []
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java"
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1819,7 +1815,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
@@ -1884,14 +1880,16 @@
           "deferred_work_id": "S5-D65-CSRF",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
-            "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
           ],
-          "acceptance": "The existing selector currently sends only an anonymous request without a token and compares a policy count; it does not establish the planned matrix or full-row equality. Treat it as partial source/test evidence only.",
+          "acceptance": "The bounded real security chain checks authenticated missing-token and wrong-token 403 with zero controller/service calls and unchanged complete policy/event/idempotency rows; anonymous plus valid token is 401. The valid session+valid token positive control reaches actual issuance and remains conditional on earlier learner domain seams.",
           "evidence": "Save the prediction matrix, actual statuses/handler reachability, complete snapshots where exercised, blocker and changed paths.",
-          "open_acceptance_gaps": [
-            "The selected test sends an anonymous POST without a token and compares only policy count. It does not establish authenticated missing/wrong-token denial, anonymous plus valid-token behavior, handler/service non-entry, or complete three-table snapshots."
-          ]
-        }
+          "open_acceptance_gaps": []
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java"
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1970,7 +1968,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "acceptance_commands": [
-          "npm --prefix frontend run test:local"
+          "npm --prefix frontend run test:sprint5"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -2032,7 +2030,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement the accessible normal React route at / with typed same-origin session, preview, issue, readback and replay flows; pass the fixed UI acceptance suite.",
         "learner_evidence_mode": "implementation_acceptance",
         "interview_assignment": {
@@ -2124,13 +2122,11 @@
           "deferred_work_id": "S5-D66-UI",
           "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
           "acceptance_commands": [
-            "npm --prefix frontend run test:local"
+            "npm --prefix frontend run test:sprint5"
           ],
-          "acceptance": "Run npm --prefix frontend run test:local. It is the actual existing selector and includes later behavior; do not claim a Sprint5-only subset. Day 66 is incomplete until its entire existing required session/preview/issue/readback/replay acceptance passes. Record any prerequisite blocker; 500 is failure.",
+          "acceptance": "Use the explicit Sprint5-only Vitest selector, which retains the original session/preview/issue/readback/replay gate and adds malformed/non-JSON/network errors, pending action, logout 204/CSRF, late owner response and no automatic retry. Later busy-capacity coverage remains in test:local and is not a Day66 prerequisite.",
           "evidence": "Save the proposal before references, actual selector result/blocker, response shapes observed, and changed paths. No post-hoc design essay.",
-          "open_acceptance_gaps": [
-            "The available test:local suite is not a separate Sprint 5 selector and includes later behavior. Component tests alone do not prove the packaged browser/JAR/PostgreSQL flows; Day 66 remains open until all original required flows pass."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,
@@ -2255,7 +2251,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
@@ -2307,16 +2303,20 @@
           "deferred_work_id": "S5-D67-PACKAGE",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
-            "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test",
-            "scripts/package-local-demo.sh",
-            "scripts/local-demo.sh"
+            "scripts/package-sprint5-demo.sh",
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test"
           ],
-          "acceptance": "The existing selector only inspects source shape; it does not inspect a fresh JAR or launch it. Use package script then launcher and record exact results. If setup is unavailable, stop and mark the runtime observation blocked.",
+          "acceptance": "The source-shape test remains separate. The scoped package selector requires a fresh classifier JAR plus matching content receipt and checks actual manifest/assets/process/loopback/route behavior and bounded cleanup. Day 67 is observation evidence, not a learner implementation. Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion.",
           "evidence": "Save source/artifact identity, package and launch commands, actual HTTP/PID/cleanup result or setup blocker, and changed paths.",
           "open_acceptance_gaps": [
-            "The named Java selector inspects source shape; it does not inspect a fresh JAR, launch the packaged process, fetch assets, or prove cleanup. Those observations require the package and launcher commands and actual learner evidence."
+            "Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion."
           ]
-        }
+        },
+        "acceptance_commands": [
+          "scripts/package-sprint5-demo.sh",
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java"
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -2382,8 +2382,9 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
+          "scripts/package-sprint5-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -2450,7 +2451,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Use real UI controls against the packaged JAR for preview, issue, readback and same-key replay. Around every preview/readback flow, compare complete policy rows, lifecycle events/versions and idempotency records; for issuance, verify existing rows stay byte-stable and only one policy, event and idempotency record are added. Record actual blockers; HTTP 500 is failure, not acceptance.",
         "learner_evidence_mode": "explain_debug",
         "acceptance_selector": "day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce",
@@ -2514,14 +2515,13 @@
           "deferred_work_id": "S5-D68-INTEGRATION",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
-            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
-            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
+            "scripts/package-sprint5-demo.sh",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
           ],
-          "acceptance": "The exact selectors exist but remain conditional on the learner UI and prior owner/domain gates. A passing component test does not prove packaged integration; preserve preview and issue selectors separately.",
+          "acceptance": "The tests require the fresh stage JAR and package receipt. They compare complete independent preview/issue projections, rendered values, request identity, and full database snapshots at pre-issue, post-issue, after-read and post-replay barriers; intermediate reads/replays must be write-free. Actual controls and prior learner/domain gates remain required.",
           "evidence": "Save expected values before execution, actual API/DOM/DB observations per action, exact commands/results/blocker, and changed paths.",
-          "open_acceptance_gaps": [
-            "The current issue selector compares database state around the entire issue/read/replay sequence, not at each action boundary; it mainly checks IDs, statuses, counts, and old-row preservation rather than a complete independent semantic projection and rendered values. Preview similarly uses a substring check. These gaps remain open until corresponding assertions and actual packaged evidence exist."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,
@@ -2603,7 +2603,8 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
+          "scripts/package-sprint5-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -2668,7 +2669,7 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Start the packaged app before taking the initial snapshot so Flyway has applied migrations; restart it against the same disposable database. Verify session invalidation, stable preview JSON, owner isolation, and unchanged complete policy rows, lifecycle events/versions and idempotency records around preview, owner switching and logout.",
         "learner_evidence_mode": "explain_debug",
         "acceptance_selector": "day69PreviewIsStableAcrossPackagedRestartAndLogout",
@@ -2764,13 +2765,12 @@
           "deferred_work_id": "S5-D69-RESTART",
           "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
           "acceptance_commands": [
-            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
+            "scripts/package-sprint5-demo.sh",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
           ],
-          "acceptance": "Use the existing Day 69 packaged selector against the fresh artifact prescribed by its runner. If it stops at the Day 66 UI TODO or an upstream dependency, keep the restart item open. An already-invalid cookie does not prove restart invalidation.",
+          "acceptance": "The bounded browser journeys separate logout from restart. Logout starts with populated private preview state and checks immediate clearing plus 401 while the process remains alive. Restart uses the exact cookie bytes saved and verified active immediately before stopping, a different PID, same database/fixed clock, then 401; reselected preview matches the independent complete projection. Every action has a full-row DB observation barrier.",
           "evidence": "Save the proposal, pre-stop active-session observation, process IDs, status/snapshot results, exact blocker, and changed paths; never record cookies or tokens.",
-          "open_acceptance_gaps": [
-            "The current browser journey combines owner switch/logout with restart-cookie capture, so the saved cookie may already be invalid before process shutdown. It does not establish the exact saved sample is active immediately before stop, separate logout from restart, or assert immediate UI clearing from populated private state."
-          ]
+          "open_acceptance_gaps": []
         }
       },
       "mandatory_new_problem": false,

@@ -11,14 +11,20 @@ A readiness check accepts only actual evidence for required prior milestones. If
 
 ## Acceptance and expected TODO state
 
-The fixed learner selector is installed and currently fails at this day’s explicit TODO. Do not implement learner behavior in the starter or mark the contract complete.
-Fixed acceptance tests verify the observable contract and remain learner-owned. Do not implement behavior in the starter or weaken assertions. Until the named learner seam is completed, the learner selector is expected to fail at that explicit TODO. Instructor infrastructure checks are separate and should pass. Record the real command, exit code, output, TODO reached and learner-owned paths in `evidence/continuation-57-70/day-57.json`. A green infrastructure harness does not prove learner behavior.
+**Acceptance harness:** learner-owned bounded contract
 
-**Acceptance test:** `src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java`
+Checks empty/null inputs, both missing directions, false/null required evidence, unrelated true flags, both required flags, and preserves inputs. The learner-owned gate remains TODO-red until implemented; a flag map does not authenticate evidence.
+
 **Acceptance selector:** `day57MissingOrFailedPriorEvidenceReplacesNewWork`
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test
+```
+
+The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
+
 ## Learner-first task proposal (5 minutes within the 85-minute practice block)
 
 Before opening the readiness implementation or a worked answer, predict the outcomes for missing day-55, missing day-56, false/null flags, both true, and unrelated true keys. State what flags can and cannot prove about evidence authenticity.
@@ -27,7 +33,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The fixed selector checks false day-55 with day-56 true, missing day-55 with day-56 true, and both true only. It does not cover empty input, null required values, unrelated true keys, or both missing directions; those required cases remain open.
+Checks empty/null inputs, both missing directions, false/null required evidence, unrelated true flags, both required flags, and preserves inputs. The learner-owned gate remains TODO-red until implemented; a flag map does not authenticate evidence. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

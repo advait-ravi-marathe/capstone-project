@@ -150,13 +150,42 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
         self.assertEqual("not_attempted", self.days[57]["learner_status"])
         self.assertTrue(self.curriculum["status"].startswith("prospective_curriculum"))
 
-    def test_day59_and_other_known_selector_limits_are_explicit(self):
-        d59 = self.assignments[59]["acceptance"]
-        self.assertIn("V001–V005", d59)
-        self.assertIn("not the Day59 target-3 acceptance", d59)
-        self.assertIn("does not alone prove", self.assignments[60]["acceptance"])
-        self.assertIn("inspects source shape", self.assignments[67]["acceptance"])
-        self.assertIn("does not establish", self.assignments[65]["acceptance"])
+    def test_acceptance_harness_gaps_are_closed_without_claiming_learner_completion(self):
+        self.assertIn("V001–V003", self.assignments[59]["acceptance"])
+        self.assertIn("directly", self.assignments[60]["acceptance"])
+        self.assertIn("null-name", self.assignments[62]["acceptance"])
+        self.assertIn("valid session+valid token", self.assignments[65]["acceptance"])
+        self.assertEqual("npm --prefix frontend run test:sprint5", self.assignments[66]["acceptance_commands"][0])
+        self.assertIn("after-read", self.assignments[68]["acceptance"])
+        self.assertIn("exact cookie bytes", self.assignments[69]["acceptance"])
+        self.assertIn("actual manifest/assets/process", self.assignments[67]["acceptance"])
+        for day in (57, 60, 62, 63):
+            self.assertTrue(self.assignments[day]["open_acceptance_gaps"] == [])
+            self.assertIn("TODO", self.assignments[day]["acceptance"])
+
+    def test_contract_commands_and_selector_names_match_curriculum(self):
+        for day, assignment in self.assignments.items():
+            contract = (ROOT / f"docs/reboot/continuation-57-70/contracts/day-{day}.md").read_text()
+            if day in (57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69):
+                for command in assignment["acceptance_commands"]:
+                    if command.startswith("scripts/") or command.startswith("npm "):
+                        self.assertIn(command, contract, f"Day {day}: command absent from contract")
+                    for method in re.findall(r"#([A-Za-z0-9_]+) test", command):
+                        self.assertIn(method, contract, f"Day {day}: selector absent from contract")
+
+    def test_owner_exports_resolve_to_current_scoped_acceptance_commands(self):
+        for day in range(57, 70):
+            assignment = self.assignments[day]
+            self.assertEqual(assignment["acceptance_commands"],
+                             self.days[day]["engineering"]["acceptance_commands"])
+            self.assertEqual(assignment["acceptance_commands"],
+                             self.cards[day]["engineering"]["acceptance_commands"])
+        pom = (ROOT / "pom.xml").read_text()
+        self.assertIn("<id>sprint5-local</id>", pom)
+        self.assertTrue((ROOT / "src/main/java/assignments/sprint5/Sprint5LocalApplication.java").is_file())
+        self.assertTrue((ROOT / "src/main/resources/application-sprint5-local.properties").is_file())
+        package = json.loads((ROOT / "frontend/package.json").read_text())
+        self.assertIn("test:sprint5", package["scripts"])
 
     def test_dsa_and_later_runtime_are_not_added_as_dependencies(self):
         text = json.dumps(self.curriculum).lower()

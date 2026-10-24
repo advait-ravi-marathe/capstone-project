@@ -11,13 +11,20 @@ The packaged root route `/` uses a typed same-origin client for demo-session sel
 
 ## Acceptance and expected TODO state
 
-The fixed learner selector is installed and currently fails at this day’s explicit TODO. Do not implement learner behavior in the starter or mark the contract complete.
+**Acceptance harness:** learner-owned bounded contract
 
-**Acceptance test:** `frontend/src/__tests__/LocalCoverStoryApp.test.tsx`
-**Acceptance selector:** `day66NormalRouteUsesTypedApiAndHandlesExpiredSession`
-**Learner acceptance command:** `npm --prefix frontend run test:local`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+The Sprint5-only selector covers original UI completion criteria plus malformed success, HTML 401/403/500, network failure, pending action, no auto-retry, CSRF-protected bodyless logout, owner clearing, and late old-owner result rejection. Later busy/capacity tests remain separately selected by `test:local`.
+
+**Acceptance selector:** `the six explicitly named tests in test:sprint5`
+**Acceptance source:** `frontend/src/__tests__/LocalCoverStoryApp.test.tsx`
+**Command:**
+
+```sh
+npm --prefix frontend run test:sprint5
+```
+
+The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
+
 ## Interview design mock (45 minutes inside the 85-minute practice block)
 
 **Question:** [Q14 — Booking: retry after a lost response](../../interview/question-bank.md#q14)
@@ -34,7 +41,7 @@ Save the initial proposal before opening hints, worked references, or AI. Use Re
 
 ## Selector limits and open evidence
 
-- The available test:local suite is not a separate Sprint 5 selector and includes later behavior. Component tests alone do not prove the packaged browser/JAR/PostgreSQL flows; Day 66 remains open until all original required flows pass.
+The Sprint5-only selector covers original UI completion criteria plus malformed success, HTML 401/403/500, network failure, pending action, no auto-retry, CSRF-protected bodyless logout, owner clearing, and late old-owner result rejection. Later busy/capacity tests remain separately selected by `test:local`. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

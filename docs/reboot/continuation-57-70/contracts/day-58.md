@@ -11,13 +11,18 @@ The executable local entry point composes the existing Clock, configured DataSou
 
 ## Acceptance and expected TODO state
 
-This feature is already supplied as instructor scaffolding. Its selector verifies setup only; it is not learner implementation acceptance or evidence of learner mastery. Complete the explain/debug task below.
+**Acceptance harness:** supplied Sprint5-scoped verification
 
-**Acceptance test:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
+Uses `Sprint5LocalApplication` and the original two-argument composition. It checks Clock/DataSource identity and rejects future timeout/capacity/outbox/recovery beans. The bounded context is instructor-supplied.
+
 **Acceptance selector:** `day58DedicatedEntryPointWiresClockAndDataSourceExplicitly`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test
+```
+
 ## Learner task — explain/debug acceptance
 
 Run the scaffold selector if its broad application context starts, then trace the dedicated entry point → supplied two-argument LocalApplicationComposition.compose(clock, dataSource) → adapters. The current selector boots the later application-wide runtime and can stop at a future learner TODO; record that blocker without claiming the bounded Sprint 5 context exists. Add a short diagram/teach-back; do not reimplement instructor-provided setup.
@@ -40,7 +45,7 @@ Save the initial proposal before opening hints, worked references, or AI. Use Re
 
 ## Selector limits and open evidence
 
-- The selected test boots the application-wide LocalCoverStoryApplication and may reach later runtime TODOs before establishing an isolated Sprint 5 context. No bounded stage context is installed in this checkout.
+Uses `Sprint5LocalApplication` and the original two-argument composition. It checks Clock/DataSource identity and rejects future timeout/capacity/outbox/recovery beans. The bounded context is instructor-supplied. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

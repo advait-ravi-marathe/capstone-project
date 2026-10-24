@@ -11,13 +11,23 @@ The packaged JAR is first started so Flyway applies migrations before the first 
 
 ## Acceptance and expected TODO state
 
-The fixed browser selector launches the executable JAR and drives UI controls across two app processes. Current Day 66/49 TODOs can prevent successful preview and foreign-owner checks; the expected 404 is not replaced with 500, and no 500 is treated as pass.
+**Acceptance harness:** prerequisite-gated packaged learner proof
 
-**Acceptance test:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
+Separate logout and restart experiments. Logout starts with populated preview state and checks immediate rendered clearing plus session 401 while the process is live. Restart saves and verifies the exact cookie bytes as active before stop, then checks 401 on a distinct PID against the same DB/fixed clock, followed by a complete expected owner preview. DB snapshots bracket each operation; cookie secrets are never evidence.
+
 **Acceptance selector:** `day69PreviewIsStableAcrossPackagedRestartAndLogout`
-**Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java`
+**Command:**
+
+```sh
+scripts/package-sprint5-demo.sh
+CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test
+```
+
+Stop at the first actual prerequisite TODO and record the reached boundary. A valid positive path is not green merely because its negative controls passed.
+
+The package command must succeed immediately before the packaged selector. Artifact identity is checked by the stage receipt.
+
 ## Interview design mock (45 minutes inside the 85-minute practice block)
 
 **Question:** [Q18 — Cache invalidation: owner privacy after a write](../../interview/question-bank.md#q18)
@@ -29,12 +39,12 @@ Save the initial proposal before opening hints, worked references, or AI. Use Re
 **Remaining task slice (40 minutes):**
 
 - 5 minutes: preconditions and prediction.
-- 25 minutes: Run the packaged journey and inspect whether the exact saved cookie was active before shutdown, whether logout is independent from restart, and whether populated private UI state clears immediately. The current selector does not prove these conditions; keep them open.
+- 25 minutes: Run the packaged journey and inspect whether the exact saved cookie was active before shutdown, whether logout is independent from restart, and whether populated private UI state clears immediately. The selector enforces these conditions with an exact-cookie live precondition and action-level database barriers; learner evidence must still record actual observed results.
 - 10 minutes: run the named selector and record its result or first blocker. The full day acceptance above remains unchanged; unmet work stays open as **S5-D69-RESTART**.
 
 ## Selector limits and open evidence
 
-- The current browser journey combines owner switch/logout with restart-cookie capture, so the saved cookie may already be invalid before process shutdown. It does not establish the exact saved sample is active immediately before stop, separate logout from restart, or assert immediate UI clearing from populated private state.
+Separate logout and restart experiments. Logout starts with populated preview state and checks immediate rendered clearing plus session 401 while the process is live. Restart saves and verifies the exact cookie bytes as active before stop, then checks 401 on a distinct PID against the same DB/fixed clock, followed by a complete expected owner preview. DB snapshots bracket each operation; cookie secrets are never evidence. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

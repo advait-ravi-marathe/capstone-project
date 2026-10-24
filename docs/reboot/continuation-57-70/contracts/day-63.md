@@ -11,13 +11,20 @@ Review the authorization path end to end, record the prior evidence gate, and ta
 
 ## Acceptance and expected TODO state
 
-The fixed learner selector is installed and currently fails at this day’s explicit TODO. Do not implement learner behavior in the starter or mark the contract complete.
+**Acceptance harness:** learner-owned bounded contract
 
-**Acceptance test:** `src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java`
+Checks missing/null/false/true evidence, 0/60/85 minute preservation, rejection at -1 and 86, fail-closed recovery, and no new work in both branches. The learner seam remains TODO-red.
+
 **Acceptance selector:** `day63SecurityCheckpointKeepsRecoveryInsideDailyBudget`
-**Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalReadinessGateAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test
+```
+
+The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
+
 ## Learner-first task proposal (5 minutes within the 85-minute practice block)
 
 Before the recovery checkpoint, name the actual Day 62 security evidence flag, predict missing/false/null/true outcomes, and state the first failed prerequisite. Validate the remaining practice minutes are within 0..85.
@@ -26,7 +33,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The selector covers only day-62-security=false with 85 minutes. Missing/null/true evidence, other values in 0..85, out-of-range rejection, and both no-new-work branches remain unproven by this method.
+Checks missing/null/false/true evidence, 0/60/85 minute preservation, rejection at -1 and 86, fail-closed recovery, and no new work in both branches. The learner seam remains TODO-red. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

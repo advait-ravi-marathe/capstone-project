@@ -9,10 +9,38 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Runs the actual versioned migrations against the configured embedded PostgreSQL binaries. */
 class LocalSchemaMigrationInfrastructureTest {
+    @Test
+    void day59VersionedBootstrapIsRepeatableAndNonDestructive() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            DataSource dataSource = postgres.getPostgresDatabase();
+            Flyway flyway = Flyway.configure().dataSource(dataSource)
+                    .locations("classpath:db/migration").target("3").load();
+            assertEquals(3, flyway.migrate().migrationsExecuted);
+            String historyBefore = count(dataSource, "SELECT count(*) FROM flyway_schema_history WHERE success") + ":"
+                    + scalarRows(dataSource, "SELECT version || ':' || checksum || ':' || success FROM flyway_schema_history WHERE version IS NOT NULL ORDER BY installed_rank");
+            assertTrue(historyBefore.contains("1:"));
+            assertTrue(historyBefore.contains("2:"));
+            assertTrue(historyBefore.contains("3:"));
+            String rowsBefore = lifecycleRows(dataSource);
+            try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
+                statement.executeUpdate("INSERT INTO training_policy_lifecycle(policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,annual_premium_rupees,currency,effective_date,status,version) VALUES ('day59-sentinel','owner-a','journey-sentinel','quote-sentinel','home-secure-v1','home-secure-rate-v1',9.25,'INR',DATE '2026-12-18','ISSUED',1)");
+            }
+            String withSentinel = lifecycleRows(dataSource);
+            assertNotEquals(rowsBefore, withSentinel);
+            assertEquals(0, flyway.migrate().migrationsExecuted);
+            assertEquals(withSentinel, lifecycleRows(dataSource));
+            String historyAfter = count(dataSource, "SELECT count(*) FROM flyway_schema_history WHERE success") + ":"
+                    + scalarRows(dataSource, "SELECT version || ':' || checksum || ':' || success FROM flyway_schema_history WHERE version IS NOT NULL ORDER BY installed_rank");
+            assertEquals(historyBefore, historyAfter);
+            assertTrue(hasPolicy(dataSource, "day59-sentinel"));
+        }
+    }
+
     @Test
     void versionedBootstrapIncludesEventLogDeliveryAndIsRepeatableAndNonDestructive() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
@@ -77,6 +105,30 @@ class LocalSchemaMigrationInfrastructureTest {
                 "SELECT 1 FROM training_policy_lifecycle WHERE policy_id = ?")) {
             statement.setString(1, policyId);
             try (var rows = statement.executeQuery()) { return rows.next(); }
+        }
+    }
+
+    private static String scalarRows(DataSource dataSource, String sql) throws Exception {
+        StringBuilder result = new StringBuilder();
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();
+             var rows = statement.executeQuery(sql)) {
+            while (rows.next()) result.append(rows.getString(1)).append('\n');
+        }
+        return result.toString();
+    }
+
+    private static String lifecycleRows(DataSource dataSource) throws Exception {
+        return table(dataSource, "training_policy_lifecycle", "policy_id") + "\n"
+                + table(dataSource, "training_policy_lifecycle_event", "policy_id,version") + "\n"
+                + table(dataSource, "training_policy_idempotency", "owner_id,client_request_id");
+    }
+
+    private static String table(DataSource dataSource, String name, String order) throws Exception {
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();
+             var rows = statement.executeQuery("SELECT COALESCE(jsonb_agg(to_jsonb(t) ORDER BY " + order
+                     + "), '[]'::jsonb)::text FROM " + name + " t")) {
+            assertTrue(rows.next());
+            return rows.getString(1);
         }
     }
 }

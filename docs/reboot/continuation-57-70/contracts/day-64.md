@@ -11,13 +11,18 @@ A valid selected synthetic quote is issued through the existing lifecycle rules 
 
 ## Acceptance and expected TODO state
 
-This feature is already supplied as instructor scaffolding. Its selector verifies setup only; it is not learner implementation acceptance or evidence of learner mastery. Complete the explain/debug task below.
+**Acceptance harness:** supplied Sprint5-scoped verification
 
-**Acceptance test:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
+Checks supplied adapter branches: 201 persists exactly once and returns the same service snapshot; 200 replay and 409 conflict persist zero times; 401 calls no receipt/service/storage collaborator. Mocked delegation does not prove database atomicity.
+
 **Acceptance selector:** `day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test
+```
+
 ## Learner task — explain/debug acceptance
 
 Run the adapter selector and trace POST /api/policies from HTTP mapping through owner resolution, idempotency status decision, lifecycle service, and response. Explain why atomicity/idempotency belongs in the domain service; this supplied adapter is not a learner TODO.
@@ -32,7 +37,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The selected test directly invokes the controller with mocks and covers create 201 delegation only. It does not exercise HTTP mapping, unauthenticated 401, replay 200, conflict 409, zero-persist branches, or database atomicity.
+Checks supplied adapter branches: 201 persists exactly once and returns the same service snapshot; 200 replay and 409 conflict persist zero times; 401 calls no receipt/service/storage collaborator. Mocked delegation does not prove database atomicity. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

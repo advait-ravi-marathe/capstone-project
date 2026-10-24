@@ -11,13 +11,18 @@ Anonymous policy API requests are denied; packaged static assets are available; 
 
 ## Acceptance and expected TODO state
 
-This feature is already supplied as instructor scaffolding. Its selector verifies setup only; it is not learner implementation acceptance or evidence of learner mastery. Complete the explain/debug task below.
+**Acceptance harness:** supplied Sprint5-scoped verification
 
-**Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
+The bounded stage chain checks anonymous handler/API responses, CSRF-protected session selection, static root, allowlisted owners, saved context on a later request, session rotation, invalid token and unknown/null/missing owner. No later runtime context is loaded.
+
 **Acceptance selector:** `day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test
+```
+
 ## Learner task — explain/debug acceptance
 
 Run the security selector and trace anonymous access, fixed synthetic session selection, CSRF enforcement, and the loopback guard. Explain which filter/handler owns each observed response; this is inspection of supplied setup, not a security-chain TODO.
@@ -32,7 +37,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The selector checks anonymous preview denial, root availability, one synthetic session and one unknown owner. It does not prove saved-context reuse, owner-b, session rotation/logout, invalid-CSRF handler non-entry, or the complete route matrix. Its broad context may hit later TODOs.
+The bounded stage chain checks anonymous handler/API responses, CSRF-protected session selection, static root, allowlisted owners, saved context on a later request, session rotation, invalid token and unknown/null/missing owner. No later runtime context is loaded. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

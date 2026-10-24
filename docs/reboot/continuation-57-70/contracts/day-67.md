@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `scripts/package-local-demo.sh and scripts/local-demo.sh`
+**Instructor-provided scaffold to inspect:** `scripts/package-sprint5-demo.sh and scripts/sprint5-demo.sh`
 **Status:** Scripts and runtime are instructor scaffolding; learner run/inspection evidence is pending.
 
 ### Expected behavior
@@ -11,16 +11,22 @@ The documented workflow builds the root UI into the executable JAR, starts a loo
 
 ## Acceptance and expected TODO state
 
-The existing named selector checks source shape only; it does not inspect a fresh archive or launch a process. Do not report it as packaging/runtime acceptance.
+**Acceptance harness:** supplied Sprint5-scoped verification
 
-**Acceptance test:** `src/test/java/assignments/local/LocalPackageInfrastructureTest.java`
-**Acceptance selector:** `day67PackageIncludesNormalUiAndNoTestRoutes`
-**Scaffold verification command:** `./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+Fresh package receipt and stage archive/process checks prove selected package/runtime observations only. Human cleanup observations remain evidence-dependent; source inspection alone is not a process result.
+
+**Acceptance selector:** `day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface`
+**Acceptance source:** `src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java`
+**Command:**
+
+```sh
+scripts/package-sprint5-demo.sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test
+```
+
 ## Learner task — explain/debug acceptance
 
-Run `scripts/package-local-demo.sh` to build and `scripts/local-demo.sh` to launch; inspect the fresh JAR and served root/assets/routes, verify loopback health/session behavior, then stop only the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
+Run `scripts/package-sprint5-demo.sh` to build and `scripts/sprint5-demo.sh` to launch; inspect the fresh JAR and served root/assets/routes, verify loopback health/session behavior, then stop only the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
@@ -32,7 +38,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The named Java selector inspects source shape; it does not inspect a fresh JAR, launch the packaged process, fetch assets, or prove cleanup. Those observations require the package and launcher commands and actual learner evidence.
+Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion.
 
 ## Implementation/testing allocation (85 minutes)
 

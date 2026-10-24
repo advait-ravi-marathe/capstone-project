@@ -11,13 +11,20 @@ The local runtime wires the existing owner-scoped policy and preview repositorie
 
 ## Acceptance and expected TODO state
 
-The fixed selector exists, but currently calls only the earlier renewalReadStore; it does not directly exercise JdbcPolicyReadStore.findByPolicyIdAndOwnerId. Its full application context can also reach later runtime TODOs. Record either limitation; a green run alone does not prove this Day 60 seam.
+**Acceptance harness:** learner-owned bounded contract
 
-**Acceptance test:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
+Calls `components.policyReadStore().findByPolicyIdAndOwnerId` first, the assigned Day 60 seam. It checks the seeded row, changed fixture values, nullable cancellation mapping, foreign/missing reads, SQL-looking literal input, and full ordered policy/event/idempotency equality after each read. The direct call is expected to stop at the learner TODO.
+
 **Acceptance selector:** `day60OwnerScopedPreviewReadDoesNotWrite`
-**Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalApplicationAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test
+```
+
+The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
+
 ## Interview design mock (45 minutes inside the 85-minute practice block)
 
 **Question:** [Q13 — Booking: reserve one seat atomically](../../interview/question-bank.md#q13)
@@ -29,12 +36,12 @@ Save the initial proposal before opening hints, worked references, or AI. Use Re
 **Remaining task slice (40 minutes):**
 
 - 5 minutes: preconditions and prediction.
-- 25 minutes: Implement only `JdbcPolicyReadStore.findByPolicyIdAndOwnerId`. Run the named selector as upstream context; it currently calls `renewalReadStore`, so it cannot verify this implementation or full-row snapshots. Keep the direct seam open until that coverage exists.
+- 25 minutes: Implement only `JdbcPolicyReadStore.findByPolicyIdAndOwnerId`. The selector begins with a direct call to `policyReadStore`, then checks changed and nullable fixtures plus foreign/missing cases. Run it against the bounded Sprint5 stage; stop at this seam’s unchanged TODO if it is not implemented.
 - 10 minutes: run the named selector and record its result or first blocker. The full day acceptance above remains unchanged; unmet work stays open as **S5-D60-READ**.
 
 ## Selector limits and open evidence
 
-- The selected test calls renewalReadStore, not the Day 60 policyReadStore method. It compares policy count rather than complete policy/event/receipt rows and cannot close the direct Day 60 seam.
+Calls `components.policyReadStore().findByPolicyIdAndOwnerId` first, the assigned Day 60 seam. It checks the seeded row, changed fixture values, nullable cancellation mapping, foreign/missing reads, SQL-looking literal input, and full ordered policy/event/idempotency equality after each read. The direct call is expected to stop at the learner TODO. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

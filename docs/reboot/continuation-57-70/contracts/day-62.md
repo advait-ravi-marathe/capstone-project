@@ -11,13 +11,20 @@ Two synthetic sessions see only their own policy. A forged ownerId query/body va
 
 ## Acceptance and expected TODO state
 
-The fixed learner selector is installed and currently fails at this day’s explicit TODO. Do not implement learner behavior in the starter or mark the contract complete.
+**Acceptance harness:** learner-owned bounded contract
 
-**Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
+Checks both overloads for owner-a and owner-b, forged requested values, null/unauthenticated/anonymous/unknown/blank/null-name principals, including both overload arguments. The resolver TODO remains the intended learner failure.
+
 **Acceptance selector:** `day62PrincipalOwnsReadsAndForgedOwnerIsIgnored`
-**Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test
+```
+
+The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
+
 ## Learner-first task proposal (5 minutes within the 85-minute practice block)
 
 Before coding, predict results for authenticated owner-a and owner-b, null/unauthenticated/anonymous/unknown/blank identities, and forged requested owner values for both overloads.
@@ -26,7 +33,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The selector checks authenticated owner-a and a forged owner-b argument only. Owner-b, null/unauthenticated/anonymous/unknown/blank identities, and both overloads across the rejection matrix remain unproven.
+Checks both overloads for owner-a and owner-b, forged requested values, null/unauthenticated/anonymous/unknown/blank/null-name principals, including both overload arguments. The resolver TODO remains the intended learner failure. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 

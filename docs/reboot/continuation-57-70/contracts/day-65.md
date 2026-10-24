@@ -11,13 +11,20 @@ Missing or invalid CSRF tokens return 403 and do not change any lifecycle row. A
 
 ## Acceptance and expected TODO state
 
-This feature is already supplied as instructor scaffolding. Its selector verifies setup only; it is not learner implementation acceptance or evidence of learner mastery. Complete the explain/debug task below.
+**Acceptance harness:** prerequisite-gated packaged learner proof
 
-**Acceptance test:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
+Checks authenticated missing and invalid tokens both stop with 403 before controller/service entry and preserve all policy/event/idempotency rows; anonymous plus valid token is 401. A valid session plus valid token then reaches the actual issue path; any earlier unresolved domain TODO remains an honest blocker, not a positive pass.
+
 **Acceptance selector:** `day65InvalidCsrfCannotCreatePolicyRows`
-**Scaffold verification command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+**Acceptance source:** `src/test/java/assignments/local/LocalSecurityAcceptanceTest.java`
+**Command:**
+
+```sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test
+```
+
+Stop at the first actual prerequisite TODO and record the reached boundary. A valid positive path is not green merely because its negative controls passed.
+
 ## Learner task — explain/debug acceptance
 
 Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.
@@ -32,7 +39,7 @@ Write the prediction before opening references, worked examples, hints, or AI. S
 
 ## Selector limits and open evidence
 
-- The selected test sends an anonymous POST without a token and compares only policy count. It does not establish authenticated missing/wrong-token denial, anonymous plus valid-token behavior, handler/service non-entry, or complete three-table snapshots.
+Checks authenticated missing and invalid tokens both stop with 403 before controller/service entry and preserve all policy/event/idempotency rows; anonymous plus valid token is 401. A valid session plus valid token then reaches the actual issue path; any earlier unresolved domain TODO remains an honest blocker, not a positive pass. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
 
 ## Implementation/testing allocation (85 minutes)
 
