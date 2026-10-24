@@ -83,8 +83,8 @@ class PreviewRuntimeWiringAcceptanceTest {
         var context = new AnnotationConfigApplicationContext();
         context.getEnvironment().setActiveProfiles("local", "sprint6-local");
         context.getEnvironment().getPropertySources().addFirst(new MapPropertySource("sprint6-test", properties));
-        context.registerBean("testDataSource", DataSource.class, DriverManagerDataSource::new);
-        context.registerBean("testMeterRegistry", MeterRegistry.class, SimpleMeterRegistry::new);
+        context.registerBean("testDataSource", DataSource.class, () -> new DriverManagerDataSource());
+        context.registerBean("testMeterRegistry", MeterRegistry.class, () -> new SimpleMeterRegistry());
         context.register(configuration);
         return context;
     }
