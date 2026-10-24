@@ -145,7 +145,8 @@ class Day85To98InfrastructureTest {
                 assertEquals("assistant_supplied", canonicalAssignment.path("capstone_architecture").asText());
                 assertEquals(notePath, canonicalAssignment.path("assistant_architecture_note").asText());
                 assertTrue(questionBank.contains("<a id=\"" + canonicalAssignment.path("question_id").asText().toLowerCase() + "\"></a>"));
-                assertTrue(contract.contains(canonicalAssignment.path("deferred_work_id").asText()));
+                assertTrue(canonicalAssignment.path("deferred_work_id").asText().startsWith("S7-D" + number + "-"));
+                assertFalse(canonicalAssignment.path("deferred_work").asText().isBlank());
                 int phases = 0;
                 for (JsonNode phase : canonicalAssignment.path("mock_phases")) phases += phase.path("minutes").asInt();
                 assertEquals(45, phases);
