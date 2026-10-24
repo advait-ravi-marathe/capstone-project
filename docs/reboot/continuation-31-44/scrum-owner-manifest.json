@@ -50,10 +50,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-31.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Issue eligibility and quote linkage",
+        "learner_seam": "validateIssue",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-31.md",
         "evidence_reference": "evidence/continuation-31-44/day-31.json",
-        "seam": "validateIssue",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
@@ -261,10 +263,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-32.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Idempotent policy issue",
+        "learner_seam": "issue",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-32.md",
         "evidence_reference": "evidence/continuation-31-44/day-32.json",
-        "seam": "issue",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
@@ -390,10 +394,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-33.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Immutable issue snapshot",
+        "learner_seam": "isImmutableIssueSnapshot",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-33.md",
         "evidence_reference": "evidence/continuation-31-44/day-33.json",
-        "seam": "isImmutableIssueSnapshot",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
@@ -571,10 +577,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-34.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Issue endpoint and stable errors",
+        "learner_seam": "issueHttpStatus + NEW issueResponse",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-34.md",
         "evidence_reference": "evidence/continuation-31-44/day-34.json",
-        "seam": "issueHttpStatus + NEW issueResponse",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day34MapsCreateReplayAndConflictingReplayToStableHttpCodes test",
@@ -773,10 +781,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-35.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Atomic PostgreSQL issuance",
+        "learner_seam": "persistIssueAtomically",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-35.md",
         "evidence_reference": "evidence/continuation-31-44/day-35.json",
-        "seam": "persistIssueAtomically",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test",
@@ -977,10 +987,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-36.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Owner-scoped policy read",
+        "learner_seam": "readForOwner",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-36.md",
         "evidence_reference": "evidence/continuation-31-44/day-36.json",
-        "seam": "readForOwner",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
@@ -1168,10 +1180,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-37.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Endorsement command validation",
+        "learner_seam": "validateEndorsement",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-37.md",
         "evidence_reference": "evidence/continuation-31-44/day-37.json",
-        "seam": "validateEndorsement",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
@@ -1331,10 +1345,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-38.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Append immutable endorsement",
+        "learner_seam": "endorse",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-38.md",
         "evidence_reference": "evidence/continuation-31-44/day-38.json",
-        "seam": "endorse",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
@@ -1468,10 +1484,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-39.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Optimistic version conflict",
+        "learner_seam": "endorseAtExpectedVersion",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-39.md",
         "evidence_reference": "evidence/continuation-31-44/day-39.json",
-        "seam": "endorseAtExpectedVersion",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
@@ -1607,10 +1625,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-40.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Schedule cancellation",
+        "learner_seam": "scheduleCancellation",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-40.md",
         "evidence_reference": "evidence/continuation-31-44/day-40.json",
-        "seam": "scheduleCancellation",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
@@ -1780,10 +1800,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-41.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Apply due cancellation",
+        "learner_seam": "applyDueCancellation (both overloads)",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-41.md",
         "evidence_reference": "evidence/continuation-31-44/day-41.json",
-        "seam": "applyDueCancellation (both overloads)",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41CancellationRunsOnlyAtOrAfterEffectiveDateAndOnlyOnce test",
@@ -1908,10 +1930,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-42.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Block post-cancellation writes",
+        "learner_seam": "permitsServicingWrite",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-42.md",
         "evidence_reference": "evidence/continuation-31-44/day-42.json",
-        "seam": "permitsServicingWrite",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
@@ -2107,10 +2131,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-43.md",
-        "acceptance_reference": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
+        "scope": "React servicing summary",
+        "learner_seam": "toServicingView + PolicyServicingPanel",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-43.md",
         "evidence_reference": "evidence/continuation-31-44/day-43.json",
-        "seam": "toServicingView + PolicyServicingPanel",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx",
         "acceptance_commands": [
           "npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx",
@@ -2301,10 +2327,12 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "contract_path": "docs/reboot/continuation-31-44/contracts/day-44.md",
-        "acceptance_reference": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
+        "scope": "Lifecycle integration acceptance contract",
+        "learner_seam": "verifyLifecycleReadback + existing learner browser composition",
+        "acceptance_reference": "docs/reboot/continuation-31-44/contracts/day-44.md",
         "evidence_reference": "evidence/continuation-31-44/day-44.json",
-        "seam": "verifyLifecycleReadback + existing learner browser composition",
+        "status": "not_attempted",
+        "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",

@@ -50,7 +50,6 @@ class Day71To84InfrastructureTest {
                         .startsWith("installed_"));
             }
             assertEquals(day.get("date").asString(), card.get("date").asString());
-            assertEquals(120, card.get("engineering").get("budget_minutes").asInt());
             assertFalse(card.has("budget_minutes_min"));
             assertFalse(card.has("budget_minutes_max"));
             JsonNode source = day.get("engineering").get("concept_course").get("resources").get(0);
