@@ -50,13 +50,29 @@ class ExternalTrackBoundaryTest(unittest.TestCase):
             self.assertTrue(sections, f"missing engineering evidence section: {path}")
             for section in sections:
                 self.assertTrue(section.strip(), f"empty engineering evidence section: {path}")
+                self.assertNotIn("invariant/trade-off explanation", section, path)
+                self.assertNotIn("What invariant does this change protect", section, path)
 
         day03 = (ROOT / "docs/reboot/contracts/day-03.md").read_text(encoding="utf-8")
         evidence = re.search(r"(?ms)^## Evidence[^\n]*\n(.*?)(?=^## |\Z)", day03).group(1)
         self.assertIn("Three negative response snapshots", evidence)
-        for expected in ("attempt state", "exact command/exit status", "changed paths", "invariant/trade-off"):
+        for expected in ("attempt state", "exact command/exit status", "changed paths"):
             self.assertIn(expected, evidence)
+        self.assertNotIn("invariant/trade-off explanation", evidence)
         self.assertNotIn("DSA", evidence)
+
+    def test_interview_first_mock_override_matches_story_exports(self):
+        canonical = json.loads((ROOT / "docs/reboot/manifest.json").read_text(encoding="utf-8"))
+        owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text(encoding="utf-8"))
+        cards = {card["day_number"]: card for card in owner["cards"]}
+        for day in (3, 7, 10, 14):
+            assignment = canonical["days"][day - 1]["interview_practice"]
+            self.assertEqual(assignment, cards[day]["interview_practice"])
+            self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            self.assertEqual(45, assignment["duration_minutes"])
+            contract = (ROOT / f"docs/reboot/contracts/day-{day:02d}.md").read_text(encoding="utf-8")
+            self.assertIn("Before any hint, reference answer, or AI, write your own initial proposal.", contract)
+            self.assertIn("Use the existing 10-minute evidence block for command, result, assistance, and blocker only.", contract)
 
     def test_ci_keeps_engineering_and_streamforge_checks(self):
         workflow = (ROOT / ".github/workflows/coverstory-starter.yml").read_text(encoding="utf-8")

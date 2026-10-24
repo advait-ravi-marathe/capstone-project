@@ -28,7 +28,7 @@ Read the observed EXPLAIN shape and compare the exact output before/after an ind
 
 ## Evidence (10 minutes)
 
-Both plans and concise trade-off note. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+Both plans and ordered result-equivalence evidence. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
 
 ## Planned isolated command
 

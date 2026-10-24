@@ -44,7 +44,7 @@ Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../template
 
 ## Evidence allocation (10 minutes)
 
-Record command and result in `evidence/continuation-31-44/day-32.json`. Include one short teach-back (or one architecture/ADR sketch) and answer one prompt: “What invariant does this change protect, where is it enforced, and what observable response proves it?”
+Record the actual command and result in `evidence/continuation-31-44/day-32.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Keep design reasoning in the learner-led proposal or review when assigned; no post-hoc architectural justification is required.
 
 ## Separate DSA track
 
