@@ -27,6 +27,7 @@ class StreamForge169182ManifestTest(unittest.TestCase):
     def setUpClass(cls):
         cls.manifest = json.loads((BATCH / "manifest.json").read_text(encoding="utf-8"))
         cls.owner = json.loads((BATCH / "scrum-owner-manifest.json").read_text(encoding="utf-8"))
+        cls.guidance = json.loads((BATCH / "verified-ai-foundation-169-182-guidance.json").read_text(encoding="utf-8"))
 
     def test_exact_source_branch_range_dates_and_contract_files(self):
         self.assertEqual("ae21926a7d61ef25db8609ddc533d9cdeeacff88", self.manifest["base_commit"])
@@ -157,7 +158,7 @@ class StreamForge169182ManifestTest(unittest.TestCase):
     def test_ab_gate_reads_authoritative_records_and_can_become_met(self):
         gate = self.manifest["prior_readiness_gate"]
         self.assertEqual(gate, self.owner["prior_readiness_gate"])
-        self.assertEqual("not_met", gate["current_status"])
+        self.assertEqual(gate, self.guidance["prior_readiness_gate"])
         self.assertEqual(list(GATE_PATHS), [record["path"] for record in gate["evidence_records"]])
         actual = []
         for relative, snapshot in zip(GATE_PATHS, gate["evidence_records"]):
@@ -172,7 +173,7 @@ class StreamForge169182ManifestTest(unittest.TestCase):
 
         from scripts.check_streamforge_169_182_entry_gate import evaluate_records
         fresh_status = evaluate_records(actual)["gate"]
-        self.assertEqual("not_met", fresh_status)
+        self.assertEqual(gate["current_status"], fresh_status)
         self.assertEqual(actual[0]["status"], gate["observed_prior_status"]["day_153"])
         self.assertEqual(actual[0]["evidence_status"], gate["observed_prior_status"]["day_153_evidence"])
         self.assertEqual(actual[1]["status"], gate["observed_prior_status"]["day_154"])
