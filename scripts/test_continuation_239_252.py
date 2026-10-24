@@ -63,9 +63,9 @@ def reference_trace_id(case_id, *, unstable=False):
 
 def reference_execute(case, provider, *, include_foreign=False, ignore_action=False,
                       clamp_latency=False, raw_trace=False, unstable_trace=False,
-                      retry_malformed=False):
+                      retry_malformed=False, loose_citation_set=False, trace_id=None):
     """Test-only executable witness for the contract; never imported by learner."""
-    trace_id = reference_trace_id(case.case_id, unstable=unstable_trace)
+    trace_id = trace_id or reference_trace_id(case.case_id, unstable=unstable_trace)
     evidence = tuple(item for item in case.excerpts
                      if item.approved and (include_foreign or item.owner_id == case.owner_id))
     last_failure = "none"
@@ -101,7 +101,10 @@ def reference_execute(case, provider, *, include_foreign=False, ignore_action=Fa
         unsafe = response.action_requested and not ignore_action
         if response.action_requested and ignore_action:
             unsafe = False
-        if len(matches) == 1 and not unsafe:
+        citation_set_valid = (len(matches) >= 1 if loose_citation_set else
+                              len(response.citations) == 1 and len(matches) == len(response.citations) and
+                              tuple(matches) == response.citations)
+        if citation_set_valid and len(matches) == 1 and not unsafe:
             result_status, result_citations = "cited", tuple(matches)
         action = response.action_requested
         last_failure = "none"
@@ -147,12 +150,13 @@ def reference_evaluate(cases, results, *, always_correct=False, drop_tokens=Fals
 
 
 def patched_acceptance(test_method, *, execute=None, evaluate=None, provider=None,
-                       trace_id=None):
+                       trace_id=None, replay_cli=None):
     patchers = [patch.object(workflow, "ScriptedFakeProvider", ReferenceFakeProvider),
                 patch.object(workflow, "execute_case", execute or reference_execute),
                 patch.object(workflow, "evaluate_cases", evaluate or reference_evaluate),
                 patch.object(workflow, "stable_trace_id", trace_id or reference_trace_id)]
-    with patchers[0], patchers[1], patchers[2], patchers[3]:
+    with patchers[0], patchers[1], patchers[2], patchers[3], \
+            patch.object(workflow, "REPLAY_CLI", replay_cli or workflow.REPLAY_CLI):
         test_method()
 
 
@@ -229,23 +233,44 @@ class Continuation239ManifestTests(unittest.TestCase):
                 for heading in ref["sections"]:
                     self.assertIn(heading, contract)
 
-    def test_current_gate_is_not_met_and_valid_records_only_grant_eligibility(self):
+    def test_gate_matches_recorded_state_and_future_records_only_grant_eligibility(self):
         gate = load_module("continuation239_gate", ROOT / "scripts/check_continuation_239_entry_gate.py")
-        self.assertEqual("not_met", gate.check()["status"])
-        self.assertFalse(gate.check()["completion_awarded"])
+        actual = gate.check()
+        self.assertFalse(actual["completion_awarded"])
+        observed = {"status": actual["status"], "reason": actual["reason"],
+                    "records_sha256": actual["records_sha256"], "eligibility_only": actual["eligibility_only"],
+                    "completion_awarded": actual["completion_awarded"]}
+        expected_observed = {"status": "not_met",
+                             "reason": "required learner-owned evidence is absent: Day 210, Day 238",
+                             "records_sha256": {}, "eligibility_only": True,
+                             "completion_awarded": False}
+        self.assertEqual(expected_observed, observed)
         good210 = {"day": 210, "learner_owned": True, "status": "pass", "synthetic_only": True,
                    "owner_boundary_verified": True, "source_version_verified": True,
                    "citation_boundary_verified": True, "source_sha": "a" * 40, "artifact_sha256": "b" * 64}
         good238 = {"day": 238, "learner_owned": True, "status": "pass", "synthetic_only": True,
-                   "independent_expected_results_verified": True, "failure_fallback_verified": True,
-                   "trace_redaction_verified": True, "reproduction_verified": True,
-                   "fixture_version": "homesecure-home-policy-v1", "source_sha": "a" * 40,
+                   "generated_draft_only": True, "preapproval_render_abstained": True,
+                   "explicit_human_review_recorded": True, "approved_same_owner_rendered_exact_text": True,
+                   "policy_snapshot_unchanged": True, "source_sha": "a" * 40,
                    "artifact_sha256": "b" * 64}
         self.assertTrue(gate.valid_day210(json.dumps(good210).encode()))
         self.assertTrue(gate.valid_day238(json.dumps(good238).encode()))
         for bad in (dict(good238, learner_owned=False), dict(good238, artifact_sha256="a" * 40),
-                    dict(good238, unexpected=True), dict(good238, independent_expected_results_verified=False)):
+                    dict(good238, unexpected=True), dict(good238, explicit_human_review_recorded=False)):
             self.assertFalse(gate.valid_day238(json.dumps(bad).encode()))
+        import tempfile
+        with tempfile.TemporaryDirectory() as temp:
+            day210, day238 = Path(temp) / "day210.json", Path(temp) / "day238.json"
+            with patch.object(gate, "DAY210", day210), patch.object(gate, "DAY238", day238):
+                self.assertEqual("not_met", gate.check()["status"])
+                day210.write_text(json.dumps(good210))
+                self.assertEqual("not_met", gate.check()["status"])
+                day238.write_text(json.dumps(good238))
+                eligible = gate.check()
+                self.assertEqual("eligible_to_attempt", eligible["status"])
+                self.assertFalse(eligible["completion_awarded"])
+                day238.write_text(json.dumps(dict(good238, learner_owned=False)))
+                self.assertEqual("blocked", gate.check()["status"])
 
     def test_gate_is_read_only_and_preserves_distinct_digest_fields(self):
         source = (OUT / "README.md").read_text()
@@ -275,10 +300,18 @@ class Continuation239AcceptanceWitnessTests(unittest.TestCase):
                           (251, "same_fixture_and_script_reproduce_identical_results"),
                           (252, "reports_known_blind_spots_without_claiming_real_customer_outcomes")):
             method = getattr(acceptance.Continuation239Acceptance(f"test_day{day}_{tail}"), f"test_day{day}_{tail}")
-            patched_acceptance(method)
+            if day == 251:
+                import tempfile
+                with tempfile.TemporaryDirectory() as temp:
+                    cli = Path(temp) / "reference_replay.py"
+                    cli.write_text("import json,sys\nr=json.load(sys.stdin)\ns=json.dumps(r,sort_keys=True,separators=(',',':'),ensure_ascii=False)+'\\n'\nsys.stdout.write(s)\n")
+                    patched_acceptance(method, replay_cli=cli)
+            else:
+                patched_acceptance(method)
 
     def test_actual_acceptance_paths_reject_owner_injection_latency_and_trace_mutants(self):
         scenarios = [
+            (240, "exact_source_citation_and_unsupported_abstention", {"loose_citation_set": True}),
             (241, "foreign_owner_material_never_reaches_fake_provider", {"include_foreign": True}),
             (242, "malicious_retrieved_instruction_cannot_authorize_action", {"ignore_action": True}),
             (244, "latency_budget_uses_injected_duration_and_flags_overrun", {"clamp_latency": True}),
@@ -286,14 +319,15 @@ class Continuation239AcceptanceWitnessTests(unittest.TestCase):
         ]
         for day, tail, mutation in scenarios:
             method = getattr(acceptance.Continuation239Acceptance(f"test_day{day}_{tail}"), f"test_day{day}_{tail}")
-            mutated = lambda case, provider, flags=mutation: reference_execute(case, provider, **flags)
+            mutated = lambda case, provider, trace_id=None, flags=mutation: reference_execute(
+                case, provider, trace_id=trace_id, **flags)
             with self.subTest(day=day), self.assertRaises(AssertionError):
                 patched_acceptance(method, execute=mutated)
 
     def test_actual_retry_and_metric_assertions_reject_failure_and_oracle_mutants(self):
         method = getattr(acceptance.Continuation239Acceptance("test_day246_retries_only_transient_failure_once_and_bounds_calls"),
                          "test_day246_retries_only_transient_failure_once_and_bounds_calls")
-        mutant = lambda case, provider: reference_execute(case, provider, retry_malformed=True)
+        mutant = lambda case, provider, trace_id=None: reference_execute(case, provider, trace_id=trace_id, retry_malformed=True)
         with self.assertRaises(AssertionError):
             patched_acceptance(method, execute=mutant)
         metrics_method = getattr(acceptance.Continuation239Acceptance("test_day249_versioned_metrics_match_every_case_and_negative_control"),
@@ -312,7 +346,7 @@ class Continuation239AcceptanceWitnessTests(unittest.TestCase):
                           "test_day244_latency_budget_uses_injected_duration_and_flags_overrun")
         with patch.object(workflow, "stable_trace_id", reference_trace_id), \
              patch.object(workflow, "ScriptedFakeProvider", ReferenceFakeProvider), \
-             patch.object(workflow, "execute_case", side_effect=lambda case, provider: reference_execute(case, provider, clamp_latency=True)), \
+             patch.object(workflow, "execute_case", side_effect=lambda case, provider, trace_id=None: reference_execute(case, provider, trace_id=trace_id, clamp_latency=True)), \
              patch.object(workflow, "evaluate_cases", side_effect=reference_evaluate), self.assertRaises(AssertionError):
             latency()
         paired = getattr(acceptance.Continuation239Acceptance("test_day243_paired_local_baseline_and_controlled_fake_results_differ"),

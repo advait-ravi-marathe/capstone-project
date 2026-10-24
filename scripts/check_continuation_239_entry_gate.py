@@ -35,15 +35,16 @@ def valid_day238(raw: bytes) -> bool:
         row = json.loads(raw)
     except Exception:
         return False
-    required = {"day", "learner_owned", "status", "synthetic_only", "independent_expected_results_verified",
-                "failure_fallback_verified", "trace_redaction_verified", "reproduction_verified",
-                "fixture_version", "source_sha", "artifact_sha256"}
+    required = {"day", "learner_owned", "status", "synthetic_only", "generated_draft_only",
+                "preapproval_render_abstained", "explicit_human_review_recorded",
+                "approved_same_owner_rendered_exact_text", "policy_snapshot_unchanged",
+                "source_sha", "artifact_sha256"}
     return (isinstance(row, dict) and set(row) == required and row.get("day") == 238 and
             row.get("learner_owned") is True and row.get("status") == "pass" and
             row.get("synthetic_only") is True and
-            all(row.get(k) is True for k in ("independent_expected_results_verified", "failure_fallback_verified",
-                                               "trace_redaction_verified", "reproduction_verified")) and
-            row.get("fixture_version") == "homesecure-home-policy-v1" and
+            all(row.get(k) is True for k in ("generated_draft_only", "preapproval_render_abstained",
+                                               "explicit_human_review_recorded", "approved_same_owner_rendered_exact_text",
+                                               "policy_snapshot_unchanged")) and
             isinstance(row.get("source_sha"), str) and HEX40.fullmatch(row["source_sha"]) is not None and
             isinstance(row.get("artifact_sha256"), str) and HEX64.fullmatch(row["artifact_sha256"]) is not None)
 

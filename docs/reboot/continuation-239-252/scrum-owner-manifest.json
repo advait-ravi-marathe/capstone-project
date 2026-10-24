@@ -2352,7 +2352,7 @@
       "date": "2027-07-01",
       "title": "Reproduce paired result in a fresh process",
       "learner_seam": "deterministic_replay",
-      "signature": "ai/grounded/continuation_239.py, ai/grounded/learner_acceptance/test_continuation_239.py",
+      "signature": "ai/grounded/continuation_239.py, ai/grounded/learner_acceptance/test_continuation_239.py, ai/grounded/replay_239.py",
       "selectors": [
         "python3 scripts/check_continuation_239_entry_gate.py",
         "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day251_same_fixture_and_script_reproduce_identical_results",
@@ -2386,27 +2386,28 @@
       "activities": {
         "project_implementation_tests": {
           "minutes": 55,
-          "task": "Implement and test the canonical fixture/result digests and identical outputs seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
+          "task": "Implement and test the fresh-process canonical report replay with independent bytes and digest seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
           "source_keys": [],
           "source_paths": [
-            "ai/grounded/continuation_225.py",
-            "ai/grounded/learner_acceptance/test_continuation_225.py",
-            "docs/reboot/continuation-225-238/plan-source.json"
+            "ai/grounded/continuation_239.py",
+            "ai/grounded/learner_acceptance/test_continuation_239.py",
+            "ai/grounded/replay_239.py"
           ],
           "command": "python3 scripts/check_continuation_239_entry_gate.py; if blocked, run the first unmet selector from this plan's recovery_selectors; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day251_same_fixture_and_script_reproduce_identical_results`.",
           "evidence": "Exact selector/result, state before/after, changed paths and first failing assertion; no completion inference.",
           "source_sections": {},
-          "source": "ai/grounded/continuation_225.py; ai/grounded/learner_acceptance/test_continuation_225.py; docs/reboot/continuation-225-238/plan-source.json"
+          "source": "ai/grounded/continuation_239.py; ai/grounded/learner_acceptance/test_continuation_239.py; ai/grounded/replay_239.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 60,
-          "task": "Extend the same versioned HomeSecure evaluation fixture for canonical fixture/result digests and identical outputs; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
+          "task": "Extend the same versioned HomeSecure evaluation fixture for fresh-process canonical report replay with independent bytes and digest; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
           "source_keys": [
             "PYTHON_JSON"
           ],
           "source_paths": [
             "ai/grounded/continuation_239.py",
-            "ai/grounded/learner_acceptance/test_continuation_239.py"
+            "ai/grounded/learner_acceptance/test_continuation_239.py",
+            "ai/grounded/replay_239.py"
           ],
           "command": "`python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day251_same_fixture_and_script_reproduce_identical_results` only after both entry gates are eligible; keep expected labels independent of provider output.",
           "evidence": "Per-case expected and observed labels, metric denominator, and a negative-control mutation result.",
@@ -2415,7 +2416,7 @@
               "Basic Usage"
             ]
           },
-          "source": "ai/grounded/continuation_239.py; ai/grounded/learner_acceptance/test_continuation_239.py; json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html)"
+          "source": "ai/grounded/continuation_239.py; ai/grounded/learner_acceptance/test_continuation_239.py; ai/grounded/replay_239.py; json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html)"
         },
         "certification_labs_questions": {
           "minutes": 0,
@@ -2429,7 +2430,7 @@
         },
         "ai_concept_source_study": {
           "minutes": 15,
-          "task": "Study json — JSON encoder and decoder — Basic Usage and connect one principle to canonical fixture/result digests and identical outputs.",
+          "task": "Study json — JSON encoder and decoder — Basic Usage and connect one principle to fresh-process canonical report replay with independent bytes and digest.",
           "source_keys": [
             "PYTHON_JSON"
           ],
@@ -2570,7 +2571,7 @@
       "activities": {
         "project_implementation_tests": {
           "minutes": 50,
-          "task": "Implement and test the versioned fixture, paired results, caveats and recovery seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
+          "task": "Implement and test the complete pipeline paired outcomes and independent metric oracle seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/continuation_225.py",
@@ -2584,7 +2585,7 @@
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 55,
-          "task": "Extend the same versioned HomeSecure evaluation fixture for versioned fixture, paired results, caveats and recovery; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
+          "task": "Run every fixed case through the scripted fake adapter and evaluator; compare per-case outcomes and all paired metrics against independent expected values, then exercise a counterfactual mutation. No provider or cloud calls.",
           "source_keys": [
             "OPENAI_EVAL_BEST"
           ],
@@ -2593,7 +2594,7 @@
             "ai/grounded/learner_acceptance/test_continuation_239.py"
           ],
           "command": "`python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes` only after both entry gates are eligible; keep expected labels independent of provider output.",
-          "evidence": "Per-case expected and observed labels, metric denominator, and a negative-control mutation result.",
+          "evidence": "Exact per-case outputs, full paired metric vector, denominator, known blind spots, and a counterfactual mutation result.",
           "source_sections": {
             "OPENAI_EVAL_BEST": [
               "Design your eval process"

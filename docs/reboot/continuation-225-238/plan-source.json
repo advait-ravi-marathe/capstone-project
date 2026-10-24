@@ -645,7 +645,7 @@
       "shared": "review",
       "question_id": null,
       "question_title": null,
-      "project_task": "Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional.",
+      "project_task": "Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional. If the full-path selector passes, record its actual bounded workflow evidence in the closeout schema shown in the contract; never precreate learner evidence.",
       "ai_task": "Re-run the complete local fixed dataset and compare exact per-case output to independent labels.",
       "study_source_keys": [
         "OPENAI_EVAL_BEST",
@@ -664,7 +664,24 @@
         "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
         "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
         "python3 scripts/check_streamforge_169_182_entry_gate.py"
-      ]
+      ],
+      "closeout_record": {
+        "path": "evidence/continuation-225-238/day-238-evaluation-closeout.json",
+        "fields": {
+          "day": 238,
+          "learner_owned": true,
+          "status": "pass",
+          "synthetic_only": true,
+          "generated_draft_only": true,
+          "preapproval_render_abstained": true,
+          "explicit_human_review_recorded": true,
+          "approved_same_owner_rendered_exact_text": true,
+          "policy_snapshot_unchanged": true,
+          "source_sha": "40 lowercase hex source commit SHA",
+          "artifact_sha256": "64 lowercase hex artifact SHA-256"
+        },
+        "rule": "Future learner-authored record only after the Day 238 full-path selector verifies every field. Do not create it from scaffold or CI. This records the existing Day 238 draft/review path; it does not require HomeSecure fields from Days 239–252."
+      }
     }
   ],
   "separate_learning_repository": {

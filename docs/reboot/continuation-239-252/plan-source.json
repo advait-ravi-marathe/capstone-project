@@ -17,7 +17,7 @@
     "evidence": 210
   },
   "scope": "One offline synthetic HomeSecure policy-explanation evaluation context (synthetic customer cust-synth-01, owner synthetic-owner-a). Extend fixed evaluation for exact source citations, abstention, owner isolation, malicious retrieved instructions, deterministic latency, token/call cost estimates, bounded fake-provider timeout/retry and redacted trace correlation. Paired deterministic baseline and scripted fake adapter only; no live provider, network, cloud, real customer, personal data, consequential eligibility decision, external exposure, credentials, paid exams or booking.",
-  "gate": "Run python3 scripts/check_continuation_239_entry_gate.py. The read-only gate requires both the learner-owned Day 210 boundary record and a future Day 238 learner-owned closeout record with independent evaluation, safe failure, redacted trace and reproducibility fields. Missing is not_met; malformed is blocked. Eligible permits an attempt only and awards no completion. If blocked, project practice uses the first unmet existing CoverStory recovery selector and AI practice stays instructor-only on fixed offline fixtures; do not run this window learner acceptance selectors.",
+  "gate": "Run python3 scripts/check_continuation_239_entry_gate.py. The read-only gate requires both the learner-owned Day 210 boundary record and a future Day 238 learner-owned closeout record whose fields record synthetic draft creation, pre-approval abstention, explicit human review, same-owner exact-text exposure, and unchanged policy snapshot. Missing is not_met; malformed is blocked. Eligible permits an attempt only and awards no completion. If blocked, project practice uses the first unmet existing CoverStory recovery selector and AI practice stays instructor-only on fixed offline fixtures; do not run this window learner acceptance selectors.",
   "recovery_selectors": [
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -1884,7 +1884,8 @@
       "context": "Synthetic HomeSecure policy explanation for synthetic customer cust-synth-01 and owner synthetic-owner-a; local fixture only.",
       "files": [
         "ai/grounded/continuation_239.py",
-        "ai/grounded/learner_acceptance/test_continuation_239.py"
+        "ai/grounded/learner_acceptance/test_continuation_239.py",
+        "ai/grounded/replay_239.py"
       ],
       "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day251_same_fixture_and_script_reproduce_identical_results",
       "project": 55,
@@ -1896,8 +1897,8 @@
       "shared": "review",
       "question_id": null,
       "question_title": null,
-      "project_task": "Implement and test the canonical fixture/result digests and identical outputs seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
-      "ai_task": "Extend the same versioned HomeSecure evaluation fixture for canonical fixture/result digests and identical outputs; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
+      "project_task": "Implement and test a canonical report CLI that replays serialized evaluation output in a fresh subprocess and matches independently fixed canonical bytes and SHA-256. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
+      "ai_task": "Run the complete fixed HomeSecure cases, serialize observed outputs and metrics, then reproduce them through the Day 251 CLI in a fresh process; compare exact bytes and digest to an independently authored oracle, including altered-input negative controls. No provider or cloud calls.",
       "ai_source_key": "PYTHON_JSON",
       "cert_source_key": "DEV_ASSOCIATE",
       "cert_source_section": "Review the exam guide",
@@ -1915,16 +1916,16 @@
         "python3 scripts/check_streamforge_169_182_entry_gate.py"
       ],
       "ai_fixture_only": false,
-      "milestone": "canonical fixture/result digests and identical outputs",
+      "milestone": "fresh-process canonical report replay with independent bytes and digest",
       "activities": {
         "project_implementation_tests": {
           "minutes": 55,
-          "task": "Implement and test the canonical fixture/result digests and identical outputs seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
+          "task": "Implement and test the fresh-process canonical report replay with independent bytes and digest seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
           "source_keys": [],
           "source_paths": [
-            "ai/grounded/continuation_225.py",
-            "ai/grounded/learner_acceptance/test_continuation_225.py",
-            "docs/reboot/continuation-225-238/plan-source.json"
+            "ai/grounded/continuation_239.py",
+            "ai/grounded/learner_acceptance/test_continuation_239.py",
+            "ai/grounded/replay_239.py"
           ],
           "command": "python3 scripts/check_continuation_239_entry_gate.py; if blocked, run the first unmet selector from this plan's recovery_selectors; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day251_same_fixture_and_script_reproduce_identical_results`.",
           "evidence": "Exact selector/result, state before/after, changed paths and first failing assertion; no completion inference.",
@@ -1932,13 +1933,14 @@
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 60,
-          "task": "Extend the same versioned HomeSecure evaluation fixture for canonical fixture/result digests and identical outputs; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
+          "task": "Extend the same versioned HomeSecure evaluation fixture for fresh-process canonical report replay with independent bytes and digest; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
           "source_keys": [
             "PYTHON_JSON"
           ],
           "source_paths": [
             "ai/grounded/continuation_239.py",
-            "ai/grounded/learner_acceptance/test_continuation_239.py"
+            "ai/grounded/learner_acceptance/test_continuation_239.py",
+            "ai/grounded/replay_239.py"
           ],
           "command": "`python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day251_same_fixture_and_script_reproduce_identical_results` only after both entry gates are eligible; keep expected labels independent of provider output.",
           "evidence": "Per-case expected and observed labels, metric denominator, and a negative-control mutation result.",
@@ -1959,7 +1961,7 @@
         },
         "ai_concept_source_study": {
           "minutes": 15,
-          "task": "Study json — JSON encoder and decoder — Basic Usage and connect one principle to canonical fixture/result digests and identical outputs.",
+          "task": "Study json — JSON encoder and decoder — Basic Usage and connect one principle to fresh-process canonical report replay with independent bytes and digest.",
           "source_keys": [
             "PYTHON_JSON"
           ],
@@ -2036,8 +2038,8 @@
       "shared": "review",
       "question_id": null,
       "question_title": null,
-      "project_task": "Implement and test the versioned fixture, paired results, caveats and recovery seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
-      "ai_task": "Extend the same versioned HomeSecure evaluation fixture for versioned fixture, paired results, caveats and recovery; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
+      "project_task": "Implement and test the versioned fixture, paired results, caveats and recovery seam using the complete offline evaluation pipeline and independently fixed paired metrics. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
+      "ai_task": "Run every fixed case through the scripted fake adapter and evaluator; compare per-case outcomes and all paired metrics against independent expected values, then exercise a counterfactual mutation. No provider or cloud calls.",
       "ai_source_key": "OPENAI_EVAL_BEST",
       "cert_source_key": "DEV_ASSOCIATE",
       "cert_source_section": "Review the exam guide",
@@ -2060,7 +2062,7 @@
       "activities": {
         "project_implementation_tests": {
           "minutes": 50,
-          "task": "Implement and test the versioned fixture, paired results, caveats and recovery seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
+          "task": "Implement and test the complete pipeline paired outcomes and independent metric oracle seam in the existing synthetic policy path. If either entry gate is blocked, project minutes go to the first unmet CoverStory recovery selector.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/continuation_225.py",
@@ -2073,7 +2075,7 @@
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 55,
-          "task": "Extend the same versioned HomeSecure evaluation fixture for versioned fixture, paired results, caveats and recovery; compare observable fake-adapter behavior with independently written labels. No provider or cloud calls.",
+          "task": "Run every fixed case through the scripted fake adapter and evaluator; compare per-case outcomes and all paired metrics against independent expected values, then exercise a counterfactual mutation. No provider or cloud calls.",
           "source_keys": [
             "OPENAI_EVAL_BEST"
           ],
@@ -2082,7 +2084,7 @@
             "ai/grounded/learner_acceptance/test_continuation_239.py"
           ],
           "command": "`python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes` only after both entry gates are eligible; keep expected labels independent of provider output.",
-          "evidence": "Per-case expected and observed labels, metric denominator, and a negative-control mutation result.",
+          "evidence": "Exact per-case outputs, full paired metric vector, denominator, known blind spots, and a counterfactual mutation result.",
           "source_sections": {
             "OPENAI_EVAL_BEST": [
               "Design your eval process"

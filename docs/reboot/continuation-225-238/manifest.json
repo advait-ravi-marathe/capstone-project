@@ -2269,7 +2269,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "85m: Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "project_implementation_tests": "85m: Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional. If the full-path selector passes, record its actual bounded workflow evidence in the closeout schema shown in the contract; never precreate learner evidence. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
         "ai_workflow_implementation_evaluation": "30m: Re-run the complete local fixed dataset and compare exact per-case output to independent labels. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
         "certification_labs_questions": "0m: no certification question slice today. Source: none. Command: none. Evidence: retain the zero allocation; no extra study.",
         "ai_concept_source_study": "15m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
@@ -2311,7 +2311,7 @@
         "shared": "review",
         "question_id": null,
         "question_title": null,
-        "project_task": "Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional.",
+        "project_task": "Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional. If the full-path selector passes, record its actual bounded workflow evidence in the closeout schema shown in the contract; never precreate learner evidence.",
         "ai_task": "Re-run the complete local fixed dataset and compare exact per-case output to independent labels.",
         "study_source_keys": [
           "OPENAI_EVAL_BEST",
@@ -2330,7 +2330,24 @@
           "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
           "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
           "python3 scripts/check_streamforge_169_182_entry_gate.py"
-        ]
+        ],
+        "closeout_record": {
+          "path": "evidence/continuation-225-238/day-238-evaluation-closeout.json",
+          "fields": {
+            "day": 238,
+            "learner_owned": true,
+            "status": "pass",
+            "synthetic_only": true,
+            "generated_draft_only": true,
+            "preapproval_render_abstained": true,
+            "explicit_human_review_recorded": true,
+            "approved_same_owner_rendered_exact_text": true,
+            "policy_snapshot_unchanged": true,
+            "source_sha": "40 lowercase hex source commit SHA",
+            "artifact_sha256": "64 lowercase hex artifact SHA-256"
+          },
+          "rule": "Future learner-authored record only after the Day 238 full-path selector verifies every field. Do not create it from scaffold or CI. This records the existing Day 238 draft/review path; it does not require HomeSecure fields from Days 239–252."
+        }
       },
       "separate_learning_repository": {
         "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"

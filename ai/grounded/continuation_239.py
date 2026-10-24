@@ -6,6 +6,7 @@ injected and must be a local fake; nothing in this module contacts a provider.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Callable, Literal, Protocol
 
 Status = Literal["cited", "abstain"]
@@ -19,6 +20,7 @@ SYNTHETIC_OWNER_ID = "synthetic-owner-a"
 SYNTHETIC_POLICY_VERSION = "v4"
 SYNTHETIC_RENEWAL_DATE = "2027-07-01"
 SYNTHETIC_ACCOUNT_STATUS = "active"
+REPLAY_CLI = Path(__file__).with_name("replay_239.py")
 
 
 @dataclass(frozen=True)
@@ -125,7 +127,7 @@ def stable_trace_id(case_id: str) -> str:
     raise NotImplementedError("TODO: stable synthetic trace correlation")
 
 
-def execute_case(case: EvalCase, provider: LocalProvider) -> tuple[CaseResult, TraceRecord]:
+def execute_case(case: EvalCase, provider: LocalProvider, *, trace_id: str | None = None) -> tuple[CaseResult, TraceRecord]:
     """TODO Days 239–248: authorize evidence, call fake with bounded retry, validate and meter.
 
     Filter unapproved/foreign excerpts before adapter invocation. Treat excerpt
@@ -133,6 +135,8 @@ def execute_case(case: EvalCase, provider: LocalProvider) -> tuple[CaseResult, T
     with exact in-scope citations and no requested action. Retry transient
     timeout/unavailable once; malformed and unknown outcomes fail closed. Keep
     trace metadata correlated and redact question, owner, excerpt and answer.
+    Early acceptance cases may inject a fixed opaque trace_id so they do not
+    depend on the Day 247 stable-id helper before it is taught.
     Cost is a synthetic integer estimate, never a bill or provider measurement.
     """
     raise NotImplementedError("TODO: local bounded evaluator and redacted trace")
