@@ -1,0 +1,90 @@
+{
+  "verified_at": "2026-10-24",
+  "recheck_before_study": true,
+  "scope": "Exact current titles and named sections were checked against official source pages on 2026-10-24. Recheck in June 2027; versions may change. All AWS/OpenAI service material is comparison-only. No deprecated Evals API/platform, provider call, cloud resource or spend is assigned.",
+  "sources": [
+    {
+      "key": "PYTHON_JSON",
+      "title": "json — JSON encoder and decoder",
+      "url": "https://docs.python.org/3/library/json.html",
+      "sections": [
+        "Basic Usage"
+      ],
+      "provider": "Python",
+      "use": "Strict local synthetic fixture encoding and decoding; no network input."
+    },
+    {
+      "key": "PYTHON_HASHLIB",
+      "title": "hashlib — Secure hashes and message digests",
+      "url": "https://docs.python.org/3/library/hashlib.html",
+      "sections": [
+        "Hash algorithms"
+      ],
+      "provider": "Python",
+      "use": "Bind an explanation draft and review to exact local snapshot bytes."
+    },
+    {
+      "key": "PYTHON_SUBPROCESS",
+      "title": "subprocess — Subprocess management",
+      "url": "https://docs.python.org/3/library/subprocess.html",
+      "sections": [
+        "Using the subprocess Module"
+      ],
+      "provider": "Python",
+      "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+    },
+    {
+      "key": "OPENAI_EVAL_BEST",
+      "title": "Evaluation best practices",
+      "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+      "sections": [
+        "Design your eval process"
+      ],
+      "provider": "OpenAI documentation",
+      "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+    },
+    {
+      "key": "BEDROCK_GUARDRAILS",
+      "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+      "sections": [
+        "Contextual grounding checks"
+      ],
+      "provider": "AWS",
+      "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+    },
+    {
+      "key": "AGENTCORE_EVALS",
+      "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+      "sections": [
+        "Dataset evaluation"
+      ],
+      "provider": "AWS",
+      "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+    },
+    {
+      "key": "SAA_GUIDE",
+      "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+      "sections": [
+        "Content Domain 1: Design Secure Architectures",
+        "Content Domain 2: Design Resilient Architectures",
+        "Content Domain 3: Design High-Performing Architectures",
+        "Content Domain 4: Design Cost-Optimized Architectures"
+      ],
+      "provider": "AWS",
+      "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+    },
+    {
+      "key": "DEV_ASSOCIATE",
+      "title": "AWS Certified Developer - Associate",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+      "sections": [
+        "Review the exam guide"
+      ],
+      "provider": "AWS",
+      "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+    }
+  ]
+}

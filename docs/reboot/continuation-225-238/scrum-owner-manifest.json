@@ -1,0 +1,1323 @@
+{
+  "title": "Days 225–238 synthetic policy draft review",
+  "status": "starter_not_learner_completion_or_board_published",
+  "branch": "work/eai-sprint2-onward",
+  "base_commit": "9ff50d69c738e53453bfaba66572754062896c33",
+  "board_writes": false,
+  "story_count": 14,
+  "cards": [
+    {
+      "day_number": 225,
+      "date": "2027-06-05",
+      "title": "Check the entry gate and build independent evaluation labels",
+      "learner_seam": "dynamic_gate_and_fixed_cases",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day225_independent_evaluation_cases_have_nontrivial_expected_outcomes",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 95,
+          "ai_workflow_implementation_evaluation": 20,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 17,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 1: Design Secure Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q07",
+        "question_title": "API gateway: route and protect",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 226,
+      "date": "2027-06-06",
+      "title": "Bind a draft to exact approved source versions",
+      "learner_seam": "snapshot_bound_draft",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day226_candidate_becomes_draft_bound_to_exact_snapshot_and_citation",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        225
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 90,
+          "ai_workflow_implementation_evaluation": 20,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 17,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 1: Design Secure Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 227,
+      "date": "2027-06-07",
+      "title": "Reject altered text and foreign evidence",
+      "learner_seam": "grounded_candidate_validation",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day227_altered_unknown_stale_and_foreign_evidence_abstain",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        226
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 90,
+          "ai_workflow_implementation_evaluation": 20,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q14",
+        "question_title": "Booking: retry after a lost response",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 228,
+      "date": "2027-06-08",
+      "title": "Stage a draft without changing policy state",
+      "learner_seam": "reference_only_staging",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day228_staging_keeps_policy_unchanged_and_draft_unapproved",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        227
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 2: Design Resilient Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Solutions Architect - Associate (SAA-C03) / Content Domain 2: Design Resilient Architectures; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 229,
+      "date": "2027-06-09",
+      "title": "Deny cross-owner reviewers before audit",
+      "learner_seam": "reviewer_owner_authorization",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day229_foreign_reviewer_is_denied_without_state_or_audit_change",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        228
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 10,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 1: Design Secure Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 230,
+      "date": "2027-06-10",
+      "title": "Record explicit approval and rejection transitions",
+      "learner_seam": "human_review_transition",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day230_human_review_approves_once_and_audits_the_transition",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        229
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 10,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q23",
+        "question_title": "Event pipeline: ingest and process",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 231,
+      "date": "2027-06-11",
+      "title": "Reject review against a stale policy snapshot",
+      "learner_seam": "policy_version_conflict",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day231_stale_policy_version_and_snapshot_conflict_without_mutation",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        230
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 10,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 2: Design Resilient Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 232,
+      "date": "2027-06-12",
+      "title": "Make exact review replay idempotent",
+      "learner_seam": "review_idempotency_replay",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day232_exact_replay_returns_same_audit_event_without_duplicate",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        231
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 11,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Developer - Associate / Review the exam guide; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 233,
+      "date": "2027-06-13",
+      "title": "Reject an idempotency key reused for changed intent",
+      "learner_seam": "review_key_conflict",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day233_same_key_with_changed_decision_or_draft_conflicts",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        232
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 11,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 234,
+      "date": "2027-06-14",
+      "title": "Preserve an append-only minimal audit",
+      "learner_seam": "minimal_audit_integrity",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day234_audit_is_ordered_append_only_and_contains_no_source_text",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        233
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 11,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 3: Design High-Performing Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 235,
+      "date": "2027-06-15",
+      "title": "Evaluate permission, grounding and review outcomes",
+      "learner_seam": "workflow_evaluation_metrics",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day235_only_approved_same_owner_draft_can_be_rendered",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        234
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 12,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Developer - Associate / Review the exam guide; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 236,
+      "date": "2027-06-16",
+      "title": "Fail closed on timeout and malformed generation output",
+      "learner_seam": "adapter_failure_abstention",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day236_timeout_unavailable_malformed_and_unknown_fail_closed",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        235
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 70,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 15,
+          "ai_concept_source_study": 12,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 2: Design Resilient Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 237,
+      "date": "2027-06-17",
+      "title": "Detect stale concurrent review attempts",
+      "learner_seam": "optimistic_revision_conflict",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day237_stale_ledger_revision_cannot_overwrite_concurrent_review",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        236
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 70,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 15,
+          "ai_concept_source_study": 14,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 4: Design Cost-Optimized Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Solutions Architect - Associate (SAA-C03) / Content Domain 4: Design Cost-Optimized Architectures; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day_number": 238,
+      "date": "2027-06-18",
+      "title": "Run the bounded draft-to-approved reference path",
+      "learner_seam": "bounded_workflow_closeout",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "prerequisite_days": [
+        237
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 15,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 14,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold",
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    }
+  ],
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  }
+}
