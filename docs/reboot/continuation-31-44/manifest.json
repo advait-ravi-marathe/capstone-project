@@ -329,7 +329,14 @@
             "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
             "access_status": "confirmed_owned"
           }
-        ]
+        ],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85
       }
     },
     {
@@ -1222,7 +1229,14 @@
             "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
             "access_status": "unconfirmed_reference_only"
           }
-        ]
+        ],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85
       }
     },
     {
@@ -1849,7 +1863,14 @@
             "activity": "Trade-offs, failures, follow-ups"
           }
         ],
-        "course_catalog": []
+        "course_catalog": [],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85
       }
     },
     {
@@ -2612,9 +2633,9 @@
         ],
         "course_note": "Keep the existing “Java Tip 14 - Why Enum and Enum Basics - ordinal and values” (7:28) as status-vocabulary foundation only. Use the existing Java SE 21 Clock and AWS runbook documentation for due-time/recovery concepts; no additional lesson is assigned.",
         "practice_minutes_available": 85,
-        "implementation_scope": "40 minutes: implement the Day 42 cancelled-state write guard for endorsement/rescheduling while preserving the owned read path; run the existing selector and capture the first unmet assertion. Do not add a scheduler implementation: the scheduled transition is the preceding Day 41 seam.",
+        "implementation_scope": "40 minutes total: spend 5 minutes confirming preconditions and predicting the guard result, 25 minutes implementing only the cancelled-state servicing-write guard, and 10 minutes running the existing selector and recording the first unmet assertion. The selector proves the pure guard and synthetic owner read only; it does not prove actual writes, HTTP 409, retries, persisted history, or Day 41. Do not add a scheduler implementation.",
         "deferred_work_id": "S3-D42-1",
-        "deferred_work": "Complete both post-cancellation write refusals, retry/no-new-history assertions, and owner-readable final-state proof; rerun the unchanged Day 42 selector after its Day 41 prerequisite passes.",
+        "deferred_work": "Implement and verify only the pure cancelled-state servicing-write guard and the selector’s synthetic owner-read assertion. This does not prove actual endorsement/reschedule writes, HTTP 409, retries, database history invariance, or the persisted Day 41 transition.",
         "acceptance": "The original day contract, selectors, and acceptance criteria remain unchanged. The interview and 40-minute EAI slice do not mark the day complete; unfinished acceptance stays in the named queue.",
         "evidence": "Record actual selector, exit/result or first blocker, changed paths, assistance, saved initial proposal, and relevant snapshots. Score only observed evidence; do not add post-hoc justification.",
         "mock_phases": [
@@ -2647,7 +2668,16 @@
             "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
             "access_status": "unconfirmed_reference_only"
           }
-        ]
+        ],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85,
+        "additional_deferred_work_id": "S3-D42-2",
+        "additional_deferred_work": "OPEN, prerequisite-gated integration evidence: after the actual Day 38/39 endorsement write path and Day 41 persisted cancellation transition are implemented, add/identify real write-boundary checks for both endorsement and rescheduling, repeat each rejected request, assert HTTP 409 only if a real mapped endpoint exists, and compare complete history before/after. No current Day 42 selector proves this; the existing day42CancelledPolicyRejectsWritesButRemainsReadable selector cannot close S3-D42-2."
       }
     },
     {

@@ -43,6 +43,10 @@ class Sprint3InterviewCurriculumTest(unittest.TestCase):
             self.assertEqual(item['question_id'], question)
             self.assertEqual(item['duration_minutes'], 45)
             self.assertEqual(item['practice_minutes_available'], 85)
+            self.assertEqual(item['mock_minutes'], 45)
+            self.assertEqual(item['eai_slice_minutes'], {'case_setup': 5, 'implementation': 25, 'selector_and_blocker_record': 10})
+            self.assertEqual(item['practice_total_minutes'], 85)
+            self.assertEqual(item['mock_minutes'] + sum(item['eai_slice_minutes'].values()), 85)
             self.assertEqual(sum(p['minutes'] for p in item['mock_phases']), 45)
             self.assertEqual([p['minutes'] for p in item['mock_phases']], [5, 5, 15, 10, 10])
             self.assertEqual(45 + 40, item['practice_minutes_available'])
@@ -66,6 +70,12 @@ class Sprint3InterviewCurriculumTest(unittest.TestCase):
             self.assertIn('Interview-first system-design mock', text)
             self.assertIn('before hints, reference answers, or AI', text)
             self.assertIn(item['deferred_work_id'], text)
+            allocation = re.search(r'\*\*Practice allocation \(85 minutes\):\*\*([^\n]+)', text)
+            self.assertIsNotNone(allocation, f'day {day} practice allocation')
+            self.assertIn('45 minutes', allocation.group(1))
+            self.assertIn('40 minutes', allocation.group(1))
+            for superseded in ('15 / 55 / 15', '10 / 55 / 20', '10 / 60 / 15'):
+                self.assertNotIn(superseded, allocation.group(1), f'day {day} contradictory active allocation')
             self.assertIn('#'+item['question_id'].lower(), text)
             self.assertIn(item['question_title'], text)
             for selector in re.findall(r'`([^`]*\./mvnw[^`]*)`', item['implementation_scope'] + ' ' + text):
@@ -105,6 +115,23 @@ class Sprint3InterviewCurriculumTest(unittest.TestCase):
             self.assertIn(selector, self.deep)
         self.assertIn('sprint3-session-scope.md', self.deep)
         self.assertIn('two in each seven-day practice', self.scope)
+
+    def test_day42_queue_does_not_overclaim_pure_selector_as_integration(self):
+        canonical, item = self.assignment(42)
+        owner = self.cont_cards[42]['interview_practice']
+        self.assertEqual(item['additional_deferred_work_id'], 'S3-D42-2')
+        self.assertEqual(item, owner)
+        for payload in (item['deferred_work'], item['additional_deferred_work']):
+            self.assertTrue(payload)
+        self.assertIn('does not prove actual endorsement/reschedule writes', item['deferred_work'])
+        self.assertIn('cannot close S3-D42-2', item['additional_deferred_work'])
+        self.assertIn('OPEN; prerequisite-gated', (ROOT / 'docs/reboot/continuation-31-44/contracts/day-42.md').read_text())
+        self.assertIn('synthetic owner read only', (ROOT / 'docs/reboot/interview/sprint3-session-scope.md').read_text())
+        source = (ROOT / 'src/test/java/assignments/reboot/PolicyLifecycleAcceptanceTest.java').read_text()
+        selector = source.split('void day42CancelledPolicyRejectsWritesButRemainsReadable()', 1)[1].split('\n    }', 1)[0]
+        self.assertIn('permitsServicingWrite(cancelled)', selector)
+        self.assertIn('readForOwner(store', selector)
+        self.assertNotIn('DataSource', selector)
 
     def test_course_bridges_are_existing_metadata_and_dsa_stays_external(self):
         for day in [31, 35, 38, 42]:

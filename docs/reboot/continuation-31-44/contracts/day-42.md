@@ -29,11 +29,13 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 **Prompt:** [Q11 — Scheduler: run one job](../../interview/question-bank.md#q11). Save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
 
-**Existing EAI work (40 minutes):** 40 minutes: implement the Day 42 cancelled-state write guard for endorsement/rescheduling while preserving the owned read path; run the existing selector and capture the first unmet assertion. Do not add a scheduler implementation: the scheduled transition is the preceding Day 41 seam.
+**Existing EAI work (40 minutes):** Implement only the pure `permitsServicingWrite` cancelled-state guard and run the existing selector. The selector checks that predicate and reads a cancelled snapshot through an in-memory lambda; it does not issue an endorsement or reschedule, call an HTTP endpoint, prove 409, exercise a retry, inspect persisted history, or establish the Day 41 transition.
 
-**Runnable acceptance:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test`. This selector may remain red at an earlier learner-owned prerequisite; record the actual first blocker. Do not weaken it or claim the fixture is learner integration.
+**Runnable acceptance for S3-D42-1 only:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test`. This selector may remain red at an earlier learner-owned prerequisite; record the actual first blocker. It cannot close S3-D42-2, and it is not HTTP, write-path, retry, or database-history evidence.
 
-**Deferred queue:** **S3-D42-1** — Complete both post-cancellation write refusals, retry/no-new-history assertions, and owner-readable final-state proof; rerun the unchanged Day 42 selector after its Day 41 prerequisite passes. Day acceptance stays pending until the original full criteria pass.
+**Deferred queue:** **S3-D42-1** — Complete the pure cancelled-state guard and the selector’s synthetic owner-read assertion. This selector proves neither real write refusal nor persistence.
+
+**Deferred queue:** **S3-D42-2 (OPEN; prerequisite-gated)** — After the Day 38/39 endorsement write path and the persisted Day 41 cancellation transition exist, add runnable checks at the actual write boundary for both endorsement and rescheduling, repeat each rejected request, and compare complete history snapshots before and after. Assert HTTP 409 only if an actual mapped endpoint exists. No current Day 42 selector proves this work, and the existing selector cannot close this queue item. Day 42 acceptance remains pending until the original full criteria pass.
 
 **Supporting source bridge:** Keep the existing “Java Tip 14 - Why Enum and Enum Basics - ordinal and values” (7:28) as status-vocabulary foundation only. Use the existing Java SE 21 Clock and AWS runbook documentation for due-time/recovery concepts; no additional lesson is assigned.
 
@@ -49,7 +51,7 @@ Focused sources:
 
 **Study allocation (exactly 25:00 / 1,500 seconds):** video or state fallback 7:28; focused runbook 3:00; worked example 10:32; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
 
-**Practice allocation (85 minutes):** 15 / 55 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+**Practice allocation (85 minutes):** 45 minutes for the named interview mock, then 40 minutes for this day’s bounded engineering slice: 5 minutes to confirm preconditions and state the first expected result, 25 minutes on the named learner seam, and 10 minutes for the named selector plus actual result/blocker evidence. This replaces the former full 85-minute implementation breakdown on this mock day only; the original acceptance remains required and unfinished work stays in the named deferred queue. Do not add time or mark the day complete from the mock or partial slice.
 
 Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
 
