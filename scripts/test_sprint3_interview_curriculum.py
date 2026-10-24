@@ -86,22 +86,21 @@ class Sprint3InterviewCurriculumTest(unittest.TestCase):
                     if java_path.exists():
                         self.assertRegex(java_path.read_text(), rf'\b{re.escape(method)}\s*\(')
 
-    def test_other_days_keep_a_five_minute_prework_prompt_and_original_acceptance(self):
+    def test_other_days_use_supplied_capstone_architecture_and_original_acceptance(self):
         mock_days = {31, 35, 38, 42}
         for day in set(range(29, 43)) - mock_days:
             canonical, item = self.assignment(day)
-            self.assertEqual(item['mode'], '5_minute_task_proposal')
-            self.assertEqual(item['duration_minutes'], 5)
-            self.assertTrue(item['proposal_before_hints_reference_or_ai'])
-            self.assertIn('remaining 80 minutes', item['implementation_scope'])
-            self.assertEqual(5 + 80, item['practice_minutes_available'])
-            if day <= 30:
-                path = ROOT / f'docs/reboot/contracts/day-{day}.md'
-            else:
-                path = ROOT / f'docs/reboot/continuation-31-44/contracts/day-{day}.md'
+            self.assertEqual(item['mode'], 'assistant_supplied_capstone_architecture')
+            self.assertFalse(item['proposal_before_hints_reference_or_ai'])
+            self.assertEqual(item['proposal_scope'], 'none')
+            self.assertEqual(item['capstone_architecture'], 'assistant_supplied')
+            self.assertIn(f'#day-{day}', item['assistant_architecture_note'])
+            self.assertEqual(85, item['practice_minutes_available'])
+            self.assertIn('full 85-minute practice allocation', item['implementation_scope'])
+            path = ROOT / (f'docs/reboot/contracts/day-{day}.md' if day <= 30 else f'docs/reboot/continuation-31-44/contracts/day-{day}.md')
             text = path.read_text()
-            self.assertIn('Interview-first task proposal', text)
-            self.assertIn('Before code, hints, worked answers, or AI', text)
+            self.assertNotRegex(text, r'^## (?:Learner-first|Interview-first) .*proposal')
+            self.assertIn('Assistant-provided capstone architecture', text)
             self.assertIn('acceptance', text.lower())
 
     def test_deep_practice_sessions_nine_to_twelve_match_exported_sprint3_prompts(self):

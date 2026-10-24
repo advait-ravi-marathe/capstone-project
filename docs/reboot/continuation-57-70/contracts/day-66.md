@@ -31,7 +31,7 @@ The selector is intentionally expected to fail at this day’s unchanged learner
 
 Design a retry after a booking write succeeds but its response is lost. Distinguish the frozen user intent and idempotency key from transport retries, define visible pending/unknown/confirmed states, and explain why a retry must reuse the same request. Transfer to the existing local UI; do not add booking behavior.
 
-Save the initial proposal before opening hints, worked references, or AI. Use Requirements 5 minutes; Capacity and constraints 5; Initial architecture and data model 15; Bottlenecks, reliability, scaling 10; Trade-offs, failures, follow-ups 10. Use the [100-point rubric](../../interview/mock-rubric.md).
+For this interview question only, save the initial proposal before opening hints, worked references, or AI. Use Requirements 5 minutes; Capacity and constraints 5; Initial architecture and data model 15; Bottlenecks, reliability, scaling 10; Trade-offs, failures, follow-ups 10. Use the [100-point rubric](../../interview/mock-rubric.md).
 
 **Remaining task slice (40 minutes):**
 
@@ -49,16 +49,18 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-66](<../../assistant-architecture-notes-15-70.md#day-66>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
 - Exact lesson title: **Working with Props & TypeScript**; exact section title: **React + TypeScript** (14:20).
 - Fit: partial foundation. The lesson supports typed props, not this API client’s cookie/CSRF behavior. Work narrow TypeScript request/response types and explicit fetch credentials/CSRF handling; keep calls on the same-origin local route.
 - Focused worked references: [TypeScript everyday types — object types](https://www.typescriptlang.org/docs/handbook/2/objects.html); [Fetch API — credentials and response status](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
-- Video viewing: 14:20 at 1×; the remaining 10:40 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Video viewing: 14:20 at 1×; the remaining 10:40 in the 25-minute cap is for pauses, the worked example and focused reference. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-66.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, architecture-note reference and learner-owned changed paths in `evidence/continuation-57-70/day-66.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 

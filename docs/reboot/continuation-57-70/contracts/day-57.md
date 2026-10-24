@@ -25,12 +25,11 @@ Checks empty/null inputs, both missing directions, false/null required evidence,
 
 The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
 
-## Learner-first task proposal (5 minutes within the 85-minute practice block)
+## Existing implementation boundary
 
-Before opening the readiness implementation or a worked answer, predict the outcomes for missing day-55, missing day-56, false/null flags, both true, and unrelated true keys. State what flags can and cannot prove about evidence authenticity.
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 
-Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D57-READINESS**.
-
+Keep unmet acceptance open as **S5-D57-READINESS**.
 ## Selector limits and open evidence
 
 Checks empty/null inputs, both missing directions, false/null required evidence, unrelated true flags, both required flags, and preserves inputs. The learner-owned gate remains TODO-red until implemented; a flag map does not authenticate evidence. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
@@ -41,20 +40,22 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-57](<../../assistant-architecture-notes-15-70.md#day-57>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - Course: [Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.
 - Exact lesson title: **Getting Started with Continuous Integration, Deployment and Delivery**; exact section title: **Getting Started with Continuous Integration, Deployment and Delivery** (4:50).
 - Fit: partial foundation. This short lesson is CI/CD vocabulary only. Use the supplied GitHub Actions workflow walkthrough for the actual local gate; do not set up Azure DevOps, deploy, or change infrastructure.
 - Focused worked references: [GitHub Actions workflow syntax — workflow and job structure](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
-- Video viewing: 4:50 at 1×; the remaining 20:10 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Video viewing: 4:50 at 1×; the remaining 20:10 in the 25-minute cap is for pauses, the worked example and focused reference. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
+**Prediction record:** Use the supplied assistant architecture note; record the actual selector/result or blocker and assistance.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+Use the supplied decision as context for the assigned task; no design explanation is required.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-57.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, architecture-note reference and learner-owned changed paths in `evidence/continuation-57-70/day-57.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 

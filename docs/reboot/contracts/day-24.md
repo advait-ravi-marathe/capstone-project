@@ -24,11 +24,13 @@ Days 8 and 16; deterministic larger SQL seed. Earlier unfinished collaborators a
 
 ## Concept (25 minutes)
 
+**Assistant-provided capstone architecture:** [../assistant-architecture-notes-15-70.md#day-24](<../assistant-architecture-notes-15-70.md#day-24>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 Read the observed EXPLAIN shape and compare the exact output before/after an index; no timing claim.
 
 ## Interview-first system-design mock (45 minutes inside practice)
 
-**Prompt:** [Q10](../interview/question-bank.md#q10) — Notification retries and durable intent. Write and save your own initial proposal before hints, reference answers, or AI. Use the exact 5/5/15/10/10 phases and 100-point rubric in [the mock rubric](../interview/mock-rubric.md).
+**Prompt:** [Q10](../interview/question-bank.md#q10) — Notification retries and durable intent. For this interview question only, write and save your initial proposal before hints, reference answers, or AI. Use the exact 5/5/15/10/10 phases and 100-point rubric in [the mock rubric](../interview/mock-rubric.md).
 
 **Timebox:** 45 minutes of the existing 85-minute practice block for the mock, then 40 minutes for this EAI slice: Implement the single query index, preserve ordered results, and capture before/after EXPLAIN using the existing selector. No overtime. The unchanged full acceptance selector remains the completion gate.
 
@@ -36,7 +38,7 @@ Read the observed EXPLAIN shape and compare the exact output before/after an ind
 
 ## Evidence (10 minutes)
 
-Both plans and ordered result-equivalence evidence. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Both plans and ordered result-equivalence evidence. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Planned isolated command
 

@@ -25,12 +25,11 @@ Checks missing/null/false/true evidence, 0/60/85 minute preservation, rejection 
 
 The selector is intentionally expected to fail at this day’s unchanged learner TODO until implementation evidence exists. This prospective harness is not completion credit.
 
-## Learner-first task proposal (5 minutes within the 85-minute practice block)
+## Existing implementation boundary
 
-Before the recovery checkpoint, name the actual Day 62 security evidence flag, predict missing/false/null/true outcomes, and state the first failed prerequisite. Validate the remaining practice minutes are within 0..85.
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 
-Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D63-RECOVERY**.
-
+Keep unmet acceptance open as **S5-D63-RECOVERY**.
 ## Selector limits and open evidence
 
 Checks missing/null/false/true evidence, 0/60/85 minute preservation, rejection at -1 and 86, fail-closed recovery, and no new work in both branches. The learner seam remains TODO-red. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
@@ -41,19 +40,21 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-63](<../../assistant-architecture-notes-15-70.md#day-63>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - No exact matching course lesson was verified for this task; no unrelated video is assigned.
-- Fit: recovery review no new lecture. No new lecture or implementation feature. In the shared 25-minute study block, explain the existing security trace and recover only the first failing prerequisite; use the supplied instructor runtime and distinguish observed evidence from learner completion.
+- Fit: recovery review no new lecture. No new lecture or implementation feature. In the shared 25-minute study block, review the supplied security trace and recover only the first failing prerequisite; use the supplied instructor runtime and distinguish observed evidence from learner completion.
 - Focused worked references: [Spring Security architecture — servlet architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html).
-- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example and focused reference. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
+**Prediction record:** Use the supplied assistant architecture note; record the actual selector/result or blocker and assistance.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+Use the supplied decision as context for the assigned task; no design explanation is required.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-63.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, architecture-note reference and learner-owned changed paths in `evidence/continuation-57-70/day-63.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 

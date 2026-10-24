@@ -77,9 +77,10 @@ class Sprint4InterviewCurriculumTest(unittest.TestCase):
                 assignment = canonical['interview_practice']
                 self.assertEqual(assignment, card['interview_practice'])
                 self.assertEqual(assignment, curriculum['interview_practice'])
-                self.assertTrue(assignment['proposal_before_hints_reference_or_ai'])
+                self.assertEqual(assignment['proposal_scope'], 'system_design_interview_question_only' if day in MOCK_DAYS else 'none')
+                self.assertEqual(assignment['capstone_architecture'], 'assistant_supplied')
                 self.assertEqual(assignment['practice_minutes_available'], 85)
-                self.assertTrue(assignment.get('proposal_prompt', assignment.get('implementation_scope', '')).strip())
+                self.assertIn(f'#day-{day}', assignment['assistant_architecture_note'])
                 commands = assignment.get('acceptance_commands', canonical['engineering']['acceptance_commands'])
                 self.assertTrue(commands)
                 self.assertEqual(commands, canonical['engineering']['acceptance_commands'])
@@ -88,30 +89,23 @@ class Sprint4InterviewCurriculumTest(unittest.TestCase):
                     'implementation_and_testing': 85, 'concept_or_course': 25, 'evidence': 10
                 })
                 self.assertEqual(sum(curriculum['practice_segment_minutes']), 85)
+                contract_path = ROOT / canonical['contract_file']
+                contract = contract_path.read_text()
+                self.assertIn('Assistant-provided capstone architecture', contract)
                 if day in MOCK_DAYS:
                     self.assertEqual(assignment['mode'], '45_minute_mock')
                     self.assertEqual(assignment['duration_minutes'], 45)
+                    self.assertTrue(assignment['proposal_before_hints_reference_or_ai'])
+                    self.assertIn('For this interview question only', contract)
                 else:
-                    self.assertEqual(assignment['mode'], '5_minute_task_proposal')
-                    self.assertEqual(assignment['duration_minutes'], 5)
-                    self.assertIn('remaining 80 minutes', assignment['implementation_scope'])
-                    contract_path = ROOT / canonical['contract_file']
-                    contract = contract_path.read_text()
-                    self.assertIn('## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)', contract)
-                    self.assertIn('remaining 80 minutes', contract)
-                    self.assertIn('No retrospective architecture essay', contract)
-                    self.assertNotIn('**85-minute practice allocation:**\n-', contract)
-                    self.assertNotIn('**Practice allocation (85 minutes):** 10 /', contract)
-                    self.assertIn(assignment['proposal_prompt'], contract)
-                    for command in commands:
-                        self.assertIn(command, contract)
-                    scope_row = next((line for line in self.scope.splitlines() if line.startswith(f'| {day} · ')), None)
-                    self.assertIsNotNone(scope_row, f'day {day}: scope row')
-                    guide_path = next(source for source in assignment['supporting_sources'] if '/worked/' in source)
-                    folder = 'continuation-31-44' if day < 45 else 'continuation-45-56'
-                    relative_guide = f'../{folder}/worked/{Path(guide_path).name}'
-                    self.assertIn(f']({relative_guide})', scope_row)
-                    self.assertTrue((ROOT / 'docs/reboot/interview' / relative_guide).resolve().is_file())
+                    self.assertEqual(assignment['mode'], 'assistant_supplied_capstone_architecture')
+                    self.assertEqual(assignment['duration_minutes'], 0)
+                    self.assertFalse(assignment['proposal_before_hints_reference_or_ai'])
+                    self.assertIn('full 85-minute practice allocation', assignment['implementation_scope'])
+                    self.assertNotRegex(contract, r'^## (?:Learner-first|Interview-first) .*proposal')
+                    self.assertNotIn('no post-hoc architectural justification is required', contract)
+                for command in commands:
+                    self.assertIn(command, contract)
                 for source in assignment['supporting_sources']:
                     if source.startswith('http'):
                         continue

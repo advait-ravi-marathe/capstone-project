@@ -24,15 +24,9 @@ broker, NoSQL service, or StreamForge work is assigned.
 | 38 · 2026-11-30 | [Q16 — Messaging: ordering and replay](question-bank.md#q16). No additional lesson: use existing [PostgreSQL constraints](https://www.postgresql.org/docs/18/ddl-constraints.html), [Java Record documentation](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html), and the Day 38 history guide. Treat event ordering as a comparison; CoverStory's current local relational history remains the implementation. | Append one immutable endorsement version and preserve prior snapshots; run `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test`. | **S3-D38-1:** Complete the original effective-order, exactly-one-version, input-immutability, and history-preservation acceptance in that selector. Do not create a broker, outbox, or StreamForge dependency. |
 | 42 · 2026-12-04 | [Q11 — Scheduler: run one job](question-bank.md#q11). Keep the existing *Java Programming for Complete Beginners* (in28Minutes Official) enum lesson as state-vocabulary foundation only (access unconfirmed); use already assigned [Java `Clock`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html) and [AWS runbook](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html) readings for time and recovery. | Implement only `permitsServicingWrite` guard and run `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test`. That selector asserts a boolean and synthetic owner read only. | **S3-D42-1:** Complete the pure guard/synthetic-read selector. **S3-D42-2 (OPEN):** after Days 38/39 actual endorsement writes and Day 41 persisted transition exist, add actual endorsement and reschedule write/retry checks with complete history snapshots; assert 409 only for a real mapped endpoint. The current selector cannot close this integration item. No scheduler implementation is added to Day 42. |
 
-## Task-first proposal on other days
+## Capstone implementation guidance on non-mock days
 
-On Days 29, 30, 32–34, 36–37, and 39–41, spend five minutes at the start of
-the existing practice block writing a task-specific prediction before opening
-worked guidance, hints, or AI. The daily contract names the prompt and existing
-acceptance selector; use the remaining 80 minutes for that unchanged task.
-Day 30's five-minute prediction is part of its existing review time. This is a
-short pre-work note, not an additional mock or architecture deliverable. Keep
-any unfinished original acceptance open with its actual blocker.
+For Days 29–30, 32–34, 36–37, and 39–41, use the assistant-provided decision and rationale in the daily concept block, then implement and test the existing task within its 85-minute practice allocation. No capstone design proposal or post-hoc architectural justification is assigned. The learner saves a proposal only for a scheduled question-bank mock. Keep any unfinished acceptance open under its existing day ID.
 
 ## Prerequisites and boundaries
 

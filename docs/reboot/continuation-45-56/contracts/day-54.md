@@ -24,26 +24,18 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
-## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)
+## Existing implementation boundary
 
-Before code, hints, worked answers, or AI, save a short prediction: List owner/foreign/absent/anonymous response expectations and the three ordered database snapshots to compare after every request before running the PostgreSQL acceptance.
-
-Use the remaining 80 minutes only for the unchanged day acceptance. Existing prerequisites still gate the work; do not infer that a prior learner gate passed.
-
-**Relevant patterns:** [ownership-boundary](../../interview/pattern-library.md#ownership-boundary), [transaction-boundary](../../interview/pattern-library.md#transaction-boundary).
-
-**Run the existing acceptance:**
-- `./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test`
-
-The proposal is not a pass. Keep unfinished acceptance open and stop at the first prerequisite blocker or at the daily cap. Record the proposal, actual command/result or blocker, changed paths, and assistance in the existing 10-minute evidence block. No retrospective architecture essay.
-
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 ## Practice and evidence
 
 **85-minute practice allocation:** 5 minutes to save the task-specific prediction before assistance; the remaining 80 minutes are for the unchanged acceptance command(s) above, stopping at the first unresolved prerequisite or timebox. Preserve any unfinished criteria as open work; no overtime.
 
-**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
+**10-minute evidence allocation:** record the actual command/output, source SHA, result or first blocker, changed paths, and assistance. Do not infer learner completion from a green instructor reference or write a post-hoc architecture justification.
 
 ## Study block — exactly 25 minutes
+
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-54](<../../assistant-architecture-notes-15-70.md#day-54>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 - Required source: **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51), access `unconfirmed_reference_only`. No viewing is inferred.
 - Worked guide: [Compare full database state around the read](../worked/day-54-complete-database-observation.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.

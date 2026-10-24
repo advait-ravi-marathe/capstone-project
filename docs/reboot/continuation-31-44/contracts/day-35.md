@@ -27,7 +27,7 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Interview-first system-design mock (45 minutes; inside the 85-minute practice block)
 
-**Prompt:** [Q13 — Booking: reserve one seat atomically](../../interview/question-bank.md#q13). Save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
+**Prompt:** [Q13 — Booking: reserve one seat atomically](../../interview/question-bank.md#q13). For this interview question only, save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
 
 **Existing EAI work (40 minutes):** 40 minutes: implement the successful one-connection policy + issue-event + owner/key receipt write and verify it through the fresh PostgreSQL read in the existing positive selector. Keep the whole write in the existing transaction boundary.
 
@@ -39,6 +39,8 @@ Implement only this day's seam and its fixed tests. Preserve prior completed wor
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-35](<../../assistant-architecture-notes-15-70.md#day-35>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-35-atomic-write-decision.md](../../continuation-31-44/worked/day-35-atomic-write-decision.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
 Required course foundation: Step 63 - Implementing Transaction Management - 3 Things to Decide (4:38). Optional reference-only lessons (outside today's 25-minute scheduled path): Step 58 - Introduction to Transaction Management. Course access remains as recorded in the verified catalog; when unavailable, use the listed official source and worked guide in the same time allocation. Do not purchase/enroll or stack optional content.
@@ -47,17 +49,17 @@ Focused sources:
 - [AWS Prescriptive Guidance: Appendix – ADR template](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) — Context; Decision; Consequences; Compliance.
 - [PostgreSQL 18 tutorial](https://www.postgresql.org/docs/18/tutorial-transactions.html) — 3.4. Transactions.
 
-**Study allocation (exactly 25:00 / 1,500 seconds):** video or tx fallback 4:38; focused ADR 4:00; worked example 12:22; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+**Study allocation (exactly 25:00 / 1,500 seconds):** video or tx fallback 4:38; focused ADR 4:00; worked example 12:22; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example, and review of the supplied decision share this block. Viewing is not learner completion.
 
 **Practice allocation (85 minutes):** 45 minutes for the named interview mock, then 40 minutes for this day’s bounded engineering slice: 5 minutes to confirm preconditions and state the first expected result, 25 minutes on the named learner seam, and 10 minutes for the named selector plus actual result/blocker evidence. This replaces the former full 85-minute implementation breakdown on this mock day only; the original acceptance remains required and unfinished work stays in the named deferred queue. Do not add time or mark the day complete from the mock or partial slice.
 
 Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
 
-**Design/API prompt:** Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.
+**Acceptance focus:** Fresh PostgreSQL reads of exact preserved old rows plus no new policy/event after receipt conflict; success all three rows.
 
 ## Evidence allocation (10 minutes)
 
-Record the actual command and result in `evidence/continuation-31-44/day-35.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Keep design reasoning in the learner-led proposal or review when assigned; no post-hoc architectural justification is required.
+Record the actual command and result in `evidence/continuation-31-44/day-35.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Separate DSA track
 

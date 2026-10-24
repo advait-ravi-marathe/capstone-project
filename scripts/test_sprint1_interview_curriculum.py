@@ -174,13 +174,24 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             assignment = item["interview_practice"]
             self.assertEqual(assignment, card["interview_practice"])
             self.assertEqual(85, assignment["practice_minutes_available"])
-            self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            self.assertEqual(assignment["proposal_scope"], "system_design_interview_question_only" if day in (17, 21, 24, 28) else "none")
+            self.assertEqual(assignment["capstone_architecture"], "assistant_supplied")
+            self.assertIn(f"#day-{day}", assignment["assistant_architecture_note"])
+            if day in (17, 21, 24, 28):
+                self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            else:
+                self.assertFalse(assignment["proposal_before_hints_reference_or_ai"])
+                self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+                self.assertNotIn("proposal_prompt", assignment)
             expected_bridges = [{key: lesson.get(key) for key in (
                 "title", "section_title", "duration_seconds", "source_item_id", "course_id")}
                 for lesson in courses["days"][day - 1].get("lesson_details", [])]
             self.assertEqual(expected_bridges, assignment["course_bridges"], f"Day {day} course bridge")
             contract = (ROOT / f"docs/reboot/contracts/day-{day:02d}.md").read_text()
-            self.assertIn("Interview-first", contract)
+            if day in expected_mocks:
+                self.assertIn("Interview-first", contract)
+            else:
+                self.assertIn("Assistant-provided capstone architecture", contract)
             self.assertNotIn("Interview transfer (inside the current evidence block)", contract)
             if day in expected_mocks:
                 planned_date, question = expected_mocks[day]
@@ -194,8 +205,8 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                 self.assertIn(assignment["deferred_work_id"], scope)
                 self.assertRegex(deep, rf"\|\s*\d+\s*\| {day} · {planned_date} \| {question} \|")
             else:
-                self.assertEqual("proposal_before_reference", assignment["mode"])
-                self.assertEqual(5, assignment["duration_minutes"])
+                self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+                self.assertEqual(0, assignment["duration_minutes"])
                 self.assertIsNone(assignment["deferred_work_id"])
         self.assertNotIn("65 build/test + 20 mock", scope)
         self.assertIn("named 40-minute EAI slice", scope)

@@ -24,18 +24,17 @@ scripts/package-sprint5-demo.sh
 ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test
 ```
 
-## Learner task — explain/debug acceptance
+## Learner task — inspect the fresh package and process
 
 Run `scripts/package-sprint5-demo.sh` to build and `scripts/sprint5-demo.sh` to launch; inspect the fresh JAR and served root/assets/routes, verify loopback health/session behavior, then stop only the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
 
-Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
+Capture the observed archive/process/asset trace in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
-## Learner-first task proposal (5 minutes within the 85-minute practice block)
+## Task boundary
 
-Before packaging, predict which observations prove source shape, archive contents, launched process, served assets, health/session behavior, and resource cleanup.
+Build and inspect the bounded packaged artifact using the supplied scripts. Do not introduce a new packaging system or modify the default later runtime.
 
-Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D67-PACKAGE**.
-
+Keep unmet acceptance open as **S5-D67-PACKAGE**.
 ## Selector limits and open evidence
 
 Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion.
@@ -46,20 +45,22 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-67](<../../assistant-architecture-notes-15-70.md#day-67>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
 - Exact lesson title: **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**; exact section title: **Getting Started with Spring Boot** (7:05).
 - Fit: partial foundation. Profiles are configuration context, not packaging instruction. Follow the supplied package/local-demo scripts and inspect the generated JAR; confirm the disposable process/database lifecycle without deploying or creating cloud resources.
 - Focused worked references: [Spring Boot executable jar packaging — repackage goal and executable archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html).
-- Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example and focused reference. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
+**Prediction record:** Use the supplied assistant architecture note; record the actual selector/result or blocker and assistance.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+Use the supplied decision as context for the inspection; no design explanation is required.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner explanation/trace and any changed paths (use `[]` for a read-only exercise) in `evidence/continuation-57-70/day-67.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, architecture-note reference and observed trace and any changed paths (use `[]` for a read-only exercise) in `evidence/continuation-57-70/day-67.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 

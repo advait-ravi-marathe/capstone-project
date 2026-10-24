@@ -26,13 +26,14 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
-## Interview-first task proposal (5 minutes; inside the 85-minute practice block)
+## Existing implementation boundary
 
-Before code, hints, worked answers, or AI, write: Write the before/equal/after effective-time outcomes and the no-duplicate-event invariant before opening the clock guide.
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 
-**Task boundary:** Run both existing pure and persisted Day 41 selectors; do not infer atomic persistence from the pure transition. Use the existing day's acceptance selector and preserve its full criteria. This short proposal does not replace acceptance or add time. Record the prediction and actual result in the existing evidence record.
-
+**Task boundary:** Run both existing pure and persisted Day 41 selectors; do not infer atomic persistence from the pure transition. Use the existing day's acceptance selector and preserve its full criteria.
 ## Concept/course allocation (25 minutes)
+
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-41](<../../assistant-architecture-notes-15-70.md#day-41>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-41-clock-transition.md](../../continuation-31-44/worked/day-41-clock-transition.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
@@ -41,17 +42,17 @@ Required course foundation: none; use the bounded authored/official bridge. Opti
 Focused sources:
 - [Java SE 21: Clock](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html) — Class Clock; fixed(Instant, ZoneId).
 
-**Study allocation (exactly 25:00 / 1,500 seconds):** focused clock 4:00; worked example 17:00; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+**Study allocation (exactly 25:00 / 1,500 seconds):** focused clock 4:00; worked example 17:00; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example, and review of the supplied decision share this block. Viewing is not learner completion.
 
 **Practice allocation (85 minutes):** 10 / 55 / 20 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
 
 Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
 
-**Design/API prompt:** Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.
+**Acceptance focus:** Before/equal/after injected-clock checks; repeated final transition unchanged; integrated state/event atomicity not inferred from pure test.
 
 ## Evidence allocation (10 minutes)
 
-Record the actual command and result in `evidence/continuation-31-44/day-41.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Keep design reasoning in the learner-led proposal or review when assigned; no post-hoc architectural justification is required.
+Record the actual command and result in `evidence/continuation-31-44/day-41.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Separate DSA track
 

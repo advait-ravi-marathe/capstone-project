@@ -29,12 +29,11 @@ Stop at the first actual prerequisite TODO and record the reached boundary. A va
 
 The package command must succeed immediately before the packaged selector. Artifact identity is checked by the stage receipt.
 
-## Learner-first task proposal (5 minutes within the 85-minute practice block)
+## Existing implementation boundary
 
-Before opening the browser, write independent expected preview and issue projections from the approved fixture, statuses 201/200/200, same request identity, visible values, and the allowed database delta after each action.
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 
-Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D68-INTEGRATION**.
-
+Keep unmet acceptance open as **S5-D68-INTEGRATION**.
 ## Selector limits and open evidence
 
 Requires a freshly built Sprint5 classifier/receipt. Complete expected preview and issue projections, numeric amount type/value, exact declared effective date, request replay identity, rendered values, row/event/receipt semantics, and full DB snapshots at before-issue/after-issue/after-read/after-replay barriers. UI/domain TODOs remain learner gates. Any learner-owned behavior not implemented yet remains explicitly incomplete; these assertions only make its first failure observable.
@@ -45,20 +44,22 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-68](<../../assistant-architecture-notes-15-70.md#day-68>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - Course: [React - The Complete Guide (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) — Academind / Maximilian Schwarzmüller; access: unconfirmed reference only. Do not purchase/enroll based on this map.
 - Exact lesson title: **Testing User Interaction & State**; exact section title: **Testing React Apps (Unit Tests)** (14:00).
 - Fit: partial foundation. This is component-level test guidance, not real browser-to-JAR/PostgreSQL evidence. Use the supplied packaged browser selectors and explicit database snapshots; treat the test course as optional if unavailable, and stop at the 25-minute cap.
 - Focused worked references: [Playwright Page API — navigation and user interactions](https://playwright.dev/docs/api/class-page); [Playwright Response API — status and JSON response](https://playwright.dev/docs/api/class-response).
-- Video viewing: 14:00 at 1×; the remaining 11:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Video viewing: 14:00 at 1×; the remaining 11:00 in the 25-minute cap is for pauses, the worked example and focused reference. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
+**Prediction record:** Use the supplied assistant architecture note; record the actual selector/result or blocker and assistance.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+Use the supplied decision as context for the assigned task; no design explanation is required.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-68.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, architecture-note reference and learner-owned changed paths in `evidence/continuation-57-70/day-68.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 

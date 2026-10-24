@@ -25,7 +25,7 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 
 ## Interview-first system-design mock (45 minutes; within the 85-minute practice block)
 
-**Prompt:** [Q14 — Booking: retry after a lost response](../../interview/question-bank.md#q14). Save your initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the [100-point rubric](../../interview/mock-rubric.md) with 5/5/15/10/10-minute phases. This is a design-transfer exercise; it adds no product implementation.
+**Prompt:** [Q14 — Booking: retry after a lost response](../../interview/question-bank.md#q14). For this interview question only, save your initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the [100-point rubric](../../interview/mock-rubric.md) with 5/5/15/10/10-minute phases. This is a design-transfer exercise; it adds no product implementation.
 
 **Existing engineering work (40 minutes):** 5 minutes inspect the supplied props and expected changed fixture; 25 minutes implement only `PolicyRenewalPreviewPanel` reference rendering; 10 minutes run the named learner component selector and record the first actual result or blocker. Discuss retry identity as interview transfer only; do not add mutation behavior.
 
@@ -40,6 +40,8 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **10-minute evidence allocation:** record the saved pre-assistance proposal; actual acceptance command, result or first blocker; changed paths and assistance; and which original acceptance remains open. Do not claim completion from a mock, smoke test, or partial slice.
 
 ## Study block — exactly 25 minutes
+
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-52](<../../assistant-architecture-notes-15-70.md#day-52>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 - Required source: **Rendering Content Conditionally**, section **React Essentials - Components, JSX, Props, State & More** (8:03), access `unconfirmed_reference_only`. No viewing is inferred.
 - Worked guide: [Render a supplied reference value](../worked/day-52-reference-only-panel.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.

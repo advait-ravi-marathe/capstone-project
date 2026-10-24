@@ -26,7 +26,7 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 
 ## Interview-first system-design mock (45 minutes; within the 85-minute practice block)
 
-**Prompt:** [Q12 — Scheduler: missed or duplicate execution](../../interview/question-bank.md#q12). Save your initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the [100-point rubric](../../interview/mock-rubric.md) with 5/5/15/10/10-minute phases. This is a design-transfer exercise; it adds no product implementation.
+**Prompt:** [Q12 — Scheduler: missed or duplicate execution](../../interview/question-bank.md#q12). For this interview question only, save your initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the [100-point rubric](../../interview/mock-rubric.md) with 5/5/15/10/10-minute phases. This is a design-transfer exercise; it adds no product implementation.
 
 **Existing engineering work (40 minutes):** 5 minutes verify actual Day55 gate and same-database/fixed-clock preconditions; 25 minutes run the named learner restart selector and inspect the first checkpoint; 10 minutes record exact statuses, response and row observations or the first blocker. This is bounded observation/debug work, not a claim that the complete restart gate passed.
 
@@ -41,6 +41,8 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **10-minute evidence allocation:** record the saved pre-assistance proposal; actual acceptance command, result or first blocker; changed paths and assistance; and which original acceptance remains open. Do not claim completion from a mock, smoke test, or partial slice.
 
 ## Study block — exactly 25 minutes
+
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-56](<../../assistant-architecture-notes-15-70.md#day-56>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 - No course video is required for this day; use the supplied focused official references and project-authored worked example.
 - Worked guide: [Read after restart without changing stored rows](../worked/day-56-restart-read-handover.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.

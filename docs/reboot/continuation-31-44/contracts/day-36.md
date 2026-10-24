@@ -25,13 +25,14 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
-## Interview-first task proposal (5 minutes; inside the 85-minute practice block)
+## Existing implementation boundary
 
-Before code, hints, worked answers, or AI, write: Write the owner predicate and the identical outward result for foreign and absent policy IDs before opening the authorization guide.
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 
-**Task boundary:** Use the existing owner-scoped Day 36 selector; do not accept a client-provided owner. Use the existing day's acceptance selector and preserve its full criteria. This short proposal does not replace acceptance or add time. Record the prediction and actual result in the existing evidence record.
-
+**Task boundary:** Use the existing owner-scoped Day 36 selector; do not accept a client-provided owner. Use the existing day's acceptance selector and preserve its full criteria.
 ## Concept/course allocation (25 minutes)
+
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-36](<../../assistant-architecture-notes-15-70.md#day-36>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-36-owner-scope.md](../../continuation-31-44/worked/day-36-owner-scope.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.
 
@@ -40,17 +41,17 @@ Required course foundation: Step 07 - Querying Data using Spring JDBC (5:36). Op
 Focused sources:
 - [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) — Enforce Least Privileges; Validate the Permissions on Every Request.
 
-**Study allocation (exactly 25:00 / 1,500 seconds):** verified video foundation 5:36; focused authorization 3:00; worked example 12:24; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
+**Study allocation (exactly 25:00 / 1,500 seconds):** verified video foundation 5:36; focused authorization 3:00; worked example 12:24; prerequisite prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example, and review of the supplied decision share this block. Viewing is not learner completion.
 
 **Practice allocation (85 minutes):** 10 / 60 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
 
 Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
 
-**Design/API prompt:** Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.
+**Acceptance focus:** Capture both query arguments; own returns exact snapshot; foreign/absent both empty; no production authentication claim.
 
 ## Evidence allocation (10 minutes)
 
-Record the actual command and result in `evidence/continuation-31-44/day-36.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Keep design reasoning in the learner-led proposal or review when assigned; no post-hoc architectural justification is required.
+Record the actual command and result in `evidence/continuation-31-44/day-36.json`, plus changed paths, assistance, any blocker, and relevant before/after assertion or snapshot. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Separate DSA track
 

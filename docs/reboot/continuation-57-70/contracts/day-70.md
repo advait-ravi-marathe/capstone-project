@@ -1,50 +1,53 @@
-# Day 70 — 2027-01-01: Complete the mastery, recovery and design mock
+# Day 70 — 2027-01-01: Complete the mastery, recovery and evidence handover
 
 ## Contract
 
-**Learner-owned seam:** `Evidence review and local application design explanation`
+**Learner-owned task:** `Evidence review, bounded recovery, and project handover`
 **Status:** Contract defined; learner implementation not attempted.
 
 ### Expected behavior
 
-Present the system boundary, trust/ownership flow, CSRF choice, migration lifecycle, no-write preview invariant, and recovery evidence. Report exact passing and failing selectors. No new feature or extra minutes is assigned.
+Review the assistant-supplied architecture notes and actual pass/fail/blocked/not-run evidence. In the existing handover, report the supplied system boundary, trust/ownership flow, CSRF choice, migration lifecycle, no-write preview invariant, exact selectors, and remaining blockers. The learner does not choose or defend capstone architecture. No new feature or extra minutes is assigned.
 
 ## Acceptance and expected TODO state
 
-The instructor integrity selector is installed and passed 3/3; it checks the evidence boundary only and is not a learner completion test. The learner task is to review the recorded results and complete the existing 20-minute explain/design handover mock. No TODO failure is expected from this integrity selector.
+The instructor integrity selector is installed and passed 3/3; it checks the evidence boundary only and is not a learner completion test. The learner task is to review recorded results and complete the existing 20-minute factual project handover. This is not a system-design interview; proposals remain only in the separate question-bank mocks. No TODO failure is expected from this integrity selector.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Acceptance selector:** `day70EvidenceAndDesignMockStayWithinTheDefinedSlice`
 **Instructor integrity command:** `./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
-## Learner-first recovery proposal (5 minutes within the existing practice block)
+## Recovery and handover boundary
 
-Before reading the handover example or discussing the design mock, list the actual pass/fail/blocked/not-run evidence and select the first blocker. Then use up to 50 minutes on first-blocker recovery, retain the existing 20-minute handover/mock and 10-minute triage: 5 + 50 + 20 + 10 = 85 minutes. If recovery needs more, shorten the mock; no overtime. The integrity selector checks structure, not mastery. Unfinished work stays open as **S5-D70-HANDOVER**.
-
+Select the first real blocker from recorded evidence, then use only the existing recovery and handover allocation. Read the assistant-provided architecture note as the supplied design context; do not propose an alternative or provide a post-hoc architecture justification. Keep unmet acceptance open as **S5-D70-HANDOVER**.
 ## Selector limits and open evidence
 
 - The integrity selector verifies manifest/evidence scope only. It does not assess mastery, validate a real demo, or prove the learner completed the bounded handover.
 
-## Implementation/testing allocation (85 minutes)
+## Practice allocation (85 minutes)
 
-Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
+- 55 minutes: recover the first unresolved prerequisite or consolidate completed work, using the existing fixed synthetic fixtures and disposable local environment.
+- 20 minutes: report the supplied architecture and the observed acceptance evidence in the existing project handover. This is factual communication, not a design mock.
+- 10 minutes: identify the next open blocker and record the next attempt.
+
+Do not duplicate domain rules, modify prior contracts, or create a feature. No real identities, PII, passwords, OAuth, secrets, external services, or persistent access grants. Keep all activity inside 85 minutes.
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-70](<../../assistant-architecture-notes-15-70.md#day-70>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - No exact matching course lesson was verified for this task; no unrelated video is assigned.
-- Fit: assessment review no new lecture. No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.
-- Focused worked references: [C4 Software System — software system](https://c4model.com/abstractions/software-system); [C4 Container — container](https://c4model.com/abstractions/container); [C4 Component — component](https://c4model.com/abstractions/component).
-- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Fit: assessment review, no new lecture. Use the existing 25-minute block to review actual selector evidence and read the supplied architecture decisions; identify recovery work without designing a new system.
+- Read the [assistant-provided architecture notes](../../assistant-architecture-notes-15-70.md#day-70), then use actual selector evidence to identify the first recovery item.
+- Video viewing: 0:00 at 1×; the 25:00 cap covers evidence review, the supplied architecture note and focused references. Stop at the cap; carry unfinished material forward and shrink recovery scope. Viewing is not learner completion.
 
-**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
-
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+**Study activities (25 minutes):** 10 minutes review actual evidence; 10 minutes read the supplied architecture decisions; 5 minutes select the first recovery item. No additional lecture or design exercise.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner-owned changed paths in `evidence/continuation-57-70/day-70.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result or blocker, architecture-note reference, assistance, and learner-owned changed paths in `evidence/continuation-57-70/day-70.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 

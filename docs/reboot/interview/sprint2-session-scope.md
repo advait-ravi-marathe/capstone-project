@@ -22,16 +22,9 @@ enrollment, or unverified viewing is implied.
 | 24 · 2026-11-16 | Q10, notification retries. Existing conditional lessons: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), course access unconfirmed. If unavailable, use [PostgreSQL EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html) and [Indexes](https://www.postgresql.org/docs/current/indexes.html) inside the same study block. | Implement only the named `QuoteHistoryIndexMigration` index for the existing query, then run `./mvnw -Plearner-tests -Dtest=Day24ContractTest test`. Preserve exact ordered results and record both plans; do not assert a forced planner choice or wall-clock speedup. | **S2-D24-1:** If the single selector is not passing at the end of the slice, retain its exact failure and continue only the same index/result-equivalence acceptance in the normal recovery queue. Day 24 remains pending until the selector passes. |
 | 28 · 2026-11-20 | Q14, booking retry after a lost response. No new lecture is assigned; use the existing Day 28 browser/database guide and existing verified course map within 25 minutes. | Run `CHROMIUM_BIN="${CHROMIUM_BIN:?set CHROMIUM_BIN}" ./mvnw -Plearner-tests -Dtest=Day28BrowserToDatabaseTest test`; capture the actual first failed boundary and database/browser observations. Do not install or simulate a success path. | **S2-D28-1:** After actual Days 14–27 prerequisites pass, rerun the same complete browser-to-database selector and record all original acceptance results. A first-blocker trace is not a passing lifecycle. |
 
-## Daily proposal on non-mock days
+## Capstone implementation guidance on non-mock days
 
-On Days 15, 16, 18–20, 22–23, and 25–27, spend the first five minutes of the
-existing 85-minute practice on a short, task-specific proposal before consulting
-hints, worked answers, or AI. State the user-visible outcome, the data or UI
-boundary, one expected case, and one failure case. Continue the existing EAI
-acceptance in the remaining 80 minutes. Record actual results and blockers in
-the existing evidence file; do not create a post-hoc architecture essay. An
-unfinished selector stays pending and is carried with its day ID into the
-existing recovery queue.
+The assistant supplies the capstone architecture decision and concise rationale in each day's concept block and in the [Days 15–70 notes](../assistant-architecture-notes-15-70.md). Use the existing 85-minute practice allocation for the named implementation and acceptance. No capstone proposal, architecture choice, or post-hoc design justification is assigned. A dedicated question-set proposal remains part of each scheduled 45-minute interview mock only; unfinished acceptance stays in its named recovery queue.
 
 ## Scope limits
 

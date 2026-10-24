@@ -39,7 +39,10 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
             self.assertEqual(assignment, self.cards[day]["engineering"]["interview_assignment"])
             self.assertEqual(self.days[day]["date"], assignment["date"])
             self.assertEqual(self.days[day]["title"], assignment["title"])
-            self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            self.assertEqual(assignment["proposal_scope"], "system_design_interview_question_only" if day in MOCK_DAYS else "none")
+            self.assertEqual(assignment["capstone_architecture"], "assistant_supplied")
+            self.assertIn(f"#day-{day}", assignment["assistant_architecture_note"])
+            self.assertTrue(assignment["proposal_before_hints_reference_or_ai"] if day in MOCK_DAYS else not assignment["proposal_before_hints_reference_or_ai"])
             self.assertTrue(assignment["deferred_work_id"].startswith("S5-D"))
 
     def test_mock_cadence_phases_and_practice_budget_are_exact(self):
@@ -56,17 +59,22 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
             self.assertEqual(45, assignment["duration_minutes"])
             self.assertTrue(assignment["question_href"].endswith("#" + assignment["question_id"].lower()))
 
-    def test_non_mock_proposals_replace_five_minutes_inside_practice(self):
+    def test_non_mock_days_have_no_capstone_proposal_or_extra_minutes(self):
         for day, assignment in self.assignments.items():
             if day in MOCK_DAYS:
                 continue
-            self.assertEqual("5_minute_task_proposal", assignment["mode"])
-            self.assertEqual(5, assignment["proposal_minutes"])
-            self.assertEqual(80, assignment["existing_acceptance_minutes"])
+            self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+            self.assertEqual(0, assignment["duration_minutes"])
+            self.assertFalse(assignment["proposal_before_hints_reference_or_ai"])
+            self.assertNotIn("proposal_prompt", assignment)
             self.assertEqual(85, assignment["practice_total_minutes"])
-            self.assertIn("before", assignment["proposal_prompt"].lower())
+            if day == 70:
+                self.assertIn("85-minute", assignment["implementation_scope"])
+                self.assertIn("factual project handover", assignment["scope_boundary"])
+            else:
+                self.assertIn("full 85-minute practice allocation", assignment["implementation_scope"])
         d70 = self.assignments[70]
-        self.assertIn("up to 50-minute first-blocker recovery", d70["scope_boundary"])
+        self.assertIn("55 minutes first-blocker recovery", d70["scope_boundary"])
 
     def test_course_bridges_are_exact_saved_metadata_and_not_marked_watched(self):
         self.assertFalse(self.manifest.get("videos_watched", False))
@@ -118,6 +126,12 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
         scope = (ROOT / "docs/reboot/interview/sprint5-session-scope.md").read_text()
         self.assertIn("19 December 2026–1 January 2027", scope)
         self.assertIn("45-minute interview mocks", scope)
+        self.assertIn("| 59 |", scope)
+        self.assertIn("day59VersionedBootstrapIsRepeatableAndNonDestructive", scope)
+        self.assertIn("day60OwnerScopedPreviewReadDoesNotWrite", scope)
+        self.assertIn("day69PreviewIsStableAcrossPackagedRestartAndLogout", scope)
+        self.assertIn("assistant supplies the capstone architecture decision", scope.lower())
+        self.assertNotIn("Day70: Complete the mastery, recovery and design mock", scope)
         for day, assignment in self.assignments.items():
             contract = (ROOT / self.days[day]["contract_file"]).read_text()
             self.assertIn(assignment["deferred_work_id"], contract)
@@ -130,8 +144,9 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
                 self.assertIn("before opening hints, worked references, or AI", contract)
                 self.assertIn("100-point rubric", contract)
             else:
-                self.assertRegex(contract, r"## Learner-first (?:task|recovery) proposal \(5 minutes")
-                self.assertTrue("before opening" in contract.lower() or "before reading" in contract.lower())
+                self.assertIn("Assistant-provided capstone architecture", contract)
+                self.assertNotRegex(contract, r"^## (?:Learner-first|Interview-first) .*proposal")
+                self.assertIn("no capstone architecture proposal", contract.lower())
             for command in assignment["acceptance_commands"]:
                 if "-Dtest=" in command:
                     method = command.split("#", 1)[1].split()[0]
@@ -151,17 +166,21 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
         self.assertTrue(self.curriculum["status"].startswith("prospective_curriculum"))
 
     def test_acceptance_harness_gaps_are_closed_without_claiming_learner_completion(self):
-        self.assertIn("V001–V003", self.assignments[59]["acceptance"])
-        self.assertIn("directly", self.assignments[60]["acceptance"])
-        self.assertIn("null-name", self.assignments[62]["acceptance"])
-        self.assertIn("valid session+valid token", self.assignments[65]["acceptance"])
+        self.assertIn("V001–V003", (ROOT / self.days[59]["contract_file"]).read_text())
+        self.assertIn("direct call", (ROOT / self.days[60]["contract_file"]).read_text())
+        self.assertIn("null-name", (ROOT / self.days[62]["contract_file"]).read_text())
+        self.assertIn("valid session", (ROOT / self.days[65]["contract_file"]).read_text())
         self.assertEqual("npm --prefix frontend run test:sprint5", self.assignments[66]["acceptance_commands"][0])
-        self.assertIn("after-read", self.assignments[68]["acceptance"])
-        self.assertIn("exact cookie bytes", self.assignments[69]["acceptance"])
-        self.assertIn("actual manifest/assets/process", self.assignments[67]["acceptance"])
+        self.assertIn("after-read", (ROOT / self.days[68]["contract_file"]).read_text())
+        self.assertIn("exact cookie bytes", (ROOT / self.days[69]["contract_file"]).read_text())
+        day67 = (ROOT / self.days[67]["contract_file"]).read_text().lower()
+        self.assertIn("archive", day67)
+        self.assertIn("process", day67)
+        self.assertIn("assets", day67)
         for day in (57, 60, 62, 63):
-            self.assertTrue(self.assignments[day]["open_acceptance_gaps"] == [])
-            self.assertIn("TODO", self.assignments[day]["acceptance"])
+            self.assertEqual([], self.assignments[day]["open_acceptance_gaps"])
+            contract = (ROOT / self.days[day]["contract_file"]).read_text().lower()
+            self.assertTrue("todo" in contract or "expected to stop" in contract)
 
     def test_contract_commands_and_selector_names_match_curriculum(self):
         for day, assignment in self.assignments.items():

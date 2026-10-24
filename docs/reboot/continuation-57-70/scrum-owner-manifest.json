@@ -42,8 +42,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -98,7 +98,7 @@
           "day": 57,
           "date": "2026-12-19",
           "title": "Gate the local assembly on prior learner evidence",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "2813427",
@@ -132,23 +132,29 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before opening the readiness implementation or a worked answer, predict the outcomes for missing day-55, missing day-56, false/null flags, both true, and unrelated true keys. State what flags can and cannot prove about evidence authenticity.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Complete and test only LocalReadinessGate.assess against named day-55/day-56 evidence. Missing/failed prerequisites replace new work inside today’s fixed practice block.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 57. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No authenticity detector, dynamic prerequisite engine, or unrelated feature.",
           "deferred_work_id": "S5-D57-READINESS",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test"
           ],
-          "acceptance": "Acceptance covers empty and null maps, missing/false/null required flags in both directions, unrelated true flags, both required flags true, and unchanged input. The native learner seam remains intentionally TODO-red until implemented; flags do not authenticate real evidence.",
-          "evidence": "Save the prediction, exact selector/result, first failing case, and changed paths.",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-57",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-57",
+          "decision": "Require each named prior learner evidence flag and fail closed for missing, null, or false values; unrelated evidence cannot substitute for a required gate.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 57 protect, which layer enforces it, and how will you prove it?",
@@ -184,8 +190,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -344,12 +350,20 @@
           ],
           "acceptance": "The selector boots the explicit Sprint5LocalApplication and original two-argument composition. It asserts supplied Clock/DataSource identity and absence of future runtime beans; it does not use LocalCoverStoryApplication or solve learner behavior.",
           "evidence": "Save the initial architecture proposal, four-arrow composition trace, exact command/result or blocker, and learner_changed_paths (use [] for read-only work).",
-          "open_acceptance_gaps": []
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-58"
         },
         "acceptance_commands": [
           "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
         ],
-        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java"
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-58",
+          "decision": "Compose the bounded local runtime with explicit imports and the existing two-argument clock/data-source composition; this avoids scanning future runtime TODOs.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 58 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
@@ -383,8 +397,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -426,7 +440,7 @@
           "day": 59,
           "date": "2026-12-21",
           "title": "Verify and explain the versioned synthetic migration lifecycle",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [],
           "course_bridges": [],
           "supporting_sources": [
@@ -443,28 +457,34 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before opening migration guidance, predict first-run migration count, repeat-run count, and whether a reader-created sentinel and schema history should change. Identify which existing test is five migrations and why it cannot prove target 3.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Inspect the immutable V001–V003 sequence and the real migration test. Explain the target-3 experiment required by the contract; do not edit migrations.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 59. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No migration rewrite, reset, or claim that the existing V001–V005 selector proves the proposed target-3 gate.",
-          "deferred_work_id": "S5-D59-EXPLAIN",
+          "deferred_work_id": "S5-D59-TRACE",
           "deferred_work": "Record the actual migration trace and explain target/version/history evidence; no learner migration implementation is assigned.",
           "acceptance_commands": [
             "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
           ],
-          "acceptance": "Fresh embedded PostgreSQL target 3 applies V001–V003 (3 migrations), preserves a sentinel and exact history/checksum rows, then applies 0 on repeat. The separate existing five-migration test remains unchanged.",
-          "evidence": "Save expected versus actual migration/history/sentinel results, exact command and its five-migration limit, and changed paths (usually []).",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-59",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
         },
         "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
-        ]
+        ],
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-59",
+          "decision": "Run immutable migrations V001–V003 to target 3 on a fresh disposable database and verify a repeat is a no-op; preserve the sentinel and history.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 59 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
@@ -501,8 +521,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -661,7 +681,15 @@
           ],
           "acceptance": "The selector first calls the assigned JdbcPolicyReadStore directly. It checks the seeded issued row, distinct owner/amount/date fixtures including a non-null cancellation date, foreign and missing rows, SQL-looking literal IDs, and complete lifecycle/event/idempotency snapshots after each read. Its first direct assertion reaches the Day60 TODO.",
           "evidence": "Save the design proposal, SQL ownership predicate, exact command/result or first upstream TODO, tables compared, and changed paths.",
-          "open_acceptance_gaps": []
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-60"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-60",
+          "decision": "Read policy by policy ID plus principal owner with bound JDBC parameters and nullable mapping; the read adapter must leave all policy/event/receipt rows unchanged.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 60 protect, which layer enforces it, and how will you prove it?",
@@ -697,8 +725,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -775,7 +803,7 @@
           "day": 61,
           "date": "2026-12-23",
           "title": "Trace and verify the instructor-provided local security chain",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "1635492",
@@ -827,28 +855,34 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before running the security selector, predict which layer returns anonymous GET /api/session 401, protected API 401, POST without a CSRF token 403, and authenticated unknown synthetic owner 400. Explain what a subsequent session request proves.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Trace the supplied localSecurityFilterChain, session controller, saved SecurityContext, and loopback boundary; do not reimplement security.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 61. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No real login, account, password, token rotation, or deployment claim.",
           "deferred_work_id": "S5-D61-TRACE",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
           ],
-          "acceptance": "The bounded Sprint5 context exercises anonymous handler/API behavior, CSRF on session selection, static root, synthetic selection, saved session on a subsequent request, rotation, invalid token and invalid owner inputs. It excludes future LocalRuntimeConfiguration TODOs.",
-          "evidence": "Save predictions, route/filter/handler trace, exact result or upstream blocker, and changed paths (use [] for inspection).",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-61",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
         },
         "acceptance_commands": [
           "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
         ],
-        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java"
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-61",
+          "decision": "Reuse the supplied security filter chain and session repository; distinguish authorization, handler-level session selection, and CSRF checks.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 61 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
@@ -885,8 +919,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -949,7 +983,7 @@
           "day": 62,
           "date": "2026-12-24",
           "title": "Derive policy ownership from the authenticated principal",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "4993276",
@@ -991,23 +1025,29 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before coding, predict results for authenticated owner-a and owner-b, null/unauthenticated/anonymous/unknown/blank identities, and forged requested owner values for both overloads.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Implement only LocalPolicyOwnerResolver.ownerId(Authentication) and ownerId(Authentication, String), rejecting anonymous and untrusted identities without letting request owner override authority.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 62. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No new auth chain or persistent identity; actual database ownership is conditional on prior domain/read gates.",
           "deferred_work_id": "S5-D62-OWNER",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
           ],
-          "acceptance": "Both resolver overloads are checked for owner-a and owner-b, forged requested owners, null/unauthenticated/anonymous/unknown/blank/null-name principals, and invalid principals with either requested owner. The learner TODO remains the direct failure boundary.",
-          "evidence": "Save prediction, tested states/overloads, exact command/result, and changed paths.",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-62",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-62",
+          "decision": "Derive ownership only from a known authenticated synthetic principal and reject anonymous/invalid states; request parameters never override it.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 62 protect, which layer enforces it, and how will you prove it?",
@@ -1046,8 +1086,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -1095,7 +1135,7 @@
           "day": 63,
           "date": "2026-12-25",
           "title": "Run the security trace and recovery checkpoint",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [],
           "course_bridges": [],
           "supporting_sources": [
@@ -1122,23 +1162,29 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before the recovery checkpoint, name the actual Day 62 security evidence flag, predict missing/false/null/true outcomes, and state the first failed prerequisite. Validate the remaining practice minutes are within 0..85.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Run the security checkpoint and recover only the first failed prerequisite, or use remaining time for retrieval/consolidation when ready. New work is forbidden in both branches.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 63. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No additional feature or overtime; retain 0..85 validation and newWorkAdded=false.",
           "deferred_work_id": "S5-D63-RECOVERY",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
           ],
-          "acceptance": "The selector checks missing/null/false/true security evidence, 0/60/85-minute preservation, invalid -1/86-minute rejection, and no new work in either branch. Missing/null evidence is fail-closed. The learner seam remains explicitly TODO-red until implemented.",
-          "evidence": "Save the actual flag source, remaining minutes, selector result, blocker/recovery, and changed paths.",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-63",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-63",
+          "decision": "Keep the recovery gate within the remaining 0–85 practice-minute range and do not add work; invalid time input is rejected.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 63 protect, which layer enforces it, and how will you prove it?",
@@ -1174,8 +1220,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1252,7 +1298,7 @@
           "day": 64,
           "date": "2026-12-26",
           "title": "Trace the instructor-provided local policy issue adapter boundary",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "4993276",
@@ -1304,28 +1350,34 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before tracing the adapter, predict receipt lookup, service, and persistence call counts for anonymous 401, replay 200, conflict 409, and create 201.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Inspect LocalPolicyIssueController.issue(request, authentication) and trace the supplied adapter branch matrix; do not implement service/idempotency or claim database atomicity.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 64. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No Location requirement, price calculation, or substitute domain implementation.",
           "deferred_work_id": "S5-D64-ADAPTER",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
           ],
-          "acceptance": "The supplied adapter selector verifies 201 create with one persistence call, 200 replay with zero persistence, 409 rejection with zero persistence, and 401 with no receipt/service/storage calls. This is mocked delegation evidence, not database atomicity.",
-          "evidence": "Save branch predictions, collaborator call counts actually observed, exact command/result, and changed paths (use [] for read-only tracing).",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-64",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
         },
         "acceptance_commands": [
           "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
         ],
-        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java"
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-64",
+          "decision": "Let the issue adapter translate the lifecycle decision and persist only the contracted create result; replay, conflict, and anonymous paths do not write.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 64 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
@@ -1359,8 +1411,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1427,7 +1479,7 @@
           "day": 65,
           "date": "2026-12-27",
           "title": "Reproduce and explain CSRF rejection in the local runtime",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "4993276",
@@ -1469,28 +1521,34 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before sending requests, predict missing-token and wrong-token authenticated POST as 403, anonymous plus valid token as 401, and valid synthetic session plus current token reaching the adapter. Name the tables whose complete rows must remain unchanged on rejection.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Exercise the existing CSRF boundary with no policy writes on rejection; preserve CSRF. If prior Day 62/domain TODO blocks a valid-token positive, record the exact dependency.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 65. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No disabling CSRF and no mocked 201 presented as native success.",
           "deferred_work_id": "S5-D65-CSRF",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
           ],
-          "acceptance": "The bounded real security chain checks authenticated missing-token and wrong-token 403 with zero controller/service calls and unchanged complete policy/event/idempotency rows; anonymous plus valid token is 401. The valid session+valid token positive control reaches actual issuance and remains conditional on earlier learner domain seams.",
-          "evidence": "Save the prediction matrix, actual statuses/handler reachability, complete snapshots where exercised, blocker and changed paths.",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-65",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
         },
         "acceptance_commands": [
           "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
         ],
-        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java"
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-65",
+          "decision": "Preserve CSRF on every unsafe request and test it independently from authentication; rejected requests must not reach handlers or mutate rows.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 65 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
@@ -1527,8 +1585,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1677,7 +1735,15 @@
           ],
           "acceptance": "Use the explicit Sprint5-only Vitest selector, which retains the original session/preview/issue/readback/replay gate and adds malformed/non-JSON/network errors, pending action, logout 204/CSRF, late owner response and no automatic retry. Later busy-capacity coverage remains in test:local and is not a Day66 prerequisite.",
           "evidence": "Save the proposal before references, actual selector result/blocker, response shapes observed, and changed paths. No post-hoc design essay.",
-          "open_acceptance_gaps": []
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-66"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-66",
+          "decision": "Decode HTTP status before parsing a body, validate successful JSON as unknown, and model UI states as a discriminated union; errors never become success-shaped data.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 66 protect, which layer enforces it, and how will you prove it?",
@@ -1713,8 +1779,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1768,7 +1834,7 @@
           "day": 67,
           "date": "2026-12-29",
           "title": "Inspect the disposable packaged runtime lifecycle",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "4993276",
@@ -1797,14 +1863,12 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before packaging, predict which observations prove source shape, archive contents, launched process, served assets, health/session behavior, and resource cleanup.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Inspect the real supplied package and demo scripts, freshly build if dependencies are available, launch only the unique disposable local demo, and observe root/assets/health/session/PID/cleanup.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 67. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No new packaging system, persistent DB, global prune, or claim based only on source-string checks.",
           "deferred_work_id": "S5-D67-PACKAGE",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
@@ -1812,17 +1876,25 @@
             "scripts/package-sprint5-demo.sh",
             "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test"
           ],
-          "acceptance": "The source-shape test remains separate. The scoped package selector requires a fresh classifier JAR plus matching content receipt and checks actual manifest/assets/process/loopback/route behavior and bounded cleanup. Day 67 is observation evidence, not a learner implementation. Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion.",
-          "evidence": "Save source/artifact identity, package and launch commands, actual HTTP/PID/cleanup result or setup blocker, and changed paths.",
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
           "open_acceptance_gaps": [
             "Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion."
-          ]
+          ],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-67",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
         },
         "acceptance_commands": [
           "scripts/package-sprint5-demo.sh",
           "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test"
         ],
-        "acceptance_test_path": "src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java"
+        "acceptance_test_path": "src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-67",
+          "decision": "Build a fresh dedicated executable archive and launch only that artifact against uniquely disposable loopback resources; source tests and stale JARs do not prove packaging.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 67 protect, which layer enforces it, and how will you prove it?",
       "scaffold_status": "instructor_scaffold_complete",
@@ -1862,8 +1934,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1929,7 +2001,7 @@
           "day": 68,
           "date": "2026-12-30",
           "title": "Drive packaged UI acceptance: issue/readback/replay and restart/no-write checks",
-          "proposal_before_hints_reference_or_ai": true,
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [
             {
               "course_id": "1362070",
@@ -1973,14 +2045,12 @@
           ],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before opening the browser, write independent expected preview and issue projections from the approved fixture, statuses 201/200/200, same request identity, visible values, and the allowed database delta after each action.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Run the existing packaged preview and issue/readback/replay selectors and compare their actual assertions with the independent expected API, DOM, and database values. Record that the current issue test snapshots only the whole sequence and does not assert full semantic API/DOM values at every action boundary; keep those requirements open.",
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 68. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
           "scope_boundary": "No invented fixture values, 500-as-pass, mocked packaged evidence, or claim from counts/IDs alone.",
           "deferred_work_id": "S5-D68-INTEGRATION",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
@@ -1989,9 +2059,17 @@
             "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
             "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
           ],
-          "acceptance": "The tests require the fresh stage JAR and package receipt. They compare complete independent preview/issue projections, rendered values, request identity, and full database snapshots at pre-issue, post-issue, after-read and post-replay barriers; intermediate reads/replays must be write-free. Actual controls and prior learner/domain gates remain required.",
-          "evidence": "Save expected values before execution, actual API/DOM/DB observations per action, exact commands/results/blocker, and changed paths.",
-          "open_acceptance_gaps": []
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-68",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-68",
+          "decision": "Use independent expected API/DOM/database projections and a snapshot barrier after every browser action; whole-flow counts can hide a temporary illegal write.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 68 protect, which layer enforces it, and how will you prove it?",
@@ -2031,8 +2109,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -2189,7 +2267,15 @@
           ],
           "acceptance": "The bounded browser journeys separate logout from restart. Logout starts with populated private preview state and checks immediate clearing plus 401 while the process remains alive. Restart uses the exact cookie bytes saved and verified active immediately before stopping, a different PID, same database/fixed clock, then 401; reselected preview matches the independent complete projection. Every action has a full-row DB observation barrier.",
           "evidence": "Save the proposal, pre-stop active-session observation, process IDs, status/snapshot results, exact blocker, and changed paths; never record cookies or tokens.",
-          "open_acceptance_gaps": []
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-69"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-69",
+          "decision": "Clear private preview state immediately on owner change/logout and invalidate late responses; test restart only with the exact saved cookie proven active before shutdown.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
       "understanding_prompt": "Which invariant or trust boundary does Day 69 protect, which layer enforces it, and how will you prove it?",
@@ -2210,8 +2296,8 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Complete the mastery, recovery and design mock",
-        "learner_seam": "Evidence review and local application design explanation",
+        "scope": "Complete the mastery, recovery and evidence handover",
+        "learner_seam": "Evidence review, bounded recovery, and project handover",
         "status": "not_attempted",
         "scaffold_status": "partial",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-70.md",
@@ -2226,34 +2312,18 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "evidence_review": 10,
+            "assistant_architecture_note": 10,
+            "recovery_selection": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
           "lessons": [],
-          "resources": [
-            {
-              "title": "C4 Software System",
-              "section": "software system",
-              "url": "https://c4model.com/abstractions/software-system"
-            },
-            {
-              "title": "C4 Container",
-              "section": "container",
-              "url": "https://c4model.com/abstractions/container"
-            },
-            {
-              "title": "C4 Component",
-              "section": "component",
-              "url": "https://c4model.com/abstractions/component"
-            }
-          ],
+          "resources": [],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "assessment_review_no_new_lecture",
-          "scope_note": "No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.",
+          "fit": "evidence_and_supplied_architecture_review_no_new_lecture",
+          "scope_note": "No new lecture. Within the existing 25-minute block, review actual selector evidence, read the supplied architecture decisions, and select the first recovery item.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
@@ -2265,60 +2335,50 @@
         "contract_path": "docs/reboot/continuation-57-70/contracts/day-70.md",
         "evidence_reference": "evidence/continuation-57-70/day-70.json",
         "acceptance_selector_status": "instructor_integrity_only",
-        "learner_task": "Review the recorded pass/fail evidence, complete the C4/trust-boundary explanation and recovery/interview mock. Report unresolved upstream blockers without upgrading scaffold status to learner completion.",
+        "learner_task": "Review actual pass/fail/blocked/not-run evidence; read the assistant-supplied architecture decisions; recover the first blocker; and hand over observed results. No capstone architecture proposal or design mock is assigned.",
         "learner_evidence_mode": "explain_debug",
         "interview_assignment": {
           "day": 70,
           "date": "2027-01-01",
-          "title": "Complete the mastery, recovery and design mock",
-          "proposal_before_hints_reference_or_ai": true,
+          "title": "Complete the mastery, recovery and evidence handover",
+          "proposal_before_hints_reference_or_ai": false,
           "course_catalog": [],
           "course_bridges": [],
-          "supporting_sources": [
-            {
-              "title": "C4 Software System",
-              "section": "software system",
-              "url": "https://c4model.com/abstractions/software-system"
-            },
-            {
-              "title": "C4 Container",
-              "section": "container",
-              "url": "https://c4model.com/abstractions/container"
-            },
-            {
-              "title": "C4 Component",
-              "section": "component",
-              "url": "https://c4model.com/abstractions/component"
-            }
-          ],
+          "supporting_sources": [],
           "study_cap_minutes": 25,
           "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
-          "mode": "5_minute_task_proposal",
-          "duration_minutes": 5,
-          "proposal_prompt": "Before the mock/recovery discussion, list actual pass/fail/blocked/not-run evidence and choose the first blocker. Do not fill an evidence gap with a planned or instructor result.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
           "practice_minutes_available": 85,
-          "proposal_minutes": 5,
-          "existing_acceptance_minutes": 80,
+          "existing_acceptance_minutes": 85,
           "practice_total_minutes": 85,
-          "implementation_scope": "Recover the highest-priority unfinished Sprint5 seam first, then deliver the existing 20-minute bounded handover/design explanation and risk triage.",
-          "scope_boundary": "Keep all work within 85 minutes: 5-minute evidence-based plan, up to 50-minute first-blocker recovery, existing 20-minute handover/mock, 10-minute triage. Shorten the mock if recovery needs time; no overtime.",
+          "implementation_scope": "Use the existing 85-minute recovery and handover allocation. Read the assistant-provided architecture note as context; no capstone design proposal or architecture justification is assigned.",
+          "scope_boundary": "Keep work within 85 minutes: 55 minutes first-blocker recovery or consolidation, 20 minutes factual project handover, and 10 minutes next-blocker triage. Do not add time.",
           "deferred_work_id": "S5-D70-HANDOVER",
           "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
           "acceptance_commands": [
             "./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test"
           ],
-          "acceptance": "Integrity selector proves the defined evidence/scope structure only, not mastery or a real customer outcome. Mock is a truthful local simulation.",
-          "evidence": "Save the accurate evidence ledger, first blocker/recovery decision, selector result, limitations and changed paths.",
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector result or blocker, assistance, and changed paths. Do not infer completion from a plan or partial selector.",
           "open_acceptance_gaps": [
             "The integrity selector verifies manifest/evidence scope only. It does not assess mastery, validate a real demo, or prove the learner completed the bounded handover."
-          ]
+          ],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-70",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-70",
+          "decision": "Use actual pass/fail/blocked/not-run evidence to select recovery and handover content; no new feature or fictional customer result is introduced.",
+          "budget": "within_existing_25_minute_concept_allocation"
         }
       },
-      "understanding_prompt": "Which invariant or trust boundary does Day 70 protect, which layer enforces it, and how will you prove it?",
+      "understanding_prompt": "Which recorded result or blocker determines the next recovery action?",
       "scaffold_status": "partial",
-      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: assessment review no new lecture. No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.\n- Focused worked references: [C4 Software System — software system](https://c4model.com/abstractions/software-system); [C4 Container — container](https://c4model.com/abstractions/container); [C4 Component — component](https://c4model.com/abstractions/component).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
+      "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No new lecture or separate system-design exercise is assigned.\n- Review actual selector evidence, read the supplied Day 70 architecture decisions, and select the first recovery item within the existing 25-minute cap.\n- Video viewing: 0:00; the full 25:00 is reserved for this evidence and architecture awareness review. Stop at the cap; viewing is not learner completion.",
       "mandatory_new_problem": false,
-      "title": "Day70: Complete the mastery, recovery and design mock",
+      "title": "Day70: Complete the mastery, recovery and evidence handover",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
     }
   ],

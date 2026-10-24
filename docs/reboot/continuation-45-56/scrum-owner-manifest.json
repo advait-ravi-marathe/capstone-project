@@ -131,7 +131,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-45.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**, section **Reference Types in Java Programming** (4:15); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: verified lesson or date fallback 4:15; discovery acceptance focus 5:00; worked membership example 11:45; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Discovery example, then an annual date](docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html); [Official source: GOV.UK: Plan user research for your service — Agree research questions](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service); [Official source: GOV.UK: Writing user stories — Acceptance criteria](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories).\n- Learner transfer: Define annual policy term boundaries.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**, section **Reference Types in Java Programming** (4:15); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: verified lesson or date fallback 4:15; discovery acceptance focus 5:00; worked membership example 11:45; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Discovery example, then an annual date](docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html); [Official source: GOV.UK: Plan user research for your service — Agree research questions](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service); [Official source: GOV.UK: Writing user stories — Acceptance criteria](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories).\n- Learner transfer: Define annual policy term boundaries.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-45",
+          "decision": "Model policy term start as inclusive and the next anniversary as exclusive using LocalDate; explicit boundaries avoid leap-year and time-zone drift.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime**, section **Reference Types in Java Programming** (4:15); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: verified lesson or date fallback 4:15; discovery acceptance focus 5:00; worked membership example 11:45; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Discovery example, then an annual date](docs/reboot/continuation-45-56/worked/day-45-discovery-anniversary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html); [Official source: GOV.UK: Plan user research for your service — Agree research questions](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service); [Official source: GOV.UK: Writing user stories — Acceptance criteria](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories).\n- Learner transfer: Define annual policy term boundaries.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -214,7 +219,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-45"
       }
     },
     {
@@ -310,7 +318,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-46.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime** (4:15). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Clock LocalDate focus 4:00; worked state date matrix 17:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A state-and-date decision table](docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Clock — fixed(Instant, ZoneId)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html); [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Learner transfer: Enforce renewal window and lifecycle eligibility.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime** (4:15). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Clock LocalDate focus 4:00; worked state date matrix 17:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A state-and-date decision table](docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Clock — fixed(Instant, ZoneId)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html); [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Learner transfer: Enforce renewal window and lifecycle eligibility.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-46",
+          "decision": "Check lifecycle eligibility and renewal-window dates in the contract's declared precedence; a cancelled state cannot become renewable just because its date is in range.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 11 - Java Dates - Introduction to LocalDate, LocalTime and LocalDateTime** (4:15). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Clock LocalDate focus 4:00; worked state date matrix 17:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A state-and-date decision table](docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Clock — fixed(Instant, ZoneId)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html); [Official source: Java SE 21: LocalDate — plusYears(long); minusDays(long); isBefore(ChronoLocalDate)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html).\n- Learner transfer: Enforce renewal window and lifecycle eligibility.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -318,15 +331,10 @@
       "title": "Day46: Enforce renewal window and lifecycle eligibility",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "Write the open/closed date-boundary outcomes for each lifecycle status before editing eligibility; identify the exact existing test rows that distinguish inclusive from exclusive boundaries.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-46-window-decision-table.md",
-          "docs/reboot/interview/pattern-library.md#deterministic-time",
-          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
           "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html",
           "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html"
         ],
@@ -342,12 +350,17 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 46 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day46RenewalWindowHasFixedOpenCloseAndLifecycleBoundaries test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-46",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -451,7 +464,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-47.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 15 - Exploring Java New Features - Records** (9:04); **3 Questions - Best practices with Records** (9:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Record ADR focus 5:00; worked projection decision 16:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Copy current facts without making a new offer](docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Record — Class Record](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html); [Official source: AWS Prescriptive Guidance: Appendix: Example ADR — Context; Decision; Consequences; Compliance](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).\n- Learner transfer: Freeze the renewal reference snapshot.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 15 - Exploring Java New Features - Records** (9:04); **3 Questions - Best practices with Records** (9:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Record ADR focus 5:00; worked projection decision 16:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Copy current facts without making a new offer](docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Record — Class Record](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html); [Official source: AWS Prescriptive Guidance: Appendix: Example ADR — Context; Decision; Consequences; Compliance](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).\n- Learner transfer: Freeze the renewal reference snapshot.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-47",
+          "decision": "Freeze the original policy and renewal reference into an immutable preview snapshot; later source changes must not rewrite what the preview described.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Optional prerequisite recovery only: **Step 15 - Exploring Java New Features - Records** (9:04); **3 Questions - Best practices with Records** (9:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: Record ADR focus 5:00; worked projection decision 16:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Copy current facts without making a new offer](docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: Record — Class Record](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html); [Official source: AWS Prescriptive Guidance: Appendix: Example ADR — Context; Decision; Consequences; Compliance](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).\n- Learner transfer: Freeze the renewal reference snapshot.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -459,14 +477,10 @@
       "title": "Day47: Freeze the renewal reference snapshot",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "List the immutable source fields that must be copied, the one permitted derived date, and the fields that must remain absent before changing the preview projection.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-47-reference-projection-decision.md",
-          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
           "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html",
           "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html"
         ],
@@ -482,12 +496,17 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 47 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day47PreviewCopiesCurrentSnapshotAndMakesNoRenewalPriceOrCommitment test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-47",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -592,7 +611,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-48.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 04 - Getting Started with Spring JDBC** (3:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: query lesson foundation 5:36; worked raw JDBC resources and state 14:24; prediction 5:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Bind both keys and compare complete rows](docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: PreparedStatement — setString(int, String); executeQuery()](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html); [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1).\n- Learner transfer: Add owner-scoped PostgreSQL renewal projection.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 04 - Getting Started with Spring JDBC** (3:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: query lesson foundation 5:36; worked raw JDBC resources and state 14:24; prediction 5:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Bind both keys and compare complete rows](docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: PreparedStatement — setString(int, String); executeQuery()](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html); [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1).\n- Learner transfer: Add owner-scoped PostgreSQL renewal projection.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-48",
+          "decision": "Read the preview through a parameterized owner-scoped JDBC projection with explicit nullable mapping; the query returns only approved fields.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 04 - Getting Started with Spring JDBC** (3:58). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: query lesson foundation 5:36; worked raw JDBC resources and state 14:24; prediction 5:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Bind both keys and compare complete rows](docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Java SE 21: PreparedStatement — setString(int, String); executeQuery()](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html); [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1).\n- Learner transfer: Add owner-scoped PostgreSQL renewal projection.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -600,15 +624,10 @@
       "title": "Day48: Add owner-scoped PostgreSQL renewal projection",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "Write the two SQL predicates, expected owned/foreign/absent results, and the full tables that must remain unchanged before editing the JDBC read.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-48-scoped-jdbc-observation.md",
-          "docs/reboot/interview/pattern-library.md#ownership-boundary",
-          "docs/reboot/interview/pattern-library.md#transaction-boundary",
           "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html",
           "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1"
         ],
@@ -633,12 +652,17 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 48 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalRepositoryAcceptanceTest#day48ReadIsOwnerScopedAndReturnsOnlyRenewalInputsWithoutWrites test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-48",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -733,7 +757,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-49.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: authentication lesson 4:17; MVC Principal focus 3:00; worked request scope trace 13:43; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A caller cannot choose their own owner identity](docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Method Arguments — java.security.Principal table entry; @PathVariable table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Learner transfer: Derive preview identity from the principal.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: authentication lesson 4:17; MVC Principal focus 3:00; worked request scope trace 13:43; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A caller cannot choose their own owner identity](docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Method Arguments — java.security.Principal table entry; @PathVariable table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Learner transfer: Derive preview identity from the principal.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-49",
+          "decision": "Derive owner identity from the authenticated principal and pass it to the read store; query/header values cannot select another owner's record.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 21 - Understanding Spring Security Authentication**, section **Securing Spring Boot Applications with Spring Security** (4:17); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: authentication lesson 4:17; MVC Principal focus 3:00; worked request scope trace 13:43; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [A caller cannot choose their own owner identity](docs/reboot/continuation-45-56/worked/day-49-principal-trust-boundary.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Method Arguments — java.security.Principal table entry; @PathVariable table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html).\n- Learner transfer: Derive preview identity from the principal.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -816,7 +845,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-49"
       }
     },
     {
@@ -920,7 +952,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-50.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 12 - Implementing Generic Exception Handling for all Resources** (11:29). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: 404 foundation lesson 7:49; ResponseEntity focus 3:00; worked 401 404 409 table 10:11; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Map known unavailable outcomes safely](docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Map unavailable previews to stable HTTP errors.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 12 - Implementing Generic Exception Handling for all Resources** (11:29). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: 404 foundation lesson 7:49; ResponseEntity focus 3:00; worked 401 404 409 table 10:11; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Map known unavailable outcomes safely](docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Map unavailable previews to stable HTTP errors.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-50",
+          "decision": "Translate missing and ineligible preview outcomes into the contract's stable non-disclosing HTTP responses; do not reveal whether a foreign record exists.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 11 - Implementing Exception Handling - 404 Resource Not Found**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (7:49); access: `confirmed_owned`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Step 12 - Implementing Generic Exception Handling for all Resources** (11:29). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: 404 foundation lesson 7:49; ResponseEntity focus 3:00; worked 401 404 409 table 10:11; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Map known unavailable outcomes safely](docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Map unavailable previews to stable HTTP errors.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -928,15 +965,10 @@
       "title": "Day50: Map unavailable previews to stable HTTP errors",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "Map missing, foreign and each ineligible outcome to its exact status/code before editing the controller; predict why missing and foreign must be indistinguishable.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-50-unavailable-response-table.md",
-          "docs/reboot/interview/pattern-library.md#http-boundary",
-          "docs/reboot/interview/pattern-library.md#ownership-boundary",
           "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
         ],
         "course_bridges": [
@@ -960,12 +992,17 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 50 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day50EndpointConcealsMissingAndForeignRowsAndUsesStableConflictCodes+day50FoundIneligibleGetMaps409WithoutCallingAvailablePreviewBuilder test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-50",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1062,7 +1099,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-51.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 03 - Enhancing the Hello World REST API to return a Bean**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: bean response foundation 4:30; worked exact JSON contract 16:30; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Inspect the actual JSON projection](docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring: Building a RESTful Web Service — Create a Resource Representation Class; Create a Resource Controller](https://spring.io/guides/gs/rest-service/); [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Expose a minimal non-binding preview response.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 03 - Enhancing the Hello World REST API to return a Bean**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: bean response foundation 4:30; worked exact JSON contract 16:30; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Inspect the actual JSON projection](docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring: Building a RESTful Web Service — Create a Resource Representation Class; Create a Resource Controller](https://spring.io/guides/gs/rest-service/); [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Expose a minimal non-binding preview response.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-51",
+          "decision": "Return an allowlisted, explicitly non-binding preview DTO; avoid policy mutation, payment fields, or language that implies coverage renewal.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 03 - Enhancing the Hello World REST API to return a Bean**, section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (4:30); access: `confirmed_owned`. Viewing is not inferred.\n- Fixed study segments: bean response foundation 4:30; worked exact JSON contract 16:30; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Inspect the actual JSON projection](docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring: Building a RESTful Web Service — Create a Resource Representation Class; Create a Resource Controller](https://spring.io/guides/gs/rest-service/); [Official source: Spring Framework: Return Values — HttpEntity<B>, ResponseEntity<B> table entry](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).\n- Learner transfer: Expose a minimal non-binding preview response.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -1070,15 +1112,10 @@
       "title": "Day51: Expose a minimal non-binding preview response",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "List the exact approved serialized keys, values and JSON types, then list one private and one mutation field that must be absent before changing the response adapter.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-51-serialized-public-projection.md",
-          "docs/reboot/interview/pattern-library.md#http-boundary",
-          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
           "https://spring.io/guides/gs/rest-service/",
           "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
         ],
@@ -1103,13 +1140,18 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 51 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51PublicPreviewIsMinimalAndContainsNoPrivateOrMutationFields test",
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalControllerAcceptanceTest#day51SerializedPreviewHasExactlyApprovedFieldsAndNumericPremium test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-51",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1205,7 +1247,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-52.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Rendering Content Conditionally**, section **React Essentials - Components, JSX, Props, State & More** (8:03); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: conditional rendering foundation 8:03; worked reference panel 12:57; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Render a supplied reference value](docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md); this is not an official-source quotation.\n- Focused official sources: [Official source: React: Conditional Rendering — Conditionally returning JSX](https://react.dev/learn/conditional-rendering#conditionally-returning-jsx); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Render the renewal reference view in React.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Rendering Content Conditionally**, section **React Essentials - Components, JSX, Props, State & More** (8:03); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: conditional rendering foundation 8:03; worked reference panel 12:57; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Render a supplied reference value](docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md); this is not an official-source quotation.\n- Focused official sources: [Official source: React: Conditional Rendering — Conditionally returning JSX](https://react.dev/learn/conditional-rendering#conditionally-returning-jsx); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Render the renewal reference view in React.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-52",
+          "decision": "Keep the reference panel presentational over typed props; supplied data is rendered without performing issuance or changing the policy.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Rendering Content Conditionally**, section **React Essentials - Components, JSX, Props, State & More** (8:03); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: conditional rendering foundation 8:03; worked reference panel 12:57; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Render a supplied reference value](docs/reboot/continuation-45-56/worked/day-52-reference-only-panel.md); this is not an official-source quotation.\n- Focused official sources: [Official source: React: Conditional Rendering — Conditionally returning JSX](https://react.dev/learn/conditional-rendering#conditionally-returning-jsx); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Render the renewal reference view in React.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -1289,7 +1336,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-52"
       }
     },
     {
@@ -1403,7 +1453,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-53.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Handling Loading States**, section **Sending Http Requests (e.g. Connecting to a Database)** (5:27); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Handling HTTP Loading & Error States** (3:12). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: loading foundation 5:27; ARIA status alert focus 3:00; worked transition refresh 12:33; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Keep states exclusive and refresh explicit](docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md); this is not an official-source quotation.\n- Focused official sources: [Official source: W3C WCAG technique ARIA22: Using role=status to present status messages — Description; Examples](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22); [Official source: W3C APG: Alert Pattern — About This Pattern; Keyboard Interaction](https://www.w3.org/WAI/ARIA/apg/patterns/alert/); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Add accessible loading and unavailable states; ready without a selected preview shows a safe unavailable alert.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Handling Loading States**, section **Sending Http Requests (e.g. Connecting to a Database)** (5:27); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Handling HTTP Loading & Error States** (3:12). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: loading foundation 5:27; ARIA status alert focus 3:00; worked transition refresh 12:33; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Keep states exclusive and refresh explicit](docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md); this is not an official-source quotation.\n- Focused official sources: [Official source: W3C WCAG technique ARIA22: Using role=status to present status messages — Description; Examples](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22); [Official source: W3C APG: Alert Pattern — About This Pattern; Keyboard Interaction](https://www.w3.org/WAI/ARIA/apg/patterns/alert/); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Add accessible loading and unavailable states; ready without a selected preview shows a safe unavailable alert.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-53",
+          "decision": "Represent loading, unavailable, empty, and ready as accessible explicit states; users must not mistake absent data for a valid preview.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Handling Loading States**, section **Sending Http Requests (e.g. Connecting to a Database)** (5:27); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Optional prerequisite recovery only: **Handling HTTP Loading & Error States** (3:12). It replaces focused review if useful and adds no time or new-mastery claim.\n- Fixed study segments: loading foundation 5:27; ARIA status alert focus 3:00; worked transition refresh 12:33; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Keep states exclusive and refresh explicit](docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md); this is not an official-source quotation.\n- Focused official sources: [Official source: W3C WCAG technique ARIA22: Using role=status to present status messages — Description; Examples](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22); [Official source: W3C APG: Alert Pattern — About This Pattern; Keyboard Interaction](https://www.w3.org/WAI/ARIA/apg/patterns/alert/); [Official source: React: Choosing the State Structure — Avoid contradictions in state](https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state).\n- Learner transfer: Add accessible loading and unavailable states; ready without a selected preview shows a safe unavailable alert.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -1411,14 +1466,10 @@
       "title": "Day53: Add accessible loading and unavailable states",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "Sketch the existing loading, unavailable, ready and refresh transitions; predict which stale values must clear and how many times an explicit refresh callback may run.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-53-accessible-read-refresh.md",
-          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
           "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22",
           "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
           "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state"
@@ -1444,12 +1495,17 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 53 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t \"explicit|refresh\""
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-53",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1545,7 +1601,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-54.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: integration foundation or official fallback 8:51; worked full database observation 12:09; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Compare full database state around the read](docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Boot: Testing Spring Boot Applications — MOCK versus RANDOM_PORT behavior in opening section](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html).\n- Learner transfer: Verify the owner-scoped preview against PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: integration foundation or official fallback 8:51; worked full database observation 12:09; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Compare full database state around the read](docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Boot: Testing Spring Boot Applications — MOCK versus RANDOM_PORT behavior in opening section](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html).\n- Learner transfer: Verify the owner-scoped preview against PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-54",
+          "decision": "Compare the actual preview response to complete seeded PostgreSQL state before and after the read; a read path must not write.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Required course reference: **Step 15 - Writing an Integration Test using @SpringBootTest**, section **Section 2 - Unit Testing With Spring Boot And Mockito** (8:51); access: `unconfirmed_reference_only`. Viewing is not inferred.\n- Fixed study segments: integration foundation or official fallback 8:51; worked full database observation 12:09; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Compare full database state around the read](docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md); this is not an official-source quotation.\n- Focused official sources: [Official source: Spring Boot: Testing Spring Boot Applications — MOCK versus RANDOM_PORT behavior in opening section](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html).\n- Learner transfer: Verify the owner-scoped preview against PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -1553,15 +1614,10 @@
       "title": "Day54: Verify the owner-scoped preview against PostgreSQL",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "List owner/foreign/absent/anonymous response expectations and the three ordered database snapshots to compare after every request before running the PostgreSQL acceptance.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-54-complete-database-observation.md",
-          "docs/reboot/interview/pattern-library.md#ownership-boundary",
-          "docs/reboot/interview/pattern-library.md#transaction-boundary",
           "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html",
           "https://www.postgresql.org/docs/18/sql-set-transaction.html"
         ],
@@ -1586,12 +1642,17 @@
         ],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 54 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PolicyRenewalPostgresAcceptanceTest#day54OwnerScopedEndpointReadsPostgresAndLeavesPolicyRowsUnchanged test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-54",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1670,7 +1731,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-55.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: plain fetch Playwright focus 6:00; worked request response demo 15:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Observe a real browser read](docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md); this is not an official-source quotation.\n- Focused official sources: [Official source: MDN Web Docs: Using the Fetch API — Checking response status; Reading the response body](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch); [Official source: Playwright: Response — status; json](https://playwright.dev/docs/api/class-response).\n- Learner transfer: Connect the React preview to Spring and PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: plain fetch Playwright focus 6:00; worked request response demo 15:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Observe a real browser read](docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md); this is not an official-source quotation.\n- Focused official sources: [Official source: MDN Web Docs: Using the Fetch API — Checking response status; Reading the response body](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch); [Official source: Playwright: Response — status; json](https://playwright.dev/docs/api/class-response).\n- Learner transfer: Connect the React preview to Spring and PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-55",
+          "decision": "Fetch the preview with same-origin session credentials and display the validated response; keep identity server-derived and do not retry writes automatically.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: plain fetch Playwright focus 6:00; worked request response demo 15:00; prediction 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Observe a real browser read](docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md); this is not an official-source quotation.\n- Focused official sources: [Official source: MDN Web Docs: Using the Fetch API — Checking response status; Reading the response body](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch); [Official source: Playwright: Response — status; json](https://playwright.dev/docs/api/class-response).\n- Learner transfer: Connect the React preview to Spring and PostgreSQL.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -1678,15 +1744,10 @@
       "title": "Day55: Connect the React preview to Spring and PostgreSQL",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "Write the expected browser request, status, approved response fields and rendered values for both fixtures; identify the observation that proves no mutation request occurred.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
-          "docs/reboot/interview/sprint4-session-scope.md",
-          "docs/reboot/continuation-45-56/worked/day-55-observed-preview-demo.md",
-          "docs/reboot/interview/pattern-library.md#http-boundary",
-          "docs/reboot/interview/pattern-library.md#measure-before-scaling",
           "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
           "https://playwright.dev/docs/api/class-response"
         ],
@@ -1694,12 +1755,17 @@
         "course_catalog": [],
         "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 55 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day55RealBrowserLoadsOwnerScopedPreviewFromSpringAndPostgres test"
         ],
-        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
-        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-55",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1783,7 +1849,12 @@
           }
         },
         "contract_path": "docs/reboot/continuation-45-56/contracts/day-56.md",
-        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: safe GET readonly focus 4:00; worked restart handover 17:00; readiness 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Read after restart without changing stored rows](docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md); this is not an official-source quotation.\n- Focused official sources: [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html); [Official source: AWS Well-Architected: Use runbooks to perform procedures — Implementation guidance; Implementation steps](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html).\n- Learner transfer: Prove preview stability across restart without writes.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed."
+        "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: safe GET readonly focus 4:00; worked restart handover 17:00; readiness 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Read after restart without changing stored rows](docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md); this is not an official-source quotation.\n- Focused official sources: [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html); [Official source: AWS Well-Architected: Use runbooks to perform procedures — Implementation guidance; Implementation steps](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html).\n- Learner transfer: Prove preview stability across restart without writes.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-56",
+          "decision": "Prove logout and process restart separately, using a valid pre-stop session for restart and the same database/clock; this isolates ephemeral session loss from durable preview state.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "understanding_prompt": "What invariant does this change protect, where is it enforced, and what observable response proves it?",
       "course_learning_block": "**Learning route — exactly 25 minutes total.**\n- Fixed study segments: safe GET readonly focus 4:00; worked restart handover 17:00; readiness 4:00. Stop at 25:00; carry unfinished work forward without extending the day.\n- Full project-authored worked example before transfer: [Read after restart without changing stored rows](docs/reboot/continuation-45-56/worked/day-56-restart-read-handover.md); this is not an official-source quotation.\n- Focused official sources: [Official source: RFC 9110: HTTP Semantics — 9.2.1 Safe Methods; 9.3.1 GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1); [Official source: PostgreSQL 18: SET TRANSACTION — Description: transaction access mode READ ONLY](https://www.postgresql.org/docs/18/sql-set-transaction.html); [Official source: AWS Well-Architected: Use runbooks to perform procedures — Implementation guidance; Implementation steps](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html).\n- Learner transfer: Prove preview stability across restart without writes.\n- Course entries are source references only; no video viewing, access, or learner completion is claimed.",
@@ -1851,7 +1922,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-56"
       }
     }
   ],

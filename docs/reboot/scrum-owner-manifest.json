@@ -1486,7 +1486,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-15.json"
+        "evidence_output_path": "evidence/reboot/day-15.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-15",
+          "decision": "Project the journey summary with an explicit parent/optional-child join and allowlisted fields; this preserves absent-versus-empty semantics and prevents private columns from leaking.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Required owned-course references: “Step 07 - Querying Data using Spring JDBC” (5:36) and “Step 07 - Understanding Optional class in Java” (7:14), 12:50 total. The lessons are JDBC/Optional foundations, not a complete join lesson. Follow the linked PostgreSQL and executable worked guide in the remaining 12:10; no optional lecture is stacked.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1514,9 +1519,9 @@
       "title": "Day15: Journey summary + pointer-elimination proof (LC 11)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -1544,10 +1549,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-15.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 15 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 15 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-15",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1586,7 +1596,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-16.json"
+        "evidence_output_path": "evidence/reboot/day-16.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-16",
+          "decision": "Page with the contract's stable composite order and a strict row limit; ties then remain deterministic across requests.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Required: “Step 33 - Exploring JPA and Hibernate Queries for REST API” (6:36) as query context only. The Spring Data JPA lecture is optional later, not stacked. Read PostgreSQL LIMIT/OFFSET guidance and work the linked five-row JDBC trace in the remaining study time; keep total at 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1607,9 +1622,9 @@
       "title": "Day16: History reads + reviews LC 238 D+7, LC 167 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -1630,10 +1645,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-16.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 16 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 16 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-16",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1674,7 +1694,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-17.json"
+        "evidence_output_path": "evidence/reboot/day-17.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-17",
+          "decision": "Keep the product-choice component typed and presentational over supplied props; this isolates accessible rendering from transport and state ownership.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional reference if accessible: “Making Components Reusable with Props [Core Concept]” (9:06); course access is unconfirmed. “Working with Props & TypeScript” (14:20) is optional replacement-only, not cumulative. Use the linked full typed-state and accessible-control reference; no purchase/enrollment. Keep total study at 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1747,7 +1772,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-17"
       }
     },
     {
@@ -1786,7 +1814,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-18.json"
+        "evidence_output_path": "evidence/reboot/day-18.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-18",
+          "decision": "Use controlled form state with validation at the existing client boundary; the visible input and submitted request then share one source of truth.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional reference if accessible: “Managing & Getting User Input via State & Generic Handlers” (11:12). “User Input & Two-Way-Binding” (7:42) is optional replacement-only. Access is unconfirmed; use the linked controlled-input/Promise worked guide if unavailable. No purchase/enrollment; total 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1807,9 +1840,9 @@
       "title": "Day18: Quote input + reviews LC 125 D+7, LC 11 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -1830,10 +1863,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-18.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 18 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 18 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-18",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1872,7 +1910,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-19.json"
+        "evidence_output_path": "evidence/reboot/day-19.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-19",
+          "decision": "Render the returned quote snapshot as supplied; do not recalculate premium or mutate it from current form values.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional reference if accessible: “Using async / await” (2:25) and “Handling Loading States” (5:27), total 7:52. TanStack query-key/cancellation lessons are optional comparisons only; the component seam is a promise callback. Use the linked out-of-order/deferred-promise guide, with no new dependency. Total 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1917,9 +1960,9 @@
       "title": "Day19: Quote snapshot + shrinking valid window (LC 209)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -1947,10 +1990,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-19.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 19 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 19 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-19",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -1989,7 +2037,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-20.json"
+        "evidence_output_path": "evidence/reboot/day-20.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-20",
+          "decision": "Submit through the existing async action seam and represent pending/result states explicitly; a UI event must not imply a successful write before the response.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional reference if accessible: “Handling HTTP Errors” (9:16), access unconfirmed. Backend POST/201 lessons do not teach this UI Promise<void> shape. Use the linked resolved/rejected Promise and status mapping guide if unavailable; no purchase/enrollment or additional React lesson. Total 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2010,9 +2063,9 @@
       "title": "Day20: Selection UI + reviews LC 167 D+7, LC 3 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -2033,10 +2086,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-20.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 20 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 20 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-20",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2085,7 +2143,12 @@
         ],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-21.json"
+        "evidence_output_path": "evidence/reboot/day-21.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-21",
+          "decision": "Keep same-origin session cookies and the CSRF token header as separate controls on writes; CSRF validity does not establish identity.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Course lesson:** Required owned-course 4993276, “Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF” (11:08); REST-CSRF and CORS are optional, not stacked. Use the [Day 21 guide](docs/reboot/teaching/day-21-csrf-boundaries.md#token-session-identity-and-ownership-trace) for the real server-issued cookie/session/header flow. Instructor command `./mvnw -Dtest=Day21SecurityInfrastructureTest test`; learner acceptance `./mvnw -Plearner-tests -Dtest=Day21ContractTest test` reaches the real owner-policy TODO. No production authentication claim.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2158,7 +2221,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-21"
       }
     },
     {
@@ -2201,7 +2267,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-22.json"
+        "evidence_output_path": "evidence/reboot/day-22.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-22",
+          "decision": "Attach a bounded request-correlation identifier at the server boundary and carry it through logs; avoid logging request bodies or personal data.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Course lesson:** Required owned-course 4993276, section “APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate”: “Step 09 - Quick Overview - Importance of Logging with Spring Boot” (9:53). “Step 25 - Monitoring APIs with Spring Boot Actuator” (6:54) is optional later only. Use the [Day 22 guide](docs/reboot/teaching/day-22-correlation.md#worked-run) within the same study block. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2222,9 +2293,9 @@
       "title": "Day22: Request correlation + reviews LC 121 D+21, LC 11 D+7, LC 209 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -2245,10 +2316,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-22.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 22 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 22 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-22",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2303,7 +2379,12 @@
           "status"
         ],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-23.json"
+        "evidence_output_path": "evidence/reboot/day-23.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-23",
+          "decision": "Expose only the minimum health signal needed by the local runtime; do not disclose configuration or application data through health output.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Course lesson:** Required owned-course 4993276, “Step 12 - Get Production Ready with Spring Boot - 4 - Actuator” (7:33), is foundation only. The [Day 23 guide](docs/reboot/teaching/day-23-readiness.md#indicator-versus-projection) teaches status-only projection within the same 25-minute block. Instructor HTTP command uses actual disposable PostgreSQL and a temporary projection witness; tagged acceptance tests keep the projection and readiness TODOs learner-owned.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2324,9 +2405,9 @@
       "title": "Day23: Health endpoint + augmented stack (LC 155)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -2347,10 +2428,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-23.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 23 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 23 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-23",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2393,7 +2479,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-24.json"
+        "evidence_output_path": "evidence/reboot/day-24.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-24",
+          "decision": "Add an index only after measuring the exact query plan and preserve its specified result order; this ties optimization to observed workload and keeps semantics fixed.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Course lesson:** Conditional, access-unconfirmed reference to course 1341538: “Step 82 - Performance Tuning - Measure before Tuning” (1:56) and “Step 83 - Performance Tuning - Indexes” (1:44), total 3:40. If unavailable, replace that time with the named PostgreSQL reading; do not purchase/enroll. The [Day 24 guide](docs/reboot/teaching/day-24-explain.md#observed-postgresql-run) contains the runnable plan/output example. Use official PostgreSQL EXPLAIN plus Indexes and ORDER BY sections; first teach the station_id equality prefix, then the measured_at DESC / reading_id ASC mixed order. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2479,7 +2570,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-24"
       }
     },
     {
@@ -2522,7 +2616,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-25.json"
+        "evidence_output_path": "evidence/reboot/day-25.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-25",
+          "decision": "Enforce repeated-selection uniqueness at the database transaction boundary; concurrent requests must converge on one durable selection.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Course/concept bridge:** No exact verified lecture covers this race. Read PostgreSQL Transactions, Read Committed, and INSERT ON CONFLICT sections, then run the [Day 25 guide](docs/reboot/teaching/day-25-unique-race.md#two-transaction-trace) within the existing 25-minute block. Read PostgreSQL Transactions, Read Committed, and INSERT ON CONFLICT sections; the guide applies them to raw JDBC transaction recovery. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2533,9 +2632,9 @@
       "title": "Day25: Concurrent selection + binary-search bridge (outside Top Interview 150) (LC 704)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -2549,10 +2648,15 @@
         ],
         "course_bridges": [],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-25.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 25 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 25 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-25",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2595,7 +2699,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-26.json"
+        "evidence_output_path": "evidence/reboot/day-26.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-26",
+          "decision": "Append the smallest audit record in the same transaction as the selected mutation; avoid storing secrets or duplicating full request payloads.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Course/concept bridge:** No exact verified audit lecture. Read the named PostgreSQL transactions and `INSERT ... RETURNING` sections, then run the [Day 26 guide](docs/reboot/teaching/day-26-audit.md#first-change-repeat-and-failure) within the existing 25-minute block. Read PostgreSQL Transactions and INSERT RETURNING sections; a general Spring transaction lesson does not teach this raw JDBC boundary. See the [Days 1–30 map](docs/reboot/course-learning-map.md). Exact catalog title metadata is not a claim of playback; the guide is part of the same 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2606,9 +2715,9 @@
       "title": "Day26: Audit + reviews LC 383 D+21, LC 209 D+7, LC 155 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -2621,10 +2730,15 @@
         ],
         "course_bridges": [],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-26.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 26 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 26 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-26",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2667,7 +2781,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-27.json"
+        "evidence_output_path": "evidence/reboot/day-27.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-27",
+          "decision": "Fix the smallest evidenced regression and add one focused failing-before/passing-after test; avoid unrelated refactoring.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional partial support: Good Unit Tests (5:34) and Response Matchers (5:07); Mockito Verify (6:40) is optional, not stacked. Use the Day 27 worked example to distinguish strict/inclusive boundary behavior from an input-unit issue. Access unconfirmed; no purchase. Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2697,9 +2816,9 @@
       "title": "Day27: Regression fix + boundary search (LC 35)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
         "pattern_refs": [
@@ -2728,10 +2847,15 @@
           }
         ],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-27.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 27 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 27 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
-        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-27",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2778,7 +2902,12 @@
         "environment_requirements": [
           "Set CHROMIUM_BIN to an installed Chromium executable before running the browser acceptance command."
         ],
-        "evidence_output_path": "evidence/reboot/day-28.json"
+        "evidence_output_path": "evidence/reboot/day-28.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-28",
+          "decision": "Verify the existing user path through the packaged browser and disposable PostgreSQL; an isolated component pass cannot establish browser-to-database behavior.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Review only; no new lecture or feature. Use the Day 28 integrated review and actual prerequisites within the existing 25-minute study cap. Practice remains 45-minute interview + 40-minute EAI slice = 85 minutes; evidence remains 10 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2835,7 +2964,10 @@
             "minutes": 10,
             "activity": "Trade-offs, failures, follow-ups"
           }
-        ]
+        ],
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-28"
       }
     },
     {
@@ -2880,7 +3012,12 @@
         "safety_preconditions": [
           "Test-only disposable database name must end with _test; never target development, shared, staging, or production data."
         ],
-        "evidence_output_path": "evidence/reboot/day-29.json"
+        "evidence_output_path": "evidence/reboot/day-29.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-29",
+          "decision": "Keep reset operations limited to a uniquely identified embedded/disposable database with an explicit refusal guard; never accept an external URI for destructive reset.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Required owned-course Profiles lesson (7:05). ConfigurationProperties (7:31) and Embedded Servers (6:27) are optional later, not stacked. Use the Day 29 reset guide; run only the existing embedded PostgreSQL test path. Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2901,19 +3038,23 @@
       "title": "Day29: Reproducibility + rotated-array search (LC 153)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "State the disposable-database name and explicit confirmation guard, then predict the first observable refusal before opening the reset guide.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
           "docs/reboot/interview/sprint3-session-scope.md",
           "docs/reboot/interview/pattern-library.md"
         ],
         "course_bridges": [],
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend five minutes writing this task-specific prediction first; use the remaining 80 minutes for the unchanged day acceptance: Use the existing embedded reset test and reset-safety script; never use external URI mode. The original selector and all listed acceptance remain required.",
-        "acceptance": "This proposal is a learning prompt, not a pass. Preserve original day acceptance and status; no completion is inferred from a written prediction.",
-        "evidence": "Record the saved pre-assistance proposal, actual existing selector, exit/result or blocker, changed paths, and assistance. No retrospective architecture essay."
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 29 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-29",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     },
     {
@@ -2954,7 +3095,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-30.json"
+        "evidence_output_path": "evidence/reboot/day-30.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-30",
+          "decision": "Treat the evidence checklist as a status ledger with linked observations and open blockers; a review conversation cannot promote missing evidence to pass.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "No new lecture. Review a previously taught boundary using the Day 30 evidence-state guide. Keep the existing 20-minute mock inside the 85-minute practice allocation (65 build/test + 20 mock). Study cap 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -2967,19 +3113,23 @@
       "title": "Day30: Slice review + reviews LC 238 D+21, LC 155 D+7, LC 35 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
       "interview_practice": {
-        "mode": "5_minute_task_proposal",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
-        "proposal_prompt": "Choose one observed slice behavior and write the claim plus one falsifying observation before opening the evidence-review guide.",
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "supporting_sources": [
           "docs/reboot/interview/sprint3-session-scope.md",
           "docs/reboot/interview/pattern-library.md"
         ],
         "course_bridges": [],
         "practice_minutes_available": 85,
-        "implementation_scope": "Spend five minutes writing this task-specific prediction first; use the remaining 80 minutes for the unchanged day acceptance: Keep the existing Day 30 evidence checklist and 20-minute review inside its original budget. The original selector and all listed acceptance remain required.",
-        "acceptance": "This proposal is a learning prompt, not a pass. Preserve original day acceptance and status; no completion is inferred from a written prediction.",
-        "evidence": "Record the saved pre-assistance proposal, actual existing selector, exit/result or blocker, changed paths, and assistance. No retrospective architecture essay."
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 30 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-30",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
       }
     }
   ],

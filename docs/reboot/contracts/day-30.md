@@ -20,21 +20,20 @@ Machine-check checklist against actual manifest and referenced evidence; missing
 
 Days 28–29; no manufactured integrated success. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-## Interview-first task proposal (5 minutes; inside the 85-minute practice block)
+## Existing implementation boundary
 
-Before code, hints, worked answers, or AI, write: Choose one observed slice behavior and write the claim plus one falsifying observation before opening the evidence-review guide.
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 
-**Task boundary:** Keep the existing Day 30 evidence checklist and 20-minute review inside its original budget. Use the existing day's acceptance selector and preserve its full criteria. This short proposal does not replace acceptance or add time. Record the prediction and actual result in the existing evidence record.
-
-**Review prompt (within the 25-minute concept block):** Select one observed behavior and explain its invariant, evidence, limitation, and next diagnostic. Use the [evidence-state example](../teaching/day-30-evidence-review.md#three-evidence-states); do not add an architecture exercise.
-
+**Task boundary:** Keep the existing Day 30 evidence checklist and 20-minute review inside its original budget. Use the existing day's acceptance selector and preserve its full criteria.
 ## Concept (25 minutes)
+
+**Assistant-provided capstone architecture:** [../assistant-architecture-notes-15-70.md#day-30](<../assistant-architecture-notes-15-70.md#day-30>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 Evidence-based explanation and honest limits. Review the [Day 30 worked example](../teaching/day-30-evidence-review.md#a-concise-evidence-based-explanation); no new SDE II vocabulary or feature is assigned.
 
 ## Evidence (10 minutes)
 
-5-minute demo script, current gate, prerequisite-ranked backlog. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+5-minute demo script, current gate, prerequisite-ranked backlog. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Planned isolated command
 
