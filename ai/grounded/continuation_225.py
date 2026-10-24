@@ -8,7 +8,7 @@ explicit human review action.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Literal
+from typing import Callable, Literal
 
 ABSTAIN_TEXT = "Not enough approved evidence to answer."
 DECISIONS = ("approve", "reject")
@@ -115,6 +115,29 @@ class EvaluationCase:
     expected_citations: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class ClassificationObservation:
+    """Observed workflow output supplied to the fixed-label evaluator."""
+
+    status: Literal["cited", "abstain"]
+    citations: tuple[str, ...]
+    approval_requested: bool = False
+
+
+CandidateClassifier = Callable[[PolicySnapshot, DraftCandidate | None], ClassificationObservation]
+
+
+def classify_candidate(snapshot: PolicySnapshot, candidate: DraftCandidate | None) -> ClassificationObservation:
+    """Classify one candidate using evidence and authorization, not eval labels.
+
+    TODO (Days 226–227): inspect only candidate and the supplied synthetic
+    snapshot. Return cited only when owner, policy version, snapshot digest,
+    exact excerpt and citation match an approved source; otherwise abstain
+    with no citations. This classifier cannot access expected labels.
+    """
+    raise NotImplementedError("Days 226–227 learner TODO: classify against source evidence")
+
+
 def prepare_draft(snapshot: PolicySnapshot, candidate: DraftCandidate) -> ExplanationDraft:
     """Validate exact source/version citations and return an immutable DRAFT.
 
@@ -165,11 +188,13 @@ def classify_generation_failure(error_code: str) -> dict[str, object]:
     raise NotImplementedError("Days 236 and 238 learner TODO: fail closed on adapter errors")
 
 
-def evaluate_cases(cases: tuple[EvaluationCase, ...], snapshot: PolicySnapshot) -> dict[str, int]:
-    """Compute fixed local metrics against labels authored outside the system.
+def evaluate_cases(cases: tuple[EvaluationCase, ...], snapshot: PolicySnapshot, *, classifier: CandidateClassifier) -> dict[str, int]:
+    """Run an observable classifier and score it against independent labels.
 
-    TODO (Days 225, 235, 238): count exact citation, abstention, leakage and
-    approval-state outcomes from independent case labels; never call a model or
-    derive expected results from prepare_draft/review_draft.
+    TODO (Days 235, 238): call classifier(snapshot, case.candidate), then
+    compare observed status/citations with the literal expected labels. Return
+    exact counts for total, correct, incorrect, cited, abstained,
+    foreign_owner_leaks and unexpected_approval. Never pass expected labels to
+    the classifier or derive them from workflow output. No model/API call.
     """
-    raise NotImplementedError("Days 225, 235, and 238 learner TODO: measure independent local cases")
+    raise NotImplementedError("Days 235 and 238 learner TODO: score observable workflow output against independent labels")

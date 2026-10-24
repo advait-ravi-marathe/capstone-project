@@ -130,7 +130,7 @@
       "question_id": "Q07",
       "question_title": "API gateway: route and protect",
       "project_task": "Inspect the Day 210 gate; if unmet, recover the first named CoverStory blocker and keep AI work to local fixed labels.",
-      "ai_task": "Create a four-case local evaluation set with expected citations and three distinct abstention causes.",
+      "ai_task": "Author the exact four-case local evaluation fixture and counterfactual expected labels without invoking classification.",
       "study_source_keys": [
         "OPENAI_EVAL_BEST",
         "SAA_GUIDE",
@@ -148,7 +148,8 @@
         "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
         "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
         "python3 scripts/check_streamforge_169_182_entry_gate.py"
-      ]
+      ],
+      "ai_fixture_only": true
     },
     {
       "day": 226,
@@ -406,8 +407,8 @@
       "shared": "cert",
       "question_id": null,
       "question_title": null,
-      "project_task": "A byte-for-byte equivalent request key replay returns the original result and does not append a second audit row.",
-      "ai_task": "Add repeated-run fixtures and assert stable independent counts rather than mere nonempty output.",
+      "project_task": "Replay an exact successful key once, then deny same-key foreign-owner and blank-reviewer attempts without revealing the receipt or changing state.",
+      "ai_task": "Add exact, conflicting-key, foreign-owner-replay and blank-reviewer-replay labels with full-state equality checks.",
       "study_source_keys": [
         "OPENAI_EVAL_BEST",
         "DEV_ASSOCIATE",
@@ -485,8 +486,8 @@
       "shared": "review",
       "question_id": null,
       "question_title": null,
-      "project_task": "Record monotonic event sequence, actor, owner, prior/next status and snapshot identity; exclude source text and model output.",
-      "ai_task": "Score event ordering, duplicate count and accidental source-text leakage independently.",
+      "project_task": "Approve one draft and reject a second draft sequentially in the same ledger; preserve event one exactly and assert event sequence (1, 2).",
+      "ai_task": "Add a reset-history and repeated-sequence mutation; both must fail the sequential append-only acceptance path.",
       "study_source_keys": [
         "OPENAI_EVAL_BEST",
         "AGENTCORE_EVALS",
@@ -526,7 +527,7 @@
       "question_id": null,
       "question_title": null,
       "project_task": "Compute offline outcomes against fixed cases authored independently of workflow code; separate citation, abstention, leakage and approval measures.",
-      "ai_task": "Run fixed adversarial evaluation cases and show numerator/denominator for each metric.",
+      "ai_task": "Inject an observable evidence classifier, compare actual outcomes to independent labels, and flip a counterfactual label to prove the metric changes.",
       "study_source_keys": [
         "OPENAI_EVAL_BEST",
         "DEV_ASSOCIATE",
@@ -604,8 +605,8 @@
       "shared": "cert",
       "question_id": null,
       "question_title": null,
-      "project_task": "A command against an old ledger revision conflicts and preserves the committed decision and audit.",
-      "ai_task": "Add two competing decisions based on the same revision; only the first can commit.",
+      "project_task": "Keep a second draft in DRAFT after the first commit; assert a stale revision conflicts, then prove matching revision can approve that same draft.",
+      "ai_task": "Add a classifier/review mutation that ignores expected_revision; verify stale write is counted as a failure against the same still-DRAFT record.",
       "study_source_keys": [
         "OPENAI_EVAL_BEST",
         "AGENTCORE_EVALS",

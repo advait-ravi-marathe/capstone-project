@@ -29,15 +29,29 @@ VALID = workflow.DraftCandidate(
 )
 
 
-def _draft():
+def _draft(draft_id=VALID.draft_id):
     return workflow.ExplanationDraft(
-        VALID.draft_id, VALID.owner_id, VALID.policy_version,
+        draft_id, VALID.owner_id, VALID.policy_version,
         VALID.snapshot_sha256, VALID.text, VALID.citations,
     )
 
 
 def _ledger():
     return workflow.ReviewLedger(drafts=(_draft(),))
+
+
+def _ledger_with_two_drafts():
+    return workflow.ReviewLedger(drafts=(_draft(), _draft("draft-225-002")))
+
+
+def _day225_eval_cases():
+    """Independent fixture labels; deliberately do not invoke workflow code."""
+    return (
+        workflow.EvaluationCase("valid-owner-citation", "owner-a", VALID, "cited", ("synthetic-policy-001@v7",)),
+        workflow.EvaluationCase("foreign-owner-citation", "owner-a", replace(VALID, citations=(FOREIGN.citation,)), "abstain", ()),
+        workflow.EvaluationCase("altered-policy-text", "owner-a", replace(VALID, text="Renewal is guaranteed."), "abstain", ()),
+        workflow.EvaluationCase("unsupported-question", "owner-a", None, "abstain", ()),
+    )
 
 
 def _command(**changes):
@@ -65,14 +79,17 @@ def _assert_success_contract(testcase, result):
 
 class Continuation225Acceptance(unittest.TestCase):
     def test_day225_independent_evaluation_cases_have_nontrivial_expected_outcomes(self):
-        cases = (
-            workflow.EvaluationCase("valid-owner-citation", "owner-a", VALID, "cited", ("synthetic-policy-001@v7",)),
-            workflow.EvaluationCase("foreign-owner-citation", "owner-a", replace(VALID, citations=(FOREIGN.citation,)), "abstain", ()),
-            workflow.EvaluationCase("altered-policy-text", "owner-a", replace(VALID, text="Renewal is guaranteed."), "abstain", ()),
-            workflow.EvaluationCase("unsupported-question", "owner-a", None, "abstain", ()),
+        cases = _day225_eval_cases()
+        expected = (
+            ("valid-owner-citation", "owner-a", VALID, "cited", ("synthetic-policy-001@v7",)),
+            ("foreign-owner-citation", "owner-a", replace(VALID, citations=(FOREIGN.citation,)), "abstain", ()),
+            ("altered-policy-text", "owner-a", replace(VALID, text="Renewal is guaranteed."), "abstain", ()),
+            ("unsupported-question", "owner-a", None, "abstain", ()),
         )
-        self.assertEqual({"total": 4, "cited": 1, "abstained": 3, "foreign_owner_denials": 1, "unexpected_approval": 0},
-                         workflow.evaluate_cases(cases, SNAPSHOT))
+        actual = tuple((c.case_id, c.owner_id, c.candidate, c.expected_status, c.expected_citations) for c in cases)
+        self.assertEqual(expected, actual)
+        self.assertEqual({"cited", "abstain"}, {c.expected_status for c in cases})
+        self.assertEqual(4, len({c.case_id for c in cases}))
 
     def test_day226_candidate_becomes_draft_bound_to_exact_snapshot_and_citation(self):
         draft = workflow.prepare_draft(SNAPSHOT, VALID)
@@ -105,11 +122,12 @@ class Continuation225Acceptance(unittest.TestCase):
 
     def test_day229_foreign_reviewer_is_denied_without_state_or_audit_change(self):
         before = _ledger()
-        result = workflow.review_draft(before, SNAPSHOT, _command(reviewer_owner_id="owner-b"))
-        self.assertEqual("denied", result.status)
-        self.assertEqual(before, result.ledger)
-        self.assertEqual((), result.ledger.audit)
-        self.assertIsNone(result.event)
+        for command in (_command(reviewer_owner_id="owner-b"), _command(reviewer_id="")):
+            result = workflow.review_draft(before, SNAPSHOT, command)
+            self.assertEqual("denied", result.status)
+            self.assertEqual(before, result.ledger)
+            self.assertEqual((), result.ledger.audit)
+            self.assertIsNone(result.event)
 
     def test_day230_human_review_approves_once_and_audits_the_transition(self):
         result = workflow.review_draft(_ledger(), SNAPSHOT, _command())
@@ -132,6 +150,12 @@ class Continuation225Acceptance(unittest.TestCase):
         self.assertEqual(first.ledger, replay.ledger)
         self.assertIs(first.event, replay.event)
         self.assertEqual(1, len(replay.ledger.audit))
+        for command in (_command(reviewer_owner_id="owner-b"), _command(reviewer_id="")):
+            denied_replay = workflow.review_draft(first.ledger, SNAPSHOT, command)
+            self.assertEqual("denied", denied_replay.status)
+            self.assertEqual(first.ledger, denied_replay.ledger)
+            self.assertEqual(first.ledger.audit, denied_replay.ledger.audit)
+            self.assertIsNone(denied_replay.event)
 
     def test_day233_same_key_with_changed_decision_or_draft_conflicts(self):
         first = workflow.review_draft(_ledger(), SNAPSHOT, _command())
@@ -142,18 +166,24 @@ class Continuation225Acceptance(unittest.TestCase):
             self.assertEqual(1, len(result.ledger.audit))
 
     def test_day234_audit_is_ordered_append_only_and_contains_no_source_text(self):
-        before = _ledger()
+        before = _ledger_with_two_drafts()
         approved = workflow.review_draft(before, SNAPSHOT, _command())
         rejected = workflow.review_draft(
-            workflow.ReviewLedger(drafts=(replace(_draft(), draft_id="draft-225-002"),)),
+            approved.ledger,
             SNAPSHOT,
-            _command(draft_id="draft-225-002", decision="reject", idempotency_key="review-req-225-002"),
+            _command(draft_id="draft-225-002", reviewer_id="reviewer-18", decision="reject",
+                     expected_revision=1, idempotency_key="review-req-225-002"),
         )
         self.assertEqual((), before.audit)
         self.assertEqual((1,), tuple(e.sequence for e in approved.ledger.audit))
-        self.assertEqual("REJECTED", rejected.ledger.drafts[0].status)
-        self.assertEqual("DRAFT", before.drafts[0].status)
+        self.assertEqual((1, 2), tuple(e.sequence for e in rejected.ledger.audit))
+        self.assertEqual(approved.ledger.audit, rejected.ledger.audit[:1])
+        self.assertIs(approved.ledger.audit[0], rejected.ledger.audit[0])
+        self.assertEqual(("APPROVED", "REJECTED"), tuple(d.status for d in rejected.ledger.drafts))
+        self.assertEqual(("DRAFT", "DRAFT"), tuple(d.status for d in before.drafts))
+        self.assertEqual((), before.audit)
         self.assertNotIn(SOURCE.text, repr(approved.ledger.audit))
+        self.assertNotIn(SOURCE.text, repr(rejected.ledger.audit))
 
     def test_day235_only_approved_same_owner_draft_can_be_rendered(self):
         pending = workflow.render_explanation(_ledger(), VALID.draft_id, "owner-a")
@@ -163,6 +193,14 @@ class Continuation225Acceptance(unittest.TestCase):
         self.assertEqual({"status": "cited", "text": SOURCE.text, "citations": (SOURCE.citation,)}, visible)
         foreign = workflow.render_explanation(approved, VALID.draft_id, "owner-b")
         self.assertEqual({"status": "abstain", "text": workflow.ABSTAIN_TEXT, "citations": ()}, foreign)
+        cases = _day225_eval_cases()
+        self.assertEqual({"total": 4, "correct": 4, "incorrect": 0, "cited": 1,
+                          "abstained": 3, "foreign_owner_leaks": 0, "unexpected_approval": 0},
+                         workflow.evaluate_cases(cases, SNAPSHOT, classifier=workflow.classify_candidate))
+        counterfactual = (replace(cases[0], expected_status="abstain", expected_citations=()), *cases[1:])
+        self.assertEqual({"total": 4, "correct": 3, "incorrect": 1, "cited": 1,
+                          "abstained": 3, "foreign_owner_leaks": 0, "unexpected_approval": 0},
+                         workflow.evaluate_cases(counterfactual, SNAPSHOT, classifier=workflow.classify_candidate))
 
     def test_day236_timeout_unavailable_malformed_and_unknown_fail_closed(self):
         expected = {"status": "abstain", "text": workflow.ABSTAIN_TEXT,
@@ -172,12 +210,21 @@ class Continuation225Acceptance(unittest.TestCase):
                 self.assertEqual(expected, workflow.classify_generation_failure(error))
 
     def test_day237_stale_ledger_revision_cannot_overwrite_concurrent_review(self):
-        first = workflow.review_draft(_ledger(), SNAPSHOT, _command())
-        stale = workflow.review_draft(first.ledger, SNAPSHOT,
-                                      _command(decision="reject", idempotency_key="review-req-225-002"))
+        before = _ledger_with_two_drafts()
+        first = workflow.review_draft(before, SNAPSHOT, _command())
+        stale_command = _command(draft_id="draft-225-002", expected_revision=0,
+                                 idempotency_key="review-req-225-002")
+        stale = workflow.review_draft(first.ledger, SNAPSHOT, stale_command)
         self.assertEqual("conflict", stale.status)
         self.assertEqual(first.ledger, stale.ledger)
         self.assertEqual(1, len(stale.ledger.audit))
+        self.assertEqual(("APPROVED", "DRAFT"), tuple(d.status for d in stale.ledger.drafts))
+        positive = workflow.review_draft(first.ledger, SNAPSHOT,
+                                         replace(stale_command, expected_revision=1))
+        self.assertEqual("approved", positive.status)
+        self.assertEqual(("APPROVED", "APPROVED"), tuple(d.status for d in positive.ledger.drafts))
+        self.assertEqual((1, 2), tuple(e.sequence for e in positive.ledger.audit))
+        self.assertEqual(first.ledger.audit, positive.ledger.audit[:1])
 
     def test_day238_full_path_generation_is_not_approval_and_exposure_is_gated(self):
         snapshot_before = copy.deepcopy(SNAPSHOT)
