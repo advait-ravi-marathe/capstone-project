@@ -2,18 +2,110 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "One learner-authored AWS guide review record (create two files)",
   "type": "object",
-  "required": ["day", "reviewed_at", "credential", "guide_title", "guide_version", "source_url", "domain_headings", "study_minutes", "learner_notes", "assistance"],
+  "required": [
+    "day",
+    "reviewed_at",
+    "credential",
+    "guide_title",
+    "guide_version",
+    "version_status",
+    "source_url",
+    "domain_headings",
+    "study_minutes",
+    "learner_notes",
+    "assistance"
+  ],
   "properties": {
-    "day": {"const": 207},
-    "reviewed_at": {"type": "string", "format": "date"},
-    "credential": {"enum": ["SAA-C03", "AWS Certified Developer - Associate"]},
-    "guide_title": {"type": "string", "minLength": 1},
-    "guide_version": {"type": "string", "minLength": 1},
-    "source_url": {"type": "string", "format": "uri"},
-    "domain_headings": {"type": "array", "items": {"type": "string", "minLength": 1}},
-    "study_minutes": {"type": "integer", "minimum": 0, "maximum": 35},
-    "learner_notes": {"type": "string", "minLength": 1},
-    "assistance": {"type": "string", "minLength": 1}
+    "day": {
+      "const": 207
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "credential": {
+      "enum": [
+        "SAA-C03",
+        "AWS Certified Developer - Associate"
+      ]
+    },
+    "guide_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "guide_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version_status": {
+      "enum": [
+        "verified",
+        "not_verified"
+      ]
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "domain_headings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "study_minutes": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 35
+    },
+    "learner_notes": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assistance": {
+      "type": "string",
+      "minLength": 1
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "credential": {
+          "const": "SAA-C03"
+        },
+        "guide_title": {
+          "const": "AWS Certified Solutions Architect - Associate (SAA-C03)"
+        },
+        "source_url": {
+          "const": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html"
+        },
+        "domain_headings": {
+          "const": [
+            "Content Domain 1: Design Secure Architectures",
+            "Content Domain 2: Design Resilient Architectures",
+            "Content Domain 3: Design High-Performing Architectures",
+            "Content Domain 4: Design Cost-Optimized Architectures"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "credential": {
+          "const": "AWS Certified Developer - Associate"
+        },
+        "guide_title": {
+          "const": "AWS Certified Developer - Associate"
+        },
+        "source_url": {
+          "const": "https://aws.amazon.com/certification/certified-developer-associate/"
+        }
+      }
+    }
+  ]
 }
