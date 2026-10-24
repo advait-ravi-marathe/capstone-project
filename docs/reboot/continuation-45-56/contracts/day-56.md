@@ -24,15 +24,21 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `npm --prefix frontend run build && CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=RenewalPreviewTransportInfrastructureTest#testOnlyReadOnlyBrowserTransportSurvivesSpringRestart test`
 
+## Interview-first system-design mock (45 minutes; within the 85-minute practice block)
+
+**Prompt:** [Q12 — Scheduler: missed or duplicate execution](../../interview/question-bank.md#q12). Save your initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the [100-point rubric](../../interview/mock-rubric.md) with 5/5/15/10/10-minute phases. This is a design-transfer exercise; it adds no product implementation.
+
+**Existing engineering work (40 minutes):** 5 minutes verify actual Day55 gate and same-database/fixed-clock preconditions; 25 minutes run the named learner restart selector and inspect the first checkpoint; 10 minutes record exact statuses, response and row observations or the first blocker. This is bounded observation/debug work, not a claim that the complete restart gate passed.
+
+**Runnable acceptance:** Use the exact learner acceptance command(s) already named above. For Day 56, those remain `./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test`. The command may stop at a prerequisite TODO; record that exact result without substituting an instructor witness.
+
+**Deferred queue:** **S4-D56-1** — Keep every original live-context and post-close database snapshot checkpoint, both 200 responses, complete semantic UI/response equality and the same unseeded PostgreSQL instance. If the 40-minute slice cannot finish all observations, carry the remaining named checkpoints here; do not infer packaged-JAR execution or crash durability.
+
 ## Practice and evidence
 
-**85-minute practice allocation:**
-- 15 minutes: run readiness/recovery gate.
-- 40 minutes: run the two Spring server contexts in one test JVM, each read by a fresh browser process.
-- 20 minutes: compare complete response and database snapshots.
-- 10 minutes: prepare the bounded handover.
+**Practice allocation (85 minutes):** 45 minutes for the named mock, then 40 minutes for the existing engineering task: 5 minutes to confirm its preconditions and predict the first result, 25 minutes on the bounded learner seam or observation, and 10 minutes for the named selector and actual blocker/result record. This replaces the prior full 85-minute implementation breakdown on this mock day only. Original acceptance remains required; carry any unfinished portion in the named queue without overtime.
 
-**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
+**10-minute evidence allocation:** record the saved pre-assistance proposal; actual acceptance command, result or first blocker; changed paths and assistance; and which original acceptance remains open. Do not claim completion from a mock, smoke test, or partial slice.
 
 ## Study block — exactly 25 minutes
 

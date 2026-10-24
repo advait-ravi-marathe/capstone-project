@@ -12,6 +12,7 @@ For effective date E, return the annual term [E,E+1 year) using LocalDate.plusYe
 ### Readiness before the task
 
 - Actual Day44 learner readiness; no inference from instructor witness
+- Sprint 3 queue S3-D42-2 remains open unless its separate, actual prerequisite-gated evidence has been completed; this Sprint 4 plan does not close it
 - Existing value/date guides
 
 ### Acceptance and expected TODO state
@@ -24,14 +25,21 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
+## Interview-first system-design mock (45 minutes; within the 85-minute practice block)
+
+**Prompt:** [Q03 — URL expiry and deterministic time](../../interview/question-bank.md#q03). Save your initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the [100-point rubric](../../interview/mock-rubric.md) with 5/5/15/10/10-minute phases. This is a design-transfer exercise; it adds no product implementation.
+
+**Existing engineering work (40 minutes):** 5 minutes confirm actual Day44 readiness and predict exclusive-end behavior; 25 minutes implement only `PolicyRenewalPreviewPolicy.termFor`; 10 minutes run the named Day45 selector and record its first actual result or blocker.
+
+**Runnable acceptance:** Use the exact learner acceptance command(s) already named above. For Day 45, those remain `./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow test`. The command may stop at a prerequisite TODO; record that exact result without substituting an instructor witness.
+
+**Deferred queue:** **S4-D45-1** — The full original date matrix remains required: preserve ordinary and leap-day tuples, include the March 1 anniversary case, and prove the 30-day opening boundary. The 40-minute slice and mock do not complete the original Day45 acceptance.
+
 ## Practice and evidence
 
-**85-minute practice allocation:**
-- 10 minutes: record goal, question, assumption and three date cases.
-- 55 minutes: implement termFor.
-- 20 minutes: run original, leap and crossing-leap tests.
+**Practice allocation (85 minutes):** 45 minutes for the named mock, then 40 minutes for the existing engineering task: 5 minutes to confirm its preconditions and predict the first result, 25 minutes on the bounded learner seam or observation, and 10 minutes for the named selector and actual blocker/result record. This replaces the prior full 85-minute implementation breakdown on this mock day only. Original acceptance remains required; carry any unfinished portion in the named queue without overtime.
 
-**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
+**10-minute evidence allocation:** record the saved pre-assistance proposal; actual acceptance command, result or first blocker; changed paths and assistance; and which original acceptance remains open. Do not claim completion from a mock, smoke test, or partial slice.
 
 ## Study block — exactly 25 minutes
 
