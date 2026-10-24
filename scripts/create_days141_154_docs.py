@@ -1,90 +1,255 @@
+"""Synchronize Sprint 11 contracts and ticket export from its canonical manifest.
+
+This deliberately does not recreate learner evidence files or alter dates/status.
+The manifest is the source for daily scope, exact commands and interview assignments;
+the architecture note document is the assistant-owned implementation guidance.
+"""
+
+from __future__ import annotations
+
 import json
-from datetime import date, timedelta
+import re
 from pathlib import Path
 
-root=Path('.')
-out=root/'docs/reboot/continuation-141-154'
-(out/'contracts').mkdir(parents=True,exist_ok=True)
-(root/'evidence/continuation-141-154').mkdir(parents=True,exist_ok=True)
-lessons={
-141:{'title':'Step 10 Understanding Versioning Semantic Versioning','section':'Learning Maven with Spring and Spring Boot','section_id':'10823813','item':'54482075','seconds':216},
-148:{'title':'Step 08 Maven Core Concept 5 The Build Lifecycle','section':'Learning Maven with Spring and Spring Boot','section_id':'10823813','item':'54482093','seconds':532},
-151:{'title':'Step 04 - Exploring other assert methods','section':'Exploring Unit Testing with JUnit','section_id':'10824279','item':'35017732','seconds':481}}
-data=[
-(141,'Bind a real baseline and candidate artifact pair','ReleaseArtifactPairPolicy.validate','Require different actual JAR digests, source/build provenance and demonstrated capability IDs; labels alone do not establish a pair.','A copied or renamed JAR, malformed digest, missing provenance, same capability, or modified V001–V005 digest refuses.'),
-(142,'Project existing recovery evidence into a report','InspectionReportMapper.map','Map one existing RecoveryReadResult and classifier decision into an allowlisted version-1 DTO; history is supplementary and capped at 20.','Found, absent, held, matching, conflicting and inconsistent evidence preserve exact types and nulls; no new SQL or recovery rule.'),
-(143,'Encode one framed JSON report','InspectionReportCodec.encode','Encode one complete report with the Boot-managed Jackson 3 mapper and documented frame prefix only after serialization succeeds.','Escaping stays inside one compact frame; null and false stay distinct; oversized or failed serialization emits no success frame.'),
-(144,'Decode bounded structurally valid evidence','InspectionReportCodec.decodeSingleFrame','Validate exactly one bounded frame, strict duplicate keys, required fields/types/enums, requested identity and classifier consistency.','Reject duplicate/truncated/oversized/deep/mismatched/unsupported reports; accept field reordering and ignorable same-version optional fields.'),
-(145,'Reject mixed or malformed inspection requests early','ReleaseInspectionRequestPolicy.parse','Validate one explicit mode and exact key before Spring context/database initialization; reject every mutation/delivery combination.','Malformed, duplicate, unknown or mixed flags make zero service/database calls; ordinary startup remains unchanged.'),
-(146,'Run one real read-only inspection','ReadOnlyReleaseInspectionCommand','Use existing inspect service and classifier exactly once; disable Flyway and SQL init in the new non-web context; verify existing V001–V005 without mutation.','Full before/after state matches; absent/wrong schema refuses without migration; DB failure is nonzero with no report; missing work is explicit absence.'),
-(147,'Recover the report and command boundary','prior-only Days141–146 selectors','Repair and rerun only Days141–146; explain observation versus supplementary history and why output still needs an independent DB oracle.','No Days148+ selector is required; TODOs/blockers remain explicit.'),
-(148,'Run distinct packaged artifacts','TwoArtifactCompatibilityAcceptanceTest','Build and freeze A before B-only code; bind actual digests/provenance and run both legacy modes plus B report mode against one fixture.','Different capability is executed; A never receives the unknown B-only flag; no restore/reset hides state.'),
-(149,'Prove retained state across A and B','TwoArtifactCompatibilityAcceptanceTest','Exercise B quarantine, A inspect/release, B retry, then A inspect/replay on the same unchanged-schema database.','Ordered whole-state snapshots show only allowed control/history/ack changes; source, receipt identity/payload/time remain retained.'),
-(150,'Gate fallback on measured pair evidence','BinaryFallbackPolicy.decide','Require actual identities, same fixture/schema, legacy and report matrix, retained-state proof, and cleanup before running A again.','Any missing/stale/failed evidence returns BLOCKED or FORWARD_REPAIR_REQUIRED; policy fixtures do not substitute for the packaged gate.'),
-(151,'Reject deceptive candidate evidence','BinaryFallbackAcceptanceTest','Challenge field binding, classifier agreement, process result and actual database state with negative witnesses.','Canned report, substring-only success, duplicate frames, nonzero exit after plausible frame, changed identity, and same-JAR labels fail.'),
-(152,'Bound child-process output and cleanup','ReleaseVerifierProcessAcceptanceTest','Use bounded waits/output, kill and await owned children, preserve unrelated sentinel and distinguish diagnostics from one report frame.','Timeout, overflow, nonzero exit, cleanup failure and multiple frames cannot pass or leak an owned process.'),
-(153,'Complete the same-database A to B to A rehearsal','LocalVersionedReleaseAcceptanceTest','Run the full actual artifact matrix and independent snapshots on one owned PostgreSQL fixture; state local proof limits.','All required observations pass, schema stays unchanged, cleanup succeeds; AWS and deployment claims remain unverified.'),
-(154,'Recover and defend the limited compatibility claim','prior-only Days141–153 selectors','Recovery only: reproduce one prior bad-candidate case, repair previous work, and explain what unchanged-schema local evidence does not prove.','No new feature, cloud action, migration or learner completion inferred.')]
-worked_examples={
-141:'A is frozen with SHA a… and capability legacy-inspect; B has a different measured SHA and adds report-v1. If only the filename changes, the capability and digest evidence still reject the pair.',
-142:'For a pending row with no receipt, preserve receiptRelation ABSENT and the existing classifier recommendation ELIGIBLE_FOR_ONE_ATTEMPT. For a matching receipt with no ack, report RECONCILE_ACKNOWLEDGMENT and do not infer completion.',
-143:'A key containing a newline is encoded as an escaped JSON string inside one prefixed physical line. A serializer failure emits no partial prefix that could look successful.',
-144:'A report with duplicate schemaVersion members, sourceVersion 2.5, two prefix records or a key for another policy is ambiguous and rejected; reordered fields with schemaVersion 1 remain valid.',
-145:'`--coverstory.release.inspect --coverstory.release.policy-id=demo --coverstory.release.source-version=1` is one read request. Appending `--coverstory.recovery.action=retry` is rejected before Spring or a datasource is created.',
-146:'Run the valid report against an empty fixture database: the command exits nonzero, emits no report, and leaves flyway_schema_history and application tables absent. On V001–V005 it emits one observation and leaves the full snapshot unchanged.',
-147:'Repair an incorrect Days141–146 mapping, rerun only those prior selectors, and explain why supplementary history cannot replace a fresh independent database snapshot.',
-148:'With one row, A legacy inspect and B legacy inspect must observe the same key. Only B receives the new report flag; both artifacts remain byte-identical to their recorded hashes.',
-149:'B quarantine revision 0→1; A observes the hold and releases revision 1→2; B retries revision 2; A observes completion. No database copy or reset occurs between these calls.',
-150:'The tested A/B hashes and same fixture/schema plus passing legacy, report and retained-state checks permit this pair. Changing the fixture ID or candidate hash makes the same stored evidence stale and blocks reuse.',
-151:'A real pending/no-receipt report says ELIGIBLE_FOR_ONE_ATTEMPT. Replace only that field with ALREADY_COMPLETE; the structural decoder must disagree with the existing classifier and reject the plausible-looking frame.',
-152:'A child prints a plausible frame and exits 7, or floods beyond the output cap. Neither passes; a timed-out parent is killed and awaited while an unrelated sentinel remains alive.',
-153:'Execute the frozen A → candidate B → A sequence on one retained PostgreSQL fixture, checking source rows, full work payload, history, receipt timestamp and schema fingerprint after each phase.',
-154:'This evidence covers two local binaries with unchanged V001–V005. It says nothing about schema-changing releases, zero downtime, public authentication or AWS deployment.'}
-course={'course_id':'4993276','title':'Master Spring Boot 3 & Spring Framework 6 with Java','instructor':'in28Minutes Official','url':'https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1','access_status':'owned_reference_course; playback access not rechecked','catalog_verified_at':'2026-10-20','catalog_source':'Udemy get_course_content connector','video_content_audited':False,'lesson_deep_links_returned':False}
-lesson_records=[]
-for d,l in lessons.items(): lesson_records.append({'day':d,'course_id':'4993276','section_id':l['section_id'],'section_title':l['section'],'source_item_id':l['item'],'title':l['title'],'duration_seconds':l['seconds']})
-days=[]
-for i,(n,title,seam,scope,acceptance) in enumerate(data):
-    dt=date(2027,3,13)+timedelta(days=i)
-    lesson=lessons.get(n)
-    video=lesson['seconds'] if lesson else 0
-    worked=1200-video
-    recovery=n in (147,154)
-    if n in (141,142,143,144,145,146): path='src/test/java/assignments/delivery/recovery/InspectionReportContractAcceptanceTest.java' if n in (142,143,144) else ('src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java' if n==146 else ('src/test/java/assignments/delivery/recovery/ReleaseInspectionCommandAcceptanceTest.java' if n==145 else 'src/test/java/assignments/ops/ReleasePairAcceptanceTest.java'))
-    elif n in (150,151): path='src/test/java/assignments/ops/BinaryFallbackAcceptanceTest.java'
-    elif n==152: path='src/test/java/assignments/ops/ReleaseVerifierProcessAcceptanceTest.java'
-    else: path='src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java'
-    method={141:'day141RejectsSameBinaryAndLabelOnlyDifferences',142:'day142ProjectsObservedWorkAndSupplementaryHistory',143:'day143EncodesExactlyOneEscapedVersionedRecord',144:'day144RejectsAmbiguousDuplicateOrUnboundReportFrames',145:'day145RejectsMixedOrMalformedModesBeforeAnyDatabaseContext',146:'day146RefusesAbsentSchemaWithoutStartingMigration',150:'day150RequiresBoundRuntimeEvidenceBeforeAResumes',151:'day151BlocksMissingOrMisleadingCandidateEvidence',152:'day152RejectsTimeoutOverflowAndPlausibleNonzeroOutput'}.get(n,'day'+str(n)+'Acceptance')
-    if n in (148,149,153):
-        method='day148RunsFrozenAAndReportCapableB'
-        cmd='./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsFrozenAAndReportCapableB -Dcoverstory.release.baseline.jar="${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance="A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder" -Dcoverstory.release.baseline.source="${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}" -Dcoverstory.release.candidate.source="${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}" -Dcoverstory.release.baseline.build="${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}" -Dcoverstory.release.candidate.build="clean candidate package" test'
-    else:
-        cmd=f"./mvnw -Plearner-tests -Dtest={Path(path).stem}#{method} test"
-    if n==147: cmd='./mvnw -Plocal-app,learner-tests -Dtest=ReleasePairAcceptanceTest,InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest#day146RefusesAbsentSchemaWithoutStartingMigration -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test'
-    if n==154: cmd='./mvnw -Plocal-app,learner-tests -Dtest=ReleasePairAcceptanceTest,InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest,BinaryFallbackAcceptanceTest,ReleaseVerifierProcessAcceptanceTest -Dcoverstory.release.baseline.jar="${COVERSTORY_RELEASE_BASELINE_JAR:?set immutable A artifact}" -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar -Dcoverstory.release.artifact.provenance="A=pinned-prior-build;B=candidate-build;witness=recorded-by-builder" -Dcoverstory.release.baseline.source="${COVERSTORY_RELEASE_BASELINE_SOURCE:?record A source}" -Dcoverstory.release.candidate.source="${COVERSTORY_RELEASE_CANDIDATE_SOURCE:?record B source and overlay}" -Dcoverstory.release.baseline.build="${COVERSTORY_RELEASE_BASELINE_BUILD:?record A recipe}" -Dcoverstory.release.candidate.build="clean candidate package" test'
-    if n==146: cmd='./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day146RefusesAbsentSchemaWithoutStartingMigration -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test'
-    if n==151: cmd='./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test'
-    lesson_desc='No exact matching course lesson assigned; use the worked supplement.'
+
+ROOT = Path(__file__).resolve().parents[1]
+SPRINT = ROOT / "docs/reboot/continuation-141-154"
+MANIFEST_PATH = SPRINT / "manifest.json"
+EXPORT_PATH = SPRINT / "scrum-owner-manifest.json"
+NOTES_PATH = SPRINT / "assistant-architecture-notes.md"
+START_MARKER = "<!-- generated sprint11 interview block: start -->"
+END_MARKER = "<!-- generated sprint11 interview block: end -->"
+
+
+def read_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_json(path: Path, value: dict) -> None:
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def relative_note_link(day: int) -> str:
+    return f"../assistant-architecture-notes.md#day-{day}"
+
+
+def assistant_note_block(day: int, day_date: str) -> str:
+    link = relative_note_link(day)
+    return (
+        f"Date: {day_date} · Sprint 11 · 120 engineering minutes "
+        "(25 study / 85 practice / 10 evidence).\n\n"
+        f"**Assistant-provided architecture (what and why):** [Day {day} note]({link}). "
+        "The assistant supplies the capstone design; implement and test the named seam. "
+        "System-design practice is limited to the separate interview question set. "
+        "No capstone design proposal or post-hoc justification is assigned."
+    )
+
+
+def interview_block(day: dict, assignment: dict) -> str:
+    number = day["day"]
+    phases = "; ".join(f"{p['minutes']} minutes {p['phase']}" for p in assignment["mock_phases"])
+    question = (
+        f"[Q{assignment['question_id'][1:]} — {assignment['question_title']}]"
+        f"(../../interview/question-bank.md#q{assignment['question_id'][1:]})"
+    )
+    patterns = ", ".join(
+        f"[{label}](../../interview/pattern-library.md#{ref.rsplit('#', 1)[1]})"
+        for label, ref in zip(assignment["pattern_labels"], assignment["pattern_refs"], strict=True)
+    )
+    slice_minutes = assignment["eai_slice_minutes"]
+    task = assignment["bounded_task"]
+    deferred = assignment["deferred_work_id"]
+    deferred_text = assignment["deferred_work"]
+    return f"""{START_MARKER}
+## Separate system-design interview practice — 45 minutes of the 85-minute practice block
+
+Attempt this interview question before hints, references, or AI feedback. This is interview practice only; the assistant supplies the capstone design in the linked note. The 45-minute question session and the bounded 40-minute implementation slice replace the existing 85-minute practice allocation.
+
+- **Question:** {question}. {assignment['question_prompt']}
+- **Interview patterns:** {patterns}
+- **Mock phases (45 minutes total):** {phases}.
+- **Remaining engineering slice (40 minutes total):** {slice_minutes['preconditions_and_prediction']} minutes preconditions/prediction; {slice_minutes['implementation_or_observation']} minutes implementation or observation; {slice_minutes['selector_and_blocker_record']} minutes selector and blocker record.
+- **Bounded capstone task:** {task}
+- **Deferred acceptance:** `{deferred}` — {deferred_text}
+- **Runnable selector:** `{assignment['selector_command']}`
+
+The original full acceptance remains the completion gate. This timebox records partial progress only; the named deferred item stays open until its full selector and independent evidence pass.
+{END_MARKER}"""
+
+
+def sync_contract(day: dict) -> None:
+    path = ROOT / day["contract_file"]
+    text = path.read_text(encoding="utf-8")
+    number = day["day"]
+    engineering = day["engineering"]
+    course = engineering["concept_course"]
+    lesson = engineering.get("lesson")
     if lesson:
-        lesson_desc=f"Preferred course: {course['title']} (course {course['course_id']}), instructor {course['instructor']}, [course page]({course['url']}). Catalog lesson: {lesson['section']} (section {lesson['section_id']}): {lesson['title']} (item {lesson['item']}, {video} seconds)."
-    contract=(f"# Day {n} — {title}\n\nDate: {dt.isoformat()} · Sprint 11 · 120 engineering minutes (25 study / 85 practice / 10 evidence).\n\n"
-      f"## Study — 25 minutes\n\nPreferred course reference: **{course['title']}**, course {course['course_id']}, instructor {course['instructor']}; [course page]({course['url']}). {lesson_desc} {worked} seconds are for the concrete worked example and focused reading; the final 300 seconds are teach-back. Viewing is not completion; access is unconfirmed.\n\n"
-      f"Worked example: {worked_examples[n]}\n\n"
-      f"## Practice — 85 minutes\n\nLearner seam: `{seam}`. {scope}\n\nAcceptance: {acceptance}\n\n"
-      f"## Evidence — 10 minutes\n\nRecord exact command and exit, actual test count, A/B hashes and source/overlay provenance, database/schema identity, full before/after rows and allowed deltas, child PIDs/cleanup, named TODO, and proof limits. Temporary witnesses are not learner completion.\n\n"
-      f"## Selector\n\n```sh\n{cmd}\n```\n\nRecovery days run prior selectors only. The legacy Day 124 command implementation, V001–V005 and existing recovery algorithm remain unchanged. No AWS/cloud action is included.\n")
-    (out/f'contracts/day-{n}.md').write_text(contract)
-    evidence={'day':n,'status':'not_attempted','evidence_status':'not_run','command':cmd,'tested_source_sha':None,'artifact_hashes':[],'learner_completion':False,'temporary_witness':False,'aws_execution':'not_performed'}
-    (root/f'evidence/continuation-141-154/day-{n}.json').write_text(json.dumps(evidence,indent=2)+'\n')
-    days.append({'day':n,'date':dt.isoformat(),'title':title,'contract_file':f'docs/reboot/continuation-141-154/contracts/day-{n}.md','status':'not_attempted','recovery_day':recovery,'engineering':{'budget_minutes':120,'allocation_minutes':{'implementation_and_testing':85,'concept_or_course':25,'evidence':10},'scope':scope,'learner_seam':seam,'acceptance_commands':[cmd],'acceptance_test_path':path,'concept_course':course,'lesson':lesson,'video_seconds':video,'worked_reference_seconds':worked,'teachback_seconds':300,'study_total_seconds':1500}})
-manifest={'title':'CoverStory Days 141–154: two-artifact release evidence on unchanged schema','base_commit':'105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3','sprint':'Sprint 11','start_date':'2027-03-13','end_date':'2027-03-26','daily_budget_minutes':120,'engineering_allocation_minutes':{'implementation_and_testing':85,'concept_or_course':25,'evidence':10},'outcome':'Run a genuine quiesced A→B→A packaged-application compatibility rehearsal on one retained PostgreSQL database, using an additive versioned read-only inspection report.','constraints':['Preserve main, existing learner seams, Day124 command body and V001–V005 unchanged.','No AWS/cloud resources, credentials, IAM, spending, deployment, public endpoint, or Days155+ work.','A and B must be distinct actual JARs with truthful source/build/witness provenance; no same-JAR relabeling.','New report context validates flags before context creation and disables migration/seeding; only existing inspect/classifier is used.','Recovery days 147 and 154 review prior work only.'],'course':course,'verified_lessons':lesson_records,'days':days}
-(out/'manifest.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n')
-cards=[]
-for d in days:
-    cards.append({'day_number':d['day'],'date':d['date'],'title':d['title'],'sprint':'Sprint 11','budget_minutes':180,'engineering':d['engineering'],'recovery_day':d['recovery_day'],'learner_status':'not_attempted','evidence_status':'not_run'})
-export={'title':'Days 141–154 chronological learning blocks and ticket-ready Scrum export; no board writes','story_count':14,'sprint_boundaries':[{'name':'Sprint 11','dates':'2027-03-13..2027-03-26','batch_story_count':14,'sprint_story_count_after_batch':14}],'cards':cards}
-(out/'scrum-owner-manifest.json').write_text(json.dumps(export,indent=2,ensure_ascii=False)+'\n')
-report_contract='''# Release inspection report v1\n\nThe process emits exactly one compact framed record: `COVERSTORY_INSPECTION_REPORT ` followed by one JSON object on a single physical line. Logs remain separate diagnostics. The parent accepts no report on timeout, output overflow, or nonzero exit.\n\nRequired allowlisted fields: integer `schemaVersion` (1); exact `key` (`policyId`, integer `sourceVersion`); `workPresent`; nullable captured `envelope` (`policyId`, `sourceVersion`, `eventType`, `effectiveDate`, integer envelope `schemaVersion`); `controlRevision`; nullable `acknowledgedAt`, `quarantinedAt`, and `quarantineReason`; `receiptRelation`; `recommendation` from the existing recovery classifier; `history` (at most 20 entries); and `historySupplementary: true`.\n\nA missing work row is a successful explicit NOT_FOUND observation. Database/read failure exits nonzero and emits no success frame. A matching receipt without acknowledgement means RECONCILE_ACKNOWLEDGMENT. The history is supplementary, separately read, and is not claimed to be atomic with the exact-key observation.\n\nConsumers require one frame, supported schema version, matching requested key, required types and enum/null combinations, integer precision without coercion, and classifier agreement. Duplicate members, malformed/truncated/oversized/deep documents, unknown versions and contradictory evidence fail. Field order is irrelevant; additive optional fields in v1 are ignored. The 64 KiB document and depth-16 limits bound parsing; process output is bounded separately.\n\nNever emit credentials, connection URLs, raw SQL, raw exception text, private owner data, or a made-up deployment-safe decision. This projection is not the persisted receipt payload; the independent database snapshot remains authoritative.\n'''
-(out/'report-v1.md').write_text(report_contract)
-readme='''# Days 141–154 — two-artifact release evidence on unchanged schema\n\nThis scaffold plans a local, quiesced A→B→A compatibility rehearsal using distinct immutable JARs and the existing V001–V005 database. It adds only a read-only, versioned report path using existing recovery inspection/classification. It does not establish cloud/deployment readiness or learner completion.\n\nDates: 2027-03-13–2027-03-26 (Sprint 11); recovery days 147 and 154. Daily budget: 120 engineering minutes (25 study, 85 practice/test, 10 evidence).\n\nCourse reference: **Master Spring Boot 3 & Spring Framework 6 with Java**, course 4993276, in28Minutes Official. [Course page](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1). Catalog metadata was verified 2026-10-20; access and playback are unconfirmed, video content unaudited, and lesson deep links were not returned. Exact lesson IDs and durations are in `manifest.json`.\n\nA is frozen before B-only behavior, with actual digest and source/overlay provenance. B must prove its additional capability. A runnable baseline JAR is not distributed by this scaffold: use the learner's actual prior checkpoint. If it is unavailable, report the matrix blocked at baseline setup; never copy B under A's name. An instructor conformance run may build A from pinned prior source plus a recorded temporary prerequisite witness, then build B separately with the same prerequisite witness and new report witnesses. Record source/overlay identities and recipes, delete solved temporary JARs/overlays, and restore source checksums.\n\nPackage B at repository root: `(cd frontend && npm ci && npm run build && npm run build:local)` then `./mvnw -Plocal-app -DskipTests package`. Matrix commands use `COVERSTORY_RELEASE_BASELINE_JAR` for immutable A and require its recorded source/build provenance; B is `target/capstone-starter-1.0-SNAPSHOT.jar`. Keep both artifacts byte-identical to their recorded hashes throughout.\n\nThe compatibility matrix uses one retained database and no reset. The new inspection context validates requests before constructing Spring, disables Flyway/SQL initialization and refuses absent schema. The v1 contract is [report-v1.md](report-v1.md). Its framed report is evidence, not authority: compare complete database snapshots independently.\n\nNo AWS resources, credentials, grants, spending, deployment, schema changes, public endpoint or later-day work is authorized. Temporary witness success is instructor evidence only.\n'''
-(out/'README.md').write_text(readme)
+        prefix = (
+            f"Preferred course reference: **{course['title']}**, course {course['course_id']}, "
+            f"instructor {course['instructor']}; [course page]({course['url']}). "
+        )
+        duplicated = (
+            f"Preferred course: {course['title']} (course {course['course_id']}), "
+            f"instructor {course['instructor']}, [course page]({course['url']}). "
+        )
+        text = text.replace(prefix + duplicated, prefix)
+    title = re.search(rf"(?m)^# Day {number}[^\n]*\n", text)
+    study = re.search(r"(?m)^## Study\b", text)
+    if not title or not study or study.start() < title.end():
+        raise ValueError(f"Day {number} has no stable title/study sections")
+    text = (
+        text[:title.end()] + "\n" + assistant_note_block(number, day["date"]) +
+        "\n\n" + text[study.start():]
+    )
+    text = re.sub(
+        rf"(?ms)^{re.escape(START_MARKER)}.*?^{re.escape(END_MARKER)}\n?\n?",
+        "",
+        text,
+    )
+    assignment = day["engineering"].get("interview_assignment")
+    if assignment:
+        practice_heading = re.search(r"(?m)^## Practice[^\n]*$", text)
+        if not practice_heading:
+            raise ValueError(f"Day {number} has no Practice section")
+        new_heading = "## Practice — 85 minutes total (45-minute interview + 40-minute implementation)"
+        text = text[:practice_heading.start()] + new_heading + text[practice_heading.end():]
+        practice_heading = re.search(r"(?m)^## Practice[^\n]*$", text)
+        text = text[:practice_heading.start()] + interview_block(day, assignment) + "\n\n" + text[practice_heading.start():]
+    # Replace all prior rendered package/selector instructions from the
+    # structured preparation and acceptance commands. This prevents stale
+    # classifiers or omitted artifact steps from surviving regeneration.
+    text = re.sub(
+        r"(?m)^Before the packaged Days[^\n]*\n\n?",
+        "",
+        text,
+    )
+    text = re.sub(
+        r"(?ms)^## Package/artifact preparation\n.*?(?=^## |\Z)",
+        "",
+        text,
+    )
+    selector = re.search(r"(?m)^## Selector\s*$", text)
+    separate_dsa = re.search(r"(?m)^## Separate DSA track\s*$", text)
+    if not selector or not separate_dsa or separate_dsa.start() < selector.start():
+        raise ValueError(f"Day {number} has no stable Selector/DSA sections")
+    prep = engineering.get("preparation_commands", [])
+    tests = engineering.get("test_commands", engineering["acceptance_commands"])
+    commands = [*prep, *tests]
+    engineering["acceptance_commands"] = commands
+    setup = ""
+    if prep:
+        note = engineering.get("preparation_note", "Build the exact artifact required by the following selector.")
+        setup = f"## Package/artifact preparation\n\n{note}\n\n```sh\n" + "\n".join(prep) + "\n```\n\n"
+    selector_text = setup + "## Selector\n\n```sh\n" + "\n".join(tests) + "\n```\n\n"
+    selector_text += "Preparation and tests are separate evidence. Preserve actual artifact identities; unavailable prerequisites remain blocked, not inferred. Recovery days rerun prior selectors only. The legacy Day 124 command implementation and V001–V005 remain unchanged. No AWS/cloud action is included.\n\n"
+    text = text[:selector.start()] + selector_text + text[separate_dsa.start():]
+    path.write_text(text.rstrip() + "\n", encoding="utf-8")
+
+
+def owner_learning_lines(day: dict) -> list[str]:
+    engineering = day["engineering"]
+    course = engineering["concept_course"]
+    lines: list[str] = []
+    lesson = engineering.get("lesson")
+    if lesson:
+        lines.append(
+            f"Course reference: {course['title']} — {course.get('instructor', 'in28Minutes Official')}; "
+            f"{lesson['title']} ({lesson['seconds']} sec), section {lesson['section']}. Playback not audited."
+        )
+    else:
+        lines.append("No exact course video is required; use the focused official reading and supplied worked example in the 25-minute study block.")
+    note_ref = engineering["assistant_architecture_note"]
+    lines.append(
+        f"Assistant-provided capstone architecture: {note_ref}. Implement and test the supplied design; no capstone proposal or post-hoc justification."
+    )
+    assignment = engineering.get("interview_assignment")
+    if assignment:
+        lines.append(
+            f"Separate 45-minute interview practice: {assignment['question_id']} — {assignment['question_title']}; "
+            f"question-bank only. It replaces practice time, leaving a bounded 40-minute capstone slice: "
+            f"{assignment['bounded_task']} Deferred: {assignment['deferred_work_id']}."
+        )
+    return lines
+
+
+def sync() -> None:
+    manifest = read_json(MANIFEST_PATH)
+    export = read_json(EXPORT_PATH)
+    days = manifest["days"]
+    cards = {card["day_number"]: card for card in export["cards"]}
+    if [day["day"] for day in days] != list(range(141, 155)):
+        raise ValueError("Sprint 11 must contain exactly Days 141–154 in order")
+    if set(cards) != set(range(141, 155)):
+        raise ValueError("Sprint 11 owner export must contain exactly Days 141–154")
+
+    for day in days:
+        number = day["day"]
+        engineering = day["engineering"]
+        engineering["assistant_architecture_note"] = (
+            f"docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-{number}"
+        )
+        engineering["evidence_reference"] = f"evidence/continuation-141-154/day-{number}.json"
+        engineering["instructor_harness_test_path"] = "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
+        engineering.setdefault("test_commands", list(engineering["acceptance_commands"]))
+        engineering.setdefault("preparation_commands", [])
+        engineering["acceptance_commands"] = [
+            *engineering["preparation_commands"], *engineering["test_commands"]
+        ]
+        scope_note = engineering["concept_course"].get("scope_note", "")
+        if engineering["assistant_architecture_note"] not in scope_note:
+            engineering["concept_course"]["scope_note"] = (
+                (scope_note.rstrip() + " ") if scope_note else ""
+            ) + f"Assistant-provided capstone architecture: {engineering['assistant_architecture_note']}"
+        sync_contract(day)
+        card = cards[number]
+        card["engineering"] = engineering
+        card["learning_block"] = {
+            "heading": "Learning resources — 25 minutes total",
+            "lines": owner_learning_lines(day),
+            "access_note": "Course access or catalog metadata is not a viewing or completion claim.",
+            "architecture_note": engineering["assistant_architecture_note"],
+        }
+
+    # Engineering is budgeted separately from the DSA repository's time tier.
+    # Do not present the engineering slice as the learner's combined daily total.
+    manifest["daily_budget_minutes"] = None
+    manifest["engineering_budget_minutes"] = 120
+    manifest["daily_budget_excludes_separate_dsa"] = True
+    manifest["separate_learning_repository"] = {
+        "name": "dsa-prep",
+        "url": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+        "source_commit": "859e161f6553e9aca8dc501fda152780cec66ef0",
+        "assignment_note": "DSA assignments, supporting code, review schedule and attempt history are maintained only in this repository.",
+    }
+    manifest["interview_practice_summary"] = {
+        "days": [day["day"] for day in days if day["engineering"].get("interview_assignment")],
+        "sessions_per_week": 2,
+        "minutes_each": 45,
+        "remaining_implementation_minutes": 40,
+        "practice_minutes_total": 85,
+        "design_practice_location": "separate system-design interview question bank only",
+        "capstone_architecture": "assistant supplied; learner implements and tests",
+    }
+    export["interview_practice_summary"] = manifest["interview_practice_summary"]
+    export["separate_learning_repository"] = manifest["separate_learning_repository"]
+
+    readme_path = SPRINT / "README.md"
+    readme = readme_path.read_text(encoding="utf-8")
+    summary = """## Interview practice and supplied capstone architecture
+
+Days 141, 144, 148, and 151 reserve four spaced 45-minute system-design question sessions, two per week. Each replaces 45 minutes of the existing 85-minute engineering practice block and leaves a task-specific 40-minute implementation slice. Interview answers stay in the separate question bank; assistant notes supply capstone architecture for all 14 days. No extra daily time or capstone design proposal is assigned.
+
+DSA assignments, supporting code, review schedules, and attempt history remain exclusively in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0).
+"""
+    readme = re.sub(r"(?ms)^## Interview practice and supplied capstone architecture\n.*$", "", readme).rstrip()
+    readme += "\n\n" + summary
+    readme_path.write_text(readme, encoding="utf-8")
+
+    write_json(MANIFEST_PATH, manifest)
+    write_json(EXPORT_PATH, export)
+
+
+if __name__ == "__main__":
+    sync()

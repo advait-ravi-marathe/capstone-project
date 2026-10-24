@@ -119,10 +119,11 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             for expected in dates:
                 self.assertIn(expected, source, f"{relative} should assert {expected}")
         generator = (ROOT / "scripts/create_days141_154_docs.py").read_text()
-        self.assertIn("dt=date(2027,3,13)+timedelta(days=i)", generator)
-        self.assertIn("'start_date':'2027-03-13','end_date':'2027-03-26'", generator)
-        self.assertIn("'dates':'2027-03-13..2027-03-26'", generator)
-        self.assertIn("Dates: 2027-03-13–2027-03-26", generator)
+        self.assertIn("list(range(141, 155))", generator)
+        self.assertIn('manifest = read_json(MANIFEST_PATH)', generator)
+        self.assertIn('manifest["daily_budget_minutes"] = None', generator)
+        self.assertNotRegex(generator, r"(?s)evidence[^\n]*\.write_text|write_text[^\n]*evidence",
+                            "regeneration must never reset actual evidence/status files")
 
     def test_first_sprint_story_ids_and_course_bridges_remain_present(self):
         owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())

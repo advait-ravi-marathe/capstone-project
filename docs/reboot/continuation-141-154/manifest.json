@@ -87,7 +87,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-141"
         },
         "lesson": {
           "title": "Step 10 Understanding Versioning Semantic Versioning",
@@ -111,7 +112,82 @@
             ],
             "use": "How separate artifact builds and verification goals relate."
           }
-        ]
+        ],
+        "interview_assignment": {
+          "day": 141,
+          "date": "2027-03-13",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. The assistant supplies capstone architecture.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q29",
+          "question_title": "Autocomplete: prefix lookup",
+          "question_href": "../../interview/question-bank.md#q29",
+          "question_prompt": "Which index and ranking model fit the expected prefix and latency requirements?",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#search-index",
+            "../../interview/pattern-library.md#read-scaling"
+          ],
+          "pattern_labels": [
+            "search index",
+            "read scaling"
+          ],
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session plus 40-minute capstone slice replace the existing 85-minute practice allocation; no extra time is added.",
+          "bounded_task": "Implement or extend the guard that rejects two differently named artifacts with the same measured JAR digest. Keep the remaining provenance, capability and fixture gates open.",
+          "deferred_work_id": "S11-D141-MOCK",
+          "deferred_work": "Complete source/build provenance, capability execution and fixture binding under this ID.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest#day141RejectsSameBinaryAndLabelOnlyDifferences test"
+          ],
+          "acceptance": "The day-level full acceptance remains the completion gate; this is a bounded partial slice only.",
+          "evidence": "Record interview work separately from capstone command, result, blocker, changed paths and proof limits; no capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Complete source/build provenance, capability execution and fixture binding under this ID."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-141",
+          "selector_command": "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest#day141RejectsSameBinaryAndLabelOnlyDifferences test"
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-141",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest#day141RejectsSameBinaryAndLabelOnlyDifferences test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-141.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -144,7 +220,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-142"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -171,7 +248,14 @@
             ],
             "use": "Field types, integer precision, escaped strings, and parser behavior."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-142",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day142ProjectsObservedWorkAndSupplementaryHistory+day142CapsOrderedHistoryAtTwentyAndPreservesReceiptEvidence+day142ProjectsMissingMatchingAndConflictingReceiptStatesThroughClassifier test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-142.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -204,7 +288,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-143"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -231,7 +316,14 @@
             ],
             "use": "Object structure, numeric values, escaping, and parsing."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-143",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day143EncodesExactlyOneEscapedVersionedRecord test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-143.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -264,7 +356,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-144"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -291,7 +384,82 @@
             ],
             "use": "Object member semantics, number representation, escaped strings, parser interoperability."
           }
-        ]
+        ],
+        "interview_assignment": {
+          "day": 144,
+          "date": "2027-03-16",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. The assistant supplies capstone architecture.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q30",
+          "question_title": "Autocomplete: update and privacy",
+          "question_href": "../../interview/question-bank.md#q30",
+          "question_prompt": "How do you handle deletions, stale suggestions, and tenant-specific visibility?",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#search-index",
+            "../../interview/pattern-library.md#ownership-boundary"
+          ],
+          "pattern_labels": [
+            "search index",
+            "ownership boundary"
+          ],
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session plus 40-minute capstone slice replace the existing 85-minute practice allocation; no extra time is added.",
+          "bounded_task": "Implement or verify rejection of a duplicate schemaVersion member while retaining the valid field-reordering control. Leave the remaining parser-boundary matrix open.",
+          "deferred_work_id": "S11-D144-MOCK",
+          "deferred_work": "Carry the full bounded decoder matrix, including truncation, size/depth, identity and classifier agreement, under this ID.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144AcceptsAndRejectsDecoderBoundaryFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
+          ],
+          "acceptance": "The day-level full acceptance remains the completion gate; this is a bounded partial slice only.",
+          "evidence": "Record interview work separately from capstone command, result, blocker, changed paths and proof limits; no capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Carry the full bounded decoder matrix, including truncation, size/depth, identity and classifier agreement, under this ID."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-144",
+          "selector_command": "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144AcceptsAndRejectsDecoderBoundaryFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-144",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144AcceptsAndRejectsDecoderBoundaryFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-144.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -324,7 +492,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-145"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -340,7 +509,14 @@
             ],
             "use": "Validate explicit mode and key arguments before creating the context."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-145",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseInspectionCommandAcceptanceTest#day145RejectsMixedOrMalformedModesBeforeAnyDatabaseContext+day145AcceptsOnlyOneExplicitExactKeyRequest test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-145.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -361,6 +537,7 @@
         "scope": "Use the existing inspect service and classifier once. Disable Flyway/SQL initialization; verify exact V001–V005 migration identity/checksum and public column names/types without mutation. This preflight does not certify every constraint, default, or index.",
         "learner_seam": "Instructor-provided ReleaseInspectionCommandRunner; review the actual packaged path in TwoArtifactCompatibilityAcceptanceTest",
         "acceptance_commands": [
+          "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseInspectionCommandRunnerTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146DatabaseReadFailureEmitsNoSuccessFrame+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
@@ -373,7 +550,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-146"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -390,7 +568,17 @@
             ],
             "use": "Understand when a validated one-shot command runs in the non-web context."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-146",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseInspectionCommandRunnerTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146DatabaseReadFailureEmitsNoSuccessFrame+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        ],
+        "preparation_commands": [
+          "./mvnw -Plocal-app -DskipTests package"
+        ],
+        "preparation_note": "Build a fresh ordinary executable JAR from the current source before the selected packaged checks. This is not a classifier build; the helper uses target/capstone-starter-1.0-SNAPSHOT.jar.",
+        "evidence_reference": "evidence/continuation-141-154/day-146.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -411,6 +599,7 @@
         "scope": "Repair and rerun only Days141–146; explain observation versus supplementary history and why output still needs an independent DB oracle.",
         "learner_seam": "prior-only Days141–146 selectors",
         "acceptance_commands": [
+          "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,ReleaseInspectionCommandRunnerTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146DatabaseReadFailureEmitsNoSuccessFrame+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
@@ -423,14 +612,25 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-147"
         },
         "lesson": null,
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
         "study_total_seconds": 1500,
-        "official_references": []
+        "official_references": [],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-147",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,ReleaseInspectionCommandRunnerTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146DatabaseReadFailureEmitsNoSuccessFrame+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        ],
+        "preparation_commands": [
+          "./mvnw -Plocal-app -DskipTests package"
+        ],
+        "preparation_note": "Build a fresh ordinary executable JAR from the current source before the selected packaged checks. This is not a classifier build; the helper uses target/capstone-starter-1.0-SNAPSHOT.jar.",
+        "evidence_reference": "evidence/continuation-141-154/day-147.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -451,6 +651,7 @@
         "scope": "Build and freeze A before B-only code; bind actual digests/provenance and run both legacy modes plus B report mode against one fixture.",
         "learner_seam": "TwoArtifactCompatibilityAcceptanceTest",
         "acceptance_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\"",
           "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
@@ -463,7 +664,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-148"
         },
         "lesson": {
           "title": "Step 08 Maven Core Concept 5 The Build Lifecycle",
@@ -487,7 +689,85 @@
             ],
             "use": "Build A and B separately and run their verification steps."
           }
-        ]
+        ],
+        "interview_assignment": {
+          "day": 148,
+          "date": "2027-03-20",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. The assistant supplies capstone architecture.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q34",
+          "question_title": "Analytics: late and duplicate data",
+          "question_href": "../../interview/question-bank.md#q34",
+          "question_prompt": "How should a report change when events arrive late or are replayed?",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#analytics-pipeline",
+            "../../interview/pattern-library.md#idempotency"
+          ],
+          "pattern_labels": [
+            "analytics pipeline",
+            "idempotency"
+          ],
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session plus 40-minute capstone slice replace the existing 85-minute practice allocation; no extra time is added.",
+          "bounded_task": "Run the distinct packaged A/B case: A retains legacy inspection, B executes the added report capability, and the pair manifest binds their actual hashes. Defer the full retained-state transition matrix.",
+          "deferred_work_id": "S11-D148-MOCK",
+          "deferred_work": "Complete artifact provenance, report semantics, and the A/B same-fixture matrix under this ID. If a genuine prior A artifact is unavailable, leave this item blocked; never relabel B as A.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+          ],
+          "acceptance": "The day-level full acceptance remains the completion gate; this is a bounded partial slice only.",
+          "evidence": "Record interview work separately from capstone command, result, blocker, changed paths and proof limits; no capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Complete artifact provenance, report semantics, and the A/B same-fixture matrix under this ID. If a genuine prior A artifact is unavailable, leave this item blocked; never relabel B as A."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-148",
+          "selector_command": "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-148",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+        ],
+        "preparation_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\""
+        ],
+        "preparation_note": "Build immutable A and B in separate detached worktrees with checksum-verified overlays. This step does not overwrite this checkout’s ordinary JAR. Require the exact pair manifest; if a genuine baseline or truthful overlays are unavailable, stop as blocked rather than relabeling B.",
+        "evidence_reference": "evidence/continuation-141-154/day-148.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -508,6 +788,7 @@
         "scope": "Exercise B quarantine, A inspect/release, B retry, then A inspect/replay on the same unchanged-schema database.",
         "learner_seam": "TwoArtifactCompatibilityAcceptanceTest",
         "acceptance_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\"",
           "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day149RunsCrossVersionRetainedStateMatrix -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
@@ -520,7 +801,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-149"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -537,7 +819,17 @@
             ],
             "use": "Use the version-transition reasoning for this local-only A/B matrix; no AWS action is part of this exercise."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-149",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day149RunsCrossVersionRetainedStateMatrix -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+        ],
+        "preparation_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\""
+        ],
+        "preparation_note": "Build immutable A and B in separate detached worktrees with checksum-verified overlays. This step does not overwrite this checkout’s ordinary JAR. Require the exact pair manifest; if a genuine baseline or truthful overlays are unavailable, stop as blocked rather than relabeling B.",
+        "evidence_reference": "evidence/continuation-141-154/day-149.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -570,7 +862,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-150"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -587,7 +880,14 @@
             ],
             "use": "Bind fallback to the tested pair and retained state. This is local-only evidence, not AWS readiness."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-150",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=BinaryFallbackAcceptanceTest#day150RequiresBoundRuntimeEvidenceBeforeAResumes test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-150.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -608,6 +908,7 @@
         "scope": "Challenge field binding, classifier agreement, process result and actual database state with negative witnesses.",
         "learner_seam": "BinaryFallbackAcceptanceTest",
         "acceptance_commands": [
+          "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/BinaryFallbackAcceptanceTest.java",
@@ -620,7 +921,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-151"
         },
         "lesson": {
           "title": "Step 04 - Exploring other assert methods",
@@ -642,7 +944,87 @@
             ],
             "use": "Choose explicit assertions for misleading and incomplete evidence."
           }
-        ]
+        ],
+        "interview_assignment": {
+          "day": 151,
+          "date": "2027-03-23",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. The assistant supplies capstone architecture.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q35",
+          "question_title": "Distributed rate limiting",
+          "question_href": "../../interview/question-bank.md#q35",
+          "question_prompt": "What are the consistency and availability consequences of enforcing a limit across several regions?",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#rate-limiting",
+            "../../interview/pattern-library.md#multi-region-boundary",
+            "../../interview/pattern-library.md#load-balancing"
+          ],
+          "pattern_labels": [
+            "rate limiting",
+            "multi-region boundary",
+            "load balancing"
+          ],
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session plus 40-minute capstone slice replace the existing 85-minute practice allocation; no extra time is added.",
+          "bounded_task": "Test that a structurally valid but database-inconsistent ALREADY_COMPLETE recommendation is rejected against an observed pending/no-receipt row. Defer the remaining deceptive-evidence cases.",
+          "deferred_work_id": "S11-D151-MOCK",
+          "deferred_work": "Carry process, identity, duplicate-frame, database-state and same-binary negative controls under this ID.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+          ],
+          "acceptance": "The day-level full acceptance remains the completion gate; this is a bounded partial slice only.",
+          "evidence": "Record interview work separately from capstone command, result, blocker, changed paths and proof limits; no capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Carry process, identity, duplicate-frame, database-state and same-binary negative controls under this ID."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-151",
+          "selector_command": "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        },
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-151",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+        ],
+        "preparation_commands": [
+          "./mvnw -Plocal-app -DskipTests package"
+        ],
+        "preparation_note": "Build a fresh ordinary executable JAR from the current source before the selected packaged checks. This is not a classifier build; the helper uses target/capstone-starter-1.0-SNAPSHOT.jar.",
+        "evidence_reference": "evidence/continuation-141-154/day-151.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -675,7 +1057,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-152"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -695,7 +1078,14 @@
             ],
             "use": "Bound process waiting and terminate only the owned process tree."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-152",
+        "test_commands": [
+          "./mvnw -Plearner-tests -Dtest=ReleaseVerifierProcessAcceptanceTest#day152RejectsTimeoutOverflowAndPlausibleNonzeroOutput+day152ReapsBackgroundDescendantsAfterNormalAndNonzeroRootExit+day152ForciblyReapsTermResistantOwnedDescendants test"
+        ],
+        "preparation_commands": [],
+        "evidence_reference": "evidence/continuation-141-154/day-152.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -716,6 +1106,7 @@
         "scope": "Run the full actual artifact matrix and independent snapshots on one owned PostgreSQL fixture; state local proof limits.",
         "learner_seam": "TwoArtifactCompatibilityAcceptanceTest#day153RunsCompleteObservedPairMatrixAndFallbackDecision (packaged instructor harness; review actual evidence and limits)",
         "acceptance_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\"",
           "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day153RunsCompleteObservedPairMatrixAndFallbackDecision -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
@@ -728,7 +1119,8 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-153"
         },
         "lesson": null,
         "video_seconds": 0,
@@ -745,7 +1137,17 @@
             ],
             "use": "Defend the limits of this local compatibility result; cloud and schema evolution remain untested."
           }
-        ]
+        ],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-153",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day153RunsCompleteObservedPairMatrixAndFallbackDecision -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+        ],
+        "preparation_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\""
+        ],
+        "preparation_note": "Build immutable A and B in separate detached worktrees with checksum-verified overlays. This step does not overwrite this checkout’s ordinary JAR. Require the exact pair manifest; if a genuine baseline or truthful overlays are unavailable, stop as blocked rather than relabeling B.",
+        "evidence_reference": "evidence/continuation-141-154/day-153.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     },
@@ -766,6 +1168,7 @@
         "scope": "Recovery only: reproduce a prior bad-candidate case, repair previous work, and explain limits of unchanged-schema local evidence. Use the exact checksum-bound artifact-pair manifest when rerunning matrix selectors.",
         "learner_seam": "prior-only Days141–153 selectors",
         "acceptance_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\"",
           "./mvnw -Plocal-app,learner-tests -Dtest=InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146DatabaseReadFailureEmitsNoSuccessFrame+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair+day148RunsDistinctArtifactsAndReportCapabilityOnly+day149RunsCrossVersionRetainedStateMatrix+day153RunsCompleteObservedPairMatrixAndFallbackDecision,BinaryFallbackAcceptanceTest,ReleaseVerifierProcessAcceptanceTest -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
         ],
         "acceptance_test_path": "src/test/java/assignments/ops/TwoArtifactCompatibilityAcceptanceTest.java",
@@ -778,19 +1181,50 @@
           "catalog_verified_at": "2026-10-20",
           "catalog_source": "Udemy get_course_content connector",
           "video_content_audited": false,
-          "lesson_deep_links_returned": false
+          "lesson_deep_links_returned": false,
+          "scope_note": "Assistant-provided capstone architecture: docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-154"
         },
         "lesson": null,
         "video_seconds": 0,
         "worked_reference_seconds": 1200,
         "teachback_seconds": 300,
         "study_total_seconds": 1500,
-        "official_references": []
+        "official_references": [],
+        "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-154",
+        "test_commands": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=InspectionReportContractAcceptanceTest,ReleaseInspectionCommandAcceptanceTest,TwoArtifactCompatibilityAcceptanceTest#day145PackagedInvalidModeFailsBeforeDatasourceInitialization+day146RefusesAbsentSchemaWithoutStartingMigration+day146ExistingSchemaProducesReadOnlyMissingWorkObservation+day146DatabaseReadFailureEmitsNoSuccessFrame+day146SchemaGateAcceptsExactV001ToV005AndRejectsTypmodMutation+day146SchemaGateRejectsMigrationChecksumDriftWithoutRepair+day148RunsDistinctArtifactsAndReportCapabilityOnly+day149RunsCrossVersionRetainedStateMatrix+day153RunsCompleteObservedPairMatrixAndFallbackDecision,BinaryFallbackAcceptanceTest,ReleaseVerifierProcessAcceptanceTest -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+        ],
+        "preparation_commands": [
+          "scripts/prepare-release-artifacts.sh \"$COVERSTORY_RELEASE_PAIR_DIR\" \"$CANDIDATE_SHA\" \"$A_OVERLAY_MANIFEST\" \"$B_OVERLAY_MANIFEST\""
+        ],
+        "preparation_note": "Build immutable A and B in separate detached worktrees with checksum-verified overlays. This step does not overwrite this checkout’s ordinary JAR. Require the exact pair manifest; if a genuine baseline or truthful overlays are unavailable, stop as blocked rather than relabeling B.",
+        "evidence_reference": "evidence/continuation-141-154/day-154.json",
+        "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
       "mandatory_new_problem": false
     }
   ],
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+    "name": "dsa-prep",
+    "url": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+    "source_commit": "859e161f6553e9aca8dc501fda152780cec66ef0",
+    "assignment_note": "DSA assignments, supporting code, review schedule and attempt history are maintained only in this repository."
+  },
+  "engineering_budget_minutes": 120,
+  "daily_budget_excludes_separate_dsa": true,
+  "interview_practice_summary": {
+    "days": [
+      141,
+      144,
+      148,
+      151
+    ],
+    "sessions_per_week": 2,
+    "minutes_each": 45,
+    "remaining_implementation_minutes": 40,
+    "practice_minutes_total": 85,
+    "design_practice_location": "separate system-design interview question bank only",
+    "capstone_architecture": "assistant supplied; learner implements and tests"
   }
 }
