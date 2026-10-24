@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 /** Capacity settings used by the bounded Days 71–84 runtime. */
 @Configuration(proxyBeanMethods = false)
-@Profile("sprint6-local")
+@Profile({"sprint6-local", "sprint8-local"})
 public class Sprint6PreviewCapacityConfiguration {
     @Bean
     PreviewCapacityPolicy sprint6PreviewCapacityPolicy(

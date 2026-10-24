@@ -6,7 +6,7 @@
   "acceptance_commands": [
     "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
     "(cd frontend && npm ci && npm run build && npm run build:local)",
-    "./mvnw -Plocal-app -DskipTests clean package",
+    "scripts/package-sprint8-demo.sh",
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
   ],
   "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",

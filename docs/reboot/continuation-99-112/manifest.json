@@ -986,7 +986,7 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned. Fresh packaged acceptance first builds the local frontend assets; packaged commands require the earlier Days 79 and 86–92 local-runtime prerequisites and Days 99–109 delivery seams. Stop at the first named prerequisite TODO rather than treating unrelated startup failure as Day 110 evidence. Fresh packaged acceptance first builds the local frontend assets; packaged commands require the earlier Days 79 and 86–92 local-runtime prerequisites and Days 99–109 delivery seams. Stop at the first named prerequisite TODO rather than treating unrelated startup failure as Day 110 evidence.",
+        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned. Fresh packaged acceptance first builds the local frontend assets; packaged commands require the earlier Days 79 and 86–92 local-runtime prerequisites and Days 99–109 delivery seams. Stop at the first named prerequisite TODO rather than treating unrelated startup failure as Day 110 evidence.",
         "learner_seam": "Explain-back: trace one invocation, invalid bounds, empty batch, and partial failure from command output to committed rows.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-110.md",
         "evidence_reference": "evidence/continuation-99-112/day-110.json",
@@ -994,7 +994,7 @@
         "acceptance_commands": [
           "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
           "(cd frontend && npm ci && npm run build && npm run build:local)",
-          "./mvnw -Plocal-app -DskipTests clean package",
+          "scripts/package-sprint8-demo.sh",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
         "acceptance_selector_status": "instructor_command_tests_green_learner_explain_back_pending_packaged_check_prerequisite_gated",
@@ -1067,14 +1067,14 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage. The broad local packaged runtime also requires the earlier Day 79 and Days 86–92 runtime seams, in addition to Days 99–110 delivery prerequisites; stop and record the first exact prerequisite TODO or setup blocker. The broad local packaged runtime also requires the earlier Day 79 and Days 86–92 runtime seams, in addition to Days 99–110 delivery prerequisites; stop and record the first exact prerequisite TODO or setup blocker.",
-        "learner_seam": "Packaged route plus command; packaged acceptance is prerequisite-gated on Day 79, Days 86–92, and Days 99–110.; packaged acceptance is prerequisite-gated on Day 79, Days 86–92, and Days 99–110.",
+        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage. The broad local packaged runtime also requires the earlier Day 79 and Days 86–92 runtime seams, in addition to Days 99–110 delivery prerequisites; stop and record the first exact prerequisite TODO or setup blocker.",
+        "learner_seam": "Packaged route plus command; packaged acceptance is prerequisite-gated on Day 79, Days 86–92, and Days 99–110.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-111.md",
         "evidence_reference": "evidence/continuation-99-112/day-111.json",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
         "acceptance_commands": [
           "(cd frontend && npm ci && npm run build && npm run build:local)",
-          "./mvnw -Plocal-app -DskipTests clean package",
+          "scripts/package-sprint8-demo.sh",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
@@ -1103,7 +1103,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector. The broad local runtime depends on earlier Day 79 and Days 86–92 learner-owned seams; the selector must identify the first actual blocker and must not attribute it to Day 111. The broad local runtime depends on earlier Day 79 and Days 86–92 learner-owned seams; the selector must identify the first actual blocker and must not attribute it to Day 111.",
+          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector. The broad local runtime depends on earlier Day 79 and Days 86–92 learner-owned seams; the selector must identify the first actual blocker and must not attribute it to Day 111.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1169,7 +1169,7 @@
           "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
           "acceptance_commands": [
             "(cd frontend && npm ci && npm run build && npm run build:local)",
-            "./mvnw -Plocal-app -DskipTests clean package",
+            "scripts/package-sprint8-demo.sh",
             "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
           ],
           "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
@@ -1208,7 +1208,9 @@
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
           "(cd frontend && npm ci && npm run build && npm run build:local)",
-          "./mvnw -Plocal-app -DskipTests clean package",
+          "scripts/package-sprint6-demo.sh",
+          "scripts/package-sprint8-demo.sh --no-clean",
+          "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
           "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test"

@@ -213,13 +213,84 @@ class Day99To112InfrastructureTest {
         assertFalse(durableAcceptance
                         .contains("day100SchemaConstraintsRejectDuplicateAndInvalidRows"),
                 "Day 100 is instructor-owned migration assessment, not a learner TODO selector");
+
+        int day102Start = durableAcceptance.indexOf("void day102MapsCapturedPendingEnvelopeInStableBoundedOrder");
+        int day102End = durableAcceptance.indexOf("\n    @Test", day102Start);
+        String day102 = durableAcceptance.substring(day102Start, day102End);
+        assertTrue(day102.contains("UPDATE training_issuance_work SET acknowledged_at"),
+                "Day 102 fixture seeds pending-row state directly");
+        assertFalse(day102.contains(".acceptReceipt("), "Day 102 cannot consume the Day 103 seam");
+        assertFalse(day102.contains(".acknowledge("), "Day 102 cannot consume the Day 104 seam");
+    }
+
+    @Test
+    void sprint8PackagedRuntimeSelectsRawDeliveryAndDay112BuildsEveryRequiredArtifact() throws Exception {
+        String app = Files.readString(Path.of("src/main/java/assignments/sprint8/Sprint8LocalApplication.java"));
+        String config = Files.readString(Path.of("src/main/java/assignments/sprint8/Sprint8LocalConfiguration.java"));
+        String delivery = Files.readString(Path.of("src/main/java/assignments/sprint8/Sprint8IssuanceDeliveryConfiguration.java"));
+        String mainLocal = Files.readString(Path.of("src/main/java/assignments/local/LocalRuntimeConfiguration.java"));
+        String pom = Files.readString(Path.of("pom.xml"));
+        String props = Files.readString(Path.of("src/main/resources/application-sprint8-local.properties"));
+        String script = Files.readString(Path.of("scripts/package-sprint8-demo.sh"));
+        String helper = Files.readString(Path.of("src/test/java/assignments/local/Sprint8PackagedRuntimeProcess.java"));
+        String browser = Files.readString(Path.of("src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java"));
+        String wiring = Files.readString(Path.of("src/test/java/assignments/delivery/Sprint8DeliveryRuntimeWiringTest.java"));
+
+        assertTrue(app.contains("@Import(Sprint8LocalConfiguration.class)"));
+        assertTrue(config.contains("Sprint8IssuanceDeliveryConfiguration.class"));
+        assertTrue(config.contains("LocalPolicyRenewalReadStoreConfiguration.class"),
+                "earlier renewal-read prerequisites remain explicit");
+        assertFalse(config.contains("LocalRuntimeConfiguration.class"));
+        assertFalse(config.contains("RecoveryOnlyRuntimeConfiguration.class"));
+        assertFalse(config.contains("ManualRecoveryService.class"));
+        assertTrue(delivery.contains("new JdbcIssuanceWorkStore(jdbc)"));
+        assertFalse(delivery.contains("RecoveryAwareIssuanceWorkStore"));
+        assertTrue(mainLocal.contains("new RecoveryAwareIssuanceWorkStore"),
+                "default later runtime remains unchanged");
+        assertTrue(props.contains("spring.flyway.target=4"), "Sprint 8 needs V004, but not Day 118 V005");
+        assertTrue(pom.contains("<id>sprint8-local</id>")
+                && pom.contains("assignments.sprint8.Sprint8LocalApplication")
+                && pom.contains("<classifier>sprint8</classifier>"));
+        assertTrue(script.contains("-Plocal-app,sprint8-local")
+                && script.contains("package-sprint8-demo.sh")
+                && script.contains("sourceContentSha256")
+                && script.contains("-DskipTests package"),
+                "the no-clean option repackages Sprint 8 without deleting the earlier classifier");
+        assertTrue(helper.contains("capstone-starter-1.0-SNAPSHOT-sprint8.jar")
+                && helper.contains("verifyArtifactReceipt")
+                && helper.contains("--spring.profiles.active=local,sprint8-local"));
+        assertTrue(browser.contains("Sprint8PackagedRuntimeProcess.start(postgres")
+                && browser.contains("/api/session") && browser.contains("/api/policies")
+                && browser.contains("/renewal-preview"),
+                "Day 111 exercises the packaged session, issue, and preview API paths through Sprint 8");
+        assertTrue(wiring.contains("getBeansOfType(RecoveryAwareIssuanceWorkStore.class).isEmpty()"));
+
+        JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode commands = manifest.path("days").get(13).path("engineering").path("acceptance_commands");
+        int frontend = commandIndex(commands, "(cd frontend && npm ci && npm run build && npm run build:local)");
+        int sprint6Package = commandIndex(commands, "scripts/package-sprint6-demo.sh");
+        int sprint8Incremental = commandIndex(commands, "scripts/package-sprint8-demo.sh --no-clean");
+        int broad = commandIndex(commands, "./mvnw -Plocal-app -DskipTests package");
+        assertTrue(frontend < sprint6Package && sprint6Package < sprint8Incremental && sprint8Incremental < broad,
+                "Day 112 keeps Sprint 6 and Sprint 8 receipt-bound artifacts after its only clean build");
+        String day112Contract = Files.readString(Path.of(manifest.path("days").get(13)
+                .path("contract_file").asString()));
+        for (JsonNode command : commands) assertTrue(day112Contract.contains(command.asString()));
+    }
+
+    private static int commandIndex(JsonNode commands, String exact) {
+        for (int index = 0; index < commands.size(); index++) {
+            if (exact.equals(commands.get(index).asString())) return index;
+        }
+        fail("Missing exact package command: " + exact);
+        return -1;
     }
 
     @Test
     void migrationEnforcesStableIdentityAndRequiredFields() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var dataSource = postgres.getPostgresDatabase();
-            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load().migrate();
+            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").target("4").load().migrate();
             JdbcTemplate jdbc = new JdbcTemplate(dataSource);
             assertEquals(3, countSeedPolicies(jdbc),
                     "the additive migration preserves the three versioned V003 synthetic policies");

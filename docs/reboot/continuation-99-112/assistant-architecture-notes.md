@@ -60,12 +60,12 @@ These notes state the capstone implementation choices and why they fit the exist
 <a id="day-110"></a>
 ## Day 110
 
-**What and why:** Keep the command opt-in. `LocalIssuanceDeliveryCommand` returns without dispatch during normal web startup and only runs for `--coverstory.delivery.run-once`; it uses non-web mode for command execution. Parse one batch size in `[1,20]`, print truthful committed counts, return usage code 2 for invalid arguments and nonzero on dispatch failure. No scheduler or background worker is introduced.
+**What and why:** Keep the command opt-in. `LocalIssuanceDeliveryCommand` returns without dispatch during normal web startup and only runs for `--coverstory.delivery.run-once`; it uses non-web mode for command execution. Sprint 8 wires `OneBatchDispatcher` directly to `JdbcIssuanceWorkStore`; do not import the later recovery-aware decorator before its assigned recovery work. Parse one batch size in `[1,20]`, print truthful committed counts, return usage code 2 for invalid arguments and nonzero on dispatch failure. No scheduler or background worker is introduced.
 
 <a id="day-111"></a>
 ## Day 111
 
-**What and why:** Exercise the built local JAR with a real authenticated Java HTTP client and disposable PostgreSQL. Reuse the native issue endpoint and same request key to assert 201 then 200 with identical policy identity and unchanged full snapshots. Invoke the explicit one-shot command against committed work, then verify preview remains read-only. This is packaged HTTP API evidence, not Chromium UI evidence.
+**What and why:** Exercise the dedicated Sprint 8 JAR with a real authenticated Java HTTP client and disposable PostgreSQL. Its explicit profile wires the raw JDBC delivery store and targets V004 without the later recovery wrapper/V005. Reuse the native issue endpoint and same request key to assert 201 then 200 with identical policy identity and unchanged full snapshots. Invoke the explicit one-shot command against committed work, then verify preview remains read-only. This is packaged HTTP API evidence, not Chromium UI evidence.
 
 <a id="day-112"></a>
 ## Day 112
