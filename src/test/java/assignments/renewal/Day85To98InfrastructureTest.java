@@ -270,7 +270,11 @@ class Day85To98InfrastructureTest {
         String packageCheck = "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'";
         assertEquals(day96.path("engineering").path("acceptance_commands"),
                 owner96.path("engineering").path("acceptance_commands"));
-        assertTrue(day96.path("engineering").path("acceptance_commands").toString().contains(packageCheck));
+        boolean packageCheckIsExported = false;
+        for (JsonNode command : day96.path("engineering").path("acceptance_commands")) {
+            packageCheckIsExported |= command.asText().equals(packageCheck);
+        }
+        assertTrue(packageCheckIsExported, "canonical acceptance command must match its literal shell form");
         String contract = Files.readString(Path.of(day96.path("contract_file").asText()));
         assertTrue(contract.contains("25 minutes inside today's practice block"));
         assertTrue(contract.contains("60 minutes for the one-slot outcome test"));
