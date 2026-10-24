@@ -55,8 +55,12 @@ integration remain evidence-based; forecasts do not mark work complete.
 
 Reviewed continuation windows are indexed separately from this first-30-day
 manifest. The [Days 197–270 assignment inventory](continuation-197-270-inventory.json)
-links those bounded windows, including the four-day closeout; it records
-planned assignments only and does not imply learner completion.
+links those bounded windows, including the four-day closeout. The accepted
+[Days 271–732 outcome roadmap](continuation-271-732/README.md) extends the
+calendar through 24 October 2028 without changing Days 1–270. Its [first
+14-day sprint](continuation-271-284/README.md) is the only newly detailed
+daily window; later phases are evidence-gated outcomes rather than pre-created
+tickets. These are assignments and plans, not learner completion.
 
 ## Chronological index
 
@@ -95,9 +99,7 @@ planned assignments only and does not imply learner completion.
 
 ## Scaffold and dependency rules
 
-Contract pages distinguish scaffolding from learner completion. Day 12 and Day 21 use actual Spring Security filters in an isolated HTTP test chain; production security policy/configuration remains a learner TODO. Day 13 has an instructor test for the runnable workflow and its fail-closed commands; local expected-red evidence is separate from remote Actions execution. Day 14 now has a real PostgreSQL integration path through actual learner components, tagged acceptance, that exposes the first incomplete TODO. Day 25 HTTP/auth composition remains open. Day 28's Playwright browser harness renders the actual React test route and checks the full quote, selection and reload path against disposable PostgreSQL; expected-red results are recorded separately from infrastructure checks. Day 29 has an embedded PostgreSQL positive reset path that does not need psql; the external URI mode remains guarded. System design is practiced inside the 85/25/10 engineering split: use
-only the diagram/ADR or measurement suited to that day, with the blank prompts
-in the [system design practice guide](system-design-practice.md). Every focused test must
+Contract pages distinguish scaffolding from learner completion. Day 12 and Day 21 use actual Spring Security filters in an isolated HTTP test chain; production security policy/configuration remains a learner TODO. Day 13 has an instructor test for the runnable workflow and its fail-closed commands; local expected-red evidence is separate from remote Actions execution. Day 14 now has a real PostgreSQL integration path through actual learner components, tagged acceptance, that exposes the first incomplete TODO. Day 25 HTTP/auth composition remains open. Day 28's Playwright browser harness renders the actual React test route and checks the full quote, selection and reload path against disposable PostgreSQL; expected-red results are recorded separately from infrastructure checks. Day 29 has an embedded PostgreSQL positive reset path that does not need psql; the external URI mode remains guarded. For capstone work the assistant supplies the architecture and a concise explanation of what it does and why; the learner implements and tests the assigned seam. System-design practice occurs only in separate interview question-bank sessions, never in the capstone engineering split. Every focused test must
 instantiate only its own subject; prior collaborators use explicit test-only
 canned values. A stub may provide fixed fixture data, but must not implement
 an earlier learner rule. Never use a skipped/disabled test, catch-all
@@ -148,8 +150,11 @@ path. Each checkpoint will distinguish **capability**, **evidence** (tests,
 portfolio artifacts, or later externally validated professional work), and
 **application readiness**. A portfolio demonstrates acquired knowledge; it
 does not substitute for professional ownership experience. These are
-capability milestones, not promotion promises. Further scheduling waits for a
-sustainable daily time budget; current dates and allocations remain in force.
+capability milestones, not promotion promises. The user-approved calendar
+extension preserves the established 165-minute engineering block plus one
+shared 45-minute block from Day 172 onward; it adds no daily hours and does not
+override evidence gates. The extension's October 2029 North Star is a separate
+professional-ownership review horizon, not a fixed daily schedule.
 
 ## Reference index
 

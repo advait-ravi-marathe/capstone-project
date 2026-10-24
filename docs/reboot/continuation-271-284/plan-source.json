@@ -1,0 +1,206 @@
+{
+  "title": "Days 271–284 runtime and SQL measurement foundations",
+  "status": "planned_assignments_only_not_completion",
+  "branch": "work/eai-sprint2-onward",
+  "base_commit": "c503d64272cc217c60e8245dd018d5da622f9123",
+  "start_date": "2027-07-21",
+  "end_date": "2027-08-03",
+  "sources_verified_at": "2026-10-24",
+  "gate_command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+  "daily_budget": {
+    "engineering_minutes": 165,
+    "study_minutes": 35,
+    "practice_and_test_minutes": 115,
+    "assigned_deep_work_minutes": 82,
+    "remediation_integration_observation_reserve_minutes": 33,
+    "evidence_minutes": 15,
+    "shared_minutes": 45,
+    "days": 14
+  },
+  "sources": [
+    {
+      "key": "PG_EXPLAIN",
+      "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+      "url": "https://www.postgresql.org/docs/18/using-explain.html",
+      "sections": [
+        "14.1.1. EXPLAIN Basics",
+        "14.1.2. EXPLAIN ANALYZE",
+        "14.1.3. Caveats"
+      ],
+      "provider": "PostgreSQL official documentation",
+      "verified_at": "2026-10-24",
+      "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion."
+    },
+    {
+      "key": "JFR",
+      "title": "The jfr Command",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html",
+      "sections": [
+        "Description",
+        "jfr summary subcommand",
+        "jfr print subcommand"
+      ],
+      "provider": "Oracle Java SE 21 documentation",
+      "verified_at": "2026-10-24",
+      "use": "Read local Flight Recorder summary/events; local profiling rehearsal only."
+    },
+    {
+      "key": "PY_STATS",
+      "title": "statistics — Mathematical statistics functions — Python 3.12.15 documentation",
+      "url": "https://docs.python.org/3.12/library/statistics.html",
+      "sections": [
+        "Averages and measures of central location",
+        "Measures of spread",
+        "Function details"
+      ],
+      "provider": "Python 3.12 official documentation",
+      "verified_at": "2026-10-24",
+      "use": "Interpret center and spread and state small-sample limits; no population/performance guarantee."
+    }
+  ],
+  "days": [
+    {
+      "day": 271,
+      "date": "2027-07-21",
+      "title": "Capture a deterministic SQL baseline",
+      "task": "Run prior gates read-only and capture the loopback PostgreSQL 18.6 synthetic workload. Record status without changing evidence.",
+      "study_source": "PG_EXPLAIN",
+      "command": "scripts/capture_runtime_sql_fixture.sh",
+      "evidence": "Gate JSON, exact fixture rows and source/runtime identity; no completion inference.",
+      "shared_task": "Question bank Q17 — Cache: accelerate a read; follow-up: state which measured read path and freshness requirement would justify a cache."
+    },
+    {
+      "day": 272,
+      "date": "2027-07-22",
+      "title": "Verify the workload's relational facts",
+      "task": "Derive expected owner/policy revisions from the seed rule; compare ordered result rows and include a foreign-owner counterexample.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 -c 'import json; x=json.load(open(\"labs/runtime_sql/fixtures/observation.json\")); print(x[\"expected_ids\"] == x[\"observed_rows\"], len(x[\"observed_rows\"]))'",
+      "evidence": "Derived row set/order/count and foreign-owner counterexample; equality, not count alone.",
+      "shared_task": "Question bank Q18 — Cache: invalidation after a write; follow-up: include tenant change and stale-version denial."
+    },
+    {
+      "day": 273,
+      "date": "2027-07-23",
+      "title": "Implement exact result comparison",
+      "task": "Implement full ordered expected-versus-observed row comparison and reject malformed row shapes.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_foreign_or_missing_result_row_is_not_hidden_by_matching_count",
+      "evidence": "Exact result fields and same-count foreign-owner negative through learner acceptance.",
+      "shared_task": "Question bank Q13 — Booking: reserve one seat atomically; follow-up: reason about the final two concurrent requests."
+    },
+    {
+      "day": 274,
+      "date": "2027-07-24",
+      "title": "Compare estimated and actual cardinality",
+      "task": "Implement finite root estimated/actual row ratio including zero/zero and zero/nonzero cases.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_wrong_plan_estimate_changes_q_error_and_zero_rows_are_explicit",
+      "evidence": "Baseline ratio, 4x counterfactual and explicit zero mismatch; no node-name expectation.",
+      "shared_task": "Question bank Q10 — Notification service: retries; follow-up: include a lost response after a worker timeout."
+    },
+    {
+      "day": 275,
+      "date": "2027-07-25",
+      "title": "Report buffer observations",
+      "task": "Extract nonnegative shared hit/read counters; note host and cache state influence observations.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_exact_result_estimate_and_buffer_observations",
+      "evidence": "Root hit/read values and negative-counter rejection through actual acceptance.",
+      "shared_task": "Question bank Q22 — Webhook delivery: backoff and dead letter; follow-up: state the terminal failure and safe replay behavior."
+    },
+    {
+      "day": 276,
+      "date": "2027-07-26",
+      "title": "Validate malformed plan evidence",
+      "task": "Reject missing fields, wrong types, negative counters and nonfinite estimates; preserve valid report fields.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+      "evidence": "Valid case and exact malformed failures; no broad exception swallowing.",
+      "shared_task": "Question bank Q12 — Scheduler: missed or duplicate execution; follow-up: worker stops after claim and before completion."
+    },
+    {
+      "day": 277,
+      "date": "2027-07-27",
+      "title": "Compare plan and answer independently",
+      "task": "Capture again in a clean disposable database; compare exact rows/counters and record planner variation.",
+      "study_source": "PG_EXPLAIN",
+      "command": "scripts/capture_runtime_sql_fixture.sh /tmp/day277-observation.json && python3 -m json.tool /tmp/day277-observation.json >/dev/null",
+      "evidence": "Second-run result equality, changed/unchanged plan values and measurement limits; no stable timing claim.",
+      "shared_task": "Question bank Q24 — Event pipeline: correction and replay; follow-up: include a side effect already emitted by the old projection."
+    },
+    {
+      "day": 278,
+      "date": "2027-07-28",
+      "title": "Record a bounded JVM profile",
+      "task": "Compile/run fixed CPU workload under local JFR; verify deterministic checksum and inspect summary.",
+      "study_source": "JFR",
+      "command": "mkdir -p /tmp/day278-jfr && javac -d /tmp/day278-jfr labs/runtime_sql/ProfilingWork.java && java -XX:StartFlightRecording=filename=/tmp/day278.jfr,dumponexit=true -cp /tmp/day278-jfr ProfilingWork && jfr summary /tmp/day278.jfr",
+      "evidence": "Checksum, JDK version, JFR summary; tiny workload is not a service profile.",
+      "shared_task": "Question bank Q02 — Short-link abuse and operations; follow-up: separate a CPU signal from a traffic-abuse hypothesis."
+    },
+    {
+      "day": 279,
+      "date": "2027-07-29",
+      "title": "Inspect selected recording events",
+      "task": "Print available execution samples from local recording; report absent event types without fabrication.",
+      "study_source": "JFR",
+      "command": "jfr print --events jdk.ExecutionSample /tmp/day278.jfr",
+      "evidence": "Actual output from capture; recreate with Day278 command if needed and record the action.",
+      "shared_task": "Question bank Q09 — Notification service: accept and deliver; follow-up: provider unavailable after durable intent is recorded."
+    },
+    {
+      "day": 280,
+      "date": "2027-07-30",
+      "title": "Relate runtime observations to workload",
+      "task": "Repeat workload in two clean JVMs; compare checksums and event availability, not absolute timing.",
+      "study_source": "JFR",
+      "command": "for n in 1 2; do java -XX:StartFlightRecording=filename=/tmp/day280-$n.jfr,dumponexit=true -cp /tmp/day278-jfr ProfilingWork; jfr summary /tmp/day280-$n.jfr; done",
+      "evidence": "Two outputs, equal checksums, event counts and sample-size limits.",
+      "shared_task": "Question bank Q35 — Distributed rate limiting; follow-up: one region partitioned and fairness is required."
+    },
+    {
+      "day": 281,
+      "date": "2027-07-31",
+      "title": "Re-run acceptance mutations",
+      "task": "Run independent reference and mutation controls on learner acceptance paths for wrong rows, buffers and overclaim.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+      "evidence": "Reference assertions and mutation names caught; TODO remains uncredited.",
+      "shared_task": "Question bank Q34 — Analytics: late and duplicate data; follow-up: replay a duplicate after a correction."
+    },
+    {
+      "day": 282,
+      "date": "2027-08-01",
+      "title": "Explain a planner counterfactual",
+      "task": "Change a copy of plan estimate/buffers and explain arithmetic without changing canonical bytes.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 - <<'PY'\nimport copy,json\nfrom labs.runtime_sql.learner_analysis import analyze_observation\nx=json.load(open('labs/runtime_sql/fixtures/observation.json')); y=copy.deepcopy(x); y['explain_json'][0]['Plan']['Plan Rows']=20\nprint(analyze_observation(y))\nPY",
+      "evidence": "Independent expected q-error 4.0, unchanged fixture SHA-256 and estimate limitation.",
+      "shared_task": "Question bank Q27 — Feed: build a page; follow-up: new items arrive between pages and cursor stability matters."
+    },
+    {
+      "day": 283,
+      "date": "2027-08-02",
+      "title": "Reproduce and compare the observation",
+      "task": "Capture a third clean local fixture; compare full results and stable fields, record volatile timings separately.",
+      "study_source": "PG_EXPLAIN",
+      "command": "scripts/capture_runtime_sql_fixture.sh /tmp/day283-observation.json",
+      "evidence": "Fixture identity, data/result equality, counters and volatile differences; no generic speed claim.",
+      "shared_task": "Question bank Q32 — Streaming: adaptive delivery; follow-up: compare throughput and buffering under one regional failure."
+    },
+    {
+      "day": 284,
+      "date": "2027-08-03",
+      "title": "Review gates and transfer the diagnosis",
+      "task": "Re-evaluate prior gates, run analyzer and write bounded carry-forward selector plus diagnosis of an unfamiliar plan variant.",
+      "study_source": "PG_EXPLAIN",
+      "command": "python3 scripts/check_continuation_239_entry_gate.py && python3 scripts/check_continuation_253_entry_gate.py && python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+      "evidence": "Raw dynamic gate outputs, lab results, independent diagnosis, next recovery and limitations.",
+      "shared_task": "Question bank Q36 — Object-store recovery; follow-up: verify a restored object's checksum after accidental deletion."
+    }
+  ],
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  }
+}

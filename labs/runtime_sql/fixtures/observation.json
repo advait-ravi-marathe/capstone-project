@@ -1,0 +1,136 @@
+{
+  "expected_ids": [
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 8
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 7
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 6
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 5
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 4
+    }
+  ],
+  "explain_json": [
+    {
+      "Execution Time": 0.053,
+      "Plan": {
+        "Actual Loops": 1,
+        "Actual Rows": 5.0,
+        "Actual Startup Time": 0.032,
+        "Actual Total Time": 0.035,
+        "Async Capable": false,
+        "Disabled": false,
+        "Local Dirtied Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Written Blocks": 0,
+        "Node Type": "Limit",
+        "Parallel Aware": false,
+        "Plan Rows": 5,
+        "Plan Width": 25,
+        "Plans": [
+          {
+            "Actual Loops": 1,
+            "Actual Rows": 5.0,
+            "Actual Startup Time": 0.031,
+            "Actual Total Time": 0.033,
+            "Alias": "training_policy_event",
+            "Async Capable": false,
+            "Disabled": false,
+            "Heap Fetches": 5,
+            "Index Cond": "((owner_id = 'owner-07'::text) AND (policy_id = 'policy-0012'::text))",
+            "Index Name": "training_policy_event_owner_policy_revision_idx",
+            "Index Searches": 1,
+            "Local Dirtied Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Written Blocks": 0,
+            "Node Type": "Index Only Scan",
+            "Parallel Aware": false,
+            "Parent Relationship": "Outer",
+            "Plan Rows": 8,
+            "Plan Width": 25,
+            "Relation Name": "training_policy_event",
+            "Rows Removed by Index Recheck": 0,
+            "Scan Direction": "Forward",
+            "Shared Dirtied Blocks": 0,
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 2,
+            "Shared Written Blocks": 0,
+            "Startup Cost": 0.29,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Total Cost": 20.69
+          }
+        ],
+        "Shared Dirtied Blocks": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 2,
+        "Shared Written Blocks": 0,
+        "Startup Cost": 0.29,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Total Cost": 13.04
+      },
+      "Planning": {
+        "Local Dirtied Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Written Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Hit Blocks": 112,
+        "Shared Read Blocks": 5,
+        "Shared Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0
+      },
+      "Planning Time": 0.434,
+      "Triggers": []
+    }
+  ],
+  "fixture_id": "postgres18-owner-policy-revision-v1",
+  "observed_rows": [
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 8
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 7
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 6
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 5
+    },
+    {
+      "owner_id": "owner-07",
+      "policy_id": "policy-0012",
+      "revision": 4
+    }
+  ],
+  "postgres_image": "postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336"
+}

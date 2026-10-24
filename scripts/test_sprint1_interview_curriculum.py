@@ -100,11 +100,16 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                 days[int(item["day"])] = item["date"]
         inventory=json.loads((ROOT / "docs/reboot/continuation-197-270-inventory.json").read_text())
         end_day=int(inventory["through_day"])
-        self.assertEqual(set(range(1, 197)), set(days) - set(range(197, end_day+1)))
+        extension_days=set(range(271, 285))
+        self.assertEqual(set(range(1, 197)), set(days) - set(range(197, end_day+1)) - extension_days)
         sprint = json.loads((ROOT / "docs/reboot/continuation-197-210/manifest.json").read_text())
         self.assertEqual(set(range(197, 211)), {int(item["day"]) for item in sprint["days"]})
         days.update({int(item["day"]): item["date"] for item in sprint["days"]})
-        self.assertEqual(set(range(1, end_day+1)), set(days))
+        self.assertEqual(set(range(1, end_day+1)), set(days) - extension_days)
+        first_new_sprint=json.loads((ROOT / "docs/reboot/continuation-271-284/manifest.json").read_text())
+        self.assertEqual(extension_days, {int(item["day"]) for item in first_new_sprint["days"]})
+        days.update({int(item["day"]): item["date"] for item in first_new_sprint["days"]})
+        self.assertEqual(set(range(1, 285)), set(days))
         start = date(2026, 10, 24)
         for day, planned_date in days.items():
             self.assertEqual(start + timedelta(days=day - 1), date.fromisoformat(planned_date), day)

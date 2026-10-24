@@ -1,0 +1,2224 @@
+{
+  "title": "Days 271–284 runtime and SQL measurement foundations",
+  "status": "planned_assignments_only_not_completion",
+  "budget": {
+    "engineering_minutes": 2310,
+    "shared_minutes": 630,
+    "reserve_minutes": 462,
+    "days": 14
+  },
+  "days": [
+    {
+      "day": 271,
+      "date": "2027-07-21",
+      "title": "Capture a deterministic SQL baseline",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "scripts/capture_runtime_sql_fixture.sh",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Run prior gates read-only and capture the loopback PostgreSQL 18.6 synthetic workload. Record status without changing evidence.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "scripts/capture_runtime_sql_fixture.sh",
+          "evidence": "Gate JSON, exact fixture rows and source/runtime identity; no completion inference.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q17 — Cache: accelerate a read; follow-up: state which measured read path and freshness requirement would justify a cache.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 272,
+      "date": "2027-07-22",
+      "title": "Verify the workload's relational facts",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 -c 'import json; x=json.load(open(\"labs/runtime_sql/fixtures/observation.json\")); print(x[\"expected_ids\"] == x[\"observed_rows\"], len(x[\"observed_rows\"]))'",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Derive expected owner/policy revisions from the seed rule; compare ordered result rows and include a foreign-owner counterexample.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 -c 'import json; x=json.load(open(\"labs/runtime_sql/fixtures/observation.json\")); print(x[\"expected_ids\"] == x[\"observed_rows\"], len(x[\"observed_rows\"]))'",
+          "evidence": "Derived row set/order/count and foreign-owner counterexample; equality, not count alone.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q18 — Cache: invalidation after a write; follow-up: include tenant change and stale-version denial.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 273,
+      "date": "2027-07-23",
+      "title": "Implement exact result comparison",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_foreign_or_missing_result_row_is_not_hidden_by_matching_count",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Implement full ordered expected-versus-observed row comparison and reject malformed row shapes.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_foreign_or_missing_result_row_is_not_hidden_by_matching_count",
+          "evidence": "Exact result fields and same-count foreign-owner negative through learner acceptance.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q13 — Booking: reserve one seat atomically; follow-up: reason about the final two concurrent requests.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 274,
+      "date": "2027-07-24",
+      "title": "Compare estimated and actual cardinality",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_wrong_plan_estimate_changes_q_error_and_zero_rows_are_explicit",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Implement finite root estimated/actual row ratio including zero/zero and zero/nonzero cases.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_wrong_plan_estimate_changes_q_error_and_zero_rows_are_explicit",
+          "evidence": "Baseline ratio, 4x counterfactual and explicit zero mismatch; no node-name expectation.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q10 — Notification service: retries; follow-up: include a lost response after a worker timeout.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 275,
+      "date": "2027-07-25",
+      "title": "Report buffer observations",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_exact_result_estimate_and_buffer_observations",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Extract nonnegative shared hit/read counters; note host and cache state influence observations.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance.LearnerAcceptance.test_exact_result_estimate_and_buffer_observations",
+          "evidence": "Root hit/read values and negative-counter rejection through actual acceptance.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q22 — Webhook delivery: backoff and dead letter; follow-up: state the terminal failure and safe replay behavior.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 276,
+      "date": "2027-07-26",
+      "title": "Validate malformed plan evidence",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Reject missing fields, wrong types, negative counters and nonfinite estimates; preserve valid report fields.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+          "evidence": "Valid case and exact malformed failures; no broad exception swallowing.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q12 — Scheduler: missed or duplicate execution; follow-up: worker stops after claim and before completion.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 277,
+      "date": "2027-07-27",
+      "title": "Compare plan and answer independently",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "scripts/capture_runtime_sql_fixture.sh /tmp/day277-observation.json && python3 -m json.tool /tmp/day277-observation.json >/dev/null",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Capture again in a clean disposable database; compare exact rows/counters and record planner variation.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "scripts/capture_runtime_sql_fixture.sh /tmp/day277-observation.json && python3 -m json.tool /tmp/day277-observation.json >/dev/null",
+          "evidence": "Second-run result equality, changed/unchanged plan values and measurement limits; no stable timing claim.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q24 — Event pipeline: correction and replay; follow-up: include a side effect already emitted by the old projection.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 278,
+      "date": "2027-07-28",
+      "title": "Record a bounded JVM profile",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html and read Description, jfr summary subcommand, jfr print subcommand.",
+        "mkdir -p /tmp/day278-jfr && javac -d /tmp/day278-jfr labs/runtime_sql/ProfilingWork.java && java -XX:StartFlightRecording=filename=/tmp/day278.jfr,dumponexit=true -cp /tmp/day278-jfr ProfilingWork && jfr summary /tmp/day278.jfr",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "JFR",
+          "title": "The jfr Command",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html",
+          "sections": [
+            "Description",
+            "jfr summary subcommand",
+            "jfr print subcommand"
+          ],
+          "provider": "Oracle Java SE 21 documentation",
+          "use": "Read local Flight Recorder summary/events; local profiling rehearsal only.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "Open https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html and read Description, jfr summary subcommand, jfr print subcommand.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Compile/run fixed CPU workload under local JFR; verify deterministic checksum and inspect summary.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "mkdir -p /tmp/day278-jfr && javac -d /tmp/day278-jfr labs/runtime_sql/ProfilingWork.java && java -XX:StartFlightRecording=filename=/tmp/day278.jfr,dumponexit=true -cp /tmp/day278-jfr ProfilingWork && jfr summary /tmp/day278.jfr",
+          "evidence": "Checksum, JDK version, JFR summary; tiny workload is not a service profile.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q02 — Short-link abuse and operations; follow-up: separate a CPU signal from a traffic-abuse hypothesis.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 279,
+      "date": "2027-07-29",
+      "title": "Inspect selected recording events",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html and read Description, jfr summary subcommand, jfr print subcommand.",
+        "jfr print --events jdk.ExecutionSample /tmp/day278.jfr",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "JFR",
+          "title": "The jfr Command",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html",
+          "sections": [
+            "Description",
+            "jfr summary subcommand",
+            "jfr print subcommand"
+          ],
+          "provider": "Oracle Java SE 21 documentation",
+          "use": "Read local Flight Recorder summary/events; local profiling rehearsal only.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "Open https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html and read Description, jfr summary subcommand, jfr print subcommand.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Print available execution samples from local recording; report absent event types without fabrication.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "jfr print --events jdk.ExecutionSample /tmp/day278.jfr",
+          "evidence": "Actual output from capture; recreate with Day278 command if needed and record the action.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q09 — Notification service: accept and deliver; follow-up: provider unavailable after durable intent is recorded.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 280,
+      "date": "2027-07-30",
+      "title": "Relate runtime observations to workload",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html and read Description, jfr summary subcommand, jfr print subcommand.",
+        "for n in 1 2; do java -XX:StartFlightRecording=filename=/tmp/day280-$n.jfr,dumponexit=true -cp /tmp/day278-jfr ProfilingWork; jfr summary /tmp/day280-$n.jfr; done",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "JFR",
+          "title": "The jfr Command",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html",
+          "sections": [
+            "Description",
+            "jfr summary subcommand",
+            "jfr print subcommand"
+          ],
+          "provider": "Oracle Java SE 21 documentation",
+          "use": "Read local Flight Recorder summary/events; local profiling rehearsal only.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "Open https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html and read Description, jfr summary subcommand, jfr print subcommand.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Repeat workload in two clean JVMs; compare checksums and event availability, not absolute timing.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "for n in 1 2; do java -XX:StartFlightRecording=filename=/tmp/day280-$n.jfr,dumponexit=true -cp /tmp/day278-jfr ProfilingWork; jfr summary /tmp/day280-$n.jfr; done",
+          "evidence": "Two outputs, equal checksums, event counts and sample-size limits.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "JFR"
+          ],
+          "source_sections": {
+            "JFR": [
+              "Description",
+              "jfr summary subcommand",
+              "jfr print subcommand"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; The jfr Command — Description, jfr summary subcommand, jfr print subcommand (https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q35 — Distributed rate limiting; follow-up: one region partitioned and fairness is required.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 281,
+      "date": "2027-07-31",
+      "title": "Re-run acceptance mutations",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Run independent reference and mutation controls on learner acceptance paths for wrong rows, buffers and overclaim.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+          "evidence": "Reference assertions and mutation names caught; TODO remains uncredited.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q34 — Analytics: late and duplicate data; follow-up: replay a duplicate after a correction.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 282,
+      "date": "2027-08-01",
+      "title": "Explain a planner counterfactual",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 - <<'PY'\nimport copy,json\nfrom labs.runtime_sql.learner_analysis import analyze_observation\nx=json.load(open('labs/runtime_sql/fixtures/observation.json')); y=copy.deepcopy(x); y['explain_json'][0]['Plan']['Plan Rows']=20\nprint(analyze_observation(y))\nPY",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Change a copy of plan estimate/buffers and explain arithmetic without changing canonical bytes.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 - <<'PY'\nimport copy,json\nfrom labs.runtime_sql.learner_analysis import analyze_observation\nx=json.load(open('labs/runtime_sql/fixtures/observation.json')); y=copy.deepcopy(x); y['explain_json'][0]['Plan']['Plan Rows']=20\nprint(analyze_observation(y))\nPY",
+          "evidence": "Independent expected q-error 4.0, unchanged fixture SHA-256 and estimate limitation.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q27 — Feed: build a page; follow-up: new items arrive between pages and cursor stability matters.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 283,
+      "date": "2027-08-02",
+      "title": "Reproduce and compare the observation",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "scripts/capture_runtime_sql_fixture.sh /tmp/day283-observation.json",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Capture a third clean local fixture; compare full results and stable fields, record volatile timings separately.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "scripts/capture_runtime_sql_fixture.sh /tmp/day283-observation.json",
+          "evidence": "Fixture identity, data/result equality, counters and volatile differences; no generic speed claim.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q32 — Streaming: adaptive delivery; follow-up: compare throughput and buffering under one regional failure.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day": 284,
+      "date": "2027-08-03",
+      "title": "Review gates and transfer the diagnosis",
+      "learner_seam": "runtime_sql_observation_analysis",
+      "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
+      "selectors": [
+        "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+        "python3 scripts/check_continuation_239_entry_gate.py && python3 scripts/check_continuation_253_entry_gate.py && python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+        "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+        "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://www.postgresql.org/docs/18/using-explain.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "PG_EXPLAIN",
+          "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/18/using-explain.html",
+          "sections": [
+            "14.1.1. EXPLAIN Basics",
+            "14.1.2. EXPLAIN ANALYZE",
+            "14.1.3. Caveats"
+          ],
+          "provider": "PostgreSQL official documentation",
+          "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion.",
+          "verified_at": "2026-10-24"
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "study": 35,
+          "project_implementation_tests": 82,
+          "remediation_integration_observation_reserve": 33,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "study": 35,
+        "project_implementation_tests": 82,
+        "remediation_integration_observation_reserve": 33,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "study": {
+          "minutes": 35,
+          "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+          "source_paths": [],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "Open https://www.postgresql.org/docs/18/using-explain.html and read 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats.",
+          "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+          "source": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "project_implementation_tests": {
+          "minutes": 82,
+          "task": "Re-evaluate prior gates, run analyzer and write bounded carry-forward selector plus diagnosis of an unfamiliar plan variant.",
+          "source_paths": [
+            "labs/runtime_sql/learner_analysis.py",
+            "labs/runtime_sql/reference_analysis.py",
+            "labs/runtime_sql/tests/test_acceptance.py",
+            "labs/runtime_sql/schema.sql",
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/ProfilingWork.java",
+            "scripts/capture_runtime_sql_fixture.sh",
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py && python3 scripts/check_continuation_253_entry_gate.py && python3 -m unittest labs.runtime_sql.tests.test_acceptance",
+          "evidence": "Raw dynamic gate outputs, lab results, independent diagnosis, next recovery and limitations.",
+          "source": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "remediation_integration_observation_reserve": {
+          "minutes": 33,
+          "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+          "source_paths": [
+            "scripts/check_continuation_239_entry_gate.py",
+            "scripts/check_continuation_253_entry_gate.py",
+            "scripts/check_streamforge_169_182_entry_gate.py"
+          ],
+          "source_keys": [
+            "PG_EXPLAIN"
+          ],
+          "source_sections": {
+            "PG_EXPLAIN": [
+              "14.1.1. EXPLAIN Basics",
+              "14.1.2. EXPLAIN ANALYZE",
+              "14.1.3. Caveats"
+            ]
+          },
+          "command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
+          "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+          "source": "authoritative dynamic gates; PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN — 14.1.1. EXPLAIN Basics, 14.1.2. EXPLAIN ANALYZE, 14.1.3. Caveats (https://www.postgresql.org/docs/18/using-explain.html)"
+        },
+        "evidence": {
+          "minutes": 15,
+          "task": "Record actual command, exit status, changed paths, assistance and blocker. Keep 40-hex source commit separate from 64-hex artifact digest.",
+          "source_paths": [
+            "labs/runtime_sql/fixtures/observation.json",
+            "labs/runtime_sql/learner_analysis.py"
+          ],
+          "source_keys": [],
+          "source_sections": {},
+          "command": "git rev-parse HEAD; sha256sum labs/runtime_sql/fixtures/observation.json labs/runtime_sql/learner_analysis.py",
+          "evidence": "Timestamped learner-owned note with raw command/output, source commit, separate artifact SHA-256, and truthful status; not written by the instructor harness.",
+          "source": "local task artifacts and git source identity"
+        }
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "task": "Question bank Q36 — Object-store recovery; follow-up: verify a restored object's checksum after accidental deletion.",
+        "source": "docs/reboot/interview/question-bank.md",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold"
+    }
+  ]
+}

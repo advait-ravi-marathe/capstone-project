@@ -55,9 +55,9 @@ Hashes are deterministic SHA-256 fingerprints of canonical JSON bytes. New state
 
 ## Primary-document study
 
-See `verified-content-features-183-196-guidance.json` for exact focused sections, cautions, worked supplements, and catalog audit. Required study is free public documentation with a five-minute explain-back inside the 35-minute block. No optional course or video is newly assigned. The exact Fraction/L1 profile and local tie/fallback rules are project decisions, not recommendations attributed to the documentation.
+See `verified-content-features-183-196-guidance.json` for exact focused sections, cautions, worked supplements, and catalog audit. Required study is free public documentation inside the 35-minute study allocation. No learner explain-back is required for capstone architecture; the assistant supplies concise what/why context, and the learner implements and tests the assigned seam. No optional course or video is newly assigned. The exact Fraction/L1 profile and local tie/fallback rules are project decisions, not recommendations attributed to the documentation.
 
-This document covers the prepared Days 183–196 slice only; it is not a claim that the full 270-day roadmap is complete and does not authorize Days 197 onward.
+This document preserves the historical Days 183–196 slice and its original publication scope. Days 197–270 are now published in the [current assignment inventory](../continuation-197-270-inventory.json); the approved outcome-based extension through Day 732 is indexed in the [current roadmap](../continuation-271-732/README.md). Publication is planning, not learner completion or gate eligibility.
 
 ## Verification and evidence
 
