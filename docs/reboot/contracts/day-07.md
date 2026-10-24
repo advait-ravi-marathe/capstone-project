@@ -20,9 +20,10 @@ One tick before/at/after expiry; fixed ID and clock; ineligible fixture; exact s
 
 Days 5–6; canned eligibility/premium; fixed Clock. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Design/readiness prompt (inside the existing evidence block):** Explain why time is injected instead of waiting, name the captured price that remains fixed, and distinguish business wall time from elapsed-time measurement. No architecture drawing is added.
 
 ## Concept (25 minutes)
+
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Inject `Clock` and create an immutable quote snapshot with an explicit expiry instant. This makes time boundaries deterministic and prevents a later version from mutating an earlier snapshot.](../assistant-architecture-notes.md#day-7-fixed-clock-quote-version). No capstone design proposal or post-hoc architecture justification is assigned.
 
 Wall time vs elapsed time; deterministic tests [D].
 

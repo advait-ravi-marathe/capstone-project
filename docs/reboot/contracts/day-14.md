@@ -24,11 +24,13 @@ Days 1–13 are required; the integration gate contains no business-policy fakes
 
 ## Concept (25 minutes)
 
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Use the bounded integration test to identify and report the first incomplete dependency. Preserve existing composition and learner TODOs; do not redesign wiring or replace a missing behavior with a fake pass.](../assistant-architecture-notes.md#day-14-diagnose-the-existing-vertical-slice). No capstone design proposal or post-hoc architecture justification is assigned.
+
 Annotated trace of the existing integration test: catalog → eligibility/premium → quote snapshot → repository → selection guard/persistence → direct PostgreSQL readback. Mark the actual failure stop and one prior-taught transaction boundary. No new architecture theory or rejected-abstraction essay is assigned.
 
 ## Evidence (10 minutes)
 
-Integration report, short demo, prerequisite gaps. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Integration report, short demo, prerequisite gaps. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Planned isolated command
 

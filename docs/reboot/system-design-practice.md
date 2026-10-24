@@ -1,6 +1,9 @@
 # Interview-first system design practice
 
-This is an interview practice path attached to the existing CoverStory roadmap.
+This guide is used only with the assigned system-design interview question set
+and dedicated question sessions. It is not a capstone design assignment; for
+capstone work, the assistant supplies the architecture note and the learner
+implements and tests it.
 It does not add a product, a cloud deployment, or extra daily hours. The first
 14-day sprint starts **24 October 2026**. The daily contract and its existing
 course lesson remain authoritative for the engineering task.
@@ -71,9 +74,12 @@ existing Java/Spring/PostgreSQL dependencies; run it with:
 ./mvnw -Dtest=Sprint1DesignExperimentsTest test
 ```
 
-Before running it, record a design proposal using
-[`interview/design-proposal-template.md`](interview/design-proposal-template.md).
-The runnable test is an observation tool, not a learner-completion result.
+The runnable test is an optional observation tool for an interview question
+when its evidence would help answer the prompt. It is not a daily capstone task
+or a prerequisite, and it does not itself award interview or engineering
+completion. In a dedicated mock, use the proposal template as part of the
+question's 15-minute architecture phase; do not create a separate proposal
+outside that question session.
 It covers owner-scoped reads, a unique idempotency key, and rollback when a
 multi-row write fails. It creates only a disposable embedded PostgreSQL test
 instance.

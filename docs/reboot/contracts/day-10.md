@@ -24,11 +24,13 @@ Days 8–9; canned normalized pairs and forced repository failure. Earlier unfin
 
 ## Concept (25 minutes)
 
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Keep the batch write and related records on one connection and transaction; commit only after all writes succeed and roll back on failure to prevent partial persistence.](../assistant-architecture-notes.md#day-10-one-connection-one-transaction). No capstone design proposal or post-hoc architecture justification is assigned.
+
 One raw JDBC connection, auto-commit off, explicit commit after all rows, and rollback/rethrow on a statement failure. The course is conditional; the worked connection-owning example precedes the batch task. It does not promise uncertain commit outcome handling.
 
 ## Evidence (10 minutes)
 
-Database state after injected mid-batch failure. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Database state after injected mid-batch failure. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Planned isolated command
 

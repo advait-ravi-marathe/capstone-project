@@ -20,9 +20,11 @@ Zero and negative; `100.00 * 0.00125 = 0.125` rounds to `0.13`; contents adjustm
 
 Day 4; fixed eligible input and rate fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Design/readiness prompt (inside the existing evidence block):** Explain why rounding before addition changes the worked result, and why zero is allowed by this calculator contract but rejected by Day 5 eligibility. Do not add pricing rules.
+
 
 ## Concept (25 minutes)
+
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Use `BigDecimal` with the contract’s explicit scale and rounding rule. Avoid binary floating-point so the same input produces a stable monetary result.](../assistant-architecture-notes.md#day-6-explicit-decimal-calculation). No capstone design proposal or post-hoc architecture justification is assigned.
 
 Decimal-string construction, exact arithmetic, `HALF_UP` at the declared final boundary, and scale-sensitive representation. The course is conditional; the worked supplement teaches the demonstrated arithmetic before the frozen premium task.
 
@@ -36,9 +38,9 @@ Record the exact and premature-rounding outputs, then the actual learner selecto
 
 This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 
