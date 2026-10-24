@@ -116,6 +116,35 @@ class ContinuationManifestTests(unittest.TestCase):
         for method in ("oneActionCommandRejectsInvalidAndConflictingFlags", "oneExplicitInspectDispatchesOnlyTheRequestedExactKey", "ordinaryStartupDoesNotDispatchRecovery"):
             self.assertIn(method, source)
 
+    def test_days125_126_rebuild_receipt_bound_sprint8_artifact_before_consumers(self):
+        package = "scripts/package-sprint8-demo.sh --no-clean"
+        consumer = "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+        helper = (ROOT / "src/test/java/assignments/local/Sprint8PackagedRuntimeProcess.java").read_text()
+        script = (ROOT / "scripts/package-sprint8-demo.sh").read_text()
+        fingerprint = (ROOT / "scripts/sprint8-source-fingerprint.py").read_text()
+        self.assertIn("verifyArtifactReceipt", helper)
+        self.assertIn("sourceCommit", helper)
+        self.assertIn("sourceContentSha256", helper)
+        self.assertIn("sourceContentSha256", script)
+        self.assertIn('source_sha="$(python3 scripts/sprint8-source-fingerprint.py)"', script)
+        self.assertIn("sprint8-source-fingerprint.py", script)
+        self.assertIn("--no-clean", script)
+        consumer_test = (ROOT / "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java").read_text()
+        self.assertIn("Sprint8PackagedRuntimeProcess.start", consumer_test)
+        for number in (125, 126):
+            day = next(d for d in self.manifest["days"] if d["day"] == number)
+            card = next(c for c in self.export["cards"] if c["day_number"] == number)
+            commands = day["engineering"]["acceptance_commands"]
+            self.assertEqual(commands, card["engineering"]["acceptance_commands"])
+            contract = (ROOT / day["contract_file"]).read_text()
+            self.assertIn(package, commands)
+            self.assertLess(commands.index("./mvnw -Plocal-app -DskipTests package"), commands.index(package))
+            self.assertLess(commands.index(package), commands.index(consumer))
+            self.assertLess(contract.index("./mvnw -Plocal-app -DskipTests package"), contract.index(package))
+            self.assertLess(contract.index(package), contract.index(consumer))
+        self.assertIn("from hashlib import sha256", fingerprint)
+        self.assertIn("digest = sha256()", fingerprint)
+
     def test_sprint8_dedicated_runtime_is_not_mislabeled_broad(self):
         contract = (ROOT / "docs/reboot/continuation-99-112/contracts/day-110.md").read_text().lower()
         self.assertIn("dedicated sprint 8 bounded packaged runtime", contract)
@@ -136,6 +165,8 @@ class ContinuationManifestTests(unittest.TestCase):
                 self.assertNotIn("TODO", command)
                 if command.startswith("(cd frontend &&"):
                     self.assertEqual("(cd frontend && npm ci && npm run build && npm run build:local)", command)
+                elif command.startswith("scripts/package-sprint8-demo.sh"):
+                    self.assertEqual("scripts/package-sprint8-demo.sh --no-clean", command)
                 else:
                     self.assertIn("./mvnw", command)
 
