@@ -187,6 +187,26 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             self.assertNotIn("proposal or prediction for the day’s actual engineering task", contract)
             self.assertNotIn("learner-led proposal or review", contract)
 
+    def test_day09_jdbc_lookup_scope_is_journey_and_version_not_authentication(self):
+        contract = (ROOT / "docs/reboot/contracts/day-09.md").read_text()
+        notes = (ROOT / "docs/reboot/assistant-architecture-notes.md").read_text()
+        source = (ROOT / "src/main/java/assignments/insurance/QuoteRepositoryAdapter.java").read_text()
+        self.assertIn("find(String journeyId, String quoteVersionId)", source)
+        self.assertIn("Bind `journeyId` and `quoteVersionId`", contract)
+        self.assertIn("separate Day 12 boundary", contract)
+        self.assertIn("do not\nadd an owner argument to this Day 9 adapter", notes)
+        self.assertNotIn("owner and quote identifiers", contract.lower())
+        self.assertNotIn("owner and quote identifiers", notes.lower())
+        for name, key, day_key in (
+            ("docs/reboot/manifest.json", "days", "day"),
+            ("docs/reboot/scrum-owner-manifest.json", "cards", "day_number"),
+        ):
+            data = json.loads((ROOT / name).read_text())
+            row = next(item for item in data[key] if item[day_key] == 9)
+            note = row["engineering"]["assistant_architecture_note"]
+            self.assertIn("journeyId and quoteVersionId", note["decision"])
+            self.assertIn("Day 12", note["decision"])
+
     def test_mock_scope_has_explicit_eai_slices_and_deferred_acceptance(self):
         scope = (ROOT / "docs/reboot/interview/session-scope.md").read_text()
         for marker in ("S1-D03-1", "S1-D07-1", "S1-D10-1", "S1-D14-1"):

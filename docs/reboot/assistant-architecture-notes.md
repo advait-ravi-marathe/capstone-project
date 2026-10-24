@@ -66,8 +66,11 @@ boundary even if a caller bypasses application validation.
 ## Day 9: Parameterized snapshot persistence
 
 Use the existing JDBC adapter with prepared statements and explicit
-row-to-snapshot mapping. Bind owner and quote identifiers in the query so
-inputs remain data and reads are scoped by the trusted owner.
+row-to-snapshot mapping. Bind `journeyId` and `quoteVersionId`, the adapter's
+composite lookup scope, so values remain data and the lookup returns absence
+when that pair is missing. Authentication and owner authorization are a
+separate boundary, introduced on Day 12 through the trusted principal; do not
+add an owner argument to this Day 9 adapter.
 
 ## Day 10: One connection, one transaction
 

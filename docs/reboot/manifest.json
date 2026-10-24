@@ -975,7 +975,7 @@
         "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
         "assistant_architecture_note": {
           "path": "docs/reboot/assistant-architecture-notes.md#day-9-parameterized-snapshot-persistence",
-          "decision": "Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind owner and quote identifiers so input remains data and reads stay owner-scoped.",
+          "decision": "Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind journeyId and quoteVersionId, the adapter composite lookup scope, so values remain data and an absent pair returns explicit absence. Authentication and owner authorization are separate and are introduced at the Day 12 trusted-principal boundary; do not add an owner argument to this Day 9 adapter.",
           "budget": "within_existing_25_minute_concept_allocation"
         },
         "course_bridges": [
@@ -991,7 +991,7 @@
       "engineering": {
         "assistant_architecture_note": {
           "path": "docs/reboot/assistant-architecture-notes.md#day-9-parameterized-snapshot-persistence",
-          "decision": "Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind owner and quote identifiers so input remains data and reads stay owner-scoped.",
+          "decision": "Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind journeyId and quoteVersionId, the adapter composite lookup scope, so values remain data and an absent pair returns explicit absence. Authentication and owner authorization are separate and are introduced at the Day 12 trusted-principal boundary; do not add an owner argument to this Day 9 adapter.",
           "budget": "within_existing_25_minute_concept_allocation"
         }
       }

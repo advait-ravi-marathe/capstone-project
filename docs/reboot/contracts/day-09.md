@@ -20,11 +20,11 @@ Round-trip precision, absent ID, wrong journey, update attempt.
 
 Day 8; seeded rows, no quote-creation service. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Readiness question (inside the existing evidence slot):** Why does this `SELECT` bind both scope fields? Why is a missing row different from a SQL exception? Point to the reference's resource-closing boundaries; no ORM decision is assigned.
+**Readiness question (inside the existing evidence slot):** Why does this `SELECT` bind both `journeyId` and `quoteVersionId`? Why is a missing row different from a SQL exception? The `QuoteRepositoryAdapter` accepts those two scope values; authentication and owner authorization remain a separate Day 12 boundary. Point to the reference's resource-closing boundaries; no ORM decision is assigned.
 
 ## Concept (25 minutes)
 
-**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind owner and quote identifiers so input remains data and reads stay owner-scoped.](../assistant-architecture-notes.md#day-9-parameterized-snapshot-persistence). No capstone design proposal or post-hoc architecture justification is assigned.
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind `journeyId` and `quoteVersionId`, the adapter's composite lookup scope, so input remains data and an absent composite key returns explicit absence. Owner authentication/authorization is separate and is introduced at the Day 12 trusted-principal boundary.](../assistant-architecture-notes.md#day-9-parameterized-snapshot-persistence). No capstone design proposal or post-hoc architecture justification is assigned.
 
 Parameterized JDBC, connection/statement/result resource ownership, mapping a row to a value, and explicit absence. The lesson is background only; the worked guide teaches these raw-JDBC operations before the repository task. No JPA/ORM conversion is assigned.
 
