@@ -1,30 +1,22 @@
 #!/usr/bin/env python3
-"""Regenerate the Days 197–210 canonical and owner exports from the daily contracts."""
-from __future__ import annotations
-import json
-import re
+"""Validate daily contract/export alignment for Days 197–210."""
+import json, re
 from datetime import date
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]
-BATCH = ROOT / "docs/reboot/continuation-197-210"
-manifest = json.loads((BATCH / "manifest.json").read_text())
-owner = json.loads((BATCH / "scrum-owner-manifest.json").read_text())
-for day in manifest["days"]:
-    path = BATCH / "contracts" / f"day-{day['day']}.md"
-    text = path.read_text()
-    for needle in (day["title"], day["date"], day["selectors"][0]):
-        if needle not in text:
-            raise SystemExit(f"contract mismatch for day {day['day']}: {needle}")
-    if date.fromisoformat(day["date"]).isoformat() != day["date"]:
-        raise SystemExit(f"invalid date for day {day['day']}")
-expected = list(range(197, 211))
-if [d["day"] for d in manifest["days"]] != expected:
-    raise SystemExit("manifest day sequence mismatch")
-if [d["day_number"] for d in owner["cards"]] != expected:
-    raise SystemExit("owner day sequence mismatch")
-for d, o in zip(manifest["days"], owner["cards"]):
-    for key in ("date", "title", "learner_seam", "module", "signature", "selectors", "study_refs", "study_guidance", "engineering_architecture"):
-        owner_key = "learner_seam" if key == "learner_seam" else key
-        if d[key] != o[owner_key]:
-            raise SystemExit(f"export mismatch day {d['day']} field {key}")
-print("Days 197–210 contracts and canonical/owner exports are consistent")
+ROOT=Path(__file__).resolve().parents[1]
+B=ROOT/'docs/reboot/continuation-197-210'
+m=json.loads((B/'manifest.json').read_text()); o=json.loads((B/'scrum-owner-manifest.json').read_text()); p=json.loads((B/'days-197-210-transfer-plan.json').read_text())
+assert [d['day'] for d in m['days']]==list(range(197,211))
+assert [d['day_number'] for d in o['cards']]==list(range(197,211))
+assert [d['day'] for d in p['days']]==list(range(197,211))
+for d,owner,plan in zip(m['days'],o['cards'],p['days']):
+ text=(B/'contracts'/f"day-{d['day']}.md").read_text()
+ for needle in (d['title'],d['date'],d['selectors'][0]):
+  assert needle in text,(d['day'],needle)
+ assert date.fromisoformat(d['date']).isoformat()==d['date']
+ assert d['engineering_architecture']['note_ref'].endswith(f'#day-{d["day"]}')
+ assert re.search(rf'<a id="day-{d["day"]}"></a>',(B/'assistant-architecture-notes.md').read_text())
+ assert d['selectors']==owner['selectors']==plan['selectors']
+ assert d['shared_interview_block']==owner['interview_practice']
+ assert d['engineering_architecture']==owner['engineering_architecture']==plan['engineering_architecture']
+print('Days 197–210 contract, anchors, selector, and export consistency PASS')

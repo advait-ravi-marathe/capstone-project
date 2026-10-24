@@ -1,5 +1,5 @@
 {
-  "title": "Days 197–210 offline evidence-grounded explanation foundations",
+  "title": "Days 197–210 CoverStory recovery and bounded offline evaluation",
   "status": "starter_not_learner_completion_or_board_published",
   "branch": "work/eai-sprint2-onward",
   "base_commit": "36fea17fbd93e8c0e15b568a7a45b9587a2cc690",
@@ -9,12 +9,12 @@
     {
       "day_number": 197,
       "date": "2027-05-08",
-      "title": "Freeze synthetic source fixture",
-      "learner_seam": "fixture_contract",
-      "module": "ai.grounded.fixtures",
-      "signature": "CLAUSES: tuple[Clause, ...]",
+      "title": "Inspect actual Day 153/154 A/B evidence and missing baseline provenance",
+      "learner_seam": "readiness_inspection",
+      "module": "CoverStory existing seam",
+      "signature": "evidence/continuation-141-154/day-153.json; evidence/continuation-141-154/day-154.json",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_input_fixture_is_not_mutated"
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
       ],
       "prerequisite_days": [],
       "recovery_day": false,
@@ -28,39 +28,49 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-197",
-        "decision": "Keep one fixed synthetic, versioned clause fixture; reproducibility comes before retrieval complexity.",
+        "decision": "These records have null tested source SHA and no artifact hashes. Identify the missing pinned baseline JAR/source/build recipe; preserve the historical records.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q27",
+        "question_title": "Feed: build a page",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 198,
       "date": "2027-05-09",
-      "title": "Filter by owner before matching",
-      "learner_seam": "owner_filter",
-      "module": "ai.grounded.evidence",
-      "signature": "owner-scoped clause selection in explain",
+      "title": "Recover fail-closed CoverStory readiness seam",
+      "learner_seam": "coverstory_readiness",
+      "module": "CoverStory existing seam",
+      "signature": "src/main/java/assignments/local/LocalReadinessGate.java",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_foreign_owner_is_filtered_before_matching"
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test"
       ],
       "prerequisite_days": [
         197
@@ -76,38 +86,48 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "RAG_OVERVIEW"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "RAG_OVERVIEW",
-          "title": "Retrieval augmented generation (RAG)",
-          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Retrieval-augmented generation overview"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-198",
-        "decision": "Apply owner filtering before any candidate match, making the authorization order visible in the control flow.",
+        "decision": "Implement the existing Day 57 readiness contract; missing, null, irrelevant, or failed evidence must require recovery without mutation.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": "Named project/evidence review",
+        "review_task": "Review src/main/java/assignments/local/LocalReadinessGate.java; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "allocation_minutes": {
+          "named_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
       }
     },
     {
       "day_number": 199,
       "date": "2027-05-10",
-      "title": "Build deterministic literal baseline",
-      "learner_seam": "literal_baseline",
-      "module": "ai.grounded.evidence",
-      "signature": "explain(question, *, owner_id, clauses) -> Answer",
+      "title": "Recover bounded security checkpoint",
+      "learner_seam": "coverstory_security_checkpoint",
+      "module": "CoverStory existing seam",
+      "signature": "src/main/java/assignments/local/LocalReadinessGate.java",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_unique_literal_match_returns_exact_text_and_versioned_citation"
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
       ],
       "prerequisite_days": [
         198
@@ -123,38 +143,49 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "RAG_OVERVIEW"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "RAG_OVERVIEW",
-          "title": "Retrieval augmented generation (RAG)",
-          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Retrieval-augmented generation overview"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-199",
-        "decision": "Use transparent literal token matching as a baseline so behavior can be inspected without a model or hidden service.",
+        "decision": "Implement Day 63 bounds and recovery within the supplied minute budget, with no added work.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q28",
+        "question_title": "Feed: fan-out choice",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 200,
       "date": "2027-05-11",
-      "title": "Cite one unique source or abstain",
-      "learner_seam": "citation_abstention",
-      "module": "ai.grounded.evidence",
-      "signature": "Answer(status, explanation, citations)",
+      "title": "Recover offline AWS lab design boundary",
+      "learner_seam": "offline_certification_design",
+      "module": "CoverStory existing seam",
+      "signature": "src/main/java/assignments/ops/AwsLabDesignPolicy.java",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_ambiguous_matches_abstain"
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest test"
       ],
       "prerequisite_days": [
         199
@@ -170,39 +201,48 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-200",
-        "decision": "Expose exact source identity and abstain on ambiguity; this keeps unsupported answers measurable.",
+        "decision": "Implement the existing offline design validation using fictional costs only; reject execution, public exposure, wildcard admin, secrets, fabricated cloud verification, and invalid arithmetic.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": "Named project/evidence review",
+        "review_task": "Review src/main/java/assignments/ops/AwsLabDesignPolicy.java; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "allocation_minutes": {
+          "named_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
       }
     },
     {
       "day_number": 201,
       "date": "2027-05-12",
-      "title": "Exercise absent and malformed input",
-      "learner_seam": "input_guards",
-      "module": "ai.grounded.evidence",
-      "signature": "explain input validation",
+      "title": "Recover owned offline rehearsal evidence policy",
+      "learner_seam": "offline_rehearsal_evidence",
+      "module": "CoverStory existing seam",
+      "signature": "src/main/java/assignments/ops/RehearsalEvidencePolicy.java",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_no_match_and_empty_query_abstain_or_reject"
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test"
       ],
       "prerequisite_days": [
         200
@@ -218,39 +258,49 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-201",
-        "decision": "Reject blank input and return an explicit abstention for no matching evidence.",
+        "decision": "Implement the existing distinction between local release evidence and unperformed cloud actions.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 202,
       "date": "2027-05-13",
-      "title": "Preserve source version identity",
-      "learner_seam": "versioned_citation",
-      "module": "ai.grounded.evidence",
-      "signature": "citation format clause_id@version",
+      "title": "Inspect owner-scoped read adapter acceptance",
+      "learner_seam": "owner_scoped_read_review",
+      "module": "CoverStory existing seam",
+      "signature": "src/main/java/assignments/renewal/BoundedPolicyRenewalReadStore.java",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_unique_literal_match_returns_exact_text_and_versioned_citation"
+        "./mvnw -Plocal-app,learner-tests -Dtest=BoundedPolicyRenewalReadStoreAcceptanceTest test"
       ],
       "prerequisite_days": [
         201
@@ -266,43 +316,53 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "RAG_OVERVIEW"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "RAG_OVERVIEW",
-          "title": "Retrieval augmented generation (RAG)",
-          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Retrieval-augmented generation overview"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-202",
-        "decision": "Bind a citation to a stable clause version so later replacement cannot masquerade as the source used.",
+        "decision": "Run and record the actual first failing acceptance. It is an existing Day 75 learner TODO; do not treat scaffold tests as learner output.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": "Named project/evidence review",
+        "review_task": "Review src/main/java/assignments/renewal/BoundedPolicyRenewalReadStore.java; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "allocation_minutes": {
+          "named_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
       }
     },
     {
       "day_number": 203,
       "date": "2027-05-14",
-      "title": "Define independent expected cases",
-      "learner_seam": "expected_examples",
-      "module": "ai.grounded.tests.test_evidence",
-      "signature": "fixed expected status/citation rows",
+      "title": "Recover packaged local browser acceptance",
+      "learner_seam": "packaged_runtime_recovery",
+      "module": "CoverStory existing seam",
+      "signature": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence"
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest test"
       ],
       "prerequisite_days": [
         202
       ],
-      "recovery_day": false,
+      "recovery_day": true,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -313,39 +373,49 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-203",
-        "decision": "Write expected statuses and citations as independent constants before reporting results.",
+        "decision": "Run the package/browser harness with its declared isolated fixture lifecycle. Record artifact, database lifecycle, selector, source SHA and exact result.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 204,
       "date": "2027-05-15",
-      "title": "Count outcomes honestly",
-      "learner_seam": "outcome_counts",
-      "module": "ai.grounded.tests.test_evidence",
-      "signature": "synthetic evaluation count summary",
+      "title": "Freeze independent synthetic expected cases",
+      "learner_seam": "offline_evaluator_cases",
+      "module": "ai.grounded.evaluation",
+      "signature": "ai/grounded/evaluation.py",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence"
+        "python3 -m unittest ai.grounded.tests.test_evaluation.EvaluationTests.test_counts_match_independent_literal_expectations"
       ],
       "prerequisite_days": [
         203
@@ -361,39 +431,48 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "RETRIEVAL"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Retrieval"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-204",
-        "decision": "Count citations and abstentions over fixed synthetic cases; the tiny denominator is only a debugging aid.",
+        "decision": "Keep literal expected statuses/source IDs independent from the evaluation function; offline only.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": "Named project/evidence review",
+        "review_task": "Review ai/grounded/evaluation.py; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "allocation_minutes": {
+          "named_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
       }
     },
     {
       "day_number": 205,
       "date": "2027-05-16",
-      "title": "Keep failure closed",
-      "learner_seam": "fail_closed",
+      "title": "Enforce owner filter before local matching",
+      "learner_seam": "ai_owner_filter",
       "module": "ai.grounded.evidence",
-      "signature": "invalid input raises ValueError; unsupported match abstains",
+      "signature": "ai/grounded/evidence.py",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence"
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_foreign_owner_is_filtered_before_matching"
       ],
       "prerequisite_days": [
         204
@@ -409,38 +488,49 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "RAG_OVERVIEW"
+        "RETRIEVAL"
       ],
       "study_guidance": [
         {
-          "key": "RAG_OVERVIEW",
-          "title": "Retrieval augmented generation (RAG)",
+          "key": "RETRIEVAL",
+          "title": "Retrieval",
           "url": "https://platform.openai.com/docs/guides/retrieval",
           "sections": [
-            "Retrieval-augmented generation overview"
+            "Retrieval"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-205",
-        "decision": "Keep all paths local and fail closed; no provider calls or retries exist in this exercise.",
+        "decision": "Filter the supplied immutable synthetic clauses by owner before matching. This is not production authorization.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q05",
+        "question_title": "CoverStory domain workflow",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 206,
       "date": "2027-05-17",
-      "title": "Check fresh-process reproducibility",
-      "learner_seam": "fresh_process_check",
-      "module": null,
-      "signature": "subprocess stdout canonical JSON equality",
+      "title": "Return exact versioned citation or abstain",
+      "learner_seam": "ai_citation_abstention",
+      "module": "ai.grounded.evidence",
+      "signature": "ai/grounded/evidence.py",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence"
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_unique_literal_match_returns_exact_text_and_versioned_citation ai.grounded.tests.test_evidence.ExplainTests.test_ambiguous_matches_abstain"
       ],
       "prerequisite_days": [
         205
@@ -456,39 +546,48 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "RETRIEVAL"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Retrieval"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-206",
-        "decision": "Verify deterministic output in a fresh process; this proves serialization repeatability only.",
+        "decision": "Return one exact clause/version only for a unique deterministic match; abstain on missing or ambiguous evidence.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": "Named project/evidence review",
+        "review_task": "Review ai/grounded/evidence.py; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "allocation_minutes": {
+          "named_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
       }
     },
     {
       "day_number": 207,
       "date": "2027-05-18",
-      "title": "Review confirmed certification targets",
+      "title": "Verify current certification guide identity",
       "learner_seam": "certification_source_review",
-      "module": null,
-      "signature": "current official SAA and Developer Associate guide notes",
+      "module": "ai.grounded.evidence",
+      "signature": "docs/reboot/continuation-197-210/verified-sources.json",
       "selectors": [
-        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        "python3 scripts/check_continuation_197_210_sources.py"
       ],
       "prerequisite_days": [
         206
@@ -522,30 +621,41 @@
           "title": "AWS Certified Developer - Associate exam guide",
           "url": "https://aws.amazon.com/certification/certified-developer-associate/",
           "sections": [
-            "Exam guide and current version"
+            "Exam guide"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-207",
-        "decision": "Recheck current official guides and versions; Developer Associate content is limited to the current published guide.",
+        "decision": "Check official SAA and Developer Associate guide links, headings, and versions available when performed. No API or StreamForge gate substitutes for this review; no paid booking.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q13",
+        "question_title": "Booking: reserve one seat atomically",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 208,
       "date": "2027-05-19",
-      "title": "Map portfolio evidence honestly",
-      "learner_seam": "application_checkpoint",
-      "module": null,
-      "signature": "evidence inventory with limits",
+      "title": "Implement outcome counts against fixed cases",
+      "learner_seam": "offline_evaluator_counts",
+      "module": "ai.grounded.evaluation",
+      "signature": "ai/grounded/evaluation.py",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence"
+        "python3 -m unittest ai.grounded.tests.test_evaluation"
       ],
       "prerequisite_days": [
         207
@@ -561,44 +671,53 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "RETRIEVAL"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Retrieval"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-208",
-        "decision": "Separate demonstrated implementation knowledge from professional ownership and senior influence.",
+        "decision": "Count total/cited/abstained/exact-match/citation-mismatch against independently stated cases.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": "Named project/evidence review",
+        "review_task": "Review ai/grounded/evaluation.py; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "allocation_minutes": {
+          "named_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
       }
     },
     {
       "day_number": 209,
       "date": "2027-05-20",
-      "title": "Re-evaluate prerequisite evidence",
-      "learner_seam": "gate_recheck",
-      "module": null,
-      "signature": "authoritative Day 153/154 gate status",
+      "title": "Re-run bounded local package acceptance recovery",
+      "learner_seam": "packaged_runtime_recovery",
+      "module": "CoverStory existing seam",
+      "signature": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
       "selectors": [
-        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest test"
       ],
       "prerequisite_days": [
         208
       ],
-      "recovery_day": true,
+      "recovery_day": false,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -609,38 +728,49 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "RAG_OVERVIEW"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "RAG_OVERVIEW",
-          "title": "Retrieval augmented generation (RAG)",
-          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Retrieval-augmented generation overview"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-209",
-        "decision": "Run the authoritative gate checker and preserve its actual result without editing historic evidence.",
+        "decision": "Recover the first named package/browser failure only; this displaces any unfinished feature work.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     },
     {
       "day_number": 210,
       "date": "2027-05-21",
-      "title": "Recover unfinished work",
-      "learner_seam": "recovery",
-      "module": null,
-      "signature": "rerun unfinished prior selector only",
+      "title": "Verify fresh-process canonical output",
+      "learner_seam": "fresh_process_reproducibility",
+      "module": "CoverStory existing seam",
+      "signature": "ai/grounded/cli.py",
       "selectors": [
-        "python3 -m unittest ai.grounded.tests.test_evidence"
+        "python3 -m unittest ai.grounded.tests.test_cli.CliTests.test_fresh_process_report_is_canonical_and_repeatable"
       ],
       "prerequisite_days": [
         209
@@ -656,29 +786,42 @@
       },
       "budget_minutes": 210,
       "study_refs": [
-        "EVALS"
+        "NO_COURSE"
       ],
       "study_guidance": [
         {
-          "key": "EVALS",
-          "title": "Working with evals",
-          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "key": "NO_COURSE",
+          "title": "Course catalog audit",
+          "url": "../course-learning-map.md",
           "sections": [
-            "Evaluation workflow",
-            "Datasets"
+            "Catalog metadata and access caveat"
           ]
         }
       ],
       "engineering_architecture": {
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "note_ref": "assistant-architecture-notes.md#day-210",
-        "decision": "Use the day to recover unfinished named work; no additional block or scope is added.",
+        "decision": "Invoke two subprocesses with bounded timeout; compare stdout bytes to the canonical serializer and independent report expectation.",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
       "interview_practice": {
-        "mode": "shared_question_or_review"
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
       }
     }
-  ]
+  ],
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  }
 }

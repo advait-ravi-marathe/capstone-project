@@ -1,13 +1,66 @@
 {
   "verified_at": "2026-10-24",
-  "scope": "Public primary source references and official certification links recorded. Live URL verification is blocked by outbound proxy 403; recheck availability and exact current guide/version when executing the assigned study. No Udemy lecture assigned because exact eligible lesson metadata was not verified.",
+  "scope": "Titles/section headings rechecked against the public primary pages. OpenAI Evals API is documented as read-only 2026-10-31 and shutdown 2026-11-30, so it is not a May 2027 dependency. Durable offline evaluation concepts only; no provider service is used.",
   "sources": [
-    {"key":"RAG_OVERVIEW","title":"Retrieval augmented generation (RAG)","provider":"OpenAI","url":"https://platform.openai.com/docs/guides/retrieval","sections":["Retrieval-augmented generation overview"],"use":"Conceptual comparison only; no API call, vector store, or live model is part of this sprint."},
-    {"key":"EVALS","title":"Working with evals","provider":"OpenAI","url":"https://developers.openai.com/api/docs/guides/evals","sections":["Evaluation workflow","Datasets"],"use":"Use fixed expected examples and keep expected outputs independent of implementation."},
-    {"key":"SAA_GUIDE","title":"AWS Certified Solutions Architect - Associate (SAA-C03)","provider":"AWS","url":"https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html","sections":["Exam overview","Content outline"],"use":"Study only current published guide; recheck version before use."},
-    {"key":"DEV_ASSOCIATE","title":"AWS Certified Developer - Associate exam guide","provider":"AWS","url":"https://aws.amazon.com/certification/certified-developer-associate/","sections":["Exam guide and current version"],"use":"Use the current official guide; DVA-C03 specifics remain gated on official publication."},
-    {"key":"COURSE_AUDIT","title":"Course catalog verification","provider":"Local catalog evidence","url":"../course-learning-map.md","sections":["Current verified metadata only"],"use":"No exact eligible lesson was verified for this scope; no lecture is assigned or fabricated."}
+    {
+      "key": "RETRIEVAL",
+      "title": "Retrieval",
+      "provider": "OpenAI",
+      "url": "https://platform.openai.com/docs/guides/retrieval",
+      "sections": [
+        "Retrieval"
+      ],
+      "use": "Conceptual comparison only; no API/vector-store dependency."
+    },
+    {
+      "key": "EVALS_LIFECYCLE",
+      "title": "Working with evals",
+      "provider": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/guides/evals",
+      "sections": [
+        "Create an eval for a task"
+      ],
+      "use": "Lifecycle caveat only: the Evals API becomes read-only 2026-10-31 and shuts down 2026-11-30. Sprint evaluation is implemented locally from fixed examples; do not use this API."
+    },
+    {
+      "key": "SAA_GUIDE",
+      "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+      "provider": "AWS",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+      "sections": [
+        "Exam overview",
+        "Content outline"
+      ],
+      "use": "Current exam guide review; recheck exact version and current guide at execution."
+    },
+    {
+      "key": "DEV_ASSOCIATE",
+      "title": "AWS Certified Developer - Associate exam guide",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+      "sections": [
+        "Exam guide"
+      ],
+      "use": "Current official guide only; no invented DVA-C03 content."
+    },
+    {
+      "key": "NO_COURSE",
+      "title": "Course catalog audit",
+      "provider": "Local catalog records",
+      "url": "../course-learning-map.md",
+      "sections": [
+        "Catalog metadata and access caveat"
+      ],
+      "use": "No exact eligible lesson verified for this window; no lesson is assigned."
+    }
   ],
   "course_assignment": null,
-  "constraints": ["Free/public docs fit within 35-minute engineering study block", "No paid course, exam booking, cloud resource, credential, or networked runtime", "Official source facts must be rechecked when daily work is performed"]
+  "constraints": [
+    "Free/public docs fit within 35-minute engineering study block",
+    "No paid course, exam booking, cloud resource, credential, or networked runtime",
+    "Official source facts must be rechecked when daily work is performed"
+  ],
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  }
 }

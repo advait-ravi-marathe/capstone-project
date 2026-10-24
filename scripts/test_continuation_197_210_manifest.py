@@ -20,7 +20,7 @@ class Continuation197210ManifestTest(unittest.TestCase):
         self.assertEqual(list(range(197, 211)), [d["day"] for d in days])
         self.assertEqual(date(2027, 5, 8), date.fromisoformat(days[0]["date"]))
         self.assertEqual(date(2027, 5, 21), date.fromisoformat(days[-1]["date"]))
-        self.assertEqual([209, 210], [d["day"] for d in days if d["recovery_day"]])
+        self.assertEqual([203, 210], [d["day"] for d in days if d["recovery_day"]])
         self.assertEqual(14, self.owner["story_count"])
         self.assertFalse(self.owner["board_writes"])
         self.assertIsNone(self.manifest["course_assignment"])
@@ -34,6 +34,15 @@ class Continuation197210ManifestTest(unittest.TestCase):
             self.assertEqual(d["engineering_architecture"], owner_by_day[d["day"]]["engineering_architecture"])
             self.assertEqual(d["engineering_architecture"], plan_by_day[d["day"]]["engineering_architecture"])
             self.assertEqual(d["selectors"], owner_by_day[d["day"]]["selectors"])
+            shared=d["shared_interview_block"]
+            self.assertIsNotNone(shared["question_title"])
+            self.assertEqual(45, shared["minutes"])
+            if shared["question_id"]:
+                question_id=int(shared["question_id"][1:])
+                bank=(ROOT/"docs/reboot/interview/question-bank.md").read_text()
+                self.assertIn(f'<a id="q{question_id:02d}"></a>', bank)
+            else:
+                self.assertTrue(shared.get("review_task"))
             contract = BATCH / "contracts" / f"day-{d['day']}.md"
             self.assertTrue(contract.exists())
 
@@ -42,12 +51,19 @@ class Continuation197210ManifestTest(unittest.TestCase):
         for d in self.manifest["days"]:
             for command in d["selectors"]:
                 words = shlex.split(command)
-                if words[1] == "-m":
+                if words[0] == "python3" and words[1] == "-m":
                     self.assertEqual(["python3", "-m", "unittest"], words[:3])
                     names = words[3:]
-                else:
-                    self.assertTrue(words[1].endswith(".py"))
+                elif words[0] == "./mvnw":
+                    testarg=next((w for w in words if w.startswith("-Dtest=")),None)
+                    self.assertIsNotNone(testarg)
+                    self.assertIn(testarg.split("=",1)[1].split(",")[0].split("#")[0], [p.stem for p in (ROOT/"src/test/java").rglob("*Test.java")])
                     names = []
+                elif words[0] == "python3" and words[1].endswith(".py"):
+                    self.assertTrue((ROOT/words[1]).is_file(), command)
+                    names = []
+                else:
+                    self.fail(f"unsupported selector command: {command}")
                 suite = unittest.TestSuite(loader.loadTestsFromName(x) for x in names)
                 if not names:
                     continue
@@ -67,7 +83,9 @@ class Continuation197210ManifestTest(unittest.TestCase):
         self.assertIn("does not satisfy or waive", self.manifest["gate_policy"])
         self.assertNotIn("learner_completion", self.manifest)
         self.assertIn("course_assignment", self.manifest)
-        self.assertIn("no DSA task", text)
+        self.assertEqual("not_met", self.manifest["inspection_findings"]["day153_day154_gate"])
+        self.assertTrue(all(d["shared_interview_block"]["question_title"] for d in self.manifest["days"]))
+        self.assertIn("DSA remains external", text)
 
 
 if __name__ == "__main__":
