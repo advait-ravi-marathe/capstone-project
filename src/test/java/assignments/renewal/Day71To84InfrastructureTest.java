@@ -121,6 +121,7 @@ class Day71To84InfrastructureTest {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
         JsonNode stories = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        String ownerExport = Files.readString(BASE.resolve("scrum-owner-manifest.json"));
         String questionBank = Files.readString(Path.of("docs/reboot/interview/question-bank.md"));
         String notes = Files.readString(BASE.resolve("assistant-architecture-notes.md"));
         Set<Integer> expectedMockDays = Set.of(73, 76, 80, 81);
