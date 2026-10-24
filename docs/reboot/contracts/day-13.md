@@ -24,11 +24,13 @@ Days 1–12 status manifest and fixture smoke. Earlier unfinished collaborators 
 
 ## Concept (25 minutes)
 
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Keep CI as the explicit repository checkout, Java setup, and Maven verification sequence. Propagate any nonzero test result so a broken run cannot appear green.](../assistant-architecture-notes.md#day-13-fail-closed-ci-workflow). No capstone design proposal or post-hoc architecture justification is assigned.
+
 Test pyramid, reproducibility, CI failure signals [I]. Within this same 25-minute block, trace `.github/workflows/coverstory-starter.yml`: push/pull-request trigger → Ubuntu job → Java 21 and Node setup → Maven infrastructure command → `npm ci`, build, instructor tests, and audit. Each nonzero step fails the job. Distinguish this instructor check from the learner readiness TODO; a local green run is not a remote Actions result.
 
 ## Evidence (10 minutes)
 
-Actual local/CI-equivalent output; do not claim remote run if absent. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Actual local/CI-equivalent output; do not claim remote run if absent. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Planned isolated command
 
@@ -38,9 +40,9 @@ Actual local/CI-equivalent output; do not claim remote run if absent. Record dat
 
 The first selector checks the supplied workflow and fail-closed commands; it passes locally. The second runs the learner readiness-policy acceptance tests and is expected red at the explicit TODO. The remote Actions result is not claimed until observed; local evidence and remote CI are separate.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 

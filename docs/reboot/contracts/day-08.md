@@ -24,11 +24,13 @@ Days 1 and 7; SQL seeds bypass services. Earlier unfinished collaborators are re
 
 ## Concept (25 minutes)
 
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Use PostgreSQL constraints for required values, keys, and uniqueness, plus foreign keys for relationships. The database remains the integrity boundary if application validation is bypassed.](../assistant-architecture-notes.md#day-8-database-enforced-quote-invariants). No capstone design proposal or post-hoc architecture justification is assigned.
+
 Composite primary-key identity, matching composite foreign keys, required columns, and observed SQLSTATEs. The H2 lesson does not teach the PostgreSQL constraint matrix; the worked guide does so before the migration task.
 
 ## Evidence (10 minutes)
 
-Real PostgreSQL insert/rejection matrix. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Real PostgreSQL insert/rejection matrix. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Planned isolated command
 
@@ -36,9 +38,9 @@ Real PostgreSQL insert/rejection matrix. Record dated attempt state (`not attemp
 
 This selector runs the installed tests against a real embedded PostgreSQL server. It should fail until the learner completes the explicit constraints in `src/main/resources/db/migration/V001__homesecure_quotes.sql`. Such failures are not an infrastructure pass. Infrastructure checks are separate.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 

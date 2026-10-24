@@ -103,7 +103,12 @@
         "asserted_response_fields": [],
         "safety_preconditions": [],
         "evidence_output_path": "evidence/reboot/day-01.json",
-        "prerequisite_note": "Use the guided reference and understand the observed request/method/return/response first. The separate practice test does not complete the existing quote-selection contract; the default main app reaches Day 2 validation TODO first. Do not implement Day 2 or production wiring to unblock the bridge."
+        "prerequisite_note": "Use the guided reference and understand the observed request/method/return/response first. The separate practice test does not complete the existing quote-selection contract; the default main app reaches Day 2 validation TODO first. Do not implement Day 2 or production wiring to unblock the bridge.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-1-quote-selection-boundary",
+          "decision": "Keep the existing domain rule in the pure `QuoteSelectionPolicy`; the HTTP adapter owns transport mapping. This preserves the Day 2 validation prerequisite and keeps domain behavior independently testable.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Day 1 API bridge (existing 25/85/10-minute budget):** [in28Minutes Official, *Master Spring Boot 3 & Spring Framework 6 with Java*](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section **“Creating a Java REST API with Spring Boot, Spring Framework and Hibernate.”** Watch essential **“Step 02 - Creating a Hello World REST API with Spring Boot” (6:21)** then **“Step 03 - Enhancing the Hello World REST API to return a Bean” (4:30)** (10:51 total). If request/API terms are unfamiliar, add **“Step 00 - Creating a REST API with Spring Boot - An Overview” (4:04)**. **“Step 01 - Initializing a REST API Project with Spring Boot” (7:26)** is optional setup reference because the test-runtime fixture handles setup. Catalog titles were verified; videos were not watched. In 25 minutes, study the course and [runnable worked guide](docs/reboot/day-01-api-bridge.md); carry unfinished viewing forward. Use 85 minutes for the loopback reference and the separate small practice endpoint, not quote-selection implementation until the API bridge is understood. Use 10 minutes for exact observed response and request→method→Java value→HTTP explanation. This guide does not complete the original Day 1 quote-selection contract. The repository is Java 21/Spring Boot 4.1.1; do not downgrade or copy old setup instructions.",
       "course_learning_source_status": "verified_titles_video_not_watched",
@@ -148,19 +153,22 @@
       "course_learning_total_viewing_seconds": 1341,
       "course_prerequisite_note": "Use the guided reference and understand the observed request/method/return/response first. The separate practice test does not complete the existing quote-selection contract; the default main app reaches Day 2 validation TODO first. Do not implement Day 2 or production wiring to unblock the bridge.",
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#requirement-slice",
-          "docs/reboot/interview/pattern-library.md#http-boundary"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-01.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-1-quote-selection-boundary",
+          "decision": "Keep the existing domain rule in the pure `QuoteSelectionPolicy`; the HTTP adapter owns transport mapping. This preserves the Day 2 validation prerequisite and keeps domain behavior independently testable.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 02 - Creating a Hello World REST API with Spring Boot",
@@ -190,12 +198,7 @@
             "source_item_id": "35018844",
             "course_id": null
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-01.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 1 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day01: Quote selection",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -239,7 +242,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-02.json"
+        "evidence_output_path": "evidence/reboot/day-02.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-2-validate-before-delegation",
+          "decision": "Validate at the controller boundary before invoking the collaborator. The existing DTO/service boundary keeps malformed transport input out of domain work and makes no-call behavior directly testable.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 09 - Implementing POST Method to create User Resource” (8:36; item 35018816). Read the [Day 2 worked request-boundary guide](docs/reboot/teaching/day-02-request-boundary.md) before implementation. “Step 14 - Implementing Validations for REST API” (11:47; item 35018798) is optional later, not stacked into today. Catalog metadata verified 2026-10-21; video playback not verified. AWS course: none assigned for this local task. See the [Days 1–30 map](docs/reboot/course-learning-map.md).",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -257,19 +265,22 @@
       ],
       "course_learning_total_viewing_seconds": 516,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#http-boundary",
-          "docs/reboot/interview/pattern-library.md#ownership-boundary"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-02.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-2-validate-before-delegation",
+          "decision": "Validate at the controller boundary before invoking the collaborator. The existing DTO/service boundary keeps malformed transport input out of domain work and makes no-call behavior directly testable.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 09 - Implementing POST Method to create User Resource",
@@ -278,12 +289,7 @@
             "source_item_id": null,
             "course_id": null
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-02.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 2 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day02: Validate request at the HTTP boundary",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -329,7 +335,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-03.json"
+        "evidence_output_path": "evidence/reboot/day-03.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-3-centralized-safe-error-mapping",
+          "decision": "Use the supplied controller advice to map expected exceptions to stable client responses and unexpected exceptions to sanitized server responses. Keep internal exception details private and domain decisions in their service/policy.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Creating a Java REST API with Spring Boot, Spring Framework and Hibernate”: “Step 12 - Implementing Generic Exception Handling for all Resources” (11:29; item 35018806). Read the [Day 3 worked safe-errors guide](docs/reboot/teaching/day-03-safe-errors.md) before implementation. “Step 11 - Implementing Exception Handling - 404 Resource Not Found” (7:49; item 35018810) is optional later, not stacked into today. Catalog metadata verified 2026-10-21; video playback not verified. AWS course: none assigned for this local task. See the [Days 1–30 map](docs/reboot/course-learning-map.md).",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -440,7 +451,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-04.json"
+        "evidence_output_path": "evidence/reboot/day-04.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-4-immutable-catalog-boundary",
+          "decision": "Return an immutable copy of the catalog collection and retain the supplied immutable product values. This protects collection membership without introducing a new mutable object graph.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), section “Getting Started with Java Spring Framework - 5 - Key Questions about Spring”: “Step 13 - Exploring Java Bean vs POJO vs Spring Bean” (5:15; item 35020094). Optional later: “Step 09 - Creating More Java Spring Beans in Spring Java Configuration File” (6:41; item 35020124), not stacked today. The course introduces bean terms, not collection ownership. Work the [Day 4 collection-ownership guide](docs/reboot/teaching/day-04-immutable-values.md) before implementation. 5:15 lesson + 15:45 worked guide + 4:00 readiness = 25 minutes. Catalog metadata verified; playback not verified.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -459,19 +475,22 @@
       ],
       "course_learning_total_viewing_seconds": 315,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#requirement-slice",
-          "docs/reboot/interview/pattern-library.md#domain-workflow"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-04.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-4-immutable-catalog-boundary",
+          "decision": "Return an immutable copy of the catalog collection and retain the supplied immutable product values. This protects collection membership without introducing a new mutable object graph.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 13 - Exploring Java Bean vs POJO vs Spring Bean",
@@ -480,12 +499,7 @@
             "source_item_id": "35020094",
             "course_id": null
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-04.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 4 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day04: Product catalog + reviews LC 121 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -528,7 +542,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-05.json"
+        "evidence_output_path": "evidence/reboot/day-05.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-5-pure-eligibility-policy",
+          "decision": "Keep eligibility a deterministic policy over supplied product and applicant snapshots. Do not add persistence or controller dependencies; this keeps access and decision responsibilities separate.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Required course lesson:** [Master Spring Boot 3 & Spring Framework 6 with Java — in28Minutes Official](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/), “APPENDIX - Functional Programming - A Quick Review using Q&A Format”: “Core concepts of Functional Programming” (6:43; item 49578631). The streams lesson (5:30; item 35017372) is optional later. Use the [Day 5 worked decision table](docs/reboot/teaching/day-05-decision-table.md) to learn rule precedence before transferring to the frozen insurance table. 6:43 lesson + 14:17 guide + 4:00 readiness = 25 minutes. Catalog metadata verified; playback not verified.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -547,19 +566,22 @@
       ],
       "course_learning_total_viewing_seconds": 403,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#domain-workflow",
-          "docs/reboot/interview/pattern-library.md#immutable-snapshot"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-05.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-5-pure-eligibility-policy",
+          "decision": "Keep eligibility a deterministic policy over supplied product and applicant snapshots. Do not add persistence or controller dependencies; this keeps access and decision responsibilities separate.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Core concepts of Functional Programming",
@@ -568,12 +590,7 @@
             "source_item_id": "49578631",
             "course_id": null
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-05.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 5 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day05: Eligibility + frequency counting (LC 383)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -616,7 +633,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-06.json"
+        "evidence_output_path": "evidence/reboot/day-06.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-6-explicit-decimal-calculation",
+          "decision": "Use `BigDecimal` with the contract’s explicit scale and rounding rule. Avoid binary floating-point so the same input produces a stable monetary result.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "**Conditional course reference:** [Java Programming for Complete Beginners — in28Minutes Official](https://www.udemy.com/course/java-programming-tutorial-for-beginners/), “Primitive Data Types And Alternatives in Java Programming”: “Step 05 - Introduction to BigDecimal Java Class” (6:58; item 9565516). Access unconfirmed; no purchase/enrollment. Other BigDecimal lessons are optional, not stacked. Use the [Day 6 worked rounding guide](docs/reboot/teaching/day-06-decimal-rounding.md) before the fixed premium formula. 6:58 lesson + 14:02 guide + 4:00 readiness = 25 minutes; if inaccessible, use 7:00 official Java reading + 14:00 guide + 4:00 readiness.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -635,19 +657,22 @@
       ],
       "course_learning_total_viewing_seconds": 418,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
-          "docs/reboot/interview/pattern-library.md#transaction-boundary"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-06.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-6-explicit-decimal-calculation",
+          "decision": "Use `BigDecimal` with the contract’s explicit scale and rounding rule. Avoid binary floating-point so the same input produces a stable monetary result.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 05 - Introduction to BigDecimal Java Class",
@@ -656,12 +681,7 @@
             "source_item_id": "9565516",
             "course_id": null
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-06.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 6 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day06: Premium calculation + reviews LC 1 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -704,7 +724,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-07.json"
+        "evidence_output_path": "evidence/reboot/day-07.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-7-fixed-clock-quote-version",
+          "decision": "Inject `Clock` and create an immutable quote snapshot with an explicit expiry instant. This makes time boundaries deterministic and prevents a later version from mutating an earlier snapshot.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "No exact verified course lesson covers `Clock` injection or deterministic business time. Read Java 21 `Clock.fixed(Instant, ZoneId)` and `Instant.plusSeconds`/`isBefore`, then use the [Day 7 worked deterministic-time guide](docs/reboot/teaching/day-07-deterministic-time.md). 6 minutes focused official reading + 15 minutes worked trace + 4:00 readiness = 25 minutes.",
       "course_learning_source_status": "official_docs_worked_supplement_no_course_lecture",
@@ -798,7 +823,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-08.json"
+        "evidence_output_path": "evidence/reboot/day-08.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-8-database-enforced-quote-invariants",
+          "decision": "Use PostgreSQL constraints for required values, keys, and uniqueness, plus foreign keys for relationships. The database remains the integrity boundary if application validation is bypassed.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Required: “Step 03 - Launching up H2 Console and Creating Course Table in H2” (7:24). “Step 04 - Getting Started with Spring JDBC” (3:58) is optional later. The H2 lesson only introduces a table; the linked worked example teaches the PostgreSQL composite-key constraint. Study budget: 7:24 lesson + 13:36 worked guide + 4:00 readiness, within 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -818,19 +848,22 @@
       ],
       "course_learning_total_viewing_seconds": 444,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#concurrency-guards",
-          "docs/reboot/interview/pattern-library.md#transaction-boundary"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-08.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-8-database-enforced-quote-invariants",
+          "decision": "Use PostgreSQL constraints for required values, keys, and uniqueness, plus foreign keys for relationships. The database remains the integrity boundary if application validation is bypassed.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 03 - Launching up H2 Console and Creating Course Table in H2",
@@ -839,12 +872,7 @@
             "source_item_id": "35019878",
             "course_id": "4993276"
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-08.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 8 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day08: PostgreSQL schema + reviews LC 121 D+7, LC 383 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -885,7 +913,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-09.json"
+        "evidence_output_path": "evidence/reboot/day-09.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-9-parameterized-snapshot-persistence",
+          "decision": "Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind owner and quote identifiers so input remains data and reads stay owner-scoped.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Required: “Step 07 - Querying Data using Spring JDBC” (5:36), a higher-level background lesson. “Step 06 - Inserting and Deleting Data using Spring JDBC” (9:01) is optional later. The focused guide teaches this repository’s raw DataSource/JDBC seam. Study budget: 5:36 lesson + 15:24 worked guide + 4:00 readiness, within 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -905,19 +938,22 @@
       ],
       "course_learning_total_viewing_seconds": 336,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#stable-pagination",
-          "docs/reboot/interview/pattern-library.md#ownership-boundary"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-09.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-9-parameterized-snapshot-persistence",
+          "decision": "Use the existing JDBC adapter, prepared statements, and explicit row-to-snapshot mapping. Bind owner and quote identifiers so input remains data and reads stay owner-scoped.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 07 - Querying Data using Spring JDBC",
@@ -926,12 +962,7 @@
             "source_item_id": "35019858",
             "course_id": "4993276"
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-09.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 9 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day09: Quote persistence + prefix/suffix products (LC 238)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -972,7 +1003,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-10.json"
+        "evidence_output_path": "evidence/reboot/day-10.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-10-one-connection-one-transaction",
+          "decision": "Keep the batch write and related records on one connection and transaction; commit only after all writes succeed and roll back on failure to prevent partial persistence.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional reference if accessible: “Step 58 - Introduction to Transaction Management” (4:43) and “Step 59 - Transaction Management - ACID Properties” (5:49), 10:32 total. “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38) is optional later. If access is unavailable, use the linked official JDBC Connection methods for the same study time; no purchase/enrollment. The example owns one JDBC connection and does not teach Spring-managed transactions. Study budget: 10:32 foundation + 10:28 worked trace + 4:00 readiness, within 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1098,7 +1134,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-11.json"
+        "evidence_output_path": "evidence/reboot/day-11.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-11-declared-freshness-check-order",
+          "decision": "Apply freshness checks in the contract’s specified order using the supplied current time. Stable precedence gives predictable results when multiple stale conditions exist.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "No exact course lesson verified for this pure freshness guard. Use the focused Java 21 Instant “isBefore” reference and linked worked boundary/precedence example; do not substitute transaction-isolation lessons. Study budget: 5:00 official API reading + 16:00 worked trace + 4:00 readiness, within 25 minutes.",
       "course_learning_source_status": "no_exact_lesson_verified_use_supplement",
@@ -1107,25 +1148,23 @@
       "course_learning_lessons": [],
       "course_learning_total_viewing_seconds": 0,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#concurrency-guards",
-          "docs/reboot/interview/pattern-library.md#domain-workflow"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
-        "course_bridges": [],
+        "supporting_sources": [],
         "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-11.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-11.md within the existing practice allocation; do not write a capstone design proposal.",
         "deferred_work_id": null,
-        "acceptance": "The original Day 11 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-11-declared-freshness-check-order",
+          "decision": "Apply freshness checks in the contract’s specified order using the supplied current time. Stable precedence gives predictable results when multiple stale conditions exist.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
+        "course_bridges": []
       },
       "title": "Day11: Stale quotes + inward pointers (LC 125)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -1166,7 +1205,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-12.json"
+        "evidence_output_path": "evidence/reboot/day-12.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-12-trusted-principal-owns-the-read",
+          "decision": "Resolve owner from the authenticated principal, never a request field, and apply that owner in the data-access predicate. Forged query or body values cannot change identity.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Required: “Step 21 - Understanding Spring Security Authentication” (4:17) and “Step 22 - Exploring Spring Security Authorization” (9:47), 14:04 total. Use the linked owner-guard fixture to connect general authorization to object ownership; its test principal is not production authentication. Study budget: 14:04 viewing + 6:56 fixture trace + 4:00 readiness, within 25 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1194,19 +1238,22 @@
       ],
       "course_learning_total_viewing_seconds": 844,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#ownership-boundary",
-          "docs/reboot/interview/pattern-library.md#gateway-boundary"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-12.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-12-trusted-principal-owns-the-read",
+          "decision": "Resolve owner from the authenticated principal, never a request field, and apply that owner in the data-access predicate. Forged query or body values cannot change identity.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Step 21 - Understanding Spring Security Authentication",
@@ -1222,12 +1269,7 @@
             "source_item_id": "35017626",
             "course_id": "4993276"
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-12.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 12 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day12: Owner access + reviews LC 383 D+7, LC 238 D+3",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -1270,7 +1312,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-13.json"
+        "evidence_output_path": "evidence/reboot/day-13.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-13-fail-closed-ci-workflow",
+          "decision": "Keep CI as the explicit repository checkout, Java setup, and Maven verification sequence. Propagate any nonzero test result so a broken run cannot appear green.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Conditional reference if accessible: “Getting Started with Continuous Integration, Deployment and Delivery” (4:50), access unconfirmed; no purchase/enrollment. Alternatively use the focused official GitHub Actions workflow-log guide. Trace the named workflow step and the guide’s explicitly hypothetical exit-code-1 log, not a claimed current run; do not install Azure DevOps or Jenkins. Study budget remains 4:50 lesson (or focused official reading) + 16:10 repository trace + 4:00 readiness.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
@@ -1290,19 +1337,22 @@
       ],
       "course_learning_total_viewing_seconds": 290,
       "interview_practice": {
-        "mode": "proposal_before_reference",
-        "duration_minutes": 5,
-        "proposal_before_hints_reference_or_ai": true,
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
         "question_id": null,
         "question_href": null,
-        "pattern_refs": [
-          "docs/reboot/interview/pattern-library.md#resilience",
-          "docs/reboot/interview/pattern-library.md#measure-before-scaling"
-        ],
-        "supporting_sources": [
-          "docs/reboot/interview/question-bank.md",
-          "docs/reboot/interview/pattern-library.md"
-        ],
+        "supporting_sources": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Implement and test the assistant-provided decision for docs/reboot/contracts/day-13.md within the existing practice allocation; do not write a capstone design proposal.",
+        "deferred_work_id": null,
+        "acceptance": "The original engineering acceptance remains authoritative; this guidance does not mark implementation complete.",
+        "evidence": "Record actual selector, exit/result or blocker, assistance, and changed paths. No proposal or post-hoc architecture justification is required.",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-13-fail-closed-ci-workflow",
+          "decision": "Keep CI as the explicit repository checkout, Java setup, and Maven verification sequence. Propagate any nonzero test result so a broken run cannot appear green.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        },
         "course_bridges": [
           {
             "title": "Getting Started with Continuous Integration, Deployment and Delivery",
@@ -1311,12 +1361,7 @@
             "source_item_id": "18086493",
             "course_id": "2813427"
           }
-        ],
-        "practice_minutes_available": 85,
-        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-13.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
-        "deferred_work_id": null,
-        "acceptance": "The original Day 13 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
-        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+        ]
       },
       "title": "Day13: CI + sorted two pointers (LC 167)",
       "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
@@ -1359,7 +1404,12 @@
         "api_endpoints": [],
         "asserted_response_fields": [],
         "safety_preconditions": [],
-        "evidence_output_path": "evidence/reboot/day-14.json"
+        "evidence_output_path": "evidence/reboot/day-14.json",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes.md#day-14-diagnose-the-existing-vertical-slice",
+          "decision": "Use the bounded integration test to identify and report the first incomplete dependency. Preserve existing composition and learner TODOs; do not redesign wiring or replace a missing behavior with a fake pass.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "course_learning_block": "Optional review only, if a prior concept is unfamiliar: “Step 04 - What’s happening in the background? Spring Boot Starters & Autoconfig” (9:06) and “Step 13 - Understanding Spring Boot vs Spring vs Spring MVC” (3:55), 13:01 maximum. No new course is required; prioritize the linked trace of the existing integration test and its actual first failure. Stay within the 25-minute study block.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",

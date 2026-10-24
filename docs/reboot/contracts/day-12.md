@@ -24,11 +24,13 @@ Days 3, 9–11; Spring test principals and fixed owned-resource fixture. Earlier
 
 ## Concept (25 minutes)
 
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Resolve owner from the authenticated principal, never a request field, and apply that owner in the data-access predicate. Forged query or body values cannot change identity.](../assistant-architecture-notes.md#day-12-trusted-principal-owns-the-read). No capstone design proposal or post-hoc architecture justification is assigned.
+
 Authentication and authorization plus the existing fixture trace: `owner-a` reads its seeded journey; `owner-b` receives concealed 404; an owner value in the request does not change the principal. The course supplies the distinction; this concrete test walkthrough connects it to the seam without claiming production security is configured.
 
 ## Evidence (10 minutes)
 
-Owner/other/anonymous matrix. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Owner/other/anonymous matrix. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Planned isolated command
 
@@ -36,9 +38,9 @@ Owner/other/anonymous matrix. Record dated attempt state (`not attempted`, `atte
 
 The untagged harness cases verify only the instructor test filter chain. Its anonymous 401 and protected-route behavior are expected outcomes of this isolated harness, not learner achievement or production security evidence. The tagged owner-scoped read remains blocked at the learner policy TODO until it is implemented and the tagged selector passes.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 
