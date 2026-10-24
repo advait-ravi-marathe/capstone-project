@@ -11,7 +11,7 @@ The documented workflow builds the root UI into the executable JAR, starts a loo
 
 ## Acceptance and expected TODO state
 
-The instructor scaffold-verification selector is installed and passed; that result does not establish learner completion.
+The existing named selector checks source shape only; it does not inspect a fresh archive or launch a process. Do not report it as packaging/runtime acceptance.
 
 **Acceptance test:** `src/test/java/assignments/local/LocalPackageInfrastructureTest.java`
 **Acceptance selector:** `day67PackageIncludesNormalUiAndNoTestRoutes`
@@ -20,9 +20,19 @@ The instructor scaffold-verification selector is installed and passed; that resu
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
 ## Learner task — explain/debug acceptance
 
-Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
+Run `scripts/package-local-demo.sh` to build and `scripts/local-demo.sh` to launch; inspect the fresh JAR and served root/assets/routes, verify loopback health/session behavior, then stop only the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
+
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before packaging, predict which observations prove source shape, archive contents, launched process, served assets, health/session behavior, and resource cleanup.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D67-PACKAGE**.
+
+## Selector limits and open evidence
+
+- The named Java selector inspects source shape; it does not inspect a fresh JAR, launch the packaged process, fetch assets, or prove cleanup. Those observations require the package and launcher commands and actual learner evidence.
 
 ## Implementation/testing allocation (85 minutes)
 
@@ -37,7 +47,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [Spring Boot executable jar packaging — repackage goal and executable archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html).
 - Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Package, start and safely reset the local demo: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

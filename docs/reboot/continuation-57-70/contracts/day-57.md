@@ -19,6 +19,16 @@ Fixed acceptance tests verify the observable contract and remain learner-owned. 
 **Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before opening the readiness implementation or a worked answer, predict the outcomes for missing day-55, missing day-56, false/null flags, both true, and unrelated true keys. State what flags can and cannot prove about evidence authenticity.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D57-READINESS**.
+
+## Selector limits and open evidence
+
+- The fixed selector checks false day-55 with day-56 true, missing day-55 with day-56 true, and both true only. It does not cover empty input, null required values, unrelated true keys, or both missing directions; those required cases remain open.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -32,7 +42,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [GitHub Actions workflow syntax — workflow and job structure](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
 - Video viewing: 4:50 at 1×; the remaining 20:10 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Gate the local assembly on prior learner evidence: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

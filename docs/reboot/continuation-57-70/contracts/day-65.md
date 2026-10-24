@@ -24,6 +24,16 @@ Reproduce a POST without CSRF and one with a valid token, compare HTTP responses
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before sending requests, predict missing-token and wrong-token authenticated POST as 403, anonymous plus valid token as 401, and valid synthetic session plus current token reaching the adapter. Name the tables whose complete rows must remain unchanged on rejection.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D65-CSRF**.
+
+## Selector limits and open evidence
+
+- The selected test sends an anonymous POST without a token and compares only policy count. It does not establish authenticated missing/wrong-token denial, anonymous plus valid-token behavior, handler/service non-entry, or complete three-table snapshots.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -38,7 +48,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [Spring Security CSRF protection — synchronizer token pattern and CSRF configuration](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html).
 - Video viewing: 19:48 at 1×; the remaining 5:12 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Verify CSRF enforcement and rejected writes: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

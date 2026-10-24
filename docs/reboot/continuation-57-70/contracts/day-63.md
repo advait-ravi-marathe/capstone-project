@@ -18,6 +18,16 @@ The fixed learner selector is installed and currently fails at this day’s expl
 **Learner acceptance command:** `./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before the recovery checkpoint, name the actual Day 62 security evidence flag, predict missing/false/null/true outcomes, and state the first failed prerequisite. Validate the remaining practice minutes are within 0..85.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D63-RECOVERY**.
+
+## Selector limits and open evidence
+
+- The selector covers only day-62-security=false with 85 minutes. Missing/null/true evidence, other values in 0..85, out-of-range rejection, and both no-new-work branches remain unproven by this method.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -30,7 +40,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [Spring Security architecture — servlet architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html).
 - Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Run the security trace and recovery checkpoint: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

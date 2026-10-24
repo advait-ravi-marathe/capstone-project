@@ -14,3 +14,7 @@ source of truth for learner work.
 Rule: save the learner's own proposal before hints, model answers, or AI
 feedback. Mark assistance honestly. A question, mock, or test passing does not
 by itself complete an EAI contract.
+
+## Sprint 5 Days 57–70
+
+See the [Sprint 5 interview sessions and engineering tasks](sprint5-session-scope.md) and its synchronized [curriculum export](../continuation-57-70/fde57-70-v2-curriculum.json).

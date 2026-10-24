@@ -18,6 +18,24 @@ The fixed browser selector launches the executable JAR and drives UI controls ac
 **Learner acceptance command:** `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+## Interview design mock (45 minutes inside the 85-minute practice block)
+
+**Question:** [Q18 — Cache invalidation: owner privacy after a write](../../interview/question-bank.md#q18)
+
+Design how a private read cache is invalidated after an owner switch, logout, or a write. Compare cache keying and invalidation strategies, including a late in-flight response. Transfer the state reasoning to the supplied UI/restart experiment; do not add a cache feature.
+
+Save the initial proposal before opening hints, worked references, or AI. Use Requirements 5 minutes; Capacity and constraints 5; Initial architecture and data model 15; Bottlenecks, reliability, scaling 10; Trade-offs, failures, follow-ups 10. Use the [100-point rubric](../../interview/mock-rubric.md).
+
+**Remaining task slice (40 minutes):**
+
+- 5 minutes: preconditions and prediction.
+- 25 minutes: Run the packaged journey and inspect whether the exact saved cookie was active before shutdown, whether logout is independent from restart, and whether populated private UI state clears immediately. The current selector does not prove these conditions; keep them open.
+- 10 minutes: run the named selector and record its result or first blocker. The full day acceptance above remains unchanged; unmet work stays open as **S5-D69-RESTART**.
+
+## Selector limits and open evidence
+
+- The current browser journey combines owner switch/logout with restart-cookie capture, so the saved cookie may already be invalid before process shutdown. It does not establish the exact saved sample is active immediately before stop, separate logout from restart, or assert immediate UI clearing from populated private state.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -29,12 +47,8 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Exact lesson title: **Step 21 - Understanding Spring Security Authentication**; exact section title: **Securing Spring Boot Applications with Spring Security** (4:17).
 - Exact lesson title: **Step 22 - Exploring Spring Security Authorization**; exact section title: **Securing Spring Boot Applications with Spring Security** (9:47).
 - Fit: partial foundation. The lessons cover auth concepts, not session invalidation or restart persistence. Trace the supplied cookie-session logout and foreign-owner scenarios in the packaged browser harness; compare complete PostgreSQL snapshots and never treat JWT examples as equivalent.
-- Focused worked references: [Spring Security logout handling — logout architecture and URI customization](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html); [PostgreSQL transaction isolation — Read Committed statement snapshots](https://www.postgresql.org/docs/14/transaction-iso.html).
+- Focused worked references: [Spring Security logout handling — logout architecture and URI customization](https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html); [PostgreSQL transaction isolation — Read Committed statement snapshots](https://www.postgresql.org/docs/18/transaction-iso.html).
 - Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
-
-**Design sketch:** Prove restart, logout, foreign-owner and no-write behavior: show the key trust boundary or data invariant and which layer owns it.
-
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 
 ## Evidence allocation (10 minutes)
 

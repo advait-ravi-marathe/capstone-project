@@ -37,6 +37,8 @@ Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evi
 
 Each day retains 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. Incomplete study carries forward by reducing implementation scope; it does not add hours.
 
+The [Sprint 5 interview-first schedule](../interview/sprint5-session-scope.md) and [machine-readable curriculum](fde57-70-v2-curriculum.json) define four bounded mock days and five-minute task proposals on the remaining days without changing original acceptance or status.
+
 ## Checks available now
 
 ```sh

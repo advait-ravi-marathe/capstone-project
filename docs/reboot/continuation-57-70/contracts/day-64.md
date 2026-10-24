@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `LocalPolicyIssueController.issue(PolicyIssueRequest)`
+**Instructor-provided scaffold to inspect:** `LocalPolicyIssueController.issue(PolicyIssueRequest, Authentication)`
 **Status:** Contract defined; learner implementation not attempted.
 
 ### Expected behavior
@@ -24,6 +24,16 @@ Run the adapter selector and trace POST /api/policies from HTTP mapping through 
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before tracing the adapter, predict receipt lookup, service, and persistence call counts for anonymous 401, replay 200, conflict 409, and create 201.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D64-ADAPTER**.
+
+## Selector limits and open evidence
+
+- The selected test directly invokes the controller with mocks and covers create 201 delegation only. It does not exercise HTTP mapping, unauthenticated 401, replay 200, conflict 409, zero-persist branches, or database atomicity.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -38,7 +48,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [Spring MVC controller method arguments — request-bound arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html); [Spring MVC controller return types — ResponseEntity](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html).
 - Video viewing: 20:00 at 1×; the remaining 5:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Trace the supplied thin local policy issue adapter: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

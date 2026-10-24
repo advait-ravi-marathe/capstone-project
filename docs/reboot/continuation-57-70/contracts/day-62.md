@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Learner-owned seam:** `LocalPolicyOwnerResolver.ownerId(Authentication)`
+**Learner-owned seam:** `LocalPolicyOwnerResolver.ownerId(Authentication)` and `LocalPolicyOwnerResolver.ownerId(Authentication, String)` and `LocalPolicyOwnerResolver.ownerId(Authentication, String)`
 **Status:** Contract defined; learner implementation not attempted.
 
 ### Expected behavior
@@ -18,6 +18,16 @@ The fixed learner selector is installed and currently fails at this day’s expl
 **Learner acceptance command:** `./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test`
 **Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
 **Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before coding, predict results for authenticated owner-a and owner-b, null/unauthenticated/anonymous/unknown/blank identities, and forged requested owner values for both overloads.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D62-OWNER**.
+
+## Selector limits and open evidence
+
+- The selector checks authenticated owner-a and a forged owner-b argument only. Owner-b, null/unauthenticated/anonymous/unknown/blank identities, and both overloads across the rejection matrix remain unproven.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -32,7 +42,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [Spring Security authentication architecture — authentication](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html).
 - Video viewing: 14:04 at 1×; the remaining 10:56 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Derive policy ownership from the authenticated principal: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 

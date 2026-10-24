@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `LocalSecurityConfiguration.securityFilterChain(HttpSecurity)`
+**Instructor-provided scaffold to inspect:** `LocalSecurityConfiguration.localSecurityFilterChain(HttpSecurity, SecurityContextRepository)`
 **Status:** Contract defined; learner implementation not attempted.
 
 ### Expected behavior
@@ -24,6 +24,16 @@ Run the security selector and trace anonymous access, fixed synthetic session se
 
 Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
 
+## Learner-first task proposal (5 minutes within the 85-minute practice block)
+
+Before running the security selector, predict which layer returns anonymous GET /api/session 401, protected API 401, POST without a CSRF token 403, and authenticated unknown synthetic owner 400. Explain what a subsequent session request proves.
+
+Write the prediction before opening references, worked examples, hints, or AI. Spend the remaining 80 minutes on the existing acceptance only; this proposal is not completion evidence. Keep any unmet acceptance open as **S5-D61-TRACE**.
+
+## Selector limits and open evidence
+
+- The selector checks anonymous preview denial, root availability, one synthetic session and one unknown owner. It does not prove saved-context reuse, owner-b, session rotation/logout, invalid-CSRF handler non-entry, or the complete route matrix. Its broad context may hit later TODOs.
+
 ## Implementation/testing allocation (85 minutes)
 
 Work only this day's seam. Reuse existing issuance, policy readback, eligibility, snapshot, idempotency and preview rules. Do not duplicate a domain rule or modify prior contracts. Use the fixed synthetic fixture, configured `Clock`, loopback local app and disposable PostgreSQL only where specified. No real identities, PII, passwords, OAuth, secrets, external services or persistent access grants. On a recovery day, replace planned work inside the existing 85 minutes; do not add overtime.
@@ -38,7 +48,7 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 - Focused worked references: [Spring Security MockMvc testing — testing with MockMvc](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html).
 - Video viewing: 21:31 at 1×; the remaining 3:29 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Trace the supplied local runtime security chain: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Complete the task-specific proposal above before guidance; do not add a post-hoc architecture essay.
 
 **Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
 
