@@ -1,0 +1,1969 @@
+{
+  "title": "Days 211–224 bounded synthetic policy explanation",
+  "status": "starter_not_learner_completion_or_board_published",
+  "branch": "work/eai-sprint2-onward",
+  "base_commit": "b4c48f1a64bbcd21e0c908c5e696825d23c22a60",
+  "board_writes": false,
+  "story_count": 14,
+  "cards": [
+    {
+      "day_number": 211,
+      "date": "2027-05-22",
+      "title": "Inspect Day 210 entry evidence and gate",
+      "learner_seam": "dynamic_entry_gate",
+      "signature": "evidence/continuation-197-210/day-210-entry-review.json, ai/grounded/continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle"
+      ],
+      "prerequisite_days": [],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 105,
+          "ai_workflow_implementation_evaluation": 0,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 7,
+          "core_systems_security_cloud_study": 19,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q07",
+        "question_title": "API gateway: route and protect",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 212,
+      "date": "2027-05-23",
+      "title": "Validate bounded source-bundle schema",
+      "learner_seam": "bounded_ingestion",
+      "signature": "docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle"
+      ],
+      "prerequisite_days": [
+        211
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 7,
+          "core_systems_security_cloud_study": 19,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 213,
+      "date": "2027-05-24",
+      "title": "Reject malformed, oversized and non-exact records",
+      "learner_seam": "strict_bundle_validation",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day213_rejects_malformed_oversized_extra_and_missing_fields"
+      ],
+      "prerequisite_days": [
+        212
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 115,
+          "ai_workflow_implementation_evaluation": 0,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 7,
+          "core_systems_security_cloud_study": 19,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q23",
+        "question_title": "Event pipeline: ingest and process",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 214,
+      "date": "2027-05-25",
+      "title": "Enforce stable unique source and version keys",
+      "learner_seam": "stable_source_identity",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day214_rejects_duplicate_source_version_and_malformed_identity"
+      ],
+      "prerequisite_days": [
+        213
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 7,
+          "core_systems_security_cloud_study": 19,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 215,
+      "date": "2027-05-26",
+      "title": "Exclude draft versions from reference retrieval",
+      "learner_seam": "approved_version_filter",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_is_not_retrievable"
+      ],
+      "prerequisite_days": [
+        214
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 115,
+          "ai_workflow_implementation_evaluation": 0,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 7,
+          "core_systems_security_cloud_study": 19,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q05",
+        "question_title": "CoverStory domain workflow",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 216,
+      "date": "2027-05-27",
+      "title": "Filter owner permissions before ranking candidates",
+      "learner_seam": "pre_rank_owner_filter",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker"
+      ],
+      "prerequisite_days": [
+        215
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 7,
+          "core_systems_security_cloud_study": 19,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 217,
+      "date": "2027-05-28",
+      "title": "Bound deterministic top-k retrieval and ties",
+      "learner_seam": "deterministic_top_k",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day217_top_k_and_tie_order_are_stable"
+      ],
+      "prerequisite_days": [
+        216
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 105,
+          "ai_workflow_implementation_evaluation": 0,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 20,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 218,
+      "date": "2027-05-29",
+      "title": "Bind explanation citations to exact source versions",
+      "learner_seam": "citation_version_binding",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day218_citation_must_match_retrieved_source_and_exact_text"
+      ],
+      "prerequisite_days": [
+        217
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 20,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 219,
+      "date": "2027-05-30",
+      "title": "Abstain explicitly when evidence is insufficient",
+      "learner_seam": "unsupported_fallback",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day219_unsupported_question_returns_explicit_fallback"
+      ],
+      "prerequisite_days": [
+        218
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 115,
+          "ai_workflow_implementation_evaluation": 0,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 21,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q12",
+        "question_title": "Scheduler: missed or duplicate execution",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 220,
+      "date": "2027-05-31",
+      "title": "Measure citation and abstention outcomes against fixed labels",
+      "learner_seam": "independent_offline_metrics",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day220_metrics_use_independent_literal_expected_source_ids"
+      ],
+      "prerequisite_days": [
+        219
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 21,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 221,
+      "date": "2027-06-01",
+      "title": "Treat hostile retrieved instructions as untrusted text",
+      "learner_seam": "untrusted_source_content",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day221_embedded_instruction_is_plain_source_text"
+      ],
+      "prerequisite_days": [
+        220
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 115,
+          "ai_workflow_implementation_evaluation": 0,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 21,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q15",
+        "question_title": "Messaging: publish an order event",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 222,
+      "date": "2027-06-02",
+      "title": "Create stable canonical bundle bytes and digest",
+      "learner_seam": "canonical_snapshot",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day222_canonical_bytes_and_sha256_are_stable"
+      ],
+      "prerequisite_days": [
+        221
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 21,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 223,
+      "date": "2027-06-03",
+      "title": "Reproduce local JSON report in fresh processes",
+      "learner_seam": "fresh_process_reproducibility",
+      "signature": "ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day223_fresh_process_report_is_identical"
+      ],
+      "prerequisite_days": [
+        222
+      ],
+      "recovery_day": false,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 21,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q14",
+        "question_title": "Booking: retry after a lost response",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    },
+    {
+      "day_number": 224,
+      "date": "2027-06-04",
+      "title": "Run full local workflow and preserve synthetic source bytes",
+      "learner_seam": "synthetic_round_trip",
+      "signature": "ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211"
+      ],
+      "prerequisite_days": [
+        223
+      ],
+      "recovery_day": true,
+      "engineering": {
+        "minutes": 165,
+        "allocation": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 21,
+          "evidence": 15
+        }
+      },
+      "budget_minutes": {
+        "engineering": 165,
+        "shared_interview_or_remaining_reviews": 45,
+        "total": 210
+      },
+      "study_guidance": [
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Validate bounded input and canonical local JSON serialization."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Digest exact canonical snapshot bytes."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Verify repeatability across fresh local processes."
+        },
+        {
+          "key": "OPENAI_RETRIEVAL",
+          "title": "Retrieval",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual comparison only; workflow is implemented offline with no API."
+        },
+        {
+          "key": "BEDROCK_KB",
+          "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+          "sections": [
+            "Query a knowledge base and retrieve data"
+          ],
+          "provider": "AWS",
+          "use": "Architecture comparison only; no AWS account or service is used."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no service invocation."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Evaluation concept comparison only; local fixed labels remain the oracle."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam content"
+          ],
+          "provider": "AWS",
+          "use": "Study the currently published guide/version and map a local design decision to its exact domain; no readiness claim."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "Recheck currently linked guide/version/headings; do not assume a future version or claim readiness."
+        }
+      ],
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; record first failing assertion or unresolved invariant and next selector; no capstone architecture proposal.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "status": "unobserved_not_implied_by_scaffold"
+    }
+  ],
+  "separate_learning_repository": "dsa-prep remains the only DSA tracker; no DSA assignment or ticket is created."
+}
