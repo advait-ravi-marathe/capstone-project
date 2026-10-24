@@ -28,17 +28,6 @@
           "evidence": 10
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "actual_attempt_review_transfer_repair_only",
-        "budget_minutes": null,
-        "maximum_substantive_coding_exercises": null,
-        "new_guided_anchors_allowed": false,
-        "budget_minutes_by_substantive_exercise_count": {
-          "1_or_2": 60,
-          "3": 75,
-          "4": 90
-        }
-      },
       "learner_seam": "positive_pairs",
       "prerequisite_days": [
         155,
@@ -52,7 +41,53 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "separate_dsa_track": {
+        "authority_url": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+        "assignment_and_review_clock": "Use the current separate DSA repository only; capstone does not duplicate DSA assignments, review dates, or attempt history.",
+        "conditional_requirement": "Continue the mapped DSA sequence only while it has unfinished assigned work; do not create an extra DSA task if the sequence is complete."
+      },
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-169",
+      "architecture_explanation": "Use a pure projection over already validated events: keep distinct (viewer_id, media_id) pairs only when watch_seconds > 0. This keeps parsing and temporal split duties in earlier modules and avoids treating unseen items as dislikes. If the A/B gate is unmet, this day’s implementation slice recovers that gate first.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "45_minute_system_design_question",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "within_engineering_practice": true,
+        "implementation_minutes_remaining": 40,
+        "phase_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      },
+      "interview_practice": {
+        "budget_minutes": 45,
+        "mode": "45_minute_mock",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        },
+        "total_daily_minutes": 120,
+        "within_engineering_practice": true,
+        "implementation_minutes_remaining": 40,
+        "proposal_scope": "system_design_interview_question_only"
+      }
     },
     {
       "day_number": 170,
@@ -69,17 +104,6 @@
           "evidence": 10
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "actual_attempt_review_transfer_repair_only",
-        "budget_minutes": null,
-        "maximum_substantive_coding_exercises": null,
-        "new_guided_anchors_allowed": false,
-        "budget_minutes_by_substantive_exercise_count": {
-          "1_or_2": 60,
-          "3": 75,
-          "4": 90
-        }
-      },
       "learner_seam": "cutoff_candidates",
       "prerequisite_days": [
         157,
@@ -90,7 +114,18 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "separate_dsa_track": {
+        "authority_url": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+        "assignment_and_review_clock": "Use the current separate DSA repository only; capstone does not duplicate DSA assignments, review dates, or attempt history.",
+        "conditional_requirement": "Continue the mapped DSA sequence only while it has unfinished assigned work; do not create an extra DSA task if the sequence is complete."
+      },
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-170",
+      "architecture_explanation": "Filter supplied catalog rows with the half-open availability rule available_from <= cutoff < available_to, then return stable exact IDs. Eligibility does not inspect training or holdout outcomes, preventing leakage and keeping cutoff behavior a pure boundary.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md"
     },
     {
       "day_number": 171,
@@ -107,17 +142,6 @@
           "evidence": 10
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "actual_attempt_review_transfer_repair_only",
-        "budget_minutes": null,
-        "maximum_substantive_coding_exercises": null,
-        "new_guided_anchors_allowed": false,
-        "budget_minutes_by_substantive_exercise_count": {
-          "1_or_2": 60,
-          "3": 75,
-          "4": 90
-        }
-      },
       "learner_seam": "training_popularity",
       "prerequisite_days": [
         169,
@@ -126,7 +150,53 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "separate_dsa_track": {
+        "authority_url": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+        "assignment_and_review_clock": "Use the current separate DSA repository only; capstone does not duplicate DSA assignments, review dates, or attempt history.",
+        "conditional_requirement": "Continue the mapped DSA sequence only while it has unfinished assigned work; do not create an extra DSA task if the sequence is complete."
+      },
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-171",
+      "architecture_explanation": "Initialize every eligible candidate at zero and count each distinct positive (viewer, media) pair once. Consume Day 169’s pair projection, not event counts or watch duration. If the A/B gate is unmet, use the implementation slice for gate recovery.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "45_minute_system_design_question",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "within_engineering_practice": true,
+        "implementation_minutes_remaining": 40,
+        "phase_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      },
+      "interview_practice": {
+        "budget_minutes": 45,
+        "mode": "45_minute_mock",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        },
+        "total_daily_minutes": 120,
+        "within_engineering_practice": true,
+        "implementation_minutes_remaining": 40,
+        "proposal_scope": "system_design_interview_question_only"
+      }
     },
     {
       "day_number": 172,
@@ -163,8 +233,24 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-172",
+      "architecture_explanation": "Sort one global candidate score map by support descending and exact media ID ascending; take at most K=3. The result does not depend on viewer history, holdout data, randomness, or adaptive K.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 173,
@@ -183,15 +269,22 @@
       },
       "interview_practice": {
         "budget_minutes": 45,
-        "maximum_substantive_coding_exercises": 1,
+        "mode": "45_minute_mock",
+        "question_id": "Q23",
+        "question_title": "Event pipeline: ingest and process",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
         "allocation_minutes": {
-          "one_substantive_timebox": 30,
-          "recall_or_explain_back": 10,
-          "evidence_and_next_due": 5
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
         },
         "total_daily_minutes": 210,
-        "mode": "interview_question_practice",
-        "scope": "Sourced interview-design questions and interview practice only."
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "proposal_scope": "system_design_interview_question_only"
       },
       "learner_seam": "holdout_targets",
       "prerequisite_days": [
@@ -200,8 +293,30 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-173",
+      "architecture_explanation": "Group distinct positive holdout targets by viewer while separately retaining every observed viewer and zero-positive count. Do not intersect targets with candidates, because dropping unreachable positives would inflate recall.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "45_minute_system_design_question",
+        "question_id": "Q23",
+        "question_title": "Event pipeline: ingest and process",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "phase_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day_number": 174,
@@ -238,8 +353,24 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-174",
+      "architecture_explanation": "Count each hit once; precision uses the fixed denominator 3 even for a short result, while recall divides by the distinct positive target count. Empty-target cases are explicitly non-evaluable.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 175,
@@ -280,8 +411,24 @@
       "recovery_day": true,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-175",
+      "architecture_explanation": "This recovery day uses only Days 169–174 selectors: repair the first unresolved seam and repeat an independent counterexample. Do not add later comparison, report, or CLI work.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 176,
@@ -300,15 +447,22 @@
       },
       "interview_practice": {
         "budget_minutes": 45,
-        "maximum_substantive_coding_exercises": 1,
+        "mode": "45_minute_mock",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
         "allocation_minutes": {
-          "one_substantive_timebox": 30,
-          "recall_or_explain_back": 10,
-          "evidence_and_next_due": 5
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
         },
         "total_daily_minutes": 210,
-        "mode": "interview_question_practice",
-        "scope": "Sourced interview-design questions and interview practice only."
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "proposal_scope": "system_design_interview_question_only"
       },
       "learner_seam": "evaluate_baseline",
       "prerequisite_days": [
@@ -321,8 +475,30 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-176",
+      "architecture_explanation": "Reuse the per-viewer scorer, macro-average positive-target viewers without weighting, and publish cohort and reachability counts beside the metrics. Determine cold start from every training interaction, including zero-watch events.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "45_minute_system_design_question",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "phase_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day_number": 177,
@@ -362,8 +538,24 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-177",
+      "architecture_explanation": "Compare popularity and the fixed ascending-ID reference with identical candidates, targets, K, and cohort. Return both measurements and signed deltas; do not choose a winner or tune on holdout.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 178,
@@ -403,8 +595,24 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-178",
+      "architecture_explanation": "Assemble supplied typed outputs. Keep the prediction fingerprint tied to protocol and prediction inputs/results; place evaluation metrics and full-source provenance outside that prediction fingerprint. Retain lineage and limits.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 179,
@@ -423,15 +631,22 @@
       },
       "interview_practice": {
         "budget_minutes": 45,
-        "maximum_substantive_coding_exercises": 1,
+        "mode": "45_minute_mock",
+        "question_id": "Q24",
+        "question_title": "Event pipeline: correction and replay",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
         "allocation_minutes": {
-          "one_substantive_timebox": 30,
-          "recall_or_explain_back": 10,
-          "evidence_and_next_due": 5
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
         },
         "total_daily_minutes": 210,
-        "mode": "interview_question_practice",
-        "scope": "Sourced interview-design questions and interview practice only."
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "proposal_scope": "system_design_interview_question_only"
       },
       "learner_seam": "evaluate_fixture",
       "prerequisite_days": [
@@ -448,8 +663,30 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-179",
+      "architecture_explanation": "Use the bounded registered-fixture CLI and supplied typed adapter, which invokes prior preparation once before evaluation. Emit one complete JSON document only on success; errors go to stderr/nonzero, with no arbitrary paths or network.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "45_minute_system_design_question",
+        "question_id": "Q24",
+        "question_title": "Event pipeline: correction and replay",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "phase_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day_number": 180,
@@ -494,8 +731,24 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-180",
+      "architecture_explanation": "Complete instructor-supplied independent assertions whose expected values are literal fixture calculations, not calls back into the learner function. Keep each leakage, count, target, denominator, or constant-output defect isolated.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 181,
@@ -541,8 +794,24 @@
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-181",
+      "architecture_explanation": "Run the real CLI in fresh interpreters through the supplied bounded subprocess harness. Compare semantic output as well as reproducibility; the Python network API guard is not OS-wide isolation or an SLO.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "shared_new_question_or_unfinished_review",
+        "duration_minutes": 45,
+        "separate_question_bank_only": true,
+        "practice_split_minutes": {
+          "timebox": 30,
+          "recall": 10,
+          "evidence": 5
+        }
+      }
     },
     {
       "day_number": 182,
@@ -561,15 +830,22 @@
       },
       "interview_practice": {
         "budget_minutes": 45,
-        "maximum_substantive_coding_exercises": 1,
+        "mode": "45_minute_mock",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
         "allocation_minutes": {
-          "one_substantive_timebox": 30,
-          "recall_or_explain_back": 10,
-          "evidence_and_next_due": 5
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
         },
         "total_daily_minutes": 210,
-        "mode": "interview_question_practice",
-        "scope": "Sourced interview-design questions and interview practice only."
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "proposal_scope": "system_design_interview_question_only"
       },
       "learner_seam": "prior_only_169_181",
       "prerequisite_days": [
@@ -590,11 +866,81 @@
       "recovery_day": true,
       "learner_status": "unobserved_not_implied_by_scaffold",
       "evidence_status": "not_recorded",
-      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
-      "budget_minutes": 210
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "budget_minutes": 210,
+      "assistant_architecture_note": "docs/reboot/continuation-169-182/assistant-architecture-notes.md#day-182",
+      "architecture_explanation": "Add no production function. Recover prior seams, cold-reproduce a counterexample, and separate learner results from instructor witnesses. Keep claims limited to a deterministic synthetic global baseline.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "interview_design_scope": "separate_question_bank_only",
+      "system_design_proposal_required": false,
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "interview_session": {
+        "mode": "45_minute_system_design_question",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+        "duration_minutes": 45,
+        "within_engineering_practice": false,
+        "implementation_minutes_remaining": null,
+        "phase_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     }
   ],
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
+    "ownership": "DSA assignments, supporting code, review dates, and factual attempt history remain external; this export is not a duplicate tracker."
+  },
+  "prior_readiness_gate": {
+    "name": "Days 153–154 learner-owned A/B evidence",
+    "required": true,
+    "current_status": "not_met",
+    "observed_prior_status": {
+      "day_153": "not_attempted",
+      "day_153_evidence": "not_run",
+      "day_154": "not_attempted",
+      "day_154_evidence": "not_run"
+    },
+    "evidence_records": [
+      {
+        "path": "evidence/continuation-141-154/day-153.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      },
+      {
+        "path": "evidence/continuation-141-154/day-154.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      }
+    ],
+    "qualifying_evidence": {
+      "each_day_record": "status completed and evidence_status verified",
+      "learner_ownership": "learner_completion true and temporary_witness false",
+      "source_identity": "tested_source_sha is a 40-character hexadecimal commit SHA",
+      "artifacts": "at least two distinct SHA-256 artifact hashes with explicit baseline/candidate roles",
+      "execution": "record the exact matrix selector and matrix_exit_code 0",
+      "provenance": "record baseline and candidate source identities and build recipes; include any temporary witness provenance",
+      "result_and_limits": "record observed matrix result and proof_limits"
+    },
+    "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
+    "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet.",
+    "evaluation_command": "python3 scripts/check_streamforge_169_182_entry_gate.py",
+    "evaluation_script": "scripts/check_streamforge_169_182_entry_gate.py",
+    "downstream_scope": "StreamForge Days 169–182"
   }
 }

@@ -1,6 +1,6 @@
 # StreamForge Days 169–182: frozen offline baseline
 
-Draft starter artifacts based on the verified predecessor source `bb4cc3e5df7336c74a3f086b24510d325ea871e1`. No board writes, cloud resources, external datasets, paid resources, or learner-history changes are part of this batch.
+Draft starter artifacts on continuation branch `work/eai-sprint2-onward`, based on `ae21926a7d61ef25db8609ddc533d9cdeeacff88`; original starter reference `bb4cc3e5df7336c74a3f086b24510d325ea871e1` is retained as provenance. No board writes, cloud resources, external datasets, paid resources, or learner-history changes are part of this batch.
 
 ## Outcome and boundaries
 
@@ -27,3 +27,12 @@ python3 -m unittest discover -s ai/tests -p test_infrastructure.py
 ```
 
 Learner acceptance remains expected red at named TODOs until actual work is completed. AWS execution, production validation, exam choice, and future model work remain deferred.
+
+
+## Prior A/B gate (re-evaluated from authoritative records)
+
+Before any StreamForge implementation, run `python3 scripts/check_streamforge_169_182_entry_gate.py`. The actual records are `evidence/continuation-141-154/day-153.json` and `evidence/continuation-141-154/day-154.json`; both exist. Their current factual state is `not_attempted` / `not_run`, with no tested source SHA, artifact hashes, or learner completion, so the gate is **not met**. An exit status of 2 means carry forward A/B recovery; it does not mean the evidence files are missing. The checker re-evaluates the records, so later qualifying learner-owned evidence can satisfy the gate. Assistant/instructor witnesses cannot qualify.
+
+## Architecture and interview schedule
+
+See [assistant-supplied architecture notes](assistant-architecture-notes.md) for the exact implementation choices and reasons; learners implement and test them without capstone design proposals. System-design practice stays in the separate [question bank](../interview/question-bank.md), on the bounded days in [the interview/review schedule](interview-and-review-schedule.md). Days 169–171 retain 120 engineering minutes plus the external DSA tier; Days 172–182 use 165 engineering minutes plus one shared 45-minute block, for 210 total. There is no extra DSA task after the external mapped sequence is complete.
