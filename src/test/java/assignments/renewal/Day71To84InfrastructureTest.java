@@ -74,6 +74,9 @@ class Day71To84InfrastructureTest {
         String wiringTest = Files.readString(Path.of("src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java"));
         String pom = Files.readString(Path.of("pom.xml"));
         String packageScript = Files.readString(Path.of("scripts/package-sprint6-demo.sh"));
+        String sprint6Properties = Files.readString(Path.of("src/main/resources/application-sprint6-local.properties"));
+        String security = Files.readString(Path.of("src/main/java/assignments/local/LocalSecurityConfiguration.java"));
+        String ownerExport = Files.readString(BASE.resolve("scrum-owner-manifest.json"));
 
         assertTrue(entry.contains("@Import(Sprint6LocalConfiguration.class)"));
         assertTrue(config.contains("LocalApplicationComposition.compose(sprint6Clock, dataSource)"));
@@ -92,6 +95,18 @@ class Day71To84InfrastructureTest {
         assertTrue(helper.contains("verifyArtifactReceipt(jar, evidence)"));
         assertTrue(browser.contains("Sprint6PackagedRuntimeProcess.start(postgres, CLOCK)"));
         assertFalse(browser.contains("LocalPackagedRuntimeProcess.start"));
+        assertTrue(browser.contains("/actuator/metrics/hikaricp.connections.active"),
+                "Day 83 exercises the read-only Hikari metric through the bounded packaged runtime");
+        assertTrue(browser.contains("/actuator/metrics/coverstory.preview.requests"),
+                "Day 83 exercises the read-only route metric through the bounded packaged runtime");
+        assertTrue(sprint6Properties.contains("management.endpoints.access.default=none"));
+        assertTrue(sprint6Properties.contains("management.endpoint.metrics.access=read-only"));
+        assertFalse(sprint6Properties.contains("include=*"), "the isolated profile must not expose all actuator endpoints");
+        assertTrue(sprint6Properties.contains("management.endpoints.web.exposure.include=health,metrics"),
+                "only health and the required metrics endpoint are exposed in the synthetic loopback profile");
+        assertTrue(security.contains(".anyRequest().authenticated()"),
+                "exposed metrics remain behind the local synthetic-session security chain");
+        assertFalse(security.contains("/actuator/metrics"), "metrics must not be added to the public allow-list");
 
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
         JsonNode day79 = manifest.get("days").get(8).get("engineering");
@@ -175,5 +190,9 @@ class Day71To84InfrastructureTest {
             assertFalse(scopeNote.contains("Sketch retained policy context"));
             assertTrue(scopeNote.contains("supplied") || scopeNote.contains("supplied mutually exclusive"));
         }
+        assertFalse(ownerExport.contains("Sketch retained policy context"),
+                "rendered owner export must not restore the obsolete learner capstone-sketch instruction");
+        assertFalse(Files.readString(BASE.resolve("manifest.json")).contains("Sketch retained policy context"),
+                "canonical rendered export must not restore the obsolete learner capstone-sketch instruction");
     }
 }
