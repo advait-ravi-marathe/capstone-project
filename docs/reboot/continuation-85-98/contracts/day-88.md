@@ -7,14 +7,14 @@
 
 ### Expected behavior
 
-Bind setting names and values to set_config(name,value,true) for lock_timeout and statement_timeout. Apply only inside the owned transaction; do not concatenate SQL or use session-level SET.
+Bind setting names and values to set_config(name,value,true) for lock_timeout and statement_timeout. Apply only inside an active owned transaction; reject an outside call before changing pooled backend state. Do not concatenate SQL or use session-level SET.
 
 ### Acceptance and expected TODO state
 
 The selector is installed and runnable with learner TODOs restored. It may fail at named incomplete learner/prerequisite seams; missing classes, selectors, fixtures, tools or browser setup are infrastructure defects. The default Maven suite is the instructor infrastructure suite and excludes `learnerAcceptance` tests.
 
-**Acceptance selector:** `src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#setsTransactionLocalBudgetsOnSameBackend test`
+**Acceptance selector:** `src/test/java/assignments/renewal/PgLocalReadBudgetsAcceptanceTest.java`
+**Acceptance command:** `./mvnw -Plearner-tests -Dtest=PgLocalReadBudgetsAcceptanceTest#appliesSettingsInsideOwnedTransactionAndRejectsCallsOutsideIt test`
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
 
@@ -28,7 +28,7 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-**Worked example (within the same cap):** Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend.
+**Worked example (within the same cap):** Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend. The direct selector invokes `PgLocalReadBudgets.apply`; it does not require `TimedPolicyRenewalReadStore` or Day 89 delegation.
 
 **Focused sources:**
 - [PostgreSQL 18 System Administration Functions — set_config and current_setting](https://www.postgresql.org/docs/18/functions-admin.html)
@@ -36,9 +36,9 @@ No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC beh
 
 Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
 
-**Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
+**Assistant-provided architecture (what and why):** [Day 88 note](../assistant-architecture-notes.md#day-88). The note supplies capstone architecture decisions. Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.
 
-**Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
+**Teach-back:** Explain the supplied boundary in your own words and cite one observed acceptance result; no design-choice essay is required.
 
 ### Evidence block — 10 minutes
 
@@ -46,4 +46,4 @@ Record exact commands, exit status, observed values, cleanup result, learner-own
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

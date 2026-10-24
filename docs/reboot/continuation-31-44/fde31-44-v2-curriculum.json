@@ -66,7 +66,90 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q05",
+        "question_href": "docs/reboot/interview/question-bank.md#q05",
+        "question_title": "CoverStory domain workflow",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#domain-workflow",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary",
+          "docs/reboot/interview/pattern-library.md#immutable-snapshot"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md#q05",
+          "docs/reboot/interview/pattern-library.md#domain-workflow",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary",
+          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint3-session-scope.md",
+          "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service",
+          "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+          "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html",
+          "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 21 - Understanding Spring Security Authentication",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 257,
+            "duration": "4:17",
+            "source_item_id": "35017628",
+            "course_id": "4993276"
+          }
+        ],
+        "course_note": "Required owned foundation: “Step 21 - Understanding Spring Security Authentication” (4:17), item 35017628; use only as identity-boundary foundation, then focus on the existing discovery/facts worked guide and method-argument documentation.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: use the supplied PolicyIssueFacts fixture to implement the owned, selected, eligible quote happy path and one explicit rejection case; run the existing Day 31 selector and preserve its first actual failure. Do not copy the instructor fixture into production.",
+        "deferred_work_id": "S3-D31-1",
+        "deferred_work": "Complete the entire valid/missing/foreign-owner/unselected/stale/ineligible/foreign-journey/foreign-version matrix and prove zero policy writes for every rejection; rerun the unchanged Day 31 selector.",
+        "acceptance": "The original day contract, selectors, and acceptance criteria remain unchanged. The interview and 40-minute EAI slice do not mark the day complete; unfinished acceptance stays in the named queue.",
+        "evidence": "Record actual selector, exit/result or first blocker, changed paths, assistance, saved initial proposal, and relevant snapshots. Score only observed evidence; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ],
+        "course_catalog": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-31"
+      }
     },
     {
       "day": 32,
@@ -111,7 +194,26 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day32IdenticalIdempotencyReplayReturnsOriginalAndChangedPayloadConflicts test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 32 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-32",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 33,
@@ -160,7 +262,43 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day33StoredIssueSnapshotDoesNotRepriceWhenCatalogChanges test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 15 - Exploring Java New Features - Records",
+            "section_title": "Java New Features - Java 10 to Java 24",
+            "duration_seconds": 544,
+            "duration": "9:04",
+            "source_item_id": "25694168",
+            "course_id": "1535678"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 33 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-33",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 34,
@@ -214,7 +352,45 @@
       "proposed_additional_commands": [
         "./mvnw -Plearner-tests -Dtest=Day34IssueHttpMappingAcceptanceTest test"
       ],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html",
+          "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html",
+          "https://docs.spring.io/spring-framework/reference/testing/mockmvc.html"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 684,
+            "duration": "11:24",
+            "source_item_id": "35018814",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 34 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-34",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 35,
@@ -270,7 +446,89 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35ReceiptConflictRollsBackPolicyAndEvent test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q13",
+        "question_href": "docs/reboot/interview/question-bank.md#q13",
+        "question_title": "Booking: reserve one seat atomically",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/pattern-library.md#concurrency-guards",
+          "docs/reboot/interview/pattern-library.md#data-store-choice"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md#q13",
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/pattern-library.md#concurrency-guards",
+          "docs/reboot/interview/pattern-library.md#data-store-choice",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint3-session-scope.md",
+          "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html",
+          "https://www.postgresql.org/docs/18/tutorial-transactions.html",
+          "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 63 - Implementing Transaction Management - 3 Things to Decide",
+            "section_title": "Transaction Management",
+            "duration_seconds": 278,
+            "duration": "4:38",
+            "source_item_id": "7907620",
+            "course_id": "1341538"
+          }
+        ],
+        "course_note": "Conditional reference only: “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38), item 7907620, access unconfirmed. Use the already assigned PostgreSQL transaction tutorial and ADR bridge if unavailable; do not enroll or add time.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: implement the successful one-connection policy + issue-event + owner/key receipt write and verify it through the fresh PostgreSQL read in the existing positive selector. Keep the whole write in the existing transaction boundary.",
+        "deferred_work_id": "S3-D35-1",
+        "deferred_work": "Complete the injected receipt-conflict rollback proof, showing no policy/event/receipt partial write and no in-memory replay publication; rerun both existing Day 35 acceptance selectors.",
+        "acceptance": "The original day contract, selectors, and acceptance criteria remain unchanged. The interview and 40-minute EAI slice do not mark the day complete; unfinished acceptance stays in the named queue.",
+        "evidence": "Record actual selector, exit/result or first blocker, changed paths, assistance, saved initial proposal, and relevant snapshots. Score only observed evidence; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ],
+        "course_catalog": [
+          {
+            "course_id": "1341538",
+            "title": "Master Hibernate and JPA with Spring Boot in 100 Steps",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-35"
+      }
     },
     {
       "day": 36,
@@ -323,7 +581,43 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day36ForeignAndAbsentPolicyAreBothNotFound test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 07 - Querying Data using Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 336,
+            "duration": "5:36",
+            "source_item_id": "35019858",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 36 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-36",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 37,
@@ -370,7 +664,43 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day37EndorsementRejectsUnknownNoopPastDateAndStaleVersion test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 14 - Implementing Validations for REST API",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 707,
+            "duration": "11:47",
+            "source_item_id": "35018798",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 37 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [
+          {
+            "course_id": "4993276",
+            "title": "Master Spring Boot 3 &amp; Spring Framework 6 with Java",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+            "access_status": "confirmed_owned"
+          }
+        ],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-37",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 38,
@@ -415,7 +745,71 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q16",
+        "question_href": "docs/reboot/interview/question-bank.md#q16",
+        "question_title": "Messaging: ordering and replay",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#outbox-and-messaging",
+          "docs/reboot/interview/pattern-library.md#idempotency",
+          "docs/reboot/interview/pattern-library.md#transaction-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md#q16",
+          "docs/reboot/interview/pattern-library.md#outbox-and-messaging",
+          "docs/reboot/interview/pattern-library.md#idempotency",
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint3-session-scope.md",
+          "https://www.postgresql.org/docs/18/ddl-constraints.html",
+          "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html"
+        ],
+        "course_bridges": [],
+        "course_note": "No additional course lesson is assigned. Within the existing 25-minute block, use the already listed PostgreSQL 18 constraints and Java SE 21 Record documentation plus the Day 38 append-history worked guide.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: implement the existing local endorsement path to append one immutable snapshot while preserving prior history, then run the named Day 38 selector. Use the messaging prompt only to reason about ordered durable history; do not add a broker, outbox, or StreamForge code.",
+        "deferred_work_id": "S3-D38-1",
+        "deferred_work": "Complete the full effective-order, exactly-one-version increment, unchanged-input, and repeated-history assertions in the existing selector; retain any persistence or later-streaming work behind its original prerequisite.",
+        "acceptance": "The original day contract, selectors, and acceptance criteria remain unchanged. The interview and 40-minute EAI slice do not mark the day complete; unfinished acceptance stays in the named queue.",
+        "evidence": "Record actual selector, exit/result or first blocker, changed paths, assistance, saved initial proposal, and relevant snapshots. Score only observed evidence; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ],
+        "course_catalog": [],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-38"
+      }
     },
     {
       "day": 39,
@@ -461,7 +855,27 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day39StaleConcurrentEndorsementDoesNotCreatePartialVersion test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://www.postgresql.org/docs/18/transaction-iso.html",
+          "https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html#executeUpdate()"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 39 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-39",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 40,
@@ -509,7 +923,44 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day40CancellationMustBeFutureAndRequestReplayIsIdempotent test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html",
+          "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 13 - Java Dates - Exploring LocalDate - Comparing Dates and Creating Specif",
+            "section_title": "Reference Types in Java Programming",
+            "duration_seconds": 320,
+            "duration": "5:20",
+            "source_item_id": "9565628",
+            "course_id": "1535678"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 40 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-40",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 41,
@@ -555,7 +1006,26 @@
       "proposed_additional_commands": [
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day41PersistedDueCancellationUpdatesPolicyAndEventAtomically test"
       ],
-      "command_status": "The pure transition selector and persisted overload acceptance selector must both be run. Existing command inspected; newly added selector is compiled and must be executed before release. No runtime result claimed."
+      "command_status": "The pure transition selector and persisted overload acceptance selector must both be run. Existing command inspected; newly added selector is compiled and must be executed before release. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 41 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "course_catalog": [],
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-41",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 42,
@@ -608,7 +1078,91 @@
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test"
       ],
       "proposed_additional_commands": [],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q11",
+        "question_href": "docs/reboot/interview/question-bank.md#q11",
+        "question_title": "Scheduler: run one job",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#scheduled-work",
+          "docs/reboot/interview/pattern-library.md#deterministic-time",
+          "docs/reboot/interview/pattern-library.md#domain-workflow"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md#q11",
+          "docs/reboot/interview/pattern-library.md#scheduled-work",
+          "docs/reboot/interview/pattern-library.md#deterministic-time",
+          "docs/reboot/interview/pattern-library.md#domain-workflow",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint3-session-scope.md",
+          "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html",
+          "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html",
+          "https://www.udemy.com/course/java-programming-tutorial-for-beginners/"
+        ],
+        "course_bridges": [
+          {
+            "title": "Java Tip 14 - Why Enum and Enum Basics - ordinal and values",
+            "section_title": "Java Tips",
+            "duration_seconds": 448,
+            "duration": "7:28",
+            "source_item_id": "9565990",
+            "course_id": "1535678"
+          }
+        ],
+        "course_note": "Keep the existing “Java Tip 14 - Why Enum and Enum Basics - ordinal and values” (7:28) as status-vocabulary foundation only. Use the existing Java SE 21 Clock and AWS runbook documentation for due-time/recovery concepts; no additional lesson is assigned.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes total: spend 5 minutes confirming preconditions and predicting the guard result, 25 minutes implementing only the cancelled-state servicing-write guard, and 10 minutes running the existing selector and recording the first unmet assertion. The selector proves the pure guard and synthetic owner read only; it does not prove actual writes, HTTP 409, retries, persisted history, or Day 41. Do not add a scheduler implementation.",
+        "deferred_work_id": "S3-D42-1",
+        "deferred_work": "Implement and verify only the pure cancelled-state servicing-write guard and the selector’s synthetic owner-read assertion. This does not prove actual endorsement/reschedule writes, HTTP 409, retries, database history invariance, or the persisted Day 41 transition.",
+        "acceptance": "The original day contract, selectors, and acceptance criteria remain unchanged. The interview and 40-minute EAI slice do not mark the day complete; unfinished acceptance stays in the named queue.",
+        "evidence": "Record actual selector, exit/result or first blocker, changed paths, assistance, saved initial proposal, and relevant snapshots. Score only observed evidence; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ],
+        "course_catalog": [
+          {
+            "course_id": "1535678",
+            "title": "Java Programming for Complete Beginners",
+            "instructor": "in28Minutes Official",
+            "url": "https://www.udemy.com/course/java-programming-tutorial-for-beginners/",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "mock_minutes": 45,
+        "eai_slice_minutes": {
+          "case_setup": 5,
+          "implementation": 25,
+          "selector_and_blocker_record": 10
+        },
+        "practice_total_minutes": 85,
+        "additional_deferred_work_id": "S3-D42-2",
+        "additional_deferred_work": "OPEN, prerequisite-gated integration evidence: after the actual Day 38/39 endorsement write path and Day 41 persisted cancellation transition are implemented, add/identify real write-boundary checks for both endorsement and rescheduling, repeat each rejected request, assert HTTP 409 only if a real mapped endpoint exists, and compare complete history before/after. No current Day 42 selector proves this; the existing day42CancelledPolicyRejectsWritesButRemainsReadable selector cannot close S3-D42-2.",
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-42"
+      }
     },
     {
       "day": 43,
@@ -651,10 +1205,7 @@
         }
       ],
       "practice_segment_minutes": [
-        10,
-        40,
-        25,
-        10
+        85
       ],
       "evidence_minutes": 10,
       "acceptance_proof": "Full allowlisted backend projection and React empty/stale/error/recovery/variant values; no component-test customer-UAT claim.",
@@ -664,7 +1215,50 @@
       "proposed_additional_commands": [
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test"
       ],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://react.dev/learn/conditional-rendering#conditionally-returning-jsx",
+          "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state",
+          "https://testing-library.com/docs/queries/byrole/"
+        ],
+        "course_bridges": [
+          {
+            "title": "Rendering Content Conditionally",
+            "section_title": "React Essentials - Components, JSX, Props, State &amp; More",
+            "duration_seconds": 483,
+            "duration": "8:03",
+            "source_item_id": "39649252",
+            "course_id": "1362070"
+          }
+        ],
+        "course_catalog": [
+          {
+            "course_id": "1362070",
+            "title": "React - The Complete Guide (incl. Next.js, Redux)",
+            "instructor": "Academind / Maximilian Schwarzmüller",
+            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 43 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance_commands": [
+          "npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test"
+        ],
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-43",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     },
     {
       "day": 44,
@@ -703,10 +1297,7 @@
         }
       ],
       "practice_segment_minutes": [
-        10,
-        35,
-        25,
-        15
+        85
       ],
       "evidence_minutes": 10,
       "acceptance_proof": "Actual learner panel against persisted state; aborted read/recovery; fresh Spring/browser restart same DB; no-op verifier killed by missing/corrupt-state tests; observed != expected.",
@@ -718,7 +1309,36 @@
         "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test",
         "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test"
       ],
-      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed."
+      "command_status": "Existing commands inspected; proposed commands must be implemented and run before publication. No runtime result claimed.",
+      "interview_practice": {
+        "mode": "assistant_supplied_capstone_architecture",
+        "duration_minutes": 0,
+        "proposal_before_hints_reference_or_ai": false,
+        "supporting_sources": [
+          "https://istqb.org/wp-content/uploads/2024/11/ISTQB-CT-AcT_Syllabus_v1.0_2019.pdf",
+          "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html",
+          "https://developer.chrome.com/docs/automation-and-testing/headless#use-headless-mode",
+          "https://playwright.dev/docs/network#network-mocking"
+        ],
+        "course_bridges": [],
+        "course_catalog": [],
+        "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in the Day 44 contract. Follow the assistant-provided architecture note in the existing 25-minute concept block; no capstone design proposal is assigned.",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test"
+        ],
+        "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+        "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+        "existing_acceptance_minutes": 85,
+        "practice_total_minutes": 85,
+        "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-44",
+        "proposal_scope": "none",
+        "capstone_architecture": "assistant_supplied"
+      }
     }
   ],
   "guidance_catalog_path": "fde31-44-v2-guidance.json"

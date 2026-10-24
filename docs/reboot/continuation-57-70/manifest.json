@@ -78,8 +78,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -125,9 +125,71 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement fail-closed readiness: missing or failed prior evidence selects recovery inside the fixed 85-minute implementation/testing allocation.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "interview_assignment": {
+          "day": 57,
+          "date": "2026-12-19",
+          "title": "Gate the local assembly on prior learner evidence",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "2813427",
+              "title": "Learn DevOps: Docker, Kubernetes, Terraform and Azure DevOps",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Getting Started with Continuous Integration, Deployment and Delivery",
+              "section_title": "Getting Started with Continuous Integration, Deployment and Delivery",
+              "duration_seconds": 290,
+              "duration": "4:50",
+              "source_item_id": "18086493",
+              "course_id": "2813427"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "GitHub Actions workflow syntax — job dependencies and conditional jobs",
+              "section": "needs dependencies and status-check conditions",
+              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+            },
+            {
+              "title": "GitHub Actions workflow syntax",
+              "section": "workflow and job structure",
+              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 57. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No authenticity detector, dynamic prerequisite engine, or unrelated feature.",
+          "deferred_work_id": "S5-D57-READINESS",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-57",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-57",
+          "decision": "Require each named prior learner evidence flag and fail closed for missing, null, or false values; unrelated evidence cannot substitute for a required gate.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -204,8 +266,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -259,13 +321,123 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Run the scaffold selector, trace LocalCoverStoryApplication → LocalRuntimeConfiguration → LocalApplicationComposition, and explain how Clock, DataSource and adapters reach the service. Add a short diagram/teach-back; do not reimplement instructor-provided setup.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
-        ]
+        ],
+        "interview_assignment": {
+          "day": 58,
+          "date": "2026-12-20",
+          "title": "Trace and explain the prebuilt local application composition",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 09 - Get Production Ready with Spring Boot - 1 - Profiles",
+              "section_title": "Getting Started with Spring Boot",
+              "duration_seconds": 425,
+              "duration": "7:05",
+              "source_item_id": "35019912",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 10 - Get Production Ready with Spring Boot - 2 - ConfigurationProperties",
+              "section_title": "Getting Started with Spring Boot",
+              "duration_seconds": 451,
+              "duration": "7:31",
+              "source_item_id": "35019910",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring Boot Configuration Classes",
+              "section": "Importing Additional Configuration Classes",
+              "url": "https://docs.spring.io/spring-boot/reference/using/configuration-classes.html"
+            },
+            {
+              "title": "Spring Boot externalized configuration",
+              "section": "profiles and configuration properties",
+              "url": "https://docs.spring.io/spring-boot/reference/features/external-config.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q07",
+          "question_title": "API gateway: route and protect",
+          "question_href": "../interview/question-bank.md#q07",
+          "pattern_refs": [
+            "../interview/pattern-library.md#gateway-boundary",
+            "../interview/pattern-library.md#ownership-boundary",
+            "../interview/pattern-library.md#load-balancing"
+          ],
+          "proposal_prompt": "Design a gateway boundary for two synthetic policy APIs. State what the gateway routes and protects, what remains enforced by the service, and how traffic is distributed across stateless instances. Transfer the boundary ideas to the supplied local composition; do not implement a gateway or load balancer.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "Instructor-supplied composition trace only. No bean graph rewrite, new gateway, load balancer, or future-day implementation.",
+          "bounded_task": "Trace the supplied local entry point into the two-argument LocalApplicationComposition.compose(clock, dataSource), then explain how the same Clock and DataSource reach the plain adapters and identify the first future-runtime blocker if the current broad Spring test context reaches one.",
+          "deferred_work_id": "S5-D58-TRACE",
+          "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+          ],
+          "acceptance": "The selector boots the explicit Sprint5LocalApplication and original two-argument composition. It asserts supplied Clock/DataSource identity and absence of future runtime beans; it does not use LocalCoverStoryApplication or solve learner behavior.",
+          "evidence": "Save the initial architecture proposal, four-arrow composition trace, exact command/result or blocker, and learner_changed_paths (use [] for read-only work).",
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-58"
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day58DedicatedEntryPointWiresClockAndDataSourceExplicitly test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-58",
+          "decision": "Compose the bounded local runtime with explicit imports and the existing two-argument clock/data-source composition; this avoids scanning future runtime TODOs.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -350,8 +522,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -380,13 +552,62 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
-        "learner_task": "Run the packaged migration verification; inspect V001–V003 and explain migration order, checksums, the second no-op migrate, and why the sentinel row survives. Record how a future schema change would be additive.",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
+        "learner_task": "Inspect the immutable V001–V003 target-3 lifecycle and compare it with the existing V001–V005 infrastructure selector. Preserve target-3 verification as open until an additive isolated test is installed; do not edit migrations or claim five-migration evidence proves target 3.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
-        ]
+        ],
+        "interview_assignment": {
+          "day": 59,
+          "date": "2026-12-21",
+          "title": "Verify and explain the versioned synthetic migration lifecycle",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [],
+          "course_bridges": [],
+          "supporting_sources": [
+            {
+              "title": "Spring Boot SQL database initialization — Flyway migrations",
+              "section": "Execute Flyway Database Migrations on Startup",
+              "url": "https://docs.spring.io/spring-boot/how-to/data-initialization.html"
+            },
+            {
+              "title": "Flyway versioned migrations",
+              "section": "versioned migrations and schema history",
+              "url": "https://documentation.red-gate.com/flyway/flyway-concepts/migrations/versioned-migrations"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 59. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No migration rewrite, reset, or claim that the existing V001–V005 selector proves the proposed target-3 gate.",
+          "deferred_work_id": "S5-D59-TRACE",
+          "deferred_work": "Record the actual migration trace and explain target/version/history evidence; no learner migration implementation is assigned.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-59",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSchemaMigrationInfrastructureTest.java",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=LocalSchemaMigrationInfrastructureTest#day59VersionedBootstrapIsRepeatableAndNonDestructive test"
+        ],
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-59",
+          "decision": "Run immutable migrations V001–V003 to target 3 on a fresh disposable database and verify a repeat is a no-op; preserve the sentinel and history.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
@@ -433,14 +654,14 @@
           "evidence": 10
         },
         "scope": "Wire owner-scoped policy reads and prove preview performs no writes",
-        "learner_seam": "LocalRenewalRepositoryConfiguration",
+        "learner_seam": "JdbcPolicyReadStore.findByPolicyIdAndOwnerId",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-60.md",
         "evidence_reference": "evidence/continuation-57-70/day-60.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -450,8 +671,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -492,7 +713,7 @@
             {
               "title": "PostgreSQL transaction read-only setting",
               "section": "default_transaction_read_only",
-              "url": "https://www.postgresql.org/docs/14/runtime-config-client.html"
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
             }
           ],
           "video_seconds": 336,
@@ -507,9 +728,117 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_upstream_day48_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement owner-scoped policy readback and prove read requests do not change policy/event/idempotency row counts. Resolve the existing Day 48 read adapter TODO as a prerequisite.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "interview_assignment": {
+          "day": 60,
+          "date": "2026-12-22",
+          "title": "Wire owner-scoped policy reads and prove preview performs no writes",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 07 - Querying Data using Spring JDBC",
+              "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+              "duration_seconds": 336,
+              "duration": "5:36",
+              "source_item_id": "35019858",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring JDBC",
+              "section": "Using JdbcClient",
+              "url": "https://docs.spring.io/spring-boot/reference/data/sql.html"
+            },
+            {
+              "title": "Spring transaction annotations",
+              "section": "@Transactional Settings",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html"
+            },
+            {
+              "title": "Spring JdbcTemplate reference",
+              "section": "query operations",
+              "url": "https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html"
+            },
+            {
+              "title": "PostgreSQL transaction read-only setting",
+              "section": "default_transaction_read_only",
+              "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q13",
+          "question_title": "Booking: reserve one seat atomically",
+          "question_href": "../interview/question-bank.md#q13",
+          "pattern_refs": [
+            "../interview/pattern-library.md#transaction-boundary",
+            "../interview/pattern-library.md#concurrency-guards",
+            "../interview/pattern-library.md#data-store-choice"
+          ],
+          "proposal_prompt": "Design a one-seat reservation under concurrent requests. Compare a relational constraint/transaction with a document-store conditional write; name the invariant, duplicate/retry behavior, and the failure response. This is transfer practice only: do not add booking code or change the selected PostgreSQL implementation.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "One bounded owner-scoped SELECT implementation. No endorsement aggregation, schema change, transaction framework, or future timeout/capacity behavior.",
+          "bounded_task": "Implement only JdbcPolicyReadStore.findByPolicyIdAndOwnerId. Run the named selector as upstream context; it currently calls renewalReadStore, so record that the selected test cannot verify the Day 60 implementation or the requested full-row snapshots. Do not close the seam until direct method coverage exists.",
+          "deferred_work_id": "S5-D60-READ",
+          "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day60OwnerScopedPreviewReadDoesNotWrite test"
+          ],
+          "acceptance": "The selector first calls the assigned JdbcPolicyReadStore directly. It checks the seeded issued row, distinct owner/amount/date fixtures including a non-null cancellation date, foreign and missing rows, SQL-looking literal IDs, and complete lifecycle/event/idempotency snapshots after each read. Its first direct assertion reaches the Day60 TODO.",
+          "evidence": "Save the design proposal, SQL ownership predicate, exact command/result or first upstream TODO, tables compared, and changed paths.",
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-60"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-60",
+          "decision": "Read policy by policy ID plus principal owner with bound JDBC parameters and nullable mapping; the read adapter must leave all policy/event/receipt rows unchanged.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -560,7 +889,7 @@
           {
             "title": "PostgreSQL transaction read-only setting",
             "section": "default_transaction_read_only",
-            "url": "https://www.postgresql.org/docs/14/runtime-config-client.html"
+            "url": "https://www.postgresql.org/docs/18/runtime-config-client.html"
           }
         ]
       },
@@ -583,7 +912,7 @@
           "evidence": 10
         },
         "scope": "Trace and verify the instructor-provided local security chain",
-        "learner_seam": "LocalSecurityConfiguration.securityFilterChain(HttpSecurity) (trace and explain; scaffold is instructor-provided)",
+        "learner_seam": "LocalSecurityConfiguration.localSecurityFilterChain(HttpSecurity, SecurityContextRepository)",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-61.md",
         "evidence_reference": "evidence/continuation-57-70/day-61.json",
         "status": "not_attempted",
@@ -596,8 +925,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -661,13 +990,97 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Run the security selector and trace anonymous access, fixed synthetic session selection, CSRF enforcement, and the loopback guard. Explain which filter/handler owns each observed response; this is inspection of supplied setup, not a security-chain TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
-        ]
+        ],
+        "interview_assignment": {
+          "day": 61,
+          "date": "2026-12-23",
+          "title": "Trace and verify the instructor-provided local security chain",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "1635492",
+              "title": "Master Java Unit Testing with Spring Boot & Mockito",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/learn-unit-testing-with-spring-boot/",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 02 - Using Mock Mvc to test Hello World Controller",
+              "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
+              "duration_seconds": 760,
+              "duration": "12:40",
+              "source_item_id": "9968330",
+              "course_id": "1635492"
+            },
+            {
+              "title": "Step 15 - Writing an Integration Test using @SpringBootTest",
+              "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
+              "duration_seconds": 531,
+              "duration": "8:51",
+              "source_item_id": "9968368",
+              "course_id": "1635492"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring Security MockMvc Setup",
+              "section": "Configuring MockMvc with Spring Security",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html"
+            },
+            {
+              "title": "Running a Test as a User in Spring MVC Test",
+              "section": "RequestPostProcessor authentication",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html"
+            },
+            {
+              "title": "Testing with CSRF Protection",
+              "section": "CSRF header, invalid token and request post-processors",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
+            },
+            {
+              "title": "Spring Security MockMvc testing",
+              "section": "testing with MockMvc",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/index.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 61. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No real login, account, password, token rotation, or deployment claim.",
+          "deferred_work_id": "S5-D61-TRACE",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-61",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day61AnonymousApiDeniedAssetsAllowedAndOnlySyntheticSessionAccepted test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-61",
+          "decision": "Reuse the supplied security filter chain and session repository; distinguish authorization, handler-level session selection, and CSRF checks.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -749,14 +1162,14 @@
           "evidence": 10
         },
         "scope": "Derive policy ownership from the authenticated principal",
-        "learner_seam": "LocalPolicyOwnerResolver.ownerId(Authentication)",
+        "learner_seam": "LocalPolicyOwnerResolver.ownerId(Authentication) and ownerId(Authentication, String)",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-62.md",
         "evidence_reference": "evidence/continuation-57-70/day-62.json",
         "status": "not_attempted",
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -766,8 +1179,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -821,9 +1234,79 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement authenticated owner resolution so request-supplied owner IDs cannot override the authenticated synthetic principal; preserve the fixed owner allowlist.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "interview_assignment": {
+          "day": 62,
+          "date": "2026-12-24",
+          "title": "Derive policy ownership from the authenticated principal",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 21 - Understanding Spring Security Authentication",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 257,
+              "duration": "4:17",
+              "source_item_id": "35017628",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 22 - Exploring Spring Security Authorization",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 587,
+              "duration": "9:47",
+              "source_item_id": "35017626",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring Security Authentication architecture",
+              "section": "Authentication, principal and authorities",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
+            },
+            {
+              "title": "Spring Security authentication architecture",
+              "section": "authentication",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 62. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No new auth chain or persistent identity; actual database ownership is conditional on prior domain/read gates.",
+          "deferred_work_id": "S5-D62-OWNER",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day62PrincipalOwnsReadsAndForgedOwnerIsIgnored test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-62",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-62",
+          "decision": "Derive ownership only from a known authenticated synthetic principal and reject anonymous/invalid states; request parameters never override it.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -912,8 +1395,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
@@ -952,9 +1435,64 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement the recovery/security checkpoint result within the existing 85-minute block; trace one rejected unauthenticated request from route through security and record the recovery decision.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "interview_assignment": {
+          "day": 63,
+          "date": "2026-12-25",
+          "title": "Run the security trace and recovery checkpoint",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [],
+          "course_bridges": [],
+          "supporting_sources": [
+            {
+              "title": "Spring Security MockMvc Setup",
+              "section": "Configuring MockMvc with Spring Security",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/setup.html"
+            },
+            {
+              "title": "Running a Test as a User in Spring MVC Test",
+              "section": "RequestPostProcessor authentication",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/authentication.html"
+            },
+            {
+              "title": "Testing with CSRF Protection",
+              "section": "CSRF header, invalid token and request post-processors",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/csrf.html"
+            },
+            {
+              "title": "Spring Security architecture",
+              "section": "servlet architecture",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/architecture.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 63. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No additional feature or overtime; retain 0..85 validation and newWorkAdded=false.",
+          "deferred_work_id": "S5-D63-RECOVERY",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-63",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-63",
+          "decision": "Keep the recovery gate within the remaining 0–85 practice-minute range and do not add work; invalid time input is rejected.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "no_new_lesson_integration_review",
@@ -1011,7 +1549,7 @@
           "evidence": 10
         },
         "scope": "Trace the instructor-provided local policy issue adapter boundary",
-        "learner_seam": "LocalPolicyIssueController.issue(PolicyIssueRequest) (trace and explain; adapter is instructor-provided)",
+        "learner_seam": "LocalPolicyIssueController.issue(PolicyIssueRequest, Authentication)",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-64.md",
         "evidence_reference": "evidence/continuation-57-70/day-64.json",
         "status": "not_attempted",
@@ -1024,8 +1562,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1089,13 +1627,97 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Run the adapter selector and trace POST /api/policies from HTTP mapping through owner resolution, idempotency status decision, lifecycle service, and response. Explain why atomicity/idempotency belongs in the domain service; this supplied adapter is not a learner TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
-        ]
+        ],
+        "interview_assignment": {
+          "day": 64,
+          "date": "2026-12-26",
+          "title": "Trace the instructor-provided local policy issue adapter boundary",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 09 - Implementing POST Method to create User Resource",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 516,
+              "duration": "8:36",
+              "source_item_id": "35018816",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location",
+              "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+              "duration_seconds": 684,
+              "duration": "11:24",
+              "source_item_id": "35018814",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring MVC Handler Method Arguments",
+              "section": "@RequestBody and java.security.Principal argument resolution",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            },
+            {
+              "title": "Spring MVC @RequestBody",
+              "section": "Reading the request body through message conversion",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html"
+            },
+            {
+              "title": "Spring MVC controller method arguments",
+              "section": "request-bound arguments",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html"
+            },
+            {
+              "title": "Spring MVC controller return types",
+              "section": "ResponseEntity",
+              "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/return-types.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 64. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No Location requirement, price calculation, or substitute domain implementation.",
+          "deferred_work_id": "S5-D64-ADAPTER",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-64",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalApplicationAcceptanceTest#day64IssueAdapterDelegatesExactlyOnceAndReturnsTheServiceSnapshot test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalApplicationAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-64",
+          "decision": "Let the issue adapter translate the lifecycle decision and persist only the contracted create result; replay, conflict, and anonymous paths do not write.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1190,8 +1812,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1245,13 +1867,87 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Reproduce a POST without CSRF and one with a valid token, compare HTTP responses and policy row counts, then explain why rejection occurs before controller/service execution. This supplied protection is not a learner TODO.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
-        ]
+        ],
+        "interview_assignment": {
+          "day": 65,
+          "date": "2026-12-27",
+          "title": "Reproduce and explain CSRF rejection in the local runtime",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 668,
+              "duration": "11:08",
+              "source_item_id": "35017674",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 09 - Exploring Spring Security - CSRF for REST API",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 520,
+              "duration": "8:40",
+              "source_item_id": "35017670",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring Security CSRF protection",
+              "section": "CSRF protection and token repository",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html"
+            },
+            {
+              "title": "Spring Security CSRF protection",
+              "section": "synchronizer token pattern and CSRF configuration",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 65. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No disabling CSRF and no mocked 201 presented as native success.",
+          "deferred_work_id": "S5-D65-CSRF",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-65",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "acceptance_commands": [
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalSecurityAcceptanceTest#day65InvalidCsrfCannotCreatePolicyRows test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/LocalSecurityAcceptanceTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-65",
+          "decision": "Preserve CSRF on every unsafe request and test it independently from authentication; rejected requests must not reach handlers or mutate rows.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1330,7 +2026,7 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
         "acceptance_commands": [
-          "npm --prefix frontend run test:local"
+          "npm --prefix frontend run test:sprint5"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1340,8 +2036,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1392,9 +2088,112 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Implement the accessible normal React route at / with typed same-origin session, preview, issue, readback and replay flows; pass the fixed UI acceptance suite.",
-        "learner_evidence_mode": "implementation_acceptance"
+        "learner_evidence_mode": "implementation_acceptance",
+        "interview_assignment": {
+          "day": 66,
+          "date": "2026-12-28",
+          "title": "Build the normal React route and typed local API client",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [
+            {
+              "course_id": "1362070",
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Working with Props & TypeScript",
+              "section_title": "React + TypeScript",
+              "duration_seconds": 860,
+              "duration": "14:20",
+              "source_item_id": "25890212",
+              "course_id": "1362070"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "MDN Fetch API — credentials, HTTP errors and response JSON",
+              "section": "including credentials; handling HTTP response status",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+            },
+            {
+              "title": "TypeScript everyday types",
+              "section": "object types",
+              "url": "https://www.typescriptlang.org/docs/handbook/2/objects.html"
+            },
+            {
+              "title": "Fetch API",
+              "section": "credentials and response status",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q14",
+          "question_title": "Booking: retry after a lost response",
+          "question_href": "../interview/question-bank.md#q14",
+          "pattern_refs": [
+            "../interview/pattern-library.md#frontend-state-machine",
+            "../interview/pattern-library.md#idempotency",
+            "../interview/pattern-library.md#transaction-boundary"
+          ],
+          "proposal_prompt": "Design a retry after a booking write succeeds but its response is lost. Distinguish the frozen user intent and idempotency key from transport retries, define visible pending/unknown/confirmed states, and explain why a retry must reuse the same request. Transfer to the existing local UI; do not add booking behavior.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "One 40-minute vertical slice (5 preconditions, 25 implementation, 10 selector/result). Existing full five-flow Day 66 acceptance remains mandatory; unfinished issue/readback/replay work stays open.",
+          "bounded_task": "Implement one coherent learner-owned typed same-origin session-plus-preview vertical slice with explicit response decoding and owner/session state clearing. Use only existing API shapes; no issue POST from a React effect and no new retry mechanism.",
+          "deferred_work_id": "S5-D66-UI",
+          "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
+          "acceptance_commands": [
+            "npm --prefix frontend run test:sprint5"
+          ],
+          "acceptance": "Use the explicit Sprint5-only Vitest selector, which retains the original session/preview/issue/readback/replay gate and adds malformed/non-JSON/network errors, pending action, logout 204/CSRF, late owner response and no automatic retry. Later busy-capacity coverage remains in test:local and is not a Day66 prerequisite.",
+          "evidence": "Save the proposal before references, actual selector result/blocker, response shapes observed, and changed paths. No post-hoc design essay.",
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-66"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-66",
+          "decision": "Decode HTTP status before parsing a body, validate successful JSON as unknown, and model UI states as a discriminated union; errors never become success-shaped data.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1476,8 +2275,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1518,13 +2317,78 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "instructor_scaffold_verified",
+        "acceptance_selector_status": "installed; instructor scaffold verification is separate from learner completion",
         "learner_task": "Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.",
         "learner_evidence_mode": "explain_debug",
         "scaffold_verification_test_path": "src/test/java/assignments/local/LocalPackageInfrastructureTest.java",
         "scaffold_verification_commands": [
           "./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test"
-        ]
+        ],
+        "interview_assignment": {
+          "day": 67,
+          "date": "2026-12-29",
+          "title": "Inspect the disposable packaged runtime lifecycle",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 09 - Get Production Ready with Spring Boot - 1 - Profiles",
+              "section_title": "Getting Started with Spring Boot",
+              "duration_seconds": 425,
+              "duration": "7:05",
+              "source_item_id": "35019912",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring Boot executable jar packaging",
+              "section": "repackage goal and executable archives",
+              "url": "https://docs.spring.io/spring-boot/maven-plugin/packaging.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 67. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No new packaging system, persistent DB, global prune, or claim based only on source-string checks.",
+          "deferred_work_id": "S5-D67-PACKAGE",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "scripts/package-sprint5-demo.sh",
+            "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [
+            "Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion."
+          ],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-67",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "acceptance_commands": [
+          "scripts/package-sprint5-demo.sh",
+          "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test"
+        ],
+        "acceptance_test_path": "src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java",
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-67",
+          "decision": "Build a fresh dedicated executable archive and launch only that artifact against uniquely disposable loopback resources; source tests and stale JARs do not prove packaging.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1590,8 +2454,9 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
+          "scripts/package-sprint5-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1601,8 +2466,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1658,10 +2523,84 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Use real UI controls against the packaged JAR for preview, issue, readback and same-key replay. Around every preview/readback flow, compare complete policy rows, lifecycle events/versions and idempotency records; for issuance, verify existing rows stay byte-stable and only one policy, event and idempotency record are added. Record actual blockers; HTTP 500 is failure, not acceptance.",
         "learner_evidence_mode": "explain_debug",
-        "acceptance_selector": "day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce"
+        "acceptance_selector": "day68PackagedUiPreviewIsReadOnly; day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce",
+        "interview_assignment": {
+          "day": 68,
+          "date": "2026-12-30",
+          "title": "Drive packaged UI acceptance: issue/readback/replay and restart/no-write checks",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [
+            {
+              "course_id": "1362070",
+              "title": "React - The Complete Guide (incl. Next.js, Redux)",
+              "instructor": "Academind / Maximilian Schwarzmüller",
+              "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+              "access_status": "unconfirmed_reference_only"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Testing User Interaction & State",
+              "section_title": "Testing React Apps (Unit Tests)",
+              "duration_seconds": 840,
+              "duration": "14:00",
+              "source_item_id": "25890068",
+              "course_id": "1362070"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Playwright Page API",
+              "section": "goto, getByRole and click",
+              "url": "https://playwright.dev/docs/api/class-page"
+            },
+            {
+              "title": "Playwright Response API",
+              "section": "status, json and text",
+              "url": "https://playwright.dev/docs/api/class-response"
+            },
+            {
+              "title": "Playwright Page API",
+              "section": "navigation and user interactions",
+              "url": "https://playwright.dev/docs/api/class-page"
+            },
+            {
+              "title": "Playwright Response API",
+              "section": "status and JSON response",
+              "url": "https://playwright.dev/docs/api/class-response"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the full 85-minute practice allocation for the existing engineering acceptance in Day 68. Follow the assistant-provided architecture note in the 25-minute concept block; no capstone design proposal is assigned.",
+          "scope_boundary": "No invented fixture values, 500-as-pass, mocked packaged evidence, or claim from counts/IDs alone.",
+          "deferred_work_id": "S5-D68-INTEGRATION",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "scripts/package-sprint5-demo.sh",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiPreviewIsReadOnly test",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day68PackagedUiIssuesReadsBackAndReplaysExactlyOnce test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector, result/blocker, assistance, and changed paths. Do not record a capstone proposal or add retrospective architecture justification.",
+          "open_acceptance_gaps": [],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-68",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-68",
+          "decision": "Use independent expected API/DOM/database projections and a snapshot barrier after every browser action; whole-flow counts can hide a temporary illegal write.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1742,7 +2681,8 @@
         "scaffold_status": "partial",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
         "acceptance_commands": [
-          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
+          "scripts/package-sprint5-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java",
         "infrastructure_commands": [
@@ -1752,8 +2692,8 @@
           "minutes": 25,
           "allocation_minutes": {
             "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "assistant_architecture_note": 10,
+            "apply_to_task": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [
@@ -1793,16 +2733,6 @@
               "title": "PostgreSQL Transaction Isolation",
               "section": "Read Committed statement snapshots",
               "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
-            },
-            {
-              "title": "Spring Security logout handling",
-              "section": "logout architecture and URI customization",
-              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
-            },
-            {
-              "title": "PostgreSQL transaction isolation",
-              "section": "Read Committed statement snapshots",
-              "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
             }
           ],
           "video_seconds": 844,
@@ -1817,10 +2747,117 @@
           "videos_watched": false,
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
-        "acceptance_selector_status": "installed_expected_day66_and_upstream_todos_red",
+        "acceptance_selector_status": "installed_scoped_harness; native learner TODO or evidence gate remains as described",
         "learner_task": "Start the packaged app before taking the initial snapshot so Flyway has applied migrations; restart it against the same disposable database. Verify session invalidation, stable preview JSON, owner isolation, and unchanged complete policy rows, lifecycle events/versions and idempotency records around preview, owner switching and logout.",
         "learner_evidence_mode": "explain_debug",
-        "acceptance_selector": "day69PreviewIsStableAcrossPackagedRestartAndLogout"
+        "acceptance_selector": "day69PreviewIsStableAcrossPackagedRestartAndLogout",
+        "interview_assignment": {
+          "day": 69,
+          "date": "2026-12-31",
+          "title": "Compare UI preview, foreign owner and session behavior across restart",
+          "proposal_before_hints_reference_or_ai": true,
+          "course_catalog": [
+            {
+              "course_id": "4993276",
+              "title": "Master Spring Boot 3 & Spring Framework 6 with Java",
+              "instructor": "in28Minutes Official",
+              "url": "https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/",
+              "access_status": "confirmed_owned"
+            }
+          ],
+          "course_bridges": [
+            {
+              "title": "Step 21 - Understanding Spring Security Authentication",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 257,
+              "duration": "4:17",
+              "source_item_id": "35017628",
+              "course_id": "4993276"
+            },
+            {
+              "title": "Step 22 - Exploring Spring Security Authorization",
+              "section_title": "Securing Spring Boot Applications with Spring Security",
+              "duration_seconds": 587,
+              "duration": "9:47",
+              "source_item_id": "35017626",
+              "course_id": "4993276"
+            }
+          ],
+          "supporting_sources": [
+            {
+              "title": "Spring Security Handling Logouts",
+              "section": "Understanding Logout’s Architecture and Customizing Logout URIs",
+              "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
+            },
+            {
+              "title": "PostgreSQL Transaction Isolation",
+              "section": "Read Committed statement snapshots",
+              "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
+            }
+          ],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q18",
+          "question_title": "Cache invalidation: owner privacy after a write",
+          "question_href": "../interview/question-bank.md#q18",
+          "pattern_refs": [
+            "../interview/pattern-library.md#cache-policy",
+            "../interview/pattern-library.md#ownership-boundary",
+            "../interview/pattern-library.md#frontend-state-machine"
+          ],
+          "proposal_prompt": "Design how a private read cache is invalidated after an owner switch, logout, or a write. Compare cache keying and invalidation strategies, including a late in-flight response. Transfer the state reasoning to the supplied UI/restart experiment; do not add a cache feature.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "Bounded observation/debug slice only. No new cache, authentication, or persistence feature. The full packaged selector remains the acceptance gate.",
+          "bounded_task": "Run the existing packaged journey and inspect whether the exact saved cookie was active immediately before shutdown, whether logout is independent from restart, and whether the UI clears populated private state immediately. The current selector does not prove those three conditions; mark them open rather than inferring them from post-restart 401.",
+          "deferred_work_id": "S5-D69-RESTART",
+          "deferred_work": "Any unmet portion of the existing day acceptance remains open under this ID; the 40-minute slice and interview mock do not mark completion.",
+          "acceptance_commands": [
+            "scripts/package-sprint5-demo.sh",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest#day69PreviewIsStableAcrossPackagedRestartAndLogout test"
+          ],
+          "acceptance": "The bounded browser journeys separate logout from restart. Logout starts with populated private preview state and checks immediate clearing plus 401 while the process remains alive. Restart uses the exact cookie bytes saved and verified active immediately before stopping, a different PID, same database/fixed clock, then 401; reselected preview matches the independent complete projection. Every action has a full-row DB observation barrier.",
+          "evidence": "Save the proposal, pre-stop active-session observation, process IDs, status/snapshot results, exact blocker, and changed paths; never record cookies or tokens.",
+          "open_acceptance_gaps": [],
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-69"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-69",
+          "decision": "Clear private preview state immediately on owner change/logout and invalidate late responses; test restart only with the exact saved cookie proven active before shutdown.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "verified_titles_video_not_watched",
@@ -1870,16 +2907,6 @@
             "title": "PostgreSQL Transaction Isolation",
             "section": "Read Committed statement snapshots",
             "url": "https://www.postgresql.org/docs/18/transaction-iso.html"
-          },
-          {
-            "title": "Spring Security logout handling",
-            "section": "logout architecture and URI customization",
-            "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"
-          },
-          {
-            "title": "PostgreSQL transaction isolation",
-            "section": "Read Committed statement snapshots",
-            "url": "https://www.postgresql.org/docs/14/transaction-iso.html"
           }
         ]
       },
@@ -1888,7 +2915,7 @@
     {
       "day": 70,
       "date": "2027-01-01",
-      "title": "Complete the mastery, recovery and design mock",
+      "title": "Complete the mastery, recovery and evidence handover",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-70.md",
       "contract_status": "defined",
       "scaffold_status": "partial",
@@ -1901,8 +2928,8 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Complete the mastery, recovery and design mock",
-        "learner_seam": "Evidence review and local application design explanation",
+        "scope": "Complete the mastery, recovery and evidence handover",
+        "learner_seam": "Evidence review, bounded recovery, and project handover",
         "acceptance_reference": "docs/reboot/continuation-57-70/contracts/day-70.md",
         "evidence_reference": "evidence/continuation-57-70/day-70.json",
         "status": "not_attempted",
@@ -1918,34 +2945,18 @@
         "concept_course": {
           "minutes": 25,
           "allocation_minutes": {
-            "focused_reading": 10,
-            "design_sketch": 10,
-            "teachback": 5
+            "evidence_review": 10,
+            "assistant_architecture_note": 10,
+            "recovery_selection": 5
           },
           "allocation_note": "Nominal planner labels only. Assigned video and its supplement share the same 25-minute cap and replace these nominal activity portions; never add time.",
           "courses": [],
           "lessons": [],
-          "resources": [
-            {
-              "title": "C4 Software System",
-              "section": "software system",
-              "url": "https://c4model.com/abstractions/software-system"
-            },
-            {
-              "title": "C4 Container",
-              "section": "container",
-              "url": "https://c4model.com/abstractions/container"
-            },
-            {
-              "title": "C4 Component",
-              "section": "component",
-              "url": "https://c4model.com/abstractions/component"
-            }
-          ],
+          "resources": [],
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
-          "fit": "assessment_review_no_new_lecture",
-          "scope_note": "No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.",
+          "fit": "evidence_and_supplied_architecture_review_no_new_lecture",
+          "scope_note": "No new lecture. Within the existing 25-minute block, review actual selector evidence, read the supplied architecture decisions, and select the first recovery item.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
@@ -1955,8 +2966,44 @@
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "acceptance_selector_status": "instructor_integrity_only",
-        "learner_task": "Review the recorded pass/fail evidence, complete the C4/trust-boundary explanation and recovery/interview mock. Report unresolved upstream blockers without upgrading scaffold status to learner completion.",
-        "learner_evidence_mode": "explain_debug"
+        "learner_task": "Review actual pass/fail/blocked/not-run evidence; read the assistant-supplied architecture decisions; recover the first blocker; and hand over observed results. No capstone architecture proposal or design mock is assigned.",
+        "learner_evidence_mode": "explain_debug",
+        "interview_assignment": {
+          "day": 70,
+          "date": "2027-01-01",
+          "title": "Complete the mastery, recovery and evidence handover",
+          "proposal_before_hints_reference_or_ai": false,
+          "course_catalog": [],
+          "course_bridges": [],
+          "supporting_sources": [],
+          "study_cap_minutes": 25,
+          "course_note": "Catalog metadata is saved reference evidence; videos_watched remains false. Optional/unconfirmed lessons replace time only; no enrollment is required.",
+          "mode": "assistant_supplied_capstone_architecture",
+          "duration_minutes": 0,
+          "practice_minutes_available": 85,
+          "existing_acceptance_minutes": 85,
+          "practice_total_minutes": 85,
+          "implementation_scope": "Use the existing 85-minute recovery and handover allocation. Read the assistant-provided architecture note as context; no capstone design proposal or architecture justification is assigned.",
+          "scope_boundary": "Keep work within 85 minutes: 55 minutes first-blocker recovery or consolidation, 20 minutes factual project handover, and 10 minutes next-blocker triage. Do not add time.",
+          "deferred_work_id": "S5-D70-HANDOVER",
+          "deferred_work": "Keep all unmet acceptance under this named ID; resume from the first real blocker in available practice/recovery time. Do not mark it complete from the proposal or a partial selector.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=LocalApplicationManifestInfrastructureTest#day70EvidenceAndDesignMockStayWithinTheDefinedSlice test"
+          ],
+          "acceptance": "Existing engineering acceptance remains authoritative; the assistant note does not mark implementation complete.",
+          "evidence": "Record actual selector result or blocker, assistance, and changed paths. Do not infer completion from a plan or partial selector.",
+          "open_acceptance_gaps": [
+            "The integrity selector verifies manifest/evidence scope only. It does not assess mastery, validate a real demo, or prove the learner completed the bounded handover."
+          ],
+          "assistant_architecture_note": "docs/reboot/assistant-architecture-notes-15-70.md#day-70",
+          "proposal_scope": "none",
+          "capstone_architecture": "assistant_supplied"
+        },
+        "assistant_architecture_note": {
+          "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-70",
+          "decision": "Use actual pass/fail/blocked/not-run evidence to select recovery and handover content; no new feature or fictional customer result is introduced.",
+          "budget": "within_existing_25_minute_concept_allocation"
+        }
       },
       "mandatory_new_problem": false,
       "course_learning_status": "no_new_lesson_integration_review",
@@ -1968,31 +3015,15 @@
         "lessons": [],
         "video_seconds": 0,
         "remaining_study_seconds": 1500,
-        "fit": "assessment_review_no_new_lecture",
-        "scope_note": "No new lecture. Use the existing 25-minute block to explain one observed boundary using actual selector evidence, then identify recovery work; the design mock is not evidence of implementation completion.",
+        "fit": "assistant_architecture_and_evidence_review_no_new_lecture",
+        "scope_note": "No new lecture or separate system-design exercise is assigned. Review actual selector evidence, read the supplied Day 70 architecture decisions, and select the first recovery item within the existing 25-minute cap.",
         "supplement_required": true,
-        "resources": [
-          {
-            "title": "C4 Software System",
-            "section": "software system",
-            "url": "https://c4model.com/abstractions/software-system"
-          },
-          {
-            "title": "C4 Container",
-            "section": "container",
-            "url": "https://c4model.com/abstractions/container"
-          },
-          {
-            "title": "C4 Component",
-            "section": "component",
-            "url": "https://c4model.com/abstractions/component"
-          }
-        ]
+        "resources": []
       },
       "historical_mandatory_new_problem": false
     }
   ],
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
   }
 }

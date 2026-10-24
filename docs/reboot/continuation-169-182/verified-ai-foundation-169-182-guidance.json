@@ -220,5 +220,54 @@
     "Include hand-calculated metric cases, tied counts, zero-count items, all-miss rankings, duplicate recommendation rejection, invalid K, leakage sentinel, and byte-stable reruns.",
     "Treat synthetic metrics as demonstrations that calculations work, not evidence of personalization, causal lift, real-user quality, fairness, or production readiness.",
     "Freeze K=3, tie handling, positive-event relevance, candidate eligibility, and empty-truth policy before scoring. Precision denominator always remains 3. Recall retains all distinct positive holdout targets, including candidate-unreachable future items."
-  ]
+  ],
+  "prior_readiness_gate": {
+    "name": "Days 153–154 learner-owned A/B evidence",
+    "required": true,
+    "current_status": "not_met",
+    "observed_prior_status": {
+      "day_153": "not_attempted",
+      "day_153_evidence": "not_run",
+      "day_154": "not_attempted",
+      "day_154_evidence": "not_run"
+    },
+    "evidence_records": [
+      {
+        "path": "evidence/continuation-141-154/day-153.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      },
+      {
+        "path": "evidence/continuation-141-154/day-154.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      }
+    ],
+    "qualifying_evidence": {
+      "each_day_record": "status completed and evidence_status verified",
+      "learner_ownership": "learner_completion true and temporary_witness false",
+      "source_identity": "tested_source_sha is a 40-character hexadecimal commit SHA",
+      "artifacts": "at least two distinct SHA-256 artifact hashes with explicit baseline/candidate roles",
+      "execution": "record the exact matrix selector and matrix_exit_code 0",
+      "provenance": "record baseline and candidate source identities and build recipes; include any temporary witness provenance",
+      "result_and_limits": "record observed matrix result and proof_limits"
+    },
+    "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
+    "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet.",
+    "evaluation_command": "python3 scripts/check_streamforge_169_182_entry_gate.py",
+    "evaluation_script": "scripts/check_streamforge_169_182_entry_gate.py",
+    "downstream_scope": "StreamForge Days 169–182"
+  },
+  "architecture_policy": "Assistant supplies the concrete capstone architecture and why; learner implements/tests. System design practice is restricted to the separate question bank.",
+  "interview_schedule": "interview-and-review-schedule.md"
 }

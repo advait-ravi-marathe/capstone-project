@@ -83,6 +83,60 @@ class Day141To154InfrastructureTest {
         try(var paths=Files.list(Path.of("src/main/resources/db/migration"))) { assertFalse(paths.anyMatch(p->p.getFileName().toString().startsWith("V006"))); }
     }
 
+    @Test void assistantArchitectureInterviewSessionsAndPackagePreparationAreSynchronized() throws Exception {
+        Path dir=Path.of("docs/reboot/continuation-141-154");
+        JsonNode manifest=mapper.readTree(Files.readString(dir.resolve("manifest.json")));
+        JsonNode export=mapper.readTree(Files.readString(dir.resolve("scrum-owner-manifest.json")));
+        JsonNode days=manifest.path("days"), cards=export.path("cards");
+        assertEquals(120,manifest.path("engineering_budget_minutes").asInt());
+        assertTrue(manifest.path("daily_budget_excludes_separate_dsa").asBoolean());
+        assertEquals("859e161f6553e9aca8dc501fda152780cec66ef0",
+                manifest.path("separate_learning_repository").path("source_commit").asText());
+        Path notes=dir.resolve("assistant-architecture-notes.md");
+        assertTrue(Files.isRegularFile(notes));
+        String noteText=Files.readString(notes);
+        int[] mockDays={141,144,148,151};
+        for(int i=0;i<days.size();i++) {
+            JsonNode day=days.get(i), card=cards.get(i), engineering=day.path("engineering");
+            int number=day.path("day").asInt();
+            assertEquals(engineering.toString(),card.path("engineering").toString());
+            String noteRef=engineering.path("assistant_architecture_note").asText();
+            assertTrue(noteRef.endsWith("#day-"+number));
+            assertTrue(noteText.contains("## Day "+number+" —"));
+            String contract=Files.readString(Path.of(day.path("contract_file").asText()));
+            assertTrue(contract.contains(noteRef.substring(noteRef.indexOf('#')+1)));
+            assertTrue(contract.contains("No capstone design proposal"));
+            assertEquals(noteRef,card.path("learning_block").path("architecture_note").asText());
+            JsonNode assignment=engineering.path("interview_assignment");
+            boolean expected=java.util.Arrays.stream(mockDays).anyMatch(x->x==number);
+            assertEquals(expected,!assignment.isMissingNode()&&!assignment.isNull());
+            if(expected) {
+                assertEquals("system_design_interview_question_only",assignment.path("proposal_scope").asText());
+                assertEquals("assistant_supplied",assignment.path("capstone_architecture").asText());
+                assertEquals(45,assignment.path("mock_minutes").asInt());
+                assertEquals(85,assignment.path("practice_minutes_available").asInt());
+                int mock=0; for(JsonNode phase:assignment.path("mock_phases")) mock+=phase.path("minutes").asInt();
+                int slice=0; for(JsonNode minutes:assignment.path("eai_slice_minutes")) slice+=minutes.asInt();
+                assertEquals(45,mock); assertEquals(40,slice); assertEquals(85,mock+slice);
+                assertEquals(assignment,card.path("engineering").path("interview_assignment"));
+            }
+            JsonNode prep=engineering.path("preparation_commands"), tests=engineering.path("test_commands"), all=engineering.path("acceptance_commands");
+            assertEquals(prep.size()+tests.size(),all.size());
+            for(int j=0;j<prep.size();j++) assertEquals(prep.get(j).asText(),all.get(j).asText());
+            for(int j=0;j<tests.size();j++) assertEquals(tests.get(j).asText(),all.get(prep.size()+j).asText());
+        }
+        for(int number:new int[]{146,147,151}) {
+            JsonNode commands=days.get(number-141).path("engineering").path("acceptance_commands");
+            assertTrue(commands.get(0).asText().contains("-Plocal-app -DskipTests package"));
+            assertTrue(commands.get(1).asText().contains("-Dtest="));
+        }
+        for(int number:new int[]{148,149,153,154}) {
+            JsonNode commands=days.get(number-141).path("engineering").path("acceptance_commands");
+            assertTrue(commands.get(0).asText().contains("prepare-release-artifacts.sh"));
+            assertTrue(commands.get(1).asText().contains("artifact-pair-manifest.json"));
+        }
+    }
+
     private static String sha256(byte[] value) throws Exception {
         byte[] digest=java.security.MessageDigest.getInstance("SHA-256").digest(value);
         return java.util.HexFormat.of().formatHex(digest);

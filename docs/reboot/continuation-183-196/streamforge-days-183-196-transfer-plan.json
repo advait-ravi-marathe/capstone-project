@@ -2,16 +2,18 @@
   "title": "StreamForge Days 183–196 bounded content-profile experiment",
   "status": "starter_not_learner_completion_or_board_published",
   "prepared_on": "2026-10-21",
-  "branch": "learning/streamforge-days-183-196",
+  "branch": "work/eai-sprint2-onward",
   "source": {
-    "base_commit": "fa45d70868e93da79bb2ff84a8c4a4ca77510924",
+    "base_commit": "41946e432b2a61ab4ba1c0fb938da07aff9e5ded",
     "source_sha": "d84c6d42820083c2dc23b4171a351e2932e2dc8d",
     "receipt_sha": "fa45d70868e93da79bb2ff84a8c4a4ca77510924",
-    "runtime": "Python 3.12.14"
+    "runtime": "Python 3.12.14",
+    "original_branch": "learning/streamforge-days-183-196",
+    "original_parent_receipt_commit": "fa45d70868e93da79bb2ff84a8c4a4ca77510924"
   },
   "dates": {
-    "start": "2027-04-20",
-    "end": "2027-05-03",
+    "start": "2027-04-24",
+    "end": "2027-05-07",
     "recovery_days": [
       189,
       196
@@ -346,7 +348,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "encode_genre(genre) -> tuple[int, ...]"
+      "signature": "encode_genre(genre) -> tuple[int, ...]",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-183",
+        "decision": "Freeze the five allowed genre labels and encode each as one fixed five-coordinate one-hot tuple. This keeps category identity explicit and prevents ordinal arithmetic from implying that one genre is “larger” than another.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 184,
@@ -370,7 +391,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "catalog_features(catalog) -> immutable feature map"
+      "signature": "catalog_features(catalog) -> immutable feature map",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-184",
+        "decision": "Build a deterministic media-ID-to-feature map from the frozen vocabulary and catalog snapshot. Keep feature extraction separate from time-window candidate eligibility so expired historical items can still inform training without becoming recommendable candidates.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 185,
@@ -395,7 +435,28 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "profile_counts(train_pairs, features, training_viewer_ids) -> immutable count state"
+      "signature": "profile_counts(train_pairs, features, training_viewer_ids) -> immutable count state",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-185",
+        "decision": "Count distinct positive (viewer, media) training pairs by the item’s fixed genre, then aggregate for the declared training-viewer cohort. Deduplication prevents repeated events from inflating preference counts; holdout rows never enter this function.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q27",
+        "question_title": "Feed: build a page",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day": 186,
@@ -419,7 +480,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "normalize_profiles(count_state) -> immutable profile map"
+      "signature": "normalize_profiles(count_state) -> immutable profile map",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-186",
+        "decision": "Normalize each five-count vector by its exact L1 total using Fraction, and retain an all-zero vector for no-signal viewers. Exact arithmetic keeps ties stable and makes the zero case explicit.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 187,
@@ -444,7 +524,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "score_candidates(weights, candidate_features) -> immutable score map"
+      "signature": "score_candidates(weights, candidate_features) -> immutable score map",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-187",
+        "decision": "Score each candidate by the dot product of its one-hot genre vector and the normalized viewer profile. This is transparent arithmetic for the declared feature set, not a learned or calibrated probability.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 188,
@@ -469,7 +568,28 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "rank_for_viewer(viewer_id, profiles, counts, candidates, features, global_rank) -> QueryPrediction"
+      "signature": "rank_for_viewer(viewer_id, profiles, counts, candidates, features, global_rank) -> QueryPrediction",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-188",
+        "decision": "Rank candidates by descending exact score then media ID, while preserving distinct unseen, seen-zero, positive-no-overlap, and empty-candidate modes. Keep the existing global list as the explicit cold/zero-signal fallback.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q28",
+        "question_title": "Feed: fan-out choice",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day": 189,
@@ -498,7 +618,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "prior_only_183_188"
+      "signature": "prior_only_183_188",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-189",
+        "decision": "Recovery composes only the six prior feature/ranking selectors; it adds no production seam. That keeps recovery bounded to the first half of the experiment and avoids advancing into evaluation before its inputs are ready.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 190,
@@ -525,7 +664,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "assemble_predictor_state(protocol, features, counts, profiles, training_viewers, candidates, global_state, global_rank) -> PredictorState"
+      "signature": "assemble_predictor_state(protocol, features, counts, profiles, training_viewers, candidates, global_state, global_rank) -> PredictorState",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-190",
+        "decision": "Freeze protocol, candidate features, training-derived counts/profiles, and global baseline into deeply immutable predictor state. Exclude holdout/query data and source-byte hashes from model state so evaluation changes cannot leak backward into the predictor.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 191,
@@ -551,7 +709,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "evaluate_profiles(state, targets) -> ProfileEvaluation"
+      "signature": "evaluate_profiles(state, targets) -> ProfileEvaluation",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-191",
+        "decision": "Evaluate every positive-target viewer over the same frozen candidate set and preserve all distinct positive targets, including unreachable items. Apply the fixed 2,500 scored-pair guard before ranking so resource limits fail explicitly instead of truncating.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 192,
@@ -576,7 +753,28 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "compare_against_global(profile_evaluation, global_evaluation) -> ProfileComparison"
+      "signature": "compare_against_global(profile_evaluation, global_evaluation) -> ProfileComparison",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-192",
+        "decision": "Compare profile and existing global results only after validating that their observable cohort, candidates, counts, statuses, and denominators agree. Signed profile-minus-global deltas make regressions visible instead of treating the profile as presumed better.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day": 193,
@@ -602,7 +800,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "assemble_profile_report(protocol, state, profile_evaluation, comparison, lineage) -> dict"
+      "signature": "assemble_profile_report(protocol, state, profile_evaluation, comparison, lineage) -> dict",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-193",
+        "decision": "Assemble one complete report from validated predictor, query, evaluation, and preparation lineage values. Deep-copy and hash canonical projections at the existing boundary; never emit partial success or imply hashes prove authenticity.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 194,
@@ -636,7 +853,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "evaluate_content_fixture(fixture_name) -> dict"
+      "signature": "evaluate_content_fixture(fixture_name) -> dict",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-194",
+        "decision": "Use the existing CLI composition to prepare the registered synthetic fixture once, call the baseline and profile seams, and emit the full report only after all stages validate. Keep temporary fixture copies byte-preserved and do not mutate production or source data.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     },
     {
       "day": 195,
@@ -672,7 +908,28 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "supplied_adversarial_and_fresh_process_assertions"
+      "signature": "supplied_adversarial_and_fresh_process_assertions",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-195",
+        "decision": "Keep adversarial controls outside learner production code: change only the declared training or holdout input and check the independent report oracle, process boundary, and work limit. Restore temporary witnesses byte-for-byte; a green control is scaffold evidence, not learner completion.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "allocation_minutes": {
+          "requirements": 5,
+          "capacity_and_constraints": 5,
+          "initial_architecture_and_data_model": 15,
+          "bottlenecks_reliability_scaling": 10,
+          "tradeoffs_failures_followups": 10
+        }
+      }
     },
     {
       "day": 196,
@@ -708,7 +965,26 @@
         "total": 210
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "signature": "prior_only_183_195"
+      "signature": "prior_only_183_195",
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-196",
+        "decision": "Run only prior selectors and present the experiment with its observed limits. Recovery adds no new model, deployment, data source, or feature; unresolved A/B readiness and learner seams remain explicit rather than being inferred complete.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "question_or_unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "allocation_minutes": {
+          "question_or_review": 30,
+          "retrieval_or_explain_back": 10,
+          "evidence_and_next_due": 5
+        }
+      }
     }
   ],
   "state_and_report": {
@@ -843,5 +1119,32 @@
         "1/2"
       ]
     }
-  ]
+  ],
+  "prior_readiness_gate": {
+    "name": "Days 153–154 learner-owned A/B evidence",
+    "required": true,
+    "current_status": "not_met",
+    "evidence_records": [
+      {
+        "path": "evidence/continuation-141-154/day-153.json"
+      },
+      {
+        "path": "evidence/continuation-141-154/day-154.json"
+      }
+    ],
+    "qualifying_evidence": {
+      "each_day_record": "status completed and evidence_status verified",
+      "learner_ownership": "learner_completion true and temporary_witness false",
+      "source_identity": "tested_source_sha is a 40-character hexadecimal commit SHA",
+      "artifacts": "at least two distinct SHA-256 artifact hashes with explicit baseline/candidate roles",
+      "execution": "record the exact matrix selector and matrix_exit_code 0",
+      "provenance": "record baseline and candidate source identities and build recipes; include any temporary witness provenance",
+      "result_and_limits": "record observed matrix result and proof_limits"
+    },
+    "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
+    "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet.",
+    "evaluation_command": "python3 scripts/check_streamforge_169_182_entry_gate.py",
+    "evaluation_script": "scripts/check_streamforge_169_182_entry_gate.py",
+    "downstream_scope": "StreamForge Days 183–196"
+  }
 }

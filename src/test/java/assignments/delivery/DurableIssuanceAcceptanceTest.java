@@ -44,6 +44,15 @@ class DurableIssuanceAcceptanceTest {
 
     @Test
     void day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents() throws Exception {
+        assertLateEarlierCommitIsReconciled();
+    }
+
+    @Test
+    void day107LateEarlierCommitCannotFallBehindAKeysetWatermark() throws Exception {
+        assertLateEarlierCommitIsReconciled();
+    }
+
+    private static void assertLateEarlierCommitIsReconciled() throws Exception {
         try (Fixture fixture = new Fixture()) {
             var data = fixture.dataSource;
             try (var late = data.getConnection(); var insert = late.prepareStatement("""
@@ -115,18 +124,19 @@ class DurableIssuanceAcceptanceTest {
     @Test
     void day102MapsCapturedPendingEnvelopeInStableBoundedOrder() throws Exception {
         try (Fixture fixture = new Fixture()) {
-            fixture.insertCommittedSource("map-c", "ISSUED");
             fixture.insertCommittedSource("map-a", "ISSUED");
             fixture.insertCommittedSource("map-b", "ISSUED");
-            assertEquals(2, fixture.store.captureCommittedIssuances(2));
+            fixture.insertCommittedSource("map-c", "ISSUED");
+            assertEquals(3, fixture.store.captureCommittedIssuances(3));
+            // Fixture state only: do not invoke Day 104's learner-owned acknowledgment seam.
+            fixture.jdbc.update("UPDATE training_issuance_work SET acknowledged_at=TIMESTAMPTZ '2027-01-26 00:00:00+00' WHERE policy_id='map-b' AND source_version=1");
             var first = fixture.store.findPending(1);
             assertEquals(1, first.size());
             assertEquals("map-a", first.getFirst().policyId());
             assertEquals("ISSUED", first.getFirst().eventType());
             assertEquals(LocalDate.parse("2027-01-26"), first.getFirst().effectiveDate());
-            fixture.store.acceptReceipt(first.getFirst());
-            assertTrue(fixture.store.acknowledge(first.getFirst()));
-            assertTrue(fixture.store.findPending(10).stream().noneMatch(e -> e.policyId().equals("map-a")));
+            assertEquals(List.of("map-a", "map-c"), fixture.store.findPending(10).stream()
+                    .map(IssuanceEnvelope::policyId).toList(), "pending reads preserve stable order and exclude the seeded acknowledgment");
         }
     }
 

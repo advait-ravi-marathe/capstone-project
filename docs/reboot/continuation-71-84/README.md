@@ -21,3 +21,14 @@ execution, automatic retry, fault route or extra infrastructure is added.
 The engineering allocation remains 120 minutes per day: 25 study, 85 practice/testing, and 10 evidence. All learner implementations and acceptance states stay as recorded in the contracts; dates alone do not establish completion.
 
 For a full local Maven browser run, install Playwright Chromium as in CI with `npx playwright install chromium`. If the Playwright CDN is unavailable and a compatible system Chromium is already installed, use `CHROMIUM_BIN=/usr/bin/chromium ./mvnw test` (or pass the same environment variable to the focused selector). This changes only the browser executable; it does not skip browser checks. The packaged app selector also requires the local frontend build first: `npm --prefix frontend ci && npm --prefix frontend run build:local`.
+
+## Capstone teaching and interview practice
+
+For each implementation task, the assistant supplies the architecture note in
+`assistant-architecture-notes.md`; learners implement and test that stated
+approach without a capstone design proposal or post-hoc justification. The
+separate system-design interview assignments are in
+[`Sprint 6 interview sessions`](../interview/sprint6-session-scope.md). Four
+interviews replace 45 minutes of practice on Days 73, 76, 80, and 81; each
+leaves a bounded 40-minute task slice, with the original acceptance still
+required. The daily budget remains 25/85/10.

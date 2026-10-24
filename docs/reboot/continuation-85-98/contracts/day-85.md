@@ -27,7 +27,7 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-**Worked example (within the same cap):** Draw admission → Hikari checkout → transaction → PostgreSQL lock/query wait → rollback/cleanup. Label which timeout governs each wait. Hikari checkout timeout does not bound SQL after checkout.
+**Worked example (within the same cap):** Trace the supplied admission → Hikari checkout → transaction → PostgreSQL lock/query wait → rollback/cleanup path. Label which timeout governs each wait. Hikari checkout timeout does not bound SQL after checkout.
 
 **Focused sources:**
 - [PostgreSQL 18 Client Connection Defaults — Statement Behavior: statement_timeout and lock_timeout](https://www.postgresql.org/docs/18/runtime-config-client.html)
@@ -35,9 +35,9 @@ No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC beh
 
 Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
 
-**Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
+**Assistant-provided architecture (what and why):** [Day 85 note](../assistant-architecture-notes.md#day-85). The note supplies capstone architecture decisions. Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.
 
-**Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
+**Teach-back:** Explain the supplied boundary in your own words and cite one observed acceptance result; no design-choice essay is required.
 
 ### Evidence block — 10 minutes
 
@@ -45,4 +45,4 @@ Record exact commands, exit status, observed values, cleanup result, learner-own
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

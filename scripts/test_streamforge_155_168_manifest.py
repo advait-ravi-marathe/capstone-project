@@ -3,6 +3,9 @@ from __future__ import annotations
 
 import csv
 import json
+import re
+import subprocess
+import sys
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
@@ -29,10 +32,16 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         start = date(2027, 3, 27)
         self.assertEqual([start + timedelta(days=i) for i in range(14)], [date.fromisoformat(row["date"]) for row in days])
         self.assertEqual([161, 168], [row["day"] for row in days if row["recovery_day"]])
+        readme = (BATCH / "README.md").read_text(encoding="utf-8")
+        self.assertIn("March 27–April 9, 2027", readme)
+        self.assertNotIn("March 23–April 5, 2027", readme)
         self.assertEqual(14, len(self.owner["cards"]))
         self.assertFalse(self.manifest["board_writes"])
         self.assertFalse(self.owner["board_writes"])
         self.assertTrue(all(row["board_ticket_id"] is None and row["status"] == "draft_not_board_published"
+                            for row in self.owner["cards"]))
+        self.assertTrue(all(row["status"] == "draft_not_board_published" for row in days))
+        self.assertTrue(all(row["learner_status"] == "not_assessed" and row["evidence_status"] == "planned_contract_only"
                             for row in self.owner["cards"]))
 
     def test_contract_manifest_owner_and_transfer_plan_selectors_match(self):
@@ -88,7 +97,7 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         plan155 = next(row for row in plan["daily_contracts"] if row["day"] == 155)
         self.assertEqual(command, plan155["readiness_command"])
         self.assertIn("25-minute study block", plan155["readiness_gate"])
-        self.assertIn("no new learner function", contract167)
+        self.assertIn("do not add a new semantic function", contract167)
 
     def test_four_kib_field_limit_is_utf8_bytes_not_characters(self):
         self.assertEqual(4096, self.manifest["fixture"]["max_field_bytes"])
@@ -124,6 +133,145 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         self.assertIn("cap44", readme)
         self.assertIn("no arbitrary paths or urls", readme)
         self.assertEqual("5dc558eeda441177dc4aac87725d0a18417c5abd", self.manifest["base_commit"])
+
+    def test_architecture_notes_interview_sessions_and_task_slices_are_synchronized(self):
+        notes_path = BATCH / "assistant-architecture-notes.md"
+        notes = notes_path.read_text(encoding="utf-8")
+        owner_by_day = {row["day_number"]: row for row in self.owner["cards"]}
+        plan_by_day = {row["day"]: row for row in self.plan["daily_contracts"]}
+        mock_days = [155, 159, 163, 167]
+        self.assertEqual([155, 159, 163, 167], [row["day"] for row in self.manifest["days"]
+                                                if row["engineering"].get("interview_assignment")])
+        self.assertEqual([4, 4, 4], [b - a for a, b in zip(mock_days, mock_days[1:])])
+        question_ids = []
+        for day in self.manifest["days"]:
+            n = day["day"]
+            eng = day["engineering"]
+            owner = owner_by_day[n]
+            plan = plan_by_day[n]
+            note_ref = eng["assistant_architecture_note"]
+            self.assertIn(f"## Day {n} —", notes)
+            self.assertEqual(note_ref, owner["engineering"]["assistant_architecture_note"])
+            self.assertEqual(eng["architecture_explanation"], plan["architecture_explanation"])
+            self.assertFalse(eng["system_design_proposal_required"])
+            self.assertEqual("assistant_supplied_capstone_architecture; learner_implements_and_tests",
+                             eng["design_ownership"])
+            contract = (BATCH / day["contract_file"]).read_text(encoding="utf-8")
+            self.assertIn(" ".join(eng["architecture_explanation"].split()),
+                          " ".join(contract.split()))
+            self.assertIn("Assistant-supplied capstone architecture", contract)
+            self.assertIn(note_ref.rsplit("#", 1)[1], contract)
+            if n in mock_days:
+                assignment = eng["interview_assignment"]
+                question_ids.append(assignment["question_id"])
+                self.assertEqual(assignment, owner["interview_assignment"])
+                self.assertEqual(assignment, plan["interview_assignment"])
+                self.assertEqual("system_design_interview_question_only", assignment["proposal_scope"])
+                self.assertEqual("assistant_supplied", assignment["capstone_architecture"])
+                self.assertEqual(45, assignment["mock_minutes"])
+                self.assertEqual(40, assignment["eai_slice_minutes"])
+                self.assertEqual(85, assignment["practice_minutes_available"])
+                self.assertEqual(45, sum(x["minutes"] for x in assignment["mock_phases"]))
+                self.assertEqual([5, 5, 15, 10, 10],
+                                 [x["minutes"] for x in assignment["mock_phases"]])
+                self.assertTrue(assignment["deferred_work"].startswith(f"S12-D{n}-FULL"))
+                self.assertIn(f"question-bank.md#{assignment['question_id'].lower()}", contract)
+                self.assertIn("45-minute system-design interview", contract)
+                self.assertIn("40-minute implementation slice", contract)
+                self.assertIn(assignment["deferred_work"], contract)
+                for pattern in assignment["pattern_refs"]:
+                    self.assertIn(f"<a id=\"{pattern}\"></a>",
+                                  (ROOT / "docs/reboot/interview/pattern-library.md").read_text())
+                question = (ROOT / "docs/reboot/interview/question-bank.md").read_text()
+                self.assertIn(f'<a id="{assignment["question_id"].lower()}"></a>', question)
+        self.assertEqual(4, len(set(question_ids)))
+
+    def test_prior_ab_gate_uses_authoritative_evidence_and_can_become_met(self):
+        gate = self.manifest["prior_readiness_gate"]
+        sha40 = re.compile(r"^[0-9a-f]{40}$")
+        sha64 = re.compile(r"^[0-9a-f]{64}$")
+
+        def qualifies(record):
+            hashes = record.get("artifact_hashes", [])
+            by_role = {item.get("role"): item.get("sha256") for item in hashes if isinstance(item, dict)}
+            provenance = record.get("source_provenance", {})
+            return all((
+                record.get("status") == "completed",
+                record.get("evidence_status") == "verified",
+                record.get("learner_completion") is True,
+                record.get("temporary_witness") is False,
+                isinstance(record.get("tested_source_sha"), str) and bool(sha40.fullmatch(record["tested_source_sha"])),
+                {"baseline", "candidate"}.issubset(by_role),
+                by_role.get("baseline") != by_role.get("candidate"),
+                all(isinstance(value, str) and sha64.fullmatch(value) for value in by_role.values()),
+                isinstance(record.get("matrix_selector"), str) and bool(record["matrix_selector"].strip()),
+                record.get("matrix_exit_code") == 0,
+                record.get("matrix_result") == "passed",
+                all(isinstance(provenance.get(role), dict)
+                    and provenance[role].get("source")
+                    and provenance[role].get("build_recipe") for role in ("baseline", "candidate")),
+                isinstance(record.get("proof_limits"), str) and bool(record["proof_limits"].strip()),
+            ))
+
+        qualifying_example = {
+            "status": "completed", "evidence_status": "verified",
+            "learner_completion": True, "temporary_witness": False,
+            "tested_source_sha": "a" * 40,
+            "artifact_hashes": [
+                {"role": "baseline", "sha256": "1" * 64},
+                {"role": "candidate", "sha256": "2" * 64},
+            ],
+            "matrix_selector": "TwoArtifactCompatibilityAcceptanceTest#day153RunsCompleteObservedPairMatrixAndFallbackDecision",
+            "matrix_exit_code": 0, "matrix_result": "passed",
+            "source_provenance": {
+                "baseline": {"source": "pinned source SHA", "build_recipe": "clean baseline package"},
+                "candidate": {"source": "learner source SHA", "build_recipe": "recorded candidate package"},
+            },
+            "proof_limits": "Local unchanged-schema result only.",
+        }
+        self.assertTrue(qualifies(qualifying_example))
+        self.assertFalse(qualifies(dict(qualifying_example, temporary_witness=True)))
+
+        actual = []
+        for day in (153, 154):
+            path = ROOT / f"evidence/continuation-141-154/day-{day}.json"
+            self.assertTrue(path.is_file(), f"authoritative Day {day} evidence record should be inspected")
+            record = json.loads(path.read_text(encoding="utf-8"))
+            actual.append(record)
+            self.assertEqual("evidence/continuation-141-154/day-" + str(day) + ".json",
+                             gate["evidence_records"][day - 153]["path"])
+            snapshot = gate["evidence_records"][day - 153]
+            for key in ("status", "evidence_status", "tested_source_sha", "artifact_hashes",
+                        "learner_completion", "temporary_witness"):
+                self.assertEqual(record.get(key), snapshot.get(key))
+        expected = "met" if all(qualifies(record) for record in actual) else "not_met"
+        self.assertEqual(expected, gate["current_status"])
+        self.assertEqual(actual[0]["status"], gate["observed_prior_status"]["day_153"])
+        self.assertEqual(actual[0]["evidence_status"], gate["observed_prior_status"]["day_153_evidence"])
+        self.assertEqual(actual[1]["status"], gate["observed_prior_status"]["day_154"])
+        self.assertEqual(actual[1]["evidence_status"], gate["observed_prior_status"]["day_154_evidence"])
+        self.assertEqual(gate, self.owner["prior_readiness_gate"])
+        self.assertEqual(gate, self.plan["prior_readiness_gate"])
+        contract = (BATCH / "contracts/day-155.md").read_text(encoding="utf-8")
+        readme = (BATCH / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Prior A/B readiness gate: " + expected.replace("_", " "), contract)
+        self.assertIn("status " + expected.replace("_", " "), readme)
+        self.assertIn("evidence/continuation-141-154/day-153.json", readme)
+        self.assertIn("cannot satisfy", readme)
+
+    def test_sprint12_contract_generator_is_idempotent_and_keeps_existing_harnesses(self):
+        paths = [BATCH / f"contracts/day-{day}.md" for day in range(155, 169)] + [
+            BATCH / "README.md", BATCH / "assistant-architecture-notes.md",
+            BATCH / "streamforge-days-155-168-transfer-plan.md"]
+        before = [path.read_bytes() for path in paths]
+        result = subprocess.run([sys.executable, str(ROOT / "scripts/create_days155_168_docs.py")],
+                                cwd=ROOT, capture_output=True, check=False, timeout=10)
+        self.assertEqual(0, result.returncode, result.stderr.decode("utf-8", "replace"))
+        self.assertEqual(before, [path.read_bytes() for path in paths])
+        source = (ROOT / "ai/streamforge/tests/test_day_contracts.py").read_text(encoding="utf-8")
+        self.assertIn("class Day155Test", source)
+        self.assertIn("class Day156Test", source)
+        self.assertIn("class Day167Test", (ROOT / "ai/streamforge/tests/test_cli.py").read_text())
 
 
 if __name__ == "__main__":

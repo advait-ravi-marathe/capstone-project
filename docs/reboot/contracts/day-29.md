@@ -20,15 +20,20 @@ Reset disposable DB and verify exact seed; missing confirmation and DB name with
 
 Days 13 and 28; fresh disposable test-only environment. Reset must never target development, shared, staging, or production data. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Design prompt (within the 25-minute concept block):** Which guards run before connection or destructive SQL, and why does a profile or database-name suffix alone not prove reset authority? Use the [worked guard table](../teaching/day-29-reset-safety.md#guard-decision-examples).
+## Existing implementation boundary
 
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
+
+**Task boundary:** Use the existing embedded reset test and reset-safety script; never use external URI mode. Use the existing day's acceptance selector and preserve its full criteria.
 ## Concept (25 minutes)
+
+**Assistant-provided capstone architecture:** [../assistant-architecture-notes-15-70.md#day-29](<../assistant-architecture-notes-15-70.md#day-29>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 Configuration and reset safety, taught with the [Day 29 guard trace](../teaching/day-29-reset-safety.md#existing-safe-exercise). Required video 7:05; optional later videos are not part of today’s assigned time.
 
 ## Evidence (10 minutes)
 
-Another clean setup or exact unverified steps/blocker. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Another clean setup or exact unverified steps/blocker. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Planned isolated command
 
@@ -36,16 +41,6 @@ Another clean setup or exact unverified steps/blocker. Record dated attempt stat
 
 The positive check resets twice in its newly started embedded PostgreSQL instance and verifies the exact synthetic rows. If using the wrapper, it runs only that same embedded test: `./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable`. Do not use external URI mode for this exercise.
 
-## Interview transfer (inside the current evidence block)
-
-**Question:** Could another engineer reproduce the result? What state can reset safely destroy?
-
-**Observable evidence:** Rerun clean setup, name pinned versions/config and disposable-data guard; label unexecuted setup steps unverified.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official). These references guide practice; they do not establish question frequency or predict interview content.
-
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

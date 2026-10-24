@@ -2,7 +2,6 @@ package assignments.local;
 
 import assignments.insurance.PolicyLifecycleService;
 import assignments.insurance.PolicyRenewalPreviewPolicy;
-import assignments.insurance.PolicyRenewalReadStore;
 import assignments.insurance.PolicyReadStore;
 import assignments.delivery.IssuanceWorkStore;
 import assignments.delivery.JdbcIssuanceWorkStore;
@@ -161,14 +160,6 @@ public class LocalRuntimeConfiguration {
     @Bean
     PreviewMetrics previewMetrics(MeterRegistry registry) {
         return new PreviewMetrics(registry);
-    }
-
-    @Bean
-    PolicyRenewalReadStore policyRenewalReadStore(LocalApplicationComposition.Components components,
-                                                   PreviewAdmission admission, PreviewMetrics metrics) {
-        // LEARNER TODO Day 79: wrap this exact existing owner-scoped store once in the
-        // bounded singleton decorator; do not duplicate or replace its SQL adapter.
-        throw new UnsupportedOperationException("Day 79 learner TODO: wire one bounded store around the existing adapter");
     }
 
     @Bean

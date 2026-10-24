@@ -11,7 +11,7 @@ import io.micrometer.core.instrument.config.MeterFilter;
 /** Allow only the three bounded metrics needed by the loopback training recovery demo. */
 @Configuration(proxyBeanMethods = false)
 @Profile("local")
-class LocalMetricsConfiguration {
+public class LocalMetricsConfiguration {
     private static final Set<String> OUTCOMES = Set.of("SUCCESS", "EMPTY", "BUSY", "UNAVAILABLE", "FAILURE");
 
     @Bean

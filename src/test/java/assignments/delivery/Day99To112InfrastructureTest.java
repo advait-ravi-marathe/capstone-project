@@ -14,6 +14,8 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,6 +87,84 @@ class Day99To112InfrastructureTest {
     }
 
     @Test
+    void assistantArchitectureAndInterviewAssignmentsMatchContractsAndExports() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode export = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        String notes = Files.readString(BASE.resolve("assistant-architecture-notes.md"));
+        Path interview = Path.of("docs/reboot/interview");
+        Set<String> mockDays = Set.of("101", "104", "108", "111");
+        List<String> phases = List.of("Requirements", "Capacity and constraints",
+                "Initial architecture and data model", "Bottlenecks, reliability, scaling",
+                "Trade-offs, failures, follow-ups");
+
+        assertEquals(14, manifest.path("days").size());
+        for (int index = 0; index < 14; index++) {
+            JsonNode day = manifest.path("days").get(index);
+            JsonNode engineering = day.path("engineering");
+            JsonNode owner = export.path("cards").get(index);
+            int number = day.path("day").asInt();
+            String dayId = Integer.toString(number);
+            String anchor = "day-" + dayId;
+            String noteRef = "docs/reboot/continuation-99-112/assistant-architecture-notes.md#" + anchor;
+            String contract = Files.readString(Path.of(day.path("contract_file").asString()));
+            assertEquals(noteRef, engineering.path("assistant_architecture_note").asString());
+            assertTrue(notes.contains("<a id=\"" + anchor + "\"></a>"), "missing note anchor " + anchor);
+            assertTrue(contract.contains("../assistant-architecture-notes.md#" + anchor));
+            assertTrue(owner.path("engineering").path("assistant_architecture_note").asString().equals(noteRef));
+            assertTrue(owner.path("course_learning_block").asText().contains("Assistant-provided architecture"));
+            assertTrue(owner.path("course_learning_block").asText().contains("No capstone design proposal"));
+
+            JsonNode assignment = engineering.path("interview_assignment");
+            if (!mockDays.contains(dayId)) {
+                assertTrue(assignment.isMissingNode() || assignment.isNull(), "unexpected mock assignment on Day " + dayId);
+                continue;
+            }
+            assertEquals(assignment, owner.path("engineering").path("interview_assignment"),
+                    "owner export must preserve the interview assignment exactly");
+            assertEquals(number, assignment.path("day").asInt());
+            assertTrue(assignment.path("proposal_before_hints_reference_or_ai").asBoolean());
+            assertEquals("system_design_interview_question_only", assignment.path("proposal_scope").asString());
+            assertEquals("assistant_supplied", assignment.path("capstone_architecture").asString());
+            assertEquals(45, assignment.path("duration_minutes").asInt());
+            assertEquals(85, assignment.path("practice_minutes_available").asInt());
+            assertEquals(45, assignment.path("mock_minutes").asInt());
+            assertEquals(85, assignment.path("practice_total_minutes").asInt());
+            assertEquals(40, assignment.path("eai_slice_minutes").path("preconditions_and_prediction").asInt()
+                    + assignment.path("eai_slice_minutes").path("implementation_or_observation").asInt()
+                    + assignment.path("eai_slice_minutes").path("selector_and_blocker_record").asInt());
+            assertEquals(phases.size(), assignment.path("mock_phases").size());
+            int phaseTotal = 0;
+            for (int phase = 0; phase < phases.size(); phase++) {
+                JsonNode actual = assignment.path("mock_phases").get(phase);
+                assertEquals(phases.get(phase), actual.path("phase").asString());
+                phaseTotal += actual.path("minutes").asInt();
+            }
+            assertEquals(45, phaseTotal);
+
+            String questionHref = assignment.path("question_href").asString();
+            Path questionFile = interview.resolve(questionHref.substring("../interview/".length()).split("#", 2)[0]);
+            String questionAnchor = questionHref.substring(questionHref.indexOf('#') + 1);
+            String questionText = Files.readString(questionFile);
+            assertTrue(questionText.contains("<a id=\"" + questionAnchor + "\"></a>"));
+            assertTrue(contract.contains("../../interview/question-bank.md#" + questionAnchor));
+            for (JsonNode pattern : assignment.path("pattern_refs")) {
+                String href = pattern.asString();
+                Path patternFile = interview.resolve(href.substring("../interview/".length()).split("#", 2)[0]);
+                String patternAnchor = href.substring(href.indexOf('#') + 1);
+                assertTrue(Files.readString(patternFile).contains("<a id=\"" + patternAnchor + "\"></a>"));
+                assertTrue(contract.contains("../../interview/pattern-library.md#" + patternAnchor));
+            }
+            for (JsonNode command : assignment.path("acceptance_commands")) {
+                assertTrue(contract.contains(command.asString()));
+                assertTrue(engineering.path("acceptance_commands").toString().contains(command.asString()));
+            }
+            assertTrue(contract.contains("Separate system-design interview practice"));
+            assertTrue(contract.contains("Deferred acceptance"));
+        }
+    }
+
+    @Test
     void migrationIsAdditiveAndDoesNotTurnPreviewIntoAWriter() throws Exception {
         String migration = Files.readString(Path.of("src/main/resources/db/migration/V004__event_log_delivery_work.sql"));
         assertTrue(migration.contains("REFERENCES training_policy_lifecycle_event"));
@@ -109,7 +189,7 @@ class Day99To112InfrastructureTest {
         assertTrue(restart.contains("destroyForcibly()") && restart.contains("DurableDeliveryChildMain.class.getName()")
                 && restart.contains("awaitSignal"), "fresh-JVM harness has an explicit boundary and confirms termination");
         String packaged = Files.readString(Path.of("src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java"));
-        assertTrue(packaged.contains("LocalPackagedRuntimeProcess.start(postgres, \"2028-01-25T12:00:00Z\")"),
+        assertTrue(packaged.contains("Sprint8PackagedRuntimeProcess.start(postgres, \"2028-01-25T12:00:00Z\")"),
                 "renewal preview uses a deterministic fixed clock inside the seeded policy's window");
         assertTrue(packaged.contains("/api/policies"));
         assertTrue(packaged.contains("--coverstory.delivery.run-once"));
@@ -133,13 +213,84 @@ class Day99To112InfrastructureTest {
         assertFalse(durableAcceptance
                         .contains("day100SchemaConstraintsRejectDuplicateAndInvalidRows"),
                 "Day 100 is instructor-owned migration assessment, not a learner TODO selector");
+
+        int day102Start = durableAcceptance.indexOf("void day102MapsCapturedPendingEnvelopeInStableBoundedOrder");
+        int day102End = durableAcceptance.indexOf("\n    @Test", day102Start);
+        String day102 = durableAcceptance.substring(day102Start, day102End);
+        assertTrue(day102.contains("UPDATE training_issuance_work SET acknowledged_at"),
+                "Day 102 fixture seeds pending-row state directly");
+        assertFalse(day102.contains(".acceptReceipt("), "Day 102 cannot consume the Day 103 seam");
+        assertFalse(day102.contains(".acknowledge("), "Day 102 cannot consume the Day 104 seam");
+    }
+
+    @Test
+    void sprint8PackagedRuntimeSelectsRawDeliveryAndDay112BuildsEveryRequiredArtifact() throws Exception {
+        String app = Files.readString(Path.of("src/main/java/assignments/sprint8/Sprint8LocalApplication.java"));
+        String config = Files.readString(Path.of("src/main/java/assignments/sprint8/Sprint8LocalConfiguration.java"));
+        String delivery = Files.readString(Path.of("src/main/java/assignments/sprint8/Sprint8IssuanceDeliveryConfiguration.java"));
+        String mainLocal = Files.readString(Path.of("src/main/java/assignments/local/LocalRuntimeConfiguration.java"));
+        String pom = Files.readString(Path.of("pom.xml"));
+        String props = Files.readString(Path.of("src/main/resources/application-sprint8-local.properties"));
+        String script = Files.readString(Path.of("scripts/package-sprint8-demo.sh"));
+        String helper = Files.readString(Path.of("src/test/java/assignments/local/Sprint8PackagedRuntimeProcess.java"));
+        String browser = Files.readString(Path.of("src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java"));
+        String wiring = Files.readString(Path.of("src/test/java/assignments/delivery/Sprint8DeliveryRuntimeWiringTest.java"));
+
+        assertTrue(app.contains("@Import(Sprint8LocalConfiguration.class)"));
+        assertTrue(config.contains("Sprint8IssuanceDeliveryConfiguration.class"));
+        assertTrue(config.contains("LocalPolicyRenewalReadStoreConfiguration.class"),
+                "earlier renewal-read prerequisites remain explicit");
+        assertFalse(config.contains("LocalRuntimeConfiguration.class"));
+        assertFalse(config.contains("RecoveryOnlyRuntimeConfiguration.class"));
+        assertFalse(config.contains("ManualRecoveryService.class"));
+        assertTrue(delivery.contains("new JdbcIssuanceWorkStore(jdbc)"));
+        assertFalse(delivery.contains("RecoveryAwareIssuanceWorkStore"));
+        assertTrue(mainLocal.contains("new RecoveryAwareIssuanceWorkStore"),
+                "default later runtime remains unchanged");
+        assertTrue(props.contains("spring.flyway.target=4"), "Sprint 8 needs V004, but not Day 118 V005");
+        assertTrue(pom.contains("<id>sprint8-local</id>")
+                && pom.contains("assignments.sprint8.Sprint8LocalApplication")
+                && pom.contains("<classifier>sprint8</classifier>"));
+        assertTrue(script.contains("-Plocal-app,sprint8-local")
+                && script.contains("build_mode=\"incremental\"")
+                && script.contains("sourceContentSha256")
+                && script.contains("-DskipTests package"),
+                "the no-clean option repackages Sprint 8 without deleting the earlier classifier");
+        assertTrue(helper.contains("capstone-starter-1.0-SNAPSHOT-sprint8.jar")
+                && helper.contains("verifyArtifactReceipt")
+                && helper.contains("--spring.profiles.active=local,sprint8-local"));
+        assertTrue(browser.contains("Sprint8PackagedRuntimeProcess.start(postgres")
+                && browser.contains("/api/session") && browser.contains("/api/policies")
+                && browser.contains("/renewal-preview"),
+                "Day 111 exercises the packaged session, issue, and preview API paths through Sprint 8");
+        assertTrue(wiring.contains("getBeansOfType(RecoveryAwareIssuanceWorkStore.class).isEmpty()"));
+
+        JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode commands = manifest.path("days").get(13).path("engineering").path("acceptance_commands");
+        int frontend = commandIndex(commands, "(cd frontend && npm ci && npm run build && npm run build:local)");
+        int sprint6Package = commandIndex(commands, "scripts/package-sprint6-demo.sh");
+        int sprint8Incremental = commandIndex(commands, "scripts/package-sprint8-demo.sh --no-clean");
+        int broad = commandIndex(commands, "./mvnw -Plocal-app -DskipTests package");
+        assertTrue(frontend < sprint6Package && sprint6Package < sprint8Incremental && sprint8Incremental < broad,
+                "Day 112 keeps Sprint 6 and Sprint 8 receipt-bound artifacts after its only clean build");
+        String day112Contract = Files.readString(Path.of(manifest.path("days").get(13)
+                .path("contract_file").asString()));
+        for (JsonNode command : commands) assertTrue(day112Contract.contains(command.asString()));
+    }
+
+    private static int commandIndex(JsonNode commands, String exact) {
+        for (int index = 0; index < commands.size(); index++) {
+            if (exact.equals(commands.get(index).asString())) return index;
+        }
+        fail("Missing exact package command: " + exact);
+        return -1;
     }
 
     @Test
     void migrationEnforcesStableIdentityAndRequiredFields() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var dataSource = postgres.getPostgresDatabase();
-            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load().migrate();
+            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").target("4").load().migrate();
             JdbcTemplate jdbc = new JdbcTemplate(dataSource);
             assertEquals(3, countSeedPolicies(jdbc),
                     "the additive migration preserves the three versioned V003 synthetic policies");

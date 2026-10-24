@@ -27,9 +27,9 @@ class LocalPackagedIssuanceDeliveryAcceptanceTest {
     @Test
     void protectedIssueReplayAndManualCommandLeaveOneReceiptAndNoPreviewWrites() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start();
-             LocalPackagedRuntimeProcess runtime = LocalPackagedRuntimeProcess.start(postgres, "2028-01-25T12:00:00Z")) {
+             Sprint8PackagedRuntimeProcess runtime = Sprint8PackagedRuntimeProcess.start(postgres, "2028-01-25T12:00:00Z")) {
             long runtimePid = runtime.pid();
-            Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT.jar").toAbsolutePath();
+            Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT-sprint8.jar").toAbsolutePath();
             var csrf = runtime.get("/api/csrf");
             assertEquals(200, csrf.statusCode());
             String csrfCookie = cookie(csrf, "XSRF-TOKEN");
@@ -93,7 +93,7 @@ class LocalPackagedIssuanceDeliveryAcceptanceTest {
     void partialCommandFailureExitsNonzeroAndPreservesOnlyEarlierCommittedProgress() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             DataSource dataSource = postgres.getPostgresDatabase();
-            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").load().migrate();
+            Flyway.configure().dataSource(dataSource).locations("classpath:db/migration").target("4").load().migrate();
             JdbcTemplate jdbc = new JdbcTemplate(dataSource);
             jdbc.update("""
                     INSERT INTO training_issuance_work(policy_id,source_version,event_type,effective_date,envelope_schema_version)
@@ -121,7 +121,7 @@ class LocalPackagedIssuanceDeliveryAcceptanceTest {
             String conflictingWorkBefore = rowJson(postgres, "training_issuance_work", "b-conflict");
             String conflictingReceiptBefore = rowJson(postgres, "training_issuance_delivery_receipt", "b-conflict");
 
-            Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT.jar").toAbsolutePath();
+            Path jar = Path.of("target/capstone-starter-1.0-SNAPSHOT-sprint8.jar").toAbsolutePath();
             CommandResult stopped = runPackagedCommand(jar, postgres, 10);
             assertEquals(1, stopped.exitCode(), stopped.output());
             assertTrue(stopped.output().contains("delivery batch stopped"));
@@ -158,7 +158,7 @@ class LocalPackagedIssuanceDeliveryAcceptanceTest {
     private static CommandResult runPackagedCommand(Path jar, EmbeddedPostgres postgres, List<String> options) throws Exception {
         Path log = Files.createTempFile("coverstory-delivery-command-", ".log");
         String javaExecutable = Path.of(System.getProperty("java.home"), "bin", "java").toString();
-        var command = new java.util.ArrayList<String>(List.of(javaExecutable, "-jar", jar.toString(), "--spring.profiles.active=local",
+        var command = new java.util.ArrayList<String>(List.of(javaExecutable, "-jar", jar.toString(), "--spring.profiles.active=local,sprint8-local",
                 "--spring.datasource.url=" + postgres.getJdbcUrl("postgres", "postgres"),
                 "--spring.datasource.username=postgres", "--spring.datasource.password=", "--coverstory.delivery.run-once"));
         command.addAll(options);

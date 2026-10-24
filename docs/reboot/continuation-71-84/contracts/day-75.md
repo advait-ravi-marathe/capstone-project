@@ -18,7 +18,7 @@ The learner selector remains red only where an explicit learner TODO is incomple
 **Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 
-## Implementation/testing allocation (85 minutes)
+## Practice allocation (85 minutes)
 
 Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added business endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
@@ -34,9 +34,9 @@ BoundedPolicyRenewalReadStore.findByPolicyIdAndOwnerId.
 - Focused worked references: [CannotGetJdbcConnectionException Javadoc — Class description and inheritance](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html).
 - Video viewing: 10:17 at 1×; the remaining 14:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Trace exact exception types without parsing messages.
+**Assistant-provided architecture note:** [Day 75](../assistant-architecture-notes.md#day-75). Apply the stated design to the existing seam. No capstone design proposal or post-hoc architecture justification is assigned.
 
-**Teach-back:** State the invariant, enforcing layer and observable evidence that proves it.
+**Retrieval check:** Name the existing boundary and selector that observes it. This recalls supplied guidance; it is not a new design proposal or justification.
 
 ## Evidence allocation (10 minutes)
 
@@ -44,4 +44,4 @@ Record exact commands, exit status, observed values, learner-owned paths and blo
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

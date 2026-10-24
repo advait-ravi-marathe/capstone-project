@@ -105,7 +105,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-99"
       },
       "mandatory_new_problem": false
     },
@@ -165,7 +166,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-100"
       },
       "mandatory_new_problem": false
     },
@@ -226,7 +228,72 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-101",
+        "interview_assignment": {
+          "day": 101,
+          "date": "2027-02-01",
+          "title": "Capture committed missing events in bounded batches",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q23",
+          "question_title": "Event pipeline: ingest and process",
+          "question_href": "../interview/question-bank.md#q23",
+          "pattern_refs": [
+            "../interview/pattern-library.md#event-pipeline",
+            "../interview/pattern-library.md#backpressure"
+          ],
+          "proposal_prompt": "How do you preserve a durable source record while processing volume grows?",
+          "bounded_task": "Use the bounded capture acceptance to implement only the anti-join reconciliation for committed ISSUED events. Stop at the named store boundary; do not implement later receipt or dispatcher seams in this slice.",
+          "deferred_work_id": "S8-D101-MOCK",
+          "deferred_work": "Carry any unmet capture assertion and all remaining acceptance under this ID. Continue only from the first actual learner TODO; the interview mock does not complete capture or later store work.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test",
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RejectsInvalidCaptureLimitsBeforeChangingRows test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-101",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "mandatory_new_problem": false
     },
@@ -306,7 +373,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-102"
       },
       "mandatory_new_problem": false
     },
@@ -383,7 +451,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-103"
       },
       "mandatory_new_problem": false
     },
@@ -443,7 +512,71 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-104",
+        "interview_assignment": {
+          "day": 104,
+          "date": "2027-02-04",
+          "title": "Acknowledge only completed delivery",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q16",
+          "question_title": "Messaging: ordering and replay",
+          "question_href": "../interview/question-bank.md#q16",
+          "pattern_refs": [
+            "../interview/pattern-library.md#outbox-and-messaging",
+            "../interview/pattern-library.md#idempotency"
+          ],
+          "proposal_prompt": "Which ordering guarantee is actually required, and how can a consumer handle a duplicate event?",
+          "bounded_task": "Implement only the receipt-gated acknowledgment behavior: no receipt means no ack, and a repeat preserves the first acknowledgment timestamp. Do not move the receipt or ack into the dispatcher.",
+          "deferred_work_id": "S8-D104-MOCK",
+          "deferred_work": "Carry any unmet acknowledgment assertion under this ID. Keep Days 99–103 prerequisites explicit and resume at the first failed selector.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day104CannotAcknowledgeBeforeCommittedReceiptAndPreservesFirstAcknowledgment test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-104",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "mandatory_new_problem": false
     },
@@ -504,7 +637,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-105"
       },
       "mandatory_new_problem": false
     },
@@ -584,7 +718,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-106"
       },
       "mandatory_new_problem": false
     },
@@ -606,14 +741,14 @@
           "evidence": 10
         },
         "scope": "Hold source A open with earlier key; commit/capture B; then commit/capture A. A must be found. Exclude uncommitted/rolled-back events.",
-        "learner_seam": "Capture two-connection fixture",
+        "learner_seam": "JdbcIssuanceWorkStore.captureCommittedIssuances(int)",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-107.md",
         "evidence_reference": "evidence/continuation-99-112/day-107.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test"
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day107LateEarlierCommitCannotFallBehindAKeysetWatermark test"
         ],
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_expected_todo_red_reuses_day101_two_connection_fixture",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -644,7 +779,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-107"
       },
       "mandatory_new_problem": false
     },
@@ -666,7 +802,7 @@
           "evidence": 10
         },
         "scope": "Inject receipt-boundary failure. Receipt rolls back; pending work remains; no ack; later explicit run can complete.",
-        "learner_seam": "Receipt failure and retry fixture",
+        "learner_seam": "DurableIssuanceAcceptanceTest#day108ReceiptFailureLeavesPendingWorkForManualRecovery; no new production seam",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-108.md",
         "evidence_reference": "evidence/continuation-99-112/day-108.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
@@ -704,7 +840,71 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-108",
+        "interview_assignment": {
+          "day": 108,
+          "date": "2027-02-08",
+          "title": "Prove failed receipt transactions leave recoverable work",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q12",
+          "question_title": "Scheduler: missed or duplicate execution",
+          "question_href": "../interview/question-bank.md#q12",
+          "pattern_refs": [
+            "../interview/pattern-library.md#scheduled-work",
+            "../interview/pattern-library.md#idempotency"
+          ],
+          "proposal_prompt": "What happens when a worker stops after claiming a job but before recording completion?",
+          "bounded_task": "Run the receipt-failure rollback selector only if its Day 99–106 store prerequisites pass; otherwise stop at the first named prerequisite TODO. Inspect receipt, pending-work and ack state after rollback and explicit retry.",
+          "deferred_work_id": "S8-D108-MOCK",
+          "deferred_work": "Carry the rollback/recovery acceptance and any blocked prior store seams under this ID. No automatic retry feature or extra practice time is added.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day108ReceiptFailureLeavesPendingWorkForManualRecovery test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-108",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "mandatory_new_problem": false
     },
@@ -764,7 +964,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-109"
       },
       "mandatory_new_problem": false
     },
@@ -785,17 +986,18 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned.",
+        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned. Fresh packaged acceptance first builds the local frontend assets; packaged commands require the earlier Days 79 and 86–92 local-runtime prerequisites and Days 99–109 delivery seams. Stop at the first named prerequisite TODO rather than treating unrelated startup failure as Day 110 evidence.",
         "learner_seam": "Explain-back: trace one invocation, invalid bounds, empty batch, and partial failure from command output to committed rows.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-110.md",
         "evidence_reference": "evidence/continuation-99-112/day-110.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/LocalIssuanceDeliveryCommandTest.java",
         "acceptance_commands": [
           "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
-          "./mvnw -Plocal-app -DskipTests package",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "scripts/package-sprint8-demo.sh",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
-        "acceptance_selector_status": "instructor_command_tests_green_learner_explain_back_pending",
+        "acceptance_selector_status": "instructor_command_tests_green_learner_explain_back_pending_packaged_check_prerequisite_gated",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -843,7 +1045,8 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-110"
       },
       "mandatory_new_problem": false
     },
@@ -864,14 +1067,14 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage.",
-        "learner_seam": "Packaged route plus command",
+        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage. The dedicated Sprint 8 bounded packaged runtime requires the earlier Day 79 and Days 86–92 read/capacity seams, in addition to Days 99–110 delivery prerequisites; it wires the raw JDBC issuance-work store and excludes the later Day 118 recovery-aware decorator. Stop and record the first exact prerequisite TODO or setup blocker.",
+        "learner_seam": "Packaged route plus command; packaged acceptance is prerequisite-gated on Day 79, Days 86–92, and Days 99–110.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-111.md",
         "evidence_reference": "evidence/continuation-99-112/day-111.json",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
         "acceptance_commands": [
           "(cd frontend && npm ci && npm run build && npm run build:local)",
-          "./mvnw -Plocal-app -DskipTests package",
+          "scripts/package-sprint8-demo.sh",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
@@ -900,7 +1103,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector.",
+          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector. The dedicated Sprint 8 bounded profile depends on earlier Day 79 and Days 86–92 learner-owned seams, while excluding the later Day 118 recovery-aware decorator; identify the first actual blocker and do not attribute it to Day 111.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -910,7 +1113,74 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-111",
+        "interview_assignment": {
+          "day": 111,
+          "date": "2027-02-11",
+          "title": "Integrate protected issuance, manual delivery, and read-only preview",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q05",
+          "question_title": "CoverStory domain workflow",
+          "question_href": "../interview/question-bank.md#q05",
+          "pattern_refs": [
+            "../interview/pattern-library.md#domain-workflow",
+            "../interview/pattern-library.md#immutable-snapshot",
+            "../interview/pattern-library.md#ownership-boundary"
+          ],
+          "proposal_prompt": "How should a quote become an issued policy while preserving owner, quote version, and the accepted result?",
+          "bounded_task": "Run the packaged authenticated issue/replay/one-shot/preview acceptance after the Days 79 and 86–92 runtime prerequisites and Days 99–110 delivery seams are complete. Within this slice, inspect API status and one full snapshot boundary; stop at the first real TODO or setup blocker.",
+          "deferred_work_id": "S8-D111-MOCK",
+          "deferred_work": "Carry every remaining packaged integration assertion under this ID. Do not count interview practice or a partial HTTP trace as full packaged acceptance; stop at the first named runtime/store TODO.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "(cd frontend && npm ci && npm run build && npm run build:local)",
+            "scripts/package-sprint8-demo.sh",
+            "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-111",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "mandatory_new_problem": false
     },
@@ -938,6 +1208,8 @@
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
           "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "scripts/package-sprint6-demo.sh",
+          "scripts/package-sprint8-demo.sh --no-clean",
           "./mvnw -Plocal-app -DskipTests package",
           "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
@@ -974,12 +1246,13 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-112"
       },
       "mandatory_new_problem": false
     }
   ],
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
   }
 }

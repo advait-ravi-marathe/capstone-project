@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Instructor-provided scaffold to inspect:** `scripts/package-local-demo.sh and scripts/local-demo.sh`
+**Instructor-provided scaffold to inspect:** `scripts/package-sprint5-demo.sh and scripts/sprint5-demo.sh`
 **Status:** Scripts and runtime are instructor scaffolding; learner run/inspection evidence is pending.
 
 ### Expected behavior
@@ -11,18 +11,33 @@ The documented workflow builds the root UI into the executable JAR, starts a loo
 
 ## Acceptance and expected TODO state
 
-The instructor scaffold-verification selector is installed and passed; that result does not establish learner completion.
+**Acceptance harness:** supplied Sprint5-scoped verification
 
-**Acceptance test:** `src/test/java/assignments/local/LocalPackageInfrastructureTest.java`
-**Acceptance selector:** `day67PackageIncludesNormalUiAndNoTestRoutes`
-**Scaffold verification command:** `./mvnw -Plearner-tests -Dtest=LocalPackageInfrastructureTest#day67PackageIncludesNormalUiAndNoTestRoutes test`
-**Instructor infrastructure test:** `src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java`
-**Instructor command:** `./mvnw -Dtest=LocalApplicationManifestInfrastructureTest test`
-## Learner task — explain/debug acceptance
+Fresh package receipt and stage archive/process checks prove selected package/runtime observations only. Human cleanup observations remain evidence-dependent; source inspection alone is not a process result.
 
-Run the package and local-demo scripts; inspect the JAR root entry and routes, verify loopback health/session behavior, then stop the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
+**Acceptance selector:** `day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface`
+**Acceptance source:** `src/test/java/assignments/local/Sprint5PackagedInfrastructureTest.java`
+**Command:**
 
-Capture the requested trace and explanation in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
+```sh
+scripts/package-sprint5-demo.sh
+./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=Sprint5PackagedInfrastructureTest#day67Sprint5ArchiveServesOnlyTheBoundedPackagedSurface test
+```
+
+## Learner task — inspect the fresh package and process
+
+Run `scripts/package-sprint5-demo.sh` to build and `scripts/sprint5-demo.sh` to launch; inspect the fresh JAR and served root/assets/routes, verify loopback health/session behavior, then stop only the unique ephemeral demo and confirm its disposable database is removed. There is no persistent local mode.
+
+Capture the observed archive/process/asset trace in the day evidence file; use `learner_changed_paths: []` when this inspection task makes no source changes.
+
+## Task boundary
+
+Build and inspect the bounded packaged artifact using the supplied scripts. Do not introduce a new packaging system or modify the default later runtime.
+
+Keep unmet acceptance open as **S5-D67-PACKAGE**.
+## Selector limits and open evidence
+
+Learner must personally run the bounded launcher once and record the observed process URL, health/session responses, stop result, and exact disposable-resource cleanup; the automated archive test is instructor scaffold evidence, not learner completion.
 
 ## Implementation/testing allocation (85 minutes)
 
@@ -30,21 +45,23 @@ Work only this day's seam. Reuse existing issuance, policy readback, eligibility
 
 ## Concept/course allocation (25 minutes)
 
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-67](<../../assistant-architecture-notes-15-70.md#day-67>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
+
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.
 - Exact lesson title: **Step 09 - Get Production Ready with Spring Boot - 1 - Profiles**; exact section title: **Getting Started with Spring Boot** (7:05).
 - Fit: partial foundation. Profiles are configuration context, not packaging instruction. Follow the supplied package/local-demo scripts and inspect the generated JAR; confirm the disposable process/database lifecycle without deploying or creating cloud resources.
 - Focused worked references: [Spring Boot executable jar packaging — repackage goal and executable archives](https://docs.spring.io/spring-boot/maven-plugin/packaging.html).
-- Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
+- Video viewing: 7:05 at 1×; the remaining 17:55 in the 25-minute cap is for pauses, the worked example and focused reference. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Package, start and safely reset the local demo: show the key trust boundary or data invariant and which layer owns it.
+**Prediction record:** Use the supplied assistant architecture note; record the actual selector/result or blocker and assistance.
 
-**Teach-back:** Explain the invariant, its enforcement point and the observable evidence that proves it.
+Use the supplied decision as context for the inspection; no design explanation is required.
 
 ## Evidence allocation (10 minutes)
 
-Record command, exact result, teach-back/design note and learner explanation/trace and any changed paths (use `[]` for a read-only exercise) in `evidence/continuation-57-70/day-67.json`. Leave completion and actual dates blank until the work is actually done.
+Record command, exact result, architecture-note reference and observed trace and any changed paths (use `[]` for a read-only exercise) in `evidence/continuation-57-70/day-67.json`. Leave completion and actual dates blank until the work is actually done.
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

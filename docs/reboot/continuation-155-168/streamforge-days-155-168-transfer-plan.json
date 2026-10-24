@@ -57,7 +57,51 @@
         "https://docs.python.org/3.12/library/unittest.html#basic-example"
       ],
       "readiness_command": "python3 -m ai.streamforge.readiness_bridge",
-      "readiness_gate": "Run within the existing 25-minute study block; carry Python basics forward if it fails."
+      "readiness_gate": "Run within the existing 25-minute study block; carry Python basics forward if it fails.",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-155",
+      "architecture_explanation": "Fixture admission is a pure check over the decoded manifest: require the fixed schema, registered fixture ID, synthetic source declarations, local filenames, and fixed observation window. Return the supplied typed admission record; do not read files or parse timestamps in this seam. This keeps declaration checks independently testable and preserves raw time strings for Day 157.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false,
+      "interview_assignment": {
+        "question_id": "Q09",
+        "question_title": "Notification service: accept and deliver",
+        "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q09",
+        "pattern_refs": [
+          "outbox-and-messaging",
+          "timeouts-and-retries"
+        ],
+        "practice_minutes_available": 85,
+        "mock_minutes": 45,
+        "mock_phases": [
+          {
+            "name": "Requirements",
+            "minutes": 5
+          },
+          {
+            "name": "Capacity and constraints",
+            "minutes": 5
+          },
+          {
+            "name": "Initial architecture and data model",
+            "minutes": 15
+          },
+          {
+            "name": "Bottlenecks, reliability, scaling",
+            "minutes": 10
+          },
+          {
+            "name": "Trade-offs, failures, follow-ups",
+            "minutes": 10
+          }
+        ],
+        "eai_slice_minutes": 40,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+        "bounded_task": "Implement only the manifest admission contract: accept the fixed synthetic declaration and reject a changed required source declaration without mutation. Run the existing Day155 selector once.",
+        "deferred_work": "S12-D155-FULL — Finish every manifest invalid-shape and changed-field case in Day155Test; do not mark the day complete while any selector assertion remains red.",
+        "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+      }
     },
     {
       "day": 156,
@@ -66,7 +110,11 @@
       "learner_seam": "read_csv_table",
       "practice": "Use Python csv with supplied bytes/row bounds; enforce exact headers and widths while preserving strings for later parsing.",
       "acceptance": "Quoted commas/newlines survive. Duplicate/missing/extra headers, short/long rows, malformed CSV and input overflow fail; no split-on-comma parser.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day156Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day156Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-156",
+      "architecture_explanation": "Use Python's CSV reader on the bounded text, then enforce exact headers, row widths, row and byte limits. Preserve decoded cell values as strings. CSV quoting is part of the input format, so manual comma splitting would corrupt quoted data.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 157,
@@ -75,7 +123,11 @@
       "learner_seam": "parse_utc_instant",
       "practice": "Return timezone-aware UTC only for canonical YYYY-MM-DDTHH:MM:SSZ strings.",
       "acceptance": "Leap-day instant passes; invalid date, absent Z, offset, naive, fractional and impossible calendar forms fail.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day157Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day157Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-157",
+      "architecture_explanation": "Parse only the canonical YYYY-MM-DDTHH:MM:SSZ form into an aware UTC datetime. Reject alternate offsets, missing zones, fractions, and impossible dates instead of normalizing them. A single representation makes the later fixed-cutoff comparison deterministic.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 158,
@@ -84,7 +136,11 @@
       "learner_seam": "validate_catalog",
       "practice": "Convert CSV mappings to CatalogItem values; enforce IDs, genre, integer duration and paired finite availability.",
       "acceptance": "Duration is integer 1..7200; availability start < end; duplicate IDs fail even for identical rows; identity is not trimmed and genre is allowlisted.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day158Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day158Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-158",
+      "architecture_explanation": "Convert validated string rows into typed catalog records. Enforce exact unique IDs, allowed genres, bounded integer duration, and paired finite availability. Do not trim or merge identity values; later event joins depend on exact catalog keys.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 159,
@@ -93,7 +149,51 @@
       "learner_seam": "validate_events",
       "practice": "Validate IDs, synthetic viewer IDs, timestamp and integer watch seconds, then exact-media lookup and availability.",
       "acceptance": "Unknown media, malformed/negative/excess watch seconds and event at excluded availability end fail. Zero seconds is valid but not a positive-preference label.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-159",
+      "architecture_explanation": "Validate each event's IDs, timestamp and watch duration, then join by exact media ID and enforce the catalog's half-open availability interval. Catalog metadata is reference data, not evidence of a training interaction.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false,
+      "interview_assignment": {
+        "question_id": "Q15",
+        "question_title": "Messaging: publish an order event",
+        "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q15",
+        "pattern_refs": [
+          "outbox-and-messaging",
+          "backpressure"
+        ],
+        "practice_minutes_available": 85,
+        "mock_minutes": 45,
+        "mock_phases": [
+          {
+            "name": "Requirements",
+            "minutes": 5
+          },
+          {
+            "name": "Capacity and constraints",
+            "minutes": 5
+          },
+          {
+            "name": "Initial architecture and data model",
+            "minutes": 15
+          },
+          {
+            "name": "Bottlenecks, reliability, scaling",
+            "minutes": 10
+          },
+          {
+            "name": "Trade-offs, failures, follow-ups",
+            "minutes": 10
+          }
+        ],
+        "eai_slice_minutes": 40,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+        "bounded_task": "Implement one valid event-to-catalog join and enforce the half-open availability end boundary. Run Day159Test and use the first failure to choose the next case.",
+        "deferred_work": "S12-D159-FULL — Finish all event ID, viewer, timestamp, duration, and exact-join negatives in Day159Test; partial slice is not day completion.",
+        "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+      }
     },
     {
       "day": 160,
@@ -102,7 +202,11 @@
       "learner_seam": "deduplicate_events",
       "practice": "Index fully validated typed records by event ID before splitting; collapse identical normalized records, reject conflicts.",
       "acceptance": "Same ID/equal typed payload collapses once; same ID/different payload rejects all preparation; distinct IDs remain distinct.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day160Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day160Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-160",
+      "architecture_explanation": "Deduplicate fully validated typed events by event ID before any time partition. Collapse exact normalized replays once and reject a changed payload under the same ID. Resolving conflicts first prevents a cross-cutoff replay from being hidden.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 161,
@@ -111,7 +215,11 @@
       "learner_seam": "prior_only_155_160",
       "practice": "Repair one earlier seam and rerun only Days 155–160. No new function, split, course or future selector.",
       "acceptance": "Prior gates pass or exact blockers recorded; reproduce one invalid-input failure and explain why no partial dataset exists.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-161",
+      "architecture_explanation": "This recovery day introduces no function. Re-run only Days 155–160 and repair the first broken seam. Keep preparation all-or-nothing: one invalid row must not leave a usable-looking partial dataset.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 162,
@@ -120,7 +228,11 @@
       "learner_seam": "partition_events",
       "practice": "Check start < cutoff < end; partition unique events into train, holdout and outside-window.",
       "acceptance": "Train [start,cutoff), holdout [cutoff,end), end excluded; every unique event assigned once, ordered by (UTC time,event ID); empty sets explicit.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day162Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day162Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-162",
+      "architecture_explanation": "Validate start < cutoff < end, then assign each unique event exactly once to [start, cutoff), [cutoff, end), or outside the window. Sort by UTC instant and event ID. The cutoff is fixed by the fixture contract rather than selected from observed outcomes.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 163,
@@ -129,7 +241,51 @@
       "learner_seam": "holdout_coverage",
       "practice": "Classify each holdout event by whether its viewer and item appear in training interactions.",
       "acceptance": "Four mutually exclusive categories sum to holdout count; catalog presence is reference only; empty holdout has zero counts and no_holdout status.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-163",
+      "architecture_explanation": "Classify holdout events by whether the viewer and media appeared in training, yielding four mutually exclusive categories. Catalog presence alone is not an observed interaction. Give an empty holdout an explicit status rather than inventing a rate.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false,
+      "interview_assignment": {
+        "question_id": "Q24",
+        "question_title": "Event pipeline: correction and replay",
+        "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q24",
+        "pattern_refs": [
+          "event-pipeline",
+          "idempotency"
+        ],
+        "practice_minutes_available": 85,
+        "mock_minutes": 45,
+        "mock_phases": [
+          {
+            "name": "Requirements",
+            "minutes": 5
+          },
+          {
+            "name": "Capacity and constraints",
+            "minutes": 5
+          },
+          {
+            "name": "Initial architecture and data model",
+            "minutes": 15
+          },
+          {
+            "name": "Bottlenecks, reliability, scaling",
+            "minutes": 10
+          },
+          {
+            "name": "Trade-offs, failures, follow-ups",
+            "minutes": 10
+          }
+        ],
+        "eai_slice_minutes": 40,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+        "bounded_task": "Implement the four mutually exclusive holdout coverage counts and verify they sum to the hand-built holdout fixture. Run Day163Test.",
+        "deferred_work": "S12-D163-FULL — Finish empty-holdout status and all independent category/mutation cases in Day163Test before claiming completion.",
+        "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+      }
     },
     {
       "day": 164,
@@ -138,7 +294,11 @@
       "learner_seam": "summarize_training",
       "practice": "Compute train event count, unique viewer count, per-media counts and watch seconds. No ranking or learned score.",
       "acceptance": "Mutating valid holdout does not change train summary; empty train is zero-valued and insufficient_training_data.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day164Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day164Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-164",
+      "architecture_explanation": "Build the summary solely from training events, using catalog metadata only for the declared media rows. Keep holdout diagnostics separate; then a holdout-only change cannot alter the training summary.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 165,
@@ -147,7 +307,11 @@
       "learner_seam": "assemble_bundle",
       "practice": "Compose typed values into the supplied versioned bundle, using canonical serialization/hash helpers. Keep reference catalog, train, holdout and diagnostics separate.",
       "acceptance": "Same source/config yields identical bytes; input permutation preserves semantic rows/train hash while source hash can change; holdout mutation changes provenance but not train content hash.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day165Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day165Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-165",
+      "architecture_explanation": "Assemble typed values into the fixed bundle with the supplied canonical JSON/hash helper. Keep train content, holdout diagnostics, reference catalog, and raw source hashes distinct. Each digest has a declared input boundary and should not stand in for the other.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 166,
@@ -156,7 +320,11 @@
       "learner_seam": "prepare_dataset",
       "practice": "Wire validated functions in order using fixed fixture registry, bounded reads and instructor stdout/error framing. No network/storage/database adapters.",
       "acceptance": "Valid fixture emits one JSON document only after full validation. Invalid fixture exits nonzero without success JSON; diagnostics go to stderr and files stay unchanged.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day166Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day166Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-166",
+      "architecture_explanation": "Compose the existing bounded reader, fixed registry, and chronological validation seams. Emit one complete JSON value only after successful preparation; failures go to stderr and return nonzero without a success document. No network, database, or model adapter is part of this CLI.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     },
     {
       "day": 167,
@@ -165,7 +333,51 @@
       "learner_seam": "prior-only-integration-verification",
       "practice": "There is no new semantic function on Day 167. Implement prior seams until the instructor-owned subprocess oracle passes independent golden assertions for cutoff membership, train summary/hash, provenance, holdout mutation, and failures.",
       "acceptance": "Fresh-process CLI output matches the hand-calculated fixture exactly; deliberate wrong cutoff, holdout leakage, split-before-conflict, and constant/canned outputs fail named assertions.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-167",
+      "architecture_explanation": "The instructor subprocess harness owns the independent golden constants and invokes the actual CLI. Implement prior seams only; do not add a new semantic function. Independent expected rows, split membership, summaries, and hashes prevent a wrong implementation from confirming itself.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false,
+      "interview_assignment": {
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q34",
+        "pattern_refs": [
+          "analytics-pipeline",
+          "idempotency"
+        ],
+        "practice_minutes_available": 85,
+        "mock_minutes": 45,
+        "mock_phases": [
+          {
+            "name": "Requirements",
+            "minutes": 5
+          },
+          {
+            "name": "Capacity and constraints",
+            "minutes": 5
+          },
+          {
+            "name": "Initial architecture and data model",
+            "minutes": 15
+          },
+          {
+            "name": "Bottlenecks, reliability, scaling",
+            "minutes": 10
+          },
+          {
+            "name": "Trade-offs, failures, follow-ups",
+            "minutes": 10
+          }
+        ],
+        "eai_slice_minutes": 40,
+        "proposal_scope": "system_design_interview_question_only",
+        "capstone_architecture": "assistant_supplied",
+        "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+        "bounded_task": "Run the actual CLI golden scenario once and record the first failing earlier seam with its exact assertion; repair only that prior seam if the timebox permits.",
+        "deferred_work": "S12-D167-FULL — Complete the full subprocess oracle, including replay, holdout-mutation, cutoff, malformed-input, and no-partial-output cases. A first trace is not acceptance.",
+        "selector_command": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+      }
     },
     {
       "day": 168,
@@ -174,7 +386,11 @@
       "learner_seam": "prior_only_155_167",
       "practice": "Cold-reproduce one earlier bad-data case, repair prior work and explain limited guarantees. No new feature.",
       "acceptance": "Learner evidence or explicit carry-forward blockers; AWS execution and any CoverStory readiness gate stay deferred.",
-      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test ai.streamforge.tests.test_day_contracts.Day162Test ai.streamforge.tests.test_day_contracts.Day163Test ai.streamforge.tests.test_day_contracts.Day164Test ai.streamforge.tests.test_day_contracts.Day165Test ai.streamforge.tests.test_day_contracts.Day166Test ai.streamforge.tests.test_cli.Day167Test"
+      "selector": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test ai.streamforge.tests.test_day_contracts.Day162Test ai.streamforge.tests.test_day_contracts.Day163Test ai.streamforge.tests.test_day_contracts.Day164Test ai.streamforge.tests.test_day_contracts.Day165Test ai.streamforge.tests.test_day_contracts.Day166Test ai.streamforge.tests.test_cli.Day167Test",
+      "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-168",
+      "architecture_explanation": "Use the recovery slot for prior-only repair and accurate evidence. State which fixture and selectors ran and keep the claim limited to offline synthetic data preparation. This is not recommender quality, rights/privacy clearance, cloud operation, or production readiness.",
+      "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+      "system_design_proposal_required": false
     }
   ],
   "official_reading_sources": [
@@ -234,6 +450,89 @@
   "board_status": "No board writes or new tickets; this branch contains draft repository contracts only.",
   "daily_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_infrastructure",
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  },
+  "prior_readiness_gate": {
+    "name": "Days 153–154 learner-owned A/B evidence",
+    "required": true,
+    "current_status": "not_met",
+    "observed_prior_status": {
+      "day_153": "not_attempted",
+      "day_153_evidence": "not_run",
+      "day_154": "not_attempted",
+      "day_154_evidence": "not_run"
+    },
+    "evidence_records": [
+      {
+        "path": "evidence/continuation-141-154/day-153.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      },
+      {
+        "path": "evidence/continuation-141-154/day-154.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      }
+    ],
+    "qualifying_evidence": {
+      "each_day_record": "status completed and evidence_status verified",
+      "learner_ownership": "learner_completion true and temporary_witness false",
+      "source_identity": "tested_source_sha is a 40-character hexadecimal commit SHA",
+      "artifacts": "at least two distinct SHA-256 artifact hashes with explicit baseline/candidate roles",
+      "execution": "record the exact matrix selector and matrix_exit_code 0",
+      "provenance": "record baseline and candidate source identities and build recipes; include any temporary witness provenance",
+      "result_and_limits": "record observed matrix result and proof_limits"
+    },
+    "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
+    "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet."
+  },
+  "engineering_interview_sessions": {
+    "session_days": [
+      155,
+      159,
+      163,
+      167
+    ],
+    "spacing_days": [
+      4,
+      4,
+      4
+    ],
+    "rule": "These are separate system-design interview question-bank sessions; they do not ask the learner to design StreamForge or make capstone architecture decisions. The assistant supplies the implementation architecture notes.",
+    "practice_budget_minutes": 85,
+    "session_minutes": 45,
+    "implementation_minutes": 40,
+    "phase_template": [
+      {
+        "name": "Requirements",
+        "minutes": 5
+      },
+      {
+        "name": "Capacity and constraints",
+        "minutes": 5
+      },
+      {
+        "name": "Initial architecture and data model",
+        "minutes": 15
+      },
+      {
+        "name": "Bottlenecks, reliability, scaling",
+        "minutes": 10
+      },
+      {
+        "name": "Trade-offs, failures, follow-ups",
+        "minutes": 10
+      }
+    ]
   }
 }

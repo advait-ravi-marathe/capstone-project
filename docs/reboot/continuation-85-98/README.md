@@ -9,12 +9,15 @@ JDBC adapter.
 
 The [canonical manifest](manifest.json) defines the 14 dated contracts. The
 [chronological card export](scrum-owner-manifest.json) is prepared for the
-separate Scrum owner; this branch makes no board changes. Each contract and
-card includes exact verified course titles where applicable, focused official
-references, and a worked example. Additional in28Minutes and Maximilian
-courses are reference-only where access is unconfirmed. No AWS study is
-assigned because this local PostgreSQL task has no relevant certification
-dependency.
+separate Scrum owner; this branch makes no board changes. Every day links an
+assistant-supplied architecture note that explains what is used and why. The
+learner implements and tests the named seam. System-design proposals occur
+only in four separate interview-question sessions (two per week) drawn from
+the question bank; they consume 45 minutes of the existing 85-minute practice
+block, leaving a bounded 40-minute engineering slice. Additional in28Minutes
+and Maximilian courses are reference-only where access is unconfirmed. No AWS
+study is assigned because this local PostgreSQL task has no relevant
+certification dependency.
 
 ## Daily time budget
 
@@ -37,10 +40,18 @@ The explicit learner selectors remain separate under `-Plearner-tests`:
 ./mvnw -Plearner-tests -Dtest=JdbcCancellationLabAcceptanceTest test
 ```
 
+Day 96 also reserves 25 minutes of its existing practice block for the fresh
+Day 97 package and Start-Class handoff. Day 97 rebuilds the archive again before
+the browser journey. Both runtime profiles use the same shared Day 79 read-store
+bean; there is no second Day 79 implementation hidden in the full local app.
+
 They may fail at the named Day 86–96 learner TODOs while the instructor suite
 stays green. A missing selector or browser prerequisite is not an expected
-TODO failure. Day 97 additionally uses the actual packaged local application,
-an authenticated browser session, and a real PostgreSQL relation lock.
+TODO failure. Day 97 is the actual packaged local-JAR/browser journey, built
+fresh by `scripts/package-local-demo.sh`, with an authenticated synthetic
+session and a real PostgreSQL relation lock. The Day 85–98 manifest test is
+structural scaffolding evidence only; it does not prove JAR launch or browser
+behavior.
 
 ## Critical boundaries
 
@@ -56,9 +67,10 @@ an authenticated browser session, and a real PostgreSQL relation lock.
 - SQLSTATE `55P03` means `lock_not_available`; `57014` means
   `query_canceled`. Neither alone proves a particular timeout or cancellation
   source. Preserve causes and keep unknown failures visible.
-- The historical Day 83 test holds a lock and expects successful reads, so it
-  supplies explicitly generous finite test-only budgets. Days 93/97 separately
-  prove short-budget rejection while the holder remains locked.
+- Sprint 6 Day 83 uses its bounded runtime and does not depend on the Day 86+
+  budget TODOs in this continuation. Sprint 7 Days 93 and 97 separately prove
+  the transaction-local lock-timeout path; Day 94 isolates statement timeout
+  with a fast control read.
 - The cancellation exercise is test-only. `Future.get(timeout)` stops caller
   waiting; it does not cancel SQL. The worker owns statement execution,
   rollback, close, and backend reuse. No production cancellation route or

@@ -20,3 +20,8 @@ Use root-preserving frontend build commands and the exact selectors in each cont
 
 
 Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
+
+
+## Interview practice and supplied capstone architecture
+
+Days 128, 131, 135, and 138 each reserve one 45-minute system-design question session, two per week. Each replaces 45 minutes of the existing 85-minute practice block and leaves a task-specific 40-minute implementation slice. Interview proposals are question-bank-only; assistant notes supply capstone decisions for all 14 days. No extra daily time or learner capstone design proposal is assigned.

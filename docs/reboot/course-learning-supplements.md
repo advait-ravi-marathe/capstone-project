@@ -113,7 +113,7 @@ fixture DDL + journey row [DB]
   → fresh repository read + direct SQL selection readback [DB]
 ```
 
-In `Day14BackendSliceIT`, the first handoff uses the existing learner-owned `ProductCatalogService.findByCode` seam. If its explicit Day 4 TODO throws, mark `STOP` there: eligibility, premium, quote creation, persistence, owner check, freshness, selection and readback have not been observed. The table describes the test's intended wiring, not a successful learner run. Once the learner's actual implementation is ready, run `./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test` and record the first observed result. The existing practice budget remains 65 minutes build/test + 20 minutes mock; if blocked, use the mock to explain the observed stop and the next diagnostic, not to stage a pretend success.
+In `Day14BackendSliceIT`, the first handoff uses the existing learner-owned `ProductCatalogService.findByCode` seam. If its explicit Day 4 TODO throws, mark `STOP` there: eligibility, premium, quote creation, persistence, owner check, freshness, selection and readback have not been observed. The table describes the test's intended wiring, not a successful learner run. Once the learner's actual implementation is ready, run `./mvnw -Plearner-tests -Dtest=Day14BackendSliceIT test` and record the first observed result. The existing practice budget is 45 minutes for the Q05 interview-first mock plus a 40-minute EAI slice; use the [Sprint 1 session scope](interview/session-scope.md) for its named selector and deferred acceptance. If blocked, preserve the observed stop and next diagnostic; do not stage a pretend success.
 
 **Readiness question:** Trace one observed positive path or identify its actual first failing boundary. Name a previously taught transaction or value-ownership guarantee. No extra architecture assignment or Day 15 dependency.
 
@@ -179,7 +179,7 @@ Use the [worked boundary example](teaching/day-27-regression-hypothesis.md). It 
 
 ## Day 28 — Browser/API/database review
 
-Use the [integrated-gate review](teaching/day-28-integrated-review.md) to trace only actual observations through the installed harness. This is review-only and adds no lecture. The existing milestone uses 65 minutes for build/test and 20 minutes for the mock inside the same 85-minute practice block.
+Use the [integrated-gate review](teaching/day-28-integrated-review.md) to trace only actual observations through the installed harness. This is review-only and adds no lecture. Day 28 uses a 45-minute Q14 mock and a named 40-minute EAI slice inside the same 85-minute practice block; see the [Sprint 2 session scope](interview/sprint2-session-scope.md).
 
 **Primary reference:** [Spring Security CSRF protection](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html)
 

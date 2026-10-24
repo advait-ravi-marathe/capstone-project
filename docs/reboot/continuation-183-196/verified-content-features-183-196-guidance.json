@@ -119,6 +119,33 @@
   "studyRule": "35 minutes total including reading, worked exercise, and five-minute explain-back. No course purchase, service use, or new lesson assignment.",
   "sourceCaveat": "References explain general concepts. The five-coordinate exact-Fraction profile, duplicate policy, tie handling, and fallback are local exercise choices, not source-prescribed semantics.",
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  },
+  "prior_readiness_gate": {
+    "name": "Days 153–154 learner-owned A/B evidence",
+    "required": true,
+    "current_status": "not_met",
+    "evidence_records": [
+      {
+        "path": "evidence/continuation-141-154/day-153.json"
+      },
+      {
+        "path": "evidence/continuation-141-154/day-154.json"
+      }
+    ],
+    "qualifying_evidence": {
+      "each_day_record": "status completed and evidence_status verified",
+      "learner_ownership": "learner_completion true and temporary_witness false",
+      "source_identity": "tested_source_sha is a 40-character hexadecimal commit SHA",
+      "artifacts": "at least two distinct SHA-256 artifact hashes with explicit baseline/candidate roles",
+      "execution": "record the exact matrix selector and matrix_exit_code 0",
+      "provenance": "record baseline and candidate source identities and build recipes; include any temporary witness provenance",
+      "result_and_limits": "record observed matrix result and proof_limits"
+    },
+    "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
+    "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet.",
+    "evaluation_command": "python3 scripts/check_streamforge_169_182_entry_gate.py",
+    "evaluation_script": "scripts/check_streamforge_169_182_entry_gate.py",
+    "downstream_scope": "StreamForge Days 183–196"
   }
 }

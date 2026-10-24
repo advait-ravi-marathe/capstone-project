@@ -20,15 +20,20 @@ Machine-check checklist against actual manifest and referenced evidence; missing
 
 Days 28–29; no manufactured integrated success. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Review prompt (within the 25-minute concept block):** Select one observed behavior and explain its invariant, evidence, limitation, and next diagnostic. Use the [evidence-state example](../teaching/day-30-evidence-review.md#three-evidence-states); do not add an architecture exercise.
+## Existing implementation boundary
 
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
+
+**Task boundary:** Keep the existing Day 30 evidence checklist and 20-minute review inside its original budget. Use the existing day's acceptance selector and preserve its full criteria.
 ## Concept (25 minutes)
+
+**Assistant-provided capstone architecture:** [../assistant-architecture-notes-15-70.md#day-30](<../assistant-architecture-notes-15-70.md#day-30>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 Evidence-based explanation and honest limits. Review the [Day 30 worked example](../teaching/day-30-evidence-review.md#a-concise-evidence-based-explanation); no new SDE II vocabulary or feature is assigned.
 
 ## Evidence (10 minutes)
 
-5-minute demo script, current gate, prerequisite-ranked backlog. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+5-minute demo script, current gate, prerequisite-ranked backlog. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Planned isolated command
 
@@ -36,18 +41,6 @@ Evidence-based explanation and honest limits. Review the [Day 30 worked example]
 
 This instructor integrity selector is expected to pass against fixed status/evidence fixtures and the live evolving checklist. It rejects unsupported statuses and passed rows without a repository-local evidence file; it does not require the live checklist to stay open. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
-
-**Question:** What invariant did you observe, which evidence supports it, what limitation remains, and what bounded measurement or repair comes next? Treat 10× load as a hypothesis unless measured.
-
-**Observable evidence:** 20-minute mock replaces implementation: explain one existing sequence/data view, one already-taught trade-off, one actual observation, and one open gap. Do not invent users, impact, incidents, or performance measurements.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
-
-**Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.
-
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

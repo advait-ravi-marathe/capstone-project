@@ -65,6 +65,112 @@ class ContinuationManifestTests(unittest.TestCase):
             minutes, seconds = divmod(lesson["duration_seconds"], 60)
             self.assertEqual(f"{minutes}:{seconds:02d}", lesson["duration"])
 
+
+    def test_assistant_architecture_and_interview_only_mocks_are_synchronized(self):
+        note = BASE / "assistant-architecture-notes.md"
+        self.assertTrue(note.is_file())
+        mock_days = {115: "Q20", 118: "Q23", 122: "Q16", 125: "Q22"}
+        for day, card in zip(self.manifest["days"], self.export["cards"]):
+            number = day["day"]
+            eng = day["engineering"]
+            owner_eng = card["engineering"]
+            self.assertEqual(eng, owner_eng)
+            note_ref = eng["assistant_architecture_note"]
+            self.assertTrue(note_ref.endswith(f"#day-{number}"))
+            contract = (ROOT / day["contract_file"]).read_text()
+            self.assertIn("Assistant-provided architecture", contract)
+            self.assertIn(f"#day-{number}", contract)
+            self.assertIn("no capstone proposal", contract.lower())
+            self.assertNotIn("propose the capstone architecture", contract.lower())
+            assignment = eng.get("interview_assignment")
+            if number not in mock_days:
+                self.assertIsNone(assignment, f"day {number} should not acquire a mock")
+                continue
+            self.assertIsNotNone(assignment)
+            self.assertEqual(mock_days[number], assignment["question_id"])
+            self.assertEqual("system_design_interview_question_only", assignment["proposal_scope"])
+            self.assertEqual("assistant_supplied", assignment["capstone_architecture"])
+            self.assertEqual(45, sum(p["minutes"] for p in assignment["mock_phases"]))
+            self.assertEqual(40, sum(assignment["eai_slice_minutes"].values()))
+            self.assertEqual(85, assignment["practice_total_minutes"])
+            self.assertEqual(f"S9-D{number}-MOCK", assignment["deferred_work_id"])
+            self.assertIn("do not make capstone design decisions", contract.lower())
+            self.assertIn(assignment["question_href"], contract)
+            self.assertIn(assignment["acceptance_commands"][0], contract)
+            for ref in [assignment["question_href"], *assignment["pattern_refs"]]:
+                target, anchor = ref.split("#", 1)
+                path = (BASE / target).resolve()
+                self.assertTrue(path.is_file(), path)
+                self.assertIn(f"id=\"{anchor}\"", path.read_text(), f"missing anchor {ref}")
+
+    def test_day124_command_selector_covers_positive_and_negative_argument_paths(self):
+        day = next(d for d in self.manifest["days"] if d["day"] == 124)
+        command = "./mvnw -Plearner-tests -Dtest=LocalManualRecoveryCommandTest test"
+        self.assertIn(command, day["engineering"]["acceptance_commands"])
+        card = next(c for c in self.export["cards"] if c["day_number"] == 124)
+        self.assertIn(command, card["engineering"]["acceptance_commands"])
+        self.assertEqual("installed_expected_todo_red", day["engineering"]["acceptance_selector_status"])
+        contract = (ROOT / day["contract_file"]).read_text()
+        self.assertIn(command, contract)
+        source = (ROOT / "src/test/java/assignments/delivery/recovery/LocalManualRecoveryCommandTest.java").read_text()
+        for method in ("oneActionCommandRejectsInvalidAndConflictingFlags", "oneExplicitInspectDispatchesOnlyTheRequestedExactKey", "ordinaryStartupDoesNotDispatchRecovery"):
+            self.assertIn(method, source)
+
+    def test_days125_126_rebuild_receipt_bound_sprint8_artifact_before_consumers(self):
+        package = "scripts/package-sprint8-demo.sh --no-clean"
+        consumer = "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+        manual = "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
+        restore = "./mvnw -Plocal-app -DskipTests package"
+        verify_main = "unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'"
+        helper = (ROOT / "src/test/java/assignments/local/Sprint8PackagedRuntimeProcess.java").read_text()
+        script = (ROOT / "scripts/package-sprint8-demo.sh").read_text()
+        fingerprint = (ROOT / "scripts/sprint8-source-fingerprint.py").read_text()
+        self.assertIn("verifyArtifactReceipt", helper)
+        self.assertIn("sourceCommit", helper)
+        self.assertIn("sourceContentSha256", helper)
+        self.assertIn("sourceContentSha256", script)
+        self.assertIn('source_sha="$(python3 scripts/sprint8-source-fingerprint.py)"', script)
+        self.assertIn("sprint8-source-fingerprint.py", script)
+        self.assertIn("--no-clean", script)
+        consumer_test = (ROOT / "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java").read_text()
+        self.assertIn("Sprint8PackagedRuntimeProcess.start", consumer_test)
+        for number in (125, 126):
+            day = next(d for d in self.manifest["days"] if d["day"] == number)
+            card = next(c for c in self.export["cards"] if c["day_number"] == number)
+            commands = day["engineering"]["acceptance_commands"]
+            self.assertEqual(commands, card["engineering"]["acceptance_commands"])
+            contract = (ROOT / day["contract_file"]).read_text()
+            self.assertIn(package, commands)
+            self.assertEqual(2, commands.count(restore), "one ordinary build before S8 and one executable-JAR restore after it")
+            self.assertLess(commands.index(restore), commands.index(package))
+            s8_index = commands.index(package)
+            restore_index = commands.index(restore, s8_index + 1)
+            verify_index = commands.index(verify_main)
+            manual_index = commands.index(manual)
+            delivery_index = commands.index(consumer)
+            self.assertLess(s8_index, restore_index)
+            self.assertLess(restore_index, verify_index)
+            self.assertLess(verify_index, manual_index)
+            self.assertLess(verify_index, delivery_index)
+            self.assertEqual(1, contract.count(package))
+            self.assertLess(contract.index(package), contract.index(restore, contract.index(package)+1))
+            self.assertLess(contract.index(restore, contract.index(package)+1), contract.index(verify_main))
+            self.assertLess(contract.index(verify_main), contract.index(manual))
+            self.assertLess(contract.index(verify_main), contract.index(consumer))
+        self.assertIn("from hashlib import sha256", fingerprint)
+        self.assertIn("digest = sha256()", fingerprint)
+
+    def test_sprint8_dedicated_runtime_is_not_mislabeled_broad(self):
+        contract = (ROOT / "docs/reboot/continuation-99-112/contracts/day-110.md").read_text().lower()
+        self.assertIn("dedicated sprint 8 bounded packaged runtime", contract)
+        self.assertNotIn("broad default runtime", contract)
+        for name in ("manifest.json", "scrum-owner-manifest.json"):
+            data = json.loads((ROOT / "docs/reboot/continuation-99-112" / name).read_text())
+            items = data.get("days") or data["cards"]
+            day110 = next(d for d in items if d.get("day", d.get("day_number")) == 110)
+            serialized = json.dumps(day110["engineering"]).lower()
+            self.assertNotIn("broad default runtime", serialized)
+
     def test_recovery_days_only_run_prior_work_and_no_unresolved_commands(self):
         for day in (119, 126):
             text = (ROOT / f"docs/reboot/continuation-113-126/contracts/day-{day}.md").read_text()
@@ -74,6 +180,11 @@ class ContinuationManifestTests(unittest.TestCase):
                 self.assertNotIn("TODO", command)
                 if command.startswith("(cd frontend &&"):
                     self.assertEqual("(cd frontend && npm ci && npm run build && npm run build:local)", command)
+                elif command.startswith("scripts/package-sprint8-demo.sh"):
+                    self.assertEqual("scripts/package-sprint8-demo.sh --no-clean", command)
+                elif command.startswith("unzip -p target/capstone-starter-1.0-SNAPSHOT.jar"):
+                    self.assertIn("tr -d", command)
+                    self.assertIn("Start-Class: assignments.local.LocalCoverStoryApplication", command)
                 else:
                     self.assertIn("./mvnw", command)
 

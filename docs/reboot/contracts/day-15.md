@@ -20,15 +20,15 @@ Empty, populated, unknown, other-owned, and exact JSON field allowlist.
 
 Days 9 and 12; seeded read model. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Teach-first design question (within the current concept block):** Why does S1 remain present with a null optional child? Why do missing and foreign-owned parents both yield absence? Explain why the projected response excludes private columns. Use the concrete guided example; no blank system-design worksheet is assigned.
-
 ## Concept (25 minutes)
+
+**Assistant-provided capstone architecture:** [../assistant-architecture-notes-15-70.md#day-15](<../assistant-architecture-notes-15-70.md#day-15>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 Use the [executable Day 15 guide](../teaching/day-15-join-projection.md#worked-trace) before implementation. Work through the separate shelf/spotlight/hold example and then transfer only ownership, optional-child, empty-list, and field-allowlist ideas to the existing journey contract. No new schema or capstone SQL is supplied.
 
 ## Evidence (10 minutes)
 
-Empty/populated JSON fixtures. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Empty/populated JSON fixtures. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Record the assistant-provided architecture note used; no capstone design proposal or retrospective justification is assigned.
 
 ## Planned isolated command
 
@@ -36,16 +36,6 @@ Empty/populated JSON fixtures. Record dated attempt state (`not attempted`, `att
 
 This selector starts a real embedded PostgreSQL instance with fixed owner/quote/selection rows and exercises the query TODO. Its expected TODO failures are not an infrastructure pass.
 
-## Interview transfer (inside the current evidence block)
-
-**Question:** When is an empty result different from an unknown journey? How can a join leak another owner’s data?
-
-**Observable evidence:** Explain join/projection cardinality and scoped predicates; show empty, populated and other-owner examples.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
-
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

@@ -37,3 +37,9 @@ These links support the existing engineering study block; they are not extra stu
 - Day 151: [JUnit 6.1.3 User Guide](https://docs.junit.org/6.1.3/writing-tests/assertions.html) — Assertions.
 - Day 152: [Java 21 Process API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html) — waitFor, destroy, destroyForcibly, descendants, onExit.
 - Day 153: [AWS rollback safety](https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/) — testing rollback safety, version transitions.
+
+## Interview practice and supplied capstone architecture
+
+Days 141, 144, 148, and 151 reserve four spaced 45-minute system-design question sessions, two per week. Each replaces 45 minutes of the existing 85-minute engineering practice block and leaves a task-specific 40-minute implementation slice. Interview answers stay in the separate question bank; assistant notes supply capstone architecture for all 14 days. No extra daily time or capstone design proposal is assigned.
+
+DSA assignments, supporting code, review schedules, and attempt history remain exclusively in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0).

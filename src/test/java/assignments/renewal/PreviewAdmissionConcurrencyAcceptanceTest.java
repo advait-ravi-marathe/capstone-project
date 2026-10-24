@@ -4,6 +4,7 @@ import assignments.insurance.PolicyRenewalFacts;
 import assignments.insurance.PolicyRenewalReadStore;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Tag("learnerAcceptance")
 class PreviewAdmissionConcurrencyAcceptanceTest {
     @Test
+    @Timeout(10)
     void boundsConcurrentDelegateEntriesAndRecoversAfterFailure() throws Exception {
         var admission = new PreviewAdmission(new PreviewCapacityPolicy(2, 4, 1000));
         var active = new AtomicInteger();
@@ -27,6 +29,8 @@ class PreviewAdmissionConcurrencyAcceptanceTest {
         var delegateCalls = new AtomicInteger();
         var release = new CountDownLatch(1);
         var entered = new CountDownLatch(2);
+        var secondRelease = new CountDownLatch(1);
+        var secondEntered = new CountDownLatch(2);
         var failNext = new AtomicBoolean();
         PolicyRenewalReadStore delegate = (policyId, ownerId) -> {
             delegateCalls.incrementAndGet();
@@ -35,6 +39,13 @@ class PreviewAdmissionConcurrencyAcceptanceTest {
             try {
                 if ("fail".equals(policyId) && failNext.compareAndSet(true, false)) {
                     throw new IllegalStateException("synthetic delegate failure");
+                }
+                if (policyId.startsWith("cycle-")) {
+                    secondEntered.countDown();
+                    if (!secondRelease.await(2, TimeUnit.SECONDS)) {
+                        throw new AssertionError("second admission cycle was not released");
+                    }
+                    return Optional.empty();
                 }
                 entered.countDown();
                 if (!release.await(2, TimeUnit.SECONDS)) throw new AssertionError("test did not release delegate barrier");
@@ -64,12 +75,26 @@ class PreviewAdmissionConcurrencyAcceptanceTest {
             failNext.set(true);
             assertThrows(IllegalStateException.class, () -> store.findByPolicyIdAndOwnerId("fail", "owner-a"));
             assertEquals(2, admission.availablePermitsForTest(), "delegate failure must return the permit");
-            assertTrue(store.findByPolicyIdAndOwnerId("recovered", "owner-a").isEmpty());
+
+            Future<Optional<PolicyRenewalFacts>> cycleOne = workers.submit(() ->
+                    store.findByPolicyIdAndOwnerId("cycle-one", "owner-a"));
+            Future<Optional<PolicyRenewalFacts>> cycleTwo = workers.submit(() ->
+                    store.findByPolicyIdAndOwnerId("cycle-two", "owner-b"));
+            assertTrue(secondEntered.await(2, TimeUnit.SECONDS), "a complete second cycle must admit two delegate calls");
+            assertEquals(2, maximum.get(), "the second cycle must preserve the same maximum");
+            assertThrows(PreviewBusyException.class, () -> store.findByPolicyIdAndOwnerId("cycle-third", "owner-a"));
+            assertEquals(5, delegateCalls.get(), "the second cycle's rejected third call must not enter the delegate");
+            secondRelease.countDown();
+            assertTrue(cycleOne.get(2, TimeUnit.SECONDS).isEmpty());
+            assertTrue(cycleTwo.get(2, TimeUnit.SECONDS).isEmpty());
             assertEquals(2, admission.availablePermitsForTest(), "repeated reads after a failure must not leak permits");
+            assertTrue(store.findByPolicyIdAndOwnerId("recovered", "owner-a").isEmpty());
+            assertEquals(2, admission.availablePermitsForTest());
         } catch (ExecutionException failure) {
             throw new AssertionError("delegate worker failed", failure.getCause());
         } finally {
             release.countDown();
+            secondRelease.countDown();
             workers.shutdownNow();
             assertTrue(workers.awaitTermination(2, TimeUnit.SECONDS));
         }

@@ -6,6 +6,10 @@ import assignments.insurance.PolicyStatus;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -14,7 +18,13 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.springframework.http.ResponseEntity;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Tag("learnerAcceptance")
 class TimedRenewalReadAcceptanceTest {
@@ -133,6 +143,28 @@ class TimedRenewalReadAcceptanceTest {
         RuntimeException unknown = new IllegalStateException("not a SQL-state budget failure",
                 new SQLException("unique violation", "23505"));
         assertSame(unknown, PreviewReadFailureTranslator.translate(unknown));
+    }
+
+    @Test
+    void translatedStateMapsToSafe503WithoutLeakingSqlDetails() throws Exception {
+        MockMvc mvc = MockMvcBuilders.standaloneSetup(new InterruptedReadController())
+                .setControllerAdvice(new PreviewCapacityExceptionHandler()).build();
+
+        mvc.perform(get("/test/interrupted"))
+                .andExpect(status().isServiceUnavailable())
+                .andExpect(jsonPath("$.code").value("PREVIEW_UNAVAILABLE"))
+                .andExpect(content().string(org.hamcrest.Matchers.not(
+                        org.hamcrest.Matchers.containsString("57014"))))
+                .andExpect(content().string(org.hamcrest.Matchers.not(
+                        org.hamcrest.Matchers.containsString("secret"))));
+    }
+
+    @RestController
+    static class InterruptedReadController {
+        @GetMapping("/test/interrupted") ResponseEntity<?> interrupted() {
+            throw new PreviewReadInterruptedException("secret statement_timeout SQLSTATE 57014",
+                    new SQLException("secret query detail", "57014"));
+        }
     }
 
     @Test

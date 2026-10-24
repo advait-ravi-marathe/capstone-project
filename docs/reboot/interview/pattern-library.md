@@ -133,6 +133,56 @@ remain short. **Failure mode:** committing the aggregate while losing its
 receipt or event. **Questions:** [Q13](question-bank.md#q13),
 [Q14](question-bank.md#q14), [Q19](question-bank.md#q19).
 
+<a id="data-store-choice"></a>
+## Relational SQL versus document storage
+
+**Use when:** a design prompt asks whether related records should live in
+normalized tables or flexible documents. Start with relationships, constraints,
+transaction boundaries, query shapes, and evolution needs. Relational SQL fits
+strong references, joins, and constraints; a document model can fit naturally
+aggregate-shaped data with fields that evolve together. **Alternative:** use
+PostgreSQL relational tables with a bounded JSON column for a genuinely flexible
+subdocument; PostgreSQL supports querying JSON alongside relational data.
+**Trade-off:** document flexibility can move validation and relationship work
+into application code; relational constraints require schema evolution.
+**Failure mode:** choosing NoSQL because a product is “large” without naming
+access patterns, or storing independently updated facts in one opaque document.
+See [PostgreSQL JSON types](https://www.postgresql.org/docs/current/datatype-json.html).
+**Questions:** [Q06](question-bank.md#q06), [Q13](question-bank.md#q13),
+[Q23](question-bank.md#q23).
+
+<a id="load-balancing"></a>
+## Load balancing
+
+**Use when:** multiple healthy application targets must serve the same route
+and one process cannot meet the measured capacity or availability target.
+Distribute traffic only after defining health checks, session/state ownership,
+timeouts, and safe behavior for an unavailable target. **Alternative:** one
+process behind a simple reverse proxy until measurement or availability needs
+justify more targets. **Trade-off:** distribution improves utilization and can
+allow target replacement, but adds health propagation, routing, and operational
+failure modes. **Failure mode:** marking a target healthy while its database
+dependency is unusable, or relying on sticky sessions for state that should be
+durable. See [AWS Elastic Load Balancing overview](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html).
+**Questions:** [Q07](question-bank.md#q07), [Q35](question-bank.md#q35).
+
+<a id="frontend-state-machine"></a>
+## Frontend state machine
+
+**Use when:** a screen has distinct loading, ready, empty, pending, failed,
+expired, or retryable states. Name valid states and events, and derive visible
+controls from the current state instead of maintaining contradictory booleans.
+**Alternative:** a small discriminated union and local reducer; a separate
+state-machine library is unnecessary for a bounded form or panel.
+**Trade-off:** explicit transitions make edge cases testable but require the
+team to define pending, cancellation, and stale-response behavior.
+**Failure mode:** a delayed old-owner response repopulates a cleared screen, or
+two booleans render an impossible combination. See React's guidance on
+[reacting to input with state](https://react.dev/learn/reacting-to-input-with-state)
+and [extracting state logic into a reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer).
+**Questions:** [Q14](question-bank.md#q14), [Q18](question-bank.md#q18),
+[Q19](question-bank.md#q19), [Q21](question-bank.md#q21).
+
 <a id="concurrency-guards"></a>
 ## Optimistic and unique guards
 

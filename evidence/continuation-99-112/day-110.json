@@ -5,7 +5,8 @@
   "contract_status": "defined",
   "acceptance_commands": [
     "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
-    "./mvnw -Plocal-app -DskipTests package",
+    "(cd frontend && npm ci && npm run build && npm run build:local)",
+    "scripts/package-sprint8-demo.sh",
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
   ],
   "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",

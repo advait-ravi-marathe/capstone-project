@@ -7,6 +7,8 @@ Accept a supported immutable ISSUED envelope and trace the existing source trans
 - Learner seam: `IssuanceEnvelope.validateSupported()`.
 - Engineering total: 120 minutes, with 85 implementation/testing, 25 study, and 10 evidence. The study cap includes pauses and teach-back. Unfinished work carries forward and implementation scope shrinks.
 
+**Assistant-provided architecture (what and why):** [Day 99 note](../assistant-architecture-notes.md#day-99). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.
+
 ## Course and worked supplement
 
 - Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)
@@ -43,4 +45,4 @@ Record actual command, exit code, persistent source/work/receipt/ack state or pr
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

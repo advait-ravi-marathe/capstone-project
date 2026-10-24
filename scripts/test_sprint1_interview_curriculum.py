@@ -81,10 +81,10 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             (21, "2026-11-13", "Q07"),
             (24, "2026-11-16", "Q10"),
             (28, "2026-11-20", "Q14"),
-            (31, "2026-11-23", "Q18"),
-            (35, "2026-11-27", "Q16"),
-            (38, "2026-11-30", "Q28"),
-            (42, "2026-12-04", "Q30"),
+            (31, "2026-11-23", "Q05"),
+            (35, "2026-11-27", "Q13"),
+            (38, "2026-11-30", "Q16"),
+            (42, "2026-12-04", "Q11"),
         ]:
             expected = date(2026, 10, 24) + timedelta(days=day - 1)
             self.assertEqual(expected_date, expected.isoformat())
@@ -119,10 +119,11 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             for expected in dates:
                 self.assertIn(expected, source, f"{relative} should assert {expected}")
         generator = (ROOT / "scripts/create_days141_154_docs.py").read_text()
-        self.assertIn("dt=date(2027,3,13)+timedelta(days=i)", generator)
-        self.assertIn("'start_date':'2027-03-13','end_date':'2027-03-26'", generator)
-        self.assertIn("'dates':'2027-03-13..2027-03-26'", generator)
-        self.assertIn("Dates: 2027-03-13–2027-03-26", generator)
+        self.assertIn("list(range(141, 155))", generator)
+        self.assertIn('manifest = read_json(MANIFEST_PATH)', generator)
+        self.assertIn('manifest["daily_budget_minutes"] = None', generator)
+        self.assertNotRegex(generator, r"(?s)evidence[^\n]*\.write_text|write_text[^\n]*evidence",
+                            "regeneration must never reset actual evidence/status files")
 
     def test_first_sprint_story_ids_and_course_bridges_remain_present(self):
         owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())
@@ -206,6 +207,58 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             note = row["engineering"]["assistant_architecture_note"]
             self.assertIn("journeyId and quoteVersionId", note["decision"])
             self.assertIn("Day 12", note["decision"])
+
+    def test_sprint2_assignments_sync_contracts_course_bridges_and_story_exports(self):
+        canonical = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
+        owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())
+        courses = json.loads((ROOT / "docs/reboot/course-learning-blocks.json").read_text())
+        cards = {card["day_number"]: card for card in owner["cards"]}
+        deep = (ROOT / "docs/reboot/interview/deep-practice.md").read_text()
+        scope = (ROOT / "docs/reboot/interview/sprint2-session-scope.md").read_text()
+        expected_mocks = {17: ("2026-11-09", "Q01"), 21: ("2026-11-13", "Q07"),
+                          24: ("2026-11-16", "Q10"), 28: ("2026-11-20", "Q14")}
+        for day in range(15, 29):
+            item = canonical["days"][day - 1]
+            card = cards[day]
+            assignment = item["interview_practice"]
+            self.assertEqual(assignment, card["interview_practice"])
+            self.assertEqual(85, assignment["practice_minutes_available"])
+            self.assertEqual(assignment["proposal_scope"], "system_design_interview_question_only" if day in (17, 21, 24, 28) else "none")
+            self.assertEqual(assignment["capstone_architecture"], "assistant_supplied")
+            self.assertIn(f"#day-{day}", assignment["assistant_architecture_note"])
+            if day in (17, 21, 24, 28):
+                self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            else:
+                self.assertFalse(assignment["proposal_before_hints_reference_or_ai"])
+                self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+                self.assertNotIn("proposal_prompt", assignment)
+            expected_bridges = [{key: lesson.get(key) for key in (
+                "title", "section_title", "duration_seconds", "source_item_id", "course_id")}
+                for lesson in courses["days"][day - 1].get("lesson_details", [])]
+            self.assertEqual(expected_bridges, assignment["course_bridges"], f"Day {day} course bridge")
+            contract = (ROOT / f"docs/reboot/contracts/day-{day:02d}.md").read_text()
+            if day in expected_mocks:
+                self.assertIn("Interview-first", contract)
+            else:
+                self.assertIn("Assistant-provided capstone architecture", contract)
+            self.assertNotIn("Interview transfer (inside the current evidence block)", contract)
+            if day in expected_mocks:
+                planned_date, question = expected_mocks[day]
+                self.assertEqual(planned_date, item["date"])
+                self.assertEqual("45_minute_mock", assignment["mode"])
+                self.assertEqual(question, assignment["question_id"])
+                self.assertTrue(assignment["deferred_work_id"].startswith("S2-D"))
+                self.assertIn("40 minutes", assignment["implementation_scope"])
+                self.assertEqual(85, assignment["duration_minutes"] + 40)
+                self.assertEqual([5, 5, 15, 10, 10], [p["minutes"] for p in assignment["mock_phases"]])
+                self.assertIn(assignment["deferred_work_id"], scope)
+                self.assertRegex(deep, rf"\|\s*\d+\s*\| {day} · {planned_date} \| {question} \|")
+            else:
+                self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+                self.assertEqual(0, assignment["duration_minutes"])
+                self.assertIsNone(assignment["deferred_work_id"])
+        self.assertNotIn("65 build/test + 20 mock", scope)
+        self.assertIn("named 40-minute EAI slice", scope)
 
     def test_mock_scope_has_explicit_eai_slices_and_deferred_acceptance(self):
         scope = (ROOT / "docs/reboot/interview/session-scope.md").read_text()

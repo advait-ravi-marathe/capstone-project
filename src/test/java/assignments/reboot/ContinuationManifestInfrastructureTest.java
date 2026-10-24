@@ -26,7 +26,7 @@ class ContinuationManifestInfrastructureTest {
         JsonNode cards = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
         assertEquals(14, manifest.get("days").size());
         assertEquals(14, cards.get("cards").size());
-        assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14",
+        assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
                 manifest.get("separate_learning_repository").get("algorithm_practice").asString());
         LocalDate start = LocalDate.parse("2026-11-23");
         for (int i = 0; i < 14; i++) {

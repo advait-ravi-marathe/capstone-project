@@ -24,16 +24,18 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
+## Existing implementation boundary
+
+Implement and test the existing learner-owned seam using the architecture note in the concept block. No separate capstone design proposal or post-hoc justification is assigned.
 ## Practice and evidence
 
-**85-minute practice allocation:**
-- 10 minutes: trace bound parameters and resources.
-- 50 minutes: implement the existing JDBC read.
-- 25 minutes: verify scoped rows and compare full table snapshots.
+**85-minute practice allocation:** 5 minutes to save the task-specific prediction before assistance; the remaining 80 minutes are for the unchanged acceptance command(s) above, stopping at the first unresolved prerequisite or timebox. Preserve any unfinished criteria as open work; no overtime.
 
-**10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
+**10-minute evidence allocation:** record the actual command/output, source SHA, result or first blocker, changed paths, and assistance. Do not infer learner completion from a green instructor reference or write a post-hoc architecture justification.
 
 ## Study block — exactly 25 minutes
+
+**Assistant-provided capstone architecture:** [../../assistant-architecture-notes-15-70.md#day-48](<../../assistant-architecture-notes-15-70.md#day-48>). This note supplies the implementation decision and concise rationale; read it within this day's existing 25-minute concept/course allocation, not as extra work. Use it as context for the day's existing task; on implementation days, implement and test the stated design. It is supplied awareness, not a design exercise. No capstone architecture proposal or post-hoc justification is assigned; learner design proposals occur only for the assigned system-design interview question on scheduled mock days.
 
 - Required source: **Step 07 - Querying Data using Spring JDBC**, section **Getting Started with JPA and Hibernate with Spring and Spring Boot** (5:36), access `confirmed_owned`. No viewing is inferred.
 - Worked guide: [Bind both keys and compare complete rows](../worked/day-48-scoped-jdbc-observation.md). The exact 25-minute segments are in `fde45-56-v2-curriculum.json`; all study items share that cap.
@@ -50,4 +52,4 @@ This is a synthetic, read-only reference preview. It does not renew, accept, bin
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

@@ -20,9 +20,17 @@ The learner selector remains red only where an explicit learner TODO is incomple
 **Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 
-## Implementation/testing allocation (85 minutes)
+## Practice allocation (85 minutes)
 
-Work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added business endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
+
+**Interview mock (45 minutes inside this block):** [Q08 — API gateway: safe error contract](../../interview/question-bank.md#q08). Save a proposal before hints or references for this interview question only. Use [the 5/5/15/10/10 phases and 100-point rubric](../../interview/mock-rubric.md). The interview does not decide or justify capstone architecture.
+
+**Bounded engineering slice (40 minutes):** 5 minutes check prerequisites and predict the key result; 25 minutes for this task only: Run the focused accessible recovery component selector; verify state/context and explicit retry behavior. 10 minutes run the exact selector and record the first real failure or result. The full named acceptance remains the completion gate.
+
+**Deferred work:** **S6-D81-MOCK-D** — Preserve every unmet assertion and resume from the first actual TODO or blocker. A partial selector and mock are not completion.
+
+
+Within the 40-minute engineering slice, work only this contract. Keep synchronous MVC/JDBC and a process-local admission gate of 2 with the existing Hikari maximum of 4; this arithmetic headroom does not reserve two pool slots or guarantee availability to other routes. No asynchronous execution, wait queue, blocking permit acquisition, automatic retry, added business endpoint, schema change, test-only fault route, or production test hook. Reuse the completed owner-scoped Day 48 SQL; do not duplicate or change its query. Use deterministic synchronization. Release test-owned locks and connections in `finally`.
 
 RenewalPreviewBusyState.
 
@@ -30,13 +38,13 @@ RenewalPreviewBusyState.
 
 **Learning guidance (inside the single 25-minute engineering study allocation):**
 - No exact matching course lesson was verified for this task; no unrelated video is assigned.
-- Fit: no direct course match. No exact accessible manual-only retry lesson was verified. Sketch retained policy context and mutually exclusive UI state. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.
+- Fit: no direct course match. No exact accessible manual-only retry lesson was verified. Review the supplied busy/unavailable state boundary and the explicit Retry event. The test must show retained policy context, no automatic retry/refetch/session reset, and one request only after the user activates Retry. TanStack cancellation is not a substitute for manual-only semantics.
 - Focused worked references: [WAI-ARIA 1.2 — status role and alert role](https://www.w3.org/TR/wai-aria-1.2/#status).
 - Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.
 
-**Design sketch:** Draw state transitions and prove retry follows explicit action.
+**Assistant-provided architecture note:** [Day 81](../assistant-architecture-notes.md#day-81). Apply the stated design to the existing seam. No capstone design proposal or post-hoc architecture justification is assigned.
 
-**Teach-back:** State the invariant, enforcing layer and observable evidence that proves it.
+**Retrieval check:** Name the existing boundary and selector that observes it. This recalls supplied guidance; it is not a new design proposal or justification.
 
 ## Evidence allocation (10 minutes)
 
@@ -44,4 +52,4 @@ Record exact commands, exit status, observed values, learner-owned paths and blo
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

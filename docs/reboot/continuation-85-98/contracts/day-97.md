@@ -14,9 +14,23 @@ On the existing renewal route, show a safe bounded-read response under real ACCE
 The selector is installed and runnable with learner TODOs restored. It may fail at named incomplete learner/prerequisite seams; missing classes, selectors, fixtures, tools or browser setup are infrastructure defects. The default Maven suite is the instructor infrastructure suite and excludes `learnerAcceptance` tests.
 
 **Acceptance selector:** `src/test/java/assignments/local/Day97PackagedTimeoutBrowserAcceptanceTest.java`
-**Acceptance command:** `npm --prefix frontend ci`; `npm --prefix frontend run build:local`; `./mvnw -Plocal-app -DskipTests package`; then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Plocal-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test` (or install the project-pinned Playwright Chromium in CI).
+**Acceptance commands:** First run `./scripts/package-local-demo.sh`, which clean-builds the frontend-bearing local executable archive; then run `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests,local-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test` (or use the project-pinned Playwright Chromium in CI). This is an actual packaged-JAR/browser journey, not the separate source-shape infrastructure check.
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
+
+### Separate system-design interview practice — 45 minutes of the 85-minute practice block
+
+This is a separate interview exercise, not a capstone design assignment. Attempt the interview question before using hints, references, or AI feedback. Capstone architecture is supplied above. These 45 minutes replace part of the existing 85-minute practice block; the remaining 40 minutes are the bounded implementation slice below. This replaces, and does not supplement, the full practice allocation.
+
+- **Question:** [Q32 — Streaming: adaptive delivery](../../interview/question-bank.md#q32). Which signals should change bitrate, and how do buffering and regional failures affect playback?
+- **Interview patterns:** [streaming-delivery](../../interview/pattern-library.md#streaming-delivery), [resilience](../../interview/pattern-library.md#resilience).
+- **Mock phases (45 minutes total):** 5 minutes Requirements; 5 minutes Capacity and constraints; 15 minutes Initial architecture and data model; 10 minutes Bottlenecks, reliability, scaling; 10 minutes Trade-offs, failures, follow-ups.
+- **Remaining engineering slice (40 minutes total):** 5 minutes preconditions and prediction; 25 minutes implementation or observation; 10 minutes selector and blocker record.
+- **Bounded capstone task:** Run the fresh-JAR browser lock/retry journey to its first actual learner prerequisite. Record browser, HTTP, and database observations; implement only the first named blocked seam during the 40-minute engineering slice.
+- **Deferred acceptance:** `S7-D97-MOCK` — Carry every unmet original acceptance assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; do not add practice minutes or infer completion from the interview mock.
+- **Runnable acceptance command(s):**
+  - `./scripts/package-local-demo.sh`
+  - `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests,local-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test`
 
 ### Scope and safety limits
 
@@ -38,9 +52,9 @@ If the existing React state concepts need review, the selected course has prior 
 
 Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
 
-**Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
+**Assistant-provided architecture (what and why):** [Day 97 note](../assistant-architecture-notes.md#day-97). The note supplies capstone architecture decisions. Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.
 
-**Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
+**Teach-back:** Explain the supplied boundary in your own words and cite one observed acceptance result; no design-choice essay is required.
 
 ### Evidence block — 10 minutes
 
@@ -48,4 +62,4 @@ Record exact commands, exit status, observed values, cleanup result, learner-own
 
 ## Separate DSA track
 
-The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0). This engineering contract contains no DSA assignment.

@@ -65,7 +65,7 @@
           "worked_reference_seconds": 1104,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "scope S and T as different run-owned fixtures; reject source=target, unrelated loopback DB, DNS aliases, remote endpoints, and cloud mode.",
+          "scope_note": "scope S and T as different run-owned fixtures; reject source=target, unrelated loopback DB, DNS aliases, remote endpoints, and cloud mode. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-127`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -81,7 +81,8 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-127"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -89,9 +90,11 @@
           "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Shared Responsibility Model & AWS Acceptable Policy | Section: What is Cloud Computing? | 96 sec",
           "Worked guide: scope S and T as different run-owned fixtures; reject source=target, unrelated loopback DB, DNS aliases, remote endpoints, and cloud mode.",
-          "Reading focus: PostgreSQL 18 pg_dump — Archive formats and connection options; local source only. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump — Archive formats and connection options; local source only. (https://www.postgresql.org/docs/18/app-pgdump.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-127. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-127"
       },
       "mandatory_new_problem": false
     },
@@ -133,7 +136,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Compare manifest hashes against the supplied artifact and migration set; reject altered JAR bytes, mismatch, omitted version, or secrets.",
+          "scope_note": "Compare manifest hashes against the supplied artifact and migration set; reject altered JAR bytes, mismatch, omitted version, or secrets. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-128`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -149,15 +152,82 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-128",
+        "interview_assignment": {
+          "day": 128,
+          "date": "2027-02-28",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. Capstone architecture is assistant-supplied.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q36",
+          "question_title": "Object-store recovery",
+          "question_href": "../../interview/question-bank.md#q36",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#object-storage",
+            "../../interview/pattern-library.md#resilience"
+          ],
+          "proposal_prompt": "How do you detect an incomplete upload or accidental deletion and restore a verified object?",
+          "bounded_task": "Implement only the exact artifact-byte and migration-digest comparison case for the supplied release record. Run the altered-JAR negative control; leave the remaining release metadata acceptance open.",
+          "deferred_work_id": "S10-D128-MOCK",
+          "deferred_work": "Carry every remaining Day 128 release-manifest assertion under this ID; one hash check does not prove the full artifact and migration identity.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session and 40-minute capstone slice replace the existing 85-minute practice block; no extra time is added.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day128ChecksArtifactAndMigrationIdentity test"
+          ],
+          "acceptance": "Full original acceptance remains the completion gate; the bounded slice is partial evidence only.",
+          "evidence": "Record interview work separately from capstone command/result/blocker/changed paths. No capstone architecture proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Carry every remaining Day 128 release-manifest assertion under this ID; one hash check does not prove the full artifact and migration identity."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-128",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Compare manifest hashes against the supplied artifact and migration set; reject altered JAR bytes, mismatch, omitted version, or secrets.",
-          "Reading focus: Java 21 MessageDigest — SHA-256 identifies exact bytes; do not put credentials in the manifest. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html)"
+          "Reading focus: Java 21 MessageDigest — SHA-256 identifies exact bytes; do not put credentials in the manifest. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html)",
+          "Separate 45-minute interview practice: Q36 — Object-store recovery; question-bank-only. It replaces practice time, leaving a bounded 40-minute capstone slice: Implement only the exact artifact-byte and migration-digest comparison case for the supplied release record. Run the altered-JAR negative control; leave the remaining release metadata acceptance open. Deferred: S10-D128-MOCK.",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-128. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-128"
       },
       "mandatory_new_problem": false
     },
@@ -199,7 +269,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "A changed receipt timestamp/payload, missing history, or substituted row fails even where table counts still match.",
+          "scope_note": "A changed receipt timestamp/payload, missing history, or substituted row fails even where table counts still match. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-129`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -215,15 +285,18 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-129"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: A changed receipt timestamp/payload, missing history, or substituted row fails even where table counts still match.",
-          "Reading focus: PostgreSQL 18 pg_restore — Custom archive listing and restore behavior. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore — Custom archive listing and restore behavior. (https://www.postgresql.org/docs/18/app-pgrestore.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-129. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-129"
       },
       "mandatory_new_problem": false
     },
@@ -283,7 +356,7 @@
           "worked_reference_seconds": 864,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Require a nonempty custom archive and successful real client process; a failed tool or missing file is not backup success.",
+          "scope_note": "Require a nonempty custom archive and successful real client process; a failed tool or missing file is not backup success. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-130`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -299,7 +372,8 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-130"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -307,9 +381,11 @@
           "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: RDS & Aurora - Backup and Monitoring | Section: AWS Fundamentals: RDS + Aurora + ElastiCache | 336 sec",
           "Worked guide: Require a nonempty custom archive and successful real client process; a failed tool or missing file is not backup success.",
-          "Reading focus: PostgreSQL 18 pg_dump — Use custom format against the quiesced synthetic fixture. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump — Use custom format against the quiesced synthetic fixture. (https://www.postgresql.org/docs/18/app-pgdump.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-130. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-130"
       },
       "mandatory_new_problem": false
     },
@@ -352,7 +428,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "A malformed archive is rejected, and a valid custom archive truncated only after its TOC passes listing but fails during restore work; the single transaction leaves no partial target schema/data.",
+          "scope_note": "A malformed archive is rejected, and a valid custom archive truncated only after its TOC passes listing but fails during restore work; the single transaction leaves no partial target schema/data. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-131`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -368,15 +444,83 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-131",
+        "interview_assignment": {
+          "day": 131,
+          "date": "2027-03-03",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. Capstone architecture is assistant-supplied.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q14",
+          "question_title": "Booking: retry after a lost response",
+          "question_href": "../../interview/question-bank.md#q14",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#idempotency",
+            "../../interview/pattern-library.md#transaction-boundary",
+            "../../interview/pattern-library.md#frontend-state-machine"
+          ],
+          "proposal_prompt": "How can a client repeat a booking safely when it cannot tell whether the first write committed?",
+          "bounded_task": "Implement only the refusal for source=target and a populated restore target before invoking restore. Run those negative cases; keep valid restore and rollback acceptance deferred.",
+          "deferred_work_id": "S10-D131-MOCK",
+          "deferred_work": "Carry the full fresh-target restore, corrupt-stream rollback, and schema/data comparison under this ID.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session and 40-minute capstone slice replace the existing 85-minute practice block; no extra time is added.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day131RestoresFreshTargetFailClosed test"
+          ],
+          "acceptance": "Full original acceptance remains the completion gate; the bounded slice is partial evidence only.",
+          "evidence": "Record interview work separately from capstone command/result/blocker/changed paths. No capstone architecture proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Carry the full fresh-target restore, corrupt-stream rollback, and schema/data comparison under this ID."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-131",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Real restore succeeds and source remains unchanged. A malformed header is rejected; a valid archive truncated after a valid TOC fails during restore and leaves no partial target schema/data.",
-          "Reading focus: PostgreSQL 18 pg_restore — Single-transaction restore to a new empty target; do not use --clean or --create. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore — Single-transaction restore to a new empty target; do not use --clean or --create. (https://www.postgresql.org/docs/18/app-pgrestore.html)",
+          "Separate 45-minute interview practice: Q14 — Booking: retry after a lost response; question-bank-only. It replaces practice time, leaving a bounded 40-minute capstone slice: Implement only the refusal for source=target and a populated restore target before invoking restore. Run those negative cases; keep valid restore and rollback acceptance deferred. Deferred: S10-D131-MOCK.",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-131. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-131"
       },
       "mandatory_new_problem": false
     },
@@ -437,7 +581,7 @@
           "worked_reference_seconds": 984,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Restored full state matches before activation; actual JAR reads the held identity; no-write snapshot remains identical.",
+          "scope_note": "Restored full state matches before activation; actual JAR reads the held identity; no-write snapshot remains identical. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-132`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -453,7 +597,8 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-132"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -461,9 +606,11 @@
           "Course: [NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: CloudWatch Metrics & CloudWatch Alarms Overview | Section: Cloud Monitoring | 216 sec",
           "Worked guide: Restored full state matches before activation; actual JAR reads the held identity; no-write snapshot remains identical.",
-          "Reading focus: Spring Boot application availability — Application starts only after the restored migration history and configured data source validate. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)"
+          "Reading focus: Spring Boot application availability — Application starts only after the restored migration history and configured data source validate. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-132. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-132"
       },
       "mandatory_new_problem": false
     },
@@ -509,7 +656,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "recovery_prior_only_no_new_lecture",
-          "scope_note": "Explain the recovery point and that a deliberately post-backup write is absent from T. Record tool/TODO blockers honestly.",
+          "scope_note": "Explain the recovery point and that a deliberately post-backup write is absent from T. Record tool/TODO blockers honestly. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-133`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -525,15 +672,18 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-133"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Explain the recovery point and that a deliberately post-backup write is absent from T. Record tool/TODO blockers honestly.",
-          "Reading focus: PostgreSQL 18 pg_dump — A logical archive captures a recovery point, not writes committed after archive completion. (https://www.postgresql.org/docs/18/app-pgdump.html)"
+          "Reading focus: PostgreSQL 18 pg_dump — A logical archive captures a recovery point, not writes committed after archive completion. (https://www.postgresql.org/docs/18/app-pgdump.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-133. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-133"
       },
       "mandatory_new_problem": false
     },
@@ -595,7 +745,7 @@
           "worked_reference_seconds": 988,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
+          "scope_note": "A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-134`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -612,7 +762,8 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-134"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -620,9 +771,11 @@
           "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: EC2 Basics | Section: EC2 Fundamentals | 212 sec",
           "Worked example: A remains selected on S. If B on restored T fails the row/schema/JAR gate, the client still reads S. After all gates pass, the client selection changes to T. If T later accepts a write, do not switch back to stale S.",
-          "Reading focus: EC2 instance types — Offline resource sizing concepts only; no regional availability or price claim. (https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html)"
+          "Reading focus: EC2 instance types — Offline resource sizing concepts only; no regional availability or price claim. (https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-134. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-134"
       },
       "mandatory_new_problem": false
     },
@@ -667,7 +820,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Quiesced no-write return is allowed; a write after divergence, schema mismatch, or missing artifact blocks blind rollback.",
+          "scope_note": "Quiesced no-write return is allowed; a write after divergence, schema mismatch, or missing artifact blocks blind rollback. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-135`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -683,15 +836,83 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-135",
+        "interview_assignment": {
+          "day": 135,
+          "date": "2027-03-07",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. Capstone architecture is assistant-supplied.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q16",
+          "question_title": "Messaging: ordering and replay",
+          "question_href": "../../interview/question-bank.md#q16",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#outbox-and-messaging",
+            "../../interview/pattern-library.md#idempotency",
+            "../../interview/pattern-library.md#transaction-boundary"
+          ],
+          "proposal_prompt": "Which ordering guarantee is required, and how can a consumer handle duplicate events when one commit succeeds but its acknowledgment is delayed?",
+          "bounded_task": "Implement only the policy decision that blocks return to source after a candidate-side write. Run its positive and negative unit cases; leave the packaged cutover journey open.",
+          "deferred_work_id": "S10-D135-MOCK",
+          "deferred_work": "Carry packaged source/candidate readback and state-preservation assertions under this ID.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session and 40-minute capstone slice replace the existing 85-minute practice block; no extra time is added.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day135BlocksRollbackAfterDivergentWrites test"
+          ],
+          "acceptance": "Full original acceptance remains the completion gate; the bounded slice is partial evidence only.",
+          "evidence": "Record interview work separately from capstone command/result/blocker/changed paths. No capstone architecture proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Carry packaged source/candidate readback and state-preservation assertions under this ID."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-135",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Quiesced no-write return is allowed; a write after divergence, schema mismatch, or missing artifact blocks blind rollback.",
-          "Reading focus: PostgreSQL 18 pg_restore — Restore creates a target database state; it does not rewind another database. (https://www.postgresql.org/docs/18/app-pgrestore.html)"
+          "Reading focus: PostgreSQL 18 pg_restore — Restore creates a target database state; it does not rewind another database. (https://www.postgresql.org/docs/18/app-pgrestore.html)",
+          "Separate 45-minute interview practice: Q16 — Messaging: ordering and replay; question-bank-only. It replaces practice time, leaving a bounded 40-minute capstone slice: Implement only the policy decision that blocks return to source after a candidate-side write. Run its positive and negative unit cases; leave the packaged cutover journey open. Deferred: S10-D135-MOCK.",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-135. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-135"
       },
       "mandatory_new_problem": false
     },
@@ -735,7 +956,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_catalog_lesson_worked_supplement",
-          "scope_note": "Record monotonic dump/restore/full-snapshot durations with fixture size; force a local tool watchdog and prove it removes only its unique run-owned container while an unrelated sentinel remains alive.",
+          "scope_note": "Record monotonic dump/restore/full-snapshot durations with fixture size; force a local tool watchdog and prove it removes only its unique run-owned container while an unrelated sentinel remains alive. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-136`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -751,15 +972,18 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-136"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Any failed phase or cleanup fails the overall result; terminate/await owned children and preserve unrelated sentinel fixtures.",
-          "Reading focus: Spring Boot graceful shutdown — Bounded shutdown and resource ownership; the harness must await its own process termination. (https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)"
+          "Reading focus: Spring Boot graceful shutdown — Bounded shutdown and resource ownership; the harness must await its own process termination. (https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-136. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-136"
       },
       "mandatory_new_problem": false
     },
@@ -826,7 +1050,7 @@
           "worked_reference_seconds": 787,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Offline validation rejects public application or database, wildcard admin, embedded secrets, a cloud execution request, and cloudVerified=true; only pending access/account design is represented.",
+          "scope_note": "Offline validation rejects public application or database, wildcard admin, embedded secrets, a cloud execution request, and cloudVerified=true; only pending access/account design is represented. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-137`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -842,7 +1066,8 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-137"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -851,9 +1076,11 @@
           "Lesson: CloudFormation Intro | Section: Other Services | 211 sec",
           "Lesson: IAM Introduction: Users, Groups, Policies | Section: IAM & AWS CLI | 202 sec",
           "Worked guide: Offline validation independently rejects public app/database, wildcard admin, embedded secret, cloud request and cloudVerified=true. Pending user choices are data, never authorization.",
-          "Reading focus: AWS CloudFormation change sets — Offline planning and later validation concepts; a design record is not a change set. (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)"
+          "Reading focus: AWS CloudFormation change sets — Offline planning and later validation concepts; a design record is not a change set. (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-137. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-137"
       },
       "mandatory_new_problem": false
     },
@@ -917,7 +1144,7 @@
           "worked_reference_seconds": 936,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Require fictional decimal lines for compute, database storage, backups/snapshots, logs, secrets and transfer; selected networking is explicit. Validate each unit, common currency, calculated line and total; never invent missing rates or zero cost.",
+          "scope_note": "Require fictional decimal lines for compute, database storage, backups/snapshots, logs, secrets and transfer; selected networking is explicit. Validate each unit, common currency, calculated line and total; never invent missing rates or zero cost. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-138`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -933,7 +1160,72 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-138",
+        "interview_assignment": {
+          "day": 138,
+          "date": "2027-03-10",
+          "title": "Separate system-design interview question",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "Interview answer is question-bank-only. Capstone architecture is assistant-supplied.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q28",
+          "question_title": "Feed: fan-out choice",
+          "question_href": "../../interview/question-bank.md#q28",
+          "pattern_refs": [
+            "../../interview/pattern-library.md#feed-fan-out",
+            "../../interview/pattern-library.md#read-scaling",
+            "../../interview/pattern-library.md#measure-before-scaling"
+          ],
+          "proposal_prompt": "When would you precompute recipient feeds, when would you read on demand, and which measured costs should decide?",
+          "bounded_task": "Implement only the required retained-backup cost line with explicit units and verify its decimal amount is included in the fictional total. Do not convert fixture rates to real AWS prices.",
+          "deferred_work_id": "S10-D138-MOCK",
+          "deferred_work": "Carry the full required resource-line, currency, and aggregate-cost acceptance under this ID.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute question session and 40-minute capstone slice replace the existing 85-minute practice block; no extra time is added.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day138CostsRetainedResourcesWithoutInventingPrices test"
+          ],
+          "acceptance": "Full original acceptance remains the completion gate; the bounded slice is partial evidence only.",
+          "evidence": "Record interview work separately from capstone command/result/blocker/changed paths. No capstone architecture proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Carry the full required resource-line, currency, and aggregate-cost acceptance under this ID."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-138",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -942,9 +1234,12 @@
           "Lesson: Monitoring Costs in the Cloud - Billing Alarms & AWS Budgets | Section: Account Management, Billing & Support | 264 sec",
           "Worked example: Fictional lines: compute 2 instance-hours × $0.10 = $0.20; database 5 GB-month × $0.02 = $0.10; backup 3 GB-month × $0.01 = $0.03. Add logs, secrets and transfer for $0.44 total; selected networking is explicit. Missing rates never become zero.",
           "Reading focus: AWS Pricing Calculator — Cost model components; real regional prices remain unverified until scope is selected. (https://docs.aws.amazon.com/cost-management/latest/userguide/pricing-calculator.html)",
-          "Reading focus: AWS Budgets practices — Alerts are delayed notifications, not synchronous spending caps. (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html)"
+          "Reading focus: AWS Budgets practices — Alerts are delayed notifications, not synchronous spending caps. (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html)",
+          "Separate 45-minute interview practice: Q28 — Feed: fan-out choice; question-bank-only. It replaces practice time, leaving a bounded 40-minute capstone slice: Implement only the required retained-backup cost line with explicit units and verify its decimal amount is included in the fictional total. Do not convert fixture rates to real AWS prices. Deferred: S10-D138-MOCK.",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-138. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-138"
       },
       "mandatory_new_problem": false
     },
@@ -1010,7 +1305,7 @@
           "worked_reference_seconds": 762,
           "teachback_seconds": 300,
           "fit": "partial_foundation_with_project_supplement",
-          "scope_note": "Full local evidence and source preservation; no AWS SDK/CLI/deploy call, cloudVerified remains false, and unresolved user choices remain explicit.",
+          "scope_note": "Full local evidence and source preservation; no AWS SDK/CLI/deploy call, cloudVerified remains false, and unresolved user choices remain explicit. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-139`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1026,7 +1321,8 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-139"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
@@ -1034,9 +1330,11 @@
           "Course: Ultimate AWS Certified Solutions Architect Associate 2026 — Stephane Maarek | AWS Certified Cloud Practitioner,Solutions Architect,Developer",
           "Lesson: Security Groups & Classic Ports Overview | Section: EC2 Fundamentals | 438 sec",
           "Worked guide: Full local evidence and source preservation; no AWS SDK/CLI/deploy call, cloudVerified remains false, and unresolved user choices remain explicit.",
-          "Reading focus: AWS Security Group rules — Private access boundaries concept only; no security group is created. (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)"
+          "Reading focus: AWS Security Group rules — Private access boundaries concept only; no security group is created. (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-139. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-139"
       },
       "mandatory_new_problem": false
     },
@@ -1084,7 +1382,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "recovery_prior_only_no_new_lecture",
-          "scope_note": "Explain pg_dump vs RDS PITR, cost/retention limits, and why same-version config rollback is blocked after candidate writes.",
+          "scope_note": "Explain pg_dump vs RDS PITR, cost/retention limits, and why same-version config rollback is blocked after candidate writes. The assistant-provided capstone architecture and rationale are in `docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-140`; implement and test that design.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -1100,15 +1398,18 @@
           "total": 1500
         },
         "scaffold_status": "instructor_scaffold_complete",
-        "status": "not_attempted"
+        "status": "not_attempted",
+        "assistant_architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-140"
       },
       "learning_block": {
         "heading": "Learning resources — 25 minutes total",
         "lines": [
           "Worked guide: Explain pg_dump vs RDS PITR, cost/retention limits, and why same-version config rollback is blocked after candidate writes.",
-          "Reading focus: Amazon RDS point-in-time restore — PITR creates a new instance; local pg_dump is not an RDS restore test. (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html)"
+          "Reading focus: Amazon RDS point-in-time restore — PITR creates a new instance; local pg_dump is not an RDS restore test. (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html)",
+          "Assistant-provided capstone architecture: docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-140. Implement and test this supplied design; no capstone design proposal or post-hoc justification."
         ],
-        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide."
+        "access_note": "Course access is not a completion claim; this day includes a project-specific worked guide.",
+        "architecture_note": "docs/reboot/continuation-127-140/assistant-architecture-notes.md#day-140"
       },
       "mandatory_new_problem": false
     }
@@ -1119,6 +1420,21 @@
     "engineering": 120
   },
   "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+  },
+  "interview_practice_summary": {
+    "days": [
+      128,
+      131,
+      135,
+      138
+    ],
+    "sessions_per_week": 2,
+    "minutes_per_session": 45,
+    "practice_block_minutes": 85,
+    "bounded_capstone_slice_minutes": 40,
+    "allocation_rule": "Each separate question-bank session replaces 45 minutes from the existing 85-minute practice block. The remaining 40 minutes are a bounded capstone task; total practice stays 85 minutes.",
+    "capstone_design": "assistant_supplied",
+    "system_design": "question_bank_only"
   }
 }
