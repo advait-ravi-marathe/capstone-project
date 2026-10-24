@@ -82,9 +82,9 @@ These notes state the architecture supplied for the engineering exercises: what 
 <a id="day-96"></a>
 ## Day 96 — same backend after every outcome
 
-**What:** A one-slot pool makes reborrow deterministic. Capture PID, `backend_start`, and timeout settings; after success, lock timeout, statement timeout, and mapping failure, verify the same backend is idle, outside a transaction, and back at baseline settings.
+**What:** A one-slot pool makes reborrow deterministic. Capture PID, `backend_start`, and timeout settings; after success, lock timeout, statement timeout, and mapping failure, verify the same backend is idle, outside a transaction, and back at baseline settings. Reserve the final 25 minutes of today's existing practice allocation for a fresh package and Start-Class check for Day 97.
 
-**Why:** This detects session-level leaks and incomplete cleanup that a fresh-connection assertion would miss.
+**Why:** This detects session-level leaks and incomplete cleanup that a fresh-connection assertion would miss. The package handoff tests the upcoming runtime boundary explicitly; it is only preparation, not packaged browser acceptance.
 
 <a id="day-97"></a>
 ## Day 97 — packaged browser recovery

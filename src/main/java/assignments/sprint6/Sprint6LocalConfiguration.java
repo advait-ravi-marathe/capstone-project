@@ -2,17 +2,15 @@ package assignments.sprint6;
 
 import assignments.insurance.PolicyLifecycleService;
 import assignments.insurance.PolicyRenewalPreviewPolicy;
-import assignments.insurance.PolicyRenewalReadStore;
 import assignments.insurance.PolicyReadStore;
 import assignments.local.LocalApplicationComposition;
+import assignments.local.LocalPolicyRenewalReadStoreConfiguration;
 import assignments.local.LocalPolicyIssueController;
 import assignments.local.LocalPolicyOwnerResolver;
 import assignments.local.LocalSecurityConfiguration;
 import assignments.local.LocalSessionController;
 import assignments.local.PolicyIssueReceiptReadStore;
-import assignments.renewal.PreviewAdmission;
 import assignments.renewal.PreviewCapacityExceptionHandler;
-import assignments.renewal.PreviewMetrics;
 import assignments.renewal.PolicyRenewalPreviewController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +26,8 @@ import java.time.ZoneOffset;
 /** Explicit Days 71–84 composition. It does not import the later LocalRuntimeConfiguration. */
 @Configuration(proxyBeanMethods = false)
 @Profile("sprint6-local")
-@Import({Sprint6PreviewCapacityConfiguration.class, LocalSecurityConfiguration.class,
+@Import({Sprint6PreviewCapacityConfiguration.class, LocalPolicyRenewalReadStoreConfiguration.class,
+        LocalSecurityConfiguration.class,
         LocalSessionController.class, LocalPolicyIssueController.class,
         PolicyRenewalPreviewController.class, PreviewCapacityExceptionHandler.class})
 public class Sprint6LocalConfiguration {
@@ -58,14 +57,6 @@ public class Sprint6LocalConfiguration {
     @Bean
     PolicyReadStore policyReadStore(LocalApplicationComposition.Components components) {
         return components.policyReadStore();
-    }
-
-    @Bean
-    PolicyRenewalReadStore policyRenewalReadStore(LocalApplicationComposition.Components components,
-                                                   PreviewAdmission admission, PreviewMetrics metrics) {
-        // LEARNER TODO Day 79: wrap this exact owner-scoped adapter once in the bounded singleton decorator.
-        // Do not import or invoke the Day 86+ read-budget policy or timed-store path here.
-        throw new UnsupportedOperationException("Day 79 learner TODO: wire one bounded store around the existing adapter");
     }
 
     @Bean

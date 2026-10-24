@@ -28,13 +28,25 @@ class PreviewRuntimeWiringAcceptanceTest {
     void boundedEntryAndPackagedHarnessExcludeLaterRuntimeTodos() throws Exception {
         String entry = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalApplication.java"));
         String configuration = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalConfiguration.java"));
+        String localRuntime = Files.readString(Path.of("src/main/java/assignments/local/LocalRuntimeConfiguration.java"));
+        String sharedStore = Files.readString(Path.of("src/main/java/assignments/local/LocalPolicyRenewalReadStoreConfiguration.java"));
+        String localApplication = Files.readString(Path.of("src/main/java/assignments/local/LocalCoverStoryApplication.java"));
         String packagedProcess = Files.readString(Path.of("src/test/java/assignments/local/Sprint6PackagedRuntimeProcess.java"));
         String day83 = Files.readString(Path.of("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"));
         String pom = Files.readString(Path.of("pom.xml"));
 
         assertTrue(entry.contains("@Import(Sprint6LocalConfiguration.class)"));
         assertTrue(configuration.contains("LocalApplicationComposition.compose(sprint6Clock, dataSource)"));
-        assertTrue(configuration.contains("PreviewAdmission admission, PreviewMetrics metrics"));
+        assertTrue(configuration.contains("LocalPolicyRenewalReadStoreConfiguration.class"));
+        assertTrue(localApplication.contains("scanBasePackages = \"assignments.local\""));
+        assertFalse(localRuntime.contains("LocalPolicyRenewalReadStoreConfiguration.class"),
+                "the application package scan discovers the one shared bean instead of importing a duplicate");
+        assertFalse(configuration.contains("LEARNER TODO Day 79"));
+        assertFalse(localRuntime.contains("LEARNER TODO Day 79"));
+        assertTrue(sharedStore.contains("LEARNER TODO Day 79"));
+        assertTrue(sharedStore.contains("BoundedPolicyRenewalReadStore"));
+        assertEquals(1, occurrences(sharedStore, "LEARNER TODO Day 79"),
+                "both local runtime profiles must use one Day 79 learner seam");
         assertFalse(configuration.contains("PreviewReadBudgetPolicy"));
         assertFalse(configuration.contains("TimedPolicyRenewalReadStore"));
         assertFalse(configuration.contains("LocalRuntimeConfiguration.class"));
@@ -45,6 +57,12 @@ class PreviewRuntimeWiringAcceptanceTest {
         assertFalse(day83.contains("LocalPackagedRuntimeProcess.start"));
         assertTrue(pom.contains("<id>sprint6-local</id>"));
         assertTrue(pom.contains("assignments.sprint6.Sprint6LocalApplication"));
+    }
+
+    private static int occurrences(String text, String needle) {
+        int count = 0;
+        for (int at = 0; (at = text.indexOf(needle, at)) >= 0; at += needle.length()) count++;
+        return count;
     }
 
     @Test

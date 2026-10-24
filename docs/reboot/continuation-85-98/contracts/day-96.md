@@ -18,6 +18,14 @@ The selector is installed and runnable with learner TODOs restored. It may fail 
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
 
+### Day 97 packaged-runtime handoff — 25 minutes inside today's practice block
+
+Use 60 minutes for the one-slot outcome test and failure diagnosis, then reserve 25 minutes to build the Day 97 package and confirm its actual Start-Class. This is part of the existing 85-minute practice allocation; it replaces other Day 96 practice work and adds no hours. Day 97 repeats the package step before its browser journey so it always tests the current source.
+
+**Runtime handoff command:** `./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | grep '^Start-Class: assignments.local.LocalCoverStoryApplication$'`
+
+The shared `LocalPolicyRenewalReadStoreConfiguration.policyRenewalReadStore` bean is the single Day 79 seam used by Sprint 6 and the full local runtime. The Day 97 browser journey therefore does not introduce a second hidden Day 79 implementation. A passing package or wiring check is not a passing packaged browser journey.
+
 ### Scope and safety limits
 
 Keep Hikari maximum pool size 4, outer admission maximum 2, and acquisition timeout 1,000 ms. Make no HTTP deadline claim. Use one top-level REQUIRED read-only transaction; reject ambient transactions before mutation or delegate invocation. The transaction manager and JdbcTemplate use raw Hikari. Only the unchanged Day48 JdbcPolicyRenewalReadStore gets TransactionAwareDataSourceProxy. Place timed store in Components.renewalReadStore; keep the bounded decorator outermost.

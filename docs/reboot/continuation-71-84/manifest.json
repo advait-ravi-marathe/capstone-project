@@ -1145,8 +1145,8 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Sprint6LocalConfiguration and finite Hikari capacity configuration",
-        "learner_seam": "Sprint6LocalConfiguration.policyRenewalReadStore",
+        "scope": "Shared LocalPolicyRenewalReadStoreConfiguration plus Sprint 6 bounded local profile",
+        "learner_seam": "LocalPolicyRenewalReadStoreConfiguration.policyRenewalReadStore",
         "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-79.md",
         "evidence_reference": "evidence/continuation-71-84/day-79.json",
         "status": "not_attempted",
@@ -1214,7 +1214,7 @@
           "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
         },
         "acceptance_selector_status": "installed_expected_todo_red",
-        "learner_task": "Wrap the existing owner-scoped store in exactly one singleton BoundedPolicyRenewalReadStore, preserve the existing delegate, and retain the finite Hikari connectionTimeout=1000ms setting.",
+        "learner_task": "Wrap the supplied Components.renewalReadStore exactly once in the shared bounded singleton for both Sprint 6 and later local profiles.",
         "learner_evidence_mode": "implementation_acceptance",
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-79"
       },

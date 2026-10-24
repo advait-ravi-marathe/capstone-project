@@ -69,6 +69,8 @@ class Day71To84InfrastructureTest {
     @Test void day79AndDay83UseTheBoundedSprint6RuntimeOnly() throws Exception {
         String entry = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalApplication.java"));
         String config = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalConfiguration.java"));
+        String sharedStore = Files.readString(Path.of("src/main/java/assignments/local/LocalPolicyRenewalReadStoreConfiguration.java"));
+        String localRuntime = Files.readString(Path.of("src/main/java/assignments/local/LocalRuntimeConfiguration.java"));
         String helper = Files.readString(Path.of("src/test/java/assignments/local/Sprint6PackagedRuntimeProcess.java"));
         String browser = Files.readString(Path.of("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"));
         String browserScript = Files.readString(Path.of("frontend/e2e/day83-lock-recovery.mjs"));
@@ -81,7 +83,13 @@ class Day71To84InfrastructureTest {
 
         assertTrue(entry.contains("@Import(Sprint6LocalConfiguration.class)"));
         assertTrue(config.contains("LocalApplicationComposition.compose(sprint6Clock, dataSource)"));
-        assertTrue(config.contains("LEARNER TODO Day 79"));
+        assertTrue(config.contains("LocalPolicyRenewalReadStoreConfiguration.class"));
+        assertFalse(config.contains("LEARNER TODO Day 79"));
+        assertTrue(Files.readString(Path.of("src/main/java/assignments/local/LocalCoverStoryApplication.java"))
+                .contains("scanBasePackages = \"assignments.local\""));
+        assertFalse(localRuntime.contains("LocalPolicyRenewalReadStoreConfiguration.class"));
+        assertFalse(localRuntime.contains("LEARNER TODO Day 79"));
+        assertEquals(1, occurrences(sharedStore, "LEARNER TODO Day 79"));
         assertFalse(config.contains("PreviewReadBudgetPolicy"));
         assertFalse(config.contains("TimedPolicyRenewalReadStore"));
         assertFalse(config.contains("LocalRuntimeConfiguration.class"));
@@ -112,10 +120,16 @@ class Day71To84InfrastructureTest {
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
         JsonNode day79 = manifest.get("days").get(8).get("engineering");
         JsonNode day83 = manifest.get("days").get(12).get("engineering");
-        assertEquals("Sprint6LocalConfiguration.policyRenewalReadStore", day79.get("learner_seam").asString());
+        assertEquals("LocalPolicyRenewalReadStoreConfiguration.policyRenewalReadStore", day79.get("learner_seam").asString());
         assertTrue(day83.get("acceptance_commands").toString().contains("package-sprint6-demo.sh"));
         assertTrue(Files.readString(Path.of("docs/reboot/continuation-71-84/contracts/day-83.md"))
                 .contains("sprint6-local` classifier JAR and receipt"));
+    }
+
+    private static int occurrences(String text, String needle) {
+        int count = 0;
+        for (int at = 0; (at = text.indexOf(needle, at)) >= 0; at += needle.length()) count++;
+        return count;
     }
 
     @Test void suppliedArchitectureAndInterviewAssignmentsAreCompleteAndSynchronized() throws Exception {

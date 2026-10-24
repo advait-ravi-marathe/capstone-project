@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Learner-owned seam:** `Sprint6LocalConfiguration.policyRenewalReadStore`
+**Learner-owned seam:** `LocalPolicyRenewalReadStoreConfiguration.policyRenewalReadStore`
 **Status:** Contract defined; learner work not attempted.
 
 ### Expected behavior
@@ -11,7 +11,7 @@ Create exactly one bounded singleton around the existing owner-scoped read-store
 
 ### Acceptance and expected TODO state
 
-The selector verifies the dedicated Sprint 6 profile, singleton identity, one decorator around `LocalApplicationComposition.compose(clock, dataSource)` and its existing owner-scoped adapter, finite configuration, and fail-fast startup for invalid capacity. The expected learner TODO remains in `Sprint6LocalConfiguration.policyRenewalReadStore`; Day 86+ budget validation and the timed-store path are excluded from this profile.
+The selector verifies the dedicated Sprint 6 profile, singleton identity, one decorator around `LocalApplicationComposition.compose(clock, dataSource)` and its existing owner-scoped adapter, finite configuration, and fail-fast startup for invalid capacity. One shared `LocalPolicyRenewalReadStoreConfiguration.policyRenewalReadStore` bean is imported by the Sprint 6 profile and later full local runtime, so Day 79 is implemented once. Day 86+ budget validation and the timed-store path remain excluded from Sprint 6.
 
 **Learner acceptance test:** `src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java`
 **Learner command:** `./mvnw -Plearner-tests -Dtest=PreviewRuntimeWiringAcceptanceTest test`
@@ -20,7 +20,7 @@ The selector verifies the dedicated Sprint 6 profile, singleton identity, one de
 
 ## Practice allocation (85 minutes)
 
-Work within the existing synchronous Spring/JDBC path and Day 48 owner-scoped SQL. No broad component scan, duplicated query, request-scoped admission gate, asynchronous path, or new business route. Use the full existing practice block to wire and run the selector. Keep all three test observations: valid bounded configuration, singleton/delegate identity, and invalid configuration fails before serving requests. The selector can fail at the learner TODO; record the first failure without filling future TODOs.
+Work within the existing synchronous Spring/JDBC path and Day 48 owner-scoped SQL. No broad component scan, duplicated query, request-scoped admission gate, asynchronous path, or new business route. Use the full existing practice block to wire and run the selector. Keep all three test observations: valid bounded configuration, singleton/delegate identity, and invalid configuration fails before serving requests. The shared bean is the sole Day 79 learner seam used by both package profiles; record the first failure without filling future TODOs.
 
 ## Concept/course allocation (25 minutes)
 

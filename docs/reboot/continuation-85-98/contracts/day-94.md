@@ -18,6 +18,19 @@ The selector is installed and runnable with learner TODOs restored. It may fail 
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
 
+### Separate system-design interview practice — 45 minutes of the 85-minute practice block
+
+This is a separate interview exercise, not a capstone design assignment. Attempt the interview question before using hints, references, or AI feedback. Capstone architecture is supplied above. These 45 minutes replace part of the existing 85-minute practice block; the remaining 40 minutes are the bounded implementation slice below. This replaces, and does not supplement, the full practice allocation.
+
+- **Question:** [Q23 — Event pipeline: ingest and process](../../interview/question-bank.md#q23). How do you preserve a durable source record while processing volume grows?
+- **Interview patterns:** [event-pipeline](../../interview/pattern-library.md#event-pipeline), [backpressure](../../interview/pattern-library.md#backpressure).
+- **Mock phases (45 minutes total):** 5 minutes Requirements; 5 minutes Capacity and constraints; 15 minutes Initial architecture and data model; 10 minutes Bottlenecks, reliability, scaling; 10 minutes Trade-offs, failures, follow-ups.
+- **Remaining engineering slice (40 minutes total):** 5 minutes preconditions and prediction; 25 minutes implementation or observation; 10 minutes selector and blocker record.
+- **Bounded capstone task:** Run the statement-timeout selector to its first real learner boundary. Predict the SQLSTATE and fast-control result; implement only the named transaction-local budget seam during the 40-minute engineering slice.
+- **Deferred acceptance:** `S7-D94-MOCK` — Carry every unmet original acceptance assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; do not add practice minutes or infer completion from the interview mock.
+- **Runnable acceptance command(s):**
+  - `./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#statementTimeoutUsesSameTransactionBoundaryAndFastControlPasses test`
+
 ### Scope and safety limits
 
 Keep Hikari maximum pool size 4, outer admission maximum 2, and acquisition timeout 1,000 ms. Make no HTTP deadline claim. Use one top-level REQUIRED read-only transaction; reject ambient transactions before mutation or delegate invocation. The transaction manager and JdbcTemplate use raw Hikari. Only the unchanged Day48 JdbcPolicyRenewalReadStore gets TransactionAwareDataSourceProxy. Place timed store in Components.renewalReadStore; keep the bounded decorator outermost.

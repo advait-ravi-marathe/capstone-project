@@ -7,14 +7,14 @@
 
 ### Expected behavior
 
-Bind setting names and values to set_config(name,value,true) for lock_timeout and statement_timeout. Apply only inside the owned transaction; do not concatenate SQL or use session-level SET.
+Bind setting names and values to set_config(name,value,true) for lock_timeout and statement_timeout. Apply only inside an active owned transaction; reject an outside call before changing pooled backend state. Do not concatenate SQL or use session-level SET.
 
 ### Acceptance and expected TODO state
 
 The selector is installed and runnable with learner TODOs restored. It may fail at named incomplete learner/prerequisite seams; missing classes, selectors, fixtures, tools or browser setup are infrastructure defects. The default Maven suite is the instructor infrastructure suite and excludes `learnerAcceptance` tests.
 
-**Acceptance selector:** `src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java`
-**Acceptance command:** `./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#setsTransactionLocalBudgetsOnSameBackend test`
+**Acceptance selector:** `src/test/java/assignments/renewal/PgLocalReadBudgetsAcceptanceTest.java`
+**Acceptance command:** `./mvnw -Plearner-tests -Dtest=PgLocalReadBudgetsAcceptanceTest#appliesSettingsInsideOwnedTransactionAndRejectsCallsOutsideIt test`
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
 
@@ -28,7 +28,7 @@ Apply only transaction-local, parameterized PostgreSQL `set_config(..., true)` f
 
 No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC behavior. Use the concrete worked example and focused official sources below; no unrelated video is padded in.
 
-**Worked example (within the same cap):** Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend.
+**Worked example (within the same cap):** Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend. The direct selector invokes `PgLocalReadBudgets.apply`; it does not require `TimedPolicyRenewalReadStore` or Day 89 delegation.
 
 **Focused sources:**
 - [PostgreSQL 18 System Administration Functions — set_config and current_setting](https://www.postgresql.org/docs/18/functions-admin.html)

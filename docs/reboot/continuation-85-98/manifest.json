@@ -337,9 +337,9 @@
         "evidence_reference": "evidence/continuation-85-98/day-88.json",
         "status": "not_attempted",
         "scaffold_status": "instructor_scaffold_complete",
-        "acceptance_test_path": "src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java",
+        "acceptance_test_path": "src/test/java/assignments/renewal/PgLocalReadBudgetsAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=TimedRenewalReadAcceptanceTest#setsTransactionLocalBudgetsOnSameBackend test"
+          "./mvnw -Plearner-tests -Dtest=PgLocalReadBudgetsAcceptanceTest#appliesSettingsInsideOwnedTransactionAndRejectsCallsOutsideIt test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
@@ -1020,7 +1020,8 @@
         "scaffold_status": "instructor_scaffold_complete",
         "acceptance_test_path": "src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#oneSlotPoolReusesSameBackendAndBaselineAfterEveryOutcome test"
+          "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#oneSlotPoolReusesSameBackendAndBaselineAfterEveryOutcome test",
+          "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | grep '^Start-Class: assignments.local.LocalCoverStoryApplication$'"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",

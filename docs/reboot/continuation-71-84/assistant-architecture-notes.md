@@ -38,7 +38,7 @@ Use deterministic test doubles to occupy both permits, assert a saturated call n
 
 ## <a id="day-79"></a> Day 79: Wrap the existing read bean once as a singleton
 
-In `Sprint6LocalConfiguration`, inject the existing `PolicyRenewalReadStore`, shared `PreviewAdmission`, and `PreviewMetrics` into one singleton `BoundedPolicyRenewalReadStore`. Preserve the exact delegate instance and existing SQL adapter; validate settings before the application serves requests.
+`LocalPolicyRenewalReadStoreConfiguration` is the single Day 79 bean shared by the Sprint 6 and later local runtime profiles. Wrap the supplied `Components.renewalReadStore()` once with shared `PreviewAdmission` and `PreviewMetrics` in one singleton `BoundedPolicyRenewalReadStore`. Preserve the exact delegate instance and existing SQL adapter; validate settings before the application serves requests.
 
 ## <a id="day-80"></a> Day 80: Record bounded timer and counter series by a closed outcome enum
 

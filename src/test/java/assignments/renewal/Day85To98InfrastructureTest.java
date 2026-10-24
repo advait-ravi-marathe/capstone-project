@@ -99,6 +99,13 @@ class Day85To98InfrastructureTest {
         assertTrue(day97.contains("snapshot(holder)"), "the real browser journey snapshots all three lifecycle tables");
         assertTrue(day97.contains("holder.commit()"), "the lock is released only after the blocked result is observed");
         assertFalse(day97.contains("@SpringBootTest"), "packaged behavior is not inferred from an in-process context");
+        String sharedStore = Files.readString(Path.of("src/main/java/assignments/local/LocalPolicyRenewalReadStoreConfiguration.java"));
+        String sprint6Config = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalConfiguration.java"));
+        String localApp = Files.readString(Path.of("src/main/java/assignments/local/LocalCoverStoryApplication.java"));
+        assertEquals(1, occurrences(sharedStore, "LEARNER TODO Day 79"));
+        assertTrue(sprint6Config.contains("LocalPolicyRenewalReadStoreConfiguration.class"));
+        assertTrue(localApp.contains("scanBasePackages = \"assignments.local\""));
+        assertFalse(packageScript.contains("sprint6-local"), "Day 97 transitions to the full local runtime");
     }
 
     @Test
@@ -147,6 +154,7 @@ class Day85To98InfrastructureTest {
                 assertTrue(questionBank.contains("<a id=\"" + canonicalAssignment.path("question_id").asText().toLowerCase() + "\"></a>"));
                 assertTrue(canonicalAssignment.path("deferred_work_id").asText().startsWith("S7-D" + number + "-"));
                 assertFalse(canonicalAssignment.path("deferred_work").asText().isBlank());
+                assertInterviewAssignmentMatchesContract(contract, canonicalAssignment, number);
                 int phases = 0;
                 for (JsonNode phase : canonicalAssignment.path("mock_phases")) phases += phase.path("minutes").asInt();
                 assertEquals(45, phases);
@@ -169,6 +177,44 @@ class Day85To98InfrastructureTest {
                 || block.contains("Propose the capstone") || block.contains("design the capstone");
     }
 
+    private static void assertInterviewAssignmentMatchesContract(String contract, JsonNode assignment, int day) {
+        String heading = "### Separate system-design interview practice — 45 minutes of the 85-minute practice block";
+        int start = contract.indexOf(heading);
+        assertTrue(start >= 0, "missing separate interview assignment in Day " + day + " contract");
+        int end = contract.indexOf("### Scope and safety limits", start);
+        assertTrue(end > start, "interview assignment must finish before implementation safety scope");
+        String section = contract.substring(start, end);
+        assertEquals(-1, contract.indexOf(heading, start + heading.length()),
+                "duplicate interview/practice schedule on Day " + day);
+        assertTrue(section.contains("separate interview exercise, not a capstone design assignment"));
+        assertTrue(section.contains("before using hints, references, or AI feedback"));
+        String questionId = assignment.path("question_id").asText();
+        String questionTitle = assignment.path("question_title").asText();
+        String questionHref = assignment.path("question_href").asText().replace("../interview/", "../../interview/");
+        assertTrue(section.contains("[" + questionId + " — " + questionTitle + "](" + questionHref + ")"));
+        assertTrue(section.contains(assignment.path("proposal_prompt").asText()));
+        assertTrue(section.contains("These 45 minutes replace part of the existing 85-minute practice block"));
+        assertTrue(section.contains("This replaces, and does not supplement, the full practice allocation"));
+        assertTrue(section.contains("Mock phases (45 minutes total)"));
+        assertTrue(section.contains("Remaining engineering slice (40 minutes total)"));
+        assertFalse(section.contains("55 minutes") || section.contains("60 minutes"),
+                "an earlier full implementation allocation must not stack with the mock on Day " + day);
+        assertTrue(section.contains(assignment.path("bounded_task").asText()));
+        assertTrue(section.contains("`" + assignment.path("deferred_work_id").asText() + "`"));
+        assertTrue(section.contains(assignment.path("deferred_work").asText()));
+        for (JsonNode command : assignment.path("acceptance_commands")) {
+            assertTrue(section.contains("`" + command.asText() + "`"), "missing runnable command on Day " + day);
+        }
+        for (JsonNode phase : assignment.path("mock_phases")) {
+            assertTrue(section.contains(phase.path("minutes").asText() + " minutes "
+                    + phase.path("phase").asText()), "mock phase mismatch on Day " + day);
+        }
+        for (JsonNode pattern : assignment.path("pattern_refs")) {
+            String href = pattern.asText().replace("../interview/", "../../interview/");
+            assertTrue(section.contains("(" + href + ")"), "missing interview pattern on Day " + day);
+        }
+    }
+
     @Test
     void day92HttpAcceptanceAndDay97FreshArchiveCommandsMatchInstalledHarnesses() throws Exception {
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
@@ -185,6 +231,60 @@ class Day85To98InfrastructureTest {
         assertTrue(day97.path("acceptance_commands").get(1).asText().contains("Day97PackagedTimeoutBrowserAcceptanceTest"));
         assertFalse(day97.path("acceptance_commands").toString().contains("-DskipTests package"),
                 "a stale archive must not satisfy the packaged browser selector");
+    }
+
+    @Test
+    void day88DirectSettingsSelectorAndDay79RuntimeSeamAreIsolated() throws Exception {
+        JsonNode canonical = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode owner = new ObjectMapper().readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        JsonNode day88 = canonical.path("days").get(3).path("engineering");
+        JsonNode owner88 = owner.path("cards").get(3).path("engineering");
+        assertEquals(day88.path("acceptance_test_path"), owner88.path("acceptance_test_path"));
+        assertEquals(day88.path("acceptance_commands"), owner88.path("acceptance_commands"));
+        assertTrue(day88.path("acceptance_commands").get(0).asText()
+                .contains("PgLocalReadBudgetsAcceptanceTest#appliesSettingsInsideOwnedTransactionAndRejectsCallsOutsideIt"));
+        String directTest = Files.readString(Path.of(day88.path("acceptance_test_path").asText()));
+        assertTrue(directTest.contains("PgLocalReadBudgets.apply"));
+        assertTrue(directTest.contains("assertThrows(IllegalStateException.class"));
+        assertFalse(directTest.contains("TimedPolicyRenewalReadStore"),
+                "Day 88 must not need Day 89 orchestration to test the direct settings seam");
+
+        String shared = Files.readString(Path.of("src/main/java/assignments/local/LocalPolicyRenewalReadStoreConfiguration.java"));
+        String sprint6 = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalConfiguration.java"));
+        String localRuntime = Files.readString(Path.of("src/main/java/assignments/local/LocalRuntimeConfiguration.java"));
+        String application = Files.readString(Path.of("src/main/java/assignments/local/LocalCoverStoryApplication.java"));
+        assertEquals(1, occurrences(shared, "LEARNER TODO Day 79"));
+        assertTrue(sprint6.contains("LocalPolicyRenewalReadStoreConfiguration.class"));
+        assertFalse(sprint6.contains("LEARNER TODO Day 79"));
+        assertFalse(localRuntime.contains("LEARNER TODO Day 79"));
+        assertTrue(application.contains("scanBasePackages = \"assignments.local\""),
+                "the normal local package discovers the one shared Day 79 configuration");
+    }
+
+    @Test
+    void day96PackagesAndChecksTheDay97RuntimeBeforeTheBrowserAcceptanceDay() throws Exception {
+        JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode owner = new ObjectMapper().readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        JsonNode day96 = manifest.path("days").get(11);
+        JsonNode owner96 = owner.path("cards").get(11);
+        String packageCheck = "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | grep '^Start-Class: assignments.local.LocalCoverStoryApplication$'";
+        assertEquals(day96.path("engineering").path("acceptance_commands"),
+                owner96.path("engineering").path("acceptance_commands"));
+        assertTrue(day96.path("engineering").path("acceptance_commands").toString().contains(packageCheck));
+        String contract = Files.readString(Path.of(day96.path("contract_file").asText()));
+        assertTrue(contract.contains("25 minutes inside today's practice block"));
+        assertTrue(contract.contains("60 minutes for the one-slot outcome test"));
+        assertTrue(contract.contains("This is part of the existing 85-minute practice allocation"));
+        assertTrue(contract.contains(packageCheck));
+        assertTrue(contract.contains("single Day 79 seam"));
+        assertTrue(Files.readString(Path.of("scripts/package-local-demo.sh"))
+                .contains("-Plocal-app -DskipTests clean package"));
+    }
+
+    private static int occurrences(String text, String needle) {
+        int count = 0;
+        for (int at = 0; (at = text.indexOf(needle, at)) >= 0; at += needle.length()) count++;
+        return count;
     }
 
     @Test

@@ -40,6 +40,11 @@ The explicit learner selectors remain separate under `-Plearner-tests`:
 ./mvnw -Plearner-tests -Dtest=JdbcCancellationLabAcceptanceTest test
 ```
 
+Day 96 also reserves 25 minutes of its existing practice block for the fresh
+Day 97 package and Start-Class handoff. Day 97 rebuilds the archive again before
+the browser journey. Both runtime profiles use the same shared Day 79 read-store
+bean; there is no second Day 79 implementation hidden in the full local app.
+
 They may fail at the named Day 86–96 learner TODOs while the instructor suite
 stays green. A missing selector or browser prerequisite is not an expected
 TODO failure. Day 97 is the actual packaged local-JAR/browser journey, built
