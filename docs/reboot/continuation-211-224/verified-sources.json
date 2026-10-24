@@ -2,14 +2,95 @@
   "verified_at": "2026-10-24",
   "scope": "Official source titles and cited headings were checked 2026-10-24. Read pages again during the 2027 study window; no current support or future guide version is presumed. Evaluation remains offline and fixed-case; no retired OpenAI Evals API workflow is assigned.",
   "sources": [
-    {"key":"PYTHON_JSON","title":"json — JSON encoder and decoder","url":"https://docs.python.org/3/library/json.html","sections":["Basic Usage"],"provider":"Python","use":"Bounded parsing and canonical local serialization."},
-    {"key":"PYTHON_HASHLIB","title":"hashlib — Secure hashes and message digests","url":"https://docs.python.org/3/library/hashlib.html","sections":["Hash algorithms"],"provider":"Python","use":"Digest exact serialized bytes."},
-    {"key":"PYTHON_SUBPROCESS","title":"subprocess — Subprocess management","url":"https://docs.python.org/3/library/subprocess.html","sections":["Using the subprocess Module"],"provider":"Python","use":"Fresh local process reproducibility."},
-    {"key":"OPENAI_RETRIEVAL","title":"Retrieval","url":"https://platform.openai.com/docs/guides/retrieval","sections":["Retrieval"],"provider":"OpenAI documentation","use":"Conceptual reference only; no API or vector store dependency."},
-    {"key":"BEDROCK_KB","title":"Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases","url":"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html","sections":["Query a knowledge base and retrieve data"],"provider":"AWS","use":"Architecture comparison only; no service invocation."},
-    {"key":"BEDROCK_GUARDRAILS","title":"Detect and filter harmful content by using Amazon Bedrock Guardrails","url":"https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html","sections":["Contextual grounding checks"],"provider":"AWS","use":"Grounding/fallback comparison only; no service invocation."},
-    {"key":"AGENTCORE_EVALS","title":"Evaluate agent performance with Amazon Bedrock AgentCore Evaluations","url":"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html","sections":["Dataset evaluation"],"provider":"AWS","use":"Concept comparison only; fixed local labels remain authoritative."},
-    {"key":"SAA_GUIDE","title":"AWS Certified Solutions Architect - Associate (SAA-C03)","url":"https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html","sections":["Exam content"],"provider":"AWS","use":"Recheck version and domain headings at study time; no readiness claim."},
-    {"key":"DEV_ASSOCIATE","title":"AWS Certified Developer - Associate","url":"https://aws.amazon.com/certification/certified-developer-associate/","sections":["Review the exam guide"],"provider":"AWS","use":"Recheck linked guide/version/headings at study time; don't infer future version or readiness."}
+    {
+      "key": "PYTHON_JSON",
+      "title": "json — JSON encoder and decoder",
+      "url": "https://docs.python.org/3/library/json.html",
+      "sections": [
+        "Basic Usage"
+      ],
+      "provider": "Python",
+      "use": "Bounded parsing and canonical local serialization."
+    },
+    {
+      "key": "PYTHON_HASHLIB",
+      "title": "hashlib — Secure hashes and message digests",
+      "url": "https://docs.python.org/3/library/hashlib.html",
+      "sections": [
+        "Hash algorithms"
+      ],
+      "provider": "Python",
+      "use": "Digest exact serialized bytes."
+    },
+    {
+      "key": "PYTHON_SUBPROCESS",
+      "title": "subprocess — Subprocess management",
+      "url": "https://docs.python.org/3/library/subprocess.html",
+      "sections": [
+        "Using the subprocess Module"
+      ],
+      "provider": "Python",
+      "use": "Fresh local process reproducibility."
+    },
+    {
+      "key": "OPENAI_RETRIEVAL",
+      "title": "Retrieval",
+      "url": "https://platform.openai.com/docs/guides/retrieval",
+      "sections": [
+        "Retrieval"
+      ],
+      "provider": "OpenAI documentation",
+      "use": "Conceptual reference only; no API or vector store dependency."
+    },
+    {
+      "key": "BEDROCK_KB",
+      "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+      "sections": [
+        "How knowledge bases work"
+      ],
+      "provider": "AWS",
+      "use": "Architecture comparison only; no service invocation."
+    },
+    {
+      "key": "BEDROCK_GUARDRAILS",
+      "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+      "sections": [
+        "Contextual grounding checks"
+      ],
+      "provider": "AWS",
+      "use": "Grounding/fallback comparison only; no service invocation."
+    },
+    {
+      "key": "AGENTCORE_EVALS",
+      "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+      "sections": [
+        "Dataset evaluation"
+      ],
+      "provider": "AWS",
+      "use": "Concept comparison only; fixed local labels remain authoritative."
+    },
+    {
+      "key": "SAA_GUIDE",
+      "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+      "sections": [
+        "Exam content"
+      ],
+      "provider": "AWS",
+      "use": "Recheck version and domain headings at study time; no readiness claim."
+    },
+    {
+      "key": "DEV_ASSOCIATE",
+      "title": "AWS Certified Developer - Associate",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+      "sections": [
+        "Review the exam guide"
+      ],
+      "provider": "AWS",
+      "use": "Recheck linked guide/version/headings at study time; don't infer future version or readiness."
+    }
   ]
 }

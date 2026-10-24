@@ -42,8 +42,8 @@
   "recovery_selectors": [
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
     "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
-    "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test",
-    "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test",
+    "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+    "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
     "python3 scripts/check_streamforge_169_182_entry_gate.py"
   ],
   "days": [
@@ -53,10 +53,10 @@
       "title": "Inspect Day 210 entry evidence and gate",
       "learner_seam": "dynamic_entry_gate",
       "module": "CoverStory bounded synthetic workflow",
-      "signature": "evidence/continuation-197-210/day-210-entry-review.json, ai/grounded/continuation_211.py",
+      "signature": "scripts/check_continuation_211_entry_gate.py, evidence/continuation-197-210/day-210-entry-review.json",
       "selectors": [
         "python3 scripts/check_continuation_211_entry_gate.py",
-        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle"
+        "python3 scripts/check_continuation_211_entry_gate.py"
       ],
       "depends_on_days": [],
       "recovery_day": false,
@@ -117,7 +117,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -164,7 +164,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Inspect Day 210 entry evidence and gate: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `dynamic_entry_gate` in evidence/continuation-197-210/day-210-entry-review.json, ai/grounded/continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Inspect Day 210 entry evidence and gate: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `dynamic_entry_gate` in scripts/check_continuation_211_entry_gate.py, evidence/continuation-197-210/day-210-entry-review.json; validate with `python3 scripts/check_continuation_211_entry_gate.py`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-211",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -197,7 +197,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "105m: implement/recover dynamic_entry_gate in evidence/continuation-197-210/day-210-entry-review.json, ai/grounded/continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "105m: implement/recover dynamic_entry_gate in scripts/check_continuation_211_entry_gate.py, evidence/continuation-197-210/day-210-entry-review.json; run `python3 scripts/check_continuation_211_entry_gate.py` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "0m: no AI implementation slice today; do not create extra work.",
         "certification_labs_questions": "10m: offline retrieval prompt on SAA-C03 Exam content; record exact current version/title and checked answer, no readiness claim.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -225,11 +225,11 @@
         "title": "Inspect Day 210 entry evidence and gate",
         "seam": "dynamic_entry_gate",
         "files": [
-          "evidence/continuation-197-210/day-210-entry-review.json",
-          "ai/grounded/continuation_211.py"
+          "scripts/check_continuation_211_entry_gate.py",
+          "evidence/continuation-197-210/day-210-entry-review.json"
         ],
         "command": "python3 scripts/check_continuation_211_entry_gate.py",
-        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle",
+        "selector": "python3 scripts/check_continuation_211_entry_gate.py",
         "project": 105,
         "ai": 0,
         "cert": 10,
@@ -315,7 +315,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -362,7 +362,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Validate bounded source-bundle schema: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `bounded_ingestion` in docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Validate bounded source-bundle schema: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `bounded_ingestion` in docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-212",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -395,7 +395,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "85m: implement/recover bounded_ingestion in docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "85m: implement/recover bounded_ingestion in docs/reboot/continuation-211-224/source-bundle.schema.json, ai/grounded/continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day212_accepts_bounded_synthetic_bundle` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for bounded_ingestion; keep independent expected labels and no provider call.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -513,7 +513,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -560,7 +560,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Reject malformed, oversized and non-exact records: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `strict_bundle_validation` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day213_rejects_malformed_oversized_extra_and_missing_fields`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Reject malformed, oversized and non-exact records: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `strict_bundle_validation` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day213_rejects_malformed_oversized_extra_and_missing_fields`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-213",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -593,7 +593,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "115m: implement/recover strict_bundle_validation in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day213_rejects_malformed_oversized_extra_and_missing_fields` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "115m: implement/recover strict_bundle_validation in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day213_rejects_malformed_oversized_extra_and_missing_fields` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "0m: no AI implementation slice today; do not create extra work.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -711,7 +711,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -758,7 +758,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Enforce stable unique source and version keys: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `stable_source_identity` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day214_rejects_duplicate_source_version_and_malformed_identity`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Enforce stable unique source and version keys: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `stable_source_identity` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day214_rejects_duplicate_source_version_and_malformed_identity`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-214",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -791,7 +791,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "75m: implement/recover stable_source_identity in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day214_rejects_duplicate_source_version_and_malformed_identity` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "75m: implement/recover stable_source_identity in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day214_rejects_duplicate_source_version_and_malformed_identity` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for stable_source_identity; keep independent expected labels and no provider call.",
         "certification_labs_questions": "10m: offline retrieval prompt on Developer Associate currently linked exam guide; record exact current version/title and checked answer, no readiness claim.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -846,7 +846,7 @@
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
       "selectors": [
         "python3 scripts/check_continuation_211_entry_gate.py",
-        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_is_not_retrievable"
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_filter_has_a_prerequisite_ready_path"
       ],
       "depends_on_days": [
         214
@@ -909,7 +909,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -956,7 +956,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Exclude draft versions from reference retrieval: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `approved_version_filter` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_is_not_retrievable`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Exclude draft versions from reference retrieval: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `approved_version_filter` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_filter_has_a_prerequisite_ready_path`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-215",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -970,8 +970,8 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "project_implementation_tests": 115,
-          "ai_workflow_implementation_evaluation": 0,
+          "project_implementation_tests": 105,
+          "ai_workflow_implementation_evaluation": 10,
           "certification_labs_questions": 0,
           "ai_concept_source_study": 9,
           "certification_domain_study": 7,
@@ -980,8 +980,8 @@
         }
       },
       "workstream_minutes": {
-        "project_implementation_tests": 115,
-        "ai_workflow_implementation_evaluation": 0,
+        "project_implementation_tests": 105,
+        "ai_workflow_implementation_evaluation": 10,
         "certification_labs_questions": 0,
         "ai_concept_source_study": 9,
         "certification_domain_study": 7,
@@ -989,8 +989,8 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "115m: implement/recover approved_version_filter in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_is_not_retrievable` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
-        "ai_workflow_implementation_evaluation": "0m: no AI implementation slice today; do not create extra work.",
+        "project_implementation_tests": "105m: implement/recover approved_version_filter in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_filter_has_a_prerequisite_ready_path` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
+        "ai_workflow_implementation_evaluation": "10m: extend fixed offline adversarial/evaluation cases for approved_version_filter; keep independent expected labels and no provider call.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
         "certification_domain_study": "7m: inspect SAA-C03 Exam content; recheck exact published guide/version/heading; record one relevant concept; no readiness claim.",
@@ -1021,9 +1021,9 @@
           "ai/grounded/learner_acceptance/test_continuation_211.py"
         ],
         "command": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_is_not_retrievable",
-        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_is_not_retrievable",
-        "project": 115,
-        "ai": 0,
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day215_draft_filter_has_a_prerequisite_ready_path",
+        "project": 105,
+        "ai": 10,
         "cert": 0,
         "ai_study": 9,
         "cert_study": 7,
@@ -1038,7 +1038,7 @@
     {
       "day": 216,
       "date": "2027-05-27",
-      "title": "Filter owner permissions before ranking candidates",
+      "title": "Filter approved owner-scoped rows before ranking",
       "learner_seam": "pre_rank_owner_filter",
       "module": "CoverStory bounded synthetic workflow",
       "signature": "ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py",
@@ -1107,7 +1107,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -1154,7 +1154,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Filter owner permissions before ranking candidates: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `pre_rank_owner_filter` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Filter approved owner-scoped rows before ranking: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `pre_rank_owner_filter` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-216",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1168,8 +1168,8 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "project_implementation_tests": 85,
-          "ai_workflow_implementation_evaluation": 30,
+          "project_implementation_tests": 95,
+          "ai_workflow_implementation_evaluation": 20,
           "certification_labs_questions": 0,
           "ai_concept_source_study": 9,
           "certification_domain_study": 7,
@@ -1178,8 +1178,8 @@
         }
       },
       "workstream_minutes": {
-        "project_implementation_tests": 85,
-        "ai_workflow_implementation_evaluation": 30,
+        "project_implementation_tests": 95,
+        "ai_workflow_implementation_evaluation": 20,
         "certification_labs_questions": 0,
         "ai_concept_source_study": 9,
         "certification_domain_study": 7,
@@ -1187,8 +1187,8 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "85m: implement/recover pre_rank_owner_filter in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
-        "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for pre_rank_owner_filter; keep independent expected labels and no provider call.",
+        "project_implementation_tests": "95m: implement/recover pre_rank_owner_filter in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
+        "ai_workflow_implementation_evaluation": "20m: extend fixed offline adversarial/evaluation cases for pre_rank_owner_filter; keep independent expected labels and no provider call.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
         "certification_domain_study": "7m: inspect AWS Certified Developer - Associate / Review the exam guide; recheck exact published guide/version/heading; record one relevant concept; no readiness claim.",
@@ -1212,7 +1212,7 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "task": {
-        "title": "Filter owner permissions before ranking candidates",
+        "title": "Filter approved owner-scoped rows before ranking",
         "seam": "pre_rank_owner_filter",
         "files": [
           "ai/grounded/continuation_211.py",
@@ -1220,8 +1220,8 @@
         ],
         "command": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker",
         "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day216_foreign_rows_never_reach_candidate_ranker",
-        "project": 85,
-        "ai": 30,
+        "project": 95,
+        "ai": 20,
         "cert": 0,
         "ai_study": 9,
         "cert_study": 7,
@@ -1305,7 +1305,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -1352,7 +1352,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Bound deterministic top-k retrieval and ties: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `deterministic_top_k` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day217_top_k_and_tie_order_are_stable`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Bound deterministic top-k retrieval and ties: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `deterministic_top_k` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day217_top_k_and_tie_order_are_stable`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-217",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1385,7 +1385,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "105m: implement/recover deterministic_top_k in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day217_top_k_and_tie_order_are_stable` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "105m: implement/recover deterministic_top_k in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day217_top_k_and_tie_order_are_stable` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "0m: no AI implementation slice today; do not create extra work.",
         "certification_labs_questions": "10m: offline retrieval prompt on SAA-C03 Exam content; record exact current version/title and checked answer, no readiness claim.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -1503,7 +1503,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -1550,7 +1550,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Bind explanation citations to exact source versions: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `citation_version_binding` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day218_citation_must_match_retrieved_source_and_exact_text`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Bind explanation citations to exact source versions: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `citation_version_binding` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day218_citation_must_match_retrieved_source_and_exact_text`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-218",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1583,7 +1583,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "85m: implement/recover citation_version_binding in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day218_citation_must_match_retrieved_source_and_exact_text` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "85m: implement/recover citation_version_binding in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day218_citation_must_match_retrieved_source_and_exact_text` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for citation_version_binding; keep independent expected labels and no provider call.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "9m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -1701,7 +1701,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -1748,7 +1748,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Abstain explicitly when evidence is insufficient: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `unsupported_fallback` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day219_unsupported_question_returns_explicit_fallback`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Abstain explicitly when evidence is insufficient: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `unsupported_fallback` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day219_unsupported_question_returns_explicit_fallback`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-219",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1781,7 +1781,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "115m: implement/recover unsupported_fallback in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day219_unsupported_question_returns_explicit_fallback` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "115m: implement/recover unsupported_fallback in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day219_unsupported_question_returns_explicit_fallback` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "0m: no AI implementation slice today; do not create extra work.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "8m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -1899,7 +1899,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -1946,7 +1946,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Measure citation and abstention outcomes against fixed labels: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `independent_offline_metrics` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day220_metrics_use_independent_literal_expected_source_ids`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Measure citation and abstention outcomes against fixed labels: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `independent_offline_metrics` in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day220_metrics_use_independent_literal_expected_source_ids`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-220",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1979,7 +1979,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "75m: implement/recover independent_offline_metrics in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day220_metrics_use_independent_literal_expected_source_ids` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "75m: implement/recover independent_offline_metrics in ai/grounded/continuation_211.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day220_metrics_use_independent_literal_expected_source_ids` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for independent_offline_metrics; keep independent expected labels and no provider call.",
         "certification_labs_questions": "10m: offline retrieval prompt on Developer Associate currently linked exam guide; record exact current version/title and checked answer, no readiness claim.",
         "ai_concept_source_study": "8m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -2097,7 +2097,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -2144,7 +2144,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Treat hostile retrieved instructions as untrusted text: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `untrusted_source_content` in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day221_embedded_instruction_is_plain_source_text`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Treat hostile retrieved instructions as untrusted text: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `untrusted_source_content` in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day221_embedded_instruction_is_plain_source_text`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-221",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2177,7 +2177,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "115m: implement/recover untrusted_source_content in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day221_embedded_instruction_is_plain_source_text` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "115m: implement/recover untrusted_source_content in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day221_embedded_instruction_is_plain_source_text` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "0m: no AI implementation slice today; do not create extra work.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "8m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -2296,7 +2296,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -2343,7 +2343,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Create stable canonical bundle bytes and digest: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `canonical_snapshot` in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day222_canonical_bytes_and_sha256_are_stable`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Create stable canonical bundle bytes and digest: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `canonical_snapshot` in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day222_canonical_bytes_and_sha256_are_stable`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-222",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2376,7 +2376,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "85m: implement/recover canonical_snapshot in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day222_canonical_bytes_and_sha256_are_stable` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "85m: implement/recover canonical_snapshot in ai/grounded/continuation_211.py, ai/grounded/continuation_211_fixture.json; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day222_canonical_bytes_and_sha256_are_stable` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for canonical_snapshot; keep independent expected labels and no provider call.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "8m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -2494,7 +2494,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -2541,7 +2541,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Reproduce local JSON report in fresh processes: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `fresh_process_reproducibility` in ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day223_fresh_process_report_is_identical`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Reproduce local JSON report in fresh processes: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `fresh_process_reproducibility` in ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day223_fresh_process_report_is_identical`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-223",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2574,7 +2574,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "85m: implement/recover fresh_process_reproducibility in ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day223_fresh_process_report_is_identical` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "85m: implement/recover fresh_process_reproducibility in ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211.Continuation211Acceptance.test_day223_fresh_process_report_is_identical` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for fresh_process_reproducibility; keep independent expected labels and no provider call.",
         "certification_labs_questions": "0m: no certification lab/question slice today; no paid exam or booking.",
         "ai_concept_source_study": "8m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
@@ -2692,7 +2692,7 @@
           "title": "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
           "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
           "sections": [
-            "Query a knowledge base and retrieve data"
+            "How knowledge bases work"
           ],
           "provider": "AWS",
           "use": "Architecture comparison only; no AWS account or service is used."
@@ -2739,7 +2739,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Run full local workflow and preserve synthetic source bytes: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `synthetic_round_trip` in ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
+        "decision": "Run full local workflow and preserve synthetic source bytes: keep the complete bundle synthetic and local. First run `python3 scripts/check_continuation_211_entry_gate.py`. Only an actual learner-owned Day 210 boundary record can make ingestion eligible; Day 211 runs a gate-only check and does not ingest; absent/blocked status routes the project minutes to the exact CoverStory recovery selectors in this contract and the AI slice to fixed offline evaluator fixtures. If eligible, learner implements only `synthetic_round_trip` in ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; validate with `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211`. Authorization filters owner and approved status before ranking; outputs cite immutable source/version IDs or abstain. No model, service, cloud resource or consequential decision.",
         "note_ref": "assistant-architecture-notes.md#day-224",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2772,7 +2772,7 @@
         "evidence": 15
       },
       "task_minutes": {
-        "project_implementation_tests": "75m: implement/recover synthetic_round_trip in ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137RejectsUnapprovedCloudAndPaidActions test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139RequiresFreshEvidence test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion.",
+        "project_implementation_tests": "75m: implement/recover synthetic_round_trip in ai/grounded/continuation_211.py, ai/grounded/continuation_cli.py, ai/grounded/learner_acceptance/test_continuation_211.py; run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_211` and save actual output. If the Day 210 gate is absent/blocked, run the first unmet CoverStory selector from ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test, ./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test, ./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test, ./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test, python3 scripts/check_streamforge_169_182_entry_gate.py; do not attempt new ingestion. The Day 211 gate-only command inspects eligibility; it never ingests a bundle.",
         "ai_workflow_implementation_evaluation": "30m: extend fixed offline adversarial/evaluation cases for synthetic_round_trip; keep independent expected labels and no provider call.",
         "certification_labs_questions": "10m: offline retrieval prompt on Developer Associate currently linked exam guide; record exact current version/title and checked answer, no readiness claim.",
         "ai_concept_source_study": "8m: study OpenAI Retrieval and the exact local seam; record one concept and limitation; no API use.",
