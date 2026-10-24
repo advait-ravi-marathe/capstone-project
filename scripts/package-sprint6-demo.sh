@@ -8,7 +8,7 @@ if [[ -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" && -x "$JAVA_HOME/bin/java
   export PATH="$JAVA_HOME/bin:$PATH"
 fi
 if ! command -v java >/dev/null || ! command -v javac >/dev/null \
-    || ! java -version 2>&1 | rg -q 'version "21\.'; then
+    || ! java -version 2>&1 | grep -Eq 'version "21\.'; then
   echo "A full JDK 21 is required for the Sprint 6 package." >&2
   exit 1
 fi
