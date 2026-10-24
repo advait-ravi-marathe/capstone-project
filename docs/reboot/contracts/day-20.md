@@ -28,6 +28,8 @@ Use the [Day 20 mutation guide](../teaching/day-20-truthful-mutation.md#worked-t
 
 ## Evidence (10 minutes)
 
+Four component scenarios. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `npm --prefix frontend test -- --run src/__tests__/Day20Contract.test.tsx`

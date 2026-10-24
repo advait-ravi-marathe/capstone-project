@@ -28,6 +28,8 @@ Controlled inputs, derived state, client/server validation [K].
 
 ## Evidence (10 minutes)
 
+Keyboard, validation and pending-state component tests. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `npm --prefix frontend test -- --run src/__tests__/Day18Contract.test.tsx`

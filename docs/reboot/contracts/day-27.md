@@ -28,6 +28,8 @@ Boundary evidence, competing regression hypotheses, and the smallest justified c
 
 ## Evidence (10 minutes)
 
+Before/after assertion and affected-suite result. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 Instructor toy reference: `./mvnw -Dtest=Day27RegressionHypothesisReferenceTest test`.

@@ -41,6 +41,23 @@ class ExternalTrackBoundaryTest(unittest.TestCase):
             self.assertIn(DSA_REPO, text, path)
             self.assertNotRegex(text, r"(?:java_dsa|dsa-review-queue|docs/reboot/dsa/)")
 
+    def test_engineering_evidence_sections_are_not_lost_with_external_track(self):
+        contracts = [ROOT / f"docs/reboot/contracts/day-{day:02d}.md" for day in range(2, 31)]
+        contracts += [ROOT / f"docs/reboot/continuation-31-44/contracts/day-{day}.md" for day in range(31, 45)]
+        for path in contracts:
+            text = path.read_text(encoding="utf-8")
+            sections = re.findall(r"(?ms)^## Evidence[^\n]*\n(.*?)(?=^## |\Z)", text)
+            self.assertTrue(sections, f"missing engineering evidence section: {path}")
+            for section in sections:
+                self.assertTrue(section.strip(), f"empty engineering evidence section: {path}")
+
+        day03 = (ROOT / "docs/reboot/contracts/day-03.md").read_text(encoding="utf-8")
+        evidence = re.search(r"(?ms)^## Evidence[^\n]*\n(.*?)(?=^## |\Z)", day03).group(1)
+        self.assertIn("Three negative response snapshots", evidence)
+        for expected in ("attempt state", "exact command/exit status", "changed paths", "invariant/trade-off"):
+            self.assertIn(expected, evidence)
+        self.assertNotIn("DSA", evidence)
+
     def test_ci_keeps_engineering_and_streamforge_checks(self):
         workflow = (ROOT / ".github/workflows/coverstory-starter.yml").read_text(encoding="utf-8")
         self.assertIn("Verify engineering roadmap manifests and curriculum", workflow)

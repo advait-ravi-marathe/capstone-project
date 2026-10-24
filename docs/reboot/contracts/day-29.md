@@ -28,6 +28,8 @@ Configuration and reset safety, taught with the [Day 29 guard trace](../teaching
 
 ## Evidence (10 minutes)
 
+Another clean setup or exact unverified steps/blocker. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Dtest=Day29ResetIntegrationTest test`

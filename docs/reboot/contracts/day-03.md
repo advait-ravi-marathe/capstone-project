@@ -28,6 +28,8 @@ Study the required generic exception-handling lesson and the Day 3 guide: contro
 
 ## Evidence (10 minutes)
 
+Three negative response snapshots. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Instructor reference and preserved learner command
 
 Run the independent worked example first: `./mvnw -Dtest=Day03SafeErrorsReferenceTest test`. Then use the existing learner selector: `./mvnw -Plearner-tests -Dtest=Day03ContractTest test`. This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.

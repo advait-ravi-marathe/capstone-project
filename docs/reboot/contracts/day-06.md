@@ -28,6 +28,8 @@ Decimal-string construction, exact arithmetic, `HALF_UP` at the declared final b
 
 ## Evidence (10 minutes)
 
+Record the exact and premature-rounding outputs, then the actual learner selector result and the frozen premium calculation outcome. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, and assistance.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day06ContractTest test`

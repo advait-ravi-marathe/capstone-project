@@ -28,6 +28,8 @@ Unique-key collision, PostgreSQL aborted transaction, rollback, and fresh-connec
 
 ## Evidence (10 minutes)
 
+Barrier-coordinated concurrency test; no sleeps. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day25ContractTest test`

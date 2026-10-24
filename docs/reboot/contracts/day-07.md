@@ -28,6 +28,8 @@ Wall time vs elapsed time; deterministic tests [D].
 
 ## Evidence (10 minutes)
 
+Record the fixed-clock before/equal/after prediction, the existing quote snapshot result, exact selector command/exit and assistance. A reference result is not integrated learner completion.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day07ContractTest test`

@@ -28,6 +28,8 @@ Authentication and authorization plus the existing fixture trace: `owner-a` read
 
 ## Evidence (10 minutes)
 
+Owner/other/anonymous matrix. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Dtest=Day12SecurityHarnessTest test` checks the four untagged form-login, authentication, CSRF and protected-route harness cases. Separately, `./mvnw -Plearner-tests -Dtest=Day12SecurityHarnessTest#ownerScopedJourneyHttpReadUsesLearnerPolicy test` runs the tagged owner-policy learner case, which remains expected red at its TODO. The original `Day12ContractTest` selector remains unchanged.

@@ -28,6 +28,8 @@ Test pyramid, reproducibility, CI failure signals [I]. Within this same 25-minut
 
 ## Evidence (10 minutes)
 
+Actual local/CI-equivalent output; do not claim remote run if absent. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Dtest=Day13WorkflowInfrastructureTest test`

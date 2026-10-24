@@ -28,6 +28,8 @@ Use the [executable Day 15 guide](../teaching/day-15-join-projection.md#worked-t
 
 ## Evidence (10 minutes)
 
+Empty/populated JSON fixtures. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day15ContractTest test`

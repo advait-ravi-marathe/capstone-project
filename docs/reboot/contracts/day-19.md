@@ -28,6 +28,8 @@ Async UI, race conditions and state ownership [K,L].
 
 ## Evidence (10 minutes)
 
+Out-of-order response component test. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `npm --prefix frontend test -- --run src/__tests__/Day19Contract.test.tsx`

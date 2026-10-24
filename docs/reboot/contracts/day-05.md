@@ -28,6 +28,8 @@ Pure rule evaluation, first-applicable-rule precedence, inclusive boundaries, an
 
 ## Evidence (10 minutes)
 
+Record the two predicted toy outcomes, then the actual insurance selector result and a short precedence explanation. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, and assistance.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day05ContractTest test`

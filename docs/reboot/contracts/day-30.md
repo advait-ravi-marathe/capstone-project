@@ -28,6 +28,8 @@ Evidence-based explanation and honest limits. Review the [Day 30 worked example]
 
 ## Evidence (10 minutes)
 
+5-minute demo script, current gate, prerequisite-ranked backlog. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day30ContractTest test`

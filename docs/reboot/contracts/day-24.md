@@ -28,6 +28,8 @@ Read the observed EXPLAIN shape and compare the exact output before/after an ind
 
 ## Evidence (10 minutes)
 
+Both plans and concise trade-off note. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day24ContractTest test`

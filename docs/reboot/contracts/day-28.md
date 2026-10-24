@@ -28,6 +28,8 @@ One request end to end, security and consistency boundaries.
 
 ## Evidence (10 minutes)
 
+Automated report/screenshots and milestone rubric. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `cd frontend && npm ci && npm run build`

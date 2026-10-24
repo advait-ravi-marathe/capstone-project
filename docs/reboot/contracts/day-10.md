@@ -28,6 +28,8 @@ One raw JDBC connection, auto-commit off, explicit commit after all rows, and ro
 
 ## Evidence (10 minutes)
 
+Database state after injected mid-batch failure. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day10ContractTest test`

@@ -28,6 +28,8 @@ Use the [rendered Day 17 guide](../teaching/day-17-render-typed-state.md#worked-
 
 ## Evidence (10 minutes)
 
+Component tests and screenshot. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `npm --prefix frontend test -- src/components/ProductPanel.test.tsx`

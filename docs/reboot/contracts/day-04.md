@@ -28,6 +28,8 @@ Record component references, collection aliasing, `List.copyOf`, and limits of s
 
 ## Evidence (10 minutes)
 
+Run the source-add and source-remove reference observations, then record the actual capstone selector result and one ownership explanation. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, and assistance.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day04ContractTest test`

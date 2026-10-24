@@ -28,6 +28,8 @@ Parameterized JDBC, connection/statement/result resource ownership, mapping a ro
 
 ## Evidence (10 minutes)
 
+Disposable PostgreSQL test output. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day09ContractTest test`

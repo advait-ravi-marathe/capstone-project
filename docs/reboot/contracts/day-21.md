@@ -28,6 +28,8 @@ Cookie session, CSRF header, identity, and object authorization are separate che
 
 ## Evidence (10 minutes)
 
+Security integration matrix. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 Instructor HTTP boundary: `./mvnw -Dtest=Day21SecurityInfrastructureTest test`

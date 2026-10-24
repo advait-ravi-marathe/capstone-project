@@ -28,6 +28,8 @@ First-change versus repeat semantics, one transaction, minimal event fields, and
 
 ## Evidence (10 minutes)
 
+Success/repeat/rollback database counts. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, and an invariant/trade-off explanation.
+
 ## Planned isolated command
 
 `./mvnw -Plearner-tests -Dtest=Day26ContractTest test`

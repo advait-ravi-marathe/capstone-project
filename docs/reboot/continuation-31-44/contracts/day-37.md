@@ -44,6 +44,8 @@ Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../template
 
 ## Evidence allocation (10 minutes)
 
+Record command and result in `evidence/continuation-31-44/day-37.json`. Include one short teach-back (or one architecture/ADR sketch) and answer one prompt: “What invariant does this change protect, where is it enforced, and what observable response proves it?”
+
 ## Separate DSA track
 
 The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.
