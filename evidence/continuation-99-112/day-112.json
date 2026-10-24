@@ -8,8 +8,7 @@
     "./mvnw -Plocal-app -DskipTests package",
     "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
     "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
-    "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test",
-    "python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py scripts/test_dsa_review_queue_71_84.py"
+    "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test"
   ],
   "infrastructure_command": "./mvnw -Dtest=Day99To112InfrastructureTest test",
   "witness_status": "not_run",
