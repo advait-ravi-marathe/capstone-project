@@ -14,7 +14,7 @@ On the existing renewal route, show a safe bounded-read response under real ACCE
 The selector is installed and runnable with learner TODOs restored. It may fail at named incomplete learner/prerequisite seams; missing classes, selectors, fixtures, tools or browser setup are infrastructure defects. The default Maven suite is the instructor infrastructure suite and excludes `learnerAcceptance` tests.
 
 **Acceptance selector:** `src/test/java/assignments/local/Day97PackagedTimeoutBrowserAcceptanceTest.java`
-**Acceptance command:** `npm --prefix frontend ci`; `npm --prefix frontend run build:local`; `./mvnw -Plocal-app -DskipTests package`; then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Plocal-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test` (or install the project-pinned Playwright Chromium in CI).
+**Acceptance commands:** First run `./scripts/package-local-demo.sh`, which clean-builds the frontend-bearing local executable archive; then run `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests,local-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test` (or use the project-pinned Playwright Chromium in CI). This is an actual packaged-JAR/browser journey, not the separate source-shape infrastructure check.
 **Infrastructure selector:** `src/test/java/assignments/renewal/Day85To98InfrastructureTest.java`
 **Infrastructure command:** `./mvnw -Dtest=Day85To98InfrastructureTest test`
 
@@ -38,9 +38,9 @@ If the existing React state concepts need review, the selected course has prior 
 
 Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
 
-**Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
+**Assistant-provided architecture (what and why):** [Day 97 note](../assistant-architecture-notes.md#day-97). The note supplies capstone architecture decisions. Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.
 
-**Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
+**Teach-back:** Explain the supplied boundary in your own words and cite one observed acceptance result; no design-choice essay is required.
 
 ### Evidence block — 10 minutes
 

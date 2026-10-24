@@ -8,6 +8,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -89,6 +90,100 @@ class Day85To98InfrastructureTest {
         String day97 = Files.readString(Path.of("src/test/java/assignments/local/Day97PackagedTimeoutBrowserAcceptanceTest.java"));
         assertTrue(day97.contains("LocalPackagedRuntimeProcess.start(postgres, \"2027-01-01T12:00:00Z\")"),
                 "the seeded 2026-01-15 policy must be preview-eligible in the packaged retry test");
+        String processHelper = Files.readString(Path.of("src/test/java/assignments/local/LocalPackagedRuntimeProcess.java"));
+        String packageScript = Files.readString(Path.of("scripts/package-local-demo.sh"));
+        assertTrue(processHelper.contains("List.of(java, \"-jar\", jar.toString()"),
+                "Day 97 launches an executable archive in a separate process");
+        assertTrue(packageScript.contains("-Plocal-app -DskipTests clean package"),
+                "Day 97 packaging starts from a clean frontend-bearing local archive");
+        assertTrue(day97.contains("snapshot(holder)"), "the real browser journey snapshots all three lifecycle tables");
+        assertTrue(day97.contains("holder.commit()"), "the lock is released only after the blocked result is observed");
+        assertFalse(day97.contains("@SpringBootTest"), "packaged behavior is not inferred from an in-process context");
+    }
+
+    @Test
+    void architectureNotesInterviewOnlySessionsAndRenderedGuidanceStaySynchronized() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode export = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        String notes = Files.readString(BASE.resolve("assistant-architecture-notes.md"));
+        String questionBank = Files.readString(Path.of("docs/reboot/interview/question-bank.md"));
+        Set<Integer> mockDays = Set.of(87, 90, 94, 97);
+
+        assertEquals(14, manifest.path("days").size());
+        assertEquals(14, export.path("cards").size());
+        for (int i = 0; i < 14; i++) {
+            JsonNode day = manifest.path("days").get(i);
+            JsonNode card = export.path("cards").get(i);
+            int number = 85 + i;
+            String notePath = day.path("engineering").path("assistant_architecture_note").asText();
+            assertEquals(notePath, card.path("engineering").path("assistant_architecture_note").asText());
+            assertEquals("docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-" + number, notePath);
+            assertTrue(notes.contains("<a id=\"day-" + number + "\"></a>"), "missing supplied architecture note for Day " + number);
+
+            String contract = Files.readString(Path.of(day.path("contract_file").asText()));
+            assertTrue(contract.contains("Assistant-provided architecture (what and why)"), "Day " + number);
+            assertFalse(contract.contains("**Sketch prompt:**"), "capstone design proposals are not assigned on Day " + number);
+            assertTrue(contract.contains("no capstone design proposal or post-hoc justification is assigned"));
+            String learningBlock = card.path("course_learning_block").asText();
+            assertTrue(learningBlock.contains("assistant-architecture-notes.md#day-" + number));
+            assertTrue(learningBlock.contains("no capstone design proposal or post-hoc justification is assigned"));
+            assertFalse(learningBlock.contains("Sketch retained policy context"));
+            assertFalse(learningBlockContainsCapstoneDesignPrompt(learningBlock),
+                    "rendered guidance must not ask the learner to design the capstone on Day " + number);
+            assertTrue(contract.contains("Assistant-provided architecture (what and why)"));
+
+            JsonNode canonicalAssignment = day.path("engineering").path("interview_assignment");
+            JsonNode ownerAssignment = card.path("engineering").path("interview_assignment");
+            if (mockDays.contains(number)) {
+                assertEquals(canonicalAssignment, ownerAssignment, "mock assignment export differs on Day " + number);
+                assertEquals("45_minute_mock", canonicalAssignment.path("mode").asText());
+                assertEquals(45, canonicalAssignment.path("duration_minutes").asInt());
+                assertEquals(85, canonicalAssignment.path("practice_total_minutes").asInt());
+                assertEquals(45, canonicalAssignment.path("mock_minutes").asInt());
+                assertEquals("system_design_interview_question_only", canonicalAssignment.path("proposal_scope").asText());
+                assertEquals("assistant_supplied", canonicalAssignment.path("capstone_architecture").asText());
+                assertEquals(notePath, canonicalAssignment.path("assistant_architecture_note").asText());
+                assertTrue(questionBank.contains("<a id=\"" + canonicalAssignment.path("question_id").asText().toLowerCase() + "\"></a>"));
+                assertTrue(contract.contains(canonicalAssignment.path("deferred_work_id").asText()));
+                int phases = 0;
+                for (JsonNode phase : canonicalAssignment.path("mock_phases")) phases += phase.path("minutes").asInt();
+                assertEquals(45, phases);
+                JsonNode slice = canonicalAssignment.path("eai_slice_minutes");
+                assertEquals(40, slice.path("preconditions_and_prediction").asInt()
+                        + slice.path("implementation_or_observation").asInt()
+                        + slice.path("selector_and_blocker_record").asInt());
+                assertEquals(day.path("engineering").path("acceptance_commands"),
+                        canonicalAssignment.path("acceptance_commands"));
+            } else {
+                assertTrue(canonicalAssignment.isMissingNode(), "unexpected interview homework on Day " + number);
+                assertTrue(ownerAssignment.isMissingNode(), "unexpected owner export interview homework on Day " + number);
+            }
+        }
+        assertTrue(mockDays.contains(87) && mockDays.contains(90) && mockDays.contains(94) && mockDays.contains(97));
+    }
+
+    private static boolean learningBlockContainsCapstoneDesignPrompt(String block) {
+        return block.contains("Sketch prompt:") || block.contains("Draw admission")
+                || block.contains("Propose the capstone") || block.contains("design the capstone");
+    }
+
+    @Test
+    void day92HttpAcceptanceAndDay97FreshArchiveCommandsMatchInstalledHarnesses() throws Exception {
+        JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode day92 = manifest.path("days").get(7).path("engineering");
+        String mapperTests = Files.readString(Path.of("src/test/java/assignments/renewal/TimedRenewalReadAcceptanceTest.java"));
+        assertTrue(day92.path("acceptance_commands").toString()
+                .contains("translatedStateMapsToSafe503WithoutLeakingSqlDetails"));
+        assertTrue(mapperTests.contains("void translatedStateMapsToSafe503WithoutLeakingSqlDetails()"));
+        assertTrue(mapperTests.contains("PREVIEW_UNAVAILABLE"));
+        assertTrue(mapperTests.contains("containsString(\"57014\")"));
+
+        JsonNode day97 = manifest.path("days").get(12).path("engineering");
+        assertTrue(day97.path("acceptance_commands").get(0).asText().contains("scripts/package-local-demo.sh"));
+        assertTrue(day97.path("acceptance_commands").get(1).asText().contains("Day97PackagedTimeoutBrowserAcceptanceTest"));
+        assertFalse(day97.path("acceptance_commands").toString().contains("-DskipTests package"),
+                "a stale archive must not satisfy the packaged browser selector");
     }
 
     @Test

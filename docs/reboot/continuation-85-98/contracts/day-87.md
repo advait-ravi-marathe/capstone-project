@@ -38,9 +38,9 @@ Use this as transaction foundation only; it does not replace the supplied JDBC/P
 
 Video viewing: 4:43; allow at most 16:13 for the worked example and focused reading, then 4:04 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
 
-**Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
+**Assistant-provided architecture (what and why):** [Day 87 note](../assistant-architecture-notes.md#day-87). The note supplies capstone architecture decisions. Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.
 
-**Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
+**Teach-back:** Explain the supplied boundary in your own words and cite one observed acceptance result; no design-choice essay is required.
 
 ### Evidence block — 10 minutes
 
