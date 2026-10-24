@@ -1,0 +1,74 @@
+import json
+import shlex
+import unittest
+from datetime import date, timedelta
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+BATCH = ROOT / "docs/reboot/continuation-197-210"
+
+
+class Continuation197210ManifestTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.manifest = json.loads((BATCH / "manifest.json").read_text())
+        cls.owner = json.loads((BATCH / "scrum-owner-manifest.json").read_text())
+        cls.plan = json.loads((BATCH / "days-197-210-transfer-plan.json").read_text())
+
+    def test_dates_budget_and_exports(self):
+        days = self.manifest["days"]
+        self.assertEqual(list(range(197, 211)), [d["day"] for d in days])
+        self.assertEqual(date(2027, 5, 8), date.fromisoformat(days[0]["date"]))
+        self.assertEqual(date(2027, 5, 21), date.fromisoformat(days[-1]["date"]))
+        self.assertEqual([209, 210], [d["day"] for d in days if d["recovery_day"]])
+        self.assertEqual(14, self.owner["story_count"])
+        self.assertFalse(self.owner["board_writes"])
+        self.assertIsNone(self.manifest["course_assignment"])
+        owner_by_day = {d["day_number"]: d for d in self.owner["cards"]}
+        plan_by_day = {d["day"]: d for d in self.plan["days"]}
+        for d in days:
+            b = d["budget"]
+            self.assertEqual(165, b["study"] + b["practice_and_tests"] + b["evidence"])
+            self.assertEqual(210, b["engineering_minutes"] + b["shared_interview_or_remaining_reviews_minutes"])
+            self.assertEqual("unobserved_not_implied_by_scaffold", d["learner_status"])
+            self.assertEqual(d["engineering_architecture"], owner_by_day[d["day"]]["engineering_architecture"])
+            self.assertEqual(d["engineering_architecture"], plan_by_day[d["day"]]["engineering_architecture"])
+            self.assertEqual(d["selectors"], owner_by_day[d["day"]]["selectors"])
+            contract = BATCH / "contracts" / f"day-{d['day']}.md"
+            self.assertTrue(contract.exists())
+
+    def test_scoped_test_selectors_resolve(self):
+        loader = unittest.defaultTestLoader
+        for d in self.manifest["days"]:
+            for command in d["selectors"]:
+                words = shlex.split(command)
+                if words[1] == "-m":
+                    self.assertEqual(["python3", "-m", "unittest"], words[:3])
+                    names = words[3:]
+                else:
+                    self.assertTrue(words[1].endswith(".py"))
+                    names = []
+                suite = unittest.TestSuite(loader.loadTestsFromName(x) for x in names)
+                if not names:
+                    continue
+                cases = []
+                def visit(node):
+                    if isinstance(node, unittest.TestSuite):
+                        for child in node:
+                            visit(child)
+                    else:
+                        cases.append(node)
+                visit(suite)
+                self.assertTrue(cases)
+                self.assertFalse(any(isinstance(case, unittest.loader._FailedTest) for case in cases))
+
+    def test_no_later_activation_or_prohibited_scope(self):
+        text = "\n".join(p.read_text() for p in BATCH.rglob("*.md"))
+        self.assertIn("does not satisfy or waive", self.manifest["gate_policy"])
+        self.assertNotIn("learner_completion", self.manifest)
+        self.assertIn("course_assignment", self.manifest)
+        self.assertIn("no DSA task", text)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,507 @@
+{
+  "title": "Days 197–210 offline evidence-grounded explanation foundations",
+  "status": "starter_not_learner_completion_or_board_published",
+  "branch": "work/eai-sprint2-onward",
+  "source": {
+    "base_commit": "36fea17fbd93e8c0e15b568a7a45b9587a2cc690",
+    "runtime": "Python standard library"
+  },
+  "dates": {
+    "start": "2027-05-08",
+    "end": "2027-05-21",
+    "recovery_days": [
+      210
+    ]
+  },
+  "budget": {
+    "engineering_minutes": 165,
+    "allocation": {
+      "study": 35,
+      "practice_and_tests": 115,
+      "evidence": 15
+    },
+    "shared_interview_or_remaining_reviews_minutes": 45,
+    "total": 210
+  },
+  "gate_policy": "Days 153/154 A/B evidence remains required for StreamForge. This synthetic exercise does not satisfy or waive that gate. Re-evaluate authoritative evidence when genuine learner-owned records change.",
+  "days": [
+    {
+      "day": 197,
+      "date": "2027-05-08",
+      "title": "Freeze synthetic source fixture",
+      "signature": "CLAUSES: tuple[Clause, ...]",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_input_fixture_is_not_mutated"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-197",
+        "decision": "Keep one fixed synthetic, versioned clause fixture; reproducibility comes before retrieval complexity.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 198,
+      "date": "2027-05-09",
+      "title": "Filter by owner before matching",
+      "signature": "owner-scoped clause selection in explain",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_foreign_owner_is_filtered_before_matching"
+      ],
+      "depends_on_days": [
+        197
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "RAG_OVERVIEW"
+      ],
+      "study_guidance": [
+        {
+          "key": "RAG_OVERVIEW",
+          "title": "Retrieval augmented generation (RAG)",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval-augmented generation overview"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-198",
+        "decision": "Apply owner filtering before any candidate match, making the authorization order visible in the control flow.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 199,
+      "date": "2027-05-10",
+      "title": "Build deterministic literal baseline",
+      "signature": "explain(question, *, owner_id, clauses) -> Answer",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_unique_literal_match_returns_exact_text_and_versioned_citation"
+      ],
+      "depends_on_days": [
+        198
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "RAG_OVERVIEW"
+      ],
+      "study_guidance": [
+        {
+          "key": "RAG_OVERVIEW",
+          "title": "Retrieval augmented generation (RAG)",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval-augmented generation overview"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-199",
+        "decision": "Use transparent literal token matching as a baseline so behavior can be inspected without a model or hidden service.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 200,
+      "date": "2027-05-11",
+      "title": "Cite one unique source or abstain",
+      "signature": "Answer(status, explanation, citations)",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_ambiguous_matches_abstain"
+      ],
+      "depends_on_days": [
+        199
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-200",
+        "decision": "Expose exact source identity and abstain on ambiguity; this keeps unsupported answers measurable.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 201,
+      "date": "2027-05-12",
+      "title": "Exercise absent and malformed input",
+      "signature": "explain input validation",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_no_match_and_empty_query_abstain_or_reject"
+      ],
+      "depends_on_days": [
+        200
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-201",
+        "decision": "Reject blank input and return an explicit abstention for no matching evidence.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 202,
+      "date": "2027-05-13",
+      "title": "Preserve source version identity",
+      "signature": "citation format clause_id@version",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence.ExplainTests.test_unique_literal_match_returns_exact_text_and_versioned_citation"
+      ],
+      "depends_on_days": [
+        201
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "RAG_OVERVIEW"
+      ],
+      "study_guidance": [
+        {
+          "key": "RAG_OVERVIEW",
+          "title": "Retrieval augmented generation (RAG)",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval-augmented generation overview"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-202",
+        "decision": "Bind a citation to a stable clause version so later replacement cannot masquerade as the source used.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 203,
+      "date": "2027-05-14",
+      "title": "Define independent expected cases",
+      "signature": "fixed expected status/citation rows",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence"
+      ],
+      "depends_on_days": [
+        202
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-203",
+        "decision": "Write expected statuses and citations as independent constants before reporting results.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 204,
+      "date": "2027-05-15",
+      "title": "Count outcomes honestly",
+      "signature": "synthetic evaluation count summary",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence"
+      ],
+      "depends_on_days": [
+        203
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-204",
+        "decision": "Count citations and abstentions over fixed synthetic cases; the tiny denominator is only a debugging aid.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 205,
+      "date": "2027-05-16",
+      "title": "Keep failure closed",
+      "signature": "invalid input raises ValueError; unsupported match abstains",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence"
+      ],
+      "depends_on_days": [
+        204
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "RAG_OVERVIEW"
+      ],
+      "study_guidance": [
+        {
+          "key": "RAG_OVERVIEW",
+          "title": "Retrieval augmented generation (RAG)",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval-augmented generation overview"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-205",
+        "decision": "Keep all paths local and fail closed; no provider calls or retries exist in this exercise.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 206,
+      "date": "2027-05-17",
+      "title": "Check fresh-process reproducibility",
+      "signature": "subprocess stdout canonical JSON equality",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence"
+      ],
+      "depends_on_days": [
+        205
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-206",
+        "decision": "Verify deterministic output in a fresh process; this proves serialization repeatability only.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 207,
+      "date": "2027-05-18",
+      "title": "Review confirmed certification targets",
+      "signature": "current official SAA and Developer Associate guide notes",
+      "selectors": [
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        206
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "SAA_GUIDE",
+        "DEV_ASSOCIATE"
+      ],
+      "study_guidance": [
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Exam overview",
+            "Content outline"
+          ]
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate exam guide",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Exam guide and current version"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-207",
+        "decision": "Recheck current official guides and versions; Developer Associate content is limited to the current published guide.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 208,
+      "date": "2027-05-19",
+      "title": "Map portfolio evidence honestly",
+      "signature": "evidence inventory with limits",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence"
+      ],
+      "depends_on_days": [
+        207
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-208",
+        "decision": "Separate demonstrated implementation knowledge from professional ownership and senior influence.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 209,
+      "date": "2027-05-20",
+      "title": "Re-evaluate prerequisite evidence",
+      "signature": "authoritative Day 153/154 gate status",
+      "selectors": [
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        208
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "RAG_OVERVIEW"
+      ],
+      "study_guidance": [
+        {
+          "key": "RAG_OVERVIEW",
+          "title": "Retrieval augmented generation (RAG)",
+          "url": "https://platform.openai.com/docs/guides/retrieval",
+          "sections": [
+            "Retrieval-augmented generation overview"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-209",
+        "decision": "Run the authoritative gate checker and preserve its actual result without editing historic evidence.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    },
+    {
+      "day": 210,
+      "date": "2027-05-21",
+      "title": "Recover unfinished work",
+      "signature": "rerun unfinished prior selector only",
+      "selectors": [
+        "python3 -m unittest ai.grounded.tests.test_evidence"
+      ],
+      "depends_on_days": [
+        209
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "EVALS"
+      ],
+      "study_guidance": [
+        {
+          "key": "EVALS",
+          "title": "Working with evals",
+          "url": "https://developers.openai.com/api/docs/guides/evals",
+          "sections": [
+            "Evaluation workflow",
+            "Datasets"
+          ]
+        }
+      ],
+      "engineering_architecture": {
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "note_ref": "assistant-architecture-notes.md#day-210",
+        "decision": "Use the day to recover unfinished named work; no additional block or scope is added.",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      }
+    }
+  ]
+}
