@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import csv
 import json
+import subprocess
+import sys
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
@@ -29,10 +31,16 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         start = date(2027, 3, 27)
         self.assertEqual([start + timedelta(days=i) for i in range(14)], [date.fromisoformat(row["date"]) for row in days])
         self.assertEqual([161, 168], [row["day"] for row in days if row["recovery_day"]])
+        readme = (BATCH / "README.md").read_text(encoding="utf-8")
+        self.assertIn("March 27–April 9, 2027", readme)
+        self.assertNotIn("March 23–April 5, 2027", readme)
         self.assertEqual(14, len(self.owner["cards"]))
         self.assertFalse(self.manifest["board_writes"])
         self.assertFalse(self.owner["board_writes"])
         self.assertTrue(all(row["board_ticket_id"] is None and row["status"] == "draft_not_board_published"
+                            for row in self.owner["cards"]))
+        self.assertTrue(all(row["status"] == "draft_not_board_published" for row in days))
+        self.assertTrue(all(row["learner_status"] == "not_assessed" and row["evidence_status"] == "planned_contract_only"
                             for row in self.owner["cards"]))
 
     def test_contract_manifest_owner_and_transfer_plan_selectors_match(self):
@@ -88,7 +96,7 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         plan155 = next(row for row in plan["daily_contracts"] if row["day"] == 155)
         self.assertEqual(command, plan155["readiness_command"])
         self.assertIn("25-minute study block", plan155["readiness_gate"])
-        self.assertIn("no new learner function", contract167)
+        self.assertIn("do not add a new semantic function", contract167)
 
     def test_four_kib_field_limit_is_utf8_bytes_not_characters(self):
         self.assertEqual(4096, self.manifest["fixture"]["max_field_bytes"])
@@ -124,6 +132,87 @@ class StreamForge155168ManifestTest(unittest.TestCase):
         self.assertIn("cap44", readme)
         self.assertIn("no arbitrary paths or urls", readme)
         self.assertEqual("5dc558eeda441177dc4aac87725d0a18417c5abd", self.manifest["base_commit"])
+
+    def test_architecture_notes_interview_sessions_and_task_slices_are_synchronized(self):
+        notes_path = BATCH / "assistant-architecture-notes.md"
+        notes = notes_path.read_text(encoding="utf-8")
+        owner_by_day = {row["day_number"]: row for row in self.owner["cards"]}
+        plan_by_day = {row["day"]: row for row in self.plan["daily_contracts"]}
+        mock_days = [155, 159, 163, 167]
+        self.assertEqual([155, 159, 163, 167], [row["day"] for row in self.manifest["days"]
+                                                if row["engineering"].get("interview_assignment")])
+        self.assertEqual([4, 4, 4], [b - a for a, b in zip(mock_days, mock_days[1:])])
+        question_ids = []
+        for day in self.manifest["days"]:
+            n = day["day"]
+            eng = day["engineering"]
+            owner = owner_by_day[n]
+            plan = plan_by_day[n]
+            note_ref = eng["assistant_architecture_note"]
+            self.assertIn(f"## Day {n} —", notes)
+            self.assertEqual(note_ref, owner["engineering"]["assistant_architecture_note"])
+            self.assertEqual(eng["architecture_explanation"], plan["architecture_explanation"])
+            self.assertFalse(eng["system_design_proposal_required"])
+            self.assertEqual("assistant_supplied_capstone_architecture; learner_implements_and_tests",
+                             eng["design_ownership"])
+            contract = (BATCH / day["contract_file"]).read_text(encoding="utf-8")
+            self.assertIn(" ".join(eng["architecture_explanation"].split()),
+                          " ".join(contract.split()))
+            self.assertIn("Assistant-supplied capstone architecture", contract)
+            self.assertIn(note_ref.rsplit("#", 1)[1], contract)
+            if n in mock_days:
+                assignment = eng["interview_assignment"]
+                question_ids.append(assignment["question_id"])
+                self.assertEqual(assignment, owner["interview_assignment"])
+                self.assertEqual(assignment, plan["interview_assignment"])
+                self.assertEqual("system_design_interview_question_only", assignment["proposal_scope"])
+                self.assertEqual("assistant_supplied", assignment["capstone_architecture"])
+                self.assertEqual(45, assignment["mock_minutes"])
+                self.assertEqual(40, assignment["eai_slice_minutes"])
+                self.assertEqual(85, assignment["practice_minutes_available"])
+                self.assertEqual(45, sum(x["minutes"] for x in assignment["mock_phases"]))
+                self.assertEqual([5, 5, 15, 10, 10],
+                                 [x["minutes"] for x in assignment["mock_phases"]])
+                self.assertTrue(assignment["deferred_work"].startswith(f"S12-D{n}-FULL"))
+                self.assertIn(f"question-bank.md#{assignment['question_id'].lower()}", contract)
+                self.assertIn("45-minute system-design interview", contract)
+                self.assertIn("40-minute implementation slice", contract)
+                self.assertIn(assignment["deferred_work"], contract)
+                for pattern in assignment["pattern_refs"]:
+                    self.assertIn(f"<a id=\"{pattern}\"></a>",
+                                  (ROOT / "docs/reboot/interview/pattern-library.md").read_text())
+                question = (ROOT / "docs/reboot/interview/question-bank.md").read_text()
+                self.assertIn(f'<a id="{assignment["question_id"].lower()}"></a>', question)
+        self.assertEqual(4, len(set(question_ids)))
+
+    def test_prior_ab_gate_remains_unmet_without_learner_evidence(self):
+        gate = self.manifest["prior_readiness_gate"]
+        self.assertEqual("not_met", gate["current_status"])
+        self.assertEqual("not_attempted", gate["observed_prior_status"]["day_153"])
+        self.assertEqual("not_run", gate["observed_prior_status"]["day_153_evidence"])
+        self.assertEqual("not_attempted", gate["observed_prior_status"]["day_154"])
+        self.assertEqual("not_run", gate["observed_prior_status"]["day_154_evidence"])
+        for day in (153, 154):
+            self.assertFalse((ROOT / f"docs/reboot/continuation-141-154/evidence/day-{day}.json").exists())
+        self.assertEqual(gate, self.owner["prior_readiness_gate"])
+        self.assertEqual(gate, self.plan["prior_readiness_gate"])
+        contract = (BATCH / "contracts/day-155.md").read_text(encoding="utf-8")
+        readme = (BATCH / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Prior A/B readiness gate: not met", contract)
+        self.assertIn("not met in this checkout", readme)
+        self.assertIn("cannot satisfy", readme)
+
+    def test_sprint12_contract_generator_is_idempotent_and_keeps_existing_harnesses(self):
+        paths = [BATCH / f"contracts/day-{day}.md" for day in range(155, 169)]
+        before = [path.read_bytes() for path in paths]
+        result = subprocess.run([sys.executable, str(ROOT / "scripts/create_days155_168_docs.py")],
+                                cwd=ROOT, capture_output=True, check=False, timeout=10)
+        self.assertEqual(0, result.returncode, result.stderr.decode("utf-8", "replace"))
+        self.assertEqual(before, [path.read_bytes() for path in paths])
+        source = (ROOT / "ai/streamforge/tests/test_day_contracts.py").read_text(encoding="utf-8")
+        self.assertIn("class Day155Test", source)
+        self.assertIn("class Day156Test", source)
+        self.assertIn("class Day167Test", (ROOT / "ai/streamforge/tests/test_cli.py").read_text())
 
 
 if __name__ == "__main__":

@@ -3,10 +3,10 @@
 **Draft starter scope. No board tickets have been created or updated.** This batch prepares and validates a tiny original synthetic catalog and event log, splits unique events by a fixed UTC cutoff, and emits reproducible local JSON with train-only summaries and separate holdout diagnostics. It is not a recommender, ML model, service, media importer, or deployment.
 
 - Base source: `5dc558eeda441177dc4aac87725d0a18417c5abd`; isolated branch `learning/streamforge-days-155-168`.
-- Sprint 12 forecast: March 23–April 5, 2027. Recovery days: 161 and 168.
+- Sprint 12 dates: March 27–April 9, 2027. Recovery days: 161 and 168.
 - Engineering remains 120 minutes/day (25 study, 85 practice/testing, 10 evidence).
 - Python interpreter observed before publication: Python 3.12.14. No third-party Python dependency is required.
-- The earlier Day 153/154 learner-readiness gate remains evidence-based. A starter or instructor witness is not learner completion. If readiness is missing, use the slot for named carry-forward remediation.
+- The earlier Days 153–154 learner-owned A/B evidence gate is currently **not met in this checkout**: those manifest entries are `not_attempted` / `not_run`, and their learner evidence files are absent. This draft scaffold and any instructor witness cannot satisfy that gate. Keep StreamForge progression/completion claims blocked until actual learner-owned baseline/candidate evidence is recorded. Exact gate details are in `manifest.json`.
 - No AWS/cloud resource, credential, spending, deployment, external media ingestion, user history, or real learner data.
 
 Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
@@ -26,6 +26,10 @@ The instructor CLI bundle has `schema_version`, `reference_catalog`, `train`, `h
 The hand-calculable Day 166/167 CLI fixture has train IDs `e-01,e-02`, holdout ID `e-03`, and outside ID `e-04`. Its training summary is 2 events, 2 viewers, media counts `{m1: 1, m2: 1}`, and watch totals `{m1: 10, m2: 20}`. Day 167 checks these values and hashes against an independent test oracle.
 
 Train outputs use only training events and fixed contract/split configuration. Holdout data/coverage and full-source hashes remain separate. A valid holdout mutation can change provenance and holdout diagnostics, but not train content or its hash. Empty train and holdout are valid, with `insufficient_training_data` and `no_holdout` respectively; never invent a score, NaN or zero-denominator ratio. Invalid rows fail the entire preparation, not get silently dropped.
+
+## Assistant-supplied implementation architecture
+
+The assistant specifies the capstone architecture for each implementation day; learners implement and test those decisions. See [day-by-day explanations](assistant-architecture-notes.md). System-design practice occurs only in the separate question-bank sessions on Days 155, 159, 163, and 167. Those sessions replace 45 minutes of practice and leave a bounded 40-minute task; they add no time. The four questions are Q09, Q15, Q24, and Q34.
 
 ## Bounded architecture
 
