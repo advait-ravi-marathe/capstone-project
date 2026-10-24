@@ -97,6 +97,13 @@ class AssistantSuppliedArchitectureScopeTest(unittest.TestCase):
                 self.assertTrue(any(header in text for header in ("## Evidence", "## Evidence allocation", "## Practice and evidence")))
                 self.assertTrue("changed paths" in text.lower() or "source SHA" in text)
 
+    def test_sprint1_day09_scope_is_not_rewritten_as_owner_scoped(self):
+        source = (ROOT / "src/main/java/assignments/insurance/QuoteRepositoryAdapter.java").read_text()
+        self.assertIn("find(String journeyId, String quoteVersionId)", source)
+        self.assertIn("(journeyId, quoteVersionId)", self.notes)
+        self.assertIn("boundary introduced by the Day 12 principal guard", self.notes)
+        self.assertNotIn("Bind owner and quote identifiers", self.notes)
+
     def test_mock_proposals_are_limited_to_the_question_session(self):
         self.assertEqual(MOCK_DAYS, {day for day, rows in self.assignments.items()
                                      if rows[0]["mode"] == "45_minute_mock"})

@@ -10,6 +10,13 @@ System-design interview practice remains separate and uses only the assigned
 question-bank prompts and dedicated mock sessions. Learner proposals belong
 inside those question sessions only.
 
+**Sprint 1 boundary carried forward:** Day 9's `QuoteRepositoryAdapter.find`
+scopes its lookup by `(journeyId, quoteVersionId)`. The adapter has no owner
+argument or owner column; authenticated owner resolution is a separate
+boundary introduced by the Day 12 principal guard. Later owner-scoped reads
+use the seams specified by their own contracts. Do not retrofit Day 9's
+composite lookup with an owner parameter.
+
 ## Sprint 2: Days 15–30
 
 | Day | Assistant-provided decision and reason |
