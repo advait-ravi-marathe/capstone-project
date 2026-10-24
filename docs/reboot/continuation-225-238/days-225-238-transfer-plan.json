@@ -1,0 +1,2356 @@
+{
+  "title": "Days 225–238 synthetic policy draft review",
+  "status": "starter_not_learner_completion_or_board_published",
+  "branch": "work/eai-sprint2-onward",
+  "source": {
+    "base_commit": "9ff50d69c738e53453bfaba66572754062896c33",
+    "runtime": "Python standard library; synthetic/offline only"
+  },
+  "dates": {
+    "start": "2027-06-05",
+    "end": "2027-06-18",
+    "recovery_days": [
+      226,
+      229,
+      231,
+      234,
+      236,
+      238
+    ]
+  },
+  "budget": {
+    "engineering_minutes": 165,
+    "allocation": {
+      "study": 35,
+      "practice_and_tests": 115,
+      "evidence": 15
+    },
+    "shared_interview_or_remaining_reviews_minutes": 45,
+    "total": 210,
+    "window_workstreams": {
+      "project_implementation_tests": 1140,
+      "ai_workflow_implementation_evaluation": 360,
+      "certification_labs_questions": 110,
+      "ai_concept_source_study": 150,
+      "certification_domain_study": 120,
+      "core_systems_security_cloud_study": 220,
+      "evidence": 210
+    }
+  },
+  "gate_policy": "Before attempting source-bundle or workflow execution, run python3 scripts/check_continuation_211_entry_gate.py. Only an actual learner-owned Day 210 boundary review can make the synthetic workflow eligible. If absent/blocked, project time uses the first unmet named CoverStory recovery selector from docs/reboot/continuation-211-224/plan-source.json and AI time stays on fixed offline evaluator labels. Gate reports eligibility only and awards no completion. Planning these tasks does not satisfy the gate.",
+  "recovery_selectors": [
+    "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+    "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+    "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+    "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+    "python3 scripts/check_streamforge_169_182_entry_gate.py"
+  ],
+  "days": [
+    {
+      "day": 225,
+      "date": "2027-06-05",
+      "title": "Check the entry gate and build independent evaluation labels",
+      "learner_seam": "dynamic_gate_and_fixed_cases",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day225_independent_evaluation_cases_have_nontrivial_expected_outcomes",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/json.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 1: Design Secure Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Check the entry gate and build independent evaluation labels. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-225",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 95,
+          "ai_workflow_implementation_evaluation": 20,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 17,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 95,
+        "ai_workflow_implementation_evaluation": 20,
+        "certification_labs_questions": 0,
+        "ai_concept_source_study": 8,
+        "certification_domain_study": 10,
+        "core_systems_security_cloud_study": 17,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "95m: Inspect the Day 210 gate; if unmet, recover the first named CoverStory blocker and keep AI work to local fixed labels. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day225_independent_evaluation_cases_have_nontrivial_expected_outcomes`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "20m: Create a four-case local evaluation set with expected citations and three distinct abstention causes. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day225_independent_evaluation_cases_have_nontrivial_expected_outcomes` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "0m: no certification question slice today. Source: none. Command: none. Evidence: retain the zero allocation; no extra study.",
+        "ai_concept_source_study": "8m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "10m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 1: Design Secure Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "17m: study json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q07",
+        "question_title": "API gateway: route and protect",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 225,
+        "title": "Check the entry gate and build independent evaluation labels",
+        "seam": "dynamic_gate_and_fixed_cases",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day225_independent_evaluation_cases_have_nontrivial_expected_outcomes",
+        "project": 95,
+        "ai": 20,
+        "cert": 0,
+        "ai_study": 8,
+        "cert_study": 10,
+        "core_study": 17,
+        "shared": "question",
+        "question_id": "Q07",
+        "question_title": "API gateway: route and protect",
+        "project_task": "Inspect the Day 210 gate; if unmet, recover the first named CoverStory blocker and keep AI work to local fixed labels.",
+        "ai_task": "Create a four-case local evaluation set with expected citations and three distinct abstention causes.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "SAA_GUIDE",
+          "PYTHON_JSON"
+        ],
+        "cert_prompt": "Offline retrieval question: map dynamic_gate_and_fixed_cases to the currently published Content Domain 1: Design Secure Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "OPENAI_EVAL_BEST",
+        "core_source_key": "PYTHON_JSON",
+        "cert_source_section": "Content Domain 1: Design Secure Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 226,
+      "date": "2027-06-06",
+      "title": "Bind a draft to exact approved source versions",
+      "learner_seam": "snapshot_bound_draft",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day226_candidate_becomes_draft_bound_to_exact_snapshot_and_citation",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        225
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/hashlib.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 1: Design Secure Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Bind a draft to exact approved source versions. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-226",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 90,
+          "ai_workflow_implementation_evaluation": 20,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 8,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 17,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 90,
+        "ai_workflow_implementation_evaluation": 20,
+        "certification_labs_questions": 5,
+        "ai_concept_source_study": 8,
+        "certification_domain_study": 10,
+        "core_systems_security_cloud_study": 17,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "90m: Stage one candidate only when its owner, policy version, digest, exact excerpt and citation match the synthetic snapshot. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day226_candidate_becomes_draft_bound_to_exact_snapshot_and_citation`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "20m: Add independent labels for stale digest and wrong source version; verify false citations abstain. Source: Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day226_candidate_becomes_draft_bound_to_exact_snapshot_and_citation` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "5m: offline certification retrieval, Offline retrieval question: map snapshot_bound_draft to the currently published Content Domain 1: Design Secure Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 1: Design Secure Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "8m: read Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "10m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 1: Design Secure Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "17m: study hashlib — Secure hashes and message digests — Hash algorithms (https://docs.python.org/3/library/hashlib.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 226,
+        "title": "Bind a draft to exact approved source versions",
+        "seam": "snapshot_bound_draft",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day226_candidate_becomes_draft_bound_to_exact_snapshot_and_citation",
+        "project": 90,
+        "ai": 20,
+        "cert": 5,
+        "ai_study": 8,
+        "cert_study": 10,
+        "core_study": 17,
+        "shared": "review",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Stage one candidate only when its owner, policy version, digest, exact excerpt and citation match the synthetic snapshot.",
+        "ai_task": "Add independent labels for stale digest and wrong source version; verify false citations abstain.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "BEDROCK_GUARDRAILS",
+          "SAA_GUIDE",
+          "PYTHON_HASHLIB"
+        ],
+        "cert_prompt": "Offline retrieval question: map snapshot_bound_draft to the currently published Content Domain 1: Design Secure Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "BEDROCK_GUARDRAILS",
+        "core_source_key": "PYTHON_HASHLIB",
+        "cert_source_section": "Content Domain 1: Design Secure Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 227,
+      "date": "2027-06-07",
+      "title": "Reject altered text and foreign evidence",
+      "learner_seam": "grounded_candidate_validation",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day227_altered_unknown_stale_and_foreign_evidence_abstain",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        226
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://aws.amazon.com/certification/certified-developer-associate/",
+        "https://docs.python.org/3/library/json.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Reject altered text and foreign evidence. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-227",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 90,
+          "ai_workflow_implementation_evaluation": 20,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 90,
+        "ai_workflow_implementation_evaluation": 20,
+        "certification_labs_questions": 5,
+        "ai_concept_source_study": 9,
+        "certification_domain_study": 10,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "90m: Exercise altered text, foreign-owner citations, missing evidence and stale-version candidates on the actual preparation path. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day227_altered_unknown_stale_and_foreign_evidence_abstain`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "20m: Add adversarial cases for prompt-like text inside the source; score it as source content, never as an instruction. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day227_altered_unknown_stale_and_foreign_evidence_abstain` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "5m: offline certification retrieval, Offline retrieval question: map grounded_candidate_validation to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "9m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "10m: study AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q14",
+        "question_title": "Booking: retry after a lost response",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 227,
+        "title": "Reject altered text and foreign evidence",
+        "seam": "grounded_candidate_validation",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day227_altered_unknown_stale_and_foreign_evidence_abstain",
+        "project": 90,
+        "ai": 20,
+        "cert": 5,
+        "ai_study": 9,
+        "cert_study": 10,
+        "core_study": 16,
+        "shared": "question",
+        "question_id": "Q14",
+        "question_title": "Booking: retry after a lost response",
+        "project_task": "Exercise altered text, foreign-owner citations, missing evidence and stale-version candidates on the actual preparation path.",
+        "ai_task": "Add adversarial cases for prompt-like text inside the source; score it as source content, never as an instruction.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "DEV_ASSOCIATE",
+          "PYTHON_JSON"
+        ],
+        "cert_prompt": "Offline retrieval question: map grounded_candidate_validation to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "OPENAI_EVAL_BEST",
+        "core_source_key": "PYTHON_JSON",
+        "cert_source_section": "Review the exam guide",
+        "cert_source_key": "DEV_ASSOCIATE",
+        "cert_source_title": "AWS Certified Developer - Associate",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 228,
+      "date": "2027-06-08",
+      "title": "Stage a draft without changing policy state",
+      "learner_seam": "reference_only_staging",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day228_staging_keeps_policy_unchanged_and_draft_unapproved",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        227
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/hashlib.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 2: Design Resilient Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Stage a draft without changing policy state. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-228",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 9,
+          "certification_domain_study": 10,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 85,
+        "ai_workflow_implementation_evaluation": 25,
+        "certification_labs_questions": 5,
+        "ai_concept_source_study": 9,
+        "certification_domain_study": 10,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "85m: Keep candidate creation and draft persistence separate from the policy snapshot; only DRAFT may be staged. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day228_staging_keeps_policy_unchanged_and_draft_unapproved`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "25m: Compare pre/post fixture bytes and report draft, policy and audit counts separately. Source: Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day228_staging_keeps_policy_unchanged_and_draft_unapproved` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "5m: offline certification retrieval, Offline retrieval question: map reference_only_staging to the currently published Content Domain 2: Design Resilient Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 2: Design Resilient Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "9m: read Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "10m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 2: Design Resilient Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study hashlib — Secure hashes and message digests — Hash algorithms (https://docs.python.org/3/library/hashlib.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Solutions Architect - Associate (SAA-C03) / Content Domain 2: Design Resilient Architectures; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 228,
+        "title": "Stage a draft without changing policy state",
+        "seam": "reference_only_staging",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day228_staging_keeps_policy_unchanged_and_draft_unapproved",
+        "project": 85,
+        "ai": 25,
+        "cert": 5,
+        "ai_study": 9,
+        "cert_study": 10,
+        "core_study": 16,
+        "shared": "cert",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Keep candidate creation and draft persistence separate from the policy snapshot; only DRAFT may be staged.",
+        "ai_task": "Compare pre/post fixture bytes and report draft, policy and audit counts separately.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "AGENTCORE_EVALS",
+          "SAA_GUIDE",
+          "PYTHON_HASHLIB"
+        ],
+        "cert_prompt": "Offline retrieval question: map reference_only_staging to the currently published Content Domain 2: Design Resilient Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "AGENTCORE_EVALS",
+        "core_source_key": "PYTHON_HASHLIB",
+        "cert_source_section": "Content Domain 2: Design Resilient Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 229,
+      "date": "2027-06-09",
+      "title": "Deny cross-owner reviewers before audit",
+      "learner_seam": "reviewer_owner_authorization",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day229_foreign_reviewer_is_denied_without_state_or_audit_change",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        228
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/json.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 1: Design Secure Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Deny cross-owner reviewers before audit. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-229",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 5,
+          "ai_concept_source_study": 10,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 85,
+        "ai_workflow_implementation_evaluation": 25,
+        "certification_labs_questions": 5,
+        "ai_concept_source_study": 10,
+        "certification_domain_study": 9,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "85m: Require a synthetic human reviewer whose owner scope matches the draft; denial leaves ledger and audit unchanged. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day229_foreign_reviewer_is_denied_without_state_or_audit_change`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "25m: Add a foreign-owner review attempt and ensure it never enters the transition/audit path. Source: Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day229_foreign_reviewer_is_denied_without_state_or_audit_change` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "5m: offline certification retrieval, Offline retrieval question: map reviewer_owner_authorization to the currently published Content Domain 1: Design Secure Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 1: Design Secure Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "10m: read Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "9m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 1: Design Secure Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 229,
+        "title": "Deny cross-owner reviewers before audit",
+        "seam": "reviewer_owner_authorization",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day229_foreign_reviewer_is_denied_without_state_or_audit_change",
+        "project": 85,
+        "ai": 25,
+        "cert": 5,
+        "ai_study": 10,
+        "cert_study": 9,
+        "core_study": 16,
+        "shared": "review",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Require a synthetic human reviewer whose owner scope matches the draft; denial leaves ledger and audit unchanged.",
+        "ai_task": "Add a foreign-owner review attempt and ensure it never enters the transition/audit path.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "BEDROCK_GUARDRAILS",
+          "SAA_GUIDE",
+          "PYTHON_JSON"
+        ],
+        "cert_prompt": "Offline retrieval question: map reviewer_owner_authorization to the currently published Content Domain 1: Design Secure Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "BEDROCK_GUARDRAILS",
+        "core_source_key": "PYTHON_JSON",
+        "cert_source_section": "Content Domain 1: Design Secure Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 230,
+      "date": "2027-06-10",
+      "title": "Record explicit approval and rejection transitions",
+      "learner_seam": "human_review_transition",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day230_human_review_approves_once_and_audits_the_transition",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        229
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://aws.amazon.com/certification/certified-developer-associate/",
+        "https://docs.python.org/3/library/hashlib.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Record explicit approval and rejection transitions. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-230",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 10,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 80,
+        "ai_workflow_implementation_evaluation": 25,
+        "certification_labs_questions": 10,
+        "ai_concept_source_study": 10,
+        "certification_domain_study": 9,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "80m: Implement only explicit DRAFT→APPROVED or DRAFT→REJECTED decisions with one minimal audit event. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day230_human_review_approves_once_and_audits_the_transition`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "25m: Evaluate allow/reject labels against expected next states and exact event counts. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day230_human_review_approves_once_and_audits_the_transition` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "10m: offline certification retrieval, Offline retrieval question: map human_review_transition to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "10m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "9m: study AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study hashlib — Secure hashes and message digests — Hash algorithms (https://docs.python.org/3/library/hashlib.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q23",
+        "question_title": "Event pipeline: ingest and process",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 230,
+        "title": "Record explicit approval and rejection transitions",
+        "seam": "human_review_transition",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day230_human_review_approves_once_and_audits_the_transition",
+        "project": 80,
+        "ai": 25,
+        "cert": 10,
+        "ai_study": 10,
+        "cert_study": 9,
+        "core_study": 16,
+        "shared": "question",
+        "question_id": "Q23",
+        "question_title": "Event pipeline: ingest and process",
+        "project_task": "Implement only explicit DRAFT→APPROVED or DRAFT→REJECTED decisions with one minimal audit event.",
+        "ai_task": "Evaluate allow/reject labels against expected next states and exact event counts.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "DEV_ASSOCIATE",
+          "PYTHON_HASHLIB"
+        ],
+        "cert_prompt": "Offline retrieval question: map human_review_transition to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "OPENAI_EVAL_BEST",
+        "core_source_key": "PYTHON_HASHLIB",
+        "cert_source_section": "Review the exam guide",
+        "cert_source_key": "DEV_ASSOCIATE",
+        "cert_source_title": "AWS Certified Developer - Associate",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 231,
+      "date": "2027-06-11",
+      "title": "Reject review against a stale policy snapshot",
+      "learner_seam": "policy_version_conflict",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day231_stale_policy_version_and_snapshot_conflict_without_mutation",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        230
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/hashlib.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 2: Design Resilient Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Reject review against a stale policy snapshot. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-231",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 10,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 80,
+        "ai_workflow_implementation_evaluation": 25,
+        "certification_labs_questions": 10,
+        "ai_concept_source_study": 10,
+        "certification_domain_study": 9,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "80m: Bind the decision to policy version and snapshot digest; stale versions cannot approve. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day231_stale_policy_version_and_snapshot_conflict_without_mutation`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "25m: Measure conflict cases separately from denials and abstentions using literal expected categories. Source: Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day231_stale_policy_version_and_snapshot_conflict_without_mutation` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "10m: offline certification retrieval, Offline retrieval question: map policy_version_conflict to the currently published Content Domain 2: Design Resilient Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 2: Design Resilient Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "10m: read Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "9m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 2: Design Resilient Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study hashlib — Secure hashes and message digests — Hash algorithms (https://docs.python.org/3/library/hashlib.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 231,
+        "title": "Reject review against a stale policy snapshot",
+        "seam": "policy_version_conflict",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day231_stale_policy_version_and_snapshot_conflict_without_mutation",
+        "project": 80,
+        "ai": 25,
+        "cert": 10,
+        "ai_study": 10,
+        "cert_study": 9,
+        "core_study": 16,
+        "shared": "review",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Bind the decision to policy version and snapshot digest; stale versions cannot approve.",
+        "ai_task": "Measure conflict cases separately from denials and abstentions using literal expected categories.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "AGENTCORE_EVALS",
+          "SAA_GUIDE",
+          "PYTHON_HASHLIB"
+        ],
+        "cert_prompt": "Offline retrieval question: map policy_version_conflict to the currently published Content Domain 2: Design Resilient Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "AGENTCORE_EVALS",
+        "core_source_key": "PYTHON_HASHLIB",
+        "cert_source_section": "Content Domain 2: Design Resilient Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 232,
+      "date": "2027-06-12",
+      "title": "Make exact review replay idempotent",
+      "learner_seam": "review_idempotency_replay",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day232_exact_replay_returns_same_audit_event_without_duplicate",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        231
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://aws.amazon.com/certification/certified-developer-associate/",
+        "https://docs.python.org/3/library/json.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Make exact review replay idempotent. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-232",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 11,
+          "certification_domain_study": 9,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 80,
+        "ai_workflow_implementation_evaluation": 25,
+        "certification_labs_questions": 10,
+        "ai_concept_source_study": 11,
+        "certification_domain_study": 9,
+        "core_systems_security_cloud_study": 15,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "80m: A byte-for-byte equivalent request key replay returns the original result and does not append a second audit row. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day232_exact_replay_returns_same_audit_event_without_duplicate`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "25m: Add repeated-run fixtures and assert stable independent counts rather than mere nonempty output. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day232_exact_replay_returns_same_audit_event_without_duplicate` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "10m: offline certification retrieval, Offline retrieval question: map review_idempotency_replay to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "11m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "9m: study AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "15m: study json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Developer - Associate / Review the exam guide; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 232,
+        "title": "Make exact review replay idempotent",
+        "seam": "review_idempotency_replay",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day232_exact_replay_returns_same_audit_event_without_duplicate",
+        "project": 80,
+        "ai": 25,
+        "cert": 10,
+        "ai_study": 11,
+        "cert_study": 9,
+        "core_study": 15,
+        "shared": "cert",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "A byte-for-byte equivalent request key replay returns the original result and does not append a second audit row.",
+        "ai_task": "Add repeated-run fixtures and assert stable independent counts rather than mere nonempty output.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "DEV_ASSOCIATE",
+          "PYTHON_JSON"
+        ],
+        "cert_prompt": "Offline retrieval question: map review_idempotency_replay to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "OPENAI_EVAL_BEST",
+        "core_source_key": "PYTHON_JSON",
+        "cert_source_section": "Review the exam guide",
+        "cert_source_key": "DEV_ASSOCIATE",
+        "cert_source_title": "AWS Certified Developer - Associate",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 233,
+      "date": "2027-06-13",
+      "title": "Reject an idempotency key reused for changed intent",
+      "learner_seam": "review_key_conflict",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day233_same_key_with_changed_decision_or_draft_conflicts",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        232
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+        "https://aws.amazon.com/certification/certified-developer-associate/",
+        "https://docs.python.org/3/library/hashlib.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Reject an idempotency key reused for changed intent. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-233",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 80,
+          "ai_workflow_implementation_evaluation": 25,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 11,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 80,
+        "ai_workflow_implementation_evaluation": 25,
+        "certification_labs_questions": 10,
+        "ai_concept_source_study": 11,
+        "certification_domain_study": 8,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "80m: Reuse one key with a changed decision or draft ID; reject as conflict without state change. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day233_same_key_with_changed_decision_or_draft_conflicts`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "25m: Include key-collision adversarial cases; compare full ledger snapshots before and after. Source: Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day233_same_key_with_changed_decision_or_draft_conflicts` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "10m: offline certification retrieval, Offline retrieval question: map review_key_conflict to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "11m: read Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "8m: study AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study hashlib — Secure hashes and message digests — Hash algorithms (https://docs.python.org/3/library/hashlib.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "system_design_question_session",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "review_task": null,
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 233,
+        "title": "Reject an idempotency key reused for changed intent",
+        "seam": "review_key_conflict",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day233_same_key_with_changed_decision_or_draft_conflicts",
+        "project": 80,
+        "ai": 25,
+        "cert": 10,
+        "ai_study": 11,
+        "cert_study": 8,
+        "core_study": 16,
+        "shared": "question",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "project_task": "Reuse one key with a changed decision or draft ID; reject as conflict without state change.",
+        "ai_task": "Include key-collision adversarial cases; compare full ledger snapshots before and after.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "BEDROCK_GUARDRAILS",
+          "DEV_ASSOCIATE",
+          "PYTHON_HASHLIB"
+        ],
+        "cert_prompt": "Offline retrieval question: map review_key_conflict to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "BEDROCK_GUARDRAILS",
+        "core_source_key": "PYTHON_HASHLIB",
+        "cert_source_section": "Review the exam guide",
+        "cert_source_key": "DEV_ASSOCIATE",
+        "cert_source_title": "AWS Certified Developer - Associate",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 234,
+      "date": "2027-06-14",
+      "title": "Preserve an append-only minimal audit",
+      "learner_seam": "minimal_audit_integrity",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day234_audit_is_ordered_append_only_and_contains_no_source_text",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        233
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/json.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 3: Design High-Performing Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_JSON",
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html",
+          "sections": [
+            "Basic Usage"
+          ],
+          "provider": "Python",
+          "use": "Strict local synthetic fixture encoding and decoding; no network input."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Preserve an append-only minimal audit. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-234",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 11,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 16,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 75,
+        "ai_workflow_implementation_evaluation": 30,
+        "certification_labs_questions": 10,
+        "ai_concept_source_study": 11,
+        "certification_domain_study": 8,
+        "core_systems_security_cloud_study": 16,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "75m: Record monotonic event sequence, actor, owner, prior/next status and snapshot identity; exclude source text and model output. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day234_audit_is_ordered_append_only_and_contains_no_source_text`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "30m: Score event ordering, duplicate count and accidental source-text leakage independently. Source: Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day234_audit_is_ordered_append_only_and_contains_no_source_text` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "10m: offline certification retrieval, Offline retrieval question: map minimal_audit_integrity to the currently published Content Domain 3: Design High-Performing Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 3: Design High-Performing Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "11m: read Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "8m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 3: Design High-Performing Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "16m: study json — JSON encoder and decoder — Basic Usage (https://docs.python.org/3/library/json.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 234,
+        "title": "Preserve an append-only minimal audit",
+        "seam": "minimal_audit_integrity",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day234_audit_is_ordered_append_only_and_contains_no_source_text",
+        "project": 75,
+        "ai": 30,
+        "cert": 10,
+        "ai_study": 11,
+        "cert_study": 8,
+        "core_study": 16,
+        "shared": "review",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Record monotonic event sequence, actor, owner, prior/next status and snapshot identity; exclude source text and model output.",
+        "ai_task": "Score event ordering, duplicate count and accidental source-text leakage independently.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "AGENTCORE_EVALS",
+          "SAA_GUIDE",
+          "PYTHON_JSON"
+        ],
+        "cert_prompt": "Offline retrieval question: map minimal_audit_integrity to the currently published Content Domain 3: Design High-Performing Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "AGENTCORE_EVALS",
+        "core_source_key": "PYTHON_JSON",
+        "cert_source_section": "Content Domain 3: Design High-Performing Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 235,
+      "date": "2027-06-15",
+      "title": "Evaluate permission, grounding and review outcomes",
+      "learner_seam": "workflow_evaluation_metrics",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day235_only_approved_same_owner_draft_can_be_rendered",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        234
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://aws.amazon.com/certification/certified-developer-associate/",
+        "https://docs.python.org/3/library/subprocess.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Evaluate permission, grounding and review outcomes. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-235",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 75,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 10,
+          "ai_concept_source_study": 12,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 75,
+        "ai_workflow_implementation_evaluation": 30,
+        "certification_labs_questions": 10,
+        "ai_concept_source_study": 12,
+        "certification_domain_study": 8,
+        "core_systems_security_cloud_study": 15,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "75m: Compute offline outcomes against fixed cases authored independently of workflow code; separate citation, abstention, leakage and approval measures. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day235_only_approved_same_owner_draft_can_be_rendered`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "30m: Run fixed adversarial evaluation cases and show numerator/denominator for each metric. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day235_only_approved_same_owner_draft_can_be_rendered` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "10m: offline certification retrieval, Offline retrieval question: map workflow_evaluation_metrics to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "12m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "8m: study AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "15m: study subprocess — Subprocess management — Using the subprocess Module (https://docs.python.org/3/library/subprocess.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Developer - Associate / Review the exam guide; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 235,
+        "title": "Evaluate permission, grounding and review outcomes",
+        "seam": "workflow_evaluation_metrics",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day235_only_approved_same_owner_draft_can_be_rendered",
+        "project": 75,
+        "ai": 30,
+        "cert": 10,
+        "ai_study": 12,
+        "cert_study": 8,
+        "core_study": 15,
+        "shared": "cert",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Compute offline outcomes against fixed cases authored independently of workflow code; separate citation, abstention, leakage and approval measures.",
+        "ai_task": "Run fixed adversarial evaluation cases and show numerator/denominator for each metric.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "DEV_ASSOCIATE",
+          "PYTHON_SUBPROCESS"
+        ],
+        "cert_prompt": "Offline retrieval question: map workflow_evaluation_metrics to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "OPENAI_EVAL_BEST",
+        "core_source_key": "PYTHON_SUBPROCESS",
+        "cert_source_section": "Review the exam guide",
+        "cert_source_key": "DEV_ASSOCIATE",
+        "cert_source_title": "AWS Certified Developer - Associate",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 236,
+      "date": "2027-06-16",
+      "title": "Fail closed on timeout and malformed generation output",
+      "learner_seam": "adapter_failure_abstention",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day236_timeout_unavailable_malformed_and_unknown_fail_closed",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        235
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/subprocess.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "BEDROCK_GUARDRAILS",
+          "title": "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+          "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+          "sections": [
+            "Contextual grounding checks"
+          ],
+          "provider": "AWS",
+          "use": "Compare grounding/fallback concepts only; no AWS service or guardrail is invoked."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 2: Design Resilient Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Fail closed on timeout and malformed generation output. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-236",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 70,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 15,
+          "ai_concept_source_study": 12,
+          "certification_domain_study": 8,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 70,
+        "ai_workflow_implementation_evaluation": 30,
+        "certification_labs_questions": 15,
+        "ai_concept_source_study": 12,
+        "certification_domain_study": 8,
+        "core_systems_security_cloud_study": 15,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "70m: Use injected synthetic timeout/unavailable/malformed outcomes; no live provider, retries, approval or audit mutation. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day236_timeout_unavailable_malformed_and_unknown_fail_closed`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "30m: Add one failure fixture per class and assert exact fallback plus unchanged ledger. Source: Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day236_timeout_unavailable_malformed_and_unknown_fail_closed` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "15m: offline certification retrieval, Offline retrieval question: map adapter_failure_abstention to the currently published Content Domain 2: Design Resilient Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 2: Design Resilient Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "12m: read Detect and filter harmful content by using Amazon Bedrock Guardrails — Contextual grounding checks (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "8m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 2: Design Resilient Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "15m: study subprocess — Subprocess management — Using the subprocess Module (https://docs.python.org/3/library/subprocess.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 236,
+        "title": "Fail closed on timeout and malformed generation output",
+        "seam": "adapter_failure_abstention",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day236_timeout_unavailable_malformed_and_unknown_fail_closed",
+        "project": 70,
+        "ai": 30,
+        "cert": 15,
+        "ai_study": 12,
+        "cert_study": 8,
+        "core_study": 15,
+        "shared": "review",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Use injected synthetic timeout/unavailable/malformed outcomes; no live provider, retries, approval or audit mutation.",
+        "ai_task": "Add one failure fixture per class and assert exact fallback plus unchanged ledger.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "BEDROCK_GUARDRAILS",
+          "SAA_GUIDE",
+          "PYTHON_SUBPROCESS"
+        ],
+        "cert_prompt": "Offline retrieval question: map adapter_failure_abstention to the currently published Content Domain 2: Design Resilient Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "BEDROCK_GUARDRAILS",
+        "core_source_key": "PYTHON_SUBPROCESS",
+        "cert_source_section": "Content Domain 2: Design Resilient Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 237,
+      "date": "2027-06-17",
+      "title": "Detect stale concurrent review attempts",
+      "learner_seam": "optimistic_revision_conflict",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day237_stale_ledger_revision_cannot_overwrite_concurrent_review",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        236
+      ],
+      "recovery_day": false,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+        "https://docs.python.org/3/library/hashlib.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "AGENTCORE_EVALS",
+          "title": "Evaluate agent performance with Amazon Bedrock AgentCore Evaluations",
+          "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+          "sections": [
+            "Dataset evaluation"
+          ],
+          "provider": "AWS",
+          "use": "Reference-only comparison to local fixed-case evaluation; no AWS account, dataset upload, or spend."
+        },
+        {
+          "key": "SAA_GUIDE",
+          "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+          "sections": [
+            "Content Domain 4: Design Cost-Optimized Architectures"
+          ],
+          "provider": "AWS",
+          "use": "At study time, confirm the currently published guide/version and record one exact domain mapping; no readiness or AWS deployment claim."
+        },
+        {
+          "key": "PYTHON_HASHLIB",
+          "title": "hashlib — Secure hashes and message digests",
+          "url": "https://docs.python.org/3/library/hashlib.html",
+          "sections": [
+            "Hash algorithms"
+          ],
+          "provider": "Python",
+          "use": "Bind an explanation draft and review to exact local snapshot bytes."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Detect stale concurrent review attempts. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-237",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 70,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 15,
+          "ai_concept_source_study": 14,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 15,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 70,
+        "ai_workflow_implementation_evaluation": 30,
+        "certification_labs_questions": 15,
+        "ai_concept_source_study": 14,
+        "certification_domain_study": 6,
+        "core_systems_security_cloud_study": 15,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "70m: A command against an old ledger revision conflicts and preserves the committed decision and audit. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day237_stale_ledger_revision_cannot_overwrite_concurrent_review`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "30m: Add two competing decisions based on the same revision; only the first can commit. Source: Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day237_stale_ledger_revision_cannot_overwrite_concurrent_review` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "15m: offline certification retrieval, Offline retrieval question: map optimistic_revision_conflict to the currently published Content Domain 4: Design Cost-Optimized Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim. Source: AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 4: Design Cost-Optimized Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html). Evidence: exact guide version, heading, answer and limitation; no readiness claim or booking.",
+        "ai_concept_source_study": "14m: read Evaluate agent performance with Amazon Bedrock AgentCore Evaluations — Dataset evaluation (https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "6m: study AWS Certified Solutions Architect - Associate (SAA-C03) — Content Domain 4: Design Cost-Optimized Architectures (https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "15m: study hashlib — Secure hashes and message digests — Hash algorithms (https://docs.python.org/3/library/hashlib.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "certification_retrieval_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Retrieve and answer one offline question from AWS Certified Solutions Architect - Associate (SAA-C03) / Content Domain 4: Design Cost-Optimized Architectures; record version, exact heading, checked answer and gap. No exam booking or readiness claim.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 237,
+        "title": "Detect stale concurrent review attempts",
+        "seam": "optimistic_revision_conflict",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day237_stale_ledger_revision_cannot_overwrite_concurrent_review",
+        "project": 70,
+        "ai": 30,
+        "cert": 15,
+        "ai_study": 14,
+        "cert_study": 6,
+        "core_study": 15,
+        "shared": "cert",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "A command against an old ledger revision conflicts and preserves the committed decision and audit.",
+        "ai_task": "Add two competing decisions based on the same revision; only the first can commit.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "AGENTCORE_EVALS",
+          "SAA_GUIDE",
+          "PYTHON_HASHLIB"
+        ],
+        "cert_prompt": "Offline retrieval question: map optimistic_revision_conflict to the currently published Content Domain 4: Design Cost-Optimized Architectures; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "AGENTCORE_EVALS",
+        "core_source_key": "PYTHON_HASHLIB",
+        "cert_source_section": "Content Domain 4: Design Cost-Optimized Architectures",
+        "cert_source_key": "SAA_GUIDE",
+        "cert_source_title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    },
+    {
+      "day": 238,
+      "date": "2027-06-18",
+      "title": "Run the bounded draft-to-approved reference path",
+      "learner_seam": "bounded_workflow_closeout",
+      "module": "CoverStory bounded synthetic workflow",
+      "signature": "ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py",
+      "selectors": [
+        "python3 scripts/check_continuation_211_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+        "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
+      ],
+      "depends_on_days": [
+        237
+      ],
+      "recovery_day": true,
+      "study_refs": [
+        "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "https://aws.amazon.com/certification/certified-developer-associate/",
+        "https://docs.python.org/3/library/subprocess.html"
+      ],
+      "study_guidance": [
+        {
+          "key": "OPENAI_EVAL_BEST",
+          "title": "Evaluation best practices",
+          "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+          "sections": [
+            "Design your eval process"
+          ],
+          "provider": "OpenAI documentation",
+          "use": "Conceptual test design only: fixed synthetic cases and independent expected labels. Do not use the deprecated Evals API/platform."
+        },
+        {
+          "key": "DEV_ASSOCIATE",
+          "title": "AWS Certified Developer - Associate",
+          "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+          "sections": [
+            "Review the exam guide"
+          ],
+          "provider": "AWS",
+          "use": "At study time follow the currently linked official guide and verify its version and heading. Do not assume a version or claim readiness."
+        },
+        {
+          "key": "PYTHON_SUBPROCESS",
+          "title": "subprocess — Subprocess management",
+          "url": "https://docs.python.org/3/library/subprocess.html",
+          "sections": [
+            "Using the subprocess Module"
+          ],
+          "provider": "Python",
+          "use": "Reason about bounded local runner failures and timeouts; no subprocess is used to invoke a provider."
+        }
+      ],
+      "engineering_architecture": {
+        "decision": "Assistant-supplied choice: Run the bounded draft-to-approved reference path. Keep the workflow offline and synthetic. Generation creates only a candidate; bind exact owner, source/version and snapshot digest before staging a DRAFT. A separately invoked human review must be owner-scoped, version/revision-bound, idempotent and audited before same-owner exposure. If the Day 210 evidence gate is absent or blocked, route project minutes to the first unmet CoverStory selector and keep AI evaluation on fixed local labels. No model can approve, mutate policy, or cause an external action; learner implements and tests these supplied boundaries.",
+        "note_ref": "assistant-architecture-notes.md#day-238",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "capstone_proposal_required": false,
+        "system_design_scope": "separate_interview_question_bank_only"
+      },
+      "budget": {
+        "engineering_minutes": 165,
+        "study": 35,
+        "practice_and_tests": 115,
+        "evidence": 15,
+        "shared_interview_or_remaining_reviews_minutes": 45,
+        "total": 210,
+        "workstream_minutes": {
+          "project_implementation_tests": 85,
+          "ai_workflow_implementation_evaluation": 30,
+          "certification_labs_questions": 0,
+          "ai_concept_source_study": 15,
+          "certification_domain_study": 6,
+          "core_systems_security_cloud_study": 14,
+          "evidence": 15
+        }
+      },
+      "workstream_minutes": {
+        "project_implementation_tests": 85,
+        "ai_workflow_implementation_evaluation": 30,
+        "certification_labs_questions": 0,
+        "ai_concept_source_study": 15,
+        "certification_domain_study": 6,
+        "core_systems_security_cloud_study": 14,
+        "evidence": 15
+      },
+      "task_minutes": {
+        "project_implementation_tests": "85m: Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional. Source: existing CoverStory recovery contract and ai/grounded/continuation_225.py. First run `python3 scripts/check_continuation_211_entry_gate.py`. If the gate is absent/blocked, run the first unmet recovery selector, in this order: `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test`; `./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test`; `./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test`; `./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test`; `python3 scripts/check_streamforge_169_182_entry_gate.py`; do not run the new workflow test. Only if genuine Day 210 evidence makes the task eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated`. Evidence: exact selector/result, state before/after, changed paths and first failing assertion.",
+        "ai_workflow_implementation_evaluation": "30m: Re-run the complete local fixed dataset and compare exact per-case output to independent labels. Source: Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices). Command: `python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated` only when the gate is eligible; otherwise use a fixed local-label fixture without invoking the workflow or any provider. Evidence: per-case expected and actual labels, counts and explicit negative control.",
+        "certification_labs_questions": "0m: no certification question slice today. Source: none. Command: none. Evidence: retain the zero allocation; no extra study.",
+        "ai_concept_source_study": "15m: read Evaluation best practices — Design your eval process (https://developers.openai.com/api/docs/guides/evaluation-best-practices) and note one design concept plus one limitation. Command: open the cited official page and the exact named section; record the title/heading in the daily evidence note. No Evals API/platform use, provider call, or cloud service.",
+        "certification_domain_study": "6m: study AWS Certified Developer - Associate — Review the exam guide (https://aws.amazon.com/certification/certified-developer-associate/); recheck the currently published guide/version at study time, then record one concept and its limit. Command: open the official source and exact heading, recording the guide version in the evidence note. No readiness or pass claim.",
+        "core_systems_security_cloud_study": "14m: study subprocess — Subprocess management — Using the subprocess Module (https://docs.python.org/3/library/subprocess.html) as a local design comparison. Command: read the exact official heading and record one implementation implication and one boundary. No cloud calls, credentials or deployment.",
+        "evidence": "15m: Record actual learner status; command and output; 40-character source commit SHA; 64-character artifact SHA-256; changed paths; assistance; first unmet assertion; next action. Keep scaffold, CI and eligibility separate from learner completion."
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "within_engineering_minutes": false,
+        "mode": "unfinished_review",
+        "question_id": null,
+        "question_title": null,
+        "review_task": "Review ai/grounded/continuation_225.py, ai/grounded/learner_acceptance/test_continuation_225.py; record the first failing assertion or unresolved invariant and next selector. No capstone design proposal or post-hoc justification.",
+        "allocation_minutes": {
+          "requirements": 5,
+          "constraints": 5,
+          "architecture_or_review": 15,
+          "failure_modes": 10,
+          "tradeoffs_and_next_step": 10
+        }
+      },
+      "learner_status": "unobserved_not_implied_by_scaffold",
+      "task": {
+        "day": 238,
+        "title": "Run the bounded draft-to-approved reference path",
+        "seam": "bounded_workflow_closeout",
+        "files": [
+          "ai/grounded/continuation_225.py",
+          "ai/grounded/learner_acceptance/test_continuation_225.py"
+        ],
+        "selector": "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_225.Continuation225Acceptance.test_day238_full_path_generation_is_not_approval_and_exposure_is_gated",
+        "project": 85,
+        "ai": 30,
+        "cert": 0,
+        "ai_study": 15,
+        "cert_study": 6,
+        "core_study": 14,
+        "shared": "review",
+        "question_id": null,
+        "question_title": null,
+        "project_task": "Run current gate and permitted selectors; prove generation alone cannot expose text, approve, or mutate policy; keep unresolved work conditional.",
+        "ai_task": "Re-run the complete local fixed dataset and compare exact per-case output to independent labels.",
+        "study_source_keys": [
+          "OPENAI_EVAL_BEST",
+          "DEV_ASSOCIATE",
+          "PYTHON_SUBPROCESS"
+        ],
+        "cert_prompt": "Offline retrieval question: map bounded_workflow_closeout to the currently published Review the exam guide; record exact guide version, heading, answer and one limitation; no exam readiness claim.",
+        "ai_source_key": "OPENAI_EVAL_BEST",
+        "core_source_key": "PYTHON_SUBPROCESS",
+        "cert_source_section": "Review the exam guide",
+        "cert_source_key": "DEV_ASSOCIATE",
+        "cert_source_title": "AWS Certified Developer - Associate",
+        "recovery_selectors": [
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test",
+          "./mvnw -Plocal-app,learner-tests -Dtest=ReleaseRehearsalPolicyAcceptanceTest#day139FullLocalRehearsalLeavesCloudUnperformed test",
+          "python3 scripts/check_streamforge_169_182_entry_gate.py"
+        ]
+      },
+      "separate_learning_repository": {
+        "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
+      }
+    }
+  ]
+}
