@@ -26,6 +26,10 @@ Days 9 and 12; seeded read model. Earlier unfinished collaborators are replaced 
 
 Use the [executable Day 15 guide](../teaching/day-15-join-projection.md#worked-trace) before implementation. Work through the separate shelf/spotlight/hold example and then transfer only ownership, optional-child, empty-list, and field-allowlist ideas to the existing journey contract. No new schema or capstone SQL is supplied.
 
+## Interview-first proposal (5 minutes inside practice)
+
+Before implementation hints or AI, write a brief task-specific proposal: the user-visible result, data/UI boundary, one expected case, and one failure case. Save it, then continue the original acceptance in the remaining 80 minutes of the existing practice block. Do not add a post-hoc design essay. The 10-minute evidence block records actual command, result, assistance, changed paths, and blocker; unfinished acceptance stays pending in the normal recovery queue.
+
 ## Evidence (10 minutes)
 
 Empty/populated JSON fixtures. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +39,6 @@ Empty/populated JSON fixtures. Record dated attempt state (`not attempted`, `att
 `./mvnw -Plearner-tests -Dtest=Day15ContractTest test`
 
 This selector starts a real embedded PostgreSQL instance with fixed owner/quote/selection rows and exercises the query TODO. Its expected TODO failures are not an infrastructure pass.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** When is an empty result different from an unknown journey? How can a join leak another owner’s data?
-
-**Observable evidence:** Explain join/projection cardinality and scoped predicates; show empty, populated and other-owner examples.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

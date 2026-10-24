@@ -26,6 +26,10 @@ Days 9 and 12; seeded history. Earlier unfinished collaborators are replaced by 
 
 Sorting, pagination cost and query complexity.
 
+## Interview-first proposal (5 minutes inside practice)
+
+Before implementation hints or AI, write a brief task-specific proposal: the user-visible result, data/UI boundary, one expected case, and one failure case. Save it, then continue the original acceptance in the remaining 80 minutes of the existing practice block. Do not add a post-hoc design essay. The 10-minute evidence block records actual command, result, assistance, changed paths, and blocker; unfinished acceptance stays pending in the normal recovery queue.
+
 ## Evidence (10 minutes)
 
 Adjacent page fixture assertions. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +39,6 @@ Adjacent page fixture assertions. Record dated attempt state (`not attempted`, `
 `./mvnw -Plearner-tests -Dtest=Day16ContractTest test`
 
 This selector starts a real embedded PostgreSQL instance with timestamp ties and multiple pages. Expected TODO failures are not a pagination or infrastructure pass.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** Why does sorting only by timestamp fail? What happens when rows are inserted between offset-page requests?
-
-**Observable evidence:** Demonstrate stable fixture ties; explain the bounded OFFSET tradeoff and why intervening inserts can change later pages. Cursor pagination is outside this assignment.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

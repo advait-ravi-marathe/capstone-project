@@ -1512,7 +1512,43 @@
       ],
       "course_learning_total_viewing_seconds": 770,
       "title": "Day15: Journey summary + pointer-elimination proof (LC 11)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#requirement-slice",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 07 - Querying Data using Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 336,
+            "source_item_id": "35019858",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 07 - Understanding Optional class in Java",
+            "section_title": "APPENDIX - Introduction to Functional Programming with Java",
+            "duration_seconds": 434,
+            "source_item_id": "35017356",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-15.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 15 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY16",
@@ -1569,7 +1605,36 @@
       ],
       "course_learning_total_viewing_seconds": 396,
       "title": "Day16: History reads + reviews LC 238 D+7, LC 167 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#stable-pagination",
+          "docs/reboot/interview/pattern-library.md#read-scaling"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 33 - Exploring JPA and Hibernate Queries for REST API",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 396,
+            "source_item_id": "35018738",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-16.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 16 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY17",
@@ -1628,7 +1693,62 @@
       ],
       "course_learning_total_viewing_seconds": 546,
       "title": "Day17: Product UI + variable sliding window (LC 3)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q01",
+        "question_href": "docs/reboot/interview/question-bank.md#q01",
+        "question_title": "URL shortener: smallest useful design",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#requirement-slice",
+          "docs/reboot/interview/pattern-library.md#short-key-allocation",
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint2-session-scope.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Making Components Reusable with Props [Core Concept]",
+            "section_title": "React Essentials - Components, JSX, Props, State & More",
+            "duration_seconds": 546,
+            "source_item_id": "39649022",
+            "course_id": "1362070"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: render the ready-state product and accessible coverage options from the supplied typed fixture; run the named focused Vitest case.",
+        "deferred_work_id": "S2-D17-1",
+        "acceptance": "The original Day 17 EAI acceptance criteria remain unchanged; completing this interview and focused slice does not mark the full day complete.",
+        "evidence": "Record the actual selector/result or blocker, changed paths, assistance label, and saved pre-assistance proposal. Record the relevant rubric score in the proposal record; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ]
+      }
     },
     {
       "id": "CS-DAY18",
@@ -1685,7 +1805,36 @@
       ],
       "course_learning_total_viewing_seconds": 672,
       "title": "Day18: Quote input + reviews LC 125 D+7, LC 11 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
+          "docs/reboot/interview/pattern-library.md#requirement-slice"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Managing & Getting User Input via State & Generic Handlers",
+            "section_title": "Working with Forms & User Input",
+            "duration_seconds": 672,
+            "source_item_id": "39837956",
+            "course_id": "1362070"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-18.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 18 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY19",
@@ -1766,7 +1915,43 @@
       ],
       "course_learning_total_viewing_seconds": 472,
       "title": "Day19: Quote snapshot + shrinking valid window (LC 209)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
+          "docs/reboot/interview/pattern-library.md#cache-policy"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Using async / await",
+            "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+            "duration_seconds": 145,
+            "source_item_id": "39836950",
+            "course_id": "1362070"
+          },
+          {
+            "title": "Handling Loading States",
+            "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+            "duration_seconds": 327,
+            "source_item_id": "39836954",
+            "course_id": "1362070"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-19.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 19 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY20",
@@ -1823,7 +2008,36 @@
       ],
       "course_learning_total_viewing_seconds": 556,
       "title": "Day20: Selection UI + reviews LC 167 D+7, LC 3 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
+          "docs/reboot/interview/pattern-library.md#timeouts-and-retries"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Handling HTTP Errors",
+            "section_title": "Sending Http Requests (e.g. Connecting to a Database)",
+            "duration_seconds": 556,
+            "source_item_id": "39836956",
+            "course_id": "1362070"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-20.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 20 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY21",
@@ -1890,7 +2104,62 @@
       ],
       "course_learning_total_viewing_seconds": 668,
       "title": "Day21: CSRF writes + stack (LC 20)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q07",
+        "question_href": "docs/reboot/interview/question-bank.md#q07",
+        "question_title": "API gateway: route and protect",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#gateway-boundary",
+          "docs/reboot/interview/pattern-library.md#load-balancing",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint2-session-scope.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 08 - Exploring Spring Security - Cross Site Request Forgery - CSRF",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 668,
+            "source_item_id": "35017674",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: run the instructor-owned server-issued CSRF cookie/header matrix and record status plus handler counts. The learner authorization selector remains blocked at the actual Day 12 TODO.",
+        "deferred_work_id": "S2-D21-1",
+        "acceptance": "The original Day 21 EAI acceptance criteria remain unchanged; completing this interview and focused slice does not mark the full day complete.",
+        "evidence": "Record the actual selector/result or blocker, changed paths, assistance label, and saved pre-assistance proposal. Record the relevant rubric score in the proposal record; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ]
+      }
     },
     {
       "id": "CS-DAY22",
@@ -1951,7 +2220,36 @@
       ],
       "course_learning_total_viewing_seconds": 593,
       "title": "Day22: Request correlation + reviews LC 121 D+21, LC 11 D+7, LC 209 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#http-boundary",
+          "docs/reboot/interview/pattern-library.md#resilience"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 09 - Quick Overview - Importance of Logging with Spring Boot",
+            "section_title": "APPENDIX - Build Java Web Application with Spring, Spring Boot and Hibernate",
+            "duration_seconds": 593,
+            "source_item_id": "35018950",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-22.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 22 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY23",
@@ -2024,7 +2322,36 @@
       ],
       "course_learning_total_viewing_seconds": 453,
       "title": "Day23: Health endpoint + augmented stack (LC 155)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#resilience",
+          "docs/reboot/interview/pattern-library.md#load-balancing"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 12 - Get Production Ready with Spring Boot - 4 - Actuator",
+            "section_title": "Getting Started with Spring Boot",
+            "duration_seconds": 453,
+            "source_item_id": "35019902",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-23.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 23 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY24",
@@ -2092,7 +2419,68 @@
       ],
       "course_learning_total_viewing_seconds": 220,
       "title": "Day24: Query plan + reviews LC 1 D+21, LC 3 D+7, LC 20 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q10",
+        "question_href": "docs/reboot/interview/question-bank.md#q10",
+        "question_title": "Notification service: retries",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/pattern-library.md#idempotency"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint2-session-scope.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 82 - Performance Tuning - Measure before Tuning",
+            "section_title": "Performance Tuning Tips with Hibernate & JPA",
+            "duration_seconds": 116,
+            "source_item_id": "7907664",
+            "course_id": null
+          },
+          {
+            "title": "Step 83 - Performance Tuning - Indexes",
+            "section_title": "Performance Tuning Tips with Hibernate & JPA",
+            "duration_seconds": 104,
+            "source_item_id": "7907666",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: implement the single query index, preserve ordered results, record both EXPLAIN plans, and run the existing real-PostgreSQL selector.",
+        "deferred_work_id": "S2-D24-1",
+        "acceptance": "The original Day 24 EAI acceptance criteria remain unchanged; completing this interview and focused slice does not mark the full day complete.",
+        "evidence": "Record the actual selector/result or blocker, changed paths, assistance label, and saved pre-assistance proposal. Record the relevant rubric score in the proposal record; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ]
+      }
     },
     {
       "id": "CS-DAY25",
@@ -2143,7 +2531,29 @@
       "course_learning_lessons": [],
       "course_learning_total_viewing_seconds": 0,
       "title": "Day25: Concurrent selection + binary-search bridge (outside Top Interview 150) (LC 704)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/pattern-library.md#concurrency-guards",
+          "docs/reboot/interview/pattern-library.md#idempotency"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-25.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 25 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY26",
@@ -2194,7 +2604,28 @@
       "course_learning_lessons": [],
       "course_learning_total_viewing_seconds": 0,
       "title": "Day26: Audit + reviews LC 383 D+21, LC 209 D+7, LC 155 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/pattern-library.md#event-pipeline"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-26.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 26 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY27",
@@ -2264,7 +2695,44 @@
       ],
       "course_learning_total_viewing_seconds": 641,
       "title": "Day27: Regression fix + boundary search (LC 35)",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#requirement-slice",
+          "docs/reboot/interview/pattern-library.md#measure-before-scaling",
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 26 - Good Unit Tests",
+            "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
+            "duration_seconds": 334,
+            "source_item_id": "9968398",
+            "course_id": null
+          },
+          {
+            "title": "Step 03 - Using Response Matchers to check status and content",
+            "section_title": "Section 2 - Unit Testing With Spring Boot And Mockito",
+            "duration_seconds": 307,
+            "source_item_id": "9968332",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the unchanged full acceptance in docs/reboot/contracts/day-27.md. Spend the first five minutes of practice saving a task-specific proposal; continue implementation and testing in the remaining 80 minutes.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 27 EAI acceptance criteria remain unchanged; the proposal is not completion evidence.",
+        "evidence": "Record actual command/result or blocker, changed paths, assistance, and the saved initial proposal. No post-hoc architecture essay."
+      }
     },
     {
       "id": "CS-DAY28",
@@ -2312,7 +2780,7 @@
         ],
         "evidence_output_path": "evidence/reboot/day-28.json"
       },
-      "course_learning_block": "Review only; no new lecture or feature. Use the Day 28 integrated review to trace actual observations and name blocked prerequisites. Keep the existing mock inside practice: 65 build/test + 20 mock = 85 minutes. Study cap 25 minutes.",
+      "course_learning_block": "Review only; no new lecture or feature. Use the Day 28 integrated review and actual prerequisites within the existing 25-minute study cap. Practice remains 45-minute interview + 40-minute EAI slice = 85 minutes; evidence remains 10 minutes.",
       "course_learning_source_status": "catalog_titles_verified_videos_not_watched",
       "course_learning_supplement_path": "docs/reboot/teaching/day-28-integrated-review.md",
       "course_learning_access": [
@@ -2321,7 +2789,54 @@
       "course_learning_lessons": [],
       "course_learning_total_viewing_seconds": 0,
       "title": "Day28: Browser-to-database gate + reviews LC 49 D+21, LC 20 D+7, LC 704 D+3",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q14",
+        "question_href": "docs/reboot/interview/question-bank.md#q14",
+        "question_title": "Booking retry after a lost response",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#idempotency",
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
+          "docs/reboot/interview/pattern-library.md#transaction-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/sprint2-session-scope.md"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: run the existing real-browser-to-PostgreSQL selector to its first unmet boundary and preserve actual browser/database observations.",
+        "deferred_work_id": "S2-D28-1",
+        "acceptance": "The original Day 28 EAI acceptance criteria remain unchanged; completing this interview and focused slice does not mark the full day complete.",
+        "evidence": "Record the actual selector/result or blocker, changed paths, assistance label, and saved pre-assistance proposal. Record the relevant rubric score in the proposal record; do not add post-hoc justification.",
+        "mock_phases": [
+          {
+            "minutes": 5,
+            "activity": "Requirements"
+          },
+          {
+            "minutes": 5,
+            "activity": "Capacity and constraints"
+          },
+          {
+            "minutes": 15,
+            "activity": "Initial architecture and data model"
+          },
+          {
+            "minutes": 10,
+            "activity": "Bottlenecks, reliability, scaling"
+          },
+          {
+            "minutes": 10,
+            "activity": "Trade-offs, failures, follow-ups"
+          }
+        ]
+      }
     },
     {
       "id": "CS-DAY29",

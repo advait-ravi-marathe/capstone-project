@@ -48,14 +48,16 @@ reference answers, or AI. A question never expands the current product scope.
   relational database, and which bytes can live in object storage?
   **Concepts:** ownership, metadata, large payloads. **Patterns:**
   [object storage](pattern-library.md#object-storage),
-  [ownership boundary](pattern-library.md#ownership-boundary).
+  [ownership boundary](pattern-library.md#ownership-boundary),
+  [SQL versus document storage](pattern-library.md#data-store-choice).
 
 <a id="q07"></a>
 7. **Q07 — API gateway: route and protect.** Which checks belong at the edge,
   and which must remain in the owning service? **Concepts:** routing,
   authentication, authorization. **Patterns:**
   [gateway boundary](pattern-library.md#gateway-boundary),
-  [ownership boundary](pattern-library.md#ownership-boundary).
+  [ownership boundary](pattern-library.md#ownership-boundary),
+  [load balancing](pattern-library.md#load-balancing).
 
 <a id="q08"></a>
 8. **Q08 — API gateway: safe error contract.** How can the gateway preserve
@@ -94,7 +96,8 @@ reference answers, or AI. A question never expands the current product scope.
   prevent two requests from reserving the final seat? **Concepts:** atomicity,
   concurrency, durable uniqueness. **Patterns:**
   [transaction boundary](pattern-library.md#transaction-boundary),
-  [optimistic and unique guards](pattern-library.md#concurrency-guards).
+  [optimistic and unique guards](pattern-library.md#concurrency-guards),
+  [SQL versus document storage](pattern-library.md#data-store-choice).
 
 ## Intermediate
 
@@ -103,7 +106,8 @@ reference answers, or AI. A question never expands the current product scope.
   booking safely when it cannot tell whether the first write committed?
   **Concepts:** intent identity, readback, conflict. **Patterns:**
   [idempotency](pattern-library.md#idempotency),
-  [transaction boundary](pattern-library.md#transaction-boundary).
+  [transaction boundary](pattern-library.md#transaction-boundary),
+  [frontend state machine](pattern-library.md#frontend-state-machine).
 
 <a id="q15"></a>
 15. **Q15 — Messaging: publish an order event.** How do you keep a committed
@@ -130,14 +134,16 @@ reference answers, or AI. A question never expands the current product scope.
   prevent stale private data from surviving a change of owner or version?
   **Concepts:** invalidation, versioning, security. **Patterns:**
   [cache policy](pattern-library.md#cache-policy),
-  [ownership boundary](pattern-library.md#ownership-boundary).
+  [ownership boundary](pattern-library.md#ownership-boundary),
+  [frontend state machine](pattern-library.md#frontend-state-machine).
 
 <a id="q19"></a>
 19. **Q19 — Payments: accept one payment intent.** Which states distinguish
   pending, authorized, captured, declined, and unknown outcome? **Concepts:**
   state machine, external boundary, audit. **Patterns:**
   [payment state](pattern-library.md#payment-state),
-  [idempotency](pattern-library.md#idempotency).
+  [idempotency](pattern-library.md#idempotency),
+  [frontend state machine](pattern-library.md#frontend-state-machine).
 
 <a id="q20"></a>
 20. **Q20 — Payments: reconcile timeout.** A provider timed out after the
@@ -243,7 +249,8 @@ reference answers, or AI. A question never expands the current product scope.
   availability consequences of enforcing a limit across several regions?
   **Concepts:** partition, approximate counters, fairness. **Patterns:**
   [rate limiting](pattern-library.md#rate-limiting),
-  [multi-region boundary](pattern-library.md#multi-region-boundary).
+  [multi-region boundary](pattern-library.md#multi-region-boundary),
+  [load balancing](pattern-library.md#load-balancing).
 
 <a id="q36"></a>
 36. **Q36 — Object-store recovery.** How would you detect an incomplete upload

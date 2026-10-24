@@ -26,6 +26,10 @@ Day 3; fixed request fixtures and fake logger. Earlier unfinished collaborators 
 
 Request-ID selection, validation, response propagation, and error-only audit; never log request data.
 
+## Interview-first proposal (5 minutes inside practice)
+
+Before implementation hints or AI, write a brief task-specific proposal: the user-visible result, data/UI boundary, one expected case, and one failure case. Save it, then continue the original acceptance in the remaining 80 minutes of the existing practice block. Do not add a post-hoc design essay. The 10-minute evidence block records actual command, result, assistance, changed paths, and blocker; unfinished acceptance stays pending in the normal recovery queue.
+
 ## Evidence (10 minutes)
 
 Captured log assertions. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +39,6 @@ Captured log assertions. Record dated attempt state (`not attempted`, `attempted
 `./mvnw -Plearner-tests -Dtest=Day22ContractTest test`
 
 The fixed request-filter tests run through the named selector and currently fail at the explicit correlation TODO. Infrastructure checks are separate.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** A user reports an error. How can you follow the request without logging its body or token?
-
-**Observable evidence:** Find matching correlation ID; show unsafe-ID replacement and log-redaction assertions; explain why IDs are poor metric labels.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A1](../interview-evidence-overlay.md#a1) (anecdotal); [A7](../interview-evidence-overlay.md#a7) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

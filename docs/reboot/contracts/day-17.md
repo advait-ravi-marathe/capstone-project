@@ -26,6 +26,14 @@ Day 4 contract; canned fetch adapter. Earlier unfinished collaborators are repla
 
 Use the [rendered Day 17 guide](../teaching/day-17-render-typed-state.md#worked-trace) before implementing the component. It demonstrates all four state branches and role/name queries without a fetch or production URL.
 
+## Interview-first system-design mock (45 minutes inside practice)
+
+**Prompt:** [Q01](../interview/question-bank.md#q01) — Foundations URL shortener. Write and save your own initial proposal before hints, reference answers, or AI. Use the exact 5/5/15/10/10 phases and 100-point rubric in [the mock rubric](../interview/mock-rubric.md).
+
+**Timebox:** 45 minutes of the existing 85-minute practice block for the mock, then 40 minutes for this EAI slice: Render the ready-state product and accessible coverage options from the supplied typed fixture; leave the remaining states in the named queue. No overtime. The unchanged full acceptance selector remains the completion gate.
+
+**Deferred acceptance:** `S2-D17-1` is in the [Sprint 2 session scope](../interview/sprint2-session-scope.md). Preserve the actual result and keep this day pending until the named completion check and all original acceptance criteria pass.
+
 ## Evidence (10 minutes)
 
 Component tests and screenshot. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +43,6 @@ Component tests and screenshot. Record dated attempt state (`not attempted`, `at
 `npm --prefix frontend test -- src/components/ProductPanel.test.tsx`
 
 Run this focused component suite; its four failures are expected at the Day 17 TODO. `npm --prefix frontend run build` verifies TypeScript/bundling separately. The Vite app is only a test scaffold; it does not claim a finished UI.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** Which UI states exist before and after a request? Why do types not replace runtime checks?
-
-**Observable evidence:** Show loading/error/empty/content behavior, accessible labels and typed boundaries; explain state ownership.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A6](../interview-evidence-overlay.md#a6) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

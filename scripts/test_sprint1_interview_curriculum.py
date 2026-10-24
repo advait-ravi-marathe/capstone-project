@@ -159,6 +159,47 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                 self.assertIsNone(assignment.get("question_id"))
             self.assertFalse(assignment["acceptance"].endswith("complete."))
 
+    def test_sprint2_assignments_sync_contracts_course_bridges_and_story_exports(self):
+        canonical = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
+        owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())
+        courses = json.loads((ROOT / "docs/reboot/course-learning-blocks.json").read_text())
+        cards = {card["day_number"]: card for card in owner["cards"]}
+        deep = (ROOT / "docs/reboot/interview/deep-practice.md").read_text()
+        scope = (ROOT / "docs/reboot/interview/sprint2-session-scope.md").read_text()
+        expected_mocks = {17: ("2026-11-09", "Q01"), 21: ("2026-11-13", "Q07"),
+                          24: ("2026-11-16", "Q10"), 28: ("2026-11-20", "Q14")}
+        for day in range(15, 29):
+            item = canonical["days"][day - 1]
+            card = cards[day]
+            assignment = item["interview_practice"]
+            self.assertEqual(assignment, card["interview_practice"])
+            self.assertEqual(85, assignment["practice_minutes_available"])
+            self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            expected_bridges = [{key: lesson.get(key) for key in (
+                "title", "section_title", "duration_seconds", "source_item_id", "course_id")}
+                for lesson in courses["days"][day - 1].get("lesson_details", [])]
+            self.assertEqual(expected_bridges, assignment["course_bridges"], f"Day {day} course bridge")
+            contract = (ROOT / f"docs/reboot/contracts/day-{day:02d}.md").read_text()
+            self.assertIn("Interview-first", contract)
+            self.assertNotIn("Interview transfer (inside the current evidence block)", contract)
+            if day in expected_mocks:
+                planned_date, question = expected_mocks[day]
+                self.assertEqual(planned_date, item["date"])
+                self.assertEqual("45_minute_mock", assignment["mode"])
+                self.assertEqual(question, assignment["question_id"])
+                self.assertTrue(assignment["deferred_work_id"].startswith("S2-D"))
+                self.assertIn("40 minutes", assignment["implementation_scope"])
+                self.assertEqual(85, assignment["duration_minutes"] + 40)
+                self.assertEqual([5, 5, 15, 10, 10], [p["minutes"] for p in assignment["mock_phases"]])
+                self.assertIn(assignment["deferred_work_id"], scope)
+                self.assertRegex(deep, rf"\|\s*\d+\s*\| {day} · {planned_date} \| {question} \|")
+            else:
+                self.assertEqual("proposal_before_reference", assignment["mode"])
+                self.assertEqual(5, assignment["duration_minutes"])
+                self.assertIsNone(assignment["deferred_work_id"])
+        self.assertNotIn("65 build/test + 20 mock", scope)
+        self.assertIn("named 40-minute EAI slice", scope)
+
     def test_mock_scope_has_explicit_eai_slices_and_deferred_acceptance(self):
         scope = (ROOT / "docs/reboot/interview/session-scope.md").read_text()
         for marker in ("S1-D03-1", "S1-D07-1", "S1-D10-1", "S1-D14-1"):

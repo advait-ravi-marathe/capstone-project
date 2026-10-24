@@ -1,6 +1,6 @@
 # Day 28 — Review the real browser-to-database gate
 
-Review only. No new lecture bundle or implementation feature is assigned. The integrated gate requires genuinely completed Days 14–27 prerequisites. The installed learner test is expected to stop at unfinished seams; opening a browser is not a pass. Use 25 minutes for review, 65 minutes for the existing build/test work, 20 minutes for the existing mock, and 10 minutes for evidence. The mock is inside the 85-minute practice allocation.
+Review only. No new lecture bundle or implementation feature is assigned. The integrated gate requires genuinely completed Days 14–27 prerequisites. The installed learner test is expected to stop at unfinished seams; opening a browser is not a pass. Use 25 minutes for review, 45 minutes for the Q14 interview-first mock, 40 minutes for the existing browser/database EAI slice, and 10 minutes for evidence. The mock and slice share the existing 85-minute practice allocation; see the [Sprint 2 session scope](../interview/sprint2-session-scope.md).
 
 ## Worked trace
 

@@ -26,6 +26,14 @@ Days 8 and 16; deterministic larger SQL seed. Earlier unfinished collaborators a
 
 Read the observed EXPLAIN shape and compare the exact output before/after an index; no timing claim.
 
+## Interview-first system-design mock (45 minutes inside practice)
+
+**Prompt:** [Q10](../interview/question-bank.md#q10) — Notification retries and durable intent. Write and save your own initial proposal before hints, reference answers, or AI. Use the exact 5/5/15/10/10 phases and 100-point rubric in [the mock rubric](../interview/mock-rubric.md).
+
+**Timebox:** 45 minutes of the existing 85-minute practice block for the mock, then 40 minutes for this EAI slice: Implement the single query index, preserve ordered results, and capture before/after EXPLAIN using the existing selector. No overtime. The unchanged full acceptance selector remains the completion gate.
+
+**Deferred acceptance:** `S2-D24-1` is in the [Sprint 2 session scope](../interview/sprint2-session-scope.md). Preserve the actual result and keep this day pending until the named completion check and all original acceptance criteria pass.
+
 ## Evidence (10 minutes)
 
 Both plans and ordered result-equivalence evidence. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +43,6 @@ Both plans and ordered result-equivalence evidence. Record dated attempt state (
 `./mvnw -Plearner-tests -Dtest=Day24ContractTest test`
 
 This selector starts real embedded PostgreSQL and captures EXPLAIN plans plus ordered result equivalence. It fails at the explicit index migration TODO; no time-threshold or planner-choice assertion is used. Infrastructure checks are separate.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** Why did this index change the plan? When could a sequential scan still be sensible?
-
-**Observable evidence:** Compare real plans, data size, selectivity, ordering and write/storage cost; distinguish measurement from guaranteed speedup.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

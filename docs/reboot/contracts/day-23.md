@@ -26,6 +26,10 @@ Days 8 and 12; disposable DB lifecycle fixture. The instructor HTTP test checks 
 
 Readiness truth, health response projection, endpoint exposure, and evidence boundaries. The projection acceptance requires exactly the public `status` field.
 
+## Interview-first proposal (5 minutes inside practice)
+
+Before implementation hints or AI, write a brief task-specific proposal: the user-visible result, data/UI boundary, one expected case, and one failure case. Save it, then continue the original acceptance in the remaining 80 minutes of the existing practice block. Do not add a post-hoc design essay. The 10-minute evidence block records actual command, result, assistance, changed paths, and blocker; unfinished acceptance stays pending in the normal recovery queue.
+
 ## Evidence (10 minutes)
 
 Healthy/unavailable responses with exposure check. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +39,6 @@ Healthy/unavailable responses with exposure check. Record dated attempt state (`
 `./mvnw -Plearner-tests -Dtest=Day23ContractTest test`
 
 Run `Day23ActuatorInfrastructureTest` for live Actuator HTTP with an actual disposable PostgreSQL probe and a test-only response-projection witness. It verifies exact status-only bodies, UP/DOWN status codes, and disabled environment/configuration endpoints. `Day23HealthProjectionContractTest` separately tests the learner-owned projection against the real HTTP surface and remains red at its named TODO. `Day23ContractTest` separately tests the learner-owned database readiness indicator and remains red at its existing TODO. Do not treat the instructor witness as learner completion.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** What should happen when the database is unavailable? How do liveness and readiness differ?
-
-**Observable evidence:** Show actual health under controlled failure; explain management-endpoint exposure and why health does not prove every business flow works.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A7](../interview-evidence-overlay.md#a7) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

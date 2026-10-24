@@ -26,6 +26,10 @@ Days 10, 12 and 25; fixed actor/time and seeded input. Earlier unfinished collab
 
 First-change versus repeat semantics, one transaction, minimal event fields, and rollback.
 
+## Interview-first proposal (5 minutes inside practice)
+
+Before implementation hints or AI, write a brief task-specific proposal: the user-visible result, data/UI boundary, one expected case, and one failure case. Save it, then continue the original acceptance in the remaining 80 minutes of the existing practice block. Do not add a post-hoc design essay. The 10-minute evidence block records actual command, result, assistance, changed paths, and blocker; unfinished acceptance stays pending in the normal recovery queue.
+
 ## Evidence (10 minutes)
 
 Success/repeat/rollback database counts. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +39,6 @@ Success/repeat/rollback database counts. Record dated attempt state (`not attemp
 `./mvnw -Plearner-tests -Dtest=Day26ContractTest test`
 
 This selector runs the fixed cases against real embedded PostgreSQL. The tests are expected to fail at the learner-owned transaction/audit TODO. Infrastructure checks are separate.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** Can the selection commit while its audit event is missing? What happens on repeat?
-
-**Observable evidence:** Explain shared transaction and minimum audit fields; demonstrate first/repeat/rollback counts; distinguish this local atomic record from external event-delivery guarantees.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A4](../interview-evidence-overlay.md#a4) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

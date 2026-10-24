@@ -26,6 +26,10 @@ Days 8 and 10–12; canned authorized/current quote. Earlier unfinished collabor
 
 Unique-key collision, PostgreSQL aborted transaction, rollback, and fresh-connection read.
 
+## Interview-first proposal (5 minutes inside practice)
+
+Before implementation hints or AI, write a brief task-specific proposal: the user-visible result, data/UI boundary, one expected case, and one failure case. Save it, then continue the original acceptance in the remaining 80 minutes of the existing practice block. Do not add a post-hoc design essay. The 10-minute evidence block records actual command, result, assistance, changed paths, and blocker; unfinished acceptance stays pending in the normal recovery queue.
+
 ## Evidence (10 minutes)
 
 Barrier-coordinated concurrency test; no sleeps. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
@@ -35,16 +39,6 @@ Barrier-coordinated concurrency test; no sleeps. Record dated attempt state (`no
 `./mvnw -Plearner-tests -Dtest=Day25ContractTest test`
 
 This selector runs two concurrent calls against real PostgreSQL using a cyclic barrier and a fixed isolated schema. Both tests reach the explicit writer TODO. The current scaffold is service-level only; HTTP status/body and authorization wiring remain blocked and are not claimed. Infrastructure checks are separate.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** Two app instances both see no existing row, then insert. Why can an in-memory lock or Day 1 dedup be insufficient?
-
-**Observable evidence:** Draw the interleaving; run two transactions with a barrier; prove one row and the documented repeat result; distinguish JVM thread safety from cross-instance database correctness.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A4](../interview-evidence-overlay.md#a4) (anecdotal); [A7](../interview-evidence-overlay.md#a7) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 
