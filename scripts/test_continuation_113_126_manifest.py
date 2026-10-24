@@ -119,6 +119,9 @@ class ContinuationManifestTests(unittest.TestCase):
     def test_days125_126_rebuild_receipt_bound_sprint8_artifact_before_consumers(self):
         package = "scripts/package-sprint8-demo.sh --no-clean"
         consumer = "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+        manual = "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
+        restore = "./mvnw -Plocal-app -DskipTests package"
+        verify_main = "unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'"
         helper = (ROOT / "src/test/java/assignments/local/Sprint8PackagedRuntimeProcess.java").read_text()
         script = (ROOT / "scripts/package-sprint8-demo.sh").read_text()
         fingerprint = (ROOT / "scripts/sprint8-source-fingerprint.py").read_text()
@@ -138,10 +141,22 @@ class ContinuationManifestTests(unittest.TestCase):
             self.assertEqual(commands, card["engineering"]["acceptance_commands"])
             contract = (ROOT / day["contract_file"]).read_text()
             self.assertIn(package, commands)
-            self.assertLess(commands.index("./mvnw -Plocal-app -DskipTests package"), commands.index(package))
-            self.assertLess(commands.index(package), commands.index(consumer))
-            self.assertLess(contract.index("./mvnw -Plocal-app -DskipTests package"), contract.index(package))
-            self.assertLess(contract.index(package), contract.index(consumer))
+            self.assertEqual(2, commands.count(restore), "one ordinary build before S8 and one executable-JAR restore after it")
+            self.assertLess(commands.index(restore), commands.index(package))
+            s8_index = commands.index(package)
+            restore_index = commands.index(restore, s8_index + 1)
+            verify_index = commands.index(verify_main)
+            manual_index = commands.index(manual)
+            delivery_index = commands.index(consumer)
+            self.assertLess(s8_index, restore_index)
+            self.assertLess(restore_index, verify_index)
+            self.assertLess(verify_index, manual_index)
+            self.assertLess(verify_index, delivery_index)
+            self.assertEqual(1, contract.count(package))
+            self.assertLess(contract.index(package), contract.index(restore, contract.index(package)+1))
+            self.assertLess(contract.index(restore, contract.index(package)+1), contract.index(verify_main))
+            self.assertLess(contract.index(verify_main), contract.index(manual))
+            self.assertLess(contract.index(verify_main), contract.index(consumer))
         self.assertIn("from hashlib import sha256", fingerprint)
         self.assertIn("digest = sha256()", fingerprint)
 
@@ -167,6 +182,9 @@ class ContinuationManifestTests(unittest.TestCase):
                     self.assertEqual("(cd frontend && npm ci && npm run build && npm run build:local)", command)
                 elif command.startswith("scripts/package-sprint8-demo.sh"):
                     self.assertEqual("scripts/package-sprint8-demo.sh --no-clean", command)
+                elif command.startswith("unzip -p target/capstone-starter-1.0-SNAPSHOT.jar"):
+                    self.assertIn("tr -d", command)
+                    self.assertIn("Start-Class: assignments.local.LocalCoverStoryApplication", command)
                 else:
                     self.assertIn("./mvnw", command)
 

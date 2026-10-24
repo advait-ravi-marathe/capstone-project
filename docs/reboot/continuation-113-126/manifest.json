@@ -988,6 +988,8 @@
           "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
           "scripts/package-sprint8-demo.sh --no-clean",
+          "./mvnw -Plocal-app -DskipTests package",
+          "unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
@@ -1110,6 +1112,8 @@
           "(cd frontend && npm ci && npm run build && npm run build:local)",
           "./mvnw -Plocal-app -DskipTests package",
           "scripts/package-sprint8-demo.sh --no-clean",
+          "./mvnw -Plocal-app -DskipTests package",
+          "unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'",
           "./mvnw -Plearner-tests -Dtest=ManualRecoveryAcceptanceTest,ManualRecoveryConcurrencyAcceptanceTest,ManualRecoveryRestartAcceptanceTest,LocalManualRecoveryCommandTest,Day121RecoveryOutcomePolicyTest,Day113To126InfrastructureTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedManualRecoveryAcceptanceTest test"
