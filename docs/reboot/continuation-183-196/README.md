@@ -2,13 +2,11 @@
 
 **Implementation starter.** This batch compares a transparent train-derived genre-profile heuristic with the existing global-popularity algorithm on the existing synthetic temporal fixture. It adds no learned optimizer, external data, service, or dependency. Publication and scaffold tests do not establish learner mastery.
 
-Base: branch `learning/streamforge-days-169-182`, exact parent receipt commit `fa45d70868e93da79bb2ff84a8c4a4ca77510924`; source code at `d84c6d42820083c2dc23b4171a351e2932e2dc8d`; Python 3.12.14. Prior exact-source CI is documented as successful in that receipt. The existing global `RankedList` and `BaselineEvaluation` types stay unchanged.
+Current continuation: branch `work/eai-sprint2-onward`, based for this increment on `41946e432b2a61ab4ba1c0fb938da07aff9e5ded`. The separately retained starter provenance is branch `learning/streamforge-days-183-196`, parent receipt `fa45d70868e93da79bb2ff84a8c4a4ca77510924`, and content source `d84c6d42820083c2dc23b4171a351e2932e2dc8d`. Python 3.12 standard library only. The existing global `RankedList` and `BaselineEvaluation` types stay unchanged.
 
 ## Clock and prerequisites
 
-Each day uses 165 engineering minutes (35 study, 115 practice/tests, 15 evidence) plus 45 minutes for interview-question practice, 210 minutes total. Days 189 and 196 are recovery days. Preserve unfinished engineering work in the existing recovery flow; do not infer completion from a date.
-
-Each day uses 165 engineering minutes (35 study, 115 practice/testing, 15 evidence) plus 45 minutes of interview practice, 210 minutes total. Days 189 and 196 remain recovery days. This repository links algorithm practice to its separate home and does not duplicate its schedule.
+Each day uses 165 engineering minutes (35 study, 115 practice/tests, 15 evidence) plus one shared 45-minute interview/new-question/unfinished-review block, 210 minutes total. The shared block is counted once and is separate from the 165 engineering minutes. Days 189 and 196 are recovery days. DSA assignments and factual review clocks remain exclusively in the separate DSA preparation repository.
 
 ## Frozen protocol
 
@@ -19,6 +17,14 @@ For a nonzero profile, sort by exact score descending then `media_id` ascending 
 Use the same positive-target viewer cohort and all distinct positive holdout targets, including future/unreachable items. Precision denominator remains 3, recall denominator is all positive targets, and aggregate metrics are macro means. Report signed profile-minus-global deltas. Empty-state precedence: no_holdout, no_positive_holdout, no_candidates, available. No-candidate positive targets yield exact zero metrics. The 2,500 scored-pair guard rejects before loops; do not truncate. Keep the prior 500-row/256 KiB limits.
 
 This reused holdout is a development comparison, not an untouched final test. Synthetic observed-positive overlap does not prove user preference, unbiased quality, causal lift, fairness, business success, production readiness, or certification readiness. Catalog schedule knowledge at cutoff is a synthetic assumption; no historical catalog snapshot exists.
+
+## Prior evidence gate
+
+The Day 153/154 learner-owned A/B gate remains required before StreamForge implementation. Run `python3 scripts/check_streamforge_169_182_entry_gate.py`; the status is calculated from the authoritative evidence records, not a frozen completion label. Exit 2 means keep implementation paused and recover the earlier prerequisite. The scaffold and its default-green infrastructure tests do not satisfy the gate.
+
+## Architecture and interview practice
+
+[Assistant-supplied architecture notes](assistant-architecture-notes.md) give the implementation decisions and reasons. Learner work is implementation and tests. System-design practice uses only the separate [question bank](../interview/question-bank.md); the four sessions and other shared-block use are in [the schedule](interview-and-review-schedule.md). No second interview block or DSA task is added.
 
 ## Chronological seams
 
@@ -50,6 +56,8 @@ Hashes are deterministic SHA-256 fingerprints of canonical JSON bytes. New state
 ## Primary-document study
 
 See `verified-content-features-183-196-guidance.json` for exact focused sections, cautions, worked supplements, and catalog audit. Required study is free public documentation with a five-minute explain-back inside the 35-minute block. No optional course or video is newly assigned. The exact Fraction/L1 profile and local tie/fallback rules are project decisions, not recommendations attributed to the documentation.
+
+This document covers the prepared Days 183–196 slice only; it is not a claim that the full 270-day roadmap is complete and does not authorize Days 197 onward.
 
 ## Verification and evidence
 
