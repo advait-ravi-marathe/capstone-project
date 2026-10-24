@@ -81,7 +81,7 @@ class Day71To84InfrastructureTest {
         assertFalse(config.contains("PreviewReadBudgetPolicy"));
         assertFalse(config.contains("TimedPolicyRenewalReadStore"));
         assertFalse(config.contains("LocalRuntimeConfiguration.class"));
-        assertTrue(wiringTest.contains("assertInstanceOf(IllegalArgumentException.class, root)"),
+        assertTrue(wiringTest.contains("assertInstanceOf(IllegalArgumentException.class, root,"),
                 "invalid capacity must fail for its validation cause, not any context startup failure");
         assertTrue(pom.contains("<id>sprint6-local</id>"));
         assertTrue(pom.contains("assignments.sprint6.Sprint6LocalApplication"));

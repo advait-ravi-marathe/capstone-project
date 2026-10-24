@@ -80,8 +80,10 @@ class Day85To98InfrastructureTest {
         assertTrue(readme.contains("CHROMIUM_BIN=/usr/bin/chromium"));
         assertTrue(Files.readString(Path.of("frontend/package.json")).contains("\"playwright\": \"1.64.1\""));
         String day83 = Files.readString(Path.of("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"));
-        assertTrue(day83.contains("120000") && day83.contains("180000"),
-                "the historical success-under-lock test needs its explicit finite test-only budget");
+        assertTrue(day83.contains("Sprint6PackagedRuntimeProcess.start(postgres, CLOCK)"),
+                "Day 83 uses the bounded Sprint 6 archive, which excludes later timed-read budgets");
+        assertFalse(day83.contains("120000") || day83.contains("180000"),
+                "Day 83 must not depend on Day 86+ read-budget configuration");
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/renewal/PreviewTimeoutPostgresAcceptanceTest.java")),
                 "short-budget lock/statement cases remain separate learner acceptance checks");
         String day97 = Files.readString(Path.of("src/test/java/assignments/local/Day97PackagedTimeoutBrowserAcceptanceTest.java"));
