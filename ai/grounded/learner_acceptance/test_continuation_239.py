@@ -212,7 +212,9 @@ class Continuation239Acceptance(unittest.TestCase):
 
     def test_day251_same_fixture_and_script_reproduce_identical_results(self):
         report = self._observed_report()
-        payload = json.dumps(report, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        # Deliberately unordered, indented input: acceptance must observe the
+        # CLI's canonical serializer rather than merely echoing stdin.
+        payload = json.dumps(report, indent=2, sort_keys=False).encode("utf-8")
         completed = subprocess.run([sys.executable, str(workflow.REPLAY_CLI)], input=payload,
                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                    cwd=REPO_ROOT, timeout=10, check=False)
@@ -222,7 +224,7 @@ class Continuation239Acceptance(unittest.TestCase):
         changed = json.loads(payload)
         changed["cases"][0]["citations"] = []
         mutated = subprocess.run([sys.executable, str(workflow.REPLAY_CLI)],
-                                 input=json.dumps(changed, sort_keys=True, separators=(",", ":")).encode(),
+                                 input=json.dumps(changed, indent=2, sort_keys=False).encode(),
                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                  cwd=REPO_ROOT, timeout=10, check=False)
         self.assertEqual(0, mutated.returncode)
