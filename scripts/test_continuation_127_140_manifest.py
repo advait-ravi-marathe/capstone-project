@@ -139,6 +139,100 @@ class Continuation127To140ManifestTest(unittest.TestCase):
         self.assertTrue(self.manifest["days"][6]["recovery_day"])
         self.assertTrue(self.manifest["days"][13]["recovery_day"])
 
+    def test_assistant_architecture_and_question_sessions_match_all_exports(self):
+        expected_mocks = {
+            128: ("Q36", "Object-store recovery", "S10-D128-MOCK", ["object-storage", "resilience"]),
+            131: ("Q14", "Booking: retry after a lost response", "S10-D131-MOCK",
+                  ["idempotency", "transaction-boundary", "frontend-state-machine"]),
+            135: ("Q16", "Messaging: ordering and replay", "S10-D135-MOCK",
+                  ["outbox-and-messaging", "idempotency", "transaction-boundary"]),
+            138: ("Q28", "Feed: fan-out choice", "S10-D138-MOCK",
+                  ["feed-fan-out", "read-scaling", "measure-before-scaling"]),
+        }
+        cards = {card["day_number"]: card for card in self.export["cards"]}
+        self.assertEqual(set(range(127, 141)), set(cards))
+        notes = (CON / "assistant-architecture-notes.md").read_text()
+        question_bank = (ROOT / "docs/reboot/interview/question-bank.md").read_text().lower()
+        pattern_library = (ROOT / "docs/reboot/interview/pattern-library.md").read_text().lower()
+
+        for day in self.manifest["days"]:
+            number = day["day"]
+            note_ref = day["engineering"]["assistant_architecture_note"]
+            self.assertTrue((ROOT / note_ref.split("#", 1)[0]).is_file(), number)
+            self.assertIn(f"## Day {number}", notes)
+            contract = (ROOT / day["contract_file"]).read_text()
+            card = cards[number]
+            self.assertIn("Assistant-provided architecture", contract)
+            self.assertIn("no capstone design proposal", contract.lower())
+            self.assertEqual(note_ref, card["learning_block"]["architecture_note"])
+            self.assertIn(note_ref, day["engineering"]["concept_course"]["scope_note"])
+            self.assertTrue(any("Assistant-provided capstone architecture" in line
+                                and f"day-{number}" in line
+                                for line in card["learning_block"]["lines"]))
+
+            assignment = day["engineering"].get("interview_assignment")
+            if number not in expected_mocks:
+                self.assertIsNone(assignment, number)
+                continue
+
+            qid, title, deferred, patterns = expected_mocks[number]
+            self.assertIsNotNone(assignment, number)
+            self.assertEqual(qid, assignment["question_id"])
+            self.assertEqual(title, assignment["question_title"])
+            self.assertEqual("system_design_interview_question_only", assignment["proposal_scope"])
+            self.assertEqual("assistant_supplied", assignment["capstone_architecture"])
+            self.assertEqual(deferred, assignment["deferred_work_id"])
+            self.assertEqual(85, assignment["practice_minutes_available"])
+            self.assertEqual(45, assignment["mock_minutes"])
+            self.assertEqual(40, assignment["practice_total_minutes"] - assignment["mock_minutes"])
+            self.assertEqual(40, sum(assignment["eai_slice_minutes"].values()))
+            self.assertEqual(85, assignment["mock_minutes"] + sum(assignment["eai_slice_minutes"].values()))
+            self.assertEqual(45, sum(phase["minutes"] for phase in assignment["mock_phases"]))
+            self.assertIn(qid.lower(), question_bank)
+            self.assertEqual(patterns, [ref.rsplit("#", 1)[1] for ref in assignment["pattern_refs"]])
+            for anchor in patterns:
+                self.assertIn(f"id=\"{anchor}\"", pattern_library)
+            self.assertIn(assignment["bounded_task"], contract)
+            self.assertIn(deferred, contract)
+            self.assertIn("45-minute mock", contract)
+            self.assertIn("bounded capstone task", contract.lower())
+            for href in re.findall(r"\]\(([^)]+)\)", contract):
+                if href.startswith("../") or href.startswith("../../"):
+                    self.assertTrue(((ROOT / day["contract_file"]).parent / href.split("#", 1)[0]).resolve().is_file(),
+                                    (number, href))
+            self.assertEqual(assignment, card["engineering"]["interview_assignment"])
+            self.assertTrue(any(qid in line and "45-minute interview practice" in line
+                                for line in card["learning_block"]["lines"]))
+
+    def test_aggregate_recovery_runs_use_fresh_ordinary_jar_without_classifier_drift(self):
+        consumers = (
+            "LocalReleaseCutoverAcceptanceTest",
+            "LocalRestoreApplicationAcceptanceTest",
+            "LocalPackagedManualRecoveryAcceptanceTest",
+        )
+        for number in (139, 140):
+            day = self.manifest["days"][number - 127]
+            commands = day["engineering"]["acceptance_commands"]
+            contract = (ROOT / day["contract_file"]).read_text()
+            owner = next(card for card in self.export["cards"] if card["day_number"] == number)
+            self.assertEqual(commands, owner["engineering"]["acceptance_commands"])
+            frontend = next(i for i, c in enumerate(commands) if "npm run build:local" in c)
+            ordinary_package = next(i for i, c in enumerate(commands)
+                                    if "-Plocal-app -DskipTests package" in c)
+            self.assertGreater(ordinary_package, frontend)
+            self.assertTrue(all(ordinary_package < i for i, c in enumerate(commands)
+                                if any(name in c for name in consumers)))
+            package_commands = [c for c in commands if "-DskipTests package" in c]
+            self.assertEqual(1, len(package_commands))
+            self.assertIn("-Plocal-app -DskipTests package", package_commands[0])
+            self.assertFalse(any("package-sprint" in c or "classifier" in c.lower()
+                                 for c in commands))
+            runtime_helper = (ROOT / "src/test/java/assignments/local/LocalPackagedRuntimeProcess.java").read_text()
+            self.assertIn('Path.of("target/capstone-starter-1.0-SNAPSHOT.jar")', runtime_helper)
+            self.assertNotIn("sprint6.jar", contract.lower())
+            self.assertNotIn("sprint8.jar", contract.lower())
+            self.assertIn(package_commands[0], contract)
+
     def test_offline_design_cannot_enable_cloud_or_create_resources(self):
         design = json.loads((CON / "aws-lab-design.json").read_text())
         self.assertEqual("offline_plan_only", design["status"])
