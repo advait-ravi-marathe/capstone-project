@@ -24,7 +24,17 @@ def build_receipt(root:Path,source_sha:str,paths:tuple[str,...])->dict[str,objec
         if not isinstance(raw_path,str) or not raw_path or Path(raw_path).is_absolute():
             raise ValueError("artifact paths must be non-empty repository-relative paths")
         candidate=root/raw_path
-        if ".." in Path(raw_path).parts or candidate.is_symlink() or not candidate.is_file():
+        parts=Path(raw_path).parts
+        if ".." in parts:
+            raise ValueError(f"artifact is missing or unsafe: {raw_path}")
+        # Check each component, not only the leaf: a symlinked parent can
+        # redirect an apparently ordinary file outside the evidence root.
+        cursor=root
+        for part in parts:
+            cursor=cursor/part
+            if cursor.is_symlink():
+                raise ValueError(f"artifact path contains a symlink: {raw_path}")
+        if not candidate.is_file():
             raise ValueError(f"artifact is missing or unsafe: {raw_path}")
         resolved=candidate.resolve()
         if root not in resolved.parents: raise ValueError(f"artifact escapes repository: {raw_path}")
@@ -80,7 +90,9 @@ def review_readiness(record:dict,current_guide:dict)->Readiness:
         scores=attempt.get("domain_scores")
         if scores is not None:
             if not isinstance(scores,dict) or set(scores)!=set(domains): reasons.append("domain_diagnostic_incomplete")
-            elif any(type(scores[d]) is not int or scores[d]<70 for d in domains): reasons.append("domain_below_threshold")
+            elif any(type(scores[d]) is not int or scores[d]<0 or scores[d]>100 for d in domains):
+                reasons.append("domain_diagnostic_score_invalid")
+            elif any(scores[d]<70 for d in domains): reasons.append("domain_below_threshold")
         if attempt.get("unstudied_domains")!=[]: reasons.append("unstudied_domains_remain")
     if len(attempts)<2 or len(ids)<2: reasons.append("two_distinct_assessments_required")
     if passed<2: reasons.append("two_passing_assessments_required")

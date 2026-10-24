@@ -50,6 +50,11 @@ class CertificationReadinessAcceptance(unittest.TestCase):
                  (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), timed=1)]), "practice_source_or_timing_unverified"),
                  (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), reviewed_missed_topics=[])]), "misses_not_fully_reviewed"),
                  (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), domain_scores={**{d:75 for d in GUIDE["domains"]}, GUIDE["domains"][0]:69})]), "domain_below_threshold"),
+                 (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), domain_scores={**{d:75 for d in GUIDE["domains"]}, GUIDE["domains"][0]:101})]), "domain_diagnostic_score_invalid"),
+                 (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), domain_scores={**{d:75 for d in GUIDE["domains"]}, GUIDE["domains"][0]:-1})]), "domain_diagnostic_score_invalid"),
+                 (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), domain_scores={**{d:75 for d in GUIDE["domains"]}, GUIDE["domains"][0]:75.0})]), "domain_diagnostic_score_invalid"),
+                 (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), domain_scores={**{d:75 for d in GUIDE["domains"]}, GUIDE["domains"][0]:True})]), "domain_diagnostic_score_invalid"),
+                 (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), domain_scores={**{d:75 for d in GUIDE["domains"]}, GUIDE["domains"][0]:"75"})]), "domain_diagnostic_score_invalid"),
                  (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), attempted_on="not-a-date")]), "assessment_date_invalid"),
                  (dict(RECORD, attempts=[attempt("a"), dict(attempt("b"), unstudied_domains=[GUIDE["domains"][0]])]), "unstudied_domains_remain"))
         for row, reason in cases:

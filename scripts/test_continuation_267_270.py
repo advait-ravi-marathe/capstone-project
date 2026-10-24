@@ -23,6 +23,11 @@ reference=load("closeout_reference",ROOT/"scripts/continuation_267_270_reference
 
 def run_portfolio(method, mutant=None):
     def witness(*args, **kwargs):
+        if mutant=="allow_symlink":
+            # Model a reviewer that silently accepts every symlink path.
+            return {"source_sha":"0"*40,"artifacts":[],"artifact_manifest_sha256":"0"*64,
+                    "portfolio_status":"local_artifacts_receipted","learner_completion_awarded":False,
+                    "professional_ownership_claimed":False}
         result=reference.build_receipt(*args,**kwargs)
         if mutant=="wrong_digest": result["artifact_manifest_sha256"]="0"*64
         elif mutant=="source_as_artifact": result["artifact_manifest_sha256"]=result["source_sha"]
@@ -40,6 +45,11 @@ def run_readiness(method, mutant=None):
             return readiness.Readiness(result.status,result.reason_codes,result.assessment_count,True,True)
         if mutant=="wrong_count":
             return readiness.Readiness(result.status,result.reason_codes,result.assessment_count+1,result.exam_passed,result.booking_authorized)
+        if mutant=="accept_invalid_domain_score" and any(
+                isinstance(a,dict) and isinstance(a.get("domain_scores"),dict) and
+                any(type(score) is not int or score<0 or score>100 for score in a["domain_scores"].values())
+                for a in record.get("attempts",[])):
+            return readiness.Readiness("ready_for_separate_booking_review",(),len(record.get("attempts",[])),False,False)
         return result
     with patch.object(readiness,"review_readiness",side_effect=witness): method()
 
@@ -122,12 +132,14 @@ class ActualAcceptanceMutationTests(unittest.TestCase):
     def test_portfolio_acceptance_runs_against_real_repository_bytes(self):
         run_portfolio(portfolio_tests.PortfolioReceiptAcceptance("test_day268_committed_source_and_actual_file_bytes"))
         run_portfolio(portfolio_tests.PortfolioReceiptAcceptance("test_day268_rejects_stale_duplicate_missing_and_unsafe_paths"))
+        run_portfolio(portfolio_tests.PortfolioReceiptAcceptance("test_day268_rejects_symlink_files_and_symlinked_parent_directories"))
 
     def test_portfolio_assertions_reject_mutants_on_the_actual_acceptance_methods(self):
         cases=(("test_day268_committed_source_and_actual_file_bytes","wrong_digest"),
                ("test_day268_committed_source_and_actual_file_bytes","source_as_artifact"),
                ("test_day268_committed_source_and_actual_file_bytes","missing_file"),
-               ("test_day268_committed_source_and_actual_file_bytes","awarded"))
+               ("test_day268_committed_source_and_actual_file_bytes","awarded"),
+               ("test_day268_rejects_symlink_files_and_symlinked_parent_directories","allow_symlink"))
         for method_name,mutant in cases:
             method=getattr(portfolio_tests.PortfolioReceiptAcceptance(method_name),method_name)
             with self.subTest(mutant=mutant),self.assertRaises(AssertionError):run_portfolio(method,mutant)
@@ -143,6 +155,7 @@ class ActualAcceptanceMutationTests(unittest.TestCase):
         negative=readiness_tests.CertificationReadinessAcceptance("test_day269_stale_guide_duplicate_attempt_and_bad_scores_fail_closed")
         for method,mutant in ((positive.test_day269_two_current_independent_results_are_only_booking_review_eligibility,"pass_claim"),
                               (negative.test_day269_stale_guide_duplicate_attempt_and_bad_scores_fail_closed,"always_ready"),
+                              (negative.test_day269_stale_guide_duplicate_attempt_and_bad_scores_fail_closed,"accept_invalid_domain_score"),
                               (positive.test_day269_two_current_independent_results_are_only_booking_review_eligibility,"wrong_count")):
             with self.subTest(mutant=mutant),self.assertRaises(AssertionError):run_readiness(method,mutant)
 

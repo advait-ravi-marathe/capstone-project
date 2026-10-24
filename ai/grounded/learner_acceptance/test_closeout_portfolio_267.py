@@ -4,6 +4,7 @@ from __future__ import annotations
 import subprocess
 import unittest
 import json
+import tempfile
 from types import SimpleNamespace
 from unittest.mock import patch
 from pathlib import Path
@@ -36,6 +37,29 @@ class PortfolioReceiptAcceptance(unittest.TestCase):
                            (source, ("../outside",))):
             with self.subTest(sha=sha, paths=paths), self.assertRaises((ValueError, FileNotFoundError)):
                 portfolio.build_receipt(ROOT, sha, paths)
+
+    def test_day268_rejects_symlink_files_and_symlinked_parent_directories(self):
+        source = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+                                check=True, capture_output=True, text=True).stdout.strip()
+        with tempfile.TemporaryDirectory(prefix="receipt-symlink-", dir=ROOT) as tmp:
+            scratch = Path(tmp)
+            in_root_target = ROOT / PATHS[0]
+            leaf_link = scratch / "leaf-link.py"
+            leaf_link.symlink_to(in_root_target)
+            linked_parent = scratch / "linked-parent"
+            linked_parent.symlink_to(in_root_target.parent, target_is_directory=True)
+            external_target = Path(tempfile.gettempdir()) / (scratch.name + "-outside.txt")
+            try:
+                external_target.write_text("outside evidence root", encoding="utf-8")
+                external_link = scratch / "external-link.txt"
+                external_link.symlink_to(external_target)
+                for raw_path in (str(leaf_link.relative_to(ROOT)),
+                                 str((linked_parent / in_root_target.name).relative_to(ROOT)),
+                                 str(external_link.relative_to(ROOT))):
+                    with self.subTest(path=raw_path), self.assertRaisesRegex(ValueError, "symlink"):
+                        portfolio.build_receipt(ROOT, source, (raw_path,))
+            finally:
+                external_target.unlink(missing_ok=True)
 
     def test_day268_rejects_bytes_that_do_not_match_the_named_commit(self):
         source = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"],
