@@ -1,4 +1,4 @@
-# Day 40 — 2026-11-28: Schedule cancellation
+# Day 40 — 2026-12-02: Schedule cancellation
 
 ## Contract
 

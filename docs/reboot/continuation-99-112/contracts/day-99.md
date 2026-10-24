@@ -1,4 +1,4 @@
-# Day 99 — 2027-01-26: Define the durable source and minimal envelope
+# Day 99 — 2027-01-30: Define the durable source and minimal envelope
 
 ## Scope
 

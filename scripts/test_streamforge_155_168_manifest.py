@@ -34,7 +34,7 @@ class StreamForge155168ManifestTest(unittest.TestCase):
     def test_fourteen_dates_and_recovery_days_are_bounded(self):
         days = self.manifest["days"]
         self.assertEqual(list(range(155, 169)), [row["day"] for row in days])
-        start = date(2027, 3, 23)
+        start = date(2027, 3, 27)
         self.assertEqual([start + timedelta(days=i) for i in range(14)], [date.fromisoformat(row["date"]) for row in days])
         self.assertEqual([161, 168], [row["day"] for row in days if row["recovery_day"]])
         self.assertEqual(14, len(self.owner["cards"]))

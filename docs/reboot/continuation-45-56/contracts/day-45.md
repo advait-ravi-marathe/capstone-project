@@ -1,4 +1,4 @@
-# Day 45 — 2026-12-03: Define annual policy term boundaries
+# Day 45 — 2026-12-07: Define annual policy term boundaries
 
 ## Contract
 

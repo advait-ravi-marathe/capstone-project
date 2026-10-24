@@ -1,4 +1,4 @@
-# Day 88 — 2027-01-15: Apply transaction-local budgets with parameterized set_config
+# Day 88 — 2027-01-19: Apply transaction-local budgets with parameterized set_config
 
 ## Contract
 

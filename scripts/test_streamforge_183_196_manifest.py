@@ -15,9 +15,9 @@ class StreamForge183196ManifestTest(unittest.TestCase):
         m=self.manifest; self.assertEqual("learning/streamforge-days-183-196",m["branch"])
         self.assertEqual("fa45d70868e93da79bb2ff84a8c4a4ca77510924",m["base_commit"])
         self.assertEqual(list(range(183,197)),[d["day"] for d in m["days"]])
-        self.assertEqual(date(2027,4,20),date.fromisoformat(m["days"][0]["date"]))
-        self.assertEqual(date(2027,5,3),date.fromisoformat(m["days"][-1]["date"]))
-        expected_dates=["2027-04-20","2027-04-21","2027-04-22","2027-04-23","2027-04-24","2027-04-25","2027-04-26","2027-04-27","2027-04-28","2027-04-29","2027-04-30","2027-05-01","2027-05-02","2027-05-03"]
+        self.assertEqual(date(2027,4,24),date.fromisoformat(m["days"][0]["date"]))
+        self.assertEqual(date(2027,5,7),date.fromisoformat(m["days"][-1]["date"]))
+        expected_dates=["2027-04-24","2027-04-25","2027-04-26","2027-04-27","2027-04-28","2027-04-29","2027-04-30","2027-05-01","2027-05-02","2027-05-03","2027-05-04","2027-05-05","2027-05-06","2027-05-07"]
         self.assertEqual(expected_dates,[d["date"] for d in m["days"]])
         self.assertIsNone(m["days"][6]["module"])
         self.assertIsNone(m["days"][12]["module"])

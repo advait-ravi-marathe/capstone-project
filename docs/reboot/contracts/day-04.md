@@ -1,4 +1,4 @@
-# Day 04 — 2026-10-23: Read one synthetic product
+# Day 04 — 2026-10-27: Read one synthetic product
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
@@ -36,15 +36,9 @@ Run the source-add and source-remove reference observations, then record the act
 
 This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** Who owns the source list? Why does a record alone not prevent caller mutation?
-
-**Observable evidence:** Predict source mutation/removal, run the isolated reference, and explain what `List.copyOf` protects and does not protect.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A7](../interview-evidence-overlay.md#a7) (anecdotal); [A8](../interview-evidence-overlay.md#a8) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 

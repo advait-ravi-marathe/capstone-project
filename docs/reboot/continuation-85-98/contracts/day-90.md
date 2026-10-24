@@ -1,4 +1,4 @@
-# Day 90 — 2027-01-17: Prove read-only enforcement and mapping-failure rollback
+# Day 90 — 2027-01-21: Prove read-only enforcement and mapping-failure rollback
 
 ## Contract
 

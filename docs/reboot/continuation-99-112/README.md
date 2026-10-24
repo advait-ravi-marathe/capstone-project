@@ -2,7 +2,7 @@
 
 This isolated continuation teaches event-log-backed durable-work materialization for already committed synthetic ISSUED lifecycle events. Day 35 source issuance remains unchanged. Receipt commit precedes acknowledgment. No broker, scheduler, automatic retry, route, cloud resource, or real data is added.
 
-- Schedule: 2027-01-26 through 2027-02-08, Sprint 8.
+- Schedule: 2027-01-30 through 2027-02-12, Sprint 8.
 - Daily total 180/195/210 minutes by DSA tier (60/75/90 DSA; engineering 120) (85 implementation/testing, 25 study, 10 evidence).
 - DSA uses recorded actual attempts and D+3/D+7/D+21 review queue first; no new problem, attempt, or completion is inferred.
 - The in28Minutes course is reference-only with access unconfirmed; catalog metadata verified, videos not audited. Assigned lessons are partial foundations. No React or AWS lesson is relevant to this local backend batch.

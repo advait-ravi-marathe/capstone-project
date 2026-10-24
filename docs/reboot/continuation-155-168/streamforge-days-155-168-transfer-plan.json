@@ -4,8 +4,8 @@
   "base_commit": "5dc558eeda441177dc4aac87725d0a18417c5abd",
   "branch": "learning/streamforge-days-155-168",
   "sprint": "Sprint 12",
-  "start_date": "2027-03-23",
-  "end_date": "2027-04-05",
+  "start_date": "2027-03-27",
+  "end_date": "2027-04-09",
   "recovery_days": [
     161,
     168
@@ -54,7 +54,7 @@
   "daily_contracts": [
     {
       "day": 155,
-      "date": "2027-03-23",
+      "date": "2027-03-27",
       "title": "Admit a synthetic StreamForge fixture",
       "learner_seam": "admit_fixture_manifest",
       "practice": "admit_fixture_manifest preserves raw UTC strings; first parse timestamps on Day 157. Within the existing 25-minute study block, run the Python readiness bridge and carry basics forward if it fails.",
@@ -70,7 +70,7 @@
     },
     {
       "day": 156,
-      "date": "2027-03-24",
+      "date": "2027-03-28",
       "title": "Read bounded CSV records without silent columns",
       "learner_seam": "read_csv_table",
       "practice": "Use Python csv with supplied bytes/row bounds; enforce exact headers and widths while preserving strings for later parsing.",
@@ -79,7 +79,7 @@
     },
     {
       "day": 157,
-      "date": "2027-03-25",
+      "date": "2027-03-29",
       "title": "Parse one exact UTC instant format",
       "learner_seam": "parse_utc_instant",
       "practice": "Return timezone-aware UTC only for canonical YYYY-MM-DDTHH:MM:SSZ strings.",
@@ -88,7 +88,7 @@
     },
     {
       "day": 158,
-      "date": "2027-03-26",
+      "date": "2027-03-30",
       "title": "Validate catalog reference rows",
       "learner_seam": "validate_catalog",
       "practice": "Convert CSV mappings to CatalogItem values; enforce IDs, genre, integer duration and paired finite availability.",
@@ -97,7 +97,7 @@
     },
     {
       "day": 159,
-      "date": "2027-03-27",
+      "date": "2027-03-31",
       "title": "Resolve events against catalog constraints",
       "learner_seam": "validate_events",
       "practice": "Validate IDs, synthetic viewer IDs, timestamp and integer watch seconds, then exact-media lookup and availability.",
@@ -106,7 +106,7 @@
     },
     {
       "day": 160,
-      "date": "2027-03-28",
+      "date": "2027-04-01",
       "title": "Remove exact event replays without hiding conflict",
       "learner_seam": "deduplicate_events",
       "practice": "Index fully validated typed records by event ID before splitting; collapse identical normalized records, reject conflicts.",
@@ -115,7 +115,7 @@
     },
     {
       "day": 161,
-      "date": "2027-03-29",
+      "date": "2027-04-02",
       "title": "Recover the parser and data-contract boundary",
       "learner_seam": "prior_only_155_160",
       "practice": "Repair one earlier seam and rerun only Days 155–160. No new function, split, course or future selector.",
@@ -124,7 +124,7 @@
     },
     {
       "day": 162,
-      "date": "2027-03-30",
+      "date": "2027-04-03",
       "title": "Partition by a fixed temporal cutoff",
       "learner_seam": "partition_events",
       "practice": "Check start < cutoff < end; partition unique events into train, holdout and outside-window.",
@@ -133,7 +133,7 @@
     },
     {
       "day": 163,
-      "date": "2027-03-31",
+      "date": "2027-04-04",
       "title": "Describe holdout cold-start coverage honestly",
       "learner_seam": "holdout_coverage",
       "practice": "Classify each holdout event by whether its viewer and item appear in training interactions.",
@@ -142,7 +142,7 @@
     },
     {
       "day": 164,
-      "date": "2027-04-01",
+      "date": "2027-04-05",
       "title": "Aggregate only the training partition",
       "learner_seam": "summarize_training",
       "practice": "Compute train event count, unique viewer count, per-media counts and watch seconds. No ranking or learned score.",
@@ -151,7 +151,7 @@
     },
     {
       "day": 165,
-      "date": "2027-04-02",
+      "date": "2027-04-06",
       "title": "Assemble reproducible semantic data and provenance",
       "learner_seam": "assemble_bundle",
       "practice": "Compose typed values into the supplied versioned bundle, using canonical serialization/hash helpers. Keep reference catalog, train, holdout and diagnostics separate.",
@@ -160,7 +160,7 @@
     },
     {
       "day": 166,
-      "date": "2027-04-03",
+      "date": "2027-04-07",
       "title": "Compose preparation behind the local CLI",
       "learner_seam": "prepare_dataset",
       "practice": "Wire validated functions in order using fixed fixture registry, bounded reads and instructor stdout/error framing. No network/storage/database adapters.",
@@ -169,7 +169,7 @@
     },
     {
       "day": 167,
-      "date": "2027-04-04",
+      "date": "2027-04-08",
       "title": "Prove reproducibility and leakage boundaries offline",
       "learner_seam": "prior-only-integration-verification",
       "practice": "There is no new semantic function on Day 167. Implement prior seams until the instructor-owned subprocess oracle passes independent golden assertions for cutoff membership, train summary/hash, provenance, holdout mutation, and failures.",
@@ -178,7 +178,7 @@
     },
     {
       "day": 168,
-      "date": "2027-04-05",
+      "date": "2027-04-09",
       "title": "Recover and defend the data-foundation boundary",
       "learner_seam": "prior_only_155_167",
       "practice": "Cold-reproduce one earlier bad-data case, repair prior work and explain limited guarantees. No new feature.",

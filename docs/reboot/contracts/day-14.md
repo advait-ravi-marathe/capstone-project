@@ -1,4 +1,4 @@
-# Day 14 — 2026-11-02: Milestone 1 backend vertical slice
+# Day 14 — 2026-11-06: Milestone 1 backend vertical slice
 
 **State:** Real PostgreSQL backend-slice acceptance test installed and tagged `learnerAcceptance`. It wires the actual fixture, catalog, eligibility, premium, quote, repository, selection, and read-query components. It currently fails at the first explicit learner TODO; a green readiness test is not a substitute for this path. The test reads persisted quotes/selections directly from PostgreSQL and does not call Day 15's summary query.
 
@@ -36,17 +36,11 @@ Integration report, short demo, prerequisite gaps. Record dated attempt state (`
 
 This fixed acceptance test currently fails at Day 4 `ProductCatalogService.findByCode`; that red result is expected. Do not mark integration passed until the entire component path succeeds.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first system-design session (45 minutes inside the existing 85-minute practice block)
 
-**Question:** Where did the real acceptance path stop, or what did it read back? Which earlier-taught transaction boundary protects that observation?
+**Prompt:** [Q31](../interview/question-bank.md#q31) from the original question bank. Before any hint, reference answer, or AI, write your own initial proposal. Follow the 45-minute 5/5/15/10/10 format in [the mock rubric](../interview/mock-rubric.md): clarify, preserve your first proposal, work the design, inspect a failure and trade-off, then score feedback.
 
-**Observable evidence:** Use the existing 20-minute mock to trace actual output and one real blocker; do not claim a passing demo with fake components or add a new alternative-analysis assignment.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
-
-**Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.
+**Schedule:** 2026-11-06. This session replaces 45 minutes of implementation/test practice; the remaining 40 minutes stay for the day’s implementation and tests. Do not add time or mark a partial acceptance gate complete. Use the existing 10-minute evidence block for command, result, assistance, and blocker only.
 
 ## DSA study (workload-tiered; actual attempts only)
 

@@ -1,4 +1,4 @@
-# Day 70 — 2026-12-28: Complete the mastery, recovery and design mock
+# Day 70 — 2027-01-01: Complete the mastery, recovery and design mock
 
 ## Contract
 

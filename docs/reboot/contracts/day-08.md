@@ -1,4 +1,4 @@
-# Day 08 — 2026-10-27: Define PostgreSQL quote schema
+# Day 08 — 2026-10-31: Define PostgreSQL quote schema
 
 **State:** Instructor scaffold installed; learner implementation pending. PostgreSQL acceptance cases are fixed and currently fail because the scaffold migration omits the required constraints.
 
@@ -36,15 +36,9 @@ Real PostgreSQL insert/rejection matrix. Record dated attempt state (`not attemp
 
 This selector runs the installed tests against a real embedded PostgreSQL server. It should fail until the learner completes the explicit constraints in `src/main/resources/db/migration/V001__homesecure_quotes.sql`. Such failures are not an infrastructure pass. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** Which invalid state is impossible even if Java is bypassed? Why does pair uniqueness not itself prove same-journey ownership?
-
-**Observable evidence:** Draw keys and references; explain cross-journey protection; execute valid and rejected direct SQL writes.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A4](../interview-evidence-overlay.md#a4) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 

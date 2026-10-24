@@ -1,4 +1,4 @@
-# Day 96 — 2027-01-23: Verify one-slot backend baseline reset after every outcome
+# Day 96 — 2027-01-27: Verify one-slot backend baseline reset after every outcome
 
 ## Contract
 

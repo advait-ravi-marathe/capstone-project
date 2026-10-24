@@ -1,4 +1,4 @@
-# Day 89 — 2027-01-16: Run one unchanged owner-scoped read inside the timed decorator
+# Day 89 — 2027-01-20: Run one unchanged owner-scoped read inside the timed decorator
 
 ## Contract
 

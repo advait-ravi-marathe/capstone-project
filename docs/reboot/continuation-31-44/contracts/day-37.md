@@ -1,4 +1,4 @@
-# Day 37 — 2026-11-25: Endorsement command validation
+# Day 37 — 2026-11-29: Endorsement command validation
 
 ## Contract
 

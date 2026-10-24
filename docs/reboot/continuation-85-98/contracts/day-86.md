@@ -1,4 +1,4 @@
-# Day 86 — 2027-01-13: Validate finite ordered PostgreSQL read budgets
+# Day 86 — 2027-01-17: Validate finite ordered PostgreSQL read budgets
 
 ## Contract
 

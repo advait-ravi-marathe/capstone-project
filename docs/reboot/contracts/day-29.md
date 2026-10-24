@@ -1,4 +1,4 @@
-# Day 29 — 2026-11-17: Make the slice reproducible
+# Day 29 — 2026-11-21: Make the slice reproducible
 
 **State:** Safety/refusal tests and a positive reset integration test on fresh embedded PostgreSQL are installed. `--embedded-test --confirm-disposable` needs no psql or remote target; external URI reset remains explicitly guarded.
 

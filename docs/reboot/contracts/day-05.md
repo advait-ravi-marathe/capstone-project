@@ -1,4 +1,4 @@
-# Day 05 — 2026-10-24: Decide HomeSecure eligibility
+# Day 05 — 2026-10-28: Decide HomeSecure eligibility
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
@@ -36,15 +36,9 @@ Record the two predicted toy outcomes, then the actual insurance selector result
 
 This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** For a row with multiple invalid fields, which rule applies first and why?
-
-**Observable evidence:** Predict and test the parcel variation, then map the insurance table's existing boundaries and reason precedence without importing toy values.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A7](../interview-evidence-overlay.md#a7) (anecdotal); [A8](../interview-evidence-overlay.md#a8) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 

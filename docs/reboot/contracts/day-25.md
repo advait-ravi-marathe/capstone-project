@@ -1,4 +1,4 @@
-# Day 25 — 2026-11-13: Handle concurrent repeated selection
+# Day 25 — 2026-11-17: Handle concurrent repeated selection
 
 **State:** Real-PostgreSQL concurrent service contract is installed with a barrier and an isolated composite-key table. The writer is an explicit learner TODO; an HTTP endpoint/200-response integration remains open.
 

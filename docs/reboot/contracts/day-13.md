@@ -1,4 +1,4 @@
-# Day 13 — 2026-11-01: Add honest repeatable CI
+# Day 13 — 2026-11-05: Add honest repeatable CI
 
 **State:** Instructor-owned fail-closed GitHub Actions workflow and its local infrastructure check are installed. The learner-owned readiness evaluator remains a TODO; no learner attempt is recorded. Remote Actions success is unverified until a run is observed.
 
@@ -38,15 +38,9 @@ Actual local/CI-equivalent output; do not claim remote run if absent. Record dat
 
 The first selector checks the supplied workflow and fail-closed commands; it passes locally. The second runs the learner readiness-policy acceptance tests and is expected red at the explicit TODO. The remote Actions result is not claimed until observed; local evidence and remote CI are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** How can a green build lie? What proves learner logic rather than fixture wiring?
-
-**Observable evidence:** Distinguish infrastructure, isolated contract and integrated tests; show that an intentional contract failure exits nonzero and unfinished work stays visible.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 

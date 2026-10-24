@@ -1,15 +1,15 @@
 {
   "title": "CoverStory reboot Scrum story manifest — first 30 days",
-  "effective_start": "2026-10-20",
-  "effective_end": "2026-11-18",
+  "effective_start": "2026-10-24",
+  "effective_end": "2026-11-22",
   "canonical_daily_manifest": "docs/reboot/manifest.json",
   "board_model": "One consolidated Story per date. Each Story contains both its 120-minute engineering assignment and separate 60-minute Java DSA assignment; these remain independently tracked in the canonical daily manifest.",
   "sprint_boundaries": [
     {
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "calendar_dates": [
-        "2026-10-20",
-        "2026-11-02"
+        "2026-10-24",
+        "2026-11-06"
       ],
       "day_numbers": [
         1,
@@ -18,10 +18,10 @@
       "story_count": 14
     },
     {
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "calendar_dates": [
-        "2026-11-03",
-        "2026-11-16"
+        "2026-11-07",
+        "2026-11-20"
       ],
       "day_numbers": [
         15,
@@ -30,18 +30,18 @@
       "story_count": 14
     },
     {
-      "sprint": "Sprint 3 (17–30 Nov 2026)",
+      "sprint": "Sprint 3 (21–4 Dec 2026)",
       "calendar_dates": [
-        "2026-11-17",
-        "2026-11-30"
+        "2026-11-21",
+        "2026-12-04"
       ],
       "day_numbers": [
         29,
         30
       ],
       "populated_dates": [
-        "2026-11-17",
-        "2026-11-18"
+        "2026-11-21",
+        "2026-11-22"
       ],
       "story_count": 2
     }
@@ -67,9 +67,9 @@
       "id": "CS-DAY01",
       "sequence": 1,
       "day_number": 1,
-      "date": "2026-10-20",
+      "date": "2026-10-24",
       "title": "Day01: Quote selection + running-state array (LC 121)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -125,15 +125,15 @@
         "concept": "running-state array",
         "problem_id": 121,
         "problem": "121 Best Time to Buy and Sell Stock",
-        "planned_attempt_date": "2026-10-20",
+        "planned_attempt_date": "2026-10-24",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-01-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-10-23",
           "2026-10-27",
-          "2026-11-10"
+          "2026-10-31",
+          "2026-11-14"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
@@ -239,9 +239,9 @@
       "id": "CS-DAY02",
       "sequence": 2,
       "day_number": 2,
-      "date": "2026-10-21",
+      "date": "2026-10-25",
       "title": "Day02: Validate request + DSA consolidation (no due anchors)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -359,9 +359,9 @@
       "id": "CS-DAY03",
       "sequence": 3,
       "day_number": 3,
-      "date": "2026-10-22",
+      "date": "2026-10-26",
       "title": "Day03: Error mapping + hash lookup (LC 1)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -407,15 +407,15 @@
         "concept": "frequency counting",
         "problem_id": 383,
         "problem": "383 Ransom Note",
-        "planned_attempt_date": "2026-10-22",
+        "planned_attempt_date": "2026-10-26",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-03-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-10-25",
           "2026-10-29",
-          "2026-11-12"
+          "2026-11-02",
+          "2026-11-16"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": "https://leetcode.com/problems/ransom-note/",
@@ -493,9 +493,9 @@
       "id": "CS-DAY04",
       "sequence": 4,
       "day_number": 4,
-      "date": "2026-10-23",
+      "date": "2026-10-27",
       "title": "Day04: Product catalog + reviews LC 121 D+3",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -576,7 +576,7 @@
               "anchor_day": 1,
               "problem_id": 121,
               "review_interval_days": 3,
-              "due_date": "2026-10-23",
+              "due_date": "2026-10-27",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
               "problem": "121 Best Time to Buy and Sell Stock"
@@ -623,9 +623,9 @@
       "id": "CS-DAY05",
       "sequence": 5,
       "day_number": 5,
-      "date": "2026-10-24",
+      "date": "2026-10-28",
       "title": "Day05: Eligibility + frequency counting (LC 383)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -668,15 +668,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-10-24",
+        "planned_attempt_date": "2026-10-28",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-05-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-10-27",
           "2026-10-31",
-          "2026-11-14"
+          "2026-11-04",
+          "2026-11-18"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -751,9 +751,9 @@
       "id": "CS-DAY06",
       "sequence": 6,
       "day_number": 6,
-      "date": "2026-10-25",
+      "date": "2026-10-29",
       "title": "Day06: Premium calculation + reviews LC 1 D+3",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -834,7 +834,7 @@
               "anchor_day": 3,
               "problem_id": 1,
               "review_interval_days": 3,
-              "due_date": "2026-10-25",
+              "due_date": "2026-10-29",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/two-sum/description/",
               "problem": "1 Two Sum"
@@ -881,9 +881,9 @@
       "id": "CS-DAY07",
       "sequence": 7,
       "day_number": 7,
-      "date": "2026-10-26",
+      "date": "2026-10-30",
       "title": "Day07: Quote version + grouping key (LC 49)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -926,15 +926,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-10-26",
+        "planned_attempt_date": "2026-10-30",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-07-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-10-29",
           "2026-11-02",
-          "2026-11-16"
+          "2026-11-06",
+          "2026-11-20"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -999,9 +999,9 @@
       "id": "CS-DAY08",
       "sequence": 8,
       "day_number": 8,
-      "date": "2026-10-27",
+      "date": "2026-10-31",
       "title": "Day08: PostgreSQL schema + reviews LC 121 D+7, LC 383 D+3",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1082,7 +1082,7 @@
               "anchor_day": 1,
               "problem_id": 121,
               "review_interval_days": 7,
-              "due_date": "2026-10-27",
+              "due_date": "2026-10-31",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
               "problem": "121 Best Time to Buy and Sell Stock"
@@ -1091,7 +1091,7 @@
               "anchor_day": 5,
               "problem_id": 383,
               "review_interval_days": 3,
-              "due_date": "2026-10-27",
+              "due_date": "2026-10-31",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/ransom-note/description/",
               "problem": "383 Ransom Note"
@@ -1139,9 +1139,9 @@
       "id": "CS-DAY09",
       "sequence": 9,
       "day_number": 9,
-      "date": "2026-10-28",
+      "date": "2026-11-01",
       "title": "Day09: Quote persistence + prefix/suffix products (LC 238)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1182,15 +1182,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-10-28",
+        "planned_attempt_date": "2026-11-01",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-09-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-10-31",
           "2026-11-04",
-          "2026-11-18"
+          "2026-11-08",
+          "2026-11-22"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -1266,9 +1266,9 @@
       "id": "CS-DAY10",
       "sequence": 10,
       "day_number": 10,
-      "date": "2026-10-29",
+      "date": "2026-11-02",
       "title": "Day10: Atomic selection + reviews LC 1 D+7, LC 49 D+3",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1347,7 +1347,7 @@
               "anchor_day": 3,
               "problem_id": 1,
               "review_interval_days": 7,
-              "due_date": "2026-10-29",
+              "due_date": "2026-11-02",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/two-sum/description/",
               "problem": "1 Two Sum"
@@ -1356,7 +1356,7 @@
               "anchor_day": 7,
               "problem_id": 49,
               "review_interval_days": 3,
-              "due_date": "2026-10-29",
+              "due_date": "2026-11-02",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
               "problem": "49 Group Anagrams"
@@ -1412,9 +1412,9 @@
       "id": "CS-DAY11",
       "sequence": 11,
       "day_number": 11,
-      "date": "2026-10-30",
+      "date": "2026-11-03",
       "title": "Day11: Stale quotes + inward pointers (LC 125)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1455,15 +1455,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-10-30",
+        "planned_attempt_date": "2026-11-03",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-11-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-02",
           "2026-11-06",
-          "2026-11-20"
+          "2026-11-10",
+          "2026-11-24"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -1528,9 +1528,9 @@
       "id": "CS-DAY12",
       "sequence": 12,
       "day_number": 12,
-      "date": "2026-10-31",
+      "date": "2026-11-04",
       "title": "Day12: Owner access + reviews LC 383 D+7, LC 238 D+3",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1609,7 +1609,7 @@
               "anchor_day": 5,
               "problem_id": 383,
               "review_interval_days": 7,
-              "due_date": "2026-10-31",
+              "due_date": "2026-11-04",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/ransom-note/description/",
               "problem": "383 Ransom Note"
@@ -1618,7 +1618,7 @@
               "anchor_day": 9,
               "problem_id": 238,
               "review_interval_days": 3,
-              "due_date": "2026-10-31",
+              "due_date": "2026-11-04",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
               "problem": "238 Product of Array Except Self"
@@ -1674,9 +1674,9 @@
       "id": "CS-DAY13",
       "sequence": 13,
       "day_number": 13,
-      "date": "2026-11-01",
+      "date": "2026-11-05",
       "title": "Day13: CI + sorted two pointers (LC 167)",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1719,15 +1719,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-01",
+        "planned_attempt_date": "2026-11-05",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-13-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-04",
           "2026-11-08",
-          "2026-11-22"
+          "2026-11-12",
+          "2026-11-26"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -1803,9 +1803,9 @@
       "id": "CS-DAY14",
       "sequence": 14,
       "day_number": 14,
-      "date": "2026-11-02",
+      "date": "2026-11-06",
       "title": "Day14: Backend slice + reviews LC 49 D+7, LC 125 D+3",
-      "sprint": "Sprint 1 (20 Oct–2 Nov 2026)",
+      "sprint": "Sprint 1 (24 Oct–6 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1886,7 +1886,7 @@
               "anchor_day": 7,
               "problem_id": 49,
               "review_interval_days": 7,
-              "due_date": "2026-11-02",
+              "due_date": "2026-11-06",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
               "problem": "49 Group Anagrams"
@@ -1895,7 +1895,7 @@
               "anchor_day": 11,
               "problem_id": 125,
               "review_interval_days": 3,
-              "due_date": "2026-11-02",
+              "due_date": "2026-11-06",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
               "problem": "125 Valid Palindrome"
@@ -1951,9 +1951,9 @@
       "id": "CS-DAY15",
       "sequence": 15,
       "day_number": 15,
-      "date": "2026-11-03",
+      "date": "2026-11-07",
       "title": "Day15: Journey summary + pointer-elimination proof (LC 11)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -1994,15 +1994,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-03",
+        "planned_attempt_date": "2026-11-07",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-15-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-06",
           "2026-11-10",
-          "2026-11-24"
+          "2026-11-14",
+          "2026-11-28"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -2084,9 +2084,9 @@
       "id": "CS-DAY16",
       "sequence": 16,
       "day_number": 16,
-      "date": "2026-11-04",
+      "date": "2026-11-08",
       "title": "Day16: History reads + reviews LC 238 D+7, LC 167 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2165,7 +2165,7 @@
               "anchor_day": 9,
               "problem_id": 238,
               "review_interval_days": 7,
-              "due_date": "2026-11-04",
+              "due_date": "2026-11-08",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
               "problem": "238 Product of Array Except Self"
@@ -2174,7 +2174,7 @@
               "anchor_day": 13,
               "problem_id": 167,
               "review_interval_days": 3,
-              "due_date": "2026-11-04",
+              "due_date": "2026-11-08",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
               "problem": "167 Two Sum II - Input Array Is Sorted"
@@ -2221,9 +2221,9 @@
       "id": "CS-DAY17",
       "sequence": 17,
       "day_number": 17,
-      "date": "2026-11-05",
+      "date": "2026-11-09",
       "title": "Day17: Product UI + variable sliding window (LC 3)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2266,15 +2266,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-05",
+        "planned_attempt_date": "2026-11-09",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-17-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-08",
           "2026-11-12",
-          "2026-11-26"
+          "2026-11-16",
+          "2026-11-30"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -2349,9 +2349,9 @@
       "id": "CS-DAY18",
       "sequence": 18,
       "day_number": 18,
-      "date": "2026-11-06",
+      "date": "2026-11-10",
       "title": "Day18: Quote input + reviews LC 125 D+7, LC 11 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2430,7 +2430,7 @@
               "anchor_day": 11,
               "problem_id": 125,
               "review_interval_days": 7,
-              "due_date": "2026-11-06",
+              "due_date": "2026-11-10",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/valid-palindrome/description/",
               "problem": "125 Valid Palindrome"
@@ -2439,7 +2439,7 @@
               "anchor_day": 15,
               "problem_id": 11,
               "review_interval_days": 3,
-              "due_date": "2026-11-06",
+              "due_date": "2026-11-10",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
               "problem": "11 Container With Most Water"
@@ -2486,9 +2486,9 @@
       "id": "CS-DAY19",
       "sequence": 19,
       "day_number": 19,
-      "date": "2026-11-07",
+      "date": "2026-11-11",
       "title": "Day19: Quote snapshot + shrinking valid window (LC 209)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2529,15 +2529,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-07",
+        "planned_attempt_date": "2026-11-11",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-19-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-10",
           "2026-11-14",
-          "2026-11-28"
+          "2026-11-18",
+          "2026-12-02"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -2636,9 +2636,9 @@
       "id": "CS-DAY20",
       "sequence": 20,
       "day_number": 20,
-      "date": "2026-11-08",
+      "date": "2026-11-12",
       "title": "Day20: Selection UI + reviews LC 167 D+7, LC 3 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2717,7 +2717,7 @@
               "anchor_day": 13,
               "problem_id": 167,
               "review_interval_days": 7,
-              "due_date": "2026-11-08",
+              "due_date": "2026-11-12",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
               "problem": "167 Two Sum II - Input Array Is Sorted"
@@ -2726,7 +2726,7 @@
               "anchor_day": 17,
               "problem_id": 3,
               "review_interval_days": 3,
-              "due_date": "2026-11-08",
+              "due_date": "2026-11-12",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
               "problem": "3 Longest Substring Without Repeating Characters"
@@ -2773,9 +2773,9 @@
       "id": "CS-DAY21",
       "sequence": 21,
       "day_number": 21,
-      "date": "2026-11-09",
+      "date": "2026-11-13",
       "title": "Day21: CSRF writes + stack (LC 20)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2826,15 +2826,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-09",
+        "planned_attempt_date": "2026-11-13",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-21-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-12",
           "2026-11-16",
-          "2026-11-30"
+          "2026-11-20",
+          "2026-12-04"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -2909,9 +2909,9 @@
       "id": "CS-DAY22",
       "sequence": 22,
       "day_number": 22,
-      "date": "2026-11-10",
+      "date": "2026-11-14",
       "title": "Day22: Request correlation + reviews LC 121 D+21, LC 11 D+7, LC 209 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -2994,7 +2994,7 @@
               "anchor_day": 1,
               "problem_id": 121,
               "review_interval_days": 21,
-              "due_date": "2026-11-10",
+              "due_date": "2026-11-14",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
               "problem": "121 Best Time to Buy and Sell Stock"
@@ -3003,7 +3003,7 @@
               "anchor_day": 15,
               "problem_id": 11,
               "review_interval_days": 7,
-              "due_date": "2026-11-10",
+              "due_date": "2026-11-14",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/container-with-most-water/description/",
               "problem": "11 Container With Most Water"
@@ -3012,7 +3012,7 @@
               "anchor_day": 19,
               "problem_id": 209,
               "review_interval_days": 3,
-              "due_date": "2026-11-10",
+              "due_date": "2026-11-14",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
               "problem": "209 Minimum Size Subarray Sum"
@@ -3059,9 +3059,9 @@
       "id": "CS-DAY23",
       "sequence": 23,
       "day_number": 23,
-      "date": "2026-11-11",
+      "date": "2026-11-15",
       "title": "Day23: Health endpoint + augmented stack (LC 155)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3118,15 +3118,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-11",
+        "planned_attempt_date": "2026-11-15",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-23-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-14",
           "2026-11-18",
-          "2026-12-02"
+          "2026-11-22",
+          "2026-12-06"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -3201,9 +3201,9 @@
       "id": "CS-DAY24",
       "sequence": 24,
       "day_number": 24,
-      "date": "2026-11-12",
+      "date": "2026-11-16",
       "title": "Day24: Query plan + reviews LC 1 D+21, LC 3 D+7, LC 20 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3286,7 +3286,7 @@
               "anchor_day": 3,
               "problem_id": 1,
               "review_interval_days": 21,
-              "due_date": "2026-11-12",
+              "due_date": "2026-11-16",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/two-sum/description/",
               "problem": "1 Two Sum"
@@ -3295,7 +3295,7 @@
               "anchor_day": 17,
               "problem_id": 3,
               "review_interval_days": 7,
-              "due_date": "2026-11-12",
+              "due_date": "2026-11-16",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/",
               "problem": "3 Longest Substring Without Repeating Characters"
@@ -3304,7 +3304,7 @@
               "anchor_day": 21,
               "problem_id": 20,
               "review_interval_days": 3,
-              "due_date": "2026-11-12",
+              "due_date": "2026-11-16",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
               "problem": "20 Valid Parentheses"
@@ -3358,9 +3358,9 @@
       "id": "CS-DAY25",
       "sequence": 25,
       "day_number": 25,
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "title": "Day25: Concurrent selection + binary-search bridge (outside Top Interview 150) (LC 704)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3405,15 +3405,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-13",
+        "planned_attempt_date": "2026-11-17",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-25-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-16",
           "2026-11-20",
-          "2026-12-04"
+          "2026-11-24",
+          "2026-12-08"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -3478,9 +3478,9 @@
       "id": "CS-DAY26",
       "sequence": 26,
       "day_number": 26,
-      "date": "2026-11-14",
+      "date": "2026-11-18",
       "title": "Day26: Audit + reviews LC 383 D+21, LC 209 D+7, LC 155 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3563,7 +3563,7 @@
               "anchor_day": 5,
               "problem_id": 383,
               "review_interval_days": 21,
-              "due_date": "2026-11-14",
+              "due_date": "2026-11-18",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/ransom-note/description/",
               "problem": "383 Ransom Note"
@@ -3572,7 +3572,7 @@
               "anchor_day": 19,
               "problem_id": 209,
               "review_interval_days": 7,
-              "due_date": "2026-11-14",
+              "due_date": "2026-11-18",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/minimum-size-subarray-sum/description/",
               "problem": "209 Minimum Size Subarray Sum"
@@ -3581,7 +3581,7 @@
               "anchor_day": 23,
               "problem_id": 155,
               "review_interval_days": 3,
-              "due_date": "2026-11-14",
+              "due_date": "2026-11-18",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/min-stack/description/",
               "problem": "155 Min Stack"
@@ -3618,9 +3618,9 @@
       "id": "CS-DAY27",
       "sequence": 27,
       "day_number": 27,
-      "date": "2026-11-15",
+      "date": "2026-11-19",
       "title": "Day27: Regression fix + boundary search (LC 35)",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3665,15 +3665,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-15",
+        "planned_attempt_date": "2026-11-19",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-27-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-18",
           "2026-11-22",
-          "2026-12-06"
+          "2026-11-26",
+          "2026-12-10"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -3757,9 +3757,9 @@
       "id": "CS-DAY28",
       "sequence": 28,
       "day_number": 28,
-      "date": "2026-11-16",
+      "date": "2026-11-20",
       "title": "Day28: Browser-to-database gate + reviews LC 49 D+21, LC 20 D+7, LC 704 D+3",
-      "sprint": "Sprint 2 (3–16 Nov 2026)",
+      "sprint": "Sprint 2 (7–20 Nov 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3846,7 +3846,7 @@
               "anchor_day": 7,
               "problem_id": 49,
               "review_interval_days": 21,
-              "due_date": "2026-11-16",
+              "due_date": "2026-11-20",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/group-anagrams/description/",
               "problem": "49 Group Anagrams"
@@ -3855,7 +3855,7 @@
               "anchor_day": 21,
               "problem_id": 20,
               "review_interval_days": 7,
-              "due_date": "2026-11-16",
+              "due_date": "2026-11-20",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/valid-parentheses/description/",
               "problem": "20 Valid Parentheses"
@@ -3864,7 +3864,7 @@
               "anchor_day": 25,
               "problem_id": 704,
               "review_interval_days": 3,
-              "due_date": "2026-11-16",
+              "due_date": "2026-11-20",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/binary-search/description/",
               "problem": "704 Binary Search"
@@ -3903,9 +3903,9 @@
       "id": "CS-DAY29",
       "sequence": 29,
       "day_number": 29,
-      "date": "2026-11-17",
+      "date": "2026-11-21",
       "title": "Day29: Reproducibility + rotated-array search (LC 153)",
-      "sprint": "Sprint 3 (17–30 Nov 2026)",
+      "sprint": "Sprint 3 (21–4 Dec 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -3952,15 +3952,15 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "problem_id": null,
         "problem": null,
-        "planned_attempt_date": "2026-11-17",
+        "planned_attempt_date": "2026-11-21",
         "review_anchors": [],
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "status": "not_attempted",
         "evidence_output": "evidence/reboot/day-29-dsa.json",
         "planned_review_forecast_dates": [
-          "2026-11-20",
           "2026-11-24",
-          "2026-12-08"
+          "2026-11-28",
+          "2026-12-12"
         ],
         "error_log_template": "docs/reboot/dsa-error-log-template.md",
         "problem_url": null,
@@ -4035,9 +4035,9 @@
       "id": "CS-DAY30",
       "sequence": 30,
       "day_number": 30,
-      "date": "2026-11-18",
+      "date": "2026-11-22",
       "title": "Day30: Slice review + reviews LC 238 D+21, LC 155 D+7, LC 35 D+3",
-      "sprint": "Sprint 3 (17–30 Nov 2026)",
+      "sprint": "Sprint 3 (21–4 Dec 2026)",
       "status": "not_attempted",
       "allocation_minutes": {
         "engineering": 120,
@@ -4118,7 +4118,7 @@
               "anchor_day": 9,
               "problem_id": 238,
               "review_interval_days": 21,
-              "due_date": "2026-11-18",
+              "due_date": "2026-11-22",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/product-of-array-except-self/description/",
               "problem": "238 Product of Array Except Self"
@@ -4127,7 +4127,7 @@
               "anchor_day": 23,
               "problem_id": 155,
               "review_interval_days": 7,
-              "due_date": "2026-11-18",
+              "due_date": "2026-11-22",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/min-stack/description/",
               "problem": "155 Min Stack"
@@ -4136,7 +4136,7 @@
               "anchor_day": 27,
               "problem_id": 35,
               "review_interval_days": 3,
-              "due_date": "2026-11-18",
+              "due_date": "2026-11-22",
               "status": "pending_if_actual_attempt_on_plan",
               "problem_url": "https://leetcode.com/problems/search-insert-position/description/",
               "problem": "35 Search Insert Position"

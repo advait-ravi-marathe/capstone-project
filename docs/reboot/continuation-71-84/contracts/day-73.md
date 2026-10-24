@@ -1,4 +1,4 @@
-# Day 73 — 2026-12-31: Implement immediate two-permit preview admission; DSA actual-attempt queue
+# Day 73 — 2027-01-04: Implement immediate two-permit preview admission; DSA actual-attempt queue
 
 ## Contract
 

@@ -1,8 +1,8 @@
 {
   "title": "CoverStory local application assembly: Days 57–70",
   "base_sha": "023117b0f966da3d4e1153029e642f0c345b5f3a",
-  "effective_start": "2026-12-15",
-  "effective_end": "2026-12-28",
+  "effective_start": "2026-12-19",
+  "effective_end": "2027-01-01",
   "status_semantics": "Contracts are plans. Scaffold, learner implementation, integration and actual completion are independent states. Only recorded learner evidence can advance learner status.",
   "scope": "A loopback-only, passwordless synthetic local runtime for existing policy issuance/readback and read-only renewal preview. The local DB is disposable. No new product feature, no StreamForge, no real data, and no changes to Days 1–56 contracts. PostgreSQL 18.6 is selected for the disposable test harness. No existing user database is upgraded.",
   "daily_budget_minutes": {
@@ -49,7 +49,7 @@
   "sprints": [
     {
       "name": "Sprint 5",
-      "dates": "2026-12-15..2026-12-28",
+      "dates": "2026-12-19..2027-01-01",
       "previous_continuation_days": [
         55,
         56
@@ -79,7 +79,7 @@
   "days": [
     {
       "day": 57,
-      "date": "2026-12-15",
+      "date": "2026-12-19",
       "title": "Gate the local assembly on prior learner evidence",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-57.md",
       "contract_status": "defined",
@@ -256,7 +256,7 @@
     },
     {
       "day": 58,
-      "date": "2026-12-16",
+      "date": "2026-12-20",
       "title": "Trace and explain the prebuilt local application composition",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-58.md",
       "contract_status": "defined",
@@ -449,7 +449,7 @@
     },
     {
       "day": 59,
-      "date": "2026-12-17",
+      "date": "2026-12-21",
       "title": "Verify and explain the versioned synthetic migration lifecycle",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-59.md",
       "contract_status": "defined",
@@ -523,12 +523,12 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-17",
+        "planned_first_attempt_date": "2026-12-21",
         "actual_first_attempt_date": null,
         "review_due_dates_if_attempted_on_plan": [
-          "2026-12-20",
           "2026-12-24",
-          "2027-01-07"
+          "2026-12-28",
+          "2027-01-11"
         ],
         "actual_review_dates": [],
         "review_status": "pending",
@@ -555,11 +555,11 @@
           "problem_id": 104,
           "problem_name": "Maximum Depth of Binary Tree",
           "concept": "tree height by postorder recursion",
-          "planned_first_attempt_date": "2026-12-17",
+          "planned_first_attempt_date": "2026-12-21",
           "review_due_dates_if_attempted_on_plan": [
-            "2026-12-20",
             "2026-12-24",
-            "2027-01-07"
+            "2026-12-28",
+            "2027-01-11"
           ],
           "problem_url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
         },
@@ -611,7 +611,7 @@
     },
     {
       "day": 60,
-      "date": "2026-12-18",
+      "date": "2026-12-22",
       "title": "Wire owner-scoped policy reads and prove preview performs no writes",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-60.md",
       "contract_status": "defined",
@@ -808,7 +808,7 @@
     },
     {
       "day": 61,
-      "date": "2026-12-19",
+      "date": "2026-12-23",
       "title": "Trace and verify the instructor-provided local security chain",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-61.md",
       "contract_status": "defined",
@@ -917,12 +917,12 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-19",
+        "planned_first_attempt_date": "2026-12-23",
         "actual_first_attempt_date": null,
         "review_due_dates_if_attempted_on_plan": [
-          "2026-12-22",
           "2026-12-26",
-          "2027-01-09"
+          "2026-12-30",
+          "2027-01-13"
         ],
         "actual_review_dates": [],
         "review_status": "pending",
@@ -949,11 +949,11 @@
           "problem_id": 100,
           "problem_name": "Same Tree",
           "concept": "recursive structural equality for binary trees",
-          "planned_first_attempt_date": "2026-12-19",
+          "planned_first_attempt_date": "2026-12-23",
           "review_due_dates_if_attempted_on_plan": [
-            "2026-12-22",
             "2026-12-26",
-            "2027-01-09"
+            "2026-12-30",
+            "2027-01-13"
           ],
           "problem_url": "https://leetcode.com/problems/same-tree/"
         },
@@ -1040,7 +1040,7 @@
     },
     {
       "day": 62,
-      "date": "2026-12-20",
+      "date": "2026-12-24",
       "title": "Derive policy ownership from the authenticated principal",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-62.md",
       "contract_status": "defined",
@@ -1233,7 +1233,7 @@
     },
     {
       "day": 63,
-      "date": "2026-12-21",
+      "date": "2026-12-25",
       "title": "Run the security trace and recovery checkpoint",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-63.md",
       "contract_status": "defined",
@@ -1396,7 +1396,7 @@
     },
     {
       "day": 64,
-      "date": "2026-12-22",
+      "date": "2026-12-26",
       "title": "Trace the instructor-provided local policy issue adapter boundary",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-64.md",
       "contract_status": "defined",
@@ -1609,7 +1609,7 @@
     },
     {
       "day": 65,
-      "date": "2026-12-23",
+      "date": "2026-12-27",
       "title": "Reproduce and explain CSRF rejection in the local runtime",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-65.md",
       "contract_status": "defined",
@@ -1708,12 +1708,12 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-23",
+        "planned_first_attempt_date": "2026-12-27",
         "actual_first_attempt_date": null,
         "review_due_dates_if_attempted_on_plan": [
-          "2026-12-26",
           "2026-12-30",
-          "2027-01-13"
+          "2027-01-03",
+          "2027-01-17"
         ],
         "actual_review_dates": [],
         "review_status": "pending",
@@ -1740,11 +1740,11 @@
           "problem_id": 102,
           "problem_name": "Binary Tree Level Order Traversal",
           "concept": "breadth-first queue traversal",
-          "planned_first_attempt_date": "2026-12-23",
+          "planned_first_attempt_date": "2026-12-27",
           "review_due_dates_if_attempted_on_plan": [
-            "2026-12-26",
             "2026-12-30",
-            "2027-01-13"
+            "2027-01-03",
+            "2027-01-17"
           ],
           "problem_url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
         },
@@ -1821,7 +1821,7 @@
     },
     {
       "day": 66,
-      "date": "2026-12-24",
+      "date": "2026-12-28",
       "title": "Build the normal React route and typed local API client",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-66.md",
       "contract_status": "defined",
@@ -2008,7 +2008,7 @@
     },
     {
       "day": 67,
-      "date": "2026-12-25",
+      "date": "2026-12-29",
       "title": "Inspect the disposable packaged runtime lifecycle",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-67.md",
       "contract_status": "defined",
@@ -2094,12 +2094,12 @@
         "concept": "selected from actual due queue and verified learner readiness",
         "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
         "first_attempt_status": "not_attempted",
-        "planned_first_attempt_date": "2026-12-25",
+        "planned_first_attempt_date": "2026-12-29",
         "actual_first_attempt_date": null,
         "review_due_dates_if_attempted_on_plan": [
-          "2026-12-28",
           "2027-01-01",
-          "2027-01-15"
+          "2027-01-05",
+          "2027-01-19"
         ],
         "actual_review_dates": [],
         "review_status": "pending",
@@ -2126,11 +2126,11 @@
           "problem_id": 98,
           "problem_name": "Validate Binary Search Tree",
           "concept": "recursive lower/upper bounds",
-          "planned_first_attempt_date": "2026-12-25",
+          "planned_first_attempt_date": "2026-12-29",
           "review_due_dates_if_attempted_on_plan": [
-            "2026-12-28",
             "2027-01-01",
-            "2027-01-15"
+            "2027-01-05",
+            "2027-01-19"
           ],
           "problem_url": "https://leetcode.com/problems/validate-binary-search-tree/"
         },
@@ -2194,7 +2194,7 @@
     },
     {
       "day": 68,
-      "date": "2026-12-26",
+      "date": "2026-12-30",
       "title": "Drive packaged UI acceptance: issue/readback/replay and restart/no-write checks",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-68.md",
       "contract_status": "defined",
@@ -2393,7 +2393,7 @@
     },
     {
       "day": 69,
-      "date": "2026-12-27",
+      "date": "2026-12-31",
       "title": "Compare UI preview, foreign owner and session behavior across restart",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-69.md",
       "contract_status": "defined",
@@ -2607,7 +2607,7 @@
     },
     {
       "day": 70,
-      "date": "2026-12-28",
+      "date": "2027-01-01",
       "title": "Complete the mastery, recovery and design mock",
       "contract_file": "docs/reboot/continuation-57-70/contracts/day-70.md",
       "contract_status": "defined",

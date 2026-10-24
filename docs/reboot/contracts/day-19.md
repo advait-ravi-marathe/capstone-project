@@ -1,4 +1,4 @@
-# Day 19 — 2026-11-07: Display quote snapshot
+# Day 19 — 2026-11-11: Display quote snapshot
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 

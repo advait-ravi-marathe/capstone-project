@@ -2,7 +2,7 @@
 
 This scaffold plans a local, quiesced A→B→A compatibility rehearsal using distinct immutable JARs and the existing V001–V005 database. It adds only a read-only, versioned report path using existing recovery inspection/classification. It does not establish cloud/deployment readiness or learner completion.
 
-Dates: 2027-03-09–2027-03-22 (Sprint 11); recovery days 147 and 154. Daily budget: DSA 60/75/90 minutes by substantive exercise count plus unchanged 120 engineering minutes (25 study, 85 practice/test, 10 evidence).
+Dates: 2027-03-13–2027-03-26 (Sprint 11); recovery days 147 and 154. Daily budget: DSA 60/75/90 minutes by substantive exercise count plus unchanged 120 engineering minutes (25 study, 85 practice/test, 10 evidence).
 
 Course reference: **Master Spring Boot 3 & Spring Framework 6 with Java**, course 4993276, in28Minutes Official. [Course page](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1). Catalog metadata was verified 2026-10-20; access and playback are unconfirmed, video content unaudited, and lesson deep links were not returned. Exact lesson IDs and durations are in `manifest.json`.
 

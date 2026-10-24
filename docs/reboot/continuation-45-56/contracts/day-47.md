@@ -1,4 +1,4 @@
-# Day 47 — 2026-12-05: Freeze the renewal reference snapshot
+# Day 47 — 2026-12-09: Freeze the renewal reference snapshot
 
 ## Contract
 

@@ -1,4 +1,4 @@
-# Day 76 — 2027-01-03: Prove maximum concurrency and no permit leaks
+# Day 76 — 2027-01-07: Prove maximum concurrency and no permit leaks
 
 ## Contract
 

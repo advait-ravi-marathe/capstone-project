@@ -1,4 +1,4 @@
-# Day 16 — 2026-11-04: Bound quote-history reads
+# Day 16 — 2026-11-08: Bound quote-history reads
 
 **State:** Real-PostgreSQL pagination fixture and learner query seam installed. The focused tests currently stop at the explicit pagination TODO.
 

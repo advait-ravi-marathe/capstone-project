@@ -1,4 +1,4 @@
-# Day 07 — 2026-10-26: Create and expire quote version
+# Day 07 — 2026-10-30: Create and expire quote version
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
@@ -36,15 +36,11 @@ Record the fixed-clock before/equal/after prediction, the existing quote snapsho
 
 This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first system-design session (45 minutes inside the existing 85-minute practice block)
 
-**Question:** Why inject time rather than wait? Which captured value stays fixed when the catalog changes?
+**Prompt:** [Q03](../interview/question-bank.md#q03) from the original question bank. Before any hint, reference answer, or AI, write your own initial proposal. Follow the 45-minute 5/5/15/10/10 format in [the mock rubric](../interview/mock-rubric.md): clarify, preserve your first proposal, work the design, inspect a failure and trade-off, then score feedback.
 
-**Observable evidence:** Predict before/equal/after with a fixed clock, then explain the existing 15-minute snapshot fixture and its captured values.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+**Schedule:** 2026-10-30. This session replaces 45 minutes of implementation/test practice; the remaining 40 minutes stay for the day’s implementation and tests. Do not add time or mark a partial acceptance gate complete. Use the existing 10-minute evidence block for command, result, assistance, and blocker only.
 
 ## DSA study (workload-tiered; actual attempts only)
 

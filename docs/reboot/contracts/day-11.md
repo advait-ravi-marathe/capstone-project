@@ -1,4 +1,4 @@
-# Day 11 — 2026-10-30: Reject stale quote selection
+# Day 11 — 2026-11-03: Reject stale quote selection
 
 **State:** Contract defined; isolated policy scaffold and learner acceptance tests are installed. Learner attempt is pending; the focused suite is expected to fail at its explicit TODO.
 
@@ -36,15 +36,9 @@ Boundary and stale-version negative tests. Record dated attempt state (`not atte
 
 This selector is installed and runs the fixed Day 11 cases. It currently fails at the explicit freshness-policy TODO; that is not a passing learner result. A callback verifies rejected requests do not reach a persistence action, but this is not a PostgreSQL integration test. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** Which rejection wins when the record is expired and also superseded?
-
-**Observable evidence:** Predict owner/expiry/version outcomes, show that rejected cases invoke no callback, and state that this pure guard cannot make checking and writing atomic.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A4](../interview-evidence-overlay.md#a4) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 

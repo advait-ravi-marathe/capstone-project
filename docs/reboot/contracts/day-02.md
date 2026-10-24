@@ -1,4 +1,4 @@
-# Day 02 — 2026-10-21: Validate selection request at HTTP boundary
+# Day 02 — 2026-10-25: Validate selection request at HTTP boundary
 
 **State:** Fixed validator and HTTP adapter acceptance scaffolds are installed; learner implementation remains pending. This page is a contract, not a learner result.
 
@@ -34,15 +34,9 @@ Dated attempt note and valid/invalid MockMvc cases. Record dated attempt state (
 
 Run the independent worked example first: `./mvnw -Dtest=Day02RequestBoundaryReferenceTest test`. Then use the existing learner selector: `./mvnw -Plearner-tests -Dtest=Day02ContractTest,Day02ApiAcceptanceTest test`. The validator tests fail at the explicit request-validator TODO until learner implementation. The API adapter contract tests use test-only validation and selection doubles to verify exact error bodies and service call counts without supplying learner logic. An application-context check also keeps malformed/missing-body behavior at HTTP 400 with the Day 3 advice installed. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** Where does request-body conversion end and explicit validation begin? Why does malformed JSON fail before the service call?
-
-**Observable evidence:** Trace DTO → validation → supplied collaborator; cite the reference call count. State that this does not prove a database write or integrated completion.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A4](../interview-evidence-overlay.md#a4) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 

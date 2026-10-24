@@ -1,4 +1,4 @@
-# Day 23 — 2026-11-11: Expose minimal operational health
+# Day 23 — 2026-11-15: Expose minimal operational health
 
 **State:** A narrow Actuator response-projection seam and live endpoint test are installed. The learner-owned status projection and database-readiness indicator remain explicit TODOs. Instructor HTTP checks use a real disposable PostgreSQL probe and a temporary projection witness; they are infrastructure evidence, not learner completion.
 

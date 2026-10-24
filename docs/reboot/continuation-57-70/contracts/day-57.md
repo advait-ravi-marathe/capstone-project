@@ -1,4 +1,4 @@
-# Day 57 — 2026-12-15: Gate the local assembly on prior learner evidence
+# Day 57 — 2026-12-19: Gate the local assembly on prior learner evidence
 
 ## Contract
 

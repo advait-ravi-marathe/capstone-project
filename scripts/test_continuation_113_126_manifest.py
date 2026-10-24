@@ -26,7 +26,7 @@ class ContinuationManifestTests(unittest.TestCase):
         self.assertEqual(14, len(self.export["cards"]))
         for offset, (day, card) in enumerate(zip(self.manifest["days"], self.export["cards"])):
             self.assertEqual(113 + offset, day["day"])
-            self.assertEqual((datetime.date(2027, 2, 9) + datetime.timedelta(days=offset)).isoformat(), day["date"])
+            self.assertEqual((datetime.date(2027, 2, 13) + datetime.timedelta(days=offset)).isoformat(), day["date"])
             self.assertEqual(day["day"], card["day_number"])
             self.assertEqual(day["date"], card["date"])
             self.assertEqual(day["title"], card["title"])

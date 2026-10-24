@@ -1,4 +1,4 @@
-# Day 80 — 2027-01-07: Record fixed-cardinality preview outcomes
+# Day 80 — 2027-01-11: Record fixed-cardinality preview outcomes
 
 ## Contract
 

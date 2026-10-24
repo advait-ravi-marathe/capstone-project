@@ -1,4 +1,4 @@
-# Day 51 — 2026-12-09: Expose a minimal non-binding preview response
+# Day 51 — 2026-12-13: Expose a minimal non-binding preview response
 
 ## Contract
 

@@ -1,42 +1,78 @@
-# Small system design inside the daily engineering block
+# Interview-first system design practice
 
-Use system design as the short reasoning step that shapes the feature being
-built that day. It is part of the existing 180/195/210-minute daily plan,
-depending on the DSA exercise tier, not a separate assignment: 85 engineering minutes include design, implementation and testing;
-25 concept/course minutes cover the day's relevant design topic; 10 evidence
-minutes capture the decision and result. Choose only the artifact the feature
-needs. Do not draw every diagram type every day.
+This is an interview practice path attached to the existing CoverStory roadmap.
+It does not add a product, a cloud deployment, or extra daily hours. The first
+14-day sprint starts **24 October 2026**. The daily contract and its existing
+course lesson remain authoritative for the engineering task.
 
-For each feature, answer briefly:
+## Start with the learner's design
 
-1. **Requirement and target:** What does the user need? What measurable quality
-   target matters today (latency, throughput, data retention, availability,
-   recoverability), if any? Do not invent a target without a reason.
-2. **Invariant:** What must always be true in domain terms or stored data?
-3. **Responsibility and boundary:** Which module owns the rule? Where does a
-   transaction begin and end? What failure can cross the boundary?
-4. **One useful model:** Pick a module/UML view, ER diagram, sequence diagram,
-   or data-flow diagram appropriate to the day's change.
-5. **Alternatives:** Record one short ADR when a design choice has a material
-   trade-off. Name at least one rejected option and why it did not fit this
-   requirement.
-6. **Verification:** Add one failure case or load/concurrency check relevant
-   to the invariant. Compare measurements to a baseline only when a later
-   contract calls for a measurable comparison.
-7. **Trade-off:** Explain what the chosen design makes easier and what it costs.
+Before hints, reference answers, worked solutions, or AI answers:
 
-Start as a modular monolith with clear module ownership and transaction
-boundaries. Add a cache, Kafka, another service, or horizontal scaling only
-after a measured requirement or failure demonstrates why the extra moving
-parts are needed. PostgreSQL exercises should explain keys, normalization,
-constraints, and isolation as the feature requires. Later index and concurrency
-work should compare a repeatable baseline with the changed design.
+1. Write the requirement and two questions that would change the design.
+2. Sketch the smallest useful boundary and data flow.
+3. State one invariant, one likely failure, and the first test you would run.
+4. Save that first proposal with the timestamp and assistance state.
 
-Use the blank [design note](templates/design-note.md), [diagram prompt](templates/diagram-prompt.md),
-and [ADR template](templates/adr.md). Across the month, the appropriate prompts accumulate ER, module/UML, sequence,
-data-flow/trust diagrams and short ADRs; a day calls for only the view that
-answers its specific question. Across the month, the appropriate prompts accumulate ER, module/UML, sequence,
-data-flow/trust diagrams and short ADRs; a day calls for only the view that
-answers its specific question. These templates are prompts, not completed
-architecture answers. A day's contract identifies the one design question to
-focus on; all work stays inside the stated daily budget.
+Afterward, compare it with docs or AI if useful. Keep the first proposal and
+the comparison separate. Do not use a generic post-hoc design explanation as a
+daily evidence task. Daily evidence remains the existing exact command, actual
+result, and any blocker. A dedicated mock uses the rubric in
+[`interview/mock-rubric.md`](interview/mock-rubric.md).
+
+## Cadence and time
+
+Run two 45-minute interview sessions each week; a third is optional only when
+it replaces other practice time and the week's acceptance work still fits.
+On a session day, the 45 minutes come from the existing 85-minute practice
+block, leaving 40 minutes for the day's engineering task. The 25-minute
+course/concept block and 10-minute evidence block stay unchanged. Carry
+unfinished acceptance work forward; do not claim a milestone passed or add
+hours to fit a mock.
+
+Sprint 1 schedules two sessions in each seven-day week:
+
+| Sprint day | Date | Focus | Practice prompt |
+|---:|---|---|---|
+| 3 | 2026-10-26 | HTTP errors and boundary ownership | Q08 |
+| 7 | 2026-10-30 | time and deterministic quote expiry | Q03 |
+| 10 | 2026-11-02 | transaction scope and atomic writes | Q13 |
+| 14 | 2026-11-06 | end-to-end backend slice and first failure | Q31 |
+
+The session sequence and remaining question prompts are in the
+[`36-question bank`](interview/question-bank.md),
+[`12-session deep-practice plan`](interview/deep-practice.md), and
+[`pattern library`](interview/pattern-library.md). They are curated exercises,
+not verbatim employer questions.
+
+## Interview-first, not a replacement for the engineering contract
+
+CoverStory remains the primary application. Use Java 21, Spring, PostgreSQL,
+and the existing React path to test a design claim with a small experiment.
+Keep StreamForge gated by its existing prerequisites. Do not introduce AI
+features before the existing foundations and gates are met. Later AI practice
+uses Python where appropriate and remains a design prompt until authorized by
+the roadmap.
+
+Keep the existing exact course titles, lesson titles, durations, access labels,
+and 25-minute caps in `course-learning-blocks.json`. No new course lecture is
+required by this interview plan. The focused experiment uses the repository's
+existing Java/Spring/PostgreSQL dependencies; run it with:
+
+```sh
+./mvnw -Dtest=Sprint1DesignExperimentsTest test
+```
+
+Before running it, record a design proposal using
+[`interview/design-proposal-template.md`](interview/design-proposal-template.md).
+The runnable test is an observation tool, not a learner-completion result.
+It covers owner-scoped reads, a unique idempotency key, and rollback when a
+multi-row write fails. It creates only a disposable embedded PostgreSQL test
+instance.
+
+## Existing templates
+
+Use the existing [ADR](templates/adr.md), [diagram](templates/diagram-prompt.md),
+and [design note](templates/design-note.md) templates only when the prompt
+needs them. A question can be answered with a short sketch; no diagram or ADR
+is mandatory when it does not help the decision.

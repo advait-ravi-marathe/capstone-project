@@ -1,4 +1,4 @@
-# Day 15 — 2026-11-03: Read journey summary
+# Day 15 — 2026-11-07: Read journey summary
 
 **State:** Real-PostgreSQL test fixture and learner query seam installed. The acceptance tests currently stop at the explicit query TODO; no learner implementation is included.
 

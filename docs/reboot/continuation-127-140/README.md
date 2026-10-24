@@ -2,7 +2,7 @@
 
 This batch verifies a real PostgreSQL 18.6 logical archive restored into a new, empty `template0` database, full business/recovery evidence, the actual packaged local JAR, and a quiesced local configuration cutover. AWS is studied only through a non-deployable offline plan. No account, credentials, resources, spending, external deployment or public app exposure is part of this work.
 
-- Dates: 2027-02-23 through 2027-03-08, Sprint 10.
+- Dates: 2027-02-27 through 2027-03-12, Sprint 10.
 - Daily total 180/195/210 minutes by DSA tier (60/75/90 DSA; engineering 120) (build/test 85, one study block 25, evidence 10).
 - Recovery days 133 and 140 rerun prior work only.
 - PostgreSQL 18.6 client tools are supplied in the official `postgres:18.6` Docker image; local tool-version checks and an actual dump/restore selector are installed. CI checks the same image before running tests.

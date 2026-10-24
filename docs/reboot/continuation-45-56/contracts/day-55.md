@@ -1,4 +1,4 @@
-# Day 55 — 2026-12-13: Connect the React preview to Spring and PostgreSQL
+# Day 55 — 2026-12-17: Connect the React preview to Spring and PostgreSQL
 
 ## Contract
 

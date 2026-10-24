@@ -1,4 +1,4 @@
-# Day 09 — 2026-10-28: Persist/read immutable quote snapshots
+# Day 09 — 2026-11-01: Persist/read immutable quote snapshots
 
 **State:** Instructor scaffold installed; learner implementation pending. Tests use real PostgreSQL and a fixed test-only schema/seed that bypass Days 7–8.
 
@@ -36,15 +36,9 @@ Disposable PostgreSQL test output. Record dated attempt state (`not attempted`, 
 
 This selector runs the installed adapter tests against a real embedded PostgreSQL server. The expected learner TODO failures are not a passing result. Infrastructure checks are separate.
 
-## Interview transfer (inside the current evidence block)
+## Interview-first proposal (inside practice)
 
-**Question:** What does empty `Optional` mean here, and how is it different from a database failure?
-
-**Observable evidence:** Trace bound parameters and resource closure in the teaching case, then explain the existing scoped read, decimal/time contract, and explicit absence.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
+Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
 
 ## DSA study (workload-tiered; actual attempts only)
 
