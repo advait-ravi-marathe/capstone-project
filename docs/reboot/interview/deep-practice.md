@@ -6,8 +6,9 @@ per week); the next four continue the same cadence. Dates follow the shifted
 24 October 2026 roadmap. Each session replaces 45 minutes of that day's
 85-minute implementation/test allocation. The corresponding 40-minute EAI
 slices and named deferred acceptance are defined in [Sprint 1 session
-scope](session-scope.md) for sessions 1–4 and [Sprint 2 session
-scope](sprint2-session-scope.md) for sessions 5–8. A partial slice does not
+scope](session-scope.md) for sessions 1–4, [Sprint 2 session
+scope](sprint2-session-scope.md) for sessions 5–8, and [Sprint 3 session
+scope](sprint3-session-scope.md) for sessions 9–12. A partial slice does not
 complete the original day's acceptance.
 
 | # | Planned day/date | Prompt | Focus | Prerequisite | Runnable evidence or artifact |
@@ -20,10 +21,10 @@ complete the original day's acceptance.
 | 6 | 21 · 2026-11-13 | Q07 | Gateway identity and owner-scoped reads | Session 1 trust boundary and Day 12 auth fixture | [Sprint 2 40-minute slice and queue](sprint2-session-scope.md#sprint-2-interview-sessions-and-eai-slices) |
 | 7 | 24 · 2026-11-16 | Q10 | Notification retry and durable intent | Session 3 transaction and key uniqueness | [Sprint 2 40-minute slice and queue](sprint2-session-scope.md#sprint-2-interview-sessions-and-eai-slices) |
 | 8 | 28 · 2026-11-20 | Q14 | Booking retries and owner-scoped request keys | Sessions 3/7 atomicity and idempotency | [Sprint 2 40-minute slice and queue](sprint2-session-scope.md#sprint-2-interview-sessions-and-eai-slices) |
-| 9 | 31 · 2026-11-23 | Q18 | Cache freshness and tenant isolation | Session 6 ownership; define permitted staleness | Day 12 owner state / read acceptance |
-| 10 | 35 · 2026-11-27 | Q16 | Messaging order and replay | Sessions 7/8 durable intent and duplicate handling | Day 9 JDBC query and plan output |
-| 11 | 38 · 2026-11-30 | Q28 | Feed fan-out and measured skew | Sessions 7/10 plus a measured workload | Day 12/14 browser state exercise |
-| 12 | 42 · 2026-12-04 | Q30 | Search freshness and independent UI/API/database oracle | Session 6 authorization and independent acceptance | Day 14 integration acceptance |
+| 9 | 31 · 2026-11-23 | Q05 | CoverStory issue workflow and quote eligibility | Actual Day 12 owner identity and Days 13/28 quote/selection prerequisites | Day 31 `day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue`; [Sprint 3 40-minute slice and queue](sprint3-session-scope.md) |
+| 10 | 35 · 2026-11-27 | Q13 | Atomic booking and durable uniqueness | Sessions 3/8 transaction and retry concepts; actual Day 31–34 issuance decisions | Day 35 `day35AtomicPostgresWriteHasOnePolicyAndOneReceipt`; [Sprint 3 40-minute slice and queue](sprint3-session-scope.md) |
+| 11 | 38 · 2026-11-30 | Q16 | Ordered durable history, duplicate delivery, and replay | Actual issue event and Day 37 validation; use messaging only as a comparison | Day 38 `day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder`; [Sprint 3 40-minute slice and queue](sprint3-session-scope.md) |
+| 12 | 42 · 2026-12-04 | Q11 | Scheduled transition and safe recovery | Actual Day 41 clock transition; explain schedule state without implementing a scheduler | Day 42 `day42CancelledPolicyRejectsWritesButRemainsReadable`; [Sprint 3 40-minute slice and queue](sprint3-session-scope.md) |
 
 Every session uses the exact rubric phases: **5 minutes Requirements; 5
 minutes Capacity and constraints; 15 minutes Initial architecture and data

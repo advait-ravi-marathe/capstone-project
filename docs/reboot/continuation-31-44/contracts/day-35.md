@@ -25,6 +25,18 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
+## Interview-first system-design mock (45 minutes; inside the 85-minute practice block)
+
+**Prompt:** [Q13 — Booking: reserve one seat atomically](../../interview/question-bank.md#q13). Save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
+
+**Existing EAI work (40 minutes):** 40 minutes: implement the successful one-connection policy + issue-event + owner/key receipt write and verify it through the fresh PostgreSQL read in the existing positive selector. Keep the whole write in the existing transaction boundary.
+
+**Runnable acceptance:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test`. This selector may remain red at an earlier learner-owned prerequisite; record the actual first blocker. Do not weaken it or claim the fixture is learner integration.
+
+**Deferred queue:** **S3-D35-1** — Complete the injected receipt-conflict rollback proof, showing no policy/event/receipt partial write and no in-memory replay publication; rerun both existing Day 35 acceptance selectors. Day acceptance stays pending until the original full criteria pass.
+
+**Supporting source bridge:** Conditional reference only: “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38), item 7907620, access unconfirmed. Use the already assigned PostgreSQL transaction tutorial and ADR bridge if unavailable; do not enroll or add time.
+
 ## Concept/course allocation (25 minutes)
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-35-atomic-write-decision.md](../../continuation-31-44/worked/day-35-atomic-write-decision.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.

@@ -20,6 +20,12 @@ Machine-check checklist against actual manifest and referenced evidence; missing
 
 Days 28–29; no manufactured integrated success. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+## Interview-first task proposal (5 minutes; inside the 85-minute practice block)
+
+Before code, hints, worked answers, or AI, write: Choose one observed slice behavior and write the claim plus one falsifying observation before opening the evidence-review guide.
+
+**Task boundary:** Keep the existing Day 30 evidence checklist and 20-minute review inside its original budget. Use the existing day's acceptance selector and preserve its full criteria. This short proposal does not replace acceptance or add time. Record the prediction and actual result in the existing evidence record.
+
 **Review prompt (within the 25-minute concept block):** Select one observed behavior and explain its invariant, evidence, limitation, and next diagnostic. Use the [evidence-state example](../teaching/day-30-evidence-review.md#three-evidence-states); do not add an architecture exercise.
 
 ## Concept (25 minutes)
@@ -35,18 +41,6 @@ Evidence-based explanation and honest limits. Review the [Day 30 worked example]
 `./mvnw -Plearner-tests -Dtest=Day30ContractTest test`
 
 This instructor integrity selector is expected to pass against fixed status/evidence fixtures and the live evolving checklist. It rejects unsupported statuses and passed rows without a repository-local evidence file; it does not require the live checklist to stay open. Infrastructure checks are separate.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** What invariant did you observe, which evidence supports it, what limitation remains, and what bounded measurement or repair comes next? Treat 10× load as a hypothesis unless measured.
-
-**Observable evidence:** 20-minute mock replaces implementation: explain one existing sequence/data view, one already-taught trade-off, one actual observation, and one open gap. Do not invent users, impact, incidents, or performance measurements.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official); [A3](../interview-evidence-overlay.md#a3) (anecdotal); [A5](../interview-evidence-overlay.md#a5) (anecdotal). These references guide practice; they do not establish question frequency or predict interview content.
-
-**Milestone timebox:** Use 20 minutes from the existing 85-minute implementation block (65 build/test + 20 mock); do not add hours. If the integration gate is blocked, explain the actual failing boundary and next diagnostic step, without presenting a passing demo.
 
 ## Separate DSA track
 

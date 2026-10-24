@@ -25,6 +25,12 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
+## Interview-first task proposal (5 minutes; inside the 85-minute practice block)
+
+Before code, hints, worked answers, or AI, write: State the stored-receipt replay rule, changed-date conflict, and same-day boundary before opening the cancellation guide.
+
+**Task boundary:** Use the existing Day 40 selector with the injected clock; retain the contracted non-past rule. Use the existing day's acceptance selector and preserve its full criteria. This short proposal does not replace acceptance or add time. Record the prediction and actual result in the existing evidence record.
+
 ## Concept/course allocation (25 minutes)
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-40-cancellation-intent.md](../../continuation-31-44/worked/day-40-cancellation-intent.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.

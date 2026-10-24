@@ -1,0 +1,42 @@
+# Sprint 3 interview sessions and EAI slices
+
+Sprint 3 covers existing Days 29–42 (21 November–4 December 2026). The four
+45-minute mocks are Days 31, 35, 38, and 42: two in each seven-day practice
+week. Each occupies the existing 85-minute practice block with a 40-minute
+CoverStory slice. The remaining EAI acceptance is preserved in a named queue;
+the mock or partial slice never marks the day complete. Daily study/evidence
+remains 25/10 minutes, for 120 engineering minutes total.
+
+For every mock, save the initial proposal during the 15-minute architecture
+phase before hints, reference answers, or AI. Use the existing
+[100-point rubric](mock-rubric.md) and its 5/5/15/10/10 phases. Keep evidence
+to the saved proposal, actual command/results or first blocker, changed paths,
+assistance, and relevant snapshots. Do not create a post-hoc architecture
+essay. Foundations and current local acceptance remain primary; no new cloud,
+broker, NoSQL service, or StreamForge work is assigned.
+
+| Day/date | Design prompt and supported bridge | 40-minute EAI slice and existing selector | Named queue / preserved acceptance |
+|---|---|---|---|
+| 31 · 2026-11-23 | [Q05 — CoverStory domain workflow](question-bank.md#q05). Existing owned foundation from *Master Spring Boot 3 & Spring Framework 6 with Java* (in28Minutes Official): “Step 21 - Understanding Spring Security Authentication” (4:17), used only for authenticated identity; continue with the already assigned [GOV.UK acceptance criteria](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories) and [Spring MVC method arguments](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/arguments.html). | Implement the supplied-facts happy path and one explicit quote rejection in `PolicyLifecycleService.validateIssue`; run `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test` and record the first unmet case. | **S3-D31-1:** Complete valid, missing, foreign-owner, unselected, stale, ineligible, foreign-journey, and foreign-version cases, with no policy write on rejection; rerun the same selector. |
+| 35 · 2026-11-27 | [Q13 — Booking: reserve one seat atomically](question-bank.md#q13). The conditional *Master Hibernate and JPA with Spring Boot in 100 Steps* lesson “Step 63 - Implementing Transaction Management - 3 Things to Decide” (4:38; access unconfirmed) is optional replacement-only. Use the already assigned [PostgreSQL transaction tutorial](https://www.postgresql.org/docs/18/tutorial-transactions.html) and [AWS ADR template](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) if unavailable. | Implement the successful one-connection policy/event/receipt write and verify fresh rows using `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day35AtomicPostgresWriteHasOnePolicyAndOneReceipt test`. | **S3-D35-1:** Complete injected receipt-conflict rollback and prove no policy, event, or receipt partial write and no in-memory replay publication; run both existing Day 35 selectors. |
+| 38 · 2026-11-30 | [Q16 — Messaging: ordering and replay](question-bank.md#q16). No additional lesson: use existing [PostgreSQL constraints](https://www.postgresql.org/docs/18/ddl-constraints.html), [Java Record documentation](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html), and the Day 38 history guide. Treat event ordering as a comparison; CoverStory's current local relational history remains the implementation. | Append one immutable endorsement version and preserve prior snapshots; run `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test`. | **S3-D38-1:** Complete the original effective-order, exactly-one-version, input-immutability, and history-preservation acceptance in that selector. Do not create a broker, outbox, or StreamForge dependency. |
+| 42 · 2026-12-04 | [Q11 — Scheduler: run one job](question-bank.md#q11). Keep the existing *Java Programming for Complete Beginners* (in28Minutes Official) enum lesson as state-vocabulary foundation only (access unconfirmed); use already assigned [Java `Clock`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Clock.html) and [AWS runbook](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/ops_ready_to_support_use_runbooks.html) readings for time and recovery. | Implement the cancelled-state servicing-write guard while preserving the owned read; run `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test` and record the first blocker. | **S3-D42-1:** Complete both rejected writes, retry/no-history-change proof, and owner-readable final state after the Day 41 transition genuinely passes. No scheduler implementation is added to Day 42. |
+
+## Task-first proposal on other days
+
+On Days 29, 30, 32–34, 36–37, and 39–41, spend five minutes at the start of
+the existing practice block writing a task-specific prediction before opening
+worked guidance, hints, or AI. The daily contract names the prompt and existing
+acceptance selector; use the remaining 80 minutes for that unchanged task.
+Day 30's five-minute prediction is part of its existing review time. This is a
+short pre-work note, not an additional mock or architecture deliverable. Keep
+any unfinished original acceptance open with its actual blocker.
+
+## Prerequisites and boundaries
+
+Day 31 depends on the actual prior quote, identity, and eligibility seams.
+Day 35 depends on the earlier issuance decisions and schema; Day 38 depends on
+issue history and Day 37 validation; Day 42 depends on Day 41's due-cancellation
+transition. A failure at a prerequisite stays a blocker, never a reason to
+copy a later solution or substitute a mock result. The existing `fde-coursework-v2`
+selectors remain unchanged. StreamForge remains prerequisite-gated.

@@ -20,6 +20,12 @@ Reset disposable DB and verify exact seed; missing confirmation and DB name with
 
 Days 13 and 28; fresh disposable test-only environment. Reset must never target development, shared, staging, or production data. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
+## Interview-first task proposal (5 minutes; inside the 85-minute practice block)
+
+Before code, hints, worked answers, or AI, write: State the disposable-database name and explicit confirmation guard, then predict the first observable refusal before opening the reset guide.
+
+**Task boundary:** Use the existing embedded reset test and reset-safety script; never use external URI mode. Use the existing day's acceptance selector and preserve its full criteria. This short proposal does not replace acceptance or add time. Record the prediction and actual result in the existing evidence record.
+
 **Design prompt (within the 25-minute concept block):** Which guards run before connection or destructive SQL, and why does a profile or database-name suffix alone not prove reset authority? Use the [worked guard table](../teaching/day-29-reset-safety.md#guard-decision-examples).
 
 ## Concept (25 minutes)
@@ -35,16 +41,6 @@ Another clean setup or exact unverified steps/blocker. Record dated attempt stat
 `./mvnw -Dtest=Day29ResetIntegrationTest test`
 
 The positive check resets twice in its newly started embedded PostgreSQL instance and verifies the exact synthetic rows. If using the wrapper, it runs only that same embedded test: `./scripts/reset-synthetic-homesecure.sh --embedded-test --confirm-disposable`. Do not use external URI mode for this exercise.
-
-## Interview transfer (inside the current evidence block)
-
-**Question:** Could another engineer reproduce the result? What state can reset safely destroy?
-
-**Observable evidence:** Rerun clean setup, name pinned versions/config and disposable-data guard; label unexecuted setup steps unverified.
-
-**Assistance and gap:** Record unaided, hinted, or AI-assisted work honestly. For the change/debug prompt, work without AI. Score the relevant rubric dimensions 0–2 and name one bounded repair if a gap remains; do not treat tests as explanation credit.
-
-**Related source:** [Official expectations](../interview-evidence-overlay.md#official-expectations) (official). These references guide practice; they do not establish question frequency or predict interview content.
 
 ## Separate DSA track
 

@@ -25,6 +25,18 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
+## Interview-first system-design mock (45 minutes; inside the 85-minute practice block)
+
+**Prompt:** [Q16 — Messaging: ordering and replay](../../interview/question-bank.md#q16). Save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
+
+**Existing EAI work (40 minutes):** 40 minutes: implement the existing local endorsement path to append one immutable snapshot while preserving prior history, then run the named Day 38 selector. Use the messaging prompt only to reason about ordered durable history; do not add a broker, outbox, or StreamForge code.
+
+**Runnable acceptance:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day38EndorsementAppendsAndPreservesPriorHistoryInEffectiveOrder test`. This selector may remain red at an earlier learner-owned prerequisite; record the actual first blocker. Do not weaken it or claim the fixture is learner integration.
+
+**Deferred queue:** **S3-D38-1** — Complete the full effective-order, exactly-one-version increment, unchanged-input, and repeated-history assertions in the existing selector; retain any persistence or later-streaming work behind its original prerequisite. Day acceptance stays pending until the original full criteria pass.
+
+**Supporting source bridge:** No additional course lesson is assigned. Within the existing 25-minute block, use the already listed PostgreSQL 18 constraints and Java SE 21 Record documentation plus the Day 38 append-history worked guide.
+
 ## Concept/course allocation (25 minutes)
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-38-append-history.md](../../continuation-31-44/worked/day-38-append-history.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.

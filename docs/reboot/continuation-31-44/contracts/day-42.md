@@ -25,6 +25,18 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
+## Interview-first system-design mock (45 minutes; inside the 85-minute practice block)
+
+**Prompt:** [Q11 — Scheduler: run one job](../../interview/question-bank.md#q11). Save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
+
+**Existing EAI work (40 minutes):** 40 minutes: implement the Day 42 cancelled-state write guard for endorsement/rescheduling while preserving the owned read path; run the existing selector and capture the first unmet assertion. Do not add a scheduler implementation: the scheduled transition is the preceding Day 41 seam.
+
+**Runnable acceptance:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day42CancelledPolicyRejectsWritesButRemainsReadable test`. This selector may remain red at an earlier learner-owned prerequisite; record the actual first blocker. Do not weaken it or claim the fixture is learner integration.
+
+**Deferred queue:** **S3-D42-1** — Complete both post-cancellation write refusals, retry/no-new-history assertions, and owner-readable final-state proof; rerun the unchanged Day 42 selector after its Day 41 prerequisite passes. Day acceptance stays pending until the original full criteria pass.
+
+**Supporting source bridge:** Keep the existing “Java Tip 14 - Why Enum and Enum Basics - ordinal and values” (7:28) as status-vocabulary foundation only. Use the existing Java SE 21 Clock and AWS runbook documentation for due-time/recovery concepts; no additional lesson is assigned.
+
 ## Concept/course allocation (25 minutes)
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-42-operational-handover.md](../../continuation-31-44/worked/day-42-operational-handover.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.

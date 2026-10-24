@@ -25,6 +25,18 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
 
+## Interview-first system-design mock (45 minutes; inside the 85-minute practice block)
+
+**Prompt:** [Q05 — CoverStory domain workflow](../../interview/question-bank.md#q05). Save the initial proposal during the 15-minute architecture phase before hints, reference answers, or AI. Use the exact [100-point rubric](../../interview/mock-rubric.md) and its 5/5/15/10/10 phases.
+
+**Existing EAI work (40 minutes):** 40 minutes: use the supplied PolicyIssueFacts fixture to implement the owned, selected, eligible quote happy path and one explicit rejection case; run the existing Day 31 selector and preserve its first actual failure. Do not copy the instructor fixture into production.
+
+**Runnable acceptance:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day31RejectsForeignUnselectedStaleOrIneligibleQuoteWithoutIssue test`. This selector may remain red at an earlier learner-owned prerequisite; record the actual first blocker. Do not weaken it or claim the fixture is learner integration.
+
+**Deferred queue:** **S3-D31-1** — Complete the entire valid/missing/foreign-owner/unselected/stale/ineligible/foreign-journey/foreign-version matrix and prove zero policy writes for every rejection; rerun the unchanged Day 31 selector. Day acceptance stays pending until the original full criteria pass.
+
+**Supporting source bridge:** Required owned foundation: “Step 21 - Understanding Spring Security Authentication” (4:17), item 35017628; use only as identity-boundary foundation, then focus on the existing discovery/facts worked guide and method-argument documentation.
+
 ## Concept/course allocation (25 minutes)
 
 **Prospective criteria: `fde-coursework-v2`.** This revision teaches the assigned design/API decision before the task. Read [day-31-discovery-and-facts.md](../../continuation-31-44/worked/day-31-discovery-and-facts.md) before editing. The project-authored toy is a worked example, not official course content or completion evidence.

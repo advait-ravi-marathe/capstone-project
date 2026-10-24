@@ -6,6 +6,7 @@ source of truth for learner work.
 
 - [36 original practice questions](question-bank.md)
 - [First 12 deep-practice sessions](deep-practice.md)
+- [Sprint 3 Days 29–42 session schedule, EAI slices, and deferred queues](sprint3-session-scope.md)
 - [Reusable design patterns](pattern-library.md)
 - [45-minute mock structure and rubric](mock-rubric.md)
 - [Pre-answer proposal sheet](design-proposal-template.md)
