@@ -837,7 +837,7 @@
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
         "acceptance_commands": [
           "./mvnw -Plearner-tests -Dtest=PreviewTimeoutPostgresAcceptanceTest#oneSlotPoolReusesSameBackendAndBaselineAfterEveryOutcome test",
-          "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | grep '^Start-Class: assignments.local.LocalCoverStoryApplication$'"
+          "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'"
         ],
         "instructor_check_path": "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java",
         "instructor_check_command": "./mvnw -Dtest=Day85To98InfrastructureTest test",

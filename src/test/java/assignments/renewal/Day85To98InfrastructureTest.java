@@ -267,7 +267,7 @@ class Day85To98InfrastructureTest {
         JsonNode owner = new ObjectMapper().readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
         JsonNode day96 = manifest.path("days").get(11);
         JsonNode owner96 = owner.path("cards").get(11);
-        String packageCheck = "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | grep '^Start-Class: assignments.local.LocalCoverStoryApplication$'";
+        String packageCheck = "./scripts/package-local-demo.sh && unzip -p target/capstone-starter-1.0-SNAPSHOT.jar META-INF/MANIFEST.MF | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'";
         assertEquals(day96.path("engineering").path("acceptance_commands"),
                 owner96.path("engineering").path("acceptance_commands"));
         assertTrue(day96.path("engineering").path("acceptance_commands").toString().contains(packageCheck));
@@ -276,6 +276,13 @@ class Day85To98InfrastructureTest {
         assertTrue(contract.contains("60 minutes for the one-slot outcome test"));
         assertTrue(contract.contains("This is part of the existing 85-minute practice allocation"));
         assertTrue(contract.contains(packageCheck));
+        assertTrue(packageCheck.contains(" | tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'"),
+                "manifest matching removes CRLF carriage returns before exact Start-Class comparison");
+        Process crlfCheck = new ProcessBuilder("bash", "-c",
+                "printf 'Start-Class: assignments.local.LocalCoverStoryApplication\\r\\n' " +
+                        "| tr -d '\\r' | grep -Fx 'Start-Class: assignments.local.LocalCoverStoryApplication'")
+                .redirectErrorStream(true).start();
+        assertEquals(0, crlfCheck.waitFor(), "the documented exact match must accept a CRLF manifest line");
         assertTrue(contract.contains("single Day 79 seam"));
         assertTrue(Files.readString(Path.of("scripts/package-local-demo.sh"))
                 .contains("-Plocal-app -DskipTests clean package"));
