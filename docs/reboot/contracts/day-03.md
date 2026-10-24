@@ -20,15 +20,16 @@ Fixture not-found, conflict and unexpected exception; verify safe fields and no 
 
 Day 2; mocked service throws fixed fixture exceptions. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Worked design question (after the guide):** Why does a client receive a stable error code while internal exception text stays out of the response? Do not create an ADR or architecture case study.
 
 ## Concept (25 minutes)
+
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Use the supplied controller advice to map expected exceptions to stable client responses and unexpected exceptions to sanitized server responses. Keep internal exception details private and domain decisions in their service/policy.](../assistant-architecture-notes.md#day-3-centralized-safe-error-mapping). No capstone design proposal or post-hoc architecture justification is assigned.
 
 Study the required generic exception-handling lesson and the Day 3 guide: controller failure, matching exception handler, `ResponseEntity` status/body, and a fixed safe response for unknown errors. Do not copy the toy strings into the capstone or require the later Day 12 authorization distinction.
 
 ## Evidence (10 minutes)
 
-Three negative response snapshots. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Three negative response snapshots. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Instructor reference and preserved learner command
 

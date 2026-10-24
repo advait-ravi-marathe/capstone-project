@@ -20,13 +20,17 @@ customer data, deployment, Kafka, queues, Ktor, or AI features.
 
 ## Interview readiness and schedule
 
-Interview-first system-design practice is integrated into the existing 85-minute
-practice block. The learner records an initial architecture proposal before
-hints, reference answers, or AI. Two 45-minute mock sessions each week use the
-5/5/15/10/10 format; they replace implementation time and never add hours.
-See the [practice format](interview/mock-rubric.md), [question bank](interview/question-bank.md),
-and [session plan](interview/deep-practice.md). Daily evidence records the
-actual command, output, and blocker; it is not a generic post-hoc design essay.
+System-design interview practice uses only the assigned question set and its
+dedicated mock sessions. In those interview exercises, the learner practices
+making and explaining a design proposal. Two 45-minute mock sessions each week
+use the 5/5/15/10/10 format; they replace implementation time and never add
+hours. See the [practice format](interview/mock-rubric.md), [question
+bank](interview/question-bank.md), and [session plan](interview/deep-practice.md).
+For capstone implementation, the assistant supplies the architecture decisions
+and concise what/why notes in the existing concept allocation; the learner
+implements and tests them. There is no required capstone pre-work proposal or
+post-hoc design justification. Daily evidence records actual commands, results,
+assistance, changed paths, and blockers.
 
 ## Schedule and evidence
 
@@ -111,13 +115,34 @@ missing items open; the review discussion alone is not the deliverable.
 
 ## Understanding and interview readiness
 
-Each engineering day begins practice by recording a short proposal before hints, reference answers, or AI. Dedicated mock sessions use 45 minutes of the existing 85-minute practice block, twice weekly; they replace implementation and never add hours. The 10-minute evidence block records command, result, assistance, and blocker, not a generic post-hoc design-psychology essay.
+Capstone implementation days provide the architecture note before coding; the
+learner's evidence is the implementation, tests, observed result, and any
+blocker. System-design proposals and trade-off discussion belong to the
+question-bank interview practice above, not to every capstone task. Do not add
+proposal or post-hoc justification work to the 85-minute block or the 10-minute
+evidence block.
 
-Track three distinct outcomes: **behavior** (fixed tests and exact command), **explanation** (invariants, boundaries, and trade-offs explained clearly), and **independent adaptation** (a small change or debugging task completed without AI). Passing tests or the presence of scaffolding earns no credit on the other axes. The final checklist keeps these results separate.
+Track distinct evidence for **behavior** (fixed tests and exact command),
+**understanding** (a concise explanation of the supplied boundary when needed),
+and **independent adaptation** (a small implementation change or debugging
+task). Passing tests or the presence of scaffolding does not establish the
+other outcomes. The final checklist keeps these results separate.
 
 ## Interview evidence and source confidence
 
-The [interview evidence overlay](interview-evidence-overlay.md) separates official, role-dependent expectations from dated public first-person reports. Official guidance is not a guarantee of a particular team’s interview. Anecdotes are self-reported, selectively published and not representative; mapped questions are original practice prompts, not claimed verbatim questions. This month is foundation practice, not an SDE II readiness claim.
+The [interview evidence overlay](interview-evidence-overlay.md) separates official, role-dependent expectations from dated public first-person reports. Official guidance is not a guarantee of a particular team’s interview. Anecdotes are self-reported, selectively published and not representative; mapped questions are original practice prompts, not claimed verbatim questions. The roadmap builds progressively toward Staff/Principal engineering and senior FDE expectations; no single month claims professional ownership or readiness by itself.
+
+Career preparation progresses through application checkpoints rather than a
+single role label: first demonstrate SDE II-level implementation knowledge;
+then add SDE III/Senior-level service ownership and reliability; then build
+Staff/Principal-level cross-team architecture and technical direction, with
+senior FDE customer deployment and outcome ownership tracked as a related
+path. Each checkpoint will distinguish **capability**, **evidence** (tests,
+portfolio artifacts, or later externally validated professional work), and
+**application readiness**. A portfolio demonstrates acquired knowledge; it
+does not substitute for professional ownership experience. These are
+capability milestones, not promotion promises. Further scheduling waits for a
+sustainable daily time budget; current dates and allocations remain in force.
 
 ## Reference index
 

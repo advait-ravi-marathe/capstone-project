@@ -74,10 +74,32 @@ class ExternalTrackBoundaryTest(unittest.TestCase):
             self.assertIn("Before any hint, reference answer, or AI, write your own initial proposal.", contract)
             self.assertIn("Use the existing 10-minute evidence block for command, result, assistance, and blocker only.", contract)
 
+    def test_capstone_implementation_uses_assistant_decisions_and_interview_mocks_keep_proposals(self):
+        canonical = json.loads((ROOT / "docs/reboot/manifest.json").read_text(encoding="utf-8"))
+        owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text(encoding="utf-8"))
+        cards = {card["day_number"]: card for card in owner["cards"]}
+        for day in range(1, 15):
+            assignment = canonical["days"][day - 1]["interview_practice"]
+            contract = (ROOT / f"docs/reboot/contracts/day-{day:02d}.md").read_text(encoding="utf-8")
+            self.assertEqual(assignment, cards[day]["interview_practice"])
+            self.assertIn("assistant_architecture_note", canonical["days"][day - 1]["engineering"])
+            if day in (3, 7, 10, 14):
+                self.assertEqual("45_minute_mock", assignment["mode"])
+                self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
+            else:
+                self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+                self.assertFalse(assignment["proposal_before_hints_reference_or_ai"])
+                self.assertIn("do not write a capstone design proposal", assignment["implementation_scope"].lower())
+                self.assertNotIn("learner-led proposal", contract.lower())
+        readme = (ROOT / "docs/reboot/README.md").read_text(encoding="utf-8").lower()
+        self.assertIn("there is no required capstone pre-work proposal", readme)
+        self.assertNotIn("each engineering day begins practice by recording a short proposal", readme)
+
     def test_ci_keeps_engineering_and_streamforge_checks(self):
         workflow = (ROOT / ".github/workflows/coverstory-starter.yml").read_text(encoding="utf-8")
         self.assertIn("Verify engineering roadmap manifests and curriculum", workflow)
         self.assertIn("Verify StreamForge local fixture infrastructure", workflow)
+        self.assertIn("review/eai-sprint1-design-ownership-correction-2026-10-24", workflow)
         self.assertNotIn("test_dsa_", workflow)
         self.assertNotIn("Verify DSA", workflow)
 

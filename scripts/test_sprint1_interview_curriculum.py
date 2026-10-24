@@ -20,6 +20,9 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         self.assertEqual(36, len(re.findall(r'<a id="q\d{2}"></a>', questions)))
         design_guide = (ROOT / "docs/reboot/system-design-practice.md").read_text()
         self.assertIn("Before hints, reference answers, worked solutions, or AI answers", design_guide)
+        self.assertIn("used only with the assigned system-design interview question set", design_guide)
+        self.assertIn("It is not a capstone design assignment", design_guide)
+        self.assertIn("It is not a daily capstone task", design_guide)
 
     def test_question_and_pattern_anchors_resolve(self):
         questions = (ROOT / "docs/reboot/interview/question-bank.md").read_text()
@@ -137,14 +140,27 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             assignment = card["interview_practice"]
             self.assertEqual(assignment, day["interview_practice"])
             self.assertEqual(85, assignment["practice_minutes_available"])
-            self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
             self.assertEqual(
                 [x.get("source_item_id") for x in card["course_learning_lessons"]],
-                [x.get("source_item_id") for x in assignment["course_bridges"]],
+                [x.get("source_item_id") for x in assignment.get("course_bridges", [])],
             )
+            note = day["engineering"]["assistant_architecture_note"]
+            self.assertEqual(note, card["engineering"]["assistant_architecture_note"])
+            notes_doc = (ROOT / note["path"].split("#", 1)[0]).read_text()
+            self.assertIn(note["path"].split("#", 1)[1], {
+                "day-1-quote-selection-boundary", "day-2-validate-before-delegation",
+                "day-3-centralized-safe-error-mapping", "day-4-immutable-catalog-boundary",
+                "day-5-pure-eligibility-policy", "day-6-explicit-decimal-calculation",
+                "day-7-fixed-clock-quote-version", "day-8-database-enforced-quote-invariants",
+                "day-9-parameterized-snapshot-persistence", "day-10-one-connection-one-transaction",
+                "day-11-declared-freshness-check-order", "day-12-trusted-principal-owns-the-read",
+                "day-13-fail-closed-ci-workflow", "day-14-diagnose-the-existing-vertical-slice",
+            })
+            self.assertIn("provided by the assistant", notes_doc.lower())
             if i in dedicated:
                 self.assertEqual("45_minute_mock", assignment["mode"])
                 self.assertEqual(dedicated[i], assignment["question_id"])
+                self.assertTrue(assignment["proposal_before_hints_reference_or_ai"])
                 self.assertIsNotNone(assignment["deferred_work_id"])
                 self.assertIn("40 minutes", assignment["implementation_scope"])
                 self.assertEqual([
@@ -155,9 +171,41 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                     {"minutes": 10, "activity": "Trade-offs, failures, follow-ups"},
                 ], assignment["mock_phases"])
             else:
-                self.assertEqual("proposal_before_reference", assignment["mode"])
+                self.assertEqual("assistant_supplied_capstone_architecture", assignment["mode"])
+                self.assertFalse(assignment["proposal_before_hints_reference_or_ai"])
+                self.assertEqual(0, assignment["duration_minutes"])
+                self.assertIn("do not write a capstone design proposal", assignment["implementation_scope"])
+                self.assertIn("no proposal", assignment["evidence"].lower())
                 self.assertIsNone(assignment.get("question_id"))
-            self.assertFalse(assignment["acceptance"].endswith("complete."))
+            self.assertIn("does not mark", assignment["acceptance"])
+
+    def test_nonmock_contracts_assign_assistant_notes_not_learner_design_proposals(self):
+        for day in (1, 2, 4, 5, 6, 8, 9, 11, 12, 13):
+            contract = (ROOT / f"docs/reboot/contracts/day-{day:02d}.md").read_text()
+            self.assertIn("assistant-provided architecture decision", contract.lower())
+            self.assertNotIn("Interview-first proposal (inside practice)", contract)
+            self.assertNotIn("proposal or prediction for the day’s actual engineering task", contract)
+            self.assertNotIn("learner-led proposal or review", contract)
+
+    def test_day09_jdbc_lookup_scope_is_journey_and_version_not_authentication(self):
+        contract = (ROOT / "docs/reboot/contracts/day-09.md").read_text()
+        notes = (ROOT / "docs/reboot/assistant-architecture-notes.md").read_text()
+        source = (ROOT / "src/main/java/assignments/insurance/QuoteRepositoryAdapter.java").read_text()
+        self.assertIn("find(String journeyId, String quoteVersionId)", source)
+        self.assertIn("Bind `journeyId` and `quoteVersionId`", contract)
+        self.assertIn("separate Day 12 boundary", contract)
+        self.assertIn("do not\nadd an owner argument to this Day 9 adapter", notes)
+        self.assertNotIn("owner and quote identifiers", contract.lower())
+        self.assertNotIn("owner and quote identifiers", notes.lower())
+        for name, key, day_key in (
+            ("docs/reboot/manifest.json", "days", "day"),
+            ("docs/reboot/scrum-owner-manifest.json", "cards", "day_number"),
+        ):
+            data = json.loads((ROOT / name).read_text())
+            row = next(item for item in data[key] if item[day_key] == 9)
+            note = row["engineering"]["assistant_architecture_note"]
+            self.assertIn("journeyId and quoteVersionId", note["decision"])
+            self.assertIn("Day 12", note["decision"])
 
     def test_mock_scope_has_explicit_eai_slices_and_deferred_acceptance(self):
         scope = (ROOT / "docs/reboot/interview/session-scope.md").read_text()

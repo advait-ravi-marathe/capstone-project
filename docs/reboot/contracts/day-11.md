@@ -24,11 +24,13 @@ Days 7 and 9–10; fixed current-version metadata and Clock. Earlier unfinished 
 
 ## Concept (25 minutes)
 
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Apply freshness checks in the contract’s specified order using the supplied current time. Stable precedence gives predictable results when multiple stale conditions exist.](../assistant-architecture-notes.md#day-11-declared-freshness-check-order). No capstone design proposal or post-hoc architecture justification is assigned.
+
 Immutable freshness metadata, strict expiry equality, and the fixed journey → expiry → version rejection order. `now.isBefore(expiresAt)` rejects equality. The worked example precedes the policy task; it does not teach or require SQL compare-and-set.
 
 ## Evidence (10 minutes)
 
-Boundary and stale-version negative tests. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only. Keep design reasoning in the learner-led proposal or review when assigned; no retrospective architecture or trade-off justification is required.
+Boundary and stale-version negative tests. Record dated attempt state (`not attempted`, `attempted`, `contract passed`, or `integrated passed`), exact command/exit status, changed paths, assertion before/after where applicable, assistance, and any blocker. Record observed results only; no architecture proposal or retrospective justification is required.
 
 ## Planned isolated command
 
@@ -36,9 +38,9 @@ Boundary and stale-version negative tests. Record dated attempt state (`not atte
 
 This selector is installed and runs the fixed Day 11 cases. It currently fails at the explicit freshness-policy TODO; that is not a passing learner result. A callback verifies rejected requests do not reach a persistence action, but this is not a PostgreSQL integration test. Infrastructure checks are separate.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 

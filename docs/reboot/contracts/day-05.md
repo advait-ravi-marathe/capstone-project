@@ -20,9 +20,11 @@ Amounts `99999.99`, `100000.00`, `10000000.00`, `10000000.01`; absent fields; no
 
 Day 4; catalog bounds fixture, no live controller. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Design/readiness prompt (inside the existing evidence block):** Explain a toy-table row with simultaneous invalidities, then identify the corresponding frozen insurance rule and precedence. Do not assign an unexplained architecture template.
+
 
 ## Concept (25 minutes)
+
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Keep eligibility a deterministic policy over supplied product and applicant snapshots. Do not add persistence or controller dependencies; this keeps access and decision responsibilities separate.](../assistant-architecture-notes.md#day-5-pure-eligibility-policy). No capstone design proposal or post-hoc architecture justification is assigned.
 
 Pure rule evaluation, first-applicable-rule precedence, inclusive boundaries, and deterministic repeated calls. The lesson is context; the worked parcel table teaches the method before the insurance policy task.
 
@@ -36,9 +38,9 @@ Record the two predicted toy outcomes, then the actual insurance selector result
 
 This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 

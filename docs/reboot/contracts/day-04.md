@@ -20,9 +20,11 @@ Known/unknown code, stable order, attempted mutation, exact fields and fixture v
 
 Day 3; test-only fixed product fixture. Earlier unfinished collaborators are replaced by explicit test-only canned values in this day's isolated test; do not copy their business solution into production. A later integrated gate remains blocked until its listed prerequisites are genuinely completed.
 
-**Design/readiness prompt (inside the existing evidence block):** After the worked example, explain who owns the source list, why a record alone does not prevent caller mutation, and one copying cost or mutable-element limitation. Do not add an architecture essay.
+
 
 ## Concept (25 minutes)
+
+**Assistant-provided architecture decision (inside the existing 25-minute concept allocation):** [Return an immutable copy of the catalog collection and retain the supplied immutable product values. This protects collection membership without introducing a new mutable object graph.](../assistant-architecture-notes.md#day-4-immutable-catalog-boundary). No capstone design proposal or post-hoc architecture justification is assigned.
 
 Record component references, collection aliasing, `List.copyOf`, and limits of shallow immutability. The bean lesson is background only; the worked guide teaches collection behavior before the product task.
 
@@ -36,9 +38,9 @@ Run the source-add and source-remove reference observations, then record the act
 
 This focused test and its learner TODO seam are installed. The command was run with the other installed Day 2–7 selectors; expected TODO failures are recorded in `evidence/reboot/initial-contracts-2026-10-20.json`. It is not a passing learner result. Infrastructure checks are separate.
 
-## Interview-first proposal (inside practice)
+## Capstone implementation guidance
 
-Before hints, reference answers, or AI, spend up to five minutes writing a proposal or prediction for the day’s actual engineering task. Then continue the planned implementation/testing inside the existing 85-minute practice block. The 10-minute evidence block records actual command, result, assistance, and blocker; do not add a generic post-hoc design essay. Use the shared [question bank](../interview/question-bank.md) and [pattern library](../interview/pattern-library.md) only when they fit the task.
+Use the assistant-provided architecture note linked in the concept block. Implement and test the stated decision within the existing acceptance and practice allocation; no pre-work design proposal is requested.
 
 ## Separate DSA track
 
