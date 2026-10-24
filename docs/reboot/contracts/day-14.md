@@ -38,7 +38,7 @@ This fixed acceptance test currently fails at Day 4 `ProductCatalogService.findB
 
 ## Interview-first system-design session (45 minutes inside the existing 85-minute practice block)
 
-**Prompt:** [Q05](../interview/question-bank.md#q05) from the original question bank. Before any hint, reference answer, or AI, write your own initial proposal. Follow the 45-minute 5/5/15/10/10 format in [the mock rubric](../interview/mock-rubric.md): clarify, preserve your first proposal, work the design, inspect a failure and trade-off, then score feedback.
+**Prompt:** [Q05](../interview/question-bank.md#q05) from the original question bank. Before any hint, reference answer, or AI, write your own initial proposal. Follow the exact 5/5/15/10/10 phases in [the mock rubric](../interview/mock-rubric.md): requirements; capacity and constraints; initial architecture and data model (save before help); bottlenecks, reliability and scaling; trade-offs, failures and follow-ups.
 
 **Schedule:** 2026-11-06. This session replaces 45 minutes of implementation/test practice; the remaining 40 minutes stay for the day’s implementation and tests. Do not add time or mark a partial acceptance gate complete. Use the existing 10-minute evidence block for command, result, assistance, and blocker only. For the exact 40-minute EAI slice and deferred acceptance queue, follow [Sprint 1 session scope](../interview/session-scope.md); the original day stays pending until its full acceptance passes.
 

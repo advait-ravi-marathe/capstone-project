@@ -2,16 +2,17 @@
 
 The mock is an interview simulation, not a post-hoc design essay. Run its
 45 minutes inside the existing 85-minute practice allocation and leave the
-rest of the daily engineering budget unchanged. The segment lengths are
-**5/5/15/10/10 minutes**.
+rest of the daily engineering budget unchanged. Follow the named
+**5/5/15/10/10-minute** phases below; do not replace them with a separate
+feedback or reflection block.
 
 | Minutes | Activity | Rule |
 |---:|---|---|
-| 5 | Clarify | Learner asks about users, inputs, constraints, and must-not-happen cases. |
-| 5 | First proposal | Learner writes their own boundary, invariant, and first test before hints, reference answers, or AI. Save this version. |
-| 15 | Deep practice | Develop the smallest design that satisfies the stated contract; make a runnable change when the assigned task supports it. |
-| 10 | Failure and trade-off | Walk one failure, one consistency/security boundary, and the operational cost of the chosen approach. |
-| 10 | Feedback and evidence | Score the rubric, record the exact command/output, then optionally compare with an AI suggestion. Keep the initial proposal unchanged. |
+| 5 | Requirements | Clarify users, goals, critical flows, and measurable acceptance. Save the learner's initial understanding before any answer. |
+| 5 | Capacity and constraints | Estimate a bounded starting workload and state latency, durability, privacy, budget, and must-not-happen constraints. Label assumptions. |
+| 15 | Initial architecture and data model | Before hints, reference answers, or AI, draw the initial boundary and request/data flow, choose core records and keys, state one invariant, and save the first test. Preserve this proposal. |
+| 10 | Bottlenecks, reliability, scaling | Identify likely bottlenecks and partial failures; explain timeouts, retries, recovery, and how the design changes as measured load grows. |
+| 10 | Trade-offs, failures, follow-ups | Compare alternatives, walk a concrete failure and its consequence, name evidence that could change the choice, and write the next follow-up question. Apply the rubric to this attempt without adding a post-hoc essay. |
 
 ## 100-point rubric
 
@@ -29,7 +30,8 @@ confidence or personality score.
 | Trade-offs and alternatives | 10 | Declares a pattern without fit or cost. | Compares one plausible alternative but misses its consequence. | Compares viable options, states concrete costs/failure modes, and names evidence that would change the choice. |
 | Communication and verification | 10 | Cannot make the proposal or evidence understandable. | Gives a coherent summary but has a weak test or does not interpret its result. | Communicates in stages, predicts a negative case, and explains actual runnable evidence and remaining limits. |
 
-Ratings 1 and 3 represent evidence between the adjacent anchors. Total the
+Ratings 1 and 3 represent evidence between the adjacent anchors. Apply the
+rubric during the final 10-minute trade-off/failure/follow-up phase. Total the
 points transparently; report any critical authorization, data-integrity, or
 unsafe-retry failure separately rather than hiding it in the total. Mark hints,
 AI, and prior exposure. The score measures this practice attempt only, not

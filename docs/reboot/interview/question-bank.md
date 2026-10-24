@@ -99,101 +99,101 @@ reference answers, or AI. A question never expands the current product scope.
 ## Intermediate
 
 <a id="q14"></a>
-13. **Q14 — Booking: retry after a lost response.** How can a client repeat a
+14. **Q14 — Booking: retry after a lost response.** How can a client repeat a
   booking safely when it cannot tell whether the first write committed?
   **Concepts:** intent identity, readback, conflict. **Patterns:**
   [idempotency](pattern-library.md#idempotency),
   [transaction boundary](pattern-library.md#transaction-boundary).
 
 <a id="q15"></a>
-14. **Q15 — Messaging: publish an order event.** How do you keep a committed
+15. **Q15 — Messaging: publish an order event.** How do you keep a committed
   order from losing its event when the broker is briefly unavailable?
   **Concepts:** database/broker boundary, eventual delivery. **Patterns:**
   [outbox and messaging](pattern-library.md#outbox-and-messaging),
   [backpressure](pattern-library.md#backpressure).
 
 <a id="q16"></a>
-15. **Q16 — Messaging: ordering and replay.** Which ordering guarantee is
+16. **Q16 — Messaging: ordering and replay.** Which ordering guarantee is
   actually required, and how can a consumer handle a duplicate event?
   **Concepts:** partition key, sequence, idempotent consumer. **Patterns:**
   [outbox and messaging](pattern-library.md#outbox-and-messaging),
   [idempotency](pattern-library.md#idempotency).
 
 <a id="q17"></a>
-16. **Q17 — Cache: accelerate a read.** Which measured read path would justify
+17. **Q17 — Cache: accelerate a read.** Which measured read path would justify
   caching, and what freshness does the caller require? **Concepts:** latency,
   hit rate, staleness. **Patterns:** [cache policy](pattern-library.md#cache-policy),
   [measurement](pattern-library.md#measure-before-scaling).
 
 <a id="q18"></a>
-17. **Q18 — Cache: invalidation after a write.** How can the application
+18. **Q18 — Cache: invalidation after a write.** How can the application
   prevent stale private data from surviving a change of owner or version?
   **Concepts:** invalidation, versioning, security. **Patterns:**
   [cache policy](pattern-library.md#cache-policy),
   [ownership boundary](pattern-library.md#ownership-boundary).
 
 <a id="q19"></a>
-18. **Q19 — Payments: accept one payment intent.** Which states distinguish
+19. **Q19 — Payments: accept one payment intent.** Which states distinguish
   pending, authorized, captured, declined, and unknown outcome? **Concepts:**
   state machine, external boundary, audit. **Patterns:**
   [payment state](pattern-library.md#payment-state),
   [idempotency](pattern-library.md#idempotency).
 
 <a id="q20"></a>
-19. **Q20 — Payments: reconcile timeout.** A provider timed out after the
+20. **Q20 — Payments: reconcile timeout.** A provider timed out after the
   request left your process. How do you avoid charging twice and learn the
   final result? **Concepts:** uncertain outcome, reconciliation. **Patterns:**
   [payment state](pattern-library.md#payment-state),
   [timeouts and retries](pattern-library.md#timeouts-and-retries).
 
 <a id="q21"></a>
-20. **Q21 — Webhook delivery: register and send.** How should a receiver
+21. **Q21 — Webhook delivery: register and send.** How should a receiver
   verify origin and process a repeated delivery? **Concepts:** signatures,
   replay, delivery state. **Patterns:** [webhook delivery](pattern-library.md#webhook-delivery),
   [idempotency](pattern-library.md#idempotency).
 
 <a id="q22"></a>
-21. **Q22 — Webhook delivery: backoff and dead letter.** Which failures are
+22. **Q22 — Webhook delivery: backoff and dead letter.** Which failures are
   retried, when do attempts stop, and how is replay made safe?
   **Concepts:** retry schedule, dead-letter handling. **Patterns:**
   [webhook delivery](pattern-library.md#webhook-delivery),
   [backpressure](pattern-library.md#backpressure).
 
 <a id="q23"></a>
-22. **Q23 — Event pipeline: ingest and process.** How do you preserve a
+23. **Q23 — Event pipeline: ingest and process.** How do you preserve a
   durable source record while processing volume grows? **Concepts:** ingestion,
   partitioning, consumer lag. **Patterns:**
   [event pipeline](pattern-library.md#event-pipeline),
   [backpressure](pattern-library.md#backpressure).
 
 <a id="q24"></a>
-23. **Q24 — Event pipeline: correction and replay.** How can you rebuild a
+24. **Q24 — Event pipeline: correction and replay.** How can you rebuild a
   derived result after a bug without duplicating side effects?
   **Concepts:** replay, checkpoints, versioned projections. **Patterns:**
   [event pipeline](pattern-library.md#event-pipeline),
   [idempotency](pattern-library.md#idempotency).
 
 <a id="q25"></a>
-24. **Q25 — Chat: send and read messages.** Which storage and ordering rules
+25. **Q25 — Chat: send and read messages.** Which storage and ordering rules
   make one conversation understandable across devices? **Concepts:** durable
   writes, sequence, pagination. **Patterns:**
   [chat ordering](pattern-library.md#chat-ordering),
   [stable pagination](pattern-library.md#stable-pagination).
 
 <a id="q26"></a>
-25. **Q26 — Chat: reconnect and presence.** Which state can be ephemeral, and
+26. **Q26 — Chat: reconnect and presence.** Which state can be ephemeral, and
   what happens when a client reconnects after missing updates? **Concepts:**
   presence, resync, fan-out. **Patterns:** [chat ordering](pattern-library.md#chat-ordering),
   [backpressure](pattern-library.md#backpressure).
 
 <a id="q27"></a>
-26. **Q27 — Feed: build a page.** How can a feed provide stable pagination
+27. **Q27 — Feed: build a page.** How can a feed provide stable pagination
   while new items arrive? **Concepts:** cursor, rank, read model. **Patterns:**
   [stable pagination](pattern-library.md#stable-pagination),
   [read scaling](pattern-library.md#read-scaling).
 
 <a id="q28"></a>
-27. **Q28 — Feed: fan-out choice.** When would you precompute recipient feeds,
+28. **Q28 — Feed: fan-out choice.** When would you precompute recipient feeds,
   compute on read, or combine both? **Concepts:** skew, write amplification,
   freshness. **Patterns:** [feed fan-out](pattern-library.md#feed-fan-out),
   [measure before scaling](pattern-library.md#measure-before-scaling).
@@ -201,52 +201,52 @@ reference answers, or AI. A question never expands the current product scope.
 ## Advanced
 
 <a id="q29"></a>
-28. **Q29 — Autocomplete: prefix lookup.** Which index and ranking model fit
+29. **Q29 — Autocomplete: prefix lookup.** Which index and ranking model fit
   the expected prefix and latency requirements? **Concepts:** trie/search
   index, top-k, freshness. **Patterns:** [search index](pattern-library.md#search-index),
   [read scaling](pattern-library.md#read-scaling).
 
 <a id="q30"></a>
-29. **Q30 — Autocomplete: update and privacy.** How do you handle deletions,
+30. **Q30 — Autocomplete: update and privacy.** How do you handle deletions,
   stale suggestions, and tenant-specific visibility? **Concepts:** indexing
   lag, deletion, authorization. **Patterns:** [search index](pattern-library.md#search-index),
   [ownership boundary](pattern-library.md#ownership-boundary).
 
 <a id="q31"></a>
-30. **Q31 — Streaming: ingest and play.** How do you serve a large media object
+31. **Q31 — Streaming: ingest and play.** How do you serve a large media object
   without loading it into an application heap? **Concepts:** range reads,
   object storage, edge delivery. **Patterns:**
   [streaming delivery](pattern-library.md#streaming-delivery),
   [object storage](pattern-library.md#object-storage).
 
 <a id="q32"></a>
-31. **Q32 — Streaming: adaptive delivery.** Which signals should change
+32. **Q32 — Streaming: adaptive delivery.** Which signals should change
   bitrate, and how do buffering and regional failures affect playback?
   **Concepts:** throughput, manifests, edge cache. **Patterns:**
   [streaming delivery](pattern-library.md#streaming-delivery),
   [resilience](pattern-library.md#resilience).
 
 <a id="q33"></a>
-32. **Q33 — Analytics: event to metric.** How do you define a metric that can
+33. **Q33 — Analytics: event to metric.** How do you define a metric that can
   be recomputed from its source events? **Concepts:** event time, schema,
   aggregation. **Patterns:** [analytics pipeline](pattern-library.md#analytics-pipeline),
   [event pipeline](pattern-library.md#event-pipeline).
 
 <a id="q34"></a>
-33. **Q34 — Analytics: late and duplicate data.** How should a report change
+34. **Q34 — Analytics: late and duplicate data.** How should a report change
   when events arrive late or are replayed? **Concepts:** idempotent aggregate,
   watermark, correction. **Patterns:** [analytics pipeline](pattern-library.md#analytics-pipeline),
   [idempotency](pattern-library.md#idempotency).
 
 <a id="q35"></a>
-34. **Q35 — Distributed rate limiting.** What are the consistency and
+35. **Q35 — Distributed rate limiting.** What are the consistency and
   availability consequences of enforcing a limit across several regions?
   **Concepts:** partition, approximate counters, fairness. **Patterns:**
   [rate limiting](pattern-library.md#rate-limiting),
   [multi-region boundary](pattern-library.md#multi-region-boundary).
 
 <a id="q36"></a>
-35. **Q36 — Object-store recovery.** How would you detect an incomplete upload
+36. **Q36 — Object-store recovery.** How would you detect an incomplete upload
   or an accidental deletion and restore a verified object? **Concepts:**
   checksums, versioning, retention. **Patterns:**
   [object storage](pattern-library.md#object-storage),

@@ -9,10 +9,18 @@ course lesson remain authoritative for the engineering task.
 
 Before hints, reference answers, worked solutions, or AI answers:
 
-1. Write the requirement and two questions that would change the design.
-2. Sketch the smallest useful boundary and data flow.
-3. State one invariant, one likely failure, and the first test you would run.
-4. Save that first proposal with the timestamp and assistance state.
+1. In 5 minutes, capture requirements and measurable acceptance.
+2. In 5 minutes, estimate capacity and list constraints/assumptions.
+3. In 15 minutes, save the initial architecture, data model, invariant, and
+   first test before hints, reference answers, or AI.
+4. In 10 minutes, examine bottlenecks, reliability, and scaling.
+5. In 10 minutes, compare trade-offs, walk failures, and name follow-ups.
+   Record the proposal timestamp and assistance state.
+
+The timed phase labels are fixed across the calendar and export: **5 minutes
+Requirements; 5 minutes Capacity and constraints; 15 minutes Initial
+architecture and data model; 10 minutes Bottlenecks, reliability, scaling;
+10 minutes Trade-offs, failures, follow-ups.**
 
 Afterward, compare it with docs or AI if useful. Keep the first proposal and
 the comparison separate. Do not use a generic post-hoc design explanation as a

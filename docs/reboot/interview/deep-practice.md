@@ -23,8 +23,10 @@ not complete the original day's acceptance.
 | 11 | 38 · 2026-11-30 | Q28 | Feed fan-out and measured skew | Sessions 7/10 plus a measured workload | Day 12/14 browser state exercise |
 | 12 | 42 · 2026-12-04 | Q30 | Search freshness and independent UI/API/database oracle | Session 6 authorization and independent acceptance | Day 14 integration acceptance |
 
-For each, spend 5 minutes clarifying and writing a no-AI proposal, 5 minutes
-checking assumptions and acceptance, 15 minutes on the data/control-flow
-choice, 10 minutes on a failure or trade-off, and 10 minutes comparing actual
-evidence with the rubric. On session days, use the named 40-minute EAI slice and deferred queue. Do not
-claim acceptance from a mock or add hours to complete deferred work.
+Every session uses the exact rubric phases: **5 minutes Requirements; 5
+minutes Capacity and constraints; 15 minutes Initial architecture and data
+model; 10 minutes Bottlenecks, reliability, scaling; 10 minutes Trade-offs,
+failures, follow-ups.** Save the initial proposal during the 15-minute
+architecture phase before any hints, reference answer, or AI. On session days,
+use the named 40-minute EAI slice and deferred queue. Do not claim acceptance
+from a mock or add hours to complete deferred work.

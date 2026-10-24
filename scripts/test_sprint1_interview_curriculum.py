@@ -12,7 +12,10 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
     def test_question_and_deep_practice_counts_are_explicit(self):
         questions = (ROOT / "docs/reboot/interview/question-bank.md").read_text()
         sessions = (ROOT / "docs/reboot/interview/deep-practice.md").read_text()
-        self.assertEqual(36, len(re.findall(r"^\d+\. \*\*Q\d{2} —", questions, re.M)))
+        numbers = [int(x) for x in re.findall(r"^(\d+)\. \*\*Q\d{2} —", questions, re.M)]
+        ids = [int(x) for x in re.findall(r"^\d+\. \*\*Q(\d{2}) —", questions, re.M)]
+        self.assertEqual(list(range(1, 37)), numbers)
+        self.assertEqual(list(range(1, 37)), ids)
         self.assertEqual(12, len(re.findall(r"^\|\s*\d+\s*\|[^\n]*\| Q\d{2} \|", sessions, re.M)))
         self.assertEqual(36, len(re.findall(r'<a id="q\d{2}"></a>', questions)))
         design_guide = (ROOT / "docs/reboot/system-design-practice.md").read_text()
@@ -33,6 +36,9 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
 
     def test_mock_format_fits_existing_engineering_block(self):
         mock = (ROOT / "docs/reboot/interview/mock-rubric.md").read_text()
+        deep = (ROOT / "docs/reboot/interview/deep-practice.md").read_text()
+        template = (ROOT / "docs/reboot/interview/design-proposal-template.md").read_text()
+        design = (ROOT / "docs/reboot/system-design-practice.md").read_text()
         manifest = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
         budget = manifest["daily_budget_minutes"]
         self.assertEqual(120, budget["engineering"])
@@ -41,6 +47,14 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         self.assertEqual(10, budget["evidence"])
         self.assertIn("45 minutes inside the existing 85-minute practice allocation", mock)
         self.assertRegex(mock, r"5/5/15/10/10")
+        phase_labels = ["Requirements", "Capacity and constraints",
+                        "Initial architecture and data model",
+                        "Bottlenecks, reliability, scaling",
+                        "Trade-offs, failures, follow-ups"]
+        for document in (mock, deep, template, design):
+            normalized = re.sub(r"\s+", " ", document.lower())
+            for label in phase_labels:
+                self.assertIn(label.lower(), normalized)
 
     def test_first_sprint_mock_days_and_dates(self):
         guide = (ROOT / "docs/reboot/system-design-practice.md").read_text()
@@ -163,6 +177,13 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                 self.assertEqual(dedicated[i], assignment["question_id"])
                 self.assertIsNotNone(assignment["deferred_work_id"])
                 self.assertIn("40 minutes", assignment["implementation_scope"])
+                self.assertEqual([
+                    {"minutes": 5, "activity": "Requirements"},
+                    {"minutes": 5, "activity": "Capacity and constraints"},
+                    {"minutes": 15, "activity": "Initial architecture and data model"},
+                    {"minutes": 10, "activity": "Bottlenecks, reliability, scaling"},
+                    {"minutes": 10, "activity": "Trade-offs, failures, follow-ups"},
+                ], assignment["mock_phases"])
             else:
                 self.assertEqual("proposal_before_reference", assignment["mode"])
                 self.assertIsNone(assignment["question_id"])
