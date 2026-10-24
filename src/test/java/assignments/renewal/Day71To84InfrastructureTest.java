@@ -71,6 +71,7 @@ class Day71To84InfrastructureTest {
         String config = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalConfiguration.java"));
         String helper = Files.readString(Path.of("src/test/java/assignments/local/Sprint6PackagedRuntimeProcess.java"));
         String browser = Files.readString(Path.of("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"));
+        String browserScript = Files.readString(Path.of("frontend/e2e/day83-lock-recovery.mjs"));
         String wiringTest = Files.readString(Path.of("src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java"));
         String pom = Files.readString(Path.of("pom.xml"));
         String packageScript = Files.readString(Path.of("scripts/package-sprint6-demo.sh"));
@@ -95,9 +96,9 @@ class Day71To84InfrastructureTest {
         assertTrue(helper.contains("verifyArtifactReceipt(jar, evidence)"));
         assertTrue(browser.contains("Sprint6PackagedRuntimeProcess.start(postgres, CLOCK)"));
         assertFalse(browser.contains("LocalPackagedRuntimeProcess.start"));
-        assertTrue(browser.contains("/actuator/metrics/hikaricp.connections.active"),
+        assertTrue(browserScript.contains("/actuator/metrics/hikaricp.connections.active"),
                 "Day 83 exercises the read-only Hikari metric through the bounded packaged runtime");
-        assertTrue(browser.contains("/actuator/metrics/coverstory.preview.requests"),
+        assertTrue(browserScript.contains("/actuator/metrics/coverstory.preview.requests"),
                 "Day 83 exercises the read-only route metric through the bounded packaged runtime");
         assertTrue(sprint6Properties.contains("management.endpoints.access.default=none"));
         assertTrue(sprint6Properties.contains("management.endpoint.metrics.access=read-only"));
