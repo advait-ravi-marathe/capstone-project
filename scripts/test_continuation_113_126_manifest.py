@@ -65,6 +65,67 @@ class ContinuationManifestTests(unittest.TestCase):
             minutes, seconds = divmod(lesson["duration_seconds"], 60)
             self.assertEqual(f"{minutes}:{seconds:02d}", lesson["duration"])
 
+
+    def test_assistant_architecture_and_interview_only_mocks_are_synchronized(self):
+        note = BASE / "assistant-architecture-notes.md"
+        self.assertTrue(note.is_file())
+        mock_days = {115: "Q20", 118: "Q23", 122: "Q16", 125: "Q22"}
+        for day, card in zip(self.manifest["days"], self.export["cards"]):
+            number = day["day"]
+            eng = day["engineering"]
+            owner_eng = card["engineering"]
+            self.assertEqual(eng, owner_eng)
+            note_ref = eng["assistant_architecture_note"]
+            self.assertTrue(note_ref.endswith(f"#day-{number}"))
+            contract = (ROOT / day["contract_file"]).read_text()
+            self.assertIn("Assistant-provided architecture", contract)
+            self.assertIn(f"#day-{number}", contract)
+            self.assertIn("no capstone proposal", contract.lower())
+            self.assertNotIn("propose the capstone architecture", contract.lower())
+            assignment = eng.get("interview_assignment")
+            if number not in mock_days:
+                self.assertIsNone(assignment, f"day {number} should not acquire a mock")
+                continue
+            self.assertIsNotNone(assignment)
+            self.assertEqual(mock_days[number], assignment["question_id"])
+            self.assertEqual("system_design_interview_question_only", assignment["proposal_scope"])
+            self.assertEqual("assistant_supplied", assignment["capstone_architecture"])
+            self.assertEqual(45, sum(p["minutes"] for p in assignment["mock_phases"]))
+            self.assertEqual(40, sum(assignment["eai_slice_minutes"].values()))
+            self.assertEqual(85, assignment["practice_total_minutes"])
+            self.assertEqual(f"S9-D{number}-MOCK", assignment["deferred_work_id"])
+            self.assertIn("do not make capstone design decisions", contract.lower())
+            self.assertIn(assignment["question_href"], contract)
+            self.assertIn(assignment["acceptance_commands"][0], contract)
+            for ref in [assignment["question_href"], *assignment["pattern_refs"]]:
+                target, anchor = ref.split("#", 1)
+                path = (BASE / target).resolve()
+                self.assertTrue(path.is_file(), path)
+                self.assertIn(f"id=\"{anchor}\"", path.read_text(), f"missing anchor {ref}")
+
+    def test_day124_command_selector_covers_positive_and_negative_argument_paths(self):
+        day = next(d for d in self.manifest["days"] if d["day"] == 124)
+        command = "./mvnw -Plearner-tests -Dtest=LocalManualRecoveryCommandTest test"
+        self.assertIn(command, day["engineering"]["acceptance_commands"])
+        card = next(c for c in self.export["cards"] if c["day_number"] == 124)
+        self.assertIn(command, card["engineering"]["acceptance_commands"])
+        contract = (ROOT / day["contract_file"]).read_text()
+        self.assertIn(command, contract)
+        source = (ROOT / "src/test/java/assignments/delivery/recovery/LocalManualRecoveryCommandTest.java").read_text()
+        for method in ("oneActionCommandRejectsInvalidAndConflictingFlags", "oneExplicitInspectDispatchesOnlyTheRequestedExactKey", "ordinaryStartupDoesNotDispatchRecovery"):
+            self.assertIn(method, source)
+
+    def test_sprint8_dedicated_runtime_is_not_mislabeled_broad(self):
+        contract = (ROOT / "docs/reboot/continuation-99-112/contracts/day-110.md").read_text().lower()
+        self.assertIn("dedicated sprint 8 bounded packaged runtime", contract)
+        self.assertNotIn("broad default runtime", contract)
+        for name in ("manifest.json", "scrum-owner-manifest.json"):
+            data = json.loads((ROOT / "docs/reboot/continuation-99-112" / name).read_text())
+            items = data.get("days") or data["cards"]
+            day110 = next(d for d in items if d.get("day", d.get("day_number")) == 110)
+            serialized = json.dumps(day110["engineering"]).lower()
+            self.assertNotIn("broad default runtime", serialized)
+
     def test_recovery_days_only_run_prior_work_and_no_unresolved_commands(self):
         for day in (119, 126):
             text = (ROOT / f"docs/reboot/continuation-113-126/contracts/day-{day}.md").read_text()

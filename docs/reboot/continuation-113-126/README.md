@@ -2,7 +2,9 @@
 
 Status: scaffold/learning plan; learner completion is not recorded. This batch follows the event-log-backed local delivery work in Days 99–112. It addresses the missing operator decision surface: exact-key inspection, reversible quarantine/release, and explicit one-key retry/reconciliation.
 
-Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
+Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. The assistant-provided architecture notes explain each capstone seam and why it is composed that way; the learner implements and tests those decisions.
+
+System-design interview practice stays separate in the interview question bank. Days 115, 118, 122, and 125 each use one 45-minute question session plus an explicit 40-minute capstone task, replacing the existing 85-minute practice block. Each week has two sessions. No additional daily minutes or capstone design proposal is assigned.
 
 ## Scope and boundaries
 
@@ -18,7 +20,7 @@ When an explicit `--coverstory.recovery.action=...` argument is supplied, the ex
 
 Engineering remains 120 minutes per day: a shared 25-minute study cap, 85 minutes build/test, and 10 minutes evidence. Video, pauses, worked traces, focused reading, and teach-back all fit inside that study block. Carry unfinished study forward and reduce implementation scope.
 
-The optional reference course is **Master Hibernate and JPA with Spring Boot in 100 Steps**, in28Minutes Official, course ID 1341538. Access is unconfirmed; course videos were not audited. Exact catalog titles, section titles, item IDs and durations appear in the manifest and individual contracts. These are JDBC/transaction foundations, not lessons on this exact recovery implementation. Use the worked guide and focused official reading if inaccessible. No purchase or enrollment is implied.
+The optional reference course is **Master Hibernate and JPA with Spring Boot in 100 Steps**, in28Minutes Official, course ID 1341538. Access is unconfirmed; video viewing is not inferred. Exact catalog titles, section titles, item IDs and durations appear in the manifest and individual contracts. These are JDBC/transaction foundations, not lessons on this exact recovery implementation. Use the worked guide and focused official reading if inaccessible. No purchase or enrollment is implied.
 
 ## Instructor scaffolding and learner seams
 
