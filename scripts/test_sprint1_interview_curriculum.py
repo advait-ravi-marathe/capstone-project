@@ -129,6 +129,13 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                 planned_text = match.group(3)
                 expected = day_dates[encounter_day] + timedelta(days=offset)
                 self.assertEqual(expected.isoformat(), planned_text, review)
+        continuation = json.loads((ROOT / "docs/reboot/continuation-31-44/manifest.json").read_text())
+        carryovers = continuation["dsa_revision_policy"]["carryover_anchors_from_days_01_30"]
+        for anchor in carryovers:
+            first_attempt = date.fromisoformat(anchor["planned_first_attempt_date"])
+            expected = [(first_attempt + timedelta(days=n)).isoformat()
+                        for n in anchor["review_intervals_days"]]
+            self.assertEqual(expected, anchor["forecast_due_dates_if_attempted_on_plan"])
 
     def test_first_sprint_story_ids_and_course_bridges_remain_present(self):
         owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())
