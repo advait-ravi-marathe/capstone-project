@@ -1001,10 +1001,8 @@
           "deferred_work_id": "S7-D97-MOCK",
           "deferred_work": "Carry every unmet original acceptance assertion under this ID. Resume from the first real learner TODO or blocked prerequisite; do not add practice minutes or infer completion from the interview mock.",
           "acceptance_commands": [
-            "npm --prefix frontend ci",
-            "npm --prefix frontend run build:local",
-            "./mvnw -Plocal-app -DskipTests package",
-            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Plocal-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test"
+            "./scripts/package-local-demo.sh",
+            "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests,local-app -Dtest=Day97PackagedTimeoutBrowserAcceptanceTest test"
           ],
           "acceptance": "The named selector proves only its documented seam. Continue to the first real prerequisite/TODO and record the observed result; the complete original contract remains the completion gate.",
           "evidence": "Record the system-design answer only for the separate interview question, plus exact selector/result or blocker, assistance, and changed paths. Do not submit a capstone architecture proposal or post-hoc design justification.",
