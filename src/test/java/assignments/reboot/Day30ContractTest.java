@@ -71,7 +71,7 @@ class Day30ContractTest {
         assertEquals(30, canonical.get("board_story_count").asInt());
         assertEquals(30, canonical.get("assignments_by_track").get("engineering").asInt());
         assertEquals(canonical.get("board_story_count").asInt(), owner.get("story_count").asInt());
-        assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14",
+        assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
                 canonical.get("separate_learning_repository").get("algorithm_practice").asString());
         for (int i = 0; i < 30; i++) {
             JsonNode story = cards.get(i);

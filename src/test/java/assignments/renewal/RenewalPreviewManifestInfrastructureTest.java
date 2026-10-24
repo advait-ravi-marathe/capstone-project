@@ -102,7 +102,7 @@ class RenewalPreviewManifestInfrastructureTest {
             }
 
             assertFalse(day.has("java_dsa"), "DSA assignment is maintained in the separate repository");
-            assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14",
+            assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
                     manifest.get("separate_learning_repository").get("algorithm_practice").asString());
         }
     }
