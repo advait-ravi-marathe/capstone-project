@@ -6,7 +6,7 @@
 - Sprint 12 dates: March 27–April 9, 2027. Recovery days: 161 and 168.
 - Engineering remains 120 minutes/day (25 study, 85 practice/testing, 10 evidence).
 - Python interpreter observed before publication: Python 3.12.14. No third-party Python dependency is required.
-- The earlier Days 153–154 learner-owned A/B evidence gate is currently **not met in this checkout**: those manifest entries are `not_attempted` / `not_run`, and their learner evidence files are absent. This draft scaffold and any instructor witness cannot satisfy that gate. Keep StreamForge progression/completion claims blocked until actual learner-owned baseline/candidate evidence is recorded. Exact gate details are in `manifest.json`.
+- The earlier Days 153–154 learner-owned A/B evidence gate has status not met: `evidence/continuation-141-154/day-153.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`; `evidence/continuation-141-154/day-154.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`. The StreamForge scaffold and instructor witnesses cannot satisfy it. Re-evaluate the authoritative records when genuine learner evidence is added; keep progression blocked until both qualify under `manifest.json`.
 - No AWS/cloud resource, credential, spending, deployment, external media ingestion, user history, or real learner data.
 
 Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.

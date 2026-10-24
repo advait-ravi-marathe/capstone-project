@@ -1028,9 +1028,39 @@
       "day_154": "not_attempted",
       "day_154_evidence": "not_run"
     },
-    "required_evidence": "Learner-owned distinct baseline/candidate artifacts, verified source and overlay provenance, actual matrix output, and recorded proof limits under Days 153–154 contracts.",
-    "rule": "A starter, assistant/instructor witness, or this StreamForge scaffold cannot satisfy this gate. Until learner evidence is recorded, keep StreamForge progression/completion claims blocked; do not mark prior days complete.",
-    "evidence_file_check": "No docs/reboot/continuation-141-154/evidence/day-153.json or day-154.json exists in this source tree."
+    "evidence_records": [
+      {
+        "path": "evidence/continuation-141-154/day-153.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      },
+      {
+        "path": "evidence/continuation-141-154/day-154.json",
+        "exists": true,
+        "status": "not_attempted",
+        "evidence_status": "not_run",
+        "tested_source_sha": null,
+        "artifact_hashes": [],
+        "learner_completion": false,
+        "temporary_witness": false
+      }
+    ],
+    "qualifying_evidence": {
+      "each_day_record": "status completed and evidence_status verified",
+      "learner_ownership": "learner_completion true and temporary_witness false",
+      "source_identity": "tested_source_sha is a 40-character hexadecimal commit SHA",
+      "artifacts": "at least two distinct SHA-256 artifact hashes with explicit baseline/candidate roles",
+      "execution": "record the exact matrix selector and matrix_exit_code 0",
+      "provenance": "record baseline and candidate source identities and build recipes; include any temporary witness provenance",
+      "result_and_limits": "record observed matrix result and proof_limits"
+    },
+    "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
+    "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet."
   },
   "engineering_interview_sessions": {
     "session_days": [

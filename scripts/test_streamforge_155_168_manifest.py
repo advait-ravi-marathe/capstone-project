@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import subprocess
 import sys
 import unittest
@@ -185,25 +186,83 @@ class StreamForge155168ManifestTest(unittest.TestCase):
                 self.assertIn(f'<a id="{assignment["question_id"].lower()}"></a>', question)
         self.assertEqual(4, len(set(question_ids)))
 
-    def test_prior_ab_gate_remains_unmet_without_learner_evidence(self):
+    def test_prior_ab_gate_uses_authoritative_evidence_and_can_become_met(self):
         gate = self.manifest["prior_readiness_gate"]
-        self.assertEqual("not_met", gate["current_status"])
-        self.assertEqual("not_attempted", gate["observed_prior_status"]["day_153"])
-        self.assertEqual("not_run", gate["observed_prior_status"]["day_153_evidence"])
-        self.assertEqual("not_attempted", gate["observed_prior_status"]["day_154"])
-        self.assertEqual("not_run", gate["observed_prior_status"]["day_154_evidence"])
+        sha40 = re.compile(r"^[0-9a-f]{40}$")
+        sha64 = re.compile(r"^[0-9a-f]{64}$")
+
+        def qualifies(record):
+            hashes = record.get("artifact_hashes", [])
+            by_role = {item.get("role"): item.get("sha256") for item in hashes if isinstance(item, dict)}
+            provenance = record.get("source_provenance", {})
+            return all((
+                record.get("status") == "completed",
+                record.get("evidence_status") == "verified",
+                record.get("learner_completion") is True,
+                record.get("temporary_witness") is False,
+                isinstance(record.get("tested_source_sha"), str) and bool(sha40.fullmatch(record["tested_source_sha"])),
+                {"baseline", "candidate"}.issubset(by_role),
+                by_role.get("baseline") != by_role.get("candidate"),
+                all(isinstance(value, str) and sha64.fullmatch(value) for value in by_role.values()),
+                isinstance(record.get("matrix_selector"), str) and bool(record["matrix_selector"].strip()),
+                record.get("matrix_exit_code") == 0,
+                record.get("matrix_result") == "passed",
+                all(isinstance(provenance.get(role), dict)
+                    and provenance[role].get("source")
+                    and provenance[role].get("build_recipe") for role in ("baseline", "candidate")),
+                isinstance(record.get("proof_limits"), str) and bool(record["proof_limits"].strip()),
+            ))
+
+        qualifying_example = {
+            "status": "completed", "evidence_status": "verified",
+            "learner_completion": True, "temporary_witness": False,
+            "tested_source_sha": "a" * 40,
+            "artifact_hashes": [
+                {"role": "baseline", "sha256": "1" * 64},
+                {"role": "candidate", "sha256": "2" * 64},
+            ],
+            "matrix_selector": "TwoArtifactCompatibilityAcceptanceTest#day153RunsCompleteObservedPairMatrixAndFallbackDecision",
+            "matrix_exit_code": 0, "matrix_result": "passed",
+            "source_provenance": {
+                "baseline": {"source": "pinned source SHA", "build_recipe": "clean baseline package"},
+                "candidate": {"source": "learner source SHA", "build_recipe": "recorded candidate package"},
+            },
+            "proof_limits": "Local unchanged-schema result only.",
+        }
+        self.assertTrue(qualifies(qualifying_example))
+        self.assertFalse(qualifies(dict(qualifying_example, temporary_witness=True)))
+
+        actual = []
         for day in (153, 154):
-            self.assertFalse((ROOT / f"docs/reboot/continuation-141-154/evidence/day-{day}.json").exists())
+            path = ROOT / f"evidence/continuation-141-154/day-{day}.json"
+            self.assertTrue(path.is_file(), f"authoritative Day {day} evidence record should be inspected")
+            record = json.loads(path.read_text(encoding="utf-8"))
+            actual.append(record)
+            self.assertEqual("evidence/continuation-141-154/day-" + str(day) + ".json",
+                             gate["evidence_records"][day - 153]["path"])
+            snapshot = gate["evidence_records"][day - 153]
+            for key in ("status", "evidence_status", "tested_source_sha", "artifact_hashes",
+                        "learner_completion", "temporary_witness"):
+                self.assertEqual(record.get(key), snapshot.get(key))
+        expected = "met" if all(qualifies(record) for record in actual) else "not_met"
+        self.assertEqual(expected, gate["current_status"])
+        self.assertEqual(actual[0]["status"], gate["observed_prior_status"]["day_153"])
+        self.assertEqual(actual[0]["evidence_status"], gate["observed_prior_status"]["day_153_evidence"])
+        self.assertEqual(actual[1]["status"], gate["observed_prior_status"]["day_154"])
+        self.assertEqual(actual[1]["evidence_status"], gate["observed_prior_status"]["day_154_evidence"])
         self.assertEqual(gate, self.owner["prior_readiness_gate"])
         self.assertEqual(gate, self.plan["prior_readiness_gate"])
         contract = (BATCH / "contracts/day-155.md").read_text(encoding="utf-8")
         readme = (BATCH / "README.md").read_text(encoding="utf-8")
-        self.assertIn("Prior A/B readiness gate: not met", contract)
-        self.assertIn("not met in this checkout", readme)
+        self.assertIn("Prior A/B readiness gate: " + expected.replace("_", " "), contract)
+        self.assertIn("status " + expected.replace("_", " "), readme)
+        self.assertIn("evidence/continuation-141-154/day-153.json", readme)
         self.assertIn("cannot satisfy", readme)
 
     def test_sprint12_contract_generator_is_idempotent_and_keeps_existing_harnesses(self):
-        paths = [BATCH / f"contracts/day-{day}.md" for day in range(155, 169)]
+        paths = [BATCH / f"contracts/day-{day}.md" for day in range(155, 169)] + [
+            BATCH / "README.md", BATCH / "assistant-architecture-notes.md",
+            BATCH / "streamforge-days-155-168-transfer-plan.md"]
         before = [path.read_bytes() for path in paths]
         result = subprocess.run([sys.executable, str(ROOT / "scripts/create_days155_168_docs.py")],
                                 cwd=ROOT, capture_output=True, check=False, timeout=10)

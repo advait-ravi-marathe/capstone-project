@@ -107,10 +107,6 @@ quality, privacy/legal clearance, cloud operation, or production readiness.
 
 ## Prerequisite gate: earlier A/B learner evidence
 
-The Days 153–154 manifest currently records `not_attempted` and `not_run`, and
-this checkout has no learner evidence files for those days. Therefore the
-learner-owned baseline/candidate evidence gate is **not met here**. Do not
-replace it with instructor witnesses, this starter, or an artifact built during
-review. The StreamForge work remains draft scaffolding; completion or
-progression claims stay blocked until the learner's own A/B evidence is
-recorded against the earlier contract.
+<!-- SPRINT12_PRIOR_GATE_START -->
+The authoritative records are `evidence/continuation-141-154/day-153.json` and `evidence/continuation-141-154/day-154.json`. Current gate status is **not met**: `evidence/continuation-141-154/day-153.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`; `evidence/continuation-141-154/day-154.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`. A starter or assistant/instructor witness cannot satisfy this gate. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet.
+<!-- SPRINT12_PRIOR_GATE_END -->

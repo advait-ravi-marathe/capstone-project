@@ -12,6 +12,8 @@ ARCH_START = "<!-- SPRINT12_ARCHITECTURE_START -->"
 ARCH_END = "<!-- SPRINT12_ARCHITECTURE_END -->"
 PRACTICE_START = "<!-- SPRINT12_PRACTICE_START -->"
 PRACTICE_END = "<!-- SPRINT12_PRACTICE_END -->"
+GATE_START = "<!-- SPRINT12_PRIOR_GATE_START -->"
+GATE_END = "<!-- SPRINT12_PRIOR_GATE_END -->"
 
 
 def replace_marked(text: str, start: str, end: str, content: str, *, after: str | None = None) -> str:
@@ -43,6 +45,29 @@ def architecture_block(day: dict) -> str:
     return "\n".join(lines)
 
 
+def gate_block(gate: dict, *, readme: bool = False) -> str:
+    status = gate["current_status"].replace("_", " ")
+    records = gate["evidence_records"]
+    details = "; ".join(
+        f"`{row['path']}` records `{row['status']}` / `{row['evidence_status']}`, "
+        f"tested-source SHA {row['tested_source_sha'] or 'null'}, "
+        f"{len(row['artifact_hashes'])} artifact hashes, and learner completion "
+        f"`{str(row['learner_completion']).lower()}`"
+        for row in records
+    )
+    if readme:
+        return (f"- The earlier Days 153–154 learner-owned A/B evidence gate has "
+                f"status {status}: {details}. The StreamForge scaffold and instructor "
+                "witnesses cannot satisfy it. Re-evaluate the authoritative records "
+                "when genuine learner evidence is added; keep progression blocked "
+                "until both qualify under `manifest.json`.")
+    paths = " and ".join(f"`{row['path']}`" for row in records)
+    return (f"The authoritative records are {paths}. Current gate status is **{status}**: "
+            f"{details}. A starter or assistant/instructor witness cannot satisfy this "
+            "gate. Re-evaluate these records when genuine learner evidence is added; "
+            "do not freeze the gate as permanently unmet.")
+
+
 def practice_block(day: dict) -> str:
     a = day["engineering"]["interview_assignment"]
     q = a["question_id"]
@@ -62,6 +87,7 @@ def practice_block(day: dict) -> str:
 
 def main() -> None:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    gate = manifest["prior_readiness_gate"]
     for day in manifest["days"]:
         path = BATCH / day["contract_file"]
         text = path.read_text(encoding="utf-8")
@@ -89,6 +115,31 @@ def main() -> None:
                 replacement += "\n\n" + last
             text = text[:start] + replacement + "\n\n" + text[end:]
         path.write_text(text.rstrip() + "\n", encoding="utf-8")
+
+    readme = BATCH / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    old_gate_line = next((line for line in text.splitlines() if line.startswith("- The earlier Days 153–154 learner-owned A/B evidence gate")), None)
+    if old_gate_line is not None:
+        text = text.replace(old_gate_line, gate_block(gate, readme=True))
+    elif GATE_START in text and GATE_END in text:
+        text = replace_marked(text, GATE_START, GATE_END, gate_block(gate, readme=True))
+    else:
+        raise ValueError("Cannot find prior A/B gate summary in README")
+    readme.write_text(text.rstrip() + "\n", encoding="utf-8")
+
+    notes = BATCH / "assistant-architecture-notes.md"
+    text = notes.read_text(encoding="utf-8")
+    heading = "## Prerequisite gate: earlier A/B learner evidence"
+    section = gate_block(gate)
+    if GATE_START in text and GATE_END in text:
+        text = replace_marked(text, GATE_START, GATE_END, section)
+    elif heading in text:
+        start = text.index(heading) + len(heading)
+        text = text[:start] + "\n\n" + GATE_START + "\n" + section + "\n" + GATE_END
+    else:
+        raise ValueError("Cannot find prior A/B gate section in architecture notes")
+    notes.write_text(text.rstrip() + "\n", encoding="utf-8")
+    (BATCH / "streamforge-days-155-168-transfer-plan.md").write_bytes(readme.read_bytes())
 
 
 if __name__ == "__main__":
