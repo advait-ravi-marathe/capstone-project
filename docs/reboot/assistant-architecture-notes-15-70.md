@@ -34,7 +34,7 @@ composite lookup with an owner parameter.
 | <a id="day-25"></a> 25 | Enforce repeated-selection uniqueness at the database transaction boundary; concurrent requests must converge on one durable selection. |
 | <a id="day-26"></a> 26 | Append the smallest audit record in the same transaction as the selected mutation; avoid storing secrets or duplicating full request payloads. |
 | <a id="day-27"></a> 27 | Fix the smallest evidenced regression and add one focused failing-before/passing-after test; avoid unrelated refactoring. |
-| <a id="day-28"></a> 28 | Verify the existing user path through the packaged browser and disposable PostgreSQL; an isolated component pass cannot establish browser-to-database behavior. |
+| <a id="day-28"></a> 28 | Verify the existing user path with real Chromium and disposable PostgreSQL through the in-process Spring test route serving the built frontend; this is browser-to-database evidence, not executable-JAR packaging evidence. |
 | <a id="day-29"></a> 29 | Keep reset operations limited to a uniquely identified embedded/disposable database with an explicit refusal guard; never accept an external URI for destructive reset. |
 | <a id="day-30"></a> 30 | Treat the evidence checklist as a status ledger with linked observations and open blockers; a review conversation cannot promote missing evidence to pass. |
 
@@ -72,7 +72,7 @@ composite lookup with an owner parameter.
 | <a id="day-53"></a> 53 | Represent loading, unavailable, empty, and ready as accessible explicit states; users must not mistake absent data for a valid preview. |
 | <a id="day-54"></a> 54 | Compare the actual preview response to complete seeded PostgreSQL state before and after the read; a read path must not write. |
 | <a id="day-55"></a> 55 | Fetch the preview with same-origin session credentials and display the validated response; keep identity server-derived and do not retry writes automatically. |
-| <a id="day-56"></a> 56 | Prove logout and process restart separately, using a valid pre-stop session for restart and the same database/clock; this isolates ephemeral session loss from durable preview state. |
+| <a id="day-56"></a> 56 | Compare read-only preview across two Spring server contexts in the same test JVM, each read by a fresh browser process against the same seeded disposable PostgreSQL and fixed clock; this proves context-restart read stability, not logout invalidation or a separate-process active-cookie restart. |
 
 ## Sprint 5: Days 57–70
 

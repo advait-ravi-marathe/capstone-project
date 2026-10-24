@@ -3130,7 +3130,7 @@
       "engineering": {
         "assistant_architecture_note": {
           "path": "docs/reboot/assistant-architecture-notes-15-70.md#day-28",
-          "decision": "Verify the existing user path through the packaged browser and disposable PostgreSQL; an isolated component pass cannot establish browser-to-database behavior.",
+          "decision": "Verify the existing user path with real Chromium and disposable PostgreSQL through the in-process Spring test route serving the built frontend; this is browser-to-database evidence, not executable-JAR packaging evidence.",
           "budget": "within_existing_25_minute_concept_allocation"
         }
       }

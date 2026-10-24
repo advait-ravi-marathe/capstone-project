@@ -104,6 +104,26 @@ class AssistantSuppliedArchitectureScopeTest(unittest.TestCase):
         self.assertIn("boundary introduced by the Day 12 principal guard", self.notes)
         self.assertNotIn("Bind owner and quote identifiers", self.notes)
 
+    def test_day28_and_day56_notes_match_their_actual_harness_boundaries(self):
+        day28 = next(row for row in json.loads((ROOT / "docs/reboot/manifest.json").read_text())["days"] if row["day"] == 28)
+        day28_owner = next(row for row in json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())["cards"] if row["day_number"] == 28)
+        day28_test = (ROOT / "src/test/java/assignments/reboot/Day28BrowserToDatabaseTest.java").read_text()
+        self.assertIn("SpringApplicationBuilder", day28_test)
+        self.assertIn('@GetMapping(value = "/__e2e/home-secure"', day28_test)
+        self.assertIn("in-process Spring test route serving the built frontend", day28["engineering"]["assistant_architecture_note"]["decision"])
+        self.assertEqual(day28["engineering"]["assistant_architecture_note"]["decision"], day28_owner["engineering"]["assistant_architecture_note"]["decision"])
+        self.assertNotIn("packaged browser", day28["engineering"]["assistant_architecture_note"]["decision"].lower())
+
+        day56 = next(row for row in json.loads((ROOT / "docs/reboot/continuation-45-56/manifest.json").read_text())["days"] if row["day"] == 56)
+        day56_owner = next(row for row in json.loads((ROOT / "docs/reboot/continuation-45-56/scrum-owner-manifest.json").read_text())["cards"] if row["day_number"] == 56)
+        day56_test = (ROOT / "src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java").read_text()
+        self.assertIn("day56PreviewReadIsStableAcrossRestartAndDoesNotWrite", day56_test)
+        self.assertIn("EmbeddedPostgres", day56_test)
+        decision = day56["engineering"]["assistant_architecture_note"]["decision"]
+        self.assertIn("two Spring server contexts in the same test JVM", decision)
+        self.assertIn("not logout invalidation", decision)
+        self.assertEqual(decision, day56_owner["engineering"]["assistant_architecture_note"]["decision"])
+
     def test_mock_proposals_are_limited_to_the_question_session(self):
         self.assertEqual(MOCK_DAYS, {day for day, rows in self.assignments.items()
                                      if rows[0]["mode"] == "45_minute_mock"})
