@@ -4,7 +4,7 @@
 **Governing document:** *Staff Forward Deployed Engineer: Three-Year North Star*, dated 21 October 2026 (existing Library document; ID `libfile_b15efc4a78cc819183e7ed248f3975f4`).  
 **Repository basis:** [`3a93ed9ae93dd68a9eda0418518713ac29a38eb6`](https://github.com/advait-ravi-marathe/capstone-project/tree/3a93ed9ae93dd68a9eda0418518713ac29a38eb6).
 
-This is a bounded amendment to the existing Engineering & AI Roadmap and its EAI board. It adds purpose, evidence limits and a next-window explanation overlay. It creates no competing roadmap, schedule, board, tracker or progress ledger. CoverStory remains the primary capstone. StreamForge remains conditional on its existing evidence gates. Days 197–210 are paused and are not activated by this amendment.
+This is a bounded amendment to the existing Engineering & AI Roadmap and its EAI board. It adds purpose and evidence limits to the existing roadmap. It creates no competing roadmap, schedule, board, tracker or progress ledger. CoverStory remains the primary capstone. StreamForge remains conditional on its existing evidence gates. Days 197–270 now have published assignments in the [continuation inventory](continuation-197-270-inventory.json) and its linked window manifests. Those records describe planned work, not learner completion.
 
 ## Outcome and current gap
 
@@ -26,7 +26,7 @@ The existing North Star's market scan is a bounded source review, not a census o
 
 ## Preserve the established learning model
 
-Through Day 171, engineering remains **120 minutes**: 25 study, 85 implementation/tests, and 10 evidence. From Day 172 onward, engineering is **165 minutes**, plus one shared **45-minute** interview-practice block, total 210 minutes. Preserve existing recovery days, dates, learner status, and unfinished work. This FDE framing uses existing explanation/evidence time; it adds no extra essay, feature, course or meeting.
+Through Day 171, engineering remains **120 minutes**: 25 study, 85 implementation/tests, and 10 evidence. From Day 172 onward, engineering is **165 minutes**, plus one shared **45-minute** interview-practice block, total 210 minutes. Preserve existing recovery days, dates, learner status, and unfinished work. For capstone work, the assistant supplies the architecture and explains what it does and why; the learner implements and tests the assigned seams. Existing evidence time records actual commands, results, assistance and blockers. No capstone design proposal, explain-back or post-hoc design justification is required. System-design practice stays in the separate interview question bank. This amendment adds no minutes, feature, course or meeting.
 
 ## Progressive capability and application checkpoints
 
@@ -38,7 +38,7 @@ Role labels vary by employer, so SDE-II/SDE-III/Senior/Staff/Principal are progr
 |---|---|---|---|
 | Backend engineer / SDE-II knowledge | Independently implement a bounded Java/Spring feature; relational data, APIs, tests, debugging, and safe local operation. | Reproducible learner-owned code, meaningful tests, clear scope and limitations; distinguish instructor scaffold from own work. | Repeated delivery, operational ownership, collaboration and review in a real team. |
 | Senior / SDE-III capability | Own a service slice end to end; reason about reliability, concurrency, data consistency, security, observability, and delivery trade-offs. | Multiple integrated slices, failure and recovery evidence, measured behavior, reviewable implementation and a truthful handover. | Professional production scope, cross-team influence, mentoring, and outcomes beyond a solo portfolio. |
-| Staff / Principal-shaped capability | Set direction across workstreams, resolve ambiguous system boundaries, raise quality through review/mentoring, and turn repeated needs into reusable leverage. | A portfolio can show design exercises and prototypes; only real team/production evidence can support claims of sustained influence, adoption, or business impact. | Repeated professional ownership across teams or engagements, stakeholder trust, and measurable outcomes. |
+| Staff / Principal-shaped capability | Set direction across workstreams, resolve ambiguous system boundaries, raise quality through review/mentoring, and turn repeated needs into reusable leverage. | A portfolio can show implemented prototypes and their measured results; only real team/production evidence can support claims of sustained influence, adoption, or business impact. | Repeated professional ownership across teams or engagements, stakeholder trust, and measurable outcomes. |
 | Senior FDE / AI deployment progression | Discover customer workflows, integrate with enterprise systems, deliver secure production AI, evaluate/observe failures, and communicate with technical and business stakeholders. | Synthetic CoverStory and later explicitly labeled simulations can demonstrate foundations and interview practice. They cannot establish customer delivery, adoption, or professional ownership. | Authorized customer-facing delivery, production operations, stakeholder outcomes, and repeatable integration impact. |
 
 The checkpoint sequence is deliberate: establish backend fundamentals first, then senior end-to-end delivery, then Staff/Principal leverage and senior FDE/AI deployment scope. The two role examples inspected on 24 October 2026 show why the later stages require more than coding: [Anthropic's Staff Forward Deployed Engineer posting](https://job-boards.greenhouse.io/anthropic/jobs/5449229008) asks for account-level strategy, multi-workstream architecture, independent discovery, senior-stakeholder influence, and production-system experience; [Google Cloud's Senior Forward Deployed Engineer, GenAI posting](https://www.google.com/about/careers/applications/jobs/results/83160180652417734-forward-deployed-engineer/) emphasizes production-grade AI, cloud architecture, technical discovery, customer integration, evaluation, observability, and reusable modules. These are examples from current postings, not universal requirements or proof that the learner has met them. Recheck postings before each application window.
@@ -76,7 +76,7 @@ The [reference-only alignment](fde-alignment.json) links the current contracts a
 
 | Existing days | Existing purpose | Main FDE alignment and evidence limit |
 |---|---|---|
-| 31–44 | Synthetic issuance, endorsement and cancellation | A, with bounded D/E explain-backs; not real policy binding, customer ownership or production. |
+| 31–44 | Synthetic issuance, endorsement and cancellation | A, with assistant-supplied architecture context and learner implementation/tests; not real policy binding, customer ownership or production. |
 | 45–56 | Read-only renewal preview | A/C; not a renewal, coverage change or legal promise. |
 | 57–70 | Runnable local application composition | A/C; local synthetic acceptance, not production identity or customer UAT. |
 | 71–98 | JVM/concurrency, bounded admission/timeouts and cleanup | A/C; local measured contracts, not universal latency; HTTP timeout alone is not database cancellation. |
@@ -87,28 +87,28 @@ The [reference-only alignment](fde-alignment.json) links the current contracts a
 | 169–182 | Conditional offline baseline and evaluation | B/A; requires actual prior data-foundation and Day 168 evidence; not production recommendation impact or cloud completion. |
 | 183–196 | Conditional bounded content-feature comparison | B/A; requires actual prior baseline and Day 182 defense; not trained production AI, adoption or Staff ownership. |
 
-StreamForge is prepared material, not a substitute for CoverStory. Preserve its documented entrance gates; do not invent a prerequisite that all later CoverStory milestones must already be complete. At evidence review, prioritize the smallest unmet CoverStory foundation/operational gate and explain how any selected StreamForge foundation supports the flagship or a later distinct context. Recovery days stay recovery-only. Days 197–210 remain paused, with no automatic progression.
+StreamForge is prepared material, not a substitute for CoverStory. Preserve its documented entrance gates; do not invent a prerequisite that all later CoverStory milestones must already be complete. The assistant supplies the architecture rationale and describes how an eligible StreamForge seam relates to the roadmap; the learner implements and tests only the assigned work when its gate permits. Recovery days stay recovery-only. Consult the published continuation manifests for dates, selectors, tasks and dynamic gates; a published assignment does not imply eligibility or completion.
 
 ## Next existing 14 learning units: Days 31–44
 
-This is the existing 19 November–2 December 2026 sequence, crossing native Sprint 3 (Days 31–42) and Sprint 4 (Days 43–44). It adds no feature or ticket. Entrance is actual learner evidence for the protected Days 28–30 vertical slice and underlying quote/API/DB/React prerequisites. If absent, stay on that existing work and carry the named gate forward. Each FDE explanation below uses the existing 10-minute evidence slot, not added homework. Exact files, commands and complete study records are in [the alignment JSON](fde-alignment.json), copied from the immutable existing manifest; course access labels and official-supplement fallbacks remain as recorded there.
+The authoritative calendar starts on 24 October 2026. Days 31–44 run 23 November–6 December 2026, crossing native Sprint 3 (Days 31–42) and Sprint 4 (Days 43–44), as recorded in the [Days 31–44 manifest](continuation-31-44/manifest.json). This alignment adds no feature, ticket, budget or learner deliverable. Entrance remains governed by actual learner evidence for the protected Days 28–30 vertical slice and underlying quote/API/DB/React prerequisites. If absent, carry the named gate forward. The architecture context below is supplied by the assistant; existing contracts remain authoritative for learner implementation, tests, commands and evidence. Exact files, commands and complete study records are in [the alignment JSON](fde-alignment.json), copied from the manifest; course access labels and official-supplement fallbacks remain as recorded there.
 
-| Day/date | Existing implementation seam | Bounded FDE explanation within existing evidence time |
+| Day/date | Existing implementation seam | Assistant-supplied architecture context (not a learner design deliverable) |
 |---|---|---|
-| 31 · Nov 19 | `validateIssue`: reject foreign, unselected, stale or ineligible quotes | Five-line simulated problem statement and observable acceptance matrix; trace owned/selected/current/eligible. A/D. |
-| 32 · Nov 20 | `issue`: same-intent replay, changed-intent conflict | Explain duplicate-issuance harm and safe retry contract. A/D. |
-| 33 · Nov 21 | `isImmutableIssueSnapshot`: retain issue-time facts | Explain the business promise after catalog change; note records are shallowly immutable. A. |
-| 34 · Nov 22 | `issueHttpStatus`: stable create/replay/error outcomes | Explain existing status table with one useful, non-leaking recovery message. A/D. |
-| 35 · Nov 23 | `persistIssueAtomically`: policy/receipt/event atomicity | Tiny ADR and one rejected partial-write alternative. A/E. |
-| 36 · Nov 24 | `readForOwner`: conceal absent and foreign equally | State the existing owner access boundary. A/C. |
-| 37 · Nov 25 | `validateEndorsement`: date/no-op/version rules | Frame the existing rules as simulated acceptance criteria. A/D. |
-| 38 · Nov 26 | `endorse`: append immutable ordered history | Explain history guarantee and limit to a simulated operations reviewer. A. |
-| 39 · Nov 27 | `endorseAtExpectedVersion`: two-writer conflict | Explain a safe conflict response rather than silent overwrite. A/D. |
-| 40 · Nov 28 | `scheduleCancellation`: future date and replay | State effective-date/clock assumptions and changed-intent handling. A/D. |
-| 41 · Nov 29 | `applyDueCancellation`: before/equal/after and once locally | Give bounded rerun walkthrough; no external exactly-once claim. A/C. |
-| 42 · Nov 30 | `permitsServicingWrite`: cancelled write barrier | Explain safe read access and operational handover. A/C. |
-| 43 · Dec 1 | `toServicingView` and `PolicyServicingPanel.tsx` | Explain one already-run servicing-panel observation: status and allowed next action; label it simulated, not customer UAT/adoption. A/D. |
-| 44 · Dec 2 | `verifyLifecycleReadback` and existing browser/DB acceptance | Summarize the demonstrated issue/service/cancel/readback flow, cite three existing cases, name a limitation and next decision; missing proof is a blocker. A/D/E. |
+| 31 · Nov 23 | `validateIssue`: reject foreign, unselected, stale or ineligible quotes | The assistant explains the owner, quote-selection and eligibility checks; learner implementation and tests remain in the existing contract. |
+| 32 · Nov 24 | `issue`: same-intent replay, changed-intent conflict | The assistant explains same-intent idempotency and changed-intent conflict behavior. |
+| 33 · Nov 25 | `isImmutableIssueSnapshot`: retain issue-time facts | The assistant explains why the issued policy retains issue-time facts and the shallow-immutability limit. |
+| 34 · Nov 26 | `issueHttpStatus`: stable create/replay/error outcomes | The assistant explains stable transport outcomes and non-leaking public errors. |
+| 35 · Nov 27 | `persistIssueAtomically`: policy/receipt/event atomicity | The assistant explains the atomic persistence boundary; the learner tests the assigned implementation without writing an ADR. |
+| 36 · Nov 28 | `readForOwner`: conceal absent and foreign equally | The assistant explains the owner-scoped read boundary and indistinguishable absent/foreign result. |
+| 37 · Nov 29 | `validateEndorsement`: date/no-op/version rules | The assistant explains the existing date, no-op and version rules that the learner implements and tests. |
+| 38 · Nov 30 | `endorse`: append immutable ordered history | The assistant explains the append-only ordered history invariant and its local scope. |
+| 39 · Dec 1 | `endorseAtExpectedVersion`: two-writer conflict | The assistant explains expected-version conflict handling and why stale writes do not overwrite state. |
+| 40 · Dec 2 | `scheduleCancellation`: future date and replay | The assistant explains effective-date, clock and replay behavior for the assigned seam. |
+| 41 · Dec 3 | `applyDueCancellation`: before/equal/after and once locally | The assistant explains the bounded local transition; tests do not claim external exactly-once delivery. |
+| 42 · Dec 4 | `permitsServicingWrite`: cancelled write barrier | The assistant explains the cancelled-write barrier and permitted read boundary. |
+| 43 · Dec 5 | `toServicingView` and `PolicyServicingPanel.tsx` | The assistant explains the synthetic view boundary; only actual observed test/UI results count as evidence, not customer UAT/adoption. |
+| 44 · Dec 6 | `verifyLifecycleReadback` and existing browser/DB acceptance | The assistant explains the existing readback path; learner evidence records actual selector results and blockers, without a post-hoc design defense. |
 
 ## Evidence-based readiness
 

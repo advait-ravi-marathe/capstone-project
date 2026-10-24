@@ -1,6 +1,7 @@
 import json
 import re
 import unittest
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -170,6 +171,7 @@ class AssistantSuppliedArchitectureScopeTest(unittest.TestCase):
 
     def test_career_checkpoints_preserve_daily_budget_and_separate_dsa(self):
         text = (ROOT / "docs/reboot/fde-north-star-amendment.md").read_text()
+        self.assertIn("Prepared:** 21 October 2026", text)  # historical provenance remains intact
         self.assertIn("120 engineering minutes per day apart from tiered DSA", text)
         self.assertIn("60/75/90-minute tiers through Day 171", text)
         self.assertIn("Backend engineer / SDE-II knowledge", text)
@@ -179,6 +181,40 @@ class AssistantSuppliedArchitectureScopeTest(unittest.TestCase):
         self.assertIn("not another schedule or tracker", text)
         self.assertIn("https://job-boards.greenhouse.io/anthropic/jobs/5449229008", text)
         self.assertIn("https://www.google.com/about/careers/applications/jobs/results/83160180652417734-forward-deployed-engineer/", text)
+
+    def test_north_star_schedule_and_teaching_policy_match_published_records(self):
+        text = (ROOT / "docs/reboot/fde-north-star-amendment.md").read_text()
+        manifest = json.loads((ROOT / "docs/reboot/continuation-31-44/manifest.json").read_text())
+        authoritative = {row["day"]: row["date"] for row in manifest["days"]}
+        documented = {}
+        for day, label in re.findall(r"^\| (\d+) · ([A-Z][a-z]{2} \d{1,2}) \|", text, re.M):
+            documented[int(day)] = datetime.strptime(f"{label} 2026", "%b %d %Y").date().isoformat()
+        self.assertEqual({day: authoritative[day] for day in range(31, 45)}, documented)
+        self.assertEqual("2026-11-23", authoritative[31])
+        self.assertEqual("2026-12-06", authoritative[44])
+        self.assertNotIn("19 November–2 December 2026", text)
+        self.assertNotIn("31 · Nov 19", text)
+        self.assertNotIn("Days 197–210 are paused", text)
+        self.assertIn("continuation-197-270-inventory.json", text)
+        self.assertIn("the assistant supplies the architecture and explains what it does and why", text)
+        self.assertIn("System-design practice stays in the separate interview question bank.", text)
+        self.assertNotIn("explain-backs", text)
+        self.assertNotIn("Five-line simulated problem statement", text)
+        self.assertNotIn("Tiny ADR", text)
+
+    def test_old_continuation_proposal_is_labeled_historical_and_links_published_windows(self):
+        text = (ROOT / "docs/reboot/proposals/days-197-270-continuation-proposal.md").read_text()
+        self.assertIn("Status: superseded planning provenance", text)
+        self.assertIn("sprint intents", text)
+        self.assertIn("The published daily contracts now give their exact source titles and durations", text)
+        self.assertNotIn("Status: review proposal only", text)
+        inventory = json.loads((ROOT / "docs/reboot/continuation-197-270-inventory.json").read_text())
+        self.assertEqual(270, inventory["through_day"])
+        self.assertEqual(74, sum(window["day_count"] for window in inventory["windows"]))
+        for window in inventory["windows"]:
+            manifest = window["manifest"]
+            self.assertIn(f"](../{manifest.removeprefix('docs/reboot/')})", text)
+            self.assertTrue((ROOT / manifest).is_file())
 
 
 if __name__ == "__main__":

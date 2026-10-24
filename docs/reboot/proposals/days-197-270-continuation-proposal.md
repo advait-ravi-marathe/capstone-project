@@ -1,6 +1,8 @@
 # Proposed continuation: Days 197–270
 
-**Status: review proposal only.** This document does not activate Days 197+, create daily contracts, alter the EAI board, or claim learner completion. It is a planning bridge for later approval. The current continuation branch is `work/eai-sprint2-onward`; audited base `c4f84d49630bfa96ef816c529556cd2367b7148b`. No paused day-level 197–210 work was found: the ref `learning/streamforge-days-197-210` points to the same StreamForge Days 183–196 line and contains no 197–210 contracts or transfer plan. Preserve that ref and existing files.
+**Status: superseded planning provenance.** This proposal records the scope and rationale considered before later windows were published. Days 197–270 now have daily contracts and sprint manifests, indexed in the [current assignment inventory](../continuation-197-270-inventory.json). Use those manifests for current dates, tasks, sources, commands and gates; this proposal does not override them or claim learner completion. At proposal time, the continuation branch was `work/eai-sprint2-onward` at audited base `c4f84d49630bfa96ef816c529556cd2367b7148b`. The proposal-time audit found no paused day-level 197–210 work: ref `learning/streamforge-days-197-210` pointed to the same StreamForge Days 183–196 line and contained no 197–210 contracts or transfer plan. Those statements preserve historical provenance, not current activation status.
+
+Published window manifests: [Days 197–210](../continuation-197-210/manifest.json), [211–224](../continuation-211-224/manifest.json), [225–238](../continuation-225-238/manifest.json), [239–252](../continuation-239-252/manifest.json), [253–266](../continuation-253-266/manifest.json), and [267–270](../continuation-267-270/manifest.json).
 
 ## Guardrails carried forward
 
@@ -38,9 +40,9 @@ Window allocations are displayed to 0.01 hour; the total is calculated from the 
 
 The 55.5 shared hours are provisionally divided into **18 hours** for 24 × 45-minute interview-question sessions (about 2.3 sessions per week), **18 hours** for certification retrieval/practice against the selected official guides, and **19.5 hours** for unfinished engineering review and question-bank refinement. If prerequisite recovery needs the latter, it displaces certification review; no extra block is created. Across engineering and shared time, the certification allocation is at most 37.82 hours, before any such displacement. A provisional split is 19.00 hours for SAA-C03 and 18.82 hours for Developer Associate, including each credential's portion of the shared 18 hours. This is a bounded start on two credentials, not a credible guarantee of two passes. If either readiness threshold is unmet, that credential remains in the post-Day-270 queue.
 
-## Proposed windows and evidence gates
+## Original proposed windows and evidence gates (planning provenance)
 
-The following are sprint-level intents, not activated daily assignments. Daily scope, exact selectors and course rows should be written only after inspecting the accepted state at the preceding gate.
+The following table records the proposal-era sprint intents. They have since been translated into daily contracts; the [current assignment inventory](../continuation-197-270-inventory.json) and its linked manifests control present dates, selectors, sources and gates.
 
 | Days / planned dates | Proposed focus and bounded runnable proof | Gate, fallback and exit evidence |
 |---|---|---|
@@ -93,7 +95,7 @@ Primary documentation titles below were checked on **24 October 2026**. They sup
 - Certification scope: AWS [*Certified Solutions Architect – Associate*](https://aws.amazon.com/certification/certified-solutions-architect-associate/) and [*Certified Developer – Associate*](https://aws.amazon.com/certification/certified-developer-associate/) official pages and their currently linked exam guides. Version and registration information can change; verify again when scheduling.
 - Exact guides checked 24 October 2026: [*AWS Certified Solutions Architect - Associate (SAA-C03)*](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html) and current [*AWS Certified Developer - Associate (DVA-C02)*](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html); replace the latter mapping when AWS publishes DVA-C03.
 
-No new Udemy lesson is assigned in this proposal because course catalog access/title metadata for post-Day-196 AI content was not verified. Select exact lesson titles and durations only in the later approved daily contracts; keep any course within the existing study minutes and substitute official docs where access is unavailable.
+At proposal time, no new Udemy lesson was assigned because course catalog access/title metadata for post-Day-196 AI content was not verified. The published daily contracts now give their exact source titles and durations. Keep course work within each existing study allocation and use official documentation where a course is unavailable.
 
 ## Progressive application checkpoints
 
@@ -106,10 +108,12 @@ By Day 270 the plausible portfolio outcome is a reviewable, local/synthetic AI-a
 
 Longer-term (the existing North Star's roughly three-year direction, not an automatic schedule): a genuinely authorized production model/provider integration with target-environment identity, privacy/security review, real SLO/latency/cost telemetry, incident ownership and supported rollback; customer/stakeholder discovery and measured outcomes; repeated ownership across more than one integration; design-review influence and mentorship; reusable platform impact measured by other teams adopting it. The 197–270 budget can target a local integrated workflow and production-readiness evidence, but actual production deployment/customer outcomes cannot be promised without explicit authorization, operational partners and suitable professional context. These require external workplace evidence and cannot be manufactured by extending this solo roadmap. Re-evaluate target postings at each application checkpoint and make no hiring or promotion promise.
 
-## Review checklist before activation
+## Original pre-publication review checklist (historical)
+
+The checklist below records the controls proposed before daily assignments were published. Current execution follows the published contracts and their dynamic evidence gates.
 
 1. Re-read actual learner evidence and evaluate gates from authoritative files; do not infer success from scaffold CI.
 2. Convert only the next 14-day window into daily contracts, with exact source titles, executable selectors, bounded acceptance, prerequisites and named deferred work.
 3. Check that each daily workload fits 165 engineering minutes plus one shared 45-minute block; keep DSA solely in its separate repository.
 4. Require offline/local alternatives and explicit permission boundaries for every proposed cloud or live-model action.
-5. Keep the proposal status until the user approves a window. Do not create tickets or learner-completion records from this document.
+5. Preserve planned-versus-completed distinction. The current inventory records assignments only; it does not create learner-completion records.
