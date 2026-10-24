@@ -66,6 +66,42 @@ class Day71To84InfrastructureTest {
                 .contains("spring.datasource.hikari.connection-timeout=1000"));
     }
 
+    @Test void day79AndDay83UseTheBoundedSprint6RuntimeOnly() throws Exception {
+        String entry = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalApplication.java"));
+        String config = Files.readString(Path.of("src/main/java/assignments/sprint6/Sprint6LocalConfiguration.java"));
+        String helper = Files.readString(Path.of("src/test/java/assignments/local/Sprint6PackagedRuntimeProcess.java"));
+        String browser = Files.readString(Path.of("src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java"));
+        String wiringTest = Files.readString(Path.of("src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java"));
+        String pom = Files.readString(Path.of("pom.xml"));
+        String packageScript = Files.readString(Path.of("scripts/package-sprint6-demo.sh"));
+
+        assertTrue(entry.contains("@Import(Sprint6LocalConfiguration.class)"));
+        assertTrue(config.contains("LocalApplicationComposition.compose(sprint6Clock, dataSource)"));
+        assertTrue(config.contains("LEARNER TODO Day 79"));
+        assertFalse(config.contains("PreviewReadBudgetPolicy"));
+        assertFalse(config.contains("TimedPolicyRenewalReadStore"));
+        assertFalse(config.contains("LocalRuntimeConfiguration.class"));
+        assertTrue(wiringTest.contains("assertInstanceOf(IllegalArgumentException.class, root)"),
+                "invalid capacity must fail for its validation cause, not any context startup failure");
+        assertTrue(pom.contains("<id>sprint6-local</id>"));
+        assertTrue(pom.contains("assignments.sprint6.Sprint6LocalApplication"));
+        assertTrue(packageScript.contains("-Plocal-app,sprint6-local"));
+        assertTrue(packageScript.contains("sourceContentSha256"));
+        assertTrue(helper.contains("capstone-starter-1.0-SNAPSHOT-sprint6.jar"));
+        assertTrue(helper.contains("--spring.profiles.active=local,sprint6-local"));
+        assertTrue(helper.contains("verifyArtifactReceipt(jar, evidence)"));
+        assertTrue(browser.contains("Sprint6PackagedRuntimeProcess.start(postgres, CLOCK)"));
+        assertFalse(browser.contains("LocalPackagedRuntimeProcess.start"));
+
+        JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode day79 = manifest.get("days").get(8).get("engineering");
+        JsonNode day83 = manifest.get("days").get(12).get("engineering");
+        assertEquals("Sprint6LocalConfiguration.policyRenewalReadStore", day79.get("learner_seam").asString());
+        assertTrue(day83.get("acceptance_commands").toString().contains("package-sprint6-demo.sh"));
+        assertTrue(Files.readString(Path.of("docs/reboot/continuation-71-84/contracts/day-83.md"))
+                .contains("sprint6-local` classifier JAR and receipt"));
+    }
+
     @Test void suppliedArchitectureAndInterviewAssignmentsAreCompleteAndSynchronized() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
@@ -132,5 +168,12 @@ class Day71To84InfrastructureTest {
         assertEquals(2, firstWeekMocks);
         assertEquals(2, secondWeekMocks);
         assertTrue(questionBank.contains("<a id=\"q36\"></a>"));
+        JsonNode canonicalDay81 = mapper.readTree(Files.readString(BASE.resolve("manifest.json"))).path("days").get(10);
+        JsonNode ownerDay81 = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json"))).path("cards").get(10);
+        for (JsonNode day81 : new JsonNode[]{canonicalDay81, ownerDay81}) {
+            String scopeNote = day81.path("engineering").path("concept_course").path("scope_note").asText();
+            assertFalse(scopeNote.contains("Sketch retained policy context"));
+            assertTrue(scopeNote.contains("supplied") || scopeNote.contains("supplied mutually exclusive"));
+        }
     }
 }

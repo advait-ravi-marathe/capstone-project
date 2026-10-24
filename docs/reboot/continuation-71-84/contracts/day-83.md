@@ -14,7 +14,7 @@ Start the built local application JAR against disposable PostgreSQL and drive it
 The fixed multi-process acceptance selector is installed and tagged `learnerAcceptance`. It runs the actual packaged application JAR, Chromium, and disposable PostgreSQL. It remains expected red until prerequisite learner seams are implemented. The default instructor suite runs without learner-tagged acceptance selectors; the separate infrastructure selector checks contract shape.
 
 **Learner acceptance test:** `src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java`
-**Commands:** `npm --prefix frontend ci`; `npm --prefix frontend run build:local`; `./mvnw -Plocal-app -DskipTests package`; `./mvnw -Plearner-tests -Plocal-app -Dtest=Day83PackagedLockBrowserAcceptanceTest test` (run in order). The broad packaged-route/security smoke is likewise a learner-tagged integration: `./mvnw -Plearner-tests -Plocal-app -Dtest=LocalPackagedRuntimeBoundaryAcceptanceTest test`.
+**Commands:** `npm --prefix frontend ci`; `scripts/package-sprint6-demo.sh`; `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Dtest=Day83PackagedLockBrowserAcceptanceTest test` (run in order). The package script builds a fresh `sprint6-local` classifier JAR and receipt. The bounded Sprint 6 entry imports no Day 86+ budget validation or timed-store configuration; the selector still depends on earlier Day 72–81 learner seams.
 **Infrastructure test:** `src/test/java/assignments/renewal/Day71To84InfrastructureTest.java` (contract shape only, not the real lock integration test)
 **Infrastructure command:** `./mvnw -Dtest=Day71To84InfrastructureTest test`
 

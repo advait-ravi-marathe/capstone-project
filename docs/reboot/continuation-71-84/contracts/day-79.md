@@ -2,7 +2,7 @@
 
 ## Contract
 
-**Learner-owned seam:** `LocalRuntimeConfiguration.policyRenewalReadStore`
+**Learner-owned seam:** `Sprint6LocalConfiguration.policyRenewalReadStore`
 **Status:** Contract defined; learner work not attempted.
 
 ### Expected behavior
@@ -11,7 +11,7 @@ Create exactly one bounded singleton around the existing owner-scoped read-store
 
 ### Acceptance and expected TODO state
 
-The named selector verifies local properties, singleton identity, one decorator around `LocalApplicationComposition.Components.renewalReadStore()`, finite configuration, and fail-fast startup for invalid capacity. The expected learner TODO remains at the composition method.
+The selector verifies the dedicated Sprint 6 profile, singleton identity, one decorator around `LocalApplicationComposition.compose(clock, dataSource)` and its existing owner-scoped adapter, finite configuration, and fail-fast startup for invalid capacity. The expected learner TODO remains in `Sprint6LocalConfiguration.policyRenewalReadStore`; Day 86+ budget validation and the timed-store path are excluded from this profile.
 
 **Learner acceptance test:** `src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java`
 **Learner command:** `./mvnw -Plearner-tests -Dtest=PreviewRuntimeWiringAcceptanceTest test`

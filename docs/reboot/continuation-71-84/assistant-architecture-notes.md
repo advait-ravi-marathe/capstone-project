@@ -10,7 +10,7 @@ Keep the existing route synchronous: request → owner-scoped read adapter → J
 
 ## <a id="day-72"></a> Day 72: Reject unsafe capacity configuration before serving
 
-Validate positive permit and pool sizes, permit capacity no greater than the pool maximum, and the project's 250–30,000 ms Hikari acquisition-timeout range in `PreviewCapacityPolicy.validate()`. `LocalRuntimeConfiguration` calls validation during bean construction so invalid settings fail at startup.
+Validate positive permit and pool sizes, permit capacity no greater than the pool maximum, and the project's 250–30,000 ms Hikari acquisition-timeout range in `PreviewCapacityPolicy.validate()`. The dedicated `Sprint6PreviewCapacityConfiguration` validates during bean construction so invalid settings fail at startup; the broader later runtime is not part of this sprint profile.
 
 ## <a id="day-73"></a> Day 73: Use immediate semaphore admission and return a lease
 
@@ -38,7 +38,7 @@ Use deterministic test doubles to occupy both permits, assert a saturated call n
 
 ## <a id="day-79"></a> Day 79: Wrap the existing read bean once as a singleton
 
-In `LocalRuntimeConfiguration`, inject the existing `PolicyRenewalReadStore`, shared `PreviewAdmission`, and `PreviewMetrics` into one singleton `BoundedPolicyRenewalReadStore`. Preserve the exact delegate instance and existing SQL adapter; validate settings before the application serves requests.
+In `Sprint6LocalConfiguration`, inject the existing `PolicyRenewalReadStore`, shared `PreviewAdmission`, and `PreviewMetrics` into one singleton `BoundedPolicyRenewalReadStore`. Preserve the exact delegate instance and existing SQL adapter; validate settings before the application serves requests.
 
 ## <a id="day-80"></a> Day 80: Record bounded timer and counter series by a closed outcome enum
 

@@ -264,5 +264,33 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sprint6-local</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>frontend/dist-local</directory>
+                        <targetPath>static</targetPath>
+                        <filtering>false</filtering>
+                    </resource>
+                </resources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>assignments.sprint6.Sprint6LocalApplication</mainClass>
+                            <classifier>sprint6</classifier>
+                        </configuration>
+                        <executions>
+                            <execution><goals><goal>repackage</goal></goals></execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

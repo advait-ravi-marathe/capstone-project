@@ -43,6 +43,8 @@ jobs:
         run: npm run build:local
       - name: Package isolated Spring Boot app
         run: ./mvnw -B -ntp -Plocal-app -DskipTests clean package
+      - name: Package bounded Sprint 6 app with source receipt
+        run: scripts/package-sprint6-demo.sh
       - name: Verify Java infrastructure and instructor harness
         run: ./mvnw -B -ntp test
       - name: Verify continuation manifest

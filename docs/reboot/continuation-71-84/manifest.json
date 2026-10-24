@@ -1145,8 +1145,8 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "LocalRuntimeConfiguration and Hikari config",
-        "learner_seam": "LocalRuntimeConfiguration.policyRenewalReadStore",
+        "scope": "Sprint6LocalConfiguration and finite Hikari capacity configuration",
+        "learner_seam": "Sprint6LocalConfiguration.policyRenewalReadStore",
         "acceptance_reference": "docs/reboot/continuation-71-84/contracts/day-79.md",
         "evidence_reference": "evidence/continuation-71-84/day-79.json",
         "status": "not_attempted",
@@ -1204,7 +1204,7 @@
           "video_seconds": 683,
           "remaining_study_seconds": 817,
           "fit": "partial_foundation",
-          "scope_note": "Trace one shared singleton gate around the existing adapter and a finite Hikari acquisition timeout. No duplicate SQL or request-scoped gate.",
+          "scope_note": "Trace the dedicated Sprint 6 profile and one shared singleton gate around the existing adapter. It uses the two-argument composition; Day 86+ read budgets and the timed-store path are excluded.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
@@ -1491,7 +1491,7 @@
           "video_seconds": 0,
           "remaining_study_seconds": 1500,
           "fit": "no_direct_course_match",
-          "scope_note": "No exact accessible manual-only retry lesson was verified. Sketch retained policy context and mutually exclusive UI state. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.",
+          "scope_note": "Use the supplied mutually exclusive busy/unavailable/ready architecture note. Verify no automatic retry, refetch, or session reset; only an explicit Retry action repeats the operation. No capstone sketch is assigned.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "viewing_is_not_completion": true,
@@ -1713,9 +1713,8 @@
         "acceptance_test_path": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
         "acceptance_commands": [
           "npm --prefix frontend ci",
-          "npm --prefix frontend run build:local",
-          "./mvnw -Plocal-app -DskipTests package",
-          "./mvnw -Plearner-tests -Plocal-app -Dtest=Day83PackagedLockBrowserAcceptanceTest test"
+          "scripts/package-sprint6-demo.sh",
+          "CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Plearner-tests -Dtest=Day83PackagedLockBrowserAcceptanceTest test"
         ],
         "infrastructure_test_path": "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java",
         "infrastructure_commands": [
