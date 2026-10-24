@@ -51,6 +51,13 @@ November (Days 15–28, 14 Stories); Sprint 3 covers 21 November–4 December
 (Days 29–30 are populated on 21–22 November, 2 Stories). Learner completion and
 integration remain evidence-based; forecasts do not mark work complete.
 
+## Later continuation assignments
+
+Reviewed continuation windows are indexed separately from this first-30-day
+manifest. The [Days 197–270 assignment inventory](continuation-197-270-inventory.json)
+links those bounded windows, including the four-day closeout; it records
+planned assignments only and does not imply learner completion.
+
 ## Chronological index
 
 | Day/date | Engineering contract | State |
