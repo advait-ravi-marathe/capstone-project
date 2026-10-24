@@ -24,12 +24,22 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
+## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)
+
+Before code, hints, worked answers, or AI, save a short prediction: List the immutable source fields that must be copied, the one permitted derived date, and the fields that must remain absent before changing the preview projection.
+
+Use the remaining 80 minutes only for the unchanged day acceptance. Existing prerequisites still gate the work; do not infer that a prior learner gate passed.
+
+**Relevant patterns:** [immutable-snapshot](../../interview/pattern-library.md#immutable-snapshot).
+
+**Run the existing acceptance:**
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalAcceptanceTest#day47PreviewCopiesCurrentSnapshotAndMakesNoRenewalPriceOrCommitment test`
+
+The proposal is not a pass. Keep unfinished acceptance open and stop at the first prerequisite blocker or at the daily cap. Record the proposal, actual command/result or blocker, changed paths, and assistance in the existing 10-minute evidence block. No retrospective architecture essay.
+
 ## Practice and evidence
 
-**85-minute practice allocation:**
-- 10 minutes: adapt the supplied decision note.
-- 55 minutes: implement buildPreview.
-- 20 minutes: compare full snapshots for two distinct fixtures and preserved inputs.
+**85-minute practice allocation:** 5 minutes to save the task-specific prediction before assistance; the remaining 80 minutes are for the unchanged acceptance command(s) above, stopping at the first unresolved prerequisite or timebox. Preserve any unfinished criteria as open work; no overtime.
 
 **10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 

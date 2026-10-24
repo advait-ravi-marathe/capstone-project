@@ -32,7 +32,7 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 
 **Runnable acceptance:** Use the exact learner acceptance command(s) already named above. For Day 56, those remain `./mvnw -Plearner-tests -Dtest=RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite test`. The command may stop at a prerequisite TODO; record that exact result without substituting an instructor witness.
 
-**Deferred queue:** **S4-D56-1** — Keep every original live-context and post-close database snapshot checkpoint, both 200 responses, complete semantic UI/response equality and the same unseeded PostgreSQL instance. If the 40-minute slice cannot finish all observations, carry the remaining named checkpoints here; do not infer packaged-JAR execution or crash durability.
+**Deferred queue:** **S4-D56-1** — Keep every original live-context and post-close database snapshot checkpoint, both 200 responses, complete semantic UI/response equality and the same PostgreSQL instance, seeded once before the first context and not reseeded between contexts. If the 40-minute slice cannot finish all observations, carry the remaining named checkpoints here; do not infer packaged-JAR execution or crash durability.
 
 ## Practice and evidence
 

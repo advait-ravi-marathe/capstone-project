@@ -24,12 +24,22 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
+## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)
+
+Before code, hints, worked answers, or AI, save a short prediction: Write the two SQL predicates, expected owned/foreign/absent results, and the full tables that must remain unchanged before editing the JDBC read.
+
+Use the remaining 80 minutes only for the unchanged day acceptance. Existing prerequisites still gate the work; do not infer that a prior learner gate passed.
+
+**Relevant patterns:** [ownership-boundary](../../interview/pattern-library.md#ownership-boundary), [transaction-boundary](../../interview/pattern-library.md#transaction-boundary).
+
+**Run the existing acceptance:**
+- `./mvnw -Plearner-tests -Dtest=PolicyRenewalRepositoryAcceptanceTest#day48ReadIsOwnerScopedAndReturnsOnlyRenewalInputsWithoutWrites test`
+
+The proposal is not a pass. Keep unfinished acceptance open and stop at the first prerequisite blocker or at the daily cap. Record the proposal, actual command/result or blocker, changed paths, and assistance in the existing 10-minute evidence block. No retrospective architecture essay.
+
 ## Practice and evidence
 
-**85-minute practice allocation:**
-- 10 minutes: trace bound parameters and resources.
-- 50 minutes: implement the existing JDBC read.
-- 25 minutes: verify scoped rows and compare full table snapshots.
+**85-minute practice allocation:** 5 minutes to save the task-specific prediction before assistance; the remaining 80 minutes are for the unchanged acceptance command(s) above, stopping at the first unresolved prerequisite or timebox. Preserve any unfinished criteria as open work; no overtime.
 
 **10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 

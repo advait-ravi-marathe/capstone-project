@@ -23,12 +23,22 @@ The fixed selectors remain learner-owned. Before the named TODO is completed, th
 **Instructor infrastructure/reference commands:**
 - `./mvnw -Dtest=RenewalPreviewManifestInfrastructureTest test`
 
+## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)
+
+Before code, hints, worked answers, or AI, save a short prediction: Sketch the existing loading, unavailable, ready and refresh transitions; predict which stale values must clear and how many times an explicit refresh callback may run.
+
+Use the remaining 80 minutes only for the unchanged day acceptance. Existing prerequisites still gate the work; do not infer that a prior learner gate passed.
+
+**Relevant patterns:** [frontend-state-machine](../../interview/pattern-library.md#frontend-state-machine).
+
+**Run the existing acceptance:**
+- `npm --prefix frontend run test:learner -- src/__tests__/PolicyRenewalPreviewPanel.test.tsx -t "explicit|refresh"`
+
+The proposal is not a pass. Keep unfinished acceptance open and stop at the first prerequisite blocker or at the daily cap. Record the proposal, actual command/result or blocker, changed paths, and assistance in the existing 10-minute evidence block. No retrospective architecture essay.
+
 ## Practice and evidence
 
-**85-minute practice allocation:**
-- 10 minutes: predict state transitions.
-- 50 minutes: implement accessible states and explicit refresh.
-- 25 minutes: test stale clearing and callback count.
+**85-minute practice allocation:** 5 minutes to save the task-specific prediction before assistance; the remaining 80 minutes are for the unchanged acceptance command(s) above, stopping at the first unresolved prerequisite or timebox. Preserve any unfinished criteria as open work; no overtime.
 
 **10-minute evidence allocation:** record actual command/output, source SHA, one concise explanation, and the first blocker or result. Do not infer learner completion from a green instructor reference.
 

@@ -21,6 +21,20 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 **Learner acceptance commands:** `npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx` and `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test`
 **Instructor infrastructure command:** `./mvnw -Dtest=ContinuationManifestInfrastructureTest test`
 
+## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)
+
+Before code, hints, worked answers, or AI, save a short prediction: Before implementation, list the exact allowed servicing fields and the loading, empty, 401 and 404 states; predict one stale/error transition the panel must handle and one field it must never expose.
+
+Use the remaining 80 minutes only for the unchanged day acceptance. Existing prerequisites still gate the work; do not infer that a prior learner gate passed.
+
+**Relevant patterns:** [frontend-state-machine](../../interview/pattern-library.md#frontend-state-machine), [immutable-snapshot](../../interview/pattern-library.md#immutable-snapshot).
+
+**Run the existing acceptance:**
+- `npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx`
+- `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test`
+
+The proposal is not a pass. Keep unfinished acceptance open and stop at the first prerequisite blocker or at the daily cap. Record the proposal, actual command/result or blocker, changed paths, and assistance in the existing 10-minute evidence block. No retrospective architecture essay.
+
 ## Build / test allocation (85 minutes)
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
@@ -38,7 +52,7 @@ Focused sources:
 
 **Study allocation (exactly 25:00 / 1,500 seconds):** video or React fallback 8:03; focused source and prerequisite 3:57; worked component trace test 9:00; transfer prediction 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
 
-**Practice allocation (85 minutes):** 10 / 40 / 25 / 10 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
+**Practice allocation (85 minutes):** 5 minutes for the task-first proposal, followed by up to 80 minutes for the original learner acceptance, respecting its existing prerequisite gates and scope. Instructor fixture setup is supplied and is not hidden learner implementation. If a prerequisite is unmet or the timebox ends, record the first blocker and keep unfinished acceptance open.
 
 Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
 

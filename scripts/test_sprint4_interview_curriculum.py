@@ -10,6 +10,8 @@ MOCK_DAYS = {
     52: ('2026-12-14', 'Q14', 'PolicyRenewalPreviewPanel.test.tsx'),
     56: ('2026-12-18', 'Q12', 'RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite'),
 }
+SPRINT4_DAYS = set(range(43, 57))
+NON_MOCK_DAYS = SPRINT4_DAYS - set(MOCK_DAYS)
 
 
 class Sprint4InterviewCurriculumTest(unittest.TestCase):
@@ -51,6 +53,97 @@ class Sprint4InterviewCurriculumTest(unittest.TestCase):
         week_two = [d for d in MOCK_DAYS if '2026-12-12' <= MOCK_DAYS[d][0] <= '2026-12-18']
         self.assertEqual(len(week_one), 2)
         self.assertEqual(len(week_two), 2)
+
+    def test_every_sprint4_day_has_a_synchronized_task_first_assignment(self):
+        early_manifest = json.loads((ROOT / 'docs/reboot/continuation-31-44/manifest.json').read_text())
+        early_owner = json.loads((ROOT / 'docs/reboot/continuation-31-44/scrum-owner-manifest.json').read_text())
+        early_curriculum = json.loads((ROOT / 'docs/reboot/continuation-31-44/fde31-44-v2-curriculum.json').read_text())
+        early = {x['day']: x for x in early_manifest['days']}
+        early_cards = {x['day_number']: x for x in early_owner['cards']}
+        early_curriculum_days = {x['day']: x for x in early_curriculum['days']}
+        curriculum_days = {**early_curriculum_days, **self.curriculum_days}
+        canonical_days = {**early, **self.days}
+        owner_days = {**early_cards, **self.cards}
+
+        self.assertIn('Sprint 3 ends at Day 42', self.scope)
+        self.assertIn('first two Sprint 4 days', self.scope)
+        self.assertNotIn('Days 43–44 remain the existing Sprint 3', self.scope)
+        self.assertEqual(set(canonical_days) & SPRINT4_DAYS, SPRINT4_DAYS)
+        for day in sorted(SPRINT4_DAYS):
+            with self.subTest(day=day):
+                canonical = canonical_days[day]
+                card = owner_days[day]
+                curriculum = curriculum_days[day]
+                assignment = canonical['interview_practice']
+                self.assertEqual(assignment, card['interview_practice'])
+                self.assertEqual(assignment, curriculum['interview_practice'])
+                self.assertTrue(assignment['proposal_before_hints_reference_or_ai'])
+                self.assertEqual(assignment['practice_minutes_available'], 85)
+                self.assertTrue(assignment.get('proposal_prompt', assignment.get('implementation_scope', '')).strip())
+                commands = assignment.get('acceptance_commands', canonical['engineering']['acceptance_commands'])
+                self.assertTrue(commands)
+                self.assertEqual(commands, canonical['engineering']['acceptance_commands'])
+                self.assertEqual(canonical['engineering']['budget_minutes'], 120)
+                self.assertEqual(canonical['engineering']['allocation_minutes'], {
+                    'implementation_and_testing': 85, 'concept_or_course': 25, 'evidence': 10
+                })
+                self.assertEqual(sum(curriculum['practice_segment_minutes']), 85)
+                if day in MOCK_DAYS:
+                    self.assertEqual(assignment['mode'], '45_minute_mock')
+                    self.assertEqual(assignment['duration_minutes'], 45)
+                else:
+                    self.assertEqual(assignment['mode'], '5_minute_task_proposal')
+                    self.assertEqual(assignment['duration_minutes'], 5)
+                    self.assertIn('remaining 80 minutes', assignment['implementation_scope'])
+                    contract_path = ROOT / canonical['contract_file']
+                    contract = contract_path.read_text()
+                    self.assertIn('## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)', contract)
+                    self.assertIn('remaining 80 minutes', contract)
+                    self.assertIn('No retrospective architecture essay', contract)
+                    self.assertNotIn('**85-minute practice allocation:**\n-', contract)
+                    self.assertNotIn('**Practice allocation (85 minutes):** 10 /', contract)
+                    self.assertIn(assignment['proposal_prompt'], contract)
+                    for command in commands:
+                        self.assertIn(command, contract)
+                    scope_row = next((line for line in self.scope.splitlines() if line.startswith(f'| {day} · ')), None)
+                    self.assertIsNotNone(scope_row, f'day {day}: scope row')
+                    guide_path = next(source for source in assignment['supporting_sources'] if '/worked/' in source)
+                    folder = 'continuation-31-44' if day < 45 else 'continuation-45-56'
+                    relative_guide = f'../{folder}/worked/{Path(guide_path).name}'
+                    self.assertIn(f']({relative_guide})', scope_row)
+                    self.assertTrue((ROOT / 'docs/reboot/interview' / relative_guide).resolve().is_file())
+                for source in assignment['supporting_sources']:
+                    if source.startswith('http'):
+                        continue
+                    path, _, anchor = source.partition('#')
+                    target = ROOT / path
+                    self.assertTrue(target.is_file(), source)
+                    if anchor:
+                        self.assertIn(f'id="{anchor}"', target.read_text(), source)
+                for command in commands:
+                    if command.startswith('npm '):
+                        self.assertTrue((ROOT / 'frontend/src/__tests__/Day43PolicyServicingPanel.test.tsx').is_file() if day == 43 else (ROOT / 'frontend/src/__tests__/PolicyRenewalPreviewPanel.test.tsx').is_file())
+                    if '-Dtest=' in command:
+                        target = command.split('-Dtest=', 1)[1].split()[0]
+                        test_class = None
+                        for selector in target.split('+'):
+                            if '#' in selector:
+                                test_class, method = selector.split('#', 1)
+                            else:
+                                self.assertIsNotNone(test_class, command)
+                                method = selector
+                            matches = list((ROOT / 'src/test/java').rglob(test_class.split('.')[-1] + '.java'))
+                            self.assertEqual(len(matches), 1, f'day {day}: {test_class}')
+                            self.assertRegex(matches[0].read_text(), rf'\b{re.escape(method)}\s*\(')
+
+    def test_day56_restart_wording_requires_seed_once_then_same_database(self):
+        contract = (ROOT / 'docs/reboot/continuation-45-56/contracts/day-56.md').read_text()
+        self.assertNotIn('unseeded database', contract)
+        self.assertIn('same PostgreSQL instance, seeded once before the first context and not reseeded between contexts', contract)
+        for record in (self.days[56], self.cards[56], self.curriculum_days[56]):
+            assignment = record['interview_practice']
+            self.assertNotIn('unseeded', assignment['deferred_work'].lower())
+            self.assertIn('seeded once before the first context', assignment['deferred_work'])
 
     def test_question_pattern_and_contract_links_resolve(self):
         for day, (date, qid, _) in MOCK_DAYS.items():

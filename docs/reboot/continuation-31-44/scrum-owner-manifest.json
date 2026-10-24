@@ -2844,7 +2844,50 @@
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
       "title": "Day43: React servicing summary",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "5_minute_task_proposal",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "proposal_prompt": "Before implementation, list the exact allowed servicing fields and the loading, empty, 401 and 404 states; predict one stale/error transition the panel must handle and one field it must never expose.",
+        "supporting_sources": [
+          "docs/reboot/interview/sprint4-session-scope.md",
+          "docs/reboot/continuation-31-44/worked/day-43-response-state-ui.md",
+          "docs/reboot/interview/pattern-library.md#frontend-state-machine",
+          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
+          "https://react.dev/learn/conditional-rendering#conditionally-returning-jsx",
+          "https://react.dev/learn/choosing-the-state-structure#avoid-contradictions-in-state",
+          "https://testing-library.com/docs/queries/byrole/"
+        ],
+        "course_bridges": [
+          {
+            "title": "Rendering Content Conditionally",
+            "section_title": "React Essentials - Components, JSX, Props, State &amp; More",
+            "duration_seconds": 483,
+            "duration": "8:03",
+            "source_item_id": "39649252",
+            "course_id": "1362070"
+          }
+        ],
+        "course_catalog": [
+          {
+            "course_id": "1362070",
+            "title": "React - The Complete Guide (incl. Next.js, Redux)",
+            "instructor": "Academind / Maximilian Schwarzmüller",
+            "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+            "access_status": "unconfirmed_reference_only"
+          }
+        ],
+        "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "acceptance_commands": [
+          "npm --prefix frontend run test:learner -- src/__tests__/Day43PolicyServicingPanel.test.tsx",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day43ServicingProjectionOmitsOwnerJourneyAndQuoteIds test"
+        ],
+        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
+        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+      }
     },
     {
       "sequence": 14,
@@ -3011,7 +3054,36 @@
       "course_learning_status": "official_worked_bridge_video_not_required",
       "mandatory_new_problem": false,
       "title": "Day44: Lifecycle integration acceptance contract",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "interview_practice": {
+        "mode": "5_minute_task_proposal",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "proposal_prompt": "Before running the harness, make an expected-versus-observed table for the learner browser/API/database path, list the prerequisites that are actually evidenced, and name the first selector you will run. Do not assume a prior gate passed.",
+        "supporting_sources": [
+          "docs/reboot/interview/sprint4-session-scope.md",
+          "docs/reboot/continuation-31-44/worked/day-44-observed-uat-handover.md",
+          "docs/reboot/interview/pattern-library.md#measure-before-scaling",
+          "docs/reboot/interview/pattern-library.md#resilience",
+          "https://istqb.org/wp-content/uploads/2024/11/ISTQB-CT-AcT_Syllabus_v1.0_2019.pdf",
+          "https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html",
+          "https://developer.chrome.com/docs/automation-and-testing/headless#use-headless-mode",
+          "https://playwright.dev/docs/network#network-mocking"
+        ],
+        "course_bridges": [],
+        "course_catalog": [],
+        "course_note": "Use only the exact course/source foundation already recorded for this day. Optional or unconfirmed lessons remain replacement-only within the existing 25-minute study block; no purchase, enrollment, viewing, or completion is inferred.",
+        "practice_minutes_available": 85,
+        "implementation_scope": "Spend 5 minutes saving this task-specific proposal before code, hints, worked answers, or AI. Use the remaining 80 minutes for this day’s unchanged learner acceptance only; if prerequisites or the timebox block it, record the first blocker and leave the existing acceptance open.",
+        "acceptance_commands": [
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test",
+          "./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test",
+          "./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test"
+        ],
+        "acceptance": "The proposal is a pre-work learning prompt, not a pass. Preserve the original day acceptance, status, prerequisites, and unfinished work; no completion is inferred from the proposal or instructor checks.",
+        "evidence": "Within the existing 10-minute evidence allocation, record the saved pre-assistance proposal, actual named command and exit/result or first blocker, changed paths, assistance, and original acceptance still open. No retrospective architecture essay."
+      }
     }
   ],
   "daily_budgets_minutes": {

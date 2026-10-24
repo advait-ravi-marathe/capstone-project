@@ -23,9 +23,27 @@ Fixed acceptance tests are learner-owned behavior checks; they must assert the c
 **Learner acceptance commands:** `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test`, `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test`, `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test` and `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test`.
 **Instructor infrastructure commands:** `npm --prefix frontend run build` then `CHROMIUM_BIN=/usr/bin/chromium ./mvnw -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserRoundTripSurvivesSpringServerRestart,ContinuationManifestInfrastructureTest test`. CI installs Chromium through Playwright and uses its managed executable.
 
+## Interview-first task proposal (5 minutes inside the existing 85-minute practice block)
+
+Before code, hints, worked answers, or AI, save a short prediction: Before running the harness, make an expected-versus-observed table for the learner browser/API/database path, list the prerequisites that are actually evidenced, and name the first selector you will run. Do not assume a prior gate passed.
+
+Use the remaining 80 minutes only for the unchanged day acceptance. Existing prerequisites still gate the work; do not infer that a prior learner gate passed.
+
+**Relevant patterns:** [measure-before-scaling](../../interview/pattern-library.md#measure-before-scaling), [resilience](../../interview/pattern-library.md#resilience).
+
+**Run the existing acceptance:**
+- `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44LifecycleIntegrationSeamMustVerifyReadback test`
+- `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserDrivesPolicyLifecycleApiThroughSpringAndPostgres test`
+- `./mvnw -Plearner-tests -Dtest=Day44BrowserTransportInfrastructureTest#realBrowserObservesServicingFailureRecoveryAndRestart test`
+- `./mvnw -Plearner-tests -Dtest=PolicyLifecycleAcceptanceTest#day44ReadbackRejectsMissingPolicyIncompleteHistoryAndStatusVersionMismatch test`
+
+The proposal is not a pass. Keep unfinished acceptance open and stop at the first prerequisite blocker or at the daily cap. Record the proposal, actual command/result or blocker, changed paths, and assistance in the existing 10-minute evidence block. No retrospective architecture essay.
+
 ## Build / test allocation (85 minutes)
 
 Implement only this day's seam and its fixed tests. Preserve prior completed work. Use deterministic fixture values, injected `Clock`, and isolated disposable PostgreSQL where specified. Do not add production secrets, customer data, external services, or extra infrastructure.
+
+**Practice allocation (85 minutes):** 5 minutes for the expected-versus-observed proposal, then the remaining 80 minutes for the original learner acceptance and its existing prerequisites. The instructor transport smoke remains infrastructure evidence only. If a prerequisite is unresolved or time ends, leave the full learner acceptance open and record the blocker.
 
 ## Concept/course allocation (25 minutes)
 
@@ -41,7 +59,6 @@ Focused sources:
 
 **Study allocation (exactly 25:00 / 1,500 seconds):** focused UAT sections 4:00; worked observation and harness trace 17:00; prerequisite gate 4:00. Stop at the cap and carry forward; shrink implementation scope rather than adding hours. Video viewing, pauses, worked example and teach-back share this block. Viewing is not learner completion.
 
-**Practice allocation (85 minutes):** 10 / 35 / 25 / 15 minutes in the order and scope in the worked guide and curriculum JSON. Instructor fixture setup is supplied and is not hidden learner implementation. If readiness prerequisites are not met, record the first blocker and carry forward.
 
 Use the same shared evidence exercise [`lifecycle-delivery-v2.json`](../templates/lifecycle-delivery-v2.json); record actual outcomes only after a real attempt, not from this guide.
 
