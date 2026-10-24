@@ -7,9 +7,12 @@
   "end_date": "2027-05-21",
   "engineering_minutes": 165,
   "engineering_allocation": {
-    "study": 35,
-    "practice_and_tests": 115,
-    "evidence": 15
+    "coverstory_project_recovery_minutes": 1380,
+    "offline_ai_implementation_evaluation_minutes": 180,
+    "certification_core_concepts_study_minutes": 490,
+    "certification_offline_practice_minutes": 50,
+    "evidence_minutes": 210,
+    "engineering_minutes_total": 2310
   },
   "shared_interview_or_remaining_reviews_minutes": 45,
   "total_daily_minutes": 210,
@@ -20,10 +23,10 @@
     {
       "day": 197,
       "date": "2027-05-08",
-      "title": "Inspect actual Day 153/154 A/B evidence and missing baseline provenance",
+      "title": "Inspect actual Day 153/154 recovery inputs",
       "learner_seam": "readiness_inspection",
       "module": "CoverStory existing seam",
-      "signature": "evidence/continuation-141-154/day-153.json; evidence/continuation-141-154/day-154.json",
+      "signature": "evidence/continuation-141-154/day-153.json and day-154.json",
       "selectors": [
         "python3 scripts/check_streamforge_169_182_entry_gate.py"
       ],
@@ -37,29 +40,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Inspect the authoritative Day 153/154 records and run their checker. They show null source SHA, empty artifact hashes, and not attempted/not run. Record that the pinned baseline JAR and source/build recipe are absent; do not create replacement artifacts.",
         "note_ref": "assistant-architecture-notes.md#day-197",
-        "decision": "These records have null tested source SHA and no artifact hashes. Identify the missing pinned baseline JAR/source/build recipe; preserve the historical records.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -79,17 +72,18 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 198,
       "date": "2027-05-09",
-      "title": "Recover fail-closed CoverStory readiness seam",
+      "title": "Recover CoverStory readiness gate",
       "learner_seam": "coverstory_readiness",
       "module": "CoverStory existing seam",
       "signature": "src/main/java/assignments/local/LocalReadinessGate.java",
@@ -108,29 +102,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Implement the existing Day 57 readiness contract. Missing, null, false, empty, or irrelevant required evidence must fail closed, and the map must remain unchanged.",
         "note_ref": "assistant-architecture-notes.md#day-198",
-        "decision": "Implement the existing Day 57 readiness contract; missing, null, irrelevant, or failed evidence must require recovery without mutation.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -140,7 +124,7 @@
         "mode": "unfinished_review",
         "question_id": null,
         "question_title": "Named project/evidence review",
-        "review_task": "Review src/main/java/assignments/local/LocalReadinessGate.java; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "review_task": "Review src/main/java/assignments/local/LocalReadinessGate.java; record one unresolved invariant or first failure and next selector. Do not propose capstone architecture.",
         "allocation_minutes": {
           "named_review": 30,
           "retrieval_or_explain_back": 10,
@@ -149,10 +133,11 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
@@ -178,29 +163,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Implement the Day 63 checkpoint. Accept only 0–85 minutes, require recovery when evidence is unmet, and return no added work.",
         "note_ref": "assistant-architecture-notes.md#day-199",
-        "decision": "Implement Day 63 bounds and recovery within the supplied minute budget, with no added work.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -220,22 +195,23 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 200,
       "date": "2027-05-11",
-      "title": "Recover offline AWS lab design boundary",
-      "learner_seam": "offline_certification_design",
+      "title": "Recover offline AWS resource/access boundary",
+      "learner_seam": "offline_aws_access_design",
       "module": "CoverStory existing seam",
       "signature": "src/main/java/assignments/ops/AwsLabDesignPolicy.java",
       "selectors": [
-        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest test"
+        "./mvnw -Plocal-app,learner-tests -Dtest=AwsLabDesignPolicyAcceptanceTest#day137KeepsCloudExecutionOutsideOfflineDesign test"
       ],
       "depends_on_days": [
         199
@@ -249,29 +225,32 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
       "study_refs": [
-        "NO_COURSE"
+        "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/"
       ],
       "study_guidance": [
         {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
+          "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+          "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+          "provider": "Udemy metadata",
           "sections": [
-            "Catalog metadata and access caveat"
-          ]
+            "CloudFormation Intro — Other Services",
+            "IAM Introduction: Users, Groups, Policies — IAM & AWS CLI"
+          ],
+          "use": "Existing course catalog metadata only; access/playback not rechecked and viewing is not completion."
         }
       ],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Implement Day 137 offline AWS plan validation. Reject public exposure, wildcard admin, secrets, cloud action requests and claims of cloud verification. No deployment or AWS calls occur.",
         "note_ref": "assistant-architecture-notes.md#day-200",
-        "decision": "Implement the existing offline design validation using fictional costs only; reject execution, public exposure, wildcard admin, secrets, fabricated cloud verification, and invalid arithmetic.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -281,7 +260,7 @@
         "mode": "unfinished_review",
         "question_id": null,
         "question_title": "Named project/evidence review",
-        "review_task": "Review src/main/java/assignments/ops/AwsLabDesignPolicy.java; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "review_task": "Review src/main/java/assignments/ops/AwsLabDesignPolicy.java; record one unresolved invariant or first failure and next selector. Do not propose capstone architecture.",
         "allocation_minutes": {
           "named_review": 30,
           "retrieval_or_explain_back": 10,
@@ -290,17 +269,18 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 201,
       "date": "2027-05-12",
-      "title": "Recover owned offline rehearsal evidence policy",
+      "title": "Recover offline rehearsal evidence gate",
       "learner_seam": "offline_rehearsal_evidence",
       "module": "CoverStory existing seam",
       "signature": "src/main/java/assignments/ops/RehearsalEvidencePolicy.java",
@@ -319,29 +299,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Implement Day 139 local rehearsal evidence validation. Complete offline evidence can pass its local gate; it must never be reported as cloud execution or verification.",
         "note_ref": "assistant-architecture-notes.md#day-201",
-        "decision": "Implement the existing distinction between local release evidence and unperformed cloud actions.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -361,17 +331,18 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 202,
       "date": "2027-05-13",
-      "title": "Inspect owner-scoped read adapter acceptance",
+      "title": "Inspect owner-scoped renewal read acceptance",
       "learner_seam": "owner_scoped_read_review",
       "module": "CoverStory existing seam",
       "signature": "src/main/java/assignments/renewal/BoundedPolicyRenewalReadStore.java",
@@ -390,29 +361,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Run the existing Day 75 owner-scoped read-store acceptance and capture its first failing assertion. Keep its TODO state and distinguish harness status from learner implementation.",
         "note_ref": "assistant-architecture-notes.md#day-202",
-        "decision": "Run and record the actual first failing acceptance. It is an existing Day 75 learner TODO; do not treat scaffold tests as learner output.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -422,7 +383,7 @@
         "mode": "unfinished_review",
         "question_id": null,
         "question_title": "Named project/evidence review",
-        "review_task": "Review src/main/java/assignments/renewal/BoundedPolicyRenewalReadStore.java; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "review_task": "Review src/main/java/assignments/renewal/BoundedPolicyRenewalReadStore.java; record one unresolved invariant or first failure and next selector. Do not propose capstone architecture.",
         "allocation_minutes": {
           "named_review": 30,
           "retrieval_or_explain_back": 10,
@@ -431,22 +392,25 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 203,
       "date": "2027-05-14",
-      "title": "Recover packaged local browser acceptance",
-      "learner_seam": "packaged_runtime_recovery",
+      "title": "Rebuild and run packaged browser acceptance",
+      "learner_seam": "packaged_browser_recovery",
       "module": "CoverStory existing seam",
-      "signature": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
+      "signature": "scripts/package-sprint5-demo.sh; target/capstone-starter-1.0-SNAPSHOT-sprint5.jar; target/sprint5-demo/package-evidence.json",
       "selectors": [
-        "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest test"
+        "scripts/package-sprint5-demo.sh",
+        "python3 scripts/check_sprint5_package_evidence.py",
+        "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest test"
       ],
       "depends_on_days": [
         202
@@ -460,29 +424,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Run scripts/package-sprint5-demo.sh to build the fresh Sprint 5 JAR and package receipt. Check target/capstone-starter-1.0-SNAPSHOT-sprint5.jar and target/sprint5-demo/package-evidence.json against current HEAD, source fingerprint, and artifact digest before the packaged browser acceptance. Packaging, preflight and browser test are budgeted within this day; stale artifacts are rejected.",
         "note_ref": "assistant-architecture-notes.md#day-203",
-        "decision": "Run the package/browser harness with its declared isolated fixture lifecycle. Record artifact, database lifecycle, selector, source SHA and exact result.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -502,10 +456,11 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
@@ -513,7 +468,7 @@
       "day": 204,
       "date": "2027-05-15",
       "title": "Freeze independent synthetic expected cases",
-      "learner_seam": "offline_evaluator_cases",
+      "learner_seam": "offline_expected_cases",
       "module": "ai.grounded.evaluation",
       "signature": "ai/grounded/evaluation.py",
       "selectors": [
@@ -531,10 +486,11 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 99,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 3,
+          "evidence_minutes": 15
         }
       },
       "study_refs": [
@@ -551,9 +507,9 @@
         }
       ],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Write independent expected synthetic statuses/citations into the fixed cases before evaluating them. The test expectations must not call the evaluator to derive themselves.",
         "note_ref": "assistant-architecture-notes.md#day-204",
-        "decision": "Keep literal expected statuses/source IDs independent from the evaluation function; offline only.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -563,7 +519,7 @@
         "mode": "unfinished_review",
         "question_id": null,
         "question_title": "Named project/evidence review",
-        "review_task": "Review ai/grounded/evaluation.py; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "review_task": "Review ai/grounded/evaluation.py; record one unresolved invariant or first failure and next selector. Do not propose capstone architecture.",
         "allocation_minutes": {
           "named_review": 30,
           "retrieval_or_explain_back": 10,
@@ -572,17 +528,18 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 40,
-        "ai_foundations": 60,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 99,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 3,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 205,
       "date": "2027-05-16",
-      "title": "Enforce owner filter before local matching",
+      "title": "Filter candidates by owner before matching",
       "learner_seam": "ai_owner_filter",
       "module": "ai.grounded.evidence",
       "signature": "ai/grounded/evidence.py",
@@ -601,10 +558,11 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 98,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 4,
+          "evidence_minutes": 15
         }
       },
       "study_refs": [
@@ -621,9 +579,9 @@
         }
       ],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Filter the immutable synthetic clauses by owner before matching. This illustrates operation order only and is not a real authorization boundary.",
         "note_ref": "assistant-architecture-notes.md#day-205",
-        "decision": "Filter the supplied immutable synthetic clauses by owner before matching. This is not production authorization.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -643,17 +601,18 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 40,
-        "ai_foundations": 60,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 98,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 4,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 206,
       "date": "2027-05-17",
-      "title": "Return exact versioned citation or abstain",
+      "title": "Return exact citation or abstain",
       "learner_seam": "ai_citation_abstention",
       "module": "ai.grounded.evidence",
       "signature": "ai/grounded/evidence.py",
@@ -672,10 +631,11 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 98,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 4,
+          "evidence_minutes": 15
         }
       },
       "study_refs": [
@@ -692,9 +652,9 @@
         }
       ],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Return exact clause/version text only for one unique match. For missing or ambiguous evidence, abstain; do not call a model or generate a policy decision.",
         "note_ref": "assistant-architecture-notes.md#day-206",
-        "decision": "Return one exact clause/version only for a unique deterministic match; abstain on missing or ambiguous evidence.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -704,7 +664,7 @@
         "mode": "unfinished_review",
         "question_id": null,
         "question_title": "Named project/evidence review",
-        "review_task": "Review ai/grounded/evidence.py; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "review_task": "Review ai/grounded/evidence.py; record one unresolved invariant or first failure and next selector. Do not propose capstone architecture.",
         "allocation_minutes": {
           "named_review": 30,
           "retrieval_or_explain_back": 10,
@@ -713,22 +673,23 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 40,
-        "ai_foundations": 60,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 98,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 4,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 207,
       "date": "2027-05-18",
-      "title": "Verify current certification guide identity",
-      "learner_seam": "certification_source_review",
+      "title": "Review official certification guide facts",
+      "learner_seam": "certification_factual_review",
       "module": "ai.grounded.evidence",
-      "signature": "docs/reboot/continuation-197-210/verified-sources.json",
+      "signature": "evidence/continuation-197-210/day-207-certification-review.json; docs/reboot/continuation-197-210/certification-review.schema.json",
       "selectors": [
-        "python3 scripts/check_continuation_197_210_sources.py"
+        "python3 scripts/check_continuation_197_210_sources.py --review evidence/continuation-197-210/day-207-certification-review.json"
       ],
       "depends_on_days": [
         206
@@ -742,10 +703,11 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 98,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 4,
+          "evidence_minutes": 15
         }
       },
       "study_refs": [
@@ -758,8 +720,13 @@
           "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
           "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
           "sections": [
-            "Exam overview",
-            "Content outline"
+            "Exam content"
+          ],
+          "domain_mapping": [
+            "Design Secure Architectures",
+            "Design Resilient Architectures",
+            "Design High-Performing Architectures",
+            "Design Cost-Optimized Architectures"
           ]
         },
         {
@@ -768,13 +735,16 @@
           "url": "https://aws.amazon.com/certification/certified-developer-associate/",
           "sections": [
             "Exam guide"
+          ],
+          "domain_mapping": [
+            "Record exactly the headings shown in the current guide; do not infer DVA-C03 scope."
           ]
         }
       ],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Review the actual official SAA and Developer Associate guides and record their title/version, date, URL and exact headings in the learner-authored artifact. SAA-C03 has Design Secure Architectures, Design Resilient Architectures, Design High-Performing Architectures, and Design Cost-Optimized Architectures. For Developer Associate, record the current official guide version/headings available at execution; do not infer DVA-C03 content before publication. The validator checks artifact shape/domain labels only, not study or readiness.",
         "note_ref": "assistant-architecture-notes.md#day-207",
-        "decision": "Check official SAA and Developer Associate guide links, headings, and versions available when performed. No API or StreamForge gate substitutes for this review; no paid booking.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -794,18 +764,19 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 40,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 98,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 4,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 208,
       "date": "2027-05-19",
-      "title": "Implement outcome counts against fixed cases",
-      "learner_seam": "offline_evaluator_counts",
+      "title": "Count offline evaluator outcomes",
+      "learner_seam": "offline_outcome_counts",
       "module": "ai.grounded.evaluation",
       "signature": "ai/grounded/evaluation.py",
       "selectors": [
@@ -823,10 +794,11 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 98,
+          "offline_ai_implementation_evaluation_minutes": 13,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 4,
+          "evidence_minutes": 15
         }
       },
       "study_refs": [
@@ -843,9 +815,9 @@
         }
       ],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Run the local evaluator and compare total, cited, abstained, exact-match and citation-mismatch counts to independent literal expected cases. This synthetic fixture is a debugging signal, not product quality evidence.",
         "note_ref": "assistant-architecture-notes.md#day-208",
-        "decision": "Count total/cited/abstained/exact-match/citation-mismatch against independently stated cases.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -855,7 +827,7 @@
         "mode": "unfinished_review",
         "question_id": null,
         "question_title": "Named project/evidence review",
-        "review_task": "Review ai/grounded/evaluation.py; record one unresolved invariant or first failure and the next selector. Do not propose capstone architecture.",
+        "review_task": "Review ai/grounded/evaluation.py; record one unresolved invariant or first failure and next selector. Do not propose capstone architecture.",
         "allocation_minutes": {
           "named_review": 30,
           "retrieval_or_explain_back": 10,
@@ -864,22 +836,26 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 40,
-        "ai_foundations": 60,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 98,
+        "offline_ai_implementation_evaluation_minutes": 13,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 4,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
     {
       "day": 209,
       "date": "2027-05-20",
-      "title": "Re-run bounded local package acceptance recovery",
-      "learner_seam": "packaged_runtime_recovery",
+      "title": "Rebuild package and recover browser acceptance",
+      "learner_seam": "packaged_browser_recovery",
       "module": "CoverStory existing seam",
-      "signature": "src/test/java/assignments/local/LocalPackagedBrowserAcceptanceTest.java",
+      "signature": "scripts/package-sprint5-demo.sh; target/capstone-starter-1.0-SNAPSHOT-sprint5.jar; target/sprint5-demo/package-evidence.json",
       "selectors": [
-        "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest test"
+        "scripts/package-sprint5-demo.sh",
+        "python3 scripts/check_sprint5_package_evidence.py",
+        "./mvnw -Plocal-app,sprint5-local,learner-tests -Dtest=LocalPackagedBrowserAcceptanceTest test",
+        "python3 scripts/check_streamforge_169_182_entry_gate.py"
       ],
       "depends_on_days": [
         208
@@ -893,29 +869,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 98,
+          "offline_ai_implementation_evaluation_minutes": 12,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 5,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Build a new Sprint 5 package and receipt from the current source tree, preflight source/JAR digests, then run packaged browser acceptance. Also check Days 153/154 separately; package success cannot satisfy that evidence gate.",
         "note_ref": "assistant-architecture-notes.md#day-209",
-        "decision": "Recover the first named package/browser failure only; this displaces any unfinished feature work.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -935,10 +901,11 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 98,
+        "offline_ai_implementation_evaluation_minutes": 12,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 5,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     },
@@ -946,7 +913,7 @@
       "day": 210,
       "date": "2027-05-21",
       "title": "Verify fresh-process canonical output",
-      "learner_seam": "fresh_process_reproducibility",
+      "learner_seam": "fresh_process_canonical_output",
       "module": "CoverStory existing seam",
       "signature": "ai/grounded/cli.py",
       "selectors": [
@@ -964,29 +931,19 @@
         "shared_interview_or_remaining_reviews_minutes": 45,
         "total": 210,
         "workstream_minutes": {
-          "coverstory_project_or_recovery": 100,
-          "ai_foundations": 15,
-          "certification_or_core_study": 35,
-          "evidence": 15
+          "coverstory_project_recovery_minutes": 98,
+          "offline_ai_implementation_evaluation_minutes": 12,
+          "certification_core_concepts_study_minutes": 35,
+          "certification_offline_practice_minutes": 5,
+          "evidence_minutes": 15
         }
       },
-      "study_refs": [
-        "NO_COURSE"
-      ],
-      "study_guidance": [
-        {
-          "key": "NO_COURSE",
-          "title": "Course catalog audit",
-          "url": "../course-learning-map.md",
-          "sections": [
-            "Catalog metadata and access caveat"
-          ]
-        }
-      ],
+      "study_refs": [],
+      "study_guidance": [],
       "engineering_architecture": {
-        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
+        "decision": "Run the fresh-process CLI test and compare canonical JSON output from separate invocations. This checks deterministic serialization only.",
         "note_ref": "assistant-architecture-notes.md#day-210",
-        "decision": "Invoke two subprocesses with bounded timeout; compare stdout bytes to the canonical serializer and independent report expectation.",
+        "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
         "system_design_scope": "separate_interview_question_bank_only"
       },
@@ -1006,10 +963,11 @@
       },
       "learner_status": "unobserved_not_implied_by_scaffold",
       "workstream_minutes": {
-        "coverstory_project_or_recovery": 100,
-        "ai_foundations": 0,
-        "certification_or_core_study": 35,
-        "evidence": 15
+        "coverstory_project_recovery_minutes": 98,
+        "offline_ai_implementation_evaluation_minutes": 12,
+        "certification_core_concepts_study_minutes": 35,
+        "certification_offline_practice_minutes": 5,
+        "evidence_minutes": 15
       },
       "shared_interview_or_remaining_reviews_minutes": 45
     }
