@@ -109,6 +109,7 @@ class ContinuationManifestTests(unittest.TestCase):
         self.assertIn(command, day["engineering"]["acceptance_commands"])
         card = next(c for c in self.export["cards"] if c["day_number"] == 124)
         self.assertIn(command, card["engineering"]["acceptance_commands"])
+        self.assertEqual("installed_expected_todo_red", day["engineering"]["acceptance_selector_status"])
         contract = (ROOT / day["contract_file"]).read_text()
         self.assertIn(command, contract)
         source = (ROOT / "src/test/java/assignments/delivery/recovery/LocalManualRecoveryCommandTest.java").read_text()
