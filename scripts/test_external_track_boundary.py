@@ -99,6 +99,7 @@ class ExternalTrackBoundaryTest(unittest.TestCase):
         workflow = (ROOT / ".github/workflows/coverstory-starter.yml").read_text(encoding="utf-8")
         self.assertIn("Verify engineering roadmap manifests and curriculum", workflow)
         self.assertIn("Verify StreamForge local fixture infrastructure", workflow)
+        self.assertIn("review/eai-sprint1-design-ownership-correction-2026-10-24", workflow)
         self.assertNotIn("test_dsa_", workflow)
         self.assertNotIn("Verify DSA", workflow)
 
