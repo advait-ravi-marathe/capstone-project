@@ -40,12 +40,6 @@ class LocalApplicationManifestInfrastructureTest {
             assertEquals(85, engineering.get("allocation_minutes").get("implementation_and_testing").asInt());
             assertEquals(25, engineering.get("allocation_minutes").get("concept_or_course").asInt());
             assertEquals(10, engineering.get("allocation_minutes").get("evidence").asInt());
-            JsonNode dsaTiers = day.get("java_dsa").get("budget_minutes_by_exercise_count");
-            assertEquals(60, dsaTiers.get("1_or_2_substantive_exercises").asInt());
-            assertEquals(75, dsaTiers.get("3_substantive_exercises").asInt());
-            assertEquals(90, dsaTiers.get("4_substantive_exercises").asInt());
-            assertEquals(120, day.get("java_dsa").get("engineering_minutes_remain").asInt());
-            assertTrue(Files.isRegularFile(Path.of(day.get("java_dsa").get("guide_path").asString())));
         }
     }
 

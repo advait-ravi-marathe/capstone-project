@@ -4,7 +4,7 @@ This folder records the reviewed roadmap proposal for 24 October–22 November
 2026. It is a set of contracts and schedule metadata, not a completion report.
 The existing Day 1 feature remains the live starter; future-day files specify
 the intended acceptance contract before learner implementations are created.
-Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wiring has call-count checks and a real Boot app-context test. Days 8–10 and 14 use disposable PostgreSQL. Day 12 has an isolated real Spring Security HTTP chain for authentication and CSRF; the learner ownership policy remains open. Day 13 has a fail-closed GitHub Actions workflow. Day 21 exercises CSRF on the actual quote-selection route through the same test-only chain. Day 28 has a real Chromium acceptance harness that serves the built React test route from Spring, calls test-only endpoints backed by the actual learner services, and checks PostgreSQL persistence and browser reload. An independent validator reports that the revised browser/API/database harness passes with temporary conforming witnesses; those witnesses were restored, so this validates the harness only and does not establish learner completion. The DSA schedule is actual-attempt-led. Guided LeetCode Premium/editorial study is not independent-solve credit; reviews and transfers are recorded only when attempted. See the separate [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0).
+Days 2–30 have instructor scaffolds with explicit learner TODOs. Day 2 HTTP wiring has call-count checks and a real Boot app-context test. Days 8–10 and 14 use disposable PostgreSQL. Day 12 has an isolated real Spring Security HTTP chain for authentication and CSRF; the learner ownership policy remains open. Day 13 has a fail-closed GitHub Actions workflow. Day 21 exercises CSRF on the actual quote-selection route through the same test-only chain. Day 28 has a real Chromium acceptance harness that serves the built React test route from Spring and checks PostgreSQL persistence and browser reload. Independent temporary-witness validation checks the harness only and does not establish learner completion.
 
 ## Course and lesson guidance
 
@@ -30,61 +30,57 @@ actual command, output, and blocker; it is not a generic post-hoc design essay.
 
 ## Schedule and evidence
 
-The DSA block is workload-tiered: 1–2 substantive exercises use 60 minutes, 3 use 75, and 4 use 90. Engineering remains 120 minutes (85 build/test, 25 concept/course, 10 evidence), for 180/195/210 total minutes.
-Dates schedule attempts only. Record `not attempted`, `attempted`, `contract
+Dates are planned engineering work only. Record `not attempted`, `attempted`, `contract
 passed`, and `integrated passed` separately. A day or milestone is never
 automatically complete because its date passed.
 
 The chronological manifest holds each date, sprint, prerequisite note, focused
-engineering concept and exact section link, DSA pattern/problem/review anchors,
-guide path, and separate contract/scaffold/runtime/learner/integration statuses:
+engineering guide path, and separate contract/scaffold/runtime/learner/integration statuses:
 [manifest.json](manifest.json). Every day has a dated page under
 [`contracts/`](contracts/). Day 1's active runnable guide and fixed tests stay
 at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 
 For Scrum import, [scrum-owner-manifest.json](scrum-owner-manifest.json) has one
-consolidated Story per date. Each Story links the unchanged 120-minute engineering block and workload-tiered Java DSA block (60/75/90 minutes), with concept references,
-acceptance/evidence guide paths, and review anchors. Sprint 1 covers 24 October–6
-November (Days 1–14, 14 Stories); Sprint 2 covers 7–20 November (Days 15–28,
-14 Stories); Sprint 3 covers 21 November–4 December (Days 29–30 are populated on 21–22
-November, 2 Stories). Engineering remains 120 minutes; total time varies by the DSA workload tier.
-Actual attempts and review completions remain learner evidence; forecasts do
-not mark work complete.
+engineering Story per date, with acceptance and evidence guide paths. Sprint 1
+covers 24 October–6 November (Days 1–14, 14 Stories); Sprint 2 covers 7–20
+November (Days 15–28, 14 Stories); Sprint 3 covers 21 November–4 December
+(Days 29–30 are populated on 21–22 November, 2 Stories). Learner completion and
+integration remain evidence-based; forecasts do not mark work complete.
 
 ## Chronological index
 
-| Day/date | Engineering contract | DSA block | State |
-|---|---|---|---|
-| 01 · 2026-10-24 | [Day 01](contracts/day-01.md) — Quote selection identity/order | LC121 guided | installed / not_attempted / blocked |
-| 02 · 2026-10-25 | [Day 02](contracts/day-02.md) — Validate selection request at HTTP boundary | LC1 guided | installed / not_attempted / blocked |
-| 03 · 2026-10-26 | [Day 03](contracts/day-03.md) — Map failures consistently | LC383 guided | installed / not_attempted / blocked |
-| 04 · 2026-10-27 | [Day 04](contracts/day-04.md) — Read one synthetic product | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 05 · 2026-10-28 | [Day 05](contracts/day-05.md) — Decide HomeSecure eligibility | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 06 · 2026-10-29 | [Day 06](contracts/day-06.md) — Calculate synthetic premium | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 07 · 2026-10-30 | [Day 07](contracts/day-07.md) — Create and expire quote version | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 08 · 2026-10-31 | [Day 08](contracts/day-08.md) — Define PostgreSQL quote schema | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 09 · 2026-11-01 | [Day 09](contracts/day-09.md) — Persist/read immutable quote snapshots | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 10 · 2026-11-02 | [Day 10](contracts/day-10.md) — Persist selection batch atomically | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 11 · 2026-11-03 | [Day 11](contracts/day-11.md) — Reject stale quote selection | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 12 · 2026-11-04 | [Day 12](contracts/day-12.md) — Enforce owner-scoped access | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 13 · 2026-11-05 | [Day 13](contracts/day-13.md) — Add honest repeatable CI | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 14 · 2026-11-06 | [Day 14](contracts/day-14.md) — Milestone 1 backend vertical slice | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 15 · 2026-11-07 | [Day 15](contracts/day-15.md) — Read journey summary | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 16 · 2026-11-08 | [Day 16](contracts/day-16.md) — Bound quote-history reads | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 17 · 2026-11-09 | [Day 17](contracts/day-17.md) — Render product choices in React/TypeScript | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 18 · 2026-11-10 | [Day 18](contracts/day-18.md) — Capture quote input | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 19 · 2026-11-11 | [Day 19](contracts/day-19.md) — Display quote snapshot | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 20 · 2026-11-12 | [Day 20](contracts/day-20.md) — Connect selection action UI | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 21 · 2026-11-13 | [Day 21](contracts/day-21.md) — Protect cookie-authenticated writes | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 22 · 2026-11-14 | [Day 22](contracts/day-22.md) — Add safe request correlation | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 23 · 2026-11-15 | [Day 23](contracts/day-23.md) — Expose minimal operational health | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 24 · 2026-11-16 | [Day 24](contracts/day-24.md) — Explain and improve one real query | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 25 · 2026-11-17 | [Day 25](contracts/day-25.md) — Handle concurrent repeated selection | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 26 · 2026-11-18 | [Day 26](contracts/day-26.md) — Record minimal selection audit | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 27 · 2026-11-19 | [Day 27](contracts/day-27.md) — Fix one evidence-backed regression | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 28 · 2026-11-20 | [Day 28](contracts/day-28.md) — Milestone 2 browser-to-database acceptance | actual-attempt queue; tiered | partial / not_attempted / blocked |
-| 29 · 2026-11-21 | [Day 29](contracts/day-29.md) — Make the slice reproducible | actual-attempt queue; tiered | installed / not_attempted / blocked |
-| 30 · 2026-11-22 | [Day 30](contracts/day-30.md) — Defend and assess the slice | actual-attempt queue; tiered | installed / not_attempted / blocked |
+| Day/date | Engineering contract | State |
+|---|---|---|
+| 01 · 2026-10-24 | [Day 01](contracts/day-01.md) — Quote selection identity/order | installed / not_attempted / blocked |
+| 02 · 2026-10-25 | [Day 02](contracts/day-02.md) — Validate selection request at HTTP boundary | installed / not_attempted / blocked |
+| 03 · 2026-10-26 | [Day 03](contracts/day-03.md) — Map failures consistently | installed / not_attempted / blocked |
+| 04 · 2026-10-27 | [Day 04](contracts/day-04.md) — Read one synthetic product | installed / not_attempted / blocked |
+| 05 · 2026-10-28 | [Day 05](contracts/day-05.md) — Decide HomeSecure eligibility | installed / not_attempted / blocked |
+| 06 · 2026-10-29 | [Day 06](contracts/day-06.md) — Calculate synthetic premium | installed / not_attempted / blocked |
+| 07 · 2026-10-30 | [Day 07](contracts/day-07.md) — Create and expire quote version | installed / not_attempted / blocked |
+| 08 · 2026-10-31 | [Day 08](contracts/day-08.md) — Define PostgreSQL quote schema | installed / not_attempted / blocked |
+| 09 · 2026-11-01 | [Day 09](contracts/day-09.md) — Persist/read immutable quote snapshots | installed / not_attempted / blocked |
+| 10 · 2026-11-02 | [Day 10](contracts/day-10.md) — Persist selection batch atomically | installed / not_attempted / blocked |
+| 11 · 2026-11-03 | [Day 11](contracts/day-11.md) — Reject stale quote selection | installed / not_attempted / blocked |
+| 12 · 2026-11-04 | [Day 12](contracts/day-12.md) — Enforce owner-scoped access | installed / not_attempted / blocked |
+| 13 · 2026-11-05 | [Day 13](contracts/day-13.md) — Add honest repeatable CI | installed / not_attempted / blocked |
+| 14 · 2026-11-06 | [Day 14](contracts/day-14.md) — Milestone 1 backend vertical slice | installed / not_attempted / blocked |
+| 15 · 2026-11-07 | [Day 15](contracts/day-15.md) — Read journey summary | installed / not_attempted / blocked |
+| 16 · 2026-11-08 | [Day 16](contracts/day-16.md) — Bound quote-history reads | installed / not_attempted / blocked |
+| 17 · 2026-11-09 | [Day 17](contracts/day-17.md) — Render product choices in React/TypeScript | installed / not_attempted / blocked |
+| 18 · 2026-11-10 | [Day 18](contracts/day-18.md) — Capture quote input | installed / not_attempted / blocked |
+| 19 · 2026-11-11 | [Day 19](contracts/day-19.md) — Display quote snapshot | installed / not_attempted / blocked |
+| 20 · 2026-11-12 | [Day 20](contracts/day-20.md) — Connect selection action UI | installed / not_attempted / blocked |
+| 21 · 2026-11-13 | [Day 21](contracts/day-21.md) — Protect cookie-authenticated writes | installed / not_attempted / blocked |
+| 22 · 2026-11-14 | [Day 22](contracts/day-22.md) — Add safe request correlation | installed / not_attempted / blocked |
+| 23 · 2026-11-15 | [Day 23](contracts/day-23.md) — Expose minimal operational health | installed / not_attempted / blocked |
+| 24 · 2026-11-16 | [Day 24](contracts/day-24.md) — Explain and improve one real query | installed / not_attempted / blocked |
+| 25 · 2026-11-17 | [Day 25](contracts/day-25.md) — Handle concurrent repeated selection | installed / not_attempted / blocked |
+| 26 · 2026-11-18 | [Day 26](contracts/day-26.md) — Record minimal selection audit | installed / not_attempted / blocked |
+| 27 · 2026-11-19 | [Day 27](contracts/day-27.md) — Fix one evidence-backed regression | installed / not_attempted / blocked |
+| 28 · 2026-11-20 | [Day 28](contracts/day-28.md) — Milestone 2 browser-to-database acceptance | partial / not_attempted / blocked |
+| 29 · 2026-11-21 | [Day 29](contracts/day-29.md) — Make the slice reproducible | installed / not_attempted / blocked |
+| 30 · 2026-11-22 | [Day 30](contracts/day-30.md) — Defend and assess the slice | installed / not_attempted / blocked |
 
 ## Scaffold and dependency rules
 
@@ -113,13 +109,6 @@ fixture-reset command and safety test. Day 30's concrete deliverable is a
 machine-checkable acceptance checklist that verifies evidence links and leaves
 missing items open; the review discussion alone is not the deliverable.
 
-## DSA companion
-
-Use LeetCode Premium statements and editorial explanations for guided first encounters; no separate DSA course is part of this plan. The initial guided sequence is LC121 on study Day1, LC1 on Day2, and LC383 on Day3. Their historical canonical anchor identities/days remain unchanged even where the planned encounter day moves. Day1 retains the historical three screenshots and seven assisted practice sessions, zero independent-solve credit, and no confirmed dated actual-attempt event.
-
-The queue derives D+3/D+7/D+21 only from the earliest actual first-attempt date. Editorial or hint assistance is recorded as guided, not independent transfer. A fresh similar-pattern transfer must be attempted before its editorial, satisfy prerequisites, and be checked against prior exposure; unknown freshness stays blocked. Transfers do not create new anchor clocks. Failed/overdue retrieval displaces new guidance, and overflow retains its original due date, including D+21.
-
-DSA time is 60 minutes for one or two substantive exercises, 75 for three, and 90 for four. Do not add problems to fill time or schedule more than four. Engineering remains 120 minutes (25 study, 85 practice/test, 10 evidence), so daily totals are 180/195/210. New guided introductions stop after roadmap Day150; Days151–154 are revision/transfer/repair only. The current repository contains 31 canonical anchors; that is inventory, not an agreed final curriculum limit. Conditional counts are not attempts or mastery. Read the [shared DSA policy](dsa/guided-transfer-policy.md), [canonical registry](dsa/canonical-anchors.json), and [verified seed catalog](dsa/guided-transfer-catalog-2026-10-25.json).
 ## Understanding and interview readiness
 
 Each engineering day begins practice by recording a short proposal before hints, reference answers, or AI. Dedicated mock sessions use 45 minutes of the existing 85-minute practice block, twice weekly; they replace implementation and never add hours. The 10-minute evidence block records command, result, assistance, and blocker, not a generic post-hoc design-psychology essay.
@@ -167,3 +156,7 @@ the Scrum board.
 The isolated [Days 99–112 contracts](continuation-99-112/README.md) add event-log-backed durable-work materialization and a manual one-shot local command. These are contracts and learner TODO scaffolding; they do not indicate completion.
 
 [Days 113–126](continuation-113-126/README.md) add explicit local recovery inspection, quarantine, release, and one-key retry. [Days 127–140](continuation-127-140/README.md) extend the local work with a real PostgreSQL 18.6 logical archive restore into a fresh disposable database, full-state verification, and a loopback-only cutover rehearsal. The AWS course block is an offline planning/permission gate only; it creates no AWS resources or access grants.
+
+## Separate DSA track
+
+DSA assignments, implementation, schedules, tests, and attempt history are maintained only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This repository contains no DSA assignment or tracker.

@@ -22,17 +22,6 @@
     "evidence": 5
   },
   "total_minutes_day_172_onward": 210,
-  "dsa_policy": {
-    "days_169_to_171_minutes_by_substantive_exercise_count": {
-      "1_to_2": 60,
-      "3": 75,
-      "4": 90
-    },
-    "day_172_onward_shared_interview_and_remaining_reviews_minutes": 45,
-    "post_171_max_substantive_dsa_reviews": 1,
-    "new_guided_anchors_after_day_150": false,
-    "actual_attempt_queue_only": true
-  },
   "python_runtime_observed": "3.12.14",
   "protocol_id": "streamforge-cutoff-popularity-v1",
   "k": 3,
@@ -58,9 +47,6 @@
     "aggregation": "unweighted macro; no micro metrics"
   },
   "daily_total_minutes_by_phase": {
-    "169_to_171_dsa_1_or_2": 180,
-    "169_to_171_dsa_3": 195,
-    "169_to_171_dsa_4": 210,
     "172_onward": 210
   },
   "days": [
@@ -102,25 +88,7 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day169Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "actual_attempt_review_transfer_repair_only",
-        "budget_minutes": null,
-        "maximum_substantive_coding_exercises": null,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 169",
-        "forecast_is_not_attempt": true,
-        "budget_minutes_by_substantive_exercise_count": {
-          "1_or_2": 60,
-          "3": 75,
-          "4": 90
-        },
-        "total_daily_minutes_by_dsa_tier": [
-          180,
-          195,
-          210
-        ],
-        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
-      }
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 170,
@@ -160,25 +128,7 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day170Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "actual_attempt_review_transfer_repair_only",
-        "budget_minutes": null,
-        "maximum_substantive_coding_exercises": null,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 170",
-        "forecast_is_not_attempt": true,
-        "budget_minutes_by_substantive_exercise_count": {
-          "1_or_2": 60,
-          "3": 75,
-          "4": 90
-        },
-        "total_daily_minutes_by_dsa_tier": [
-          180,
-          195,
-          210
-        ],
-        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
-      }
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 171,
@@ -219,25 +169,7 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day171Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "actual_attempt_review_transfer_repair_only",
-        "budget_minutes": null,
-        "maximum_substantive_coding_exercises": null,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 171",
-        "forecast_is_not_attempt": true,
-        "budget_minutes_by_substantive_exercise_count": {
-          "1_or_2": 60,
-          "3": 75,
-          "4": 90
-        },
-        "total_daily_minutes_by_dsa_tier": [
-          180,
-          195,
-          210
-        ],
-        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
-      }
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 172,
@@ -285,20 +217,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day172Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 172",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 173,
@@ -339,20 +270,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day173Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 173",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 174,
@@ -392,20 +322,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day174Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 174",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 175,
@@ -444,20 +373,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day169Test ai.streamforge.tests.test_baseline_contracts.Day170Test ai.streamforge.tests.test_baseline_contracts.Day171Test ai.streamforge.tests.test_baseline_contracts.Day172Test ai.streamforge.tests.test_baseline_contracts.Day173Test ai.streamforge.tests.test_baseline_contracts.Day174Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 175",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 176,
@@ -498,20 +426,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day176Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 176",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 177,
@@ -552,20 +479,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day177Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 177",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 178,
@@ -614,20 +540,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day178Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 178",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 179,
@@ -667,20 +592,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_evaluation_cli.Day179Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 179",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 180,
@@ -721,20 +645,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_evaluation_adversarial.Day180Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 180",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 181,
@@ -775,20 +698,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_evaluation_cli.Day181Test",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 181",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day": 182,
@@ -828,20 +750,19 @@
         "proposed_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts ai.streamforge.tests.test_evaluation_adversarial ai.streamforge.tests.test_evaluation_cli",
         "evidence": "Record exact command/result or named TODO, independent expected value/counterexample, assistance, one guarantee and one limit. No fabricated completion."
       },
-      "interview_or_dsa": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 182",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
-      }
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
+      },
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     }
   ],
   "hand_oracle": {
@@ -958,5 +879,7 @@
     "181": "What evidence would be missing before calling this cloud-deployed or production-ready?",
     "182": "Defend the limits of the synthetic offline experiment and name one unresolved gate."
   },
-  "review_practice_examples_note": "Curated explain-back prompts, not claims about actual company interview questions. Use only remaining 45-minute capacity after pending review/repair; no automatic canonical DSA event or anchor is created."
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+  }
 }

@@ -17,15 +17,6 @@
     "practice_and_test": 85,
     "evidence": 10
   },
-  "dsa_policy": {
-    "new_guided_anchors_after_day_150": false,
-    "minutes_by_substantive_exercise_count": {
-      "1-2": 60,
-      "3": 75,
-      "4": 90
-    },
-    "actual_attempt_queue_only": true
-  },
   "scope": "Offline validation of an original synthetic catalog and viewing-event fixture, a fixed UTC temporal partition, train-only summaries, separate holdout diagnostics, and deterministic local JSON.",
   "exclusions": [
     "recommender",
@@ -241,5 +232,8 @@
     "worked_supplements_within_study_block": true
   },
   "board_status": "No board writes or new tickets; this branch contains draft repository contracts only.",
-  "daily_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_infrastructure"
+  "daily_acceptance_command": "python3 -m unittest ai.streamforge.tests.test_infrastructure",
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+  }
 }

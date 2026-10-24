@@ -121,36 +121,6 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         self.assertIn("'dates':'2027-03-13..2027-03-26'", generator)
         self.assertIn("Dates: 2027-03-13–2027-03-26", generator)
 
-    def test_day_one_forecast_reviews_follow_the_new_planned_encounter(self):
-        manifest = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
-        day_one = manifest["days"][0]
-        self.assertEqual("2026-10-24", day_one["dsa_guided_encounter_date_forecast"])
-        self.assertEqual(
-            ["2026-10-27", "2026-10-31", "2026-11-14"],
-            day_one["dsa_review_schedule"]["review_due_dates_if_attempted_on_plan"],
-        )
-        self.assertIsNone(day_one["dsa_review_schedule"]["first_attempt_date"])
-
-    def test_rendered_dsa_review_forecasts_match_each_planned_day(self):
-        manifest = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
-        day_dates = {day["day"]: date.fromisoformat(day["date"]) for day in manifest["days"]}
-        pattern = re.compile(r"\(Day (\d+), D\+(\d+), planned (\d{4}-\d{2}-\d{2})\)")
-        for day in manifest["days"]:
-            for review in day.get("board_summary", {}).get("dsa_reviews", []):
-                match = pattern.search(review)
-                self.assertIsNotNone(match, review)
-                encounter_day, offset = int(match.group(1)), int(match.group(2))
-                planned_text = match.group(3)
-                expected = day_dates[encounter_day] + timedelta(days=offset)
-                self.assertEqual(expected.isoformat(), planned_text, review)
-        continuation = json.loads((ROOT / "docs/reboot/continuation-31-44/manifest.json").read_text())
-        carryovers = continuation["dsa_revision_policy"]["carryover_anchors_from_days_01_30"]
-        for anchor in carryovers:
-            first_attempt = date.fromisoformat(anchor["planned_first_attempt_date"])
-            expected = [(first_attempt + timedelta(days=n)).isoformat()
-                        for n in anchor["review_intervals_days"]]
-            self.assertEqual(expected, anchor["forecast_due_dates_if_attempted_on_plan"])
-
     def test_first_sprint_story_ids_and_course_bridges_remain_present(self):
         owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())
         canonical = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
@@ -186,7 +156,7 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
                 ], assignment["mock_phases"])
             else:
                 self.assertEqual("proposal_before_reference", assignment["mode"])
-                self.assertIsNone(assignment["question_id"])
+                self.assertIsNone(assignment.get("question_id"))
             self.assertFalse(assignment["acceptance"].endswith("complete."))
 
     def test_mock_scope_has_explicit_eai_slices_and_deferred_acceptance(self):

@@ -15,10 +15,10 @@
     ],
     "no_changes": true,
     "no_prompts": true,
-    "all_dsa_files_logs_unchanged": true,
     "main_unchanged": true,
     "original_dirty_worktree_unchanged": true,
-    "preserve_baselines_separately": true
+    "preserve_baselines_separately": true,
+    "separate_learning_repository_not_modified": true
   },
   "budget": {
     "through_day": 171,
@@ -28,22 +28,11 @@
       "practice_and_tests": 85,
       "evidence": 10
     },
-    "dsa_by_exercises": {
-      "1_or_2": 60,
-      "3": 75,
-      "4": 90
-    },
-    "daily_total_by_dsa_tier": {
-      "1_or_2": 180,
-      "3": 195,
-      "4": 210
-    },
     "from_day_172": {
       "engineering": 165,
-      "shared_interview_or_unfinished_reviews": 45,
+      "shared_interview_practice": 45,
       "total": 210
-    },
-    "no_new_guided_dsa_after": 150
+    }
   },
   "pillars": {
     "A": "Backend and distributed systems",
@@ -443,7 +432,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 31",
       "native_sprint": "Sprint 3"
     },
     {
@@ -499,7 +487,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 32",
       "native_sprint": "Sprint 3"
     },
     {
@@ -579,7 +566,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 33",
       "native_sprint": "Sprint 3"
     },
     {
@@ -660,7 +646,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 34",
       "native_sprint": "Sprint 3"
     },
     {
@@ -747,7 +732,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 35",
       "native_sprint": "Sprint 3"
     },
     {
@@ -828,7 +812,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 36",
       "native_sprint": "Sprint 3"
     },
     {
@@ -901,7 +884,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 37",
       "native_sprint": "Sprint 3"
     },
     {
@@ -961,7 +943,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 38",
       "native_sprint": "Sprint 3"
     },
     {
@@ -1017,7 +998,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 39",
       "native_sprint": "Sprint 3"
     },
     {
@@ -1090,7 +1070,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 40",
       "native_sprint": "Sprint 3"
     },
     {
@@ -1146,7 +1125,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 41",
       "native_sprint": "Sprint 3"
     },
     {
@@ -1227,7 +1205,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 42",
       "native_sprint": "Sprint 3"
     },
     {
@@ -1305,7 +1282,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 43",
       "native_sprint": "Sprint 4"
     },
     {
@@ -1368,7 +1344,6 @@
         "videos_watched": false,
         "allocation_rule": "Video, pauses, worked example, focused references and teach-back share the existing 25-minute block. Stop at the cap and carry forward; reduce implementation scope."
       },
-      "dsa_queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 44",
       "native_sprint": "Sprint 4"
     }
   ],
@@ -1473,16 +1448,15 @@
       "docs/reboot/continuation-169-182/README.md",
       "docs/reboot/continuation-183-196/README.md"
     ],
-    "readme_append_template": "FDE alignment: See ../fde-north-star-amendment.md and ../fde-alignment.json. Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; the amendment adds purpose and evidence boundaries, not completion credit.",
     "do_not_edit": [
       "docs/reboot/README.md",
       "docs/reboot/manifest.json",
       "docs/reboot/scrum-owner-manifest.json",
       "first-30 contracts/guides/criteria",
-      "any DSA file/log",
       "existing continuation manifests/owner exports",
       "learner implementation",
-      "historical evidence JSON"
+      "historical evidence JSON",
+      "the separate algorithm-practice repository or its history"
     ],
     "crosswalk_days": [
       148,
@@ -1514,7 +1488,7 @@
       "Pillars: {actual mapped pillar names}.",
       "Prerequisite: Keep the existing contract dependency and phase gate: {immutable existing contract URL}. Missing proof means bounded carry-forward, not completion.",
       "Evidence: {existing daily template URL OR existing contract evidence requirement URL}. {phase evidence boundary}",
-      "Governing amendment: {verified immutable amendment URL}. Existing engineering, DSA, dates and acceptance criteria remain unchanged."
+      "Governing amendment: {verified immutable amendment URL}. Existing engineering, dates and acceptance criteria remain unchanged; algorithm practice is external."
     ],
     "extra_for_days31_44": "Append only the mapped explanation within the existing 10-minute evidence slot.",
     "extra_for_checkpoint_days": "Append the mapped checkpoint sentence, retaining existing recovery-only scope.",
@@ -1529,21 +1503,22 @@
       "Exact five pillar names and nine readiness labels.",
       "Fourteen existing days retain titles/dates/commands and exact course metadata; access caveats preserved.",
       "Current command selectors and manifest property exist at the base.",
-      "Protected first-30 hashes and all DSA paths unchanged for both independent baselines.",
-      "README changes append-only; no other existing path changes."
+      "README changes append-only; no other existing path changes.",
+      "Verify engineering-only CI and the external algorithm-practice repository boundary."
     ],
     "writer_execution_checks": [
-      "Record applicable default/manifest/DSA regression commands and results in the isolated environment.",
       "Do not solve learner TODOs to turn documentation validation green.",
       "Run current artifact commands only when real prerequisite artifacts exist; otherwise record exact blocked check.",
-      "Hosted CI head SHA equals amendment commit and result is actually verified."
+      "Hosted CI head SHA equals amendment commit and result is actually verified.",
+      "Verify engineering-only CI and the external algorithm-practice repository boundary."
     ],
     "board_checks": [
       "Fresh read every issue before patch.",
       "EAI-1–30 descriptions/metadata remain unchanged.",
       "EAI-31–196 original descriptions are exact prefixes plus only approved block.",
       "All 196 IDs,14 sprints,dates,titles,states,priorities,assignees and memberships unchanged.",
-      "Read back every changed issue and immutable href."
+      "Read back every changed issue and immutable href.",
+      "Verify engineering-only CI and the external algorithm-practice repository boundary."
     ]
   },
   "external_sources": [

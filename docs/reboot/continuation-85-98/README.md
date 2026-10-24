@@ -18,14 +18,7 @@ dependency.
 
 ## Daily time budget
 
-DSA uses 60/75/90 minutes by exercise count, plus unchanged 120 engineering
-minutes: 85 implementation/testing, 25 concept/course, and 10 evidence. Video,
-pauses, worked examples, focused reading, and teach-back all fit inside that
-single 25-minute engineering study block. Carry unfinished study forward and
-reduce implementation scope; do not add hours. Actual DSA attempt dates remain
-blank until evidenced. Review dates are based only on actual attempts. Days 91
-and 98 are recovery/assessment days; LC236 is optional only if the canonical
-history has no prior attempt and prerequisite retrieval is sound.
+Engineering is 120 minutes per day: 25 minutes study, 85 minutes implementation/testing, and 10 minutes evidence. Video, pauses, worked examples, focused reading, and teach-back fit within the study block. Carry unfinished study forward and reduce implementation scope. Days 91 and 98 remain recovery/assessment days.
 
 ## Verification boundaries
 
@@ -70,4 +63,3 @@ an authenticated browser session, and a real PostgreSQL relation lock.
   waiting; it does not cancel SQL. The worker owns statement execution,
   rollback, close, and backend reuse. No production cancellation route or
   HTTP-to-JDBC bridge is added.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

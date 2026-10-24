@@ -4,11 +4,8 @@
 
 **Engineering scope:** Independent evidence review; no new feature
 **Status:** Instructor fixture/selector installed; learner implementation remains unattempted.
-**Daily capacity:** 180/195/210 minutes depending on 1–2/3/4 substantive DSA exercises; engineering remains 120 minutes (25 study, 85 practice/testing, 10 evidence). No extra mandatory setup work.
 
 ### Expected behavior
-
-Run installed infrastructure/focused selectors, distinguish TODO reds from harness failures, and diagnose an injected pooled-connection local-timeout leak. Re-run affected selectors after recovery. Failed/overdue DSA reviews displace new work.
 
 ### Acceptance and expected TODO state
 
@@ -38,7 +35,6 @@ No exact matching course lesson was verified for this PostgreSQL/Hikari/JDBC beh
 
 Video viewing: 0:00; allow at most 20:00 for the worked example and focused reading, then 5:00 for teach-back. Total is 25 minutes including pauses. Carry unfinished study forward and reduce implementation scope; no added hours. Viewing is not learner completion.
 
-
 **Sketch prompt:** Draw the lock holder, transaction-bound backend, local setting lifetime, cancellation/rollback owner and when the outer permit can be released.
 
 **Teach-back:** Explain what proves same-backend use, how settings reset, and which layer owns cleanup.
@@ -47,12 +43,6 @@ Video viewing: 0:00; allow at most 20:00 for the worked example and focused read
 
 Record exact commands, exit status, observed values, cleanup result, learner-owned paths and blockers in `evidence/continuation-85-98/day-98.json`. Keep actual attempt dates blank until evidenced and separate temporary-witness validation from learner completion.
 
-## DSA study (workload-tiered; actual attempts only)
+## Separate DSA track
 
-**Time:** 1–2 substantive exercises = 60 minutes; 3 = 75 minutes; 4 = 90 minutes. Keep engineering at 120 minutes (25 study, 85 practice/test, 10 evidence), for 180/195/210 total minutes. Brief recall and logging are inside the tier; do not add exercises to fill time or exceed four. Failed/overdue retrieval displaces new guidance; excess due work carries forward with its original due date, including D+21.
-
-**Guided/transfer selection:** First process actual failed or overdue D+3/D+7/D+21 retrieval, then due retrieval, then an eligible guided first encounter in the preserved prerequisite order. New introductions stop after roadmap Day 150. Candidate transfers come from the verified catalog only after checking prior exposure, access, and prerequisite readiness; unknown freshness is not fresh. Do not assign by old even/odd cadence.
-
-Guided learning may use LeetCode Premium/editorial explanations. Before opening an editorial, attempt independently; if assistance is used, label the event guided/hinted/editorial-assisted even if accepted. A transfer is independent only after an unaided attempt, with the intended invariant explained; platform acceptance alone is insufficient. D, D+3, D+7, and D+21 are based on the earliest actual first-attempt local date, including guided attempts; never use planned dates or reset the clock. A transfer target does not start another anchor cycle.
-
-Run `python3 scripts/dsa-review-queue.py --on-date "$(TZ=Asia/Kolkata date +%F)" --roadmap-day 98` first. The date command uses the actual Asia/Kolkata local study date; dates shown elsewhere are forecasts only. Record actual activity, assistance, outcome, and evidence in the append-only log; never infer completion from this contract. See [../../dsa/guided-transfer-policy.md](../../dsa/guided-transfer-policy.md) and [the DSA error log](../../dsa-error-log-template.md).
+The daily DSA assignment, tests, review schedule, and attempt history live only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). This engineering contract contains no DSA assignment.

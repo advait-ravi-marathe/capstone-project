@@ -1,7 +1,5 @@
 # Day 1 API bridge: request, Java method, response
 
-This runnable, test-runtime-only lesson supports the existing Day 1 backend assignment. It does not implement quote selection or change the production application. Keep engineering within its existing 120 minutes: 25 study, 85 practice/tests, 10 evidence. Keep the existing tiered DSA allocation unchanged: 60 minutes for one or two substantive exercises, 75 for three, and 90 for four.
-
 ## Study before practice
 
 Use confirmed-owned in28Minutes Official course **Master Spring Boot 3 & Spring Framework 6 with Java** (course ID `4993276`; [course page](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/)), section **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (section ID `8366018`). Catalog titles were verified on 21 October 2026; video playback has not been checked.
@@ -12,8 +10,6 @@ Watch these essential lessons in order:
 2. **Step 03 - Enhancing the Hello World REST API to return a Bean** (4:30; item `35018834`).
 
 Essential viewing is 10:51. If the word API or request/response is unfamiliar, first add **Step 00 - Creating a REST API with Spring Boot - An Overview** (4:04; item `35018848`); then the total is 14:55. The supplied fixture handles project setup, so **Step 01 - Initializing a REST API Project with Spring Boot** (7:26; item `35018844`) is optional setup reference, not a prerequisite. Step 05's path-variable variation is later work, not a prerequisite for today's practice.
-
-The catalog is for Spring Boot 3, while this repository uses Java 21 and Spring Boot 4.1.1. Follow the HTTP/controller/returned-value concept; do not downgrade dependencies or copy old setup/import instructions. Count pauses and replays inside 25 minutes. Stop at the cap and carry study forward rather than taking time from DSA or adding hours.
 
 ## Worked reference
 
@@ -129,7 +125,6 @@ The prior `./mvnw -Dtest=QuoteSelectionInfrastructureTest test` check covers ins
 
 - **25-minute study:** 10:51 essential videos, or 14:55 with the overview; use the remaining time for this worked guide and a short readiness check. Carry unfinished study forward.
 - **85-minute practice/tests:** launch and inspect the reference (up to 20 minutes); reproduce the return-value flow in the teaching fixture (up to 20 minutes); make and test the one-field practice variation (up to 25 minutes); use remaining time for the source walkthrough or prerequisite repair. These are ceilings within the existing block, not extra tasks.
-- **10-minute evidence:** record exact command and output, assistance used, and a short request → matched method → Java value → HTTP response explanation. If the bridge is unclear, record the specific blocker and carry the quote-selection task forward. Do not change the DSA allocation or history.
 
 Readiness questions: which path invokes `greeting()`? Which Java value produces the JSON `message` field? Why does `/missing` return an HTTP 404 while a stopped server returns no HTTP response? If any answer is unclear, repeat the reference before adapting.
 

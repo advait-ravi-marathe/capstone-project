@@ -6,25 +6,18 @@
   "end_date": "2027-04-09",
   "publication_status": "draft_not_board_published",
   "board_writes": false,
-  "dsa_budget_minutes": null,
   "engineering_allocation_minutes": {
     "implementation_and_testing": 85,
     "concept_or_course": 25,
     "evidence": 10
   },
   "engineering_minutes_per_day": 120,
-  "daily_total_minutes_by_dsa_tier": {
-    "1_or_2_exercises": 180,
-    "3_exercises": 195,
-    "4_exercises": 210
-  },
   "outcome": "Offline validation of an original synthetic catalog and viewing-event fixture, a fixed UTC temporal partition, train-only summaries, separate holdout diagnostics, and deterministic local JSON.",
   "constraints": [
     "Local offline synthetic fixtures only; no real media, user history or external dataset.",
     "No recommendation/model/service, cloud resource, credential, spending or deployment.",
     "Do not change CAP44 ranking TODO or prior learner seams.",
-    "Recovery days 161 and 168 run only prior selectors.",
-    "DSA is actual-attempt review/transfer/repair only; no new guided anchors after Day150."
+    "Recovery days 161 and 168 run only prior selectors."
   ],
   "python_runtime_observed": "Python 3.12.14",
   "third_party_python_dependencies": [],
@@ -153,22 +146,6 @@
         "publication_status": "draft_not_board_published",
         "readiness_command": "python3 -m ai.streamforge.readiness_bridge",
         "readiness_gate": "Run within the existing 25-minute study block; if it fails, carry Python basics forward before Day 156."
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 155",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -218,22 +195,6 @@
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 156",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -282,22 +243,6 @@
           "https://docs.python.org/3.12/library/datetime.html"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 157",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -347,22 +292,6 @@
           "https://docs.python.org/3.12/library/datetime.html"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 158",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -412,22 +341,6 @@
           "https://docs.python.org/3.12/library/datetime.html"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 159",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -477,22 +390,6 @@
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 160",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -541,22 +438,6 @@
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 161",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -607,22 +488,6 @@
           "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 162",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -672,22 +537,6 @@
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 163",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -737,22 +586,6 @@
           "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 164",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -802,22 +635,6 @@
           "https://docs.python.org/3.12/howto/sorting.html#key-functions"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 165",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -867,22 +684,6 @@
           "https://docs.python.org/3.12/library/unittest.html#basic-example"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 166",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -932,22 +733,6 @@
           "https://docs.python.org/3.12/library/json.html#basic-usage"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 167",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     },
     {
@@ -997,23 +782,10 @@
           "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage"
         ],
         "publication_status": "draft_not_board_published"
-      },
-      "java_dsa": {
-        "budget_minutes": null,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 168",
-        "actual_attempts_only": true,
-        "new_anchor_required": false,
-        "budget_minutes_by_exercise_count": {
-          "1_or_2_substantive_exercises": 60,
-          "3_substantive_exercises": 75,
-          "4_substantive_exercises": 90
-        },
-        "engineering_minutes_remain": 120,
-        "assistance_policy": "Use LeetCode Premium/editorial for guided learning; assistance does not earn independent transfer credit.",
-        "guide_path": "docs/reboot/dsa/guided-transfer-policy.md",
-        "mode": "actual_attempt_review_transfer_repair_only; no new guided anchors after roadmap Day150",
-        "planned_date_role": "forecast_only; actual local attempt dates control review clocks"
       }
     }
-  ]
+  ],
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+  }
 }

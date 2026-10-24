@@ -25,7 +25,6 @@ class Day30ContractTest {
         assertTrue(manifest.get("days").size() == 30);
         String checklist = Files.readString(Path.of("docs/reboot/acceptance-checklist.md"));
         assertTrue(checklist.contains("| Browser-to-database acceptance |"));
-        assertTrue(checklist.contains("| DSA attempts and due reviews |"));
         for (String row : checklist.lines().filter(line -> line.startsWith("| ") && !line.startsWith("| Area") && !line.startsWith("| Dimension") && !line.startsWith("|---"))
                 .toList()) {
             String[] cells = row.split("\\|", -1);
@@ -61,70 +60,35 @@ class Day30ContractTest {
     }
 
     @Test
-    void scrumManifestHasThirtyConsolidatedDailyStoriesAndTwoWeekSprintCounts() throws Exception {
+    void scrumManifestHasThirtyConsolidatedEngineeringStoriesAndTwoWeekSprintCounts() throws Exception {
         JsonNode owner = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/scrum-owner-manifest.json")));
         JsonNode cards = owner.get("cards");
         assertEquals(30, owner.get("story_count").asInt());
         assertEquals(30, cards.size());
         assertEquals("2026-10-24", cards.get(0).get("date").asString());
         assertEquals("2026-11-22", cards.get(29).get("date").asString());
-        assertEquals(14, owner.get("sprint_boundaries").get(0).get("story_count").asInt());
-        assertEquals(14, owner.get("sprint_boundaries").get(1).get("story_count").asInt());
-        assertEquals(2, owner.get("sprint_boundaries").get(2).get("story_count").asInt());
         JsonNode canonical = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/manifest.json")));
         assertEquals(30, canonical.get("board_story_count").asInt());
         assertEquals(30, canonical.get("assignments_by_track").get("engineering").asInt());
-        assertEquals(30, canonical.get("assignments_by_track").get("java_dsa").asInt());
         assertEquals(canonical.get("board_story_count").asInt(), owner.get("story_count").asInt());
-        for (int sprintIndex = 0; sprintIndex < 3; sprintIndex++)
-            assertEquals(owner.get("sprint_boundaries").get(sprintIndex).get("story_count").asInt(),
-                    canonical.get("sprint_boundaries").get(sprintIndex).get("story_count").asInt());
-        for (int dayIndex = 0; dayIndex < 30; dayIndex++) {
-            JsonNode story = cards.get(dayIndex);
+        assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14",
+                canonical.get("separate_learning_repository").get("algorithm_practice").asString());
+        for (int i = 0; i < 30; i++) {
+            JsonNode story = cards.get(i);
             JsonNode engineering = story.get("engineering");
-            JsonNode dsa = story.get("java_dsa");
-            int day = dayIndex + 1;
+            int day = i + 1;
             assertEquals(day, story.get("sequence").asInt());
             assertEquals(day, story.get("day_number").asInt());
             assertTrue(story.get("title").asString().startsWith("Day%02d:".formatted(day)));
-            assertTrue(story.get("budget_minutes").isNull());
-            assertEquals(180, story.get("budget_minutes_min").asInt());
-            assertEquals(210, story.get("budget_minutes_max").asInt());
             assertEquals(120, engineering.get("budget_minutes").asInt());
-            assertTrue(dsa.get("budget_minutes").isNull());
-            assertEquals(60, dsa.get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
-            assertEquals(75, dsa.get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
-            assertEquals(90, dsa.get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
             assertEquals(85, engineering.get("allocation_minutes").get("implementation_and_testing").asInt());
             assertEquals(25, engineering.get("allocation_minutes").get("concept_or_course").asInt());
             assertEquals(10, engineering.get("allocation_minutes").get("evidence").asInt());
-            assertTrue(dsa.get("allocation_minutes").isEmpty());
             assertTrue(Files.isRegularFile(Path.of(engineering.get("contract_path").asString())));
             assertTrue(Files.isRegularFile(Path.of(engineering.get("acceptance_reference").asString())));
             assertTrue(Files.isRegularFile(Path.of(engineering.get("evidence_reference").asString())));
-            assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString().split("#", 2)[0])));
-            String title = story.get("title").asString();
-            if (day <= 3) {
-                int expectedProblem = new int[]{121, 1, 383}[day - 1];
-                assertEquals("guided_first_sequence", dsa.get("mode").asString());
-                assertEquals(expectedProblem, dsa.get("current_guided_encounter_problem_id").asInt());
-                assertEquals("guided_first_sequence", manifestDay(day).get("dsa_role").asString());
-                if (day == 3) {
-                    assertEquals("383 Ransom Note", dsa.get("problem").asString());
-                    assertTrue(dsa.get("problem_url").asString().endsWith("/ransom-note/"));
-                    assertTrue(dsa.get("resource_references").get(0).asString().contains("/ransom-note/"));
-                }
-            } else {
-                assertEquals("dynamic_actual_attempt_queue", dsa.get("mode").asString());
-                assertTrue(dsa.get("current_guided_encounter_problem_id").isNull());
-                assertEquals("dynamic_actual_attempt_queue", manifestDay(day).get("dsa_role").asString());
-            }
+            assertFalse(story.has("java_dsa"), "DSA schedule must live outside capstone");
         }
-    }
-
-    private static JsonNode manifestDay(int day) throws Exception {
-        JsonNode days = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/manifest.json"))).get("days");
-        return days.get(day - 1);
     }
 
     private static long count(String source, String needle) {

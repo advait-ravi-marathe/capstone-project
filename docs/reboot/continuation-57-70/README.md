@@ -8,6 +8,8 @@ synthetic policy issuance/readback and renewal preview. See the
 [Scrum export](scrum-owner-manifest.json). The Scrum export is a file only; no
 board was changed.
 
+Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
+
 ## Current scaffold status
 
 - Instructor scaffolding is complete for composition, migrations, security,
@@ -33,10 +35,11 @@ board was changed.
   instructor commands, runtime smoke results and expected TODO failures. Day
   learner evidence stays unclaimed until learner work is completed.
 
+Each day retains 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. Incomplete study carries forward by reducing implementation scope; it does not add hours.
+
 ## Checks available now
 
 ```sh
-python3 -m unittest scripts/test_dsa_review_queue.py scripts/test_dsa_review_queue_45_56.py scripts/test_dsa_review_queue_57_70.py
 npm --prefix frontend ci --cache /tmp/capstone-npm-cache
 npm --prefix frontend run build:local
 npm --prefix frontend test
@@ -50,4 +53,3 @@ Oracle JDK 21 and temporary proxy settings outside the repository. `npm audit
 advisory review is still pending. See
 [`evidence/continuation-57-70/scaffold-verification.json`](../../../evidence/continuation-57-70/scaffold-verification.json)
 for exact results and blockers.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

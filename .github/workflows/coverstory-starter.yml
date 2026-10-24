@@ -47,7 +47,7 @@ jobs:
         run: ./mvnw -B -ntp test
       - name: Verify continuation manifest
         run: python3 -m unittest scripts/test_continuation_113_126_manifest.py scripts/test_continuation_127_140_manifest.py
-      - name: Verify DSA and StreamForge roadmap manifests
+      - name: Verify engineering roadmap manifests and curriculum
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Verify StreamForge local fixture infrastructure
         run: python3 -m unittest ai.streamforge.tests.test_infrastructure ai.streamforge.tests.test_evaluation_infrastructure ai.streamforge.tests.test_evaluation_adapter ai.streamforge.tests.test_content_infrastructure ai.streamforge.tests.test_content_cli.ContentManifestPreflightTest scripts.test_streamforge_183_196_manifest

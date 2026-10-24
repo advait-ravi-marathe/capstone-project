@@ -12,7 +12,6 @@ installed scaffold, or TODO failure is not completion evidence.
 | Freshness, owner access, and safe API errors | Day 3, 11–12 attempt output | open | missing |
 | Browser-to-database acceptance | Day 28 integrated test and PostgreSQL output | blocked | prerequisites incomplete |
 | Disposable fixture reset | Day 29 command output on a disposable `*_test` database | open | missing |
-| DSA attempts and due reviews | [error-log template](dsa-error-log-template.md); actual attempt and D/D+3/D+7/D+21 dates missing | open | missing |
 | Remaining blockers and ranked next scope | Learner's Day 30 architecture note | open | missing |
 
 Change `open` only when linked evidence exists and records the command, exit

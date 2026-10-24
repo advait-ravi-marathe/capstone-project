@@ -26,4 +26,4 @@ It currently remains red at the existing Day 12 owner-policy TODO. The counter a
 
 Predict separately: (1) valid session, missing token → 403, no handler call; (2) valid session, wrong token → 403, no handler call; (3) valid session and current token → CSRF passes, later authorization/business checks still decide. A valid token with the wrong owner must still be denied. Do not disable CSRF or invent a constant token.
 
-**Readiness prompt:** Which boundary checks the token, which establishes identity, and which checks resource ownership? DSA is unchanged; engineering remains 25/85/10.
+**Readiness prompt:** Which boundary checks the token, which establishes identity, and which checks resource ownership? Engineering remains within 25/85/10.

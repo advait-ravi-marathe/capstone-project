@@ -40,11 +40,7 @@ class Day141To154InfrastructureTest {
             assertEquals(d.path("date").asText(),c.path("date").asText());
             assertEquals(d.path("title").asText(),c.path("title").asText());
             assertEquals(d.path("engineering").toString(),c.path("engineering").toString());
-            assertEquals(d.path("java_dsa").toString(),c.path("java_dsa").toString());
             assertEquals(120,d.path("engineering").path("budget_minutes").asInt());
-            assertEquals(60,d.path("java_dsa").path("budget_minutes_by_exercise_count").path("1_or_2_substantive_exercises").asInt());
-            assertEquals(75,d.path("java_dsa").path("budget_minutes_by_exercise_count").path("3_substantive_exercises").asInt());
-            assertEquals(90,d.path("java_dsa").path("budget_minutes_by_exercise_count").path("4_substantive_exercises").asInt());
             assertEquals(1500,d.path("engineering").path("study_total_seconds").asInt());
             Path contract=Path.of(d.path("contract_file").asText());
             String text=Files.readString(contract);

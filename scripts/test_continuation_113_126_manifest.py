@@ -31,15 +31,11 @@ class ContinuationManifestTests(unittest.TestCase):
             self.assertEqual(day["date"], card["date"])
             self.assertEqual(day["title"], card["title"])
             self.assertEqual(day["engineering"], card["engineering"])
-            self.assertEqual(day["java_dsa"], card["java_dsa"])
-            self.assertEqual({"1_or_2_substantive_exercises": 60, "3_substantive_exercises": 75, "4_substantive_exercises": 90}, day["java_dsa"]["budget_minutes_by_exercise_count"])
-            self.assertEqual({"1_or_2": 180, "3": 195, "4": 210}, card["budget_minutes_by_dsa_tier"])
             self.assertEqual(120, day["engineering"]["budget_minutes"])
             self.assertEqual({"implementation_and_testing": 85, "concept_or_course": 25, "evidence": 10}, day["engineering"]["allocation_minutes"])
             study = day["engineering"]["study_seconds"]
             self.assertEqual(1500, study["total"])
             self.assertEqual(1500, study["video"] + study["worked_reference"] + study["teachback"])
-            self.assertFalse(day["java_dsa"]["new_anchor_required"])
             contract = ROOT / day["contract_file"]
             self.assertTrue(contract.is_file(), contract)
             text = contract.read_text()

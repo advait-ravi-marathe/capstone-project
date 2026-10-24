@@ -39,18 +39,8 @@ class Day99To112InfrastructureTest {
             assertEquals(day.path("title").asString(), card.path("title").asString());
             assertEquals(day.path("engineering"), card.path("engineering"),
                     "ticket export must preserve the canonical daily scope, selector, and course block");
-            assertTrue(day.path("java_dsa").path("budget_minutes").isNull());
-            assertEquals(60, day.path("java_dsa").path("budget_minutes_by_exercise_count").path("1_or_2_substantive_exercises").asInt());
-            assertEquals(75, day.path("java_dsa").path("budget_minutes_by_exercise_count").path("3_substantive_exercises").asInt());
-            assertEquals(90, day.path("java_dsa").path("budget_minutes_by_exercise_count").path("4_substantive_exercises").asInt());
-            String queue = day.path("java_dsa").path("review_queue_command").asString();
-            assertEquals("python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day " + (99 + index), queue);
-            assertTrue(day.path("java_dsa").path("problem_id").isNull(), "no new DSA anchor is assigned");
             assertEquals("not_attempted", day.path("learner_status").asString());
             assertEquals(120, day.path("engineering").path("budget_minutes").asInt());
-            assertEquals(180, manifest.path("daily_budget_minutes_by_dsa_tier").path("1_or_2_substantive_exercises").asInt());
-            assertEquals(195, manifest.path("daily_budget_minutes_by_dsa_tier").path("3_substantive_exercises").asInt());
-            assertEquals(210, manifest.path("daily_budget_minutes_by_dsa_tier").path("4_substantive_exercises").asInt());
             JsonNode study = day.path("engineering").path("concept_course");
             assertEquals(1500, study.path("video_seconds").asInt()
                     + study.path("worked_reference_seconds").asInt()

@@ -26,9 +26,7 @@ The existing North Star's market scan is a bounded source review, not a census o
 
 ## Preserve the established learning model
 
-Through Day 171, engineering remains **120 minutes**: 25 study, 85 implementation/tests, 10 evidence. DSA stays in the existing actual-attempt queue, with 60 minutes for one or two substantive exercises, 75 for three, and 90 for four; daily total is 180/195/210 minutes. Do not add problems to fill a tier or treat short recall as a full exercise.
-
-From Day 172 onward, engineering is **165 minutes**, plus one shared **45-minute** block for interview practice and unfinished DSA reviews, total 210 minutes. Preserve existing recovery days, actual first-attempt dates, D/D+3/+7/+21 rules, assistance labels, transfer history, overdue priority and unfinished work. No new guided DSA anchors after Day 150. This FDE framing uses existing explanation/evidence time; it adds no extra essay, feature, course or meeting.
+Through Day 171, engineering remains **120 minutes**: 25 study, 85 implementation/tests, and 10 evidence. From Day 172 onward, engineering is **165 minutes**, plus one shared **45-minute** interview-practice block, total 210 minutes. Preserve existing recovery days, dates, learner status, and unfinished work. This FDE framing uses existing explanation/evidence time; it adds no extra essay, feature, course or meeting.
 
 ## Three-year outcome ladder
 
@@ -104,7 +102,5 @@ Use the existing project evidence, not another tracker. The nine approved dimens
 For each assessment record dimension, evidence scope, linked artifact, person's role, assistance, reviewer/date, rationale and limitations. Distinguish instructor scaffold, learner portfolio, simulated enterprise and professional work. An unreviewed dimension is `unassessed`, not automatically 0. Evidence collection states (`not_requested`, `reported_awaiting_verification`, `verified`, `unavailable`) are separate from scores. This amendment awards no new personal scores. Preserve prior career claims and provenance; verify shareable artifacts without copying confidential employer/customer material. A capstone may support level 1 only with actual learner evidence; levels 2–4 need linked real professional scope/outcomes, not polished simulation.
 
 ## Governance and limits
-
-Preserve all existing 196 stories, native dates/sprints, DSA rules, current contracts, tests and evidence history. Plan practically in the existing 14-day cadence rather than prepopulating three years of daily assignments. Java/Spring remains the primary backend path, React the frontend, and Python is used where appropriate for AI. Certifications follow demonstrated work and current official guidance; no exam, purchase or readiness is authorized here. Add Kubernetes, brokers, caches or paid cloud only when a measured need and approval justify them.
 
 No cloud resources/spend, accounts, credentials, access changes, public synthetic identity, real customer/PII/media ingestion, certification purchases or professional ownership claims are authorized by this document. It records a portfolio direction and evidence boundaries; it does not claim the learner completed any work, deployed a production AI system, served a customer, or attained Senior/Staff readiness.

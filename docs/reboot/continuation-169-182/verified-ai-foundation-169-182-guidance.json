@@ -6,7 +6,6 @@
     "engineeringMinutesDays169To171": 120,
     "engineeringMinutesDay172Onward": 165,
     "interviewMinutesDay172Onward": 45,
-    "newGuidedDsaAfterDay150": false,
     "project": "Python standard library; synthetic local fixtures; fixed temporal split; train-only fit; deterministic local JSON; no cloud accounts, SDK calls, enrollment, exam registration, purchases, or deployed services.",
     "runtime": "Python 3.12.14, as confirmed by parent",
     "studyMinutesDay172Onward": 35,
@@ -220,7 +219,6 @@
     "Keep the same global ordering for all users to make the nonpersonalized claim honest. Adding user-specific seen-item filtering changes final results and requires a declared protocol.",
     "Include hand-calculated metric cases, tied counts, zero-count items, all-miss rankings, duplicate recommendation rejection, invalid K, leakage sentinel, and byte-stable reruns.",
     "Treat synthetic metrics as demonstrations that calculations work, not evidence of personalization, causal lift, real-user quality, fairness, or production readiness.",
-    "No new guided DSA after Day 150; the 45-minute interview block after Day 171 is separate from engineering and should not silently become a new guided DSA syllabus.",
     "Freeze K=3, tie handling, positive-event relevance, candidate eligibility, and empty-truth policy before scoring. Precision denominator always remains 3. Recall retains all distinct positive holdout targets, including candidate-unreachable future items."
   ]
 }

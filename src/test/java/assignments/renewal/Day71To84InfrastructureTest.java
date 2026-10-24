@@ -33,13 +33,6 @@ class Day71To84InfrastructureTest {
             assertEquals(start.plusDays(i).toString(), day.get("date").asString());
             assertEquals("not_attempted", day.get("learner_status").asString());
             assertEquals(120, day.get("engineering").get("budget_minutes").asInt());
-            assertTrue(day.get("java_dsa").get("budget_minutes").isNull());
-            assertEquals(60, day.get("java_dsa").get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
-            assertEquals(75, day.get("java_dsa").get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
-            assertEquals(90, day.get("java_dsa").get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
-            assertEquals(180, manifest.get("daily_budget_minutes").get("total_by_dsa_tier_minutes").get("1_or_2").asInt());
-            assertEquals(195, manifest.get("daily_budget_minutes").get("total_by_dsa_tier_minutes").get("3").asInt());
-            assertEquals(210, manifest.get("daily_budget_minutes").get("total_by_dsa_tier_minutes").get("4").asInt());
             assertEquals(85, day.get("engineering").get("allocation_minutes").get("implementation_and_testing").asInt());
             assertEquals(25, day.get("engineering").get("allocation_minutes").get("concept_or_course").asInt());
             assertEquals(10, day.get("engineering").get("allocation_minutes").get("evidence").asInt());
@@ -47,11 +40,9 @@ class Day71To84InfrastructureTest {
                     day.get("engineering").get("evidence_reference"),
                     day.get("engineering").get("acceptance_test_path"),
                     day.get("engineering").get("focused_acceptance_test_path"),
-                    day.get("engineering").get("infrastructure_test_path"),
-                    day.get("java_dsa").get("guide_path")}) {
+                    day.get("engineering").get("infrastructure_test_path")}) {
                 if (reference == null || reference.isNull()) continue;
-                String path = reference.asString();
-                assertTrue(Files.isRegularFile(Path.of(path)), "missing " + path);
+                assertTrue(Files.isRegularFile(Path.of(reference.asString())), "missing " + reference.asString());
             }
             if (day.get("day").asInt() == 83) {
                 assertFalse(day.get("engineering").get("acceptance_commands").isEmpty());
@@ -59,25 +50,19 @@ class Day71To84InfrastructureTest {
                         .startsWith("installed_"));
             }
             assertEquals(day.get("date").asString(), card.get("date").asString());
-            assertTrue(card.get("budget_minutes").isNull());
-            assertEquals(180, card.get("budget_minutes_min").asInt());
-            assertEquals(210, card.get("budget_minutes_max").asInt());
+            assertEquals(120, card.get("engineering").get("budget_minutes").asInt());
+            assertFalse(card.has("budget_minutes_min"));
+            assertFalse(card.has("budget_minutes_max"));
             JsonNode source = day.get("engineering").get("concept_course").get("resources").get(0);
             assertEquals("https", URI.create(source.get("url").asString()).getScheme());
         }
     }
 
-    @Test void fixedBoundsAndDsaAnchorsAreSafeAndUnique() throws Exception {
+    @Test void fixedCapacityBoundsAreSafe() throws Exception {
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
         assertEquals(2, manifest.get("capacity_decision").get("application_permits").asInt());
         assertEquals(4, manifest.get("capacity_decision").get("existing_hikari_maximum_pool_size").asInt());
         assertEquals(1000, manifest.get("capacity_decision").get("connection_timeout_millis").asInt());
-        Set<Integer> ids = new HashSet<>();
-        for (JsonNode anchor : new ObjectMapper().readTree(Files.readString(
-                Path.of("docs/reboot/dsa/canonical-anchors.json"))).get("anchors"))
-            assertTrue(ids.add(anchor.get("problem_id").asInt()), "duplicate canonical anchor " + anchor.get("problem_id"));
-        assertTrue(ids.contains(112));
-        assertTrue(ids.contains(230));
         assertTrue(Files.readString(Path.of("src/main/resources/application-local.properties"))
                 .contains("spring.datasource.hikari.connection-timeout=1000"));
     }

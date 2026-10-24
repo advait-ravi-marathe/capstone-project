@@ -2,40 +2,11 @@
 
 ## Work budget
 
-Total scheduled learning is 180, 195, or 210 minutes according to the DSA tier: 60/75/90 minutes of Java DSA separately,
-plus 120 engineering minutes. Engineering is 85 minutes implementation and
+Total scheduled engineering time is 120 minutes: 85 minutes implementation and
 testing, 25 minutes concept/course, and 10 minutes evidence. Instructor-owned
 scaffolding and setup are outside this budget. There is no extra mandatory
 setup work. Record actual time; do not claim this allocation is validated until
 a learner attempt has been measured.
-
-## Guided DSA study — LeetCode 121
-
-An earlier version of this guide called LC121 the planned first independent attempt. Preserve that historical description as a plan only: independent-solve credit remains zero, and no confirmed dated actual-attempt event is recorded here. The existing reports of three screenshots and seven assisted practice sessions remain assisted practice, not independent solves. Do not backfill dates or reclassify those sessions.
-
-The corrected initial sequence uses LeetCode Premium's problem statement/editorial as guided learning for LC121 on study Day1. Attempt the problem before opening the editorial when possible; if editorial guidance is used, record the attempt as assisted even if accepted. For this single guided exercise, use the 60-minute tier. Derive D+3, D+7 and D+21 only from an actual first-attempt date. Earlier planned dates (23 Oct, 27 Oct, 10 Nov) are forecasts only and do not establish an attempt or review. See the [shared DSA policy](reboot/dsa/guided-transfer-policy.md) and [error-log template](reboot/dsa-error-log-template.md).
-
-
-**Preserved learner record:** Advait reported the DSA course/learning portion complete; the independent solve and reviews remain unrecorded. The earlier planned first-attempt date of 20 October 2026 and forecast reviews of 23 October, 27 October, and 10 November remain forecasts only; actual attempt dates determine due work. The historical reports of three screenshots and seven assisted practice sessions remain assisted practice.
-
-The learner method is `src/main/java/assignments/dsa/BestTimeToBuySellStock.java`
-and its fixed acceptance tests are
-`src/test/java/assignments/dsa/BestTimeToBuySellStockAcceptanceTest.java`.
-Implement the maximum profit from one buy followed by one later sell. Return
-zero for null, empty, one-day, or non-profitable input; do not mutate
-the array. Prices follow LeetCode 121's inclusive range `0..10_000`. Expected
-target: O(n) time and O(1) auxiliary space. Explain descending-price, repeated-
-price, and minimum/maximum boundary cases. The current main revision contains
-a learner-authored implementation. This documentation update did not run the
-DSA acceptance selector; independent-solve credit remains unrecorded until the
-learner confirms an unaided attempt.
-
-Run the acceptance check separately and record its actual result; it is no
-longer an expected TODO failure:
-
-```sh
-./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test
-```
 
 ## Day 1 engineering task: API bridge first, quote selection separately
 
@@ -61,3 +32,7 @@ The original quote-selection behavior and edge cases are unchanged: preserve fir
 Use the existing 85-minute practice/testing allocation for the reference and small practice variation; use the 10-minute evidence allocation for exact commands/results and one concise request-to-response explanation. If the bridge is unclear, record the specific gap and carry quote-selection implementation forward within the existing plan. Do not add hours or an architecture case study.
 
 **AWS certification:** No AWS course, account, infrastructure, or cloud task is assigned on Day 1. The assigned concept is local backend API learning.
+
+## Separate DSA track
+
+All DSA assignments, code, tests, schedules, and attempt history are maintained only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14). The Day 1 engineering contract here remains unchanged.

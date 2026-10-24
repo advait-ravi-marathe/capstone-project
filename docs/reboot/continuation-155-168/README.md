@@ -4,10 +4,12 @@
 
 - Base source: `5dc558eeda441177dc4aac87725d0a18417c5abd`; isolated branch `learning/streamforge-days-155-168`.
 - Sprint 12 forecast: March 23–April 5, 2027. Recovery days: 161 and 168.
-- Engineering stays 120 minutes/day (25 study, 85 practice/test, 10 evidence). DSA is actual-attempt review/transfer/repair only: 1–2 substantive exercises 60 minutes, 3 are 75, 4 are 90. Total is 180/195/210. No new guided anchors after Day 150; do not infer attempts or reset clocks. Day 172+ time changes are outside this batch.
+- Engineering remains 120 minutes/day (25 study, 85 practice/testing, 10 evidence).
 - Python interpreter observed before publication: Python 3.12.14. No third-party Python dependency is required.
 - The earlier Day 153/154 learner-readiness gate remains evidence-based. A starter or instructor witness is not learner completion. If readiness is missing, use the slot for named carry-forward remediation.
 - No AWS/cloud resource, credential, spending, deployment, external media ingestion, user history, or real learner data.
+
+Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
 
 ## Data contract
 
@@ -53,4 +55,3 @@ python3 -m ai.streamforge.prepare --fixture basic
 ```
 
 Full infrastructure/regression and manifest checks are recorded in the local receipt. Temporary witnesses are instructor evidence only, are restored byte-for-byte, and do not confer learner completion.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

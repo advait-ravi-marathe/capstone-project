@@ -6,7 +6,9 @@ Base: branch `learning/streamforge-days-169-182`, exact parent receipt commit `f
 
 ## Clock and prerequisites
 
-Each day uses 165 minutes of engineering (35 study, 115 practice/tests, 15 evidence) plus 45 shared minutes for interview questions or remaining actual DSA reviews: 210 total. Days 189 and 196 are recovery days. Preserve actual D/D+3/+7/+21 due dates and failed/overdue priority. Keep the one 30-minute substantive exercise, 10-minute recall, and 5-minute evidence policy; no new guided DSA anchors after Day 150. A curated prompt is not an actual company question. Unfinished earlier learner gates remain named carry-forward remediation.
+Each day uses 165 engineering minutes (35 study, 115 practice/tests, 15 evidence) plus 45 minutes for interview-question practice, 210 minutes total. Days 189 and 196 are recovery days. Preserve unfinished engineering work in the existing recovery flow; do not infer completion from a date.
+
+Each day uses 165 engineering minutes (35 study, 115 practice/testing, 15 evidence) plus 45 minutes of interview practice, 210 minutes total. Days 189 and 196 remain recovery days. This repository links algorithm practice to its separate home and does not duplicate its schedule.
 
 ## Frozen protocol
 
@@ -64,6 +66,3 @@ Learner acceptance intentionally remains red at named TODOs until implemented:
 python3 -m unittest ai.streamforge.tests.test_content_contracts ai.streamforge.tests.test_content_adversarial ai.streamforge.tests.test_content_cli
 python3 -m ai.streamforge.content_evaluate --fixture basic
 ```
-
-Before publication resolve every exported selector with `unittest.TestLoader`, reject `_FailedTest` and zero tests, and ensure every manifest/contract/owner export agrees on date, selector and 165+45 budget with no future-day dependencies. Record exact-source CI, actual witness failures and positive controls, pre/post hashes and restored TODOs separately. Temporary conformance witnesses prove test discrimination, not learner completion. Keep prior Java/React/Python/DSA infrastructure and actual-attempt history byte-identical. Only add the authorized branch to the existing CI trigger; no permission expansion.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

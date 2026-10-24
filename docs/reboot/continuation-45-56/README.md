@@ -8,10 +8,11 @@ This isolated additive branch continues the 31–44 policy lifecycle slice from 
 - [Days 45–56 authoritative allocation](fde45-56-v2-curriculum.json) and [verified source catalogue](fde45-56-v2-guidance.json).
 - [Worked teaching guides](worked/) with the complete independent examples before each learner transfer, including the Day55 [trace-only browser helper](../../../frontend/e2e/teaching/observe-parcel-read-reference.mjs) and Day56 [synthetic expected sheet](worked/day-56-observation.expected.json).
 - [Day56 renewal observation record](../../../evidence/continuation-45-56/renewal-preview-day-56.observation.json) is a separate `not_run` template; existing daily evidence remains unchanged.
-- [DSA map](dsa/top-150-map.md); actual DSA history stays in the shared [attempt log](../continuation-31-44/dsa/actual-attempt-log.json).
 - [Prior verification receipt](../../../evidence/continuation-45-56/verification.json) documents the earlier Days45–56 scaffold at its recorded SHA; it is historical and does not report results for this revision.
+
+Each day retains 120 engineering minutes (25 study, 85 practice/testing, 10 evidence). Review days follow their existing contracts and do not add implementation scope.
 
 Scope is one synthetic, read-only annual renewal preview. It does not accept, bind, pay, change coverage, or promise insurance. The current snapshot premium is shown as reference-only; the work does not reprice or create a renewed policy. The 270-day horizon remains a planning frame, not a claim that every later day is approved or mastered.
 
-Daily total is 180/195/210 minutes: 60/75/90 DSA by exercise count + unchanged 120 engineering (85 implementation/testing, 25 concept/course, 10 evidence). D+3/D+7/D+21 review dates are recalculated from real first-attempt dates; no attempt or review is marked complete by this scaffold.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). This prospective revision adds worked discovery, projection, API, database and observed-demo teaching within the same 25/85/10 engineering allocation. It preserves dates, story status, DSA policy/history and the original learner-owned TODO seams. Course metadata is source reference only; no video viewing or learner completion is inferred.
+
+Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. Recovery-day scope remains defined by the existing contracts.

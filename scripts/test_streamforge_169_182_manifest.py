@@ -25,19 +25,14 @@ class StreamForge169182ManifestTest(unittest.TestCase):
             self.assertEqual(first + timedelta(days=offset), date.fromisoformat(day["date"]))
             self.assertTrue((BATCH / day["contract_file"]).is_file())
             self.assertEqual("starter_draft_not_board_published", day["status"])
-            self.assertFalse(day["interview_or_dsa"]["new_guided_anchors_allowed"])
-            self.assertIn("--on-date \"$(TZ=Asia/Kolkata date +%F)\"", day["interview_or_dsa"]["queue_command"])
-            self.assertIn(f"--roadmap-day {day['day']}", day["interview_or_dsa"]["queue_command"])
             prose = (BATCH / day["contract_file"]).read_text(encoding="utf-8")
             self.assertIn(day["title"], prose)
-            self.assertIn("actual local study dates", prose)
             if day["day"] >= 172:
                 self.assertIn("165 engineering minutes", prose)
                 self.assertIn("45 minutes total", prose)
                 self.assertIn("not additive", prose)
             else:
                 self.assertIn("120 engineering minutes", prose)
-                self.assertIn("60/75/90 minutes", prose)
 
     def test_budget_transition_is_explicit_at_day_172_including_recoveries(self):
         for day in self.manifest["days"]:
@@ -47,11 +42,8 @@ class StreamForge169182ManifestTest(unittest.TestCase):
             self.assertEqual(10 if day["day"] <= 171 else 15, allocation["evidence"])
             if day["day"] <= 171:
                 self.assertEqual(120, engineering["budget_minutes"])
-                self.assertEqual({"1_or_2": 60, "3": 75, "4": 90},
-                                 day["interview_or_dsa"]["budget_minutes_by_substantive_exercise_count"])
-                self.assertEqual([180, 195, 210], day["interview_or_dsa"]["total_daily_minutes_by_dsa_tier"])
             else:
-                block = day["interview_or_dsa"]
+                block = day.get("interview_practice", {})
                 self.assertEqual(165, engineering["budget_minutes"])
                 self.assertEqual(45, block["budget_minutes"])
                 self.assertEqual(210, block["total_daily_minutes"])
@@ -70,7 +62,6 @@ class StreamForge169182ManifestTest(unittest.TestCase):
             self.assertEqual(source["date"], card["date"])
             self.assertEqual(source["title"], card["title"])
             self.assertEqual(source["engineering"]["budget_minutes"], card["engineering"]["minutes"])
-            self.assertEqual(source["interview_or_dsa"], card["interview_or_remaining_reviews"])
             self.assertEqual("unobserved_not_implied_by_scaffold", card["learner_status"])
             self.assertEqual("not_recorded", card["evidence_status"])
             self.assertIsNone(card["board_ticket_id"])

@@ -23,7 +23,6 @@ class Day84ContractInfrastructureTest {
                     stories.path("cards").get(i).path("title").asText(), "title for day "
                             + manifest.path("days").get(i).path("day").asInt());
         }
-        assertFalse(manifest.path("dsa_revision_policy").path("actual_attempt_dates_supplied").asBoolean());
         assertTrue(manifest.path("scope").asText().contains("Reuse the completed Day48 owner-scoped SQL"));
         assertTrue(manifest.path("capacity_decision").path("pool_availability_guarantee").asText().startsWith("none;"));
         assertEquals(83, manifest.path("days").get(12).path("day").asInt());

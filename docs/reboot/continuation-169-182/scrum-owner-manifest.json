@@ -20,9 +20,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 180,
-      "budget_minutes_min": 180,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 120,
         "allocation": {
@@ -36,19 +33,11 @@
         "budget_minutes": null,
         "maximum_substantive_coding_exercises": null,
         "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 169",
-        "forecast_is_not_attempt": true,
         "budget_minutes_by_substantive_exercise_count": {
           "1_or_2": 60,
           "3": 75,
           "4": 90
-        },
-        "total_daily_minutes_by_dsa_tier": [
-          180,
-          195,
-          210
-        ],
-        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+        }
       },
       "learner_seam": "positive_pairs",
       "prerequisite_days": [
@@ -62,7 +51,8 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day_number": 170,
@@ -71,9 +61,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 180,
-      "budget_minutes_min": 180,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 120,
         "allocation": {
@@ -87,19 +74,11 @@
         "budget_minutes": null,
         "maximum_substantive_coding_exercises": null,
         "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 170",
-        "forecast_is_not_attempt": true,
         "budget_minutes_by_substantive_exercise_count": {
           "1_or_2": 60,
           "3": 75,
           "4": 90
-        },
-        "total_daily_minutes_by_dsa_tier": [
-          180,
-          195,
-          210
-        ],
-        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+        }
       },
       "learner_seam": "cutoff_candidates",
       "prerequisite_days": [
@@ -110,7 +89,8 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day_number": 171,
@@ -119,9 +99,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 180,
-      "budget_minutes_min": 180,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 120,
         "allocation": {
@@ -135,19 +112,11 @@
         "budget_minutes": null,
         "maximum_substantive_coding_exercises": null,
         "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 171",
-        "forecast_is_not_attempt": true,
         "budget_minutes_by_substantive_exercise_count": {
           "1_or_2": 60,
           "3": 75,
           "4": 90
-        },
-        "total_daily_minutes_by_dsa_tier": [
-          180,
-          195,
-          210
-        ],
-        "actual_attempt_clock": "D, D+3, D+7, D+21 based on actual first attempt in Asia/Kolkata; original due dates and unfinished slots persist."
+        }
       },
       "learner_seam": "training_popularity",
       "prerequisite_days": [
@@ -156,7 +125,8 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied."
     },
     {
       "day_number": 172,
@@ -165,9 +135,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -176,19 +143,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 172",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "rank_popularity",
       "prerequisite_days": [
@@ -197,7 +162,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 173,
@@ -206,9 +173,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -217,19 +181,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 173",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "holdout_targets",
       "prerequisite_days": [
@@ -237,7 +199,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 174,
@@ -246,9 +210,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -257,19 +218,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 174",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "score_viewer",
       "prerequisite_days": [
@@ -278,7 +237,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 175,
@@ -287,9 +248,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -298,19 +256,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 175",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "prior_only_169_174",
       "prerequisite_days": [
@@ -323,7 +279,9 @@
       ],
       "recovery_day": true,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 176,
@@ -332,9 +290,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -343,19 +298,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 176",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "evaluate_baseline",
       "prerequisite_days": [
@@ -367,7 +320,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 177,
@@ -376,9 +331,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -387,19 +339,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 177",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "compare_baselines",
       "prerequisite_days": [
@@ -411,7 +361,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 178,
@@ -420,9 +372,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -431,19 +380,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 178",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "assemble_evaluation_report",
       "prerequisite_days": [
@@ -455,7 +402,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 179,
@@ -464,9 +413,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -475,19 +421,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 179",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "evaluate_fixture",
       "prerequisite_days": [
@@ -503,7 +447,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 180,
@@ -512,9 +458,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -523,19 +466,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 180",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "supplied_independent_negative_assertions",
       "prerequisite_days": [
@@ -552,7 +493,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 181,
@@ -561,9 +504,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -572,19 +512,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 181",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "supplied_fresh_process_evidence_assertions",
       "prerequisite_days": [
@@ -602,7 +540,9 @@
       ],
       "recovery_day": false,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     },
     {
       "day_number": 182,
@@ -611,9 +551,6 @@
       "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
-      "budget_minutes": 210,
-      "budget_minutes_min": 210,
-      "budget_minutes_max": 210,
       "engineering": {
         "minutes": 165,
         "allocation": {
@@ -622,19 +559,17 @@
           "evidence": 15
         }
       },
-      "interview_or_remaining_reviews": {
-        "mode": "interview_questions_or_unfinished_actual_attempt_reviews",
+      "interview_practice": {
         "budget_minutes": 45,
         "maximum_substantive_coding_exercises": 1,
-        "new_guided_anchors_allowed": false,
-        "queue_command": "python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day 182",
-        "forecast_is_not_attempt": true,
         "allocation_minutes": {
           "one_substantive_timebox": 30,
           "recall_or_explain_back": 10,
           "evidence_and_next_due": 5
         },
-        "total_daily_minutes": 210
+        "total_daily_minutes": 210,
+        "mode": "interview_question_practice",
+        "scope": "Sourced interview-design questions and interview practice only."
       },
       "learner_seam": "prior_only_169_181",
       "prerequisite_days": [
@@ -654,7 +589,12 @@
       ],
       "recovery_day": true,
       "learner_status": "unobserved_not_implied_by_scaffold",
-      "evidence_status": "not_recorded"
+      "evidence_status": "not_recorded",
+      "review_practice_examples_note": "Curated explain-back prompts are not claims about actual company interview questions. Use the existing 45-minute interview-practice allocation; no company question bank is implied.",
+      "budget_minutes": 210
     }
-  ]
+  ],
+  "separate_learning_repository": {
+    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14"
+  }
 }

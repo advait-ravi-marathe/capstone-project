@@ -14,7 +14,6 @@ Transfer: implement existing atomic policy/receipt/event seam. Preserve exact ol
 
 Before editing, predict one changed input and its observable result. If the prediction is wrong, repeat this toy trace inside the study block and carry forward the learner seam; do not add time or infer completion from this guide.
 
-
 ## Executable SQL teaching trace
 
 The independent `LifecycleWorkedReferenceTest#day35BookingReceiptConflictRollsBackEveryNewRow` uses its own disposable PostgreSQL schema (`toy_booking`, `toy_receipt`, `toy_booking_event`). It seeds one old row in each table, begins a transaction on one connection, inserts a candidate booking and event, then collides on `(member-a,key-7)`. A fresh connection confirms all three tables still contain only `old`; the candidate was never published into the toy's in-memory replay slot. A fresh key-8 commits the three `new` rows; only after `commit()` returns does the toy publish its receipt. A retry returns that same receipt without another candidate construction. Run from repository root: `./mvnw -Dtest=LifecycleWorkedReferenceTest#day35BookingReceiptConflictRollsBackEveryNewRow test`.

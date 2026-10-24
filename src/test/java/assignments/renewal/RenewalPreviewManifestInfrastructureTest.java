@@ -101,22 +101,9 @@ class RenewalPreviewManifestInfrastructureTest {
                 assertFalse(resource.get("section").asString().isBlank());
             }
 
-            JsonNode dsa = day.get("java_dsa");
-            assertTrue(dsa.get("budget_minutes").isNull());
-            assertEquals(60, dsa.get("budget_minutes_by_exercise_count").get("1_or_2_substantive_exercises").asInt());
-            assertEquals(75, dsa.get("budget_minutes_by_exercise_count").get("3_substantive_exercises").asInt());
-            assertEquals(90, dsa.get("budget_minutes_by_exercise_count").get("4_substantive_exercises").asInt());
-            assertTrue(Files.isRegularFile(Path.of(dsa.get("guide_path").asString())));
-            assertTrue(Files.isRegularFile(Path.of(dsa.get("revision_log_path").asString())));
-            assertEquals("python3 scripts/dsa-review-queue.py --on-date \"$(TZ=Asia/Kolkata date +%F)\" --roadmap-day " + (45 + i),
-                    dsa.get("review_queue_command").asString());
-            int dayNumber = day.get("day").asInt();
-            assertEquals("dynamic_actual_attempt_queue", dsa.get("mode").asString());
-            assertTrue(dsa.get("problem_id").isNull());
-            assertTrue(dsa.get("review_anchors").isEmpty());
-            assertTrue(dsa.has("historical_planned_assignment"));
-            assertFalse(day.get("mandatory_new_problem").asBoolean());
-            assertTrue(card.get("title").asString().endsWith("DSA actual-attempt queue"));
+            assertFalse(day.has("java_dsa"), "DSA assignment is maintained in the separate repository");
+            assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14",
+                    manifest.get("separate_learning_repository").get("algorithm_practice").asString());
         }
     }
 
@@ -163,18 +150,12 @@ class RenewalPreviewManifestInfrastructureTest {
 
     private static String clock(int seconds) { return (seconds / 60) + ":%02d".formatted(seconds % 60); }
 
-    @Test void scopeStaysReadOnlyAndSharedQueueIncludesNewAnchors() throws Exception {
+    @Test void scopeStaysReadOnlyAndTransportTestsRemainInTheEngineeringRepo() throws Exception {
         JsonNode manifest = new ObjectMapper().readTree(Files.readString(BASE.resolve("manifest.json")));
         String scope = manifest.get("scope").asString().toLowerCase();
         assertTrue(scope.contains("read-only"));
         assertTrue(scope.contains("no renewal acceptance"));
         assertTrue(scope.contains("270-day horizon remains a planning frame"));
-        assertTrue(Files.readString(Path.of("scripts/dsa-review-queue.py")).contains("canonical-anchors.json"));
-        assertTrue(Files.isRegularFile(Path.of("scripts/test_dsa_review_queue_45_56.py")));
         assertTrue(Files.isRegularFile(Path.of("src/test/java/assignments/renewal/RenewalPreviewTransportInfrastructureTest.java")));
-        String dsaQueue = Files.readString(Path.of("scripts/dsa-review-queue.py"));
-        assertTrue(dsaQueue.contains("canonical"));
-        JsonNode attemptLog = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/continuation-31-44/dsa/actual-attempt-log.json")));
-        assertTrue(attemptLog.get("events").isArray(), "preserve existing actual-attempt history, whether empty or populated");
     }
 }

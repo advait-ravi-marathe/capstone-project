@@ -2,7 +2,7 @@
 
 This scaffold plans a local, quiesced A→B→A compatibility rehearsal using distinct immutable JARs and the existing V001–V005 database. It adds only a read-only, versioned report path using existing recovery inspection/classification. It does not establish cloud/deployment readiness or learner completion.
 
-Dates: 2027-03-13–2027-03-26 (Sprint 11); recovery days 147 and 154. Daily budget: DSA 60/75/90 minutes by substantive exercise count plus unchanged 120 engineering minutes (25 study, 85 practice/test, 10 evidence).
+Dates: 2027-03-13–2027-03-26 (Sprint 11); recovery days 147 and 154. Daily engineering budget: 120 minutes (25 study, 85 practice/testing, 10 evidence).
 
 Course reference: **Master Spring Boot 3 & Spring Framework 6 with Java**, course 4993276, in28Minutes Official. [Course page](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1). Catalog metadata was verified 2026-10-20; access and playback are unconfirmed, video content unaudited, and lesson deep links were not returned. Exact lesson IDs and durations are in `manifest.json`.
 
@@ -15,6 +15,8 @@ The matrix selectors consume the helper's immutable `baseline.jar`, `candidate.j
 Before Day 146 packaged checks, build the ordinary candidate from the repository root with `./mvnw -Plocal-app -DskipTests package`; this creates `target/capstone-starter-1.0-SNAPSHOT.jar` and does not depend on Day 148 artifact-pair setup. The inspection context validates requests before constructing Spring, disables Flyway/SQL initialization, refuses absent or mismatched migration history, and verifies the exact public column names and formatted types for V001–V005. This bounded preflight does not certify every check constraint, foreign key, default, or index. The v1 contract is [report-v1.md](report-v1.md). Its framed report is evidence, not authority: compare complete database snapshots independently.
 
 No AWS resources, credentials, grants, spending, deployment, schema changes, public endpoint or later-day work is authorized. Temporary witness success is instructor evidence only.
+
+Each day uses 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence.
 
 ## Focused official references
 
@@ -35,4 +37,3 @@ These links support the existing engineering study block; they are not extra stu
 - Day 151: [JUnit 6.1.3 User Guide](https://docs.junit.org/6.1.3/writing-tests/assertions.html) — Assertions.
 - Day 152: [Java 21 Process API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html) — waitFor, destroy, destroyForcibly, descendants, onExit.
 - Day 153: [AWS rollback safety](https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/) — testing rollback safety, version transitions.
-FDE alignment: See [the North Star amendment](../fde-north-star-amendment.md) and [reference-only alignment overlay](../fde-alignment.json). Existing curriculum, prerequisites, budgets, DSA history and learner status remain unchanged; this adds purpose and evidence boundaries, not completion credit.

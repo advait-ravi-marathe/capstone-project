@@ -30,9 +30,6 @@ class Continuation127To140ManifestTest(unittest.TestCase):
             self.assertEqual(120, e["budget_minutes"])
             self.assertEqual({"implementation_and_testing": 85, "concept_or_course": 25, "evidence": 10}, e["allocation_minutes"])
             self.assertEqual(1500, e["study_seconds"]["total"])
-            self.assertEqual({"1_or_2_substantive_exercises": 60, "3_substantive_exercises": 75, "4_substantive_exercises": 90}, day["java_dsa"]["budget_minutes_by_exercise_count"])
-            self.assertTrue(day["java_dsa"]["actual_attempts_only"])
-            self.assertFalse(day["java_dsa"]["new_anchor_required"])
 
     def test_course_metadata_titles_sections_durations_and_ticket_blocks_match(self):
         catalog = {c["course_id"]: c for c in self.manifest["course_catalog"]["courses"]}

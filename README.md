@@ -96,13 +96,7 @@ Run learner acceptance separately (expected TODO failures):
 ./mvnw -Plearner-tests -Dtest=QuoteSelectionAcceptanceTest,QuoteSelectionApiAcceptanceTest test
 ```
 
-The separate 60-minute Java DSA assignment is LeetCode 121. See the first
-section of [the Day 1 guide](docs/day-1.md), implement
-`src/main/java/assignments/dsa/BestTimeToBuySellStock.java`, and run:
-
-```sh
-./mvnw -Plearner-tests -Dtest=BestTimeToBuySellStockAcceptanceTest test
-```
+The Day 1 contract and engineering guide are documented in [the Day 1 guide](docs/day-1.md).
 
 `./mvnw -Plearner-tests test` is an aggregate legacy-inclusive learner suite;
 it also runs the older CAP-43, CAP-42, and CAP-45 TODO suites. It is not the
@@ -110,8 +104,8 @@ primary Day 1 command.
 
 The dated [30-day CoverStory contract index](docs/reboot/README.md) contains
 individual contract guides and a chronological manifest with sprint, concept,
-source link, DSA anchor/reviews, and scaffold/runtime evidence fields. Learner
-TODOs remain unimplemented; scaffold and runtime status are separate.
+source links, and scaffold/runtime evidence fields. Learner TODOs remain
+unimplemented; scaffold and runtime status are separate.
 
 The [Days 31–44 continuation](docs/reboot/continuation-31-44/README.md) adds a
 synthetic HomeSecure policy servicing lifecycle. It continues across two native
@@ -120,9 +114,9 @@ proposal only; no project board was updated.
 
 ## Legacy exercises retained
 
-The following earlier contracts remain in place and unchanged. Their old
-per-exercise time estimates are historical; the active dated plan uses the
-authoritative 60-minute DSA + 120-minute engineering daily allocation above.
+The following earlier engineering contracts remain in place and unchanged.
+Their old per-exercise time estimates are historical; the active dated plan
+uses 120 engineering minutes (25 study, 85 practice/testing, 10 evidence).
 
 ### CAP-43: event policy (90 minutes)
 
@@ -222,10 +216,9 @@ until the learner query is implemented. The combined learner suite is
 
 ## Study plan
 
-The authoritative daily allocation is 180 minutes: 60 minutes of Java DSA
-separately, plus 120 engineering minutes. Engineering time is 85 minutes for
+The active daily allocation is 120 engineering minutes: 85 minutes for
 implementation and testing, 25 minutes for concept/course work, and 10 minutes
-for evidence. Certification preparation is included in the related concept
+for evidence. Algorithm practice is maintained in the separate DSA repository. Certification preparation is included in the related concept
 allocation; no exam purchases are included. Project setup and instructor-
 provided fixtures, boilerplate, and test harnesses are outside the learner
 budget. Repository implementation belongs to the learner; the Scrum owner
@@ -246,3 +239,7 @@ historical contracts are retained, and no existing user database is migrated.
 No board update is included.
 
 The isolated [Days 99–112 continuation](docs/reboot/continuation-99-112/README.md) adds restart-safe local delivery contracts and fixed learner acceptance. It is not completion evidence and has not been added to the project board.
+
+## Separate DSA track
+
+DSA assignments and history are maintained only in the [DSA preparation repository](https://github.com/advait-ravi-marathe/dsa-prep/tree/b9d4706a9ead281a8881ab3767aa415ad6039f14).

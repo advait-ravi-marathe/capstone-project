@@ -31,13 +31,6 @@ class Day85To98InfrastructureTest {
             assertEquals(first.plusDays(i).toString(), day.path("date").asString());
             assertEquals("not_attempted", day.path("learner_status").asString());
             assertEquals(120, day.path("engineering").path("budget_minutes").asInt());
-            assertTrue(day.path("java_dsa").path("budget_minutes").isNull());
-            assertEquals(60, day.path("java_dsa").path("budget_minutes_by_exercise_count").path("1_or_2_substantive_exercises").asInt());
-            assertEquals(75, day.path("java_dsa").path("budget_minutes_by_exercise_count").path("3_substantive_exercises").asInt());
-            assertEquals(90, day.path("java_dsa").path("budget_minutes_by_exercise_count").path("4_substantive_exercises").asInt());
-            assertEquals(180, manifest.path("daily_budget_minutes").path("total_by_dsa_tier_minutes").path("1_or_2").asInt());
-            assertEquals(195, manifest.path("daily_budget_minutes").path("total_by_dsa_tier_minutes").path("3").asInt());
-            assertEquals(210, manifest.path("daily_budget_minutes").path("total_by_dsa_tier_minutes").path("4").asInt());
             assertEquals(85, day.path("engineering").path("allocation_minutes").path("implementation_and_testing").asInt());
             assertEquals(25, day.path("engineering").path("allocation_minutes").path("concept_or_course").asInt());
             assertEquals(10, day.path("engineering").path("allocation_minutes").path("evidence").asInt());
