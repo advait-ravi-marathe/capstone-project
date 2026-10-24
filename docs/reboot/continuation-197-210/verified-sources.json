@@ -1,77 +1,133 @@
 {
   "verified_at": "2026-10-24",
-  "scope": "Titles/section headings rechecked against the public primary pages. OpenAI Evals API is documented as read-only 2026-10-31 and shutdown 2026-11-30, so it is not a May 2027 dependency. Durable offline evaluation concepts only; no provider service is used.",
+  "scope": "Official source titles/headings were checked as of 2026-10-24. OpenAI Evals API is read-only 2026-10-31 and shuts down 2026-11-30; no May 2027 dependency. Evaluation uses local fixed examples only.",
   "sources": [
     {
       "key": "RETRIEVAL",
       "title": "Retrieval",
-      "provider": "OpenAI",
       "url": "https://platform.openai.com/docs/guides/retrieval",
       "sections": [
         "Retrieval"
       ],
-      "use": "Conceptual comparison only; no API/vector-store dependency."
+      "provider": "OpenAI",
+      "use": "Local fixed-case concepts only; no API/vector-store dependency."
     },
     {
       "key": "EVALS_LIFECYCLE",
       "title": "Working with evals",
-      "provider": "OpenAI",
       "url": "https://developers.openai.com/api/docs/guides/evals",
       "sections": [
         "Create an eval for a task"
       ],
-      "use": "Lifecycle caveat only: the Evals API becomes read-only 2026-10-31 and shuts down 2026-11-30. Sprint evaluation is implemented locally from fixed examples; do not use this API."
+      "provider": "OpenAI",
+      "use": "Lifecycle caveat only; no Evals API dependency."
     },
     {
       "key": "SAA_GUIDE",
       "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
-      "provider": "AWS",
       "url": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
       "sections": [
         "Exam content"
       ],
-      "use": "Current exam guide review; recheck exact version and current guide at execution.",
+      "provider": "AWS",
+      "use": "Record exact title/version/headings currently present; no readiness claim.",
       "domain_mapping": [
         "Design Secure Architectures",
         "Design Resilient Architectures",
         "Design High-Performing Architectures",
         "Design Cost-Optimized Architectures"
-      ],
-      "domain_weights": {
-        "Design Secure Architectures": "30%",
-        "Design Resilient Architectures": "26%",
-        "Design High-Performing Architectures": "24%",
-        "Design Cost-Optimized Architectures": "20%"
-      }
+      ]
     },
     {
       "key": "DEV_ASSOCIATE",
       "title": "AWS Certified Developer - Associate exam guide",
-      "provider": "AWS",
       "url": "https://aws.amazon.com/certification/certified-developer-associate/",
       "sections": [
         "Exam guide"
       ],
-      "use": "Current official guide only; no invented DVA-C03 content."
+      "provider": "AWS",
+      "use": "Record exact currently published guide version/headings; no invented exam version or domains."
     },
     {
-      "key": "NO_COURSE",
-      "title": "Course catalog audit",
-      "provider": "Local catalog records",
-      "url": "../course-learning-map.md",
+      "key": "AWS_SAA_COURSE_CATALOG",
+      "title": "Ultimate AWS Certified Solutions Architect Associate 2026",
+      "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
       "sections": [
-        "Catalog metadata and access caveat"
+        "CloudFormation Intro — Other Services (course 2196488, section 3172902, item 13528576)",
+        "IAM Introduction: Users, Groups, Policies — IAM & AWS CLI (course 2196488, section 6258010, item 26097996)"
       ],
-      "use": "Catalog audit only; do not treat as supporting coursework for readiness, security, packaging, or certification study."
+      "provider": "Udemy catalog metadata, last recorded 2026-10-20",
+      "use": "Optional metadata only; access/playback not rechecked. No purchase or completion inferred."
+    },
+    {
+      "key": "SPRING_SECURITY",
+      "title": "Spring Security Servlet Architecture",
+      "url": "https://docs.spring.io/spring-security/reference/servlet/architecture.html",
+      "sections": [
+        "Servlet Architecture"
+      ],
+      "provider": "Spring Security Reference",
+      "use": "Concept support for tracing existing local filter-chain behavior; course access is not implied."
+    },
+    {
+      "key": "AWS_SECURITY_GROUP",
+      "title": "AWS Security Group rules",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html",
+      "sections": [
+        "Security group rules"
+      ],
+      "provider": "AWS",
+      "use": "Private boundary concepts only; no cloud resource is created."
+    },
+    {
+      "key": "PLAYWRIGHT_PAGE",
+      "title": "Playwright Page API",
+      "url": "https://playwright.dev/docs/api/class-page",
+      "sections": [
+        "Page"
+      ],
+      "provider": "Playwright documentation",
+      "use": "Browser interaction reference only; package receipt preflight remains independently required."
+    },
+    {
+      "key": "DAY153_RECORD",
+      "title": "Day 153 A/B evidence record",
+      "url": "../continuation-141-154/contracts/day-153.md",
+      "sections": [
+        "Prerequisite and recovery inputs"
+      ],
+      "provider": "Repository",
+      "use": "Inspect the exact prior record and missing artifact/provenance; preserve learner status."
+    },
+    {
+      "key": "DAY75_READ_CONTRACT",
+      "title": "Day 75 owner-scoped renewal read contract",
+      "url": "../continuation-71-84/contracts/day-75.md",
+      "sections": [
+        "Acceptance and evidence"
+      ],
+      "provider": "Repository",
+      "use": "Review the existing read seam before running its acceptance."
+    },
+    {
+      "key": "PYTHON_SUBPROCESS",
+      "title": "subprocess — Subprocess management",
+      "url": "https://docs.python.org/3/library/subprocess.html",
+      "sections": [
+        "Using the subprocess module"
+      ],
+      "provider": "Python",
+      "use": "Support for fresh-process test semantics; no network service."
+    },
+    {
+      "key": "PYTHON_JSON",
+      "title": "json — JSON encoder and decoder",
+      "url": "https://docs.python.org/3/library/json.html",
+      "sections": [
+        "Basic Usage"
+      ],
+      "provider": "Python",
+      "use": "Canonical serialization reference."
     }
-  ],
-  "course_assignment": null,
-  "constraints": [
-    "Free/public docs fit within 35-minute engineering study block",
-    "No paid course, exam booking, cloud resource, credential, or networked runtime",
-    "Official source facts must be rechecked when daily work is performed"
-  ],
-  "separate_learning_repository": {
-    "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  ]
 }

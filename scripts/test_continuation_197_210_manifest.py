@@ -90,16 +90,30 @@ class Continuation197210ManifestTest(unittest.TestCase):
         for d in self.manifest["days"]:
             self.assertEqual(165,sum(d["workstream_minutes"].values()))
             self.assertEqual(d["workstream_minutes"],d["budget"]["workstream_minutes"])
-            self.assertEqual(d["selectors"],next(x for x in self.owner["cards"] if x["day_number"]==d["day"])["selectors"])
+            card=next(x for x in self.owner["cards"] if x["day_number"]==d["day"])
+            self.assertEqual(d["selectors"],card["selectors"])
+            self.assertEqual(d["task_minutes"],card["task_minutes"])
             contract=(BATCH/"contracts"/f"day-{d['day']}.md").read_text()
             self.assertIn(d["engineering_architecture"]["decision"],(BATCH/"assistant-architecture-notes.md").read_text())
             self.assertTrue(all(x in contract for x in d["selectors"]))
         self.assertEqual(1380,sum(d["workstream_minutes"]["coverstory_project_recovery_minutes"] for d in self.manifest["days"]))
         self.assertEqual(180,sum(d["workstream_minutes"]["offline_ai_implementation_evaluation_minutes"] for d in self.manifest["days"]))
+        for d in self.manifest["days"]:
+            self.assertEqual({"project_recovery","offline_ai","core_study","certification_practice","evidence"},set(d["task_minutes"]))
+            self.assertIn(str(d["workstream_minutes"]["coverstory_project_recovery_minutes"]),d["task_minutes"]["project_recovery"])
+            self.assertIn(str(d["workstream_minutes"]["offline_ai_implementation_evaluation_minutes"]),d["task_minutes"]["offline_ai"])
         for day in (203,209):
             d=self.manifest["days"][day-197]
             self.assertEqual(["scripts/package-sprint5-demo.sh","python3 scripts/check_sprint5_package_evidence.py"],d["selectors"][:2])
             self.assertIn("LocalPackagedBrowserAcceptanceTest",d["selectors"][2])
+
+    def test_manifest_hash_shell_semantics_and_links(self):
+        from scripts.check_sprint5_manifest_hash import builder_manifest_hash
+        import hashlib, subprocess
+        for raw in (b"Manifest-Version: 1.0\n\n",b"Manifest-Version: 1.0\r\n\r\n"):
+            self.assertEqual(hashlib.sha256(raw.rstrip(b"\n")).hexdigest(),builder_manifest_hash(raw))
+        result=subprocess.run(["python3","scripts/check_continuation_197_210_links.py"],cwd=ROOT,text=True,capture_output=True)
+        self.assertEqual(0,result.returncode,result.stdout+result.stderr)
 
     def test_no_later_activation_or_prohibited_scope(self):
         text = "\n".join(p.read_text() for p in BATCH.rglob("*.md"))

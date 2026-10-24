@@ -18,8 +18,9 @@ assert r['sourceContentSha256']==run('python3','scripts/sprint5-source-fingerpri
 assert r['artifact']=='target/capstone-starter-1.0-SNAPSHOT-sprint5.jar'
 assert r['artifactSha256']==sha(JAR), 'JAR digest differs from receipt'
 assert r['manifestSha256'], 'missing manifest digest'
-manifest=subprocess.check_output(['unzip','-p',str(JAR),'META-INF/MANIFEST.MF'],cwd=ROOT,text=True)
-assert hashlib.sha256(manifest.encode()).hexdigest()==r['manifestSha256'], 'JAR manifest digest differs from receipt'
+manifest=subprocess.check_output(['unzip','-p',str(JAR),'META-INF/MANIFEST.MF'],cwd=ROOT)
+from check_sprint5_manifest_hash import builder_manifest_hash
+assert builder_manifest_hash(manifest)==r['manifestSha256'], 'JAR manifest digest differs from receipt'
 assert r['workingTreeStatus'] in ('clean','dirty') and r['workingTreeStatusSha256']
 assert r['startClass']=='assignments.sprint5.Sprint5LocalApplication'
 print('fresh Sprint 5 package receipt matches current HEAD, source fingerprint and JAR SHA-256')

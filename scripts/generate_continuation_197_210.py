@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; B=ROOT/'docs/reboot/continuation-197-210'
-m=json.loads((B/'manifest.json').read_text());o=json.loads((B/'scrum-owner-manifest.json').read_text());p=json.loads((B/'days-197-210-transfer-plan.json').read_text()); notes=(B/'assistant-architecture-notes.md').read_text()
+m=json.loads((B/'manifest.json').read_text()); sources=json.loads((B/'verified-sources.json').read_text()); source_keys={x['key'] for x in sources['sources']}; o=json.loads((B/'scrum-owner-manifest.json').read_text());p=json.loads((B/'days-197-210-transfer-plan.json').read_text()); notes=(B/'assistant-architecture-notes.md').read_text()
 assert [d['day'] for d in m['days']]==list(range(197,211))
 assert [d['day_number'] for d in o['cards']]==list(range(197,211))
 assert [d['day'] for d in p['days']]==list(range(197,211))
@@ -18,6 +18,8 @@ for d,oc,pd in zip(m['days'],o['cards'],p['days']):
  for exp in (oc,pd):
   assert exp['workstream_minutes']==a,(d['day'],exp.get('day_number',exp.get('day')))
   assert exp['title']==d['title'] and exp['selectors']==d['selectors']
+  assert exp['task_minutes']==d['task_minutes']
+  assert exp['signature']==d['signature']
   assert exp['study_refs']==d['study_refs'] and exp['study_guidance']==d['study_guidance']
   assert exp['engineering_architecture']==d['engineering_architecture']
  assert oc['engineering']['allocation']==a

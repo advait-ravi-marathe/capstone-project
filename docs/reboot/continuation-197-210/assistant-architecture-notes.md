@@ -1,6 +1,6 @@
 # Assistant-supplied architecture decisions: Days 197–210
 
-Assistant-supplied decisions and reasons; learner implements/tests. CoverStory recovery leads. The Days 153/154 entry gate remains unmet until its exact baseline artifact and provenance exist.
+Assistant-supplied decisions and reasons; learner implements/tests. The Days 153/154 entry gate remains unmet until its exact baseline artifact and provenance exist.
 
 <a id="day-197"></a>
 ## Day 197 — Inspect actual Day 153/154 recovery inputs
@@ -44,7 +44,7 @@ Return exact clause/version text only for one unique match. For missing or ambig
 
 <a id="day-207"></a>
 ## Day 207 — Review official certification guide facts
-Review the actual official SAA and Developer Associate guides and record their title/version, date, URL and exact headings in the learner-authored artifact. SAA-C03 has Design Secure Architectures, Design Resilient Architectures, Design High-Performing Architectures, and Design Cost-Optimized Architectures. For Developer Associate, record the current official guide version/headings available at execution; do not infer DVA-C03 content before publication. The validator checks artifact shape/domain labels only, not study or readiness.
+Review both current official AWS certification guides and create one learner-authored record per target, with exact title, published version (or null only if the page has no version), official URL, exact visible headings, focused retrieval answers, and assistance. Validate against both guide identities; no readiness, exam attempt, or passing is implied.
 
 <a id="day-208"></a>
 ## Day 208 — Count offline evaluator outcomes
@@ -58,6 +58,6 @@ Build a new Sprint 5 package and receipt from the current source tree, preflight
 ## Day 210 — Verify fresh-process canonical output
 Run the fresh-process CLI test and compare canonical JSON output from separate invocations. This checks deterministic serialization only.
 
-## Existing A/B evidence boundary
+## Existing evidence boundary
 
-Day 153/154 remain not_attempted/not_run, with null source SHA and empty artifact hashes. The pinned baseline JAR and source/build provenance were not found. Preserve the records and request those inputs; do not fabricate replacements.
+Day 153/154 remain not_attempted/not_run, with null source SHA and empty artifact hashes. Preserve those records; do not fabricate artifacts or provenance.
