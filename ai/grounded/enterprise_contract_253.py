@@ -33,6 +33,7 @@ class AccessRequest:
     action: str
     document_id: str
     revision: str
+    tenant: str
 
 @dataclass(frozen=True)
 class Decision:

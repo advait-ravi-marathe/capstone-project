@@ -17,7 +17,7 @@
   "shared_interview_or_remaining_reviews_minutes": 45,
   "total_daily_minutes": 210,
   "scope": "Select exactly Branch A from the reviewed fifth window: one local synthetic enterprise document/identity contract rehearsal behind a trusted adapter. CoverStory remains primary; this is a simulation, not a second customer delivery or StreamForge project. No actual SAML parsing/federation, live IdP, credentials, AWS account/resource, network, provider, real data, external mutation, paid exam or booking. Branch B remains unselected and conditional.",
-  "gate_policy": "Run scripts/check_continuation_239_entry_gate.py before learner workflow selectors. If not eligible, project minutes recover the first unmet named CoverStory selector and AI practice stays on fixed offline labels; never claim the gate is permanently unmet. Eligibility awards no completion.",
+  "gate_policy": "Run scripts/check_continuation_253_entry_gate.py before any learner workflow selector. It composes the existing Day 210/238 eligibility check with the assigned Day 252 learner closeout record at evidence/continuation-239-252/day-252.json. If Day 210/238 is not eligible, follow that check’s existing CoverStory recovery selectors. If those prerequisites are eligible but the Day 252 record is absent or invalid, complete the already-assigned Day 252 selector and record its actual command/output, paths, assistance, blockers, next step and separate source/artifact digests; do not begin Days 253–266 learner selectors. The gate is dynamic, eligibility-only and awards no completion.",
   "source_keys": [
     "AWS_SAML",
     "OPENAI_EVAL",
@@ -33,7 +33,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day253_schema",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -67,7 +68,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-253",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -102,20 +103,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day253_schema`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day253_schema`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -215,7 +216,7 @@
         "mode": "system_design_question_session",
         "question_id": "Q08",
         "question_title": "API gateway: safe error contract",
-        "task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
+        "task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; focus on the initial caller contract, safe error shape and constraints, using the assigned prompt only.",
         "source": "docs/reboot/interview/question-bank.md",
         "allocation_minutes": {
           "requirements": 5,
@@ -244,9 +245,9 @@
         "core_study": 9,
         "shared": "question",
         "question_id": "Q08",
-        "shared_task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
-        "project_task": "Implement/test contract seam: validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "shared_task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; focus on the initial caller contract, safe error shape and constraints, using the assigned prompt only.",
+        "project_task": "Implement/test contract seam: validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 1: Design Secure Architectures",
@@ -265,19 +266,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day253_schema`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day253_schema`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -365,7 +366,7 @@
             "source_sections": {}
           }
         },
-        "milestone": "Validate typed issuer, subject, audience, tenant, group, scope and time claims; reject missing and mistyped fields."
+        "milestone": "Validate typed issuer, subject, audience, tenant, group, scope and time claims; require adapter_verified to be literal boolean True and reject string/numeric substitutes."
       },
       "synthetic_context": {
         "issuer": "https://idp.example.test/tenant-cedar",
@@ -391,7 +392,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day254_trusted_adapter",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -428,7 +430,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-254",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -463,20 +465,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day254_trusted_adapter`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day254_trusted_adapter`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -599,8 +601,8 @@
         "shared": "review",
         "question_id": null,
         "shared_task": "45 minutes: inspect actual repository status/evidence, identify first unmet invariant and next selector; add no scope and infer no learner status.",
-        "project_task": "Implement/test contract seam: accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 1: Development with AWS Services",
@@ -619,19 +621,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day254_trusted_adapter`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day254_trusted_adapter`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -719,7 +721,7 @@
             "source_sections": {}
           }
         },
-        "milestone": "Accept only adapter-verified assertions from the configured synthetic issuer; never parse or trust raw tokens."
+        "milestone": "Require adapter_verified to be exactly True and status to be a known string; reject truthy non-booleans and untrusted issuer."
       },
       "synthetic_context": {
         "issuer": "https://idp.example.test/tenant-cedar",
@@ -745,7 +747,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day255_claim_window",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -781,7 +784,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-255",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -816,20 +819,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: require exact service audience and a half-open validity interval; deny future-issued and expired claims. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: require exact service audience and a half-open validity interval; deny future-issued and expired claims. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day255_claim_window`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day255_claim_window`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate require exact service audience and a half-open validity interval; deny future-issued and expired claims. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Require exact service audience and a half-open validity interval; deny future-issued and expired claims. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -952,8 +955,8 @@
         "shared": "cert",
         "question_id": null,
         "shared_task": "45 minutes: offline certification retrieval for AWS Certified Solutions Architect - Associate (SAA-C03), `Content Domain 2: Design Resilient Architectures`; verify current guide version, answer a local question and note gap; no readiness claim.",
-        "project_task": "Implement/test contract seam: require exact service audience and a half-open validity interval; deny future-issued and expired claims. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate require exact service audience and a half-open validity interval; deny future-issued and expired claims. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: require exact service audience and a half-open validity interval; deny future-issued and expired claims. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Require exact service audience and a half-open validity interval; deny future-issued and expired claims. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 2: Design Resilient Architectures",
@@ -972,19 +975,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: require exact service audience and a half-open validity interval; deny future-issued and expired claims. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: require exact service audience and a half-open validity interval; deny future-issued and expired claims. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day255_claim_window`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day255_claim_window`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate require exact service audience and a half-open validity interval; deny future-issued and expired claims. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Require exact service audience and a half-open validity interval; deny future-issued and expired claims. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -1098,7 +1101,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day256_tenant_isolation",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -1135,7 +1139,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-256",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1170,20 +1174,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: require assertion tenant, request tenant and document tenant to match before disclosing bytes. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day256_tenant_isolation`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day256_tenant_isolation`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Require assertion tenant, request tenant and document tenant to match before disclosing bytes. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -1306,8 +1310,8 @@
         "shared": "review",
         "question_id": null,
         "shared_task": "45 minutes: inspect actual repository status/evidence, identify first unmet invariant and next selector; add no scope and infer no learner status.",
-        "project_task": "Implement/test contract seam: require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: require assertion tenant, request tenant and document tenant to match before disclosing bytes. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Require assertion tenant, request tenant and document tenant to match before disclosing bytes. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 2: Security",
@@ -1326,19 +1330,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: require assertion tenant, request tenant and document tenant to match before disclosing bytes. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day256_tenant_isolation`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day256_tenant_isolation`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Require assertion tenant, request tenant and document tenant to match before disclosing bytes. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -1426,7 +1430,7 @@
             "source_sections": {}
           }
         },
-        "milestone": "Require assertion tenant, requested tenant and document tenant to match before disclosing any document bytes."
+        "milestone": "Require assertion tenant, request tenant and document tenant to match before disclosing bytes."
       },
       "synthetic_context": {
         "issuer": "https://idp.example.test/tenant-cedar",
@@ -1452,7 +1456,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day257_permission_intersection",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -1488,7 +1493,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-257",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1523,20 +1528,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: require both an allowed group and document.read scope; neither claim substitutes for the other. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: require both an allowed group and document.read scope; neither claim substitutes for the other. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day257_permission_intersection`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day257_permission_intersection`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate require both an allowed group and document.read scope; neither claim substitutes for the other. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Require both an allowed group and document.read scope; neither claim substitutes for the other. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -1636,7 +1641,7 @@
         "mode": "system_design_question_session",
         "question_id": "Q08",
         "question_title": "API gateway: safe error contract",
-        "task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
+        "task": "45 minutes in the separate system-design interview question bank: Q08 follow-up — API gateway: safe error contract. Practice the same prompt with malformed/expired versus authenticated-but-underprivileged caller cases; focus on distinct safe responses, no capstone design choice.",
         "source": "docs/reboot/interview/question-bank.md",
         "allocation_minutes": {
           "requirements": 5,
@@ -1665,9 +1670,9 @@
         "core_study": 9,
         "shared": "question",
         "question_id": "Q08",
-        "shared_task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
-        "project_task": "Implement/test contract seam: require both an allowed group and document.read scope; neither claim substitutes for the other. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate require both an allowed group and document.read scope; neither claim substitutes for the other. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "shared_task": "45 minutes in the separate system-design interview question bank: Q08 follow-up — API gateway: safe error contract. Practice the same prompt with malformed/expired versus authenticated-but-underprivileged caller cases; focus on distinct safe responses, no capstone design choice.",
+        "project_task": "Implement/test contract seam: require both an allowed group and document.read scope; neither claim substitutes for the other. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Require both an allowed group and document.read scope; neither claim substitutes for the other. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 3: Design High-Performing Architectures",
@@ -1686,19 +1691,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: require both an allowed group and document.read scope; neither claim substitutes for the other. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: require both an allowed group and document.read scope; neither claim substitutes for the other. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day257_permission_intersection`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day257_permission_intersection`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate require both an allowed group and document.read scope; neither claim substitutes for the other. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Require both an allowed group and document.read scope; neither claim substitutes for the other. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -1812,7 +1817,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day258_document_lifecycle",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -1849,7 +1855,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-258",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -1884,20 +1890,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: reject revoked documents and requested revisions that differ from the active contract revision. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: reject revoked documents and requested revisions that differ from the active contract revision. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day258_document_lifecycle`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day258_document_lifecycle`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate reject revoked documents and requested revisions that differ from the active contract revision. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Reject revoked documents and requested revisions that differ from the active contract revision. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -2020,8 +2026,8 @@
         "shared": "review",
         "question_id": null,
         "shared_task": "45 minutes: inspect actual repository status/evidence, identify first unmet invariant and next selector; add no scope and infer no learner status.",
-        "project_task": "Implement/test contract seam: reject revoked documents and requested revisions that differ from the active contract revision. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate reject revoked documents and requested revisions that differ from the active contract revision. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: reject revoked documents and requested revisions that differ from the active contract revision. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Reject revoked documents and requested revisions that differ from the active contract revision. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 3: Deployment",
@@ -2040,19 +2046,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: reject revoked documents and requested revisions that differ from the active contract revision. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: reject revoked documents and requested revisions that differ from the active contract revision. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day258_document_lifecycle`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day258_document_lifecycle`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate reject revoked documents and requested revisions that differ from the active contract revision. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Reject revoked documents and requested revisions that differ from the active contract revision. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -2166,7 +2172,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day259_safe_denials",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -2202,7 +2209,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-259",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2237,20 +2244,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: use fixed denial codes without echoing claims, document contents or request secrets. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: use fixed denial codes without echoing claims, document contents or request secrets. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day259_safe_denials`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day259_safe_denials`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate use fixed denial codes without echoing claims, document contents or request secrets. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Use fixed denial codes without echoing claims, document contents or request secrets. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -2373,8 +2380,8 @@
         "shared": "cert",
         "question_id": null,
         "shared_task": "45 minutes: offline certification retrieval for AWS Certified Solutions Architect - Associate (SAA-C03), `Content Domain 4: Design Cost-Optimized Architectures`; verify current guide version, answer a local question and note gap; no readiness claim.",
-        "project_task": "Implement/test contract seam: use fixed denial codes without echoing claims, document contents or request secrets. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate use fixed denial codes without echoing claims, document contents or request secrets. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: use fixed denial codes without echoing claims, document contents or request secrets. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Use fixed denial codes without echoing claims, document contents or request secrets. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 4: Design Cost-Optimized Architectures",
@@ -2393,19 +2400,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: use fixed denial codes without echoing claims, document contents or request secrets. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: use fixed denial codes without echoing claims, document contents or request secrets. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day259_safe_denials`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day259_safe_denials`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate use fixed denial codes without echoing claims, document contents or request secrets. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Use fixed denial codes without echoing claims, document contents or request secrets. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -2519,7 +2526,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day260_bounded_action",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -2556,7 +2564,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-260",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2591,20 +2599,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: allow only literal document.read on the exact requested ID; deny all writes and unknown actions. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: allow only literal document.read on the exact requested ID; deny all writes and unknown actions. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day260_bounded_action`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day260_bounded_action`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate allow only literal document.read on the exact requested ID; deny all writes and unknown actions. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Allow only literal document.read on the exact requested ID; deny all writes and unknown actions. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -2727,8 +2735,8 @@
         "shared": "review",
         "question_id": null,
         "shared_task": "45 minutes: inspect actual repository status/evidence, identify first unmet invariant and next selector; add no scope and infer no learner status.",
-        "project_task": "Implement/test contract seam: allow only literal document.read on the exact requested ID; deny all writes and unknown actions. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate allow only literal document.read on the exact requested ID; deny all writes and unknown actions. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: allow only literal document.read on the exact requested ID; deny all writes and unknown actions. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Allow only literal document.read on the exact requested ID; deny all writes and unknown actions. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 4: Troubleshooting and Optimization",
@@ -2747,19 +2755,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: allow only literal document.read on the exact requested ID; deny all writes and unknown actions. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: allow only literal document.read on the exact requested ID; deny all writes and unknown actions. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day260_bounded_action`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day260_bounded_action`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate allow only literal document.read on the exact requested ID; deny all writes and unknown actions. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Allow only literal document.read on the exact requested ID; deny all writes and unknown actions. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -2873,7 +2881,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day261_adapter_failure",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -2909,7 +2918,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-261",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -2944,20 +2953,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: map unavailable, malformed and unverified adapter results to safe abstention before document lookup. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: map unavailable, malformed and unverified adapter results to safe abstention before document lookup. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day261_adapter_failure`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day261_adapter_failure`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate map unavailable, malformed and unverified adapter results to safe abstention before document lookup. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Map unavailable, malformed and unverified adapter results to safe abstention before document lookup. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -3057,7 +3066,7 @@
         "mode": "system_design_question_session",
         "question_id": "Q08",
         "question_title": "API gateway: safe error contract",
-        "task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
+        "task": "45 minutes in the separate system-design interview question bank: Q08 follow-up — API gateway: safe error contract. Practice unavailable/malformed upstream dependency errors, retry boundaries and non-disclosure; answer the assigned prompt only.",
         "source": "docs/reboot/interview/question-bank.md",
         "allocation_minutes": {
           "requirements": 5,
@@ -3086,9 +3095,9 @@
         "core_study": 9,
         "shared": "question",
         "question_id": "Q08",
-        "shared_task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
-        "project_task": "Implement/test contract seam: map unavailable, malformed and unverified adapter results to safe abstention before document lookup. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate map unavailable, malformed and unverified adapter results to safe abstention before document lookup. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "shared_task": "45 minutes in the separate system-design interview question bank: Q08 follow-up — API gateway: safe error contract. Practice unavailable/malformed upstream dependency errors, retry boundaries and non-disclosure; answer the assigned prompt only.",
+        "project_task": "Implement/test contract seam: map unavailable, malformed and unverified adapter results to safe abstention before document lookup. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Map unavailable, malformed and unverified adapter results to safe abstention before document lookup. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 1: Design Secure Architectures",
@@ -3107,19 +3116,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: map unavailable, malformed and unverified adapter results to safe abstention before document lookup. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: map unavailable, malformed and unverified adapter results to safe abstention before document lookup. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day261_adapter_failure`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day261_adapter_failure`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate map unavailable, malformed and unverified adapter results to safe abstention before document lookup. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Map unavailable, malformed and unverified adapter results to safe abstention before document lookup. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -3233,7 +3242,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day262_exact_render",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -3270,7 +3280,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-262",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -3305,20 +3315,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day262_exact_render`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day262_exact_render`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -3441,8 +3451,8 @@
         "shared": "review",
         "question_id": null,
         "shared_task": "45 minutes: inspect actual repository status/evidence, identify first unmet invariant and next selector; add no scope and infer no learner status.",
-        "project_task": "Implement/test contract seam: return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 1: Development with AWS Services",
@@ -3461,19 +3471,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day262_exact_render`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day262_exact_render`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Return the exact approved synthetic excerpt with source ID and revision citation; no fabricated text. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -3587,7 +3597,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day263_time_boundaries",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -3623,7 +3634,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-263",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -3658,20 +3669,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day263_time_boundaries`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day263_time_boundaries`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "AWS_SAML"
           ],
@@ -3794,8 +3805,8 @@
         "shared": "cert",
         "question_id": null,
         "shared_task": "45 minutes: offline certification retrieval for AWS Certified Solutions Architect - Associate (SAA-C03), `Content Domain 2: Design Resilient Architectures`; verify current guide version, answer a local question and note gap; no readiness claim.",
-        "project_task": "Implement/test contract seam: inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "AWS_SAML",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 2: Design Resilient Architectures",
@@ -3814,19 +3825,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day263_time_boundaries`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day263_time_boundaries`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Inject fixed time and verify inclusive issued-at, exclusive expiry and maximum lifetime behavior. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "AWS_SAML"
             ],
@@ -3940,7 +3951,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day264_independent_matrix",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -3986,7 +3998,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-264",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -4021,20 +4033,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 43,
-          "task": "Implement/test contract seam: run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day264_independent_matrix`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day264_independent_matrix`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 64,
-          "task": "Evaluate run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "OPENAI_EVAL"
           ],
@@ -4157,8 +4169,8 @@
         "shared": "review",
         "question_id": null,
         "shared_task": "45 minutes: inspect actual repository status/evidence, identify first unmet invariant and next selector; add no scope and infer no learner status.",
-        "project_task": "Implement/test contract seam: run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "OPENAI_EVAL",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 2: Security",
@@ -4178,19 +4190,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 43,
-            "task": "Implement/test contract seam: run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day264_independent_matrix`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day264_independent_matrix`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 64,
-            "task": "Evaluate run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Run all independently labelled cases through the actual decision function; report exact allow/deny and disclosure counts. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "OPENAI_EVAL"
             ],
@@ -4304,7 +4316,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day265_request_isolation",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -4350,7 +4363,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-265",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -4385,20 +4398,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 42,
-          "task": "Implement/test contract seam: run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day265_request_isolation`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day265_request_isolation`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 66,
-          "task": "Evaluate run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "OPENAI_EVAL"
           ],
@@ -4498,7 +4511,7 @@
         "mode": "system_design_question_session",
         "question_id": "Q08",
         "question_title": "API gateway: safe error contract",
-        "task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
+        "task": "45 minutes in the separate system-design interview question bank: Q08 final timed variation — API gateway: safe error contract. Re-run with timeout/replay constraints and summarize safe caller-visible outcomes; no capstone proposal.",
         "source": "docs/reboot/interview/question-bank.md",
         "allocation_minutes": {
           "requirements": 5,
@@ -4527,9 +4540,9 @@
         "core_study": 10,
         "shared": "question",
         "question_id": "Q08",
-        "shared_task": "45 minutes: separate interview question bank only — Q08, API gateway: safe error contract; answer the assigned prompt, no capstone design proposal.",
-        "project_task": "Implement/test contract seam: run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "shared_task": "45 minutes in the separate system-design interview question bank: Q08 final timed variation — API gateway: safe error contract. Re-run with timeout/replay constraints and summarize safe caller-visible outcomes; no capstone proposal.",
+        "project_task": "Implement/test contract seam: run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "OPENAI_EVAL",
         "cert_source_key": "SAA_GUIDE",
         "cert_source_section": "Content Domain 3: Design High-Performing Architectures",
@@ -4549,19 +4562,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 42,
-            "task": "Implement/test contract seam: run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day265_request_isolation`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day265_request_isolation`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 66,
-            "task": "Evaluate run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Run tenant A then B and B then A; decisions and disclosure remain order-independent, with no cached authorization. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "OPENAI_EVAL"
             ],
@@ -4675,7 +4688,8 @@
       "module": "single synthetic enterprise identity/document contract rehearsal",
       "signature": "ai/grounded/enterprise_contract_253.py, ai/grounded/learner_acceptance/test_enterprise_contract_253.py",
       "selectors": [
-        "python3 scripts/check_continuation_239_entry_gate.py",
+        "python3 scripts/check_continuation_253_entry_gate.py",
+        "python3 -m unittest ai.grounded.learner_acceptance.test_continuation_239.Continuation239Acceptance.test_day252_reports_known_blind_spots_without_claiming_real_customer_outcomes",
         "python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day266_reproducible_handoff",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day57MissingOrFailedPriorEvidenceReplacesNewWork test",
         "./mvnw -Plocal-app,learner-tests -Dtest=LocalReadinessGateAcceptanceTest#day63SecurityCheckpointKeepsRecoveryInsideDailyBudget test",
@@ -4721,7 +4735,7 @@
         }
       ],
       "engineering_architecture": {
-        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; a deterministic policy boundary checks issuer, audience, validity, tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
+        "decision": "Assistant-supplied design: a local adapter returns an already-verified typed assertion fixture; its verification flag must be the literal boolean True, never a truthy string or number. A deterministic policy boundary checks issuer, audience, validity, assertion/request/document tenant, group, scope, exact document ID/revision and active status before any bytes are disclosed. Denials use fixed reason codes and never echo claims or document text. The adapter flag is a test fixture, not cryptographic verification; no actual SAML parser, identity provider, AWS account, external write or model action exists. This is the single selected synthetic enterprise-contract branch. The learner implements and tests these supplied decisions; no capstone design proposal or post-hoc justification is assigned.",
         "note_ref": "assistant-architecture-notes.md#day-266",
         "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "capstone_proposal_required": false,
@@ -4756,20 +4770,20 @@
       "task_minutes": {
         "project_implementation_tests": {
           "minutes": 42,
-          "task": "Implement/test contract seam: run the complete fixed matrix against independent expected rows/counts and document simulation limits. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+          "task": "Implement/test contract seam: run the complete fixed matrix against independent expected rows/counts and document simulation limits. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
           "source_keys": [],
           "source_paths": [
             "ai/grounded/enterprise_contract_253.py",
             "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
           ],
-          "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day266_reproducible_handoff`; otherwise run the first unmet recovery selector.",
+          "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day266_reproducible_handoff`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
           "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
           "source_sections": {},
           "source": "ai/grounded/enterprise_contract_253.py; ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
         },
         "ai_workflow_implementation_evaluation": {
           "minutes": 66,
-          "task": "Evaluate run the complete fixed matrix against independent expected rows/counts and document simulation limits. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+          "task": "Evaluate the contract seam: Run the complete fixed matrix against independent expected rows/counts and document simulation limits. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
           "source_keys": [
             "OPENAI_EVAL"
           ],
@@ -4892,8 +4906,8 @@
         "shared": "cert",
         "question_id": null,
         "shared_task": "45 minutes: offline certification retrieval for AWS Certified Developer - Associate (DVA-C02), `Content Domain 3: Deployment`; verify current guide version, answer a local question and note gap; no readiness claim.",
-        "project_task": "Implement/test contract seam: run the complete fixed matrix against independent expected rows/counts and document simulation limits. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
-        "ai_task": "Evaluate run the complete fixed matrix against independent expected rows/counts and document simulation limits. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+        "project_task": "Implement/test contract seam: run the complete fixed matrix against independent expected rows/counts and document simulation limits. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
+        "ai_task": "Evaluate the contract seam: Run the complete fixed matrix against independent expected rows/counts and document simulation limits. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
         "ai_source_key": "OPENAI_EVAL",
         "cert_source_key": "DEV_GUIDE",
         "cert_source_section": "Content Domain 3: Deployment",
@@ -4913,19 +4927,19 @@
         "activities": {
           "project_implementation_tests": {
             "minutes": 42,
-            "task": "Implement/test contract seam: run the complete fixed matrix against independent expected rows/counts and document simulation limits. The existing Day 239 gate must be eligible; if not, use the first unmet CoverStory recovery selector instead.",
+            "task": "Implement/test contract seam: run the complete fixed matrix against independent expected rows/counts and document simulation limits. The existing Day 253 entry gate must be eligible; if not, follow its reported prior-window recovery.",
             "source_keys": [],
             "source_paths": [
               "ai/grounded/enterprise_contract_253.py",
               "ai/grounded/learner_acceptance/test_enterprise_contract_253.py"
             ],
-            "command": "python3 scripts/check_continuation_239_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day266_reproducible_handoff`; otherwise run the first unmet recovery selector.",
+            "command": "python3 scripts/check_continuation_253_entry_gate.py; if eligible, run `python3 -m unittest ai.grounded.learner_acceptance.test_enterprise_contract_253.EnterpriseContractAcceptance.test_day266_reproducible_handoff`; otherwise follow the gate reason: use its first existing CoverStory recovery selector for Day 210/238 blockers, or the assigned Day 252 selector and evidence instructions when its closeout record is missing.",
             "evidence": "Exact command/result, decision state, changed paths, first failing assertion and one denied request; no completion inference.",
             "source_sections": {}
           },
           "ai_workflow_implementation_evaluation": {
             "minutes": 66,
-            "task": "Evaluate run the complete fixed matrix against independent expected rows/counts and document simulation limits. on fixed synthetic cases. Compare observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
+            "task": "Evaluate the contract seam: Run the complete fixed matrix against independent expected rows/counts and document simulation limits. Use fixed synthetic cases and compare complete observed decisions and disclosure behavior with independent expected rows and a negative control. Offline only; no AWS or provider calls.",
             "source_keys": [
               "OPENAI_EVAL"
             ],

@@ -11,19 +11,24 @@ def load(name,path):
  spec=importlib.util.spec_from_file_location(name,path); m=importlib.util.module_from_spec(spec);sys.modules[name]=m;spec.loader.exec_module(m);return m
 acceptance=load('enterprise_acceptance',ROOT/'ai/grounded/learner_acceptance/test_enterprise_contract_253.py'); c=acceptance.contract
 
-def witness(a,d,r,*,now,skip_schema=False,skip_verified=False,skip_issuer=False,skip_audience=False,skip_time=False,skip_tenant=False,skip_scope=False,skip_group=False,skip_active=False,skip_revision=False,skip_action=False,skip_id=False,leak_denials=False,adapter_open=False,wrong_excerpt=False,ignore_max_ttl=False,always_allow=False):
+def witness(a,d,r,*,now,skip_schema=False,skip_verified=False,truthy_verified=False,skip_issuer=False,skip_audience=False,skip_time=False,skip_tenant=False,skip_scope=False,skip_group=False,skip_active=False,skip_revision=False,skip_action=False,skip_id=False,leak_denials=False,reason_only_denial=False,adapter_open=False,wrong_excerpt=False,ignore_max_ttl=False,always_allow=False):
  def deny(reason,doc=d):
+  if reason_only_denial:return c.Decision(True,reason,doc.document_id,'private-source@private-revision',doc.excerpt)
   if leak_denials:return c.Decision(False,reason,doc.document_id,'secret-source@secret-rev',doc.excerpt)
   return c.Decision(False,reason)
  if always_allow:return c.Decision(True,'allowed',d.document_id,f'{d.document_id}@{d.revision}',d.excerpt)
  if a.adapter_status=='unavailable':
   if adapter_open:return c.Decision(True,'allowed',d.document_id,f'{d.document_id}@{d.revision}',d.excerpt)
   return deny('adapter_unavailable')
- if ((not a.adapter_verified or a.adapter_status!='ok') and not skip_verified) or (a.issuer!=c.EXPECTED_ISSUER and not skip_issuer):return deny('identity_untrusted')
- shape=(isinstance(a.subject,str) and bool(a.subject.strip()) and isinstance(a.groups,tuple) and all(isinstance(x,str) for x in a.groups) and isinstance(a.scopes,tuple) and all(isinstance(x,str) for x in a.scopes) and isinstance(a.issued_at,int) and not isinstance(a.issued_at,bool) and isinstance(a.expires_at,int) and not isinstance(a.expires_at,bool))
+ verified=bool(a.adapter_verified) if truthy_verified else a.adapter_verified is True
+ if ((not verified or type(a.adapter_status) is not str or a.adapter_status!='ok') and not skip_verified) or ((type(a.issuer) is not str or a.issuer!=c.EXPECTED_ISSUER) and not skip_issuer):return deny('identity_untrusted')
+ shape=(type(a.subject) is str and bool(a.subject.strip()) and type(a.audience) is str and
+         type(a.tenant) is str and isinstance(a.groups,tuple) and all(type(x) is str for x in a.groups) and
+         isinstance(a.scopes,tuple) and all(type(x) is str for x in a.scopes) and
+         type(a.issued_at) is int and type(a.expires_at) is int and (truthy_verified or type(a.adapter_verified) is bool))
  if not shape and not skip_schema:return deny('claim_invalid')
  if (a.audience!=c.EXPECTED_AUDIENCE and not skip_audience) or (not skip_time and (a.issued_at>now or now>=a.expires_at or a.expires_at<=a.issued_at or (not ignore_max_ttl and a.expires_at-a.issued_at>c.MAX_ASSERTION_SECONDS))):return deny('claim_invalid')
- if (a.tenant!=c.EXPECTED_TENANT or d.tenant!=a.tenant) and not skip_tenant:return deny('tenant_mismatch')
+ if (a.tenant!=c.EXPECTED_TENANT or r.tenant!=a.tenant or d.tenant!=a.tenant) and not skip_tenant:return deny('tenant_mismatch')
  if r.action!='document.read' and not skip_action:return deny('action_denied')
  if r.document_id!=d.document_id and not skip_id:return deny('document_not_found')
  if not d.active and not skip_active:return deny('document_inactive')
@@ -43,6 +48,8 @@ class ManifestTests(unittest.TestCase):
   self.assertEqual(before,{n:(OUT/n).read_bytes() for n in names})
   src=json.loads((OUT/'plan-source.json').read_text()); man=json.loads((OUT/'manifest.json').read_text());own=json.loads((OUT/'scrum-owner-manifest.json').read_text());tr=json.loads((OUT/'days-253-266-transfer-plan.json').read_text())
   self.assertEqual(list(range(253,267)),[x['day'] for x in man['days']]);self.assertEqual(EXPECTED,man['engineering_allocation']);self.assertEqual(EXPECTED,tr['budget']['window_workstreams']);self.assertFalse(own['board_writes']);self.assertEqual(14,own['story_count'])
+  q08=[x['task']['shared_task'] for x in man['days'] if x['task'].get('question_id')=='Q08']
+  self.assertEqual(4,len(q08));self.assertEqual(4,len(set(q08)))
   for i,(task,row,card) in enumerate(zip(src['tasks'],man['days'],own['cards'])):
    self.assertEqual((date(2027,7,3)+timedelta(days=i)).isoformat(),row['date']);self.assertEqual(task['date'],row['date']) if 'date' in task else None
    self.assertEqual(165,sum(row['workstream_minutes'].values()));self.assertEqual(45,row['shared_interview_block']['minutes']);self.assertEqual('unobserved_not_implied_by_scaffold',row['learner_status']);self.assertFalse(row['engineering_architecture']['capstone_proposal_required']);self.assertEqual('separate_interview_question_bank_only',row['engineering_architecture']['system_design_scope'])
@@ -54,18 +61,47 @@ class ManifestTests(unittest.TestCase):
     if anchor:self.assertIn(f'id="{anchor}"',path.read_text())
   self.assertIn('DVA-C02',(OUT/'README.md').read_text());self.assertIn('Recheck', (OUT/'README.md').read_text())
 
+ def test_prior_window_gate_uses_assigned_day252_record_and_stays_dynamic(self):
+  gate=load('continuation253_gate',ROOT/'scripts/check_continuation_253_entry_gate.py')
+  live=gate.check()
+  self.assertIn(live['status'],{'not_met','blocked','eligible_to_attempt'})
+  self.assertFalse(live['completion_awarded'])
+  prior_not_met={'status':'not_met','reason':'recovery needed','completion_awarded':False}
+  prior_ready={'status':'eligible_to_attempt','reason':'real prior evidence','completion_awarded':False}
+  import tempfile
+  with tempfile.TemporaryDirectory() as temp:
+   record=Path(temp)/'day-252.json'
+   self.assertEqual('not_met',gate.check(prior_result=prior_not_met,record_path=record)['status'])
+   self.assertEqual('not_met',gate.check(prior_result=prior_ready,record_path=record)['status'])
+   evidence={'day':252,'source_sha':'a'*40,'artifact_sha256':'b'*64,'status':'passed',
+      'command':'python3 -m unittest '+gate.DAY252_SELECTOR,
+      'output':'Ran 1 test in 0.001s\n\nOK\n',
+      'paths':['ai/grounded/continuation_239.py','ai/grounded/learner_acceptance/test_continuation_239.py'],
+      'assistance':'none','blockers':'none','next_step':'continue only if gate eligible'}
+   record.write_text(json.dumps(evidence))
+   eligible=gate.check(prior_result=prior_ready,record_path=record)
+   self.assertEqual('eligible_to_attempt',eligible['status']);self.assertFalse(eligible['completion_awarded'])
+   for bad in (dict(evidence,source_sha='bad'),dict(evidence,status='blocked'),dict(evidence,output='FAILED'),
+               dict(evidence,command='echo unrelated'),dict(evidence,paths=[])):
+    record.write_text(json.dumps(bad))
+    self.assertEqual('blocked',gate.check(prior_result=prior_ready,record_path=record)['status'])
+
 class AcceptanceWitnessTests(unittest.TestCase):
  def test_all_daily_acceptance_selectors_run_against_test_only_reference(self):
   for d,tail in [(253,'schema'),(254,'trusted_adapter'),(255,'claim_window'),(256,'tenant_isolation'),(257,'permission_intersection'),(258,'document_lifecycle'),(259,'safe_denials'),(260,'bounded_action'),(261,'adapter_failure'),(262,'exact_render'),(263,'time_boundaries'),(264,'independent_matrix'),(265,'request_isolation'),(266,'reproducible_handoff')]:
    method=getattr(acceptance.EnterpriseContractAcceptance(f'test_day{d}_{tail}'),f'test_day{d}_{tail}')
    with self.subTest(day=d):run_with(method)
  def test_actual_paths_reject_security_and_evaluation_mutations(self):
-  cases=[(253,'schema',{'skip_schema':True}),(254,'trusted_adapter',{'skip_verified':True,'skip_issuer':True}),
-   (255,'claim_window',{'skip_audience':True,'skip_time':True}),(256,'tenant_isolation',{'skip_tenant':True}),
-   (257,'permission_intersection',{'skip_scope':True,'skip_group':True}),(258,'document_lifecycle',{'skip_active':True,'skip_revision':True}),
+  cases=[(253,'schema',{'skip_schema':True}),(254,'trusted_adapter',{'truthy_verified':True}),
+   (255,'claim_window',{'skip_audience':True,'skip_time':True}),(255,'claim_window',{'reason_only_denial':True}),
+   (256,'tenant_isolation',{'skip_tenant':True}),(256,'tenant_isolation',{'reason_only_denial':True}),
+   (257,'permission_intersection',{'skip_scope':True,'skip_group':True}),(257,'permission_intersection',{'reason_only_denial':True}),
+   (258,'document_lifecycle',{'skip_active':True,'skip_revision':True}),(258,'document_lifecycle',{'reason_only_denial':True}),
    (259,'safe_denials',{'leak_denials':True}),(260,'bounded_action',{'skip_action':True,'skip_id':True}),
-   (261,'adapter_failure',{'adapter_open':True}),(262,'exact_render',{'wrong_excerpt':True}),
-   (263,'time_boundaries',{'ignore_max_ttl':True}),(264,'independent_matrix',{'always_allow':True}),
+   (260,'bounded_action',{'reason_only_denial':True}),
+   (261,'adapter_failure',{'adapter_open':True}),(261,'adapter_failure',{'reason_only_denial':True}),
+   (262,'exact_render',{'wrong_excerpt':True}),(263,'time_boundaries',{'ignore_max_ttl':True}),
+   (263,'time_boundaries',{'reason_only_denial':True}),(264,'independent_matrix',{'always_allow':True}),
    (265,'request_isolation',{'skip_tenant':True}),(266,'reproducible_handoff',{'always_allow':True,'leak_denials':True})]
   for d,tail,mut in cases:
    method=getattr(acceptance.EnterpriseContractAcceptance(f'test_day{d}_{tail}'),f'test_day{d}_{tail}')

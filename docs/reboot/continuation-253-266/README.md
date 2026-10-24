@@ -2,7 +2,7 @@
 
 Status: bounded starter for review; dates 3–16 July 2027. This selects Branch A only from the reviewed fifth-window proposal. It rehearses one synthetic document and already-verified adapter assertion; no actual SAML parsing, IdP, AWS account, credential, provider, network, live data, external mutation or StreamForge work.
 
-Run `python3 scripts/check_continuation_239_entry_gate.py` before learner workflow selectors. If not eligible, use the first unmet CoverStory recovery selector for project time. Eligibility is not completion. Learner evidence remains unobserved until earned.
+Run `python3 scripts/check_continuation_253_entry_gate.py` before learner workflow selectors. If not eligible, use the first unmet CoverStory recovery selector for project time. Eligibility is not completion. Learner evidence remains unobserved until earned.
 
 The engineering total is 2,310 minutes, 165 daily plus one shared 45-minute block. Project work is 600 minutes; AI evaluation 900; certification questions 110; AI study 210; certification-domain study 150; core study 130; evidence 210.
 
