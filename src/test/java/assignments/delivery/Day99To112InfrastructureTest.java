@@ -14,6 +14,8 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -81,6 +83,84 @@ class Day99To112InfrastructureTest {
                         "project-specific guidance is labeled as a reading focus, not an invented document heading");
                 assertFalse(reference.has("section"), "do not label project reading guidance as an official source section");
             }
+        }
+    }
+
+    @Test
+    void assistantArchitectureAndInterviewAssignmentsMatchContractsAndExports() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode manifest = mapper.readTree(Files.readString(BASE.resolve("manifest.json")));
+        JsonNode export = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
+        String notes = Files.readString(BASE.resolve("assistant-architecture-notes.md"));
+        Path interview = Path.of("docs/reboot/interview");
+        Set<String> mockDays = Set.of("101", "104", "108", "111");
+        List<String> phases = List.of("Requirements", "Capacity and constraints",
+                "Initial architecture and data model", "Bottlenecks, reliability, scaling",
+                "Trade-offs, failures, follow-ups");
+
+        assertEquals(14, manifest.path("days").size());
+        for (int index = 0; index < 14; index++) {
+            JsonNode day = manifest.path("days").get(index);
+            JsonNode engineering = day.path("engineering");
+            JsonNode owner = export.path("cards").get(index);
+            int number = day.path("day").asInt();
+            String dayId = Integer.toString(number);
+            String anchor = "day-" + dayId;
+            String noteRef = "docs/reboot/continuation-99-112/assistant-architecture-notes.md#" + anchor;
+            String contract = Files.readString(Path.of(day.path("contract_file").asString()));
+            assertEquals(noteRef, engineering.path("assistant_architecture_note").asString());
+            assertTrue(notes.contains("<a id=\"" + anchor + "\"></a>"), "missing note anchor " + anchor);
+            assertTrue(contract.contains("../assistant-architecture-notes.md#" + anchor));
+            assertTrue(owner.path("engineering").path("assistant_architecture_note").asString().equals(noteRef));
+            assertTrue(owner.path("course_learning_block").asText().contains("Assistant-provided architecture"));
+            assertTrue(owner.path("course_learning_block").asText().contains("No capstone design proposal"));
+
+            JsonNode assignment = engineering.path("interview_assignment");
+            if (!mockDays.contains(dayId)) {
+                assertTrue(assignment.isMissingNode() || assignment.isNull(), "unexpected mock assignment on Day " + dayId);
+                continue;
+            }
+            assertEquals(assignment, owner.path("engineering").path("interview_assignment"),
+                    "owner export must preserve the interview assignment exactly");
+            assertEquals(number, assignment.path("day").asInt());
+            assertTrue(assignment.path("proposal_before_hints_reference_or_ai").asBoolean());
+            assertEquals("system_design_interview_question_only", assignment.path("proposal_scope").asString());
+            assertEquals("assistant_supplied", assignment.path("capstone_architecture").asString());
+            assertEquals(45, assignment.path("duration_minutes").asInt());
+            assertEquals(85, assignment.path("practice_minutes_available").asInt());
+            assertEquals(45, assignment.path("mock_minutes").asInt());
+            assertEquals(85, assignment.path("practice_total_minutes").asInt());
+            assertEquals(40, assignment.path("eai_slice_minutes").path("preconditions_and_prediction").asInt()
+                    + assignment.path("eai_slice_minutes").path("implementation_or_observation").asInt()
+                    + assignment.path("eai_slice_minutes").path("selector_and_blocker_record").asInt());
+            assertEquals(phases.size(), assignment.path("mock_phases").size());
+            int phaseTotal = 0;
+            for (int phase = 0; phase < phases.size(); phase++) {
+                JsonNode actual = assignment.path("mock_phases").get(phase);
+                assertEquals(phases.get(phase), actual.path("phase").asString());
+                phaseTotal += actual.path("minutes").asInt();
+            }
+            assertEquals(45, phaseTotal);
+
+            String questionHref = assignment.path("question_href").asString();
+            Path questionFile = interview.resolve(questionHref.substring("../interview/".length()).split("#", 2)[0]);
+            String questionAnchor = questionHref.substring(questionHref.indexOf('#') + 1);
+            String questionText = Files.readString(questionFile);
+            assertTrue(questionText.contains("<a id=\"" + questionAnchor + "\"></a>"));
+            assertTrue(contract.contains("../../interview/question-bank.md#" + questionAnchor));
+            for (JsonNode pattern : assignment.path("pattern_refs")) {
+                String href = pattern.asString();
+                Path patternFile = interview.resolve(href.substring("../interview/".length()).split("#", 2)[0]);
+                String patternAnchor = href.substring(href.indexOf('#') + 1);
+                assertTrue(Files.readString(patternFile).contains("<a id=\"" + patternAnchor + "\"></a>"));
+                assertTrue(contract.contains("../../interview/pattern-library.md#" + patternAnchor));
+            }
+            for (JsonNode command : assignment.path("acceptance_commands")) {
+                assertTrue(contract.contains(command.asString()));
+                assertTrue(engineering.path("acceptance_commands").toString().contains(command.asString()));
+            }
+            assertTrue(contract.contains("Separate system-design interview practice"));
+            assertTrue(contract.contains("Deferred acceptance"));
         }
     }
 

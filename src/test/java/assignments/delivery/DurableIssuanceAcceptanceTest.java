@@ -44,6 +44,15 @@ class DurableIssuanceAcceptanceTest {
 
     @Test
     void day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents() throws Exception {
+        assertLateEarlierCommitIsReconciled();
+    }
+
+    @Test
+    void day107LateEarlierCommitCannotFallBehindAKeysetWatermark() throws Exception {
+        assertLateEarlierCommitIsReconciled();
+    }
+
+    private static void assertLateEarlierCommitIsReconciled() throws Exception {
         try (Fixture fixture = new Fixture()) {
             var data = fixture.dataSource;
             try (var late = data.getConnection(); var insert = late.prepareStatement("""

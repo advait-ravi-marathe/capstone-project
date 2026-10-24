@@ -5,7 +5,7 @@
   "contract_status": "defined",
   "acceptance_commands": [
     "(cd frontend && npm ci && npm run build && npm run build:local)",
-    "./mvnw -Plocal-app -DskipTests package",
+    "./mvnw -Plocal-app -DskipTests clean package",
     "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
     "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
     "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test"

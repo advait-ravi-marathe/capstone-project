@@ -78,9 +78,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-99"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 59 - Transaction Management - ACID Properties — exact section: Transaction Management (5:49)\n- Worked supplement: Which committed row makes recovery possible? — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.\n- Reading focus: PostgreSQL 18 transactions — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary. (https://www.postgresql.org/docs/18/tutorial-transactions.html)\n- Cap: video 5:49, worked/reference 14:11, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 59 - Transaction Management - ACID Properties — exact section: Transaction Management (5:49)\n- Worked supplement: Which committed row makes recovery possible? — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary.\n- Reading focus: PostgreSQL 18 transactions — The committed lifecycle ISSUED event is durable intent. Keep only stable source identity, event type/date, and envelope version; policy, idempotency receipt, and event remain the existing atomic source boundary. (https://www.postgresql.org/docs/18/tutorial-transactions.html)\n- Cap: video 5:49, worked/reference 14:11, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 99 note](../assistant-architecture-notes.md#day-99). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "partial_foundation_with_project_supplement",
       "mandatory_new_problem": false
     },
@@ -135,9 +136,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-100"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: One durable identity across source, work, and receipt — Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.\n- Reading focus: PostgreSQL 18 constraints — Primary keys, unique constraints, checks, foreign keys, and not-null constraints (https://www.postgresql.org/docs/18/ddl-constraints.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: One durable identity across source, work, and receipt — Use (policy_id, source_version) for one source event, one work row, and one receipt; database uniqueness and foreign keys protect the relationship.\n- Reading focus: PostgreSQL 18 constraints — Primary keys, unique constraints, checks, foreign keys, and not-null constraints (https://www.postgresql.org/docs/18/ddl-constraints.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 100 note](../assistant-architecture-notes.md#day-100). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -193,9 +195,74 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-101",
+        "interview_assignment": {
+          "day": 101,
+          "date": "2027-02-01",
+          "title": "Capture committed missing events in bounded batches",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q23",
+          "question_title": "Event pipeline: ingest and process",
+          "question_href": "../interview/question-bank.md#q23",
+          "pattern_refs": [
+            "../interview/pattern-library.md#event-pipeline",
+            "../interview/pattern-library.md#backpressure"
+          ],
+          "proposal_prompt": "How do you preserve a durable source record while processing volume grows?",
+          "bounded_task": "Use the bounded capture acceptance to implement only the anti-join reconciliation for committed ISSUED events. Stop at the named store boundary; do not implement later receipt or dispatcher seams in this slice.",
+          "deferred_work_id": "S8-D101-MOCK",
+          "deferred_work": "Carry any unmet capture assertion and all remaining acceptance under this ID. Continue only from the first actual learner TODO; the interview mock does not complete capture or later store work.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test",
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RejectsInvalidCaptureLimitsBeforeChangingRows test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-101",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Recover by reconciliation, not by a high-watermark — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.\n- Reading focus: PostgreSQL 18 INSERT — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys. (https://www.postgresql.org/docs/18/sql-insert.html)\n- Worked row-state trace (limit 2): source A/B/C → first call work A/B, C absent → second call work A/B/C → third call unchanged, zero new rows.\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Recover by reconciliation, not by a high-watermark — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys.\n- Reading focus: PostgreSQL 18 INSERT — Use INSERT…SELECT with an anti-join, deterministic batch ordering, limit 1–20, and ON CONFLICT DO NOTHING. Limit bounds inserted rows, not scan cost/runtime. Re-scan to discover later-committing earlier keys. (https://www.postgresql.org/docs/18/sql-insert.html)\n- Worked row-state trace (limit 2): source A/B/C → first call work A/B, C absent → second call work A/B/C → third call unchanged, zero new rows.\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 101 note](../assistant-architecture-notes.md#day-101). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n- Separate interview practice (not part of the 25-minute study cap): Q23 — Event pipeline: ingest and process; its 45-minute session replaces part of the existing 85-minute practice block. See Day 101 contract.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -270,9 +337,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-102"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 12 - Creating a custom Spring JDBC RowMapper — exact section: Journey From Spring  JDBC to JPA (4:58)\n- Worked supplement: Map the captured event, not today’s mutable policy — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.\n- Reading focus: Spring JDBC core reference — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values. (https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)\n- Cap: video 4:58, worked/reference 15:02, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 12 - Creating a custom Spring JDBC RowMapper — exact section: Journey From Spring  JDBC to JPA (4:58)\n- Worked supplement: Map the captured event, not today’s mutable policy — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values.\n- Reading focus: Spring JDBC core reference — Use a JDBC RowMapper; do not reconstruct historical payload from mutable policy state. Preserve deterministic order and fail on unsupported values. (https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)\n- Cap: video 4:58, worked/reference 15:02, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 102 note](../assistant-architecture-notes.md#day-102). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "partial_foundation_with_project_supplement",
       "mandatory_new_problem": false
     },
@@ -344,9 +412,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-103"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 11 - Implementing insert and update Spring JDBC Update Methods — exact section: Journey From Spring  JDBC to JPA (8:39)\n- Worked supplement: Insert-or-recognize is not overwrite-on-replay — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.\n- Reading focus: Spring JDBC core reference — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at. (https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)\n- Cap: video 8:39, worked/reference 11:21, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 11 - Implementing insert and update Spring JDBC Update Methods — exact section: Journey From Spring  JDBC to JPA (8:39)\n- Worked supplement: Insert-or-recognize is not overwrite-on-replay — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at.\n- Reading focus: Spring JDBC core reference — Insert by stable identity, compare immutable values on conflict, and never update original payload or received_at. (https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)\n- Cap: video 8:39, worked/reference 11:21, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 103 note](../assistant-architecture-notes.md#day-103). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "partial_foundation_with_project_supplement",
       "mandatory_new_problem": false
     },
@@ -401,9 +470,73 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-104",
+        "interview_assignment": {
+          "day": 104,
+          "date": "2027-02-04",
+          "title": "Acknowledge only completed delivery",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q16",
+          "question_title": "Messaging: ordering and replay",
+          "question_href": "../interview/question-bank.md#q16",
+          "pattern_refs": [
+            "../interview/pattern-library.md#outbox-and-messaging",
+            "../interview/pattern-library.md#idempotency"
+          ],
+          "proposal_prompt": "Which ordering guarantee is actually required, and how can a consumer handle a duplicate event?",
+          "bounded_task": "Implement only the receipt-gated acknowledgment behavior: no receipt means no ack, and a repeat preserves the first acknowledgment timestamp. Do not move the receipt or ack into the dispatcher.",
+          "deferred_work_id": "S8-D104-MOCK",
+          "deferred_work": "Carry any unmet acknowledgment assertion under this ID. Keep Days 99–103 prerequisites explicit and resume at the first failed selector.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day104CannotAcknowledgeBeforeCommittedReceiptAndPreservesFirstAcknowledgment test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-104",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: The effect-before-acknowledgment crash window — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.\n- Reading focus: AWS transactional outbox pattern — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery. (https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: The effect-before-acknowledgment crash window — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery.\n- Reading focus: AWS transactional outbox pattern — Require a receipt before ack. If ack fails, keep receipt and pending work visible for later manual recovery. (https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 104 note](../assistant-architecture-notes.md#day-104). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n- Separate interview practice (not part of the 25-minute study cap): Q16 — Messaging: ordering and replay; its 45-minute session replaces part of the existing 85-minute practice block. See Day 104 contract.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -459,9 +592,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-105"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Crash-window tabletop: predict rows before running the test — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.\n- Reading focus: Spring programmatic transactions — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections. (https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Crash-window tabletop: predict rows before running the test — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections.\n- Reading focus: Spring programmatic transactions — Predict source/work/receipt/ack state before capture, after capture, on receipt failure, after receipt commit, on ack failure, and after replay; confirm on fresh connections. (https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 105 note](../assistant-architecture-notes.md#day-105). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -536,9 +670,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-106"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 63 - Implementing Transaction Management - 3 Things to Decide — exact section: Transaction Management (4:38)\n- Worked supplement: Two completed transactions, not one enclosing transaction — Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure.\n- Reading focus: Spring programmatic transactions — Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending. (https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)\n- Cap: video 4:38, worked/reference 15:22, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 63 - Implementing Transaction Management - 3 Things to Decide — exact section: Transaction Management (4:38)\n- Worked supplement: Two completed transactions, not one enclosing transaction — Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure.\n- Reading focus: Spring programmatic transactions — Capture separately. For each item commit receipt before ack; prove receipt visible from independent raw connection at ack. Reject ambient transaction; stop visibly on first failure. If a later item fails, surface only earlier committed receipt/ack counts and leave remaining items pending. (https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html)\n- Cap: video 4:38, worked/reference 15:22, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 106 note](../assistant-architecture-notes.md#day-106). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "partial_foundation_with_project_supplement",
       "mandatory_new_problem": false
     },
@@ -555,14 +690,14 @@
           "evidence": 10
         },
         "scope": "Hold source A open with earlier key; commit/capture B; then commit/capture A. A must be found. Exclude uncommitted/rolled-back events.",
-        "learner_seam": "Capture two-connection fixture",
+        "learner_seam": "JdbcIssuanceWorkStore.captureCommittedIssuances(int)",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-107.md",
         "evidence_reference": "evidence/continuation-99-112/day-107.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
-          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day101RescansForLateEarlierCommitAndOnlyCapturesCommittedIssuedEvents test"
+          "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day107LateEarlierCommitCannotFallBehindAKeysetWatermark test"
         ],
-        "acceptance_selector_status": "installed_expected_todo_red",
+        "acceptance_selector_status": "installed_expected_todo_red_reuses_day101_two_connection_fixture",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -593,9 +728,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-107"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: An earlier key can commit later — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.\n- Reading focus: PostgreSQL 18 transaction isolation — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses. (https://www.postgresql.org/docs/18/transaction-iso.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: An earlier key can commit later — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses.\n- Reading focus: PostgreSQL 18 transaction isolation — Read Committed sees committed rows per statement. Watermarking past B loses late A; repeated anti-join finds it. Use explicit commit ordering, not sleep guesses. (https://www.postgresql.org/docs/18/transaction-iso.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 107 note](../assistant-architecture-notes.md#day-107). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -612,7 +748,7 @@
           "evidence": 10
         },
         "scope": "Inject receipt-boundary failure. Receipt rolls back; pending work remains; no ack; later explicit run can complete.",
-        "learner_seam": "Receipt failure and retry fixture",
+        "learner_seam": "DurableIssuanceAcceptanceTest#day108ReceiptFailureLeavesPendingWorkForManualRecovery; no new production seam",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-108.md",
         "evidence_reference": "evidence/continuation-99-112/day-108.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
@@ -650,9 +786,73 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-108",
+        "interview_assignment": {
+          "day": 108,
+          "date": "2027-02-08",
+          "title": "Prove failed receipt transactions leave recoverable work",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q12",
+          "question_title": "Scheduler: missed or duplicate execution",
+          "question_href": "../interview/question-bank.md#q12",
+          "pattern_refs": [
+            "../interview/pattern-library.md#scheduled-work",
+            "../interview/pattern-library.md#idempotency"
+          ],
+          "proposal_prompt": "What happens when a worker stops after claiming a job but before recording completion?",
+          "bounded_task": "Run the receipt-failure rollback selector only if its Day 99–106 store prerequisites pass; otherwise stop at the first named prerequisite TODO. Inspect receipt, pending-work and ack state after rollback and explicit retry.",
+          "deferred_work_id": "S8-D108-MOCK",
+          "deferred_work": "Carry the rollback/recovery acceptance and any blocked prior store seams under this ID. No automatic retry feature or extra practice time is added.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "./mvnw -Plearner-tests -Dtest=DurableIssuanceAcceptanceTest#day108ReceiptFailureLeavesPendingWorkForManualRecovery test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-108",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Prove a real commit boundary, not a test-transaction illusion — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.\n- Reading focus: Spring test transaction management — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible. (https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Prove a real commit boundary, not a test-transaction illusion — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible.\n- Reading focus: Spring test transaction management — Observe after failure and retry from fresh connections; avoid a wrapping test-managed transaction; unknown failures remain visible. (https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/tx.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 108 note](../assistant-architecture-notes.md#day-108). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n- Separate interview practice (not part of the 25-minute study cap): Q12 — Scheduler: missed or duplicate execution; its 45-minute session replaces part of the existing 85-minute practice block. See Day 108 contract.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -707,9 +907,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-109"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Process cancellation does not undo an earlier commit — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.\n- Reading focus: Java 21 Process API — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Process cancellation does not undo an earlier commit — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability.\n- Reading focus: Java 21 Process API — Use explicit marker and bounded watchdog; confirm child termination and recovery process exit. Proves worker-JVM restart only, not DB/storage crash durability. (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Process.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 109 note](../assistant-architecture-notes.md#day-109). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -725,17 +926,18 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned.",
+        "scope": "Instructor supplies the gated non-web command plumbing. Learner task is to explain its explicit invocation, batch bounds, empty result, and committed partial-failure semantics; no missing command implementation is assigned. Fresh packaged acceptance first builds the local frontend assets; packaged commands require the earlier Days 79 and 86–92 local-runtime prerequisites and Days 99–109 delivery seams. Stop at the first named prerequisite TODO rather than treating unrelated startup failure as Day 110 evidence. Fresh packaged acceptance first builds the local frontend assets; packaged commands require the earlier Days 79 and 86–92 local-runtime prerequisites and Days 99–109 delivery seams. Stop at the first named prerequisite TODO rather than treating unrelated startup failure as Day 110 evidence.",
         "learner_seam": "Explain-back: trace one invocation, invalid bounds, empty batch, and partial failure from command output to committed rows.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-110.md",
         "evidence_reference": "evidence/continuation-99-112/day-110.json",
         "acceptance_test_path": "src/test/java/assignments/delivery/LocalIssuanceDeliveryCommandTest.java",
         "acceptance_commands": [
           "./mvnw -Dtest=LocalIssuanceDeliveryCommandTest test",
-          "./mvnw -Plocal-app -DskipTests package",
+          "(cd frontend && npm ci && npm run build && npm run build:local)",
+          "./mvnw -Plocal-app -DskipTests clean package",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
-        "acceptance_selector_status": "instructor_command_tests_green_learner_explain_back_pending",
+        "acceptance_selector_status": "instructor_command_tests_green_learner_explain_back_pending_packaged_check_prerequisite_gated",
         "infrastructure_test_path": "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java",
         "infrastructure_commands": [
           "./mvnw -Dtest=Day99To112InfrastructureTest test"
@@ -783,9 +985,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-110"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 06 - Execute the findAll method using CommandLineRunner — exact section: Journey From Spring  JDBC to JPA (5:45)\n- Worked supplement: An opt-in one-shot command, not an accidental startup worker — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.\n- Reading focus: Spring Boot SpringApplication runners — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)\n- Cap: video 5:45, worked/reference 14:15, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- Course (access unconfirmed; reference only): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps/)\n- Step 06 - Execute the findAll method using CommandLineRunner — exact section: Journey From Spring  JDBC to JPA (5:45)\n- Worked supplement: An opt-in one-shot command, not an accidental startup worker — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup.\n- Reading focus: Spring Boot SpringApplication runners — Runner plumbing is explicitly gated; use non-web mode, report committed counts, and exit nonzero on failure. Never run at ordinary startup. (https://docs.spring.io/spring-boot/reference/features/spring-application.html)\n- Cap: video 5:45, worked/reference 14:15, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 110 note](../assistant-architecture-notes.md#day-110). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n- Earlier runtime/store prerequisite: packaged local acceptance also depends on Days 79 and 86–92 runtime seams and Days 99–109 delivery seams; stop at the first exact blocker.\n",
       "course_learning_status": "partial_foundation_with_project_supplement",
       "mandatory_new_problem": false
     },
@@ -801,14 +1004,14 @@
           "concept_or_course": 25,
           "evidence": 10
         },
-        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage.",
-        "learner_seam": "Packaged route plus command",
+        "scope": "Exercise the packaged JAR through authenticated HTTP client requests to the existing protected issuance and preview routes, then invoke the real one-shot command. Same-key POST replay must preserve full source and delivery snapshots. This test is HTTP-client-driven, not Chromium UI coverage. The broad local packaged runtime also requires the earlier Day 79 and Days 86–92 runtime seams, in addition to Days 99–110 delivery prerequisites; stop and record the first exact prerequisite TODO or setup blocker. The broad local packaged runtime also requires the earlier Day 79 and Days 86–92 runtime seams, in addition to Days 99–110 delivery prerequisites; stop and record the first exact prerequisite TODO or setup blocker.",
+        "learner_seam": "Packaged route plus command; packaged acceptance is prerequisite-gated on Day 79, Days 86–92, and Days 99–110.; packaged acceptance is prerequisite-gated on Day 79, Days 86–92, and Days 99–110.",
         "acceptance_reference": "docs/reboot/continuation-99-112/contracts/day-111.md",
         "evidence_reference": "evidence/continuation-99-112/day-111.json",
         "acceptance_test_path": "src/test/java/assignments/local/LocalPackagedIssuanceDeliveryAcceptanceTest.java",
         "acceptance_commands": [
           "(cd frontend && npm ci && npm run build && npm run build:local)",
-          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app -DskipTests clean package",
           "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
         ],
         "acceptance_selector_status": "installed_expected_todo_red",
@@ -837,7 +1040,7 @@
           "worked_reference_seconds": 1200,
           "teachback_seconds": 300,
           "fit": "no_exact_course_lesson_verified_supplement_required",
-          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector.",
+          "scope_note": "Packaged JAR + authenticated Java HTTP client + disposable PostgreSQL + real one-shot command. It verifies API-level issue replay and preview no-write snapshots, not browser UI behavior. Separate Day83/97 Chromium evidence remains separate and is not claimed by this selector. The broad local runtime depends on earlier Day 79 and Days 86–92 learner-owned seams; the selector must identify the first actual blocker and must not attribute it to Day 111. The broad local runtime depends on earlier Day 79 and Days 86–92 learner-owned seams; the selector must identify the first actual blocker and must not attribute it to Day 111.",
           "supplement_required": true,
           "daily_study_cap_minutes": 25,
           "videos_watched": false,
@@ -847,9 +1050,76 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-111",
+        "interview_assignment": {
+          "day": 111,
+          "date": "2027-02-11",
+          "title": "Integrate protected issuance, manual delivery, and read-only preview",
+          "proposal_before_hints_reference_or_ai": true,
+          "study_cap_minutes": 25,
+          "course_note": "The design prompt is a separate interview exercise inside practice time. Capstone architecture is supplied in the linked note; no engineering design proposal is assigned.",
+          "mode": "45_minute_mock",
+          "duration_minutes": 45,
+          "question_id": "Q05",
+          "question_title": "CoverStory domain workflow",
+          "question_href": "../interview/question-bank.md#q05",
+          "pattern_refs": [
+            "../interview/pattern-library.md#domain-workflow",
+            "../interview/pattern-library.md#immutable-snapshot",
+            "../interview/pattern-library.md#ownership-boundary"
+          ],
+          "proposal_prompt": "How should a quote become an issued policy while preserving owner, quote version, and the accepted result?",
+          "bounded_task": "Run the packaged authenticated issue/replay/one-shot/preview acceptance after the Days 79 and 86–92 runtime prerequisites and Days 99–110 delivery seams are complete. Within this slice, inspect API status and one full snapshot boundary; stop at the first real TODO or setup blocker.",
+          "deferred_work_id": "S8-D111-MOCK",
+          "deferred_work": "Carry every remaining packaged integration assertion under this ID. Do not count interview practice or a partial HTTP trace as full packaged acceptance; stop at the first named runtime/store TODO.",
+          "mock_phases": [
+            {
+              "phase": "Requirements",
+              "minutes": 5
+            },
+            {
+              "phase": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "phase": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "phase": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "phase": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "eai_slice_minutes": {
+            "preconditions_and_prediction": 5,
+            "implementation_or_observation": 25,
+            "selector_and_blocker_record": 10
+          },
+          "practice_total_minutes": 85,
+          "implementation_scope": "The 45-minute interview session and 40-minute capstone implementation slice share the existing 85-minute practice allocation. The mock is not capstone design work or completion; all unmet acceptance remains deferred.",
+          "acceptance_commands": [
+            "(cd frontend && npm ci && npm run build && npm run build:local)",
+            "./mvnw -Plocal-app -DskipTests clean package",
+            "./mvnw -Plocal-app,learner-tests -Dtest=LocalPackagedIssuanceDeliveryAcceptanceTest test"
+          ],
+          "acceptance": "These commands exercise the named acceptance boundary only. Report expected TODO/prerequisite failures accurately; the complete original contract remains the completion gate.",
+          "evidence": "Keep the interview answer separate from capstone evidence. Record exact command/result, actual blocker, assistance and changed paths; do not submit a capstone design proposal or post-hoc justification.",
+          "open_acceptance_gaps": [
+            "Any remaining original acceptance is open until learner implementation and all stated prerequisites pass."
+          ],
+          "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-111",
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied"
+        }
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No new course lesson is assigned; use the provided harness and focused prior contracts within the existing 25-minute study block.\n- Worked supplement: One issuance, repeated requests, one local effect — Compare full snapshots to seeded baseline. Same-key issue replay adds no event; renewal preview stays read-only.\n- Reading focus: Day 35 atomic issuance contract — Existing policy, idempotency receipt and ISSUED event commit together (https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md)\n- Reading focus: Days 85–98 renewal contract — Renewal preview read-only integration boundary (https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No new course lesson is assigned; use the provided harness and focused prior contracts within the existing 25-minute study block.\n- Worked supplement: One issuance, repeated requests, one local effect — Compare full snapshots to seeded baseline. Same-key issue replay adds no event; renewal preview stays read-only.\n- Reading focus: Day 35 atomic issuance contract — Existing policy, idempotency receipt and ISSUED event commit together (https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-31-44/contracts/day-35.md)\n- Reading focus: Days 85–98 renewal contract — Renewal preview read-only integration boundary (https://github.com/advait-ravi-marathe/capstone-project/blob/eb380f352f509740ecb5b9f4cfbd96d6332136b8/docs/reboot/continuation-85-98/README.md)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 111 note](../assistant-architecture-notes.md#day-111). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n- Separate interview practice (not part of the 25-minute study cap): Q05 — CoverStory domain workflow; its 45-minute session replaces part of the existing 85-minute practice block. See Day 111 contract.\n- Earlier runtime/store prerequisite: the packaged local runtime requires Days 79 and 86–92 runtime seams and Days 99–110 delivery seams; stop at the first exact blocker.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     },
@@ -872,7 +1142,7 @@
         "acceptance_test_path": "src/test/java/assignments/delivery/DurableIssuanceAcceptanceTest.java",
         "acceptance_commands": [
           "(cd frontend && npm ci && npm run build && npm run build:local)",
-          "./mvnw -Plocal-app -DskipTests package",
+          "./mvnw -Plocal-app -DskipTests clean package",
           "./mvnw -Plocal-app,learner-tests -Dtest=DurableIssuanceAcceptanceTest,DurableWorkRestartAcceptanceTest,LocalPackagedIssuanceDeliveryAcceptanceTest,PolicyLifecycleAcceptanceTest test",
           "./mvnw -Plocal-app,learner-tests -Dtest=TimedRenewalReadAcceptanceTest,PreviewTimeoutPostgresAcceptanceTest,Day83PackagedLockBrowserAcceptanceTest,Day97PackagedTimeoutBrowserAcceptanceTest test",
           "CHROMIUM_BIN=/usr/bin/chromium ./mvnw test"
@@ -908,9 +1178,10 @@
           "allocation_rule": "Video, pauses, worked example, focused reading and teach-back fit within the one 25-minute study block. Carry unfinished study forward and reduce implementation scope; never add daily time."
         },
         "status": "not_attempted",
-        "scaffold_status": "instructor_scaffold_complete"
+        "scaffold_status": "instructor_scaffold_complete",
+        "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-112"
       },
-      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Defend the conditional recovery guarantee — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.\n- Reading focus: AWS transactional outbox pattern — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits. (https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.",
+      "course_learning_block": "**Learning guidance (within the one 25-minute engineering study block):**\n- No exact course lesson is assigned; use the named worked example and focused public reference.\n- Worked supplement: Defend the conditional recovery guarantee — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits.\n- Reading focus: AWS transactional outbox pattern — Explain manual repetition, retained source, finite backlog, visible failure, duplicate-safe replay, and local-versus-distributed limits. (https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)\n- Cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Assistant-provided architecture: [Day 112 note](../assistant-architecture-notes.md#day-112). The assistant supplies these design decisions; implement and test the named seam. No capstone design proposal or post-hoc justification is assigned.\n",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false
     }
