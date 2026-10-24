@@ -66,8 +66,8 @@ class Day30ContractTest {
         JsonNode cards = owner.get("cards");
         assertEquals(30, owner.get("story_count").asInt());
         assertEquals(30, cards.size());
-        assertEquals("2026-10-20", cards.get(0).get("date").asString());
-        assertEquals("2026-11-18", cards.get(29).get("date").asString());
+        assertEquals("2026-10-24", cards.get(0).get("date").asString());
+        assertEquals("2026-11-22", cards.get(29).get("date").asString());
         assertEquals(14, owner.get("sprint_boundaries").get(0).get("story_count").asInt());
         assertEquals(14, owner.get("sprint_boundaries").get(1).get("story_count").asInt());
         assertEquals(2, owner.get("sprint_boundaries").get(2).get("story_count").asInt());

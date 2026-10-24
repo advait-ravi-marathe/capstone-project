@@ -37,7 +37,7 @@ Sprint 1 schedules two sessions in each seven-day week:
 | 3 | 2026-10-26 | HTTP errors and boundary ownership | Q08 |
 | 7 | 2026-10-30 | time and deterministic quote expiry | Q03 |
 | 10 | 2026-11-02 | transaction scope and atomic writes | Q13 |
-| 14 | 2026-11-06 | end-to-end backend slice and first failure | Q31 |
+| 14 | 2026-11-06 | CoverStory domain workflow and first failure | Q05 |
 
 The session sequence and remaining question prompts are in the
 [`36-question bank`](interview/question-bank.md),

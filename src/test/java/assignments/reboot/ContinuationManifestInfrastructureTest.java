@@ -82,7 +82,7 @@ class ContinuationManifestInfrastructureTest {
         assertEquals(2, cards.get("sprint_boundaries").get(1).get("batch_story_count").asInt());
         assertEquals(14, cards.get("sprint_boundaries").get(0).get("sprint_story_count_after_batch").asInt());
         assertEquals(2, cards.get("sprint_boundaries").get(1).get("sprint_story_count_after_batch").asInt());
-        LocalDate date = LocalDate.parse("2026-11-19");
+        LocalDate date = LocalDate.parse("2026-11-23");
         for (int i = 0; i < 14; i++) {
             JsonNode day = manifest.get("days").get(i);
             assertEquals(31 + i, day.get("day").asInt());

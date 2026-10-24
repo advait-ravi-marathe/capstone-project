@@ -13,24 +13,24 @@ rest of the daily engineering budget unchanged. The segment lengths are
 | 10 | Failure and trade-off | Walk one failure, one consistency/security boundary, and the operational cost of the chosen approach. |
 | 10 | Feedback and evidence | Score the rubric, record the exact command/output, then optionally compare with an AI suggestion. Keep the initial proposal unchanged. |
 
-## Score each dimension 0–2
+## 100-point rubric
 
-- **Problem framing:** 0 misses the user or constraints; 1 identifies the happy
-  path but leaves a material ambiguity; 2 asks useful questions and states
-  observable acceptance.
-- **System boundary:** 0 assigns authority or state to the wrong component; 1
-  has a workable boundary with one unclear responsibility; 2 identifies
-  ownership, trust boundary, and transaction or API boundary correctly.
-- **Correctness and data:** 0 misses the core invariant; 1 states it but has no
-  convincing durable enforcement; 2 ties the invariant to a concrete model and
-  concurrency/replay behavior.
-- **Failure and operations:** 0 has no failure path; 1 handles a local error
-  but misses recovery/observability; 2 states a bounded failure response and
-  how to detect or recover it.
-- **Verification and communication:** 0 gives no testable evidence; 1 names a
-  test but cannot interpret its result; 2 predicts a negative case and explains
-  actual runnable evidence clearly.
+Rate each dimension from 0 to 4. Award `dimension weight × rating ÷ 4` points;
+the seven weights total 100. Use the anchors as observable evidence, not as a
+confidence or personality score.
 
-Record scores individually; do not average away a security or data-integrity
-failure. Mark hints, AI, or prior exposure. A score measures this practice
-attempt only, not employer readiness.
+| Dimension | Weight | 0 | 2 | 4 |
+|---|---:|---|---|---|
+| Requirements and constraints | 15 | Misses the user outcome or invents requirements. | States main use cases but misses an important constraint or acceptance condition. | Clarifies actors, workload, latency/durability needs, must-not-happen cases, and measurable acceptance. |
+| Architecture and boundaries | 20 | Components, ownership, or authority are misplaced. | A workable flow exists, but a key responsibility or failure boundary is unclear. | Shows an appropriately simple boundary, trust/ownership, APIs, and the database or external-system responsibility. |
+| Data consistency and correctness | 20 | Core invariant or state transitions are wrong. | Invariant is named but enforcement, concurrency, or replay is incomplete. | Data model and constraints enforce the invariant under retry/concurrency; state and readback are consistent. |
+| Scalability and capacity | 10 | No workload reasoning; proposes unbounded resources. | Identifies a likely bottleneck but lacks a target or evidence. | Gives a bounded workload estimate, bottleneck observation, and a scale path with limits. |
+| Reliability and operations | 15 | No useful failure, recovery, or diagnostic path. | Handles one failure but leaves uncertain outcomes or recovery unclear. | Bounds timeouts/retries, identifies partial failure, and names monitoring/recovery evidence. |
+| Trade-offs and alternatives | 10 | Declares a pattern without fit or cost. | Compares one plausible alternative but misses its consequence. | Compares viable options, states concrete costs/failure modes, and names evidence that would change the choice. |
+| Communication and verification | 10 | Cannot make the proposal or evidence understandable. | Gives a coherent summary but has a weak test or does not interpret its result. | Communicates in stages, predicts a negative case, and explains actual runnable evidence and remaining limits. |
+
+Ratings 1 and 3 represent evidence between the adjacent anchors. Total the
+points transparently; report any critical authorization, data-integrity, or
+unsafe-retry failure separately rather than hiding it in the total. Mark hints,
+AI, and prior exposure. The score measures this practice attempt only, not
+employer readiness.

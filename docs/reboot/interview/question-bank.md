@@ -1,99 +1,260 @@
-# Interview practice question bank
+# System design question bank
 
-These 36 prompts are original, curated practice. They are not copied from a
-company interview and make no claim about question frequency. Start each
-prompt with the learner's own clarification and proposal before consulting an
-AI response or a reference design. Existing EAI acceptance criteria take
-precedence over these prompts.
+These 36 original questions cover canonical interview systems and the
+distributed concepts needed to reason about them. They are organized by
+difficulty, concept, and patterns. They are practice prompts, not copied
+company questions or claims about interview frequency. For every prompt, write
+your own requirements, boundary, invariant, and first test before hints,
+reference answers, or AI. A question never expands the current product scope.
 
-## HTTP and service boundaries
+## Foundations
 
-1. **Q01 — Quote selection API:** What must the request identify, and what
-   should happen when the same pair appears twice?
-2. **Q02 — Validation boundary:** Which invalid request shapes should be
-   rejected before a service call?
-3. **Q03 — Expiry and time:** How would you make quote expiry deterministic
-   across tests and production code?
-4. **Q04 — Error contract:** How should clients distinguish malformed input,
-   a stale quote, and a server failure?
-5. **Q05 — Read pagination:** How would you page a growing quote history
-   without unstable ordering?
-6. **Q06 — Owner-scoped lookup:** How should a foreign quote compare with an
-   absent quote at the HTTP boundary?
-7. **Q07 — Price representation:** Which numeric type and rounding boundary
-   protect a quoted premium from binary rounding surprises?
-8. **Q08 — Shared error handling:** What belongs in controller advice, and
-   what domain detail must not leak to a client?
+<a id="q01"></a>
+1. **Q01 — URL shortener: smallest useful design.** What must a short link
+  guarantee from creation through redirect, and what should a redirect do for
+  an unknown key? **Concepts:** API, key identity, availability. **Patterns:**
+  [short-key allocation](pattern-library.md#short-key-allocation),
+  [HTTP boundary](pattern-library.md#http-boundary).
 
-## Data and consistency
+<a id="q02"></a>
+2. **Q02 — Short-link abuse and operations.** Which abuse limits, diagnostics,
+  and recovery controls are needed without slowing every redirect?
+  **Concepts:** safety, operational signals, resource bounds. **Patterns:**
+  [rate limiting](pattern-library.md#rate-limiting),
+  [measurement](pattern-library.md#measure-before-scaling).
 
-9. **Q09 — Quote snapshots:** Which facts should be copied into an immutable
-   quote snapshot, and which can remain catalog references?
-10. **Q10 — Selection schema:** Which keys and constraints express the
-    identity of one selection?
-11. **Q11 — Request audit:** Which minimal audit fields support diagnosis
-    without storing unnecessary sensitive input?
-12. **Q12 — Ownership model:** Where should owner identity enter a read, and
-    how can a client-supplied owner be prevented from widening access?
-13. **Q13 — Atomic issue:** Which writes must commit or roll back together
-    when issuing a policy?
-14. **Q14 — Idempotency scope:** Should a request key be unique globally or
-    within an owner, and what existing contract determines that choice?
-15. **Q15 — Repeated intent:** How should an exact retry differ from reuse of
-    the same key with changed intent?
-16. **Q16 — Query plan:** What evidence would justify changing an index for a
-    real read path?
+<a id="q03"></a>
+3. **Q03 — URL expiry and deterministic time.** How would expiry, custom aliases,
+  and clock boundaries behave without sleeping in tests? **Concepts:** time,
+  retention, immutable creation facts. **Patterns:**
+  [expiry and retention](pattern-library.md#expiry-and-retention),
+  [injected clocks](pattern-library.md#deterministic-time).
 
-## Concurrency and operations
+<a id="q04"></a>
+4. **Q04 — Rate limiter: one client and one window.** Which requests are
+  admitted, and when does the budget reset? **Concepts:** identity, window,
+  fairness. **Patterns:** [rate limiting](pattern-library.md#rate-limiting),
+  [clock boundary](pattern-library.md#deterministic-time).
 
-17. **Q17 — Two writers:** How should two clients selecting the same quote
-    version avoid a silent lost update?
-18. **Q18 — Transaction isolation:** Which anomaly could affect this workflow,
-    and what database observation would demonstrate it?
-19. **Q19 — Unique conflict:** What should an application do when a database
-    uniqueness constraint rejects a concurrent duplicate?
-20. **Q20 — Retry boundary:** Which failures are safe to retry, and how would
-    the client keep the same request identity?
-21. **Q21 — Request timeout:** What does an HTTP timeout prove about a JDBC
-    statement that may still be running?
-22. **Q22 — Recovery:** How can an operator distinguish a failed write from
-    a committed write whose response was lost?
-23. **Q23 — Health checks:** What should a liveness check establish, and what
-    belongs in a readiness check?
-24. **Q24 — CI failure:** How would you separate a setup failure from a
-    learner acceptance failure in the first failing CI step?
+<a id="q05"></a>
+5. **Q05 — CoverStory domain workflow.** How should a quote become an issued
+  policy while preserving owner, quote version, and the accepted result?
+  **Concepts:** workflow, state transitions, trust boundary. **Patterns:**
+  [domain workflow](pattern-library.md#domain-workflow),
+  [immutable snapshot](pattern-library.md#immutable-snapshot).
 
-## Full-stack behavior
+<a id="q06"></a>
+6. **Q06 — File storage: upload and download.** Which metadata belongs in a
+  relational database, and which bytes can live in object storage?
+  **Concepts:** ownership, metadata, large payloads. **Patterns:**
+  [object storage](pattern-library.md#object-storage),
+  [ownership boundary](pattern-library.md#ownership-boundary).
 
-25. **Q25 — Owner switch:** How does the UI prevent one owner's data from
-    remaining visible while the next owner's request is pending?
-26. **Q26 — API evolution:** How can an API add an optional field without
-    silently changing existing clients' interpretation?
-27. **Q27 — Accessible errors:** How should a form expose validation and
-    expired-session state to keyboard and screen-reader users?
-28. **Q28 — CSRF and session:** Why does a valid cookie not replace a CSRF
-    token on a state-changing request?
-29. **Q29 — Loading and retry:** How should the UI distinguish a pending
-    request, a retryable network failure, and a definitive conflict?
-30. **Q30 — Browser acceptance:** Which independent observations show the
-    rendered UI, HTTP response, and persisted rows agree?
+<a id="q07"></a>
+7. **Q07 — API gateway: route and protect.** Which checks belong at the edge,
+  and which must remain in the owning service? **Concepts:** routing,
+  authentication, authorization. **Patterns:**
+  [gateway boundary](pattern-library.md#gateway-boundary),
+  [ownership boundary](pattern-library.md#ownership-boundary).
 
-## Later AI system prompts (gated)
+<a id="q08"></a>
+8. **Q08 — API gateway: safe error contract.** How can the gateway preserve
+  stable client errors while avoiding internal detail leaks? **Concepts:**
+  HTTP semantics, failure ownership. **Patterns:**
+  [HTTP boundary](pattern-library.md#http-boundary),
+  [timeouts and retries](pattern-library.md#timeouts-and-retries).
 
-Use Q31–Q36 only after the relevant data, authorization, and evaluation
-foundations have passed their existing gates. These are design exercises;
-they do not authorize production AI features or activate StreamForge.
+<a id="q09"></a>
+9. **Q09 — Notification service: accept and deliver.** What does “accepted”
+  mean when a provider can be unavailable? **Concepts:** durable intent,
+  delivery state. **Patterns:** [outbox and messaging](pattern-library.md#outbox-and-messaging),
+  [retry boundary](pattern-library.md#timeouts-and-retries).
 
-31. **Q31 — First failed boundary:** Given a bounded service journey, where
-    should an assistant stop and ask for human review rather than infer a
-    consequential policy change?
-32. **Q32 — Grounded explanation:** How could an explanation cite the exact
-    policy source passage and expose missing source evidence?
-33. **Q33 — Evaluation set:** What cases would test a policy explanation's
-    factuality, refusal behavior, and source attribution?
-34. **Q34 — Tool authorization:** How do you keep a model-proposed tool call
-    from bypassing the authenticated owner's existing permissions?
-35. **Q35 — Human approval:** Which actions require explicit human approval,
-    and how can approval bind to the exact proposed action?
-36. **Q36 — Value baseline:** What non-AI baseline and measurable outcome
-    would justify adding a model to an existing workflow?
+<a id="q10"></a>
+10. **Q10 — Notification service: retries.** How would you prevent duplicate
+  messages after a worker times out? **Concepts:** idempotency, retry,
+  observable outcome. **Patterns:** [idempotency](pattern-library.md#idempotency),
+  [outbox and messaging](pattern-library.md#outbox-and-messaging).
+
+<a id="q11"></a>
+11. **Q11 — Scheduler: run one job.** How do you represent a scheduled job,
+  its due time, and a successful completion? **Concepts:** leases, durable
+  state, time. **Patterns:** [scheduled work](pattern-library.md#scheduled-work),
+  [deterministic time](pattern-library.md#deterministic-time).
+
+<a id="q12"></a>
+12. **Q12 — Scheduler: missed or duplicate execution.** What happens when a
+  worker stops after claiming a job but before recording completion?
+  **Concepts:** recovery, leases, duplicate execution. **Patterns:**
+  [scheduled work](pattern-library.md#scheduled-work),
+  [idempotency](pattern-library.md#idempotency).
+
+<a id="q13"></a>
+13. **Q13 — Booking: reserve one seat atomically.** Which rows or constraints
+  prevent two requests from reserving the final seat? **Concepts:** atomicity,
+  concurrency, durable uniqueness. **Patterns:**
+  [transaction boundary](pattern-library.md#transaction-boundary),
+  [optimistic and unique guards](pattern-library.md#concurrency-guards).
+
+## Intermediate
+
+<a id="q14"></a>
+13. **Q14 — Booking: retry after a lost response.** How can a client repeat a
+  booking safely when it cannot tell whether the first write committed?
+  **Concepts:** intent identity, readback, conflict. **Patterns:**
+  [idempotency](pattern-library.md#idempotency),
+  [transaction boundary](pattern-library.md#transaction-boundary).
+
+<a id="q15"></a>
+14. **Q15 — Messaging: publish an order event.** How do you keep a committed
+  order from losing its event when the broker is briefly unavailable?
+  **Concepts:** database/broker boundary, eventual delivery. **Patterns:**
+  [outbox and messaging](pattern-library.md#outbox-and-messaging),
+  [backpressure](pattern-library.md#backpressure).
+
+<a id="q16"></a>
+15. **Q16 — Messaging: ordering and replay.** Which ordering guarantee is
+  actually required, and how can a consumer handle a duplicate event?
+  **Concepts:** partition key, sequence, idempotent consumer. **Patterns:**
+  [outbox and messaging](pattern-library.md#outbox-and-messaging),
+  [idempotency](pattern-library.md#idempotency).
+
+<a id="q17"></a>
+16. **Q17 — Cache: accelerate a read.** Which measured read path would justify
+  caching, and what freshness does the caller require? **Concepts:** latency,
+  hit rate, staleness. **Patterns:** [cache policy](pattern-library.md#cache-policy),
+  [measurement](pattern-library.md#measure-before-scaling).
+
+<a id="q18"></a>
+17. **Q18 — Cache: invalidation after a write.** How can the application
+  prevent stale private data from surviving a change of owner or version?
+  **Concepts:** invalidation, versioning, security. **Patterns:**
+  [cache policy](pattern-library.md#cache-policy),
+  [ownership boundary](pattern-library.md#ownership-boundary).
+
+<a id="q19"></a>
+18. **Q19 — Payments: accept one payment intent.** Which states distinguish
+  pending, authorized, captured, declined, and unknown outcome? **Concepts:**
+  state machine, external boundary, audit. **Patterns:**
+  [payment state](pattern-library.md#payment-state),
+  [idempotency](pattern-library.md#idempotency).
+
+<a id="q20"></a>
+19. **Q20 — Payments: reconcile timeout.** A provider timed out after the
+  request left your process. How do you avoid charging twice and learn the
+  final result? **Concepts:** uncertain outcome, reconciliation. **Patterns:**
+  [payment state](pattern-library.md#payment-state),
+  [timeouts and retries](pattern-library.md#timeouts-and-retries).
+
+<a id="q21"></a>
+20. **Q21 — Webhook delivery: register and send.** How should a receiver
+  verify origin and process a repeated delivery? **Concepts:** signatures,
+  replay, delivery state. **Patterns:** [webhook delivery](pattern-library.md#webhook-delivery),
+  [idempotency](pattern-library.md#idempotency).
+
+<a id="q22"></a>
+21. **Q22 — Webhook delivery: backoff and dead letter.** Which failures are
+  retried, when do attempts stop, and how is replay made safe?
+  **Concepts:** retry schedule, dead-letter handling. **Patterns:**
+  [webhook delivery](pattern-library.md#webhook-delivery),
+  [backpressure](pattern-library.md#backpressure).
+
+<a id="q23"></a>
+22. **Q23 — Event pipeline: ingest and process.** How do you preserve a
+  durable source record while processing volume grows? **Concepts:** ingestion,
+  partitioning, consumer lag. **Patterns:**
+  [event pipeline](pattern-library.md#event-pipeline),
+  [backpressure](pattern-library.md#backpressure).
+
+<a id="q24"></a>
+23. **Q24 — Event pipeline: correction and replay.** How can you rebuild a
+  derived result after a bug without duplicating side effects?
+  **Concepts:** replay, checkpoints, versioned projections. **Patterns:**
+  [event pipeline](pattern-library.md#event-pipeline),
+  [idempotency](pattern-library.md#idempotency).
+
+<a id="q25"></a>
+24. **Q25 — Chat: send and read messages.** Which storage and ordering rules
+  make one conversation understandable across devices? **Concepts:** durable
+  writes, sequence, pagination. **Patterns:**
+  [chat ordering](pattern-library.md#chat-ordering),
+  [stable pagination](pattern-library.md#stable-pagination).
+
+<a id="q26"></a>
+25. **Q26 — Chat: reconnect and presence.** Which state can be ephemeral, and
+  what happens when a client reconnects after missing updates? **Concepts:**
+  presence, resync, fan-out. **Patterns:** [chat ordering](pattern-library.md#chat-ordering),
+  [backpressure](pattern-library.md#backpressure).
+
+<a id="q27"></a>
+26. **Q27 — Feed: build a page.** How can a feed provide stable pagination
+  while new items arrive? **Concepts:** cursor, rank, read model. **Patterns:**
+  [stable pagination](pattern-library.md#stable-pagination),
+  [read scaling](pattern-library.md#read-scaling).
+
+<a id="q28"></a>
+27. **Q28 — Feed: fan-out choice.** When would you precompute recipient feeds,
+  compute on read, or combine both? **Concepts:** skew, write amplification,
+  freshness. **Patterns:** [feed fan-out](pattern-library.md#feed-fan-out),
+  [measure before scaling](pattern-library.md#measure-before-scaling).
+
+## Advanced
+
+<a id="q29"></a>
+28. **Q29 — Autocomplete: prefix lookup.** Which index and ranking model fit
+  the expected prefix and latency requirements? **Concepts:** trie/search
+  index, top-k, freshness. **Patterns:** [search index](pattern-library.md#search-index),
+  [read scaling](pattern-library.md#read-scaling).
+
+<a id="q30"></a>
+29. **Q30 — Autocomplete: update and privacy.** How do you handle deletions,
+  stale suggestions, and tenant-specific visibility? **Concepts:** indexing
+  lag, deletion, authorization. **Patterns:** [search index](pattern-library.md#search-index),
+  [ownership boundary](pattern-library.md#ownership-boundary).
+
+<a id="q31"></a>
+30. **Q31 — Streaming: ingest and play.** How do you serve a large media object
+  without loading it into an application heap? **Concepts:** range reads,
+  object storage, edge delivery. **Patterns:**
+  [streaming delivery](pattern-library.md#streaming-delivery),
+  [object storage](pattern-library.md#object-storage).
+
+<a id="q32"></a>
+31. **Q32 — Streaming: adaptive delivery.** Which signals should change
+  bitrate, and how do buffering and regional failures affect playback?
+  **Concepts:** throughput, manifests, edge cache. **Patterns:**
+  [streaming delivery](pattern-library.md#streaming-delivery),
+  [resilience](pattern-library.md#resilience).
+
+<a id="q33"></a>
+32. **Q33 — Analytics: event to metric.** How do you define a metric that can
+  be recomputed from its source events? **Concepts:** event time, schema,
+  aggregation. **Patterns:** [analytics pipeline](pattern-library.md#analytics-pipeline),
+  [event pipeline](pattern-library.md#event-pipeline).
+
+<a id="q34"></a>
+33. **Q34 — Analytics: late and duplicate data.** How should a report change
+  when events arrive late or are replayed? **Concepts:** idempotent aggregate,
+  watermark, correction. **Patterns:** [analytics pipeline](pattern-library.md#analytics-pipeline),
+  [idempotency](pattern-library.md#idempotency).
+
+<a id="q35"></a>
+34. **Q35 — Distributed rate limiting.** What are the consistency and
+  availability consequences of enforcing a limit across several regions?
+  **Concepts:** partition, approximate counters, fairness. **Patterns:**
+  [rate limiting](pattern-library.md#rate-limiting),
+  [multi-region boundary](pattern-library.md#multi-region-boundary).
+
+<a id="q36"></a>
+35. **Q36 — Object-store recovery.** How would you detect an incomplete upload
+  or an accidental deletion and restore a verified object? **Concepts:**
+  checksums, versioning, retention. **Patterns:**
+  [object storage](pattern-library.md#object-storage),
+  [resilience](pattern-library.md#resilience).
+
+## Later AI design prompts
+
+AI work stays outside this 36-question interview bank until the relevant data,
+authorization, and evaluation foundations pass their existing gates. The
+future prompt set remains in the roadmap; these systems questions do not
+authorize an AI feature or activate StreamForge.

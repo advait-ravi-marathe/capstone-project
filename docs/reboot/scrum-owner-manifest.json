@@ -233,7 +233,57 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#requirement-slice",
+          "docs/reboot/interview/pattern-library.md#http-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 02 - Creating a Hello World REST API with Spring Boot",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 381,
+            "source_item_id": "35018836",
+            "course_id": null
+          },
+          {
+            "title": "Step 03 - Enhancing the Hello World REST API to return a Bean",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 270,
+            "source_item_id": "35018834",
+            "course_id": null
+          },
+          {
+            "title": "Step 00 - Creating a REST API with Spring Boot - An Overview",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 244,
+            "source_item_id": "35018848",
+            "course_id": null
+          },
+          {
+            "title": "Step 01 - Initializing a REST API Project with Spring Boot",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 446,
+            "source_item_id": "35018844",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-01.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 1 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY02",
@@ -353,7 +403,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#http-boundary",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 09 - Implementing POST Method to create User Resource",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 516,
+            "source_item_id": null,
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-02.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 2 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY03",
@@ -487,7 +566,38 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q08",
+        "question_href": "docs/reboot/interview/question-bank.md#q08",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#gateway-boundary",
+          "docs/reboot/interview/pattern-library.md#http-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/session-scope.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 12 - Implementing Generic Exception Handling for all Resources",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 689,
+            "source_item_id": null,
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: implement/map the expected 404 and 409 responses; run only the named two-method selector. Deferred queue S1-D03-1 contains sanitized unexpected 500 and full class acceptance.",
+        "deferred_work_id": "S1-D03-1",
+        "acceptance": "The original Day 3 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker, assistance label, and the saved pre-assistance proposal. Dedicated mock days also record the 100-point rubric dimensions; do not turn the evidence block into a post-hoc essay."
+      }
     },
     {
       "id": "CS-DAY04",
@@ -617,7 +727,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#requirement-slice",
+          "docs/reboot/interview/pattern-library.md#domain-workflow"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 13 - Exploring Java Bean vs POJO vs Spring Bean",
+            "section_title": "Getting Started with Java Spring Framework - 5 - Key Questions about Spring",
+            "duration_seconds": 315,
+            "source_item_id": "35020094",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-04.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 4 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY05",
@@ -745,7 +884,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#domain-workflow",
+          "docs/reboot/interview/pattern-library.md#immutable-snapshot"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Core concepts of Functional Programming",
+            "section_title": "APPENDIX - Functional Programming - A Quick Review using Q&A Format",
+            "duration_seconds": 403,
+            "source_item_id": "49578631",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-05.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 5 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY06",
@@ -875,7 +1043,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
+          "docs/reboot/interview/pattern-library.md#transaction-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 05 - Introduction to BigDecimal Java Class",
+            "section_title": "Primitive Data Types And Alternatives in Java Programming",
+            "duration_seconds": 418,
+            "source_item_id": "9565516",
+            "course_id": null
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-06.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 6 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY07",
@@ -993,7 +1190,30 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q03",
+        "question_href": "docs/reboot/interview/question-bank.md#q03",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#deterministic-time",
+          "docs/reboot/interview/pattern-library.md#expiry-and-retention"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/session-scope.md"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: implement and test fixed-clock quote snapshot/version/price/15-minute expiry. Deferred queue S1-D07-1 contains equality boundaries, ineligible-input no-call proof, and full class acceptance.",
+        "deferred_work_id": "S1-D07-1",
+        "acceptance": "The original Day 7 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker, assistance label, and the saved pre-assistance proposal. Dedicated mock days also record the 100-point rubric dimensions; do not turn the evidence block into a post-hoc essay."
+      }
     },
     {
       "id": "CS-DAY08",
@@ -1133,7 +1353,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#concurrency-guards",
+          "docs/reboot/interview/pattern-library.md#transaction-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 03 - Launching up H2 Console and Creating Course Table in H2",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 444,
+            "source_item_id": "35019878",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-08.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 8 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY09",
@@ -1260,7 +1509,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#stable-pagination",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 07 - Querying Data using Spring JDBC",
+            "section_title": "Getting Started with JPA and Hibernate with Spring and Spring Boot",
+            "duration_seconds": 336,
+            "source_item_id": "35019858",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-09.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 9 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY10",
@@ -1406,7 +1684,45 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q13",
+        "question_href": "docs/reboot/interview/question-bank.md#q13",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#transaction-boundary",
+          "docs/reboot/interview/pattern-library.md#concurrency-guards"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/session-scope.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 58 - Introduction to Transaction Management",
+            "section_title": "Transaction Management",
+            "duration_seconds": 283,
+            "source_item_id": "7907610",
+            "course_id": "1341538"
+          },
+          {
+            "title": "Step 59 - Transaction Management - ACID Properties",
+            "section_title": "Transaction Management",
+            "duration_seconds": 349,
+            "source_item_id": "7907612",
+            "course_id": "1341538"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: implement and test ordered successful batch and empty batch. Deferred queue S1-D10-1 contains injected rollback preservation and full class acceptance.",
+        "deferred_work_id": "S1-D10-1",
+        "acceptance": "The original Day 10 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker, assistance label, and the saved pre-assistance proposal. Dedicated mock days also record the 100-point rubric dimensions; do not turn the evidence block into a post-hoc essay."
+      }
     },
     {
       "id": "CS-DAY11",
@@ -1522,7 +1838,28 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#concurrency-guards",
+          "docs/reboot/interview/pattern-library.md#domain-workflow"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-11.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 11 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY12",
@@ -1668,7 +2005,43 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#ownership-boundary",
+          "docs/reboot/interview/pattern-library.md#gateway-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 21 - Understanding Spring Security Authentication",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 257,
+            "source_item_id": "35017628",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 22 - Exploring Spring Security Authorization",
+            "section_title": "Securing Spring Boot Applications with Spring Security",
+            "duration_seconds": 587,
+            "source_item_id": "35017626",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-12.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 12 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY13",
@@ -1797,7 +2170,36 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "proposal_before_reference",
+        "duration_minutes": 5,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": null,
+        "question_href": null,
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#resilience",
+          "docs/reboot/interview/pattern-library.md#measure-before-scaling"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Getting Started with Continuous Integration, Deployment and Delivery",
+            "section_title": "Getting Started with Continuous Integration, Deployment and Delivery",
+            "duration_seconds": 290,
+            "source_item_id": "18086493",
+            "course_id": "2813427"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "Use the existing complete engineering acceptance in docs/reboot/contracts/day-13.md; make and save a short task-specific proposal at the start of practice before consulting hints, reference answers, or AI.",
+        "deferred_work_id": null,
+        "acceptance": "The original Day 13 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker and assistance label; retain the proposal separately and do not add post-hoc reflection work."
+      }
     },
     {
       "id": "CS-DAY14",
@@ -1945,7 +2347,46 @@
       "budget_minutes_is_minimum_tier": true,
       "budget_minutes_max": 210,
       "budget_minutes_min": 180,
-      "budget_minutes": null
+      "budget_minutes": null,
+      "interview_practice": {
+        "mode": "45_minute_mock",
+        "duration_minutes": 45,
+        "proposal_before_hints_reference_or_ai": true,
+        "question_id": "Q05",
+        "question_href": "docs/reboot/interview/question-bank.md#q05",
+        "pattern_refs": [
+          "docs/reboot/interview/pattern-library.md#domain-workflow",
+          "docs/reboot/interview/pattern-library.md#immutable-snapshot",
+          "docs/reboot/interview/pattern-library.md#ownership-boundary"
+        ],
+        "supporting_sources": [
+          "docs/reboot/interview/question-bank.md",
+          "docs/reboot/interview/pattern-library.md",
+          "docs/reboot/interview/mock-rubric.md",
+          "docs/reboot/interview/session-scope.md"
+        ],
+        "course_bridges": [
+          {
+            "title": "Step 04 - What’s happening in the background? Spring Boot Starters & Autoconfig",
+            "section_title": "Creating a Java REST API with Spring Boot, Spring Framework and Hibernate",
+            "duration_seconds": 546,
+            "source_item_id": "35018830",
+            "course_id": "4993276"
+          },
+          {
+            "title": "Step 13 - Understanding Spring Boot vs Spring vs Spring MVC",
+            "section_title": "Getting Started with Spring Boot",
+            "duration_seconds": 235,
+            "source_item_id": "35019898",
+            "course_id": "4993276"
+          }
+        ],
+        "practice_minutes_available": 85,
+        "implementation_scope": "40 minutes: run Day14BackendSliceIT to the first incomplete dependency, preserve exact failure, and trace the boundary. Deferred queue S1-D14-1 reruns full integration after actual Day1–13 prerequisites pass.",
+        "deferred_work_id": "S1-D14-1",
+        "acceptance": "The original Day 14 EAI acceptance criteria remain unchanged; this interview artifact does not mark engineering completion.",
+        "evidence": "Record the actual selector, exit/result or blocker, assistance label, and the saved pre-assistance proposal. Dedicated mock days also record the 100-point rubric dimensions; do not turn the evidence block into a post-hoc essay."
+      }
     },
     {
       "id": "CS-DAY15",
