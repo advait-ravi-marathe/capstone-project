@@ -23,9 +23,43 @@ class LearnerAcceptance(unittest.TestCase):
             "shared_read_blocks": 2, "single_run_performance_claim": "not_supported",
         }, observed)
 
-    def test_foreign_or_missing_result_row_is_not_hidden_by_matching_count(self):
+    def test_each_composite_key_component_and_order_are_enforced(self):
+        mutations = (
+            ("owner_id", "owner-08"),
+            ("policy_id", "policy-9999"),
+            ("revision", 999),
+        )
+        for key, value in mutations:
+            with self.subTest(key=key):
+                fixture = load_fixture()
+                fixture["observed_rows"][0][key] = value
+                observed = learner_analysis.analyze_observation(fixture)
+                self.assertFalse(observed["row_correct"])
+                self.assertEqual(5, observed["observed_row_count"])
         fixture = load_fixture()
-        fixture["observed_rows"][0]["owner_id"] = "owner-08"
+        fixture["observed_rows"].reverse()
+        self.assertFalse(learner_analysis.analyze_observation(fixture)["row_correct"])
+
+    def test_missing_and_extra_rows_are_detected(self):
+        fixture = load_fixture()
+        fixture["observed_rows"].pop()
+        observed = learner_analysis.analyze_observation(fixture)
+        self.assertFalse(observed["row_correct"])
+        self.assertEqual(4, observed["observed_row_count"])
+        fixture = load_fixture()
+        fixture["observed_rows"].append({"owner_id": "owner-08", "policy_id": "policy-0012", "revision": 4})
+        observed = learner_analysis.analyze_observation(fixture)
+        self.assertFalse(observed["row_correct"])
+        self.assertEqual(6, observed["observed_row_count"])
+        # A same-count omission/substitution defeats length-only comparisons.
+        fixture = load_fixture()
+        fixture["observed_rows"].pop(0)
+        fixture["observed_rows"].append({"owner_id": "owner-08", "policy_id": "policy-0012", "revision": 4})
+        observed = learner_analysis.analyze_observation(fixture)
+        self.assertFalse(observed["row_correct"])
+        self.assertEqual(5, observed["observed_row_count"])
+        fixture = load_fixture()
+        fixture["observed_rows"][0]["policy_id"] = "policy-9999"
         observed = learner_analysis.analyze_observation(fixture)
         self.assertFalse(observed["row_correct"])
         self.assertEqual(5, observed["observed_row_count"])
@@ -65,7 +99,8 @@ class IndependentReferenceAcceptance(unittest.TestCase):
     """The separate reference runs identical assertions; it is no learner credit."""
     def test_reference_passes_actual_acceptance_methods(self):
         for name in ("test_exact_result_estimate_and_buffer_observations",
-                     "test_foreign_or_missing_result_row_is_not_hidden_by_matching_count",
+                     "test_each_composite_key_component_and_order_are_enforced",
+                     "test_missing_and_extra_rows_are_detected",
                      "test_wrong_plan_estimate_changes_q_error_and_zero_rows_are_explicit",
                      "test_negative_or_malformed_counters_fail_closed"):
             case = LearnerAcceptance(name)
@@ -74,14 +109,28 @@ class IndependentReferenceAcceptance(unittest.TestCase):
             self.assertTrue(result.wasSuccessful(), result.errors + result.failures)
 
     def test_mutations_on_actual_acceptance_methods_are_rejected(self):
-        def wrong_rows(_):
-            return dict(reference_analysis.analyze_observation(load_fixture()), row_correct=True)
+        def compare_owner_only(obs):
+            out = reference_analysis.analyze_observation(obs)
+            out["row_correct"] = all(a["owner_id"] == e["owner_id"] for a, e in zip(obs["observed_rows"], obs["expected_ids"]))
+            return out
+        def ignore_order(obs):
+            out = reference_analysis.analyze_observation(obs)
+            out["row_correct"] = sorted(obs["observed_rows"], key=lambda x: x["revision"], reverse=True) == obs["expected_ids"]
+            return out
+        def compare_count_only(obs):
+            out = reference_analysis.analyze_observation(obs)
+            out["row_correct"] = len(obs["observed_rows"]) == len(obs["expected_ids"])
+            return out
         def wrong_buffers(obs):
             return dict(reference_analysis.analyze_observation(obs), shared_read_blocks=0)
         def overclaim(obs):
             return dict(reference_analysis.analyze_observation(obs), single_run_performance_claim="fast")
         cases = (
-            ("test_foreign_or_missing_result_row_is_not_hidden_by_matching_count", wrong_rows),
+            ("test_each_composite_key_component_and_order_are_enforced", compare_owner_only),
+            ("test_each_composite_key_component_and_order_are_enforced", ignore_order),
+            ("test_each_composite_key_component_and_order_are_enforced", compare_count_only),
+            ("test_missing_and_extra_rows_are_detected", compare_count_only),
+            ("test_missing_and_extra_rows_are_detected", compare_owner_only),
             ("test_exact_result_estimate_and_buffer_observations", wrong_buffers),
             ("test_exact_result_estimate_and_buffer_observations", overclaim),
         )

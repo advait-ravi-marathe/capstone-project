@@ -47,6 +47,7 @@ def sources(plan):
 
 def task_rows(plan, day):
     source = sources(plan)[day["study_source"]]
+    sections = day["study_sections"]
     paths = [
         "labs/runtime_sql/learner_analysis.py",
         "labs/runtime_sql/reference_analysis.py",
@@ -55,19 +56,23 @@ def task_rows(plan, day):
         "labs/runtime_sql/fixtures/observation.json",
         "labs/runtime_sql/ProfilingWork.java",
         "scripts/capture_runtime_sql_fixture.sh",
+        "scripts/compare_runtime_sql_runs.py",
+        "scripts/report_runtime_sql_skew.py",
+        "scripts/summarize_runtime_sql_runs.py",
+        "scripts/test_jfr_runtime_sql.py",
         "scripts/check_continuation_239_entry_gate.py",
         "scripts/check_continuation_253_entry_gate.py",
         "scripts/check_streamforge_169_182_entry_gate.py",
     ]
-    study_source_text = f"{source['title']} — {', '.join(source['sections'])} ({source['url']})"
+    study_source_text = f"{source['title']} — {', '.join(sections)} ({source['url']})"
     return {
         "study": {
             "minutes": 35,
-            "task": "Read the assigned official section; record three source-backed notes: what is measured, assumptions, and which conclusion the source does not support.",
+            "task": day["study_task"],
             "source_paths": [], "source_keys": [source["key"]],
-            "source_sections": {source["key"]: source["sections"]},
-            "command": f"Open {source['url']} and read {', '.join(source['sections'])}.",
-            "evidence": "Three bounded notes with exact page title/heading; distinguish source fact from inference and record version/date.",
+            "source_sections": {source["key"]: sections},
+            "command": f"Open {source['url']} and read {', '.join(sections)}.",
+            "evidence": day["study_evidence"],
             "source": study_source_text,
         },
         "implementation": {
@@ -75,19 +80,22 @@ def task_rows(plan, day):
             "task": day["task"],
             "source_paths": paths,
             "source_keys": [day["study_source"]],
-            "source_sections": {day["study_source"]: source["sections"]},
+            "source_sections": {day["study_source"]: sections},
             "command": day["command"],
             "evidence": day["evidence"],
             "source": "; ".join(paths) + "; " + study_source_text,
         },
         "reserve": {
             "minutes": 33,
-            "task": "Check the three authoritative prior gates. If one contains a genuine unmet learner prerequisite, perform only its next named bounded recovery action and retain the exact raw output. If none is unmet, use this time for the sprint-specific repeatability/hardening named in today's contract; do not create a fake evidence record.",
+            "task": "Check the three authoritative prior gates. If a genuine unmet learner prerequisite exists, use this reserve for its next bounded recovery action and retain raw output. Otherwise perform this contract's preassigned fallback action: " + day["reserve_fallback_task"],
             "source_paths": ["scripts/check_continuation_239_entry_gate.py", "scripts/check_continuation_253_entry_gate.py", "scripts/check_streamforge_169_182_entry_gate.py"],
             "source_keys": [day["study_source"]],
-            "source_sections": {day["study_source"]: source["sections"]},
+            "source_sections": {day["study_source"]: sections},
             "command": plan["gate_command"],
-            "evidence": "Actual gate output and either the named recovery diff/result or assigned repeatability observation; absent evidence stays absent.",
+            "evidence": "Actual gate output and either the bounded recovery result or this contract's fallback evidence: " + day["reserve_fallback_evidence"] + ". Absent evidence stays absent.",
+            "fallback_command": day["reserve_fallback_command"],
+            "fallback_task": day["reserve_fallback_task"],
+            "fallback_evidence": day["reserve_fallback_evidence"],
             "source": "authoritative dynamic gates; " + study_source_text,
         },
         "evidence": {
@@ -106,7 +114,7 @@ def markdown_contract(plan, day, row):
     source_map = sources(plan)
     lines = [f'<a id="day-{day["day"]}"></a>', f'# Day {day["day"]}: {day["title"]}', "",
              f"Date: {day['date']}", "",
-             "**Assistant-supplied architecture — what and why:** Use one loopback-only disposable PostgreSQL 18.6 workload, preserve its immutable synthetic facts, compare complete result rows to independent expected identities, and analyze observed plan fields separately. A small local Java process provides a bounded JFR rehearsal. The learner implements the analyzer and tests; planner shape and elapsed time are observations, not correctness rules. No design proposal or post-hoc architecture justification is assigned.", "",
+             f"**Assistant-supplied architecture — what and why:** {day['architecture']} No learner design proposal or post-hoc architecture justification is assigned.", "",
              "## Engineering allocation — 165 minutes", ""]
     for key in CATEGORIES:
         task = row[key]
@@ -123,6 +131,10 @@ def markdown_contract(plan, day, row):
         lines.extend([f"### {DISPLAY[key]} — {task['minutes']} minutes", "",
                       f"**Task:** {task['task']}", f"**Source:** {source_md}",
                       f"**Command/action:** `{task['command']}`", f"**Evidence:** {task['evidence']}", ""])
+        if key == "reserve":
+            lines[-1:-1] = [f"**Preassigned no-prerequisite fallback:** {task['fallback_task']}",
+                            f"**Fallback command:** `{task['fallback_command']}`",
+                            f"**Fallback evidence:** {task['fallback_evidence']}", ""]
     lines.extend(["## Shared block — exactly 45 minutes", "",
                   f"**Question-bank practice:** {day['shared_task']}",
                   "**Source:** [separate interview question bank](../../interview/question-bank.md). This block is separate from engineering; no capstone design assignment.", "",
@@ -144,8 +156,9 @@ def rendered(plan):
         alloc = {LABELS[k]: tasks[k]["minutes"] for k in CATEGORIES}
         assert sum(alloc.values()) == 165
         src = srcs[day["study_source"]]
+        sections = day["study_sections"]
         study = {"key": src["key"], "title": src["title"], "url": src["url"],
-                 "sections": src["sections"], "provider": src["provider"],
+                 "sections": sections, "provider": src["provider"],
                  "use": src["use"], "verified_at": src["verified_at"]}
         rowtasks = {}
         for k, task in tasks.items():
@@ -154,9 +167,9 @@ def rendered(plan):
         row = {"day": day["day"], "date": day["date"], "title": day["title"],
                "learner_seam": "runtime_sql_observation_analysis", "signature": "; ".join(tasks["implementation"]["source_paths"]),
                "selectors": list(dict.fromkeys(t["command"] for t in tasks.values())),
-               "depends_on_days": [], "recovery_day": False,
+               "depends_on_days": day["prerequisite_days"], "recovery_day": False,
                "study_refs": [src["url"]], "study_guidance": [study],
-               "engineering_architecture": {"decision": "Assistant supplies the disposable workload → actual local PostgreSQL plan/result capture → independent analyzer → bounded evidence report architecture. The learner implements/tests only assigned seams.",
+               "engineering_architecture": {"decision": day["architecture"],
                    "mode": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
                    "capstone_proposal_required": False, "system_design_scope": "separate_interview_question_bank_only"},
                "budget": {"engineering_minutes": 165, "study": 35, "practice_and_tests": 115,
@@ -171,7 +184,7 @@ def rendered(plan):
         manifest_days.append(row)
         cards.append({"day_number": day["day"], "date": day["date"], "title": day["title"],
                       "learner_seam": row["learner_seam"], "signature": row["signature"],
-                      "selectors": row["selectors"], "prerequisite_days": [], "recovery_day": False,
+                      "selectors": row["selectors"], "prerequisite_days": row["depends_on_days"], "recovery_day": False,
                       "engineering": {"minutes": 165, "allocation": alloc},
                       "budget_minutes": {"engineering": 165, "shared_interview_or_remaining_reviews": 45, "total": 210},
                       "activities": rowtasks, "study_guidance": [study],
@@ -195,11 +208,11 @@ def rendered(plan):
                    "scope": "Official source titles/headings verified 2026-10-24; recheck exact version and heading on the planned study date. No new course or invented lecture.",
                    "sources": plan["sources"]}
     architecture = ["# Assistant-supplied architecture notes", "",
-        "The assistant selects and explains the capstone architecture; the learner implements and tests the assigned seams. System-design practice occurs only in separate interview question-bank sessions.", "",
-        "The lab architecture is one immutable synthetic workload, one loopback-only disposable PostgreSQL instance, an exact row readback and EXPLAIN JSON capture, a pure independent analyzer, and a report separating facts from hypotheses. JFR is a separate bounded local Java rehearsal. No public endpoint, cloud provider, credentials, customer data or deployment.", ""]
+        "The assistant chooses the architecture and supplies concise what/why context. The learner implements and tests assigned seams. System-design practice remains only in separate interview question-bank sessions.", "",
+        "The PostgreSQL experiment uses pinned PostgreSQL 18.6, a deterministic synthetic seed, loopback-only disposable instance, EXPLAIN JSON plus exact result readback, and a pure analyzer compared to independent expected facts. Planner shape, cost, buffer counts and elapsed time may vary with cache/statistics/host; correctness is determined by exact rows and analyzer arithmetic, not timing. JFR is a separate bounded 500-million-iteration local CPU workload. Default recording settings avoid adding event volume; sampled events can miss brief work and recording itself has overhead. Neither rehearsal represents service performance, production operation or learner completion.", ""]
     for d in plan["days"]:
         architecture.extend([f'<a id="day-{d["day"]}"></a>', f"## Day {d['day']} — {d['title']}", "",
-                              "Assistant-selected task boundary: preserve actual rows and plan observations; compare against independently fixed facts; interpret measurements with limitations. No learner design proposal.", ""])
+                              d["architecture"], ""])
     owner_manifest = {"title": plan["title"], "status": plan["status"], "branch": plan["branch"],
                       "base_commit": plan["base_commit"], "board_writes": False, "story_count": 14,
                       "shared_block_count": 14, "separate_learning_repository": plan["separate_learning_repository"], "cards": owners["cards"]}

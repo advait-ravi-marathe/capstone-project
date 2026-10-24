@@ -14,7 +14,52 @@
       ],
       "provider": "PostgreSQL official documentation",
       "verified_at": "2026-10-24",
-      "use": "Plan trees, estimates versus observations, buffer counters and measurement caveats; no preferred node/timing assertion."
+      "use": "Plan trees, actual execution, and measurement caveats; no preferred node/timing assertion."
+    },
+    {
+      "key": "PG_INDEX",
+      "title": "PostgreSQL: Documentation: 18: 11.1. Introduction",
+      "url": "https://www.postgresql.org/docs/18/indexes-intro.html",
+      "sections": [
+        "11.1. Introduction"
+      ],
+      "provider": "PostgreSQL official documentation",
+      "verified_at": "2026-10-24",
+      "use": "Compare indexed/unindexed access while holding query results fixed."
+    },
+    {
+      "key": "PG_ANALYZE",
+      "title": "PostgreSQL: Documentation: 18: ANALYZE",
+      "url": "https://www.postgresql.org/docs/18/sql-analyze.html",
+      "sections": [
+        "Description"
+      ],
+      "provider": "PostgreSQL official documentation",
+      "verified_at": "2026-10-24",
+      "use": "Observe statistics collection and compare estimated/actual rows before and after ANALYZE."
+    },
+    {
+      "key": "PG_STATS",
+      "title": "PostgreSQL: Documentation: 18: 14.2. Statistics Used by the Planner",
+      "url": "https://www.postgresql.org/docs/18/planner-stats.html",
+      "sections": [
+        "14.2.1. Single-Column Statistics",
+        "14.2.2. Extended Statistics"
+      ],
+      "provider": "PostgreSQL official documentation",
+      "verified_at": "2026-10-24",
+      "use": "Connect data distribution/statistics to estimates; inspect skew and limitations."
+    },
+    {
+      "key": "PG_MULTI",
+      "title": "PostgreSQL: Documentation: 18: 11.3. Multicolumn Indexes",
+      "url": "https://www.postgresql.org/docs/18/indexes-multicolumn.html",
+      "sections": [
+        "11.3. Multicolumn Indexes"
+      ],
+      "provider": "PostgreSQL official documentation",
+      "verified_at": "2026-10-24",
+      "use": "Compare leading-column order under a fixed equality query; do not infer every workload's best index."
     },
     {
       "key": "JFR",
@@ -27,20 +72,33 @@
       ],
       "provider": "Oracle Java SE 21 documentation",
       "verified_at": "2026-10-24",
-      "use": "Read local Flight Recorder summary/events; local profiling rehearsal only."
+      "use": "Inspect bounded local Flight Recorder files; sample counts are observations."
+    },
+    {
+      "key": "JFR_EVENT",
+      "title": "Event (Java SE 21 & JDK 21)",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/jdk.jfr/jdk/jfr/Event.html",
+      "sections": [
+        "Class Event",
+        "begin",
+        "end",
+        "commit"
+      ],
+      "provider": "Oracle Java SE 21 API documentation",
+      "verified_at": "2026-10-24",
+      "use": "Inspect a deterministic custom phase marker; one committed marker is the acceptance signal, not a sample-count threshold."
     },
     {
       "key": "PY_STATS",
       "title": "statistics — Mathematical statistics functions — Python 3.12.15 documentation",
       "url": "https://docs.python.org/3.12/library/statistics.html",
       "sections": [
-        "Averages and measures of central location",
         "Measures of spread",
         "Function details"
       ],
       "provider": "Python 3.12 official documentation",
       "verified_at": "2026-10-24",
-      "use": "Interpret center and spread and state small-sample limits; no population/performance guarantee."
+      "use": "Compute median and population spread for three same-workload timing observations; explicitly state small-sample and host-noise limits."
     }
   ]
 }
