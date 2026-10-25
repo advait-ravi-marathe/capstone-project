@@ -48,6 +48,43 @@ class ResumableBackfillAcceptanceTest {
         }
     }
 
+    @Test void checkpointWriteFailureRollsBackEarlierLearnerRowUpdatesThenFreshConnectionResumesExactly() throws Exception {
+        try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
+            var db = postgres.getPostgresDatabase();
+            Flyway.configure().dataSource(db).locations("classpath:db/gap_schema").target("2").load().migrate();
+            try (var c = db.getConnection(); var s = c.createStatement()) {
+                s.execute("""
+                        CREATE FUNCTION fail_backfill_checkpoint_write() RETURNS trigger LANGUAGE plpgsql AS $$
+                        BEGIN
+                          IF EXISTS (SELECT 1 FROM gap_backfill_item WHERE normalized_value IS NOT NULL) THEN
+                            RAISE EXCEPTION 'injected checkpoint write failure after row updates';
+                          END IF;
+                          RETURN NEW;
+                        END; $$
+                        """);
+                s.execute("CREATE CONSTRAINT TRIGGER fail_backfill_checkpoint_write AFTER INSERT OR UPDATE "
+                        + "ON gap_backfill_checkpoint DEFERRABLE INITIALLY DEFERRED "
+                        + "FOR EACH ROW EXECUTE FUNCTION fail_backfill_checkpoint_write()");
+            }
+            assertThrows(Exception.class,
+                    () -> ResumableBackfill.runBatch(db, "coverstory-policy-normalization-v1", 3),
+                    "checkpoint failure after row updates must abort the learner transaction");
+            try (var c = db.getConnection(); var s = c.createStatement()) {
+                s.execute("DROP TRIGGER fail_backfill_checkpoint_write ON gap_backfill_checkpoint");
+                s.execute("DROP FUNCTION fail_backfill_checkpoint_write()");
+            }
+            // A non-transactional row UPDATE followed by an UPSERT would leave rows changed but no cursor.
+            assertLearnerSnapshot(db, 0);
+            assertEquals(3, ResumableBackfill.runBatch(db, "coverstory-policy-normalization-v1", 3));
+            assertLearnerSnapshot(db, 3);
+            Integer cursor;
+            do {
+                cursor = ResumableBackfill.runBatch(db, "coverstory-policy-normalization-v1", 3);
+            } while (cursor != null);
+            assertLearnerSnapshot(db, 10);
+        }
+    }
+
     @Test void boundedRunCanRestartAndMustMatchEveryIndependentExpectedRow() throws Exception {
         try (EmbeddedPostgres postgres = EmbeddedPostgres.builder().start()) {
             var db = postgres.getPostgresDatabase();

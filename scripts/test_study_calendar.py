@@ -166,6 +166,12 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         for evidence in ("CREATE TRIGGER fail_backfill_second_row", "ResumableBackfill.runBatch", "assertLearnerSnapshot(db, 0)", "assertLearnerSnapshot(db, 3)", "assertLearnerSnapshot(db, 10)"):
             self.assertIn(evidence, body.group())
         self.assertIn("injected mid-batch failure", body.group())
+        checkpoint = re.search(r"void checkpointWriteFailureRollsBackEarlierLearnerRowUpdatesThenFreshConnectionResumesExactly\(\).*?\n    }", test_source, re.S)
+        self.assertIsNotNone(checkpoint)
+        for evidence in ("CREATE CONSTRAINT TRIGGER fail_backfill_checkpoint_write", "DEFERRABLE INITIALLY DEFERRED", "ResumableBackfill.runBatch", "assertLearnerSnapshot(db, 0)", "assertLearnerSnapshot(db, 10)"):
+            self.assertIn(evidence, checkpoint.group())
+        self.assertIn("checkpoint write failure after row updates", checkpoint.group())
+        self.assertIn("WHERE normalized_value IS NOT NULL", checkpoint.group())
 
     def test_schema_07_executes_real_contract_migration_through_learner_gate(self):
         row = next(item for item in self.export["stories"] if item["unit_id"] == "GAP-SCHEMA-07")

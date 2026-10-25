@@ -10,7 +10,7 @@ Use an expand/backfill/contract sequence: additive schema first, bounded stable-
 
 ## Task
 
-Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject a database-trigger failure after the first row update in the learner implementation, verify all rows and cursor roll back on fresh connections, then rerun the learner and compare every ordered row/cursor exactly.
+Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject failures both during a row update and with a deferred database trigger on the checkpoint write after row updates in the learner implementation. Verify all rows and cursor roll back on fresh connections, then rerun the learner and compare every ordered row/cursor exactly.
 
 ## Source
 
@@ -18,7 +18,7 @@ Use fresh bounded-runner invocations against only the persisted database cursor;
 
 ## Acceptance
 
-The learner-path database-trigger failure proves atomic rollback before resume; exact IDs, full values, version/update counts, cursor and wrong-row mutant are checked. Independent SQL fixture tests remain separate.
+Learner-path row-update and checkpoint-write failures prove rollback across the row/cursor transaction; exact IDs, full values, version/update counts, cursor and wrong-row mutant are checked. Independent SQL fixture tests remain separate.
 
 ## Command and evidence
 
