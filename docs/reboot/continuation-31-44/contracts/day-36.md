@@ -1,4 +1,4 @@
-# Day 36 — 2026-11-28: Owner-scoped policy read
+# Day 36 — 2026-11-30: Owner-scoped policy read
 
 ## Contract
 

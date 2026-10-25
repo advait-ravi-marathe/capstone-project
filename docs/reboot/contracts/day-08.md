@@ -1,4 +1,4 @@
-# Day 08 — 2026-10-31: Define PostgreSQL quote schema
+# Day 08 — 2026-11-02: Define PostgreSQL quote schema
 
 **State:** Instructor scaffold installed; learner implementation pending. PostgreSQL acceptance cases are fixed and currently fail because the scaffold migration omits the required constraints.
 

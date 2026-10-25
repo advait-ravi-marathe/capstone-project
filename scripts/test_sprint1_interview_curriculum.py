@@ -64,29 +64,29 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         manifest = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
         rows = {x["day"]: x for x in manifest["days"]}
         for day, expected_date, prompt in [
-            (3, "2026-10-26", "Q08"),
-            (7, "2026-10-30", "Q03"),
-            (10, "2026-11-02", "Q13"),
-            (14, "2026-11-06", "Q05"),
+            (3, "2026-10-28", "Q08"),
+            (7, "2026-11-01", "Q03"),
+            (10, "2026-11-04", "Q13"),
+            (14, "2026-11-08", "Q05"),
         ]:
             self.assertEqual(expected_date, rows[day]["date"])
             self.assertRegex(guide, rf"\|\s*{day}\s*\| {expected_date} \|.*\| {prompt} \|")
         deep = (ROOT / "docs/reboot/interview/deep-practice.md").read_text()
         for day, expected_date, prompt in [
-            (3, "2026-10-26", "Q08"),
-            (7, "2026-10-30", "Q03"),
-            (10, "2026-11-02", "Q13"),
-            (14, "2026-11-06", "Q05"),
-            (17, "2026-11-09", "Q01"),
-            (21, "2026-11-13", "Q07"),
-            (24, "2026-11-16", "Q10"),
-            (28, "2026-11-20", "Q14"),
-            (31, "2026-11-23", "Q05"),
-            (35, "2026-11-27", "Q13"),
-            (38, "2026-11-30", "Q16"),
-            (42, "2026-12-04", "Q11"),
+            (3, "2026-10-28", "Q08"),
+            (7, "2026-11-01", "Q03"),
+            (10, "2026-11-04", "Q13"),
+            (14, "2026-11-08", "Q05"),
+            (17, "2026-11-11", "Q01"),
+            (21, "2026-11-15", "Q07"),
+            (24, "2026-11-18", "Q10"),
+            (28, "2026-11-22", "Q14"),
+            (31, "2026-11-25", "Q05"),
+            (35, "2026-11-29", "Q13"),
+            (38, "2026-12-02", "Q16"),
+            (42, "2026-12-06", "Q11"),
         ]:
-            expected = date(2026, 10, 24) + timedelta(days=day - 1)
+            expected = date(2026, 10, 26) + timedelta(days=day - 1)
             self.assertEqual(expected_date, expected.isoformat())
             self.assertRegex(deep, rf"\|\s*\d+\s*\| {day} · {expected_date} \| {prompt} \|")
 
@@ -110,20 +110,20 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         self.assertEqual(extension_days, {int(item["day"]) for item in first_new_sprint["days"]})
         days.update({int(item["day"]): item["date"] for item in first_new_sprint["days"]})
         self.assertEqual(set(range(1, 285)), set(days))
-        start = date(2026, 10, 24)
+        start = date(2026, 10, 26)
         for day, planned_date in days.items():
             self.assertEqual(start + timedelta(days=day - 1), date.fromisoformat(planned_date), day)
 
     def test_java_calendar_assertions_and_generator_follow_reshifted_schedule(self):
         java_expectations = {
-            "src/test/java/assignments/reboot/Day30ContractTest.java": ["2026-10-24", "2026-11-22"],
-            "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java": ["2026-11-23"],
-            "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java": ["2026-12-19"],
-            "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java": ["2026-12-07"],
-            "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java": ["2027-01-02"],
-            "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java": ["2027-01-16"],
-            "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java": ["2027-01-30"],
-            "src/test/java/assignments/ops/Day141To154InfrastructureTest.java": ["LocalDate.of(2027,3,13)"],
+            "src/test/java/assignments/reboot/Day30ContractTest.java": ["2026-10-26", "2026-11-24"],
+            "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java": ["2026-11-25"],
+            "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java": ["2026-12-21"],
+            "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java": ["2026-12-09"],
+            "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java": ["2027-01-04"],
+            "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java": ["2027-01-18"],
+            "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java": ["2027-02-01"],
+            "src/test/java/assignments/ops/Day141To154InfrastructureTest.java": ["LocalDate.of(2027,3,15)"],
         }
         for relative, dates in java_expectations.items():
             source = (ROOT / relative).read_text()
@@ -142,9 +142,7 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         courses = json.loads((ROOT / "docs/reboot/course-learning-blocks.json").read_text())
         cards = owner["cards"][:14]
         self.assertEqual([f"CS-DAY{i:02}" for i in range(1, 15)], [x["id"] for x in cards])
-        self.assertEqual([f"2026-10-{day:02}" for day in range(24, 32)] + [
-            "2026-11-01", "2026-11-02", "2026-11-03", "2026-11-04", "2026-11-05", "2026-11-06"
-        ], [x["date"] for x in cards])
+        self.assertEqual([(date(2026, 10, 26) + timedelta(days=i)).isoformat() for i in range(14)], [x["date"] for x in cards])
         self.assertEqual(list(range(1, 31)), [x["day"] for x in courses["days"]])
         self.assertTrue(all(x.get("verified_lessons_line") for x in courses["days"][:14]))
         dedicated = {3: "Q08", 7: "Q03", 10: "Q13", 14: "Q05"}
@@ -226,8 +224,8 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         cards = {card["day_number"]: card for card in owner["cards"]}
         deep = (ROOT / "docs/reboot/interview/deep-practice.md").read_text()
         scope = (ROOT / "docs/reboot/interview/sprint2-session-scope.md").read_text()
-        expected_mocks = {17: ("2026-11-09", "Q01"), 21: ("2026-11-13", "Q07"),
-                          24: ("2026-11-16", "Q10"), 28: ("2026-11-20", "Q14")}
+        expected_mocks = {17: ("2026-11-11", "Q01"), 21: ("2026-11-15", "Q07"),
+                          24: ("2026-11-18", "Q10"), 28: ("2026-11-22", "Q14")}
         for day in range(15, 29):
             item = canonical["days"][day - 1]
             card = cards[day]

@@ -31,7 +31,7 @@ class RenewalPreviewManifestInfrastructureTest {
         assertEquals(14, scrum.get("sprint_boundaries").get(0).get("sprint_story_count_after_batch").asInt());
         assertEquals(12, scrum.get("sprint_boundaries").get(0).get("batch_story_count").asInt());
 
-        LocalDate date = LocalDate.parse("2026-12-07");
+        LocalDate date = LocalDate.parse("2026-12-09");
         for (int i = 0; i < 12; i++) {
             JsonNode day = manifest.get("days").get(i);
             JsonNode card = scrum.get("cards").get(i);

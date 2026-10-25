@@ -1,4 +1,4 @@
-# Day 12 — 2026-11-04: Enforce owner-scoped access
+# Day 12 — 2026-11-06: Enforce owner-scoped access
 
 **State:** Installed: a real Spring Security test filter chain verifies form-login session authentication and CSRF token rejection/acceptance. The production owner policy and production security configuration remain learner TODOs. The owner-policy HTTP acceptance test is tagged and expected red until the policy is implemented.
 

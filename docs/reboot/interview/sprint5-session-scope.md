@@ -1,6 +1,6 @@
 # Sprint 5 interview sessions and engineering tasks
 
-Sprint 5 covers Days 57–70 (19 December 2026–1 January 2027). Each day retains 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. The separately owned DSA allocation is not included in those 120 minutes.
+Sprint 5 covers Days 57–70 (21 December 2026–3 January 2027). Each day retains 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. The separately owned DSA allocation is not included in those 120 minutes.
 
 Four 45-minute interview mocks are scheduled on Days 58, 60, 66, and 69. Each replaces 45 minutes of the existing 85-minute practice allocation and leaves 40 minutes for that day's bounded engineering observation or implementation. Mock phases are Requirements (5), Capacity and constraints (5), Initial architecture and data model (15), Bottlenecks, reliability, scaling (10), and Trade-offs, failures, follow-ups (10). The learner's proposal is required only for the assigned system-design interview question. Use the [100-point mock rubric](mock-rubric.md).
 

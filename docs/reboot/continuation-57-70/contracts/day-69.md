@@ -1,4 +1,4 @@
-# Day 69 — 2026-12-31: Prove restart, logout, foreign-owner and no-write behavior
+# Day 69 — 2027-01-02: Prove restart, logout, foreign-owner and no-write behavior
 
 ## Contract
 

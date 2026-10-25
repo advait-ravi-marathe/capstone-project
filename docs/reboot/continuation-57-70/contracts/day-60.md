@@ -1,4 +1,4 @@
-# Day 60 — 2026-12-22: Wire owner-scoped policy reads and prove preview performs no writes
+# Day 60 — 2026-12-24: Wire owner-scoped policy reads and prove preview performs no writes
 
 ## Contract
 

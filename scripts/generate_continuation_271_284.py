@@ -30,7 +30,7 @@ DISPLAY = {
 def read_plan():
     plan = json.loads(SRC.read_text(encoding="utf-8"))
     assert plan["branch"] == "work/eai-sprint2-onward"
-    assert plan["start_date"] == "2027-07-21" and plan["end_date"] == "2027-08-03"
+    assert plan["start_date"] == "2027-07-23" and plan["end_date"] == "2027-08-05"
     assert [d["day"] for d in plan["days"]] == list(range(271, 285))
     assert [d["date"] for d in plan["days"]] == [
         (date.fromisoformat(plan["start_date"]) + timedelta(days=i)).isoformat()

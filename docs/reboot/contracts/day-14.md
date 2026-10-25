@@ -1,4 +1,4 @@
-# Day 14 — 2026-11-06: Milestone 1 backend vertical slice
+# Day 14 — 2026-11-08: Milestone 1 backend vertical slice
 
 **State:** Real PostgreSQL backend-slice acceptance test installed and tagged `learnerAcceptance`. It wires the actual fixture, catalog, eligibility, premium, quote, repository, selection, and read-query components. It currently fails at the first explicit learner TODO; a green readiness test is not a substitute for this path. The test reads persisted quotes/selections directly from PostgreSQL and does not call Day 15's summary query.
 
@@ -42,7 +42,7 @@ This fixed acceptance test currently fails at Day 4 `ProductCatalogService.findB
 
 **Prompt:** [Q05](../interview/question-bank.md#q05) from the original question bank. Before any hint, reference answer, or AI, write your own initial proposal. Follow the exact 5/5/15/10/10 phases in [the mock rubric](../interview/mock-rubric.md): requirements; capacity and constraints; initial architecture and data model (save before help); bottlenecks, reliability and scaling; trade-offs, failures and follow-ups.
 
-**Schedule:** 2026-11-06. This session replaces 45 minutes of implementation/test practice; the remaining 40 minutes stay for the day’s implementation and tests. Do not add time or mark a partial acceptance gate complete. Use the existing 10-minute evidence block for command, result, assistance, and blocker only. For the exact 40-minute EAI slice and deferred acceptance queue, follow [Sprint 1 session scope](../interview/session-scope.md); the original day stays pending until its full acceptance passes.
+**Schedule:** 2026-11-08. This session replaces 45 minutes of implementation/test practice; the remaining 40 minutes stay for the day’s implementation and tests. Do not add time or mark a partial acceptance gate complete. Use the existing 10-minute evidence block for command, result, assistance, and blocker only. For the exact 40-minute EAI slice and deferred acceptance queue, follow [Sprint 1 session scope](../interview/session-scope.md); the original day stays pending until its full acceptance passes.
 
 ## Separate DSA track
 

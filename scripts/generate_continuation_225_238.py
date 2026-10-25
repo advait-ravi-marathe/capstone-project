@@ -125,7 +125,7 @@ def generate():
     }
     workstream_totals = {allocation_names[k]: v for k, v in expected.items()}
     workstream_totals["evidence"] = 210
-    dates = [date(2027, 6, 5) + timedelta(days=i) for i in range(14)]
+    dates = [date.fromisoformat(plan["start_date"]) + timedelta(days=i) for i in range(14)]
     question_titles = {"Q07": "API gateway: route and protect", "Q14": "Booking: retry after a lost response", "Q23": "Event pipeline: ingest and process", "Q16": "Messaging: ordering and replay"}
     days, cards, notes = [], [], []
     for index, (day_date, task) in enumerate(zip(dates, tasks)):

@@ -1,4 +1,4 @@
-# Day 31 — 2026-11-23: Issue eligibility and quote linkage
+# Day 31 — 2026-11-25: Issue eligibility and quote linkage
 
 ## Contract
 

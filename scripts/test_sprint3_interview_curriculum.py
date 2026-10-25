@@ -30,10 +30,10 @@ class Sprint3InterviewCurriculumTest(unittest.TestCase):
 
     def test_four_mocks_are_two_per_week_with_exact_phase_budget(self):
         expected = {
-            31: ('2026-11-23', 'Q05', 'S3-D31-1'),
-            35: ('2026-11-27', 'Q13', 'S3-D35-1'),
-            38: ('2026-11-30', 'Q16', 'S3-D38-1'),
-            42: ('2026-12-04', 'Q11', 'S3-D42-1'),
+            31: ('2026-11-25', 'Q05', 'S3-D31-1'),
+            35: ('2026-11-29', 'Q13', 'S3-D35-1'),
+            38: ('2026-12-02', 'Q16', 'S3-D38-1'),
+            42: ('2026-12-06', 'Q11', 'S3-D42-1'),
         }
         for day, (date, question, queue) in expected.items():
             canonical, item = self.assignment(day)

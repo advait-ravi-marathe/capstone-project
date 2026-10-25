@@ -2,7 +2,7 @@
 
 This isolated continuation teaches event-log-backed durable-work materialization for already committed synthetic ISSUED lifecycle events. Day 35 source issuance remains unchanged. Receipt commit precedes acknowledgment. No broker, scheduler, automatic retry, route, cloud resource, or real data is added.
 
-- Schedule: 2027-01-30 through 2027-02-12, Sprint 8.
+- Schedule: 2027-02-01 through 2027-02-14, Sprint 8.
 - The in28Minutes course is reference-only with access unconfirmed; catalog metadata verified, videos not audited. Assigned lessons are partial foundations. No React or AWS lesson is relevant to this local backend batch.
 - Setup and process/browser plumbing are instructor scaffolding, not extra learner hours.
 

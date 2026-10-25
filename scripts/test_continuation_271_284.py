@@ -15,10 +15,10 @@ WINDOW = ROOT / "docs/reboot/continuation-271-284"
 
 class ExtensionRegression(unittest.TestCase):
     def test_exact_day_math_and_capacity(self):
-        start = date(2026, 10, 24)
-        self.assertEqual(date(2027, 7, 20), start + timedelta(days=269))
-        self.assertEqual(date(2027, 7, 21), start + timedelta(days=270))
-        self.assertEqual(date(2028, 10, 24), start + timedelta(days=731))
+        start = date(2026, 10, 26)
+        self.assertEqual(date(2027, 7, 22), start + timedelta(days=269))
+        self.assertEqual(date(2027, 7, 23), start + timedelta(days=270))
+        self.assertEqual(date(2028, 10, 26), start + timedelta(days=731))
         self.assertEqual(462, 732 - 270)
         self.assertEqual(33, 462 // 14)
         self.assertEqual((76230, 1270.5), (462 * 165, 462 * 165 / 60))
@@ -64,7 +64,7 @@ class ExtensionRegression(unittest.TestCase):
         man = json.loads((WINDOW / "manifest.json").read_text())
         self.assertEqual(list(range(271, 285)), [d["day"] for d in man["days"]])
         self.assertEqual([d["date"] for d in src["days"]], [d["date"] for d in man["days"]])
-        self.assertEqual(("2027-07-21", "2027-08-03"), (man["date_range"]["start"], man["date_range"]["end"]))
+        self.assertEqual(("2027-07-23", "2027-08-05"), (man["date_range"]["start"], man["date_range"]["end"]))
         self.assertEqual((2310, 630, 462), (man["engineering_minutes_total"], man["shared_minutes_total"], man["remediation_reserve_minutes"]))
         self.assertFalse(man["learner_completion_awarded"])
         owner_path = WINDOW / "scrum-owner-manifest.json"

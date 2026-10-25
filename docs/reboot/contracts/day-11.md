@@ -1,4 +1,4 @@
-# Day 11 — 2026-11-03: Reject stale quote selection
+# Day 11 — 2026-11-05: Reject stale quote selection
 
 **State:** Contract defined; isolated policy scaffold and learner acceptance tests are installed. Learner attempt is pending; the focused suite is expected to fail at its explicit TODO.
 

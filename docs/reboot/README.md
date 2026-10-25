@@ -1,6 +1,6 @@
 # CoverStory 30-day reboot contracts
 
-This folder records the reviewed roadmap proposal for 24 October–22 November
+This folder records the reviewed roadmap proposal for 26 October–24 November
 2026. It is a set of contracts and schedule metadata, not a completion report.
 The existing Day 1 feature remains the live starter; future-day files specify
 the intended acceptance contract before learner implementations are created.
@@ -46,9 +46,9 @@ at [docs/day-1.md](../day-1.md); the Day 1 contract page points there.
 
 For Scrum import, [scrum-owner-manifest.json](scrum-owner-manifest.json) has one
 engineering Story per date, with acceptance and evidence guide paths. Sprint 1
-covers 24 October–6 November (Days 1–14, 14 Stories); Sprint 2 covers 7–20
-November (Days 15–28, 14 Stories); Sprint 3 covers 21 November–4 December
-(Days 29–30 are populated on 21–22 November, 2 Stories). Learner completion and
+covers 26 October–8 November (Days 1–14, 14 Stories); Sprint 2 covers 9–22
+November (Days 15–28, 14 Stories); Sprint 3 covers 23 November–6 December
+(Days 29–30 are populated on 23–24 November, 2 Stories). Learner completion and
 integration remain evidence-based; forecasts do not mark work complete.
 
 ## Later continuation assignments
@@ -57,8 +57,9 @@ Reviewed continuation windows are indexed separately from this first-30-day
 manifest. The [Days 197–270 assignment inventory](continuation-197-270-inventory.json)
 links those bounded windows, including the four-day closeout. The accepted
 [Days 271–732 outcome roadmap](continuation-271-732/README.md) extends the
-calendar through 24 October 2028 without changing Days 1–270. Its [first
-14-day sprint](continuation-271-284/README.md) is the only newly detailed
+calendar through 26 October 2028 while preserving Days 1–270 work, evidence
+and status and shifting their planned dates by two days. Its [first 14-day
+sprint](continuation-271-284/README.md) is the only newly detailed
 daily window; later phases are evidence-gated outcomes rather than pre-created
 tickets. These are assignments and plans, not learner completion.
 
@@ -66,36 +67,36 @@ tickets. These are assignments and plans, not learner completion.
 
 | Day/date | Engineering contract | State |
 |---|---|---|
-| 01 · 2026-10-24 | [Day 01](contracts/day-01.md) — Quote selection identity/order | installed / not_attempted / blocked |
-| 02 · 2026-10-25 | [Day 02](contracts/day-02.md) — Validate selection request at HTTP boundary | installed / not_attempted / blocked |
-| 03 · 2026-10-26 | [Day 03](contracts/day-03.md) — Map failures consistently | installed / not_attempted / blocked |
-| 04 · 2026-10-27 | [Day 04](contracts/day-04.md) — Read one synthetic product | installed / not_attempted / blocked |
-| 05 · 2026-10-28 | [Day 05](contracts/day-05.md) — Decide HomeSecure eligibility | installed / not_attempted / blocked |
-| 06 · 2026-10-29 | [Day 06](contracts/day-06.md) — Calculate synthetic premium | installed / not_attempted / blocked |
-| 07 · 2026-10-30 | [Day 07](contracts/day-07.md) — Create and expire quote version | installed / not_attempted / blocked |
-| 08 · 2026-10-31 | [Day 08](contracts/day-08.md) — Define PostgreSQL quote schema | installed / not_attempted / blocked |
-| 09 · 2026-11-01 | [Day 09](contracts/day-09.md) — Persist/read immutable quote snapshots | installed / not_attempted / blocked |
-| 10 · 2026-11-02 | [Day 10](contracts/day-10.md) — Persist selection batch atomically | installed / not_attempted / blocked |
-| 11 · 2026-11-03 | [Day 11](contracts/day-11.md) — Reject stale quote selection | installed / not_attempted / blocked |
-| 12 · 2026-11-04 | [Day 12](contracts/day-12.md) — Enforce owner-scoped access | installed / not_attempted / blocked |
-| 13 · 2026-11-05 | [Day 13](contracts/day-13.md) — Add honest repeatable CI | installed / not_attempted / blocked |
-| 14 · 2026-11-06 | [Day 14](contracts/day-14.md) — Milestone 1 backend vertical slice | installed / not_attempted / blocked |
-| 15 · 2026-11-07 | [Day 15](contracts/day-15.md) — Read journey summary | installed / not_attempted / blocked |
-| 16 · 2026-11-08 | [Day 16](contracts/day-16.md) — Bound quote-history reads | installed / not_attempted / blocked |
-| 17 · 2026-11-09 | [Day 17](contracts/day-17.md) — Render product choices in React/TypeScript | installed / not_attempted / blocked |
-| 18 · 2026-11-10 | [Day 18](contracts/day-18.md) — Capture quote input | installed / not_attempted / blocked |
-| 19 · 2026-11-11 | [Day 19](contracts/day-19.md) — Display quote snapshot | installed / not_attempted / blocked |
-| 20 · 2026-11-12 | [Day 20](contracts/day-20.md) — Connect selection action UI | installed / not_attempted / blocked |
-| 21 · 2026-11-13 | [Day 21](contracts/day-21.md) — Protect cookie-authenticated writes | installed / not_attempted / blocked |
-| 22 · 2026-11-14 | [Day 22](contracts/day-22.md) — Add safe request correlation | installed / not_attempted / blocked |
-| 23 · 2026-11-15 | [Day 23](contracts/day-23.md) — Expose minimal operational health | installed / not_attempted / blocked |
-| 24 · 2026-11-16 | [Day 24](contracts/day-24.md) — Explain and improve one real query | installed / not_attempted / blocked |
-| 25 · 2026-11-17 | [Day 25](contracts/day-25.md) — Handle concurrent repeated selection | installed / not_attempted / blocked |
-| 26 · 2026-11-18 | [Day 26](contracts/day-26.md) — Record minimal selection audit | installed / not_attempted / blocked |
-| 27 · 2026-11-19 | [Day 27](contracts/day-27.md) — Fix one evidence-backed regression | installed / not_attempted / blocked |
-| 28 · 2026-11-20 | [Day 28](contracts/day-28.md) — Milestone 2 browser-to-database acceptance | partial / not_attempted / blocked |
-| 29 · 2026-11-21 | [Day 29](contracts/day-29.md) — Make the slice reproducible | installed / not_attempted / blocked |
-| 30 · 2026-11-22 | [Day 30](contracts/day-30.md) — Defend and assess the slice | installed / not_attempted / blocked |
+| 01 · 2026-10-26 | [Day 01](contracts/day-01.md) — Quote selection identity/order | installed / not_attempted / blocked |
+| 02 · 2026-10-27 | [Day 02](contracts/day-02.md) — Validate selection request at HTTP boundary | installed / not_attempted / blocked |
+| 03 · 2026-10-28 | [Day 03](contracts/day-03.md) — Map failures consistently | installed / not_attempted / blocked |
+| 04 · 2026-10-29 | [Day 04](contracts/day-04.md) — Read one synthetic product | installed / not_attempted / blocked |
+| 05 · 2026-10-30 | [Day 05](contracts/day-05.md) — Decide HomeSecure eligibility | installed / not_attempted / blocked |
+| 06 · 2026-10-31 | [Day 06](contracts/day-06.md) — Calculate synthetic premium | installed / not_attempted / blocked |
+| 07 · 2026-11-01 | [Day 07](contracts/day-07.md) — Create and expire quote version | installed / not_attempted / blocked |
+| 08 · 2026-11-02 | [Day 08](contracts/day-08.md) — Define PostgreSQL quote schema | installed / not_attempted / blocked |
+| 09 · 2026-11-03 | [Day 09](contracts/day-09.md) — Persist/read immutable quote snapshots | installed / not_attempted / blocked |
+| 10 · 2026-11-04 | [Day 10](contracts/day-10.md) — Persist selection batch atomically | installed / not_attempted / blocked |
+| 11 · 2026-11-05 | [Day 11](contracts/day-11.md) — Reject stale quote selection | installed / not_attempted / blocked |
+| 12 · 2026-11-06 | [Day 12](contracts/day-12.md) — Enforce owner-scoped access | installed / not_attempted / blocked |
+| 13 · 2026-11-07 | [Day 13](contracts/day-13.md) — Add honest repeatable CI | installed / not_attempted / blocked |
+| 14 · 2026-11-08 | [Day 14](contracts/day-14.md) — Milestone 1 backend vertical slice | installed / not_attempted / blocked |
+| 15 · 2026-11-09 | [Day 15](contracts/day-15.md) — Read journey summary | installed / not_attempted / blocked |
+| 16 · 2026-11-10 | [Day 16](contracts/day-16.md) — Bound quote-history reads | installed / not_attempted / blocked |
+| 17 · 2026-11-11 | [Day 17](contracts/day-17.md) — Render product choices in React/TypeScript | installed / not_attempted / blocked |
+| 18 · 2026-11-12 | [Day 18](contracts/day-18.md) — Capture quote input | installed / not_attempted / blocked |
+| 19 · 2026-11-13 | [Day 19](contracts/day-19.md) — Display quote snapshot | installed / not_attempted / blocked |
+| 20 · 2026-11-14 | [Day 20](contracts/day-20.md) — Connect selection action UI | installed / not_attempted / blocked |
+| 21 · 2026-11-15 | [Day 21](contracts/day-21.md) — Protect cookie-authenticated writes | installed / not_attempted / blocked |
+| 22 · 2026-11-16 | [Day 22](contracts/day-22.md) — Add safe request correlation | installed / not_attempted / blocked |
+| 23 · 2026-11-17 | [Day 23](contracts/day-23.md) — Expose minimal operational health | installed / not_attempted / blocked |
+| 24 · 2026-11-18 | [Day 24](contracts/day-24.md) — Explain and improve one real query | installed / not_attempted / blocked |
+| 25 · 2026-11-19 | [Day 25](contracts/day-25.md) — Handle concurrent repeated selection | installed / not_attempted / blocked |
+| 26 · 2026-11-20 | [Day 26](contracts/day-26.md) — Record minimal selection audit | installed / not_attempted / blocked |
+| 27 · 2026-11-21 | [Day 27](contracts/day-27.md) — Fix one evidence-backed regression | installed / not_attempted / blocked |
+| 28 · 2026-11-22 | [Day 28](contracts/day-28.md) — Milestone 2 browser-to-database acceptance | partial / not_attempted / blocked |
+| 29 · 2026-11-23 | [Day 29](contracts/day-29.md) — Make the slice reproducible | installed / not_attempted / blocked |
+| 30 · 2026-11-24 | [Day 30](contracts/day-30.md) — Defend and assess the slice | installed / not_attempted / blocked |
 
 ## Scaffold and dependency rules
 

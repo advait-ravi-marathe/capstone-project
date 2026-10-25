@@ -1,4 +1,4 @@
-# Day 72 — 2027-01-03: Validate finite preview capacity policy
+# Day 72 — 2027-01-05: Validate finite preview capacity policy
 
 ## Contract
 

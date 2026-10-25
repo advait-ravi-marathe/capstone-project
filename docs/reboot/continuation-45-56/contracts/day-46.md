@@ -1,4 +1,4 @@
-# Day 46 — 2026-12-08: Enforce renewal window and lifecycle eligibility
+# Day 46 — 2026-12-10: Enforce renewal window and lifecycle eligibility
 
 ## Contract
 

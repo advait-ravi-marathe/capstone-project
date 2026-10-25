@@ -124,7 +124,7 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
 
     def test_contracts_and_scope_cover_each_assignment_without_extra_hours(self):
         scope = (ROOT / "docs/reboot/interview/sprint5-session-scope.md").read_text()
-        self.assertIn("19 December 2026–1 January 2027", scope)
+        self.assertIn("21 December 2026–3 January 2027", scope)
         self.assertIn("45-minute interview mocks", scope)
         self.assertIn("| 59 |", scope)
         self.assertIn("day59VersionedBootstrapIsRepeatableAndNonDestructive", scope)
@@ -154,8 +154,8 @@ class Sprint5InterviewCurriculumTest(unittest.TestCase):
 
     def test_original_dates_and_engineering_budgets_are_preserved(self):
         start = date.fromisoformat(self.manifest["effective_start"])
-        self.assertEqual(date(2026, 12, 19), start)
-        self.assertEqual(date(2027, 1, 1), date.fromisoformat(self.manifest["effective_end"]))
+        self.assertEqual(date(2026, 12, 21), start)
+        self.assertEqual(date(2027, 1, 3), date.fromisoformat(self.manifest["effective_end"]))
         for day in range(57, 71):
             expected = (start + timedelta(days=day - 57)).isoformat()
             self.assertEqual(expected, self.days[day]["date"])

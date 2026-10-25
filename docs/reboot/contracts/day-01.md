@@ -1,4 +1,4 @@
-# Day 01 — 2026-10-24: Quote selection identity/order
+# Day 01 — 2026-10-26: Quote selection identity/order
 
 **State:** CONTRACT SCAFFOLD INSTALLED; learner implementation pending. Learner work is still pending.
 

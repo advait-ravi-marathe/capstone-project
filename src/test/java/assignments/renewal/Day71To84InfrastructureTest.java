@@ -25,7 +25,7 @@ class Day71To84InfrastructureTest {
         assertEquals(14, stories.get("story_count").asInt());
         assertTrue(Files.isRegularFile(Path.of(manifest.get("dependency_review_path").asString())));
         assertTrue(manifest.get("scope").asString().contains("Reuse the completed Day48 owner-scoped SQL"));
-        LocalDate start = LocalDate.parse("2027-01-02");
+        LocalDate start = LocalDate.parse("2027-01-04");
         for (int i = 0; i < 14; i++) {
             JsonNode day = manifest.get("days").get(i);
             JsonNode card = stories.get("cards").get(i);

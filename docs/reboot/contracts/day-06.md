@@ -1,4 +1,4 @@
-# Day 06 — 2026-10-29: Calculate synthetic premium
+# Day 06 — 2026-10-31: Calculate synthetic premium
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 

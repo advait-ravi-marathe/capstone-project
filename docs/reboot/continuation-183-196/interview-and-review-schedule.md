@@ -6,9 +6,9 @@ Four dedicated sessions are spaced across the two weeks; each uses the existing 
 
 | Day | Question | Allocation |
 |---|---|---|
-| 185 · 2027-04-26 | [Q27 — Feed: build a page](../interview/question-bank.md#q27) | One 45-minute question session in the shared block; no capstone design task. |
-| 188 · 2027-04-29 | [Q28 — Feed: fan-out choice](../interview/question-bank.md#q28) | One 45-minute question session in the shared block; no capstone design task. |
-| 192 · 2027-05-03 | [Q33 — Analytics: event to metric](../interview/question-bank.md#q33) | One 45-minute question session in the shared block; no capstone design task. |
-| 195 · 2027-05-06 | [Q34 — Analytics: late and duplicate data](../interview/question-bank.md#q34) | One 45-minute question session in the shared block; no capstone design task. |
+| 185 · 2027-04-28 | [Q27 — Feed: build a page](../interview/question-bank.md#q27) | One 45-minute question session in the shared block; no capstone design task. |
+| 188 · 2027-05-01 | [Q28 — Feed: fan-out choice](../interview/question-bank.md#q28) | One 45-minute question session in the shared block; no capstone design task. |
+| 192 · 2027-05-05 | [Q33 — Analytics: event to metric](../interview/question-bank.md#q33) | One 45-minute question session in the shared block; no capstone design task. |
+| 195 · 2027-05-08 | [Q34 — Analytics: late and duplicate data](../interview/question-bank.md#q34) | One 45-minute question session in the shared block; no capstone design task. |
 
 The session questions are independent interview practice. They do not change the synthetic StreamForge requirements, dataset, or acceptance criteria.

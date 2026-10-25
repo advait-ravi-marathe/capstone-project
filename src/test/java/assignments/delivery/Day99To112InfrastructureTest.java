@@ -30,7 +30,7 @@ class Day99To112InfrastructureTest {
         JsonNode export = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
         assertEquals(14, manifest.path("days").size());
         assertEquals(14, export.path("cards").size());
-        LocalDate first = LocalDate.parse("2027-01-30");
+        LocalDate first = LocalDate.parse("2027-02-01");
         for (int index = 0; index < 14; index++) {
             JsonNode day = manifest.path("days").get(index);
             JsonNode card = export.path("cards").get(index);
@@ -300,7 +300,7 @@ class Day99To112InfrastructureTest {
             String insertWork = """
                     INSERT INTO training_issuance_work
                     (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                    VALUES (?,1,'ISSUED',DATE '2027-01-30',1)
+                    VALUES (?,1,'ISSUED',DATE '2027-02-01',1)
                     """;
             jdbc.update(insertWork, "schema-a");
             DuplicateKeyException duplicate = assertThrows(DuplicateKeyException.class,
@@ -311,7 +311,7 @@ class Day99To112InfrastructureTest {
                     () -> jdbc.update("""
                             INSERT INTO training_issuance_work
                             (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                            VALUES ('schema-b',1,'ENDORSED',DATE '2027-01-30',1)
+                            VALUES ('schema-b',1,'ENDORSED',DATE '2027-02-01',1)
                             """));
             assertEquals("23514", sqlState(invalidType), "a distinct key reaches the ISSUED-only check constraint");
 
@@ -327,7 +327,7 @@ class Day99To112InfrastructureTest {
                     () -> jdbc.update("""
                             INSERT INTO training_issuance_delivery_receipt
                             (policy_id,source_version,event_type,effective_date,envelope_schema_version)
-                            VALUES ('missing-policy',1,'ISSUED',DATE '2027-01-30',1)
+                            VALUES ('missing-policy',1,'ISSUED',DATE '2027-02-01',1)
                             """));
             assertEquals("23503", sqlState(missingWork), "receipt requires its source work row");
             assertEquals(3, countSeedPolicies(jdbc), "constraint probes do not alter prior lifecycle rows");
@@ -340,9 +340,9 @@ class Day99To112InfrastructureTest {
                   (policy_id,owner_id,journey_id,quote_version_id,product_version,rate_version,
                    annual_premium_rupees,currency,effective_date,status,version)
                 VALUES (?, 'owner-a', ?, ?, 'home-secure-v1', 'training-rate-v1',
-                        125.00, 'INR', DATE '2027-01-30', 'ISSUED', 1)
+                        125.00, 'INR', DATE '2027-02-01', 'ISSUED', 1)
                 """, policyId, "journey-" + policyId, "quote-" + policyId);
-        jdbc.update("INSERT INTO training_policy_lifecycle_event(policy_id,version,event_type,effective_date) VALUES (?,1,'ISSUED',DATE '2027-01-30')",
+        jdbc.update("INSERT INTO training_policy_lifecycle_event(policy_id,version,event_type,effective_date) VALUES (?,1,'ISSUED',DATE '2027-02-01')",
                 policyId);
     }
 

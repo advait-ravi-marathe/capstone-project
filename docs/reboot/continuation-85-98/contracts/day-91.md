@@ -1,4 +1,4 @@
-# Day 91 — 2027-01-22: Recover and explain cleanup before admission reuse
+# Day 91 — 2027-01-24: Recover and explain cleanup before admission reuse
 
 ## Contract
 

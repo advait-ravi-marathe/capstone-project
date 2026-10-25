@@ -1,4 +1,4 @@
-# Day 42 — 2026-12-04: Block post-cancellation writes
+# Day 42 — 2026-12-06: Block post-cancellation writes
 
 ## Contract
 

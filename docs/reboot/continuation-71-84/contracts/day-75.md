@@ -1,4 +1,4 @@
-# Day 75 — 2027-01-06: Bound the existing owner-scoped read adapter
+# Day 75 — 2027-01-08: Bound the existing owner-scoped read adapter
 
 ## Contract
 

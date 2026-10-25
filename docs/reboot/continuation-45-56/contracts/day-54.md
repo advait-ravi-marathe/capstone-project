@@ -1,4 +1,4 @@
-# Day 54 — 2026-12-16: Verify the owner-scoped preview against PostgreSQL
+# Day 54 — 2026-12-18: Verify the owner-scoped preview against PostgreSQL
 
 ## Contract
 

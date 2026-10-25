@@ -1,4 +1,4 @@
-# Day 17 — 2026-11-09: Render product choices in React/TypeScript
+# Day 17 — 2026-11-11: Render product choices in React/TypeScript
 
 **State:** Minimal React/TypeScript workspace, fixed component tests, and learner TODO are installed. The UI workspace builds, while all component behavior tests currently fail at the placeholder.
 

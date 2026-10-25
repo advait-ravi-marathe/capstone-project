@@ -1,4 +1,4 @@
-# Day 56 — 2026-12-18: Prove preview stability across restart without writes
+# Day 56 — 2026-12-20: Prove preview stability across restart without writes
 
 ## Contract
 

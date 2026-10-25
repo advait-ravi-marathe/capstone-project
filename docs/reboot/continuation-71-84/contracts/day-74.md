@@ -1,4 +1,4 @@
-# Day 74 — 2027-01-05: Make preview lease release atomic and idempotent
+# Day 74 — 2027-01-07: Make preview lease release atomic and idempotent
 
 ## Contract
 

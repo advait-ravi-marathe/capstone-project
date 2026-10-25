@@ -1,4 +1,4 @@
-# Day 81 — 2027-01-12: Show an accessible manual retry state
+# Day 81 — 2027-01-14: Show an accessible manual retry state
 
 ## Contract
 

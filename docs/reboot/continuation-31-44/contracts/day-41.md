@@ -1,4 +1,4 @@
-# Day 41 — 2026-12-03: Apply due cancellation
+# Day 41 — 2026-12-05: Apply due cancellation
 
 ## Contract
 

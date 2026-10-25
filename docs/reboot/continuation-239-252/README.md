@@ -1,6 +1,6 @@
 # Days 239–252: local policy evaluation and fake-adapter controls
 
-Status: bounded starter curriculum for independent review. Dates are 19 June–2 July 2027. This increment extends the existing synthetic HomeSecure policy-explanation workflow in one context only: fictional customer `cust-synth-01`, owner `synthetic-owner-a`, policy version `v4`, and invented renewal date 1 July 2027. The fixture is local and does not describe a real customer or real outcome.
+Status: bounded starter curriculum for independent review. Dates are 21 June–4 July 2027. This increment extends the existing synthetic HomeSecure policy-explanation workflow in one context only: fictional customer `cust-synth-01`, owner `synthetic-owner-a`, policy version `v4`, and invented renewal date 1 July 2027. The fixture is local and does not describe a real customer or real outcome.
 
 ## Dynamic entry gate and recovery
 

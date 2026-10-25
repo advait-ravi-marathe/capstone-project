@@ -1,4 +1,4 @@
-# Day 26 — 2026-11-18: Record minimal selection audit
+# Day 26 — 2026-11-20: Record minimal selection audit
 
 **State:** Real PostgreSQL scaffold and fixed learner tests are installed; the JDBC transaction/audit behavior remains a learner TODO.
 

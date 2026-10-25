@@ -5,7 +5,7 @@ and dedicated question sessions. It is not a capstone design assignment; for
 capstone work, the assistant supplies the architecture note and the learner
 implements and tests it.
 It does not add a product, a cloud deployment, or extra daily hours. The first
-14-day sprint starts **24 October 2026**. The daily contract and its existing
+14-day sprint starts **26 October 2026**. The daily contract and its existing
 course lesson remain authoritative for the engineering task.
 
 ## Start with the learner's design
@@ -45,10 +45,10 @@ Sprint 1 schedules two sessions in each seven-day week:
 
 | Sprint day | Date | Focus | Practice prompt |
 |---:|---|---|---|
-| 3 | 2026-10-26 | HTTP errors and boundary ownership | Q08 |
-| 7 | 2026-10-30 | time and deterministic quote expiry | Q03 |
-| 10 | 2026-11-02 | transaction scope and atomic writes | Q13 |
-| 14 | 2026-11-06 | CoverStory domain workflow and first failure | Q05 |
+| 3 | 2026-10-28 | HTTP errors and boundary ownership | Q08 |
+| 7 | 2026-11-01 | time and deterministic quote expiry | Q03 |
+| 10 | 2026-11-04 | transaction scope and atomic writes | Q13 |
+| 14 | 2026-11-08 | CoverStory domain workflow and first failure | Q05 |
 
 The session sequence and remaining question prompts are in the
 [`36-question bank`](interview/question-bank.md),

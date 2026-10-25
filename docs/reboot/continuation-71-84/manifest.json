@@ -1,8 +1,8 @@
 {
   "title": "CoverStory bounded synchronous renewal-preview reads: Days 71–84",
   "base_sha": "db2caf3adabf11e6d619ab9a7f7e1f5aa40f2a24",
-  "effective_start": "2027-01-02",
-  "effective_end": "2027-01-15",
+  "effective_start": "2027-01-04",
+  "effective_end": "2027-01-17",
   "status_semantics": "Contracts and seams are plans. Scaffold, learner implementation, runtime verification and integration status are independent. Dates never imply learner completion.",
   "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new business route, schema change, fault route, or infrastructure for its own sake. Reuse the completed Day48 owner-scoped SQL without duplicating its query.",
   "capacity_decision": {
@@ -29,7 +29,7 @@
   "sprints": [
     {
       "name": "Sprint 6",
-      "dates": "2027-01-02..2027-01-15",
+      "dates": "2027-01-04..2027-01-17",
       "days_in_this_batch": [
         71,
         72,
@@ -54,7 +54,7 @@
   "days": [
     {
       "day": 71,
-      "date": "2027-01-02",
+      "date": "2027-01-04",
       "title": "Establish preview contention baseline and verify prerequisites",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-71.md",
       "contract_status": "defined",
@@ -139,7 +139,7 @@
     },
     {
       "day": 72,
-      "date": "2027-01-03",
+      "date": "2027-01-05",
       "title": "Validate finite preview capacity policy",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-72.md",
       "contract_status": "defined",
@@ -226,7 +226,7 @@
     },
     {
       "day": 73,
-      "date": "2027-01-04",
+      "date": "2027-01-06",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-73.md",
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
@@ -305,7 +305,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
         "interview_assignment": {
           "day": 73,
-          "date": "2027-01-04",
+          "date": "2027-01-06",
           "title": "Implement immediate two-permit preview admission",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [
@@ -434,7 +434,7 @@
     },
     {
       "day": 74,
-      "date": "2027-01-05",
+      "date": "2027-01-07",
       "title": "Make preview lease release atomic and idempotent",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-74.md",
       "contract_status": "defined",
@@ -555,7 +555,7 @@
     },
     {
       "day": 75,
-      "date": "2027-01-06",
+      "date": "2027-01-08",
       "title": "Bound the existing owner-scoped read adapter",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-75.md",
       "contract_status": "defined",
@@ -692,7 +692,7 @@
     },
     {
       "day": 76,
-      "date": "2027-01-07",
+      "date": "2027-01-09",
       "title": "Prove maximum concurrency and no permit leaks",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-76.md",
       "contract_status": "defined",
@@ -780,7 +780,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
         "interview_assignment": {
           "day": 76,
-          "date": "2027-01-07",
+          "date": "2027-01-09",
           "title": "Prove maximum concurrency and no permit leaks",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [
@@ -924,7 +924,7 @@
     },
     {
       "day": 77,
-      "date": "2027-01-08",
+      "date": "2027-01-10",
       "title": "Verify recovery without adding a feature",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-77.md",
       "contract_status": "defined",
@@ -1011,7 +1011,7 @@
     },
     {
       "day": 78,
-      "date": "2027-01-09",
+      "date": "2027-01-11",
       "title": "Map busy and unavailable outcomes safely",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-78.md",
       "contract_status": "defined",
@@ -1132,7 +1132,7 @@
     },
     {
       "day": 79,
-      "date": "2027-01-10",
+      "date": "2027-01-12",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-79.md",
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
@@ -1269,7 +1269,7 @@
     },
     {
       "day": 80,
-      "date": "2027-01-11",
+      "date": "2027-01-13",
       "title": "Record fixed-cardinality preview outcomes",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-80.md",
       "contract_status": "defined",
@@ -1339,7 +1339,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
         "interview_assignment": {
           "day": 80,
-          "date": "2027-01-11",
+          "date": "2027-01-13",
           "title": "Record fixed-cardinality preview outcomes",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [],
@@ -1443,7 +1443,7 @@
     },
     {
       "day": 81,
-      "date": "2027-01-12",
+      "date": "2027-01-14",
       "title": "Show an accessible manual retry state",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-81.md",
       "contract_status": "defined",
@@ -1509,7 +1509,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
         "interview_assignment": {
           "day": 81,
-          "date": "2027-01-12",
+          "date": "2027-01-14",
           "title": "Show an accessible manual retry state",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [],
@@ -1603,7 +1603,7 @@
     },
     {
       "day": 82,
-      "date": "2027-01-13",
+      "date": "2027-01-15",
       "title": "Prove finite recovery under real Hikari pool exhaustion",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-82.md",
       "contract_status": "defined",
@@ -1690,7 +1690,7 @@
     },
     {
       "day": 83,
-      "date": "2027-01-14",
+      "date": "2027-01-16",
       "title": "Prove packaged browser recovery under a real database lock",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-83.md",
       "contract_status": "defined",
@@ -1800,7 +1800,7 @@
     },
     {
       "day": 84,
-      "date": "2027-01-15",
+      "date": "2027-01-17",
       "title": "Integrate recovery evidence and independent assessment",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-84.md",
       "contract_status": "defined",

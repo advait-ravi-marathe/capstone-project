@@ -15,9 +15,9 @@ class StreamForge183196ManifestTest(unittest.TestCase):
         m=self.manifest; self.assertEqual("work/eai-sprint2-onward",m["branch"])
         self.assertEqual("41946e432b2a61ab4ba1c0fb938da07aff9e5ded",m["base_commit"])
         self.assertEqual(list(range(183,197)),[d["day"] for d in m["days"]])
-        self.assertEqual(date(2027,4,24),date.fromisoformat(m["days"][0]["date"]))
-        self.assertEqual(date(2027,5,7),date.fromisoformat(m["days"][-1]["date"]))
-        expected_dates=["2027-04-24","2027-04-25","2027-04-26","2027-04-27","2027-04-28","2027-04-29","2027-04-30","2027-05-01","2027-05-02","2027-05-03","2027-05-04","2027-05-05","2027-05-06","2027-05-07"]
+        self.assertEqual(date(2027,4,26),date.fromisoformat(m["days"][0]["date"]))
+        self.assertEqual(date(2027,5,9),date.fromisoformat(m["days"][-1]["date"]))
+        expected_dates=["2027-04-26","2027-04-27","2027-04-28","2027-04-29","2027-04-30","2027-05-01","2027-05-02","2027-05-03","2027-05-04","2027-05-05","2027-05-06","2027-05-07","2027-05-08","2027-05-09"]
         self.assertEqual(expected_dates,[d["date"] for d in m["days"]])
         self.assertIsNone(m["days"][6]["module"])
         self.assertIsNone(m["days"][12]["module"])
@@ -28,9 +28,9 @@ class StreamForge183196ManifestTest(unittest.TestCase):
         refmap={r["key"]:r for r in self.guidance["primaryReferences"]}
         self.assertEqual(14,self.owner["story_count"])
         self.assertFalse(self.owner["board_writes"])
-        self.assertEqual({"start":"2027-04-24","end":"2027-05-07","recovery_days":[189,196]},self.plan["dates"])
-        self.assertEqual("2027-04-24",m["start_date"])
-        self.assertEqual("2027-05-07",m["end_date"])
+        self.assertEqual({"start":"2027-04-26","end":"2027-05-09","recovery_days":[189,196]},self.plan["dates"])
+        self.assertEqual("2027-04-26",m["start_date"])
+        self.assertEqual("2027-05-09",m["end_date"])
         for d in m["days"]:
             b=d["budget"]; self.assertEqual(165,b["engineering_minutes"])
             self.assertEqual(165,b["study"]+b["practice_and_tests"]+b["evidence"])

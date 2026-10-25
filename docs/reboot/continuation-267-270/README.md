@@ -1,6 +1,6 @@
 # Days 267–270: evidence-based closeout
 
-Dates: 17–20 July 2027. This is the proposal's final four-day closeout, not feature expansion. It re-runs only accepted selectors whose prerequisites are eligible, assembles a local reproducibility receipt from actual file bytes, checks official certification study evidence, and records the next queue.
+Dates: 19–22 July 2027. This is the proposal's final four-day closeout, not feature expansion. It re-runs only accepted selectors whose prerequisites are eligible, assembles a local reproducibility receipt from actual file bytes, checks official certification study evidence, and records the next queue.
 
 The current Day 210/238 prerequisites and assigned Day 252 record are absent in the inspected repository. Run `python3 scripts/check_continuation_253_entry_gate.py` when working; preserve its dynamic result and exact recovery selectors. No completion evidence is created by these assignments.
 

@@ -1,4 +1,4 @@
-# Day 04 — 2026-10-27: Read one synthetic product
+# Day 04 — 2026-10-29: Read one synthetic product
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 

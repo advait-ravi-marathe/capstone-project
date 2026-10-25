@@ -91,24 +91,24 @@ StreamForge is prepared material, not a substitute for CoverStory. Preserve its 
 
 ## Next existing 14 learning units: Days 31–44
 
-The authoritative calendar starts on 24 October 2026. Days 31–44 run 23 November–6 December 2026, crossing native Sprint 3 (Days 31–42) and Sprint 4 (Days 43–44), as recorded in the [Days 31–44 manifest](continuation-31-44/manifest.json). This alignment adds no feature, ticket, budget or learner deliverable. Entrance remains governed by actual learner evidence for the protected Days 28–30 vertical slice and underlying quote/API/DB/React prerequisites. If absent, carry the named gate forward. The architecture context below is supplied by the assistant; existing contracts remain authoritative for learner implementation, tests, commands and evidence. Exact files, commands and complete study records are in [the alignment JSON](fde-alignment.json), copied from the manifest; course access labels and official-supplement fallbacks remain as recorded there.
+The authoritative calendar starts on 26 October 2026. Days 31–44 run 25 November–8 December 2026, crossing native Sprint 3 (Days 31–42) and Sprint 4 (Days 43–44), as recorded in the [Days 31–44 manifest](continuation-31-44/manifest.json). This alignment adds no feature, ticket, budget or learner deliverable. Entrance remains governed by actual learner evidence for the protected Days 28–30 vertical slice and underlying quote/API/DB/React prerequisites. If absent, carry the named gate forward. The architecture context below is supplied by the assistant; existing contracts remain authoritative for learner implementation, tests, commands and evidence. Exact files, commands and complete study records are in [the alignment JSON](fde-alignment.json), copied from the manifest; course access labels and official-supplement fallbacks remain as recorded there.
 
 | Day/date | Existing implementation seam | Assistant-supplied architecture context (not a learner design deliverable) |
 |---|---|---|
-| 31 · Nov 23 | `validateIssue`: reject foreign, unselected, stale or ineligible quotes | The assistant explains the owner, quote-selection and eligibility checks; learner implementation and tests remain in the existing contract. |
-| 32 · Nov 24 | `issue`: same-intent replay, changed-intent conflict | The assistant explains same-intent idempotency and changed-intent conflict behavior. |
-| 33 · Nov 25 | `isImmutableIssueSnapshot`: retain issue-time facts | The assistant explains why the issued policy retains issue-time facts and the shallow-immutability limit. |
-| 34 · Nov 26 | `issueHttpStatus`: stable create/replay/error outcomes | The assistant explains stable transport outcomes and non-leaking public errors. |
-| 35 · Nov 27 | `persistIssueAtomically`: policy/receipt/event atomicity | The assistant explains the atomic persistence boundary; the learner tests the assigned implementation without writing an ADR. |
-| 36 · Nov 28 | `readForOwner`: conceal absent and foreign equally | The assistant explains the owner-scoped read boundary and indistinguishable absent/foreign result. |
-| 37 · Nov 29 | `validateEndorsement`: date/no-op/version rules | The assistant explains the existing date, no-op and version rules that the learner implements and tests. |
-| 38 · Nov 30 | `endorse`: append immutable ordered history | The assistant explains the append-only ordered history invariant and its local scope. |
-| 39 · Dec 1 | `endorseAtExpectedVersion`: two-writer conflict | The assistant explains expected-version conflict handling and why stale writes do not overwrite state. |
-| 40 · Dec 2 | `scheduleCancellation`: future date and replay | The assistant explains effective-date, clock and replay behavior for the assigned seam. |
-| 41 · Dec 3 | `applyDueCancellation`: before/equal/after and once locally | The assistant explains the bounded local transition; tests do not claim external exactly-once delivery. |
-| 42 · Dec 4 | `permitsServicingWrite`: cancelled write barrier | The assistant explains the cancelled-write barrier and permitted read boundary. |
-| 43 · Dec 5 | `toServicingView` and `PolicyServicingPanel.tsx` | The assistant explains the synthetic view boundary; only actual observed test/UI results count as evidence, not customer UAT/adoption. |
-| 44 · Dec 6 | `verifyLifecycleReadback` and existing browser/DB acceptance | The assistant explains the existing readback path; learner evidence records actual selector results and blockers, without a post-hoc design defense. |
+| 31 · Nov 25 | `validateIssue`: reject foreign, unselected, stale or ineligible quotes | The assistant explains the owner, quote-selection and eligibility checks; learner implementation and tests remain in the existing contract. |
+| 32 · Nov 26 | `issue`: same-intent replay, changed-intent conflict | The assistant explains same-intent idempotency and changed-intent conflict behavior. |
+| 33 · Nov 27 | `isImmutableIssueSnapshot`: retain issue-time facts | The assistant explains why the issued policy retains issue-time facts and the shallow-immutability limit. |
+| 34 · Nov 28 | `issueHttpStatus`: stable create/replay/error outcomes | The assistant explains stable transport outcomes and non-leaking public errors. |
+| 35 · Nov 29 | `persistIssueAtomically`: policy/receipt/event atomicity | The assistant explains the atomic persistence boundary; the learner tests the assigned implementation without writing an ADR. |
+| 36 · Nov 30 | `readForOwner`: conceal absent and foreign equally | The assistant explains the owner-scoped read boundary and indistinguishable absent/foreign result. |
+| 37 · Dec 1 | `validateEndorsement`: date/no-op/version rules | The assistant explains the existing date, no-op and version rules that the learner implements and tests. |
+| 38 · Dec 2 | `endorse`: append immutable ordered history | The assistant explains the append-only ordered history invariant and its local scope. |
+| 39 · Dec 3 | `endorseAtExpectedVersion`: two-writer conflict | The assistant explains expected-version conflict handling and why stale writes do not overwrite state. |
+| 40 · Dec 4 | `scheduleCancellation`: future date and replay | The assistant explains effective-date, clock and replay behavior for the assigned seam. |
+| 41 · Dec 5 | `applyDueCancellation`: before/equal/after and once locally | The assistant explains the bounded local transition; tests do not claim external exactly-once delivery. |
+| 42 · Dec 6 | `permitsServicingWrite`: cancelled write barrier | The assistant explains the cancelled-write barrier and permitted read boundary. |
+| 43 · Dec 7 | `toServicingView` and `PolicyServicingPanel.tsx` | The assistant explains the synthetic view boundary; only actual observed test/UI results count as evidence, not customer UAT/adoption. |
+| 44 · Dec 8 | `verifyLifecycleReadback` and existing browser/DB acceptance | The assistant explains the existing readback path; learner evidence records actual selector results and blockers, without a post-hoc design defense. |
 
 ## Evidence-based readiness
 

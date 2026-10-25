@@ -1,4 +1,4 @@
-# Day 98 — 2027-01-29: Recover, run selectors and diagnose a lifetime defect
+# Day 98 — 2027-01-31: Recover, run selectors and diagnose a lifetime defect
 
 ## Contract
 

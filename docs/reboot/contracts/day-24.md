@@ -1,4 +1,4 @@
-# Day 24 — 2026-11-16: Explain and improve one real query
+# Day 24 — 2026-11-18: Explain and improve one real query
 
 **State:** Real-PostgreSQL fixture and plan/result acceptance test are installed. The index migration is an explicit learner TODO; no query-plan improvement is claimed.
 

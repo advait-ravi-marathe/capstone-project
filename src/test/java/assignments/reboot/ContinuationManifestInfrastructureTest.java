@@ -28,7 +28,7 @@ class ContinuationManifestInfrastructureTest {
         assertEquals(14, cards.get("cards").size());
         assertEquals("https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0",
                 manifest.get("separate_learning_repository").get("algorithm_practice").asString());
-        LocalDate start = LocalDate.parse("2026-11-23");
+        LocalDate start = LocalDate.parse("2026-11-25");
         for (int i = 0; i < 14; i++) {
             JsonNode day = manifest.get("days").get(i);
             JsonNode card = cards.get("cards").get(i);

@@ -1,4 +1,4 @@
-# Day 27 — 2026-11-19: Fix one evidence-backed regression
+# Day 27 — 2026-11-21: Fix one evidence-backed regression
 
 **State:** Saved JSON boundary reproducer and fixed learner test are installed; the regression behavior remains a learner acceptance failure until verified.
 

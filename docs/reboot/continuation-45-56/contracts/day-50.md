@@ -1,4 +1,4 @@
-# Day 50 — 2026-12-12: Map unavailable previews to stable HTTP errors
+# Day 50 — 2026-12-14: Map unavailable previews to stable HTTP errors
 
 ## Contract
 

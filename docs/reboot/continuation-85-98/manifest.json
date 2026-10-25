@@ -3,8 +3,8 @@
   "base_sha": "1aa59054948c3197d9d9faa8346a0ed3706884e1",
   "checkpoint_sha": "034d6c02f6f21d03ce3467d4b4d60512f91cc469",
   "course_guidance_commit": "d983c384cf7295c9ba0424e2d604d32f12dfdc06",
-  "effective_start": "2027-01-16",
-  "effective_end": "2027-01-29",
+  "effective_start": "2027-01-18",
+  "effective_end": "2027-01-31",
   "status_semantics": "Contracts and scaffolding do not imply learner implementation, course access/viewing, or completion. Learner work and runtime/instructor evidence are separate axes.",
   "scope": "Use the existing synchronous owner-scoped policy read inside an owned top-level read-only transaction with transaction-local PostgreSQL lock and statement budgets. Preserve Hikari maximum 4, admission maximum 2 and 1,000 ms acquisition timeout. No HTTP deadline, new infrastructure, automatic retry, production cancellation registry, HTTP-to-JDBC cancellation bridge, new timeout mechanism, or new route.",
   "capacity_decision": {
@@ -28,7 +28,7 @@
   "sprints": [
     {
       "name": "Sprint 7",
-      "dates": "2027-01-16..2027-01-29",
+      "dates": "2027-01-18..2027-01-31",
       "days_in_this_batch": [
         85,
         86,
@@ -53,7 +53,7 @@
   "days": [
     {
       "day": 85,
-      "date": "2027-01-16",
+      "date": "2027-01-18",
       "title": "Trace PostgreSQL timeout boundaries and prerequisite evidence",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-85.md",
       "contract_status": "defined",
@@ -115,7 +115,7 @@
     },
     {
       "day": 86,
-      "date": "2027-01-17",
+      "date": "2027-01-19",
       "title": "Validate finite ordered PostgreSQL read budgets",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-86.md",
       "contract_status": "defined",
@@ -174,7 +174,7 @@
     },
     {
       "day": 87,
-      "date": "2027-01-18",
+      "date": "2027-01-20",
       "title": "Own one top-level read-only transaction and bridge the adapter",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-87.md",
       "contract_status": "defined",
@@ -251,7 +251,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-87",
         "interview_assignment": {
           "day": 87,
-          "date": "2027-01-18",
+          "date": "2027-01-20",
           "title": "Own one top-level read-only transaction and bridge the adapter",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -318,7 +318,7 @@
     },
     {
       "day": 88,
-      "date": "2027-01-19",
+      "date": "2027-01-21",
       "title": "Apply transaction-local budgets with parameterized set_config",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-88.md",
       "contract_status": "defined",
@@ -382,7 +382,7 @@
     },
     {
       "day": 89,
-      "date": "2027-01-20",
+      "date": "2027-01-22",
       "title": "Run one unchanged owner-scoped read inside the timed decorator",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-89.md",
       "contract_status": "defined",
@@ -462,7 +462,7 @@
     },
     {
       "day": 90,
-      "date": "2027-01-21",
+      "date": "2027-01-23",
       "title": "Prove read-only enforcement and mapping-failure rollback",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-90.md",
       "contract_status": "defined",
@@ -539,7 +539,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-90",
         "interview_assignment": {
           "day": 90,
-          "date": "2027-01-21",
+          "date": "2027-01-23",
           "title": "Prove read-only enforcement and mapping-failure rollback",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -606,7 +606,7 @@
     },
     {
       "day": 91,
-      "date": "2027-01-22",
+      "date": "2027-01-24",
       "title": "Recover and explain cleanup before admission reuse",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-91.md",
       "contract_status": "defined",
@@ -670,7 +670,7 @@
     },
     {
       "day": 92,
-      "date": "2027-01-23",
+      "date": "2027-01-25",
       "title": "Translate only bounded-read SQL states safely",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-92.md",
       "contract_status": "defined",
@@ -729,7 +729,7 @@
     },
     {
       "day": 93,
-      "date": "2027-01-24",
+      "date": "2027-01-26",
       "title": "Prove a real relation lock timeout before holder release",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-93.md",
       "contract_status": "defined",
@@ -798,7 +798,7 @@
     },
     {
       "day": 94,
-      "date": "2027-01-25",
+      "date": "2027-01-27",
       "title": "Prove statement_timeout through the same transaction boundary",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-94.md",
       "contract_status": "defined",
@@ -859,7 +859,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-94",
         "interview_assignment": {
           "day": 94,
-          "date": "2027-01-25",
+          "date": "2027-01-27",
           "title": "Prove statement_timeout through the same transaction boundary",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -925,7 +925,7 @@
     },
     {
       "day": 95,
-      "date": "2027-01-26",
+      "date": "2027-01-28",
       "title": "Separate Future waiting from JDBC Statement cancellation",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-95.md",
       "contract_status": "defined",
@@ -999,7 +999,7 @@
     },
     {
       "day": 96,
-      "date": "2027-01-27",
+      "date": "2027-01-29",
       "title": "Verify one-slot backend baseline reset after every outcome",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-96.md",
       "contract_status": "defined",
@@ -1069,7 +1069,7 @@
     },
     {
       "day": 97,
-      "date": "2027-01-28",
+      "date": "2027-01-30",
       "title": "Prove packaged authenticated timeout recovery and one explicit retry",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-97.md",
       "contract_status": "defined",
@@ -1151,7 +1151,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-97",
         "interview_assignment": {
           "day": 97,
-          "date": "2027-01-28",
+          "date": "2027-01-30",
           "title": "Prove packaged authenticated timeout recovery and one explicit retry",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -1218,7 +1218,7 @@
     },
     {
       "day": 98,
-      "date": "2027-01-29",
+      "date": "2027-01-31",
       "title": "Recover, run selectors and diagnose a lifetime defect",
       "contract_file": "docs/reboot/continuation-85-98/contracts/day-98.md",
       "contract_status": "defined",

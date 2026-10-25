@@ -36,7 +36,7 @@ class Day141To154InfrastructureTest {
         for(int i=0;i<14;i++) {
             JsonNode d=manifest.path("days").get(i), c=export.path("cards").get(i);
             assertEquals(141+i,d.path("day").asInt()); assertEquals(d.path("day").asInt(),c.path("day_number").asInt());
-            assertEquals(LocalDate.of(2027,3,13).plusDays(i).toString(),d.path("date").asText());
+            assertEquals(LocalDate.of(2027,3,15).plusDays(i).toString(),d.path("date").asText());
             assertEquals(d.path("date").asText(),c.path("date").asText());
             assertEquals(d.path("title").asText(),c.path("title").asText());
             assertEquals(d.path("engineering").toString(),c.path("engineering").toString());

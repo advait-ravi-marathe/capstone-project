@@ -1,6 +1,6 @@
 # CoverStory continuation: Days 45–56
 
-This isolated additive branch continues the 31–44 policy lifecycle slice from base SHA `350aa931c15f7a4e4c54a8b572bc4b9c5596902c`. Together with the existing Sprint 4 Days 43–44 contracts, this continuation fills Days 45–56 from 7–18 December 2026, completing the Sprint 4 window of 5–18 December. It does not edit the board, first-30 or Days 31–44 manifests, contracts, evidence, or learner TODO implementations.
+This isolated additive branch continues the 31–44 policy lifecycle slice from base SHA `350aa931c15f7a4e4c54a8b572bc4b9c5596902c`. Together with the existing Sprint 4 Days 43–44 contracts, this continuation fills Days 45–56 from 9–20 December 2026, completing the Sprint 4 window of 7–20 December. It does not edit the board, first-30 or Days 31–44 manifests, contracts, evidence, or learner TODO implementations.
 
 - [Canonical manifest](manifest.json): 12 contracts and planned status semantics.
 - [Scrum owner export](scrum-owner-manifest.json): one consolidated Story per date, for review only; not synchronized to a board.

@@ -1,6 +1,6 @@
 # Sprint 6 interview sessions and engineering work
 
-Sprint 6 covers Days 71–84 (2–15 January 2027). Each day retains 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. The separate DSA allocation is outside those 120 minutes. No dates, learner status, or course-watched values are changed by this plan.
+Sprint 6 covers Days 71–84 (4–17 January 2027). Each day retains 120 engineering minutes: 25 study, 85 practice/testing, and 10 evidence. The separate DSA allocation is outside those 120 minutes. No dates, learner status, or course-watched values are changed by this plan.
 
 Four 45-minute system-design interviews are scheduled, two each week: Days 73 and 76, then Days 80 and 81. They use the exact Requirements (5), Capacity and constraints (5), Initial architecture and data model (15), Bottlenecks/reliability/scaling (10), and Trade-offs/failures/follow-ups (10) phases, with the 100-point rubric. The learner proposes a design only for the assigned question. For capstone implementation, the assistant supplies the concrete architecture and concise rationale before the learner implements and tests; no capstone proposal or post-hoc justification is assigned.
 

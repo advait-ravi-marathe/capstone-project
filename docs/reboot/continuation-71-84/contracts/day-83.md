@@ -1,4 +1,4 @@
-# Day 83 — 2027-01-14: Prove packaged browser recovery under a real database lock
+# Day 83 — 2027-01-16: Prove packaged browser recovery under a real database lock
 
 ## Contract
 

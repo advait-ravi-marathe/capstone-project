@@ -1,4 +1,4 @@
-# Day 44 — 2026-12-06: Lifecycle integration acceptance contract
+# Day 44 — 2026-12-08: Lifecycle integration acceptance contract
 
 ## Contract
 

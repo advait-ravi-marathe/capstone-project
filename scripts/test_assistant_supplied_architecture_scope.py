@@ -190,8 +190,8 @@ class AssistantSuppliedArchitectureScopeTest(unittest.TestCase):
         for day, label in re.findall(r"^\| (\d+) · ([A-Z][a-z]{2} \d{1,2}) \|", text, re.M):
             documented[int(day)] = datetime.strptime(f"{label} 2026", "%b %d %Y").date().isoformat()
         self.assertEqual({day: authoritative[day] for day in range(31, 45)}, documented)
-        self.assertEqual("2026-11-23", authoritative[31])
-        self.assertEqual("2026-12-06", authoritative[44])
+        self.assertEqual("2026-11-25", authoritative[31])
+        self.assertEqual("2026-12-08", authoritative[44])
         self.assertNotIn("19 November–2 December 2026", text)
         self.assertNotIn("31 · Nov 19", text)
         self.assertNotIn("Days 197–210 are paused", text)

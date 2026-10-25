@@ -1,4 +1,4 @@
-# Day 97 — 2027-01-28: Prove packaged authenticated timeout recovery and one explicit retry
+# Day 97 — 2027-01-30: Prove packaged authenticated timeout recovery and one explicit retry
 
 ## Contract
 

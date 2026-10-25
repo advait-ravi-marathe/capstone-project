@@ -1,4 +1,4 @@
-# Day 94 — 2027-01-25: Prove statement_timeout through the same transaction boundary
+# Day 94 — 2027-01-27: Prove statement_timeout through the same transaction boundary
 
 ## Contract
 

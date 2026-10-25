@@ -1,6 +1,6 @@
 # Days 225–238: synthetic policy draft review
 
-Status: reviewable starter curriculum; no learner completion or board publication is claimed. Dates are 5–18 June 2027. This bounded increment is based on the reviewed Days 197–270 proposal and the existing synthetic workflow in `ai/grounded/continuation_211.py`.
+Status: reviewable starter curriculum; no learner completion or board publication is claimed. Dates are 7–20 June 2027. This bounded increment is based on the reviewed Days 197–270 proposal and the existing synthetic workflow in `ai/grounded/continuation_211.py`.
 
 <a id="entry-gate-and-recovery"></a>
 ## Entry gate and recovery

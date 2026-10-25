@@ -1,4 +1,4 @@
-# Day 13 — 2026-11-05: Add honest repeatable CI
+# Day 13 — 2026-11-07: Add honest repeatable CI
 
 **State:** Instructor-owned fail-closed GitHub Actions workflow and its local infrastructure check are installed. The learner-owned readiness evaluator remains a TODO; no learner attempt is recorded. Remote Actions success is unverified until a run is observed.
 

@@ -1,4 +1,4 @@
-# Day 02 — 2026-10-25: Validate selection request at HTTP boundary
+# Day 02 — 2026-10-27: Validate selection request at HTTP boundary
 
 **State:** Fixed validator and HTTP adapter acceptance scaffolds are installed; learner implementation remains pending. This page is a contract, not a learner result.
 

@@ -24,7 +24,7 @@ def generate():
     assert {k:sum(t[k] for t in tasks) for k in cats}=={"project":1320,"ai":240,"cert":50,"ai_study":120,"cert_study":90,"core_study":280}
     assert sum(t["project"]+t["ai"]+t["cert"]+t["ai_study"]+t["cert_study"]+t["core_study"]+15 for t in tasks)==2310
     assert all(sum(t[k] for k in cats if k in ("project","ai","cert"))==115 and sum(t[k] for k in ("ai_study","cert_study","core_study"))==35 for t in tasks)
-    dates=[date(2027,5,22)+timedelta(days=i) for i in range(14)]
+    dates=[date.fromisoformat(p["start_date"])+timedelta(days=i) for i in range(14)]
     days=[]; cards=[]; notes=[]
     for i,(d,t) in enumerate(zip(dates,tasks)):
         n=211+i; question=p["question_bank"][t["question"]] if t["shared"]=="question" else None

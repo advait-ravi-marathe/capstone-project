@@ -3,8 +3,8 @@
   "status": "planned_assignments_only_not_completion",
   "branch": "work/eai-sprint2-onward",
   "base_commit": "c503d64272cc217c60e8245dd018d5da622f9123",
-  "start_date": "2027-07-21",
-  "end_date": "2027-08-03",
+  "start_date": "2027-07-23",
+  "end_date": "2027-08-05",
   "sources_verified_at": "2026-10-24",
   "gate_command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
   "daily_budget": {
@@ -119,7 +119,7 @@
   "days": [
     {
       "day": 271,
-      "date": "2027-07-21",
+      "date": "2027-07-23",
       "title": "Capture a deterministic SQL baseline",
       "task": "Run prior gates read-only and capture the baseline workload to a fresh ignored artifact path; leave the canonical fixture unchanged.",
       "study_source": "PG_EXPLAIN",
@@ -139,7 +139,7 @@
     },
     {
       "day": 272,
-      "date": "2027-07-22",
+      "date": "2027-07-24",
       "title": "Verify the workload's relational facts",
       "task": "Derive the expected owner/policy/revision list from the schema seed independently and compare it with Day271 rows; include a same-count foreign-owner example.",
       "study_source": "PG_INDEX",
@@ -161,7 +161,7 @@
     },
     {
       "day": 273,
-      "date": "2027-07-23",
+      "date": "2027-07-25",
       "title": "Implement exact result comparison",
       "task": "Implement complete ordered owner/policy/revision equality. Reject mutations to each key field and row order, even when count remains five.",
       "study_source": "PG_EXPLAIN",
@@ -183,7 +183,7 @@
     },
     {
       "day": 274,
-      "date": "2027-07-24",
+      "date": "2027-07-26",
       "title": "Compare estimated and actual cardinality",
       "task": "Implement finite estimate/actual q-error and explicit zero/zero versus zero/nonzero handling; inspect the 4x counterfactual.",
       "study_source": "PG_STATS",
@@ -205,7 +205,7 @@
     },
     {
       "day": 275,
-      "date": "2027-07-25",
+      "date": "2027-07-27",
       "title": "Apply the analyzer to a skewed workload",
       "task": "Run the skew experiment, pass its captured query observation through the learner analyzer built on Days273–274, and independently inspect nested owner-row estimates before/after ANALYZE.",
       "study_source": "PG_ANALYZE",
@@ -228,7 +228,7 @@
     },
     {
       "day": 276,
-      "date": "2027-07-26",
+      "date": "2027-07-28",
       "title": "Validate malformed plan evidence",
       "task": "Implement fail-closed plan-field validation, then read both nested skew plans and compare estimated versus actual owner rows without assuming a specific node.",
       "study_source": "PG_STATS",
@@ -252,7 +252,7 @@
     },
     {
       "day": 277,
-      "date": "2027-07-27",
+      "date": "2027-07-29",
       "title": "Compare plan and answer independently",
       "task": "Drop the composite index in a fresh database; compare baseline and no-index runs through the result-preserving comparator.",
       "study_source": "PG_EXPLAIN",
@@ -274,7 +274,7 @@
     },
     {
       "day": 278,
-      "date": "2027-07-28",
+      "date": "2027-07-30",
       "title": "Record a bounded JVM profile",
       "task": "Compile the bounded 500-million-iteration CPU workload; record one JFR file and verify its deterministic checksum and custom phase event.",
       "study_source": "JFR",
@@ -294,7 +294,7 @@
     },
     {
       "day": 279,
-      "date": "2027-07-29",
+      "date": "2027-07-31",
       "title": "Inspect selected recording events",
       "task": "Inspect the required lab.WorkPhase marker and JFR summary; validate workload, iteration count and checksum. Record ExecutionSample count as optional observed data, never as the sole success condition.",
       "study_source": "JFR_EVENT",
@@ -319,7 +319,7 @@
     },
     {
       "day": 280,
-      "date": "2027-07-30",
+      "date": "2027-08-01",
       "title": "Relate runtime observations to workload",
       "task": "Create two fresh JFR recordings from the same workload, inspect both custom phase markers and summaries, and compare checksums rather than exact sample counts.",
       "study_source": "JFR",
@@ -341,7 +341,7 @@
     },
     {
       "day": 281,
-      "date": "2027-07-31",
+      "date": "2027-08-02",
       "title": "Re-run acceptance mutations",
       "task": "Run independent oracle plus actual acceptance-path mutations for owner, policy, revision, order, missing/extra/same-count substitution, q-error, buffers and malformed evidence.",
       "study_source": "PG_MULTI",
@@ -366,7 +366,7 @@
     },
     {
       "day": 282,
-      "date": "2027-08-01",
+      "date": "2027-08-03",
       "title": "Explain a planner counterfactual",
       "task": "Recreate the query with reversed composite-index order and compare against baseline; verify full result identity despite plan differences.",
       "study_source": "PG_MULTI",
@@ -388,7 +388,7 @@
     },
     {
       "day": 283,
-      "date": "2027-08-02",
+      "date": "2027-08-04",
       "title": "Reproduce and compare the observation",
       "task": "Capture another baseline in a fresh container and use the comparator to verify exact rows against Day271; note which plan/buffer values vary.",
       "study_source": "PG_ANALYZE",
@@ -410,7 +410,7 @@
     },
     {
       "day": 284,
-      "date": "2027-08-03",
+      "date": "2027-08-05",
       "title": "Review gates and transfer the diagnosis",
       "task": "Capture a third baseline run, summarize actual execution-time center/spread with the provided script, run independent lab acceptance, and record separate dynamic gate outputs/carry-forward.",
       "study_source": "PY_STATS",

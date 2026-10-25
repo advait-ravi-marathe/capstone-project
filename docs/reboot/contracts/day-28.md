@@ -1,4 +1,4 @@
-# Day 28 — 2026-11-20: Milestone 2 browser-to-database acceptance
+# Day 28 — 2026-11-22: Milestone 2 browser-to-database acceptance
 
 **State:** A tagged real Chromium → built React test route → Spring MVC → actual learner service methods → disposable PostgreSQL acceptance harness is installed. It checks form submission, quote snapshot rendering, selection, summary refresh, reload readback and direct row counts independently. In the committed learner state it must fail at the explicit TODO seams; no successful lifecycle behavior is claimed. Days 14–27 remain prerequisites.
 

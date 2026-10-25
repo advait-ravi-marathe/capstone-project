@@ -1,6 +1,6 @@
 # Days 271–284: runtime and SQL measurement foundations
 
-**Planning dates:** 21 July–3 August 2027. This is the first bounded sprint of the approved Day271–732 outcome roadmap. Days1–270 and their learner evidence remain unchanged. Dates do not override prerequisites or authorize deployment.
+**Planning dates:** 23 July–5 August 2027. This is the first bounded sprint of the approved Day271–732 outcome roadmap. Days1–270 assignments, learner evidence and status remain unchanged; all planned day dates move two days later. Dates do not override prerequisites or authorize deployment.
 
 ## Entry and recovery
 

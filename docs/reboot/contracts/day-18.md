@@ -1,4 +1,4 @@
-# Day 18 — 2026-11-10: Capture quote input
+# Day 18 — 2026-11-12: Capture quote input
 
 **State:** React/TypeScript component scaffold and fixed acceptance tests are installed; learner implementation remains pending. The focused suite is expected to fail at unimplemented rendering/interaction behavior.
 

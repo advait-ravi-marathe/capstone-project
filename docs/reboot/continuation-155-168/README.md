@@ -3,7 +3,7 @@
 **Draft starter scope. No board tickets have been created or updated.** This batch prepares and validates a tiny original synthetic catalog and event log, splits unique events by a fixed UTC cutoff, and emits reproducible local JSON with train-only summaries and separate holdout diagnostics. It is not a recommender, ML model, service, media importer, or deployment.
 
 - Base source: `5dc558eeda441177dc4aac87725d0a18417c5abd`; isolated branch `learning/streamforge-days-155-168`.
-- Sprint 12 dates: March 27–April 9, 2027. Recovery days: 161 and 168.
+- Sprint 12 dates: March 29–April 11, 2027. Recovery days: 161 and 168.
 - Engineering remains 120 minutes/day (25 study, 85 practice/testing, 10 evidence).
 - Python interpreter observed before publication: Python 3.12.14. No third-party Python dependency is required.
 - The earlier Days 153–154 learner-owned A/B evidence gate has status not met: `evidence/continuation-141-154/day-153.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`; `evidence/continuation-141-154/day-154.json` records `not_attempted` / `not_run`, tested-source SHA null, 0 artifact hashes, and learner completion `false`. The StreamForge scaffold and instructor witnesses cannot satisfy it. Re-evaluate the authoritative records when genuine learner evidence is added; keep progression blocked until both qualify under `manifest.json`.

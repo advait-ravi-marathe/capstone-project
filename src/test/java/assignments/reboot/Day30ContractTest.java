@@ -65,8 +65,8 @@ class Day30ContractTest {
         JsonNode cards = owner.get("cards");
         assertEquals(30, owner.get("story_count").asInt());
         assertEquals(30, cards.size());
-        assertEquals("2026-10-24", cards.get(0).get("date").asString());
-        assertEquals("2026-11-22", cards.get(29).get("date").asString());
+        assertEquals("2026-10-26", cards.get(0).get("date").asString());
+        assertEquals("2026-11-24", cards.get(29).get("date").asString());
         JsonNode canonical = new ObjectMapper().readTree(Files.readString(Path.of("docs/reboot/manifest.json")));
         assertEquals(30, canonical.get("board_story_count").asInt());
         assertEquals(30, canonical.get("assignments_by_track").get("engineering").asInt());

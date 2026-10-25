@@ -1,4 +1,4 @@
-# Day 09 — 2026-11-01: Persist/read immutable quote snapshots
+# Day 09 — 2026-11-03: Persist/read immutable quote snapshots
 
 **State:** Instructor scaffold installed; learner implementation pending. Tests use real PostgreSQL and a fixed test-only schema/seed that bypass Days 7–8.
 

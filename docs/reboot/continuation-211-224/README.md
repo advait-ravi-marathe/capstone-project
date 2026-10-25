@@ -1,6 +1,6 @@
 # Days 211–224: bounded synthetic policy explanations
 
-Status: reviewable starter curriculum; no learner completion or board publication is claimed. Dates are 22 May–4 June 2027. Main and prior Days 1–210 remain preserved.
+Status: reviewable starter curriculum; no learner completion or board publication is claimed. Dates are 24 May–6 June 2027. Main and prior Days 1–210 remain preserved.
 
 ## Architecture and acceptance
 

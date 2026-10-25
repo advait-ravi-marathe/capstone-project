@@ -1,4 +1,4 @@
-# Day 93 — 2027-01-24: Prove a real relation lock timeout before holder release
+# Day 93 — 2027-01-26: Prove a real relation lock timeout before holder release
 
 ## Contract
 

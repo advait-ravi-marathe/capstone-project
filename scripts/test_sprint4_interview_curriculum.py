@@ -5,10 +5,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MOCK_DAYS = {
-    45: ('2026-12-07', 'Q03', 'PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow'),
-    49: ('2026-12-11', 'Q07', 'PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead+day49MockMvcPassesPrincipalRatherThanForgedQueryOrHeaderToTheReadStore'),
-    52: ('2026-12-14', 'Q14', 'PolicyRenewalPreviewPanel.test.tsx'),
-    56: ('2026-12-18', 'Q12', 'RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite'),
+    45: ('2026-12-09', 'Q03', 'PolicyRenewalAcceptanceTest#day45AnnualTermUsesExclusiveAnniversaryAndThirtyDayWindow'),
+    49: ('2026-12-13', 'Q07', 'PolicyRenewalControllerAcceptanceTest#day49OwnerComesOnlyFromPrincipalAndUnauthenticatedDoesNotRead+day49MockMvcPassesPrincipalRatherThanForgedQueryOrHeaderToTheReadStore'),
+    52: ('2026-12-16', 'Q14', 'PolicyRenewalPreviewPanel.test.tsx'),
+    56: ('2026-12-20', 'Q12', 'RenewalPreviewTransportInfrastructureTest#day56PreviewReadIsStableAcrossRestartAndDoesNotWrite'),
 }
 SPRINT4_DAYS = set(range(43, 57))
 NON_MOCK_DAYS = SPRINT4_DAYS - set(MOCK_DAYS)
@@ -49,8 +49,8 @@ class Sprint4InterviewCurriculumTest(unittest.TestCase):
                 self.assertTrue(assignment['deferred_work_id'])
                 self.assertTrue(assignment['deferred_work'])
                 self.assertIn('45 minutes', (ROOT / f'docs/reboot/continuation-45-56/contracts/day-{day}.md').read_text())
-        week_one = [d for d in MOCK_DAYS if '2026-12-07' <= MOCK_DAYS[d][0] <= '2026-12-11']
-        week_two = [d for d in MOCK_DAYS if '2026-12-12' <= MOCK_DAYS[d][0] <= '2026-12-18']
+        week_one = [d for d in MOCK_DAYS if '2026-12-09' <= MOCK_DAYS[d][0] <= '2026-12-13']
+        week_two = [d for d in MOCK_DAYS if '2026-12-14' <= MOCK_DAYS[d][0] <= '2026-12-20']
         self.assertEqual(len(week_one), 2)
         self.assertEqual(len(week_two), 2)
 
@@ -195,8 +195,8 @@ class Sprint4InterviewCurriculumTest(unittest.TestCase):
         self.assertIn('mark a day complete', self.scope)
 
     def test_sprint4_dates_and_day_budgets_remain_intact(self):
-        self.assertEqual(self.manifest['effective_start'], '2026-12-07')
-        self.assertEqual(self.manifest['effective_end'], '2026-12-18')
+        self.assertEqual(self.manifest['effective_start'], '2026-12-09')
+        self.assertEqual(self.manifest['effective_end'], '2026-12-20')
         for day in range(45, 57):
             d = self.days[day]
             self.assertEqual(d['engineering']['budget_minutes'], 120)

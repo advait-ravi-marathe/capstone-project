@@ -1,4 +1,4 @@
-# Day 21 — 2026-11-13: Protect cookie-authenticated writes
+# Day 21 — 2026-11-15: Protect cookie-authenticated writes
 
 **State:** A test-only form-login/CSRF HTTP harness and `Day21ContractTest` are present; they do not configure production authentication. The instructor harness verifies server-issued cookie/header behavior. Learner acceptance calls the real `JourneyAccessPolicy` and remains blocked by its existing Day 12 TODO.
 

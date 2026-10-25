@@ -1,4 +1,4 @@
-# Day 95 — 2027-01-26: Separate Future waiting from JDBC Statement cancellation
+# Day 95 — 2027-01-28: Separate Future waiting from JDBC Statement cancellation
 
 ## Contract
 

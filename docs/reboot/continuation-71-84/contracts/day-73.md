@@ -1,4 +1,4 @@
-# Day 73 — 2027-01-04: Implement immediate two-permit preview admission
+# Day 73 — 2027-01-06: Implement immediate two-permit preview admission
 
 ## Contract
 

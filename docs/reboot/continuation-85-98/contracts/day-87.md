@@ -1,4 +1,4 @@
-# Day 87 — 2027-01-18: Own one top-level read-only transaction and bridge the adapter
+# Day 87 — 2027-01-20: Own one top-level read-only transaction and bridge the adapter
 
 ## Contract
 

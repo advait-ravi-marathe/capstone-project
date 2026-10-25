@@ -1,4 +1,4 @@
-# Day 70 — 2027-01-01: Complete the mastery, recovery and evidence handover
+# Day 70 — 2027-01-03: Complete the mastery, recovery and evidence handover
 
 ## Contract
 

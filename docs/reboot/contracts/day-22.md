@@ -1,4 +1,4 @@
-# Day 22 — 2026-11-14: Add safe request correlation
+# Day 22 — 2026-11-16: Add safe request correlation
 
 **State:** Fixed filter scaffold and learner acceptance tests are installed; the filter TODO remains unimplemented.
 

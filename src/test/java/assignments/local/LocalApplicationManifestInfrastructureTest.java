@@ -21,7 +21,7 @@ class LocalApplicationManifestInfrastructureTest {
         JsonNode scrum = new ObjectMapper().readTree(Files.readString(ROOT.resolve("scrum-owner-manifest.json")));
         assertEquals(14, manifest.get("days").size());
         assertEquals(14, scrum.get("cards").size());
-        LocalDate start = LocalDate.parse("2026-12-19");
+        LocalDate start = LocalDate.parse("2026-12-21");
         for (int i = 0; i < 14; i++) {
             JsonNode day = manifest.get("days").get(i);
             assertEquals(57 + i, day.get("day").asInt());

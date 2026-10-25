@@ -1,4 +1,4 @@
-# Day 05 — 2026-10-28: Decide HomeSecure eligibility
+# Day 05 — 2026-10-30: Decide HomeSecure eligibility
 
 **State:** Contract defined; instructor fixture/test scaffold and learner attempt are pending. This page is a planned contract, not a test result.
 
