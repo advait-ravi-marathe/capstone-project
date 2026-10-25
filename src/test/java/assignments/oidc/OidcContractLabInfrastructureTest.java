@@ -82,6 +82,18 @@ class OidcContractLabInfrastructureTest {
                 .andExpect(content().string(not(containsString("synthetic-advait"))));
     }
 
+    @Test void invalidTokenStructuresFailClosed() throws Exception {
+        String unknownKid = PROVIDER.issueWithUnknownKid("tenant-a");
+        String unsigned = PROVIDER.unsignedToken("tenant-a");
+        String badSignature = PROVIDER.tokenWithInvalidSignature();
+        String malformed = "not.a.jwt";
+        for (String token : new String[]{unknownKid, unsigned, badSignature, malformed}) {
+            mvc.perform(get("/api/oidc/tenant/tenant-a/read").header("Authorization", "Bearer " + token))
+                    .andExpect(status().isUnauthorized())
+                    .andExpect(content().string(not(containsString("synthetic-advait"))));
+        }
+    }
+
     @Test void issuerAudienceAndExpiryFailuresReturn401WithoutClaims() throws Exception {
         Instant now = Instant.now();
         String wrongIssuer = PROVIDER.issue("tenant-a", "coverstory-oidc-lab", "policy.read", PROVIDER.currentKid(),

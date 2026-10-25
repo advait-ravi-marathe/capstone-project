@@ -75,6 +75,20 @@ class OpenApiCompatibilityAcceptanceTest {
                 "POST /api/policies: response 201 changed type for field endorsements[].version"));
     }
 
+    @Test void inlinedResponseSchemaStillRejectsRemovalOfAConsumedField() throws Exception {
+        JsonNode baseline = readContract();
+        JsonNode changed = baseline.deepCopy();
+        JsonNode snapshot = changed.at("/components/schemas/PolicySnapshot").deepCopy();
+        removeString((tools.jackson.databind.node.ArrayNode) snapshot.path("required"), "ownerId");
+        ((tools.jackson.databind.node.ObjectNode) snapshot.path("properties")).remove("ownerId");
+        ((tools.jackson.databind.node.ObjectNode) changed.at("/paths/~1api~1policies~1{policyId}/get/responses/200/content/application~1json/schema"))
+                .remove("$ref");
+        ((tools.jackson.databind.node.ObjectNode) changed.at("/paths/~1api~1policies~1{policyId}/get/responses/200/content/application~1json/schema"))
+                .setAll((tools.jackson.databind.node.ObjectNode) snapshot);
+        assertLearnerResult(baseline, changed, false,
+                java.util.List.of("GET /api/policies/{policyId}: response 200 removed required field ownerId"));
+    }
+
     private JsonNode readContract() throws Exception {
         try (InputStream stream = getClass().getResourceAsStream("/contracts/coverstory-policies-v1.json")) {
             assertNotNull(stream); return mapper.readTree(stream);

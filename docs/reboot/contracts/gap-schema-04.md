@@ -10,7 +10,7 @@ Use an expand/backfill/contract sequence: additive schema first, bounded stable-
 
 ## Task
 
-Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject a failure after the first row update and before checkpoint commit, verify transaction rollback, then resume and compare all ordered rows/cursor exactly.
+Use fresh bounded-runner invocations against only the persisted database cursor; this is not a claimed JVM-crash reproduction. Inject a database-trigger failure after the first row update in the learner implementation, verify all rows and cursor roll back on fresh connections, then rerun the learner and compare every ordered row/cursor exactly.
 
 ## Source
 
@@ -18,10 +18,10 @@ Use fresh bounded-runner invocations against only the persisted database cursor;
 
 ## Acceptance
 
-Failure injection proves atomic rollback before resume; exact IDs, full values, version/update counts, final cursor and wrong-cursor mutant are checked.
+The learner-path database-trigger failure proves atomic rollback before resume; exact IDs, full values, version/update counts, cursor and wrong-row mutant are checked. Independent SQL fixture tests remain separate.
 
 ## Command and evidence
 
-`./mvnw -Dtest=SchemaEvolutionInfrastructureTest test`
+`./mvnw -Plearner-tests -Dtest=ResumableBackfillAcceptanceTest test && ./mvnw -Dtest=SchemaEvolutionInfrastructureTest test`
 
 Record the actual command, outcome, changed paths, blockers, and exact evidence at `docs/reboot/evidence/gap-schema-04.json`. This is not learner completion until genuinely attempted and independently reviewed.

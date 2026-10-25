@@ -10,7 +10,7 @@ Treat the versioned OpenAPI file as the consumer contract and compare it with th
 
 ## Task
 
-Run the compatibility witness against unchanged, additive, and breaking documents; introduce a deliberate always-compatible mutant and confirm the independent actual-path assertion rejects it.
+Run the compatibility witness against unchanged, additive, and breaking documents; introduce a deliberate always-compatible mutant and confirm the independent actual-path assertion rejects it. The local unauthenticated Spring fallback now serializes the declared ApiError as HTTP 401 JSON {"code":"UNAUTHENTICATED"}, replacing the prior framework-generated sendError body; treat this as a compatibility-visible local contract change, not evidence of external consumer migration.
 
 ## Source
 

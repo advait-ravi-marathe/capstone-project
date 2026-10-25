@@ -24,6 +24,10 @@ From calendar Study Day 172 onward, each day remains 165 engineering minutes plu
 | `GAP-IAC-01..07` | 551–557 · 28 Apr–4 May 2028 | 165 engineering + one shared 45/day | Use one IaC tool for offline validation, plan review, drift detection, recreation, rollback and cleanup rehearsals. A valid plan is not a deployment; no credentials, cloud resources, or spending. |
 | `GAP-ENTERPRISE-01..07` | 558–564 · 5–11 May 2028 | 165 engineering + one shared 45/day | Simulate a fictional enterprise tenant's CoverStory policy workflow with named security, privacy, procurement, service and operations owners; a missing/denied control blocks launch. Outcomes are hypothetical. Simulation never satisfies actual enterprise approval, production operation, or customer evidence. |
 
+### API wire-compatibility notice
+
+The OpenAPI insertion aligns the local unauthenticated Spring Security fallback with the already-declared `ApiError` response: it now returns HTTP 401 JSON `{"code":"UNAUTHENTICATED"}` rather than Spring's prior `sendError`-generated body. This is a compatibility-visible response change; the versioned contract and local request acceptance test cover it. It is not evidence that external consumers have migrated or that production behavior has been changed.
+
 Live execution remains blocked by the existing external authorization rules even before the simulated enterprise gate: no model/provider calls, external data, credentials, cloud account/resources, costs, or deployment without separate authorization. The later AI, IaC and enterprise blocks are outcome-based, not executable labs or pre-created daily Stories.
 
 ## Outcome phases and realistic envelopes

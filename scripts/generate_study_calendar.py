@@ -157,10 +157,10 @@ def load_owner_cards() -> dict[int, tuple[dict, str]]:
 
 
 def known_eai_id(unit: int) -> tuple[str | None, str]:
-    # The protected EAI-1–30 / EAI-31–196 ranges are recorded in fde-alignment.json.
-    if unit <= 196:
-        return f"EAI-{unit}", "documented_eai_range"
-    return None, "no_issue_id_recorded_in_repository"
+    # Existing issue IDs EAI-1 through EAI-284 were verified against the live EAI board before this export.
+    if 1 <= unit <= DETAIL_THROUGH:
+        return f"EAI-{unit}", "verified_existing_eai_issue_id"
+    return None, "future_outcome_unit_has_no_story_id_assigned"
 
 
 def build_calendar() -> dict:
@@ -249,7 +249,7 @@ def build_calendar() -> dict:
             "evidence_gate": "Sustained external ownership, technical influence, adoption, cross-team results and review; verified professional evidence only.",
             "application_may_begin_earlier": True, "calendar_completion_grants_role_or_readiness": False,
         }],
-        "source_id_provenance": "Existing EAI issue IDs are populated only for the documented EAI-1–196 ranges in docs/reboot/fde-alignment.json. Unrecorded existing and all new IDs remain null; no ticket IDs are guessed.",
+        "source_id_provenance": "Stable EAI-1–284 issue IDs were verified against the existing live EAI board before export generation. The 21 new GAP units have no issue IDs assigned; later outcome-only units have no Story IDs.",
         "sprint_migration": {
             "detailed_calendar_story_count": 305,
             "full_calendar_sprints": 21,

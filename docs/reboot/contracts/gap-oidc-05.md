@@ -10,7 +10,7 @@ Keep bearer verification in an isolated stateless Spring resource-server chain a
 
 ## Task
 
-Exercise malformed compact token and a validly signed token whose kid is absent from the JWKS. Confirm the filter chain returns 401 without claim disclosure.
+Exercise malformed compact, unsigned, bad-signature, and validly signed unknown-kid tokens through the actual resource-server filter chain. Confirm each returns HTTP 401 without claim disclosure.
 
 ## Source
 
@@ -18,10 +18,10 @@ Exercise malformed compact token and a validly signed token whose kid is absent 
 
 ## Acceptance
 
-Unknown kid and malformed token controls fail on actual decoder path; no unsigned-token bypass.
+Unknown kid, unsigned, bad-signature, and malformed-token controls fail on the actual decoder path with HTTP 401 and no claim disclosure.
 
 ## Command and evidence
 
-`./mvnw -Dtest=OidcContractLabInfrastructureTest#rotationAcceptsNewKidAndRejectsUnknownSigningKey test`
+`./mvnw -Dtest=OidcContractLabInfrastructureTest#invalidTokenStructuresFailClosed test`
 
 Record the actual command, outcome, changed paths, blockers, and exact evidence at `docs/reboot/evidence/gap-oidc-05.json`. This is not learner completion until genuinely attempted and independently reviewed.

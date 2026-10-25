@@ -76,6 +76,16 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         self.assertFalse(self.export["board_writes"])
         self.assertFalse(self.export["new_issue_ids_assigned"])
 
+    def test_all_284_existing_eai_ids_are_mapped_and_only_new_gaps_are_unassigned(self):
+        detailed = [row for row in self.export["stories"] if row["legacy_engineering_unit_number"] is not None]
+        self.assertEqual([f"EAI-{unit}" for unit in range(1, 285)], [row["eai_issue_id"] for row in detailed])
+        self.assertEqual({"verified_existing_eai_issue_id"}, {row["issue_id_mapping_status"] for row in detailed})
+        inserted = [row for row in self.export["stories"] if row["unit_id"].startswith("GAP-")]
+        self.assertEqual(21, len(inserted))
+        self.assertTrue(all(row["eai_issue_id"] is None and row["new_eai_issue_id"] is None for row in inserted))
+        self.assertTrue(all(row["issue_id_mapping_status"] == "new_story_id_not_assigned_board_write_disabled" for row in inserted))
+        self.assertIn("verified against the existing live EAI board", self.calendar["source_id_provenance"])
+
     def test_legacy_sprint_provenance_is_pinned_to_immutable_preamendment_owner_exports(self):
         provenance = json.loads((ROOT / "docs/reboot/calendar/legacy-sprint-provenance.json").read_text())
         self.assertEqual("4a07a57e707d2d1be68f4263d1cbac1e391886c4", provenance["source_commit"])
@@ -126,6 +136,80 @@ class StudyCalendarMigrationTest(unittest.TestCase):
             self.assertTrue(later[key]["outcomes"])
             self.assertTrue(later[key]["sources"])
             self.assertTrue(all(source["status"] == "official_heading_verified" for source in later[key]["sources"]))
+
+    def test_oidc_05_selector_covers_all_claimed_invalid_token_classes(self):
+        row = next(item for item in self.export["stories"] if item["unit_id"] == "GAP-OIDC-05")
+        expected_command = "./mvnw -Dtest=OidcContractLabInfrastructureTest#invalidTokenStructuresFailClosed test"
+        self.assertEqual(expected_command, row["command"])
+        self.assertEqual(expected_command, row["owner_card"]["command"])
+        contract = (ROOT / row["contract_path"]).read_text()
+        for token_case in ("malformed compact", "unsigned", "bad-signature", "unknown-kid"):
+            self.assertIn(token_case, contract)
+        test_source = (ROOT / "src/test/java/assignments/oidc/OidcContractLabInfrastructureTest.java").read_text()
+        selector_body = re.search(r"void invalidTokenStructuresFailClosed\(\).*?\n    }", test_source, re.S)
+        self.assertIsNotNone(selector_body)
+        for fixture in ("issueWithUnknownKid", "unsignedToken", "tokenWithInvalidSignature", "not.a.jwt"):
+            self.assertIn(fixture, selector_body.group())
+        self.assertIn("andExpect(status().isUnauthorized())", selector_body.group())
+        self.assertIn("synthetic-advait", selector_body.group())
+        assignment = next(row for row in json.loads((ROOT / "docs/reboot/calendar/detailed-insertions.json").read_text())["units"]
+                          if row["unit_id"] == "GAP-OIDC-05")
+        self.assertIn("invalidTokenStructuresFailClosed", assignment["command"])
+
+    def test_schema_04_runs_failure_injection_through_learner_backfill(self):
+        row = next(item for item in self.export["stories"] if item["unit_id"] == "GAP-SCHEMA-04")
+        self.assertIn("ResumableBackfillAcceptanceTest", row["command"])
+        self.assertIn("SchemaEvolutionInfrastructureTest", row["command"])
+        test_source = (ROOT / "src/test/java/assignments/schema/ResumableBackfillAcceptanceTest.java").read_text()
+        body = re.search(r"void midBatchFailureRollsBackLearnerRowsAndCursorThenFreshConnectionResumesExactly\(\).*?\n    }", test_source, re.S)
+        self.assertIsNotNone(body)
+        for evidence in ("CREATE TRIGGER fail_backfill_second_row", "ResumableBackfill.runBatch", "assertLearnerSnapshot(db, 0)", "assertLearnerSnapshot(db, 3)", "assertLearnerSnapshot(db, 10)"):
+            self.assertIn(evidence, body.group())
+        self.assertIn("injected mid-batch failure", body.group())
+
+    def test_schema_07_executes_real_contract_migration_through_learner_gate(self):
+        row = next(item for item in self.export["stories"] if item["unit_id"] == "GAP-SCHEMA-07")
+        self.assertIn("SchemaContractGateAcceptanceTest", row["command"])
+        source = (ROOT / "src/test/java/assignments/schema/SchemaContractGateAcceptanceTest.java").read_text()
+        body = re.search(r"void learnerGateControlsActualContractMigrationAndDeniedInputsPreserveRows\(\).*?\n    }", source, re.S)
+        self.assertIsNotNone(body)
+        for evidence in ("attemptLearnerContract", "assertFalse", "assertTrue", "hasLegacyColumn", "legacyAndNormalizedRows", "normalizedRows"):
+            self.assertIn(evidence, body.group())
+        self.assertIn("target(\"4\")", source)
+
+    def test_oidc_and_schema_canonical_commands_match_rendered_cards(self):
+        cards = json.loads((ROOT / "docs/reboot/calendar/gap-owner-manifest.json").read_text())["cards"]
+        by_id = {card["id"]: card for card in cards}
+        for unit_id in ("GAP-OIDC-05", "GAP-SCHEMA-04", "GAP-SCHEMA-07"):
+            detail = next(row for row in json.loads((ROOT / "docs/reboot/calendar/detailed-insertions.json").read_text())["units"]
+                          if row["unit_id"] == unit_id)
+            self.assertEqual(detail["command"], by_id[unit_id]["command"])
+            contract = (ROOT / f"docs/reboot/contracts/{unit_id.lower()}.md").read_text()
+            for token in detail["command"].split(" && "):
+                selector = re.search(r"-Dtest=[A-Za-z0-9_,]+(?:#([A-Za-z0-9_]+))?", token)
+                self.assertIsNotNone(selector)
+                if selector.group(1):
+                    self.assertIn(selector.group(1), contract)
+
+    def test_openapi_contract_discloses_unauthenticated_response_change(self):
+        owner = next(card for card in json.loads((ROOT / "docs/reboot/calendar/gap-owner-manifest.json").read_text())["cards"]
+                     if card["id"] == "GAP-OPENAPI-05")
+        self.assertIn("compatibility-visible local contract change", owner["assignment"])
+        readme = (ROOT / "docs/reboot/continuation-271-732/README.md").read_text()
+        self.assertIn("prior `sendError`-generated body", readme)
+        self.assertIn('HTTP 401 JSON `{"code":"UNAUTHENTICATED"}`', readme)
+        openapi_test = (ROOT / "src/test/java/assignments/contracts/OpenApiCompatibilityAcceptanceTest.java").read_text()
+        self.assertIn("inlinedResponseSchemaStillRejectsRemovalOfAConsumedField", openapi_test)
+
+    def test_openapi_04_assignment_runs_fixed_learner_consumer_cases(self):
+        row = next(item for item in self.export["stories"] if item["unit_id"] == "GAP-OPENAPI-04")
+        self.assertIn("OpenApiCompatibilityAcceptanceTest", row["command"])
+        source = (ROOT / "src/test/java/assignments/contracts/OpenApiCompatibilityAcceptanceTest.java").read_text()
+        inline = re.search(r"void inlinedResponseSchemaStillRejectsRemovalOfAConsumedField\(\).*?\n    }", source, re.S)
+        self.assertIsNotNone(inline)
+        self.assertIn('remove("$ref")', inline.group())
+        self.assertIn("assertLearnerResult", inline.group())
+        self.assertIn("removed required field ownerId", inline.group())
 
     def test_role_dates_are_evidence_gated_and_dashboard_is_repo_source(self):
         dashboard = json.loads((ROOT / "docs/reboot/fde-alignment.json").read_text())
