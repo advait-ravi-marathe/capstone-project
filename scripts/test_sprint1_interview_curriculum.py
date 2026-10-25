@@ -59,6 +59,20 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             for label in phase_labels:
                 self.assertIn(label.lower(), normalized)
 
+    def test_sprint3_populated_through_matches_last_published_day(self):
+        manifest = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
+        owner = json.loads((ROOT / "docs/reboot/scrum-owner-manifest.json").read_text())
+        sprint = manifest["sprint_boundaries"][2]
+        owner_sprint = owner["sprint_boundaries"][2]
+        days = {row["day"]: row for row in manifest["days"]}
+        populated_days = owner_sprint["day_numbers"]
+        expected_populated_dates = [days[day]["date"] for day in populated_days]
+        self.assertEqual(expected_populated_dates, owner_sprint["populated_dates"])
+        last_populated_date = max(expected_populated_dates)
+        self.assertEqual(last_populated_date, sprint["populated_through"])
+        self.assertLessEqual(sprint["start_date"], sprint["populated_through"])
+        self.assertLessEqual(sprint["populated_through"], sprint["end_date"])
+
     def test_first_sprint_mock_days_and_dates(self):
         guide = (ROOT / "docs/reboot/system-design-practice.md").read_text()
         manifest = json.loads((ROOT / "docs/reboot/manifest.json").read_text())
