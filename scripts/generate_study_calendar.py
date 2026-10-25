@@ -23,6 +23,17 @@ MILESTONES = [
     (718, "Senior FDE", "Requires externally validated discovery, enterprise integration, stakeholder delivery and actual adoption/outcome evidence."),
     (774, "Staff / FDE / Architect portfolio checkpoint", "Portfolio checkpoint only; these titles are employer-specific and Architect is not universally above Staff."),
 ]
+BOARD_PUBLICATION_DATE = "2026-10-25"
+PUBLISHED_GAP_ID_RANGES = [
+    ("GAP-OPENAPI", 5, 285),
+    ("GAP-OIDC", 9, 290),
+    ("GAP-SCHEMA", 7, 299),
+]
+PUBLISHED_GAP_ISSUE_IDS = {
+    f"{prefix}-{offset:02}": f"EAI-{first_issue + offset - 1}"
+    for prefix, count, first_issue in PUBLISHED_GAP_ID_RANGES
+    for offset in range(1, count + 1)
+}
 
 GAPS = [
     ("GAP-OPENAPI", "OpenAPI and consumer compatibility", 5, "after", 70, True),
@@ -163,6 +174,29 @@ def known_eai_id(unit: int) -> tuple[str | None, str]:
     return None, "future_outcome_unit_has_no_story_id_assigned"
 
 
+def board_publication_receipt() -> dict:
+    return {
+        "verified_on": BOARD_PUBLICATION_DATE,
+        "verification_source": "parent-reported live YouTrack readback; this repository change performs no board writes",
+        "status": "published_readback_verified",
+        "published_story_count": 305,
+        "unique_story_ids": 305,
+        "assigned_eai_id_range": {"first": "EAI-1", "last": "EAI-305", "count": 305},
+        "all_story_statuses": "Open",
+        "calendar_sprints": 22,
+        "existing_sprints_reused": 21,
+        "new_native_sprint_number": 22,
+        "final_sprint_calendar_days": [295, 305],
+        "final_sprint_dates": [current_date(295), current_date(305)],
+        "existing_stories_rewritten": 214,
+        "new_stories_created": 21,
+        "first_70_stories_untouched": True,
+        "conditional_milestones_saved_to_existing_project_description": 7,
+        "default_dashboard_touched": False,
+        "new_story_issue_ids": dict(PUBLISHED_GAP_ISSUE_IDS),
+    }
+
+
 def build_calendar() -> dict:
     gaps = gap_units()
     detailed_units = load_detailed_units()
@@ -175,8 +209,11 @@ def build_calendar() -> dict:
             legacy = None
             title = gap["title"]
             detailed = gap["detailed_now"]
-            eai_id = None
-            issue_map = "new_story_id_not_assigned_board_write_disabled"
+            eai_id = PUBLISHED_GAP_ISSUE_IDS.get(unit_id)
+            if eai_id is None and detailed:
+                raise ValueError(f"published inserted unit has no verified issue ID: {unit_id}")
+            issue_map = ("verified_new_board_story_id" if eai_id is not None
+                         else "new_story_id_not_assigned_board_write_disabled")
             unit_kind = "inserted_gap"
         else:
             legacy = next((n for n in range(1, LEGACY_HORIZON + 1) if study_day_for_legacy(n) == study), None)
@@ -211,7 +248,7 @@ def build_calendar() -> dict:
     return {
         "schema_version": 1,
         "title": "Study calendar and stable engineering-unit crosswalk",
-        "status": "planned_only_not_learner_completion",
+        "status": "board_publication_ids_verified_assignments_not_learner_completion",
         "base_commit": "4a07a57e707d2d1be68f4263d1cbac1e391886c4",
         "start_date": START.isoformat(),
         "legacy_horizon": LEGACY_HORIZON,
@@ -249,14 +286,17 @@ def build_calendar() -> dict:
             "evidence_gate": "Sustained external ownership, technical influence, adoption, cross-team results and review; verified professional evidence only.",
             "application_may_begin_earlier": True, "calendar_completion_grants_role_or_readiness": False,
         }],
-        "source_id_provenance": "Stable EAI-1–284 issue IDs were verified against the existing live EAI board before export generation. The 21 new GAP units have no issue IDs assigned; later outcome-only units have no Story IDs.",
+        "source_id_provenance": "Existing EAI-1–284 issue IDs and newly published EAI-285–305 gap Story IDs are verified in the 2026-10-25 board publication receipt. Later outcome-only units have no Story IDs.",
+        "board_publication_receipt": board_publication_receipt(),
         "sprint_migration": {
             "detailed_calendar_story_count": 305,
             "full_calendar_sprints": 21,
             "final_partial_sprint_days": 11,
             "calendar_sprint_count": 22,
-            "existing_sprint_ids_1_through_21": "reuse chronologically; exact board IDs are resolved by the board writer",
+            "existing_sprint_ids_1_through_21": "reused chronologically per verified board readback",
             "calendar_sprint_22_id": None,
+            "calendar_sprint_22_kind": "new_native_sprint_verified",
+            "calendar_sprint_22_internal_id_status": "not_included_in_readback",
             "historical_membership_receipts_mutated": False,
         },
         "calendar": rows,
@@ -287,8 +327,9 @@ def build_story_export() -> dict:
                 "previous_calendar_sprint_number": None,
                 "title": f"Calendar study day {study} · {gap['title']} · work unit {gap['unit_id']}",
                 "eai_issue_id": None,
-                "new_eai_issue_id": None,
-                "issue_id_mapping_status": "new_story_id_not_assigned_board_write_disabled",
+                "new_eai_issue_id": PUBLISHED_GAP_ISSUE_IDS[gap["unit_id"]],
+                "issue_id_mapping_status": "verified_new_board_story_id",
+                "board_status": "Open",
                 "source_manifest": "docs/reboot/calendar/detailed-insertions.json",
                 "source_owner_export": gap_owner_path,
                 "contract_path": owner["contract_path"],
@@ -340,6 +381,7 @@ def build_story_export() -> dict:
             "eai_issue_id": eai_id,
             "new_eai_issue_id": None,
             "issue_id_mapping_status": issue_map,
+            "board_status": "Open",
             "source_manifest": row["manifest_path"],
             "source_owner_export": owner_path,
             "contract_path": contract.relative_to(ROOT).as_posix() if contract and contract.exists() else None,
@@ -359,12 +401,13 @@ def build_story_export() -> dict:
     return {
         "schema_version": 1,
         "title": "305 detailed chronological EAI Story export",
-        "status": "planning_export_only_no_board_writes",
+        "status": "published_board_ids_verified_export_only_no_board_writes",
         "board_writes": False,
+        "publication_receipt_source": "docs/reboot/calendar/study-calendar.json#board_publication_receipt",
         "story_count": len(rows),
         "dsa_content_copied": False,
         "dsa_note": "The story’s DSA section refers to the corresponding calendar study day; all actual assignments, attempts and review events remain only in the separate DSA repository.",
-        "new_issue_ids_assigned": False,
+        "new_issue_ids_assigned": True,
         "stories": rows,
     }
 

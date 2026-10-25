@@ -74,7 +74,7 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         sprints = self.calendar["sprint_migration"]
         self.assertEqual((305, 21, 22, 11), (sprints["detailed_calendar_story_count"], sprints["full_calendar_sprints"], sprints["calendar_sprint_count"], sprints["final_partial_sprint_days"]))
         self.assertFalse(self.export["board_writes"])
-        self.assertFalse(self.export["new_issue_ids_assigned"])
+        self.assertTrue(self.export["new_issue_ids_assigned"])
 
     def test_all_284_existing_eai_ids_are_mapped_and_only_new_gaps_are_unassigned(self):
         detailed = [row for row in self.export["stories"] if row["legacy_engineering_unit_number"] is not None]
@@ -82,9 +82,74 @@ class StudyCalendarMigrationTest(unittest.TestCase):
         self.assertEqual({"verified_existing_eai_issue_id"}, {row["issue_id_mapping_status"] for row in detailed})
         inserted = [row for row in self.export["stories"] if row["unit_id"].startswith("GAP-")]
         self.assertEqual(21, len(inserted))
-        self.assertTrue(all(row["eai_issue_id"] is None and row["new_eai_issue_id"] is None for row in inserted))
-        self.assertTrue(all(row["issue_id_mapping_status"] == "new_story_id_not_assigned_board_write_disabled" for row in inserted))
-        self.assertIn("verified against the existing live EAI board", self.calendar["source_id_provenance"])
+        self.assertEqual([f"EAI-{issue}" for issue in range(285, 306)], [row["new_eai_issue_id"] for row in inserted])
+        self.assertTrue(all(row["eai_issue_id"] is None for row in inserted))
+        self.assertTrue(all(row["issue_id_mapping_status"] == "verified_new_board_story_id" for row in inserted))
+        self.assertIn("verified in the 2026-10-25 board publication receipt", self.calendar["source_id_provenance"])
+        detailed_calendar_rows = [row for row in self.calendar["calendar"] if row["detail_status"] == "detailed_contract"]
+        calendar_ids = [row["existing_eai_issue_id"] for row in detailed_calendar_rows]
+        self.assertEqual([f"EAI-{issue}" for issue in range(1, 306)],
+                         sorted(calendar_ids, key=lambda issue: int(issue.split("-")[1])))
+
+    def test_board_publication_receipt_maps_all_ids_without_changing_learner_status(self):
+        receipt = self.calendar["board_publication_receipt"]
+        self.assertEqual({
+            "verified_on": "2026-10-25",
+            "status": "published_readback_verified",
+            "published_story_count": 305,
+            "unique_story_ids": 305,
+            "all_story_statuses": "Open",
+            "calendar_sprints": 22,
+            "existing_sprints_reused": 21,
+            "new_native_sprint_number": 22,
+            "final_sprint_calendar_days": [295, 305],
+            "final_sprint_dates": ["2027-08-16", "2027-08-26"],
+            "existing_stories_rewritten": 214,
+            "new_stories_created": 21,
+            "first_70_stories_untouched": True,
+            "conditional_milestones_saved_to_existing_project_description": 7,
+            "default_dashboard_touched": False,
+        }, {key: receipt[key] for key in (
+            "verified_on", "status", "published_story_count", "unique_story_ids", "all_story_statuses",
+            "calendar_sprints", "existing_sprints_reused", "new_native_sprint_number",
+            "final_sprint_calendar_days", "final_sprint_dates", "existing_stories_rewritten",
+            "new_stories_created", "first_70_stories_untouched",
+            "conditional_milestones_saved_to_existing_project_description", "default_dashboard_touched")})
+        self.assertEqual({
+            **{f"GAP-OPENAPI-{day:02}": f"EAI-{issue}" for day, issue in zip(range(1, 6), range(285, 290))},
+            **{f"GAP-OIDC-{day:02}": f"EAI-{issue}" for day, issue in zip(range(1, 10), range(290, 299))},
+            **{f"GAP-SCHEMA-{day:02}": f"EAI-{issue}" for day, issue in zip(range(1, 8), range(299, 306))},
+        }, receipt["new_story_issue_ids"])
+        self.assertEqual("new_native_sprint_verified", self.calendar["sprint_migration"]["calendar_sprint_22_kind"])
+        self.assertEqual("not_included_in_readback", self.calendar["sprint_migration"]["calendar_sprint_22_internal_id_status"])
+        outcome_only = [row for row in self.calendar["calendar"] if row["detail_status"] == "outcome_only_not_ticketed"]
+        self.assertTrue(all(row["existing_eai_issue_id"] is None for row in outcome_only))
+        issue_ids = [story["eai_issue_id"] or story["new_eai_issue_id"] for story in self.export["stories"]]
+        self.assertEqual([f"EAI-{issue}" for issue in range(1, 306)],
+                         sorted(issue_ids, key=lambda issue: int(issue.split("-")[1])))
+        self.assertEqual(305, len(set(issue_ids)))
+        self.assertTrue(all(story["board_status"] == "Open" for story in self.export["stories"]))
+        self.assertEqual(214, sum(story["legacy_engineering_unit_number"] is not None
+                                  and story["calendar_study_day"] != story["previous_calendar_study_day"]
+                                  for story in self.export["stories"]))
+        first_70 = [story for story in self.export["stories"] if story["legacy_engineering_unit_number"] is not None
+                    and story["legacy_engineering_unit_number"] <= 70]
+        self.assertEqual(list(range(1, 71)), [story["calendar_study_day"] for story in first_70])
+        calendar_by_day = {row["calendar_study_day"]: row for row in self.calendar["calendar"]}
+        self.assertTrue(all(story["date"] == calendar_by_day[story["calendar_study_day"]]["date"]
+                            and story["calendar_sprint"] == calendar_by_day[story["calendar_study_day"]]["calendar_sprint"]
+                            for story in self.export["stories"]))
+        self.assertEqual({"engineering_minutes": 120, "dsa_separate": True},
+                         self.calendar["budget"]["before_calendar_day_172"])
+        self.assertEqual({"engineering_minutes": 165, "shared_minutes": 45},
+                         self.calendar["budget"]["from_calendar_day_172"])
+        self.assertTrue(all(story["daily_contract_status"] == "existing_assignment_preserved" for story in self.export["stories"]
+                            if not story["unit_id"].startswith("GAP-")))
+        self.assertTrue(all(not story["owner_card"].get("learner_completion_awarded", False)
+                            for story in self.export["stories"]))
+        self.assertFalse(self.export["board_writes"])
+        self.assertEqual("docs/reboot/calendar/study-calendar.json#board_publication_receipt",
+                         self.export["publication_receipt_source"])
 
     def test_legacy_sprint_provenance_is_pinned_to_immutable_preamendment_owner_exports(self):
         provenance = json.loads((ROOT / "docs/reboot/calendar/legacy-sprint-provenance.json").read_text())
