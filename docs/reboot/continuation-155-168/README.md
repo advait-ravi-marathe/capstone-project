@@ -1,4 +1,6 @@
-# StreamForge Days 155–168: synthetic temporal-data foundation
+# Engineering units 155–168 · calendar study days 176–189 · 2027-04-19–2027-05-02 — StreamForge Days 155–168: synthetic temporal-data foundation
+
+Calendar mapping: stable engineering unit IDs 155–168 occupy study days 176–189 (2027-04-19 through 2027-05-02).
 
 **Draft starter scope. No board tickets have been created or updated.** This batch prepares and validates a tiny original synthetic catalog and event log, splits unique events by a fixed UTC cutoff, and emits reproducible local JSON with train-only summaries and separate holdout diagnostics. It is not a recommender, ML model, service, media importer, or deployment.
 

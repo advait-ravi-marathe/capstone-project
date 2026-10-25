@@ -1,8 +1,8 @@
 {
   "title": "CoverStory bounded synchronous renewal-preview reads: Days 71–84",
   "base_sha": "db2caf3adabf11e6d619ab9a7f7e1f5aa40f2a24",
-  "effective_start": "2027-01-04",
-  "effective_end": "2027-01-17",
+  "effective_start": "2027-01-18",
+  "effective_end": "2027-01-31",
   "status_semantics": "Contracts and seams are plans. Scaffold, learner implementation, runtime verification and integration status are independent. Dates never imply learner completion.",
   "scope": "Add one process-local nonblocking capacity gate of 2 around the existing synchronous owner-scoped renewal-preview read. Reuse Hikari maximum pool 4; set finite acquisition timeout; sanitize capacity errors; add bounded metrics, accessible manual UI recovery, then real pool and packaged browser recovery. No async work, queue, retries, new business route, schema change, fault route, or infrastructure for its own sake. Reuse the completed Day48 owner-scoped SQL without duplicating its query.",
   "capacity_decision": {
@@ -28,33 +28,34 @@
   },
   "sprints": [
     {
-      "name": "Sprint 6",
-      "dates": "2027-01-04..2027-01-17",
-      "days_in_this_batch": [
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84
+      "name": "Sprint 7",
+      "calendar_sprint_number": 7,
+      "calendar_study_days_in_this_batch": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
       ],
+      "calendar_dates": "2027-01-18..2027-01-31",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
       "batch_story_count": 14,
-      "sprint_total_after_batch": 14,
-      "unpopulated_dates": []
+      "sprint_total_after_batch": 14
     }
   ],
   "days": [
     {
       "day": 71,
-      "date": "2027-01-04",
+      "date": "2027-01-18",
       "title": "Establish preview contention baseline and verify prerequisites",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-71.md",
       "contract_status": "defined",
@@ -135,11 +136,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-071",
+      "calendar_study_day": 85,
+      "calendar_sprint": 7
     },
     {
       "day": 72,
-      "date": "2027-01-05",
+      "date": "2027-01-19",
       "title": "Validate finite preview capacity policy",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-72.md",
       "contract_status": "defined",
@@ -222,11 +226,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-072",
+      "calendar_study_day": 86,
+      "calendar_sprint": 7
     },
     {
       "day": 73,
-      "date": "2027-01-06",
+      "date": "2027-01-20",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-73.md",
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
@@ -305,7 +312,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
         "interview_assignment": {
           "day": 73,
-          "date": "2027-01-06",
+          "date": "2027-01-20",
           "title": "Implement immediate two-permit preview admission",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [
@@ -388,7 +395,10 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-073",
+          "calendar_study_day": 87,
+          "calendar_sprint": 7
         }
       },
       "mandatory_new_problem": false,
@@ -430,11 +440,14 @@
         ]
       },
       "historical_mandatory_new_problem": true,
-      "title": "Implement immediate two-permit preview admission"
+      "title": "Implement immediate two-permit preview admission",
+      "unit_id": "EAI-UNIT-073",
+      "calendar_study_day": 87,
+      "calendar_sprint": 7
     },
     {
       "day": 74,
-      "date": "2027-01-07",
+      "date": "2027-01-21",
       "title": "Make preview lease release atomic and idempotent",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-74.md",
       "contract_status": "defined",
@@ -551,11 +564,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-074",
+      "calendar_study_day": 88,
+      "calendar_sprint": 7
     },
     {
       "day": 75,
-      "date": "2027-01-08",
+      "date": "2027-01-22",
       "title": "Bound the existing owner-scoped read adapter",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-75.md",
       "contract_status": "defined",
@@ -688,11 +704,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-075",
+      "calendar_study_day": 89,
+      "calendar_sprint": 7
     },
     {
       "day": 76,
-      "date": "2027-01-09",
+      "date": "2027-01-23",
       "title": "Prove maximum concurrency and no permit leaks",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-76.md",
       "contract_status": "defined",
@@ -780,7 +799,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
         "interview_assignment": {
           "day": 76,
-          "date": "2027-01-09",
+          "date": "2027-01-23",
           "title": "Prove maximum concurrency and no permit leaks",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [
@@ -871,7 +890,10 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-076",
+          "calendar_study_day": 90,
+          "calendar_sprint": 7
         }
       },
       "mandatory_new_problem": false,
@@ -920,11 +942,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-076",
+      "calendar_study_day": 90,
+      "calendar_sprint": 7
     },
     {
       "day": 77,
-      "date": "2027-01-10",
+      "date": "2027-01-24",
       "title": "Verify recovery without adding a feature",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-77.md",
       "contract_status": "defined",
@@ -1007,11 +1032,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-077",
+      "calendar_study_day": 91,
+      "calendar_sprint": 7
     },
     {
       "day": 78,
-      "date": "2027-01-11",
+      "date": "2027-01-25",
       "title": "Map busy and unavailable outcomes safely",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-78.md",
       "contract_status": "defined",
@@ -1128,11 +1156,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-078",
+      "calendar_study_day": 92,
+      "calendar_sprint": 7
     },
     {
       "day": 79,
-      "date": "2027-01-12",
+      "date": "2027-01-26",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-79.md",
       "contract_status": "defined",
       "scaffold_status": "instructor_scaffold_partial",
@@ -1265,11 +1296,14 @@
         ]
       },
       "historical_mandatory_new_problem": true,
-      "title": "Wire one singleton gate around the existing route"
+      "title": "Wire one singleton gate around the existing route",
+      "unit_id": "EAI-UNIT-079",
+      "calendar_study_day": 93,
+      "calendar_sprint": 7
     },
     {
       "day": 80,
-      "date": "2027-01-13",
+      "date": "2027-01-27",
       "title": "Record fixed-cardinality preview outcomes",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-80.md",
       "contract_status": "defined",
@@ -1339,7 +1373,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
         "interview_assignment": {
           "day": 80,
-          "date": "2027-01-13",
+          "date": "2027-01-27",
           "title": "Record fixed-cardinality preview outcomes",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [],
@@ -1410,7 +1444,10 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-080",
+          "calendar_study_day": 94,
+          "calendar_sprint": 7
         }
       },
       "mandatory_new_problem": false,
@@ -1439,11 +1476,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-080",
+      "calendar_study_day": 94,
+      "calendar_sprint": 7
     },
     {
       "day": 81,
-      "date": "2027-01-14",
+      "date": "2027-01-28",
       "title": "Show an accessible manual retry state",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-81.md",
       "contract_status": "defined",
@@ -1509,7 +1549,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
         "interview_assignment": {
           "day": 81,
-          "date": "2027-01-14",
+          "date": "2027-01-28",
           "title": "Show an accessible manual retry state",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [],
@@ -1575,7 +1615,10 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-081",
+          "calendar_study_day": 95,
+          "calendar_sprint": 7
         }
       },
       "mandatory_new_problem": false,
@@ -1599,11 +1642,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-081",
+      "calendar_study_day": 95,
+      "calendar_sprint": 7
     },
     {
       "day": 82,
-      "date": "2027-01-15",
+      "date": "2027-01-29",
       "title": "Prove finite recovery under real Hikari pool exhaustion",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-82.md",
       "contract_status": "defined",
@@ -1686,11 +1732,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-082",
+      "calendar_study_day": 96,
+      "calendar_sprint": 7
     },
     {
       "day": 83,
-      "date": "2027-01-16",
+      "date": "2027-01-30",
       "title": "Prove packaged browser recovery under a real database lock",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-83.md",
       "contract_status": "defined",
@@ -1796,11 +1845,14 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-083",
+      "calendar_study_day": 97,
+      "calendar_sprint": 7
     },
     {
       "day": 84,
-      "date": "2027-01-17",
+      "date": "2027-01-31",
       "title": "Integrate recovery evidence and independent assessment",
       "contract_file": "docs/reboot/continuation-71-84/contracts/day-84.md",
       "contract_status": "defined",
@@ -1881,11 +1933,39 @@
           }
         ]
       },
-      "historical_mandatory_new_problem": false
+      "historical_mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-084",
+      "calendar_study_day": 98,
+      "calendar_sprint": 7
     }
   ],
   "dependency_review_path": "docs/reboot/continuation-71-84/dependency-review.md",
   "separate_learning_repository": {
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  },
+  "historical_sprints": [
+    {
+      "name": "Sprint 6",
+      "dates": "2027-01-04..2027-01-17",
+      "days_in_this_batch": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84
+      ],
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14,
+      "unpopulated_dates": []
+    }
+  ]
 }

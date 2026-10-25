@@ -1,4 +1,4 @@
-# Day 79 — 2027-01-12: Wire one singleton gate around the existing route
+# Engineering unit Day 79 · Calendar study day 93 · 2027-01-26: Wire one singleton gate around the existing route
 
 ## Contract
 

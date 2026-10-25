@@ -1,4 +1,6 @@
-# Days 253–266: synthetic enterprise identity/document contract
+# Engineering units 253–266 · calendar study days 274–287 · 2027-07-26–2027-08-08 — synthetic enterprise identity/document contract
+
+Calendar mapping: stable engineering unit IDs 253–266 occupy study days 274–287 (2027-07-26 through 2027-08-08).
 
 Status: bounded starter for review; dates 5–18 July 2027. This selects Branch A only from the reviewed fifth-window proposal. It rehearses one synthetic document and already-verified adapter assertion; no actual SAML parsing, IdP, AWS account, credential, provider, network, live data, external mutation or StreamForge work.
 

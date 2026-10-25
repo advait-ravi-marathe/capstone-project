@@ -1,4 +1,4 @@
-# Day 82 — 2027-01-15: Prove finite recovery under real Hikari pool exhaustion
+# Engineering unit Day 82 · Calendar study day 96 · 2027-01-29: Prove finite recovery under real Hikari pool exhaustion
 
 ## Contract
 

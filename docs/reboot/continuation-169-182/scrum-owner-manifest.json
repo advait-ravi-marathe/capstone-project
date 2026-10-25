@@ -6,18 +6,46 @@
   "board_writes": false,
   "sprint_boundaries": [
     {
-      "name": "Sprint 13",
-      "dates": "2027-04-12..2027-04-25",
-      "batch_story_count": 14,
+      "name": "Sprint 14",
+      "calendar_sprint_number": 14,
+      "calendar_study_days_in_this_batch": [
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196
+      ],
+      "calendar_dates": "2027-04-26..2027-05-09",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
+      "sprint_story_count_after_batch": 14
+    },
+    {
+      "name": "Sprint 15",
+      "calendar_sprint_number": 15,
+      "calendar_study_days_in_this_batch": [
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203
+      ],
+      "calendar_dates": "2027-05-10..2027-05-23",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
       "sprint_story_count_after_batch": 14
     }
   ],
   "cards": [
     {
       "day_number": 169,
-      "date": "2027-04-12",
-      "title": "Define an observed signal without inventing preferences",
-      "sprint": "Sprint 13",
+      "date": "2027-05-03",
+      "title": "Calendar study day 190 · engineering unit 169 · Define an observed signal without inventing preferences",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -86,14 +114,68 @@
         "total_daily_minutes": 120,
         "within_engineering_practice": true,
         "implementation_minutes_remaining": 40,
-        "proposal_scope": "system_design_interview_question_only"
+        "proposal_scope": "system_design_interview_question_only",
+        "relocated_to_shared_block": true,
+        "outside_engineering_budget": true
+      },
+      "unit_id": "EAI-UNIT-169",
+      "calendar_study_day": 190,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 169,
+      "legacy_engineering_unit_number": 169,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the positive-pair selector with a repeated pair and a held-out positive; verify distinct training support and no leakage.",
+        "command": "",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q15",
+        "question_title": "Messaging: publish an order event",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "budget_minutes": 45,
+          "mode": "45_minute_mock",
+          "question_id": "Q33",
+          "question_title": "Analytics: event to metric",
+          "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+          "duration_minutes": 45,
+          "allocation_minutes": {
+            "requirements": 5,
+            "capacity_and_constraints": 5,
+            "initial_architecture_and_data_model": 15,
+            "bottlenecks_reliability_scaling": 10,
+            "tradeoffs_failures_followups": 10
+          },
+          "total_daily_minutes": 120,
+          "within_engineering_practice": true,
+          "implementation_minutes_remaining": 40,
+          "proposal_scope": "system_design_interview_question_only",
+          "relocated_to_shared_block": true,
+          "outside_engineering_budget": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day_number": 170,
-      "date": "2027-04-13",
-      "title": "Freeze the cutoff-time candidate set",
-      "sprint": "Sprint 13",
+      "date": "2027-05-04",
+      "title": "Calendar study day 191 · engineering unit 170 · Freeze the cutoff-time candidate set",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -125,13 +207,45 @@
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
       "interview_design_scope": "separate_question_bank_only",
       "system_design_proposal_required": false,
-      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md"
+      "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+      "unit_id": "EAI-UNIT-170",
+      "calendar_study_day": 191,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 170,
+      "legacy_engineering_unit_number": 170,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the cutoff selector with start/end equality counterexamples; verify only available-at-cutoff items enter candidates.",
+        "command": "",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day_number": 171,
-      "date": "2027-04-14",
-      "title": "Count distinct positive training viewers",
-      "sprint": "Sprint 13",
+      "date": "2027-05-05",
+      "title": "Calendar study day 192 · engineering unit 171 · Count distinct positive training viewers",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -195,14 +309,68 @@
         "total_daily_minutes": 120,
         "within_engineering_practice": true,
         "implementation_minutes_remaining": 40,
-        "proposal_scope": "system_design_interview_question_only"
+        "proposal_scope": "system_design_interview_question_only",
+        "relocated_to_shared_block": true,
+        "outside_engineering_budget": true
+      },
+      "unit_id": "EAI-UNIT-171",
+      "calendar_study_day": 192,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 171,
+      "legacy_engineering_unit_number": 171,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the popularity selector with repeated viewers and a held-out event; verify independently counted distinct training viewers.",
+        "command": "",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q17",
+        "question_title": "Cache: accelerate a read",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "budget_minutes": 45,
+          "mode": "45_minute_mock",
+          "question_id": "Q34",
+          "question_title": "Analytics: late and duplicate data",
+          "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+          "duration_minutes": 45,
+          "allocation_minutes": {
+            "requirements": 5,
+            "capacity_and_constraints": 5,
+            "initial_architecture_and_data_model": 15,
+            "bottlenecks_reliability_scaling": 10,
+            "tradeoffs_failures_followups": 10
+          },
+          "total_daily_minutes": 120,
+          "within_engineering_practice": true,
+          "implementation_minutes_remaining": 40,
+          "proposal_scope": "system_design_interview_question_only",
+          "relocated_to_shared_block": true,
+          "outside_engineering_budget": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day_number": 172,
-      "date": "2027-04-15",
-      "title": "Produce one deterministic global top-three list",
-      "sprint": "Sprint 13",
+      "date": "2027-05-06",
+      "title": "Calendar study day 193 · engineering unit 172 · Produce one deterministic global top-three list",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -250,13 +418,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-172",
+      "calendar_study_day": 193,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 172,
+      "legacy_engineering_unit_number": 172,
+      "legacy_sprint_label": "Sprint 14"
     },
     {
       "day_number": 173,
-      "date": "2027-04-16",
-      "title": "Build the evaluation cohort without deleting difficult targets",
-      "sprint": "Sprint 13",
+      "date": "2027-05-07",
+      "title": "Calendar study day 194 · engineering unit 173 · Build the evaluation cohort without deleting difficult targets",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -316,13 +490,19 @@
           "bottlenecks_reliability_scaling": 10,
           "tradeoffs_failures_followups": 10
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-173",
+      "calendar_study_day": 194,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 173,
+      "legacy_engineering_unit_number": 173,
+      "legacy_sprint_label": "Sprint 14"
     },
     {
       "day_number": 174,
-      "date": "2027-04-17",
-      "title": "Compute one viewer’s fixed-slot precision and recall",
-      "sprint": "Sprint 13",
+      "date": "2027-05-08",
+      "title": "Calendar study day 195 · engineering unit 174 · Compute one viewer’s fixed-slot precision and recall",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -370,13 +550,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-174",
+      "calendar_study_day": 195,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 174,
+      "legacy_engineering_unit_number": 174,
+      "legacy_sprint_label": "Sprint 14"
     },
     {
       "day_number": 175,
-      "date": "2027-04-18",
-      "title": "Recover the signal and metric boundary",
-      "sprint": "Sprint 13",
+      "date": "2027-05-09",
+      "title": "Calendar study day 196 · engineering unit 175 · Recover the signal and metric boundary",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -428,13 +614,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-175",
+      "calendar_study_day": 196,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 175,
+      "legacy_engineering_unit_number": 175,
+      "legacy_sprint_label": "Sprint 14"
     },
     {
       "day_number": 176,
-      "date": "2027-04-19",
-      "title": "Aggregate macro metrics with explicit coverage counts",
-      "sprint": "Sprint 13",
+      "date": "2027-05-10",
+      "title": "Calendar study day 197 · engineering unit 176 · Aggregate macro metrics with explicit coverage counts",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -498,13 +690,19 @@
           "bottlenecks_reliability_scaling": 10,
           "tradeoffs_failures_followups": 10
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-176",
+      "calendar_study_day": 197,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 176,
+      "legacy_engineering_unit_number": 176,
+      "legacy_sprint_label": "Sprint 15"
     },
     {
       "day_number": 177,
-      "date": "2027-04-20",
-      "title": "Compare two predeclared baselines on the same cohort",
-      "sprint": "Sprint 13",
+      "date": "2027-05-11",
+      "title": "Calendar study day 198 · engineering unit 177 · Compare two predeclared baselines on the same cohort",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -555,13 +753,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-177",
+      "calendar_study_day": 198,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 177,
+      "legacy_engineering_unit_number": 177,
+      "legacy_sprint_label": "Sprint 15"
     },
     {
       "day_number": 178,
-      "date": "2027-04-21",
-      "title": "Separate prediction lineage from evaluation evidence",
-      "sprint": "Sprint 13",
+      "date": "2027-05-12",
+      "title": "Calendar study day 199 · engineering unit 178 · Separate prediction lineage from evaluation evidence",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -612,13 +816,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-178",
+      "calendar_study_day": 199,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 178,
+      "legacy_engineering_unit_number": 178,
+      "legacy_sprint_label": "Sprint 15"
     },
     {
       "day_number": 179,
-      "date": "2027-04-22",
-      "title": "Compose the existing preparation and offline evaluation CLI",
-      "sprint": "Sprint 13",
+      "date": "2027-05-13",
+      "title": "Calendar study day 200 · engineering unit 179 · Compose the existing preparation and offline evaluation CLI",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -686,13 +896,19 @@
           "bottlenecks_reliability_scaling": 10,
           "tradeoffs_failures_followups": 10
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-179",
+      "calendar_study_day": 200,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 179,
+      "legacy_engineering_unit_number": 179,
+      "legacy_sprint_label": "Sprint 15"
     },
     {
       "day_number": 180,
-      "date": "2027-04-23",
-      "title": "Make leakage and denominator defects fail independent tests",
-      "sprint": "Sprint 13",
+      "date": "2027-05-14",
+      "title": "Calendar study day 201 · engineering unit 180 · Make leakage and denominator defects fail independent tests",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -748,13 +964,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-180",
+      "calendar_study_day": 201,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 180,
+      "legacy_engineering_unit_number": 180,
+      "legacy_sprint_label": "Sprint 15"
     },
     {
       "day_number": 181,
-      "date": "2027-04-24",
-      "title": "Reproduce the bounded experiment in fresh processes",
-      "sprint": "Sprint 13",
+      "date": "2027-05-15",
+      "title": "Calendar study day 202 · engineering unit 181 · Reproduce the bounded experiment in fresh processes",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -811,13 +1033,19 @@
           "recall": 10,
           "evidence": 5
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-181",
+      "calendar_study_day": 202,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 181,
+      "legacy_engineering_unit_number": 181,
+      "legacy_sprint_label": "Sprint 15"
     },
     {
       "day_number": 182,
-      "date": "2027-04-25",
-      "title": "Recover and defend the offline baseline boundary",
-      "sprint": "Sprint 13",
+      "date": "2027-05-16",
+      "title": "Calendar study day 203 · engineering unit 182 · Recover and defend the offline baseline boundary",
+      "sprint": "Sprint 15",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
@@ -889,7 +1117,13 @@
           "bottlenecks_reliability_scaling": 10,
           "tradeoffs_failures_followups": 10
         }
-      }
+      },
+      "unit_id": "EAI-UNIT-182",
+      "calendar_study_day": 203,
+      "calendar_sprint": 15,
+      "engineering_unit_number": 182,
+      "legacy_engineering_unit_number": 182,
+      "legacy_sprint_label": "Sprint 15"
     }
   ],
   "separate_learning_repository": {
@@ -942,5 +1176,13 @@
     "evaluation_command": "python3 scripts/check_streamforge_169_182_entry_gate.py",
     "evaluation_script": "scripts/check_streamforge_169_182_entry_gate.py",
     "downstream_scope": "StreamForge Days 169–182"
-  }
+  },
+  "historical_sprint_boundaries": [
+    {
+      "name": "Sprint 13",
+      "dates": "2027-04-12..2027-04-25",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-# Day 72 — 2027-01-05: Validate finite preview capacity policy
+# Engineering unit Day 72 · Calendar study day 86 · 2027-01-19: Validate finite preview capacity policy
 
 ## Contract
 

@@ -1,6 +1,6 @@
-# Days 271–284: runtime and SQL measurement foundations
+# Engineering units 271–284 · calendar study days 292–305 · 2027-08-13–2027-08-26 — runtime and SQL measurement foundations
 
-**Planning dates:** 23 July–5 August 2027. This is the first bounded sprint of the approved Day271–732 outcome roadmap. Days1–270 assignments, learner evidence and status remain unchanged; all planned day dates move two days later. Dates do not override prerequisites or authorize deployment.
+Calendar mapping: stable engineering unit IDs 271–284 occupy study days 292–305 (2027-08-13 through 2027-08-26).
 
 ## Entry and recovery
 

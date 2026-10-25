@@ -7,11 +7,52 @@
     "reserve_minutes": 462,
     "days": 14
   },
+  "sprints": [
+    {
+      "name": "Sprint 21",
+      "calendar_sprint_number": 21,
+      "calendar_study_days_in_this_batch": [
+        292,
+        293,
+        294
+      ],
+      "calendar_dates": "2027-08-02..2027-08-15",
+      "batch_story_count": 3,
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "sprint_total_after_batch": 14
+    },
+    {
+      "name": "Sprint 22",
+      "calendar_sprint_number": 22,
+      "calendar_study_days_in_this_batch": [
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305
+      ],
+      "calendar_dates": "2027-08-16..2027-08-26",
+      "batch_story_count": 11,
+      "existing_sprint_id_resolution": "new_sprint_id_unassigned_no_board_write",
+      "sprint_total_after_batch": 11
+    }
+  ],
   "days": [
     {
       "day": 271,
-      "date": "2027-07-23",
+      "date": "2027-08-13",
       "title": "Capture a deterministic SQL baseline",
+      "unit_id": "EAI-UNIT-271",
+      "engineering_unit_number": 271,
+      "legacy_engineering_unit_number": 271,
+      "calendar_study_day": 292,
+      "calendar_sprint": 21,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -167,8 +208,13 @@
     },
     {
       "day": 272,
-      "date": "2027-07-24",
+      "date": "2027-08-14",
       "title": "Verify the workload's relational facts",
+      "unit_id": "EAI-UNIT-272",
+      "engineering_unit_number": 272,
+      "legacy_engineering_unit_number": 272,
+      "calendar_study_day": 293,
+      "calendar_sprint": 21,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -326,8 +372,13 @@
     },
     {
       "day": 273,
-      "date": "2027-07-25",
+      "date": "2027-08-15",
       "title": "Implement exact result comparison",
+      "unit_id": "EAI-UNIT-273",
+      "engineering_unit_number": 273,
+      "legacy_engineering_unit_number": 273,
+      "calendar_study_day": 294,
+      "calendar_sprint": 21,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -485,8 +536,13 @@
     },
     {
       "day": 274,
-      "date": "2027-07-26",
+      "date": "2027-08-16",
       "title": "Compare estimated and actual cardinality",
+      "unit_id": "EAI-UNIT-274",
+      "engineering_unit_number": 274,
+      "legacy_engineering_unit_number": 274,
+      "calendar_study_day": 295,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -644,8 +700,13 @@
     },
     {
       "day": 275,
-      "date": "2027-07-27",
+      "date": "2027-08-17",
       "title": "Apply the analyzer to a skewed workload",
+      "unit_id": "EAI-UNIT-275",
+      "engineering_unit_number": 275,
+      "legacy_engineering_unit_number": 275,
+      "calendar_study_day": 296,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -804,8 +865,13 @@
     },
     {
       "day": 276,
-      "date": "2027-07-28",
+      "date": "2027-08-18",
       "title": "Validate malformed plan evidence",
+      "unit_id": "EAI-UNIT-276",
+      "engineering_unit_number": 276,
+      "legacy_engineering_unit_number": 276,
+      "calendar_study_day": 297,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -965,8 +1031,13 @@
     },
     {
       "day": 277,
-      "date": "2027-07-29",
+      "date": "2027-08-19",
       "title": "Compare plan and answer independently",
+      "unit_id": "EAI-UNIT-277",
+      "engineering_unit_number": 277,
+      "legacy_engineering_unit_number": 277,
+      "calendar_study_day": 298,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -1124,8 +1195,13 @@
     },
     {
       "day": 278,
-      "date": "2027-07-30",
+      "date": "2027-08-20",
       "title": "Record a bounded JVM profile",
+      "unit_id": "EAI-UNIT-278",
+      "engineering_unit_number": 278,
+      "legacy_engineering_unit_number": 278,
+      "calendar_study_day": 299,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -1281,8 +1357,13 @@
     },
     {
       "day": 279,
-      "date": "2027-07-31",
+      "date": "2027-08-21",
       "title": "Inspect selected recording events",
+      "unit_id": "EAI-UNIT-279",
+      "engineering_unit_number": 279,
+      "legacy_engineering_unit_number": 279,
+      "calendar_study_day": 300,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -1452,8 +1533,13 @@
     },
     {
       "day": 280,
-      "date": "2027-08-01",
+      "date": "2027-08-22",
       "title": "Relate runtime observations to workload",
+      "unit_id": "EAI-UNIT-280",
+      "engineering_unit_number": 280,
+      "legacy_engineering_unit_number": 280,
+      "calendar_study_day": 301,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -1611,8 +1697,13 @@
     },
     {
       "day": 281,
-      "date": "2027-08-02",
+      "date": "2027-08-23",
       "title": "Re-run acceptance mutations",
+      "unit_id": "EAI-UNIT-281",
+      "engineering_unit_number": 281,
+      "legacy_engineering_unit_number": 281,
+      "calendar_study_day": 302,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -1773,8 +1864,13 @@
     },
     {
       "day": 282,
-      "date": "2027-08-03",
+      "date": "2027-08-24",
       "title": "Explain a planner counterfactual",
+      "unit_id": "EAI-UNIT-282",
+      "engineering_unit_number": 282,
+      "legacy_engineering_unit_number": 282,
+      "calendar_study_day": 303,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -1932,8 +2028,13 @@
     },
     {
       "day": 283,
-      "date": "2027-08-04",
+      "date": "2027-08-25",
       "title": "Reproduce and compare the observation",
+      "unit_id": "EAI-UNIT-283",
+      "engineering_unit_number": 283,
+      "legacy_engineering_unit_number": 283,
+      "calendar_study_day": 304,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [
@@ -2091,8 +2192,13 @@
     },
     {
       "day": 284,
-      "date": "2027-08-05",
+      "date": "2027-08-26",
       "title": "Review gates and transfer the diagnosis",
+      "unit_id": "EAI-UNIT-284",
+      "engineering_unit_number": 284,
+      "legacy_engineering_unit_number": 284,
+      "calendar_study_day": 305,
+      "calendar_sprint": 22,
       "learner_seam": "runtime_sql_observation_analysis",
       "signature": "labs/runtime_sql/learner_analysis.py; labs/runtime_sql/reference_analysis.py; labs/runtime_sql/tests/test_acceptance.py; labs/runtime_sql/schema.sql; labs/runtime_sql/fixtures/observation.json; labs/runtime_sql/ProfilingWork.java; scripts/capture_runtime_sql_fixture.sh; scripts/compare_runtime_sql_runs.py; scripts/report_runtime_sql_skew.py; scripts/summarize_runtime_sql_runs.py; scripts/test_jfr_runtime_sql.py; scripts/check_continuation_239_entry_gate.py; scripts/check_continuation_253_entry_gate.py; scripts/check_streamforge_169_182_entry_gate.py",
       "selectors": [

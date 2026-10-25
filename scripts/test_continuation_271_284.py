@@ -1,4 +1,4 @@
-"""Regression tests for the Day 271–732 extension and first sprint."""
+"""Regression tests for the Day 271–774 extension and first sprint."""
 from __future__ import annotations
 import json
 import re
@@ -16,31 +16,34 @@ WINDOW = ROOT / "docs/reboot/continuation-271-284"
 class ExtensionRegression(unittest.TestCase):
     def test_exact_day_math_and_capacity(self):
         start = date(2026, 10, 26)
-        self.assertEqual(date(2027, 7, 22), start + timedelta(days=269))
-        self.assertEqual(date(2027, 7, 23), start + timedelta(days=270))
-        self.assertEqual(date(2028, 10, 26), start + timedelta(days=731))
-        self.assertEqual(462, 732 - 270)
-        self.assertEqual(33, 462 // 14)
-        self.assertEqual((76230, 1270.5), (462 * 165, 462 * 165 / 60))
-        self.assertEqual((20790, 346.5), (462 * 45, 462 * 45 / 60))
-        self.assertEqual((15246, 254.1), (462 * 165 * 20 // 100, 462 * 165 * 0.20 / 60))
-        self.assertEqual((60984, 1016.4), (462 * 165 - 15246, (462 * 165 - 15246) / 60))
-        phase_days = (84, 84, 84, 84, 70, 56)
-        self.assertEqual(462, sum(phase_days))
-        self.assertEqual(1270.5, sum(days * 165 / 60 for days in phase_days))
-        self.assertEqual(346.5, sum(days * 45 / 60 for days in phase_days))
-        self.assertAlmostEqual(254.1, sum(days * 33 / 60 for days in phase_days))
+        self.assertEqual(date(2026, 10, 26), start)
+        self.assertEqual(date(2027, 8, 12), start + timedelta(days=291 - 1))  # old unit 270 maps to study day 291
+        self.assertEqual(date(2027, 8, 13), start + timedelta(days=292 - 1))  # old unit 271 maps to study day 292
+        self.assertEqual(date(2028, 12, 7), start + timedelta(days=774 - 1))
+        dashboard = json.loads((ROOT / "docs/reboot/fde-alignment.json").read_text())
+        self.assertEqual(date(2029, 10, 26), date.fromisoformat(dashboard["calendar_amendment"]["professional_ownership_review_date"]))
+        self.assertEqual((774, 732, 42), (774, 774 - 42, 774 - 732))
+        self.assertEqual((83160, 1386.0), (504 * 165, 504 * 165 / 60))
+        self.assertEqual((22680, 378.0), (504 * 45, 504 * 45 / 60))
+        self.assertEqual((16632, 277.2), (504 * 165 * 20 // 100, 504 * 165 * 0.20 / 60))
+        self.assertEqual((66528, 1108.8), (504 * 165 - 16632, (504 * 165 - 16632) / 60))
+        inserted_days = 42
+        original_phase_days = (84, 84, 84, 84, 70, 56)
+        self.assertEqual(462, sum(original_phase_days))
+        self.assertEqual(504, sum(original_phase_days) + inserted_days)
+        self.assertEqual(147.0, inserted_days * (165 + 45) / 60)
 
     def test_extension_phases_are_measurable_and_not_preticketed(self):
         text = (ROOT / "docs/reboot/continuation-271-732/README.md").read_text()
         for phrase in ("JVM/OS/concurrency", "PostgreSQL internals", "Redis, Kafka and RabbitMQ",
                        "AWS deployment/security/operations", "Python/ML grounding",
-                       "prompt-injection", "multiple release/restore cycles", "second materially distinct enterprise",
-                       "measured reuse across both projects", "offline rehearsal", "October 2029"):
+                       "prompt-injection", "repeated recovery/restore cycles", "second materially distinct enterprise",
+                       "measure two-context reuse", "offline rehearsal", "October 2029"):
             self.assertIn(phrase.lower(), text.lower())
-        self.assertIn("Only Days 271–284 are ticket-ready", text)
-        self.assertIn("1,270.5 h", text)
-        self.assertIn("346.5 h", text)
+        self.assertIn("first 21 inserted units use exact sources", text)
+        self.assertIn("later 21 inserted units remain outcome-based", text)
+        self.assertIn("1,386 h", text)
+        self.assertIn("378 h", text)
         self.assertIn("does not establish workplace delivery history", text)
 
     def test_teaching_policy_regressions_and_historical_window_provenance(self):
@@ -64,7 +67,7 @@ class ExtensionRegression(unittest.TestCase):
         man = json.loads((WINDOW / "manifest.json").read_text())
         self.assertEqual(list(range(271, 285)), [d["day"] for d in man["days"]])
         self.assertEqual([d["date"] for d in src["days"]], [d["date"] for d in man["days"]])
-        self.assertEqual(("2027-07-23", "2027-08-05"), (man["date_range"]["start"], man["date_range"]["end"]))
+        self.assertEqual(("2027-08-13", "2027-08-26"), (man["date_range"]["start"], man["date_range"]["end"]))
         self.assertEqual((2310, 630, 462), (man["engineering_minutes_total"], man["shared_minutes_total"], man["remediation_reserve_minutes"]))
         self.assertFalse(man["learner_completion_awarded"])
         owner_path = WINDOW / "scrum-owner-manifest.json"

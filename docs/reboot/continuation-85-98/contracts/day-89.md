@@ -1,4 +1,4 @@
-# Day 89 — 2027-01-22: Run one unchanged owner-scoped read inside the timed decorator
+# Engineering unit Day 89 · Calendar study day 103 · 2027-02-05: Run one unchanged owner-scoped read inside the timed decorator
 
 ## Contract
 

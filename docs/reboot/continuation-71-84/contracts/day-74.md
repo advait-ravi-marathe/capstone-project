@@ -1,4 +1,4 @@
-# Day 74 — 2027-01-07: Make preview lease release atomic and idempotent
+# Engineering unit Day 74 · Calendar study day 88 · 2027-01-21: Make preview lease release atomic and idempotent
 
 ## Contract
 

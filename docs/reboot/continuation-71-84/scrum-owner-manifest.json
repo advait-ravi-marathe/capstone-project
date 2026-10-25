@@ -3,8 +3,26 @@
   "story_count": 14,
   "sprint_boundaries": [
     {
-      "name": "Sprint 6",
-      "dates": "2027-01-04..2027-01-17",
+      "name": "Sprint 7",
+      "calendar_sprint_number": 7,
+      "calendar_study_days_in_this_batch": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "calendar_dates": "2027-01-18..2027-01-31",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
       "batch_story_count": 14,
       "sprint_story_count_after_batch": 14
     }
@@ -12,9 +30,9 @@
   "cards": [
     {
       "day_number": 71,
-      "date": "2027-01-04",
-      "title": "Establish preview contention baseline and verify prerequisites",
-      "sprint": "Sprint 6",
+      "date": "2027-01-18",
+      "title": "Calendar study day 85 · engineering unit 71 · Establish preview contention baseline and verify prerequisites",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-71.md",
         "acceptance_reference": null,
@@ -58,13 +76,19 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: evidence review no new lecture. No exact Hikari sizing/acquisition lecture was found. Work a two-admission/four-connection request timeline and mark which waits are finite.\n- Focused worked references: [HikariCP configuration knobs — maximumPoolSize and connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-071",
+      "calendar_study_day": 85,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 71,
+      "legacy_engineering_unit_number": 71,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 72,
-      "date": "2027-01-05",
-      "title": "Validate finite preview capacity policy",
-      "sprint": "Sprint 6",
+      "date": "2027-01-19",
+      "title": "Calendar study day 86 · engineering unit 72 · Validate finite preview capacity policy",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-72.md",
         "acceptance_reference": "PreviewCapacityPolicy.validate() and runtime configuration validation",
@@ -105,12 +129,18 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Hikari configuration validation lecture was found. Work a table requiring positive permits ≤ pool maximum and a finite 250–30000 ms acquisition timeout; keep acquisition timeout distinct from SQL/lock timeout.\n- Focused worked references: [HikariCP configuration knobs — connectionTimeout and maximumPoolSize](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-072",
+      "calendar_study_day": 86,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 72,
+      "legacy_engineering_unit_number": 72,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 73,
-      "date": "2027-01-06",
-      "sprint": "Sprint 6",
+      "date": "2027-01-20",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-73.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewAdmissionAcceptanceTest.java",
@@ -166,7 +196,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
         "interview_assignment": {
           "day": 73,
-          "date": "2027-01-06",
+          "date": "2027-01-20",
           "title": "Implement immediate two-permit preview admission",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [
@@ -249,20 +279,29 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-73",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-073",
+          "calendar_study_day": 87,
+          "calendar_sprint": 7
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **3 Questions - ThreadLocal vs Semaphore vs CountDownLatch**; exact section title: **Threads and Concurrency - Java Review (Interview) Guide** (6:23).\n- Fit: partial foundation. The comparison is conceptual, not API training. Work two admitted callers and an immediately rejected third; only a lease owner releases its permit.\n- Focused worked references: [Java Semaphore API — tryAcquire](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).\n- Video viewing: 6:23 at 1×; the remaining 18:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
-      "title": "Implement immediate two-permit preview admission",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "title": "Calendar study day 87 · engineering unit 73 · Implement immediate two-permit preview admission",
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-073",
+      "calendar_study_day": 87,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 73,
+      "legacy_engineering_unit_number": 73,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 74,
-      "date": "2027-01-07",
-      "title": "Make preview lease release atomic and idempotent",
-      "sprint": "Sprint 6",
+      "date": "2027-01-21",
+      "title": "Calendar study day 88 · engineering unit 74 · Make preview lease release atomic and idempotent",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-74.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewLeaseAcceptanceTest.java",
@@ -320,13 +359,19 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 04 - Introduction to Atomic Classes - AtomicInteger**; exact section title: **More Concurrency with Concurrent Collections and Atomic Operations** (4:10).\n- Fit: partial foundation. AtomicInteger is only conceptual support. Show AtomicBoolean.compareAndSet guarding close so repeated or concurrent close invokes release exactly once.\n- Focused worked references: [Java AtomicBoolean API — compareAndSet](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/atomic/AtomicBoolean.html).\n- Video viewing: 4:10 at 1×; the remaining 20:50 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-074",
+      "calendar_study_day": 88,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 74,
+      "legacy_engineering_unit_number": 74,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 75,
-      "date": "2027-01-08",
-      "title": "Bound the existing owner-scoped read adapter",
-      "sprint": "Sprint 6",
+      "date": "2027-01-22",
+      "title": "Calendar study day 89 · engineering unit 75 · Bound the existing owner-scoped read adapter",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-75.md",
         "acceptance_reference": "src/test/java/assignments/renewal/BoundedPolicyRenewalReadStoreAcceptanceTest.java",
@@ -392,13 +437,19 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 05 - Basics of Handling Exceptions - Need for finally**; exact section title: **Introduction to Exception Handling in Java** (6:23).\n- Exact lesson title: **Step 11 - Throwing a Custom Exception - CurrenciesDoNotMatchException**; exact section title: **Introduction to Exception Handling in Java** (3:54).\n- Fit: partial foundation. Trace permit release on success, empty result and failure. Translate only CannotGetJdbcConnectionException; unrelated exceptions must retain their meaning, never be swallowed.\n- Focused worked references: [CannotGetJdbcConnectionException Javadoc — Class description and inheritance](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/CannotGetJdbcConnectionException.html).\n- Video viewing: 10:17 at 1×; the remaining 14:43 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-075",
+      "calendar_study_day": 89,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 75,
+      "legacy_engineering_unit_number": 75,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 76,
-      "date": "2027-01-09",
-      "title": "Prove maximum concurrency and no permit leaks",
-      "sprint": "Sprint 6",
+      "date": "2027-01-23",
+      "title": "Calendar study day 90 · engineering unit 76 · Prove maximum concurrency and no permit leaks",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-76.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewAdmissionConcurrencyAcceptanceTest.java",
@@ -462,7 +513,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
         "interview_assignment": {
           "day": 76,
-          "date": "2027-01-09",
+          "date": "2027-01-23",
           "title": "Prove maximum concurrency and no permit leaks",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [
@@ -553,19 +604,28 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-76",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-076",
+          "calendar_study_day": 90,
+          "calendar_sprint": 7
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Java Programming for Complete Beginners](https://www.udemy.com/course/java-programming-tutorial-for-beginners/) — in28Minutes Official; access: unconfirmed reference only. Do not purchase/enroll based on this map.\n- Exact lesson title: **3 Questions - ThreadLocal vs Semaphore vs CountDownLatch**; exact section title: **Threads and Concurrency - Java Review (Interview) Guide** (6:23).\n- Exact lesson title: **Step 11 - Executor Service - Returning a Future from Thread using Callable**; exact section title: **Introduction to Threads And Concurrency in Java** (6:43).\n- Fit: partial foundation. Use latch barriers, join/get every Future, propagate worker failures, prove maximum two entries, recovery after failure and a complete second cycle. Avoid sleep-based race tests.\n- Focused worked references: [Java CountDownLatch API — await/countDown and happens-before](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html).\n- Video viewing: 13:06 at 1×; the remaining 11:54 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-076",
+      "calendar_study_day": 90,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 76,
+      "legacy_engineering_unit_number": 76,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 77,
-      "date": "2027-01-10",
-      "title": "Verify recovery without adding a feature",
-      "sprint": "Sprint 6",
+      "date": "2027-01-24",
+      "title": "Calendar study day 91 · engineering unit 77 · Verify recovery without adding a feature",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-77.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewRecoveryAcceptanceTest.java",
@@ -606,13 +666,19 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: recovery review no new lecture. No new feature or video. In the 25-minute study block, trace saturation → release → successful retry using deterministic test doubles; add no route or feature.\n- Focused worked references: [Java Semaphore API — permit release and reacquisition](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Semaphore.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-077",
+      "calendar_study_day": 91,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 77,
+      "legacy_engineering_unit_number": 77,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 78,
-      "date": "2027-01-11",
-      "title": "Map busy and unavailable outcomes safely",
-      "sprint": "Sprint 6",
+      "date": "2027-01-25",
+      "title": "Calendar study day 92 · engineering unit 78 · Map busy and unavailable outcomes safely",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-78.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewCapacityHttpAcceptanceTest.java",
@@ -670,12 +736,18 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 12 - Implementing Generic Exception Handling for all Resources**; exact section title: **Creating a Java REST API with Spring Boot, Spring Framework and Hibernate** (11:29).\n- Fit: partial foundation. Map only busy/unavailable to a sanitized 503. Preserve other errors; never expose exception causes or internal messages.\n- Focused worked references: [RFC 9110 HTTP Semantics — Section 15.6.4, 503 Service Unavailable](https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable).\n- Video viewing: 11:29 at 1×; the remaining 13:31 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-078",
+      "calendar_study_day": 92,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 78,
+      "legacy_engineering_unit_number": 78,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 79,
-      "date": "2027-01-12",
-      "sprint": "Sprint 6",
+      "date": "2027-01-26",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-79.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewRuntimeWiringAcceptanceTest.java",
@@ -742,14 +814,20 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- Course: [Master Spring Boot 3 & Spring Framework 6 with Java](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners/) — in28Minutes Official; access: confirmed owned. Do not purchase/enroll based on this map.\n- Exact lesson title: **Step 03 - Exploring Java Spring Framework Bean Scopes - Prototype and Singleton**; exact section title: **Exploring Spring Framework Advanced Features** (9:17).\n- Exact lesson title: **Step 04 - Comparing Prototype vs Singleton - Spring Framework Bean Scopes**; exact section title: **Exploring Spring Framework Advanced Features** (2:06).\n- Fit: partial foundation. Trace the single shared LocalPolicyRenewalReadStoreConfiguration bean imported by both the Sprint 6 and later local runtimes. It wraps the supplied adapter once with a singleton gate and finite Hikari acquisition timeout; no duplicate SQL or request-scoped gate.\n- Focused worked references: [Spring Framework bean scopes — singleton scope](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html).\n- Video viewing: 11:23 at 1×; the remaining 13:37 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "verified_titles_video_not_watched",
       "mandatory_new_problem": false,
-      "title": "Wire one singleton gate around the existing route",
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "title": "Calendar study day 93 · engineering unit 79 · Wire one singleton gate around the existing route",
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-079",
+      "calendar_study_day": 93,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 79,
+      "legacy_engineering_unit_number": 79,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 80,
-      "date": "2027-01-13",
-      "title": "Record fixed-cardinality preview outcomes",
-      "sprint": "Sprint 6",
+      "date": "2027-01-27",
+      "title": "Calendar study day 94 · engineering unit 80 · Record fixed-cardinality preview outcomes",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-80.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewMetricsAcceptanceTest.java",
@@ -795,7 +873,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
         "interview_assignment": {
           "day": 80,
-          "date": "2027-01-13",
+          "date": "2027-01-27",
           "title": "Record fixed-cardinality preview outcomes",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [],
@@ -866,19 +944,28 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-80",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-080",
+          "calendar_study_day": 94,
+          "calendar_sprint": 7
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Micrometer timer/counter/cardinality lesson was found. Work fixed outcome tags, record timer/counter values on the actual route, and keep the meter count bounded; never tag with policy, owner or request IDs.\n- Focused worked references: [Micrometer Timers — short-duration latency and event count](https://docs.micrometer.io/micrometer/reference/concepts/timers.html); [Micrometer Naming — Tag Values](https://docs.micrometer.io/micrometer/reference/concepts/naming.html#tag-values).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-080",
+      "calendar_study_day": 94,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 80,
+      "legacy_engineering_unit_number": 80,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 81,
-      "date": "2027-01-14",
-      "title": "Show an accessible manual retry state",
-      "sprint": "Sprint 6",
+      "date": "2027-01-28",
+      "title": "Calendar study day 95 · engineering unit 81 · Show an accessible manual retry state",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-81.md",
         "acceptance_reference": "frontend/src/__tests__/LocalCoverStoryApp.test.tsx",
@@ -921,7 +1008,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
         "interview_assignment": {
           "day": 81,
-          "date": "2027-01-14",
+          "date": "2027-01-28",
           "title": "Show an accessible manual retry state",
           "proposal_before_hints_reference_or_ai": true,
           "course_catalog": [],
@@ -987,19 +1074,28 @@
           "open_acceptance_gaps": [],
           "assistant_architecture_note": "docs/reboot/continuation-71-84/assistant-architecture-notes.md#day-81",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-081",
+          "calendar_study_day": 95,
+          "calendar_sprint": 7
         }
       },
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no direct course match. No exact accessible manual-only retry lesson was verified. The supplied architecture keeps policy context visible while busy/unavailable state is mutually exclusive. Verify no automatic retry/refetch/session reset; only an explicit Retry action invokes the operation. TanStack cancellation is not a substitute for manual-only semantics.\n- Focused worked references: [WAI-ARIA 1.2 — status role and alert role](https://www.w3.org/TR/wai-aria-1.2/#status).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-081",
+      "calendar_study_day": 95,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 81,
+      "legacy_engineering_unit_number": 81,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 82,
-      "date": "2027-01-15",
-      "title": "Prove finite recovery under real Hikari pool exhaustion",
-      "sprint": "Sprint 6",
+      "date": "2027-01-29",
+      "title": "Calendar study day 96 · engineering unit 82 · Prove finite recovery under real Hikari pool exhaustion",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-82.md",
         "acceptance_reference": "src/test/java/assignments/renewal/PreviewPoolRecoveryAcceptanceTest.java",
@@ -1040,13 +1136,19 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no exact catalog match. No exact Hikari exhaustion/recovery lab was found. Trace four held connections → finite acquisition failure → permit release and finally-close → recovered useful read; keep the test watchdog separate from correctness.\n- Focused worked references: [HikariCP configuration knobs — connectionTimeout](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-082",
+      "calendar_study_day": 96,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 82,
+      "legacy_engineering_unit_number": 82,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 83,
-      "date": "2027-01-16",
-      "title": "Prove packaged browser recovery under a real database lock",
-      "sprint": "Sprint 6",
+      "date": "2027-01-30",
+      "title": "Calendar study day 97 · engineering unit 83 · Prove packaged browser recovery under a real database lock",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-83.md",
         "acceptance_reference": "src/test/java/assignments/local/Day83PackagedLockBrowserAcceptanceTest.java",
@@ -1098,13 +1200,19 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: no direct course match. No new video. Use the supplied real PostgreSQL lock, packaged-browser busy UI and explicit-retry harness. React mocks do not prove browser/database behavior; preserve the fixed instructor/learner evidence distinction.\n- Focused worked references: [PostgreSQL explicit locking — ACCESS EXCLUSIVE lock](https://www.postgresql.org/docs/18/explicit-locking.html); [pg_locks system view — granted=false rows for waiting locks](https://www.postgresql.org/docs/18/view-pg-locks.html); [PostgreSQL monitoring statistics — pg_stat_activity wait_event_type and wait_event fields](https://www.postgresql.org/docs/18/monitoring-stats.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-083",
+      "calendar_study_day": 97,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 83,
+      "legacy_engineering_unit_number": 83,
+      "legacy_sprint_label": "Sprint 7"
     },
     {
       "day_number": 84,
-      "date": "2027-01-17",
-      "title": "Integrate recovery evidence and independent assessment",
-      "sprint": "Sprint 6",
+      "date": "2027-01-31",
+      "title": "Calendar study day 98 · engineering unit 84 · Integrate recovery evidence and independent assessment",
+      "sprint": "Sprint 7",
       "engineering": {
         "contract_path": "docs/reboot/continuation-71-84/contracts/day-84.md",
         "acceptance_reference": null,
@@ -1148,7 +1256,13 @@
       "course_learning_block": "**Learning guidance (inside the single 25-minute engineering study allocation):**\n- No exact matching course lesson was verified for this task; no unrelated video is assigned.\n- Fit: assessment review no new lecture. No feature or course. Explain capacity/acquisition/query-wait boundaries, safe error mapping and independent evidence axes using observed selector results; unresolved prerequisites become recovery work.\n- Focused worked references: [Java jcmd — thread dump diagnostics](https://docs.oracle.com/en/java/javase/21/docs/specs/man/jcmd.html).\n- Video viewing: 0:00 at 1×; the remaining 25:00 in the 25-minute cap is for pauses, the worked example, focused reference and teach-back. Stop at 25 minutes; carry unfinished material forward and shrink implementation scope. Viewing is not learner completion.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
       "mandatory_new_problem": false,
-      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence."
+      "scope": "Complete the engineering assignment in the 120-minute engineering allocation: 25 minutes study, 85 minutes practice/testing, and 10 minutes evidence.",
+      "unit_id": "EAI-UNIT-084",
+      "calendar_study_day": 98,
+      "calendar_sprint": 7,
+      "engineering_unit_number": 84,
+      "legacy_engineering_unit_number": 84,
+      "legacy_sprint_label": "Sprint 7"
     }
   ],
   "daily_budgets_minutes": {
@@ -1156,5 +1270,13 @@
   },
   "separate_learning_repository": {
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  },
+  "historical_sprint_boundaries": [
+    {
+      "name": "Sprint 6",
+      "dates": "2027-01-04..2027-01-17",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ]
 }

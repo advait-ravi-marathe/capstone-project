@@ -1,4 +1,6 @@
-# Days 197–210: offline evidence-grounded explanation foundations
+# Engineering units 197–210 · calendar study days 218–231 · 2027-05-31–2027-06-13 — offline evidence-grounded explanation foundations
+
+Calendar mapping: stable engineering unit IDs 197–210 occupy study days 218–231 (2027-05-31 through 2027-06-13).
 
 **Starter only.** No learner completion or board publication is claimed. This increment restores the proposal’s 23-hour CoverStory project/recovery and 3-hour offline AI practice split. Its Days 153/154 A/B entry gate remains unmet because the evidence records lack a pinned baseline artifact/source/build provenance.
 

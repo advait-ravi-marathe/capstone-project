@@ -1,4 +1,4 @@
-# Day 90 — 2027-01-23: Prove read-only enforcement and mapping-failure rollback
+# Engineering unit Day 90 · Calendar study day 104 · 2027-02-06: Prove read-only enforcement and mapping-failure rollback
 
 ## Contract
 

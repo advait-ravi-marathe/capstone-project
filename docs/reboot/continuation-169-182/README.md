@@ -1,4 +1,6 @@
-# StreamForge Days 169–182: frozen offline baseline
+# Engineering units 169–182 · calendar study days 190–203 · 2027-05-03–2027-05-16 — StreamForge Days 169–182: frozen offline baseline
+
+Calendar mapping: stable engineering unit IDs 169–182 occupy study days 190–203 (2027-05-03 through 2027-05-16).
 
 Draft starter artifacts on continuation branch `work/eai-sprint2-onward`, based on `ae21926a7d61ef25db8609ddc533d9cdeeacff88`; original starter reference `bb4cc3e5df7336c74a3f086b24510d325ea871e1` is retained as provenance. No board writes, cloud resources, external datasets, paid resources, or learner-history changes are part of this batch.
 

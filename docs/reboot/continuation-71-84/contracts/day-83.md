@@ -1,4 +1,4 @@
-# Day 83 — 2027-01-16: Prove packaged browser recovery under a real database lock
+# Engineering unit Day 83 · Calendar study day 97 · 2027-01-30: Prove packaged browser recovery under a real database lock
 
 ## Contract
 

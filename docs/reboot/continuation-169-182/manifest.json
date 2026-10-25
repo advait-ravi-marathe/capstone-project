@@ -3,8 +3,8 @@
   "base_commit": "ae21926a7d61ef25db8609ddc533d9cdeeacff88",
   "branch": "work/eai-sprint2-onward",
   "sprint": "Proposed Sprint 13",
-  "start_date": "2027-04-12",
-  "end_date": "2027-04-25",
+  "start_date": "2027-05-03",
+  "end_date": "2027-05-16",
   "publication_status": "draft_not_board_published",
   "board_writes": false,
   "engineering_minutes_days_169_to_171": 120,
@@ -52,16 +52,16 @@
   "days": [
     {
       "day": 169,
-      "date": "2027-04-12",
+      "date": "2027-05-03",
       "title": "Define an observed signal without inventing preferences",
       "contract_file": "contracts/day-169.md",
       "status": "starter_draft_not_board_published",
       "recovery_day": false,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "study": 25,
-          "practice_and_test": 85,
+          "practice_and_test": 130,
           "evidence": 10
         },
         "learner_seam": "positive_pairs",
@@ -92,23 +92,12 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-        "interview_session": {
-          "mode": "45_minute_system_design_question",
-          "question_id": "Q33",
-          "question_title": "Analytics: event to metric",
-          "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-          "duration_minutes": 45,
-          "within_engineering_practice": true,
-          "implementation_minutes_remaining": 40,
-          "phase_minutes": {
-            "requirements": 5,
-            "capacity_and_constraints": 5,
-            "initial_architecture_and_data_model": 15,
-            "bottlenecks_reliability_scaling": 10,
-            "tradeoffs_failures_followups": 10
-          }
-        }
+        "historical_120_minute_allocation": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        },
+        "scope": "Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope."
       },
       "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
       "interview_practice": {
@@ -128,21 +117,68 @@
         "total_daily_minutes": 120,
         "within_engineering_practice": true,
         "implementation_minutes_remaining": 40,
-        "proposal_scope": "system_design_interview_question_only"
+        "proposal_scope": "system_design_interview_question_only",
+        "relocated_to_shared_block": true,
+        "outside_engineering_budget": true
+      },
+      "unit_id": "EAI-UNIT-169",
+      "calendar_study_day": 190,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the positive-pair selector with a repeated pair and a held-out positive; verify distinct training support and no leakage.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day169Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q33",
+        "question_title": "Analytics: event to metric",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "mode": "45_minute_system_design_question",
+          "question_id": "Q33",
+          "question_title": "Analytics: event to metric",
+          "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+          "duration_minutes": 45,
+          "within_engineering_practice": true,
+          "implementation_minutes_remaining": 40,
+          "phase_minutes": {
+            "requirements": 5,
+            "capacity_and_constraints": 5,
+            "initial_architecture_and_data_model": 15,
+            "bottlenecks_reliability_scaling": 10,
+            "tradeoffs_failures_followups": 10
+          },
+          "relocated_to_shared_block": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day": 170,
-      "date": "2027-04-13",
+      "date": "2027-05-04",
       "title": "Freeze the cutoff-time candidate set",
       "contract_file": "contracts/day-170.md",
       "status": "starter_draft_not_board_published",
       "recovery_day": false,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "study": 25,
-          "practice_and_test": 85,
+          "practice_and_test": 130,
           "evidence": 10
         },
         "learner_seam": "cutoff_candidates",
@@ -173,23 +209,56 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-        "interview_session": null
+        "historical_120_minute_allocation": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        },
+        "scope": "Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-170",
+      "calendar_study_day": 191,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the cutoff selector with start/end equality counterexamples; verify only available-at-cutoff items enter candidates.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day170Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q16",
+        "question_title": "Messaging: ordering and replay",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 171,
-      "date": "2027-04-14",
+      "date": "2027-05-05",
       "title": "Count distinct positive training viewers",
       "contract_file": "contracts/day-171.md",
       "status": "starter_draft_not_board_published",
       "recovery_day": false,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "study": 25,
-          "practice_and_test": 85,
+          "practice_and_test": 130,
           "evidence": 10
         },
         "learner_seam": "training_popularity",
@@ -221,23 +290,12 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_question_bank": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-        "interview_session": {
-          "mode": "45_minute_system_design_question",
-          "question_id": "Q34",
-          "question_title": "Analytics: late and duplicate data",
-          "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
-          "duration_minutes": 45,
-          "within_engineering_practice": true,
-          "implementation_minutes_remaining": 40,
-          "phase_minutes": {
-            "requirements": 5,
-            "capacity_and_constraints": 5,
-            "initial_architecture_and_data_model": 15,
-            "bottlenecks_reliability_scaling": 10,
-            "tradeoffs_failures_followups": 10
-          }
-        }
+        "historical_120_minute_allocation": {
+          "study": 25,
+          "practice_and_test": 85,
+          "evidence": 10
+        },
+        "scope": "Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope."
       },
       "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
       "interview_practice": {
@@ -257,12 +315,59 @@
         "total_daily_minutes": 120,
         "within_engineering_practice": true,
         "implementation_minutes_remaining": 40,
-        "proposal_scope": "system_design_interview_question_only"
+        "proposal_scope": "system_design_interview_question_only",
+        "relocated_to_shared_block": true,
+        "outside_engineering_budget": true
+      },
+      "unit_id": "EAI-UNIT-171",
+      "calendar_study_day": 192,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the popularity selector with repeated viewers and a held-out event; verify independently counted distinct training viewers.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_baseline_contracts.Day171Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "mode": "45_minute_system_design_question",
+          "question_id": "Q34",
+          "question_title": "Analytics: late and duplicate data",
+          "question_bank_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md",
+          "duration_minutes": 45,
+          "within_engineering_practice": true,
+          "implementation_minutes_remaining": 40,
+          "phase_minutes": {
+            "requirements": 5,
+            "capacity_and_constraints": 5,
+            "initial_architecture_and_data_model": 15,
+            "bottlenecks_reliability_scaling": 10,
+            "tradeoffs_failures_followups": 10
+          },
+          "relocated_to_shared_block": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day": 172,
-      "date": "2027-04-15",
+      "date": "2027-05-06",
       "title": "Produce one deterministic global top-three list",
       "contract_file": "contracts/day-172.md",
       "status": "starter_draft_not_board_published",
@@ -334,11 +439,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-172",
+      "calendar_study_day": 193,
+      "calendar_sprint": 14
     },
     {
       "day": 173,
-      "date": "2027-04-16",
+      "date": "2027-05-07",
       "title": "Build the evaluation cohort without deleting difficult targets",
       "contract_file": "contracts/day-173.md",
       "status": "starter_draft_not_board_published",
@@ -416,11 +524,14 @@
         "implementation_minutes_remaining": null,
         "proposal_scope": "system_design_interview_question_only"
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-173",
+      "calendar_study_day": 194,
+      "calendar_sprint": 14
     },
     {
       "day": 174,
-      "date": "2027-04-17",
+      "date": "2027-05-08",
       "title": "Compute one viewer’s fixed-slot precision and recall",
       "contract_file": "contracts/day-174.md",
       "status": "starter_draft_not_board_published",
@@ -484,11 +595,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-174",
+      "calendar_study_day": 195,
+      "calendar_sprint": 14
     },
     {
       "day": 175,
-      "date": "2027-04-18",
+      "date": "2027-05-09",
       "title": "Recover the signal and metric boundary",
       "contract_file": "contracts/day-175.md",
       "status": "starter_draft_not_board_published",
@@ -551,11 +665,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-175",
+      "calendar_study_day": 196,
+      "calendar_sprint": 14
     },
     {
       "day": 176,
-      "date": "2027-04-19",
+      "date": "2027-05-10",
       "title": "Aggregate macro metrics with explicit coverage counts",
       "contract_file": "contracts/day-176.md",
       "status": "starter_draft_not_board_published",
@@ -633,11 +750,14 @@
         "implementation_minutes_remaining": null,
         "proposal_scope": "system_design_interview_question_only"
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-176",
+      "calendar_study_day": 197,
+      "calendar_sprint": 15
     },
     {
       "day": 177,
-      "date": "2027-04-20",
+      "date": "2027-05-11",
       "title": "Compare two predeclared baselines on the same cohort",
       "contract_file": "contracts/day-177.md",
       "status": "starter_draft_not_board_published",
@@ -702,11 +822,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-177",
+      "calendar_study_day": 198,
+      "calendar_sprint": 15
     },
     {
       "day": 178,
-      "date": "2027-04-21",
+      "date": "2027-05-12",
       "title": "Separate prediction lineage from evaluation evidence",
       "contract_file": "contracts/day-178.md",
       "status": "starter_draft_not_board_published",
@@ -779,11 +902,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-178",
+      "calendar_study_day": 199,
+      "calendar_sprint": 15
     },
     {
       "day": 179,
-      "date": "2027-04-22",
+      "date": "2027-05-13",
       "title": "Compose the existing preparation and offline evaluation CLI",
       "contract_file": "contracts/day-179.md",
       "status": "starter_draft_not_board_published",
@@ -860,11 +986,14 @@
         "implementation_minutes_remaining": null,
         "proposal_scope": "system_design_interview_question_only"
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-179",
+      "calendar_study_day": 200,
+      "calendar_sprint": 15
     },
     {
       "day": 180,
-      "date": "2027-04-23",
+      "date": "2027-05-14",
       "title": "Make leakage and denominator defects fail independent tests",
       "contract_file": "contracts/day-180.md",
       "status": "starter_draft_not_board_published",
@@ -929,11 +1058,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-180",
+      "calendar_study_day": 201,
+      "calendar_sprint": 15
     },
     {
       "day": 181,
-      "date": "2027-04-24",
+      "date": "2027-05-15",
       "title": "Reproduce the bounded experiment in fresh processes",
       "contract_file": "contracts/day-181.md",
       "status": "starter_draft_not_board_published",
@@ -998,11 +1130,14 @@
         "mode": "interview_question_practice",
         "scope": "Sourced interview-design questions and interview practice only."
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-181",
+      "calendar_study_day": 202,
+      "calendar_sprint": 15
     },
     {
       "day": 182,
-      "date": "2027-04-25",
+      "date": "2027-05-16",
       "title": "Recover and defend the offline baseline boundary",
       "contract_file": "contracts/day-182.md",
       "status": "starter_draft_not_board_published",
@@ -1079,7 +1214,10 @@
         "implementation_minutes_remaining": null,
         "proposal_scope": "system_design_interview_question_only"
       },
-      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block."
+      "review_practice_examples_note": "These prompts are curriculum explain-backs, not claims about actual company interview questions. System-design practice uses only the sourced separate question bank and the existing allocated block.",
+      "unit_id": "EAI-UNIT-182",
+      "calendar_study_day": 203,
+      "calendar_sprint": 15
     }
   ],
   "hand_oracle": {
@@ -1247,5 +1385,77 @@
     "evaluation_script": "scripts/check_streamforge_169_182_entry_gate.py",
     "downstream_scope": "StreamForge Days 169–182"
   },
-  "starter_reference_commit": "bb4cc3e5df7336c74a3f086b24510d325ea871e1"
+  "starter_reference_commit": "bb4cc3e5df7336c74a3f086b24510d325ea871e1",
+  "sprints": [
+    {
+      "name": "Sprint 14",
+      "calendar_sprint_number": 14,
+      "calendar_study_days_in_this_batch": [
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196
+      ],
+      "calendar_dates": "2027-04-26..2027-05-09",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
+      "sprint_total_after_batch": 14
+    },
+    {
+      "name": "Sprint 15",
+      "calendar_sprint_number": 15,
+      "calendar_study_days_in_this_batch": [
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203
+      ],
+      "calendar_dates": "2027-05-10..2027-05-23",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
+      "sprint_total_after_batch": 14
+    }
+  ],
+  "historical_sprints": [
+    {
+      "name": "Sprint 14",
+      "calendar_sprint_number": 14,
+      "calendar_study_days_in_this_batch": [
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196
+      ],
+      "calendar_dates": "2027-04-26..2027-05-09",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
+      "sprint_total_after_batch": 14
+    },
+    {
+      "name": "Sprint 15",
+      "calendar_sprint_number": 15,
+      "calendar_study_days_in_this_batch": [
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203
+      ],
+      "calendar_dates": "2027-05-10..2027-05-23",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
+      "sprint_total_after_batch": 14
+    }
+  ]
 }

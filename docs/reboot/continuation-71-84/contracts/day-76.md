@@ -1,4 +1,4 @@
-# Day 76 — 2027-01-09: Prove maximum concurrency and no permit leaks
+# Engineering unit Day 76 · Calendar study day 90 · 2027-01-23: Prove maximum concurrency and no permit leaks
 
 ## Contract
 

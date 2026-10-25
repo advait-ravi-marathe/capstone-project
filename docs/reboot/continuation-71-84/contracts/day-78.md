@@ -1,4 +1,4 @@
-# Day 78 — 2027-01-11: Map busy and unavailable outcomes safely
+# Engineering unit Day 78 · Calendar study day 92 · 2027-01-25: Map busy and unavailable outcomes safely
 
 ## Contract
 

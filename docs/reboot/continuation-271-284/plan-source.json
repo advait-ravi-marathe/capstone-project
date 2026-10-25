@@ -3,8 +3,8 @@
   "status": "planned_assignments_only_not_completion",
   "branch": "work/eai-sprint2-onward",
   "base_commit": "c503d64272cc217c60e8245dd018d5da622f9123",
-  "start_date": "2027-07-23",
-  "end_date": "2027-08-05",
+  "start_date": "2027-08-13",
+  "end_date": "2027-08-26",
   "sources_verified_at": "2026-10-24",
   "gate_command": "python3 scripts/check_continuation_239_entry_gate.py; python3 scripts/check_continuation_253_entry_gate.py; python3 scripts/check_streamforge_169_182_entry_gate.py",
   "daily_budget": {
@@ -119,7 +119,7 @@
   "days": [
     {
       "day": 271,
-      "date": "2027-07-23",
+      "date": "2027-08-13",
       "title": "Capture a deterministic SQL baseline",
       "task": "Run prior gates read-only and capture the baseline workload to a fresh ignored artifact path; leave the canonical fixture unchanged.",
       "study_source": "PG_EXPLAIN",
@@ -135,11 +135,14 @@
         "14.1.1. EXPLAIN Basics"
       ],
       "study_task": "Read the plan-tree basics; identify which result facts must be independently checked before interpreting a scan node.",
-      "study_evidence": "One note separating query-result correctness from estimated plan cost/node choice."
+      "study_evidence": "One note separating query-result correctness from estimated plan cost/node choice.",
+      "unit_id": "EAI-UNIT-271",
+      "calendar_study_day": 292,
+      "calendar_sprint": 21
     },
     {
       "day": 272,
-      "date": "2027-07-24",
+      "date": "2027-08-14",
       "title": "Verify the workload's relational facts",
       "task": "Derive the expected owner/policy/revision list from the schema seed independently and compare it with Day271 rows; include a same-count foreign-owner example.",
       "study_source": "PG_INDEX",
@@ -157,11 +160,14 @@
         "11.1. Introduction"
       ],
       "study_task": "Read how PostgreSQL indexes reduce candidate row search; identify when a sequential scan may still be reasonable.",
-      "study_evidence": "One source-backed indexed-versus-sequential-scan note without claiming the index is always faster."
+      "study_evidence": "One source-backed indexed-versus-sequential-scan note without claiming the index is always faster.",
+      "unit_id": "EAI-UNIT-272",
+      "calendar_study_day": 293,
+      "calendar_sprint": 21
     },
     {
       "day": 273,
-      "date": "2027-07-25",
+      "date": "2027-08-15",
       "title": "Implement exact result comparison",
       "task": "Implement complete ordered owner/policy/revision equality. Reject mutations to each key field and row order, even when count remains five.",
       "study_source": "PG_EXPLAIN",
@@ -179,11 +185,14 @@
         "14.1.2. EXPLAIN ANALYZE"
       ],
       "study_task": "Read what EXPLAIN ANALYZE executes and returns; distinguish measured row counts from timing noise.",
-      "study_evidence": "One source-backed distinction between actual row counts and elapsed time."
+      "study_evidence": "One source-backed distinction between actual row counts and elapsed time.",
+      "unit_id": "EAI-UNIT-273",
+      "calendar_study_day": 294,
+      "calendar_sprint": 21
     },
     {
       "day": 274,
-      "date": "2027-07-26",
+      "date": "2027-08-16",
       "title": "Compare estimated and actual cardinality",
       "task": "Implement finite estimate/actual q-error and explicit zero/zero versus zero/nonzero handling; inspect the 4x counterfactual.",
       "study_source": "PG_STATS",
@@ -201,11 +210,14 @@
         "14.2.1. Single-Column Statistics"
       ],
       "study_task": "Read how single-column statistics inform estimates; note a case where correlated columns need more than a single-column histogram.",
-      "study_evidence": "One source-backed estimate limitation tied to the observed query."
+      "study_evidence": "One source-backed estimate limitation tied to the observed query.",
+      "unit_id": "EAI-UNIT-274",
+      "calendar_study_day": 295,
+      "calendar_sprint": 22
     },
     {
       "day": 275,
-      "date": "2027-07-27",
+      "date": "2027-08-17",
       "title": "Apply the analyzer to a skewed workload",
       "task": "Run the skew experiment, pass its captured query observation through the learner analyzer built on Days273–274, and independently inspect nested owner-row estimates before/after ANALYZE.",
       "study_source": "PG_ANALYZE",
@@ -224,11 +236,14 @@
         "Description"
       ],
       "study_task": "Read what ANALYZE collects and how the planner uses it; record why a new distribution can make old statistics stale.",
-      "study_evidence": "One source-backed explanation of when ANALYZE changes a planner's information."
+      "study_evidence": "One source-backed explanation of when ANALYZE changes a planner's information.",
+      "unit_id": "EAI-UNIT-275",
+      "calendar_study_day": 296,
+      "calendar_sprint": 22
     },
     {
       "day": 276,
-      "date": "2027-07-28",
+      "date": "2027-08-18",
       "title": "Validate malformed plan evidence",
       "task": "Implement fail-closed plan-field validation, then read both nested skew plans and compare estimated versus actual owner rows without assuming a specific node.",
       "study_source": "PG_STATS",
@@ -248,11 +263,14 @@
         "14.2.2. Extended Statistics"
       ],
       "study_task": "Read the extended-statistics section and name which correlations it can capture and which workload facts remain unknown.",
-      "study_evidence": "One short note on multicolumn correlation and limits of planner statistics."
+      "study_evidence": "One short note on multicolumn correlation and limits of planner statistics.",
+      "unit_id": "EAI-UNIT-276",
+      "calendar_study_day": 297,
+      "calendar_sprint": 22
     },
     {
       "day": 277,
-      "date": "2027-07-29",
+      "date": "2027-08-19",
       "title": "Compare plan and answer independently",
       "task": "Drop the composite index in a fresh database; compare baseline and no-index runs through the result-preserving comparator.",
       "study_source": "PG_EXPLAIN",
@@ -270,11 +288,14 @@
         "14.1.3. Caveats"
       ],
       "study_task": "Read the planner caveats; list data size, cache, statistics, and host factors that make a timing comparison noisy.",
-      "study_evidence": "At least three caveats and one explicit non-claim for this experiment."
+      "study_evidence": "At least three caveats and one explicit non-claim for this experiment.",
+      "unit_id": "EAI-UNIT-277",
+      "calendar_study_day": 298,
+      "calendar_sprint": 22
     },
     {
       "day": 278,
-      "date": "2027-07-30",
+      "date": "2027-08-20",
       "title": "Record a bounded JVM profile",
       "task": "Compile the bounded 500-million-iteration CPU workload; record one JFR file and verify its deterministic checksum and custom phase event.",
       "study_source": "JFR",
@@ -290,11 +311,14 @@
         "Description"
       ],
       "study_task": "Read the JFR file/tool overview; identify one benefit and one cost of recording a short local process.",
-      "study_evidence": "One benefit, one recording overhead/selection caveat, no service-profile claim."
+      "study_evidence": "One benefit, one recording overhead/selection caveat, no service-profile claim.",
+      "unit_id": "EAI-UNIT-278",
+      "calendar_study_day": 299,
+      "calendar_sprint": 22
     },
     {
       "day": 279,
-      "date": "2027-07-31",
+      "date": "2027-08-21",
       "title": "Inspect selected recording events",
       "task": "Inspect the required lab.WorkPhase marker and JFR summary; validate workload, iteration count and checksum. Record ExecutionSample count as optional observed data, never as the sole success condition.",
       "study_source": "JFR_EVENT",
@@ -315,11 +339,14 @@
         "commit"
       ],
       "study_task": "Read the Event API lifecycle; distinguish a deliberate phase marker from sampled execution events.",
-      "study_evidence": "One note on marker duration/fields and why sampled counts may vary."
+      "study_evidence": "One note on marker duration/fields and why sampled counts may vary.",
+      "unit_id": "EAI-UNIT-279",
+      "calendar_study_day": 300,
+      "calendar_sprint": 22
     },
     {
       "day": 280,
-      "date": "2027-08-01",
+      "date": "2027-08-22",
       "title": "Relate runtime observations to workload",
       "task": "Create two fresh JFR recordings from the same workload, inspect both custom phase markers and summaries, and compare checksums rather than exact sample counts.",
       "study_source": "JFR",
@@ -337,11 +364,14 @@
         "jfr summary subcommand"
       ],
       "study_task": "Read the summary command output and separate recorder metadata from event evidence.",
-      "study_evidence": "List which summary fields establish recording existence and which do not establish profile quality."
+      "study_evidence": "List which summary fields establish recording existence and which do not establish profile quality.",
+      "unit_id": "EAI-UNIT-280",
+      "calendar_study_day": 301,
+      "calendar_sprint": 22
     },
     {
       "day": 281,
-      "date": "2027-08-02",
+      "date": "2027-08-23",
       "title": "Re-run acceptance mutations",
       "task": "Run independent oracle plus actual acceptance-path mutations for owner, policy, revision, order, missing/extra/same-count substitution, q-error, buffers and malformed evidence.",
       "study_source": "PG_MULTI",
@@ -362,11 +392,14 @@
         "11.3. Multicolumn Indexes"
       ],
       "study_task": "Read the leading-column discussion and relate exact ordered composite identity checks to the limits of index-order conclusions.",
-      "study_evidence": "One note separating result identity from workload-specific index performance."
+      "study_evidence": "One note separating result identity from workload-specific index performance.",
+      "unit_id": "EAI-UNIT-281",
+      "calendar_study_day": 302,
+      "calendar_sprint": 22
     },
     {
       "day": 282,
-      "date": "2027-08-03",
+      "date": "2027-08-24",
       "title": "Explain a planner counterfactual",
       "task": "Recreate the query with reversed composite-index order and compare against baseline; verify full result identity despite plan differences.",
       "study_source": "PG_MULTI",
@@ -384,11 +417,14 @@
         "11.3. Multicolumn Indexes"
       ],
       "study_task": "Read the leading-column discussion; predict what changes and what must remain invariant when the index order changes.",
-      "study_evidence": "One prediction and a falsifying outcome for this two-equality synthetic query."
+      "study_evidence": "One prediction and a falsifying outcome for this two-equality synthetic query.",
+      "unit_id": "EAI-UNIT-282",
+      "calendar_study_day": 303,
+      "calendar_sprint": 22
     },
     {
       "day": 283,
-      "date": "2027-08-04",
+      "date": "2027-08-25",
       "title": "Reproduce and compare the observation",
       "task": "Capture another baseline in a fresh container and use the comparator to verify exact rows against Day271; note which plan/buffer values vary.",
       "study_source": "PG_ANALYZE",
@@ -406,11 +442,14 @@
         "Description"
       ],
       "study_task": "Review why each clean fixture recomputes planner statistics and what that does not control (host/cache effects).",
-      "study_evidence": "One statement separating ANALYZE reproducibility from timing reproducibility."
+      "study_evidence": "One statement separating ANALYZE reproducibility from timing reproducibility.",
+      "unit_id": "EAI-UNIT-283",
+      "calendar_study_day": 304,
+      "calendar_sprint": 22
     },
     {
       "day": 284,
-      "date": "2027-08-05",
+      "date": "2027-08-26",
       "title": "Review gates and transfer the diagnosis",
       "task": "Capture a third baseline run, summarize actual execution-time center/spread with the provided script, run independent lab acceptance, and record separate dynamic gate outputs/carry-forward.",
       "study_source": "PY_STATS",
@@ -430,10 +469,85 @@
         "Function details"
       ],
       "study_task": "Use Python statistics.median and statistics.pstdev on three same-variant PostgreSQL actual-time observations; explain why n=3 on one host is descriptive only.",
-      "study_evidence": "Median, population standard deviation, min/max, n=3, and a written limitation; no performance pass/fail."
+      "study_evidence": "Median, population standard deviation, min/max, n=3, and a written limitation; no performance pass/fail.",
+      "unit_id": "EAI-UNIT-284",
+      "calendar_study_day": 305,
+      "calendar_sprint": 22
     }
   ],
   "separate_learning_repository": {
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  },
+  "sprints": [
+    {
+      "name": "Sprint 21",
+      "calendar_sprint_number": 21,
+      "calendar_study_days_in_this_batch": [
+        292,
+        293,
+        294
+      ],
+      "calendar_dates": "2027-08-02..2027-08-15",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 3,
+      "sprint_total_after_batch": 14
+    },
+    {
+      "name": "Sprint 22",
+      "calendar_sprint_number": 22,
+      "calendar_study_days_in_this_batch": [
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305
+      ],
+      "calendar_dates": "2027-08-16..2027-08-26",
+      "existing_sprint_id_resolution": "new_sprint_id_unassigned_no_board_write",
+      "batch_story_count": 11,
+      "sprint_total_after_batch": 11
+    }
+  ],
+  "historical_sprints": [
+    {
+      "name": "Sprint 21",
+      "calendar_sprint_number": 21,
+      "calendar_study_days_in_this_batch": [
+        292,
+        293,
+        294
+      ],
+      "calendar_dates": "2027-08-02..2027-08-15",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 3,
+      "sprint_total_after_batch": 14
+    },
+    {
+      "name": "Sprint 22",
+      "calendar_sprint_number": 22,
+      "calendar_study_days_in_this_batch": [
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305
+      ],
+      "calendar_dates": "2027-08-16..2027-08-29",
+      "existing_sprint_id_resolution": "new_sprint_id_unassigned_no_board_write",
+      "batch_story_count": 11,
+      "sprint_total_after_batch": 14
+    }
+  ]
 }

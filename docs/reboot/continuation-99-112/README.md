@@ -1,4 +1,6 @@
-# CoverStory Days 99–112: restart-safe local delivery
+# Engineering units 99–112 · calendar study days 113–126 · 2027-02-15–2027-02-28 — CoverStory Days 99–112: restart-safe local delivery
+
+Calendar mapping: stable engineering unit IDs 99–112 occupy study days 113–126 (2027-02-15 through 2027-02-28).
 
 This isolated continuation teaches event-log-backed durable-work materialization for already committed synthetic ISSUED lifecycle events. Day 35 source issuance remains unchanged. Receipt commit precedes acknowledgment. No broker, scheduler, automatic retry, route, cloud resource, or real data is added.
 

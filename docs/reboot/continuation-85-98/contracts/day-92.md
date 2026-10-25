@@ -1,4 +1,4 @@
-# Day 92 — 2027-01-25: Translate only bounded-read SQL states safely
+# Engineering unit Day 92 · Calendar study day 106 · 2027-02-08: Translate only bounded-read SQL states safely
 
 ## Contract
 

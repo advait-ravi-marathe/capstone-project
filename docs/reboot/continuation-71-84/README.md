@@ -1,4 +1,6 @@
-# CoverStory continuation — Days 71–84
+# Engineering units 71–84 · calendar study days 85–98 · 2027-01-18–2027-01-31 — CoverStory continuation
+
+Calendar mapping: stable engineering unit IDs 71–84 occupy study days 85–98 (2027-01-18 through 2027-01-31).
 
 This is a planning contract and instructor starter batch based on the verified
 Day 70 head `db2caf3adabf11e6d619ab9a7f7e1f5aa40f2a24`. It defines a single

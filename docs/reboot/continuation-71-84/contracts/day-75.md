@@ -1,4 +1,4 @@
-# Day 75 — 2027-01-08: Bound the existing owner-scoped read adapter
+# Engineering unit Day 75 · Calendar study day 89 · 2027-01-22: Bound the existing owner-scoped read adapter
 
 ## Contract
 

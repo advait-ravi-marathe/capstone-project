@@ -3,8 +3,8 @@
   "status": "bounded_closeout_assignments_not_learner_completion_or_board_published",
   "branch": "work/eai-sprint2-onward",
   "base_commit": "7576ae43d7f81c8715b9dc1f30531dc623926ea3",
-  "start_date": "2027-07-19",
-  "end_date": "2027-07-22",
+  "start_date": "2027-08-09",
+  "end_date": "2027-08-12",
   "sources_verified_at": "2026-10-24",
   "scope": "Four-day proposal closeout only: inspect actual earlier gates and outputs, assemble a local reproducible portfolio receipt, review current-version certification evidence, and write honest recovery/carryover. No feature expansion, AWS deployment, credentials, paid calls, exam booking, learner completion or professional-ownership claims.",
   "gate": "The current Day 210/238 and Day 252 evidence gate remains dynamic; run it and preserve its actual result. Current absent records are not a permanent failure. Eligibility is only permission to attempt; it is not completion.",
@@ -12,7 +12,7 @@
   "days": [
     {
       "day": 267,
-      "date": "2027-07-19",
+      "date": "2027-08-09",
       "title": "Reconcile actual release gates and local evaluation",
       "seam": "actual_evidence_triage",
       "project": 40,
@@ -141,11 +141,14 @@
         "task": "45 minutes: closed-book retrieval on SAA-C03 secure architecture constraints. Check the answer against the currently linked official guide and note any gap; no paid practice or exam claim.",
         "cert_source": "SAA_GUIDE",
         "cert_section": "Content Domain 1: Design Secure Architectures"
-      }
+      },
+      "unit_id": "EAI-UNIT-267",
+      "calendar_study_day": 288,
+      "calendar_sprint": 21
     },
     {
       "day": 268,
-      "date": "2027-07-20",
+      "date": "2027-08-10",
       "title": "Create a reproducible local portfolio receipt",
       "seam": "portfolio_artifact_receipt",
       "project": 40,
@@ -274,11 +277,14 @@
         "task": "45 minutes: closed-book retrieval on the currently published Developer Associate deployment-related domain. Recheck guide/version first; compare only with local packaging concepts, not AWS deployment.",
         "cert_source": "DEV_GUIDE",
         "cert_section": "Content Domain 3: Deployment"
-      }
+      },
+      "unit_id": "EAI-UNIT-268",
+      "calendar_study_day": 289,
+      "calendar_sprint": 21
     },
     {
       "day": 269,
-      "date": "2027-07-21",
+      "date": "2027-08-11",
       "title": "Review certification evidence against current guides",
       "seam": "certification_readiness_review",
       "project": 35,
@@ -402,11 +408,14 @@
         "task": "45 minutes: closed-book retrieval on resilient architecture choices; check one answer against the current official guide and record a knowledge gap.",
         "cert_source": "SAA_GUIDE",
         "cert_section": "Content Domain 2: Design Resilient Architectures"
-      }
+      },
+      "unit_id": "EAI-UNIT-269",
+      "calendar_study_day": 290,
+      "calendar_sprint": 21
     },
     {
       "day": 270,
-      "date": "2027-07-22",
+      "date": "2027-08-12",
       "title": "Publish the honest closeout and carryover queue",
       "seam": "final_evidence_handoff",
       "project": 35,
@@ -535,7 +544,10 @@
         "task": "45 minutes: retrieve and check one current Developer Associate troubleshooting concept, then carry any gap into the next queue. No paid material, booking or pass claim.",
         "cert_source": "DEV_GUIDE",
         "cert_section": "Content Domain 4: Troubleshooting and Optimization"
-      }
+      },
+      "unit_id": "EAI-UNIT-270",
+      "calendar_study_day": 291,
+      "calendar_sprint": 21
     }
   ],
   "sources": [
@@ -621,5 +633,37 @@
   },
   "separate_learning_repository": {
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  },
+  "sprints": [
+    {
+      "name": "Sprint 21",
+      "calendar_sprint_number": 21,
+      "calendar_study_days_in_this_batch": [
+        288,
+        289,
+        290,
+        291
+      ],
+      "calendar_dates": "2027-08-02..2027-08-15",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 4,
+      "sprint_total_after_batch": 14
+    }
+  ],
+  "historical_sprints": [
+    {
+      "name": "Sprint 21",
+      "calendar_sprint_number": 21,
+      "calendar_study_days_in_this_batch": [
+        288,
+        289,
+        290,
+        291
+      ],
+      "calendar_dates": "2027-08-02..2027-08-15",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 4,
+      "sprint_total_after_batch": 14
+    }
+  ]
 }

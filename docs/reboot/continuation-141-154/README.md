@@ -1,8 +1,9 @@
-# Days 141–154 — two-artifact release evidence on unchanged schema
+# Engineering units 141–154 · calendar study days 155–168 · 2027-03-29–2027-04-11 — two-artifact release evidence on unchanged schema
+
+Calendar mapping: stable engineering unit IDs 141–154 occupy study days 155–168 (2027-03-29 through 2027-04-11).
 
 This scaffold plans a local, quiesced A→B→A compatibility rehearsal using distinct immutable JARs and the existing V001–V005 database. It adds only a read-only, versioned report path using existing recovery inspection/classification. It does not establish cloud/deployment readiness or learner completion.
 
-Dates: 2027-03-15–2027-03-28 (Sprint 11); recovery days 147 and 154. Daily engineering budget: 120 minutes (25 study, 85 practice/testing, 10 evidence).
 
 Course reference: **Master Spring Boot 3 & Spring Framework 6 with Java**, course 4993276, in28Minutes Official. [Course page](https://www.udemy.com/course/spring-boot-and-spring-framework-tutorial-for-beginners?utm_source=chatgpt&utm_medium=llm-integration&utm_audience=all&utm_campaign=chatgpt_integration_phase1). Catalog metadata was verified 2026-10-20; access and playback are unconfirmed, video content unaudited, and lesson deep links were not returned. Exact lesson IDs and durations are in `manifest.json`.
 

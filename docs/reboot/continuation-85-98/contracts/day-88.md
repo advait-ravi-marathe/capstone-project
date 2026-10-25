@@ -1,4 +1,4 @@
-# Day 88 — 2027-01-21: Apply transaction-local budgets with parameterized set_config
+# Engineering unit Day 88 · Calendar study day 102 · 2027-02-04: Apply transaction-local budgets with parameterized set_config
 
 ## Contract
 

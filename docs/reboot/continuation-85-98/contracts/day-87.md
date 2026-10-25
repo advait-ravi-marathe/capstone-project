@@ -1,4 +1,4 @@
-# Day 87 — 2027-01-20: Own one top-level read-only transaction and bridge the adapter
+# Engineering unit Day 87 · Calendar study day 101 · 2027-02-03: Own one top-level read-only transaction and bridge the adapter
 
 ## Contract
 

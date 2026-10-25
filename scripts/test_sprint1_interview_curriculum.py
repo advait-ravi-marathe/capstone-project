@@ -124,9 +124,11 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
         self.assertEqual(extension_days, {int(item["day"]) for item in first_new_sprint["days"]})
         days.update({int(item["day"]): item["date"] for item in first_new_sprint["days"]})
         self.assertEqual(set(range(1, 285)), set(days))
-        start = date(2026, 10, 26)
-        for day, planned_date in days.items():
-            self.assertEqual(start + timedelta(days=day - 1), date.fromisoformat(planned_date), day)
+        crosswalk = json.loads((ROOT / "docs/reboot/calendar/study-calendar.json").read_text())
+        by_unit = {row["legacy_engineering_unit_number"]: row for row in crosswalk["calendar"]
+                   if row["legacy_engineering_unit_number"] is not None}
+        for unit, planned_date in days.items():
+            self.assertEqual(by_unit[unit]["date"], planned_date, unit)
 
     def test_java_calendar_assertions_and_generator_follow_reshifted_schedule(self):
         java_expectations = {
@@ -134,10 +136,10 @@ class Sprint1InterviewCurriculumTest(unittest.TestCase):
             "src/test/java/assignments/reboot/ContinuationManifestInfrastructureTest.java": ["2026-11-25"],
             "src/test/java/assignments/local/LocalApplicationManifestInfrastructureTest.java": ["2026-12-21"],
             "src/test/java/assignments/renewal/RenewalPreviewManifestInfrastructureTest.java": ["2026-12-09"],
-            "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java": ["2027-01-04"],
-            "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java": ["2027-01-18"],
-            "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java": ["2027-02-01"],
-            "src/test/java/assignments/ops/Day141To154InfrastructureTest.java": ["LocalDate.of(2027,3,15)"],
+            "src/test/java/assignments/renewal/Day71To84InfrastructureTest.java": ["2027-01-18"],
+            "src/test/java/assignments/renewal/Day85To98InfrastructureTest.java": ["2027-02-01"],
+            "src/test/java/assignments/delivery/Day99To112InfrastructureTest.java": ["2027-02-15"],
+            "src/test/java/assignments/ops/Day141To154InfrastructureTest.java": ["LocalDate.of(2027,3,29)"],
         }
         for relative, dates in java_expectations.items():
             source = (ROOT / relative).read_text()

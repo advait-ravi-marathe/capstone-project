@@ -1,4 +1,4 @@
-# Day 80 — 2027-01-13: Record fixed-cardinality preview outcomes
+# Engineering unit Day 80 · Calendar study day 94 · 2027-01-27: Record fixed-cardinality preview outcomes
 
 ## Contract
 

@@ -1421,11 +1421,6 @@
   ],
   "next14_calendar_rule": "Days 31–42 remain in native Sprint 3, Days 43–44 in native Sprint 4; no sprint/date/membership changes.",
   "activation_rule": "Preserve the existing actual CoverStory gates and daily dependencies. Unmet gate means named carry-forward remediation within budget, not later-task completion or date migration. StreamForge is a conditional prepared bank; do not require all future CoverStory AI/reuse milestones as invented prerequisites. CoverStory stays primary.",
-  "new_batch_status": {
-    "days197_to210": "paused_uncommitted_not_authorized_for_activation",
-    "new_issues": 0,
-    "new_sprints": 0
-  },
   "repository_release": {
     "new_branch_base": "3a93ed9ae93dd68a9eda0418518713ac29a38eb6",
     "use_new_isolated_worktree": true,
@@ -1543,5 +1538,84 @@
     "No certification purchase",
     "No professional scope inferred from portfolio",
     "No repository/board writes by this planner"
-  ]
+  ],
+  "calendar_amendment": {
+    "status": "planned_only_not_learner_completion",
+    "start_date": "2026-10-26",
+    "learning_horizon_day": 774,
+    "learning_horizon_date": "2028-12-07",
+    "professional_ownership_review_date": "2029-10-26",
+    "crosswalk": "docs/reboot/calendar/study-calendar.json",
+    "detailed_story_migration": "docs/reboot/calendar/story-export-1-305.json",
+    "stable_engineering_unit_ids_preserved": true,
+    "dsa_repository_unchanged": "https://github.com/advait-ravi-marathe/dsa-prep",
+    "board_writes_by_repository_exporter": false,
+    "role_review_milestones": [
+      {
+        "calendar_study_day": 175,
+        "date": "2027-04-18",
+        "target": "Backend / Full-Stack SDE II",
+        "gate": "Learner-owned backend/API/data implementation, tests, debugging and safe local operation; compare with current role evidence."
+      },
+      {
+        "calendar_study_day": 459,
+        "date": "2028-01-27",
+        "target": "Senior Backend",
+        "gate": "Unfamiliar distributed diagnosis, repeated integrated recovery evidence and truthful handoff."
+      },
+      {
+        "calendar_study_day": 550,
+        "date": "2028-04-27",
+        "target": "Applied AI",
+        "gate": "Python/ML grounding, independent evaluation, uncertainty, security and measured limits."
+      },
+      {
+        "calendar_study_day": 648,
+        "date": "2028-08-03",
+        "target": "Senior AI",
+        "gate": "AI evidence alongside security, deployment readiness, observability and sustained operations; local rehearsal alone is not production ownership."
+      },
+      {
+        "calendar_study_day": 718,
+        "date": "2028-10-12",
+        "target": "Senior FDE",
+        "gate": "Externally validated discovery, enterprise integration, stakeholder delivery and actual adoption/outcome evidence."
+      },
+      {
+        "calendar_study_day": 774,
+        "date": "2028-12-07",
+        "target": "Staff/FDE/Architect portfolio checkpoint",
+        "gate": "Portfolio review only; employer-specific titles, Architect is not universally above Staff, and calendar completion grants no role or readiness."
+      },
+      {
+        "calendar_study_day": null,
+        "date": "2029-10-26",
+        "target": "Professional Staff-responsibility review",
+        "gate": "Externally verified sustained ownership, technical influence, adoption, cross-team impact and review."
+      }
+    ],
+    "application_may_begin_earlier": true,
+    "calendar_completion_grants_readiness": false
+  },
+  "published_coverage": {
+    "days_1_270": "published_assignment_coverage",
+    "days_197_270": "published_planning_only_not_learner_completion",
+    "days_271_774": "outcome_roadmap_with_only_existing_271_284_detailed",
+    "first_30_days_and_history_preserved": true
+  },
+  "historical_new_batch_status": {
+    "days197_to210": "paused_uncommitted_not_authorized_for_activation",
+    "new_issues": 0,
+    "new_sprints": 0
+  },
+  "new_batch_status": {
+    "days197_to270": "published_planning_assignments_not_learner_completion",
+    "days271_to774": "outcome_roadmap_published; only existing units271_to284 are daily detailed",
+    "added_gap_units": 21,
+    "new_eai_issue_ids_assigned": false,
+    "board_writes_by_repo_exporter": false,
+    "learner_completion_or_eligibility_granted": false,
+    "authoritative_calendar": "docs/reboot/calendar/study-calendar.json",
+    "authoritative_story_export": "docs/reboot/calendar/story-export-1-305.json"
+  }
 }

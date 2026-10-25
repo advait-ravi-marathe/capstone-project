@@ -1,4 +1,4 @@
-# Day 99 — 2027-02-01: Define the durable source and minimal envelope
+# Engineering unit Day 99 · Calendar study day 113 · 2027-02-15: Define the durable source and minimal envelope
 
 ## Scope
 

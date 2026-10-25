@@ -2,8 +2,8 @@
   "title": "CoverStory Days 141–154: two-artifact release evidence on unchanged schema",
   "base_commit": "105bbc9dd448460f9bd5f7e6b9c67eafa99a16c3",
   "sprint": "Sprint 11",
-  "start_date": "2027-03-15",
-  "end_date": "2027-03-28",
+  "start_date": "2027-03-29",
+  "end_date": "2027-04-11",
   "daily_budget_minutes": null,
   "engineering_allocation_minutes": {
     "implementation_and_testing": 85,
@@ -60,7 +60,7 @@
   "days": [
     {
       "day": 141,
-      "date": "2027-03-15",
+      "date": "2027-03-29",
       "title": "Bind a real baseline and candidate artifact pair",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-141.md",
       "status": "not_attempted",
@@ -115,7 +115,7 @@
         ],
         "interview_assignment": {
           "day": 141,
-          "date": "2027-03-15",
+          "date": "2027-03-29",
           "title": "Separate system-design interview question",
           "proposal_before_hints_reference_or_ai": true,
           "proposal_scope": "system_design_interview_question_only",
@@ -179,7 +179,10 @@
             "Complete source/build provenance, capability execution and fixture binding under this ID."
           ],
           "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-141",
-          "selector_command": "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest#day141RejectsSameBinaryAndLabelOnlyDifferences test"
+          "selector_command": "./mvnw -Plearner-tests -Dtest=ReleasePairAcceptanceTest#day141RejectsSameBinaryAndLabelOnlyDifferences test",
+          "unit_id": "EAI-UNIT-141",
+          "calendar_study_day": 155,
+          "calendar_sprint": 12
         },
         "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-141",
         "test_commands": [
@@ -189,11 +192,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-141.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-141",
+      "calendar_study_day": 155,
+      "calendar_sprint": 12
     },
     {
       "day": 142,
-      "date": "2027-03-16",
+      "date": "2027-03-30",
       "title": "Project existing recovery evidence into a report",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-142.md",
       "status": "not_attempted",
@@ -257,11 +263,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-142.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-142",
+      "calendar_study_day": 156,
+      "calendar_sprint": 12
     },
     {
       "day": 143,
-      "date": "2027-03-17",
+      "date": "2027-03-31",
       "title": "Encode one framed JSON report",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-143.md",
       "status": "not_attempted",
@@ -325,11 +334,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-143.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-143",
+      "calendar_study_day": 157,
+      "calendar_sprint": 12
     },
     {
       "day": 144,
-      "date": "2027-03-18",
+      "date": "2027-04-01",
       "title": "Decode bounded structurally valid evidence",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-144.md",
       "status": "not_attempted",
@@ -387,7 +399,7 @@
         ],
         "interview_assignment": {
           "day": 144,
-          "date": "2027-03-18",
+          "date": "2027-04-01",
           "title": "Separate system-design interview question",
           "proposal_before_hints_reference_or_ai": true,
           "proposal_scope": "system_design_interview_question_only",
@@ -451,7 +463,10 @@
             "Carry the full bounded decoder matrix, including truncation, size/depth, identity and classifier agreement, under this ID."
           ],
           "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-144",
-          "selector_command": "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144AcceptsAndRejectsDecoderBoundaryFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test"
+          "selector_command": "./mvnw -Plearner-tests -Dtest=InspectionReportContractAcceptanceTest#day144AcceptsAndRejectsDecoderBoundaryFrames+day144AcceptsReorderedFieldsAndIgnoredAdditiveOptionalField+day144RejectsFractionalVersionMismatchedKeyAndCannedRecommendation test",
+          "unit_id": "EAI-UNIT-144",
+          "calendar_study_day": 158,
+          "calendar_sprint": 12
         },
         "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-144",
         "test_commands": [
@@ -461,11 +476,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-144.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-144",
+      "calendar_study_day": 158,
+      "calendar_sprint": 12
     },
     {
       "day": 145,
-      "date": "2027-03-19",
+      "date": "2027-04-02",
       "title": "Reject mixed or malformed inspection requests early",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-145.md",
       "status": "not_attempted",
@@ -518,11 +536,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-145.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-145",
+      "calendar_study_day": 159,
+      "calendar_sprint": 12
     },
     {
       "day": 146,
-      "date": "2027-03-20",
+      "date": "2027-04-03",
       "title": "Run one real read-only inspection",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-146.md",
       "status": "not_attempted",
@@ -580,11 +601,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-146.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-146",
+      "calendar_study_day": 160,
+      "calendar_sprint": 12
     },
     {
       "day": 147,
-      "date": "2027-03-21",
+      "date": "2027-04-04",
       "title": "Recover the report and command boundary",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-147.md",
       "status": "not_attempted",
@@ -632,11 +656,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-147.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-147",
+      "calendar_study_day": 161,
+      "calendar_sprint": 12
     },
     {
       "day": 148,
-      "date": "2027-03-22",
+      "date": "2027-04-05",
       "title": "Run distinct packaged artifacts",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-148.md",
       "status": "not_attempted",
@@ -692,7 +719,7 @@
         ],
         "interview_assignment": {
           "day": 148,
-          "date": "2027-03-22",
+          "date": "2027-04-05",
           "title": "Separate system-design interview question",
           "proposal_before_hints_reference_or_ai": true,
           "proposal_scope": "system_design_interview_question_only",
@@ -756,7 +783,10 @@
             "Complete artifact provenance, report semantics, and the A/B same-fixture matrix under this ID. If a genuine prior A artifact is unavailable, leave this item blocked; never relabel B as A."
           ],
           "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-148",
-          "selector_command": "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test"
+          "selector_command": "./mvnw -Plocal-app,learner-tests -Dtest=TwoArtifactCompatibilityAcceptanceTest#day148RunsDistinctArtifactsAndReportCapabilityOnly -Dcoverstory.release.baseline.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/baseline.jar\" -Dcoverstory.release.candidate.jar=\"$COVERSTORY_RELEASE_PAIR_DIR/candidate.jar\" -Dcoverstory.release.pair.manifest=\"$COVERSTORY_RELEASE_PAIR_DIR/artifact-pair-manifest.json\" test",
+          "unit_id": "EAI-UNIT-148",
+          "calendar_study_day": 162,
+          "calendar_sprint": 12
         },
         "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-148",
         "test_commands": [
@@ -769,11 +799,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-148.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-148",
+      "calendar_study_day": 162,
+      "calendar_sprint": 12
     },
     {
       "day": 149,
-      "date": "2027-03-23",
+      "date": "2027-04-06",
       "title": "Prove retained state across A and B",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-149.md",
       "status": "not_attempted",
@@ -831,11 +864,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-149.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-149",
+      "calendar_study_day": 163,
+      "calendar_sprint": 12
     },
     {
       "day": 150,
-      "date": "2027-03-24",
+      "date": "2027-04-07",
       "title": "Gate fallback on measured pair evidence",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-150.md",
       "status": "not_attempted",
@@ -889,11 +925,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-150.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-150",
+      "calendar_study_day": 164,
+      "calendar_sprint": 12
     },
     {
       "day": 151,
-      "date": "2027-03-25",
+      "date": "2027-04-08",
       "title": "Reject deceptive candidate evidence",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-151.md",
       "status": "not_attempted",
@@ -947,7 +986,7 @@
         ],
         "interview_assignment": {
           "day": 151,
-          "date": "2027-03-25",
+          "date": "2027-04-08",
           "title": "Separate system-design interview question",
           "proposal_before_hints_reference_or_ai": true,
           "proposal_scope": "system_design_interview_question_only",
@@ -1013,7 +1052,10 @@
             "Carry process, identity, duplicate-frame, database-state and same-binary negative controls under this ID."
           ],
           "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-151",
-          "selector_command": "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test"
+          "selector_command": "./mvnw -Plocal-app,learner-tests -Dtest=BinaryFallbackAcceptanceTest#day151BlocksMissingOrMisleadingCandidateEvidence,TwoArtifactCompatibilityAcceptanceTest#day151RejectsCannedRecommendationAgainstObservedEvidence -Dcoverstory.release.candidate.jar=target/capstone-starter-1.0-SNAPSHOT.jar test",
+          "unit_id": "EAI-UNIT-151",
+          "calendar_study_day": 165,
+          "calendar_sprint": 12
         },
         "assistant_architecture_note": "docs/reboot/continuation-141-154/assistant-architecture-notes.md#day-151",
         "test_commands": [
@@ -1026,11 +1068,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-151.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-151",
+      "calendar_study_day": 165,
+      "calendar_sprint": 12
     },
     {
       "day": 152,
-      "date": "2027-03-26",
+      "date": "2027-04-09",
       "title": "Bound child-process output and cleanup",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-152.md",
       "status": "not_attempted",
@@ -1087,11 +1132,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-152.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-152",
+      "calendar_study_day": 166,
+      "calendar_sprint": 12
     },
     {
       "day": 153,
-      "date": "2027-03-27",
+      "date": "2027-04-10",
       "title": "Complete the same-database A to B to A rehearsal",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-153.md",
       "status": "not_attempted",
@@ -1149,11 +1197,14 @@
         "evidence_reference": "evidence/continuation-141-154/day-153.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-153",
+      "calendar_study_day": 167,
+      "calendar_sprint": 12
     },
     {
       "day": 154,
-      "date": "2027-03-28",
+      "date": "2027-04-11",
       "title": "Recover and defend the limited compatibility claim",
       "contract_file": "docs/reboot/continuation-141-154/contracts/day-154.md",
       "status": "not_attempted",
@@ -1201,7 +1252,10 @@
         "evidence_reference": "evidence/continuation-141-154/day-154.json",
         "instructor_harness_test_path": "src/test/java/assignments/ops/Day141To154InfrastructureTest.java"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-154",
+      "calendar_study_day": 168,
+      "calendar_sprint": 12
     }
   ],
   "separate_learning_repository": {
@@ -1226,5 +1280,57 @@
     "practice_minutes_total": 85,
     "design_practice_location": "separate system-design interview question bank only",
     "capstone_architecture": "assistant supplied; learner implements and tests"
-  }
+  },
+  "sprints": [
+    {
+      "name": "Sprint 12",
+      "calendar_sprint_number": 12,
+      "calendar_study_days_in_this_batch": [
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168
+      ],
+      "calendar_dates": "2027-03-29..2027-04-11",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14
+    }
+  ],
+  "historical_sprints": [
+    {
+      "name": "Sprint 12",
+      "calendar_sprint_number": 12,
+      "calendar_study_days_in_this_batch": [
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168
+      ],
+      "calendar_dates": "2027-03-29..2027-04-11",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14
+    }
+  ]
 }

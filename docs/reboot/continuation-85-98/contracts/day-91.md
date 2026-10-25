@@ -1,4 +1,4 @@
-# Day 91 — 2027-01-24: Recover and explain cleanup before admission reuse
+# Engineering unit Day 91 · Calendar study day 105 · 2027-02-07: Recover and explain cleanup before admission reuse
 
 ## Contract
 

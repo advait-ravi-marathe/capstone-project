@@ -1,4 +1,4 @@
-# Day 85 — 2027-01-18: Trace PostgreSQL timeout boundaries and prerequisite evidence
+# Engineering unit Day 85 · Calendar study day 99 · 2027-02-01: Trace PostgreSQL timeout boundaries and prerequisite evidence
 
 ## Contract
 

@@ -1,4 +1,6 @@
-# Days 239–252: local policy evaluation and fake-adapter controls
+# Engineering units 239–252 · calendar study days 260–273 · 2027-07-12–2027-07-25 — local policy evaluation and fake-adapter controls
+
+Calendar mapping: stable engineering unit IDs 239–252 occupy study days 260–273 (2027-07-12 through 2027-07-25).
 
 Status: bounded starter curriculum for independent review. Dates are 21 June–4 July 2027. This increment extends the existing synthetic HomeSecure policy-explanation workflow in one context only: fictional customer `cust-synth-01`, owner `synthetic-owner-a`, policy version `v4`, and invented renewal date 1 July 2027. The fixture is local and does not describe a real customer or real outcome.
 

@@ -1,4 +1,6 @@
-# Days 225–238: synthetic policy draft review
+# Engineering units 225–238 · calendar study days 246–259 · 2027-06-28–2027-07-11 — synthetic policy draft review
+
+Calendar mapping: stable engineering unit IDs 225–238 occupy study days 246–259 (2027-06-28 through 2027-07-11).
 
 Status: reviewable starter curriculum; no learner completion or board publication is claimed. Dates are 7–20 June 2027. This bounded increment is based on the reviewed Days 197–270 proposal and the existing synthetic workflow in `ai/grounded/continuation_211.py`.
 

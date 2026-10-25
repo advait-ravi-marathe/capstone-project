@@ -56,12 +56,20 @@ integration remain evidence-based; forecasts do not mark work complete.
 Reviewed continuation windows are indexed separately from this first-30-day
 manifest. The [Days 197–270 assignment inventory](continuation-197-270-inventory.json)
 links those bounded windows, including the four-day closeout. The accepted
-[Days 271–732 outcome roadmap](continuation-271-732/README.md) extends the
-calendar through 26 October 2028 while preserving Days 1–270 work, evidence
-and status and shifting their planned dates by two days. Its [first 14-day
-sprint](continuation-271-284/README.md) is the only newly detailed
+[Days 271–774 outcome roadmap](continuation-271-732/README.md) extends the
+calendar through 7 December 2028 while preserving Days 1–270 work, evidence
+and status and shifting their planned dates by two days. Its [first 14-unit
+detailed window](continuation-271-284/README.md) is the only newly detailed
 daily window; later phases are evidence-gated outcomes rather than pre-created
 tickets. These are assignments and plans, not learner completion.
+
+The [study-calendar crosswalk](calendar/study-calendar.json) distinguishes
+stable engineering-unit IDs from calendar study days; the [305-story
+migration export](calendar/story-export-1-305.json) records each detailed
+Story's previous/current calendar day, chronological sprint reassignment, and
+external DSA association without copying DSA content. The [dated milestone
+dashboard source](fde-alignment.json) contains evidence-gated review dates;
+they do not grant readiness or learner completion.
 
 ## Chronological index
 

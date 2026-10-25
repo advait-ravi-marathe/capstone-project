@@ -1,4 +1,4 @@
-# Day 95 — 2027-01-28: Separate Future waiting from JDBC Statement cancellation
+# Engineering unit Day 95 · Calendar study day 109 · 2027-02-11: Separate Future waiting from JDBC Statement cancellation
 
 ## Contract
 

@@ -1,4 +1,4 @@
-# Day 84 — 2027-01-17: Integrate recovery evidence and independent assessment
+# Engineering unit Day 84 · Calendar study day 98 · 2027-01-31: Integrate recovery evidence and independent assessment
 
 ## Contract
 

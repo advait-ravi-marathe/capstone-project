@@ -2,8 +2,8 @@
   "title": "CoverStory Days 99–112 restart-safe local delivery",
   "status": "scaffold_plan_not_learner_completion",
   "base_commit": "eb380f352f509740ecb5b9f4cfbd96d6332136b8",
-  "start_date": "2027-02-01",
-  "end_date": "2027-02-14",
+  "start_date": "2027-02-15",
+  "end_date": "2027-02-28",
   "sprint": "Sprint 8",
   "daily_budget_minutes": null,
   "engineering_budget_minutes": 120,
@@ -34,7 +34,7 @@
   "days": [
     {
       "day": 99,
-      "date": "2027-02-01",
+      "date": "2027-02-15",
       "title": "Define the durable source and minimal envelope",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-99.md",
       "contract_status": "defined",
@@ -108,11 +108,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-99"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-099",
+      "calendar_study_day": 113,
+      "calendar_sprint": 9
     },
     {
       "day": 100,
-      "date": "2027-02-02",
+      "date": "2027-02-16",
       "title": "Constrain stable work and receipt identities",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-100.md",
       "contract_status": "defined",
@@ -169,11 +172,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-100"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-100",
+      "calendar_study_day": 114,
+      "calendar_sprint": 9
     },
     {
       "day": 101,
-      "date": "2027-02-03",
+      "date": "2027-02-17",
       "title": "Capture committed missing events in bounded batches",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-101.md",
       "contract_status": "defined",
@@ -232,7 +238,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-101",
         "interview_assignment": {
           "day": 101,
-          "date": "2027-02-03",
+          "date": "2027-02-17",
           "title": "Capture committed missing events in bounded batches",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -292,14 +298,20 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-101",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-101",
+          "calendar_study_day": 115,
+          "calendar_sprint": 9
         }
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-101",
+      "calendar_study_day": 115,
+      "calendar_sprint": 9
     },
     {
       "day": 102,
-      "date": "2027-02-04",
+      "date": "2027-02-18",
       "title": "Read and map captured pending envelopes",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-102.md",
       "contract_status": "defined",
@@ -376,11 +388,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-102"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-102",
+      "calendar_study_day": 116,
+      "calendar_sprint": 9
     },
     {
       "day": 103,
-      "date": "2027-02-05",
+      "date": "2027-02-19",
       "title": "Commit one duplicate-safe synthetic receipt",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-103.md",
       "contract_status": "defined",
@@ -454,11 +469,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-103"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-103",
+      "calendar_study_day": 117,
+      "calendar_sprint": 9
     },
     {
       "day": 104,
-      "date": "2027-02-06",
+      "date": "2027-02-20",
       "title": "Acknowledge only completed delivery",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-104.md",
       "contract_status": "defined",
@@ -516,7 +534,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-104",
         "interview_assignment": {
           "day": 104,
-          "date": "2027-02-06",
+          "date": "2027-02-20",
           "title": "Acknowledge only completed delivery",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -575,14 +593,20 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-104",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-104",
+          "calendar_study_day": 118,
+          "calendar_sprint": 9
         }
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-104",
+      "calendar_study_day": 118,
+      "calendar_sprint": 9
     },
     {
       "day": 105,
-      "date": "2027-02-07",
+      "date": "2027-02-21",
       "title": "Recover and explain the crash states",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-105.md",
       "contract_status": "defined",
@@ -640,11 +664,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-105"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-105",
+      "calendar_study_day": 119,
+      "calendar_sprint": 9
     },
     {
       "day": 106,
-      "date": "2027-02-08",
+      "date": "2027-02-22",
       "title": "Orchestrate one bounded sequential batch",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-106.md",
       "contract_status": "defined",
@@ -721,11 +748,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-106"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-106",
+      "calendar_study_day": 120,
+      "calendar_sprint": 9
     },
     {
       "day": 107,
-      "date": "2027-02-09",
+      "date": "2027-02-23",
       "title": "Prove late commits cannot fall behind a cursor",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-107.md",
       "contract_status": "defined",
@@ -782,11 +812,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-107"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-107",
+      "calendar_study_day": 121,
+      "calendar_sprint": 9
     },
     {
       "day": 108,
-      "date": "2027-02-10",
+      "date": "2027-02-24",
       "title": "Prove failed receipt transactions leave recoverable work",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-108.md",
       "contract_status": "defined",
@@ -844,7 +877,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-108",
         "interview_assignment": {
           "day": 108,
-          "date": "2027-02-10",
+          "date": "2027-02-24",
           "title": "Prove failed receipt transactions leave recoverable work",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -903,14 +936,20 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-108",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-108",
+          "calendar_study_day": 122,
+          "calendar_sprint": 9
         }
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-108",
+      "calendar_study_day": 122,
+      "calendar_sprint": 9
     },
     {
       "day": 109,
-      "date": "2027-02-11",
+      "date": "2027-02-25",
       "title": "Prove fresh-JVM replay after receipt commit",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-109.md",
       "contract_status": "defined",
@@ -967,11 +1006,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-109"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-109",
+      "calendar_study_day": 123,
+      "calendar_sprint": 9
     },
     {
       "day": 110,
-      "date": "2027-02-12",
+      "date": "2027-02-26",
       "title": "Expose an explicit one-shot local command",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-110.md",
       "contract_status": "defined",
@@ -1048,11 +1090,14 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-110"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-110",
+      "calendar_study_day": 124,
+      "calendar_sprint": 9
     },
     {
       "day": 111,
-      "date": "2027-02-13",
+      "date": "2027-02-27",
       "title": "Integrate protected issuance, manual delivery, and read-only preview",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-111.md",
       "contract_status": "defined",
@@ -1117,7 +1162,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-111",
         "interview_assignment": {
           "day": 111,
-          "date": "2027-02-13",
+          "date": "2027-02-27",
           "title": "Integrate protected issuance, manual delivery, and read-only preview",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -1179,14 +1224,20 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-111",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-111",
+          "calendar_study_day": 125,
+          "calendar_sprint": 9
         }
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-111",
+      "calendar_study_day": 125,
+      "calendar_sprint": 9
     },
     {
       "day": 112,
-      "date": "2027-02-14",
+      "date": "2027-02-28",
       "title": "Recover, rerun, and defend the guarantee",
       "contract_file": "docs/reboot/continuation-99-112/contracts/day-112.md",
       "contract_status": "defined",
@@ -1249,10 +1300,65 @@
         "scaffold_status": "instructor_scaffold_complete",
         "assistant_architecture_note": "docs/reboot/continuation-99-112/assistant-architecture-notes.md#day-112"
       },
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-112",
+      "calendar_study_day": 126,
+      "calendar_sprint": 9
     }
   ],
   "separate_learning_repository": {
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  },
+  "sprints": [
+    {
+      "name": "Sprint 9",
+      "calendar_sprint_number": 9,
+      "calendar_study_days_in_this_batch": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126
+      ],
+      "calendar_dates": "2027-02-15..2027-02-28",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14
+    }
+  ],
+  "historical_sprints": [
+    {
+      "name": "Sprint 9",
+      "calendar_sprint_number": 9,
+      "calendar_study_days_in_this_batch": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126
+      ],
+      "calendar_dates": "2027-02-15..2027-02-28",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 14,
+      "sprint_total_after_batch": 14
+    }
+  ]
 }

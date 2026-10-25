@@ -1,4 +1,4 @@
-# Day 81 — 2027-01-14: Show an accessible manual retry state
+# Engineering unit Day 81 · Calendar study day 95 · 2027-01-28: Show an accessible manual retry state
 
 ## Contract
 

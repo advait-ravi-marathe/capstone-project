@@ -1,4 +1,4 @@
-# Day 86 — 2027-01-19: Validate finite ordered PostgreSQL read budgets
+# Engineering unit Day 86 · Calendar study day 100 · 2027-02-02: Validate finite ordered PostgreSQL read budgets
 
 ## Contract
 

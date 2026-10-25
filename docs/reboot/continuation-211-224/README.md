@@ -1,4 +1,6 @@
-# Days 211–224: bounded synthetic policy explanations
+# Engineering units 211–224 · calendar study days 232–245 · 2027-06-14–2027-06-27 — bounded synthetic policy explanations
+
+Calendar mapping: stable engineering unit IDs 211–224 occupy study days 232–245 (2027-06-14 through 2027-06-27).
 
 Status: reviewable starter curriculum; no learner completion or board publication is claimed. Dates are 24 May–6 June 2027. Main and prior Days 1–210 remain preserved.
 

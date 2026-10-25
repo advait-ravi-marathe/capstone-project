@@ -1,4 +1,4 @@
-# Day 94 — 2027-01-27: Prove statement_timeout through the same transaction boundary
+# Engineering unit Day 94 · Calendar study day 108 · 2027-02-10: Prove statement_timeout through the same transaction boundary
 
 ## Contract
 

@@ -1,4 +1,6 @@
-# CoverStory Days 85–98: transaction-local PostgreSQL read budgets
+# Engineering units 85–98 · calendar study days 99–112 · 2027-02-01–2027-02-14 — CoverStory Days 85–98: transaction-local PostgreSQL read budgets
+
+Calendar mapping: stable engineering unit IDs 85–98 occupy study days 99–112 (2027-02-01 through 2027-02-14).
 
 This continuation adds a bounded learning slice around the existing
 synchronous owner-scoped renewal read. It preserves the four-connection Hikari

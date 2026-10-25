@@ -3,8 +3,26 @@
   "story_count": 14,
   "sprint_boundaries": [
     {
-      "name": "Sprint 7",
-      "dates": "2027-01-18..2027-01-31",
+      "name": "Sprint 8",
+      "calendar_sprint_number": 8,
+      "calendar_study_days_in_this_batch": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112
+      ],
+      "calendar_dates": "2027-02-01..2027-02-14",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
       "batch_story_count": 14,
       "sprint_story_count_after_batch": 14
     }
@@ -12,9 +30,9 @@
   "cards": [
     {
       "day_number": 85,
-      "date": "2027-01-18",
-      "title": "Trace PostgreSQL timeout boundaries and prerequisite evidence",
-      "sprint": "Sprint 7",
+      "date": "2027-02-01",
+      "title": "Calendar study day 99 · engineering unit 85 · Trace PostgreSQL timeout boundaries and prerequisite evidence",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-85.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-85.md",
@@ -58,13 +76,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-85). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Client Connection Defaults — Statement Behavior: statement_timeout and lock_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- Spring DataSourceTransactionManager API — Thread-bound connection; Spring transaction timeout mechanism is context only and not configured here: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Trace the supplied admission → Hikari checkout → transaction → PostgreSQL lock/query wait → rollback/cleanup path. Label which timeout governs each wait. Hikari checkout timeout does not bound SQL after checkout.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-085",
+      "calendar_study_day": 99,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 85,
+      "legacy_engineering_unit_number": 85,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 86,
-      "date": "2027-01-19",
-      "title": "Validate finite ordered PostgreSQL read budgets",
-      "sprint": "Sprint 7",
+      "date": "2027-02-02",
+      "title": "Calendar study day 100 · engineering unit 86 · Validate finite ordered PostgreSQL read budgets",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-86.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-86.md",
@@ -105,13 +129,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-86). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Client Connection Defaults — Statement Behavior: positive lock_timeout and statement_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Work zero, negative, valid, equal, reversed, and overflow budgets. PostgreSQL zero disables a timeout, so reject it; require positive representable integer milliseconds and lock budget < statement budget.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-086",
+      "calendar_study_day": 100,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 86,
+      "legacy_engineering_unit_number": 86,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 87,
-      "date": "2027-01-20",
-      "title": "Own one top-level read-only transaction and bridge the adapter",
-      "sprint": "Sprint 7",
+      "date": "2027-02-03",
+      "title": "Calendar study day 101 · engineering unit 87 · Own one top-level read-only transaction and bridge the adapter",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-87.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-87.md",
@@ -172,7 +202,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-87",
         "interview_assignment": {
           "day": 87,
-          "date": "2027-01-20",
+          "date": "2027-02-03",
           "title": "Own one top-level read-only transaction and bridge the adapter",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -232,18 +262,27 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-87",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-087",
+          "calendar_study_day": 101,
+          "calendar_sprint": 8
         }
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-87). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- Course (access unconfirmed): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps)\n- Step 58 - Introduction to Transaction Management — exact section: Transaction Management (4:43)\n- Spring programmatic transaction management — TransactionTemplate, propagation and rollback: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Spring DataSourceTransactionManager API — Thread-bound connection lookup: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 4:43, worked/reference 16:13, teach-back 4:04; carry forward and shrink implementation if unfinished.\n- Worked example: Trace ambient-transaction rejection before settings or delegate call; then show TransactionTemplate, JdbcTemplate, and the existing TransactionAwareDataSourceProxy adapter reaching one PostgreSQL backend. Never join or use REQUIRES_NEW.",
       "course_learning_status": "partial_foundation",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-087",
+      "calendar_study_day": 101,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 87,
+      "legacy_engineering_unit_number": 87,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 88,
-      "date": "2027-01-21",
-      "title": "Apply transaction-local budgets with parameterized set_config",
-      "sprint": "Sprint 7",
+      "date": "2027-02-04",
+      "title": "Calendar study day 102 · engineering unit 88 · Apply transaction-local budgets with parameterized set_config",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-88.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-88.md",
@@ -289,13 +328,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-88). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 System Administration Functions — set_config and current_setting: https://www.postgresql.org/docs/18/functions-admin.html\n- PostgreSQL 18 SET — SET LOCAL transaction scope: https://www.postgresql.org/docs/18/sql-set.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Work parameterized `SELECT set_config('lock_timeout', ?, true)` and matching statement_timeout call on the active transaction connection. Bind values, keep names fixed, and read current_setting on that same backend.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-088",
+      "calendar_study_day": 102,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 88,
+      "legacy_engineering_unit_number": 88,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 89,
-      "date": "2027-01-22",
-      "title": "Run one unchanged owner-scoped read inside the timed decorator",
-      "sprint": "Sprint 7",
+      "date": "2027-02-05",
+      "title": "Calendar study day 103 · engineering unit 89 · Run one unchanged owner-scoped read inside the timed decorator",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-89.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-89.md",
@@ -357,13 +402,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-89). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- Course (access unconfirmed): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps)\n- Step 63 - Implementing Transaction Management - 3 Things to Decide — exact section: Transaction Management (4:38)\n- Spring programmatic transaction management — TransactionTemplate, transaction settings and rollback: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Spring DataSourceTransactionManager API — Transaction-bound JDBC and transaction timeout integration: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 4:38, worked/reference 16:17, teach-back 4:05; carry forward and shrink implementation if unfinished.\n- Worked example: Trace the top-level read-only TransactionTemplate callback: validate positive PostgreSQL budget values, apply only the transaction-local PostgreSQL settings, call the unchanged owner-scoped adapter once, and preserve present/empty. Do not add TransactionTemplate.setTimeout or another timeout mechanism; PostgreSQL statement_timeout is the only SQL-execution budget in this slice.",
       "course_learning_status": "partial_foundation",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-089",
+      "calendar_study_day": 103,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 89,
+      "legacy_engineering_unit_number": 89,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 90,
-      "date": "2027-01-23",
-      "title": "Prove read-only enforcement and mapping-failure rollback",
-      "sprint": "Sprint 7",
+      "date": "2027-02-06",
+      "title": "Calendar study day 104 · engineering unit 90 · Prove read-only enforcement and mapping-failure rollback",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-90.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-90.md",
@@ -424,7 +475,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-90",
         "interview_assignment": {
           "day": 90,
-          "date": "2027-01-23",
+          "date": "2027-02-06",
           "title": "Prove read-only enforcement and mapping-failure rollback",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -484,18 +535,27 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-90",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-090",
+          "calendar_study_day": 104,
+          "calendar_sprint": 8
         }
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-90). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- Course (access unconfirmed): Master Hibernate and JPA with Spring Boot in 100 Steps — in28Minutes Official (https://www.udemy.com/course/hibernate-jpa-tutorial-for-beginners-in-100-steps)\n- FAQ 3 - Do read only methods need a transaction? — exact section: Let's review with a few FAQs about Hibernate and JPA (4:58)\n- Spring programmatic transaction management — TransactionTemplate rollback rules: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- Spring DataSourceTransactionManager API — Read-only transaction behavior and connection cleanup: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/DataSourceTransactionManager.html\n- Same 25-minute cap: video 4:58, worked/reference 16:01, teach-back 4:01; carry forward and shrink implementation if unfinished.\n- Worked example: Compare successful commit with thrown mapping error/rollback. A Spring readOnly flag alone does not prove no write; use fixed PostgreSQL snapshots and an attempted write.",
       "course_learning_status": "partial_foundation",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-090",
+      "calendar_study_day": 104,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 90,
+      "legacy_engineering_unit_number": 90,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 91,
-      "date": "2027-01-24",
-      "title": "Recover and explain cleanup before admission reuse",
-      "sprint": "Sprint 7",
+      "date": "2027-02-07",
+      "title": "Calendar study day 105 · engineering unit 91 · Recover and explain cleanup before admission reuse",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-91.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-91.md",
@@ -541,13 +601,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-91). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- Spring programmatic transaction management — TransactionTemplate rollback: https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html\n- PostgreSQL 18 SET — SET LOCAL reset after commit or rollback: https://www.postgresql.org/docs/18/sql-set.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Review failure → rollback → local settings reset → outer admission release → successful next read. Repair prerequisite selectors; no feature.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-091",
+      "calendar_study_day": 105,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 91,
+      "legacy_engineering_unit_number": 91,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 92,
-      "date": "2027-01-25",
-      "title": "Translate only bounded-read SQL states safely",
-      "sprint": "Sprint 7",
+      "date": "2027-02-08",
+      "title": "Calendar study day 106 · engineering unit 92 · Translate only bounded-read SQL states safely",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-92.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-92.md",
@@ -588,13 +654,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-92). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Error Codes — 55P03 lock_not_available and 57014 query_canceled: https://www.postgresql.org/docs/18/errcodes-appendix.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Classify nested SQLExceptions while preserving causes and safe response. 57014 means query_canceled, not uniquely statement_timeout; 55P03 is not unique proof of a timeout either.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-092",
+      "calendar_study_day": 106,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 92,
+      "legacy_engineering_unit_number": 92,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 93,
-      "date": "2027-01-26",
-      "title": "Prove a real relation lock timeout before holder release",
-      "sprint": "Sprint 7",
+      "date": "2027-02-09",
+      "title": "Calendar study day 107 · engineering unit 93 · Prove a real relation lock timeout before holder release",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-93.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-93.md",
@@ -645,13 +717,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-93). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Explicit Locking — Table-level ACCESS SHARE and ACCESS EXCLUSIVE locks: https://www.postgresql.org/docs/18/explicit-locking.html\n- PostgreSQL 18 Client Connection Defaults — lock_timeout and statement_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- PostgreSQL 18 Monitoring Statistics — pg_stat_activity wait_event and transaction fields: https://www.postgresql.org/docs/18/monitoring-stats.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Use a holder connection with a real ACCESS EXCLUSIVE relation lock and the actual owner-scoped reader. Observe PostgreSQL wait state; prove failure and rollback before holder release; cleanup in finally.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-093",
+      "calendar_study_day": 107,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 93,
+      "legacy_engineering_unit_number": 93,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 94,
-      "date": "2027-01-27",
-      "title": "Prove statement_timeout through the same transaction boundary",
-      "sprint": "Sprint 7",
+      "date": "2027-02-10",
+      "title": "Calendar study day 108 · engineering unit 94 · Prove statement_timeout through the same transaction boundary",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-94.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-94.md",
@@ -696,7 +774,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-94",
         "interview_assignment": {
           "day": 94,
-          "date": "2027-01-27",
+          "date": "2027-02-10",
           "title": "Prove statement_timeout through the same transaction boundary",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -755,18 +833,27 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-94",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-094",
+          "calendar_study_day": 108,
+          "calendar_sprint": 8
         }
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-94). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Date/Time Functions — Delaying Execution with pg_sleep: https://www.postgresql.org/docs/18/functions-datetime.html\n- PostgreSQL 18 Client Connection Defaults — statement_timeout: https://www.postgresql.org/docs/18/runtime-config-client.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Run test-only `SELECT pg_sleep(...)` beyond the local statement budget with no lock contention. Verify cancellation/rollback and a useful next read; avoid latency thresholds.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-094",
+      "calendar_study_day": 108,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 94,
+      "legacy_engineering_unit_number": 94,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 95,
-      "date": "2027-01-28",
-      "title": "Separate Future waiting from JDBC Statement cancellation",
-      "sprint": "Sprint 7",
+      "date": "2027-02-11",
+      "title": "Calendar study day 109 · engineering unit 95 · Separate Future waiting from JDBC Statement cancellation",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-95.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-95.md",
@@ -822,13 +909,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-95). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- Java 21 Statement API — Statement.cancel(): https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html\n- Java 21 Future API — get(timeout, unit) versus cancel: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html\n- PostgreSQL 18 Protocol Flow — Canceling requests: https://www.postgresql.org/docs/18/protocol-flow.html#PROTOCOL-FLOW-CANCELING-REQUESTS\n- PostgreSQL 18 Error Codes — 57014 query_canceled: https://www.postgresql.org/docs/18/errcodes-appendix.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Contrast Future.get(timeout) with server work still running. Test-only worker owns its Statement, rollback and close; cancel that observed Statement and join worker completion before reborrow.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-095",
+      "calendar_study_day": 109,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 95,
+      "legacy_engineering_unit_number": 95,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 96,
-      "date": "2027-01-29",
-      "title": "Verify one-slot backend baseline reset after every outcome",
-      "sprint": "Sprint 7",
+      "date": "2027-02-12",
+      "title": "Calendar study day 110 · engineering unit 96 · Verify one-slot backend baseline reset after every outcome",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-96.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-96.md",
@@ -880,13 +973,19 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-96). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 System Administration Functions — set_config and current_setting: https://www.postgresql.org/docs/18/functions-admin.html\n- PostgreSQL 18 SET — SET LOCAL transaction scope: https://www.postgresql.org/docs/18/sql-set.html\n- PostgreSQL 18 Monitoring Statistics — backend pid and backend_start: https://www.postgresql.org/docs/18/monitoring-stats.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Capture backend PID/backend_start and baseline settings. Run success, then hold a real ACCESS EXCLUSIVE relation lock while the one-slot reader fails; prove rollback and idle state before releasing the holder. Follow with statement-timeout and mapping-failure rollback. After every outcome deliberately reborrow the one-slot pool and assert the same PID/backend_start, reset settings, and pg_stat_activity idle with no open transaction.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-096",
+      "calendar_study_day": 110,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 96,
+      "legacy_engineering_unit_number": 96,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 97,
-      "date": "2027-01-30",
-      "title": "Prove packaged authenticated timeout recovery and one explicit retry",
-      "sprint": "Sprint 7",
+      "date": "2027-02-13",
+      "title": "Calendar study day 111 · engineering unit 97 · Prove packaged authenticated timeout recovery and one explicit retry",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-97.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-97.md",
@@ -952,7 +1051,7 @@
         "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-97",
         "interview_assignment": {
           "day": 97,
-          "date": "2027-01-30",
+          "date": "2027-02-13",
           "title": "Prove packaged authenticated timeout recovery and one explicit retry",
           "proposal_before_hints_reference_or_ai": true,
           "study_cap_minutes": 25,
@@ -1012,18 +1111,27 @@
           ],
           "assistant_architecture_note": "docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-97",
           "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied"
+          "capstone_architecture": "assistant_supplied",
+          "unit_id": "EAI-UNIT-097",
+          "calendar_study_day": 111,
+          "calendar_sprint": 8
         }
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-97). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- Course (access unconfirmed): React - The Complete Guide (incl. Next.js, Redux) — Academind / Maximilian Schwarzmüller (https://www.udemy.com/course/react-the-complete-guide-incl-redux)\n- MDN ARIA status role — Polite status announcements: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role\n- MDN ARIA alert role — Urgent message announcements: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Use fixed packaged-test clock 2027-01-01T12:00:00Z so the seeded 2026-01-15 policy is inside its deterministic renewal window. Select owner, trigger real locked preview, inspect safe response while holder remains locked, release holder, then click one explicit Retry. Verify no writes and retained context.",
       "course_learning_status": "reuse_existing_course_foundation",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-097",
+      "calendar_study_day": 111,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 97,
+      "legacy_engineering_unit_number": 97,
+      "legacy_sprint_label": "Sprint 8"
     },
     {
       "day_number": 98,
-      "date": "2027-01-31",
-      "title": "Recover, run selectors and diagnose a lifetime defect",
-      "sprint": "Sprint 7",
+      "date": "2027-02-14",
+      "title": "Calendar study day 112 · engineering unit 98 · Recover, run selectors and diagnose a lifetime defect",
+      "sprint": "Sprint 8",
       "engineering": {
         "contract_path": "docs/reboot/continuation-85-98/contracts/day-98.md",
         "acceptance_reference": "docs/reboot/continuation-85-98/contracts/day-98.md",
@@ -1074,7 +1182,13 @@
       },
       "course_learning_block": "**Learning guidance (within the existing 25-minute engineering study block):**\n- Assistant architecture note: [what was selected and why](docs/reboot/continuation-85-98/assistant-architecture-notes.md#day-98). Implement and test the named seam; no capstone design proposal or post-hoc justification is assigned.\n- No exact course lesson verified; use the concrete worked supplement and focused public references.\n- PostgreSQL 18 Client Connection Defaults — lock_timeout and statement_timeout boundaries: https://www.postgresql.org/docs/18/runtime-config-client.html\n- PostgreSQL 18 Error Codes — 55P03 and 57014 semantics: https://www.postgresql.org/docs/18/errcodes-appendix.html\n- Java 21 Future API — Timed wait versus cancellation: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html\n- Same 25-minute cap: video 0:00, worked/reference 20:00, teach-back 5:00; carry forward and shrink implementation if unfinished.\n- Worked example: Explain checkout, lock, statement and caller-wait boundaries, local settings, same-backend cleanup and SQLSTATE ambiguity. Assess actual selectors, not dates or instructor pass.",
       "course_learning_status": "no_exact_course_lesson_verified_supplement_required",
-      "mandatory_new_problem": false
+      "mandatory_new_problem": false,
+      "unit_id": "EAI-UNIT-098",
+      "calendar_study_day": 112,
+      "calendar_sprint": 8,
+      "engineering_unit_number": 98,
+      "legacy_engineering_unit_number": 98,
+      "legacy_sprint_label": "Sprint 8"
     }
   ],
   "daily_budgets_minutes": {
@@ -1082,5 +1196,13 @@
   },
   "separate_learning_repository": {
     "algorithm_practice": "https://github.com/advait-ravi-marathe/dsa-prep/tree/859e161f6553e9aca8dc501fda152780cec66ef0"
-  }
+  },
+  "historical_sprint_boundaries": [
+    {
+      "name": "Sprint 7",
+      "dates": "2027-01-18..2027-01-31",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ]
 }

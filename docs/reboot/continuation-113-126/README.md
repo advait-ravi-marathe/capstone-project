@@ -1,4 +1,6 @@
-# CoverStory Days 113–126: manual recovery of retained local work
+# Engineering units 113–126 · calendar study days 127–140 · 2027-03-01–2027-03-14 — CoverStory Days 113–126: manual recovery of retained local work
+
+Calendar mapping: stable engineering unit IDs 113–126 occupy study days 127–140 (2027-03-01 through 2027-03-14).
 
 Status: scaffold/learning plan; learner completion is not recorded. This batch follows the event-log-backed local delivery work in Days 99–112. It addresses the missing operator decision surface: exact-key inspection, reversible quarantine/release, and explicit one-key retry/reconciliation.
 

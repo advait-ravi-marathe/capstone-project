@@ -1,4 +1,4 @@
-# Day 93 — 2027-01-26: Prove a real relation lock timeout before holder release
+# Engineering unit Day 93 · Calendar study day 107 · 2027-02-09: Prove a real relation lock timeout before holder release
 
 ## Contract
 

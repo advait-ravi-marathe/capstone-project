@@ -30,7 +30,7 @@ class Day99To112InfrastructureTest {
         JsonNode export = mapper.readTree(Files.readString(BASE.resolve("scrum-owner-manifest.json")));
         assertEquals(14, manifest.path("days").size());
         assertEquals(14, export.path("cards").size());
-        LocalDate first = LocalDate.parse("2027-02-01");
+        LocalDate first = LocalDate.parse("2027-02-15");
         for (int index = 0; index < 14; index++) {
             JsonNode day = manifest.path("days").get(index);
             JsonNode card = export.path("cards").get(index);

@@ -1,4 +1,4 @@
-# Day 98 — 2027-01-31: Recover, run selectors and diagnose a lifetime defect
+# Engineering unit Day 98 · Calendar study day 112 · 2027-02-14: Recover, run selectors and diagnose a lifetime defect
 
 ## Contract
 

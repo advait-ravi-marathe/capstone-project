@@ -1,4 +1,4 @@
-# Day 71 — 2027-01-04: Establish preview contention baseline and verify prerequisites
+# Engineering unit Day 71 · Calendar study day 85 · 2027-01-18: Establish preview contention baseline and verify prerequisites
 
 ## Contract
 

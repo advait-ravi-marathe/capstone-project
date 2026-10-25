@@ -1,4 +1,4 @@
-# Day 77 — 2027-01-10: Verify recovery without adding a feature
+# Engineering unit Day 77 · Calendar study day 91 · 2027-01-24: Verify recovery without adding a feature
 
 ## Contract
 

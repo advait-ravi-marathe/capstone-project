@@ -1,4 +1,6 @@
-# CoverStory Days 127–140: local restore rehearsal and offline AWS gate
+# Engineering units 127–140 · calendar study days 141–154 · 2027-03-15–2027-03-28 — CoverStory Days 127–140: local restore rehearsal and offline AWS gate
+
+Calendar mapping: stable engineering unit IDs 127–140 occupy study days 141–154 (2027-03-15 through 2027-03-28).
 
 This batch verifies a real PostgreSQL 18.6 logical archive restored into a new, empty `template0` database, full business/recovery evidence, the actual packaged local JAR, and a quiesced local configuration cutover. AWS is studied only through a non-deployable offline plan. No account, credentials, resources, spending, external deployment or public app exposure is part of this work.
 

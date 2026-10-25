@@ -6,28 +6,56 @@
   "board_writes": false,
   "sprint_boundaries": [
     {
-      "name": "Sprint 12",
-      "dates": "2027-03-29..2027-04-11",
-      "batch_story_count": 14,
+      "name": "Sprint 13",
+      "calendar_sprint_number": 13,
+      "calendar_study_days_in_this_batch": [
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182
+      ],
+      "calendar_dates": "2027-04-12..2027-04-25",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
+      "sprint_story_count_after_batch": 14
+    },
+    {
+      "name": "Sprint 14",
+      "calendar_sprint_number": 14,
+      "calendar_study_days_in_this_batch": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189
+      ],
+      "calendar_dates": "2027-04-26..2027-05-09",
+      "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal",
+      "batch_story_count": 7,
       "sprint_story_count_after_batch": 14
     }
   ],
   "cards": [
     {
       "day_number": 155,
-      "date": "2027-03-29",
-      "title": "Admit a synthetic StreamForge fixture",
-      "sprint": "Sprint 12",
+      "date": "2027-04-19",
+      "title": "Calendar study day 176 · engineering unit 155 · Admit a synthetic StreamForge fixture",
+      "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "concept_or_course": 25,
-          "implementation_and_testing": 85,
+          "implementation_and_testing": 130,
           "evidence": 10
         },
-        "scope": "Admit a fixed synthetic manifest without parsing UTC strings; run the Python readiness bridge within the existing 25-minute study block and use carry-forward repair if it fails.",
+        "scope": "Admit a fixed synthetic manifest without parsing UTC strings; run the Python readiness bridge within the existing 25-minute study block and use carry-forward repair if it fails. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "admit_fixture_manifest",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test",
@@ -69,45 +97,10 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_assignment": {
-          "question_id": "Q09",
-          "question_title": "Notification service: accept and deliver",
-          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q09",
-          "pattern_refs": [
-            "outbox-and-messaging",
-            "timeouts-and-retries"
-          ],
-          "practice_minutes_available": 85,
-          "mock_minutes": 45,
-          "mock_phases": [
-            {
-              "name": "Requirements",
-              "minutes": 5
-            },
-            {
-              "name": "Capacity and constraints",
-              "minutes": 5
-            },
-            {
-              "name": "Initial architecture and data model",
-              "minutes": 15
-            },
-            {
-              "name": "Bottlenecks, reliability, scaling",
-              "minutes": 10
-            },
-            {
-              "name": "Trade-offs, failures, follow-ups",
-              "minutes": 10
-            }
-          ],
-          "eai_slice_minutes": 40,
-          "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied",
-          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
-          "bounded_task": "Implement only the manifest admission contract: accept the fixed synthetic declaration and reject a changed required source declaration without mutation. Run the existing Day155 selector once.",
-          "deferred_work": "S12-D155-FULL — Finish every manifest invalid-shape and changed-field case in Day155Test; do not mark the day complete while any selector assertion remains red.",
-          "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+        "historical_120_minute_allocation": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
         }
       },
       "recovery_day": false,
@@ -152,23 +145,95 @@
         "bounded_task": "Implement only the manifest admission contract: accept the fixed synthetic declaration and reject a changed required source declaration without mutation. Run the existing Day155 selector once.",
         "deferred_work": "S12-D155-FULL — Finish every manifest invalid-shape and changed-field case in Day155Test; do not mark the day complete while any selector assertion remains red.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+      },
+      "unit_id": "EAI-UNIT-155",
+      "calendar_study_day": 176,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 155,
+      "legacy_engineering_unit_number": 155,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the exact manifest-admission selector with one unregistered-source mutation; verify the actual admission path rejects without reading files.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test && python3 -m ai.streamforge.readiness_bridge",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q09",
+        "question_title": "Notification service: accept and deliver",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "question_id": "Q09",
+          "question_title": "Notification service: accept and deliver",
+          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q09",
+          "pattern_refs": [
+            "outbox-and-messaging",
+            "timeouts-and-retries"
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "mock_phases": [
+            {
+              "name": "Requirements",
+              "minutes": 5
+            },
+            {
+              "name": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "name": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "name": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "name": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "eai_slice_minutes": 40,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+          "bounded_task": "Implement only the manifest admission contract: accept the fixed synthetic declaration and reject a changed required source declaration without mutation. Run the existing Day155 selector once.",
+          "deferred_work": "S12-D155-FULL — Finish every manifest invalid-shape and changed-field case in Day155Test; do not mark the day complete while any selector assertion remains red.",
+          "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test",
+          "relocated_to_shared_block": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day_number": 156,
-      "date": "2027-03-30",
-      "title": "Read bounded CSV records without silent columns",
-      "sprint": "Sprint 12",
+      "date": "2027-04-20",
+      "title": "Calendar study day 177 · engineering unit 156 · Read bounded CSV records without silent columns",
+      "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "concept_or_course": 25,
-          "implementation_and_testing": 85,
+          "implementation_and_testing": 130,
           "evidence": 10
         },
-        "scope": "Quoted commas/newlines survive. Duplicate/missing/extra headers, short/long rows, malformed CSV and input overflow fail; no split-on-comma parser.",
+        "scope": "Quoted commas/newlines survive. Duplicate/missing/extra headers, short/long rows, malformed CSV and input overflow fail; no split-on-comma parser. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "read_csv_table",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day156Test"
@@ -205,27 +270,64 @@
         "architecture_explanation": "Use Python's CSV reader on the bounded text, then enforce exact headers, row widths, row and byte limits. Preserve decoded cell values as strings. CSV quoting is part of the input format, so manual comma splitting would corrupt quoted data.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 157,
-      "date": "2027-03-31",
-      "title": "Parse one exact UTC instant format",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-156",
+      "calendar_study_day": 177,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 156,
+      "legacy_engineering_unit_number": 156,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the CSV parser selector with a short-row and extra-column fixture; verify neither is silently padded or truncated.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day156Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q02",
+        "question_title": "Short-link abuse and operations",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 157,
+      "date": "2027-04-21",
+      "title": "Calendar study day 178 · engineering unit 157 · Parse one exact UTC instant format",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Leap-day instant passes; invalid date, absent Z, offset, naive, fractional and impossible calendar forms fail.",
+        "scope": "Leap-day instant passes; invalid date, absent Z, offset, naive, fractional and impossible calendar forms fail. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "parse_utc_instant",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day157Test"
@@ -261,27 +363,64 @@
         "architecture_explanation": "Parse only the canonical YYYY-MM-DDTHH:MM:SSZ form into an aware UTC datetime. Reject alternate offsets, missing zones, fractions, and impossible dates instead of normalizing them. A single representation makes the later fixed-cutoff comparison deterministic.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 158,
-      "date": "2027-04-01",
-      "title": "Validate catalog reference rows",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-157",
+      "calendar_study_day": 178,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 157,
+      "legacy_engineering_unit_number": 157,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the UTC parser selector with a non-Z offset and fractional precision mutation; verify the declared timestamp grammar rejects both.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day157Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q03",
+        "question_title": "URL expiry and deterministic time",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 158,
+      "date": "2027-04-22",
+      "title": "Calendar study day 179 · engineering unit 158 · Validate catalog reference rows",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Duration is integer 1..7200; availability start < end; duplicate IDs fail even for identical rows; identity is not trimmed and genre is allowlisted.",
+        "scope": "Duration is integer 1..7200; availability start < end; duplicate IDs fail even for identical rows; identity is not trimmed and genre is allowlisted. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "validate_catalog",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day158Test"
@@ -318,27 +457,64 @@
         "architecture_explanation": "Convert validated string rows into typed catalog records. Enforce exact unique IDs, allowed genres, bounded integer duration, and paired finite availability. Do not trim or merge identity values; later event joins depend on exact catalog keys.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 159,
-      "date": "2027-04-02",
-      "title": "Resolve events against catalog constraints",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-158",
+      "calendar_study_day": 179,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 158,
+      "legacy_engineering_unit_number": 158,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the catalog validator selector with an unknown reference and duplicate catalog ID; verify both fail at the validation boundary.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day158Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q04",
+        "question_title": "Rate limiter: one client and one window",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 159,
+      "date": "2027-04-23",
+      "title": "Calendar study day 180 · engineering unit 159 · Resolve events against catalog constraints",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Unknown media, malformed/negative/excess watch seconds and event at excluded availability end fail. Zero seconds is valid but not a positive-preference label.",
+        "scope": "Unknown media, malformed/negative/excess watch seconds and event at excluded availability end fail. Zero seconds is valid but not a positive-preference label. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "validate_events",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
@@ -376,45 +552,10 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_assignment": {
-          "question_id": "Q15",
-          "question_title": "Messaging: publish an order event",
-          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q15",
-          "pattern_refs": [
-            "outbox-and-messaging",
-            "backpressure"
-          ],
-          "practice_minutes_available": 85,
-          "mock_minutes": 45,
-          "mock_phases": [
-            {
-              "name": "Requirements",
-              "minutes": 5
-            },
-            {
-              "name": "Capacity and constraints",
-              "minutes": 5
-            },
-            {
-              "name": "Initial architecture and data model",
-              "minutes": 15
-            },
-            {
-              "name": "Bottlenecks, reliability, scaling",
-              "minutes": 10
-            },
-            {
-              "name": "Trade-offs, failures, follow-ups",
-              "minutes": 10
-            }
-          ],
-          "eai_slice_minutes": 40,
-          "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied",
-          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
-          "bounded_task": "Implement one valid event-to-catalog join and enforce the half-open availability end boundary. Run Day159Test and use the first failure to choose the next case.",
-          "deferred_work": "S12-D159-FULL — Finish all event ID, viewer, timestamp, duration, and exact-join negatives in Day159Test; partial slice is not day completion.",
-          "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+        "historical_120_minute_allocation": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
         }
       },
       "recovery_day": false,
@@ -459,23 +600,95 @@
         "bounded_task": "Implement one valid event-to-catalog join and enforce the half-open availability end boundary. Run Day159Test and use the first failure to choose the next case.",
         "deferred_work": "S12-D159-FULL — Finish all event ID, viewer, timestamp, duration, and exact-join negatives in Day159Test; partial slice is not day completion.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+      },
+      "unit_id": "EAI-UNIT-159",
+      "calendar_study_day": 180,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 159,
+      "legacy_engineering_unit_number": 159,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the event validator selector with a dangling catalog reference and cross-viewer row; verify both fail without mutating inputs.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q15",
+        "question_title": "Messaging: publish an order event",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "question_id": "Q15",
+          "question_title": "Messaging: publish an order event",
+          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q15",
+          "pattern_refs": [
+            "outbox-and-messaging",
+            "backpressure"
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "mock_phases": [
+            {
+              "name": "Requirements",
+              "minutes": 5
+            },
+            {
+              "name": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "name": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "name": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "name": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "eai_slice_minutes": 40,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+          "bounded_task": "Implement one valid event-to-catalog join and enforce the half-open availability end boundary. Run Day159Test and use the first failure to choose the next case.",
+          "deferred_work": "S12-D159-FULL — Finish all event ID, viewer, timestamp, duration, and exact-join negatives in Day159Test; partial slice is not day completion.",
+          "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test",
+          "relocated_to_shared_block": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day_number": 160,
-      "date": "2027-04-03",
-      "title": "Remove exact event replays without hiding conflict",
-      "sprint": "Sprint 12",
+      "date": "2027-04-24",
+      "title": "Calendar study day 181 · engineering unit 160 · Remove exact event replays without hiding conflict",
+      "sprint": "Sprint 13",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "concept_or_course": 25,
-          "implementation_and_testing": 85,
+          "implementation_and_testing": 130,
           "evidence": 10
         },
-        "scope": "Same ID/equal typed payload collapses once; same ID/different payload rejects all preparation; distinct IDs remain distinct.",
+        "scope": "Same ID/equal typed payload collapses once; same ID/different payload rejects all preparation; distinct IDs remain distinct. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "deduplicate_events",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day160Test"
@@ -512,27 +725,64 @@
         "architecture_explanation": "Deduplicate fully validated typed events by event ID before any time partition. Collapse exact normalized replays once and reject a changed payload under the same ID. Resolving conflicts first prevents a cross-cutoff replay from being hidden.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 161,
-      "date": "2027-04-04",
-      "title": "Recover the parser and data-contract boundary",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-160",
+      "calendar_study_day": 181,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 160,
+      "legacy_engineering_unit_number": 160,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the deduplication selector with same-key/different-payload events; verify conflicts remain visible instead of being dropped as replays.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day160Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q06",
+        "question_title": "File storage: upload and download",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 161,
+      "date": "2027-04-25",
+      "title": "Calendar study day 182 · engineering unit 161 · Recover the parser and data-contract boundary",
+      "sprint": "Sprint 13",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Prior gates pass or exact blockers recorded; reproduce one invalid-input failure and explain why no partial dataset exists.",
+        "scope": "Prior gates pass or exact blockers recorded; reproduce one invalid-input failure and explain why no partial dataset exists. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "prior_only_155_160",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test"
@@ -568,27 +818,64 @@
         "architecture_explanation": "This recovery day introduces no function. Re-run only Days 155–160 and repair the first broken seam. Keep preparation all-or-nothing: one invalid row must not leave a usable-looking partial dataset.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": true,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 162,
-      "date": "2027-04-05",
-      "title": "Partition by a fixed temporal cutoff",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": true,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-161",
+      "calendar_study_day": 182,
+      "calendar_sprint": 13,
+      "engineering_unit_number": 161,
+      "legacy_engineering_unit_number": 161,
+      "legacy_sprint_label": "Sprint 13",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Run the exact prior-only parser and data-contract selectors; record every failure and repair only those existing prerequisites.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q07",
+        "question_title": "API gateway: route and protect",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 162,
+      "date": "2027-04-26",
+      "title": "Calendar study day 183 · engineering unit 162 · Partition by a fixed temporal cutoff",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Train [start,cutoff), holdout [cutoff,end), end excluded; every unique event assigned once, ordered by (UTC time,event ID); empty sets explicit.",
+        "scope": "Train [start,cutoff), holdout [cutoff,end), end excluded; every unique event assigned once, ordered by (UTC time,event ID); empty sets explicit. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "partition_events",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day162Test"
@@ -626,27 +913,64 @@
         "architecture_explanation": "Validate start < cutoff < end, then assign each unique event exactly once to [start, cutoff), [cutoff, end), or outside the window. Sort by UTC instant and event ID. The cutoff is fixed by the fixture contract rather than selected from observed outcomes.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 163,
-      "date": "2027-04-06",
-      "title": "Describe holdout cold-start coverage honestly",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-162",
+      "calendar_study_day": 183,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 162,
+      "legacy_engineering_unit_number": 162,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the partition selector with events exactly at and just after cutoff; verify half-open membership and unchanged source rows.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day162Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q08",
+        "question_title": "API gateway: safe error contract",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 163,
+      "date": "2027-04-27",
+      "title": "Calendar study day 184 · engineering unit 163 · Describe holdout cold-start coverage honestly",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Four mutually exclusive categories sum to holdout count; catalog presence is reference only; empty holdout has zero counts and no_holdout status.",
+        "scope": "Four mutually exclusive categories sum to holdout count; catalog presence is reference only; empty holdout has zero counts and no_holdout status. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "holdout_coverage",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
@@ -684,45 +1008,10 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_assignment": {
-          "question_id": "Q24",
-          "question_title": "Event pipeline: correction and replay",
-          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q24",
-          "pattern_refs": [
-            "event-pipeline",
-            "idempotency"
-          ],
-          "practice_minutes_available": 85,
-          "mock_minutes": 45,
-          "mock_phases": [
-            {
-              "name": "Requirements",
-              "minutes": 5
-            },
-            {
-              "name": "Capacity and constraints",
-              "minutes": 5
-            },
-            {
-              "name": "Initial architecture and data model",
-              "minutes": 15
-            },
-            {
-              "name": "Bottlenecks, reliability, scaling",
-              "minutes": 10
-            },
-            {
-              "name": "Trade-offs, failures, follow-ups",
-              "minutes": 10
-            }
-          ],
-          "eai_slice_minutes": 40,
-          "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied",
-          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
-          "bounded_task": "Implement the four mutually exclusive holdout coverage counts and verify they sum to the hand-built holdout fixture. Run Day163Test.",
-          "deferred_work": "S12-D163-FULL — Finish empty-holdout status and all independent category/mutation cases in Day163Test before claiming completion.",
-          "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+        "historical_120_minute_allocation": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
         }
       },
       "recovery_day": false,
@@ -767,23 +1056,95 @@
         "bounded_task": "Implement the four mutually exclusive holdout coverage counts and verify they sum to the hand-built holdout fixture. Run Day163Test.",
         "deferred_work": "S12-D163-FULL — Finish empty-holdout status and all independent category/mutation cases in Day163Test before claiming completion.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+      },
+      "unit_id": "EAI-UNIT-163",
+      "calendar_study_day": 184,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 163,
+      "legacy_engineering_unit_number": 163,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the coverage selector with an empty holdout viewer and an unexpected event; verify independently counted cold-start denominator and rejection.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q24",
+        "question_title": "Event pipeline: correction and replay",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "question_id": "Q24",
+          "question_title": "Event pipeline: correction and replay",
+          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q24",
+          "pattern_refs": [
+            "event-pipeline",
+            "idempotency"
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "mock_phases": [
+            {
+              "name": "Requirements",
+              "minutes": 5
+            },
+            {
+              "name": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "name": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "name": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "name": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "eai_slice_minutes": 40,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+          "bounded_task": "Implement the four mutually exclusive holdout coverage counts and verify they sum to the hand-built holdout fixture. Run Day163Test.",
+          "deferred_work": "S12-D163-FULL — Finish empty-holdout status and all independent category/mutation cases in Day163Test before claiming completion.",
+          "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test",
+          "relocated_to_shared_block": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day_number": 164,
-      "date": "2027-04-07",
-      "title": "Aggregate only the training partition",
-      "sprint": "Sprint 12",
+      "date": "2027-04-28",
+      "title": "Calendar study day 185 · engineering unit 164 · Aggregate only the training partition",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "concept_or_course": 25,
-          "implementation_and_testing": 85,
+          "implementation_and_testing": 130,
           "evidence": 10
         },
-        "scope": "Mutating valid holdout does not change train summary; empty train is zero-valued and insufficient_training_data.",
+        "scope": "Mutating valid holdout does not change train summary; empty train is zero-valued and insufficient_training_data. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "summarize_training",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day164Test"
@@ -820,27 +1181,64 @@
         "architecture_explanation": "Build the summary solely from training events, using catalog metadata only for the declared media rows. Keep holdout diagnostics separate; then a holdout-only change cannot alter the training summary.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 165,
-      "date": "2027-04-08",
-      "title": "Assemble reproducible semantic data and provenance",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-164",
+      "calendar_study_day": 185,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 164,
+      "legacy_engineering_unit_number": 164,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the training summary selector while varying holdout rows; verify training metrics stay byte-for-byte unchanged.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day164Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q10",
+        "question_title": "Notification service: retries",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 165,
+      "date": "2027-04-29",
+      "title": "Calendar study day 186 · engineering unit 165 · Assemble reproducible semantic data and provenance",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Same source/config yields identical bytes; input permutation preserves semantic rows/train hash while source hash can change; holdout mutation changes provenance but not train content hash.",
+        "scope": "Same source/config yields identical bytes; input permutation preserves semantic rows/train hash while source hash can change; holdout mutation changes provenance but not train content hash. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "assemble_bundle",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day165Test"
@@ -877,27 +1275,64 @@
         "architecture_explanation": "Assemble typed values into the fixed bundle with the supplied canonical JSON/hash helper. Keep train content, holdout diagnostics, reference catalog, and raw source hashes distinct. Each digest has a declared input boundary and should not stand in for the other.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 166,
-      "date": "2027-04-09",
-      "title": "Compose preparation behind the local CLI",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-165",
+      "calendar_study_day": 186,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 165,
+      "legacy_engineering_unit_number": 165,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the bundle selector after reordering source rows; verify canonical output bytes and independent expected provenance digest.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day165Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q11",
+        "question_title": "Scheduler: run one job",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 166,
+      "date": "2027-04-30",
+      "title": "Calendar study day 187 · engineering unit 166 · Compose preparation behind the local CLI",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "Valid fixture emits one JSON document only after full validation. Invalid fixture exits nonzero without success JSON; diagnostics go to stderr and files stay unchanged.",
+        "scope": "Valid fixture emits one JSON document only after full validation. Invalid fixture exits nonzero without success JSON; diagnostics go to stderr and files stay unchanged. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "prepare_dataset",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day166Test"
@@ -934,27 +1369,64 @@
         "architecture_explanation": "Compose the existing bounded reader, fixed registry, and chronological validation seams. Emit one complete JSON value only after successful preparation; failures go to stderr and return nonzero without a success document. No network, database, or model adapter is part of this CLI.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
-      },
-      "recovery_day": false,
-      "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
-    },
-    {
-      "day_number": 167,
-      "date": "2027-04-10",
-      "title": "Prove reproducibility and leakage boundaries offline",
-      "sprint": "Sprint 12",
-      "status": "draft_not_board_published",
-      "board_ticket_id": null,
-      "engineering": {
-        "budget_minutes": 120,
-        "allocation_minutes": {
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
           "concept_or_course": 25,
           "implementation_and_testing": 85,
           "evidence": 10
+        }
+      },
+      "recovery_day": false,
+      "learner_status": "not_assessed",
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-166",
+      "calendar_study_day": 187,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 166,
+      "legacy_engineering_unit_number": 166,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Use the CLI selector with one malformed input and one valid fixture; verify nonzero fail-closed output then deterministic successful output.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day166Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q12",
+        "question_title": "Scheduler: missed or duplicate execution",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
+    },
+    {
+      "day_number": 167,
+      "date": "2027-05-01",
+      "title": "Calendar study day 188 · engineering unit 167 · Prove reproducibility and leakage boundaries offline",
+      "sprint": "Sprint 14",
+      "status": "draft_not_board_published",
+      "board_ticket_id": null,
+      "engineering": {
+        "budget_minutes": 165,
+        "allocation_minutes": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 130,
+          "evidence": 10
         },
-        "scope": "No new semantic function is introduced on Day 167. Complete prior seams until the instructor-owned CLI oracle passes its independent golden, provenance, cutoff, no-leakage, and invalid-input assertions.",
+        "scope": "No new semantic function is introduced on Day 167. Complete prior seams until the instructor-owned CLI oracle passes its independent golden, provenance, cutoff, no-leakage, and invalid-input assertions. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "prior-only-integration-verification",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
@@ -992,45 +1464,10 @@
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
         "system_design_proposal_required": false,
-        "interview_assignment": {
-          "question_id": "Q34",
-          "question_title": "Analytics: late and duplicate data",
-          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q34",
-          "pattern_refs": [
-            "analytics-pipeline",
-            "idempotency"
-          ],
-          "practice_minutes_available": 85,
-          "mock_minutes": 45,
-          "mock_phases": [
-            {
-              "name": "Requirements",
-              "minutes": 5
-            },
-            {
-              "name": "Capacity and constraints",
-              "minutes": 5
-            },
-            {
-              "name": "Initial architecture and data model",
-              "minutes": 15
-            },
-            {
-              "name": "Bottlenecks, reliability, scaling",
-              "minutes": 10
-            },
-            {
-              "name": "Trade-offs, failures, follow-ups",
-              "minutes": 10
-            }
-          ],
-          "eai_slice_minutes": 40,
-          "proposal_scope": "system_design_interview_question_only",
-          "capstone_architecture": "assistant_supplied",
-          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
-          "bounded_task": "Run the actual CLI golden scenario once and record the first failing earlier seam with its exact assertion; repair only that prior seam if the timebox permits.",
-          "deferred_work": "S12-D167-FULL — Complete the full subprocess oracle, including replay, holdout-mutation, cutoff, malformed-input, and no-partial-output cases. A first trace is not acceptance.",
-          "selector_command": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+        "historical_120_minute_allocation": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
         }
       },
       "recovery_day": false,
@@ -1075,23 +1512,95 @@
         "bounded_task": "Run the actual CLI golden scenario once and record the first failing earlier seam with its exact assertion; repair only that prior seam if the timebox permits.",
         "deferred_work": "S12-D167-FULL — Complete the full subprocess oracle, including replay, holdout-mutation, cutoff, malformed-input, and no-partial-output cases. A first trace is not acceptance.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+      },
+      "unit_id": "EAI-UNIT-167",
+      "calendar_study_day": 188,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 167,
+      "legacy_engineering_unit_number": 167,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Run the prior-only integration selector with a held-out mutation; verify the CLI result does not change and preserve exact evidence.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": {
+          "question_id": "Q34",
+          "question_title": "Analytics: late and duplicate data",
+          "question_url": "https://github.com/advait-ravi-marathe/capstone-project/blob/main/docs/reboot/interview/question-bank.md#q34",
+          "pattern_refs": [
+            "analytics-pipeline",
+            "idempotency"
+          ],
+          "practice_minutes_available": 85,
+          "mock_minutes": 45,
+          "mock_phases": [
+            {
+              "name": "Requirements",
+              "minutes": 5
+            },
+            {
+              "name": "Capacity and constraints",
+              "minutes": 5
+            },
+            {
+              "name": "Initial architecture and data model",
+              "minutes": 15
+            },
+            {
+              "name": "Bottlenecks, reliability, scaling",
+              "minutes": 10
+            },
+            {
+              "name": "Trade-offs, failures, follow-ups",
+              "minutes": 10
+            }
+          ],
+          "eai_slice_minutes": 40,
+          "proposal_scope": "system_design_interview_question_only",
+          "capstone_architecture": "assistant_supplied",
+          "before_hints_or_ai": "Write the interview answer in the separate question bank before reading hints or an AI answer.",
+          "bounded_task": "Run the actual CLI golden scenario once and record the first failing earlier seam with its exact assertion; repair only that prior seam if the timebox permits.",
+          "deferred_work": "S12-D167-FULL — Complete the full subprocess oracle, including replay, holdout-mutation, cutoff, malformed-input, and no-partial-output cases. A first trace is not acceptance.",
+          "selector_command": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test",
+          "relocated_to_shared_block": true
+        },
+        "inside_engineering_budget": false
       }
     },
     {
       "day_number": 168,
-      "date": "2027-04-11",
-      "title": "Recover and defend the data-foundation boundary",
-      "sprint": "Sprint 12",
+      "date": "2027-05-02",
+      "title": "Calendar study day 189 · engineering unit 168 · Recover and defend the data-foundation boundary",
+      "sprint": "Sprint 14",
       "status": "draft_not_board_published",
       "board_ticket_id": null,
       "engineering": {
-        "budget_minutes": 120,
+        "budget_minutes": 165,
         "allocation_minutes": {
           "concept_or_course": 25,
-          "implementation_and_testing": 85,
+          "implementation_and_testing": 130,
           "evidence": 10
         },
-        "scope": "Learner evidence or explicit carry-forward blockers; AWS execution and any CoverStory readiness gate stay deferred.",
+        "scope": "Learner evidence or explicit carry-forward blockers; AWS execution and any CoverStory readiness gate stay deferred. Calendar budget transition: use the added 45 engineering minutes plus the 45 minutes released by moving the daily question-bank session to the shared block for bounded remediation, adjacent integration, negative controls, or observation; do not add feature scope.",
         "learner_seam": "prior_only_155_167",
         "acceptance_commands": [
           "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test ai.streamforge.tests.test_day_contracts.Day162Test ai.streamforge.tests.test_day_contracts.Day163Test ai.streamforge.tests.test_day_contracts.Day164Test ai.streamforge.tests.test_day_contracts.Day165Test ai.streamforge.tests.test_day_contracts.Day166Test ai.streamforge.tests.test_cli.Day167Test"
@@ -1128,11 +1637,48 @@
         "architecture_explanation": "Use the recovery slot for prior-only repair and accurate evidence. State which fixture and selectors ran and keep the claim limited to offline synthetic data preparation. This is not recommender quality, rights/privacy clearance, cloud operation, or production readiness.",
         "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
         "interview_design_scope": "separate_question_bank_only",
-        "system_design_proposal_required": false
+        "system_design_proposal_required": false,
+        "historical_120_minute_allocation": {
+          "concept_or_course": 25,
+          "implementation_and_testing": 85,
+          "evidence": 10
+        }
       },
       "recovery_day": true,
       "learner_status": "not_assessed",
-      "evidence_status": "planned_contract_only"
+      "evidence_status": "planned_contract_only",
+      "unit_id": "EAI-UNIT-168",
+      "calendar_study_day": 189,
+      "calendar_sprint": 14,
+      "engineering_unit_number": 168,
+      "legacy_engineering_unit_number": 168,
+      "legacy_sprint_label": "Sprint 14",
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "calendar_transition_task": {
+        "category": "bounded_recovery_integration_negative_control_or_observation",
+        "task": "Run the complete existing data-foundation selectors and gate checker; distinguish missing learner evidence from harness failure.",
+        "command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test ai.streamforge.tests.test_day_contracts.Day156Test ai.streamforge.tests.test_day_contracts.Day157Test ai.streamforge.tests.test_day_contracts.Day158Test ai.streamforge.tests.test_day_contracts.Day159Test ai.streamforge.tests.test_day_contracts.Day160Test ai.streamforge.tests.test_day_contracts.Day162Test ai.streamforge.tests.test_day_contracts.Day163Test ai.streamforge.tests.test_day_contracts.Day164Test ai.streamforge.tests.test_day_contracts.Day165Test ai.streamforge.tests.test_day_contracts.Day166Test ai.streamforge.tests.test_cli.Day167Test",
+        "evidence": "Record exact command and result, the independent expected counterexample, whether the learner TODO remains, and the named blocker if any.",
+        "additional_minutes": 45,
+        "new_feature_scope": false
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q14",
+        "question_title": "Booking: retry after a lost response",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     }
   ],
   "separate_learning_repository": {
@@ -1181,5 +1727,13 @@
     },
     "required_evidence": "Learner-owned run of the Day 153/154 A/B matrix, distinct baseline/candidate artifacts with hashes, tested source identity, source/overlay provenance, successful exact matrix selector, observed result, and proof limits.",
     "rule": "A starter or assistant/instructor witness cannot satisfy this gate. Keep StreamForge progression/completion claims blocked until the authoritative Day 153 and Day 154 learner evidence records satisfy the qualifying-evidence contract. Re-evaluate these records when genuine learner evidence is added; do not freeze the gate as permanently unmet."
-  }
+  },
+  "historical_sprint_boundaries": [
+    {
+      "name": "Sprint 12",
+      "dates": "2027-03-29..2027-04-11",
+      "batch_story_count": 14,
+      "sprint_story_count_after_batch": 14
+    }
+  ]
 }

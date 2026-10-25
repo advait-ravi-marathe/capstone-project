@@ -1,4 +1,6 @@
-# StreamForge Days 183–196: a bounded content-profile experiment
+# Engineering units 183–196 · calendar study days 204–217 · 2027-05-17–2027-05-30 — StreamForge Days 183–196: a bounded content-profile experiment
+
+Calendar mapping: stable engineering unit IDs 183–196 occupy study days 204–217 (2027-05-17 through 2027-05-30).
 
 **Implementation starter.** This batch compares a transparent train-derived genre-profile heuristic with the existing global-popularity algorithm on the existing synthetic temporal fixture. It adds no learned optimizer, external data, service, or dependency. Publication and scaffold tests do not establish learner mastery.
 
@@ -57,7 +59,7 @@ Hashes are deterministic SHA-256 fingerprints of canonical JSON bytes. New state
 
 See `verified-content-features-183-196-guidance.json` for exact focused sections, cautions, worked supplements, and catalog audit. Required study is free public documentation inside the 35-minute study allocation. No learner explain-back is required for capstone architecture; the assistant supplies concise what/why context, and the learner implements and tests the assigned seam. No optional course or video is newly assigned. The exact Fraction/L1 profile and local tie/fallback rules are project decisions, not recommendations attributed to the documentation.
 
-This document preserves the historical Days 183–196 slice and its original publication scope. Days 197–270 are now published in the [current assignment inventory](../continuation-197-270-inventory.json); the approved outcome-based extension through Day 732 is indexed in the [current roadmap](../continuation-271-732/README.md). Publication is planning, not learner completion or gate eligibility.
+This document preserves the historical Days 183–196 slice and its original publication scope. Days 197–270 are now published in the [current assignment inventory](../continuation-197-270-inventory.json); the approved outcome-based extension through calendar Study Day 774 is indexed in the [current roadmap](../continuation-271-732/README.md). Publication is planning, not learner completion or gate eligibility.
 
 ## Verification and evidence
 

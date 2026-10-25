@@ -1,4 +1,4 @@
-# Day 73 — 2027-01-06: Implement immediate two-permit preview admission
+# Engineering unit Day 73 · Calendar study day 87 · 2027-01-20: Implement immediate two-permit preview admission
 
 ## Contract
 

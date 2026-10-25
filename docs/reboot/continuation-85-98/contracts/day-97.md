@@ -1,4 +1,4 @@
-# Day 97 — 2027-01-30: Prove packaged authenticated timeout recovery and one explicit retry
+# Engineering unit Day 97 · Calendar study day 111 · 2027-02-13: Prove packaged authenticated timeout recovery and one explicit retry
 
 ## Contract
 

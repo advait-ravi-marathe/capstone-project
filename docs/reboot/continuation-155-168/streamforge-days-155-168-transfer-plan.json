@@ -45,7 +45,7 @@
   "daily_contracts": [
     {
       "day": 155,
-      "date": "2027-03-29",
+      "date": "2027-04-19",
       "title": "Admit a synthetic StreamForge fixture",
       "learner_seam": "admit_fixture_manifest",
       "practice": "admit_fixture_manifest preserves raw UTC strings; first parse timestamps on Day 157. Within the existing 25-minute study block, run the Python readiness bridge and carry basics forward if it fails.",
@@ -101,11 +101,32 @@
         "bounded_task": "Implement only the manifest admission contract: accept the fixed synthetic declaration and reject a changed required source declaration without mutation. Run the existing Day155 selector once.",
         "deferred_work": "S12-D155-FULL — Finish every manifest invalid-shape and changed-field case in Day155Test; do not mark the day complete while any selector assertion remains red.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day155Test"
+      },
+      "unit_id": "EAI-UNIT-155",
+      "calendar_study_day": 176,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q09",
+        "question_title": "Notification service: accept and deliver",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
       }
     },
     {
       "day": 156,
-      "date": "2027-03-30",
+      "date": "2027-04-20",
       "title": "Read bounded CSV records without silent columns",
       "learner_seam": "read_csv_table",
       "practice": "Use Python csv with supplied bytes/row bounds; enforce exact headers and widths while preserving strings for later parsing.",
@@ -114,11 +135,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-156",
       "architecture_explanation": "Use Python's CSV reader on the bounded text, then enforce exact headers, row widths, row and byte limits. Preserve decoded cell values as strings. CSV quoting is part of the input format, so manual comma splitting would corrupt quoted data.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-156",
+      "calendar_study_day": 177,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q02",
+        "question_title": "Short-link abuse and operations",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 157,
-      "date": "2027-03-31",
+      "date": "2027-04-21",
       "title": "Parse one exact UTC instant format",
       "learner_seam": "parse_utc_instant",
       "practice": "Return timezone-aware UTC only for canonical YYYY-MM-DDTHH:MM:SSZ strings.",
@@ -127,11 +169,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-157",
       "architecture_explanation": "Parse only the canonical YYYY-MM-DDTHH:MM:SSZ form into an aware UTC datetime. Reject alternate offsets, missing zones, fractions, and impossible dates instead of normalizing them. A single representation makes the later fixed-cutoff comparison deterministic.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-157",
+      "calendar_study_day": 178,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q03",
+        "question_title": "URL expiry and deterministic time",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 158,
-      "date": "2027-04-01",
+      "date": "2027-04-22",
       "title": "Validate catalog reference rows",
       "learner_seam": "validate_catalog",
       "practice": "Convert CSV mappings to CatalogItem values; enforce IDs, genre, integer duration and paired finite availability.",
@@ -140,11 +203,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-158",
       "architecture_explanation": "Convert validated string rows into typed catalog records. Enforce exact unique IDs, allowed genres, bounded integer duration, and paired finite availability. Do not trim or merge identity values; later event joins depend on exact catalog keys.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-158",
+      "calendar_study_day": 179,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q04",
+        "question_title": "Rate limiter: one client and one window",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 159,
-      "date": "2027-04-02",
+      "date": "2027-04-23",
       "title": "Resolve events against catalog constraints",
       "learner_seam": "validate_events",
       "practice": "Validate IDs, synthetic viewer IDs, timestamp and integer watch seconds, then exact-media lookup and availability.",
@@ -193,11 +277,32 @@
         "bounded_task": "Implement one valid event-to-catalog join and enforce the half-open availability end boundary. Run Day159Test and use the first failure to choose the next case.",
         "deferred_work": "S12-D159-FULL — Finish all event ID, viewer, timestamp, duration, and exact-join negatives in Day159Test; partial slice is not day completion.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day159Test"
+      },
+      "unit_id": "EAI-UNIT-159",
+      "calendar_study_day": 180,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q15",
+        "question_title": "Messaging: publish an order event",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
       }
     },
     {
       "day": 160,
-      "date": "2027-04-03",
+      "date": "2027-04-24",
       "title": "Remove exact event replays without hiding conflict",
       "learner_seam": "deduplicate_events",
       "practice": "Index fully validated typed records by event ID before splitting; collapse identical normalized records, reject conflicts.",
@@ -206,11 +311,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-160",
       "architecture_explanation": "Deduplicate fully validated typed events by event ID before any time partition. Collapse exact normalized replays once and reject a changed payload under the same ID. Resolving conflicts first prevents a cross-cutoff replay from being hidden.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-160",
+      "calendar_study_day": 181,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q06",
+        "question_title": "File storage: upload and download",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 161,
-      "date": "2027-04-04",
+      "date": "2027-04-25",
       "title": "Recover the parser and data-contract boundary",
       "learner_seam": "prior_only_155_160",
       "practice": "Repair one earlier seam and rerun only Days 155–160. No new function, split, course or future selector.",
@@ -219,11 +345,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-161",
       "architecture_explanation": "This recovery day introduces no function. Re-run only Days 155–160 and repair the first broken seam. Keep preparation all-or-nothing: one invalid row must not leave a usable-looking partial dataset.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-161",
+      "calendar_study_day": 182,
+      "calendar_sprint": 13,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q07",
+        "question_title": "API gateway: route and protect",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 162,
-      "date": "2027-04-05",
+      "date": "2027-04-26",
       "title": "Partition by a fixed temporal cutoff",
       "learner_seam": "partition_events",
       "practice": "Check start < cutoff < end; partition unique events into train, holdout and outside-window.",
@@ -232,11 +379,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-162",
       "architecture_explanation": "Validate start < cutoff < end, then assign each unique event exactly once to [start, cutoff), [cutoff, end), or outside the window. Sort by UTC instant and event ID. The cutoff is fixed by the fixture contract rather than selected from observed outcomes.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-162",
+      "calendar_study_day": 183,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q08",
+        "question_title": "API gateway: safe error contract",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 163,
-      "date": "2027-04-06",
+      "date": "2027-04-27",
       "title": "Describe holdout cold-start coverage honestly",
       "learner_seam": "holdout_coverage",
       "practice": "Classify each holdout event by whether its viewer and item appear in training interactions.",
@@ -285,11 +453,32 @@
         "bounded_task": "Implement the four mutually exclusive holdout coverage counts and verify they sum to the hand-built holdout fixture. Run Day163Test.",
         "deferred_work": "S12-D163-FULL — Finish empty-holdout status and all independent category/mutation cases in Day163Test before claiming completion.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_day_contracts.Day163Test"
+      },
+      "unit_id": "EAI-UNIT-163",
+      "calendar_study_day": 184,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q24",
+        "question_title": "Event pipeline: correction and replay",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
       }
     },
     {
       "day": 164,
-      "date": "2027-04-07",
+      "date": "2027-04-28",
       "title": "Aggregate only the training partition",
       "learner_seam": "summarize_training",
       "practice": "Compute train event count, unique viewer count, per-media counts and watch seconds. No ranking or learned score.",
@@ -298,11 +487,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-164",
       "architecture_explanation": "Build the summary solely from training events, using catalog metadata only for the declared media rows. Keep holdout diagnostics separate; then a holdout-only change cannot alter the training summary.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-164",
+      "calendar_study_day": 185,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q10",
+        "question_title": "Notification service: retries",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 165,
-      "date": "2027-04-08",
+      "date": "2027-04-29",
       "title": "Assemble reproducible semantic data and provenance",
       "learner_seam": "assemble_bundle",
       "practice": "Compose typed values into the supplied versioned bundle, using canonical serialization/hash helpers. Keep reference catalog, train, holdout and diagnostics separate.",
@@ -311,11 +521,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-165",
       "architecture_explanation": "Assemble typed values into the fixed bundle with the supplied canonical JSON/hash helper. Keep train content, holdout diagnostics, reference catalog, and raw source hashes distinct. Each digest has a declared input boundary and should not stand in for the other.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-165",
+      "calendar_study_day": 186,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q11",
+        "question_title": "Scheduler: run one job",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 166,
-      "date": "2027-04-09",
+      "date": "2027-04-30",
       "title": "Compose preparation behind the local CLI",
       "learner_seam": "prepare_dataset",
       "practice": "Wire validated functions in order using fixed fixture registry, bounded reads and instructor stdout/error framing. No network/storage/database adapters.",
@@ -324,11 +555,32 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-166",
       "architecture_explanation": "Compose the existing bounded reader, fixed registry, and chronological validation seams. Emit one complete JSON value only after successful preparation; failures go to stderr and return nonzero without a success document. No network, database, or model adapter is part of this CLI.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-166",
+      "calendar_study_day": 187,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q12",
+        "question_title": "Scheduler: missed or duplicate execution",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     },
     {
       "day": 167,
-      "date": "2027-04-10",
+      "date": "2027-05-01",
       "title": "Prove reproducibility and leakage boundaries offline",
       "learner_seam": "prior-only-integration-verification",
       "practice": "There is no new semantic function on Day 167. Implement prior seams until the instructor-owned subprocess oracle passes independent golden assertions for cutoff membership, train summary/hash, provenance, holdout mutation, and failures.",
@@ -377,11 +629,32 @@
         "bounded_task": "Run the actual CLI golden scenario once and record the first failing earlier seam with its exact assertion; repair only that prior seam if the timebox permits.",
         "deferred_work": "S12-D167-FULL — Complete the full subprocess oracle, including replay, holdout-mutation, cutoff, malformed-input, and no-partial-output cases. A first trace is not acceptance.",
         "selector_command": "python3 -m unittest ai.streamforge.tests.test_cli.Day167Test"
+      },
+      "unit_id": "EAI-UNIT-167",
+      "calendar_study_day": 188,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q34",
+        "question_title": "Analytics: late and duplicate data",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
       }
     },
     {
       "day": 168,
-      "date": "2027-04-11",
+      "date": "2027-05-02",
       "title": "Recover and defend the data-foundation boundary",
       "learner_seam": "prior_only_155_167",
       "practice": "Cold-reproduce one earlier bad-data case, repair prior work and explain limited guarantees. No new feature.",
@@ -390,7 +663,28 @@
       "assistant_architecture_note": "docs/reboot/continuation-155-168/assistant-architecture-notes.md#day-168",
       "architecture_explanation": "Use the recovery slot for prior-only repair and accurate evidence. State which fixture and selectors ran and keep the claim limited to offline synthetic data preparation. This is not recommender quality, rights/privacy clearance, cloud operation, or production readiness.",
       "design_ownership": "assistant_supplied_capstone_architecture; learner_implements_and_tests",
-      "system_design_proposal_required": false
+      "system_design_proposal_required": false,
+      "unit_id": "EAI-UNIT-168",
+      "calendar_study_day": 189,
+      "calendar_sprint": 14,
+      "calendar_budget_transition": {
+        "old_calendar_engineering_minutes": 120,
+        "new_calendar_engineering_minutes": 165,
+        "new_shared_minutes": 45,
+        "engineering_allocation_minutes": 45,
+        "shared_block_reclassified_from_existing_interview_practice": true,
+        "extra_practice_purpose": "bounded prerequisite recovery, adjacent integration, independent negative controls, or observation only; no new feature scope"
+      },
+      "shared_interview_block": {
+        "minutes": 45,
+        "mode": "separate_system_design_question_bank_session",
+        "question_id": "Q14",
+        "question_title": "Booking: retry after a lost response",
+        "question_bank": "docs/reboot/interview/question-bank.md",
+        "task": "Practice this question only in the interview question bank; record an independent answer before hints. No capstone design decision or proposal.",
+        "migrated_existing_assignment": null,
+        "inside_engineering_budget": false
+      }
     }
   ],
   "official_reading_sources": [

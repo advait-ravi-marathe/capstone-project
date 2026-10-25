@@ -30,7 +30,7 @@ DISPLAY = {
 def read_plan():
     plan = json.loads(SRC.read_text(encoding="utf-8"))
     assert plan["branch"] == "work/eai-sprint2-onward"
-    assert plan["start_date"] == "2027-07-23" and plan["end_date"] == "2027-08-05"
+    assert plan["start_date"] == "2027-08-13" and plan["end_date"] == "2027-08-26"
     assert [d["day"] for d in plan["days"]] == list(range(271, 285))
     assert [d["date"] for d in plan["days"]] == [
         (date.fromisoformat(plan["start_date"]) + timedelta(days=i)).isoformat()
@@ -112,8 +112,11 @@ def task_rows(plan, day):
 
 def markdown_contract(plan, day, row):
     source_map = sources(plan)
-    lines = [f'<a id="day-{day["day"]}"></a>', f'# Day {day["day"]}: {day["title"]}', "",
+    calendar_day = day["day"] + 21
+    lines = [f'<a id="day-{day["day"]}"></a>',
+             f'# Engineering unit Day {day["day"]} · Calendar study day {calendar_day} · {day["date"]}: {day["title"]}', "",
              f"Date: {day['date']}", "",
+             f"Stable engineering unit {day['day']} maps to calendar study day {calendar_day}; see the [canonical calendar crosswalk](../../calendar/study-calendar.json).", "",
              f"**Assistant-supplied architecture — what and why:** {day['architecture']} No learner design proposal or post-hoc architecture justification is assigned.", "",
              "## Engineering allocation — 165 minutes", ""]
     for key in CATEGORIES:
@@ -164,7 +167,11 @@ def rendered(plan):
         for k, task in tasks.items():
             rowtasks[LABELS[k]] = {**task, "source_keys": task["source_keys"],
                                    "source_sections": task["source_sections"]}
+        calendar_day = day["day"] + 21
         row = {"day": day["day"], "date": day["date"], "title": day["title"],
+               "unit_id": f"EAI-UNIT-{day['day']:03}", "engineering_unit_number": day["day"],
+               "legacy_engineering_unit_number": day["day"], "calendar_study_day": calendar_day,
+               "calendar_sprint": (calendar_day - 1) // 14 + 1,
                "learner_seam": "runtime_sql_observation_analysis", "signature": "; ".join(tasks["implementation"]["source_paths"]),
                "selectors": list(dict.fromkeys(t["command"] for t in tasks.values())),
                "depends_on_days": day["prerequisite_days"], "recovery_day": False,
@@ -182,7 +189,11 @@ def rendered(plan):
                    {"requirements": 5, "constraints": 5, "architecture_or_review": 15, "failure_modes": 10, "tradeoffs_and_next_step": 10}},
                "learner_status": "unobserved_not_implied_by_scaffold"}
         manifest_days.append(row)
-        cards.append({"day_number": day["day"], "date": day["date"], "title": day["title"],
+        cards.append({"day_number": day["day"], "unit_id": f"EAI-UNIT-{day['day']:03}",
+                      "engineering_unit_number": day["day"],
+                      "legacy_engineering_unit_number": day["day"], "calendar_study_day": calendar_day,
+                      "calendar_sprint": (calendar_day - 1) // 14 + 1, "date": day["date"],
+                      "title": f"Calendar study day {calendar_day} · engineering unit {day['day']} · {day['title']}",
                       "learner_seam": row["learner_seam"], "signature": row["signature"],
                       "selectors": row["selectors"], "prerequisite_days": row["depends_on_days"], "recovery_day": False,
                       "engineering": {"minutes": 165, "allocation": alloc},
@@ -194,16 +205,36 @@ def rendered(plan):
         owners["cards"].append(cards[-1])
         contract_files[f"contracts/day-{day['day']}.md"] = markdown_contract(plan, day, tasks)
     total = {LABELS[k]: sum(task_rows(plan, d)[k]["minutes"] for d in plan["days"]) for k in CATEGORIES}
+    sprint_groups = {}
+    for day in plan["days"]:
+        calendar_day = day["day"] + 21
+        sprint_no = (calendar_day - 1) // 14 + 1
+        sprint_groups.setdefault(sprint_no, []).append(calendar_day)
+    manifest_sprints = []
+    owner_sprints = []
+    for sprint_no, study_days in sorted(sprint_groups.items()):
+        sprint_start = (sprint_no - 1) * 14 + 1
+        sprint_end = min(sprint_no * 14, 305)
+        common = {
+            "name": f"Sprint {sprint_no}", "calendar_sprint_number": sprint_no,
+            "calendar_study_days_in_this_batch": study_days,
+            "calendar_dates": f"{(date(2026,10,26) + timedelta(days=sprint_start - 1)).isoformat()}..{(date(2026,10,26) + timedelta(days=sprint_end - 1)).isoformat()}",
+            "batch_story_count": len(study_days),
+            "existing_sprint_id_resolution": "reuse_existing_sprint_by_chronological_ordinal" if sprint_no <= 21 else "new_sprint_id_unassigned_no_board_write",
+        }
+        manifest_sprints.append({**common, "sprint_total_after_batch": sprint_end - sprint_start + 1})
+        owner_sprints.append({**common, "sprint_story_count_after_batch": sprint_end - sprint_start + 1})
     manifest = {"title": plan["title"], "status": plan["status"], "branch": plan["branch"],
                 "base_commit": plan["base_commit"], "date_range": {"start": plan["start_date"], "end": plan["end_date"]},
                 "engineering_minutes_per_day": 165, "shared_minutes_per_day": 45,
                 "engineering_minutes_total": 2310, "shared_minutes_total": 630,
                 "daily_allocation": plan["daily_budget"], "sprint_allocation_minutes": total,
+                "sprints": manifest_sprints,
                 "remediation_reserve_minutes": 462, "learner_completion_awarded": False,
                 "sources": plan["sources"], "separate_learning_repository": plan["separate_learning_repository"], "days": manifest_days}
     transfer = {"title": plan["title"], "status": plan["status"], "budget":
                 {"engineering_minutes": 2310, "shared_minutes": 630, "reserve_minutes": 462, "days": 14},
-                "days": manifest_days}
+                "sprints": manifest_sprints, "days": manifest_days}
     sources_doc = {"verified_at": plan["sources_verified_at"], "recheck_before_study": True,
                    "scope": "Official source titles/headings verified 2026-10-24; recheck exact version and heading on the planned study date. No new course or invented lecture.",
                    "sources": plan["sources"]}
@@ -215,7 +246,8 @@ def rendered(plan):
                               d["architecture"], ""])
     owner_manifest = {"title": plan["title"], "status": plan["status"], "branch": plan["branch"],
                       "base_commit": plan["base_commit"], "board_writes": False, "story_count": 14,
-                      "shared_block_count": 14, "separate_learning_repository": plan["separate_learning_repository"], "cards": owners["cards"]}
+                      "shared_block_count": 14, "sprint_boundaries": owner_sprints,
+                      "separate_learning_repository": plan["separate_learning_repository"], "cards": owners["cards"]}
     files = {
         "manifest.json": json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
         "days-271-284-transfer-plan.json": json.dumps(transfer, indent=2, ensure_ascii=False) + "\n",

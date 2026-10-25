@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "status": "approved_planning_amendment_not_learner_completion",
+  "calendar_start": "2026-10-26",
+  "old_horizon": 732,
+  "new_horizon": 774,
+  "added_calendar_days": 42,
+  "end_date": "2028-12-07",
+  "professional_ownership_review_date": "2029-10-26",
+  "preservation": {
+    "stable_engineering_unit_ids_and_paths": true,
+    "existing_learner_status_and_evidence": true,
+    "historical_dates_are_not_rewritten_as_facts": true,
+    "dsa_repo_and_actual_attempts_unchanged": true,
+    "board_writes": false
+  },
+  "capacity": {
+    "through_calendar_day_171": {
+      "engineering_minutes_per_day": 120,
+      "dsa_separate": true
+    },
+    "from_calendar_day_172": {
+      "engineering_minutes_per_day": 165,
+      "one_shared_minutes_per_day": 45
+    },
+    "day_172_date": "2027-04-15",
+    "inserted_units": 21,
+    "inserted_engineering_hours": 102.75,
+    "inserted_shared_hours": 18.75,
+    "existing_units_155_171_threshold_crossing_hours": 25.5,
+    "added_total_capacity_hours": 147,
+    "threshold_crossing_use": "named remediation, integration, observation and question-bank practice within allowance; no feature expansion",
+    "reserve": "20% of post-Day-171 engineering hours already inside daily budget"
+  },
+  "sprint_policy": {
+    "calendar_sprint_length_days": 14,
+    "detailed_stories": 305,
+    "calendar_sprints": 22,
+    "regular_sprints": 21,
+    "final_sprint_days": 11,
+    "reuse_existing_sprint_ids_chronologically": true,
+    "new_sprint_22_id_unassigned": true,
+    "preserve_historical_membership_receipts": true,
+    "old_vs_new_day_sprint_dsa_crosswalk": "story-export-1-305.json"
+  },
+  "insertions": [
+    {
+      "prefix": "GAP-OPENAPI",
+      "range": [
+        71,
+        75
+      ],
+      "dates": [
+        "2027-01-04",
+        "2027-01-08"
+      ],
+      "insert_after_unit": 70,
+      "detail": "executable_now"
+    },
+    {
+      "prefix": "GAP-OIDC",
+      "range": [
+        76,
+        84
+      ],
+      "dates": [
+        "2027-01-09",
+        "2027-01-17"
+      ],
+      "insert_after_unit": 70,
+      "detail": "executable_now"
+    },
+    {
+      "prefix": "GAP-SCHEMA",
+      "range": [
+        169,
+        175
+      ],
+      "dates": [
+        "2027-04-12",
+        "2027-04-18"
+      ],
+      "insert_after_unit": 154,
+      "detail": "executable_now"
+    },
+    {
+      "prefix": "GAP-AIGOV",
+      "range": [
+        460,
+        466
+      ],
+      "dates": [
+        "2028-01-28",
+        "2028-02-03"
+      ],
+      "insert_before_unit": 439,
+      "detail": "outcome_only_not_ticketed"
+    },
+    {
+      "prefix": "GAP-IAC",
+      "range": [
+        551,
+        557
+      ],
+      "dates": [
+        "2028-04-28",
+        "2028-05-04"
+      ],
+      "insert_before_unit": 523,
+      "detail": "outcome_only_not_ticketed"
+    },
+    {
+      "prefix": "GAP-ENTERPRISE",
+      "range": [
+        558,
+        564
+      ],
+      "dates": [
+        "2028-05-05",
+        "2028-05-11"
+      ],
+      "insert_before_unit": 523,
+      "detail": "outcome_only_not_ticketed"
+    }
+  ],
+  "detailed_inserted_units": [
+    {
+      "unit_id": "GAP-OPENAPI-01",
+      "calendar_study_day": 71,
+      "date": "2027-01-04",
+      "task": "Inventory the selected policy API consumer and producer routes",
+      "acceptance": "Record exact request, success, error, auth and ownership behavior from LocalPolicyIssueController; pin independent fixture."
+    },
+    {
+      "unit_id": "GAP-OPENAPI-02",
+      "calendar_study_day": 72,
+      "date": "2027-01-05",
+      "task": "Author OpenAPI operations and request/response schemas",
+      "acceptance": "Represent GET /api/policies/{policyId} and POST /api/policies with 200/201/400/401/404 outcomes; validate paths, methods, required fields and status schema."
+    },
+    {
+      "unit_id": "GAP-OPENAPI-03",
+      "calendar_study_day": 73,
+      "date": "2027-01-06",
+      "task": "Check the contract against runtime Spring mappings",
+      "acceptance": "Compare method/path set and required request/response fields against actual controller mappings; fail on missing or extra public operation."
+    },
+    {
+      "unit_id": "GAP-OPENAPI-04",
+      "calendar_study_day": 74,
+      "date": "2027-01-07",
+      "task": "Run consumer compatibility against an additive provider revision",
+      "acceptance": "Independent expected consumer accepts optional response additions and unchanged required fields; reject removed/renamed required field and changed status."
+    },
+    {
+      "unit_id": "GAP-OPENAPI-05",
+      "calendar_study_day": 75,
+      "date": "2027-01-08",
+      "task": "Add mutation controls and publish compatibility evidence",
+      "acceptance": "Mutate canonical spec to break method/path/required field/status and ensure actual oracle rejects; capture command, diff and exact errors."
+    },
+    {
+      "unit_id": "GAP-OIDC-01",
+      "calendar_study_day": 76,
+      "date": "2027-01-09",
+      "task": "Add the isolated OIDC learner seam and offline issuer fixture",
+      "acceptance": "Keep existing cookie-session profile intact; define test-only issuer metadata, JWKS and synthetic tenant mapping; no live keys."
+    },
+    {
+      "unit_id": "GAP-OIDC-02",
+      "calendar_study_day": 77,
+      "date": "2027-01-10",
+      "task": "Configure actual Spring Security JWT resource-server path",
+      "acceptance": "Validate issuer, signature, audience and standard temporal claims using framework decoder; protected route defaults deny."
+    },
+    {
+      "unit_id": "GAP-OIDC-03",
+      "calendar_study_day": 78,
+      "date": "2027-01-11",
+      "task": "Exercise discovery and signed JWKS token through HTTP",
+      "acceptance": "Use local disposable issuer serving OIDC discovery/JWKS and signed synthetic tokens; assert actual filter chain returns expected response."
+    },
+    {
+      "unit_id": "GAP-OIDC-04",
+      "calendar_study_day": 79,
+      "date": "2027-01-12",
+      "task": "Test wrong issuer, audience and expired token denials",
+      "acceptance": "Each must produce 401 with no protected body and no handler invocation; independent signed variants."
+    },
+    {
+      "unit_id": "GAP-OIDC-05",
+      "calendar_study_day": 80,
+      "date": "2027-01-13",
+      "task": "Test missing signature, malformed token and unknown key",
+      "acceptance": "Each denies closed; no bypassing decoder or mock Authentication in protocol path."
+    },
+    {
+      "unit_id": "GAP-OIDC-06",
+      "calendar_study_day": 81,
+      "date": "2027-01-14",
+      "task": "Rotate local signing key and verify overlap behavior",
+      "acceptance": "Publish keyset with old+new kid, then new-only; verify cached/refresh behavior and retired-key denial."
+    },
+    {
+      "unit_id": "GAP-OIDC-07",
+      "calendar_study_day": 82,
+      "date": "2027-01-15",
+      "task": "Enforce tenant claim against requested tenant boundary",
+      "acceptance": "Valid same-tenant succeeds; foreign, missing and malformed tenant claim deny with no content disclosure."
+    },
+    {
+      "unit_id": "GAP-OIDC-08",
+      "calendar_study_day": 83,
+      "date": "2027-01-16",
+      "task": "Check scope/audience and permission matrix",
+      "acceptance": "Assert least-privilege scope grants only assigned read; write/unknown scope is denied and error body is sanitized."
+    },
+    {
+      "unit_id": "GAP-OIDC-09",
+      "calendar_study_day": 84,
+      "date": "2027-01-17",
+      "task": "Run full positive and negative protocol acceptance",
+      "acceptance": "One real local discovery→JWKS→Spring JWT verification flow plus all denial controls; record exact selectors and evidence."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-01",
+      "calendar_study_day": 169,
+      "date": "2027-04-12",
+      "task": "Pin baseline schema and old/new reader contract",
+      "acceptance": "Use disposable PostgreSQL and existing Flyway V005 baseline; enumerate exact rows and readers/writers before additive migration."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-02",
+      "calendar_study_day": 170,
+      "date": "2027-04-13",
+      "task": "Expand schema additively with nullable/versioned field",
+      "acceptance": "Flyway migration must leave old reader/writer operational and exact preexisting rows unchanged."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-03",
+      "calendar_study_day": 171,
+      "date": "2027-04-14",
+      "task": "Implement bounded deterministic backfill batches",
+      "acceptance": "Idempotent cursor/checkpoint over stable primary key; expected IDs/count/hash are independently fixed in fixture."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-04",
+      "calendar_study_day": 172,
+      "date": "2027-04-15",
+      "task": "Interrupt between batches and restart from checkpoint",
+      "acceptance": "Kill/restart process; prove no skipped/duplicate updates and exact final values; malformed cursor fails closed."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-05",
+      "calendar_study_day": 173,
+      "date": "2027-04-16",
+      "task": "Exercise old and new application compatibility",
+      "acceptance": "Run old code against expanded schema and new code against expanded data; assert exact values and no destructive change."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-06",
+      "calendar_study_day": 174,
+      "date": "2027-04-17",
+      "task": "Prove forward recovery after deliberately bad candidate",
+      "acceptance": "Reject unsafe contract migration; restore via forward migration and reconcile exact row set/checksum."
+    },
+    {
+      "unit_id": "GAP-SCHEMA-07",
+      "calendar_study_day": 175,
+      "date": "2027-04-18",
+      "task": "Verify contract/cleanup eligibility and publish evidence",
+      "acceptance": "Contract only in isolated disposable DB after old readers retired; assert row equivalence, migrations and exact evidence; no live database."
+    }
+  ],
+  "later_outcome_acceptance": {
+    "GAP-AIGOV": [
+      "Synthetic data inventory and minimized-field map with source-to-index-to-eval retention lineage.",
+      "Deletion evidence across source/cache/index/evaluation artifacts with independent expected counts and no silent residue.",
+      "Independent relevant slices for tenant/access/deletion/uncertainty; report denominators, uncertainty and limitations.",
+      "Provider data boundary and authorization decision; no provider calls absent separate authorization."
+    ],
+    "GAP-IAC": [
+      "One selected IaC tool and version, local fixture/module with no credentials or cloud apply.",
+      "Offline validate/plan plus independent expected plan summary and drift mutation rejection.",
+      "Recreate/rollback/cleanup rehearsal with exact resource inventory and no real cloud state.",
+      "Actual deployment remains blocked pending separately authorized spend, credentials, account and security review."
+    ],
+    "GAP-ENTERPRISE": [
+      "Named simulated security, privacy, procurement, service and operations decision owners and required evidence.",
+      "A missing/denied approval blocks release; test allowed, denied and deferred launch outcomes.",
+      "Real customer/workplace data, production deployment and enterprise approval remain external gates.",
+      "Simulations never count as external approval, live operations or customer outcome."
+    ]
+  },
+  "first_21_units": {
+    "status": "contracts_and_starter_tests_added_in_this_amendment",
+    "evidence_status": "not_attempted",
+    "learner_completion_awarded": false,
+    "acceptance_approach": "independent expected fixtures, actual Spring Security/SQL execution paths, positive controls, negative controls and implementation mutation tests"
+  },
+  "outcome_horizon": {
+    "phases": "docs/reboot/continuation-271-732/README.md",
+    "role_checkpoint_dashboard": "fde-alignment.json",
+    "all_checkpoints": "evidence_gated_not_automatic_readiness"
+  }
+}
